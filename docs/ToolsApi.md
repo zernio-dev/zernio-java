@@ -1287,6 +1287,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **404** | No transcript available |  -  |
+| **503** | Transcript service temporarily unavailable |  -  |
 
 ## getYouTubeTranscriptWithHttpInfo
 
@@ -1363,4 +1364,5 @@ ApiResponse<[**GetYouTubeTranscript200Response**](GetYouTubeTranscript200Respons
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **404** | No transcript available |  -  |
+| **503** | Transcript service temporarily unavailable |  -  |
 

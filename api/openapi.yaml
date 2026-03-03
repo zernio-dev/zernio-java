@@ -250,6 +250,8 @@ paths:
           description: Success
         "404":
           description: No transcript available
+        "503":
+          description: Transcript service temporarily unavailable
       security:
       - bearerAuth: []
       summary: Get YouTube transcript
