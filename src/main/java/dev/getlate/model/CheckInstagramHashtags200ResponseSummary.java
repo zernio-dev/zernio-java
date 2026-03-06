@@ -37,7 +37,7 @@ import dev.getlate.ApiClient;
   CheckInstagramHashtags200ResponseSummary.JSON_PROPERTY_RESTRICTED,
   CheckInstagramHashtags200ResponseSummary.JSON_PROPERTY_SAFE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-06T15:45:05.246868673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-06T16:07:16.440839824Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckInstagramHashtags200ResponseSummary {
   public static final String JSON_PROPERTY_BANNED = "banned";
   @javax.annotation.Nullable

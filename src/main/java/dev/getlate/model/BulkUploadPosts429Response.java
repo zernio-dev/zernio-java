@@ -36,7 +36,7 @@ import dev.getlate.ApiClient;
   BulkUploadPosts429Response.JSON_PROPERTY_ERROR,
   BulkUploadPosts429Response.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-06T15:45:05.246868673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-06T16:07:16.440839824Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUploadPosts429Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
