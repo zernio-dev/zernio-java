@@ -8154,6 +8154,74 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/inbox/reactions/{postId}:
+    get:
+      description: |
+        Fetch individual reactions for a post, including reactor profiles (name, headline/title, picture, profile URL).
+        Currently only supported for **LinkedIn organization/company page** posts.
+        LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission).
+      operationId: getPostReactions
+      parameters:
+      - description: Late post ID or platform-specific post ID (LinkedIn activity
+          URN or numeric ID).
+        explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The social account ID (must be a LinkedIn organization account).
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Maximum number of reactions to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Offset-based pagination start index.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getPostReactions_200_response"
+          description: Reactions for the post with reactor profiles
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendInboxMessage_400_response"
+          description: Platform limitation or invalid request
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+      security:
+      - bearerAuth: []
+      summary: Get post reactions (who reacted)
+      tags:
+      - Comments
+      x-accepts:
+      - application/json
   /v1/inbox/comments/{postId}/{commentId}/hide:
     delete:
       description: |
@@ -20991,6 +21059,133 @@ components:
           type: boolean
         data:
           $ref: "#/components/schemas/deleteAccountGroup_200_response"
+    getPostReactions_200_response_reactions_inner_from:
+      example:
+        urn: urn
+        profileUrl: profileUrl
+        profilePicture: profilePicture
+        name: name
+        headline: headline
+        username: username
+      properties:
+        urn:
+          description: LinkedIn person or organization URN
+          type: string
+        name:
+          description: Reactor's display name
+          type: string
+        headline:
+          description: Reactor's headline/job title (LinkedIn only)
+          type: string
+        username:
+          description: LinkedIn vanity name
+          type: string
+        profilePicture:
+          description: Profile picture URL
+          type: string
+        profileUrl:
+          description: Direct link to reactor's LinkedIn profile
+          type: string
+    getPostReactions_200_response_reactions_inner:
+      example:
+        reactionType: reactionType
+        from:
+          urn: urn
+          profileUrl: profileUrl
+          profilePicture: profilePicture
+          name: name
+          headline: headline
+          username: username
+        reactionLabel: reactionLabel
+        reactedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        reactionType:
+          description: "LinkedIn reaction enum (LIKE, PRAISE, EMPATHY, INTEREST, APPRECIATION,\
+            \ ENTERTAINMENT)"
+          type: string
+        reactionLabel:
+          description: "User-friendly label (Like, Celebrate, Love, Insightful, Support,\
+            \ Funny)"
+          type: string
+        reactedAt:
+          format: date-time
+          type: string
+        from:
+          $ref: "#/components/schemas/getPostReactions_200_response_reactions_inner_from"
+    getPostReactions_200_response_pagination:
+      example:
+        cursor: cursor
+        total: 0
+        hasMore: true
+      properties:
+        hasMore:
+          type: boolean
+        cursor:
+          description: Offset for next page
+          type: string
+        total:
+          description: Total number of reactions (when available)
+          type: integer
+    getPostReactions_200_response_meta:
+      example:
+        accountId: accountId
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        postId: postId
+        platform: platform
+      properties:
+        platform:
+          type: string
+        postId:
+          type: string
+        accountId:
+          type: string
+        lastUpdated:
+          format: date-time
+          type: string
+    getPostReactions_200_response:
+      example:
+        pagination:
+          cursor: cursor
+          total: 0
+          hasMore: true
+        meta:
+          accountId: accountId
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          postId: postId
+          platform: platform
+        reactions:
+        - reactionType: reactionType
+          from:
+            urn: urn
+            profileUrl: profileUrl
+            profilePicture: profilePicture
+            name: name
+            headline: headline
+            username: username
+          reactionLabel: reactionLabel
+          reactedAt: 2000-01-23T04:56:07.000+00:00
+        - reactionType: reactionType
+          from:
+            urn: urn
+            profileUrl: profileUrl
+            profilePicture: profilePicture
+            name: name
+            headline: headline
+            username: username
+          reactionLabel: reactionLabel
+          reactedAt: 2000-01-23T04:56:07.000+00:00
+        status: status
+      properties:
+        status:
+          type: string
+        reactions:
+          items:
+            $ref: "#/components/schemas/getPostReactions_200_response_reactions_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/getPostReactions_200_response_pagination"
+        meta:
+          $ref: "#/components/schemas/getPostReactions_200_response_meta"
     hideInboxComment_request:
       properties:
         accountId:

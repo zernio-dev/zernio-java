@@ -4,7 +4,7 @@ Late API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-08T08:59:56.425859970Z[Etc/UTC]
+- Build date: 2026-03-08T09:03:45.072573756Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -180,6 +180,8 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**deleteInboxCommentWithHttpInfo**](docs/CommentsApi.md#deleteInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId} | Delete comment
 *CommentsApi* | [**getInboxPostComments**](docs/CommentsApi.md#getInboxPostComments) | **GET** /v1/inbox/comments/{postId} | Get post comments
 *CommentsApi* | [**getInboxPostCommentsWithHttpInfo**](docs/CommentsApi.md#getInboxPostCommentsWithHttpInfo) | **GET** /v1/inbox/comments/{postId} | Get post comments
+*CommentsApi* | [**getPostReactions**](docs/CommentsApi.md#getPostReactions) | **GET** /v1/inbox/reactions/{postId} | Get post reactions (who reacted)
+*CommentsApi* | [**getPostReactionsWithHttpInfo**](docs/CommentsApi.md#getPostReactionsWithHttpInfo) | **GET** /v1/inbox/reactions/{postId} | Get post reactions (who reacted)
 *CommentsApi* | [**hideInboxComment**](docs/CommentsApi.md#hideInboxComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/hide | Hide comment
 *CommentsApi* | [**hideInboxCommentWithHttpInfo**](docs/CommentsApi.md#hideInboxCommentWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/hide | Hide comment
 *CommentsApi* | [**likeInboxComment**](docs/CommentsApi.md#likeInboxComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/like | Like comment
@@ -549,6 +551,11 @@ Class | Method | HTTP request | Description
  - [GetPinterestBoards200Response](docs/GetPinterestBoards200Response.md)
  - [GetPinterestBoards200ResponseBoardsInner](docs/GetPinterestBoards200ResponseBoardsInner.md)
  - [GetPostLogs200Response](docs/GetPostLogs200Response.md)
+ - [GetPostReactions200Response](docs/GetPostReactions200Response.md)
+ - [GetPostReactions200ResponseMeta](docs/GetPostReactions200ResponseMeta.md)
+ - [GetPostReactions200ResponsePagination](docs/GetPostReactions200ResponsePagination.md)
+ - [GetPostReactions200ResponseReactionsInner](docs/GetPostReactions200ResponseReactionsInner.md)
+ - [GetPostReactions200ResponseReactionsInnerFrom](docs/GetPostReactions200ResponseReactionsInnerFrom.md)
  - [GetPostTimeline200Response](docs/GetPostTimeline200Response.md)
  - [GetPostTimeline200ResponseTimelineInner](docs/GetPostTimeline200ResponseTimelineInner.md)
  - [GetPostTimeline400Response](docs/GetPostTimeline400Response.md)
