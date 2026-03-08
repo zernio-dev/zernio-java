@@ -960,8 +960,3 @@ src/main/java/dev/getlate/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/getlate/model/YouTubePlatformData.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/getlate/model/GetLinkedInPostReactions200ResponsePaginationTest.java
-src/test/java/dev/getlate/model/GetLinkedInPostReactions200ResponseReactionsInnerFromTest.java
-src/test/java/dev/getlate/model/GetLinkedInPostReactions200ResponseReactionsInnerTest.java
-src/test/java/dev/getlate/model/GetLinkedInPostReactions200ResponseTest.java
-src/test/java/dev/getlate/model/GetLinkedInPostReactions400ResponseTest.java

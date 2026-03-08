@@ -18,8 +18,8 @@ All URIs are relative to *https://getlate.dev/api*
 | [**getLinkedInAggregateAnalyticsWithHttpInfo**](AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**getLinkedInPostAnalytics**](AnalyticsApi.md#getLinkedInPostAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
 | [**getLinkedInPostAnalyticsWithHttpInfo**](AnalyticsApi.md#getLinkedInPostAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
-| [**getLinkedInPostReactions**](AnalyticsApi.md#getLinkedInPostReactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions (who reacted) |
-| [**getLinkedInPostReactionsWithHttpInfo**](AnalyticsApi.md#getLinkedInPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions (who reacted) |
+| [**getLinkedInPostReactions**](AnalyticsApi.md#getLinkedInPostReactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions |
+| [**getLinkedInPostReactionsWithHttpInfo**](AnalyticsApi.md#getLinkedInPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions |
 | [**getPostTimeline**](AnalyticsApi.md#getPostTimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**getPostTimelineWithHttpInfo**](AnalyticsApi.md#getPostTimelineWithHttpInfo) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**getPostingFrequency**](AnalyticsApi.md#getPostingFrequency) | **GET** /v1/analytics/posting-frequency | Get posting frequency vs engagement |
@@ -1189,7 +1189,7 @@ ApiResponse<[**GetLinkedInPostAnalytics200Response**](GetLinkedInPostAnalytics20
 
 > GetLinkedInPostReactions200Response getLinkedInPostReactions(accountId, urn, limit, cursor)
 
-Get LinkedIn post reactions (who reacted)
+Get LinkedIn post reactions
 
 Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
 
@@ -1270,7 +1270,7 @@ public class Example {
 
 > ApiResponse<GetLinkedInPostReactions200Response> getLinkedInPostReactions getLinkedInPostReactionsWithHttpInfo(accountId, urn, limit, cursor)
 
-Get LinkedIn post reactions (who reacted)
+Get LinkedIn post reactions
 
 Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
 

@@ -5901,7 +5901,7 @@ paths:
           description: Missing required LinkedIn scope
         "404":
           description: Account or post not found
-      summary: Get LinkedIn post reactions (who reacted)
+      summary: Get LinkedIn post reactions
       tags:
       - Analytics
       x-accepts:

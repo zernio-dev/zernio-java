@@ -76,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-08T09:14:50.019868009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-08T09:17:03.616767449Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1256,7 +1256,7 @@ public class AnalyticsApi {
   }
 
   /**
-   * Get LinkedIn post reactions (who reacted)
+   * Get LinkedIn post reactions
    * Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
@@ -1270,7 +1270,7 @@ public class AnalyticsApi {
   }
 
   /**
-   * Get LinkedIn post reactions (who reacted)
+   * Get LinkedIn post reactions
    * Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
@@ -1286,7 +1286,7 @@ public class AnalyticsApi {
   }
 
   /**
-   * Get LinkedIn post reactions (who reacted)
+   * Get LinkedIn post reactions
    * Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
@@ -1300,7 +1300,7 @@ public class AnalyticsApi {
   }
 
   /**
-   * Get LinkedIn post reactions (who reacted)
+   * Get LinkedIn post reactions
    * Returns individual reactions for a specific LinkedIn post, including reactor profiles (name, headline/job title, profile picture, profile URL, reaction type). Only works for **organization/company page** accounts. LinkedIn restricts reaction data for personal profiles (r_member_social_feed is a closed permission). 
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
