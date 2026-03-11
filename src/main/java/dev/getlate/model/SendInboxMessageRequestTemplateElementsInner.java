@@ -41,7 +41,7 @@ import dev.getlate.ApiClient;
   SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_IMAGE_URL,
   SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:06:53.332859912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:08:11.107740683Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestTemplateElementsInner {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nonnull

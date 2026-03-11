@@ -36,7 +36,7 @@ import dev.getlate.ApiClient;
   UpdateLinkedInOrganizationRequest.JSON_PROPERTY_ACCOUNT_TYPE,
   UpdateLinkedInOrganizationRequest.JSON_PROPERTY_SELECTED_ORGANIZATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:06:53.332859912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:08:11.107740683Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateLinkedInOrganizationRequest {
   /**
    * Gets or Sets accountType

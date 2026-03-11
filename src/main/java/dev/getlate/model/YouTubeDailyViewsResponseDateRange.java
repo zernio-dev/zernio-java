@@ -37,7 +37,7 @@ import dev.getlate.ApiClient;
   YouTubeDailyViewsResponseDateRange.JSON_PROPERTY_START_DATE,
   YouTubeDailyViewsResponseDateRange.JSON_PROPERTY_END_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:06:53.332859912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:08:11.107740683Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponseDateRange {
   public static final String JSON_PROPERTY_START_DATE = "startDate";
   @javax.annotation.Nullable
