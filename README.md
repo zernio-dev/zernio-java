@@ -4,7 +4,7 @@ Late API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-11T08:59:44.740089086Z[Etc/UTC]
+- Build date: 2026-03-11T11:06:53.332859912Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -452,8 +452,6 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**updateWhatsAppContactWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppContactWithHttpInfo) | **PUT** /v1/whatsapp/contacts/{contactId} | Update contact
 *WhatsAppApi* | [**updateWhatsAppTemplate**](docs/WhatsAppApi.md#updateWhatsAppTemplate) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template
 *WhatsAppApi* | [**updateWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppTemplateWithHttpInfo) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template
-*WhatsAppPhoneNumbersApi* | [**getPreverifiedWhatsAppNumbers**](docs/WhatsAppPhoneNumbersApi.md#getPreverifiedWhatsAppNumbers) | **GET** /v1/whatsapp/phone-numbers/preverified | Get pre-verified numbers
-*WhatsAppPhoneNumbersApi* | [**getPreverifiedWhatsAppNumbersWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getPreverifiedWhatsAppNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/preverified | Get pre-verified numbers
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumberWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
@@ -462,12 +460,6 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**purchaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumberWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
-*WhatsAppPhoneNumbersApi* | [**requestWhatsAppVerificationCode**](docs/WhatsAppPhoneNumbersApi.md#requestWhatsAppVerificationCode) | **POST** /v1/whatsapp/phone-numbers/{phoneNumberId}/request-code | Request OTP
-*WhatsAppPhoneNumbersApi* | [**requestWhatsAppVerificationCodeWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#requestWhatsAppVerificationCodeWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{phoneNumberId}/request-code | Request OTP
-*WhatsAppPhoneNumbersApi* | [**searchAvailableWhatsAppNumbers**](docs/WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers
-*WhatsAppPhoneNumbersApi* | [**searchAvailableWhatsAppNumbersWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers
-*WhatsAppPhoneNumbersApi* | [**verifyWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#verifyWhatsAppPhoneNumber) | **POST** /v1/whatsapp/phone-numbers/{phoneNumberId}/verify | Verify OTP
-*WhatsAppPhoneNumbersApi* | [**verifyWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#verifyWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{phoneNumberId}/verify | Verify OTP
 
 
 ## Documentation for Models
@@ -657,8 +649,6 @@ Class | Method | HTTP request | Description
  - [GetPostTimeline404Response](docs/GetPostTimeline404Response.md)
  - [GetPostingFrequency200Response](docs/GetPostingFrequency200Response.md)
  - [GetPostingFrequency200ResponseFrequencyInner](docs/GetPostingFrequency200ResponseFrequencyInner.md)
- - [GetPreverifiedWhatsAppNumbers200Response](docs/GetPreverifiedWhatsAppNumbers200Response.md)
- - [GetPreverifiedWhatsAppNumbers200ResponseNumbersInner](docs/GetPreverifiedWhatsAppNumbers200ResponseNumbersInner.md)
  - [GetProfile200Response](docs/GetProfile200Response.md)
  - [GetRedditFeed200Response](docs/GetRedditFeed200Response.md)
  - [GetRedditFlairs200Response](docs/GetRedditFlairs200Response.md)
@@ -832,12 +822,9 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxReview200Response](docs/ReplyToInboxReview200Response.md)
  - [ReplyToInboxReview200ResponseReply](docs/ReplyToInboxReview200ResponseReply.md)
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
- - [RequestWhatsAppVerificationCode200Response](docs/RequestWhatsAppVerificationCode200Response.md)
- - [RequestWhatsAppVerificationCodeRequest](docs/RequestWhatsAppVerificationCodeRequest.md)
  - [ScheduleWhatsAppBroadcast200Response](docs/ScheduleWhatsAppBroadcast200Response.md)
  - [ScheduleWhatsAppBroadcast200ResponseBroadcast](docs/ScheduleWhatsAppBroadcast200ResponseBroadcast.md)
  - [ScheduleWhatsAppBroadcastRequest](docs/ScheduleWhatsAppBroadcastRequest.md)
- - [SearchAvailableWhatsAppNumbers200Response](docs/SearchAvailableWhatsAppNumbers200Response.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
  - [SearchReddit200ResponsePostsInner](docs/SearchReddit200ResponsePostsInner.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
@@ -967,8 +954,6 @@ Class | Method | HTTP request | Description
  - [ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
- - [VerifyWhatsAppPhoneNumber200Response](docs/VerifyWhatsAppPhoneNumber200Response.md)
- - [VerifyWhatsAppPhoneNumberRequest](docs/VerifyWhatsAppPhoneNumberRequest.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookLog](docs/WebhookLog.md)
  - [WebhookPayloadAccountConnected](docs/WebhookPayloadAccountConnected.md)

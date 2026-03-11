@@ -36,7 +36,7 @@ import dev.getlate.ApiClient;
   BulkDeleteWhatsAppContacts200Response.JSON_PROPERTY_SUCCESS,
   BulkDeleteWhatsAppContacts200Response.JSON_PROPERTY_DELETED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T08:59:44.740089086Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:06:53.332859912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkDeleteWhatsAppContacts200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

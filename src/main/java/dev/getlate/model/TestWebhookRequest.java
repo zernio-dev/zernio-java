@@ -35,7 +35,7 @@ import dev.getlate.ApiClient;
 @JsonPropertyOrder({
   TestWebhookRequest.JSON_PROPERTY_WEBHOOK_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T08:59:44.740089086Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-11T11:06:53.332859912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TestWebhookRequest {
   public static final String JSON_PROPERTY_WEBHOOK_ID = "webhookId";
   @javax.annotation.Nonnull
