@@ -1866,6 +1866,7 @@ paths:
                 planName: Pro
                 billingPeriod: monthly
                 signupDate: 2024-01-15T10:30:00Z
+                billingAnchorDay: 15
                 limits:
                   uploads: 500
                   profiles: 10
@@ -12924,15 +12925,16 @@ components:
     UsageStats:
       example:
         signupDate: 2000-01-23T04:56:07.000+00:00
+        billingAnchorDay: 0
         billingPeriod: monthly
         usage:
           profiles: 5
           lastReset: 2000-01-23T04:56:07.000+00:00
-          uploads: 1
+          uploads: 5
         planName: planName
         limits:
-          profiles: 6
-          uploads: 0
+          profiles: 1
+          uploads: 6
       properties:
         planName:
           type: string
@@ -12944,6 +12946,9 @@ components:
         signupDate:
           format: date-time
           type: string
+        billingAnchorDay:
+          description: Day of month (1-31) when the billing cycle resets
+          type: integer
         limits:
           $ref: "#/components/schemas/UsageStats_limits"
         usage:
@@ -26055,8 +26060,8 @@ components:
           type: string
     UsageStats_limits:
       example:
-        profiles: 6
-        uploads: 0
+        profiles: 1
+        uploads: 6
       properties:
         uploads:
           type: integer
@@ -26066,7 +26071,7 @@ components:
       example:
         profiles: 5
         lastReset: 2000-01-23T04:56:07.000+00:00
-        uploads: 1
+        uploads: 5
       properties:
         uploads:
           type: integer

@@ -1148,10 +1148,3 @@ src/main/java/dev/getlate/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/getlate/model/YouTubePlatformData.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/getlate/model/AccountWithFollowerStatsAllOfAccountStatsTest.java
-src/test/java/dev/getlate/model/GetWhatsAppDisplayName200ResponseDisplayNameTest.java
-src/test/java/dev/getlate/model/GetWhatsAppDisplayName200ResponseTest.java
-src/test/java/dev/getlate/model/UpdateWhatsAppDisplayName200ResponseDisplayNameTest.java
-src/test/java/dev/getlate/model/UpdateWhatsAppDisplayName200ResponseTest.java
-src/test/java/dev/getlate/model/UpdateWhatsAppDisplayNameRequestTest.java
-src/test/java/dev/getlate/model/UploadWhatsAppProfilePhotoRequestTest.java

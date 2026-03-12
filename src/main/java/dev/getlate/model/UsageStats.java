@@ -39,10 +39,11 @@ import dev.getlate.ApiClient;
   UsageStats.JSON_PROPERTY_PLAN_NAME,
   UsageStats.JSON_PROPERTY_BILLING_PERIOD,
   UsageStats.JSON_PROPERTY_SIGNUP_DATE,
+  UsageStats.JSON_PROPERTY_BILLING_ANCHOR_DAY,
   UsageStats.JSON_PROPERTY_LIMITS,
   UsageStats.JSON_PROPERTY_USAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T09:26:22.389496965Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T10:45:11.715950905Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStats {
   public static final String JSON_PROPERTY_PLAN_NAME = "planName";
   @javax.annotation.Nullable
@@ -90,6 +91,10 @@ public class UsageStats {
   public static final String JSON_PROPERTY_SIGNUP_DATE = "signupDate";
   @javax.annotation.Nullable
   private OffsetDateTime signupDate;
+
+  public static final String JSON_PROPERTY_BILLING_ANCHOR_DAY = "billingAnchorDay";
+  @javax.annotation.Nullable
+  private Integer billingAnchorDay;
 
   public static final String JSON_PROPERTY_LIMITS = "limits";
   @javax.annotation.Nullable
@@ -174,6 +179,30 @@ public class UsageStats {
   }
 
 
+  public UsageStats billingAnchorDay(@javax.annotation.Nullable Integer billingAnchorDay) {
+    this.billingAnchorDay = billingAnchorDay;
+    return this;
+  }
+
+  /**
+   * Day of month (1-31) when the billing cycle resets
+   * @return billingAnchorDay
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BILLING_ANCHOR_DAY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getBillingAnchorDay() {
+    return billingAnchorDay;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BILLING_ANCHOR_DAY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBillingAnchorDay(@javax.annotation.Nullable Integer billingAnchorDay) {
+    this.billingAnchorDay = billingAnchorDay;
+  }
+
+
   public UsageStats limits(@javax.annotation.Nullable UsageStatsLimits limits) {
     this.limits = limits;
     return this;
@@ -237,13 +266,14 @@ public class UsageStats {
     return Objects.equals(this.planName, usageStats.planName) &&
         Objects.equals(this.billingPeriod, usageStats.billingPeriod) &&
         Objects.equals(this.signupDate, usageStats.signupDate) &&
+        Objects.equals(this.billingAnchorDay, usageStats.billingAnchorDay) &&
         Objects.equals(this.limits, usageStats.limits) &&
         Objects.equals(this.usage, usageStats.usage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(planName, billingPeriod, signupDate, limits, usage);
+    return Objects.hash(planName, billingPeriod, signupDate, billingAnchorDay, limits, usage);
   }
 
   @Override
@@ -253,6 +283,7 @@ public class UsageStats {
     sb.append("    planName: ").append(toIndentedString(planName)).append("\n");
     sb.append("    billingPeriod: ").append(toIndentedString(billingPeriod)).append("\n");
     sb.append("    signupDate: ").append(toIndentedString(signupDate)).append("\n");
+    sb.append("    billingAnchorDay: ").append(toIndentedString(billingAnchorDay)).append("\n");
     sb.append("    limits: ").append(toIndentedString(limits)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("}");
@@ -315,6 +346,11 @@ public class UsageStats {
     // add `signupDate` to the URL query string
     if (getSignupDate() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssignupDate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSignupDate()))));
+    }
+
+    // add `billingAnchorDay` to the URL query string
+    if (getBillingAnchorDay() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbillingAnchorDay%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBillingAnchorDay()))));
     }
 
     // add `limits` to the URL query string
