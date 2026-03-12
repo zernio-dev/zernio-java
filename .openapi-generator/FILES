@@ -1134,8 +1134,3 @@ src/main/java/dev/getlate/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/getlate/model/YouTubePlatformData.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/getlate/model/ConnectWhatsAppCredentials200ResponseAccountTest.java
-src/test/java/dev/getlate/model/ConnectWhatsAppCredentials200ResponseTest.java
-src/test/java/dev/getlate/model/ConnectWhatsAppCredentialsRequestTest.java
-src/test/java/dev/getlate/model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerTest.java
-src/test/java/dev/getlate/model/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrlTest.java

@@ -11511,7 +11511,9 @@ components:
           description: "Optional MIME type (e.g. image/jpeg, video/mp4)"
           type: string
         thumbnail:
-          description: Optional thumbnail image URL for videos
+          description: "Optional custom thumbnail/cover image URL for videos. Supported\
+            \ for Facebook video posts, Facebook Reels, and regular video uploads.\
+            \ Max 10MB, JPG/PNG recommended."
           format: uri
           type: string
         instagramThumbnail:
