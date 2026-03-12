@@ -26,9 +26,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.getlate.model.GetGoogleBusinessLocationDetails200ResponsePhoneNumbers;
 import dev.getlate.model.GetGoogleBusinessLocationDetails200ResponseSpecialHours;
+import dev.getlate.model.UpdateGoogleBusinessLocationDetailsRequestCategories;
 import dev.getlate.model.UpdateGoogleBusinessLocationDetailsRequestProfile;
 import dev.getlate.model.UpdateGoogleBusinessLocationDetailsRequestRegularHours;
+import dev.getlate.model.UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,9 +46,11 @@ import dev.getlate.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_SPECIAL_HOURS,
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_PROFILE,
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_WEBSITE_URI,
-  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_PHONE_NUMBERS
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_PHONE_NUMBERS,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_CATEGORIES,
+  UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_SERVICE_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T10:45:11.715950905Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T14:34:05.958835936Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequest {
   public static final String JSON_PROPERTY_UPDATE_MASK = "updateMask";
   @javax.annotation.Nonnull
@@ -70,6 +76,14 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
   @javax.annotation.Nullable
   private GetGoogleBusinessLocationDetails200ResponsePhoneNumbers phoneNumbers;
 
+  public static final String JSON_PROPERTY_CATEGORIES = "categories";
+  @javax.annotation.Nullable
+  private UpdateGoogleBusinessLocationDetailsRequestCategories categories;
+
+  public static final String JSON_PROPERTY_SERVICE_ITEMS = "serviceItems";
+  @javax.annotation.Nullable
+  private List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> serviceItems = new ArrayList<>();
+
   public UpdateGoogleBusinessLocationDetailsRequest() { 
   }
 
@@ -79,7 +93,7 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
   }
 
   /**
-   * Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;)
+   * Required. Comma-separated fields to update (e.g. &#39;regularHours&#39;, &#39;specialHours&#39;, &#39;profile.description&#39;, &#39;categories&#39;, &#39;serviceItems&#39;). Any valid Google Business Information API updateMask field is supported.
    * @return updateMask
    */
   @javax.annotation.Nonnull
@@ -217,6 +231,62 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
   }
 
 
+  public UpdateGoogleBusinessLocationDetailsRequest categories(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestCategories categories) {
+    this.categories = categories;
+    return this;
+  }
+
+  /**
+   * Get categories
+   * @return categories
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateGoogleBusinessLocationDetailsRequestCategories getCategories() {
+    return categories;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCategories(@javax.annotation.Nullable UpdateGoogleBusinessLocationDetailsRequestCategories categories) {
+    this.categories = categories;
+  }
+
+
+  public UpdateGoogleBusinessLocationDetailsRequest serviceItems(@javax.annotation.Nullable List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> serviceItems) {
+    this.serviceItems = serviceItems;
+    return this;
+  }
+
+  public UpdateGoogleBusinessLocationDetailsRequest addServiceItemsItem(UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner serviceItemsItem) {
+    if (this.serviceItems == null) {
+      this.serviceItems = new ArrayList<>();
+    }
+    this.serviceItems.add(serviceItemsItem);
+    return this;
+  }
+
+  /**
+   * Services offered by the business. Use updateMask&#x3D;&#39;serviceItems&#39; to update.
+   * @return serviceItems
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_ITEMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> getServiceItems() {
+    return serviceItems;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SERVICE_ITEMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setServiceItems(@javax.annotation.Nullable List<UpdateGoogleBusinessLocationDetailsRequestServiceItemsInner> serviceItems) {
+    this.serviceItems = serviceItems;
+  }
+
+
   /**
    * Return true if this updateGoogleBusinessLocationDetails_request object is equal to o.
    */
@@ -234,12 +304,14 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
         Objects.equals(this.specialHours, updateGoogleBusinessLocationDetailsRequest.specialHours) &&
         Objects.equals(this.profile, updateGoogleBusinessLocationDetailsRequest.profile) &&
         Objects.equals(this.websiteUri, updateGoogleBusinessLocationDetailsRequest.websiteUri) &&
-        Objects.equals(this.phoneNumbers, updateGoogleBusinessLocationDetailsRequest.phoneNumbers);
+        Objects.equals(this.phoneNumbers, updateGoogleBusinessLocationDetailsRequest.phoneNumbers) &&
+        Objects.equals(this.categories, updateGoogleBusinessLocationDetailsRequest.categories) &&
+        Objects.equals(this.serviceItems, updateGoogleBusinessLocationDetailsRequest.serviceItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updateMask, regularHours, specialHours, profile, websiteUri, phoneNumbers);
+    return Objects.hash(updateMask, regularHours, specialHours, profile, websiteUri, phoneNumbers, categories, serviceItems);
   }
 
   @Override
@@ -252,6 +324,8 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
     sb.append("    profile: ").append(toIndentedString(profile)).append("\n");
     sb.append("    websiteUri: ").append(toIndentedString(websiteUri)).append("\n");
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
+    sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
+    sb.append("    serviceItems: ").append(toIndentedString(serviceItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -327,6 +401,21 @@ public class UpdateGoogleBusinessLocationDetailsRequest {
     // add `phoneNumbers` to the URL query string
     if (getPhoneNumbers() != null) {
       joiner.add(getPhoneNumbers().toUrlQueryString(prefix + "phoneNumbers" + suffix));
+    }
+
+    // add `categories` to the URL query string
+    if (getCategories() != null) {
+      joiner.add(getCategories().toUrlQueryString(prefix + "categories" + suffix));
+    }
+
+    // add `serviceItems` to the URL query string
+    if (getServiceItems() != null) {
+      for (int i = 0; i < getServiceItems().size(); i++) {
+        if (getServiceItems().get(i) != null) {
+          joiner.add(getServiceItems().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sserviceItems%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

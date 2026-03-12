@@ -41,7 +41,7 @@ import dev.getlate.ApiClient;
   SendWhatsAppBulkRequest.JSON_PROPERTY_RECIPIENTS,
   SendWhatsAppBulkRequest.JSON_PROPERTY_TEMPLATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T10:45:11.715950905Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T14:34:05.958835936Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppBulkRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

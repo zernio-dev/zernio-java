@@ -17,7 +17,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 Get location details
 
-Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
+Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
 
 ### Example
 
@@ -42,7 +42,7 @@ public class Example {
         GmbLocationDetailsApi apiInstance = new GmbLocationDetailsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
         String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
-        String readMask = "readMask_example"; // String | Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours.
+        String readMask = "readMask_example"; // String | Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours.
         try {
             GetGoogleBusinessLocationDetails200Response result = apiInstance.getGoogleBusinessLocationDetails(accountId, locationId, readMask);
             System.out.println(result);
@@ -64,7 +64,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
 | **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
-| **readMask** | **String**| Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. | [optional] |
+| **readMask** | **String**| Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours. | [optional] |
 
 ### Return type
 
@@ -94,7 +94,7 @@ public class Example {
 
 Get location details
 
-Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
+Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
 
 ### Example
 
@@ -120,7 +120,7 @@ public class Example {
         GmbLocationDetailsApi apiInstance = new GmbLocationDetailsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
         String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
-        String readMask = "readMask_example"; // String | Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours.
+        String readMask = "readMask_example"; // String | Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours.
         try {
             ApiResponse<GetGoogleBusinessLocationDetails200Response> response = apiInstance.getGoogleBusinessLocationDetailsWithHttpInfo(accountId, locationId, readMask);
             System.out.println("Status code: " + response.getStatusCode());
@@ -144,7 +144,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
 | **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
-| **readMask** | **String**| Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. | [optional] |
+| **readMask** | **String**| Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours. | [optional] |
 
 ### Return type
 
@@ -175,7 +175,7 @@ ApiResponse<[**GetGoogleBusinessLocationDetails200Response**](GetGoogleBusinessL
 
 Update location details
 
-Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
+Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
 
 ### Example
 
@@ -252,7 +252,7 @@ public class Example {
 
 Update location details
 
-Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
+Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
 
 ### Example
 

@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T10:45:11.715950905Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T14:34:05.958835936Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbLocationDetailsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -168,10 +168,10 @@ public class GmbLocationDetailsApi {
 
   /**
    * Get location details
-   * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
+   * Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
-   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
+   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours. (optional)
    * @return GetGoogleBusinessLocationDetails200Response
    * @throws ApiException if fails to make API call
    */
@@ -181,10 +181,10 @@ public class GmbLocationDetailsApi {
 
   /**
    * Get location details
-   * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
+   * Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
-   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
+   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours. (optional)
    * @param headers Optional headers to include in the request
    * @return GetGoogleBusinessLocationDetails200Response
    * @throws ApiException if fails to make API call
@@ -196,10 +196,10 @@ public class GmbLocationDetailsApi {
 
   /**
    * Get location details
-   * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
+   * Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
-   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
+   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours. (optional)
    * @return ApiResponse&lt;GetGoogleBusinessLocationDetails200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -209,10 +209,10 @@ public class GmbLocationDetailsApi {
 
   /**
    * Get location details
-   * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
+   * Returns detailed GBP location info (hours, description, phone, website, categories, services). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
-   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
+   * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, serviceItems, profile, openInfo, metadata, moreHours. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetGoogleBusinessLocationDetails200Response&gt;
    * @throws ApiException if fails to make API call
@@ -311,7 +311,7 @@ public class GmbLocationDetailsApi {
 
   /**
    * Update location details
-   * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
+   * Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -324,7 +324,7 @@ public class GmbLocationDetailsApi {
 
   /**
    * Update location details
-   * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
+   * Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -339,7 +339,7 @@ public class GmbLocationDetailsApi {
 
   /**
    * Update location details
-   * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
+   * Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -352,7 +352,7 @@ public class GmbLocationDetailsApi {
 
   /**
    * Update location details
-   * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
+   * Updates GBP location details. The updateMask field is required and specifies which fields to update. This endpoint proxies Google&#39;s Business Information API locations.patch, so any valid updateMask field is supported. Common fields: regularHours, specialHours, profile.description, websiteUri, phoneNumbers, categories, serviceItems. 
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
