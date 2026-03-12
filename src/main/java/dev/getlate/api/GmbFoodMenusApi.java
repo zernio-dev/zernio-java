@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T08:43:10.800729807Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T09:10:29.751971885Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbFoodMenusApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -170,23 +170,25 @@ public class GmbFoodMenusApi {
    * Get food menus
    * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return GetGoogleBusinessFoodMenus200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessFoodMenus200Response getGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getGoogleBusinessFoodMenus(accountId, null);
+  public GetGoogleBusinessFoodMenus200Response getGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return getGoogleBusinessFoodMenus(accountId, locationId, null);
   }
 
   /**
    * Get food menus
    * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return GetGoogleBusinessFoodMenus200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessFoodMenus200Response getGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetGoogleBusinessFoodMenus200Response> localVarResponse = getGoogleBusinessFoodMenusWithHttpInfo(accountId, headers);
+  public GetGoogleBusinessFoodMenus200Response getGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGoogleBusinessFoodMenus200Response> localVarResponse = getGoogleBusinessFoodMenusWithHttpInfo(accountId, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -194,23 +196,25 @@ public class GmbFoodMenusApi {
    * Get food menus
    * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;GetGoogleBusinessFoodMenus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessFoodMenus200Response> getGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getGoogleBusinessFoodMenusWithHttpInfo(accountId, null);
+  public ApiResponse<GetGoogleBusinessFoodMenus200Response> getGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return getGoogleBusinessFoodMenusWithHttpInfo(accountId, locationId, null);
   }
 
   /**
    * Get food menus
    * Returns food menus for a GBP location including sections, items, pricing, and dietary info. Only for locations with food menu support.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetGoogleBusinessFoodMenus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessFoodMenus200Response> getGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessFoodMenusRequestBuilder(accountId, headers);
+  public ApiResponse<GetGoogleBusinessFoodMenus200Response> getGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessFoodMenusRequestBuilder(accountId, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -257,7 +261,7 @@ public class GmbFoodMenusApi {
     }
   }
 
-  private HttpRequest.Builder getGoogleBusinessFoodMenusRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getGoogleBusinessFoodMenusRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGoogleBusinessFoodMenus");
@@ -268,7 +272,22 @@ public class GmbFoodMenusApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-food-menus"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -289,11 +308,12 @@ public class GmbFoodMenusApi {
    * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return UpdateGoogleBusinessFoodMenus200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessFoodMenus200Response updateGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest) throws ApiException {
-    return updateGoogleBusinessFoodMenus(accountId, updateGoogleBusinessFoodMenusRequest, null);
+  public UpdateGoogleBusinessFoodMenus200Response updateGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessFoodMenus(accountId, updateGoogleBusinessFoodMenusRequest, locationId, null);
   }
 
   /**
@@ -301,12 +321,13 @@ public class GmbFoodMenusApi {
    * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return UpdateGoogleBusinessFoodMenus200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessFoodMenus200Response updateGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateGoogleBusinessFoodMenus200Response> localVarResponse = updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest, headers);
+  public UpdateGoogleBusinessFoodMenus200Response updateGoogleBusinessFoodMenus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateGoogleBusinessFoodMenus200Response> localVarResponse = updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -315,11 +336,12 @@ public class GmbFoodMenusApi {
    * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;UpdateGoogleBusinessFoodMenus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessFoodMenus200Response> updateGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest) throws ApiException {
-    return updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest, null);
+  public ApiResponse<UpdateGoogleBusinessFoodMenus200Response> updateGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest, locationId, null);
   }
 
   /**
@@ -327,12 +349,13 @@ public class GmbFoodMenusApi {
    * Updates food menus for a GBP location. Send the full menus array. Use updateMask for partial updates.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessFoodMenusRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateGoogleBusinessFoodMenus200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessFoodMenus200Response> updateGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessFoodMenusRequestBuilder(accountId, updateGoogleBusinessFoodMenusRequest, headers);
+  public ApiResponse<UpdateGoogleBusinessFoodMenus200Response> updateGoogleBusinessFoodMenusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessFoodMenusRequestBuilder(accountId, updateGoogleBusinessFoodMenusRequest, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -379,7 +402,7 @@ public class GmbFoodMenusApi {
     }
   }
 
-  private HttpRequest.Builder updateGoogleBusinessFoodMenusRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateGoogleBusinessFoodMenusRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateGoogleBusinessFoodMenus");
@@ -394,7 +417,22 @@ public class GmbFoodMenusApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-food-menus"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");

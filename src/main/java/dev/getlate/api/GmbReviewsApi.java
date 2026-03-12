@@ -47,7 +47,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T08:43:10.800729807Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T09:10:29.751971885Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -168,27 +168,29 @@ public class GmbReviewsApi {
    * Get reviews
    * Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of reviews to fetch per page (max 50) (optional, default to 50)
    * @param pageToken Pagination token from previous response (optional)
    * @return GetGoogleBusinessReviews200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessReviews200Response getGoogleBusinessReviews(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
-    return getGoogleBusinessReviews(accountId, pageSize, pageToken, null);
+  public GetGoogleBusinessReviews200Response getGoogleBusinessReviews(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return getGoogleBusinessReviews(accountId, locationId, pageSize, pageToken, null);
   }
 
   /**
    * Get reviews
    * Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of reviews to fetch per page (max 50) (optional, default to 50)
    * @param pageToken Pagination token from previous response (optional)
    * @param headers Optional headers to include in the request
    * @return GetGoogleBusinessReviews200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessReviews200Response getGoogleBusinessReviews(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetGoogleBusinessReviews200Response> localVarResponse = getGoogleBusinessReviewsWithHttpInfo(accountId, pageSize, pageToken, headers);
+  public GetGoogleBusinessReviews200Response getGoogleBusinessReviews(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGoogleBusinessReviews200Response> localVarResponse = getGoogleBusinessReviewsWithHttpInfo(accountId, locationId, pageSize, pageToken, headers);
     return localVarResponse.getData();
   }
 
@@ -196,27 +198,29 @@ public class GmbReviewsApi {
    * Get reviews
    * Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of reviews to fetch per page (max 50) (optional, default to 50)
    * @param pageToken Pagination token from previous response (optional)
    * @return ApiResponse&lt;GetGoogleBusinessReviews200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessReviews200Response> getGoogleBusinessReviewsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
-    return getGoogleBusinessReviewsWithHttpInfo(accountId, pageSize, pageToken, null);
+  public ApiResponse<GetGoogleBusinessReviews200Response> getGoogleBusinessReviewsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return getGoogleBusinessReviewsWithHttpInfo(accountId, locationId, pageSize, pageToken, null);
   }
 
   /**
    * Get reviews
    * Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of reviews to fetch per page (max 50) (optional, default to 50)
    * @param pageToken Pagination token from previous response (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetGoogleBusinessReviews200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessReviews200Response> getGoogleBusinessReviewsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessReviewsRequestBuilder(accountId, pageSize, pageToken, headers);
+  public ApiResponse<GetGoogleBusinessReviews200Response> getGoogleBusinessReviewsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessReviewsRequestBuilder(accountId, locationId, pageSize, pageToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -263,7 +267,7 @@ public class GmbReviewsApi {
     }
   }
 
-  private HttpRequest.Builder getGoogleBusinessReviewsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getGoogleBusinessReviewsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGoogleBusinessReviews");
@@ -277,6 +281,8 @@ public class GmbReviewsApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
     localVarQueryParameterBaseName = "pageSize";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
     localVarQueryParameterBaseName = "pageToken";

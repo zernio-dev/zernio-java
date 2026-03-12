@@ -13,7 +13,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 ## getGoogleBusinessLocationDetails
 
-> GetGoogleBusinessLocationDetails200Response getGoogleBusinessLocationDetails(accountId, readMask)
+> GetGoogleBusinessLocationDetails200Response getGoogleBusinessLocationDetails(accountId, locationId, readMask)
 
 Get location details
 
@@ -41,9 +41,10 @@ public class Example {
 
         GmbLocationDetailsApi apiInstance = new GmbLocationDetailsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         String readMask = "readMask_example"; // String | Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours.
         try {
-            GetGoogleBusinessLocationDetails200Response result = apiInstance.getGoogleBusinessLocationDetails(accountId, readMask);
+            GetGoogleBusinessLocationDetails200Response result = apiInstance.getGoogleBusinessLocationDetails(accountId, locationId, readMask);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbLocationDetailsApi#getGoogleBusinessLocationDetails");
@@ -62,6 +63,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **readMask** | **String**| Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. | [optional] |
 
 ### Return type
@@ -88,7 +90,7 @@ public class Example {
 
 ## getGoogleBusinessLocationDetailsWithHttpInfo
 
-> ApiResponse<GetGoogleBusinessLocationDetails200Response> getGoogleBusinessLocationDetails getGoogleBusinessLocationDetailsWithHttpInfo(accountId, readMask)
+> ApiResponse<GetGoogleBusinessLocationDetails200Response> getGoogleBusinessLocationDetails getGoogleBusinessLocationDetailsWithHttpInfo(accountId, locationId, readMask)
 
 Get location details
 
@@ -117,9 +119,10 @@ public class Example {
 
         GmbLocationDetailsApi apiInstance = new GmbLocationDetailsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         String readMask = "readMask_example"; // String | Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours.
         try {
-            ApiResponse<GetGoogleBusinessLocationDetails200Response> response = apiInstance.getGoogleBusinessLocationDetailsWithHttpInfo(accountId, readMask);
+            ApiResponse<GetGoogleBusinessLocationDetails200Response> response = apiInstance.getGoogleBusinessLocationDetailsWithHttpInfo(accountId, locationId, readMask);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -140,6 +143,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **readMask** | **String**| Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. | [optional] |
 
 ### Return type
@@ -167,7 +171,7 @@ ApiResponse<[**GetGoogleBusinessLocationDetails200Response**](GetGoogleBusinessL
 
 ## updateGoogleBusinessLocationDetails
 
-> UpdateGoogleBusinessLocationDetails200Response updateGoogleBusinessLocationDetails(accountId, updateGoogleBusinessLocationDetailsRequest)
+> UpdateGoogleBusinessLocationDetails200Response updateGoogleBusinessLocationDetails(accountId, updateGoogleBusinessLocationDetailsRequest, locationId)
 
 Update location details
 
@@ -196,8 +200,9 @@ public class Example {
         GmbLocationDetailsApi apiInstance = new GmbLocationDetailsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
         UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest = new UpdateGoogleBusinessLocationDetailsRequest(); // UpdateGoogleBusinessLocationDetailsRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            UpdateGoogleBusinessLocationDetails200Response result = apiInstance.updateGoogleBusinessLocationDetails(accountId, updateGoogleBusinessLocationDetailsRequest);
+            UpdateGoogleBusinessLocationDetails200Response result = apiInstance.updateGoogleBusinessLocationDetails(accountId, updateGoogleBusinessLocationDetailsRequest, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbLocationDetailsApi#updateGoogleBusinessLocationDetails");
@@ -217,6 +222,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
 | **updateGoogleBusinessLocationDetailsRequest** | [**UpdateGoogleBusinessLocationDetailsRequest**](UpdateGoogleBusinessLocationDetailsRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -242,7 +248,7 @@ public class Example {
 
 ## updateGoogleBusinessLocationDetailsWithHttpInfo
 
-> ApiResponse<UpdateGoogleBusinessLocationDetails200Response> updateGoogleBusinessLocationDetails updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest)
+> ApiResponse<UpdateGoogleBusinessLocationDetails200Response> updateGoogleBusinessLocationDetails updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest, locationId)
 
 Update location details
 
@@ -272,8 +278,9 @@ public class Example {
         GmbLocationDetailsApi apiInstance = new GmbLocationDetailsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
         UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest = new UpdateGoogleBusinessLocationDetailsRequest(); // UpdateGoogleBusinessLocationDetailsRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<UpdateGoogleBusinessLocationDetails200Response> response = apiInstance.updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest);
+            ApiResponse<UpdateGoogleBusinessLocationDetails200Response> response = apiInstance.updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -295,6 +302,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
 | **updateGoogleBusinessLocationDetailsRequest** | [**UpdateGoogleBusinessLocationDetailsRequest**](UpdateGoogleBusinessLocationDetailsRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 

@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T08:43:10.800729807Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T09:10:29.751971885Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbMediaApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -171,11 +171,12 @@ public class GmbMediaApi {
    * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return CreateGoogleBusinessMedia200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateGoogleBusinessMedia200Response createGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest) throws ApiException {
-    return createGoogleBusinessMedia(accountId, createGoogleBusinessMediaRequest, null);
+  public CreateGoogleBusinessMedia200Response createGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return createGoogleBusinessMedia(accountId, createGoogleBusinessMediaRequest, locationId, null);
   }
 
   /**
@@ -183,12 +184,13 @@ public class GmbMediaApi {
    * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return CreateGoogleBusinessMedia200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateGoogleBusinessMedia200Response createGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateGoogleBusinessMedia200Response> localVarResponse = createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest, headers);
+  public CreateGoogleBusinessMedia200Response createGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateGoogleBusinessMedia200Response> localVarResponse = createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -197,11 +199,12 @@ public class GmbMediaApi {
    * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;CreateGoogleBusinessMedia200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateGoogleBusinessMedia200Response> createGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest) throws ApiException {
-    return createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest, null);
+  public ApiResponse<CreateGoogleBusinessMedia200Response> createGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest, locationId, null);
   }
 
   /**
@@ -209,12 +212,13 @@ public class GmbMediaApi {
    * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateGoogleBusinessMedia200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateGoogleBusinessMedia200Response> createGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createGoogleBusinessMediaRequestBuilder(accountId, createGoogleBusinessMediaRequest, headers);
+  public ApiResponse<CreateGoogleBusinessMedia200Response> createGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createGoogleBusinessMediaRequestBuilder(accountId, createGoogleBusinessMediaRequest, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -261,7 +265,7 @@ public class GmbMediaApi {
     }
   }
 
-  private HttpRequest.Builder createGoogleBusinessMediaRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createGoogleBusinessMediaRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling createGoogleBusinessMedia");
@@ -276,7 +280,22 @@ public class GmbMediaApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-media"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
@@ -303,11 +322,12 @@ public class GmbMediaApi {
    * Deletes a photo or media item from a GBP location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return DeleteGoogleBusinessMedia200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteGoogleBusinessMedia200Response deleteGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId) throws ApiException {
-    return deleteGoogleBusinessMedia(accountId, mediaId, null);
+  public DeleteGoogleBusinessMedia200Response deleteGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return deleteGoogleBusinessMedia(accountId, mediaId, locationId, null);
   }
 
   /**
@@ -315,12 +335,13 @@ public class GmbMediaApi {
    * Deletes a photo or media item from a GBP location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return DeleteGoogleBusinessMedia200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteGoogleBusinessMedia200Response deleteGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteGoogleBusinessMedia200Response> localVarResponse = deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId, headers);
+  public DeleteGoogleBusinessMedia200Response deleteGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteGoogleBusinessMedia200Response> localVarResponse = deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -329,11 +350,12 @@ public class GmbMediaApi {
    * Deletes a photo or media item from a GBP location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;DeleteGoogleBusinessMedia200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteGoogleBusinessMedia200Response> deleteGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId) throws ApiException {
-    return deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId, null);
+  public ApiResponse<DeleteGoogleBusinessMedia200Response> deleteGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId, locationId, null);
   }
 
   /**
@@ -341,12 +363,13 @@ public class GmbMediaApi {
    * Deletes a photo or media item from a GBP location.
    * @param accountId  (required)
    * @param mediaId The media item ID to delete (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteGoogleBusinessMedia200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteGoogleBusinessMedia200Response> deleteGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteGoogleBusinessMediaRequestBuilder(accountId, mediaId, headers);
+  public ApiResponse<DeleteGoogleBusinessMedia200Response> deleteGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteGoogleBusinessMediaRequestBuilder(accountId, mediaId, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -393,7 +416,7 @@ public class GmbMediaApi {
     }
   }
 
-  private HttpRequest.Builder deleteGoogleBusinessMediaRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deleteGoogleBusinessMediaRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String mediaId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteGoogleBusinessMedia");
@@ -411,6 +434,8 @@ public class GmbMediaApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
     localVarQueryParameterBaseName = "mediaId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("mediaId", mediaId));
 
@@ -443,27 +468,29 @@ public class GmbMediaApi {
    * List media
    * Lists media items (photos) for a Google Business Profile location. Returns photo URLs, descriptions, categories, and metadata. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of items to return (max 100) (optional, default to 100)
    * @param pageToken Pagination token from previous response (optional)
    * @return ListGoogleBusinessMedia200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessMedia200Response listGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
-    return listGoogleBusinessMedia(accountId, pageSize, pageToken, null);
+  public ListGoogleBusinessMedia200Response listGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listGoogleBusinessMedia(accountId, locationId, pageSize, pageToken, null);
   }
 
   /**
    * List media
    * Lists media items (photos) for a Google Business Profile location. Returns photo URLs, descriptions, categories, and metadata. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of items to return (max 100) (optional, default to 100)
    * @param pageToken Pagination token from previous response (optional)
    * @param headers Optional headers to include in the request
    * @return ListGoogleBusinessMedia200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessMedia200Response listGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListGoogleBusinessMedia200Response> localVarResponse = listGoogleBusinessMediaWithHttpInfo(accountId, pageSize, pageToken, headers);
+  public ListGoogleBusinessMedia200Response listGoogleBusinessMedia(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListGoogleBusinessMedia200Response> localVarResponse = listGoogleBusinessMediaWithHttpInfo(accountId, locationId, pageSize, pageToken, headers);
     return localVarResponse.getData();
   }
 
@@ -471,27 +498,29 @@ public class GmbMediaApi {
    * List media
    * Lists media items (photos) for a Google Business Profile location. Returns photo URLs, descriptions, categories, and metadata. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of items to return (max 100) (optional, default to 100)
    * @param pageToken Pagination token from previous response (optional)
    * @return ApiResponse&lt;ListGoogleBusinessMedia200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessMedia200Response> listGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
-    return listGoogleBusinessMediaWithHttpInfo(accountId, pageSize, pageToken, null);
+  public ApiResponse<ListGoogleBusinessMedia200Response> listGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listGoogleBusinessMediaWithHttpInfo(accountId, locationId, pageSize, pageToken, null);
   }
 
   /**
    * List media
    * Lists media items (photos) for a Google Business Profile location. Returns photo URLs, descriptions, categories, and metadata. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize Number of items to return (max 100) (optional, default to 100)
    * @param pageToken Pagination token from previous response (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListGoogleBusinessMedia200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessMedia200Response> listGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessMediaRequestBuilder(accountId, pageSize, pageToken, headers);
+  public ApiResponse<ListGoogleBusinessMedia200Response> listGoogleBusinessMediaWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessMediaRequestBuilder(accountId, locationId, pageSize, pageToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -538,7 +567,7 @@ public class GmbMediaApi {
     }
   }
 
-  private HttpRequest.Builder listGoogleBusinessMediaRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listGoogleBusinessMediaRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling listGoogleBusinessMedia");
@@ -552,6 +581,8 @@ public class GmbMediaApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
     localVarQueryParameterBaseName = "pageSize";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
     localVarQueryParameterBaseName = "pageToken";

@@ -11,7 +11,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 ## getGoogleBusinessReviews
 
-> GetGoogleBusinessReviews200Response getGoogleBusinessReviews(accountId, pageSize, pageToken)
+> GetGoogleBusinessReviews200Response getGoogleBusinessReviews(accountId, locationId, pageSize, pageToken)
 
 Get reviews
 
@@ -39,10 +39,11 @@ public class Example {
 
         GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 50; // Integer | Number of reviews to fetch per page (max 50)
         String pageToken = "pageToken_example"; // String | Pagination token from previous response
         try {
-            GetGoogleBusinessReviews200Response result = apiInstance.getGoogleBusinessReviews(accountId, pageSize, pageToken);
+            GetGoogleBusinessReviews200Response result = apiInstance.getGoogleBusinessReviews(accountId, locationId, pageSize, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbReviewsApi#getGoogleBusinessReviews");
@@ -61,6 +62,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**| Number of reviews to fetch per page (max 50) | [optional] [default to 50] |
 | **pageToken** | **String**| Pagination token from previous response | [optional] |
 
@@ -90,7 +92,7 @@ public class Example {
 
 ## getGoogleBusinessReviewsWithHttpInfo
 
-> ApiResponse<GetGoogleBusinessReviews200Response> getGoogleBusinessReviews getGoogleBusinessReviewsWithHttpInfo(accountId, pageSize, pageToken)
+> ApiResponse<GetGoogleBusinessReviews200Response> getGoogleBusinessReviews getGoogleBusinessReviewsWithHttpInfo(accountId, locationId, pageSize, pageToken)
 
 Get reviews
 
@@ -119,10 +121,11 @@ public class Example {
 
         GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 50; // Integer | Number of reviews to fetch per page (max 50)
         String pageToken = "pageToken_example"; // String | Pagination token from previous response
         try {
-            ApiResponse<GetGoogleBusinessReviews200Response> response = apiInstance.getGoogleBusinessReviewsWithHttpInfo(accountId, pageSize, pageToken);
+            ApiResponse<GetGoogleBusinessReviews200Response> response = apiInstance.getGoogleBusinessReviewsWithHttpInfo(accountId, locationId, pageSize, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -143,6 +146,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**| Number of reviews to fetch per page (max 50) | [optional] [default to 50] |
 | **pageToken** | **String**| Pagination token from previous response | [optional] |
 

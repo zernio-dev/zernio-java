@@ -15,7 +15,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 ## createGoogleBusinessMedia
 
-> CreateGoogleBusinessMedia200Response createGoogleBusinessMedia(accountId, createGoogleBusinessMediaRequest)
+> CreateGoogleBusinessMedia200Response createGoogleBusinessMedia(accountId, createGoogleBusinessMediaRequest, locationId)
 
 Upload photo
 
@@ -44,8 +44,9 @@ public class Example {
         GmbMediaApi apiInstance = new GmbMediaApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest = new CreateGoogleBusinessMediaRequest(); // CreateGoogleBusinessMediaRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            CreateGoogleBusinessMedia200Response result = apiInstance.createGoogleBusinessMedia(accountId, createGoogleBusinessMediaRequest);
+            CreateGoogleBusinessMedia200Response result = apiInstance.createGoogleBusinessMedia(accountId, createGoogleBusinessMediaRequest, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbMediaApi#createGoogleBusinessMedia");
@@ -65,6 +66,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **createGoogleBusinessMediaRequest** | [**CreateGoogleBusinessMediaRequest**](CreateGoogleBusinessMediaRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -89,7 +91,7 @@ public class Example {
 
 ## createGoogleBusinessMediaWithHttpInfo
 
-> ApiResponse<CreateGoogleBusinessMedia200Response> createGoogleBusinessMedia createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest)
+> ApiResponse<CreateGoogleBusinessMedia200Response> createGoogleBusinessMedia createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest, locationId)
 
 Upload photo
 
@@ -119,8 +121,9 @@ public class Example {
         GmbMediaApi apiInstance = new GmbMediaApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         CreateGoogleBusinessMediaRequest createGoogleBusinessMediaRequest = new CreateGoogleBusinessMediaRequest(); // CreateGoogleBusinessMediaRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<CreateGoogleBusinessMedia200Response> response = apiInstance.createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest);
+            ApiResponse<CreateGoogleBusinessMedia200Response> response = apiInstance.createGoogleBusinessMediaWithHttpInfo(accountId, createGoogleBusinessMediaRequest, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -142,6 +145,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **createGoogleBusinessMediaRequest** | [**CreateGoogleBusinessMediaRequest**](CreateGoogleBusinessMediaRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -167,7 +171,7 @@ ApiResponse<[**CreateGoogleBusinessMedia200Response**](CreateGoogleBusinessMedia
 
 ## deleteGoogleBusinessMedia
 
-> DeleteGoogleBusinessMedia200Response deleteGoogleBusinessMedia(accountId, mediaId)
+> DeleteGoogleBusinessMedia200Response deleteGoogleBusinessMedia(accountId, mediaId, locationId)
 
 Delete photo
 
@@ -196,8 +200,9 @@ public class Example {
         GmbMediaApi apiInstance = new GmbMediaApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         String mediaId = "mediaId_example"; // String | The media item ID to delete
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            DeleteGoogleBusinessMedia200Response result = apiInstance.deleteGoogleBusinessMedia(accountId, mediaId);
+            DeleteGoogleBusinessMedia200Response result = apiInstance.deleteGoogleBusinessMedia(accountId, mediaId, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbMediaApi#deleteGoogleBusinessMedia");
@@ -217,6 +222,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **mediaId** | **String**| The media item ID to delete | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -241,7 +247,7 @@ public class Example {
 
 ## deleteGoogleBusinessMediaWithHttpInfo
 
-> ApiResponse<DeleteGoogleBusinessMedia200Response> deleteGoogleBusinessMedia deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId)
+> ApiResponse<DeleteGoogleBusinessMedia200Response> deleteGoogleBusinessMedia deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId, locationId)
 
 Delete photo
 
@@ -271,8 +277,9 @@ public class Example {
         GmbMediaApi apiInstance = new GmbMediaApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         String mediaId = "mediaId_example"; // String | The media item ID to delete
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<DeleteGoogleBusinessMedia200Response> response = apiInstance.deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId);
+            ApiResponse<DeleteGoogleBusinessMedia200Response> response = apiInstance.deleteGoogleBusinessMediaWithHttpInfo(accountId, mediaId, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -294,6 +301,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **mediaId** | **String**| The media item ID to delete | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -319,7 +327,7 @@ ApiResponse<[**DeleteGoogleBusinessMedia200Response**](DeleteGoogleBusinessMedia
 
 ## listGoogleBusinessMedia
 
-> ListGoogleBusinessMedia200Response listGoogleBusinessMedia(accountId, pageSize, pageToken)
+> ListGoogleBusinessMedia200Response listGoogleBusinessMedia(accountId, locationId, pageSize, pageToken)
 
 List media
 
@@ -347,10 +355,11 @@ public class Example {
 
         GmbMediaApi apiInstance = new GmbMediaApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 100; // Integer | Number of items to return (max 100)
         String pageToken = "pageToken_example"; // String | Pagination token from previous response
         try {
-            ListGoogleBusinessMedia200Response result = apiInstance.listGoogleBusinessMedia(accountId, pageSize, pageToken);
+            ListGoogleBusinessMedia200Response result = apiInstance.listGoogleBusinessMedia(accountId, locationId, pageSize, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbMediaApi#listGoogleBusinessMedia");
@@ -369,6 +378,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**| Number of items to return (max 100) | [optional] [default to 100] |
 | **pageToken** | **String**| Pagination token from previous response | [optional] |
 
@@ -395,7 +405,7 @@ public class Example {
 
 ## listGoogleBusinessMediaWithHttpInfo
 
-> ApiResponse<ListGoogleBusinessMedia200Response> listGoogleBusinessMedia listGoogleBusinessMediaWithHttpInfo(accountId, pageSize, pageToken)
+> ApiResponse<ListGoogleBusinessMedia200Response> listGoogleBusinessMedia listGoogleBusinessMediaWithHttpInfo(accountId, locationId, pageSize, pageToken)
 
 List media
 
@@ -424,10 +434,11 @@ public class Example {
 
         GmbMediaApi apiInstance = new GmbMediaApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 100; // Integer | Number of items to return (max 100)
         String pageToken = "pageToken_example"; // String | Pagination token from previous response
         try {
-            ApiResponse<ListGoogleBusinessMedia200Response> response = apiInstance.listGoogleBusinessMediaWithHttpInfo(accountId, pageSize, pageToken);
+            ApiResponse<ListGoogleBusinessMedia200Response> response = apiInstance.listGoogleBusinessMediaWithHttpInfo(accountId, locationId, pageSize, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -448,6 +459,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**| Number of items to return (max 100) | [optional] [default to 100] |
 | **pageToken** | **String**| Pagination token from previous response | [optional] |
 

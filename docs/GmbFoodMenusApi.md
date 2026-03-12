@@ -13,7 +13,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 ## getGoogleBusinessFoodMenus
 
-> GetGoogleBusinessFoodMenus200Response getGoogleBusinessFoodMenus(accountId)
+> GetGoogleBusinessFoodMenus200Response getGoogleBusinessFoodMenus(accountId, locationId)
 
 Get food menus
 
@@ -41,8 +41,9 @@ public class Example {
 
         GmbFoodMenusApi apiInstance = new GmbFoodMenusApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            GetGoogleBusinessFoodMenus200Response result = apiInstance.getGoogleBusinessFoodMenus(accountId);
+            GetGoogleBusinessFoodMenus200Response result = apiInstance.getGoogleBusinessFoodMenus(accountId, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbFoodMenusApi#getGoogleBusinessFoodMenus");
@@ -61,6 +62,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -88,7 +90,7 @@ public class Example {
 
 ## getGoogleBusinessFoodMenusWithHttpInfo
 
-> ApiResponse<GetGoogleBusinessFoodMenus200Response> getGoogleBusinessFoodMenus getGoogleBusinessFoodMenusWithHttpInfo(accountId)
+> ApiResponse<GetGoogleBusinessFoodMenus200Response> getGoogleBusinessFoodMenus getGoogleBusinessFoodMenusWithHttpInfo(accountId, locationId)
 
 Get food menus
 
@@ -117,8 +119,9 @@ public class Example {
 
         GmbFoodMenusApi apiInstance = new GmbFoodMenusApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<GetGoogleBusinessFoodMenus200Response> response = apiInstance.getGoogleBusinessFoodMenusWithHttpInfo(accountId);
+            ApiResponse<GetGoogleBusinessFoodMenus200Response> response = apiInstance.getGoogleBusinessFoodMenusWithHttpInfo(accountId, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -139,6 +142,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -167,7 +171,7 @@ ApiResponse<[**GetGoogleBusinessFoodMenus200Response**](GetGoogleBusinessFoodMen
 
 ## updateGoogleBusinessFoodMenus
 
-> UpdateGoogleBusinessFoodMenus200Response updateGoogleBusinessFoodMenus(accountId, updateGoogleBusinessFoodMenusRequest)
+> UpdateGoogleBusinessFoodMenus200Response updateGoogleBusinessFoodMenus(accountId, updateGoogleBusinessFoodMenusRequest, locationId)
 
 Update food menus
 
@@ -196,8 +200,9 @@ public class Example {
         GmbFoodMenusApi apiInstance = new GmbFoodMenusApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
         UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest = new UpdateGoogleBusinessFoodMenusRequest(); // UpdateGoogleBusinessFoodMenusRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            UpdateGoogleBusinessFoodMenus200Response result = apiInstance.updateGoogleBusinessFoodMenus(accountId, updateGoogleBusinessFoodMenusRequest);
+            UpdateGoogleBusinessFoodMenus200Response result = apiInstance.updateGoogleBusinessFoodMenus(accountId, updateGoogleBusinessFoodMenusRequest, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbFoodMenusApi#updateGoogleBusinessFoodMenus");
@@ -217,6 +222,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
 | **updateGoogleBusinessFoodMenusRequest** | [**UpdateGoogleBusinessFoodMenusRequest**](UpdateGoogleBusinessFoodMenusRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -244,7 +250,7 @@ public class Example {
 
 ## updateGoogleBusinessFoodMenusWithHttpInfo
 
-> ApiResponse<UpdateGoogleBusinessFoodMenus200Response> updateGoogleBusinessFoodMenus updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest)
+> ApiResponse<UpdateGoogleBusinessFoodMenus200Response> updateGoogleBusinessFoodMenus updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest, locationId)
 
 Update food menus
 
@@ -274,8 +280,9 @@ public class Example {
         GmbFoodMenusApi apiInstance = new GmbFoodMenusApi(defaultClient);
         String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
         UpdateGoogleBusinessFoodMenusRequest updateGoogleBusinessFoodMenusRequest = new UpdateGoogleBusinessFoodMenusRequest(); // UpdateGoogleBusinessFoodMenusRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<UpdateGoogleBusinessFoodMenus200Response> response = apiInstance.updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest);
+            ApiResponse<UpdateGoogleBusinessFoodMenus200Response> response = apiInstance.updateGoogleBusinessFoodMenusWithHttpInfo(accountId, updateGoogleBusinessFoodMenusRequest, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -297,6 +304,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Late account ID (from /v1/accounts) | |
 | **updateGoogleBusinessFoodMenusRequest** | [**UpdateGoogleBusinessFoodMenusRequest**](UpdateGoogleBusinessFoodMenusRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 

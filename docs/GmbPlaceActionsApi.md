@@ -15,7 +15,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 ## createGoogleBusinessPlaceAction
 
-> CreateGoogleBusinessPlaceAction200Response createGoogleBusinessPlaceAction(accountId, createGoogleBusinessPlaceActionRequest)
+> CreateGoogleBusinessPlaceAction200Response createGoogleBusinessPlaceAction(accountId, createGoogleBusinessPlaceActionRequest, locationId)
 
 Create action link
 
@@ -44,8 +44,9 @@ public class Example {
         GmbPlaceActionsApi apiInstance = new GmbPlaceActionsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest = new CreateGoogleBusinessPlaceActionRequest(); // CreateGoogleBusinessPlaceActionRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            CreateGoogleBusinessPlaceAction200Response result = apiInstance.createGoogleBusinessPlaceAction(accountId, createGoogleBusinessPlaceActionRequest);
+            CreateGoogleBusinessPlaceAction200Response result = apiInstance.createGoogleBusinessPlaceAction(accountId, createGoogleBusinessPlaceActionRequest, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbPlaceActionsApi#createGoogleBusinessPlaceAction");
@@ -65,6 +66,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **createGoogleBusinessPlaceActionRequest** | [**CreateGoogleBusinessPlaceActionRequest**](CreateGoogleBusinessPlaceActionRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -89,7 +91,7 @@ public class Example {
 
 ## createGoogleBusinessPlaceActionWithHttpInfo
 
-> ApiResponse<CreateGoogleBusinessPlaceAction200Response> createGoogleBusinessPlaceAction createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest)
+> ApiResponse<CreateGoogleBusinessPlaceAction200Response> createGoogleBusinessPlaceAction createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest, locationId)
 
 Create action link
 
@@ -119,8 +121,9 @@ public class Example {
         GmbPlaceActionsApi apiInstance = new GmbPlaceActionsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest = new CreateGoogleBusinessPlaceActionRequest(); // CreateGoogleBusinessPlaceActionRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<CreateGoogleBusinessPlaceAction200Response> response = apiInstance.createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest);
+            ApiResponse<CreateGoogleBusinessPlaceAction200Response> response = apiInstance.createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -142,6 +145,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **createGoogleBusinessPlaceActionRequest** | [**CreateGoogleBusinessPlaceActionRequest**](CreateGoogleBusinessPlaceActionRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -167,7 +171,7 @@ ApiResponse<[**CreateGoogleBusinessPlaceAction200Response**](CreateGoogleBusines
 
 ## deleteGoogleBusinessPlaceAction
 
-> DeleteGoogleBusinessPlaceAction200Response deleteGoogleBusinessPlaceAction(accountId, name)
+> DeleteGoogleBusinessPlaceAction200Response deleteGoogleBusinessPlaceAction(accountId, name, locationId)
 
 Delete action link
 
@@ -196,8 +200,9 @@ public class Example {
         GmbPlaceActionsApi apiInstance = new GmbPlaceActionsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         String name = "name_example"; // String | The resource name of the place action link (e.g. locations/123/placeActionLinks/456)
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            DeleteGoogleBusinessPlaceAction200Response result = apiInstance.deleteGoogleBusinessPlaceAction(accountId, name);
+            DeleteGoogleBusinessPlaceAction200Response result = apiInstance.deleteGoogleBusinessPlaceAction(accountId, name, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbPlaceActionsApi#deleteGoogleBusinessPlaceAction");
@@ -217,6 +222,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **name** | **String**| The resource name of the place action link (e.g. locations/123/placeActionLinks/456) | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -241,7 +247,7 @@ public class Example {
 
 ## deleteGoogleBusinessPlaceActionWithHttpInfo
 
-> ApiResponse<DeleteGoogleBusinessPlaceAction200Response> deleteGoogleBusinessPlaceAction deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name)
+> ApiResponse<DeleteGoogleBusinessPlaceAction200Response> deleteGoogleBusinessPlaceAction deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name, locationId)
 
 Delete action link
 
@@ -271,8 +277,9 @@ public class Example {
         GmbPlaceActionsApi apiInstance = new GmbPlaceActionsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         String name = "name_example"; // String | The resource name of the place action link (e.g. locations/123/placeActionLinks/456)
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<DeleteGoogleBusinessPlaceAction200Response> response = apiInstance.deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name);
+            ApiResponse<DeleteGoogleBusinessPlaceAction200Response> response = apiInstance.deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -294,6 +301,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **name** | **String**| The resource name of the place action link (e.g. locations/123/placeActionLinks/456) | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -319,7 +327,7 @@ ApiResponse<[**DeleteGoogleBusinessPlaceAction200Response**](DeleteGoogleBusines
 
 ## listGoogleBusinessPlaceActions
 
-> ListGoogleBusinessPlaceActions200Response listGoogleBusinessPlaceActions(accountId, pageSize, pageToken)
+> ListGoogleBusinessPlaceActions200Response listGoogleBusinessPlaceActions(accountId, locationId, pageSize, pageToken)
 
 List action links
 
@@ -347,10 +355,11 @@ public class Example {
 
         GmbPlaceActionsApi apiInstance = new GmbPlaceActionsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 100; // Integer | 
         String pageToken = "pageToken_example"; // String | 
         try {
-            ListGoogleBusinessPlaceActions200Response result = apiInstance.listGoogleBusinessPlaceActions(accountId, pageSize, pageToken);
+            ListGoogleBusinessPlaceActions200Response result = apiInstance.listGoogleBusinessPlaceActions(accountId, locationId, pageSize, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbPlaceActionsApi#listGoogleBusinessPlaceActions");
@@ -369,6 +378,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**|  | [optional] [default to 100] |
 | **pageToken** | **String**|  | [optional] |
 
@@ -395,7 +405,7 @@ public class Example {
 
 ## listGoogleBusinessPlaceActionsWithHttpInfo
 
-> ApiResponse<ListGoogleBusinessPlaceActions200Response> listGoogleBusinessPlaceActions listGoogleBusinessPlaceActionsWithHttpInfo(accountId, pageSize, pageToken)
+> ApiResponse<ListGoogleBusinessPlaceActions200Response> listGoogleBusinessPlaceActions listGoogleBusinessPlaceActionsWithHttpInfo(accountId, locationId, pageSize, pageToken)
 
 List action links
 
@@ -424,10 +434,11 @@ public class Example {
 
         GmbPlaceActionsApi apiInstance = new GmbPlaceActionsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 100; // Integer | 
         String pageToken = "pageToken_example"; // String | 
         try {
-            ApiResponse<ListGoogleBusinessPlaceActions200Response> response = apiInstance.listGoogleBusinessPlaceActionsWithHttpInfo(accountId, pageSize, pageToken);
+            ApiResponse<ListGoogleBusinessPlaceActions200Response> response = apiInstance.listGoogleBusinessPlaceActionsWithHttpInfo(accountId, locationId, pageSize, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -448,6 +459,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**|  | [optional] [default to 100] |
 | **pageToken** | **String**|  | [optional] |
 

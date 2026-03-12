@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T08:43:10.800729807Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T09:10:29.751971885Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbPlaceActionsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -171,11 +171,12 @@ public class GmbPlaceActionsApi {
    * Creates a place action link for a location.  Available action types: APPOINTMENT, ONLINE_APPOINTMENT, DINING_RESERVATION, FOOD_ORDERING, FOOD_DELIVERY, FOOD_TAKEOUT, SHOP_ONLINE. 
    * @param accountId  (required)
    * @param createGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return CreateGoogleBusinessPlaceAction200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateGoogleBusinessPlaceAction200Response createGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest) throws ApiException {
-    return createGoogleBusinessPlaceAction(accountId, createGoogleBusinessPlaceActionRequest, null);
+  public CreateGoogleBusinessPlaceAction200Response createGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return createGoogleBusinessPlaceAction(accountId, createGoogleBusinessPlaceActionRequest, locationId, null);
   }
 
   /**
@@ -183,12 +184,13 @@ public class GmbPlaceActionsApi {
    * Creates a place action link for a location.  Available action types: APPOINTMENT, ONLINE_APPOINTMENT, DINING_RESERVATION, FOOD_ORDERING, FOOD_DELIVERY, FOOD_TAKEOUT, SHOP_ONLINE. 
    * @param accountId  (required)
    * @param createGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return CreateGoogleBusinessPlaceAction200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateGoogleBusinessPlaceAction200Response createGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateGoogleBusinessPlaceAction200Response> localVarResponse = createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest, headers);
+  public CreateGoogleBusinessPlaceAction200Response createGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateGoogleBusinessPlaceAction200Response> localVarResponse = createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -197,11 +199,12 @@ public class GmbPlaceActionsApi {
    * Creates a place action link for a location.  Available action types: APPOINTMENT, ONLINE_APPOINTMENT, DINING_RESERVATION, FOOD_ORDERING, FOOD_DELIVERY, FOOD_TAKEOUT, SHOP_ONLINE. 
    * @param accountId  (required)
    * @param createGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;CreateGoogleBusinessPlaceAction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateGoogleBusinessPlaceAction200Response> createGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest) throws ApiException {
-    return createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest, null);
+  public ApiResponse<CreateGoogleBusinessPlaceAction200Response> createGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return createGoogleBusinessPlaceActionWithHttpInfo(accountId, createGoogleBusinessPlaceActionRequest, locationId, null);
   }
 
   /**
@@ -209,12 +212,13 @@ public class GmbPlaceActionsApi {
    * Creates a place action link for a location.  Available action types: APPOINTMENT, ONLINE_APPOINTMENT, DINING_RESERVATION, FOOD_ORDERING, FOOD_DELIVERY, FOOD_TAKEOUT, SHOP_ONLINE. 
    * @param accountId  (required)
    * @param createGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateGoogleBusinessPlaceAction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateGoogleBusinessPlaceAction200Response> createGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createGoogleBusinessPlaceActionRequestBuilder(accountId, createGoogleBusinessPlaceActionRequest, headers);
+  public ApiResponse<CreateGoogleBusinessPlaceAction200Response> createGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createGoogleBusinessPlaceActionRequestBuilder(accountId, createGoogleBusinessPlaceActionRequest, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -261,7 +265,7 @@ public class GmbPlaceActionsApi {
     }
   }
 
-  private HttpRequest.Builder createGoogleBusinessPlaceActionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createGoogleBusinessPlaceActionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateGoogleBusinessPlaceActionRequest createGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling createGoogleBusinessPlaceAction");
@@ -276,7 +280,22 @@ public class GmbPlaceActionsApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-place-actions"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
@@ -303,11 +322,12 @@ public class GmbPlaceActionsApi {
    * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return DeleteGoogleBusinessPlaceAction200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteGoogleBusinessPlaceAction200Response deleteGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name) throws ApiException {
-    return deleteGoogleBusinessPlaceAction(accountId, name, null);
+  public DeleteGoogleBusinessPlaceAction200Response deleteGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String locationId) throws ApiException {
+    return deleteGoogleBusinessPlaceAction(accountId, name, locationId, null);
   }
 
   /**
@@ -315,12 +335,13 @@ public class GmbPlaceActionsApi {
    * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return DeleteGoogleBusinessPlaceAction200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteGoogleBusinessPlaceAction200Response deleteGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteGoogleBusinessPlaceAction200Response> localVarResponse = deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name, headers);
+  public DeleteGoogleBusinessPlaceAction200Response deleteGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteGoogleBusinessPlaceAction200Response> localVarResponse = deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -329,11 +350,12 @@ public class GmbPlaceActionsApi {
    * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;DeleteGoogleBusinessPlaceAction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteGoogleBusinessPlaceAction200Response> deleteGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name) throws ApiException {
-    return deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name, null);
+  public ApiResponse<DeleteGoogleBusinessPlaceAction200Response> deleteGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String locationId) throws ApiException {
+    return deleteGoogleBusinessPlaceActionWithHttpInfo(accountId, name, locationId, null);
   }
 
   /**
@@ -341,12 +363,13 @@ public class GmbPlaceActionsApi {
    * Deletes a place action link (e.g. booking or ordering URL) from a GBP location.
    * @param accountId  (required)
    * @param name The resource name of the place action link (e.g. locations/123/placeActionLinks/456) (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteGoogleBusinessPlaceAction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteGoogleBusinessPlaceAction200Response> deleteGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteGoogleBusinessPlaceActionRequestBuilder(accountId, name, headers);
+  public ApiResponse<DeleteGoogleBusinessPlaceAction200Response> deleteGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteGoogleBusinessPlaceActionRequestBuilder(accountId, name, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -393,7 +416,7 @@ public class GmbPlaceActionsApi {
     }
   }
 
-  private HttpRequest.Builder deleteGoogleBusinessPlaceActionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deleteGoogleBusinessPlaceActionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String name, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteGoogleBusinessPlaceAction");
@@ -411,6 +434,8 @@ public class GmbPlaceActionsApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
     localVarQueryParameterBaseName = "name";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("name", name));
 
@@ -443,27 +468,29 @@ public class GmbPlaceActionsApi {
    * List action links
    * Lists place action links for a Google Business Profile location.  Place actions are the booking, ordering, and reservation buttons that appear on your listing. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize  (optional, default to 100)
    * @param pageToken  (optional)
    * @return ListGoogleBusinessPlaceActions200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessPlaceActions200Response listGoogleBusinessPlaceActions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
-    return listGoogleBusinessPlaceActions(accountId, pageSize, pageToken, null);
+  public ListGoogleBusinessPlaceActions200Response listGoogleBusinessPlaceActions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listGoogleBusinessPlaceActions(accountId, locationId, pageSize, pageToken, null);
   }
 
   /**
    * List action links
    * Lists place action links for a Google Business Profile location.  Place actions are the booking, ordering, and reservation buttons that appear on your listing. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize  (optional, default to 100)
    * @param pageToken  (optional)
    * @param headers Optional headers to include in the request
    * @return ListGoogleBusinessPlaceActions200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessPlaceActions200Response listGoogleBusinessPlaceActions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListGoogleBusinessPlaceActions200Response> localVarResponse = listGoogleBusinessPlaceActionsWithHttpInfo(accountId, pageSize, pageToken, headers);
+  public ListGoogleBusinessPlaceActions200Response listGoogleBusinessPlaceActions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListGoogleBusinessPlaceActions200Response> localVarResponse = listGoogleBusinessPlaceActionsWithHttpInfo(accountId, locationId, pageSize, pageToken, headers);
     return localVarResponse.getData();
   }
 
@@ -471,27 +498,29 @@ public class GmbPlaceActionsApi {
    * List action links
    * Lists place action links for a Google Business Profile location.  Place actions are the booking, ordering, and reservation buttons that appear on your listing. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize  (optional, default to 100)
    * @param pageToken  (optional)
    * @return ApiResponse&lt;ListGoogleBusinessPlaceActions200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessPlaceActions200Response> listGoogleBusinessPlaceActionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
-    return listGoogleBusinessPlaceActionsWithHttpInfo(accountId, pageSize, pageToken, null);
+  public ApiResponse<ListGoogleBusinessPlaceActions200Response> listGoogleBusinessPlaceActionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken) throws ApiException {
+    return listGoogleBusinessPlaceActionsWithHttpInfo(accountId, locationId, pageSize, pageToken, null);
   }
 
   /**
    * List action links
    * Lists place action links for a Google Business Profile location.  Place actions are the booking, ordering, and reservation buttons that appear on your listing. 
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param pageSize  (optional, default to 100)
    * @param pageToken  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListGoogleBusinessPlaceActions200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessPlaceActions200Response> listGoogleBusinessPlaceActionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessPlaceActionsRequestBuilder(accountId, pageSize, pageToken, headers);
+  public ApiResponse<ListGoogleBusinessPlaceActions200Response> listGoogleBusinessPlaceActionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessPlaceActionsRequestBuilder(accountId, locationId, pageSize, pageToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -538,7 +567,7 @@ public class GmbPlaceActionsApi {
     }
   }
 
-  private HttpRequest.Builder listGoogleBusinessPlaceActionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listGoogleBusinessPlaceActionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling listGoogleBusinessPlaceActions");
@@ -552,6 +581,8 @@ public class GmbPlaceActionsApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
     localVarQueryParameterBaseName = "pageSize";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pageSize", pageSize));
     localVarQueryParameterBaseName = "pageToken";

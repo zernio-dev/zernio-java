@@ -48,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T08:43:10.800729807Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T09:10:29.751971885Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbAttributesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -169,23 +169,25 @@ public class GmbAttributesApi {
    * Get attributes
    * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return GetGoogleBusinessAttributes200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessAttributes200Response getGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getGoogleBusinessAttributes(accountId, null);
+  public GetGoogleBusinessAttributes200Response getGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return getGoogleBusinessAttributes(accountId, locationId, null);
   }
 
   /**
    * Get attributes
    * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return GetGoogleBusinessAttributes200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessAttributes200Response getGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetGoogleBusinessAttributes200Response> localVarResponse = getGoogleBusinessAttributesWithHttpInfo(accountId, headers);
+  public GetGoogleBusinessAttributes200Response getGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGoogleBusinessAttributes200Response> localVarResponse = getGoogleBusinessAttributesWithHttpInfo(accountId, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -193,23 +195,25 @@ public class GmbAttributesApi {
    * Get attributes
    * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;GetGoogleBusinessAttributes200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessAttributes200Response> getGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getGoogleBusinessAttributesWithHttpInfo(accountId, null);
+  public ApiResponse<GetGoogleBusinessAttributes200Response> getGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId) throws ApiException {
+    return getGoogleBusinessAttributesWithHttpInfo(accountId, locationId, null);
   }
 
   /**
    * Get attributes
    * Returns GBP location attributes (amenities, services, accessibility, payment types). Available attributes vary by business category.
    * @param accountId  (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetGoogleBusinessAttributes200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessAttributes200Response> getGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessAttributesRequestBuilder(accountId, headers);
+  public ApiResponse<GetGoogleBusinessAttributes200Response> getGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessAttributesRequestBuilder(accountId, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -256,7 +260,7 @@ public class GmbAttributesApi {
     }
   }
 
-  private HttpRequest.Builder getGoogleBusinessAttributesRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getGoogleBusinessAttributesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGoogleBusinessAttributes");
@@ -267,7 +271,22 @@ public class GmbAttributesApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-attributes"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -288,11 +307,12 @@ public class GmbAttributesApi {
    * Updates location attributes (amenities, services, etc.).  The attributeMask specifies which attributes to update (comma-separated). 
    * @param accountId  (required)
    * @param updateGoogleBusinessAttributesRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return UpdateGoogleBusinessAttributes200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessAttributes200Response updateGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest) throws ApiException {
-    return updateGoogleBusinessAttributes(accountId, updateGoogleBusinessAttributesRequest, null);
+  public UpdateGoogleBusinessAttributes200Response updateGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessAttributes(accountId, updateGoogleBusinessAttributesRequest, locationId, null);
   }
 
   /**
@@ -300,12 +320,13 @@ public class GmbAttributesApi {
    * Updates location attributes (amenities, services, etc.).  The attributeMask specifies which attributes to update (comma-separated). 
    * @param accountId  (required)
    * @param updateGoogleBusinessAttributesRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return UpdateGoogleBusinessAttributes200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessAttributes200Response updateGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateGoogleBusinessAttributes200Response> localVarResponse = updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest, headers);
+  public UpdateGoogleBusinessAttributes200Response updateGoogleBusinessAttributes(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateGoogleBusinessAttributes200Response> localVarResponse = updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -314,11 +335,12 @@ public class GmbAttributesApi {
    * Updates location attributes (amenities, services, etc.).  The attributeMask specifies which attributes to update (comma-separated). 
    * @param accountId  (required)
    * @param updateGoogleBusinessAttributesRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;UpdateGoogleBusinessAttributes200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessAttributes200Response> updateGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest) throws ApiException {
-    return updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest, null);
+  public ApiResponse<UpdateGoogleBusinessAttributes200Response> updateGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest, locationId, null);
   }
 
   /**
@@ -326,12 +348,13 @@ public class GmbAttributesApi {
    * Updates location attributes (amenities, services, etc.).  The attributeMask specifies which attributes to update (comma-separated). 
    * @param accountId  (required)
    * @param updateGoogleBusinessAttributesRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateGoogleBusinessAttributes200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessAttributes200Response> updateGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessAttributesRequestBuilder(accountId, updateGoogleBusinessAttributesRequest, headers);
+  public ApiResponse<UpdateGoogleBusinessAttributes200Response> updateGoogleBusinessAttributesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessAttributesRequestBuilder(accountId, updateGoogleBusinessAttributesRequest, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -378,7 +401,7 @@ public class GmbAttributesApi {
     }
   }
 
-  private HttpRequest.Builder updateGoogleBusinessAttributesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateGoogleBusinessAttributesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateGoogleBusinessAttributes");
@@ -393,7 +416,22 @@ public class GmbAttributesApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-attributes"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");

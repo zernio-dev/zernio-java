@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T08:43:10.800729807Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T09:10:29.751971885Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbLocationDetailsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -170,25 +170,27 @@ public class GmbLocationDetailsApi {
    * Get location details
    * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
    * @return GetGoogleBusinessLocationDetails200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessLocationDetails200Response getGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String readMask) throws ApiException {
-    return getGoogleBusinessLocationDetails(accountId, readMask, null);
+  public GetGoogleBusinessLocationDetails200Response getGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable String readMask) throws ApiException {
+    return getGoogleBusinessLocationDetails(accountId, locationId, readMask, null);
   }
 
   /**
    * Get location details
    * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
    * @param headers Optional headers to include in the request
    * @return GetGoogleBusinessLocationDetails200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGoogleBusinessLocationDetails200Response getGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String readMask, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetGoogleBusinessLocationDetails200Response> localVarResponse = getGoogleBusinessLocationDetailsWithHttpInfo(accountId, readMask, headers);
+  public GetGoogleBusinessLocationDetails200Response getGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable String readMask, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGoogleBusinessLocationDetails200Response> localVarResponse = getGoogleBusinessLocationDetailsWithHttpInfo(accountId, locationId, readMask, headers);
     return localVarResponse.getData();
   }
 
@@ -196,25 +198,27 @@ public class GmbLocationDetailsApi {
    * Get location details
    * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
    * @return ApiResponse&lt;GetGoogleBusinessLocationDetails200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessLocationDetails200Response> getGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String readMask) throws ApiException {
-    return getGoogleBusinessLocationDetailsWithHttpInfo(accountId, readMask, null);
+  public ApiResponse<GetGoogleBusinessLocationDetails200Response> getGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable String readMask) throws ApiException {
+    return getGoogleBusinessLocationDetailsWithHttpInfo(accountId, locationId, readMask, null);
   }
 
   /**
    * Get location details
    * Returns detailed GBP location info (hours, description, phone, website, categories). Use readMask to request specific fields.
    * @param accountId The Late account ID (from /v1/accounts) (required)
+   * @param locationId Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param readMask Comma-separated fields to return. Available: name, title, phoneNumbers, categories, storefrontAddress, websiteUri, regularHours, specialHours, serviceArea, profile, openInfo, metadata, moreHours. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetGoogleBusinessLocationDetails200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGoogleBusinessLocationDetails200Response> getGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String readMask, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessLocationDetailsRequestBuilder(accountId, readMask, headers);
+  public ApiResponse<GetGoogleBusinessLocationDetails200Response> getGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable String readMask, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessLocationDetailsRequestBuilder(accountId, locationId, readMask, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -261,7 +265,7 @@ public class GmbLocationDetailsApi {
     }
   }
 
-  private HttpRequest.Builder getGoogleBusinessLocationDetailsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String readMask, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getGoogleBusinessLocationDetailsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String locationId, @javax.annotation.Nullable String readMask, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGoogleBusinessLocationDetails");
@@ -275,6 +279,8 @@ public class GmbLocationDetailsApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
     localVarQueryParameterBaseName = "readMask";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("readMask", readMask));
 
@@ -308,11 +314,12 @@ public class GmbLocationDetailsApi {
    * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return UpdateGoogleBusinessLocationDetails200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessLocationDetails200Response updateGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest) throws ApiException {
-    return updateGoogleBusinessLocationDetails(accountId, updateGoogleBusinessLocationDetailsRequest, null);
+  public UpdateGoogleBusinessLocationDetails200Response updateGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessLocationDetails(accountId, updateGoogleBusinessLocationDetailsRequest, locationId, null);
   }
 
   /**
@@ -320,12 +327,13 @@ public class GmbLocationDetailsApi {
    * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return UpdateGoogleBusinessLocationDetails200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessLocationDetails200Response updateGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateGoogleBusinessLocationDetails200Response> localVarResponse = updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest, headers);
+  public UpdateGoogleBusinessLocationDetails200Response updateGoogleBusinessLocationDetails(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateGoogleBusinessLocationDetails200Response> localVarResponse = updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest, locationId, headers);
     return localVarResponse.getData();
   }
 
@@ -334,11 +342,12 @@ public class GmbLocationDetailsApi {
    * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @return ApiResponse&lt;UpdateGoogleBusinessLocationDetails200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessLocationDetails200Response> updateGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest) throws ApiException {
-    return updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest, null);
+  public ApiResponse<UpdateGoogleBusinessLocationDetails200Response> updateGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessLocationDetailsWithHttpInfo(accountId, updateGoogleBusinessLocationDetailsRequest, locationId, null);
   }
 
   /**
@@ -346,12 +355,13 @@ public class GmbLocationDetailsApi {
    * Updates GBP location details (hours, description, phone, website). The updateMask field is required and specifies which fields to update.
    * @param accountId The Late account ID (from /v1/accounts) (required)
    * @param updateGoogleBusinessLocationDetailsRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateGoogleBusinessLocationDetails200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessLocationDetails200Response> updateGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessLocationDetailsRequestBuilder(accountId, updateGoogleBusinessLocationDetailsRequest, headers);
+  public ApiResponse<UpdateGoogleBusinessLocationDetails200Response> updateGoogleBusinessLocationDetailsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessLocationDetailsRequestBuilder(accountId, updateGoogleBusinessLocationDetailsRequest, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -398,7 +408,7 @@ public class GmbLocationDetailsApi {
     }
   }
 
-  private HttpRequest.Builder updateGoogleBusinessLocationDetailsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateGoogleBusinessLocationDetailsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessLocationDetailsRequest updateGoogleBusinessLocationDetailsRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateGoogleBusinessLocationDetails");
@@ -413,7 +423,22 @@ public class GmbLocationDetailsApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-location-details"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");

@@ -13,7 +13,7 @@ All URIs are relative to *https://getlate.dev/api*
 
 ## getGoogleBusinessAttributes
 
-> GetGoogleBusinessAttributes200Response getGoogleBusinessAttributes(accountId)
+> GetGoogleBusinessAttributes200Response getGoogleBusinessAttributes(accountId, locationId)
 
 Get attributes
 
@@ -41,8 +41,9 @@ public class Example {
 
         GmbAttributesApi apiInstance = new GmbAttributesApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            GetGoogleBusinessAttributes200Response result = apiInstance.getGoogleBusinessAttributes(accountId);
+            GetGoogleBusinessAttributes200Response result = apiInstance.getGoogleBusinessAttributes(accountId, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbAttributesApi#getGoogleBusinessAttributes");
@@ -61,6 +62,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -85,7 +87,7 @@ public class Example {
 
 ## getGoogleBusinessAttributesWithHttpInfo
 
-> ApiResponse<GetGoogleBusinessAttributes200Response> getGoogleBusinessAttributes getGoogleBusinessAttributesWithHttpInfo(accountId)
+> ApiResponse<GetGoogleBusinessAttributes200Response> getGoogleBusinessAttributes getGoogleBusinessAttributesWithHttpInfo(accountId, locationId)
 
 Get attributes
 
@@ -114,8 +116,9 @@ public class Example {
 
         GmbAttributesApi apiInstance = new GmbAttributesApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<GetGoogleBusinessAttributes200Response> response = apiInstance.getGoogleBusinessAttributesWithHttpInfo(accountId);
+            ApiResponse<GetGoogleBusinessAttributes200Response> response = apiInstance.getGoogleBusinessAttributesWithHttpInfo(accountId, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -136,6 +139,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -161,7 +165,7 @@ ApiResponse<[**GetGoogleBusinessAttributes200Response**](GetGoogleBusinessAttrib
 
 ## updateGoogleBusinessAttributes
 
-> UpdateGoogleBusinessAttributes200Response updateGoogleBusinessAttributes(accountId, updateGoogleBusinessAttributesRequest)
+> UpdateGoogleBusinessAttributes200Response updateGoogleBusinessAttributes(accountId, updateGoogleBusinessAttributesRequest, locationId)
 
 Update attributes
 
@@ -190,8 +194,9 @@ public class Example {
         GmbAttributesApi apiInstance = new GmbAttributesApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest = new UpdateGoogleBusinessAttributesRequest(); // UpdateGoogleBusinessAttributesRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            UpdateGoogleBusinessAttributes200Response result = apiInstance.updateGoogleBusinessAttributes(accountId, updateGoogleBusinessAttributesRequest);
+            UpdateGoogleBusinessAttributes200Response result = apiInstance.updateGoogleBusinessAttributes(accountId, updateGoogleBusinessAttributesRequest, locationId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling GmbAttributesApi#updateGoogleBusinessAttributes");
@@ -211,6 +216,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **updateGoogleBusinessAttributesRequest** | [**UpdateGoogleBusinessAttributesRequest**](UpdateGoogleBusinessAttributesRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
@@ -235,7 +241,7 @@ public class Example {
 
 ## updateGoogleBusinessAttributesWithHttpInfo
 
-> ApiResponse<UpdateGoogleBusinessAttributes200Response> updateGoogleBusinessAttributes updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest)
+> ApiResponse<UpdateGoogleBusinessAttributes200Response> updateGoogleBusinessAttributes updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest, locationId)
 
 Update attributes
 
@@ -265,8 +271,9 @@ public class Example {
         GmbAttributesApi apiInstance = new GmbAttributesApi(defaultClient);
         String accountId = "accountId_example"; // String | 
         UpdateGoogleBusinessAttributesRequest updateGoogleBusinessAttributesRequest = new UpdateGoogleBusinessAttributesRequest(); // UpdateGoogleBusinessAttributesRequest | 
+        String locationId = "locationId_example"; // String | Override which location to target. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         try {
-            ApiResponse<UpdateGoogleBusinessAttributes200Response> response = apiInstance.updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest);
+            ApiResponse<UpdateGoogleBusinessAttributes200Response> response = apiInstance.updateGoogleBusinessAttributesWithHttpInfo(accountId, updateGoogleBusinessAttributesRequest, locationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -288,6 +295,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
 | **updateGoogleBusinessAttributesRequest** | [**UpdateGoogleBusinessAttributesRequest**](UpdateGoogleBusinessAttributesRequest.md)|  | |
+| **locationId** | **String**| Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 
 ### Return type
 
