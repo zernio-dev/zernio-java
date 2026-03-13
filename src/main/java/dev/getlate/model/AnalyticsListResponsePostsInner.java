@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.getlate.model.MediaItem;
+import dev.getlate.model.AnalyticsSinglePostResponseMediaItemsInner;
 import dev.getlate.model.PlatformAnalytics;
 import dev.getlate.model.PostAnalytics;
 import java.net.URI;
@@ -54,7 +54,7 @@ import dev.getlate.ApiClient;
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_TYPE,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T14:34:05.958835936Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-13T08:58:39.706647921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsListResponsePostsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -110,7 +110,11 @@ public class AnalyticsListResponsePostsInner {
     
     GIF(String.valueOf("gif")),
     
-    DOCUMENT(String.valueOf("document"));
+    DOCUMENT(String.valueOf("document")),
+    
+    CAROUSEL(String.valueOf("carousel")),
+    
+    TEXT(String.valueOf("text"));
 
     private String value;
 
@@ -145,7 +149,7 @@ public class AnalyticsListResponsePostsInner {
 
   public static final String JSON_PROPERTY_MEDIA_ITEMS = "mediaItems";
   @javax.annotation.Nullable
-  private List<MediaItem> mediaItems = new ArrayList<>();
+  private List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = new ArrayList<>();
 
   public AnalyticsListResponsePostsInner() { 
   }
@@ -446,12 +450,12 @@ public class AnalyticsListResponsePostsInner {
   }
 
 
-  public AnalyticsListResponsePostsInner mediaItems(@javax.annotation.Nullable List<MediaItem> mediaItems) {
+  public AnalyticsListResponsePostsInner mediaItems(@javax.annotation.Nullable List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems) {
     this.mediaItems = mediaItems;
     return this;
   }
 
-  public AnalyticsListResponsePostsInner addMediaItemsItem(MediaItem mediaItemsItem) {
+  public AnalyticsListResponsePostsInner addMediaItemsItem(AnalyticsSinglePostResponseMediaItemsInner mediaItemsItem) {
     if (this.mediaItems == null) {
       this.mediaItems = new ArrayList<>();
     }
@@ -460,20 +464,20 @@ public class AnalyticsListResponsePostsInner {
   }
 
   /**
-   * Get mediaItems
+   * All media items for this post. Carousel posts contain one entry per slide.
    * @return mediaItems
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<MediaItem> getMediaItems() {
+  public List<AnalyticsSinglePostResponseMediaItemsInner> getMediaItems() {
     return mediaItems;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaItems(@javax.annotation.Nullable List<MediaItem> mediaItems) {
+  public void setMediaItems(@javax.annotation.Nullable List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems) {
     this.mediaItems = mediaItems;
   }
 

@@ -19,7 +19,7 @@
 |**isExternal** | **Boolean** |  |  [optional] |
 |**thumbnailUrl** | **URI** |  |  [optional] |
 |**mediaType** | [**MediaTypeEnum**](#MediaTypeEnum) |  |  [optional] |
-|**mediaItems** | [**List&lt;MediaItem&gt;**](MediaItem.md) |  |  [optional] |
+|**mediaItems** | [**List&lt;AnalyticsSinglePostResponseMediaItemsInner&gt;**](AnalyticsSinglePostResponseMediaItemsInner.md) | All media items for this post. Carousel posts contain one entry per slide. |  [optional] |
 
 
 
@@ -31,6 +31,8 @@
 | VIDEO | &quot;video&quot; |
 | GIF | &quot;gif&quot; |
 | DOCUMENT | &quot;document&quot; |
+| CAROUSEL | &quot;carousel&quot; |
+| TEXT | &quot;text&quot; |
 
 
 

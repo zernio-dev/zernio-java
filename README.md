@@ -4,7 +4,7 @@ Late API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-12T14:34:05.958835936Z[Etc/UTC]
+- Build date: 2026-03-13T08:58:39.706647921Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -483,6 +483,7 @@ Class | Method | HTTP request | Description
  - [AnalyticsListResponsePostsInner](docs/AnalyticsListResponsePostsInner.md)
  - [AnalyticsOverview](docs/AnalyticsOverview.md)
  - [AnalyticsSinglePostResponse](docs/AnalyticsSinglePostResponse.md)
+ - [AnalyticsSinglePostResponseMediaItemsInner](docs/AnalyticsSinglePostResponseMediaItemsInner.md)
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [BlueskyPlatformData](docs/BlueskyPlatformData.md)

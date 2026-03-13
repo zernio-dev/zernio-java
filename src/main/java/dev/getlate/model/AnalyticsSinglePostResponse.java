@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.getlate.model.AnalyticsSinglePostResponseMediaItemsInner;
 import dev.getlate.model.PlatformAnalytics;
 import dev.getlate.model.PostAnalytics;
 import java.net.URI;
@@ -48,9 +49,12 @@ import dev.getlate.ApiClient;
   AnalyticsSinglePostResponse.JSON_PROPERTY_PLATFORM_ANALYTICS,
   AnalyticsSinglePostResponse.JSON_PROPERTY_PLATFORM,
   AnalyticsSinglePostResponse.JSON_PROPERTY_PLATFORM_POST_URL,
-  AnalyticsSinglePostResponse.JSON_PROPERTY_IS_EXTERNAL
+  AnalyticsSinglePostResponse.JSON_PROPERTY_IS_EXTERNAL,
+  AnalyticsSinglePostResponse.JSON_PROPERTY_THUMBNAIL_URL,
+  AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_TYPE,
+  AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T14:34:05.958835936Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-13T08:58:39.706647921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponse {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -91,6 +95,57 @@ public class AnalyticsSinglePostResponse {
   public static final String JSON_PROPERTY_IS_EXTERNAL = "isExternal";
   @javax.annotation.Nullable
   private Boolean isExternal;
+
+  public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
+  @javax.annotation.Nullable
+  private URI thumbnailUrl;
+
+  /**
+   * Gets or Sets mediaType
+   */
+  public enum MediaTypeEnum {
+    IMAGE(String.valueOf("image")),
+    
+    VIDEO(String.valueOf("video")),
+    
+    CAROUSEL(String.valueOf("carousel")),
+    
+    TEXT(String.valueOf("text"));
+
+    private String value;
+
+    MediaTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MediaTypeEnum fromValue(String value) {
+      for (MediaTypeEnum b : MediaTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
+  @javax.annotation.Nullable
+  private MediaTypeEnum mediaType;
+
+  public static final String JSON_PROPERTY_MEDIA_ITEMS = "mediaItems";
+  @javax.annotation.Nullable
+  private List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems = new ArrayList<>();
 
   public AnalyticsSinglePostResponse() { 
   }
@@ -343,6 +398,86 @@ public class AnalyticsSinglePostResponse {
   }
 
 
+  public AnalyticsSinglePostResponse thumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
+    this.thumbnailUrl = thumbnailUrl;
+    return this;
+  }
+
+  /**
+   * Get thumbnailUrl
+   * @return thumbnailUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getThumbnailUrl() {
+    return thumbnailUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
+    this.thumbnailUrl = thumbnailUrl;
+  }
+
+
+  public AnalyticsSinglePostResponse mediaType(@javax.annotation.Nullable MediaTypeEnum mediaType) {
+    this.mediaType = mediaType;
+    return this;
+  }
+
+  /**
+   * Get mediaType
+   * @return mediaType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public MediaTypeEnum getMediaType() {
+    return mediaType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaType(@javax.annotation.Nullable MediaTypeEnum mediaType) {
+    this.mediaType = mediaType;
+  }
+
+
+  public AnalyticsSinglePostResponse mediaItems(@javax.annotation.Nullable List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems) {
+    this.mediaItems = mediaItems;
+    return this;
+  }
+
+  public AnalyticsSinglePostResponse addMediaItemsItem(AnalyticsSinglePostResponseMediaItemsInner mediaItemsItem) {
+    if (this.mediaItems == null) {
+      this.mediaItems = new ArrayList<>();
+    }
+    this.mediaItems.add(mediaItemsItem);
+    return this;
+  }
+
+  /**
+   * All media items for this post. Carousel posts contain one entry per slide.
+   * @return mediaItems
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<AnalyticsSinglePostResponseMediaItemsInner> getMediaItems() {
+    return mediaItems;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaItems(@javax.annotation.Nullable List<AnalyticsSinglePostResponseMediaItemsInner> mediaItems) {
+    this.mediaItems = mediaItems;
+  }
+
+
   /**
    * Return true if this AnalyticsSinglePostResponse object is equal to o.
    */
@@ -364,12 +499,15 @@ public class AnalyticsSinglePostResponse {
         Objects.equals(this.platformAnalytics, analyticsSinglePostResponse.platformAnalytics) &&
         Objects.equals(this.platform, analyticsSinglePostResponse.platform) &&
         Objects.equals(this.platformPostUrl, analyticsSinglePostResponse.platformPostUrl) &&
-        Objects.equals(this.isExternal, analyticsSinglePostResponse.isExternal);
+        Objects.equals(this.isExternal, analyticsSinglePostResponse.isExternal) &&
+        Objects.equals(this.thumbnailUrl, analyticsSinglePostResponse.thumbnailUrl) &&
+        Objects.equals(this.mediaType, analyticsSinglePostResponse.mediaType) &&
+        Objects.equals(this.mediaItems, analyticsSinglePostResponse.mediaItems);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, status, content, scheduledFor, publishedAt, analytics, platformAnalytics, platform, platformPostUrl, isExternal);
+    return Objects.hash(postId, status, content, scheduledFor, publishedAt, analytics, platformAnalytics, platform, platformPostUrl, isExternal, thumbnailUrl, mediaType, mediaItems);
   }
 
   @Override
@@ -386,6 +524,9 @@ public class AnalyticsSinglePostResponse {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    platformPostUrl: ").append(toIndentedString(platformPostUrl)).append("\n");
     sb.append("    isExternal: ").append(toIndentedString(isExternal)).append("\n");
+    sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
+    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
+    sb.append("    mediaItems: ").append(toIndentedString(mediaItems)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -486,6 +627,26 @@ public class AnalyticsSinglePostResponse {
     // add `isExternal` to the URL query string
     if (getIsExternal() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisExternal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExternal()))));
+    }
+
+    // add `thumbnailUrl` to the URL query string
+    if (getThumbnailUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sthumbnailUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThumbnailUrl()))));
+    }
+
+    // add `mediaType` to the URL query string
+    if (getMediaType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smediaType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMediaType()))));
+    }
+
+    // add `mediaItems` to the URL query string
+    if (getMediaItems() != null) {
+      for (int i = 0; i < getMediaItems().size(); i++) {
+        if (getMediaItems().get(i) != null) {
+          joiner.add(getMediaItems().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smediaItems%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

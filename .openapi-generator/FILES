@@ -20,6 +20,7 @@ docs/AnalyticsListResponse.md
 docs/AnalyticsListResponsePostsInner.md
 docs/AnalyticsOverview.md
 docs/AnalyticsSinglePostResponse.md
+docs/AnalyticsSinglePostResponseMediaItemsInner.md
 docs/ApiKey.md
 docs/ApiKeyProfileIdsInner.md
 docs/ApiKeysApi.md
@@ -644,6 +645,7 @@ src/main/java/dev/getlate/model/AnalyticsListResponse.java
 src/main/java/dev/getlate/model/AnalyticsListResponsePostsInner.java
 src/main/java/dev/getlate/model/AnalyticsOverview.java
 src/main/java/dev/getlate/model/AnalyticsSinglePostResponse.java
+src/main/java/dev/getlate/model/AnalyticsSinglePostResponseMediaItemsInner.java
 src/main/java/dev/getlate/model/ApiKey.java
 src/main/java/dev/getlate/model/ApiKeyProfileIdsInner.java
 src/main/java/dev/getlate/model/BlueskyPlatformData.java
@@ -1180,19 +1182,4 @@ src/main/java/dev/getlate/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/getlate/model/YouTubePlatformData.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseCategoriesAdditionalCategoriesInnerTest.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseCategoriesPrimaryCategoryTest.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseCategoriesTest.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerFreeFormServiceItemLabelTest.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerFreeFormServiceItemTest.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPriceTest.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItemTest.java
-src/test/java/dev/getlate/model/GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestCategoriesAdditionalCategoriesInnerTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestCategoriesPrimaryCategoryTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestCategoriesTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItemLabelTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerFreeFormServiceItemTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerPriceTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerStructuredServiceItemTest.java
-src/test/java/dev/getlate/model/UpdateGoogleBusinessLocationDetailsRequestServiceItemsInnerTest.java
+src/test/java/dev/getlate/model/AnalyticsSinglePostResponseMediaItemsInnerTest.java

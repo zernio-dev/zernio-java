@@ -36,7 +36,7 @@ import dev.getlate.ApiClient;
   UpdateAccountRequest.JSON_PROPERTY_USERNAME,
   UpdateAccountRequest.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-12T14:34:05.958835936Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-13T08:58:39.706647921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountRequest {
   public static final String JSON_PROPERTY_USERNAME = "username";
   @javax.annotation.Nullable
