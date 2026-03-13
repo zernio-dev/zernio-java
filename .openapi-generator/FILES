@@ -25,6 +25,8 @@ docs/ApiKey.md
 docs/ApiKeyProfileIdsInner.md
 docs/ApiKeysApi.md
 docs/BlueskyPlatformData.md
+docs/BookmarkPost200Response.md
+docs/BookmarkPostRequest.md
 docs/BulkDeleteWhatsAppContacts200Response.md
 docs/BulkDeleteWhatsAppContactsRequest.md
 docs/BulkUpdateWhatsAppContacts200Response.md
@@ -112,6 +114,8 @@ docs/EditInboxMessageRequestReplyMarkupKeyboardInnerInner.md
 docs/ErrorResponse.md
 docs/Expired.md
 docs/FacebookPlatformData.md
+docs/FollowUser200Response.md
+docs/FollowUserRequest.md
 docs/FollowerStatsResponse.md
 docs/FoodMenu.md
 docs/FoodMenuItem.md
@@ -392,6 +396,7 @@ docs/RedditPlatformData.md
 docs/RedditSearchApi.md
 docs/ReleaseWhatsAppPhoneNumber200Response.md
 docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md
+docs/RemoveBookmark200Response.md
 docs/RemoveWhatsAppBroadcastRecipients200Response.md
 docs/RemoveWhatsAppBroadcastRecipientsRequest.md
 docs/RenameWhatsAppGroup200Response.md
@@ -402,6 +407,8 @@ docs/ReplyToInboxPostRequest.md
 docs/ReplyToInboxReview200Response.md
 docs/ReplyToInboxReview200ResponseReply.md
 docs/ReplyToInboxReviewRequest.md
+docs/RetweetPost200Response.md
+docs/RetweetPostRequest.md
 docs/ReviewsApi.md
 docs/ScheduleWhatsAppBroadcast200Response.md
 docs/ScheduleWhatsAppBroadcast200ResponseBroadcast.md
@@ -463,8 +470,11 @@ docs/TikTokPlatformData.md
 docs/ToolsApi.md
 docs/TranscriptResponse.md
 docs/TranscriptSegment.md
+docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataThreadItemsInner.md
+docs/UndoRetweet200Response.md
+docs/UnfollowUser200Response.md
 docs/UnlikeInboxComment200Response.md
 docs/UnpublishPost200Response.md
 docs/UnpublishPostRequest.md
@@ -627,6 +637,7 @@ src/main/java/dev/getlate/api/QueueApi.java
 src/main/java/dev/getlate/api/RedditSearchApi.java
 src/main/java/dev/getlate/api/ReviewsApi.java
 src/main/java/dev/getlate/api/ToolsApi.java
+src/main/java/dev/getlate/api/TwitterEngagementApi.java
 src/main/java/dev/getlate/api/UsageApi.java
 src/main/java/dev/getlate/api/UsersApi.java
 src/main/java/dev/getlate/api/ValidateApi.java
@@ -649,6 +660,8 @@ src/main/java/dev/getlate/model/AnalyticsSinglePostResponseMediaItemsInner.java
 src/main/java/dev/getlate/model/ApiKey.java
 src/main/java/dev/getlate/model/ApiKeyProfileIdsInner.java
 src/main/java/dev/getlate/model/BlueskyPlatformData.java
+src/main/java/dev/getlate/model/BookmarkPost200Response.java
+src/main/java/dev/getlate/model/BookmarkPostRequest.java
 src/main/java/dev/getlate/model/BulkDeleteWhatsAppContacts200Response.java
 src/main/java/dev/getlate/model/BulkDeleteWhatsAppContactsRequest.java
 src/main/java/dev/getlate/model/BulkUpdateWhatsAppContacts200Response.java
@@ -734,6 +747,8 @@ src/main/java/dev/getlate/model/EditInboxMessageRequestReplyMarkupKeyboardInnerI
 src/main/java/dev/getlate/model/ErrorResponse.java
 src/main/java/dev/getlate/model/Expired.java
 src/main/java/dev/getlate/model/FacebookPlatformData.java
+src/main/java/dev/getlate/model/FollowUser200Response.java
+src/main/java/dev/getlate/model/FollowUserRequest.java
 src/main/java/dev/getlate/model/FollowerStatsResponse.java
 src/main/java/dev/getlate/model/FoodMenu.java
 src/main/java/dev/getlate/model/FoodMenuItem.java
@@ -999,6 +1014,7 @@ src/main/java/dev/getlate/model/RecyclingState.java
 src/main/java/dev/getlate/model/RedditPlatformData.java
 src/main/java/dev/getlate/model/ReleaseWhatsAppPhoneNumber200Response.java
 src/main/java/dev/getlate/model/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.java
+src/main/java/dev/getlate/model/RemoveBookmark200Response.java
 src/main/java/dev/getlate/model/RemoveWhatsAppBroadcastRecipients200Response.java
 src/main/java/dev/getlate/model/RemoveWhatsAppBroadcastRecipientsRequest.java
 src/main/java/dev/getlate/model/RenameWhatsAppGroup200Response.java
@@ -1009,6 +1025,8 @@ src/main/java/dev/getlate/model/ReplyToInboxPostRequest.java
 src/main/java/dev/getlate/model/ReplyToInboxReview200Response.java
 src/main/java/dev/getlate/model/ReplyToInboxReview200ResponseReply.java
 src/main/java/dev/getlate/model/ReplyToInboxReviewRequest.java
+src/main/java/dev/getlate/model/RetweetPost200Response.java
+src/main/java/dev/getlate/model/RetweetPostRequest.java
 src/main/java/dev/getlate/model/ScheduleWhatsAppBroadcast200Response.java
 src/main/java/dev/getlate/model/ScheduleWhatsAppBroadcast200ResponseBroadcast.java
 src/main/java/dev/getlate/model/ScheduleWhatsAppBroadcastRequest.java
@@ -1070,6 +1088,8 @@ src/main/java/dev/getlate/model/TranscriptResponse.java
 src/main/java/dev/getlate/model/TranscriptSegment.java
 src/main/java/dev/getlate/model/TwitterPlatformData.java
 src/main/java/dev/getlate/model/TwitterPlatformDataThreadItemsInner.java
+src/main/java/dev/getlate/model/UndoRetweet200Response.java
+src/main/java/dev/getlate/model/UnfollowUser200Response.java
 src/main/java/dev/getlate/model/UnlikeInboxComment200Response.java
 src/main/java/dev/getlate/model/UnpublishPost200Response.java
 src/main/java/dev/getlate/model/UnpublishPostRequest.java
@@ -1182,4 +1202,13 @@ src/main/java/dev/getlate/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/getlate/model/YouTubePlatformData.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/getlate/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/getlate/model/AnalyticsSinglePostResponseMediaItemsInnerTest.java
+src/test/java/dev/getlate/api/TwitterEngagementApiTest.java
+src/test/java/dev/getlate/model/BookmarkPost200ResponseTest.java
+src/test/java/dev/getlate/model/BookmarkPostRequestTest.java
+src/test/java/dev/getlate/model/FollowUser200ResponseTest.java
+src/test/java/dev/getlate/model/FollowUserRequestTest.java
+src/test/java/dev/getlate/model/RemoveBookmark200ResponseTest.java
+src/test/java/dev/getlate/model/RetweetPost200ResponseTest.java
+src/test/java/dev/getlate/model/RetweetPostRequestTest.java
+src/test/java/dev/getlate/model/UndoRetweet200ResponseTest.java
+src/test/java/dev/getlate/model/UnfollowUser200ResponseTest.java

@@ -50,7 +50,7 @@ import dev.getlate.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_CATEGORIES,
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_SERVICE_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-13T08:58:39.706647921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-13T13:25:23.838967082Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequest {
   public static final String JSON_PROPERTY_UPDATE_MASK = "updateMask";
   @javax.annotation.Nonnull

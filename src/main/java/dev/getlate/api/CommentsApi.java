@@ -60,7 +60,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-13T08:58:39.706647921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-13T13:25:23.838967082Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -495,7 +495,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, and Threads. Hidden comments are only visible to the commenter and page admin. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. Requires the tweet.moderate.write scope and X API Basic tier or higher. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -508,7 +508,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, and Threads. Hidden comments are only visible to the commenter and page admin. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. Requires the tweet.moderate.write scope and X API Basic tier or higher. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -523,7 +523,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, and Threads. Hidden comments are only visible to the commenter and page admin. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. Requires the tweet.moderate.write scope and X API Basic tier or higher. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -536,7 +536,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, and Threads. Hidden comments are only visible to the commenter and page admin. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. Requires the tweet.moderate.write scope and X API Basic tier or higher. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -1226,7 +1226,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, and Threads. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1239,7 +1239,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, and Threads. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1254,7 +1254,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, and Threads. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1267,7 +1267,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, and Threads. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)

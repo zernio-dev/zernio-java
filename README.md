@@ -4,7 +4,7 @@ Late API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-13T08:58:39.706647921Z[Etc/UTC]
+- Build date: 2026-03-13T13:25:23.838967082Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -370,6 +370,18 @@ Class | Method | HTTP request | Description
 *ToolsApi* | [**downloadYouTubeVideoWithHttpInfo**](docs/ToolsApi.md#downloadYouTubeVideoWithHttpInfo) | **GET** /v1/tools/youtube/download | Download YouTube video
 *ToolsApi* | [**getYouTubeTranscript**](docs/ToolsApi.md#getYouTubeTranscript) | **GET** /v1/tools/youtube/transcript | Get YouTube transcript
 *ToolsApi* | [**getYouTubeTranscriptWithHttpInfo**](docs/ToolsApi.md#getYouTubeTranscriptWithHttpInfo) | **GET** /v1/tools/youtube/transcript | Get YouTube transcript
+*TwitterEngagementApi* | [**bookmarkPost**](docs/TwitterEngagementApi.md#bookmarkPost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
+*TwitterEngagementApi* | [**bookmarkPostWithHttpInfo**](docs/TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet
+*TwitterEngagementApi* | [**followUser**](docs/TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user
+*TwitterEngagementApi* | [**followUserWithHttpInfo**](docs/TwitterEngagementApi.md#followUserWithHttpInfo) | **POST** /v1/twitter/follow | Follow a user
+*TwitterEngagementApi* | [**removeBookmark**](docs/TwitterEngagementApi.md#removeBookmark) | **DELETE** /v1/twitter/bookmark | Remove bookmark
+*TwitterEngagementApi* | [**removeBookmarkWithHttpInfo**](docs/TwitterEngagementApi.md#removeBookmarkWithHttpInfo) | **DELETE** /v1/twitter/bookmark | Remove bookmark
+*TwitterEngagementApi* | [**retweetPost**](docs/TwitterEngagementApi.md#retweetPost) | **POST** /v1/twitter/retweet | Retweet a post
+*TwitterEngagementApi* | [**retweetPostWithHttpInfo**](docs/TwitterEngagementApi.md#retweetPostWithHttpInfo) | **POST** /v1/twitter/retweet | Retweet a post
+*TwitterEngagementApi* | [**undoRetweet**](docs/TwitterEngagementApi.md#undoRetweet) | **DELETE** /v1/twitter/retweet | Undo retweet
+*TwitterEngagementApi* | [**undoRetweetWithHttpInfo**](docs/TwitterEngagementApi.md#undoRetweetWithHttpInfo) | **DELETE** /v1/twitter/retweet | Undo retweet
+*TwitterEngagementApi* | [**unfollowUser**](docs/TwitterEngagementApi.md#unfollowUser) | **DELETE** /v1/twitter/follow | Unfollow a user
+*TwitterEngagementApi* | [**unfollowUserWithHttpInfo**](docs/TwitterEngagementApi.md#unfollowUserWithHttpInfo) | **DELETE** /v1/twitter/follow | Unfollow a user
 *UsageApi* | [**getUsageStats**](docs/UsageApi.md#getUsageStats) | **GET** /v1/usage-stats | Get plan and usage stats
 *UsageApi* | [**getUsageStatsWithHttpInfo**](docs/UsageApi.md#getUsageStatsWithHttpInfo) | **GET** /v1/usage-stats | Get plan and usage stats
 *UsersApi* | [**getUser**](docs/UsersApi.md#getUser) | **GET** /v1/users/{userId} | Get user
@@ -487,6 +499,8 @@ Class | Method | HTTP request | Description
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [BlueskyPlatformData](docs/BlueskyPlatformData.md)
+ - [BookmarkPost200Response](docs/BookmarkPost200Response.md)
+ - [BookmarkPostRequest](docs/BookmarkPostRequest.md)
  - [BulkDeleteWhatsAppContacts200Response](docs/BulkDeleteWhatsAppContacts200Response.md)
  - [BulkDeleteWhatsAppContactsRequest](docs/BulkDeleteWhatsAppContactsRequest.md)
  - [BulkUpdateWhatsAppContacts200Response](docs/BulkUpdateWhatsAppContacts200Response.md)
@@ -572,6 +586,8 @@ Class | Method | HTTP request | Description
  - [ErrorResponse](docs/ErrorResponse.md)
  - [Expired](docs/Expired.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
+ - [FollowUser200Response](docs/FollowUser200Response.md)
+ - [FollowUserRequest](docs/FollowUserRequest.md)
  - [FollowerStatsResponse](docs/FollowerStatsResponse.md)
  - [FoodMenu](docs/FoodMenu.md)
  - [FoodMenuItem](docs/FoodMenuItem.md)
@@ -837,6 +853,7 @@ Class | Method | HTTP request | Description
  - [RedditPlatformData](docs/RedditPlatformData.md)
  - [ReleaseWhatsAppPhoneNumber200Response](docs/ReleaseWhatsAppPhoneNumber200Response.md)
  - [ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber](docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md)
+ - [RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [RemoveWhatsAppBroadcastRecipients200Response](docs/RemoveWhatsAppBroadcastRecipients200Response.md)
  - [RemoveWhatsAppBroadcastRecipientsRequest](docs/RemoveWhatsAppBroadcastRecipientsRequest.md)
  - [RenameWhatsAppGroup200Response](docs/RenameWhatsAppGroup200Response.md)
@@ -847,6 +864,8 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxReview200Response](docs/ReplyToInboxReview200Response.md)
  - [ReplyToInboxReview200ResponseReply](docs/ReplyToInboxReview200ResponseReply.md)
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
+ - [RetweetPost200Response](docs/RetweetPost200Response.md)
+ - [RetweetPostRequest](docs/RetweetPostRequest.md)
  - [ScheduleWhatsAppBroadcast200Response](docs/ScheduleWhatsAppBroadcast200Response.md)
  - [ScheduleWhatsAppBroadcast200ResponseBroadcast](docs/ScheduleWhatsAppBroadcast200ResponseBroadcast.md)
  - [ScheduleWhatsAppBroadcastRequest](docs/ScheduleWhatsAppBroadcastRequest.md)
@@ -908,6 +927,8 @@ Class | Method | HTTP request | Description
  - [TranscriptSegment](docs/TranscriptSegment.md)
  - [TwitterPlatformData](docs/TwitterPlatformData.md)
  - [TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
+ - [UndoRetweet200Response](docs/UndoRetweet200Response.md)
+ - [UnfollowUser200Response](docs/UnfollowUser200Response.md)
  - [UnlikeInboxComment200Response](docs/UnlikeInboxComment200Response.md)
  - [UnpublishPost200Response](docs/UnpublishPost200Response.md)
  - [UnpublishPostRequest](docs/UnpublishPostRequest.md)

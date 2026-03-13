@@ -357,7 +357,7 @@ ApiResponse<[**GetInboxPostComments200Response**](GetInboxPostComments200Respons
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, and Threads. Hidden comments are only visible to the commenter and page admin. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. Requires the tweet.moderate.write scope and X API Basic tier or higher. 
 
 ### Example
 
@@ -434,7 +434,7 @@ public class Example {
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, and Threads. Hidden comments are only visible to the commenter and page admin. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X/Twitter. Hidden comments are only visible to the commenter and page admin. For X/Twitter, the reply must belong to a conversation started by the authenticated user. Requires the tweet.moderate.write scope and X API Basic tier or higher. 
 
 ### Example
 
@@ -1165,7 +1165,7 @@ ApiResponse<[**SendPrivateReplyToComment200Response**](SendPrivateReplyToComment
 
 Unhide comment
 
-Unhide a previously hidden comment. Supported by Facebook, Instagram, and Threads. 
+Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
 
 ### Example
 
@@ -1242,7 +1242,7 @@ public class Example {
 
 Unhide comment
 
-Unhide a previously hidden comment. Supported by Facebook, Instagram, and Threads. 
+Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X/Twitter. 
 
 ### Example
 
