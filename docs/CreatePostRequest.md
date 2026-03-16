@@ -13,7 +13,7 @@
 |**platforms** | [**List&lt;CreatePostRequestPlatformsInner&gt;**](CreatePostRequestPlatformsInner.md) |  |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
 |**publishNow** | **Boolean** |  |  [optional] |
-|**isDraft** | **Boolean** |  |  [optional] |
+|**isDraft** | **Boolean** | When true, saves the post as a draft. When none of scheduledFor, publishNow, or queuedFromProfile are provided, the post defaults to draft automatically. |  [optional] |
 |**timezone** | **String** |  |  [optional] |
 |**tags** | **List&lt;String&gt;** | Tags/keywords. YouTube constraints: each tag max 100 chars, combined max 500 chars, duplicates auto-removed. |  [optional] |
 |**hashtags** | **List&lt;String&gt;** |  |  [optional] |
