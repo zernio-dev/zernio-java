@@ -85,7 +85,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Reviews fetched successfully |  -  |
 | **400** | Invalid request - not a Google Business account or missing location |  -  |
-| **401** | Unauthorized or token expired |  -  |
+| **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to fetch reviews |  -  |
@@ -169,7 +169,7 @@ ApiResponse<[**GetGoogleBusinessReviews200Response**](GetGoogleBusinessReviews20
 |-------------|-------------|------------------|
 | **200** | Reviews fetched successfully |  -  |
 | **400** | Invalid request - not a Google Business account or missing location |  -  |
-| **401** | Unauthorized or token expired |  -  |
+| **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to fetch reviews |  -  |

@@ -83,7 +83,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Food menus fetched successfully |  -  |
 | **400** | Invalid request - not a Google Business account or missing location |  -  |
-| **401** | Unauthorized or token expired |  -  |
+| **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to fetch food menus |  -  |
@@ -163,7 +163,7 @@ ApiResponse<[**GetGoogleBusinessFoodMenus200Response**](GetGoogleBusinessFoodMen
 |-------------|-------------|------------------|
 | **200** | Food menus fetched successfully |  -  |
 | **400** | Invalid request - not a Google Business account or missing location |  -  |
-| **401** | Unauthorized or token expired |  -  |
+| **401** | Unauthorized or token invalid |  -  |
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to fetch food menus |  -  |

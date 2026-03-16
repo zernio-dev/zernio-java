@@ -3951,11 +3951,12 @@ paths:
           content:
             application/json:
               example:
-                error: Access token expired. Please reconnect your Google Business
+                error: Access token invalid. Please reconnect your Google Business
                   Profile account.
+                code: token_invalid
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Unauthorized or token expired
+          description: Unauthorized or token invalid
         "403":
           content:
             application/json:
@@ -4046,11 +4047,12 @@ paths:
           content:
             application/json:
               example:
-                error: Access token expired. Please reconnect your Google Business
+                error: Access token invalid. Please reconnect your Google Business
                   Profile account.
+                code: token_invalid
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Unauthorized or token expired
+          description: Unauthorized or token invalid
         "403":
           content:
             application/json:
