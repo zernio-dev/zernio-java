@@ -22,20 +22,20 @@ Platform-specific overrides and options.
 ## Example
 ```java
 // Import classes:
-import dev.getlate.model.PlatformTargetPlatformSpecificData;
-import dev.getlate.model.BlueskyPlatformData;
-import dev.getlate.model.FacebookPlatformData;
-import dev.getlate.model.GoogleBusinessPlatformData;
-import dev.getlate.model.InstagramPlatformData;
-import dev.getlate.model.LinkedInPlatformData;
-import dev.getlate.model.PinterestPlatformData;
-import dev.getlate.model.RedditPlatformData;
-import dev.getlate.model.SnapchatPlatformData;
-import dev.getlate.model.TelegramPlatformData;
-import dev.getlate.model.ThreadsPlatformData;
-import dev.getlate.model.TikTokPlatformData;
-import dev.getlate.model.TwitterPlatformData;
-import dev.getlate.model.YouTubePlatformData;
+import dev.zernio.model.PlatformTargetPlatformSpecificData;
+import dev.zernio.model.BlueskyPlatformData;
+import dev.zernio.model.FacebookPlatformData;
+import dev.zernio.model.GoogleBusinessPlatformData;
+import dev.zernio.model.InstagramPlatformData;
+import dev.zernio.model.LinkedInPlatformData;
+import dev.zernio.model.PinterestPlatformData;
+import dev.zernio.model.RedditPlatformData;
+import dev.zernio.model.SnapchatPlatformData;
+import dev.zernio.model.TelegramPlatformData;
+import dev.zernio.model.ThreadsPlatformData;
+import dev.zernio.model.TikTokPlatformData;
+import dev.zernio.model.TwitterPlatformData;
+import dev.zernio.model.YouTubePlatformData;
 
 public class Example {
     public static void main(String[] args) {

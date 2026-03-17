@@ -1,6 +1,6 @@
 # AccountsApi
 
-All URIs are relative to *https://getlate.dev/api*
+All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -31,17 +31,17 @@ Disconnects and removes a connected social account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -103,18 +103,18 @@ Disconnects and removes a connected social account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -179,17 +179,17 @@ Returns detailed health info for a specific account including token status, perm
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -251,18 +251,18 @@ Returns detailed health info for a specific account including token status, perm
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -327,17 +327,17 @@ Returns health status of all connected accounts including token validity, permis
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -402,18 +402,18 @@ Returns health status of all connected accounts including token validity, permis
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -481,17 +481,17 @@ Returns follower count history and growth metrics for connected social accounts.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -561,18 +561,18 @@ Returns follower count history and growth metrics for connected social accounts.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -645,17 +645,17 @@ Returns connected social accounts. Only includes accounts within the plan limit 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -720,18 +720,18 @@ Returns connected social accounts. Only includes accounts within the plan limit 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -799,17 +799,17 @@ Updates a connected social account&#39;s display name or username override.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -874,18 +874,18 @@ Updates a connected social account&#39;s display name or username override.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

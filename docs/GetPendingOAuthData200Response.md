@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**platform** | **String** | The platform (e.g., \&quot;linkedin\&quot;) |  [optional] |
-|**profileId** | **String** | The Late profile ID |  [optional] |
+|**profileId** | **String** | The Zernio profile ID |  [optional] |
 |**tempToken** | **String** | Temporary access token for the platform |  [optional] |
 |**refreshToken** | **String** | Refresh token (if available) |  [optional] |
 |**expiresIn** | **BigDecimal** | Token expiry in seconds |  [optional] |

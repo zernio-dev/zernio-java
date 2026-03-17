@@ -1,6 +1,6 @@
 # AccountSettingsApi
 
-All URIs are relative to *https://getlate.dev/api*
+All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -37,17 +37,17 @@ Removes the ice breaker questions from an Instagram account&#39;s Messenger expe
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -107,18 +107,18 @@ Removes the ice breaker questions from an Instagram account&#39;s Messenger expe
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -181,17 +181,17 @@ Removes the persistent menu from Facebook Messenger conversations for this accou
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -251,18 +251,18 @@ Removes the persistent menu from Facebook Messenger conversations for this accou
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -325,17 +325,17 @@ Clears all bot commands configured for a Telegram bot account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -395,18 +395,18 @@ Clears all bot commands configured for a Telegram bot account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -469,17 +469,17 @@ Get the ice breaker configuration for an Instagram account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -541,18 +541,18 @@ Get the ice breaker configuration for an Instagram account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -617,17 +617,17 @@ Get the persistent menu configuration for a Facebook Messenger account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -689,18 +689,18 @@ Get the persistent menu configuration for a Facebook Messenger account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -765,17 +765,17 @@ Get the bot commands configuration for a Telegram account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -837,18 +837,18 @@ Get the bot commands configuration for a Telegram account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -913,17 +913,17 @@ Set ice breakers for an Instagram account. Max 4 ice breakers, question max 80 c
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -986,18 +986,18 @@ Set ice breakers for an Instagram account. Max 4 ice breakers, question max 80 c
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1063,17 +1063,17 @@ Set the persistent menu for a Facebook Messenger account. Max 3 top-level items,
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1136,18 +1136,18 @@ Set the persistent menu for a Facebook Messenger account. Max 3 top-level items,
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1213,17 +1213,17 @@ Set bot commands for a Telegram account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1286,18 +1286,18 @@ Set bot commands for a Telegram account.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AccountSettingsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

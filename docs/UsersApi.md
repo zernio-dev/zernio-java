@@ -1,6 +1,6 @@
 # UsersApi
 
-All URIs are relative to *https://getlate.dev/api*
+All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -23,17 +23,17 @@ Returns a single user&#39;s details by ID, including name, email, and role.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.UsersApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -96,18 +96,18 @@ Returns a single user&#39;s details by ID, including name, email, and role.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.UsersApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -173,17 +173,17 @@ Returns all users in the workspace including roles and profile access. Also retu
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.UsersApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -240,18 +240,18 @@ Returns all users in the workspace including roles and profile access. Also retu
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.UsersApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

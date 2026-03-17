@@ -1,6 +1,6 @@
 # TwitterEngagementApi
 
-All URIs are relative to *https://getlate.dev/api*
+All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -31,17 +31,17 @@ Bookmark a tweet by ID. Requires the bookmark.write OAuth scope. Rate limit: 50 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -104,18 +104,18 @@ Bookmark a tweet by ID. Requires the bookmark.write OAuth scope. Rate limit: 50 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -181,17 +181,17 @@ Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protecte
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -254,18 +254,18 @@ Follow a user on X/Twitter. Requires the follows.write OAuth scope. For protecte
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -331,17 +331,17 @@ Remove a bookmark from a tweet.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -406,18 +406,18 @@ Remove a bookmark from a tweet.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -485,17 +485,17 @@ Retweet (repost) a tweet by ID. Rate limit: 50 requests per 15-min window. Share
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -558,18 +558,18 @@ Retweet (repost) a tweet by ID. Rate limit: 50 requests per 15-min window. Share
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -635,17 +635,17 @@ Undo a retweet (un-repost a tweet).
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -710,18 +710,18 @@ Undo a retweet (un-repost a tweet).
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -789,17 +789,17 @@ Unfollow a user on X/Twitter.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -864,18 +864,18 @@ Unfollow a user on X/Twitter.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.TwitterEngagementApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TwitterEngagementApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

@@ -1,6 +1,6 @@
 # WhatsAppApi
 
-All URIs are relative to *https://getlate.dev/api*
+All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -83,17 +83,17 @@ Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplic
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -158,18 +158,18 @@ Add recipients to a draft broadcast. Maximum 1000 recipients per request. Duplic
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -237,17 +237,17 @@ Permanently delete multiple contacts at once (max 500 per request).
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -309,18 +309,18 @@ Permanently delete multiple contacts at once (max 500 per request).
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -385,17 +385,17 @@ Perform bulk operations on multiple contacts (max 500 per request). Supported ac
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -457,18 +457,18 @@ Perform bulk operations on multiple contacts (max 500 per request). Supported ac
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -533,17 +533,17 @@ Cancel a scheduled broadcast and return it to draft status. Only broadcasts in s
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -606,18 +606,18 @@ Cancel a scheduled broadcast and return it to draft status. Only broadcasts in s
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -683,17 +683,17 @@ Create a new draft broadcast. Optionally include initial recipients. After creat
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -756,18 +756,18 @@ Create a new draft broadcast. Optionally include initial recipients. After creat
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -833,17 +833,17 @@ Create a new WhatsApp contact. Phone number must be unique per account and in E.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -907,18 +907,18 @@ Create a new WhatsApp contact. Phone number must be unique per account and in E.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -985,17 +985,17 @@ Create a new message template. Supports two modes:  **Custom template:** Provide
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1058,18 +1058,18 @@ Create a new message template. Supports two modes:  **Custom template:** Provide
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1135,17 +1135,17 @@ Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1208,18 +1208,18 @@ Delete a broadcast. Only draft or cancelled broadcasts can be deleted.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1285,17 +1285,17 @@ Permanently delete a WhatsApp contact.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1357,18 +1357,18 @@ Permanently delete a WhatsApp contact.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1433,17 +1433,17 @@ Delete a contact group. This removes the group from all contacts but does not de
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1506,18 +1506,18 @@ Delete a contact group. This removes the group from all contacts but does not de
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1583,17 +1583,17 @@ Permanently delete a message template by name.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1658,18 +1658,18 @@ Permanently delete a message template by name.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1737,17 +1737,17 @@ Retrieve detailed information about a single broadcast including delivery statis
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1809,18 +1809,18 @@ Retrieve detailed information about a single broadcast including delivery statis
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1885,17 +1885,17 @@ List recipients of a broadcast with their delivery status. Supports filtering by
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1963,18 +1963,18 @@ List recipients of a broadcast with their delivery status. Supports filtering by
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2045,17 +2045,17 @@ List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creati
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2124,18 +2124,18 @@ List all WhatsApp broadcasts for an account. Returns broadcasts sorted by creati
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2207,17 +2207,17 @@ Retrieve the WhatsApp Business profile for the account (about, address, descript
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2280,18 +2280,18 @@ Retrieve the WhatsApp Business profile for the account (about, address, descript
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2357,17 +2357,17 @@ Retrieve a single WhatsApp contact by ID with full details.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2429,18 +2429,18 @@ Retrieve a single WhatsApp contact by ID with full details.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2505,17 +2505,17 @@ List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-i
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2590,18 +2590,18 @@ List WhatsApp contacts for an account. Supports filtering by tags, groups, opt-i
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2679,17 +2679,17 @@ Fetch the current display name and its Meta review status for a WhatsApp Busines
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2751,18 +2751,18 @@ Fetch the current display name and its Meta review status for a WhatsApp Busines
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2827,17 +2827,17 @@ List all contact groups for a WhatsApp account with contact counts. Groups are d
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2900,18 +2900,18 @@ List all contact groups for a WhatsApp account with contact counts. Groups are d
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -2977,17 +2977,17 @@ Retrieve a single message template by name.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3052,18 +3052,18 @@ Retrieve a single message template by name.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3131,17 +3131,17 @@ List all message templates for the WhatsApp Business Account (WABA) associated w
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3204,18 +3204,18 @@ List all message templates for the WhatsApp Business Account (WABA) associated w
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3281,17 +3281,17 @@ Import up to 1000 contacts at once. Each contact requires a phone number and nam
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3354,18 +3354,18 @@ Import up to 1000 contacts at once. Each contact requires a phone number and nam
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3431,17 +3431,17 @@ Remove recipients from a draft broadcast by phone number.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3506,18 +3506,18 @@ Remove recipients from a draft broadcast by phone number.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3585,17 +3585,17 @@ Rename a contact group. This updates the group name on all contacts that belong 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3658,18 +3658,18 @@ Rename a contact group. This updates the group name on all contacts that belong 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3735,17 +3735,17 @@ Schedule a draft broadcast for future sending. The scheduled time must be in the
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3810,18 +3810,18 @@ Schedule a draft broadcast for future sending. The scheduled time must be in the
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3889,17 +3889,17 @@ Start sending a broadcast immediately. The broadcast must be in draft or schedul
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -3962,18 +3962,18 @@ Start sending a broadcast immediately. The broadcast must be in draft or schedul
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4039,17 +4039,17 @@ Send a template message to multiple recipients in a single request. Maximum 100 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4112,18 +4112,18 @@ Send a template message to multiple recipients in a single request. Maximum 100 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4189,17 +4189,17 @@ Update the WhatsApp Business profile. All fields are optional; only provided fie
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4262,18 +4262,18 @@ Update the WhatsApp Business profile. All fields are optional; only provided fie
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4339,17 +4339,17 @@ Update an existing WhatsApp contact. All fields are optional; only provided fiel
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4413,18 +4413,18 @@ Update an existing WhatsApp contact. All fields are optional; only provided fiel
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4491,17 +4491,17 @@ Submit a display name change request for the WhatsApp Business account. The new 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4564,18 +4564,18 @@ Submit a display name change request for the WhatsApp Business account. The new 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4641,17 +4641,17 @@ Update a message template&#39;s components. Only certain fields can be updated d
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4716,18 +4716,18 @@ Update a message template&#39;s components. Only certain fields can be updated d
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4795,17 +4795,17 @@ Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -4870,18 +4870,18 @@ Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s 
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.WhatsAppApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

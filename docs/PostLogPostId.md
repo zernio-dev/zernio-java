@@ -9,9 +9,9 @@
 ## Example
 ```java
 // Import classes:
-import dev.getlate.model.PostLogPostId;
-import dev.getlate.model.PostLogPostIdOneOf;
-import dev.getlate.model.String;
+import dev.zernio.model.PostLogPostId;
+import dev.zernio.model.PostLogPostIdOneOf;
+import dev.zernio.model.String;
 
 public class Example {
     public static void main(String[] args) {

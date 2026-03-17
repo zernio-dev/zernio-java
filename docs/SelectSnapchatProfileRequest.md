@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**profileId** | **String** | Your Late profile ID |  |
+|**profileId** | **String** | Your Zernio profile ID |  |
 |**selectedPublicProfile** | [**SelectSnapchatProfileRequestSelectedPublicProfile**](SelectSnapchatProfileRequestSelectedPublicProfile.md) |  |  |
 |**tempToken** | **String** | Temporary Snapchat access token from OAuth |  |
 |**userProfile** | **Object** | User profile data from OAuth redirect |  |

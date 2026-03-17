@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'com.diffplug.spotless'
 
-group = 'dev.getlate'
+group = 'dev.zernio'
 version = '1.0.1'
 
 buildscript {
@@ -38,7 +38,7 @@ javadoc {
 publishing {
     publications {
         maven(MavenPublication) {
-            artifactId = 'late-sdk'
+            artifactId = 'zernio-sdk'
             from components.java
         }
     }

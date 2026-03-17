@@ -18,8 +18,8 @@
 |**platformPostUrl** | **URI** | Public URL of the published post. Included in the response for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId} after publish time. |  [optional] |
 |**publishedAt** | **OffsetDateTime** | Timestamp when the post was published to this platform |  [optional] |
 |**errorMessage** | **String** | Human-readable error message when status is failed. Contains platform-specific error details explaining why the publish failed. |  [optional] |
-|**errorCategory** | [**ErrorCategoryEnum**](#ErrorCategoryEnum) | Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Late infra), unknown |  [optional] |
-|**errorSource** | [**ErrorSourceEnum**](#ErrorSourceEnum) | Who caused the error: user (fix content/reconnect), platform (outage/API change), system (Late issue, rare) |  [optional] |
+|**errorCategory** | [**ErrorCategoryEnum**](#ErrorCategoryEnum) | Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), system_error (Zernio infra), unknown |  [optional] |
+|**errorSource** | [**ErrorSourceEnum**](#ErrorSourceEnum) | Who caused the error: user (fix content/reconnect), platform (outage/API change), system (Zernio issue, rare) |  [optional] |
 
 
 

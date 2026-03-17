@@ -10,10 +10,10 @@
 ## Example
 ```java
 // Import classes:
-import dev.getlate.model.CompleteTelegramConnect200Response;
-import dev.getlate.model.Connected;
-import dev.getlate.model.Expired;
-import dev.getlate.model.Pending;
+import dev.zernio.model.CompleteTelegramConnect200Response;
+import dev.zernio.model.Connected;
+import dev.zernio.model.Expired;
+import dev.zernio.model.Pending;
 
 public class Example {
     public static void main(String[] args) {

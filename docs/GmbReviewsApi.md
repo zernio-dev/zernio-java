@@ -1,6 +1,6 @@
 # GmbReviewsApi
 
-All URIs are relative to *https://getlate.dev/api*
+All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -21,24 +21,24 @@ Returns reviews for a GBP account including ratings, comments, and owner replies
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.GmbReviewsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
-        String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
         String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 50; // Integer | Number of reviews to fetch per page (max 50)
         String pageToken = "pageToken_example"; // String | Pagination token from previous response
@@ -61,7 +61,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
 | **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**| Number of reviews to fetch per page (max 50) | [optional] [default to 50] |
 | **pageToken** | **String**| Pagination token from previous response | [optional] |
@@ -102,25 +102,25 @@ Returns reviews for a GBP account including ratings, comments, and owner replies
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.GmbReviewsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
-        String accountId = "accountId_example"; // String | The Late account ID (from /v1/accounts)
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
         String locationId = "locationId_example"; // String | Override which location to query. If omitted, uses the account's selected location. Use GET /gmb-locations to list valid IDs.
         Integer pageSize = 50; // Integer | Number of reviews to fetch per page (max 50)
         String pageToken = "pageToken_example"; // String | Pagination token from previous response
@@ -145,7 +145,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| The Late account ID (from /v1/accounts) | |
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
 | **locationId** | **String**| Override which location to query. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. | [optional] |
 | **pageSize** | **Integer**| Number of reviews to fetch per page (max 50) | [optional] [default to 50] |
 | **pageToken** | **String**| Pagination token from previous response | [optional] |

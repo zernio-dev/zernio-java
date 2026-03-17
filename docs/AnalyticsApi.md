@@ -1,6 +1,6 @@
 # AnalyticsApi
 
-All URIs are relative to *https://getlate.dev/api*
+All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -35,33 +35,33 @@ All URIs are relative to *https://getlate.dev/api*
 
 Get post analytics
 
-Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
+Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Zernio Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
 
 ### Example
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics.
+        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
         String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
-        String source = "all"; // String | Filter by post source: late (posted via Late API), external (synced from platform), all (default)
+        String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
         Integer limit = 50; // Integer | Page size (default 50)
@@ -87,10 +87,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. | [optional] |
+| **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
 | **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
-| **source** | **String**| Filter by post source: late (posted via Late API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
@@ -130,34 +130,34 @@ public class Example {
 
 Get post analytics
 
-Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Late Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
+Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Zernio Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
 
 ### Example
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics.
+        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
         String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
-        String source = "all"; // String | Filter by post source: late (posted via Late API), external (synced from platform), all (default)
+        String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
         Integer limit = 50; // Integer | Page size (default 50)
@@ -185,10 +185,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Returns analytics for a single post. Accepts both Late Post IDs and External Post IDs. Late IDs are auto-resolved to External Post analytics. | [optional] |
+| **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
 | **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
-| **source** | **String**| Filter by post source: late (posted via Late API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
@@ -235,17 +235,17 @@ Returns the best times to post based on historical engagement data. Groups all p
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -254,7 +254,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             GetBestTimeToPost200Response result = apiInstance.getBestTimeToPost(platform, profileId, source);
             System.out.println(result);
@@ -276,7 +276,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -311,18 +311,18 @@ Returns the best times to post based on historical engagement data. Groups all p
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -331,7 +331,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             ApiResponse<GetBestTimeToPost200Response> response = apiInstance.getBestTimeToPostWithHttpInfo(platform, profileId, source);
             System.out.println("Status code: " + response.getStatusCode());
@@ -355,7 +355,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -391,17 +391,17 @@ Returns how engagement accumulates over time after a post is published. Each buc
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -410,7 +410,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             GetContentDecay200Response result = apiInstance.getContentDecay(platform, profileId, source);
             System.out.println(result);
@@ -432,7 +432,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -467,18 +467,18 @@ Returns how engagement accumulates over time after a post is published. Each buc
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -487,7 +487,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             ApiResponse<GetContentDecay200Response> response = apiInstance.getContentDecayWithHttpInfo(platform, profileId, source);
             System.out.println("Status code: " + response.getStatusCode());
@@ -511,7 +511,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -547,17 +547,17 @@ Returns daily aggregated analytics metrics and a per-platform breakdown. Each da
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -568,7 +568,7 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             GetDailyMetrics200Response result = apiInstance.getDailyMetrics(platform, profileId, fromDate, toDate, source);
             System.out.println(result);
@@ -592,7 +592,7 @@ public class Example {
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -627,18 +627,18 @@ Returns daily aggregated analytics metrics and a per-platform breakdown. Each da
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -649,7 +649,7 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             ApiResponse<GetDailyMetrics200Response> response = apiInstance.getDailyMetricsWithHttpInfo(platform, profileId, fromDate, toDate, source);
             System.out.println("Status code: " + response.getStatusCode());
@@ -675,7 +675,7 @@ public class Example {
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -711,17 +711,17 @@ Returns follower count history and growth metrics for connected social accounts.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -791,18 +791,18 @@ Returns follower count history and growth metrics for connected social accounts.
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -875,17 +875,17 @@ Returns aggregate analytics across all posts for a LinkedIn personal account. Or
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -958,18 +958,18 @@ Returns aggregate analytics across all posts for a LinkedIn personal account. Or
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1045,17 +1045,17 @@ Returns analytics for a specific LinkedIn post by URN. Works for both personal a
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1122,18 +1122,18 @@ Returns analytics for a specific LinkedIn post by URN. Works for both personal a
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1203,17 +1203,17 @@ Returns individual reactions for a specific LinkedIn post, including reactor pro
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1284,18 +1284,18 @@ Returns individual reactions for a specific LinkedIn post, including reactor pro
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1363,30 +1363,30 @@ ApiResponse<[**GetLinkedInPostReactions200Response**](GetLinkedInPostReactions20
 
 Get post analytics timeline
 
-Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Zernio posts, returns separate rows for each platform. Requires the Analytics add-on. 
 
 ### Example
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String postId = "postId_example"; // String | The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. 
+        String postId = "postId_example"; // String | The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Zernio Post ID. 
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Start of date range (ISO 8601). Defaults to 90 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | End of date range (ISO 8601). Defaults to now.
         try {
@@ -1408,7 +1408,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID.  | |
+| **postId** | **String**| The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Zernio Post ID.  | |
 | **fromDate** | **OffsetDateTime**| Start of date range (ISO 8601). Defaults to 90 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| End of date range (ISO 8601). Defaults to now. | [optional] |
 
@@ -1442,31 +1442,31 @@ public class Example {
 
 Get post analytics timeline
 
-Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Late posts, returns separate rows for each platform. Requires the Analytics add-on. 
+Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Zernio posts, returns separate rows for each platform. Requires the Analytics add-on. 
 
 ### Example
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String postId = "postId_example"; // String | The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID. 
+        String postId = "postId_example"; // String | The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Zernio Post ID. 
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Start of date range (ISO 8601). Defaults to 90 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | End of date range (ISO 8601). Defaults to now.
         try {
@@ -1490,7 +1490,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Late Post ID.  | |
+| **postId** | **String**| The post to fetch timeline for. Accepts an ExternalPost ID, a platformPostId, or a Zernio Post ID.  | |
 | **fromDate** | **OffsetDateTime**| Start of date range (ISO 8601). Defaults to 90 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| End of date range (ISO 8601). Defaults to now. | [optional] |
 
@@ -1531,17 +1531,17 @@ Returns the correlation between posting frequency (posts per week) and engagemen
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1550,7 +1550,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             GetPostingFrequency200Response result = apiInstance.getPostingFrequency(platform, profileId, source);
             System.out.println(result);
@@ -1572,7 +1572,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -1607,18 +1607,18 @@ Returns the correlation between posting frequency (posts per week) and engagemen
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1627,7 +1627,7 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
-        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Late, \"external\" for posts imported from platforms.
+        String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
             ApiResponse<GetPostingFrequency200Response> response = apiInstance.getPostingFrequencyWithHttpInfo(platform, profileId, source);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1651,7 +1651,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
-| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Late, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
 
@@ -1687,17 +1687,17 @@ Returns daily view counts for a YouTube video including views, watch time, and s
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1705,7 +1705,7 @@ public class Example {
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
-        String accountId = "accountId_example"; // String | The Late account ID for the YouTube account
+        String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
         LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
         LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency).
         try {
@@ -1728,7 +1728,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
-| **accountId** | **String**| The Late account ID for the YouTube account | |
+| **accountId** | **String**| The Zernio account ID for the YouTube account | |
 | **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
 | **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). | [optional] |
 
@@ -1769,18 +1769,18 @@ Returns daily view counts for a YouTube video including views, watch time, and s
 
 ```java
 // Import classes:
-import dev.getlate.ApiClient;
-import dev.getlate.ApiException;
-import dev.getlate.ApiResponse;
-import dev.getlate.Configuration;
-import dev.getlate.auth.*;
-import dev.getlate.models.*;
-import dev.getlate.api.AnalyticsApi;
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://getlate.dev/api");
+        defaultClient.setBasePath("https://zernio.com/api");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -1788,7 +1788,7 @@ public class Example {
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
-        String accountId = "accountId_example"; // String | The Late account ID for the YouTube account
+        String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
         LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
         LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency).
         try {
@@ -1813,7 +1813,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
-| **accountId** | **String**| The Late account ID for the YouTube account | |
+| **accountId** | **String**| The Zernio account ID for the YouTube account | |
 | **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
 | **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). | [optional] |
 
