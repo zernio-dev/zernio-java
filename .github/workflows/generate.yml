@@ -30,7 +30,7 @@ jobs:
 
       - name: Fetch latest OpenAPI spec
         run: |
-          curl -f -o openapi.yaml https://getlate.dev/openapi.yaml
+          curl -f -o openapi.yaml https://zernio.com/openapi.yaml
           echo "Fetched OpenAPI spec"
 
       - name: Generate SDK
@@ -41,9 +41,9 @@ jobs:
             -o . \
             --skip-validate-spec \
             --global-property skipFormModel=false \
-            --additional-properties=artifactId=late-sdk,groupId=dev.getlate,apiPackage=dev.getlate.api,modelPackage=dev.getlate.model,invokerPackage=dev.getlate,library=native \
-            --git-user-id=getlate-dev \
-            --git-repo-id=late-java
+            --additional-properties=artifactId=zernio-sdk,groupId=dev.zernio,apiPackage=dev.zernio.api,modelPackage=dev.zernio.model,invokerPackage=dev.zernio,library=native \
+            --git-user-id=zernio-dev \
+            --git-repo-id=zernio-java
 
       - name: Remove generated workflow files
         run: |
@@ -110,8 +110,8 @@ jobs:
             </repositories>
 
             <dependency>
-              <groupId>com.github.getlate-dev</groupId>
-              <artifactId>late-java</artifactId>
+              <groupId>com.github.zernio-dev</groupId>
+              <artifactId>zernio-java</artifactId>
               <version>${{ steps.version.outputs.new_version }}</version>
             </dependency>
             ```
@@ -123,7 +123,7 @@ jobs:
             }
 
             dependencies {
-              implementation 'com.github.getlate-dev:late-java:${{ steps.version.outputs.new_version }}'
+              implementation 'com.github.zernio-dev:zernio-java:${{ steps.version.outputs.new_version }}'
             }
             ```
         env:
