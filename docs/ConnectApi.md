@@ -94,7 +94,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String code = "LATE-ABC123"; // String | The access code to check status for
+        String code = "ZRN-ABC123"; // String | The access code to check status for
         try {
             CompleteTelegramConnect200Response result = apiInstance.completeTelegramConnect(code);
             System.out.println(result);
@@ -168,7 +168,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String code = "LATE-ABC123"; // String | The access code to check status for
+        String code = "ZRN-ABC123"; // String | The access code to check status for
         try {
             ApiResponse<CompleteTelegramConnect200Response> response = apiInstance.completeTelegramConnectWithHttpInfo(code);
             System.out.println("Status code: " + response.getStatusCode());

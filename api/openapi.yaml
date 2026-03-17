@@ -5550,14 +5550,14 @@ paths:
           content:
             application/json:
               example:
-                code: LATE-ABC123
+                code: ZRN-ABC123
                 expiresAt: 2024-01-15T12:30:00.000Z
                 expiresIn: 900
                 botUsername: LateScheduleBot
                 instructions:
                 - 1. Add @ZernioScheduleBot as an administrator in your channel/group
                 - 2. Open a private chat with @ZernioScheduleBot
-                - "3. Send: LATE-ABC123 @yourchannel (replace @yourchannel with your\
+                - "3. Send: ZRN-ABC123 @yourchannel (replace @yourchannel with your\
                   \ channel username)"
                 - 4. Wait for confirmation - the connection will appear in your dashboard
                 - "Tip: If your channel has no public username, forward a message\
@@ -5587,7 +5587,7 @@ paths:
       operationId: completeTelegramConnect
       parameters:
       - description: The access code to check status for
-        example: LATE-ABC123
+        example: ZRN-ABC123
         explode: true
         in: query
         name: code
@@ -21038,13 +21038,13 @@ components:
         instructions:
         - instructions
         - instructions
-        code: LATE-ABC123
+        code: ZRN-ABC123
         botUsername: LateScheduleBot
         expiresAt: 2000-01-23T04:56:07.000+00:00
       properties:
         code:
           description: The access code to send to the Telegram bot
-          example: LATE-ABC123
+          example: ZRN-ABC123
           type: string
         expiresAt:
           description: When the code expires
