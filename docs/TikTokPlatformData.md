@@ -20,7 +20,7 @@ Photo carousels up to 35 images. Video titles up to 2200 chars, photo titles tru
 |**expressConsentGiven** | **Boolean** | User has given express consent for posting |  [optional] |
 |**mediaType** | [**MediaTypeEnum**](#MediaTypeEnum) | Optional override. Defaults based on provided media items. |  [optional] |
 |**videoCoverTimestampMs** | **Integer** | Optional for video posts. Timestamp in milliseconds to select which frame to use as thumbnail (defaults to 1000ms/1 second). Ignored when videoCoverImageUrl is provided. |  [optional] |
-|**videoCoverImageUrl** | **URI** | Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is prepended as a 1-second still frame to the video and used as the cover. Overrides videoCoverTimestampMs when provided. |  [optional] |
+|**videoCoverImageUrl** | **URI** | Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Overrides videoCoverTimestampMs when provided. |  [optional] |
 |**photoCoverIndex** | **Integer** | Optional for photo carousels. Index of image to use as cover, 0-based (defaults to 0/first image). |  [optional] |
 |**autoAddMusic** | **Boolean** | When true, TikTok may add recommended music (photos only) |  [optional] |
 |**videoMadeWithAi** | **Boolean** | Set true to disclose AI-generated content |  [optional] |

@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   TikTokPlatformData.JSON_PROPERTY_VIDEO_MADE_WITH_AI,
   TikTokPlatformData.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-21T12:32:19.094872763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-21T13:00:40.109374164Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -492,7 +492,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is prepended as a 1-second still frame to the video and used as the cover. Overrides videoCoverTimestampMs when provided.
+   * Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Overrides videoCoverTimestampMs when provided.
    * @return videoCoverImageUrl
    */
   @javax.annotation.Nullable
