@@ -23,6 +23,8 @@ import dev.zernio.model.GetAccountHealth200Response;
 import dev.zernio.model.GetAllAccountsHealth200Response;
 import dev.zernio.model.GetFollowerStats200Response;
 import dev.zernio.model.GetFollowerStats403Response;
+import dev.zernio.model.GetTikTokCreatorInfo200Response;
+import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAccounts200Response;
@@ -55,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-21T12:00:22.166654886Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-21T12:32:19.094872763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -674,6 +676,143 @@ public class AccountsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "granularity";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get TikTok creator info
+   * Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+   * @param accountId The TikTok account ID (required)
+   * @param mediaType The media type to get creator info for (affects available interaction settings) (optional, default to video)
+   * @return GetTikTokCreatorInfo200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetTikTokCreatorInfo200Response getTikTokCreatorInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String mediaType) throws ApiException {
+    return getTikTokCreatorInfo(accountId, mediaType, null);
+  }
+
+  /**
+   * Get TikTok creator info
+   * Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+   * @param accountId The TikTok account ID (required)
+   * @param mediaType The media type to get creator info for (affects available interaction settings) (optional, default to video)
+   * @param headers Optional headers to include in the request
+   * @return GetTikTokCreatorInfo200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetTikTokCreatorInfo200Response getTikTokCreatorInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String mediaType, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetTikTokCreatorInfo200Response> localVarResponse = getTikTokCreatorInfoWithHttpInfo(accountId, mediaType, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get TikTok creator info
+   * Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+   * @param accountId The TikTok account ID (required)
+   * @param mediaType The media type to get creator info for (affects available interaction settings) (optional, default to video)
+   * @return ApiResponse&lt;GetTikTokCreatorInfo200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetTikTokCreatorInfo200Response> getTikTokCreatorInfoWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String mediaType) throws ApiException {
+    return getTikTokCreatorInfoWithHttpInfo(accountId, mediaType, null);
+  }
+
+  /**
+   * Get TikTok creator info
+   * Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+   * @param accountId The TikTok account ID (required)
+   * @param mediaType The media type to get creator info for (affects available interaction settings) (optional, default to video)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetTikTokCreatorInfo200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetTikTokCreatorInfo200Response> getTikTokCreatorInfoWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String mediaType, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getTikTokCreatorInfoRequestBuilder(accountId, mediaType, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getTikTokCreatorInfo", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetTikTokCreatorInfo200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetTikTokCreatorInfo200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetTikTokCreatorInfo200Response>() {});
+        
+
+        return new ApiResponse<GetTikTokCreatorInfo200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getTikTokCreatorInfoRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String mediaType, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getTikTokCreatorInfo");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/tiktok/creator-info"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "mediaType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("mediaType", mediaType));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

@@ -227,6 +227,11 @@ docs/GetRedditSubreddits200ResponseSubredditsInner.md
 docs/GetTelegramCommands200Response.md
 docs/GetTelegramCommands200ResponseDataInner.md
 docs/GetTelegramConnectStatus200Response.md
+docs/GetTikTokCreatorInfo200Response.md
+docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md
+docs/GetTikTokCreatorInfo200ResponseCreator.md
+docs/GetTikTokCreatorInfo200ResponsePostingLimits.md
+docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
 docs/GetWebhookLogs200Response.md
@@ -861,6 +866,11 @@ src/main/java/dev/zernio/model/GetRedditSubreddits200ResponseSubredditsInner.jav
 src/main/java/dev/zernio/model/GetTelegramCommands200Response.java
 src/main/java/dev/zernio/model/GetTelegramCommands200ResponseDataInner.java
 src/main/java/dev/zernio/model/GetTelegramConnectStatus200Response.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200Response.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCreator.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimits.java
+src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.java
 src/main/java/dev/zernio/model/GetUser200Response.java
 src/main/java/dev/zernio/model/GetUser200ResponseUser.java
 src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
@@ -1204,3 +1214,8 @@ src/main/java/dev/zernio/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCommercialContentTypesInnerTest.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCreatorTest.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimitsTest.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInnerTest.java
+src/test/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseTest.java

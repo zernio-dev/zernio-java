@@ -3400,6 +3400,93 @@ paths:
       - Accounts
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/tiktok/creator-info:
+    get:
+      description: "Returns TikTok creator details, available privacy levels, posting\
+        \ limits, and commercial content options for a specific TikTok account. Only\
+        \ works with TikTok accounts."
+      operationId: getTikTokCreatorInfo
+      parameters:
+      - description: The TikTok account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The media type to get creator info for (affects available interaction
+          settings)
+        explode: true
+        in: query
+        name: mediaType
+        required: false
+        schema:
+          default: video
+          enum:
+          - video
+          - photo
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                creator:
+                  nickname: myaccount
+                  avatarUrl: https://example.com/avatar.jpg
+                  isVerified: false
+                  canPostMore: true
+                privacyLevels:
+                - value: PUBLIC_TO_EVERYONE
+                  label: Public To Everyone
+                - value: MUTUAL_FOLLOW_FRIENDS
+                  label: Mutual Follow Friends
+                - value: SELF_ONLY
+                  label: Self Only
+                postingLimits:
+                  maxVideoDurationSec: 600
+                  interactionSettings:
+                    comment: true
+                    duet: true
+                    stitch: true
+                commercialContentTypes:
+                - value: none
+                  label: No Commercial Content
+                - value: brand_organic
+                  label: Your Brand
+                  requires:
+                  - is_brand_organic_post
+              schema:
+                $ref: "#/components/schemas/getTikTokCreatorInfo_200_response"
+          description: TikTok creator info and posting options
+        "400":
+          content:
+            application/json:
+              example:
+                error: This endpoint is only available for TikTok accounts
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+          description: Account is not a TikTok account
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "429":
+          content:
+            application/json:
+              example:
+                error: TikTok creator has reached the daily posting limit. Please
+                  try again later.
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+          description: Creator has reached TikTok daily posting limit
+      summary: Get TikTok creator info
+      tags:
+      - Accounts
+      x-accepts:
+      - application/json
   /v1/api-keys:
     get:
       description: "Returns all API keys for the authenticated user. Keys are returned\
@@ -12923,9 +13010,17 @@ components:
           type: string
         videoCoverTimestampMs:
           description: Optional for video posts. Timestamp in milliseconds to select
-            which frame to use as thumbnail (defaults to 1000ms/1 second).
+            which frame to use as thumbnail (defaults to 1000ms/1 second). Ignored
+            when videoCoverImageUrl is provided.
           minimum: 0
           type: integer
+        videoCoverImageUrl:
+          description: "Optional for video posts. URL of a custom thumbnail image\
+            \ (JPG, PNG, or WebP, max 20MB). The image is prepended as a 1-second\
+            \ still frame to the video and used as the cover. Overrides videoCoverTimestampMs\
+            \ when provided."
+          format: uri
+          type: string
         photoCoverIndex:
           description: "Optional for photo carousels. Index of image to use as cover,\
             \ 0-based (defaults to 0/first image)."
@@ -17667,6 +17762,106 @@ components:
           description: Actionable recommendations to fix issues
           items:
             type: string
+          type: array
+    getTikTokCreatorInfo_200_response_creator:
+      example:
+        avatarUrl: avatarUrl
+        isVerified: true
+        canPostMore: true
+        nickname: nickname
+      properties:
+        nickname:
+          description: Creator display name
+          type: string
+        avatarUrl:
+          description: Creator avatar URL
+          type: string
+        isVerified:
+          description: Whether the creator is verified
+          type: boolean
+        canPostMore:
+          description: Whether the creator can publish more posts right now
+          type: boolean
+    getTikTokCreatorInfo_200_response_privacyLevels_inner:
+      example:
+        label: label
+        value: value
+      properties:
+        value:
+          description: "Privacy level value to use when creating posts (e.g. PUBLIC_TO_EVERYONE,\
+            \ MUTUAL_FOLLOW_FRIENDS, FOLLOWER_OF_CREATOR, SELF_ONLY)"
+          type: string
+        label:
+          description: Human-readable label
+          type: string
+    getTikTokCreatorInfo_200_response_postingLimits:
+      example:
+        maxVideoDurationSec: 0
+        interactionSettings: "{}"
+      properties:
+        maxVideoDurationSec:
+          description: Maximum video duration in seconds
+          type: integer
+        interactionSettings:
+          description: "Available interaction toggles (comment, duet, stitch) and\
+            \ their defaults"
+          type: object
+    getTikTokCreatorInfo_200_response_commercialContentTypes_inner:
+      example:
+        label: label
+        value: value
+        requires:
+        - requires
+        - requires
+      properties:
+        value:
+          type: string
+        label:
+          type: string
+        requires:
+          items:
+            type: string
+          type: array
+    getTikTokCreatorInfo_200_response:
+      example:
+        creator:
+          avatarUrl: avatarUrl
+          isVerified: true
+          canPostMore: true
+          nickname: nickname
+        commercialContentTypes:
+        - label: label
+          value: value
+          requires:
+          - requires
+          - requires
+        - label: label
+          value: value
+          requires:
+          - requires
+          - requires
+        privacyLevels:
+        - label: label
+          value: value
+        - label: label
+          value: value
+        postingLimits:
+          maxVideoDurationSec: 0
+          interactionSettings: "{}"
+      properties:
+        creator:
+          $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_creator"
+        privacyLevels:
+          description: Available privacy level options for this creator
+          items:
+            $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_privacyLevels_inner"
+          type: array
+        postingLimits:
+          $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_postingLimits"
+        commercialContentTypes:
+          description: Available commercial content disclosure options
+          items:
+            $ref: "#/components/schemas/getTikTokCreatorInfo_200_response_commercialContentTypes_inner"
           type: array
     listApiKeys_200_response:
       example:

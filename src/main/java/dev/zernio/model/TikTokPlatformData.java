@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -45,12 +46,13 @@ import dev.zernio.ApiClient;
   TikTokPlatformData.JSON_PROPERTY_EXPRESS_CONSENT_GIVEN,
   TikTokPlatformData.JSON_PROPERTY_MEDIA_TYPE,
   TikTokPlatformData.JSON_PROPERTY_VIDEO_COVER_TIMESTAMP_MS,
+  TikTokPlatformData.JSON_PROPERTY_VIDEO_COVER_IMAGE_URL,
   TikTokPlatformData.JSON_PROPERTY_PHOTO_COVER_INDEX,
   TikTokPlatformData.JSON_PROPERTY_AUTO_ADD_MUSIC,
   TikTokPlatformData.JSON_PROPERTY_VIDEO_MADE_WITH_AI,
   TikTokPlatformData.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-21T12:00:22.166654886Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-21T12:32:19.094872763Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -171,6 +173,10 @@ public class TikTokPlatformData {
   public static final String JSON_PROPERTY_VIDEO_COVER_TIMESTAMP_MS = "videoCoverTimestampMs";
   @javax.annotation.Nullable
   private Integer videoCoverTimestampMs;
+
+  public static final String JSON_PROPERTY_VIDEO_COVER_IMAGE_URL = "videoCoverImageUrl";
+  @javax.annotation.Nullable
+  private URI videoCoverImageUrl;
 
   public static final String JSON_PROPERTY_PHOTO_COVER_INDEX = "photoCoverIndex";
   @javax.annotation.Nullable
@@ -461,7 +467,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Optional for video posts. Timestamp in milliseconds to select which frame to use as thumbnail (defaults to 1000ms/1 second).
+   * Optional for video posts. Timestamp in milliseconds to select which frame to use as thumbnail (defaults to 1000ms/1 second). Ignored when videoCoverImageUrl is provided.
    * minimum: 0
    * @return videoCoverTimestampMs
    */
@@ -477,6 +483,30 @@ public class TikTokPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVideoCoverTimestampMs(@javax.annotation.Nullable Integer videoCoverTimestampMs) {
     this.videoCoverTimestampMs = videoCoverTimestampMs;
+  }
+
+
+  public TikTokPlatformData videoCoverImageUrl(@javax.annotation.Nullable URI videoCoverImageUrl) {
+    this.videoCoverImageUrl = videoCoverImageUrl;
+    return this;
+  }
+
+  /**
+   * Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is prepended as a 1-second still frame to the video and used as the cover. Overrides videoCoverTimestampMs when provided.
+   * @return videoCoverImageUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_COVER_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getVideoCoverImageUrl() {
+    return videoCoverImageUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_COVER_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoCoverImageUrl(@javax.annotation.Nullable URI videoCoverImageUrl) {
+    this.videoCoverImageUrl = videoCoverImageUrl;
   }
 
 
@@ -601,6 +631,7 @@ public class TikTokPlatformData {
         Objects.equals(this.expressConsentGiven, tikTokPlatformData.expressConsentGiven) &&
         Objects.equals(this.mediaType, tikTokPlatformData.mediaType) &&
         Objects.equals(this.videoCoverTimestampMs, tikTokPlatformData.videoCoverTimestampMs) &&
+        Objects.equals(this.videoCoverImageUrl, tikTokPlatformData.videoCoverImageUrl) &&
         Objects.equals(this.photoCoverIndex, tikTokPlatformData.photoCoverIndex) &&
         Objects.equals(this.autoAddMusic, tikTokPlatformData.autoAddMusic) &&
         Objects.equals(this.videoMadeWithAi, tikTokPlatformData.videoMadeWithAi) &&
@@ -609,7 +640,7 @@ public class TikTokPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(draft, privacyLevel, allowComment, allowDuet, allowStitch, commercialContentType, brandPartnerPromote, isBrandOrganicPost, contentPreviewConfirmed, expressConsentGiven, mediaType, videoCoverTimestampMs, photoCoverIndex, autoAddMusic, videoMadeWithAi, description);
+    return Objects.hash(draft, privacyLevel, allowComment, allowDuet, allowStitch, commercialContentType, brandPartnerPromote, isBrandOrganicPost, contentPreviewConfirmed, expressConsentGiven, mediaType, videoCoverTimestampMs, videoCoverImageUrl, photoCoverIndex, autoAddMusic, videoMadeWithAi, description);
   }
 
   @Override
@@ -628,6 +659,7 @@ public class TikTokPlatformData {
     sb.append("    expressConsentGiven: ").append(toIndentedString(expressConsentGiven)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
     sb.append("    videoCoverTimestampMs: ").append(toIndentedString(videoCoverTimestampMs)).append("\n");
+    sb.append("    videoCoverImageUrl: ").append(toIndentedString(videoCoverImageUrl)).append("\n");
     sb.append("    photoCoverIndex: ").append(toIndentedString(photoCoverIndex)).append("\n");
     sb.append("    autoAddMusic: ").append(toIndentedString(autoAddMusic)).append("\n");
     sb.append("    videoMadeWithAi: ").append(toIndentedString(videoMadeWithAi)).append("\n");
@@ -737,6 +769,11 @@ public class TikTokPlatformData {
     // add `videoCoverTimestampMs` to the URL query string
     if (getVideoCoverTimestampMs() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoCoverTimestampMs%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoCoverTimestampMs()))));
+    }
+
+    // add `videoCoverImageUrl` to the URL query string
+    if (getVideoCoverImageUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoCoverImageUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoCoverImageUrl()))));
     }
 
     // add `photoCoverIndex` to the URL query string

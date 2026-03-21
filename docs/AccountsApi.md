@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAllAccountsHealthWithHttpInfo**](AccountsApi.md#getAllAccountsHealthWithHttpInfo) | **GET** /v1/accounts/health | Check accounts health |
 | [**getFollowerStats**](AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**getTikTokCreatorInfo**](AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
+| [**getTikTokCreatorInfoWithHttpInfo**](AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**listAccounts**](AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts |
 | [**listAccountsWithHttpInfo**](AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
@@ -631,6 +633,162 @@ ApiResponse<[**GetFollowerStats200Response**](GetFollowerStats200Response.md)>
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Analytics add-on required |  -  |
+
+
+## getTikTokCreatorInfo
+
+> GetTikTokCreatorInfo200Response getTikTokCreatorInfo(accountId, mediaType)
+
+Get TikTok creator info
+
+Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The TikTok account ID
+        String mediaType = "video"; // String | The media type to get creator info for (affects available interaction settings)
+        try {
+            GetTikTokCreatorInfo200Response result = apiInstance.getTikTokCreatorInfo(accountId, mediaType);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getTikTokCreatorInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The TikTok account ID | |
+| **mediaType** | **String**| The media type to get creator info for (affects available interaction settings) | [optional] [default to video] [enum: video, photo] |
+
+### Return type
+
+[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | TikTok creator info and posting options |  -  |
+| **400** | Account is not a TikTok account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **429** | Creator has reached TikTok daily posting limit |  -  |
+
+## getTikTokCreatorInfoWithHttpInfo
+
+> ApiResponse<GetTikTokCreatorInfo200Response> getTikTokCreatorInfo getTikTokCreatorInfoWithHttpInfo(accountId, mediaType)
+
+Get TikTok creator info
+
+Returns TikTok creator details, available privacy levels, posting limits, and commercial content options for a specific TikTok account. Only works with TikTok accounts.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The TikTok account ID
+        String mediaType = "video"; // String | The media type to get creator info for (affects available interaction settings)
+        try {
+            ApiResponse<GetTikTokCreatorInfo200Response> response = apiInstance.getTikTokCreatorInfoWithHttpInfo(accountId, mediaType);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#getTikTokCreatorInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The TikTok account ID | |
+| **mediaType** | **String**| The media type to get creator info for (affects available interaction settings) | [optional] [default to video] [enum: video, photo] |
+
+### Return type
+
+ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | TikTok creator info and posting options |  -  |
+| **400** | Account is not a TikTok account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **429** | Creator has reached TikTok daily posting limit |  -  |
 
 
 ## listAccounts
