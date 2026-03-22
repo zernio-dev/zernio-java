@@ -29,6 +29,7 @@ import dev.zernio.model.GetContentDecay200Response;
 import dev.zernio.model.GetDailyMetrics200Response;
 import dev.zernio.model.GetFollowerStats200Response;
 import dev.zernio.model.GetFollowerStats403Response;
+import dev.zernio.model.GetInstagramAccountInsights404Response;
 import dev.zernio.model.GetLinkedInAggregateAnalytics200Response;
 import dev.zernio.model.GetLinkedInAggregateAnalytics400Response;
 import dev.zernio.model.GetLinkedInAggregateAnalytics402Response;
@@ -48,6 +49,8 @@ import dev.zernio.model.GetYouTubeDailyViews403Response;
 import dev.zernio.model.GetYouTubeDailyViews500Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.InstagramAccountInsightsResponse;
+import dev.zernio.model.InstagramDemographicsResponse;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import dev.zernio.model.YouTubeDailyViewsResponse;
@@ -78,7 +81,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-21T13:00:40.109374164Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-22T19:33:43.724148338Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -935,6 +938,318 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "granularity";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Instagram account-level insights
+   * Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics are total_value only.  (optional)
+   * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+   * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  (optional, default to total_value)
+   * @param breakdown Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  (optional)
+   * @return InstagramAccountInsightsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public InstagramAccountInsightsResponse getInstagramAccountInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String metricType, @javax.annotation.Nullable String breakdown) throws ApiException {
+    return getInstagramAccountInsights(accountId, metrics, since, until, metricType, breakdown, null);
+  }
+
+  /**
+   * Get Instagram account-level insights
+   * Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics are total_value only.  (optional)
+   * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+   * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  (optional, default to total_value)
+   * @param breakdown Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  (optional)
+   * @param headers Optional headers to include in the request
+   * @return InstagramAccountInsightsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public InstagramAccountInsightsResponse getInstagramAccountInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String metricType, @javax.annotation.Nullable String breakdown, Map<String, String> headers) throws ApiException {
+    ApiResponse<InstagramAccountInsightsResponse> localVarResponse = getInstagramAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType, breakdown, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Instagram account-level insights
+   * Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics are total_value only.  (optional)
+   * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+   * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  (optional, default to total_value)
+   * @param breakdown Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  (optional)
+   * @return ApiResponse&lt;InstagramAccountInsightsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<InstagramAccountInsightsResponse> getInstagramAccountInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String metricType, @javax.annotation.Nullable String breakdown) throws ApiException {
+    return getInstagramAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType, breakdown, null);
+  }
+
+  /**
+   * Get Instagram account-level insights
+   * Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metrics Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics are total_value only.  (optional)
+   * @param since Start date (YYYY-MM-DD). Defaults to 30 days ago. (optional)
+   * @param until End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @param metricType \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  (optional, default to total_value)
+   * @param breakdown Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;InstagramAccountInsightsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<InstagramAccountInsightsResponse> getInstagramAccountInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String metricType, @javax.annotation.Nullable String breakdown, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getInstagramAccountInsightsRequestBuilder(accountId, metrics, since, until, metricType, breakdown, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getInstagramAccountInsights", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<InstagramAccountInsightsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        InstagramAccountInsightsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<InstagramAccountInsightsResponse>() {});
+        
+
+        return new ApiResponse<InstagramAccountInsightsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getInstagramAccountInsightsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String metricType, @javax.annotation.Nullable String breakdown, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getInstagramAccountInsights");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/analytics/instagram/account-insights";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "metrics";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metrics", metrics));
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+    localVarQueryParameterBaseName = "metricType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metricType", metricType));
+    localVarQueryParameterBaseName = "breakdown";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdown", breakdown));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Instagram audience demographics
+   * Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metric \&quot;follower_demographics\&quot; for follower audience data, or \&quot;engaged_audience_demographics\&quot; for engaged viewers.  (optional, default to follower_demographics)
+   * @param breakdown Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted.  (optional)
+   * @param timeframe Time period for demographic data. Defaults to \&quot;this_month\&quot;.  (optional, default to this_month)
+   * @return InstagramDemographicsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public InstagramDemographicsResponse getInstagramDemographics(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metric, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String timeframe) throws ApiException {
+    return getInstagramDemographics(accountId, metric, breakdown, timeframe, null);
+  }
+
+  /**
+   * Get Instagram audience demographics
+   * Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metric \&quot;follower_demographics\&quot; for follower audience data, or \&quot;engaged_audience_demographics\&quot; for engaged viewers.  (optional, default to follower_demographics)
+   * @param breakdown Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted.  (optional)
+   * @param timeframe Time period for demographic data. Defaults to \&quot;this_month\&quot;.  (optional, default to this_month)
+   * @param headers Optional headers to include in the request
+   * @return InstagramDemographicsResponse
+   * @throws ApiException if fails to make API call
+   */
+  public InstagramDemographicsResponse getInstagramDemographics(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metric, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String timeframe, Map<String, String> headers) throws ApiException {
+    ApiResponse<InstagramDemographicsResponse> localVarResponse = getInstagramDemographicsWithHttpInfo(accountId, metric, breakdown, timeframe, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Instagram audience demographics
+   * Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metric \&quot;follower_demographics\&quot; for follower audience data, or \&quot;engaged_audience_demographics\&quot; for engaged viewers.  (optional, default to follower_demographics)
+   * @param breakdown Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted.  (optional)
+   * @param timeframe Time period for demographic data. Defaults to \&quot;this_month\&quot;.  (optional, default to this_month)
+   * @return ApiResponse&lt;InstagramDemographicsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<InstagramDemographicsResponse> getInstagramDemographicsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metric, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String timeframe) throws ApiException {
+    return getInstagramDemographicsWithHttpInfo(accountId, metric, breakdown, timeframe, null);
+  }
+
+  /**
+   * Get Instagram audience demographics
+   * Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Instagram account (required)
+   * @param metric \&quot;follower_demographics\&quot; for follower audience data, or \&quot;engaged_audience_demographics\&quot; for engaged viewers.  (optional, default to follower_demographics)
+   * @param breakdown Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted.  (optional)
+   * @param timeframe Time period for demographic data. Defaults to \&quot;this_month\&quot;.  (optional, default to this_month)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;InstagramDemographicsResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<InstagramDemographicsResponse> getInstagramDemographicsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metric, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String timeframe, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getInstagramDemographicsRequestBuilder(accountId, metric, breakdown, timeframe, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getInstagramDemographics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<InstagramDemographicsResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        InstagramDemographicsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<InstagramDemographicsResponse>() {});
+        
+
+        return new ApiResponse<InstagramDemographicsResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getInstagramDemographicsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metric, @javax.annotation.Nullable String breakdown, @javax.annotation.Nullable String timeframe, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getInstagramDemographics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/analytics/instagram/demographics";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "metric";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metric", metric));
+    localVarQueryParameterBaseName = "breakdown";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdown", breakdown));
+    localVarQueryParameterBaseName = "timeframe";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("timeframe", timeframe));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

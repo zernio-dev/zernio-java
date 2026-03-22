@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-21T13:00:40.109374164Z[Etc/UTC]
+- Build date: 2026-03-22T19:33:43.724148338Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -162,6 +162,10 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getDailyMetricsWithHttpInfo**](docs/AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics
 *AnalyticsApi* | [**getFollowerStats**](docs/AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AnalyticsApi* | [**getFollowerStatsWithHttpInfo**](docs/AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AnalyticsApi* | [**getInstagramAccountInsights**](docs/AnalyticsApi.md#getInstagramAccountInsights) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights
+*AnalyticsApi* | [**getInstagramAccountInsightsWithHttpInfo**](docs/AnalyticsApi.md#getInstagramAccountInsightsWithHttpInfo) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights
+*AnalyticsApi* | [**getInstagramDemographics**](docs/AnalyticsApi.md#getInstagramDemographics) | **GET** /v1/analytics/instagram/demographics | Get Instagram audience demographics
+*AnalyticsApi* | [**getInstagramDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getInstagramDemographicsWithHttpInfo) | **GET** /v1/analytics/instagram/demographics | Get Instagram audience demographics
 *AnalyticsApi* | [**getLinkedInAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInAggregateAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
 *AnalyticsApi* | [**getLinkedInAggregateAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
 *AnalyticsApi* | [**getLinkedInPostAnalytics**](docs/AnalyticsApi.md#getLinkedInPostAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats
@@ -660,6 +664,7 @@ Class | Method | HTTP request | Description
  - [GetInboxPostComments200ResponseCommentsInnerFrom](docs/GetInboxPostComments200ResponseCommentsInnerFrom.md)
  - [GetInboxPostComments200ResponseMeta](docs/GetInboxPostComments200ResponseMeta.md)
  - [GetInboxPostComments200ResponsePagination](docs/GetInboxPostComments200ResponsePagination.md)
+ - [GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
  - [GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
@@ -761,6 +766,13 @@ Class | Method | HTTP request | Description
  - [InitiateTelegramConnectRequest](docs/InitiateTelegramConnectRequest.md)
  - [InlineObject](docs/InlineObject.md)
  - [InlineObject1](docs/InlineObject1.md)
+ - [InstagramAccountInsightsResponse](docs/InstagramAccountInsightsResponse.md)
+ - [InstagramAccountInsightsResponseDateRange](docs/InstagramAccountInsightsResponseDateRange.md)
+ - [InstagramAccountInsightsResponseMetricsValue](docs/InstagramAccountInsightsResponseMetricsValue.md)
+ - [InstagramAccountInsightsResponseMetricsValueBreakdownsInner](docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md)
+ - [InstagramAccountInsightsResponseMetricsValueValuesInner](docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md)
+ - [InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
+ - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
  - [InstagramPlatformData](docs/InstagramPlatformData.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)

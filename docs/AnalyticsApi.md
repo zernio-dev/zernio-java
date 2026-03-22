@@ -14,6 +14,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getDailyMetricsWithHttpInfo**](AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics |
 | [**getFollowerStats**](AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**getInstagramAccountInsights**](AnalyticsApi.md#getInstagramAccountInsights) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights |
+| [**getInstagramAccountInsightsWithHttpInfo**](AnalyticsApi.md#getInstagramAccountInsightsWithHttpInfo) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights |
+| [**getInstagramDemographics**](AnalyticsApi.md#getInstagramDemographics) | **GET** /v1/analytics/instagram/demographics | Get Instagram audience demographics |
+| [**getInstagramDemographicsWithHttpInfo**](AnalyticsApi.md#getInstagramDemographicsWithHttpInfo) | **GET** /v1/analytics/instagram/demographics | Get Instagram audience demographics |
 | [**getLinkedInAggregateAnalytics**](AnalyticsApi.md#getLinkedInAggregateAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**getLinkedInAggregateAnalyticsWithHttpInfo**](AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**getLinkedInPostAnalytics**](AnalyticsApi.md#getLinkedInPostAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
@@ -861,6 +865,346 @@ ApiResponse<[**GetFollowerStats200Response**](GetFollowerStats200Response.md)>
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Analytics add-on required |  -  |
+
+
+## getInstagramAccountInsights
+
+> InstagramAccountInsightsResponse getInstagramAccountInsights(accountId, metrics, since, until, metricType, breakdown)
+
+Get Instagram account-level insights
+
+Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
+        String metrics = "metrics_example"; // String | Comma-separated list of metrics. Defaults to \"reach,views,accounts_engaged,total_interactions\". Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \"reach\" supports metricType=time_series. All other metrics are total_value only. 
+        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric. 
+        String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type. 
+        try {
+            InstagramAccountInsightsResponse result = apiInstance.getInstagramAccountInsights(accountId, metrics, since, until, metricType, breakdown);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getInstagramAccountInsights");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
+| **metrics** | **String**| Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics are total_value only.  | [optional] |
+| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] [enum: time_series, total_value] |
+| **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional] |
+
+### Return type
+
+[**InstagramAccountInsightsResponse**](InstagramAccountInsightsResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account insights data |  -  |
+| **400** | Bad request (invalid parameters) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Account not found |  -  |
+
+## getInstagramAccountInsightsWithHttpInfo
+
+> ApiResponse<InstagramAccountInsightsResponse> getInstagramAccountInsights getInstagramAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType, breakdown)
+
+Get Instagram account-level insights
+
+Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
+        String metrics = "metrics_example"; // String | Comma-separated list of metrics. Defaults to \"reach,views,accounts_engaged,total_interactions\". Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \"reach\" supports metricType=time_series. All other metrics are total_value only. 
+        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric. 
+        String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type. 
+        try {
+            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getInstagramAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType, breakdown);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getInstagramAccountInsights");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
+| **metrics** | **String**| Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics are total_value only.  | [optional] |
+| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] [enum: time_series, total_value] |
+| **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional] |
+
+### Return type
+
+ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account insights data |  -  |
+| **400** | Bad request (invalid parameters) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Account not found |  -  |
+
+
+## getInstagramDemographics
+
+> InstagramDemographicsResponse getInstagramDemographics(accountId, metric, breakdown, timeframe)
+
+Get Instagram audience demographics
+
+Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
+        String metric = "follower_demographics"; // String | \"follower_demographics\" for follower audience data, or \"engaged_audience_demographics\" for engaged viewers. 
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted. 
+        String timeframe = "this_week"; // String | Time period for demographic data. Defaults to \"this_month\". 
+        try {
+            InstagramDemographicsResponse result = apiInstance.getInstagramDemographics(accountId, metric, breakdown, timeframe);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getInstagramDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
+| **metric** | **String**| \&quot;follower_demographics\&quot; for follower audience data, or \&quot;engaged_audience_demographics\&quot; for engaged viewers.  | [optional] [default to follower_demographics] [enum: follower_demographics, engaged_audience_demographics] |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted.  | [optional] |
+| **timeframe** | **String**| Time period for demographic data. Defaults to \&quot;this_month\&quot;.  | [optional] [default to this_month] [enum: this_week, this_month] |
+
+### Return type
+
+[**InstagramDemographicsResponse**](InstagramDemographicsResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Demographic insights data |  -  |
+| **400** | Bad request (invalid parameters) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Account not found |  -  |
+
+## getInstagramDemographicsWithHttpInfo
+
+> ApiResponse<InstagramDemographicsResponse> getInstagramDemographics getInstagramDemographicsWithHttpInfo(accountId, metric, breakdown, timeframe)
+
+Get Instagram audience demographics
+
+Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
+        String metric = "follower_demographics"; // String | \"follower_demographics\" for follower audience data, or \"engaged_audience_demographics\" for engaged viewers. 
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted. 
+        String timeframe = "this_week"; // String | Time period for demographic data. Defaults to \"this_month\". 
+        try {
+            ApiResponse<InstagramDemographicsResponse> response = apiInstance.getInstagramDemographicsWithHttpInfo(accountId, metric, breakdown, timeframe);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getInstagramDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
+| **metric** | **String**| \&quot;follower_demographics\&quot; for follower audience data, or \&quot;engaged_audience_demographics\&quot; for engaged viewers.  | [optional] [default to follower_demographics] [enum: follower_demographics, engaged_audience_demographics] |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: age, city, country, gender. Defaults to all four if omitted.  | [optional] |
+| **timeframe** | **String**| Time period for demographic data. Defaults to \&quot;this_month\&quot;.  | [optional] [default to this_month] [enum: this_week, this_month] |
+
+### Return type
+
+ApiResponse<[**InstagramDemographicsResponse**](InstagramDemographicsResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Demographic insights data |  -  |
+| **400** | Bad request (invalid parameters) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Account not found |  -  |
 
 
 ## getLinkedInAggregateAnalytics
