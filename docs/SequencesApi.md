@@ -897,7 +897,7 @@ ApiResponse<Void>
 
 ## listSequences
 
-> void listSequences(profileId, status, limit, skip)
+> ListSequences200Response listSequences(profileId, status, limit, skip)
 
 List sequences
 
@@ -927,7 +927,8 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            apiInstance.listSequences(profileId, status, limit, skip);
+            ListSequences200Response result = apiInstance.listSequences(profileId, status, limit, skip);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SequencesApi#listSequences");
             System.err.println("Status code: " + e.getCode());
@@ -951,8 +952,8 @@ public class Example {
 
 ### Return type
 
+[**ListSequences200Response**](ListSequences200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -971,7 +972,7 @@ null (empty response body)
 
 ## listSequencesWithHttpInfo
 
-> ApiResponse<Void> listSequences listSequencesWithHttpInfo(profileId, status, limit, skip)
+> ApiResponse<ListSequences200Response> listSequences listSequencesWithHttpInfo(profileId, status, limit, skip)
 
 List sequences
 
@@ -1002,9 +1003,10 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ApiResponse<Void> response = apiInstance.listSequencesWithHttpInfo(profileId, status, limit, skip);
+            ApiResponse<ListSequences200Response> response = apiInstance.listSequencesWithHttpInfo(profileId, status, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling SequencesApi#listSequences");
             System.err.println("Status code: " + e.getCode());
@@ -1028,8 +1030,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**ListSequences200Response**](ListSequences200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 

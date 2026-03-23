@@ -22,6 +22,7 @@ import dev.zernio.model.CreateSequenceRequest;
 import dev.zernio.model.EnrollContactsRequest;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListSequences200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:33:07.203614385Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:36:39.232538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SequencesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -852,10 +853,11 @@ public class SequencesApi {
    * @param status  (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
+   * @return ListSequences200Response
    * @throws ApiException if fails to make API call
    */
-  public void listSequences(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    listSequences(profileId, status, limit, skip, null);
+  public ListSequences200Response listSequences(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listSequences(profileId, status, limit, skip, null);
   }
 
   /**
@@ -866,10 +868,12 @@ public class SequencesApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
+   * @return ListSequences200Response
    * @throws ApiException if fails to make API call
    */
-  public void listSequences(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    listSequencesWithHttpInfo(profileId, status, limit, skip, headers);
+  public ListSequences200Response listSequences(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListSequences200Response> localVarResponse = listSequencesWithHttpInfo(profileId, status, limit, skip, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -879,10 +883,10 @@ public class SequencesApi {
    * @param status  (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListSequences200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listSequencesWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+  public ApiResponse<ListSequences200Response> listSequencesWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
     return listSequencesWithHttpInfo(profileId, status, limit, skip, null);
   }
 
@@ -894,10 +898,10 @@ public class SequencesApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListSequences200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listSequencesWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ListSequences200Response> listSequencesWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listSequencesRequestBuilder(profileId, status, limit, skip, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -912,13 +916,24 @@ public class SequencesApi {
           throw getApiException("listSequences", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListSequences200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListSequences200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListSequences200Response>() {});
+        
+
+        return new ApiResponse<ListSequences200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {

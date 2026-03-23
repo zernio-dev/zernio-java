@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-23T20:33:07.203614385Z[Etc/UTC]
+- Build date: 2026-03-23T20:36:39.232538925Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -884,6 +884,8 @@ Class | Method | HTTP request | Description
  - [ListAccountGroups200ResponseGroupsInner](docs/ListAccountGroups200ResponseGroupsInner.md)
  - [ListAccounts200Response](docs/ListAccounts200Response.md)
  - [ListApiKeys200Response](docs/ListApiKeys200Response.md)
+ - [ListBroadcasts200Response](docs/ListBroadcasts200Response.md)
+ - [ListBroadcasts200ResponseBroadcastsInner](docs/ListBroadcasts200ResponseBroadcastsInner.md)
  - [ListCommentAutomations200Response](docs/ListCommentAutomations200Response.md)
  - [ListCommentAutomations200ResponseAutomationsInner](docs/ListCommentAutomations200ResponseAutomationsInner.md)
  - [ListCommentAutomations200ResponseAutomationsInnerStats](docs/ListCommentAutomations200ResponseAutomationsInnerStats.md)
@@ -919,6 +921,8 @@ Class | Method | HTTP request | Description
  - [ListQueueSlots200Response](docs/ListQueueSlots200Response.md)
  - [ListQueueSlots200ResponseOneOf](docs/ListQueueSlots200ResponseOneOf.md)
  - [ListQueueSlots200ResponseOneOf1](docs/ListQueueSlots200ResponseOneOf1.md)
+ - [ListSequences200Response](docs/ListSequences200Response.md)
+ - [ListSequences200ResponseSequencesInner](docs/ListSequences200ResponseSequencesInner.md)
  - [ListSnapchatProfiles200Response](docs/ListSnapchatProfiles200Response.md)
  - [ListSnapchatProfiles200ResponsePublicProfilesInner](docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
@@ -1009,6 +1013,7 @@ Class | Method | HTTP request | Description
  - [SelectSnapchatProfile200ResponseAccount](docs/SelectSnapchatProfile200ResponseAccount.md)
  - [SelectSnapchatProfileRequest](docs/SelectSnapchatProfileRequest.md)
  - [SelectSnapchatProfileRequestSelectedPublicProfile](docs/SelectSnapchatProfileRequestSelectedPublicProfile.md)
+ - [SendBroadcast200Response](docs/SendBroadcast200Response.md)
  - [SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
  - [SendInboxMessage200ResponseData](docs/SendInboxMessage200ResponseData.md)
  - [SendInboxMessage400Response](docs/SendInboxMessage400Response.md)

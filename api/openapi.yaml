@@ -11705,6 +11705,10 @@ paths:
         style: form
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBroadcasts_200_response"
           description: Broadcasts list
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11812,6 +11816,10 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendBroadcast_200_response"
           description: Broadcast sending started
         "400":
           description: Invalid status or no recipients
@@ -12003,6 +12011,10 @@ paths:
         style: form
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listSequences_200_response"
           description: Sequences list
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -28299,6 +28311,125 @@ components:
           items:
             type: string
           type: array
+    listBroadcasts_200_response_broadcasts_inner:
+      example:
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        accountName: accountName
+        description: description
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        readCount: 5
+        platform: platform
+        sentCount: 6
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        failedCount: 5
+        recipientCount: 0
+        name: name
+        deliveredCount: 1
+        id: id
+        scheduledAt: 2000-01-23T04:56:07.000+00:00
+        status: draft
+        messagePreview: messagePreview
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        accountName:
+          description: Display name of the sending account
+          type: string
+        status:
+          enum:
+          - draft
+          - scheduled
+          - sending
+          - completed
+          - failed
+          - cancelled
+          type: string
+        messagePreview:
+          description: Template name or message text snippet
+          type: string
+        scheduledAt:
+          format: date-time
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+        completedAt:
+          format: date-time
+          type: string
+        recipientCount:
+          type: integer
+        sentCount:
+          type: integer
+        deliveredCount:
+          type: integer
+        readCount:
+          type: integer
+        failedCount:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+    listBroadcasts_200_response:
+      example:
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+        broadcasts:
+        - completedAt: 2000-01-23T04:56:07.000+00:00
+          accountName: accountName
+          description: description
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          readCount: 5
+          platform: platform
+          sentCount: 6
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          failedCount: 5
+          recipientCount: 0
+          name: name
+          deliveredCount: 1
+          id: id
+          scheduledAt: 2000-01-23T04:56:07.000+00:00
+          status: draft
+          messagePreview: messagePreview
+        - completedAt: 2000-01-23T04:56:07.000+00:00
+          accountName: accountName
+          description: description
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          readCount: 5
+          platform: platform
+          sentCount: 6
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          failedCount: 5
+          recipientCount: 0
+          name: name
+          deliveredCount: 1
+          id: id
+          scheduledAt: 2000-01-23T04:56:07.000+00:00
+          status: draft
+          messagePreview: messagePreview
+      properties:
+        success:
+          type: boolean
+        broadcasts:
+          items:
+            $ref: "#/components/schemas/listBroadcasts_200_response_broadcasts_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/getWhatsAppContacts_200_response_pagination"
     createBroadcast_request_message_attachments_inner:
       properties:
         type:
@@ -28364,6 +28495,32 @@ components:
       - name
       - platform
       - profileId
+    sendBroadcast_200_response:
+      example:
+        recipientCount: 1
+        success: true
+        failed: 6
+        sent: 0
+        status: sending
+      properties:
+        success:
+          type: boolean
+        status:
+          description: Current broadcast status after processing first batch
+          enum:
+          - sending
+          - completed
+          - failed
+          type: string
+        sent:
+          description: Recipients sent in this batch
+          type: integer
+        failed:
+          description: Recipients failed in this batch
+          type: integer
+        recipientCount:
+          description: Total recipient count
+          type: integer
     scheduleBroadcast_request:
       properties:
         scheduledAt:
@@ -28387,6 +28544,109 @@ components:
         useSegment:
           description: Auto-populate from broadcast segment filters
           type: boolean
+    listSequences_200_response_sequences_inner:
+      example:
+        exitOnUnsubscribe: true
+        totalCompleted: 1
+        accountName: accountName
+        totalEnrolled: 6
+        description: description
+        platform: platform
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        exitOnReply: true
+        totalExited: 5
+        stepsCount: 0
+        id: id
+        messagePreview: messagePreview
+        status: draft
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        accountName:
+          description: Display name of the sending account
+          type: string
+        messagePreview:
+          description: First step template name or message text snippet
+          type: string
+        status:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        stepsCount:
+          type: integer
+        exitOnReply:
+          type: boolean
+        exitOnUnsubscribe:
+          type: boolean
+        totalEnrolled:
+          type: integer
+        totalCompleted:
+          type: integer
+        totalExited:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+    listSequences_200_response:
+      example:
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+        sequences:
+        - exitOnUnsubscribe: true
+          totalCompleted: 1
+          accountName: accountName
+          totalEnrolled: 6
+          description: description
+          platform: platform
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          exitOnReply: true
+          totalExited: 5
+          stepsCount: 0
+          id: id
+          messagePreview: messagePreview
+          status: draft
+        - exitOnUnsubscribe: true
+          totalCompleted: 1
+          accountName: accountName
+          totalEnrolled: 6
+          description: description
+          platform: platform
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          exitOnReply: true
+          totalExited: 5
+          stepsCount: 0
+          id: id
+          messagePreview: messagePreview
+          status: draft
+      properties:
+        success:
+          type: boolean
+        sequences:
+          items:
+            $ref: "#/components/schemas/listSequences_200_response_sequences_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/getWhatsAppContacts_200_response_pagination"
     createSequence_request_steps_inner_message:
       properties:
         text:

@@ -340,6 +340,8 @@ docs/ListAccountGroups200Response.md
 docs/ListAccountGroups200ResponseGroupsInner.md
 docs/ListAccounts200Response.md
 docs/ListApiKeys200Response.md
+docs/ListBroadcasts200Response.md
+docs/ListBroadcasts200ResponseBroadcastsInner.md
 docs/ListCommentAutomations200Response.md
 docs/ListCommentAutomations200ResponseAutomationsInner.md
 docs/ListCommentAutomations200ResponseAutomationsInnerStats.md
@@ -375,6 +377,8 @@ docs/ListPostsLogs200ResponsePagination.md
 docs/ListQueueSlots200Response.md
 docs/ListQueueSlots200ResponseOneOf.md
 docs/ListQueueSlots200ResponseOneOf1.md
+docs/ListSequences200Response.md
+docs/ListSequences200ResponseSequencesInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
 docs/ListUsers200Response.md
@@ -473,6 +477,7 @@ docs/SelectSnapchatProfile200Response.md
 docs/SelectSnapchatProfile200ResponseAccount.md
 docs/SelectSnapchatProfileRequest.md
 docs/SelectSnapchatProfileRequestSelectedPublicProfile.md
+docs/SendBroadcast200Response.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage400Response.md
@@ -1011,6 +1016,8 @@ src/main/java/dev/zernio/model/ListAccountGroups200Response.java
 src/main/java/dev/zernio/model/ListAccountGroups200ResponseGroupsInner.java
 src/main/java/dev/zernio/model/ListAccounts200Response.java
 src/main/java/dev/zernio/model/ListApiKeys200Response.java
+src/main/java/dev/zernio/model/ListBroadcasts200Response.java
+src/main/java/dev/zernio/model/ListBroadcasts200ResponseBroadcastsInner.java
 src/main/java/dev/zernio/model/ListCommentAutomations200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomations200ResponseAutomationsInner.java
 src/main/java/dev/zernio/model/ListCommentAutomations200ResponseAutomationsInnerStats.java
@@ -1046,6 +1053,8 @@ src/main/java/dev/zernio/model/ListPostsLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/ListQueueSlots200Response.java
 src/main/java/dev/zernio/model/ListQueueSlots200ResponseOneOf.java
 src/main/java/dev/zernio/model/ListQueueSlots200ResponseOneOf1.java
+src/main/java/dev/zernio/model/ListSequences200Response.java
+src/main/java/dev/zernio/model/ListSequences200ResponseSequencesInner.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200Response.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200ResponsePublicProfilesInner.java
 src/main/java/dev/zernio/model/ListUsers200Response.java
@@ -1136,6 +1145,7 @@ src/main/java/dev/zernio/model/SelectSnapchatProfile200Response.java
 src/main/java/dev/zernio/model/SelectSnapchatProfile200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectSnapchatProfileRequest.java
 src/main/java/dev/zernio/model/SelectSnapchatProfileRequestSelectedPublicProfile.java
+src/main/java/dev/zernio/model/SendBroadcast200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseData.java
 src/main/java/dev/zernio/model/SendInboxMessage400Response.java
@@ -1292,3 +1302,8 @@ src/main/java/dev/zernio/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/ListBroadcasts200ResponseBroadcastsInnerTest.java
+src/test/java/dev/zernio/model/ListBroadcasts200ResponseTest.java
+src/test/java/dev/zernio/model/ListSequences200ResponseSequencesInnerTest.java
+src/test/java/dev/zernio/model/ListSequences200ResponseTest.java
+src/test/java/dev/zernio/model/SendBroadcast200ResponseTest.java

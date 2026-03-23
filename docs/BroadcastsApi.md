@@ -897,7 +897,7 @@ ApiResponse<Void>
 
 ## listBroadcasts
 
-> void listBroadcasts(profileId, status, platform, limit, skip)
+> ListBroadcasts200Response listBroadcasts(profileId, status, platform, limit, skip)
 
 List broadcasts
 
@@ -928,7 +928,8 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            apiInstance.listBroadcasts(profileId, status, platform, limit, skip);
+            ListBroadcasts200Response result = apiInstance.listBroadcasts(profileId, status, platform, limit, skip);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BroadcastsApi#listBroadcasts");
             System.err.println("Status code: " + e.getCode());
@@ -953,8 +954,8 @@ public class Example {
 
 ### Return type
 
+[**ListBroadcasts200Response**](ListBroadcasts200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -973,7 +974,7 @@ null (empty response body)
 
 ## listBroadcastsWithHttpInfo
 
-> ApiResponse<Void> listBroadcasts listBroadcastsWithHttpInfo(profileId, status, platform, limit, skip)
+> ApiResponse<ListBroadcasts200Response> listBroadcasts listBroadcastsWithHttpInfo(profileId, status, platform, limit, skip)
 
 List broadcasts
 
@@ -1005,9 +1006,10 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ApiResponse<Void> response = apiInstance.listBroadcastsWithHttpInfo(profileId, status, platform, limit, skip);
+            ApiResponse<ListBroadcasts200Response> response = apiInstance.listBroadcastsWithHttpInfo(profileId, status, platform, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling BroadcastsApi#listBroadcasts");
             System.err.println("Status code: " + e.getCode());
@@ -1032,8 +1034,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**ListBroadcasts200Response**](ListBroadcasts200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -1201,7 +1203,7 @@ ApiResponse<Void>
 
 ## sendBroadcast
 
-> void sendBroadcast(broadcastId)
+> SendBroadcast200Response sendBroadcast(broadcastId)
 
 Trigger immediate send
 
@@ -1228,7 +1230,8 @@ public class Example {
         BroadcastsApi apiInstance = new BroadcastsApi(defaultClient);
         String broadcastId = "broadcastId_example"; // String | 
         try {
-            apiInstance.sendBroadcast(broadcastId);
+            SendBroadcast200Response result = apiInstance.sendBroadcast(broadcastId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BroadcastsApi#sendBroadcast");
             System.err.println("Status code: " + e.getCode());
@@ -1249,8 +1252,8 @@ public class Example {
 
 ### Return type
 
+[**SendBroadcast200Response**](SendBroadcast200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -1271,7 +1274,7 @@ null (empty response body)
 
 ## sendBroadcastWithHttpInfo
 
-> ApiResponse<Void> sendBroadcast sendBroadcastWithHttpInfo(broadcastId)
+> ApiResponse<SendBroadcast200Response> sendBroadcast sendBroadcastWithHttpInfo(broadcastId)
 
 Trigger immediate send
 
@@ -1299,9 +1302,10 @@ public class Example {
         BroadcastsApi apiInstance = new BroadcastsApi(defaultClient);
         String broadcastId = "broadcastId_example"; // String | 
         try {
-            ApiResponse<Void> response = apiInstance.sendBroadcastWithHttpInfo(broadcastId);
+            ApiResponse<SendBroadcast200Response> response = apiInstance.sendBroadcastWithHttpInfo(broadcastId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling BroadcastsApi#sendBroadcast");
             System.err.println("Status code: " + e.getCode());
@@ -1322,8 +1326,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**SendBroadcast200Response**](SendBroadcast200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 

@@ -22,7 +22,9 @@ import dev.zernio.model.AddBroadcastRecipientsRequest;
 import dev.zernio.model.CreateBroadcastRequest;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListBroadcasts200Response;
 import dev.zernio.model.ScheduleBroadcastRequest;
+import dev.zernio.model.SendBroadcast200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:33:07.203614385Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:36:39.232538925Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BroadcastsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -848,10 +850,11 @@ public class BroadcastsApi {
    * @param platform  (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
+   * @return ListBroadcasts200Response
    * @throws ApiException if fails to make API call
    */
-  public void listBroadcasts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    listBroadcasts(profileId, status, platform, limit, skip, null);
+  public ListBroadcasts200Response listBroadcasts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listBroadcasts(profileId, status, platform, limit, skip, null);
   }
 
   /**
@@ -863,10 +866,12 @@ public class BroadcastsApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
+   * @return ListBroadcasts200Response
    * @throws ApiException if fails to make API call
    */
-  public void listBroadcasts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    listBroadcastsWithHttpInfo(profileId, status, platform, limit, skip, headers);
+  public ListBroadcasts200Response listBroadcasts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListBroadcasts200Response> localVarResponse = listBroadcastsWithHttpInfo(profileId, status, platform, limit, skip, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -877,10 +882,10 @@ public class BroadcastsApi {
    * @param platform  (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListBroadcasts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listBroadcastsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+  public ApiResponse<ListBroadcasts200Response> listBroadcastsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
     return listBroadcastsWithHttpInfo(profileId, status, platform, limit, skip, null);
   }
 
@@ -893,10 +898,10 @@ public class BroadcastsApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListBroadcasts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listBroadcastsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ListBroadcasts200Response> listBroadcastsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listBroadcastsRequestBuilder(profileId, status, platform, limit, skip, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -911,13 +916,24 @@ public class BroadcastsApi {
           throw getApiException("listBroadcasts", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListBroadcasts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListBroadcasts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListBroadcasts200Response>() {});
+        
+
+        return new ApiResponse<ListBroadcasts200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -1100,10 +1116,11 @@ public class BroadcastsApi {
    * Trigger immediate send
    * 
    * @param broadcastId  (required)
+   * @return SendBroadcast200Response
    * @throws ApiException if fails to make API call
    */
-  public void sendBroadcast(@javax.annotation.Nonnull String broadcastId) throws ApiException {
-    sendBroadcast(broadcastId, null);
+  public SendBroadcast200Response sendBroadcast(@javax.annotation.Nonnull String broadcastId) throws ApiException {
+    return sendBroadcast(broadcastId, null);
   }
 
   /**
@@ -1111,20 +1128,22 @@ public class BroadcastsApi {
    * 
    * @param broadcastId  (required)
    * @param headers Optional headers to include in the request
+   * @return SendBroadcast200Response
    * @throws ApiException if fails to make API call
    */
-  public void sendBroadcast(@javax.annotation.Nonnull String broadcastId, Map<String, String> headers) throws ApiException {
-    sendBroadcastWithHttpInfo(broadcastId, headers);
+  public SendBroadcast200Response sendBroadcast(@javax.annotation.Nonnull String broadcastId, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendBroadcast200Response> localVarResponse = sendBroadcastWithHttpInfo(broadcastId, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * Trigger immediate send
    * 
    * @param broadcastId  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;SendBroadcast200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> sendBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId) throws ApiException {
+  public ApiResponse<SendBroadcast200Response> sendBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId) throws ApiException {
     return sendBroadcastWithHttpInfo(broadcastId, null);
   }
 
@@ -1133,10 +1152,10 @@ public class BroadcastsApi {
    * 
    * @param broadcastId  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;SendBroadcast200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> sendBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<SendBroadcast200Response> sendBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = sendBroadcastRequestBuilder(broadcastId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1151,13 +1170,24 @@ public class BroadcastsApi {
           throw getApiException("sendBroadcast", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SendBroadcast200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendBroadcast200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendBroadcast200Response>() {});
+        
+
+        return new ApiResponse<SendBroadcast200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
