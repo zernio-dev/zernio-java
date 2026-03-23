@@ -81,7 +81,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T16:07:59.334097222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T17:45:20.637936939Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -204,6 +204,7 @@ public class AnalyticsApi {
    * @param postId Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. (optional)
    * @param platform Filter by platform (default \&quot;all\&quot;) (optional)
    * @param profileId Filter by profile ID (default \&quot;all\&quot;) (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param source Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) (optional, default to all)
    * @param fromDate Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
@@ -214,8 +215,8 @@ public class AnalyticsApi {
    * @return GetAnalytics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order) throws ApiException {
-    return getAnalytics(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order, null);
+  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order) throws ApiException {
+    return getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, null);
   }
 
   /**
@@ -224,6 +225,7 @@ public class AnalyticsApi {
    * @param postId Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. (optional)
    * @param platform Filter by platform (default \&quot;all\&quot;) (optional)
    * @param profileId Filter by profile ID (default \&quot;all\&quot;) (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param source Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) (optional, default to all)
    * @param fromDate Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
@@ -235,8 +237,8 @@ public class AnalyticsApi {
    * @return GetAnalytics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAnalytics200Response> localVarResponse = getAnalyticsWithHttpInfo(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order, headers);
+  public GetAnalytics200Response getAnalytics(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAnalytics200Response> localVarResponse = getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, headers);
     return localVarResponse.getData();
   }
 
@@ -246,6 +248,7 @@ public class AnalyticsApi {
    * @param postId Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. (optional)
    * @param platform Filter by platform (default \&quot;all\&quot;) (optional)
    * @param profileId Filter by profile ID (default \&quot;all\&quot;) (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param source Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) (optional, default to all)
    * @param fromDate Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
@@ -256,8 +259,8 @@ public class AnalyticsApi {
    * @return ApiResponse&lt;GetAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order) throws ApiException {
-    return getAnalyticsWithHttpInfo(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order, null);
+  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order) throws ApiException {
+    return getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, null);
   }
 
   /**
@@ -266,6 +269,7 @@ public class AnalyticsApi {
    * @param postId Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. (optional)
    * @param platform Filter by platform (default \&quot;all\&quot;) (optional)
    * @param profileId Filter by profile ID (default \&quot;all\&quot;) (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param source Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) (optional, default to all)
    * @param fromDate Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. (optional)
    * @param toDate Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. (optional)
@@ -277,8 +281,8 @@ public class AnalyticsApi {
    * @return ApiResponse&lt;GetAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAnalyticsRequestBuilder(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order, headers);
+  public ApiResponse<GetAnalytics200Response> getAnalyticsWithHttpInfo(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAnalyticsRequestBuilder(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -325,7 +329,7 @@ public class AnalyticsApi {
     }
   }
 
-  private HttpRequest.Builder getAnalyticsRequestBuilder(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAnalyticsRequestBuilder(@javax.annotation.Nullable String postId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String source, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String order, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -340,6 +344,8 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "source";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("source", source));
     localVarQueryParameterBaseName = "fromDate";
@@ -665,14 +671,15 @@ public class AnalyticsApi {
    * Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. Requires the Analytics add-on. 
    * @param platform Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. (optional)
    * @param profileId Filter by profile ID. Omit for all profiles. (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
    * @return GetDailyMetrics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source) throws ApiException {
-    return getDailyMetrics(platform, profileId, fromDate, toDate, source, null);
+  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source) throws ApiException {
+    return getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source, null);
   }
 
   /**
@@ -680,6 +687,7 @@ public class AnalyticsApi {
    * Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. Requires the Analytics add-on. 
    * @param platform Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. (optional)
    * @param profileId Filter by profile ID. Omit for all profiles. (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
@@ -687,8 +695,8 @@ public class AnalyticsApi {
    * @return GetDailyMetrics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetDailyMetrics200Response> localVarResponse = getDailyMetricsWithHttpInfo(platform, profileId, fromDate, toDate, source, headers);
+  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetDailyMetrics200Response> localVarResponse = getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, headers);
     return localVarResponse.getData();
   }
 
@@ -697,14 +705,15 @@ public class AnalyticsApi {
    * Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. Requires the Analytics add-on. 
    * @param platform Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. (optional)
    * @param profileId Filter by profile ID. Omit for all profiles. (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
    * @return ApiResponse&lt;GetDailyMetrics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source) throws ApiException {
-    return getDailyMetricsWithHttpInfo(platform, profileId, fromDate, toDate, source, null);
+  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source) throws ApiException {
+    return getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, null);
   }
 
   /**
@@ -712,6 +721,7 @@ public class AnalyticsApi {
    * Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. Requires the Analytics add-on. 
    * @param platform Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. (optional)
    * @param profileId Filter by profile ID. Omit for all profiles. (optional)
+   * @param accountId Filter by social account ID (optional)
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
@@ -719,8 +729,8 @@ public class AnalyticsApi {
    * @return ApiResponse&lt;GetDailyMetrics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getDailyMetricsRequestBuilder(platform, profileId, fromDate, toDate, source, headers);
+  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getDailyMetricsRequestBuilder(platform, profileId, accountId, fromDate, toDate, source, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -767,7 +777,7 @@ public class AnalyticsApi {
     }
   }
 
-  private HttpRequest.Builder getDailyMetricsRequestBuilder(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getDailyMetricsRequestBuilder(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -780,6 +790,8 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "fromDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";

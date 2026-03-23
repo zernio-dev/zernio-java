@@ -35,7 +35,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## getAnalytics
 
-> GetAnalytics200Response getAnalytics(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order)
+> GetAnalytics200Response getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order)
 
 Get post analytics
 
@@ -65,6 +65,7 @@ public class Example {
         String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
         String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
+        String accountId = "accountId_example"; // String | Filter by social account ID
         String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
@@ -73,7 +74,7 @@ public class Example {
         String sortBy = "date"; // String | Sort by date, engagement, or a specific metric
         String order = "asc"; // String | Sort order
         try {
-            GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order);
+            GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getAnalytics");
@@ -94,6 +95,7 @@ public class Example {
 | **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
 | **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
+| **accountId** | **String**| Filter by social account ID | [optional] |
 | **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
@@ -130,7 +132,7 @@ public class Example {
 
 ## getAnalyticsWithHttpInfo
 
-> ApiResponse<GetAnalytics200Response> getAnalytics getAnalyticsWithHttpInfo(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order)
+> ApiResponse<GetAnalytics200Response> getAnalytics getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order)
 
 Get post analytics
 
@@ -161,6 +163,7 @@ public class Example {
         String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
         String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
+        String accountId = "accountId_example"; // String | Filter by social account ID
         String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
@@ -169,7 +172,7 @@ public class Example {
         String sortBy = "date"; // String | Sort by date, engagement, or a specific metric
         String order = "asc"; // String | Sort order
         try {
-            ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, source, fromDate, toDate, limit, page, sortBy, order);
+            ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -192,6 +195,7 @@ public class Example {
 | **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
 | **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
+| **accountId** | **String**| Filter by social account ID | [optional] |
 | **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
@@ -541,7 +545,7 @@ ApiResponse<[**GetContentDecay200Response**](GetContentDecay200Response.md)>
 
 ## getDailyMetrics
 
-> GetDailyMetrics200Response getDailyMetrics(platform, profileId, fromDate, toDate, source)
+> GetDailyMetrics200Response getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source)
 
 Get daily aggregated metrics
 
@@ -570,11 +574,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            GetDailyMetrics200Response result = apiInstance.getDailyMetrics(platform, profileId, fromDate, toDate, source);
+            GetDailyMetrics200Response result = apiInstance.getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getDailyMetrics");
@@ -594,6 +599,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID | [optional] |
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
@@ -621,7 +627,7 @@ public class Example {
 
 ## getDailyMetricsWithHttpInfo
 
-> ApiResponse<GetDailyMetrics200Response> getDailyMetrics getDailyMetricsWithHttpInfo(platform, profileId, fromDate, toDate, source)
+> ApiResponse<GetDailyMetrics200Response> getDailyMetrics getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source)
 
 Get daily aggregated metrics
 
@@ -651,11 +657,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            ApiResponse<GetDailyMetrics200Response> response = apiInstance.getDailyMetricsWithHttpInfo(platform, profileId, fromDate, toDate, source);
+            ApiResponse<GetDailyMetrics200Response> response = apiInstance.getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -677,6 +684,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID | [optional] |
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |

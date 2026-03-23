@@ -698,6 +698,14 @@ paths:
         schema:
           type: string
         style: form
+      - description: Filter by social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: "Filter by post source: late (posted via Zernio API), external\
           \ (synced from platform), all (default)"
         explode: true
@@ -1430,6 +1438,14 @@ paths:
         explode: true
         in: query
         name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by social account ID
+        explode: true
+        in: query
+        name: accountId
         required: false
         schema:
           type: string
