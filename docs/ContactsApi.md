@@ -23,7 +23,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## bulkCreateContacts
 
-> void bulkCreateContacts(bulkCreateContactsRequest)
+> BulkCreateContacts200Response bulkCreateContacts(bulkCreateContactsRequest)
 
 Bulk create contacts
 
@@ -52,7 +52,8 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         BulkCreateContactsRequest bulkCreateContactsRequest = new BulkCreateContactsRequest(); // BulkCreateContactsRequest | 
         try {
-            apiInstance.bulkCreateContacts(bulkCreateContactsRequest);
+            BulkCreateContacts200Response result = apiInstance.bulkCreateContacts(bulkCreateContactsRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#bulkCreateContacts");
             System.err.println("Status code: " + e.getCode());
@@ -73,8 +74,8 @@ public class Example {
 
 ### Return type
 
+[**BulkCreateContacts200Response**](BulkCreateContacts200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -93,7 +94,7 @@ null (empty response body)
 
 ## bulkCreateContactsWithHttpInfo
 
-> ApiResponse<Void> bulkCreateContacts bulkCreateContactsWithHttpInfo(bulkCreateContactsRequest)
+> ApiResponse<BulkCreateContacts200Response> bulkCreateContacts bulkCreateContactsWithHttpInfo(bulkCreateContactsRequest)
 
 Bulk create contacts
 
@@ -123,9 +124,10 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         BulkCreateContactsRequest bulkCreateContactsRequest = new BulkCreateContactsRequest(); // BulkCreateContactsRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.bulkCreateContactsWithHttpInfo(bulkCreateContactsRequest);
+            ApiResponse<BulkCreateContacts200Response> response = apiInstance.bulkCreateContactsWithHttpInfo(bulkCreateContactsRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#bulkCreateContacts");
             System.err.println("Status code: " + e.getCode());
@@ -146,8 +148,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**BulkCreateContacts200Response**](BulkCreateContacts200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -167,7 +169,7 @@ ApiResponse<Void>
 
 ## createContact
 
-> void createContact(createContactRequest)
+> CreateContact200Response createContact(createContactRequest)
 
 Create a contact
 
@@ -196,7 +198,8 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         CreateContactRequest createContactRequest = new CreateContactRequest(); // CreateContactRequest | 
         try {
-            apiInstance.createContact(createContactRequest);
+            CreateContact200Response result = apiInstance.createContact(createContactRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#createContact");
             System.err.println("Status code: " + e.getCode());
@@ -217,8 +220,8 @@ public class Example {
 
 ### Return type
 
+[**CreateContact200Response**](CreateContact200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -238,7 +241,7 @@ null (empty response body)
 
 ## createContactWithHttpInfo
 
-> ApiResponse<Void> createContact createContactWithHttpInfo(createContactRequest)
+> ApiResponse<CreateContact200Response> createContact createContactWithHttpInfo(createContactRequest)
 
 Create a contact
 
@@ -268,9 +271,10 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         CreateContactRequest createContactRequest = new CreateContactRequest(); // CreateContactRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.createContactWithHttpInfo(createContactRequest);
+            ApiResponse<CreateContact200Response> response = apiInstance.createContactWithHttpInfo(createContactRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#createContact");
             System.err.println("Status code: " + e.getCode());
@@ -291,8 +295,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**CreateContact200Response**](CreateContact200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -455,7 +459,7 @@ ApiResponse<Void>
 
 ## getContact
 
-> void getContact(contactId)
+> GetContact200Response getContact(contactId)
 
 Get contact with channels
 
@@ -482,7 +486,8 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         String contactId = "contactId_example"; // String | 
         try {
-            apiInstance.getContact(contactId);
+            GetContact200Response result = apiInstance.getContact(contactId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#getContact");
             System.err.println("Status code: " + e.getCode());
@@ -503,8 +508,8 @@ public class Example {
 
 ### Return type
 
+[**GetContact200Response**](GetContact200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -524,7 +529,7 @@ null (empty response body)
 
 ## getContactWithHttpInfo
 
-> ApiResponse<Void> getContact getContactWithHttpInfo(contactId)
+> ApiResponse<GetContact200Response> getContact getContactWithHttpInfo(contactId)
 
 Get contact with channels
 
@@ -552,9 +557,10 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         String contactId = "contactId_example"; // String | 
         try {
-            ApiResponse<Void> response = apiInstance.getContactWithHttpInfo(contactId);
+            ApiResponse<GetContact200Response> response = apiInstance.getContactWithHttpInfo(contactId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#getContact");
             System.err.println("Status code: " + e.getCode());
@@ -575,8 +581,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**GetContact200Response**](GetContact200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -597,7 +603,7 @@ ApiResponse<Void>
 
 ## getContactChannels
 
-> void getContactChannels(contactId)
+> GetContactChannels200Response getContactChannels(contactId)
 
 List channels for a contact
 
@@ -624,7 +630,8 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         String contactId = "contactId_example"; // String | 
         try {
-            apiInstance.getContactChannels(contactId);
+            GetContactChannels200Response result = apiInstance.getContactChannels(contactId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#getContactChannels");
             System.err.println("Status code: " + e.getCode());
@@ -645,8 +652,8 @@ public class Example {
 
 ### Return type
 
+[**GetContactChannels200Response**](GetContactChannels200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -666,7 +673,7 @@ null (empty response body)
 
 ## getContactChannelsWithHttpInfo
 
-> ApiResponse<Void> getContactChannels getContactChannelsWithHttpInfo(contactId)
+> ApiResponse<GetContactChannels200Response> getContactChannels getContactChannelsWithHttpInfo(contactId)
 
 List channels for a contact
 
@@ -694,9 +701,10 @@ public class Example {
         ContactsApi apiInstance = new ContactsApi(defaultClient);
         String contactId = "contactId_example"; // String | 
         try {
-            ApiResponse<Void> response = apiInstance.getContactChannelsWithHttpInfo(contactId);
+            ApiResponse<GetContactChannels200Response> response = apiInstance.getContactChannelsWithHttpInfo(contactId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#getContactChannels");
             System.err.println("Status code: " + e.getCode());
@@ -717,8 +725,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**GetContactChannels200Response**](GetContactChannels200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -739,7 +747,7 @@ ApiResponse<Void>
 
 ## listContacts
 
-> void listContacts(profileId, search, tag, platform, isSubscribed, limit, skip)
+> ListContacts200Response listContacts(profileId, search, tag, platform, isSubscribed, limit, skip)
 
 List contacts
 
@@ -774,7 +782,8 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            apiInstance.listContacts(profileId, search, tag, platform, isSubscribed, limit, skip);
+            ListContacts200Response result = apiInstance.listContacts(profileId, search, tag, platform, isSubscribed, limit, skip);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#listContacts");
             System.err.println("Status code: " + e.getCode());
@@ -801,8 +810,8 @@ public class Example {
 
 ### Return type
 
+[**ListContacts200Response**](ListContacts200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -821,7 +830,7 @@ null (empty response body)
 
 ## listContactsWithHttpInfo
 
-> ApiResponse<Void> listContacts listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip)
+> ApiResponse<ListContacts200Response> listContacts listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip)
 
 List contacts
 
@@ -857,9 +866,10 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ApiResponse<Void> response = apiInstance.listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip);
+            ApiResponse<ListContacts200Response> response = apiInstance.listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#listContacts");
             System.err.println("Status code: " + e.getCode());
@@ -886,8 +896,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**ListContacts200Response**](ListContacts200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -907,7 +917,7 @@ ApiResponse<Void>
 
 ## updateContact
 
-> void updateContact(contactId, updateContactRequest)
+> UpdateContact200Response updateContact(contactId, updateContactRequest)
 
 Update a contact
 
@@ -935,7 +945,8 @@ public class Example {
         String contactId = "contactId_example"; // String | 
         UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | 
         try {
-            apiInstance.updateContact(contactId, updateContactRequest);
+            UpdateContact200Response result = apiInstance.updateContact(contactId, updateContactRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#updateContact");
             System.err.println("Status code: " + e.getCode());
@@ -957,8 +968,8 @@ public class Example {
 
 ### Return type
 
+[**UpdateContact200Response**](UpdateContact200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -978,7 +989,7 @@ null (empty response body)
 
 ## updateContactWithHttpInfo
 
-> ApiResponse<Void> updateContact updateContactWithHttpInfo(contactId, updateContactRequest)
+> ApiResponse<UpdateContact200Response> updateContact updateContactWithHttpInfo(contactId, updateContactRequest)
 
 Update a contact
 
@@ -1007,9 +1018,10 @@ public class Example {
         String contactId = "contactId_example"; // String | 
         UpdateContactRequest updateContactRequest = new UpdateContactRequest(); // UpdateContactRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.updateContactWithHttpInfo(contactId, updateContactRequest);
+            ApiResponse<UpdateContact200Response> response = apiInstance.updateContactWithHttpInfo(contactId, updateContactRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling ContactsApi#updateContact");
             System.err.println("Status code: " + e.getCode());
@@ -1031,8 +1043,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**UpdateContact200Response**](UpdateContact200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 

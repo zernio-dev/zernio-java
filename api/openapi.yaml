@@ -11346,6 +11346,10 @@ paths:
         style: form
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listContacts_200_response"
           description: Contacts list with pagination and filter metadata
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11366,6 +11370,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createContact_200_response"
           description: Contact created
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11412,6 +11420,10 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getContact_200_response"
           description: Contact with channels
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11439,6 +11451,10 @@ paths:
               $ref: "#/components/schemas/updateContact_request"
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateContact_200_response"
           description: Contact updated
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11463,6 +11479,10 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getContactChannels_200_response"
           description: List of contact channels
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11485,6 +11505,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/bulkCreateContacts_200_response"
           description: Bulk import results
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11574,6 +11598,10 @@ paths:
         style: form
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCustomFields_200_response"
           description: List of custom field definitions
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11592,6 +11620,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCustomField_200_response"
           description: Custom field created
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11643,6 +11675,10 @@ paths:
               $ref: "#/components/schemas/updateCustomField_request"
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCustomField_200_response"
           description: Custom field updated
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -12370,6 +12406,10 @@ paths:
         required: true
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCommentAutomation_200_response"
           description: Automation created
         "400":
           description: Validation error
@@ -12422,6 +12462,10 @@ paths:
         style: simple
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCommentAutomation_200_response"
           description: Automation details with stats and recent trigger logs
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -12451,6 +12495,10 @@ paths:
               $ref: "#/components/schemas/updateCommentAutomation_request"
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCommentAutomation_200_response"
           description: Automation updated
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -12507,6 +12555,10 @@ paths:
         style: form
       responses:
         "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCommentAutomationLogs_200_response"
           description: Trigger logs with pagination
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -28240,6 +28292,144 @@ components:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/releaseWhatsAppPhoneNumber_200_response_phoneNumber"
+    listContacts_200_response_contacts_inner:
+      example:
+        messagesReceivedCount: 6
+        notes: notes
+        avatarUrl: avatarUrl
+        lastMessageSentAt: 2000-01-23T04:56:07.000+00:00
+        customFields: "{}"
+        isBlocked: true
+        platform: platform
+        platformIdentifier: platformIdentifier
+        tags:
+        - tags
+        - tags
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        isSubscribed: true
+        name: name
+        company: company
+        displayIdentifier: displayIdentifier
+        id: id
+        lastMessageReceivedAt: 2000-01-23T04:56:07.000+00:00
+        email: email
+        messagesSentCount: 0
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        company:
+          type: string
+        avatarUrl:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        isSubscribed:
+          type: boolean
+        isBlocked:
+          type: boolean
+        lastMessageSentAt:
+          format: date-time
+          type: string
+        lastMessageReceivedAt:
+          format: date-time
+          type: string
+        messagesSentCount:
+          type: integer
+        messagesReceivedCount:
+          type: integer
+        customFields:
+          type: object
+        notes:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        platform:
+          type: string
+        platformIdentifier:
+          type: string
+        displayIdentifier:
+          type: string
+    listContacts_200_response_filters:
+      example:
+        tags:
+        - tags
+        - tags
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+    listContacts_200_response:
+      example:
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+        filters:
+          tags:
+          - tags
+          - tags
+        contacts:
+        - messagesReceivedCount: 6
+          notes: notes
+          avatarUrl: avatarUrl
+          lastMessageSentAt: 2000-01-23T04:56:07.000+00:00
+          customFields: "{}"
+          isBlocked: true
+          platform: platform
+          platformIdentifier: platformIdentifier
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          name: name
+          company: company
+          displayIdentifier: displayIdentifier
+          id: id
+          lastMessageReceivedAt: 2000-01-23T04:56:07.000+00:00
+          email: email
+          messagesSentCount: 0
+        - messagesReceivedCount: 6
+          notes: notes
+          avatarUrl: avatarUrl
+          lastMessageSentAt: 2000-01-23T04:56:07.000+00:00
+          customFields: "{}"
+          isBlocked: true
+          platform: platform
+          platformIdentifier: platformIdentifier
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          name: name
+          company: company
+          displayIdentifier: displayIdentifier
+          id: id
+          lastMessageReceivedAt: 2000-01-23T04:56:07.000+00:00
+          email: email
+          messagesSentCount: 0
+      properties:
+        success:
+          type: boolean
+        contacts:
+          items:
+            $ref: "#/components/schemas/listContacts_200_response_contacts_inner"
+          type: array
+        filters:
+          $ref: "#/components/schemas/listContacts_200_response_filters"
+        pagination:
+          $ref: "#/components/schemas/getWhatsAppContacts_200_response_pagination"
     createContact_request:
       properties:
         profileId:
@@ -28271,6 +28461,218 @@ components:
       required:
       - name
       - profileId
+    createContact_200_response_contact:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        isSubscribed: true
+        notes: notes
+        customFields: "{}"
+        name: name
+        isBlocked: true
+        company: company
+        id: id
+        email: email
+        tags:
+        - tags
+        - tags
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        company:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        isSubscribed:
+          type: boolean
+        isBlocked:
+          type: boolean
+        customFields:
+          type: object
+        notes:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    createContact_200_response_channel:
+      description: "Created when accountId, platform, and platformIdentifier are provided"
+      example:
+        displayIdentifier: displayIdentifier
+        id: id
+        platform: platform
+        platformIdentifier: platformIdentifier
+      properties:
+        id:
+          type: string
+        platform:
+          type: string
+        platformIdentifier:
+          type: string
+        displayIdentifier:
+          type: string
+    createContact_200_response:
+      example:
+        success: true
+        contact:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          notes: notes
+          customFields: "{}"
+          name: name
+          isBlocked: true
+          company: company
+          id: id
+          email: email
+          tags:
+          - tags
+          - tags
+        channel:
+          displayIdentifier: displayIdentifier
+          id: id
+          platform: platform
+          platformIdentifier: platformIdentifier
+        warning: warning
+      properties:
+        success:
+          type: boolean
+        contact:
+          $ref: "#/components/schemas/createContact_200_response_contact"
+        channel:
+          $ref: "#/components/schemas/createContact_200_response_channel"
+        warning:
+          type: string
+    getContact_200_response_contact:
+      example:
+        notes: notes
+        avatarUrl: avatarUrl
+        customFields: "{}"
+        isBlocked: true
+        tags:
+        - tags
+        - tags
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        isSubscribed: true
+        conversationIds:
+        - conversationIds
+        - conversationIds
+        name: name
+        company: company
+        id: id
+        email: email
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        company:
+          type: string
+        avatarUrl:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        isSubscribed:
+          type: boolean
+        isBlocked:
+          type: boolean
+        customFields:
+          type: object
+        notes:
+          type: string
+        conversationIds:
+          items:
+            type: string
+          type: array
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    getContact_200_response_channels_inner:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        isSubscribed: true
+        conversationId: conversationId
+        displayIdentifier: displayIdentifier
+        id: id
+        platform: platform
+        platformIdentifier: platformIdentifier
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        platform:
+          type: string
+        platformIdentifier:
+          type: string
+        displayIdentifier:
+          type: string
+        isSubscribed:
+          type: boolean
+        conversationId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    getContact_200_response:
+      example:
+        channels:
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          conversationId: conversationId
+          displayIdentifier: displayIdentifier
+          id: id
+          platform: platform
+          platformIdentifier: platformIdentifier
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          conversationId: conversationId
+          displayIdentifier: displayIdentifier
+          id: id
+          platform: platform
+          platformIdentifier: platformIdentifier
+        success: true
+        contact:
+          notes: notes
+          avatarUrl: avatarUrl
+          customFields: "{}"
+          isBlocked: true
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          conversationIds:
+          - conversationIds
+          - conversationIds
+          name: name
+          company: company
+          id: id
+          email: email
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        success:
+          type: boolean
+        contact:
+          $ref: "#/components/schemas/getContact_200_response_contact"
+        channels:
+          items:
+            $ref: "#/components/schemas/getContact_200_response_channels_inner"
+          type: array
     updateContact_request:
       properties:
         name:
@@ -28291,6 +28693,125 @@ components:
           type: boolean
         notes:
           type: string
+    updateContact_200_response_contact:
+      example:
+        isSubscribed: true
+        notes: notes
+        avatarUrl: avatarUrl
+        name: name
+        isBlocked: true
+        company: company
+        id: id
+        email: email
+        tags:
+        - tags
+        - tags
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        company:
+          type: string
+        avatarUrl:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        isSubscribed:
+          type: boolean
+        isBlocked:
+          type: boolean
+        notes:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    updateContact_200_response:
+      example:
+        success: true
+        contact:
+          isSubscribed: true
+          notes: notes
+          avatarUrl: avatarUrl
+          name: name
+          isBlocked: true
+          company: company
+          id: id
+          email: email
+          tags:
+          - tags
+          - tags
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        success:
+          type: boolean
+        contact:
+          $ref: "#/components/schemas/updateContact_200_response_contact"
+    getContactChannels_200_response_channels_inner:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        isSubscribed: true
+        metadata: "{}"
+        conversationId: conversationId
+        displayIdentifier: displayIdentifier
+        id: id
+        platform: platform
+        platformIdentifier: platformIdentifier
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        platform:
+          type: string
+        platformIdentifier:
+          type: string
+        displayIdentifier:
+          type: string
+        isSubscribed:
+          type: boolean
+        conversationId:
+          type: string
+        metadata:
+          type: object
+        createdAt:
+          format: date-time
+          type: string
+    getContactChannels_200_response:
+      example:
+        channels:
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          metadata: "{}"
+          conversationId: conversationId
+          displayIdentifier: displayIdentifier
+          id: id
+          platform: platform
+          platformIdentifier: platformIdentifier
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isSubscribed: true
+          metadata: "{}"
+          conversationId: conversationId
+          displayIdentifier: displayIdentifier
+          id: id
+          platform: platform
+          platformIdentifier: platformIdentifier
+        success: true
+      properties:
+        success:
+          type: boolean
+        channels:
+          items:
+            $ref: "#/components/schemas/getContactChannels_200_response_channels_inner"
+          type: array
     bulkCreateContacts_request_contacts_inner:
       properties:
         name:
@@ -28328,11 +28849,92 @@ components:
       - contacts
       - platform
       - profileId
+    bulkCreateContacts_200_response:
+      example:
+        total: 1
+        success: true
+        created: 0
+        errors:
+        - "{}"
+        - "{}"
+        skipped: 6
+      properties:
+        success:
+          type: boolean
+        created:
+          type: integer
+        skipped:
+          type: integer
+        errors:
+          items:
+            type: object
+          type: array
+        total:
+          type: integer
     setContactFieldValue_request:
       properties:
         value: {}
       required:
       - value
+    listCustomFields_200_response_fields_inner:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        options:
+        - options
+        - options
+        id: id
+        type: text
+        slug: slug
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        type:
+          enum:
+          - text
+          - number
+          - date
+          - boolean
+          - select
+          type: string
+        options:
+          items:
+            type: string
+          type: array
+        createdAt:
+          format: date-time
+          type: string
+    listCustomFields_200_response:
+      example:
+        success: true
+        fields:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          options:
+          - options
+          - options
+          id: id
+          type: text
+          slug: slug
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          options:
+          - options
+          - options
+          id: id
+          type: text
+          slug: slug
+      properties:
+        success:
+          type: boolean
+        fields:
+          items:
+            $ref: "#/components/schemas/listCustomFields_200_response_fields_inner"
+          type: array
     createCustomField_request:
       properties:
         profileId:
@@ -28359,6 +28961,23 @@ components:
       - name
       - profileId
       - type
+    createCustomField_200_response:
+      example:
+        field:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          options:
+          - options
+          - options
+          id: id
+          type: text
+          slug: slug
+        success: true
+      properties:
+        success:
+          type: boolean
+        field:
+          $ref: "#/components/schemas/listCustomFields_200_response_fields_inner"
     updateCustomField_request:
       properties:
         name:
@@ -28367,6 +28986,44 @@ components:
           items:
             type: string
           type: array
+    updateCustomField_200_response_field:
+      example:
+        name: name
+        options:
+        - options
+        - options
+        id: id
+        type: type
+        slug: slug
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        type:
+          type: string
+        options:
+          items:
+            type: string
+          type: array
+    updateCustomField_200_response:
+      example:
+        field:
+          name: name
+          options:
+          - options
+          - options
+          id: id
+          type: type
+          slug: slug
+        success: true
+      properties:
+        success:
+          type: boolean
+        field:
+          $ref: "#/components/schemas/updateCustomField_200_response_field"
     listBroadcasts_200_response_broadcasts_inner:
       example:
         completedAt: 2000-01-23T04:56:07.000+00:00
@@ -28598,16 +29255,6 @@ components:
       properties:
         text:
           type: string
-    getBroadcast_200_response_broadcast_segmentFilters:
-      example:
-        tags:
-        - tags
-        - tags
-      properties:
-        tags:
-          items:
-            type: string
-          type: array
     getBroadcast_200_response_broadcast:
       example:
         template:
@@ -28651,7 +29298,7 @@ components:
         template:
           $ref: "#/components/schemas/getWhatsAppBroadcasts_200_response_broadcasts_inner_template"
         segmentFilters:
-          $ref: "#/components/schemas/getBroadcast_200_response_broadcast_segmentFilters"
+          $ref: "#/components/schemas/listContacts_200_response_filters"
         status:
           enum:
           - draft
@@ -29643,6 +30290,232 @@ components:
       - name
       - platformPostId
       - profileId
+    createCommentAutomation_200_response_automation_stats:
+      example:
+        totalFailed: 1
+        totalSent: 6
+        totalTriggered: 0
+      properties:
+        totalTriggered:
+          type: integer
+        totalSent:
+          type: integer
+        totalFailed:
+          type: integer
+    createCommentAutomation_200_response_automation:
+      example:
+        dmMessage: dmMessage
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        keywords:
+        - keywords
+        - keywords
+        commentReply: commentReply
+        stats:
+          totalFailed: 1
+          totalSent: 6
+          totalTriggered: 0
+        name: name
+        id: id
+        isActive: true
+        platform: platform
+        matchMode: exact
+        platformPostId: platformPostId
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        platformPostId:
+          type: string
+        keywords:
+          items:
+            type: string
+          type: array
+        matchMode:
+          enum:
+          - exact
+          - contains
+          type: string
+        dmMessage:
+          type: string
+        commentReply:
+          type: string
+        isActive:
+          type: boolean
+        stats:
+          $ref: "#/components/schemas/createCommentAutomation_200_response_automation_stats"
+        createdAt:
+          format: date-time
+          type: string
+    createCommentAutomation_200_response:
+      example:
+        automation:
+          dmMessage: dmMessage
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          keywords:
+          - keywords
+          - keywords
+          commentReply: commentReply
+          stats:
+            totalFailed: 1
+            totalSent: 6
+            totalTriggered: 0
+          name: name
+          id: id
+          isActive: true
+          platform: platform
+          matchMode: exact
+          platformPostId: platformPostId
+        success: true
+      properties:
+        success:
+          type: boolean
+        automation:
+          $ref: "#/components/schemas/createCommentAutomation_200_response_automation"
+    getCommentAutomation_200_response_automation:
+      example:
+        dmMessage: dmMessage
+        keywords:
+        - keywords
+        - keywords
+        commentReply: commentReply
+        postId: postId
+        isActive: true
+        platform: platform
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        stats:
+          totalFailed: 1
+          totalSent: 6
+          totalTriggered: 0
+        name: name
+        postTitle: postTitle
+        id: id
+        matchMode: exact
+        platformPostId: platformPostId
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        platformPostId:
+          type: string
+        postId:
+          type: string
+        postTitle:
+          type: string
+        keywords:
+          items:
+            type: string
+          type: array
+        matchMode:
+          enum:
+          - exact
+          - contains
+          type: string
+        dmMessage:
+          type: string
+        commentReply:
+          type: string
+        isActive:
+          type: boolean
+        stats:
+          $ref: "#/components/schemas/createCommentAutomation_200_response_automation_stats"
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    getCommentAutomation_200_response_logs_inner:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        commenterName: commenterName
+        commentId: commentId
+        id: id
+        error: error
+        commentText: commentText
+        commenterId: commenterId
+        status: sent
+      properties:
+        id:
+          type: string
+        commentId:
+          type: string
+        commenterId:
+          type: string
+        commenterName:
+          type: string
+        commentText:
+          type: string
+        status:
+          enum:
+          - sent
+          - failed
+          - skipped
+          type: string
+        error:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    getCommentAutomation_200_response:
+      example:
+        automation:
+          dmMessage: dmMessage
+          keywords:
+          - keywords
+          - keywords
+          commentReply: commentReply
+          postId: postId
+          isActive: true
+          platform: platform
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          stats:
+            totalFailed: 1
+            totalSent: 6
+            totalTriggered: 0
+          name: name
+          postTitle: postTitle
+          id: id
+          matchMode: exact
+          platformPostId: platformPostId
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+        logs:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          commentId: commentId
+          id: id
+          error: error
+          commentText: commentText
+          commenterId: commenterId
+          status: sent
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          commentId: commentId
+          id: id
+          error: error
+          commentText: commentText
+          commenterId: commenterId
+          status: sent
+      properties:
+        success:
+          type: boolean
+        automation:
+          $ref: "#/components/schemas/getCommentAutomation_200_response_automation"
+        logs:
+          items:
+            $ref: "#/components/schemas/getCommentAutomation_200_response_logs_inner"
+          type: array
     updateCommentAutomation_request:
       properties:
         name:
@@ -29662,6 +30535,94 @@ components:
           type: string
         isActive:
           type: boolean
+    updateCommentAutomation_200_response_automation:
+      example:
+        dmMessage: dmMessage
+        keywords:
+        - keywords
+        - keywords
+        commentReply: commentReply
+        name: name
+        id: id
+        isActive: true
+        matchMode: exact
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        keywords:
+          items:
+            type: string
+          type: array
+        matchMode:
+          enum:
+          - exact
+          - contains
+          type: string
+        dmMessage:
+          type: string
+        commentReply:
+          type: string
+        isActive:
+          type: boolean
+        updatedAt:
+          format: date-time
+          type: string
+    updateCommentAutomation_200_response:
+      example:
+        automation:
+          dmMessage: dmMessage
+          keywords:
+          - keywords
+          - keywords
+          commentReply: commentReply
+          name: name
+          id: id
+          isActive: true
+          matchMode: exact
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+      properties:
+        success:
+          type: boolean
+        automation:
+          $ref: "#/components/schemas/updateCommentAutomation_200_response_automation"
+    listCommentAutomationLogs_200_response:
+      example:
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+        logs:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          commentId: commentId
+          id: id
+          error: error
+          commentText: commentText
+          commenterId: commenterId
+          status: sent
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          commenterName: commenterName
+          commentId: commentId
+          id: id
+          error: error
+          commentText: commentText
+          commenterId: commenterId
+          status: sent
+      properties:
+        success:
+          type: boolean
+        logs:
+          items:
+            $ref: "#/components/schemas/getCommentAutomation_200_response_logs_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/getWhatsAppContacts_200_response_pagination"
     FoodMenuItem_options_inner:
       example:
         attributes:

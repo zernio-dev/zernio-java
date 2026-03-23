@@ -167,7 +167,7 @@ ApiResponse<Void>
 
 ## createCustomField
 
-> void createCustomField(createCustomFieldRequest)
+> CreateCustomField200Response createCustomField(createCustomFieldRequest)
 
 Create a custom field definition
 
@@ -194,7 +194,8 @@ public class Example {
         CustomFieldsApi apiInstance = new CustomFieldsApi(defaultClient);
         CreateCustomFieldRequest createCustomFieldRequest = new CreateCustomFieldRequest(); // CreateCustomFieldRequest | 
         try {
-            apiInstance.createCustomField(createCustomFieldRequest);
+            CreateCustomField200Response result = apiInstance.createCustomField(createCustomFieldRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CustomFieldsApi#createCustomField");
             System.err.println("Status code: " + e.getCode());
@@ -215,8 +216,8 @@ public class Example {
 
 ### Return type
 
+[**CreateCustomField200Response**](CreateCustomField200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -236,7 +237,7 @@ null (empty response body)
 
 ## createCustomFieldWithHttpInfo
 
-> ApiResponse<Void> createCustomField createCustomFieldWithHttpInfo(createCustomFieldRequest)
+> ApiResponse<CreateCustomField200Response> createCustomField createCustomFieldWithHttpInfo(createCustomFieldRequest)
 
 Create a custom field definition
 
@@ -264,9 +265,10 @@ public class Example {
         CustomFieldsApi apiInstance = new CustomFieldsApi(defaultClient);
         CreateCustomFieldRequest createCustomFieldRequest = new CreateCustomFieldRequest(); // CreateCustomFieldRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.createCustomFieldWithHttpInfo(createCustomFieldRequest);
+            ApiResponse<CreateCustomField200Response> response = apiInstance.createCustomFieldWithHttpInfo(createCustomFieldRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling CustomFieldsApi#createCustomField");
             System.err.println("Status code: " + e.getCode());
@@ -287,8 +289,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**CreateCustomField200Response**](CreateCustomField200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -451,7 +453,7 @@ ApiResponse<Void>
 
 ## listCustomFields
 
-> void listCustomFields(profileId)
+> ListCustomFields200Response listCustomFields(profileId)
 
 List custom field definitions
 
@@ -478,7 +480,8 @@ public class Example {
         CustomFieldsApi apiInstance = new CustomFieldsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles
         try {
-            apiInstance.listCustomFields(profileId);
+            ListCustomFields200Response result = apiInstance.listCustomFields(profileId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CustomFieldsApi#listCustomFields");
             System.err.println("Status code: " + e.getCode());
@@ -499,8 +502,8 @@ public class Example {
 
 ### Return type
 
+[**ListCustomFields200Response**](ListCustomFields200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -519,7 +522,7 @@ null (empty response body)
 
 ## listCustomFieldsWithHttpInfo
 
-> ApiResponse<Void> listCustomFields listCustomFieldsWithHttpInfo(profileId)
+> ApiResponse<ListCustomFields200Response> listCustomFields listCustomFieldsWithHttpInfo(profileId)
 
 List custom field definitions
 
@@ -547,9 +550,10 @@ public class Example {
         CustomFieldsApi apiInstance = new CustomFieldsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter by profile. Omit to list across all profiles
         try {
-            ApiResponse<Void> response = apiInstance.listCustomFieldsWithHttpInfo(profileId);
+            ApiResponse<ListCustomFields200Response> response = apiInstance.listCustomFieldsWithHttpInfo(profileId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling CustomFieldsApi#listCustomFields");
             System.err.println("Status code: " + e.getCode());
@@ -570,8 +574,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**ListCustomFields200Response**](ListCustomFields200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -741,7 +745,7 @@ ApiResponse<Void>
 
 ## updateCustomField
 
-> void updateCustomField(fieldId, updateCustomFieldRequest)
+> UpdateCustomField200Response updateCustomField(fieldId, updateCustomFieldRequest)
 
 Update a custom field definition
 
@@ -769,7 +773,8 @@ public class Example {
         String fieldId = "fieldId_example"; // String | 
         UpdateCustomFieldRequest updateCustomFieldRequest = new UpdateCustomFieldRequest(); // UpdateCustomFieldRequest | 
         try {
-            apiInstance.updateCustomField(fieldId, updateCustomFieldRequest);
+            UpdateCustomField200Response result = apiInstance.updateCustomField(fieldId, updateCustomFieldRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CustomFieldsApi#updateCustomField");
             System.err.println("Status code: " + e.getCode());
@@ -791,8 +796,8 @@ public class Example {
 
 ### Return type
 
+[**UpdateCustomField200Response**](UpdateCustomField200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -812,7 +817,7 @@ null (empty response body)
 
 ## updateCustomFieldWithHttpInfo
 
-> ApiResponse<Void> updateCustomField updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest)
+> ApiResponse<UpdateCustomField200Response> updateCustomField updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest)
 
 Update a custom field definition
 
@@ -841,9 +846,10 @@ public class Example {
         String fieldId = "fieldId_example"; // String | 
         UpdateCustomFieldRequest updateCustomFieldRequest = new UpdateCustomFieldRequest(); // UpdateCustomFieldRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest);
+            ApiResponse<UpdateCustomField200Response> response = apiInstance.updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling CustomFieldsApi#updateCustomField");
             System.err.println("Status code: " + e.getCode());
@@ -865,8 +871,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**UpdateCustomField200Response**](UpdateCustomField200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 

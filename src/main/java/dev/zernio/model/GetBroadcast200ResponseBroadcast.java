@@ -25,8 +25,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetBroadcast200ResponseBroadcastMessage;
-import dev.zernio.model.GetBroadcast200ResponseBroadcastSegmentFilters;
 import dev.zernio.model.GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate;
+import dev.zernio.model.ListContacts200ResponseFilters;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -57,7 +57,7 @@ import dev.zernio.ApiClient;
   GetBroadcast200ResponseBroadcast.JSON_PROPERTY_CREATED_AT,
   GetBroadcast200ResponseBroadcast.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:43:03.427923241Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:48:30.201691476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBroadcast200ResponseBroadcast {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -89,7 +89,7 @@ public class GetBroadcast200ResponseBroadcast {
 
   public static final String JSON_PROPERTY_SEGMENT_FILTERS = "segmentFilters";
   @javax.annotation.Nullable
-  private GetBroadcast200ResponseBroadcastSegmentFilters segmentFilters;
+  private ListContacts200ResponseFilters segmentFilters;
 
   /**
    * Gets or Sets status
@@ -349,7 +349,7 @@ public class GetBroadcast200ResponseBroadcast {
   }
 
 
-  public GetBroadcast200ResponseBroadcast segmentFilters(@javax.annotation.Nullable GetBroadcast200ResponseBroadcastSegmentFilters segmentFilters) {
+  public GetBroadcast200ResponseBroadcast segmentFilters(@javax.annotation.Nullable ListContacts200ResponseFilters segmentFilters) {
     this.segmentFilters = segmentFilters;
     return this;
   }
@@ -361,14 +361,14 @@ public class GetBroadcast200ResponseBroadcast {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_SEGMENT_FILTERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetBroadcast200ResponseBroadcastSegmentFilters getSegmentFilters() {
+  public ListContacts200ResponseFilters getSegmentFilters() {
     return segmentFilters;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_SEGMENT_FILTERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSegmentFilters(@javax.annotation.Nullable GetBroadcast200ResponseBroadcastSegmentFilters segmentFilters) {
+  public void setSegmentFilters(@javax.annotation.Nullable ListContacts200ResponseFilters segmentFilters) {
     this.segmentFilters = segmentFilters;
   }
 

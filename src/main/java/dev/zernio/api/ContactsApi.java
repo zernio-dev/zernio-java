@@ -18,10 +18,16 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.BulkCreateContacts200Response;
 import dev.zernio.model.BulkCreateContactsRequest;
+import dev.zernio.model.CreateContact200Response;
 import dev.zernio.model.CreateContactRequest;
+import dev.zernio.model.GetContact200Response;
+import dev.zernio.model.GetContactChannels200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListContacts200Response;
+import dev.zernio.model.UpdateContact200Response;
 import dev.zernio.model.UpdateContactRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -49,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:43:03.427923241Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:48:30.201691476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ContactsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -170,10 +176,11 @@ public class ContactsApi {
    * Bulk create contacts
    * Import up to 1000 contacts at a time. Skips duplicates.
    * @param bulkCreateContactsRequest  (required)
+   * @return BulkCreateContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public void bulkCreateContacts(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest) throws ApiException {
-    bulkCreateContacts(bulkCreateContactsRequest, null);
+  public BulkCreateContacts200Response bulkCreateContacts(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest) throws ApiException {
+    return bulkCreateContacts(bulkCreateContactsRequest, null);
   }
 
   /**
@@ -181,20 +188,22 @@ public class ContactsApi {
    * Import up to 1000 contacts at a time. Skips duplicates.
    * @param bulkCreateContactsRequest  (required)
    * @param headers Optional headers to include in the request
+   * @return BulkCreateContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public void bulkCreateContacts(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest, Map<String, String> headers) throws ApiException {
-    bulkCreateContactsWithHttpInfo(bulkCreateContactsRequest, headers);
+  public BulkCreateContacts200Response bulkCreateContacts(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<BulkCreateContacts200Response> localVarResponse = bulkCreateContactsWithHttpInfo(bulkCreateContactsRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * Bulk create contacts
    * Import up to 1000 contacts at a time. Skips duplicates.
    * @param bulkCreateContactsRequest  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;BulkCreateContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> bulkCreateContactsWithHttpInfo(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest) throws ApiException {
+  public ApiResponse<BulkCreateContacts200Response> bulkCreateContactsWithHttpInfo(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest) throws ApiException {
     return bulkCreateContactsWithHttpInfo(bulkCreateContactsRequest, null);
   }
 
@@ -203,10 +212,10 @@ public class ContactsApi {
    * Import up to 1000 contacts at a time. Skips duplicates.
    * @param bulkCreateContactsRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;BulkCreateContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> bulkCreateContactsWithHttpInfo(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<BulkCreateContacts200Response> bulkCreateContactsWithHttpInfo(@javax.annotation.Nonnull BulkCreateContactsRequest bulkCreateContactsRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = bulkCreateContactsRequestBuilder(bulkCreateContactsRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -221,13 +230,24 @@ public class ContactsApi {
           throw getApiException("bulkCreateContacts", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<BulkCreateContacts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        BulkCreateContacts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BulkCreateContacts200Response>() {});
+        
+
+        return new ApiResponse<BulkCreateContacts200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -279,10 +299,11 @@ public class ContactsApi {
    * Create a contact
    * Create a new contact. Optionally create a platform channel in the same request by providing accountId, platform, and platformIdentifier.
    * @param createContactRequest  (required)
+   * @return CreateContact200Response
    * @throws ApiException if fails to make API call
    */
-  public void createContact(@javax.annotation.Nonnull CreateContactRequest createContactRequest) throws ApiException {
-    createContact(createContactRequest, null);
+  public CreateContact200Response createContact(@javax.annotation.Nonnull CreateContactRequest createContactRequest) throws ApiException {
+    return createContact(createContactRequest, null);
   }
 
   /**
@@ -290,20 +311,22 @@ public class ContactsApi {
    * Create a new contact. Optionally create a platform channel in the same request by providing accountId, platform, and platformIdentifier.
    * @param createContactRequest  (required)
    * @param headers Optional headers to include in the request
+   * @return CreateContact200Response
    * @throws ApiException if fails to make API call
    */
-  public void createContact(@javax.annotation.Nonnull CreateContactRequest createContactRequest, Map<String, String> headers) throws ApiException {
-    createContactWithHttpInfo(createContactRequest, headers);
+  public CreateContact200Response createContact(@javax.annotation.Nonnull CreateContactRequest createContactRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateContact200Response> localVarResponse = createContactWithHttpInfo(createContactRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * Create a contact
    * Create a new contact. Optionally create a platform channel in the same request by providing accountId, platform, and platformIdentifier.
    * @param createContactRequest  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;CreateContact200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> createContactWithHttpInfo(@javax.annotation.Nonnull CreateContactRequest createContactRequest) throws ApiException {
+  public ApiResponse<CreateContact200Response> createContactWithHttpInfo(@javax.annotation.Nonnull CreateContactRequest createContactRequest) throws ApiException {
     return createContactWithHttpInfo(createContactRequest, null);
   }
 
@@ -312,10 +335,10 @@ public class ContactsApi {
    * Create a new contact. Optionally create a platform channel in the same request by providing accountId, platform, and platformIdentifier.
    * @param createContactRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;CreateContact200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> createContactWithHttpInfo(@javax.annotation.Nonnull CreateContactRequest createContactRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<CreateContact200Response> createContactWithHttpInfo(@javax.annotation.Nonnull CreateContactRequest createContactRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = createContactRequestBuilder(createContactRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -330,13 +353,24 @@ public class ContactsApi {
           throw getApiException("createContact", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateContact200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateContact200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateContact200Response>() {});
+        
+
+        return new ApiResponse<CreateContact200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -492,10 +526,11 @@ public class ContactsApi {
    * Get contact with channels
    * 
    * @param contactId  (required)
+   * @return GetContact200Response
    * @throws ApiException if fails to make API call
    */
-  public void getContact(@javax.annotation.Nonnull String contactId) throws ApiException {
-    getContact(contactId, null);
+  public GetContact200Response getContact(@javax.annotation.Nonnull String contactId) throws ApiException {
+    return getContact(contactId, null);
   }
 
   /**
@@ -503,20 +538,22 @@ public class ContactsApi {
    * 
    * @param contactId  (required)
    * @param headers Optional headers to include in the request
+   * @return GetContact200Response
    * @throws ApiException if fails to make API call
    */
-  public void getContact(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
-    getContactWithHttpInfo(contactId, headers);
+  public GetContact200Response getContact(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetContact200Response> localVarResponse = getContactWithHttpInfo(contactId, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * Get contact with channels
    * 
    * @param contactId  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;GetContact200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> getContactWithHttpInfo(@javax.annotation.Nonnull String contactId) throws ApiException {
+  public ApiResponse<GetContact200Response> getContactWithHttpInfo(@javax.annotation.Nonnull String contactId) throws ApiException {
     return getContactWithHttpInfo(contactId, null);
   }
 
@@ -525,10 +562,10 @@ public class ContactsApi {
    * 
    * @param contactId  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;GetContact200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> getContactWithHttpInfo(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetContact200Response> getContactWithHttpInfo(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getContactRequestBuilder(contactId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -543,13 +580,24 @@ public class ContactsApi {
           throw getApiException("getContact", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetContact200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetContact200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetContact200Response>() {});
+        
+
+        return new ApiResponse<GetContact200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -596,10 +644,11 @@ public class ContactsApi {
    * List channels for a contact
    * 
    * @param contactId  (required)
+   * @return GetContactChannels200Response
    * @throws ApiException if fails to make API call
    */
-  public void getContactChannels(@javax.annotation.Nonnull String contactId) throws ApiException {
-    getContactChannels(contactId, null);
+  public GetContactChannels200Response getContactChannels(@javax.annotation.Nonnull String contactId) throws ApiException {
+    return getContactChannels(contactId, null);
   }
 
   /**
@@ -607,20 +656,22 @@ public class ContactsApi {
    * 
    * @param contactId  (required)
    * @param headers Optional headers to include in the request
+   * @return GetContactChannels200Response
    * @throws ApiException if fails to make API call
    */
-  public void getContactChannels(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
-    getContactChannelsWithHttpInfo(contactId, headers);
+  public GetContactChannels200Response getContactChannels(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetContactChannels200Response> localVarResponse = getContactChannelsWithHttpInfo(contactId, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * List channels for a contact
    * 
    * @param contactId  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;GetContactChannels200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> getContactChannelsWithHttpInfo(@javax.annotation.Nonnull String contactId) throws ApiException {
+  public ApiResponse<GetContactChannels200Response> getContactChannelsWithHttpInfo(@javax.annotation.Nonnull String contactId) throws ApiException {
     return getContactChannelsWithHttpInfo(contactId, null);
   }
 
@@ -629,10 +680,10 @@ public class ContactsApi {
    * 
    * @param contactId  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;GetContactChannels200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> getContactChannelsWithHttpInfo(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetContactChannels200Response> getContactChannelsWithHttpInfo(@javax.annotation.Nonnull String contactId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getContactChannelsRequestBuilder(contactId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -647,13 +698,24 @@ public class ContactsApi {
           throw getApiException("getContactChannels", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetContactChannels200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetContactChannels200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetContactChannels200Response>() {});
+        
+
+        return new ApiResponse<GetContactChannels200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -706,10 +768,11 @@ public class ContactsApi {
    * @param isSubscribed  (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
+   * @return ListContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public void listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    listContacts(profileId, search, tag, platform, isSubscribed, limit, skip, null);
+  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listContacts(profileId, search, tag, platform, isSubscribed, limit, skip, null);
   }
 
   /**
@@ -723,10 +786,12 @@ public class ContactsApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
+   * @return ListContacts200Response
    * @throws ApiException if fails to make API call
    */
-  public void listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip, headers);
+  public ListContacts200Response listContacts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListContacts200Response> localVarResponse = listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -739,10 +804,10 @@ public class ContactsApi {
    * @param isSubscribed  (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
     return listContactsWithHttpInfo(profileId, search, tag, platform, isSubscribed, limit, skip, null);
   }
 
@@ -757,10 +822,10 @@ public class ContactsApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListContacts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ListContacts200Response> listContactsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String tag, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String isSubscribed, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listContactsRequestBuilder(profileId, search, tag, platform, isSubscribed, limit, skip, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -775,13 +840,24 @@ public class ContactsApi {
           throw getApiException("listContacts", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListContacts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListContacts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListContacts200Response>() {});
+        
+
+        return new ApiResponse<ListContacts200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -851,10 +927,11 @@ public class ContactsApi {
    * 
    * @param contactId  (required)
    * @param updateContactRequest  (optional)
+   * @return UpdateContact200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateContact(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest) throws ApiException {
-    updateContact(contactId, updateContactRequest, null);
+  public UpdateContact200Response updateContact(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest) throws ApiException {
+    return updateContact(contactId, updateContactRequest, null);
   }
 
   /**
@@ -863,10 +940,12 @@ public class ContactsApi {
    * @param contactId  (required)
    * @param updateContactRequest  (optional)
    * @param headers Optional headers to include in the request
+   * @return UpdateContact200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateContact(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest, Map<String, String> headers) throws ApiException {
-    updateContactWithHttpInfo(contactId, updateContactRequest, headers);
+  public UpdateContact200Response updateContact(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateContact200Response> localVarResponse = updateContactWithHttpInfo(contactId, updateContactRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -874,10 +953,10 @@ public class ContactsApi {
    * 
    * @param contactId  (required)
    * @param updateContactRequest  (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateContact200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateContactWithHttpInfo(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest) throws ApiException {
+  public ApiResponse<UpdateContact200Response> updateContactWithHttpInfo(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest) throws ApiException {
     return updateContactWithHttpInfo(contactId, updateContactRequest, null);
   }
 
@@ -887,10 +966,10 @@ public class ContactsApi {
    * @param contactId  (required)
    * @param updateContactRequest  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateContact200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateContactWithHttpInfo(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateContact200Response> updateContactWithHttpInfo(@javax.annotation.Nonnull String contactId, @javax.annotation.Nullable UpdateContactRequest updateContactRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateContactRequestBuilder(contactId, updateContactRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -905,13 +984,24 @@ public class ContactsApi {
           throw getApiException("updateContact", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateContact200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateContact200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateContact200Response>() {});
+        
+
+        return new ApiResponse<UpdateContact200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {

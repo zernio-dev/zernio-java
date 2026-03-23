@@ -21,7 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## createCommentAutomation
 
-> void createCommentAutomation(createCommentAutomationRequest)
+> CreateCommentAutomation200Response createCommentAutomation(createCommentAutomationRequest)
 
 Create a comment-to-DM automation
 
@@ -50,7 +50,8 @@ public class Example {
         CommentAutomationsApi apiInstance = new CommentAutomationsApi(defaultClient);
         CreateCommentAutomationRequest createCommentAutomationRequest = new CreateCommentAutomationRequest(); // CreateCommentAutomationRequest | 
         try {
-            apiInstance.createCommentAutomation(createCommentAutomationRequest);
+            CreateCommentAutomation200Response result = apiInstance.createCommentAutomation(createCommentAutomationRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#createCommentAutomation");
             System.err.println("Status code: " + e.getCode());
@@ -71,8 +72,8 @@ public class Example {
 
 ### Return type
 
+[**CreateCommentAutomation200Response**](CreateCommentAutomation200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -93,7 +94,7 @@ null (empty response body)
 
 ## createCommentAutomationWithHttpInfo
 
-> ApiResponse<Void> createCommentAutomation createCommentAutomationWithHttpInfo(createCommentAutomationRequest)
+> ApiResponse<CreateCommentAutomation200Response> createCommentAutomation createCommentAutomationWithHttpInfo(createCommentAutomationRequest)
 
 Create a comment-to-DM automation
 
@@ -123,9 +124,10 @@ public class Example {
         CommentAutomationsApi apiInstance = new CommentAutomationsApi(defaultClient);
         CreateCommentAutomationRequest createCommentAutomationRequest = new CreateCommentAutomationRequest(); // CreateCommentAutomationRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.createCommentAutomationWithHttpInfo(createCommentAutomationRequest);
+            ApiResponse<CreateCommentAutomation200Response> response = apiInstance.createCommentAutomationWithHttpInfo(createCommentAutomationRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#createCommentAutomation");
             System.err.println("Status code: " + e.getCode());
@@ -146,8 +148,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**CreateCommentAutomation200Response**](CreateCommentAutomation200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -311,7 +313,7 @@ ApiResponse<Void>
 
 ## getCommentAutomation
 
-> void getCommentAutomation(automationId)
+> GetCommentAutomation200Response getCommentAutomation(automationId)
 
 Get automation details with recent logs
 
@@ -338,7 +340,8 @@ public class Example {
         CommentAutomationsApi apiInstance = new CommentAutomationsApi(defaultClient);
         String automationId = "automationId_example"; // String | 
         try {
-            apiInstance.getCommentAutomation(automationId);
+            GetCommentAutomation200Response result = apiInstance.getCommentAutomation(automationId);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#getCommentAutomation");
             System.err.println("Status code: " + e.getCode());
@@ -359,8 +362,8 @@ public class Example {
 
 ### Return type
 
+[**GetCommentAutomation200Response**](GetCommentAutomation200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -380,7 +383,7 @@ null (empty response body)
 
 ## getCommentAutomationWithHttpInfo
 
-> ApiResponse<Void> getCommentAutomation getCommentAutomationWithHttpInfo(automationId)
+> ApiResponse<GetCommentAutomation200Response> getCommentAutomation getCommentAutomationWithHttpInfo(automationId)
 
 Get automation details with recent logs
 
@@ -408,9 +411,10 @@ public class Example {
         CommentAutomationsApi apiInstance = new CommentAutomationsApi(defaultClient);
         String automationId = "automationId_example"; // String | 
         try {
-            ApiResponse<Void> response = apiInstance.getCommentAutomationWithHttpInfo(automationId);
+            ApiResponse<GetCommentAutomation200Response> response = apiInstance.getCommentAutomationWithHttpInfo(automationId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#getCommentAutomation");
             System.err.println("Status code: " + e.getCode());
@@ -431,8 +435,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**GetCommentAutomation200Response**](GetCommentAutomation200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -453,7 +457,7 @@ ApiResponse<Void>
 
 ## listCommentAutomationLogs
 
-> void listCommentAutomationLogs(automationId, status, limit, skip)
+> ListCommentAutomationLogs200Response listCommentAutomationLogs(automationId, status, limit, skip)
 
 List trigger logs for an automation
 
@@ -485,7 +489,8 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            apiInstance.listCommentAutomationLogs(automationId, status, limit, skip);
+            ListCommentAutomationLogs200Response result = apiInstance.listCommentAutomationLogs(automationId, status, limit, skip);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#listCommentAutomationLogs");
             System.err.println("Status code: " + e.getCode());
@@ -509,8 +514,8 @@ public class Example {
 
 ### Return type
 
+[**ListCommentAutomationLogs200Response**](ListCommentAutomationLogs200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -530,7 +535,7 @@ null (empty response body)
 
 ## listCommentAutomationLogsWithHttpInfo
 
-> ApiResponse<Void> listCommentAutomationLogs listCommentAutomationLogsWithHttpInfo(automationId, status, limit, skip)
+> ApiResponse<ListCommentAutomationLogs200Response> listCommentAutomationLogs listCommentAutomationLogsWithHttpInfo(automationId, status, limit, skip)
 
 List trigger logs for an automation
 
@@ -563,9 +568,10 @@ public class Example {
         Integer limit = 50; // Integer | 
         Integer skip = 0; // Integer | 
         try {
-            ApiResponse<Void> response = apiInstance.listCommentAutomationLogsWithHttpInfo(automationId, status, limit, skip);
+            ApiResponse<ListCommentAutomationLogs200Response> response = apiInstance.listCommentAutomationLogsWithHttpInfo(automationId, status, limit, skip);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#listCommentAutomationLogs");
             System.err.println("Status code: " + e.getCode());
@@ -589,8 +595,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**ListCommentAutomationLogs200Response**](ListCommentAutomationLogs200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 
@@ -757,7 +763,7 @@ ApiResponse<[**ListCommentAutomations200Response**](ListCommentAutomations200Res
 
 ## updateCommentAutomation
 
-> void updateCommentAutomation(automationId, updateCommentAutomationRequest)
+> UpdateCommentAutomation200Response updateCommentAutomation(automationId, updateCommentAutomationRequest)
 
 Update automation settings
 
@@ -785,7 +791,8 @@ public class Example {
         String automationId = "automationId_example"; // String | 
         UpdateCommentAutomationRequest updateCommentAutomationRequest = new UpdateCommentAutomationRequest(); // UpdateCommentAutomationRequest | 
         try {
-            apiInstance.updateCommentAutomation(automationId, updateCommentAutomationRequest);
+            UpdateCommentAutomation200Response result = apiInstance.updateCommentAutomation(automationId, updateCommentAutomationRequest);
+            System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#updateCommentAutomation");
             System.err.println("Status code: " + e.getCode());
@@ -807,8 +814,8 @@ public class Example {
 
 ### Return type
 
+[**UpdateCommentAutomation200Response**](UpdateCommentAutomation200Response.md)
 
-null (empty response body)
 
 ### Authorization
 
@@ -828,7 +835,7 @@ null (empty response body)
 
 ## updateCommentAutomationWithHttpInfo
 
-> ApiResponse<Void> updateCommentAutomation updateCommentAutomationWithHttpInfo(automationId, updateCommentAutomationRequest)
+> ApiResponse<UpdateCommentAutomation200Response> updateCommentAutomation updateCommentAutomationWithHttpInfo(automationId, updateCommentAutomationRequest)
 
 Update automation settings
 
@@ -857,9 +864,10 @@ public class Example {
         String automationId = "automationId_example"; // String | 
         UpdateCommentAutomationRequest updateCommentAutomationRequest = new UpdateCommentAutomationRequest(); // UpdateCommentAutomationRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.updateCommentAutomationWithHttpInfo(automationId, updateCommentAutomationRequest);
+            ApiResponse<UpdateCommentAutomation200Response> response = apiInstance.updateCommentAutomationWithHttpInfo(automationId, updateCommentAutomationRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
             System.err.println("Exception when calling CommentAutomationsApi#updateCommentAutomation");
             System.err.println("Status code: " + e.getCode());
@@ -881,8 +889,8 @@ public class Example {
 
 ### Return type
 
+ApiResponse<[**UpdateCommentAutomation200Response**](UpdateCommentAutomation200Response.md)>
 
-ApiResponse<Void>
 
 ### Authorization
 

@@ -18,10 +18,14 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.CreateCommentAutomation200Response;
 import dev.zernio.model.CreateCommentAutomationRequest;
+import dev.zernio.model.GetCommentAutomation200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListCommentAutomationLogs200Response;
 import dev.zernio.model.ListCommentAutomations200Response;
+import dev.zernio.model.UpdateCommentAutomation200Response;
 import dev.zernio.model.UpdateCommentAutomationRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -49,7 +53,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:43:03.427923241Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:48:30.201691476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -170,10 +174,11 @@ public class CommentAutomationsApi {
    * Create a comment-to-DM automation
    * Create a keyword-triggered DM automation on an Instagram or Facebook post. When someone comments a matching keyword, they automatically receive a DM. Only one active automation per post is allowed. 
    * @param createCommentAutomationRequest  (required)
+   * @return CreateCommentAutomation200Response
    * @throws ApiException if fails to make API call
    */
-  public void createCommentAutomation(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest) throws ApiException {
-    createCommentAutomation(createCommentAutomationRequest, null);
+  public CreateCommentAutomation200Response createCommentAutomation(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest) throws ApiException {
+    return createCommentAutomation(createCommentAutomationRequest, null);
   }
 
   /**
@@ -181,20 +186,22 @@ public class CommentAutomationsApi {
    * Create a keyword-triggered DM automation on an Instagram or Facebook post. When someone comments a matching keyword, they automatically receive a DM. Only one active automation per post is allowed. 
    * @param createCommentAutomationRequest  (required)
    * @param headers Optional headers to include in the request
+   * @return CreateCommentAutomation200Response
    * @throws ApiException if fails to make API call
    */
-  public void createCommentAutomation(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest, Map<String, String> headers) throws ApiException {
-    createCommentAutomationWithHttpInfo(createCommentAutomationRequest, headers);
+  public CreateCommentAutomation200Response createCommentAutomation(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCommentAutomation200Response> localVarResponse = createCommentAutomationWithHttpInfo(createCommentAutomationRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * Create a comment-to-DM automation
    * Create a keyword-triggered DM automation on an Instagram or Facebook post. When someone comments a matching keyword, they automatically receive a DM. Only one active automation per post is allowed. 
    * @param createCommentAutomationRequest  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;CreateCommentAutomation200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> createCommentAutomationWithHttpInfo(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest) throws ApiException {
+  public ApiResponse<CreateCommentAutomation200Response> createCommentAutomationWithHttpInfo(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest) throws ApiException {
     return createCommentAutomationWithHttpInfo(createCommentAutomationRequest, null);
   }
 
@@ -203,10 +210,10 @@ public class CommentAutomationsApi {
    * Create a keyword-triggered DM automation on an Instagram or Facebook post. When someone comments a matching keyword, they automatically receive a DM. Only one active automation per post is allowed. 
    * @param createCommentAutomationRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;CreateCommentAutomation200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> createCommentAutomationWithHttpInfo(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<CreateCommentAutomation200Response> createCommentAutomationWithHttpInfo(@javax.annotation.Nonnull CreateCommentAutomationRequest createCommentAutomationRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = createCommentAutomationRequestBuilder(createCommentAutomationRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -221,13 +228,24 @@ public class CommentAutomationsApi {
           throw getApiException("createCommentAutomation", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCommentAutomation200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCommentAutomation200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCommentAutomation200Response>() {});
+        
+
+        return new ApiResponse<CreateCommentAutomation200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -383,10 +401,11 @@ public class CommentAutomationsApi {
    * Get automation details with recent logs
    * 
    * @param automationId  (required)
+   * @return GetCommentAutomation200Response
    * @throws ApiException if fails to make API call
    */
-  public void getCommentAutomation(@javax.annotation.Nonnull String automationId) throws ApiException {
-    getCommentAutomation(automationId, null);
+  public GetCommentAutomation200Response getCommentAutomation(@javax.annotation.Nonnull String automationId) throws ApiException {
+    return getCommentAutomation(automationId, null);
   }
 
   /**
@@ -394,20 +413,22 @@ public class CommentAutomationsApi {
    * 
    * @param automationId  (required)
    * @param headers Optional headers to include in the request
+   * @return GetCommentAutomation200Response
    * @throws ApiException if fails to make API call
    */
-  public void getCommentAutomation(@javax.annotation.Nonnull String automationId, Map<String, String> headers) throws ApiException {
-    getCommentAutomationWithHttpInfo(automationId, headers);
+  public GetCommentAutomation200Response getCommentAutomation(@javax.annotation.Nonnull String automationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetCommentAutomation200Response> localVarResponse = getCommentAutomationWithHttpInfo(automationId, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * Get automation details with recent logs
    * 
    * @param automationId  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;GetCommentAutomation200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> getCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId) throws ApiException {
+  public ApiResponse<GetCommentAutomation200Response> getCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId) throws ApiException {
     return getCommentAutomationWithHttpInfo(automationId, null);
   }
 
@@ -416,10 +437,10 @@ public class CommentAutomationsApi {
    * 
    * @param automationId  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;GetCommentAutomation200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> getCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetCommentAutomation200Response> getCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getCommentAutomationRequestBuilder(automationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -434,13 +455,24 @@ public class CommentAutomationsApi {
           throw getApiException("getCommentAutomation", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetCommentAutomation200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetCommentAutomation200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetCommentAutomation200Response>() {});
+        
+
+        return new ApiResponse<GetCommentAutomation200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -490,10 +522,11 @@ public class CommentAutomationsApi {
    * @param status Filter by result status (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
+   * @return ListCommentAutomationLogs200Response
    * @throws ApiException if fails to make API call
    */
-  public void listCommentAutomationLogs(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    listCommentAutomationLogs(automationId, status, limit, skip, null);
+  public ListCommentAutomationLogs200Response listCommentAutomationLogs(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+    return listCommentAutomationLogs(automationId, status, limit, skip, null);
   }
 
   /**
@@ -504,10 +537,12 @@ public class CommentAutomationsApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
+   * @return ListCommentAutomationLogs200Response
    * @throws ApiException if fails to make API call
    */
-  public void listCommentAutomationLogs(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    listCommentAutomationLogsWithHttpInfo(automationId, status, limit, skip, headers);
+  public ListCommentAutomationLogs200Response listCommentAutomationLogs(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListCommentAutomationLogs200Response> localVarResponse = listCommentAutomationLogsWithHttpInfo(automationId, status, limit, skip, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -517,10 +552,10 @@ public class CommentAutomationsApi {
    * @param status Filter by result status (optional)
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListCommentAutomationLogs200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listCommentAutomationLogsWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
+  public ApiResponse<ListCommentAutomationLogs200Response> listCommentAutomationLogsWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
     return listCommentAutomationLogsWithHttpInfo(automationId, status, limit, skip, null);
   }
 
@@ -532,10 +567,10 @@ public class CommentAutomationsApi {
    * @param limit  (optional, default to 50)
    * @param skip  (optional, default to 0)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListCommentAutomationLogs200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listCommentAutomationLogsWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ListCommentAutomationLogs200Response> listCommentAutomationLogsWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable String status, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listCommentAutomationLogsRequestBuilder(automationId, status, limit, skip, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -550,13 +585,24 @@ public class CommentAutomationsApi {
           throw getApiException("listCommentAutomationLogs", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListCommentAutomationLogs200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListCommentAutomationLogs200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListCommentAutomationLogs200Response>() {});
+        
+
+        return new ApiResponse<ListCommentAutomationLogs200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -751,10 +797,11 @@ public class CommentAutomationsApi {
    * 
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
+   * @return UpdateCommentAutomation200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateCommentAutomation(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest) throws ApiException {
-    updateCommentAutomation(automationId, updateCommentAutomationRequest, null);
+  public UpdateCommentAutomation200Response updateCommentAutomation(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest) throws ApiException {
+    return updateCommentAutomation(automationId, updateCommentAutomationRequest, null);
   }
 
   /**
@@ -763,10 +810,12 @@ public class CommentAutomationsApi {
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
    * @param headers Optional headers to include in the request
+   * @return UpdateCommentAutomation200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateCommentAutomation(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest, Map<String, String> headers) throws ApiException {
-    updateCommentAutomationWithHttpInfo(automationId, updateCommentAutomationRequest, headers);
+  public UpdateCommentAutomation200Response updateCommentAutomation(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateCommentAutomation200Response> localVarResponse = updateCommentAutomationWithHttpInfo(automationId, updateCommentAutomationRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -774,10 +823,10 @@ public class CommentAutomationsApi {
    * 
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateCommentAutomation200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest) throws ApiException {
+  public ApiResponse<UpdateCommentAutomation200Response> updateCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest) throws ApiException {
     return updateCommentAutomationWithHttpInfo(automationId, updateCommentAutomationRequest, null);
   }
 
@@ -787,10 +836,10 @@ public class CommentAutomationsApi {
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateCommentAutomation200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateCommentAutomation200Response> updateCommentAutomationWithHttpInfo(@javax.annotation.Nonnull String automationId, @javax.annotation.Nullable UpdateCommentAutomationRequest updateCommentAutomationRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateCommentAutomationRequestBuilder(automationId, updateCommentAutomationRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -805,13 +854,24 @@ public class CommentAutomationsApi {
           throw getApiException("updateCommentAutomation", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateCommentAutomation200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateCommentAutomation200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateCommentAutomation200Response>() {});
+        
+
+        return new ApiResponse<UpdateCommentAutomation200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {

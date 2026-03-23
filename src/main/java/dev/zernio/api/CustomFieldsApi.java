@@ -18,10 +18,13 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.CreateCustomField200Response;
 import dev.zernio.model.CreateCustomFieldRequest;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListCustomFields200Response;
 import dev.zernio.model.SetContactFieldValueRequest;
+import dev.zernio.model.UpdateCustomField200Response;
 import dev.zernio.model.UpdateCustomFieldRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -49,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:43:03.427923241Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:48:30.201691476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CustomFieldsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -283,10 +286,11 @@ public class CustomFieldsApi {
    * Create a custom field definition
    * 
    * @param createCustomFieldRequest  (required)
+   * @return CreateCustomField200Response
    * @throws ApiException if fails to make API call
    */
-  public void createCustomField(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest) throws ApiException {
-    createCustomField(createCustomFieldRequest, null);
+  public CreateCustomField200Response createCustomField(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest) throws ApiException {
+    return createCustomField(createCustomFieldRequest, null);
   }
 
   /**
@@ -294,20 +298,22 @@ public class CustomFieldsApi {
    * 
    * @param createCustomFieldRequest  (required)
    * @param headers Optional headers to include in the request
+   * @return CreateCustomField200Response
    * @throws ApiException if fails to make API call
    */
-  public void createCustomField(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest, Map<String, String> headers) throws ApiException {
-    createCustomFieldWithHttpInfo(createCustomFieldRequest, headers);
+  public CreateCustomField200Response createCustomField(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCustomField200Response> localVarResponse = createCustomFieldWithHttpInfo(createCustomFieldRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * Create a custom field definition
    * 
    * @param createCustomFieldRequest  (required)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;CreateCustomField200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> createCustomFieldWithHttpInfo(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest) throws ApiException {
+  public ApiResponse<CreateCustomField200Response> createCustomFieldWithHttpInfo(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest) throws ApiException {
     return createCustomFieldWithHttpInfo(createCustomFieldRequest, null);
   }
 
@@ -316,10 +322,10 @@ public class CustomFieldsApi {
    * 
    * @param createCustomFieldRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;CreateCustomField200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> createCustomFieldWithHttpInfo(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<CreateCustomField200Response> createCustomFieldWithHttpInfo(@javax.annotation.Nonnull CreateCustomFieldRequest createCustomFieldRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = createCustomFieldRequestBuilder(createCustomFieldRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -334,13 +340,24 @@ public class CustomFieldsApi {
           throw getApiException("createCustomField", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateCustomField200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateCustomField200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateCustomField200Response>() {});
+        
+
+        return new ApiResponse<CreateCustomField200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -496,10 +513,11 @@ public class CustomFieldsApi {
    * List custom field definitions
    * 
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
+   * @return ListCustomFields200Response
    * @throws ApiException if fails to make API call
    */
-  public void listCustomFields(@javax.annotation.Nullable String profileId) throws ApiException {
-    listCustomFields(profileId, null);
+  public ListCustomFields200Response listCustomFields(@javax.annotation.Nullable String profileId) throws ApiException {
+    return listCustomFields(profileId, null);
   }
 
   /**
@@ -507,20 +525,22 @@ public class CustomFieldsApi {
    * 
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
    * @param headers Optional headers to include in the request
+   * @return ListCustomFields200Response
    * @throws ApiException if fails to make API call
    */
-  public void listCustomFields(@javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
-    listCustomFieldsWithHttpInfo(profileId, headers);
+  public ListCustomFields200Response listCustomFields(@javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListCustomFields200Response> localVarResponse = listCustomFieldsWithHttpInfo(profileId, headers);
+    return localVarResponse.getData();
   }
 
   /**
    * List custom field definitions
    * 
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListCustomFields200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listCustomFieldsWithHttpInfo(@javax.annotation.Nullable String profileId) throws ApiException {
+  public ApiResponse<ListCustomFields200Response> listCustomFieldsWithHttpInfo(@javax.annotation.Nullable String profileId) throws ApiException {
     return listCustomFieldsWithHttpInfo(profileId, null);
   }
 
@@ -529,10 +549,10 @@ public class CustomFieldsApi {
    * 
    * @param profileId Filter by profile. Omit to list across all profiles (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;ListCustomFields200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> listCustomFieldsWithHttpInfo(@javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ListCustomFields200Response> listCustomFieldsWithHttpInfo(@javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listCustomFieldsRequestBuilder(profileId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -547,13 +567,24 @@ public class CustomFieldsApi {
           throw getApiException("listCustomFields", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListCustomFields200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListCustomFields200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListCustomFields200Response>() {});
+        
+
+        return new ApiResponse<ListCustomFields200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {
@@ -738,10 +769,11 @@ public class CustomFieldsApi {
    * 
    * @param fieldId  (required)
    * @param updateCustomFieldRequest  (optional)
+   * @return UpdateCustomField200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
-    updateCustomField(fieldId, updateCustomFieldRequest, null);
+  public UpdateCustomField200Response updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
+    return updateCustomField(fieldId, updateCustomFieldRequest, null);
   }
 
   /**
@@ -750,10 +782,12 @@ public class CustomFieldsApi {
    * @param fieldId  (required)
    * @param updateCustomFieldRequest  (optional)
    * @param headers Optional headers to include in the request
+   * @return UpdateCustomField200Response
    * @throws ApiException if fails to make API call
    */
-  public void updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
-    updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest, headers);
+  public UpdateCustomField200Response updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateCustomField200Response> localVarResponse = updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest, headers);
+    return localVarResponse.getData();
   }
 
   /**
@@ -761,10 +795,10 @@ public class CustomFieldsApi {
    * 
    * @param fieldId  (required)
    * @param updateCustomFieldRequest  (optional)
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateCustomField200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
+  public ApiResponse<UpdateCustomField200Response> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
     return updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest, null);
   }
 
@@ -774,10 +808,10 @@ public class CustomFieldsApi {
    * @param fieldId  (required)
    * @param updateCustomFieldRequest  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;Void&gt;
+   * @return ApiResponse&lt;UpdateCustomField200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateCustomField200Response> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateCustomFieldRequestBuilder(fieldId, updateCustomFieldRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -792,13 +826,24 @@ public class CustomFieldsApi {
           throw getApiException("updateCustomField", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody != null) {
-          localVarResponseBody.readAllBytes();
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateCustomField200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
         }
-        return new ApiResponse<>(
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateCustomField200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateCustomField200Response>() {});
+        
+
+        return new ApiResponse<UpdateCustomField200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            null
+            responseValue
         );
       } finally {
         if (localVarResponseBody != null) {

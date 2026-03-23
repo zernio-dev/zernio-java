@@ -14,7 +14,7 @@
 |**accountId** | **String** |  |  [optional] |
 |**message** | [**GetBroadcast200ResponseBroadcastMessage**](GetBroadcast200ResponseBroadcastMessage.md) |  |  [optional] |
 |**template** | [**GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate**](GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate.md) |  |  [optional] |
-|**segmentFilters** | [**GetBroadcast200ResponseBroadcastSegmentFilters**](GetBroadcast200ResponseBroadcastSegmentFilters.md) |  |  [optional] |
+|**segmentFilters** | [**ListContacts200ResponseFilters**](ListContacts200ResponseFilters.md) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**scheduledAt** | **OffsetDateTime** |  |  [optional] |
 |**startedAt** | **OffsetDateTime** |  |  [optional] |
