@@ -40,6 +40,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_DESCRIPTION,
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_TEMPLATE,
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_STATUS,
+  GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_MESSAGE_PREVIEW,
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_RECIPIENT_COUNT,
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_SCHEDULED_AT,
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_STARTED_AT,
@@ -50,7 +51,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_FAILED_COUNT,
   GetWhatsAppBroadcasts200ResponseBroadcastsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:30:47.505542502Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-23T20:33:07.203614385Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppBroadcasts200ResponseBroadcastsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -114,6 +115,10 @@ public class GetWhatsAppBroadcasts200ResponseBroadcastsInner {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status;
+
+  public static final String JSON_PROPERTY_MESSAGE_PREVIEW = "messagePreview";
+  @javax.annotation.Nullable
+  private String messagePreview;
 
   public static final String JSON_PROPERTY_RECIPIENT_COUNT = "recipientCount";
   @javax.annotation.Nullable
@@ -271,6 +276,30 @@ public class GetWhatsAppBroadcasts200ResponseBroadcastsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public GetWhatsAppBroadcasts200ResponseBroadcastsInner messagePreview(@javax.annotation.Nullable String messagePreview) {
+    this.messagePreview = messagePreview;
+    return this;
+  }
+
+  /**
+   * Template name or message text snippet
+   * @return messagePreview
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_PREVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMessagePreview() {
+    return messagePreview;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_PREVIEW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessagePreview(@javax.annotation.Nullable String messagePreview) {
+    this.messagePreview = messagePreview;
   }
 
 
@@ -507,6 +536,7 @@ public class GetWhatsAppBroadcasts200ResponseBroadcastsInner {
         Objects.equals(this.description, getWhatsAppBroadcasts200ResponseBroadcastsInner.description) &&
         Objects.equals(this.template, getWhatsAppBroadcasts200ResponseBroadcastsInner.template) &&
         Objects.equals(this.status, getWhatsAppBroadcasts200ResponseBroadcastsInner.status) &&
+        Objects.equals(this.messagePreview, getWhatsAppBroadcasts200ResponseBroadcastsInner.messagePreview) &&
         Objects.equals(this.recipientCount, getWhatsAppBroadcasts200ResponseBroadcastsInner.recipientCount) &&
         Objects.equals(this.scheduledAt, getWhatsAppBroadcasts200ResponseBroadcastsInner.scheduledAt) &&
         Objects.equals(this.startedAt, getWhatsAppBroadcasts200ResponseBroadcastsInner.startedAt) &&
@@ -520,7 +550,7 @@ public class GetWhatsAppBroadcasts200ResponseBroadcastsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, template, status, recipientCount, scheduledAt, startedAt, completedAt, sentCount, deliveredCount, readCount, failedCount, createdAt);
+    return Objects.hash(id, name, description, template, status, messagePreview, recipientCount, scheduledAt, startedAt, completedAt, sentCount, deliveredCount, readCount, failedCount, createdAt);
   }
 
   @Override
@@ -532,6 +562,7 @@ public class GetWhatsAppBroadcasts200ResponseBroadcastsInner {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    messagePreview: ").append(toIndentedString(messagePreview)).append("\n");
     sb.append("    recipientCount: ").append(toIndentedString(recipientCount)).append("\n");
     sb.append("    scheduledAt: ").append(toIndentedString(scheduledAt)).append("\n");
     sb.append("    startedAt: ").append(toIndentedString(startedAt)).append("\n");
@@ -611,6 +642,11 @@ public class GetWhatsAppBroadcasts200ResponseBroadcastsInner {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `messagePreview` to the URL query string
+    if (getMessagePreview() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessagePreview%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessagePreview()))));
     }
 
     // add `recipientCount` to the URL query string

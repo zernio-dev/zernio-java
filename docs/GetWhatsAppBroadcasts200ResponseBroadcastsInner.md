@@ -12,6 +12,7 @@
 |**description** | **String** |  |  [optional] |
 |**template** | [**GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate**](GetWhatsAppBroadcasts200ResponseBroadcastsInnerTemplate.md) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**messagePreview** | **String** | Template name or message text snippet |  [optional] |
 |**recipientCount** | **Integer** |  |  [optional] |
 |**scheduledAt** | **OffsetDateTime** |  |  [optional] |
 |**startedAt** | **OffsetDateTime** |  |  [optional] |
