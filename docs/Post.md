@@ -18,7 +18,7 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**tags** | **List&lt;String&gt;** | YouTube constraints: each tag max 100 chars, combined max 500 chars, duplicates removed. |  [optional] |
 |**hashtags** | **List&lt;String&gt;** |  |  [optional] |
-|**mentions** | **List&lt;String&gt;** |  |  [optional] |
+|**mentions** | **List&lt;String&gt;** | Stored for reference only. This field does NOT automatically create @mentions when publishing. For LinkedIn @mentions, use the /v1/accounts/{accountId}/linkedin-mentions endpoint to resolve profile URLs to URNs, then embed the returned mentionFormat directly in the post content field. |  [optional] |
 |**visibility** | [**VisibilityEnum**](#VisibilityEnum) |  |  [optional] |
 |**metadata** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**recycling** | [**RecyclingState**](RecyclingState.md) |  |  [optional] |

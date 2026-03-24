@@ -37,9 +37,10 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_NAME,
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_USERNAME,
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_PICTURE,
-  GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_IS_OWNER
+  GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_IS_OWNER,
+  GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_VERIFIED_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:18:55.642597888Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:29:40.208080280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInnerFrom {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -60,6 +61,49 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
   public static final String JSON_PROPERTY_IS_OWNER = "isOwner";
   @javax.annotation.Nullable
   private Boolean isOwner;
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X comments.
+   */
+  public enum VerifiedTypeEnum {
+    BLUE(String.valueOf("blue")),
+    
+    GOVERNMENT(String.valueOf("government")),
+    
+    BUSINESS(String.valueOf("business")),
+    
+    NONE(String.valueOf("none"));
+
+    private String value;
+
+    VerifiedTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static VerifiedTypeEnum fromValue(String value) {
+      for (VerifiedTypeEnum b : VerifiedTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_VERIFIED_TYPE = "verifiedType";
+  @javax.annotation.Nullable
+  private VerifiedTypeEnum verifiedType;
 
   public GetInboxPostComments200ResponseCommentsInnerFrom() { 
   }
@@ -184,6 +228,30 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
   }
 
 
+  public GetInboxPostComments200ResponseCommentsInnerFrom verifiedType(@javax.annotation.Nullable VerifiedTypeEnum verifiedType) {
+    this.verifiedType = verifiedType;
+    return this;
+  }
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X comments.
+   * @return verifiedType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public VerifiedTypeEnum getVerifiedType() {
+    return verifiedType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVerifiedType(@javax.annotation.Nullable VerifiedTypeEnum verifiedType) {
+    this.verifiedType = verifiedType;
+  }
+
+
   /**
    * Return true if this getInboxPostComments_200_response_comments_inner_from object is equal to o.
    */
@@ -200,12 +268,13 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
         Objects.equals(this.name, getInboxPostComments200ResponseCommentsInnerFrom.name) &&
         Objects.equals(this.username, getInboxPostComments200ResponseCommentsInnerFrom.username) &&
         Objects.equals(this.picture, getInboxPostComments200ResponseCommentsInnerFrom.picture) &&
-        Objects.equals(this.isOwner, getInboxPostComments200ResponseCommentsInnerFrom.isOwner);
+        Objects.equals(this.isOwner, getInboxPostComments200ResponseCommentsInnerFrom.isOwner) &&
+        Objects.equals(this.verifiedType, getInboxPostComments200ResponseCommentsInnerFrom.verifiedType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, username, picture, isOwner);
+    return Objects.hash(id, name, username, picture, isOwner, verifiedType);
   }
 
   @Override
@@ -217,6 +286,7 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
     sb.append("    isOwner: ").append(toIndentedString(isOwner)).append("\n");
+    sb.append("    verifiedType: ").append(toIndentedString(verifiedType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,6 +357,11 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
     // add `isOwner` to the URL query string
     if (getIsOwner() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisOwner%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsOwner()))));
+    }
+
+    // add `verifiedType` to the URL query string
+    if (getVerifiedType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sverifiedType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVerifiedType()))));
     }
 
     return joiner.toString();

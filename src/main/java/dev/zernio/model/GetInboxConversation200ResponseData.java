@@ -45,13 +45,14 @@ import dev.zernio.ApiClient;
   GetInboxConversation200ResponseData.JSON_PROPERTY_STATUS,
   GetInboxConversation200ResponseData.JSON_PROPERTY_PARTICIPANT_NAME,
   GetInboxConversation200ResponseData.JSON_PROPERTY_PARTICIPANT_ID,
+  GetInboxConversation200ResponseData.JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE,
   GetInboxConversation200ResponseData.JSON_PROPERTY_LAST_MESSAGE,
   GetInboxConversation200ResponseData.JSON_PROPERTY_LAST_MESSAGE_AT,
   GetInboxConversation200ResponseData.JSON_PROPERTY_UPDATED_TIME,
   GetInboxConversation200ResponseData.JSON_PROPERTY_PARTICIPANTS,
   GetInboxConversation200ResponseData.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:18:55.642597888Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:29:40.208080280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversation200ResponseData {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -115,6 +116,49 @@ public class GetInboxConversation200ResponseData {
   public static final String JSON_PROPERTY_PARTICIPANT_ID = "participantId";
   @javax.annotation.Nullable
   private String participantId;
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X conversations.
+   */
+  public enum ParticipantVerifiedTypeEnum {
+    BLUE(String.valueOf("blue")),
+    
+    GOVERNMENT(String.valueOf("government")),
+    
+    BUSINESS(String.valueOf("business")),
+    
+    NONE(String.valueOf("none"));
+
+    private String value;
+
+    ParticipantVerifiedTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ParticipantVerifiedTypeEnum fromValue(String value) {
+      for (ParticipantVerifiedTypeEnum b : ParticipantVerifiedTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE = "participantVerifiedType";
+  @javax.annotation.Nullable
+  private ParticipantVerifiedTypeEnum participantVerifiedType;
 
   public static final String JSON_PROPERTY_LAST_MESSAGE = "lastMessage";
   @javax.annotation.Nullable
@@ -307,6 +351,30 @@ public class GetInboxConversation200ResponseData {
   }
 
 
+  public GetInboxConversation200ResponseData participantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
+    this.participantVerifiedType = participantVerifiedType;
+    return this;
+  }
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X conversations.
+   * @return participantVerifiedType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ParticipantVerifiedTypeEnum getParticipantVerifiedType() {
+    return participantVerifiedType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParticipantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
+    this.participantVerifiedType = participantVerifiedType;
+  }
+
+
   public GetInboxConversation200ResponseData lastMessage(@javax.annotation.Nullable String lastMessage) {
     this.lastMessage = lastMessage;
     return this;
@@ -454,6 +522,7 @@ public class GetInboxConversation200ResponseData {
         Objects.equals(this.status, getInboxConversation200ResponseData.status) &&
         Objects.equals(this.participantName, getInboxConversation200ResponseData.participantName) &&
         Objects.equals(this.participantId, getInboxConversation200ResponseData.participantId) &&
+        Objects.equals(this.participantVerifiedType, getInboxConversation200ResponseData.participantVerifiedType) &&
         Objects.equals(this.lastMessage, getInboxConversation200ResponseData.lastMessage) &&
         Objects.equals(this.lastMessageAt, getInboxConversation200ResponseData.lastMessageAt) &&
         Objects.equals(this.updatedTime, getInboxConversation200ResponseData.updatedTime) &&
@@ -463,7 +532,7 @@ public class GetInboxConversation200ResponseData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, accountUsername, platform, status, participantName, participantId, lastMessage, lastMessageAt, updatedTime, participants, instagramProfile);
+    return Objects.hash(id, accountId, accountUsername, platform, status, participantName, participantId, participantVerifiedType, lastMessage, lastMessageAt, updatedTime, participants, instagramProfile);
   }
 
   @Override
@@ -477,6 +546,7 @@ public class GetInboxConversation200ResponseData {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    participantName: ").append(toIndentedString(participantName)).append("\n");
     sb.append("    participantId: ").append(toIndentedString(participantId)).append("\n");
+    sb.append("    participantVerifiedType: ").append(toIndentedString(participantVerifiedType)).append("\n");
     sb.append("    lastMessage: ").append(toIndentedString(lastMessage)).append("\n");
     sb.append("    lastMessageAt: ").append(toIndentedString(lastMessageAt)).append("\n");
     sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
@@ -562,6 +632,11 @@ public class GetInboxConversation200ResponseData {
     // add `participantId` to the URL query string
     if (getParticipantId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sparticipantId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParticipantId()))));
+    }
+
+    // add `participantVerifiedType` to the URL query string
+    if (getParticipantVerifiedType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sparticipantVerifiedType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParticipantVerifiedType()))));
     }
 
     // add `lastMessage` to the URL query string

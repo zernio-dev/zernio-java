@@ -14,12 +14,24 @@
 |**participantId** | **String** |  |  [optional] |
 |**participantName** | **String** |  |  [optional] |
 |**participantPicture** | **String** |  |  [optional] |
+|**participantVerifiedType** | [**ParticipantVerifiedTypeEnum**](#ParticipantVerifiedTypeEnum) | X/Twitter verified badge type. Only present for Twitter/X conversations. |  [optional] |
 |**lastMessage** | **String** |  |  [optional] |
 |**updatedTime** | **OffsetDateTime** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**unreadCount** | **Integer** | Number of unread messages |  [optional] |
 |**url** | **String** | Direct link to open the conversation on the platform (if available) |  [optional] |
 |**instagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  |  [optional] |
+
+
+
+## Enum: ParticipantVerifiedTypeEnum
+
+| Name | Value |
+|---- | -----|
+| BLUE | &quot;blue&quot; |
+| GOVERNMENT | &quot;government&quot; |
+| BUSINESS | &quot;business&quot; |
+| NONE | &quot;none&quot; |
 
 
 

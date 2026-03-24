@@ -44,6 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_MESSAGE,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENDER_ID,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENDER_NAME,
+  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENDER_VERIFIED_TYPE,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_DIRECTION,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_CREATED_AT,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_ATTACHMENTS,
@@ -51,7 +52,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_STORY_REPLY,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_IS_STORY_MENTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:18:55.642597888Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:29:40.208080280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -80,6 +81,49 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_SENDER_NAME = "senderName";
   @javax.annotation.Nullable
   private String senderName;
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X messages.
+   */
+  public enum SenderVerifiedTypeEnum {
+    BLUE(String.valueOf("blue")),
+    
+    GOVERNMENT(String.valueOf("government")),
+    
+    BUSINESS(String.valueOf("business")),
+    
+    NONE(String.valueOf("none"));
+
+    private String value;
+
+    SenderVerifiedTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SenderVerifiedTypeEnum fromValue(String value) {
+      for (SenderVerifiedTypeEnum b : SenderVerifiedTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SENDER_VERIFIED_TYPE = "senderVerifiedType";
+  @javax.annotation.Nullable
+  private SenderVerifiedTypeEnum senderVerifiedType;
 
   /**
    * Gets or Sets direction
@@ -311,6 +355,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
 
+  public GetInboxConversationMessages200ResponseMessagesInner senderVerifiedType(@javax.annotation.Nullable SenderVerifiedTypeEnum senderVerifiedType) {
+    this.senderVerifiedType = senderVerifiedType;
+    return this;
+  }
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X messages.
+   * @return senderVerifiedType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SENDER_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SenderVerifiedTypeEnum getSenderVerifiedType() {
+    return senderVerifiedType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SENDER_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSenderVerifiedType(@javax.annotation.Nullable SenderVerifiedTypeEnum senderVerifiedType) {
+    this.senderVerifiedType = senderVerifiedType;
+  }
+
+
   public GetInboxConversationMessages200ResponseMessagesInner direction(@javax.annotation.Nullable DirectionEnum direction) {
     this.direction = direction;
     return this;
@@ -482,6 +550,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
         Objects.equals(this.message, getInboxConversationMessages200ResponseMessagesInner.message) &&
         Objects.equals(this.senderId, getInboxConversationMessages200ResponseMessagesInner.senderId) &&
         Objects.equals(this.senderName, getInboxConversationMessages200ResponseMessagesInner.senderName) &&
+        Objects.equals(this.senderVerifiedType, getInboxConversationMessages200ResponseMessagesInner.senderVerifiedType) &&
         Objects.equals(this.direction, getInboxConversationMessages200ResponseMessagesInner.direction) &&
         Objects.equals(this.createdAt, getInboxConversationMessages200ResponseMessagesInner.createdAt) &&
         Objects.equals(this.attachments, getInboxConversationMessages200ResponseMessagesInner.attachments) &&
@@ -492,7 +561,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, accountId, platform, message, senderId, senderName, direction, createdAt, attachments, subject, storyReply, isStoryMention);
+    return Objects.hash(id, conversationId, accountId, platform, message, senderId, senderName, senderVerifiedType, direction, createdAt, attachments, subject, storyReply, isStoryMention);
   }
 
   @Override
@@ -506,6 +575,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    senderId: ").append(toIndentedString(senderId)).append("\n");
     sb.append("    senderName: ").append(toIndentedString(senderName)).append("\n");
+    sb.append("    senderVerifiedType: ").append(toIndentedString(senderVerifiedType)).append("\n");
     sb.append("    direction: ").append(toIndentedString(direction)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
@@ -592,6 +662,11 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
     // add `senderName` to the URL query string
     if (getSenderName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssenderName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSenderName()))));
+    }
+
+    // add `senderVerifiedType` to the URL query string
+    if (getSenderVerifiedType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssenderVerifiedType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSenderVerifiedType()))));
     }
 
     // add `direction` to the URL query string

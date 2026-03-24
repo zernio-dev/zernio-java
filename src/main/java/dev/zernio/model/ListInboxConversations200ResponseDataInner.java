@@ -42,6 +42,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_PARTICIPANT_ID,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_PARTICIPANT_NAME,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_PARTICIPANT_PICTURE,
+  ListInboxConversations200ResponseDataInner.JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_LAST_MESSAGE,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_UPDATED_TIME,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_STATUS,
@@ -49,7 +50,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_URL,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:18:55.642597888Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:29:40.208080280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -78,6 +79,49 @@ public class ListInboxConversations200ResponseDataInner {
   public static final String JSON_PROPERTY_PARTICIPANT_PICTURE = "participantPicture";
   @javax.annotation.Nullable
   private String participantPicture;
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X conversations.
+   */
+  public enum ParticipantVerifiedTypeEnum {
+    BLUE(String.valueOf("blue")),
+    
+    GOVERNMENT(String.valueOf("government")),
+    
+    BUSINESS(String.valueOf("business")),
+    
+    NONE(String.valueOf("none"));
+
+    private String value;
+
+    ParticipantVerifiedTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ParticipantVerifiedTypeEnum fromValue(String value) {
+      for (ParticipantVerifiedTypeEnum b : ParticipantVerifiedTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE = "participantVerifiedType";
+  @javax.annotation.Nullable
+  private ParticipantVerifiedTypeEnum participantVerifiedType;
 
   public static final String JSON_PROPERTY_LAST_MESSAGE = "lastMessage";
   @javax.annotation.Nullable
@@ -309,6 +353,30 @@ public class ListInboxConversations200ResponseDataInner {
   }
 
 
+  public ListInboxConversations200ResponseDataInner participantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
+    this.participantVerifiedType = participantVerifiedType;
+    return this;
+  }
+
+  /**
+   * X/Twitter verified badge type. Only present for Twitter/X conversations.
+   * @return participantVerifiedType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ParticipantVerifiedTypeEnum getParticipantVerifiedType() {
+    return participantVerifiedType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParticipantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
+    this.participantVerifiedType = participantVerifiedType;
+  }
+
+
   public ListInboxConversations200ResponseDataInner lastMessage(@javax.annotation.Nullable String lastMessage) {
     this.lastMessage = lastMessage;
     return this;
@@ -472,6 +540,7 @@ public class ListInboxConversations200ResponseDataInner {
         Objects.equals(this.participantId, listInboxConversations200ResponseDataInner.participantId) &&
         Objects.equals(this.participantName, listInboxConversations200ResponseDataInner.participantName) &&
         Objects.equals(this.participantPicture, listInboxConversations200ResponseDataInner.participantPicture) &&
+        Objects.equals(this.participantVerifiedType, listInboxConversations200ResponseDataInner.participantVerifiedType) &&
         Objects.equals(this.lastMessage, listInboxConversations200ResponseDataInner.lastMessage) &&
         Objects.equals(this.updatedTime, listInboxConversations200ResponseDataInner.updatedTime) &&
         Objects.equals(this.status, listInboxConversations200ResponseDataInner.status) &&
@@ -482,7 +551,7 @@ public class ListInboxConversations200ResponseDataInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, participantId, participantName, participantPicture, lastMessage, updatedTime, status, unreadCount, url, instagramProfile);
+    return Objects.hash(id, platform, accountId, accountUsername, participantId, participantName, participantPicture, participantVerifiedType, lastMessage, updatedTime, status, unreadCount, url, instagramProfile);
   }
 
   @Override
@@ -496,6 +565,7 @@ public class ListInboxConversations200ResponseDataInner {
     sb.append("    participantId: ").append(toIndentedString(participantId)).append("\n");
     sb.append("    participantName: ").append(toIndentedString(participantName)).append("\n");
     sb.append("    participantPicture: ").append(toIndentedString(participantPicture)).append("\n");
+    sb.append("    participantVerifiedType: ").append(toIndentedString(participantVerifiedType)).append("\n");
     sb.append("    lastMessage: ").append(toIndentedString(lastMessage)).append("\n");
     sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -582,6 +652,11 @@ public class ListInboxConversations200ResponseDataInner {
     // add `participantPicture` to the URL query string
     if (getParticipantPicture() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sparticipantPicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParticipantPicture()))));
+    }
+
+    // add `participantVerifiedType` to the URL query string
+    if (getParticipantVerifiedType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sparticipantVerifiedType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParticipantVerifiedType()))));
     }
 
     // add `lastMessage` to the URL query string

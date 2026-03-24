@@ -14,12 +14,24 @@
 |**message** | **String** |  |  [optional] |
 |**senderId** | **String** |  |  [optional] |
 |**senderName** | **String** |  |  [optional] |
+|**senderVerifiedType** | [**SenderVerifiedTypeEnum**](#SenderVerifiedTypeEnum) | X/Twitter verified badge type. Only present for Twitter/X messages. |  [optional] |
 |**direction** | [**DirectionEnum**](#DirectionEnum) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**attachments** | [**List&lt;GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner&gt;**](GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.md) |  |  [optional] |
 |**subject** | **String** | Reddit message subject |  [optional] |
 |**storyReply** | **Boolean** | Instagram story reply |  [optional] |
 |**isStoryMention** | **Boolean** | Instagram story mention |  [optional] |
+
+
+
+## Enum: SenderVerifiedTypeEnum
+
+| Name | Value |
+|---- | -----|
+| BLUE | &quot;blue&quot; |
+| GOVERNMENT | &quot;government&quot; |
+| BUSINESS | &quot;business&quot; |
+| NONE | &quot;none&quot; |
 
 
 

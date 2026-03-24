@@ -6702,9 +6702,25 @@ paths:
       - application/json
   /v1/accounts/{accountId}/linkedin-mentions:
     get:
-      description: Converts a LinkedIn profile or company URL to a URN for @mentions
-        in posts. Person mentions require org admin access. Use the returned mentionFormat
-        in post content.
+      description: |
+        Converts a LinkedIn profile or company URL to a URN for @mentions in posts.
+
+        **How to use LinkedIn @mentions (2-step workflow):**
+
+        1. Call this endpoint with the LinkedIn profile/company URL to get the mention URN and format.
+        2. Embed the returned `mentionFormat` (e.g. `@[Vincent Jong](urn:li:person:xxx)`) directly in your post's `content` field.
+
+        **Example:**
+        - Resolve: `GET /v1/accounts/{id}/linkedin-mentions?url=linkedin.com/in/vincentjong&displayName=Vincent Jong`
+        - Returns: `mentionFormat: "@[Vincent Jong](urn:li:person:xxx)"`
+        - Use in post content: `"Great talk with @[Vincent Jong](urn:li:person:xxx) today!"`
+
+        **Important:** The `mentions` array field in POST /v1/posts is stored for reference only and does NOT trigger @mentions on LinkedIn. You must embed the mention format directly in the content text.
+
+        **Requirements:**
+        - Person mentions require the LinkedIn account to be admin of at least one organization.
+        - Organization mentions (e.g. @Microsoft) work without this requirement.
+        - For person mentions to be clickable, the `displayName` parameter must exactly match the name shown on their LinkedIn profile.
       operationId: getLinkedInMentions
       parameters:
       - description: The LinkedIn account ID
@@ -14387,6 +14403,10 @@ components:
             type: string
           type: array
         mentions:
+          description: "Stored for reference only. This field does NOT automatically\
+            \ create @mentions when publishing. For LinkedIn @mentions, use the /v1/accounts/{accountId}/linkedin-mentions\
+            \ endpoint to resolve profile URLs to URNs, then embed the returned mentionFormat\
+            \ directly in the post content field."
           items:
             type: string
           type: array
@@ -18531,6 +18551,10 @@ components:
             type: string
           type: array
         mentions:
+          description: "Stored for reference only. This field does NOT automatically\
+            \ create @mentions when publishing. For LinkedIn @mentions, use the /v1/accounts/{accountId}/linkedin-mentions\
+            \ endpoint to resolve profile URLs to URNs, then embed the returned mentionFormat\
+            \ directly in the post content field."
           items:
             type: string
           type: array
@@ -24635,6 +24659,7 @@ components:
           followerCount: 6
         participantId: participantId
         accountId: accountId
+        participantVerifiedType: blue
         accountUsername: accountUsername
         id: id
         participantName: participantName
@@ -24653,6 +24678,15 @@ components:
         participantName:
           type: string
         participantPicture:
+          type: string
+          nullable: true
+        participantVerifiedType:
+          description: X/Twitter verified badge type. Only present for Twitter/X conversations.
+          enum:
+          - blue
+          - government
+          - business
+          - none
           type: string
           nullable: true
         lastMessage:
@@ -24761,6 +24795,7 @@ components:
             followerCount: 6
           participantId: participantId
           accountId: accountId
+          participantVerifiedType: blue
           accountUsername: accountUsername
           id: id
           participantName: participantName
@@ -24779,6 +24814,7 @@ components:
             followerCount: 6
           participantId: participantId
           accountId: accountId
+          participantVerifiedType: blue
           accountUsername: accountUsername
           id: id
           participantName: participantName
@@ -24811,14 +24847,8 @@ components:
           $ref: "#/components/schemas/listInboxConversations_200_response_meta"
     getInboxConversation_200_response_data:
       example:
-        participantId: participantId
-        accountId: accountId
         updatedTime: 2000-01-23T04:56:07.000+00:00
-        lastMessageAt: 2000-01-23T04:56:07.000+00:00
-        accountUsername: accountUsername
         lastMessage: lastMessage
-        id: id
-        participantName: participantName
         platform: platform
         instagramProfile:
           isFollowing: true
@@ -24826,6 +24856,13 @@ components:
           fetchedAt: 2000-01-23T04:56:07.000+00:00
           isFollower: true
           followerCount: 6
+        participantId: participantId
+        accountId: accountId
+        lastMessageAt: 2000-01-23T04:56:07.000+00:00
+        participantVerifiedType: blue
+        accountUsername: accountUsername
+        id: id
+        participantName: participantName
         status: active
         participants:
         - name: name
@@ -24850,6 +24887,15 @@ components:
           type: string
         participantId:
           type: string
+        participantVerifiedType:
+          description: X/Twitter verified badge type. Only present for Twitter/X conversations.
+          enum:
+          - blue
+          - government
+          - business
+          - none
+          type: string
+          nullable: true
         lastMessage:
           type: string
         lastMessageAt:
@@ -24867,14 +24913,8 @@ components:
     getInboxConversation_200_response:
       example:
         data:
-          participantId: participantId
-          accountId: accountId
           updatedTime: 2000-01-23T04:56:07.000+00:00
-          lastMessageAt: 2000-01-23T04:56:07.000+00:00
-          accountUsername: accountUsername
           lastMessage: lastMessage
-          id: id
-          participantName: participantName
           platform: platform
           instagramProfile:
             isFollowing: true
@@ -24882,6 +24922,13 @@ components:
             fetchedAt: 2000-01-23T04:56:07.000+00:00
             isFollower: true
             followerCount: 6
+          participantId: participantId
+          accountId: accountId
+          lastMessageAt: 2000-01-23T04:56:07.000+00:00
+          participantVerifiedType: blue
+          accountUsername: accountUsername
+          id: id
+          participantName: participantName
           status: active
           participants:
           - name: name
@@ -24990,6 +25037,7 @@ components:
         senderId: senderId
         senderName: senderName
         isStoryMention: true
+        senderVerifiedType: blue
         id: id
         direction: incoming
       properties:
@@ -25006,6 +25054,15 @@ components:
         senderId:
           type: string
         senderName:
+          type: string
+          nullable: true
+        senderVerifiedType:
+          description: X/Twitter verified badge type. Only present for Twitter/X messages.
+          enum:
+          - blue
+          - government
+          - business
+          - none
           type: string
           nullable: true
         direction:
@@ -25057,6 +25114,7 @@ components:
           senderId: senderId
           senderName: senderName
           isStoryMention: true
+          senderVerifiedType: blue
           id: id
           direction: incoming
         - attachments:
@@ -25080,6 +25138,7 @@ components:
           senderId: senderId
           senderName: senderName
           isStoryMention: true
+          senderVerifiedType: blue
           id: id
           direction: incoming
         status: status
@@ -25592,6 +25651,7 @@ components:
       example:
         isOwner: true
         name: name
+        verifiedType: blue
         id: id
         picture: picture
         username: username
@@ -25607,6 +25667,15 @@ components:
           nullable: true
         isOwner:
           type: boolean
+        verifiedType:
+          description: X/Twitter verified badge type. Only present for Twitter/X comments.
+          enum:
+          - blue
+          - government
+          - business
+          - none
+          type: string
+          nullable: true
     getInboxPostComments_200_response_comments_inner:
       example:
         canReply: true
@@ -25629,6 +25698,7 @@ components:
         from:
           isOwner: true
           name: name
+          verifiedType: blue
           id: id
           picture: picture
           username: username
@@ -25751,6 +25821,7 @@ components:
           from:
             isOwner: true
             name: name
+            verifiedType: blue
             id: id
             picture: picture
             username: username
@@ -25778,6 +25849,7 @@ components:
           from:
             isOwner: true
             name: name
+            verifiedType: blue
             id: id
             picture: picture
             username: username
@@ -31025,6 +31097,15 @@ components:
           type: string
         participantPicture:
           type: string
+        participantVerifiedType:
+          description: X/Twitter verified badge type. Only present for Twitter/X conversations.
+          enum:
+          - blue
+          - government
+          - business
+          - none
+          type: string
+          nullable: true
         status:
           enum:
           - active
