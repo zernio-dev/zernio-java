@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
-|**latePostId** | **String** | Original Late post ID if scheduled via Late |  [optional] |
+|**latePostId** | **String** | Original Zernio post ID if scheduled via Zernio |  [optional] |
 |**content** | **String** |  |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
 |**publishedAt** | **OffsetDateTime** |  |  [optional] |

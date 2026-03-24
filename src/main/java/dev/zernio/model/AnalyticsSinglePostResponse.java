@@ -57,7 +57,7 @@ import dev.zernio.ApiClient;
   AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_TYPE,
   AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T10:29:40.208080280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T17:14:16.166233410Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponse {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -271,7 +271,7 @@ public class AnalyticsSinglePostResponse {
   }
 
   /**
-   * Original Late post ID if scheduled via Late
+   * Original Zernio post ID if scheduled via Zernio
    * @return latePostId
    */
   @javax.annotation.Nullable

@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**postId** | **String** |  |  [optional] |
-|**latePostId** | **String** | Original Late post ID if scheduled via Late |  [optional] |
+|**latePostId** | **String** | Original Zernio post ID if scheduled via Zernio |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. |  [optional] |
 |**content** | **String** |  |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
