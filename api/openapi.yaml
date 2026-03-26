@@ -3094,6 +3094,66 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/posts/{postId}/update-metadata:
+    post:
+      description: |
+        Updates metadata of an already-published post on the specified platform without re-uploading the media.
+        Currently only supported for YouTube videos (title, description, tags, category, privacy status).
+        The post must have "published" status on the target platform. At least one updatable field is required.
+      operationId: updatePostMetadata
+      parameters:
+      - explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              platform: youtube
+              title: Updated Video Title
+              description: New SEO-optimized description
+              tags:
+              - seo
+              - marketing
+              - tutorial
+            schema:
+              $ref: "#/components/schemas/updatePostMetadata_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                message: Video metadata updated on youtube successfully
+                updatedFields:
+                - title
+                - description
+                - tags
+              schema:
+                $ref: "#/components/schemas/updatePostMetadata_200_response"
+          description: Metadata updated successfully
+        "400":
+          description: "Invalid request: unsupported platform, post not published,\
+            \ missing fields, or validation error."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Forbidden
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          description: Platform API update failed
+      summary: Update post metadata
+      tags:
+      - Posts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/users:
     get:
       description: Returns all users in the workspace including roles and profile
@@ -19155,6 +19215,54 @@ components:
           type: boolean
         message:
           type: string
+    updatePostMetadata_request:
+      properties:
+        platform:
+          description: The platform to update metadata on
+          enum:
+          - youtube
+          type: string
+        title:
+          description: New video title (max 100 characters for YouTube)
+          maxLength: 100
+          type: string
+        description:
+          description: New video description
+          type: string
+        tags:
+          description: Array of keyword tags (max 500 characters combined for YouTube)
+          items:
+            maxLength: 100
+            type: string
+          type: array
+        categoryId:
+          description: YouTube video category ID
+          type: string
+        privacyStatus:
+          description: Video privacy setting
+          enum:
+          - public
+          - private
+          - unlisted
+          type: string
+      required:
+      - platform
+    updatePostMetadata_200_response:
+      example:
+        updatedFields:
+        - updatedFields
+        - updatedFields
+        success: true
+        message: message
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        updatedFields:
+          items:
+            type: string
+          type: array
     listUsers_200_response_users_inner:
       example:
         profileAccess:

@@ -36,6 +36,8 @@ import dev.zernio.model.PostUpdateResponse;
 import dev.zernio.model.PostsListResponse;
 import dev.zernio.model.UnpublishPost200Response;
 import dev.zernio.model.UnpublishPostRequest;
+import dev.zernio.model.UpdatePostMetadata200Response;
+import dev.zernio.model.UpdatePostMetadataRequest;
 import dev.zernio.model.UpdatePostRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -69,7 +71,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-24T17:14:16.166233410Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T14:49:34.857605595Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1267,6 +1269,138 @@ public class PostsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updatePostRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update post metadata
+   * Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+   * @param postId  (required)
+   * @param updatePostMetadataRequest  (required)
+   * @return UpdatePostMetadata200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdatePostMetadata200Response updatePostMetadata(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull UpdatePostMetadataRequest updatePostMetadataRequest) throws ApiException {
+    return updatePostMetadata(postId, updatePostMetadataRequest, null);
+  }
+
+  /**
+   * Update post metadata
+   * Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+   * @param postId  (required)
+   * @param updatePostMetadataRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdatePostMetadata200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdatePostMetadata200Response updatePostMetadata(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull UpdatePostMetadataRequest updatePostMetadataRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdatePostMetadata200Response> localVarResponse = updatePostMetadataWithHttpInfo(postId, updatePostMetadataRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update post metadata
+   * Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+   * @param postId  (required)
+   * @param updatePostMetadataRequest  (required)
+   * @return ApiResponse&lt;UpdatePostMetadata200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdatePostMetadata200Response> updatePostMetadataWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull UpdatePostMetadataRequest updatePostMetadataRequest) throws ApiException {
+    return updatePostMetadataWithHttpInfo(postId, updatePostMetadataRequest, null);
+  }
+
+  /**
+   * Update post metadata
+   * Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+   * @param postId  (required)
+   * @param updatePostMetadataRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdatePostMetadata200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdatePostMetadata200Response> updatePostMetadataWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull UpdatePostMetadataRequest updatePostMetadataRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updatePostMetadataRequestBuilder(postId, updatePostMetadataRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updatePostMetadata", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdatePostMetadata200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdatePostMetadata200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdatePostMetadata200Response>() {});
+        
+
+        return new ApiResponse<UpdatePostMetadata200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updatePostMetadataRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull UpdatePostMetadataRequest updatePostMetadataRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling updatePostMetadata");
+    }
+    // verify the required parameter 'updatePostMetadataRequest' is set
+    if (updatePostMetadataRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updatePostMetadataRequest' when calling updatePostMetadata");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/posts/{postId}/update-metadata"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updatePostMetadataRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

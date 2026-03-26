@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-24T17:14:16.166233410Z[Etc/UTC]
+- Build date: 2026-03-26T14:49:34.857605595Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -384,6 +384,8 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**unpublishPostWithHttpInfo**](docs/PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**updatePost**](docs/PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post
 *PostsApi* | [**updatePostWithHttpInfo**](docs/PostsApi.md#updatePostWithHttpInfo) | **PUT** /v1/posts/{postId} | Update post
+*PostsApi* | [**updatePostMetadata**](docs/PostsApi.md#updatePostMetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata
+*PostsApi* | [**updatePostMetadataWithHttpInfo**](docs/PostsApi.md#updatePostMetadataWithHttpInfo) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata
 *ProfilesApi* | [**createProfile**](docs/ProfilesApi.md#createProfile) | **POST** /v1/profiles | Create profile
 *ProfilesApi* | [**createProfileWithHttpInfo**](docs/ProfilesApi.md#createProfileWithHttpInfo) | **POST** /v1/profiles | Create profile
 *ProfilesApi* | [**deleteProfile**](docs/ProfilesApi.md#deleteProfile) | **DELETE** /v1/profiles/{profileId} | Delete profile
@@ -1144,6 +1146,8 @@ Class | Method | HTTP request | Description
  - [UpdateInboxConversationRequest](docs/UpdateInboxConversationRequest.md)
  - [UpdateLinkedInOrganizationRequest](docs/UpdateLinkedInOrganizationRequest.md)
  - [UpdatePinterestBoardsRequest](docs/UpdatePinterestBoardsRequest.md)
+ - [UpdatePostMetadata200Response](docs/UpdatePostMetadata200Response.md)
+ - [UpdatePostMetadataRequest](docs/UpdatePostMetadataRequest.md)
  - [UpdatePostRequest](docs/UpdatePostRequest.md)
  - [UpdateProfile200Response](docs/UpdateProfile200Response.md)
  - [UpdateProfileRequest](docs/UpdateProfileRequest.md)

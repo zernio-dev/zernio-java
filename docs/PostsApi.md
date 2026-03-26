@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**unpublishPostWithHttpInfo**](PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**updatePost**](PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post |
 | [**updatePostWithHttpInfo**](PostsApi.md#updatePostWithHttpInfo) | **PUT** /v1/posts/{postId} | Update post |
+| [**updatePostMetadata**](PostsApi.md#updatePostMetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata |
+| [**updatePostMetadataWithHttpInfo**](PostsApi.md#updatePostMetadataWithHttpInfo) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata |
 
 
 
@@ -1293,4 +1295,162 @@ ApiResponse<[**PostUpdateResponse**](PostUpdateResponse.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
+
+
+## updatePostMetadata
+
+> UpdatePostMetadata200Response updatePostMetadata(postId, updatePostMetadataRequest)
+
+Update post metadata
+
+Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        UpdatePostMetadataRequest updatePostMetadataRequest = new UpdatePostMetadataRequest(); // UpdatePostMetadataRequest | 
+        try {
+            UpdatePostMetadata200Response result = apiInstance.updatePostMetadata(postId, updatePostMetadataRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#updatePostMetadata");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **updatePostMetadataRequest** | [**UpdatePostMetadataRequest**](UpdatePostMetadataRequest.md)|  | |
+
+### Return type
+
+[**UpdatePostMetadata200Response**](UpdatePostMetadata200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metadata updated successfully |  -  |
+| **400** | Invalid request: unsupported platform, post not published, missing fields, or validation error. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Platform API update failed |  -  |
+
+## updatePostMetadataWithHttpInfo
+
+> ApiResponse<UpdatePostMetadata200Response> updatePostMetadata updatePostMetadataWithHttpInfo(postId, updatePostMetadataRequest)
+
+Update post metadata
+
+Updates metadata of an already-published post on the specified platform without re-uploading the media. Currently only supported for YouTube videos (title, description, tags, category, privacy status). The post must have \&quot;published\&quot; status on the target platform. At least one updatable field is required. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        UpdatePostMetadataRequest updatePostMetadataRequest = new UpdatePostMetadataRequest(); // UpdatePostMetadataRequest | 
+        try {
+            ApiResponse<UpdatePostMetadata200Response> response = apiInstance.updatePostMetadataWithHttpInfo(postId, updatePostMetadataRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#updatePostMetadata");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **updatePostMetadataRequest** | [**UpdatePostMetadataRequest**](UpdatePostMetadataRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdatePostMetadata200Response**](UpdatePostMetadata200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metadata updated successfully |  -  |
+| **400** | Invalid request: unsupported platform, post not published, missing fields, or validation error. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Platform API update failed |  -  |
 
