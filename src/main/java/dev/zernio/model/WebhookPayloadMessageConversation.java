@@ -39,17 +39,16 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageConversation.JSON_PROPERTY_PARTICIPANT_NAME,
   WebhookPayloadMessageConversation.JSON_PROPERTY_PARTICIPANT_USERNAME,
   WebhookPayloadMessageConversation.JSON_PROPERTY_PARTICIPANT_PICTURE,
-  WebhookPayloadMessageConversation.JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE,
   WebhookPayloadMessageConversation.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageConversation {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_PLATFORM_CONVERSATION_ID = "platformConversationId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String platformConversationId;
 
   public static final String JSON_PROPERTY_PARTICIPANT_ID = "participantId";
@@ -67,49 +66,6 @@ public class WebhookPayloadMessageConversation {
   public static final String JSON_PROPERTY_PARTICIPANT_PICTURE = "participantPicture";
   @javax.annotation.Nullable
   private String participantPicture;
-
-  /**
-   * X/Twitter verified badge type. Only present for Twitter/X conversations.
-   */
-  public enum ParticipantVerifiedTypeEnum {
-    BLUE(String.valueOf("blue")),
-    
-    GOVERNMENT(String.valueOf("government")),
-    
-    BUSINESS(String.valueOf("business")),
-    
-    NONE(String.valueOf("none"));
-
-    private String value;
-
-    ParticipantVerifiedTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ParticipantVerifiedTypeEnum fromValue(String value) {
-      for (ParticipantVerifiedTypeEnum b : ParticipantVerifiedTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE = "participantVerifiedType";
-  @javax.annotation.Nullable
-  private ParticipantVerifiedTypeEnum participantVerifiedType;
 
   /**
    * Gets or Sets status
@@ -147,13 +103,13 @@ public class WebhookPayloadMessageConversation {
   }
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private StatusEnum status;
 
   public WebhookPayloadMessageConversation() { 
   }
 
-  public WebhookPayloadMessageConversation id(@javax.annotation.Nullable String id) {
+  public WebhookPayloadMessageConversation id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -162,22 +118,22 @@ public class WebhookPayloadMessageConversation {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public WebhookPayloadMessageConversation platformConversationId(@javax.annotation.Nullable String platformConversationId) {
+  public WebhookPayloadMessageConversation platformConversationId(@javax.annotation.Nonnull String platformConversationId) {
     this.platformConversationId = platformConversationId;
     return this;
   }
@@ -186,17 +142,17 @@ public class WebhookPayloadMessageConversation {
    * Get platformConversationId
    * @return platformConversationId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_CONVERSATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_CONVERSATION_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPlatformConversationId() {
     return platformConversationId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_CONVERSATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformConversationId(@javax.annotation.Nullable String platformConversationId) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_CONVERSATION_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatformConversationId(@javax.annotation.Nonnull String platformConversationId) {
     this.platformConversationId = platformConversationId;
   }
 
@@ -297,31 +253,7 @@ public class WebhookPayloadMessageConversation {
   }
 
 
-  public WebhookPayloadMessageConversation participantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
-    this.participantVerifiedType = participantVerifiedType;
-    return this;
-  }
-
-  /**
-   * X/Twitter verified badge type. Only present for Twitter/X conversations.
-   * @return participantVerifiedType
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public ParticipantVerifiedTypeEnum getParticipantVerifiedType() {
-    return participantVerifiedType;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParticipantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
-    this.participantVerifiedType = participantVerifiedType;
-  }
-
-
-  public WebhookPayloadMessageConversation status(@javax.annotation.Nullable StatusEnum status) {
+  public WebhookPayloadMessageConversation status(@javax.annotation.Nonnull StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -330,17 +262,17 @@ public class WebhookPayloadMessageConversation {
    * Get status
    * @return status
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public StatusEnum getStatus() {
     return status;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull StatusEnum status) {
     this.status = status;
   }
 
@@ -363,13 +295,12 @@ public class WebhookPayloadMessageConversation {
         Objects.equals(this.participantName, webhookPayloadMessageConversation.participantName) &&
         Objects.equals(this.participantUsername, webhookPayloadMessageConversation.participantUsername) &&
         Objects.equals(this.participantPicture, webhookPayloadMessageConversation.participantPicture) &&
-        Objects.equals(this.participantVerifiedType, webhookPayloadMessageConversation.participantVerifiedType) &&
         Objects.equals(this.status, webhookPayloadMessageConversation.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformConversationId, participantId, participantName, participantUsername, participantPicture, participantVerifiedType, status);
+    return Objects.hash(id, platformConversationId, participantId, participantName, participantUsername, participantPicture, status);
   }
 
   @Override
@@ -382,7 +313,6 @@ public class WebhookPayloadMessageConversation {
     sb.append("    participantName: ").append(toIndentedString(participantName)).append("\n");
     sb.append("    participantUsername: ").append(toIndentedString(participantUsername)).append("\n");
     sb.append("    participantPicture: ").append(toIndentedString(participantPicture)).append("\n");
-    sb.append("    participantVerifiedType: ").append(toIndentedString(participantVerifiedType)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -459,11 +389,6 @@ public class WebhookPayloadMessageConversation {
     // add `participantPicture` to the URL query string
     if (getParticipantPicture() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sparticipantPicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParticipantPicture()))));
-    }
-
-    // add `participantVerifiedType` to the URL query string
-    if (getParticipantVerifiedType() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sparticipantVerifiedType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParticipantVerifiedType()))));
     }
 
     // add `status` to the URL query string

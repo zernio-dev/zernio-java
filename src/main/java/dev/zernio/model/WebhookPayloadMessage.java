@@ -35,9 +35,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Webhook payload for message received events (DMs from Instagram, Facebook, Telegram, Bluesky, Reddit)
+ * Webhook payload for message received events
  */
 @JsonPropertyOrder({
+  WebhookPayloadMessage.JSON_PROPERTY_ID,
   WebhookPayloadMessage.JSON_PROPERTY_EVENT,
   WebhookPayloadMessage.JSON_PROPERTY_MESSAGE,
   WebhookPayloadMessage.JSON_PROPERTY_CONVERSATION,
@@ -45,8 +46,12 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessage.JSON_PROPERTY_METADATA,
   WebhookPayloadMessage.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessage {
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
+
   /**
    * Gets or Sets event
    */
@@ -81,19 +86,19 @@ public class WebhookPayloadMessage {
   }
 
   public static final String JSON_PROPERTY_EVENT = "event";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private EventEnum event;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadMessageMessage message;
 
   public static final String JSON_PROPERTY_CONVERSATION = "conversation";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadMessageConversation conversation;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadMessageAccount account;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
@@ -101,13 +106,37 @@ public class WebhookPayloadMessage {
   private WebhookPayloadMessageMetadata metadata;
 
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private OffsetDateTime timestamp;
 
   public WebhookPayloadMessage() { 
   }
 
-  public WebhookPayloadMessage event(@javax.annotation.Nullable EventEnum event) {
+  public WebhookPayloadMessage id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Stable webhook event ID
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
+  public WebhookPayloadMessage event(@javax.annotation.Nonnull EventEnum event) {
     this.event = event;
     return this;
   }
@@ -116,22 +145,22 @@ public class WebhookPayloadMessage {
    * Get event
    * @return event
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public EventEnum getEvent() {
     return event;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEvent(@javax.annotation.Nullable EventEnum event) {
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEvent(@javax.annotation.Nonnull EventEnum event) {
     this.event = event;
   }
 
 
-  public WebhookPayloadMessage message(@javax.annotation.Nullable WebhookPayloadMessageMessage message) {
+  public WebhookPayloadMessage message(@javax.annotation.Nonnull WebhookPayloadMessageMessage message) {
     this.message = message;
     return this;
   }
@@ -140,22 +169,22 @@ public class WebhookPayloadMessage {
    * Get message
    * @return message
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadMessageMessage getMessage() {
     return message;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable WebhookPayloadMessageMessage message) {
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setMessage(@javax.annotation.Nonnull WebhookPayloadMessageMessage message) {
     this.message = message;
   }
 
 
-  public WebhookPayloadMessage conversation(@javax.annotation.Nullable WebhookPayloadMessageConversation conversation) {
+  public WebhookPayloadMessage conversation(@javax.annotation.Nonnull WebhookPayloadMessageConversation conversation) {
     this.conversation = conversation;
     return this;
   }
@@ -164,22 +193,22 @@ public class WebhookPayloadMessage {
    * Get conversation
    * @return conversation
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadMessageConversation getConversation() {
     return conversation;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConversation(@javax.annotation.Nullable WebhookPayloadMessageConversation conversation) {
+  @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setConversation(@javax.annotation.Nonnull WebhookPayloadMessageConversation conversation) {
     this.conversation = conversation;
   }
 
 
-  public WebhookPayloadMessage account(@javax.annotation.Nullable WebhookPayloadMessageAccount account) {
+  public WebhookPayloadMessage account(@javax.annotation.Nonnull WebhookPayloadMessageAccount account) {
     this.account = account;
     return this;
   }
@@ -188,17 +217,17 @@ public class WebhookPayloadMessage {
    * Get account
    * @return account
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadMessageAccount getAccount() {
     return account;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccount(@javax.annotation.Nullable WebhookPayloadMessageAccount account) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccount(@javax.annotation.Nonnull WebhookPayloadMessageAccount account) {
     this.account = account;
   }
 
@@ -227,7 +256,7 @@ public class WebhookPayloadMessage {
   }
 
 
-  public WebhookPayloadMessage timestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+  public WebhookPayloadMessage timestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -236,17 +265,17 @@ public class WebhookPayloadMessage {
    * Get timestamp
    * @return timestamp
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public OffsetDateTime getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTimestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
   }
 
@@ -263,7 +292,8 @@ public class WebhookPayloadMessage {
       return false;
     }
     WebhookPayloadMessage webhookPayloadMessage = (WebhookPayloadMessage) o;
-    return Objects.equals(this.event, webhookPayloadMessage.event) &&
+    return Objects.equals(this.id, webhookPayloadMessage.id) &&
+        Objects.equals(this.event, webhookPayloadMessage.event) &&
         Objects.equals(this.message, webhookPayloadMessage.message) &&
         Objects.equals(this.conversation, webhookPayloadMessage.conversation) &&
         Objects.equals(this.account, webhookPayloadMessage.account) &&
@@ -273,13 +303,14 @@ public class WebhookPayloadMessage {
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, message, conversation, account, metadata, timestamp);
+    return Objects.hash(id, event, message, conversation, account, metadata, timestamp);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessage {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    conversation: ").append(toIndentedString(conversation)).append("\n");
@@ -332,6 +363,11 @@ public class WebhookPayloadMessage {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
 
     // add `event` to the URL query string
     if (getEvent() != null) {

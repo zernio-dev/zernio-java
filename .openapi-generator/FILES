@@ -685,6 +685,7 @@ docs/ValidateSubreddit200ResponseOneOf.md
 docs/ValidateSubreddit200ResponseOneOf1.md
 docs/ValidateSubreddit200ResponseOneOfSubreddit.md
 docs/Webhook.md
+docs/WebhookEventsApi.md
 docs/WebhookLog.md
 docs/WebhookPayloadAccountConnected.md
 docs/WebhookPayloadAccountConnectedAccount.md
@@ -706,6 +707,7 @@ docs/WebhookPayloadMessageMetadata.md
 docs/WebhookPayloadPost.md
 docs/WebhookPayloadPostPost.md
 docs/WebhookPayloadPostPostPlatformsInner.md
+docs/WebhookPayloadTest.md
 docs/WebhooksApi.md
 docs/WhatsAppApi.md
 docs/WhatsAppPhoneNumbersApi.md
@@ -769,6 +771,7 @@ src/main/java/dev/zernio/api/TwitterEngagementApi.java
 src/main/java/dev/zernio/api/UsageApi.java
 src/main/java/dev/zernio/api/UsersApi.java
 src/main/java/dev/zernio/api/ValidateApi.java
+src/main/java/dev/zernio/api/WebhookEventsApi.java
 src/main/java/dev/zernio/api/WebhooksApi.java
 src/main/java/dev/zernio/api/WhatsAppApi.java
 src/main/java/dev/zernio/api/WhatsAppPhoneNumbersApi.java
@@ -1441,6 +1444,7 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageMetadata.java
 src/main/java/dev/zernio/model/WebhookPayloadPost.java
 src/main/java/dev/zernio/model/WebhookPayloadPostPost.java
 src/main/java/dev/zernio/model/WebhookPayloadPostPostPlatformsInner.java
+src/main/java/dev/zernio/model/WebhookPayloadTest.java
 src/main/java/dev/zernio/model/YouTubeDailyViewsResponse.java
 src/main/java/dev/zernio/model/YouTubeDailyViewsResponseDailyViewsInner.java
 src/main/java/dev/zernio/model/YouTubeDailyViewsResponseDateRange.java
@@ -1448,3 +1452,5 @@ src/main/java/dev/zernio/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/api/WebhookEventsApiTest.java
+src/test/java/dev/zernio/model/WebhookPayloadTestTest.java

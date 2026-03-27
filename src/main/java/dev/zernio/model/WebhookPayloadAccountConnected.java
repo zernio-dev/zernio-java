@@ -35,12 +35,17 @@ import dev.zernio.ApiClient;
  * Webhook payload for account connected events
  */
 @JsonPropertyOrder({
+  WebhookPayloadAccountConnected.JSON_PROPERTY_ID,
   WebhookPayloadAccountConnected.JSON_PROPERTY_EVENT,
   WebhookPayloadAccountConnected.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadAccountConnected.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountConnected {
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
+
   /**
    * Gets or Sets event
    */
@@ -75,21 +80,45 @@ public class WebhookPayloadAccountConnected {
   }
 
   public static final String JSON_PROPERTY_EVENT = "event";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private EventEnum event;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadAccountConnectedAccount account;
 
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private OffsetDateTime timestamp;
 
   public WebhookPayloadAccountConnected() { 
   }
 
-  public WebhookPayloadAccountConnected event(@javax.annotation.Nullable EventEnum event) {
+  public WebhookPayloadAccountConnected id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Stable webhook event ID
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
+  public WebhookPayloadAccountConnected event(@javax.annotation.Nonnull EventEnum event) {
     this.event = event;
     return this;
   }
@@ -98,22 +127,22 @@ public class WebhookPayloadAccountConnected {
    * Get event
    * @return event
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public EventEnum getEvent() {
     return event;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEvent(@javax.annotation.Nullable EventEnum event) {
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEvent(@javax.annotation.Nonnull EventEnum event) {
     this.event = event;
   }
 
 
-  public WebhookPayloadAccountConnected account(@javax.annotation.Nullable WebhookPayloadAccountConnectedAccount account) {
+  public WebhookPayloadAccountConnected account(@javax.annotation.Nonnull WebhookPayloadAccountConnectedAccount account) {
     this.account = account;
     return this;
   }
@@ -122,22 +151,22 @@ public class WebhookPayloadAccountConnected {
    * Get account
    * @return account
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadAccountConnectedAccount getAccount() {
     return account;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccount(@javax.annotation.Nullable WebhookPayloadAccountConnectedAccount account) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccount(@javax.annotation.Nonnull WebhookPayloadAccountConnectedAccount account) {
     this.account = account;
   }
 
 
-  public WebhookPayloadAccountConnected timestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+  public WebhookPayloadAccountConnected timestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -146,17 +175,17 @@ public class WebhookPayloadAccountConnected {
    * Get timestamp
    * @return timestamp
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public OffsetDateTime getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTimestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
   }
 
@@ -173,20 +202,22 @@ public class WebhookPayloadAccountConnected {
       return false;
     }
     WebhookPayloadAccountConnected webhookPayloadAccountConnected = (WebhookPayloadAccountConnected) o;
-    return Objects.equals(this.event, webhookPayloadAccountConnected.event) &&
+    return Objects.equals(this.id, webhookPayloadAccountConnected.id) &&
+        Objects.equals(this.event, webhookPayloadAccountConnected.event) &&
         Objects.equals(this.account, webhookPayloadAccountConnected.account) &&
         Objects.equals(this.timestamp, webhookPayloadAccountConnected.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, account, timestamp);
+    return Objects.hash(id, event, account, timestamp);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadAccountConnected {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    account: ").append(toIndentedString(account)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
@@ -236,6 +267,11 @@ public class WebhookPayloadAccountConnected {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
 
     // add `event` to the URL query string
     if (getEvent() != null) {

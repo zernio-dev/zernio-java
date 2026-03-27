@@ -40,10 +40,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_PICTURE,
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_NAME = "name";
@@ -65,7 +65,7 @@ public class WebhookPayloadMessageMessageSender {
   public WebhookPayloadMessageMessageSender() { 
   }
 
-  public WebhookPayloadMessageMessageSender id(@javax.annotation.Nullable String id) {
+  public WebhookPayloadMessageMessageSender id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -74,17 +74,17 @@ public class WebhookPayloadMessageMessageSender {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 

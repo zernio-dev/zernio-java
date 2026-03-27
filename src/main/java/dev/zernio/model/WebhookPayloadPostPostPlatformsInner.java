@@ -35,18 +35,23 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_PLATFORM,
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_STATUS,
+  WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_PLATFORM_POST_ID,
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_PUBLISHED_URL,
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPostPlatformsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String platform;
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String status;
+
+  public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
+  @javax.annotation.Nullable
+  private String platformPostId;
 
   public static final String JSON_PROPERTY_PUBLISHED_URL = "publishedUrl";
   @javax.annotation.Nullable
@@ -59,7 +64,7 @@ public class WebhookPayloadPostPostPlatformsInner {
   public WebhookPayloadPostPostPlatformsInner() { 
   }
 
-  public WebhookPayloadPostPostPlatformsInner platform(@javax.annotation.Nullable String platform) {
+  public WebhookPayloadPostPostPlatformsInner platform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
     return this;
   }
@@ -68,22 +73,22 @@ public class WebhookPayloadPostPostPlatformsInner {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPlatform() {
     return platform;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable String platform) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
   }
 
 
-  public WebhookPayloadPostPostPlatformsInner status(@javax.annotation.Nullable String status) {
+  public WebhookPayloadPostPostPlatformsInner status(@javax.annotation.Nonnull String status) {
     this.status = status;
     return this;
   }
@@ -92,18 +97,42 @@ public class WebhookPayloadPostPostPlatformsInner {
    * Get status
    * @return status
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getStatus() {
     return status;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable String status) {
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull String status) {
     this.status = status;
+  }
+
+
+  public WebhookPayloadPostPostPlatformsInner platformPostId(@javax.annotation.Nullable String platformPostId) {
+    this.platformPostId = platformPostId;
+    return this;
+  }
+
+  /**
+   * Get platformPostId
+   * @return platformPostId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlatformPostId() {
+    return platformPostId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformPostId(@javax.annotation.Nullable String platformPostId) {
+    this.platformPostId = platformPostId;
   }
 
 
@@ -169,13 +198,14 @@ public class WebhookPayloadPostPostPlatformsInner {
     WebhookPayloadPostPostPlatformsInner webhookPayloadPostPostPlatformsInner = (WebhookPayloadPostPostPlatformsInner) o;
     return Objects.equals(this.platform, webhookPayloadPostPostPlatformsInner.platform) &&
         Objects.equals(this.status, webhookPayloadPostPostPlatformsInner.status) &&
+        Objects.equals(this.platformPostId, webhookPayloadPostPostPlatformsInner.platformPostId) &&
         Objects.equals(this.publishedUrl, webhookPayloadPostPostPlatformsInner.publishedUrl) &&
         Objects.equals(this.error, webhookPayloadPostPostPlatformsInner.error);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, status, publishedUrl, error);
+    return Objects.hash(platform, status, platformPostId, publishedUrl, error);
   }
 
   @Override
@@ -184,6 +214,7 @@ public class WebhookPayloadPostPostPlatformsInner {
     sb.append("class WebhookPayloadPostPostPlatformsInner {\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    publishedUrl: ").append(toIndentedString(publishedUrl)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
@@ -241,6 +272,11 @@ public class WebhookPayloadPostPostPlatformsInner {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `platformPostId` to the URL query string
+    if (getPlatformPostId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatformPostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatformPostId()))));
     }
 
     // add `publishedUrl` to the URL query string

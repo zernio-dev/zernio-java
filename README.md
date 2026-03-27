@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-26T18:00:22.486210924Z[Etc/UTC]
+- Build date: 2026-03-27T14:51:10.757984978Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1260,6 +1260,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadPost](docs/WebhookPayloadPost.md)
  - [WebhookPayloadPostPost](docs/WebhookPayloadPostPost.md)
  - [WebhookPayloadPostPostPlatformsInner](docs/WebhookPayloadPostPostPlatformsInner.md)
+ - [WebhookPayloadTest](docs/WebhookPayloadTest.md)
  - [YouTubeDailyViewsResponse](docs/YouTubeDailyViewsResponse.md)
  - [YouTubeDailyViewsResponseDailyViewsInner](docs/YouTubeDailyViewsResponseDailyViewsInner.md)
  - [YouTubeDailyViewsResponseDateRange](docs/YouTubeDailyViewsResponseDateRange.md)

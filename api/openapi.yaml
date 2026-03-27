@@ -133,9 +133,12 @@ tags:
     auto-creates contacts.
   name: Comment Automations
 - description: |
-    Configure webhooks for real-time notifications. Events: post.scheduled, post.published, post.failed, post.partial, post.recycled, account.connected, account.disconnected, message.received, comment.received.
+    Configure webhooks for real-time notifications. Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, message.received, comment.received, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
+- description: |
+    Incoming webhook deliveries sent by Zernio to your configured endpoint URL.
+  name: Webhook Events
 - description: |
     Publishing logs for transparency and debugging. Each log includes the platform API endpoint, HTTP status code, request/response bodies, duration, and retry attempts. Logs are automatically deleted after 7 days.
   name: Logs
@@ -7660,6 +7663,8 @@ paths:
                   - post.published
                   - post.failed
                   - post.partial
+                  - post.cancelled
+                  - post.recycled
                   - account.connected
                   - account.disconnected
                   - message.received
@@ -7817,6 +7822,7 @@ paths:
           - post.published
           - post.failed
           - post.partial
+          - post.cancelled
           - post.recycled
           - account.connected
           - account.disconnected
@@ -14107,6 +14113,7 @@ components:
             - post.published
             - post.failed
             - post.partial
+            - post.cancelled
             - post.recycled
             - account.connected
             - account.disconnected
@@ -14160,6 +14167,7 @@ components:
           - post.published
           - post.failed
           - post.partial
+          - post.cancelled
           - post.recycled
           - account.connected
           - account.disconnected
@@ -14198,13 +14206,38 @@ components:
           type: string
     WebhookPayloadPost:
       description: Webhook payload for post events
+      example:
+        post:
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          id: id
+          content: content
+          status: status
+          platforms:
+          - publishedUrl: publishedUrl
+            error: error
+            platform: platform
+            status: status
+            platformPostId: platformPostId
+          - publishedUrl: publishedUrl
+            error: error
+            platform: platform
+            status: status
+            platformPostId: platformPostId
+        id: id
+        event: post.scheduled
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          description: Stable webhook event ID
+          type: string
         event:
           enum:
           - post.scheduled
           - post.published
           - post.failed
           - post.partial
+          - post.cancelled
           - post.recycled
           type: string
         post:
@@ -14212,9 +14245,27 @@ components:
         timestamp:
           format: date-time
           type: string
+      required:
+      - event
+      - id
+      - post
+      - timestamp
     WebhookPayloadAccountConnected:
       description: Webhook payload for account connected events
+      example:
+        id: id
+        event: account.connected
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          description: Stable webhook event ID
+          type: string
         event:
           enum:
           - account.connected
@@ -14224,9 +14275,29 @@ components:
         timestamp:
           format: date-time
           type: string
+      required:
+      - account
+      - event
+      - id
+      - timestamp
     WebhookPayloadAccountDisconnected:
       description: Webhook payload for account disconnected events
+      example:
+        id: id
+        event: account.disconnected
+        account:
+          accountId: accountId
+          reason: reason
+          disconnectionType: intentional
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          description: Stable webhook event ID
+          type: string
         event:
           enum:
           - account.disconnected
@@ -14236,10 +14307,43 @@ components:
         timestamp:
           format: date-time
           type: string
+      required:
+      - account
+      - event
+      - id
+      - timestamp
     WebhookPayloadComment:
       description: "Webhook payload for comment received events (Instagram, Facebook,\
         \ Twitter/X, YouTube, LinkedIn, Bluesky, Reddit)"
+      example:
+        post:
+          id: id
+          platformPostId: platformPostId
+        comment:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          author:
+            name: name
+            id: id
+            picture: picture
+            username: username
+          parentCommentId: parentCommentId
+          id: id
+          postId: postId
+          text: text
+          platform: instagram
+          isReply: true
+          platformPostId: platformPostId
+        id: id
+        event: comment.received
+        account:
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          description: Stable webhook event ID
+          type: string
         event:
           enum:
           - comment.received
@@ -14253,10 +14357,67 @@ components:
         timestamp:
           format: date-time
           type: string
+      required:
+      - account
+      - comment
+      - event
+      - id
+      - post
+      - timestamp
     WebhookPayloadMessage:
-      description: "Webhook payload for message received events (DMs from Instagram,\
-        \ Facebook, Telegram, Bluesky, Reddit)"
+      description: Webhook payload for message received events
+      example:
+        metadata:
+          quickReplyPayload: quickReplyPayload
+          postbackTitle: postbackTitle
+          callbackData: callbackData
+          postbackPayload: postbackPayload
+        id: id
+        event: message.received
+        message:
+          attachments:
+          - payload: "{}"
+            type: type
+            url: url
+          - payload: "{}"
+            type: type
+            url: url
+          sender:
+            name: name
+            id: id
+            picture: picture
+            instagramProfile:
+              isFollowing: true
+              isVerified: true
+              isFollower: true
+              followerCount: 0
+            username: username
+          conversationId: conversationId
+          isRead: true
+          id: id
+          text: text
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          platformMessageId: platformMessageId
+          platform: instagram
+          direction: incoming
+        conversation:
+          participantId: participantId
+          platformConversationId: platformConversationId
+          participantPicture: participantPicture
+          id: id
+          participantName: participantName
+          participantUsername: participantUsername
+          status: active
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        id:
+          description: Stable webhook event ID
+          type: string
         event:
           enum:
           - message.received
@@ -14272,6 +14433,39 @@ components:
         timestamp:
           format: date-time
           type: string
+      required:
+      - account
+      - conversation
+      - event
+      - id
+      - message
+      - timestamp
+    WebhookPayloadTest:
+      description: Webhook payload for test deliveries
+      example:
+        id: id
+        event: webhook.test
+        message: message
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - webhook.test
+          type: string
+        message:
+          description: Human-readable test message
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - event
+      - id
+      - message
+      - timestamp
     PostLog:
       description: Publishing log entry showing details of a post publishing attempt
       example:
@@ -24843,6 +25037,7 @@ components:
             - post.published
             - post.failed
             - post.partial
+            - post.cancelled
             - post.recycled
             - account.connected
             - account.disconnected
@@ -24901,6 +25096,7 @@ components:
             - post.published
             - post.failed
             - post.partial
+            - post.cancelled
             - post.recycled
             - account.connected
             - account.disconnected
@@ -31711,16 +31907,44 @@ components:
           description: Count of accounts in this dimension
           type: number
     WebhookPayloadPost_post_platforms_inner:
+      example:
+        publishedUrl: publishedUrl
+        error: error
+        platform: platform
+        status: status
+        platformPostId: platformPostId
       properties:
         platform:
           type: string
         status:
           type: string
+        platformPostId:
+          type: string
         publishedUrl:
           type: string
         error:
           type: string
+      required:
+      - platform
+      - status
     WebhookPayloadPost_post:
+      example:
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        scheduledFor: 2000-01-23T04:56:07.000+00:00
+        id: id
+        content: content
+        status: status
+        platforms:
+        - publishedUrl: publishedUrl
+          error: error
+          platform: platform
+          status: status
+          platformPostId: platformPostId
+        - publishedUrl: publishedUrl
+          error: error
+          platform: platform
+          status: status
+          platformPostId: platformPostId
       properties:
         id:
           type: string
@@ -31738,7 +31962,19 @@ components:
           items:
             $ref: "#/components/schemas/WebhookPayloadPost_post_platforms_inner"
           type: array
+      required:
+      - content
+      - id
+      - platforms
+      - scheduledFor
+      - status
     WebhookPayloadAccountConnected_account:
+      example:
+        accountId: accountId
+        profileId: profileId
+        displayName: displayName
+        platform: platform
+        username: username
       properties:
         accountId:
           description: "The account's unique identifier (same as used in /v1/accounts/{accountId})"
@@ -31752,7 +31988,20 @@ components:
           type: string
         displayName:
           type: string
+      required:
+      - accountId
+      - platform
+      - profileId
+      - username
     WebhookPayloadAccountDisconnected_account:
+      example:
+        accountId: accountId
+        reason: reason
+        disconnectionType: intentional
+        profileId: profileId
+        displayName: displayName
+        platform: platform
+        username: username
       properties:
         accountId:
           description: "The account's unique identifier (same as used in /v1/accounts/{accountId})"
@@ -31776,7 +32025,19 @@ components:
         reason:
           description: Human-readable reason for the disconnection
           type: string
+      required:
+      - accountId
+      - disconnectionType
+      - platform
+      - profileId
+      - reason
+      - username
     WebhookPayloadComment_comment_author:
+      example:
+        name: name
+        id: id
+        picture: picture
+        username: username
       properties:
         id:
           description: Author's platform ID
@@ -31788,7 +32049,23 @@ components:
         picture:
           type: string
           nullable: true
+      required:
+      - id
     WebhookPayloadComment_comment:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        author:
+          name: name
+          id: id
+          picture: picture
+          username: username
+        parentCommentId: parentCommentId
+        id: id
+        postId: postId
+        text: text
+        platform: instagram
+        isReply: true
+        platformPostId: platformPostId
       properties:
         id:
           description: Platform comment ID
@@ -31824,7 +32101,20 @@ components:
           description: Parent comment ID if this is a reply
           type: string
           nullable: true
+      required:
+      - author
+      - createdAt
+      - id
+      - isReply
+      - parentCommentId
+      - platform
+      - platformPostId
+      - postId
+      - text
     WebhookPayloadComment_post:
+      example:
+        id: id
+        platformPostId: platformPostId
       properties:
         id:
           description: Internal post ID
@@ -31832,7 +32122,14 @@ components:
         platformPostId:
           description: Platform's post ID
           type: string
+      required:
+      - id
+      - platformPostId
     WebhookPayloadComment_account:
+      example:
+        id: id
+        platform: platform
+        username: username
       properties:
         id:
           description: Social account ID
@@ -31841,7 +32138,15 @@ components:
           type: string
         username:
           type: string
+      required:
+      - id
+      - platform
+      - username
     WebhookPayloadMessage_message_attachments_inner:
+      example:
+        payload: "{}"
+        type: type
+        url: url
       properties:
         type:
           description: "Attachment type (image, video, file, sticker, audio)"
@@ -31852,9 +32157,17 @@ components:
         payload:
           description: Additional attachment metadata
           type: object
+      required:
+      - type
+      - url
     WebhookPayloadMessage_message_sender_instagramProfile:
       description: Instagram profile data for the sender. Only present for Instagram
         conversations.
+      example:
+        isFollowing: true
+        isVerified: true
+        isFollower: true
+        followerCount: 0
       properties:
         isFollower:
           description: Whether the sender follows your Instagram business account
@@ -31872,8 +32185,17 @@ components:
           description: Whether the sender is a verified Instagram user
           type: boolean
           nullable: true
-      nullable: true
     WebhookPayloadMessage_message_sender:
+      example:
+        name: name
+        id: id
+        picture: picture
+        instagramProfile:
+          isFollowing: true
+          isVerified: true
+          isFollower: true
+          followerCount: 0
+        username: username
       properties:
         id:
           type: string
@@ -31885,7 +32207,35 @@ components:
           type: string
         instagramProfile:
           $ref: "#/components/schemas/WebhookPayloadMessage_message_sender_instagramProfile"
+      required:
+      - id
     WebhookPayloadMessage_message:
+      example:
+        attachments:
+        - payload: "{}"
+          type: type
+          url: url
+        - payload: "{}"
+          type: type
+          url: url
+        sender:
+          name: name
+          id: id
+          picture: picture
+          instagramProfile:
+            isFollowing: true
+            isVerified: true
+            isFollower: true
+            followerCount: 0
+          username: username
+        conversationId: conversationId
+        isRead: true
+        id: id
+        text: text
+        sentAt: 2000-01-23T04:56:07.000+00:00
+        platformMessageId: platformMessageId
+        platform: instagram
+        direction: incoming
       properties:
         id:
           description: Internal message ID
@@ -31898,8 +32248,7 @@ components:
           - instagram
           - facebook
           - telegram
-          - bluesky
-          - reddit
+          - whatsapp
           type: string
         platformMessageId:
           description: Platform's message ID
@@ -31907,6 +32256,7 @@ components:
         direction:
           enum:
           - incoming
+          - outgoing
           type: string
         text:
           description: Message text content
@@ -31923,7 +32273,26 @@ components:
           type: string
         isRead:
           type: boolean
+      required:
+      - attachments
+      - conversationId
+      - direction
+      - id
+      - isRead
+      - platform
+      - platformMessageId
+      - sender
+      - sentAt
+      - text
     WebhookPayloadMessage_conversation:
+      example:
+        participantId: participantId
+        platformConversationId: platformConversationId
+        participantPicture: participantPicture
+        id: id
+        participantName: participantName
+        participantUsername: participantUsername
+        status: active
       properties:
         id:
           type: string
@@ -31937,21 +32306,21 @@ components:
           type: string
         participantPicture:
           type: string
-        participantVerifiedType:
-          description: X/Twitter verified badge type. Only present for Twitter/X conversations.
-          enum:
-          - blue
-          - government
-          - business
-          - none
-          type: string
-          nullable: true
         status:
           enum:
           - active
           - archived
           type: string
+      required:
+      - id
+      - platformConversationId
+      - status
     WebhookPayloadMessage_account:
+      example:
+        displayName: displayName
+        id: id
+        platform: platform
+        username: username
       properties:
         id:
           description: Social account ID
@@ -31962,9 +32331,18 @@ components:
           type: string
         displayName:
           type: string
+      required:
+      - id
+      - platform
+      - username
     WebhookPayloadMessage_metadata:
       description: "Interactive message metadata (present when message is a quick\
         \ reply tap, postback button tap, or inline keyboard callback)"
+      example:
+        quickReplyPayload: quickReplyPayload
+        postbackTitle: postbackTitle
+        callbackData: callbackData
+        postbackPayload: postbackPayload
       properties:
         quickReplyPayload:
           description: Payload from a quick reply tap (Meta platforms)
@@ -32600,15 +32978,17 @@ x-documentation:
 
     Receive real-time notifications for post status changes, account events, and incoming messages:
 
-    - `post.scheduled` - Post successfully scheduled
+    - `post.scheduled` - Post created and scheduled for publishing
     - `post.published` - Post successfully published
     - `post.failed` - Post failed on all platforms
     - `post.partial` - Post published to some platforms, failed on others
-    - `post.recycled` - A new scheduled copy was created from a recycling post
+    - `post.cancelled` - Post publishing was cancelled
+    - `post.recycled` - Post recycled (cloned and re-scheduled)
     - `account.connected` - Social account connected
     - `account.disconnected` - Social account disconnected (token expired)
     - `message.received` - New DM received
     - `comment.received` - New comment received on a post
+    - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Webhook payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header.
 

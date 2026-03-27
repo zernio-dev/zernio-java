@@ -49,14 +49,14 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMessage.JSON_PROPERTY_SENT_AT,
   WebhookPayloadMessageMessage.JSON_PROPERTY_IS_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessage {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_CONVERSATION_ID = "conversationId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String conversationId;
 
   /**
@@ -69,9 +69,7 @@ public class WebhookPayloadMessageMessage {
     
     TELEGRAM(String.valueOf("telegram")),
     
-    BLUESKY(String.valueOf("bluesky")),
-    
-    REDDIT(String.valueOf("reddit"));
+    WHATSAPP(String.valueOf("whatsapp"));
 
     private String value;
 
@@ -101,18 +99,20 @@ public class WebhookPayloadMessageMessage {
   }
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private PlatformEnum platform;
 
   public static final String JSON_PROPERTY_PLATFORM_MESSAGE_ID = "platformMessageId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String platformMessageId;
 
   /**
    * Gets or Sets direction
    */
   public enum DirectionEnum {
-    INCOMING(String.valueOf("incoming"));
+    INCOMING(String.valueOf("incoming")),
+    
+    OUTGOING(String.valueOf("outgoing"));
 
     private String value;
 
@@ -142,33 +142,33 @@ public class WebhookPayloadMessageMessage {
   }
 
   public static final String JSON_PROPERTY_DIRECTION = "direction";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private DirectionEnum direction;
 
   public static final String JSON_PROPERTY_TEXT = "text";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String text;
 
   public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<WebhookPayloadMessageMessageAttachmentsInner> attachments = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SENDER = "sender";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadMessageMessageSender sender;
 
   public static final String JSON_PROPERTY_SENT_AT = "sentAt";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private OffsetDateTime sentAt;
 
   public static final String JSON_PROPERTY_IS_READ = "isRead";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private Boolean isRead;
 
   public WebhookPayloadMessageMessage() { 
   }
 
-  public WebhookPayloadMessageMessage id(@javax.annotation.Nullable String id) {
+  public WebhookPayloadMessageMessage id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -177,22 +177,22 @@ public class WebhookPayloadMessageMessage {
    * Internal message ID
    * @return id
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public WebhookPayloadMessageMessage conversationId(@javax.annotation.Nullable String conversationId) {
+  public WebhookPayloadMessageMessage conversationId(@javax.annotation.Nonnull String conversationId) {
     this.conversationId = conversationId;
     return this;
   }
@@ -201,22 +201,22 @@ public class WebhookPayloadMessageMessage {
    * Internal conversation ID
    * @return conversationId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getConversationId() {
     return conversationId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConversationId(@javax.annotation.Nullable String conversationId) {
+  @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setConversationId(@javax.annotation.Nonnull String conversationId) {
     this.conversationId = conversationId;
   }
 
 
-  public WebhookPayloadMessageMessage platform(@javax.annotation.Nullable PlatformEnum platform) {
+  public WebhookPayloadMessageMessage platform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
     return this;
   }
@@ -225,22 +225,22 @@ public class WebhookPayloadMessageMessage {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PlatformEnum getPlatform() {
     return platform;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable PlatformEnum platform) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
   }
 
 
-  public WebhookPayloadMessageMessage platformMessageId(@javax.annotation.Nullable String platformMessageId) {
+  public WebhookPayloadMessageMessage platformMessageId(@javax.annotation.Nonnull String platformMessageId) {
     this.platformMessageId = platformMessageId;
     return this;
   }
@@ -249,22 +249,22 @@ public class WebhookPayloadMessageMessage {
    * Platform&#39;s message ID
    * @return platformMessageId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_MESSAGE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_MESSAGE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPlatformMessageId() {
     return platformMessageId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_MESSAGE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformMessageId(@javax.annotation.Nullable String platformMessageId) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_MESSAGE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatformMessageId(@javax.annotation.Nonnull String platformMessageId) {
     this.platformMessageId = platformMessageId;
   }
 
 
-  public WebhookPayloadMessageMessage direction(@javax.annotation.Nullable DirectionEnum direction) {
+  public WebhookPayloadMessageMessage direction(@javax.annotation.Nonnull DirectionEnum direction) {
     this.direction = direction;
     return this;
   }
@@ -273,22 +273,22 @@ public class WebhookPayloadMessageMessage {
    * Get direction
    * @return direction
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DIRECTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_DIRECTION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DirectionEnum getDirection() {
     return direction;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DIRECTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDirection(@javax.annotation.Nullable DirectionEnum direction) {
+  @JsonProperty(value = JSON_PROPERTY_DIRECTION, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDirection(@javax.annotation.Nonnull DirectionEnum direction) {
     this.direction = direction;
   }
 
 
-  public WebhookPayloadMessageMessage text(@javax.annotation.Nullable String text) {
+  public WebhookPayloadMessageMessage text(@javax.annotation.Nonnull String text) {
     this.text = text;
     return this;
   }
@@ -297,22 +297,22 @@ public class WebhookPayloadMessageMessage {
    * Message text content
    * @return text
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getText() {
     return text;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setText(@javax.annotation.Nullable String text) {
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setText(@javax.annotation.Nonnull String text) {
     this.text = text;
   }
 
 
-  public WebhookPayloadMessageMessage attachments(@javax.annotation.Nullable List<WebhookPayloadMessageMessageAttachmentsInner> attachments) {
+  public WebhookPayloadMessageMessage attachments(@javax.annotation.Nonnull List<WebhookPayloadMessageMessageAttachmentsInner> attachments) {
     this.attachments = attachments;
     return this;
   }
@@ -329,22 +329,22 @@ public class WebhookPayloadMessageMessage {
    * Get attachments
    * @return attachments
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<WebhookPayloadMessageMessageAttachmentsInner> getAttachments() {
     return attachments;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachments(@javax.annotation.Nullable List<WebhookPayloadMessageMessageAttachmentsInner> attachments) {
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAttachments(@javax.annotation.Nonnull List<WebhookPayloadMessageMessageAttachmentsInner> attachments) {
     this.attachments = attachments;
   }
 
 
-  public WebhookPayloadMessageMessage sender(@javax.annotation.Nullable WebhookPayloadMessageMessageSender sender) {
+  public WebhookPayloadMessageMessage sender(@javax.annotation.Nonnull WebhookPayloadMessageMessageSender sender) {
     this.sender = sender;
     return this;
   }
@@ -353,22 +353,22 @@ public class WebhookPayloadMessageMessage {
    * Get sender
    * @return sender
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SENDER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SENDER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadMessageMessageSender getSender() {
     return sender;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SENDER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSender(@javax.annotation.Nullable WebhookPayloadMessageMessageSender sender) {
+  @JsonProperty(value = JSON_PROPERTY_SENDER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSender(@javax.annotation.Nonnull WebhookPayloadMessageMessageSender sender) {
     this.sender = sender;
   }
 
 
-  public WebhookPayloadMessageMessage sentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
+  public WebhookPayloadMessageMessage sentAt(@javax.annotation.Nonnull OffsetDateTime sentAt) {
     this.sentAt = sentAt;
     return this;
   }
@@ -377,22 +377,22 @@ public class WebhookPayloadMessageMessage {
    * Get sentAt
    * @return sentAt
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SENT_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SENT_AT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public OffsetDateTime getSentAt() {
     return sentAt;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SENT_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
+  @JsonProperty(value = JSON_PROPERTY_SENT_AT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSentAt(@javax.annotation.Nonnull OffsetDateTime sentAt) {
     this.sentAt = sentAt;
   }
 
 
-  public WebhookPayloadMessageMessage isRead(@javax.annotation.Nullable Boolean isRead) {
+  public WebhookPayloadMessageMessage isRead(@javax.annotation.Nonnull Boolean isRead) {
     this.isRead = isRead;
     return this;
   }
@@ -401,17 +401,17 @@ public class WebhookPayloadMessageMessage {
    * Get isRead
    * @return isRead
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_READ, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_IS_READ, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsRead() {
     return isRead;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_IS_READ, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsRead(@javax.annotation.Nullable Boolean isRead) {
+  @JsonProperty(value = JSON_PROPERTY_IS_READ, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setIsRead(@javax.annotation.Nonnull Boolean isRead) {
     this.isRead = isRead;
   }
 

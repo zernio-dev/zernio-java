@@ -8,9 +8,10 @@ Webhook payload for post events
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**event** | [**EventEnum**](#EventEnum) |  |  [optional] |
-|**post** | [**WebhookPayloadPostPost**](WebhookPayloadPostPost.md) |  |  [optional] |
-|**timestamp** | **OffsetDateTime** |  |  [optional] |
+|**id** | **String** | Stable webhook event ID |  |
+|**event** | [**EventEnum**](#EventEnum) |  |  |
+|**post** | [**WebhookPayloadPostPost**](WebhookPayloadPostPost.md) |  |  |
+|**timestamp** | **OffsetDateTime** |  |  |
 
 
 
@@ -22,6 +23,7 @@ Webhook payload for post events
 | POST_PUBLISHED | &quot;post.published&quot; |
 | POST_FAILED | &quot;post.failed&quot; |
 | POST_PARTIAL | &quot;post.partial&quot; |
+| POST_CANCELLED | &quot;post.cancelled&quot; |
 | POST_RECYCLED | &quot;post.recycled&quot; |
 
 

@@ -41,22 +41,22 @@ import dev.zernio.ApiClient;
   WebhookPayloadAccountDisconnectedAccount.JSON_PROPERTY_DISCONNECTION_TYPE,
   WebhookPayloadAccountDisconnectedAccount.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountDisconnectedAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String accountId;
 
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String profileId;
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String platform;
 
   public static final String JSON_PROPERTY_USERNAME = "username";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String username;
 
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
@@ -99,17 +99,17 @@ public class WebhookPayloadAccountDisconnectedAccount {
   }
 
   public static final String JSON_PROPERTY_DISCONNECTION_TYPE = "disconnectionType";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private DisconnectionTypeEnum disconnectionType;
 
   public static final String JSON_PROPERTY_REASON = "reason";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String reason;
 
   public WebhookPayloadAccountDisconnectedAccount() { 
   }
 
-  public WebhookPayloadAccountDisconnectedAccount accountId(@javax.annotation.Nullable String accountId) {
+  public WebhookPayloadAccountDisconnectedAccount accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
@@ -118,22 +118,22 @@ public class WebhookPayloadAccountDisconnectedAccount {
    * The account&#39;s unique identifier (same as used in /v1/accounts/{accountId})
    * @return accountId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getAccountId() {
     return accountId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountId(@javax.annotation.Nullable String accountId) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 
 
-  public WebhookPayloadAccountDisconnectedAccount profileId(@javax.annotation.Nullable String profileId) {
+  public WebhookPayloadAccountDisconnectedAccount profileId(@javax.annotation.Nonnull String profileId) {
     this.profileId = profileId;
     return this;
   }
@@ -142,22 +142,22 @@ public class WebhookPayloadAccountDisconnectedAccount {
    * The profile&#39;s unique identifier this account belongs to
    * @return profileId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getProfileId() {
     return profileId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfileId(@javax.annotation.Nullable String profileId) {
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setProfileId(@javax.annotation.Nonnull String profileId) {
     this.profileId = profileId;
   }
 
 
-  public WebhookPayloadAccountDisconnectedAccount platform(@javax.annotation.Nullable String platform) {
+  public WebhookPayloadAccountDisconnectedAccount platform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
     return this;
   }
@@ -166,22 +166,22 @@ public class WebhookPayloadAccountDisconnectedAccount {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPlatform() {
     return platform;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable String platform) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
   }
 
 
-  public WebhookPayloadAccountDisconnectedAccount username(@javax.annotation.Nullable String username) {
+  public WebhookPayloadAccountDisconnectedAccount username(@javax.annotation.Nonnull String username) {
     this.username = username;
     return this;
   }
@@ -190,17 +190,17 @@ public class WebhookPayloadAccountDisconnectedAccount {
    * Get username
    * @return username
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUsername() {
     return username;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsername(@javax.annotation.Nullable String username) {
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUsername(@javax.annotation.Nonnull String username) {
     this.username = username;
   }
 
@@ -229,7 +229,7 @@ public class WebhookPayloadAccountDisconnectedAccount {
   }
 
 
-  public WebhookPayloadAccountDisconnectedAccount disconnectionType(@javax.annotation.Nullable DisconnectionTypeEnum disconnectionType) {
+  public WebhookPayloadAccountDisconnectedAccount disconnectionType(@javax.annotation.Nonnull DisconnectionTypeEnum disconnectionType) {
     this.disconnectionType = disconnectionType;
     return this;
   }
@@ -238,22 +238,22 @@ public class WebhookPayloadAccountDisconnectedAccount {
    * Whether the disconnection was intentional (user action) or unintentional (token expired/revoked)
    * @return disconnectionType
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DISCONNECTION_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_DISCONNECTION_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DisconnectionTypeEnum getDisconnectionType() {
     return disconnectionType;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DISCONNECTION_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisconnectionType(@javax.annotation.Nullable DisconnectionTypeEnum disconnectionType) {
+  @JsonProperty(value = JSON_PROPERTY_DISCONNECTION_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDisconnectionType(@javax.annotation.Nonnull DisconnectionTypeEnum disconnectionType) {
     this.disconnectionType = disconnectionType;
   }
 
 
-  public WebhookPayloadAccountDisconnectedAccount reason(@javax.annotation.Nullable String reason) {
+  public WebhookPayloadAccountDisconnectedAccount reason(@javax.annotation.Nonnull String reason) {
     this.reason = reason;
     return this;
   }
@@ -262,17 +262,17 @@ public class WebhookPayloadAccountDisconnectedAccount {
    * Human-readable reason for the disconnection
    * @return reason
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_REASON, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getReason() {
     return reason;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReason(@javax.annotation.Nullable String reason) {
+  @JsonProperty(value = JSON_PROPERTY_REASON, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setReason(@javax.annotation.Nonnull String reason) {
     this.reason = reason;
   }
 

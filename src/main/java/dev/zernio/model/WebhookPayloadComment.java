@@ -37,14 +37,19 @@ import dev.zernio.ApiClient;
  * Webhook payload for comment received events (Instagram, Facebook, Twitter/X, YouTube, LinkedIn, Bluesky, Reddit)
  */
 @JsonPropertyOrder({
+  WebhookPayloadComment.JSON_PROPERTY_ID,
   WebhookPayloadComment.JSON_PROPERTY_EVENT,
   WebhookPayloadComment.JSON_PROPERTY_COMMENT,
   WebhookPayloadComment.JSON_PROPERTY_POST,
   WebhookPayloadComment.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadComment.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadComment {
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nonnull
+  private String id;
+
   /**
    * Gets or Sets event
    */
@@ -79,29 +84,53 @@ public class WebhookPayloadComment {
   }
 
   public static final String JSON_PROPERTY_EVENT = "event";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private EventEnum event;
 
   public static final String JSON_PROPERTY_COMMENT = "comment";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadCommentComment comment;
 
   public static final String JSON_PROPERTY_POST = "post";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadCommentPost post;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private WebhookPayloadCommentAccount account;
 
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private OffsetDateTime timestamp;
 
   public WebhookPayloadComment() { 
   }
 
-  public WebhookPayloadComment event(@javax.annotation.Nullable EventEnum event) {
+  public WebhookPayloadComment id(@javax.annotation.Nonnull String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Stable webhook event ID
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
+    this.id = id;
+  }
+
+
+  public WebhookPayloadComment event(@javax.annotation.Nonnull EventEnum event) {
     this.event = event;
     return this;
   }
@@ -110,22 +139,22 @@ public class WebhookPayloadComment {
    * Get event
    * @return event
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public EventEnum getEvent() {
     return event;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEvent(@javax.annotation.Nullable EventEnum event) {
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEvent(@javax.annotation.Nonnull EventEnum event) {
     this.event = event;
   }
 
 
-  public WebhookPayloadComment comment(@javax.annotation.Nullable WebhookPayloadCommentComment comment) {
+  public WebhookPayloadComment comment(@javax.annotation.Nonnull WebhookPayloadCommentComment comment) {
     this.comment = comment;
     return this;
   }
@@ -134,22 +163,22 @@ public class WebhookPayloadComment {
    * Get comment
    * @return comment
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COMMENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_COMMENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadCommentComment getComment() {
     return comment;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_COMMENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setComment(@javax.annotation.Nullable WebhookPayloadCommentComment comment) {
+  @JsonProperty(value = JSON_PROPERTY_COMMENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setComment(@javax.annotation.Nonnull WebhookPayloadCommentComment comment) {
     this.comment = comment;
   }
 
 
-  public WebhookPayloadComment post(@javax.annotation.Nullable WebhookPayloadCommentPost post) {
+  public WebhookPayloadComment post(@javax.annotation.Nonnull WebhookPayloadCommentPost post) {
     this.post = post;
     return this;
   }
@@ -158,22 +187,22 @@ public class WebhookPayloadComment {
    * Get post
    * @return post
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_POST, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_POST, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadCommentPost getPost() {
     return post;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_POST, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPost(@javax.annotation.Nullable WebhookPayloadCommentPost post) {
+  @JsonProperty(value = JSON_PROPERTY_POST, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPost(@javax.annotation.Nonnull WebhookPayloadCommentPost post) {
     this.post = post;
   }
 
 
-  public WebhookPayloadComment account(@javax.annotation.Nullable WebhookPayloadCommentAccount account) {
+  public WebhookPayloadComment account(@javax.annotation.Nonnull WebhookPayloadCommentAccount account) {
     this.account = account;
     return this;
   }
@@ -182,22 +211,22 @@ public class WebhookPayloadComment {
    * Get account
    * @return account
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public WebhookPayloadCommentAccount getAccount() {
     return account;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccount(@javax.annotation.Nullable WebhookPayloadCommentAccount account) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccount(@javax.annotation.Nonnull WebhookPayloadCommentAccount account) {
     this.account = account;
   }
 
 
-  public WebhookPayloadComment timestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+  public WebhookPayloadComment timestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -206,17 +235,17 @@ public class WebhookPayloadComment {
    * Get timestamp
    * @return timestamp
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public OffsetDateTime getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTimestamp(@javax.annotation.Nonnull OffsetDateTime timestamp) {
     this.timestamp = timestamp;
   }
 
@@ -233,7 +262,8 @@ public class WebhookPayloadComment {
       return false;
     }
     WebhookPayloadComment webhookPayloadComment = (WebhookPayloadComment) o;
-    return Objects.equals(this.event, webhookPayloadComment.event) &&
+    return Objects.equals(this.id, webhookPayloadComment.id) &&
+        Objects.equals(this.event, webhookPayloadComment.event) &&
         Objects.equals(this.comment, webhookPayloadComment.comment) &&
         Objects.equals(this.post, webhookPayloadComment.post) &&
         Objects.equals(this.account, webhookPayloadComment.account) &&
@@ -242,13 +272,14 @@ public class WebhookPayloadComment {
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, comment, post, account, timestamp);
+    return Objects.hash(id, event, comment, post, account, timestamp);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadComment {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    post: ").append(toIndentedString(post)).append("\n");
@@ -300,6 +331,11 @@ public class WebhookPayloadComment {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
 
     // add `event` to the URL query string
     if (getEvent() != null) {

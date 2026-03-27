@@ -44,22 +44,22 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostPost.JSON_PROPERTY_PUBLISHED_AT,
   WebhookPayloadPostPost.JSON_PROPERTY_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPost {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_CONTENT = "content";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String content;
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String status;
 
   public static final String JSON_PROPERTY_SCHEDULED_FOR = "scheduledFor";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private OffsetDateTime scheduledFor;
 
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
@@ -67,13 +67,13 @@ public class WebhookPayloadPostPost {
   private OffsetDateTime publishedAt;
 
   public static final String JSON_PROPERTY_PLATFORMS = "platforms";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<WebhookPayloadPostPostPlatformsInner> platforms = new ArrayList<>();
 
   public WebhookPayloadPostPost() { 
   }
 
-  public WebhookPayloadPostPost id(@javax.annotation.Nullable String id) {
+  public WebhookPayloadPostPost id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -82,22 +82,22 @@ public class WebhookPayloadPostPost {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public WebhookPayloadPostPost content(@javax.annotation.Nullable String content) {
+  public WebhookPayloadPostPost content(@javax.annotation.Nonnull String content) {
     this.content = content;
     return this;
   }
@@ -106,22 +106,22 @@ public class WebhookPayloadPostPost {
    * Get content
    * @return content
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getContent() {
     return content;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContent(@javax.annotation.Nullable String content) {
+  @JsonProperty(value = JSON_PROPERTY_CONTENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setContent(@javax.annotation.Nonnull String content) {
     this.content = content;
   }
 
 
-  public WebhookPayloadPostPost status(@javax.annotation.Nullable String status) {
+  public WebhookPayloadPostPost status(@javax.annotation.Nonnull String status) {
     this.status = status;
     return this;
   }
@@ -130,22 +130,22 @@ public class WebhookPayloadPostPost {
    * Get status
    * @return status
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getStatus() {
     return status;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable String status) {
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(@javax.annotation.Nonnull String status) {
     this.status = status;
   }
 
 
-  public WebhookPayloadPostPost scheduledFor(@javax.annotation.Nullable OffsetDateTime scheduledFor) {
+  public WebhookPayloadPostPost scheduledFor(@javax.annotation.Nonnull OffsetDateTime scheduledFor) {
     this.scheduledFor = scheduledFor;
     return this;
   }
@@ -154,17 +154,17 @@ public class WebhookPayloadPostPost {
    * Get scheduledFor
    * @return scheduledFor
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_FOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_FOR, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public OffsetDateTime getScheduledFor() {
     return scheduledFor;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_FOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setScheduledFor(@javax.annotation.Nullable OffsetDateTime scheduledFor) {
+  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_FOR, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setScheduledFor(@javax.annotation.Nonnull OffsetDateTime scheduledFor) {
     this.scheduledFor = scheduledFor;
   }
 
@@ -193,7 +193,7 @@ public class WebhookPayloadPostPost {
   }
 
 
-  public WebhookPayloadPostPost platforms(@javax.annotation.Nullable List<WebhookPayloadPostPostPlatformsInner> platforms) {
+  public WebhookPayloadPostPost platforms(@javax.annotation.Nonnull List<WebhookPayloadPostPostPlatformsInner> platforms) {
     this.platforms = platforms;
     return this;
   }
@@ -210,17 +210,17 @@ public class WebhookPayloadPostPost {
    * Get platforms
    * @return platforms
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<WebhookPayloadPostPostPlatformsInner> getPlatforms() {
     return platforms;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatforms(@javax.annotation.Nullable List<WebhookPayloadPostPostPlatformsInner> platforms) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatforms(@javax.annotation.Nonnull List<WebhookPayloadPostPostPlatformsInner> platforms) {
     this.platforms = platforms;
   }
 

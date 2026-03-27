@@ -7,8 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**platform** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
+|**platform** | **String** |  |  |
+|**status** | **String** |  |  |
+|**platformPostId** | **String** |  |  [optional] |
 |**publishedUrl** | **String** |  |  [optional] |
 |**error** | **String** |  |  [optional] |
 

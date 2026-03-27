@@ -32,6 +32,7 @@ Webhook delivery log entry
 | POST_PUBLISHED | &quot;post.published&quot; |
 | POST_FAILED | &quot;post.failed&quot; |
 | POST_PARTIAL | &quot;post.partial&quot; |
+| POST_CANCELLED | &quot;post.cancelled&quot; |
 | POST_RECYCLED | &quot;post.recycled&quot; |
 | ACCOUNT_CONNECTED | &quot;account.connected&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |

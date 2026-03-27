@@ -37,14 +37,14 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMessageAttachmentsInner.JSON_PROPERTY_URL,
   WebhookPayloadMessageMessageAttachmentsInner.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessageAttachmentsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String type;
 
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String url;
 
   public static final String JSON_PROPERTY_PAYLOAD = "payload";
@@ -54,7 +54,7 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
   public WebhookPayloadMessageMessageAttachmentsInner() { 
   }
 
-  public WebhookPayloadMessageMessageAttachmentsInner type(@javax.annotation.Nullable String type) {
+  public WebhookPayloadMessageMessageAttachmentsInner type(@javax.annotation.Nonnull String type) {
     this.type = type;
     return this;
   }
@@ -63,22 +63,22 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
    * Attachment type (image, video, file, sticker, audio)
    * @return type
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getType() {
     return type;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(@javax.annotation.Nullable String type) {
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
   }
 
 
-  public WebhookPayloadMessageMessageAttachmentsInner url(@javax.annotation.Nullable String url) {
+  public WebhookPayloadMessageMessageAttachmentsInner url(@javax.annotation.Nonnull String url) {
     this.url = url;
     return this;
   }
@@ -87,17 +87,17 @@ public class WebhookPayloadMessageMessageAttachmentsInner {
    * Attachment URL (may expire for Meta platforms)
    * @return url
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUrl() {
     return url;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrl(@javax.annotation.Nullable String url) {
+  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUrl(@javax.annotation.Nonnull String url) {
     this.url = url;
   }
 

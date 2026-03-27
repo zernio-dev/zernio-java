@@ -2,18 +2,19 @@
 
 # WebhookPayloadMessage
 
-Webhook payload for message received events (DMs from Instagram, Facebook, Telegram, Bluesky, Reddit)
+Webhook payload for message received events
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**event** | [**EventEnum**](#EventEnum) |  |  [optional] |
-|**message** | [**WebhookPayloadMessageMessage**](WebhookPayloadMessageMessage.md) |  |  [optional] |
-|**conversation** | [**WebhookPayloadMessageConversation**](WebhookPayloadMessageConversation.md) |  |  [optional] |
-|**account** | [**WebhookPayloadMessageAccount**](WebhookPayloadMessageAccount.md) |  |  [optional] |
+|**id** | **String** | Stable webhook event ID |  |
+|**event** | [**EventEnum**](#EventEnum) |  |  |
+|**message** | [**WebhookPayloadMessageMessage**](WebhookPayloadMessageMessage.md) |  |  |
+|**conversation** | [**WebhookPayloadMessageConversation**](WebhookPayloadMessageConversation.md) |  |  |
+|**account** | [**WebhookPayloadMessageAccount**](WebhookPayloadMessageAccount.md) |  |  |
 |**metadata** | [**WebhookPayloadMessageMetadata**](WebhookPayloadMessageMetadata.md) |  |  [optional] |
-|**timestamp** | **OffsetDateTime** |  |  [optional] |
+|**timestamp** | **OffsetDateTime** |  |  |
 
 
 

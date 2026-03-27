@@ -37,24 +37,24 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentAccount.JSON_PROPERTY_PLATFORM,
   WebhookPayloadCommentAccount.JSON_PROPERTY_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentAccount {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String platform;
 
   public static final String JSON_PROPERTY_USERNAME = "username";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String username;
 
   public WebhookPayloadCommentAccount() { 
   }
 
-  public WebhookPayloadCommentAccount id(@javax.annotation.Nullable String id) {
+  public WebhookPayloadCommentAccount id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -63,22 +63,22 @@ public class WebhookPayloadCommentAccount {
    * Social account ID
    * @return id
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public WebhookPayloadCommentAccount platform(@javax.annotation.Nullable String platform) {
+  public WebhookPayloadCommentAccount platform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
     return this;
   }
@@ -87,22 +87,22 @@ public class WebhookPayloadCommentAccount {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPlatform() {
     return platform;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable String platform) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
   }
 
 
-  public WebhookPayloadCommentAccount username(@javax.annotation.Nullable String username) {
+  public WebhookPayloadCommentAccount username(@javax.annotation.Nonnull String username) {
     this.username = username;
     return this;
   }
@@ -111,17 +111,17 @@ public class WebhookPayloadCommentAccount {
    * Get username
    * @return username
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUsername() {
     return username;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsername(@javax.annotation.Nullable String username) {
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUsername(@javax.annotation.Nonnull String username) {
     this.username = username;
   }
 

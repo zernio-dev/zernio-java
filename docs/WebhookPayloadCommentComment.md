@@ -7,15 +7,15 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Platform comment ID |  [optional] |
-|**postId** | **String** | Internal post ID |  [optional] |
-|**platformPostId** | **String** | Platform&#39;s post ID |  [optional] |
-|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
-|**text** | **String** | Comment text content |  [optional] |
-|**author** | [**WebhookPayloadCommentCommentAuthor**](WebhookPayloadCommentCommentAuthor.md) |  |  [optional] |
-|**createdAt** | **OffsetDateTime** |  |  [optional] |
-|**isReply** | **Boolean** | Whether this is a reply to another comment |  [optional] |
-|**parentCommentId** | **String** | Parent comment ID if this is a reply |  [optional] |
+|**id** | **String** | Platform comment ID |  |
+|**postId** | **String** | Internal post ID |  |
+|**platformPostId** | **String** | Platform&#39;s post ID |  |
+|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
+|**text** | **String** | Comment text content |  |
+|**author** | [**WebhookPayloadCommentCommentAuthor**](WebhookPayloadCommentCommentAuthor.md) |  |  |
+|**createdAt** | **OffsetDateTime** |  |  |
+|**isReply** | **Boolean** | Whether this is a reply to another comment |  |
+|**parentCommentId** | **String** | Parent comment ID if this is a reply |  |
 
 
 

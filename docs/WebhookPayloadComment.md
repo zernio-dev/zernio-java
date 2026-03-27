@@ -8,11 +8,12 @@ Webhook payload for comment received events (Instagram, Facebook, Twitter/X, You
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**event** | [**EventEnum**](#EventEnum) |  |  [optional] |
-|**comment** | [**WebhookPayloadCommentComment**](WebhookPayloadCommentComment.md) |  |  [optional] |
-|**post** | [**WebhookPayloadCommentPost**](WebhookPayloadCommentPost.md) |  |  [optional] |
-|**account** | [**WebhookPayloadCommentAccount**](WebhookPayloadCommentAccount.md) |  |  [optional] |
-|**timestamp** | **OffsetDateTime** |  |  [optional] |
+|**id** | **String** | Stable webhook event ID |  |
+|**event** | [**EventEnum**](#EventEnum) |  |  |
+|**comment** | [**WebhookPayloadCommentComment**](WebhookPayloadCommentComment.md) |  |  |
+|**post** | [**WebhookPayloadCommentPost**](WebhookPayloadCommentPost.md) |  |  |
+|**account** | [**WebhookPayloadCommentAccount**](WebhookPayloadCommentAccount.md) |  |  |
+|**timestamp** | **OffsetDateTime** |  |  |
 
 
 

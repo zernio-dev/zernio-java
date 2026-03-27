@@ -7,12 +7,12 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**content** | **String** |  |  [optional] |
-|**status** | **String** |  |  [optional] |
-|**scheduledFor** | **OffsetDateTime** |  |  [optional] |
+|**id** | **String** |  |  |
+|**content** | **String** |  |  |
+|**status** | **String** |  |  |
+|**scheduledFor** | **OffsetDateTime** |  |  |
 |**publishedAt** | **OffsetDateTime** |  |  [optional] |
-|**platforms** | [**List&lt;WebhookPayloadPostPostPlatformsInner&gt;**](WebhookPayloadPostPostPlatformsInner.md) |  |  [optional] |
+|**platforms** | [**List&lt;WebhookPayloadPostPostPlatformsInner&gt;**](WebhookPayloadPostPostPlatformsInner.md) |  |  |
 
 
 

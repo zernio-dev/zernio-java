@@ -8,9 +8,10 @@ Webhook payload for account connected events
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**event** | [**EventEnum**](#EventEnum) |  |  [optional] |
-|**account** | [**WebhookPayloadAccountConnectedAccount**](WebhookPayloadAccountConnectedAccount.md) |  |  [optional] |
-|**timestamp** | **OffsetDateTime** |  |  [optional] |
+|**id** | **String** | Stable webhook event ID |  |
+|**event** | [**EventEnum**](#EventEnum) |  |  |
+|**account** | [**WebhookPayloadAccountConnectedAccount**](WebhookPayloadAccountConnectedAccount.md) |  |  |
+|**timestamp** | **OffsetDateTime** |  |  |
 
 
 

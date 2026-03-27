@@ -7,16 +7,16 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Internal message ID |  [optional] |
-|**conversationId** | **String** | Internal conversation ID |  [optional] |
-|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
-|**platformMessageId** | **String** | Platform&#39;s message ID |  [optional] |
-|**direction** | [**DirectionEnum**](#DirectionEnum) |  |  [optional] |
-|**text** | **String** | Message text content |  [optional] |
-|**attachments** | [**List&lt;WebhookPayloadMessageMessageAttachmentsInner&gt;**](WebhookPayloadMessageMessageAttachmentsInner.md) |  |  [optional] |
-|**sender** | [**WebhookPayloadMessageMessageSender**](WebhookPayloadMessageMessageSender.md) |  |  [optional] |
-|**sentAt** | **OffsetDateTime** |  |  [optional] |
-|**isRead** | **Boolean** |  |  [optional] |
+|**id** | **String** | Internal message ID |  |
+|**conversationId** | **String** | Internal conversation ID |  |
+|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
+|**platformMessageId** | **String** | Platform&#39;s message ID |  |
+|**direction** | [**DirectionEnum**](#DirectionEnum) |  |  |
+|**text** | **String** | Message text content |  |
+|**attachments** | [**List&lt;WebhookPayloadMessageMessageAttachmentsInner&gt;**](WebhookPayloadMessageMessageAttachmentsInner.md) |  |  |
+|**sender** | [**WebhookPayloadMessageMessageSender**](WebhookPayloadMessageMessageSender.md) |  |  |
+|**sentAt** | **OffsetDateTime** |  |  |
+|**isRead** | **Boolean** |  |  |
 
 
 
@@ -27,8 +27,7 @@
 | INSTAGRAM | &quot;instagram&quot; |
 | FACEBOOK | &quot;facebook&quot; |
 | TELEGRAM | &quot;telegram&quot; |
-| BLUESKY | &quot;bluesky&quot; |
-| REDDIT | &quot;reddit&quot; |
+| WHATSAPP | &quot;whatsapp&quot; |
 
 
 
@@ -37,6 +36,7 @@
 | Name | Value |
 |---- | -----|
 | INCOMING | &quot;incoming&quot; |
+| OUTGOING | &quot;outgoing&quot; |
 
 
 

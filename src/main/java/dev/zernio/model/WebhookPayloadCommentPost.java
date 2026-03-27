@@ -36,20 +36,20 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentPost.JSON_PROPERTY_ID,
   WebhookPayloadCommentPost.JSON_PROPERTY_PLATFORM_POST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-26T18:00:22.486210924Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-27T14:51:10.757984978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentPost {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String platformPostId;
 
   public WebhookPayloadCommentPost() { 
   }
 
-  public WebhookPayloadCommentPost id(@javax.annotation.Nullable String id) {
+  public WebhookPayloadCommentPost id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -58,22 +58,22 @@ public class WebhookPayloadCommentPost {
    * Internal post ID
    * @return id
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public WebhookPayloadCommentPost platformPostId(@javax.annotation.Nullable String platformPostId) {
+  public WebhookPayloadCommentPost platformPostId(@javax.annotation.Nonnull String platformPostId) {
     this.platformPostId = platformPostId;
     return this;
   }
@@ -82,17 +82,17 @@ public class WebhookPayloadCommentPost {
    * Platform&#39;s post ID
    * @return platformPostId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPlatformPostId() {
     return platformPostId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformPostId(@javax.annotation.Nullable String platformPostId) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatformPostId(@javax.annotation.Nonnull String platformPostId) {
     this.platformPostId = platformPostId;
   }
 

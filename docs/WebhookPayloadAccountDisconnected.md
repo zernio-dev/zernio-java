@@ -8,9 +8,10 @@ Webhook payload for account disconnected events
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**event** | [**EventEnum**](#EventEnum) |  |  [optional] |
-|**account** | [**WebhookPayloadAccountDisconnectedAccount**](WebhookPayloadAccountDisconnectedAccount.md) |  |  [optional] |
-|**timestamp** | **OffsetDateTime** |  |  [optional] |
+|**id** | **String** | Stable webhook event ID |  |
+|**event** | [**EventEnum**](#EventEnum) |  |  |
+|**account** | [**WebhookPayloadAccountDisconnectedAccount**](WebhookPayloadAccountDisconnectedAccount.md) |  |  |
+|**timestamp** | **OffsetDateTime** |  |  |
 
 
 
