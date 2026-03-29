@@ -18,8 +18,10 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AddMessageReactionRequest;
 import dev.zernio.model.EditInboxMessage200Response;
 import dev.zernio.model.EditInboxMessageRequest;
+import java.io.File;
 import dev.zernio.model.GetInboxConversation200Response;
 import dev.zernio.model.GetInboxConversationMessages200Response;
 import dev.zernio.model.InlineObject;
@@ -28,11 +30,20 @@ import dev.zernio.model.SendInboxMessage200Response;
 import dev.zernio.model.SendInboxMessage400Response;
 import dev.zernio.model.SendInboxMessageRequest;
 import dev.zernio.model.SendInboxMessageRequest1;
+import dev.zernio.model.SendTypingIndicatorRequest;
 import dev.zernio.model.UpdateInboxConversation200Response;
 import dev.zernio.model.UpdateInboxConversationRequest;
+import dev.zernio.model.UpdateRedditSubreddits200Response;
+import dev.zernio.model.UploadMediaDirect200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 
 import java.io.InputStream;
 import java.io.ByteArrayInputStream;
@@ -56,7 +67,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-29T13:17:04.228443515Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-29T16:52:56.855785331Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -171,6 +182,297 @@ public class MessagesApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Add reaction
+   * Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to react to (required)
+   * @param addMessageReactionRequest  (required)
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
+    return addMessageReaction(conversationId, messageId, addMessageReactionRequest, null);
+  }
+
+  /**
+   * Add reaction
+   * Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to react to (required)
+   * @param addMessageReactionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Add reaction
+   * Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to react to (required)
+   * @param addMessageReactionRequest  (required)
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
+    return addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, null);
+  }
+
+  /**
+   * Add reaction
+   * Add an emoji reaction to a message. Platform support: - **Telegram**: Supports a subset of Unicode emoji reactions - **WhatsApp**: Supports any standard emoji (one reaction per message per sender) - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to react to (required)
+   * @param addMessageReactionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addMessageReactionRequestBuilder(conversationId, messageId, addMessageReactionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("addMessageReaction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateRedditSubreddits200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        
+
+        return new ApiResponse<UpdateRedditSubreddits200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder addMessageReactionRequestBuilder(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'conversationId' is set
+    if (conversationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'conversationId' when calling addMessageReaction");
+    }
+    // verify the required parameter 'messageId' is set
+    if (messageId == null) {
+      throw new ApiException(400, "Missing the required parameter 'messageId' when calling addMessageReaction");
+    }
+    // verify the required parameter 'addMessageReactionRequest' is set
+    if (addMessageReactionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'addMessageReactionRequest' when calling addMessageReaction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions"
+        .replace("{conversationId}", ApiClient.urlEncode(conversationId.toString()))
+        .replace("{messageId}", ApiClient.urlEncode(messageId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addMessageReactionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete message
+   * Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to delete (required)
+   * @param accountId Social account ID (required)
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response deleteInboxMessage(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteInboxMessage(conversationId, messageId, accountId, null);
+  }
+
+  /**
+   * Delete message
+   * Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to delete (required)
+   * @param accountId Social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response deleteInboxMessage(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete message
+   * Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to delete (required)
+   * @param accountId Social account ID (required)
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> deleteInboxMessageWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId, null);
+  }
+
+  /**
+   * Delete message
+   * Delete a message from a conversation. Platform support varies: - **Telegram**: Full delete (bot&#39;s own messages anytime, others if admin) - **X/Twitter**: Full delete (own DM events only) - **Bluesky**: Delete for self only (recipient still sees it) - **Reddit**: Delete from sender&#39;s view only - **Facebook, Instagram, WhatsApp**: Not supported (returns 400) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID to delete (required)
+   * @param accountId Social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> deleteInboxMessageWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteInboxMessageRequestBuilder(conversationId, messageId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteInboxMessage", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateRedditSubreddits200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        
+
+        return new ApiResponse<UpdateRedditSubreddits200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteInboxMessageRequestBuilder(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'conversationId' is set
+    if (conversationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'conversationId' when calling deleteInboxMessage");
+    }
+    // verify the required parameter 'messageId' is set
+    if (messageId == null) {
+      throw new ApiException(400, "Missing the required parameter 'messageId' when calling deleteInboxMessage");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteInboxMessage");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/conversations/{conversationId}/messages/{messageId}"
+        .replace("{conversationId}", ApiClient.urlEncode(conversationId.toString()))
+        .replace("{messageId}", ApiClient.urlEncode(messageId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -761,6 +1063,156 @@ public class MessagesApi {
   }
 
   /**
+   * Remove reaction
+   * Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID (required)
+   * @param accountId Social account ID (required)
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return removeMessageReaction(conversationId, messageId, accountId, null);
+  }
+
+  /**
+   * Remove reaction
+   * Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID (required)
+   * @param accountId Social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove reaction
+   * Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID (required)
+   * @param accountId Social account ID (required)
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, null);
+  }
+
+  /**
+   * Remove reaction
+   * Remove a reaction from a message. Platform support: - **Telegram**: Send empty reaction array to clear - **WhatsApp**: Send empty emoji to remove - **All others**: Returns 400 (not supported) 
+   * @param conversationId The conversation ID (required)
+   * @param messageId The platform message ID (required)
+   * @param accountId Social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeMessageReactionRequestBuilder(conversationId, messageId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeMessageReaction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateRedditSubreddits200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        
+
+        return new ApiResponse<UpdateRedditSubreddits200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeMessageReactionRequestBuilder(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'conversationId' is set
+    if (conversationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'conversationId' when calling removeMessageReaction");
+    }
+    // verify the required parameter 'messageId' is set
+    if (messageId == null) {
+      throw new ApiException(400, "Missing the required parameter 'messageId' when calling removeMessageReaction");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling removeMessageReaction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions"
+        .replace("{conversationId}", ApiClient.urlEncode(conversationId.toString()))
+        .replace("{messageId}", ApiClient.urlEncode(messageId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Send message
    * Send a message in a conversation. Supports text, attachments, quick replies, buttons, and message tags. Attachment and interactive message support varies by platform.
    * @param conversationId The conversation ID (id field from list conversations endpoint). This is the platform-specific conversation identifier, not an internal database ID. (required)
@@ -877,6 +1329,138 @@ public class MessagesApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendInboxMessageRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Send typing indicator
+   * Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * @param conversationId The conversation ID (required)
+   * @param sendTypingIndicatorRequest  (required)
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response sendTypingIndicator(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest) throws ApiException {
+    return sendTypingIndicator(conversationId, sendTypingIndicatorRequest, null);
+  }
+
+  /**
+   * Send typing indicator
+   * Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * @param conversationId The conversation ID (required)
+   * @param sendTypingIndicatorRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateRedditSubreddits200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateRedditSubreddits200Response sendTypingIndicator(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Send typing indicator
+   * Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * @param conversationId The conversation ID (required)
+   * @param sendTypingIndicatorRequest  (required)
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> sendTypingIndicatorWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest) throws ApiException {
+    return sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest, null);
+  }
+
+  /**
+   * Send typing indicator
+   * Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
+   * @param conversationId The conversation ID (required)
+   * @param sendTypingIndicatorRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateRedditSubreddits200Response> sendTypingIndicatorWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = sendTypingIndicatorRequestBuilder(conversationId, sendTypingIndicatorRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("sendTypingIndicator", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateRedditSubreddits200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        
+
+        return new ApiResponse<UpdateRedditSubreddits200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder sendTypingIndicatorRequestBuilder(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'conversationId' is set
+    if (conversationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'conversationId' when calling sendTypingIndicator");
+    }
+    // verify the required parameter 'sendTypingIndicatorRequest' is set
+    if (sendTypingIndicatorRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'sendTypingIndicatorRequest' when calling sendTypingIndicator");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/conversations/{conversationId}/typing"
+        .replace("{conversationId}", ApiClient.urlEncode(conversationId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendTypingIndicatorRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1013,6 +1597,164 @@ public class MessagesApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Upload media file
+   * Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+   * @param _file The file to upload (max 25MB) (required)
+   * @param contentType Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)
+   * @return UploadMediaDirect200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadMediaDirect200Response uploadMediaDirect(@javax.annotation.Nonnull File _file, @javax.annotation.Nullable String contentType) throws ApiException {
+    return uploadMediaDirect(_file, contentType, null);
+  }
+
+  /**
+   * Upload media file
+   * Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+   * @param _file The file to upload (max 25MB) (required)
+   * @param contentType Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)
+   * @param headers Optional headers to include in the request
+   * @return UploadMediaDirect200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadMediaDirect200Response uploadMediaDirect(@javax.annotation.Nonnull File _file, @javax.annotation.Nullable String contentType, Map<String, String> headers) throws ApiException {
+    ApiResponse<UploadMediaDirect200Response> localVarResponse = uploadMediaDirectWithHttpInfo(_file, contentType, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Upload media file
+   * Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+   * @param _file The file to upload (max 25MB) (required)
+   * @param contentType Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)
+   * @return ApiResponse&lt;UploadMediaDirect200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadMediaDirect200Response> uploadMediaDirectWithHttpInfo(@javax.annotation.Nonnull File _file, @javax.annotation.Nullable String contentType) throws ApiException {
+    return uploadMediaDirectWithHttpInfo(_file, contentType, null);
+  }
+
+  /**
+   * Upload media file
+   * Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as &#x60;attachmentUrl&#x60; when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike &#x60;/v1/media/upload&#x60; (which uses upload tokens for end-user flows), this endpoint uses standard Bearer token authentication for programmatic use. 
+   * @param _file The file to upload (max 25MB) (required)
+   * @param contentType Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UploadMediaDirect200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadMediaDirect200Response> uploadMediaDirectWithHttpInfo(@javax.annotation.Nonnull File _file, @javax.annotation.Nullable String contentType, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = uploadMediaDirectRequestBuilder(_file, contentType, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("uploadMediaDirect", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UploadMediaDirect200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UploadMediaDirect200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadMediaDirect200Response>() {});
+        
+
+        return new ApiResponse<UploadMediaDirect200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder uploadMediaDirectRequestBuilder(@javax.annotation.Nonnull File _file, @javax.annotation.Nullable String contentType, Map<String, String> headers) throws ApiException {
+    // verify the required parameter '_file' is set
+    if (_file == null) {
+      throw new ApiException(400, "Missing the required parameter '_file' when calling uploadMediaDirect");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/media/upload-direct";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    MultipartEntityBuilder multiPartBuilder = MultipartEntityBuilder.create();
+    boolean hasFiles = false;
+    multiPartBuilder.addBinaryBody("file", _file);
+    hasFiles = true;
+    if (contentType != null) {
+        multiPartBuilder.addTextBody("contentType", contentType.toString());
+    }
+    HttpEntity entity = multiPartBuilder.build();
+    HttpRequest.BodyPublisher formDataPublisher;
+    if (hasFiles) {
+        Pipe pipe;
+        try {
+            pipe = Pipe.open();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        new Thread(() -> {
+            try (OutputStream outputStream = Channels.newOutputStream(pipe.sink())) {
+                entity.writeTo(outputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        formDataPublisher = HttpRequest.BodyPublishers.ofInputStream(() -> Channels.newInputStream(pipe.source()));
+    } else {
+        ByteArrayOutputStream formOutputStream = new ByteArrayOutputStream();
+        try {
+            entity.writeTo(formOutputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        byte[] formBytes = formOutputStream.toByteArray();
+        formDataPublisher = HttpRequest.BodyPublishers
+            .ofInputStream(() -> new ByteArrayInputStream(formBytes));
+    }
+    localVarRequestBuilder
+        .header("Content-Type", entity.getContentType().getValue())
+        .method("POST", formDataPublisher);
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -15,6 +15,7 @@ docs/AccountsListResponse.md
 docs/ActivateSequence200Response.md
 docs/AddBroadcastRecipients200Response.md
 docs/AddBroadcastRecipientsRequest.md
+docs/AddMessageReactionRequest.md
 docs/AddWhatsAppBroadcastRecipients200Response.md
 docs/AddWhatsAppBroadcastRecipientsRequest.md
 docs/AddWhatsAppBroadcastRecipientsRequestRecipientsInner.md
@@ -552,6 +553,7 @@ docs/SendInboxMessageRequestTemplateElementsInner.md
 docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md
 docs/SendPrivateReplyToComment200Response.md
 docs/SendPrivateReplyToCommentRequest.md
+docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppBroadcast200Response.md
 docs/SendWhatsAppBulk200Response.md
 docs/SendWhatsAppBulk200ResponseResultsInner.md
@@ -652,6 +654,8 @@ docs/UpdateWhatsAppGroupChatRequest.md
 docs/UpdateWhatsAppTemplate200Response.md
 docs/UpdateWhatsAppTemplate200ResponseTemplate.md
 docs/UpdateWhatsAppTemplateRequest.md
+docs/UploadMediaDirect200Response.md
+docs/UploadMediaDirectRequest.md
 docs/UploadTokenResponse.md
 docs/UploadTokenStatusResponse.md
 docs/UploadWhatsAppProfilePhotoRequest.md
@@ -783,6 +787,7 @@ src/main/java/dev/zernio/model/AccountsListResponse.java
 src/main/java/dev/zernio/model/ActivateSequence200Response.java
 src/main/java/dev/zernio/model/AddBroadcastRecipients200Response.java
 src/main/java/dev/zernio/model/AddBroadcastRecipientsRequest.java
+src/main/java/dev/zernio/model/AddMessageReactionRequest.java
 src/main/java/dev/zernio/model/AddWhatsAppBroadcastRecipients200Response.java
 src/main/java/dev/zernio/model/AddWhatsAppBroadcastRecipientsRequest.java
 src/main/java/dev/zernio/model/AddWhatsAppBroadcastRecipientsRequestRecipientsInner.java
@@ -1296,6 +1301,7 @@ src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInner.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInnerButtonsInner.java
 src/main/java/dev/zernio/model/SendPrivateReplyToComment200Response.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequest.java
+src/main/java/dev/zernio/model/SendTypingIndicatorRequest.java
 src/main/java/dev/zernio/model/SendWhatsAppBroadcast200Response.java
 src/main/java/dev/zernio/model/SendWhatsAppBulk200Response.java
 src/main/java/dev/zernio/model/SendWhatsAppBulk200ResponseResultsInner.java
@@ -1393,6 +1399,8 @@ src/main/java/dev/zernio/model/UpdateWhatsAppGroupChatRequest.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplate200Response.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplate200ResponseTemplate.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplateRequest.java
+src/main/java/dev/zernio/model/UploadMediaDirect200Response.java
+src/main/java/dev/zernio/model/UploadMediaDirectRequest.java
 src/main/java/dev/zernio/model/UploadTokenResponse.java
 src/main/java/dev/zernio/model/UploadTokenStatusResponse.java
 src/main/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest.java
@@ -1452,3 +1460,7 @@ src/main/java/dev/zernio/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/AddMessageReactionRequestTest.java
+src/test/java/dev/zernio/model/SendTypingIndicatorRequestTest.java
+src/test/java/dev/zernio/model/UploadMediaDirect200ResponseTest.java
+src/test/java/dev/zernio/model/UploadMediaDirectRequestTest.java

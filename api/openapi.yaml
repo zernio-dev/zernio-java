@@ -8504,6 +8504,62 @@ paths:
       x-accepts:
       - application/json
   /v1/inbox/conversations/{conversationId}/messages/{messageId}:
+    delete:
+      description: |
+        Delete a message from a conversation. Platform support varies:
+        - **Telegram**: Full delete (bot's own messages anytime, others if admin)
+        - **X/Twitter**: Full delete (own DM events only)
+        - **Bluesky**: Delete for self only (recipient still sees it)
+        - **Reddit**: Delete from sender's view only
+        - **Facebook, Instagram, WhatsApp**: Not supported (returns 400)
+      operationId: deleteInboxMessage
+      parameters:
+      - description: The conversation ID
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The platform message ID to delete
+        explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+          description: Message deleted
+        "400":
+          description: Platform does not support deletion or invalid request
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account or conversation not found
+      security:
+      - bearerAuth: []
+      summary: Delete message
+      tags:
+      - Messages
+      x-accepts:
+      - application/json
     patch:
       description: |
         Edit the text and/or reply markup of a previously sent Telegram message.
@@ -8551,6 +8607,197 @@ paths:
       tags:
       - Messages
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/conversations/{conversationId}/typing:
+    post:
+      description: |
+        Show a typing indicator in a conversation. Platform support:
+        - **Facebook Messenger**: Shows "Page is typing..." for 20 seconds
+        - **Telegram**: Shows "Bot is typing..." for 5 seconds
+        - **All others**: Returns 200 but no-op (platform doesn't support it)
+
+        Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails.
+      operationId: sendTypingIndicator
+      parameters:
+      - description: The conversation ID
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sendTypingIndicator_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+          description: Typing indicator sent (or no-op on unsupported platforms)
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account or conversation not found
+      security:
+      - bearerAuth: []
+      summary: Send typing indicator
+      tags:
+      - Messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions:
+    delete:
+      description: |
+        Remove a reaction from a message. Platform support:
+        - **Telegram**: Send empty reaction array to clear
+        - **WhatsApp**: Send empty emoji to remove
+        - **All others**: Returns 400 (not supported)
+      operationId: removeMessageReaction
+      parameters:
+      - description: The conversation ID
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The platform message ID
+        explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+          description: Reaction removed
+        "400":
+          description: Platform does not support reactions or invalid request
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account or conversation not found
+      security:
+      - bearerAuth: []
+      summary: Remove reaction
+      tags:
+      - Messages
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Add an emoji reaction to a message. Platform support:
+        - **Telegram**: Supports a subset of Unicode emoji reactions
+        - **WhatsApp**: Supports any standard emoji (one reaction per message per sender)
+        - **All others**: Returns 400 (not supported)
+      operationId: addMessageReaction
+      parameters:
+      - description: The conversation ID
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The platform message ID to react to
+        explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addMessageReaction_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+          description: Reaction added
+        "400":
+          description: Platform does not support reactions or invalid request
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account or conversation not found
+      security:
+      - bearerAuth: []
+      summary: Add reaction
+      tags:
+      - Messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/media/upload-direct:
+    post:
+      description: |
+        Upload a media file using API key authentication and get back a publicly accessible URL.
+        The URL can be used as `attachmentUrl` when sending inbox messages.
+
+        Files are stored in temporary storage and auto-delete after 7 days.
+        Maximum file size is 25MB.
+
+        Unlike `/v1/media/upload` (which uses upload tokens for end-user flows),
+        this endpoint uses standard Bearer token authentication for programmatic use.
+      operationId: uploadMediaDirect
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/uploadMediaDirect_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/uploadMediaDirect_200_response"
+          description: File uploaded successfully
+        "400":
+          description: No file provided or file too large
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Upload media file
+      tags:
+      - Messages
+      x-content-type: multipart/form-data
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/messenger-menu:
@@ -26263,6 +26510,56 @@ components:
           type: boolean
         data:
           $ref: "#/components/schemas/editInboxMessage_200_response_data"
+    sendTypingIndicator_request:
+      properties:
+        accountId:
+          description: Social account ID
+          type: string
+      required:
+      - accountId
+    addMessageReaction_request:
+      properties:
+        accountId:
+          description: Social account ID
+          type: string
+        emoji:
+          description: "Emoji character (e.g. \"👍\", \"❤️\")"
+          example: 👍
+          type: string
+      required:
+      - accountId
+      - emoji
+    uploadMediaDirect_request:
+      properties:
+        file:
+          description: The file to upload (max 25MB)
+          format: binary
+          type: string
+        contentType:
+          description: Override MIME type (e.g. "image/jpeg"). Auto-detected from
+            file if not provided.
+          type: string
+      required:
+      - file
+    uploadMediaDirect_200_response:
+      example:
+        filename: filename
+        size: 0
+        contentType: contentType
+        url: url
+      properties:
+        url:
+          description: Publicly accessible URL for the uploaded file
+          type: string
+        filename:
+          description: Generated unique filename
+          type: string
+        contentType:
+          description: MIME type of the file
+          type: string
+        size:
+          description: File size in bytes
+          type: integer
     getMessengerMenu_200_response:
       example:
         data:

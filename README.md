@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-29T13:17:04.228443515Z[Etc/UTC]
+- Build date: 2026-03-29T16:52:56.855785331Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -356,6 +356,10 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**listPostsLogsWithHttpInfo**](docs/LogsApi.md#listPostsLogsWithHttpInfo) | **GET** /v1/posts/logs | List publishing logs
 *MediaApi* | [**getMediaPresignedUrl**](docs/MediaApi.md#getMediaPresignedUrl) | **POST** /v1/media/presign | Get presigned upload URL
 *MediaApi* | [**getMediaPresignedUrlWithHttpInfo**](docs/MediaApi.md#getMediaPresignedUrlWithHttpInfo) | **POST** /v1/media/presign | Get presigned upload URL
+*MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
+*MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
+*MessagesApi* | [**deleteInboxMessage**](docs/MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
+*MessagesApi* | [**deleteInboxMessageWithHttpInfo**](docs/MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**editInboxMessage**](docs/MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
 *MessagesApi* | [**editInboxMessageWithHttpInfo**](docs/MessagesApi.md#editInboxMessageWithHttpInfo) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
 *MessagesApi* | [**getInboxConversation**](docs/MessagesApi.md#getInboxConversation) | **GET** /v1/inbox/conversations/{conversationId} | Get conversation
@@ -364,10 +368,16 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getInboxConversationMessagesWithHttpInfo**](docs/MessagesApi.md#getInboxConversationMessagesWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
 *MessagesApi* | [**listInboxConversations**](docs/MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**listInboxConversationsWithHttpInfo**](docs/MessagesApi.md#listInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations | List conversations
+*MessagesApi* | [**removeMessageReaction**](docs/MessagesApi.md#removeMessageReaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
+*MessagesApi* | [**removeMessageReactionWithHttpInfo**](docs/MessagesApi.md#removeMessageReactionWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
 *MessagesApi* | [**sendInboxMessage**](docs/MessagesApi.md#sendInboxMessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
 *MessagesApi* | [**sendInboxMessageWithHttpInfo**](docs/MessagesApi.md#sendInboxMessageWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
+*MessagesApi* | [**sendTypingIndicator**](docs/MessagesApi.md#sendTypingIndicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
+*MessagesApi* | [**sendTypingIndicatorWithHttpInfo**](docs/MessagesApi.md#sendTypingIndicatorWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
 *MessagesApi* | [**updateInboxConversation**](docs/MessagesApi.md#updateInboxConversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
 *MessagesApi* | [**updateInboxConversationWithHttpInfo**](docs/MessagesApi.md#updateInboxConversationWithHttpInfo) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
+*MessagesApi* | [**uploadMediaDirect**](docs/MessagesApi.md#uploadMediaDirect) | **POST** /v1/media/upload-direct | Upload media file
+*MessagesApi* | [**uploadMediaDirectWithHttpInfo**](docs/MessagesApi.md#uploadMediaDirectWithHttpInfo) | **POST** /v1/media/upload-direct | Upload media file
 *PostsApi* | [**bulkUploadPosts**](docs/PostsApi.md#bulkUploadPosts) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV
 *PostsApi* | [**bulkUploadPostsWithHttpInfo**](docs/PostsApi.md#bulkUploadPostsWithHttpInfo) | **POST** /v1/posts/bulk-upload | Bulk upload from CSV
 *PostsApi* | [**createPost**](docs/PostsApi.md#createPost) | **POST** /v1/posts | Create post
@@ -599,6 +609,7 @@ Class | Method | HTTP request | Description
  - [ActivateSequence200Response](docs/ActivateSequence200Response.md)
  - [AddBroadcastRecipients200Response](docs/AddBroadcastRecipients200Response.md)
  - [AddBroadcastRecipientsRequest](docs/AddBroadcastRecipientsRequest.md)
+ - [AddMessageReactionRequest](docs/AddMessageReactionRequest.md)
  - [AddWhatsAppBroadcastRecipients200Response](docs/AddWhatsAppBroadcastRecipients200Response.md)
  - [AddWhatsAppBroadcastRecipientsRequest](docs/AddWhatsAppBroadcastRecipientsRequest.md)
  - [AddWhatsAppBroadcastRecipientsRequestRecipientsInner](docs/AddWhatsAppBroadcastRecipientsRequestRecipientsInner.md)
@@ -1112,6 +1123,7 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestTemplateElementsInnerButtonsInner](docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md)
  - [SendPrivateReplyToComment200Response](docs/SendPrivateReplyToComment200Response.md)
  - [SendPrivateReplyToCommentRequest](docs/SendPrivateReplyToCommentRequest.md)
+ - [SendTypingIndicatorRequest](docs/SendTypingIndicatorRequest.md)
  - [SendWhatsAppBroadcast200Response](docs/SendWhatsAppBroadcast200Response.md)
  - [SendWhatsAppBulk200Response](docs/SendWhatsAppBulk200Response.md)
  - [SendWhatsAppBulk200ResponseResultsInner](docs/SendWhatsAppBulk200ResponseResultsInner.md)
@@ -1209,6 +1221,8 @@ Class | Method | HTTP request | Description
  - [UpdateWhatsAppTemplate200Response](docs/UpdateWhatsAppTemplate200Response.md)
  - [UpdateWhatsAppTemplate200ResponseTemplate](docs/UpdateWhatsAppTemplate200ResponseTemplate.md)
  - [UpdateWhatsAppTemplateRequest](docs/UpdateWhatsAppTemplateRequest.md)
+ - [UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
+ - [UploadMediaDirectRequest](docs/UploadMediaDirectRequest.md)
  - [UploadTokenResponse](docs/UploadTokenResponse.md)
  - [UploadTokenStatusResponse](docs/UploadTokenStatusResponse.md)
  - [UploadWhatsAppProfilePhotoRequest](docs/UploadWhatsAppProfilePhotoRequest.md)
