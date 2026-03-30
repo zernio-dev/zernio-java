@@ -38,9 +38,10 @@ import dev.zernio.ApiClient;
   YouTubePlatformData.JSON_PROPERTY_MADE_FOR_KIDS,
   YouTubePlatformData.JSON_PROPERTY_FIRST_COMMENT,
   YouTubePlatformData.JSON_PROPERTY_CONTAINS_SYNTHETIC_MEDIA,
-  YouTubePlatformData.JSON_PROPERTY_CATEGORY_ID
+  YouTubePlatformData.JSON_PROPERTY_CATEGORY_ID,
+  YouTubePlatformData.JSON_PROPERTY_PLAYLIST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T11:32:53.465629721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T16:57:55.652265708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubePlatformData {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -102,6 +103,10 @@ public class YouTubePlatformData {
   public static final String JSON_PROPERTY_CATEGORY_ID = "categoryId";
   @javax.annotation.Nullable
   private String categoryId = "22";
+
+  public static final String JSON_PROPERTY_PLAYLIST_ID = "playlistId";
+  @javax.annotation.Nullable
+  private String playlistId;
 
   public YouTubePlatformData() { 
   }
@@ -250,6 +255,30 @@ public class YouTubePlatformData {
   }
 
 
+  public YouTubePlatformData playlistId(@javax.annotation.Nullable String playlistId) {
+    this.playlistId = playlistId;
+    return this;
+  }
+
+  /**
+   * Optional YouTube playlist ID to add the video to after upload (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Works for both immediate and scheduled uploads. Quota cost: 50 YouTube API units per call.
+   * @return playlistId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLAYLIST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlaylistId() {
+    return playlistId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLAYLIST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlaylistId(@javax.annotation.Nullable String playlistId) {
+    this.playlistId = playlistId;
+  }
+
+
   /**
    * Return true if this YouTubePlatformData object is equal to o.
    */
@@ -267,12 +296,13 @@ public class YouTubePlatformData {
         Objects.equals(this.madeForKids, youTubePlatformData.madeForKids) &&
         Objects.equals(this.firstComment, youTubePlatformData.firstComment) &&
         Objects.equals(this.containsSyntheticMedia, youTubePlatformData.containsSyntheticMedia) &&
-        Objects.equals(this.categoryId, youTubePlatformData.categoryId);
+        Objects.equals(this.categoryId, youTubePlatformData.categoryId) &&
+        Objects.equals(this.playlistId, youTubePlatformData.playlistId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, visibility, madeForKids, firstComment, containsSyntheticMedia, categoryId);
+    return Objects.hash(title, visibility, madeForKids, firstComment, containsSyntheticMedia, categoryId, playlistId);
   }
 
   @Override
@@ -285,6 +315,7 @@ public class YouTubePlatformData {
     sb.append("    firstComment: ").append(toIndentedString(firstComment)).append("\n");
     sb.append("    containsSyntheticMedia: ").append(toIndentedString(containsSyntheticMedia)).append("\n");
     sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
+    sb.append("    playlistId: ").append(toIndentedString(playlistId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -360,6 +391,11 @@ public class YouTubePlatformData {
     // add `categoryId` to the URL query string
     if (getCategoryId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scategoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCategoryId()))));
+    }
+
+    // add `playlistId` to the URL query string
+    if (getPlaylistId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splaylistId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlaylistId()))));
     }
 
     return joiner.toString();

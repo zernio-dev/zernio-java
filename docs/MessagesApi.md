@@ -31,7 +31,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## addMessageReaction
 
-> UpdateRedditSubreddits200Response addMessageReaction(conversationId, messageId, addMessageReactionRequest)
+> UpdateYoutubeDefaultPlaylist200Response addMessageReaction(conversationId, messageId, addMessageReactionRequest)
 
 Add reaction
 
@@ -62,7 +62,7 @@ public class Example {
         String messageId = "messageId_example"; // String | The platform message ID to react to
         AddMessageReactionRequest addMessageReactionRequest = new AddMessageReactionRequest(); // AddMessageReactionRequest | 
         try {
-            UpdateRedditSubreddits200Response result = apiInstance.addMessageReaction(conversationId, messageId, addMessageReactionRequest);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.addMessageReaction(conversationId, messageId, addMessageReactionRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#addMessageReaction");
@@ -86,7 +86,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 
 ### Authorization
@@ -109,7 +109,7 @@ public class Example {
 
 ## addMessageReactionWithHttpInfo
 
-> ApiResponse<UpdateRedditSubreddits200Response> addMessageReaction addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> addMessageReaction addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest)
 
 Add reaction
 
@@ -141,7 +141,7 @@ public class Example {
         String messageId = "messageId_example"; // String | The platform message ID to react to
         AddMessageReactionRequest addMessageReactionRequest = new AddMessageReactionRequest(); // AddMessageReactionRequest | 
         try {
-            ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -167,7 +167,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)>
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
 
 
 ### Authorization
@@ -191,7 +191,7 @@ ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Res
 
 ## deleteInboxMessage
 
-> UpdateRedditSubreddits200Response deleteInboxMessage(conversationId, messageId, accountId)
+> UpdateYoutubeDefaultPlaylist200Response deleteInboxMessage(conversationId, messageId, accountId)
 
 Delete message
 
@@ -222,7 +222,7 @@ public class Example {
         String messageId = "messageId_example"; // String | The platform message ID to delete
         String accountId = "accountId_example"; // String | Social account ID
         try {
-            UpdateRedditSubreddits200Response result = apiInstance.deleteInboxMessage(conversationId, messageId, accountId);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteInboxMessage(conversationId, messageId, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#deleteInboxMessage");
@@ -246,7 +246,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 
 ### Authorization
@@ -269,7 +269,7 @@ public class Example {
 
 ## deleteInboxMessageWithHttpInfo
 
-> ApiResponse<UpdateRedditSubreddits200Response> deleteInboxMessage deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteInboxMessage deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId)
 
 Delete message
 
@@ -301,7 +301,7 @@ public class Example {
         String messageId = "messageId_example"; // String | The platform message ID to delete
         String accountId = "accountId_example"; // String | Social account ID
         try {
-            ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -327,7 +327,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)>
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
 
 
 ### Authorization
@@ -987,7 +987,7 @@ ApiResponse<[**ListInboxConversations200Response**](ListInboxConversations200Res
 
 ## removeMessageReaction
 
-> UpdateRedditSubreddits200Response removeMessageReaction(conversationId, messageId, accountId)
+> UpdateYoutubeDefaultPlaylist200Response removeMessageReaction(conversationId, messageId, accountId)
 
 Remove reaction
 
@@ -1018,7 +1018,7 @@ public class Example {
         String messageId = "messageId_example"; // String | The platform message ID
         String accountId = "accountId_example"; // String | Social account ID
         try {
-            UpdateRedditSubreddits200Response result = apiInstance.removeMessageReaction(conversationId, messageId, accountId);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.removeMessageReaction(conversationId, messageId, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#removeMessageReaction");
@@ -1042,7 +1042,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 
 ### Authorization
@@ -1065,7 +1065,7 @@ public class Example {
 
 ## removeMessageReactionWithHttpInfo
 
-> ApiResponse<UpdateRedditSubreddits200Response> removeMessageReaction removeMessageReactionWithHttpInfo(conversationId, messageId, accountId)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeMessageReaction removeMessageReactionWithHttpInfo(conversationId, messageId, accountId)
 
 Remove reaction
 
@@ -1097,7 +1097,7 @@ public class Example {
         String messageId = "messageId_example"; // String | The platform message ID
         String accountId = "accountId_example"; // String | Social account ID
         try {
-            ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.removeMessageReactionWithHttpInfo(conversationId, messageId, accountId);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.removeMessageReactionWithHttpInfo(conversationId, messageId, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1123,7 +1123,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)>
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
 
 
 ### Authorization
@@ -1301,7 +1301,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 
 ## sendTypingIndicator
 
-> UpdateRedditSubreddits200Response sendTypingIndicator(conversationId, sendTypingIndicatorRequest)
+> UpdateYoutubeDefaultPlaylist200Response sendTypingIndicator(conversationId, sendTypingIndicatorRequest)
 
 Send typing indicator
 
@@ -1331,7 +1331,7 @@ public class Example {
         String conversationId = "conversationId_example"; // String | The conversation ID
         SendTypingIndicatorRequest sendTypingIndicatorRequest = new SendTypingIndicatorRequest(); // SendTypingIndicatorRequest | 
         try {
-            UpdateRedditSubreddits200Response result = apiInstance.sendTypingIndicator(conversationId, sendTypingIndicatorRequest);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.sendTypingIndicator(conversationId, sendTypingIndicatorRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#sendTypingIndicator");
@@ -1354,7 +1354,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 
 ### Authorization
@@ -1376,7 +1376,7 @@ public class Example {
 
 ## sendTypingIndicatorWithHttpInfo
 
-> ApiResponse<UpdateRedditSubreddits200Response> sendTypingIndicator sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> sendTypingIndicator sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest)
 
 Send typing indicator
 
@@ -1407,7 +1407,7 @@ public class Example {
         String conversationId = "conversationId_example"; // String | The conversation ID
         SendTypingIndicatorRequest sendTypingIndicatorRequest = new SendTypingIndicatorRequest(); // SendTypingIndicatorRequest | 
         try {
-            ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1432,7 +1432,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)>
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
 
 
 ### Authorization

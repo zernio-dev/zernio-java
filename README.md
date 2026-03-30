@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-03-30T11:32:53.465629721Z[Etc/UTC]
+- Build date: 2026-03-30T16:57:55.652265708Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -258,6 +258,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
 *ConnectApi* | [**getTelegramConnectStatus**](docs/ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getTelegramConnectStatusWithHttpInfo**](docs/ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code
+*ConnectApi* | [**getYoutubePlaylists**](docs/ConnectApi.md#getYoutubePlaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
+*ConnectApi* | [**getYoutubePlaylistsWithHttpInfo**](docs/ConnectApi.md#getYoutubePlaylistsWithHttpInfo) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
 *ConnectApi* | [**handleOAuthCallback**](docs/ConnectApi.md#handleOAuthCallback) | **POST** /v1/connect/{platform} | Complete OAuth callback
 *ConnectApi* | [**handleOAuthCallbackWithHttpInfo**](docs/ConnectApi.md#handleOAuthCallbackWithHttpInfo) | **POST** /v1/connect/{platform} | Complete OAuth callback
 *ConnectApi* | [**initiateTelegramConnect**](docs/ConnectApi.md#initiateTelegramConnect) | **POST** /v1/connect/telegram | Connect Telegram directly
@@ -292,6 +294,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**updatePinterestBoardsWithHttpInfo**](docs/ConnectApi.md#updatePinterestBoardsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board
 *ConnectApi* | [**updateRedditSubreddits**](docs/ConnectApi.md#updateRedditSubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit
 *ConnectApi* | [**updateRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#updateRedditSubredditsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit
+*ConnectApi* | [**updateYoutubeDefaultPlaylist**](docs/ConnectApi.md#updateYoutubeDefaultPlaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
+*ConnectApi* | [**updateYoutubeDefaultPlaylistWithHttpInfo**](docs/ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
 *ContactsApi* | [**bulkCreateContacts**](docs/ContactsApi.md#bulkCreateContacts) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**bulkCreateContactsWithHttpInfo**](docs/ContactsApi.md#bulkCreateContactsWithHttpInfo) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**createContact**](docs/ContactsApi.md#createContact) | **POST** /v1/contacts | Create a contact
@@ -919,6 +923,8 @@ Class | Method | HTTP request | Description
  - [GetYouTubeDailyViews500Response](docs/GetYouTubeDailyViews500Response.md)
  - [GetYouTubeTranscript200Response](docs/GetYouTubeTranscript200Response.md)
  - [GetYouTubeTranscript200ResponseSegmentsInner](docs/GetYouTubeTranscript200ResponseSegmentsInner.md)
+ - [GetYoutubePlaylists200Response](docs/GetYoutubePlaylists200Response.md)
+ - [GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
  - [GoogleBusinessPlatformData](docs/GoogleBusinessPlatformData.md)
  - [GoogleBusinessPlatformDataCallToAction](docs/GoogleBusinessPlatformDataCallToAction.md)
  - [HandleOAuthCallbackRequest](docs/HandleOAuthCallbackRequest.md)
@@ -1204,7 +1210,6 @@ Class | Method | HTTP request | Description
  - [UpdateProfileRequest](docs/UpdateProfileRequest.md)
  - [UpdateQueueSlot200Response](docs/UpdateQueueSlot200Response.md)
  - [UpdateQueueSlotRequest](docs/UpdateQueueSlotRequest.md)
- - [UpdateRedditSubreddits200Response](docs/UpdateRedditSubreddits200Response.md)
  - [UpdateRedditSubredditsRequest](docs/UpdateRedditSubredditsRequest.md)
  - [UpdateSequence200Response](docs/UpdateSequence200Response.md)
  - [UpdateSequence200ResponseSequence](docs/UpdateSequence200ResponseSequence.md)
@@ -1221,6 +1226,8 @@ Class | Method | HTTP request | Description
  - [UpdateWhatsAppTemplate200Response](docs/UpdateWhatsAppTemplate200Response.md)
  - [UpdateWhatsAppTemplate200ResponseTemplate](docs/UpdateWhatsAppTemplate200ResponseTemplate.md)
  - [UpdateWhatsAppTemplateRequest](docs/UpdateWhatsAppTemplateRequest.md)
+ - [UpdateYoutubeDefaultPlaylist200Response](docs/UpdateYoutubeDefaultPlaylist200Response.md)
+ - [UpdateYoutubeDefaultPlaylistRequest](docs/UpdateYoutubeDefaultPlaylistRequest.md)
  - [UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [UploadMediaDirectRequest](docs/UploadMediaDirectRequest.md)
  - [UploadTokenResponse](docs/UploadTokenResponse.md)

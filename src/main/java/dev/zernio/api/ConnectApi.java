@@ -34,6 +34,7 @@ import dev.zernio.model.GetRedditFlairs200Response;
 import dev.zernio.model.GetRedditSubreddits200Response;
 import dev.zernio.model.GetTelegramConnectStatus200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
+import dev.zernio.model.GetYoutubePlaylists200Response;
 import dev.zernio.model.HandleOAuthCallbackRequest;
 import dev.zernio.model.InitiateTelegramConnect200Response;
 import dev.zernio.model.InitiateTelegramConnectRequest;
@@ -60,8 +61,9 @@ import dev.zernio.model.UpdateGmbLocation200Response;
 import dev.zernio.model.UpdateGmbLocationRequest;
 import dev.zernio.model.UpdateLinkedInOrganizationRequest;
 import dev.zernio.model.UpdatePinterestBoardsRequest;
-import dev.zernio.model.UpdateRedditSubreddits200Response;
 import dev.zernio.model.UpdateRedditSubredditsRequest;
+import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
+import dev.zernio.model.UpdateYoutubeDefaultPlaylistRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -88,7 +90,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T11:32:53.465629721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T16:57:55.652265708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1716,6 +1718,124 @@ public class ConnectApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List YouTube playlists
+   * Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+   * @param accountId  (required)
+   * @return GetYoutubePlaylists200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetYoutubePlaylists200Response getYoutubePlaylists(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getYoutubePlaylists(accountId, null);
+  }
+
+  /**
+   * List YouTube playlists
+   * Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetYoutubePlaylists200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetYoutubePlaylists200Response getYoutubePlaylists(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetYoutubePlaylists200Response> localVarResponse = getYoutubePlaylistsWithHttpInfo(accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List YouTube playlists
+   * Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+   * @param accountId  (required)
+   * @return ApiResponse&lt;GetYoutubePlaylists200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetYoutubePlaylists200Response> getYoutubePlaylistsWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getYoutubePlaylistsWithHttpInfo(accountId, null);
+  }
+
+  /**
+   * List YouTube playlists
+   * Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetYoutubePlaylists200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetYoutubePlaylists200Response> getYoutubePlaylistsWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getYoutubePlaylistsRequestBuilder(accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getYoutubePlaylists", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetYoutubePlaylists200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetYoutubePlaylists200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetYoutubePlaylists200Response>() {});
+        
+
+        return new ApiResponse<GetYoutubePlaylists200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getYoutubePlaylistsRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getYoutubePlaylists");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/youtube-playlists"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -3859,10 +3979,10 @@ public class ConnectApi {
    * Sets the default subreddit used when publishing posts for this Reddit account.
    * @param accountId  (required)
    * @param updateRedditSubredditsRequest  (required)
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response updateRedditSubreddits(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest) throws ApiException {
+  public UpdateYoutubeDefaultPlaylist200Response updateRedditSubreddits(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest) throws ApiException {
     return updateRedditSubreddits(accountId, updateRedditSubredditsRequest, null);
   }
 
@@ -3872,11 +3992,11 @@ public class ConnectApi {
    * @param accountId  (required)
    * @param updateRedditSubredditsRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response updateRedditSubreddits(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = updateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest, headers);
+  public UpdateYoutubeDefaultPlaylist200Response updateRedditSubreddits(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = updateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -3885,10 +4005,10 @@ public class ConnectApi {
    * Sets the default subreddit used when publishing posts for this Reddit account.
    * @param accountId  (required)
    * @param updateRedditSubredditsRequest  (required)
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> updateRedditSubredditsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> updateRedditSubredditsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest) throws ApiException {
     return updateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest, null);
   }
 
@@ -3898,10 +4018,10 @@ public class ConnectApi {
    * @param accountId  (required)
    * @param updateRedditSubredditsRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> updateRedditSubredditsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> updateRedditSubredditsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateRedditSubredditsRequest updateRedditSubredditsRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateRedditSubredditsRequestBuilder(accountId, updateRedditSubredditsRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -3917,7 +4037,7 @@ public class ConnectApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateRedditSubreddits200Response>(
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -3927,10 +4047,10 @@ public class ConnectApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
         
 
-        return new ApiResponse<UpdateRedditSubreddits200Response>(
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -3971,6 +4091,138 @@ public class ConnectApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateRedditSubredditsRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Set default YouTube playlist
+   * Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+   * @param accountId  (required)
+   * @param updateYoutubeDefaultPlaylistRequest  (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response updateYoutubeDefaultPlaylist(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest) throws ApiException {
+    return updateYoutubeDefaultPlaylist(accountId, updateYoutubeDefaultPlaylistRequest, null);
+  }
+
+  /**
+   * Set default YouTube playlist
+   * Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+   * @param accountId  (required)
+   * @param updateYoutubeDefaultPlaylistRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response updateYoutubeDefaultPlaylist(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = updateYoutubeDefaultPlaylistWithHttpInfo(accountId, updateYoutubeDefaultPlaylistRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Set default YouTube playlist
+   * Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+   * @param accountId  (required)
+   * @param updateYoutubeDefaultPlaylistRequest  (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> updateYoutubeDefaultPlaylistWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest) throws ApiException {
+    return updateYoutubeDefaultPlaylistWithHttpInfo(accountId, updateYoutubeDefaultPlaylistRequest, null);
+  }
+
+  /**
+   * Set default YouTube playlist
+   * Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+   * @param accountId  (required)
+   * @param updateYoutubeDefaultPlaylistRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> updateYoutubeDefaultPlaylistWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateYoutubeDefaultPlaylistRequestBuilder(accountId, updateYoutubeDefaultPlaylistRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateYoutubeDefaultPlaylist", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateYoutubeDefaultPlaylistRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateYoutubeDefaultPlaylist");
+    }
+    // verify the required parameter 'updateYoutubeDefaultPlaylistRequest' is set
+    if (updateYoutubeDefaultPlaylistRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateYoutubeDefaultPlaylistRequest' when calling updateYoutubeDefaultPlaylist");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/youtube-playlists"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateYoutubeDefaultPlaylistRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

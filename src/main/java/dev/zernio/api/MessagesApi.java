@@ -33,7 +33,7 @@ import dev.zernio.model.SendInboxMessageRequest1;
 import dev.zernio.model.SendTypingIndicatorRequest;
 import dev.zernio.model.UpdateInboxConversation200Response;
 import dev.zernio.model.UpdateInboxConversationRequest;
-import dev.zernio.model.UpdateRedditSubreddits200Response;
+import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 import dev.zernio.model.UploadMediaDirect200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -67,7 +67,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T11:32:53.465629721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T16:57:55.652265708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -190,10 +190,10 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param messageId The platform message ID to react to (required)
    * @param addMessageReactionRequest  (required)
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
+  public UpdateYoutubeDefaultPlaylist200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
     return addMessageReaction(conversationId, messageId, addMessageReactionRequest, null);
   }
 
@@ -204,11 +204,11 @@ public class MessagesApi {
    * @param messageId The platform message ID to react to (required)
    * @param addMessageReactionRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, headers);
+  public UpdateYoutubeDefaultPlaylist200Response addMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -218,10 +218,10 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param messageId The platform message ID to react to (required)
    * @param addMessageReactionRequest  (required)
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest) throws ApiException {
     return addMessageReactionWithHttpInfo(conversationId, messageId, addMessageReactionRequest, null);
   }
 
@@ -232,10 +232,10 @@ public class MessagesApi {
    * @param messageId The platform message ID to react to (required)
    * @param addMessageReactionRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> addMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull AddMessageReactionRequest addMessageReactionRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = addMessageReactionRequestBuilder(conversationId, messageId, addMessageReactionRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -251,7 +251,7 @@ public class MessagesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateRedditSubreddits200Response>(
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -261,10 +261,10 @@ public class MessagesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
         
 
-        return new ApiResponse<UpdateRedditSubreddits200Response>(
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -331,10 +331,10 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param messageId The platform message ID to delete (required)
    * @param accountId Social account ID (required)
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response deleteInboxMessage(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+  public UpdateYoutubeDefaultPlaylist200Response deleteInboxMessage(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
     return deleteInboxMessage(conversationId, messageId, accountId, null);
   }
 
@@ -345,11 +345,11 @@ public class MessagesApi {
    * @param messageId The platform message ID to delete (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response deleteInboxMessage(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId, headers);
+  public UpdateYoutubeDefaultPlaylist200Response deleteInboxMessage(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId, headers);
     return localVarResponse.getData();
   }
 
@@ -359,10 +359,10 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param messageId The platform message ID to delete (required)
    * @param accountId Social account ID (required)
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> deleteInboxMessageWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteInboxMessageWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
     return deleteInboxMessageWithHttpInfo(conversationId, messageId, accountId, null);
   }
 
@@ -373,10 +373,10 @@ public class MessagesApi {
    * @param messageId The platform message ID to delete (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> deleteInboxMessageWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteInboxMessageWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = deleteInboxMessageRequestBuilder(conversationId, messageId, accountId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -392,7 +392,7 @@ public class MessagesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateRedditSubreddits200Response>(
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -402,10 +402,10 @@ public class MessagesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
         
 
-        return new ApiResponse<UpdateRedditSubreddits200Response>(
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1068,10 +1068,10 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param messageId The platform message ID (required)
    * @param accountId Social account ID (required)
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+  public UpdateYoutubeDefaultPlaylist200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
     return removeMessageReaction(conversationId, messageId, accountId, null);
   }
 
@@ -1082,11 +1082,11 @@ public class MessagesApi {
    * @param messageId The platform message ID (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, headers);
+  public UpdateYoutubeDefaultPlaylist200Response removeMessageReaction(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, headers);
     return localVarResponse.getData();
   }
 
@@ -1096,10 +1096,10 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param messageId The platform message ID (required)
    * @param accountId Social account ID (required)
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
     return removeMessageReactionWithHttpInfo(conversationId, messageId, accountId, null);
   }
 
@@ -1110,10 +1110,10 @@ public class MessagesApi {
    * @param messageId The platform message ID (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeMessageReactionWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = removeMessageReactionRequestBuilder(conversationId, messageId, accountId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1129,7 +1129,7 @@ public class MessagesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateRedditSubreddits200Response>(
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1139,10 +1139,10 @@ public class MessagesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
         
 
-        return new ApiResponse<UpdateRedditSubreddits200Response>(
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1349,10 +1349,10 @@ public class MessagesApi {
    * Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response sendTypingIndicator(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest) throws ApiException {
+  public UpdateYoutubeDefaultPlaylist200Response sendTypingIndicator(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest) throws ApiException {
     return sendTypingIndicator(conversationId, sendTypingIndicatorRequest, null);
   }
 
@@ -1362,11 +1362,11 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response sendTypingIndicator(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest, headers);
+  public UpdateYoutubeDefaultPlaylist200Response sendTypingIndicator(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1375,10 +1375,10 @@ public class MessagesApi {
    * Show a typing indicator in a conversation. Platform support: - **Facebook Messenger**: Shows \&quot;Page is typing...\&quot; for 20 seconds - **Telegram**: Shows \&quot;Bot is typing...\&quot; for 5 seconds - **All others**: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails. 
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> sendTypingIndicatorWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> sendTypingIndicatorWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest) throws ApiException {
     return sendTypingIndicatorWithHttpInfo(conversationId, sendTypingIndicatorRequest, null);
   }
 
@@ -1388,10 +1388,10 @@ public class MessagesApi {
    * @param conversationId The conversation ID (required)
    * @param sendTypingIndicatorRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> sendTypingIndicatorWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> sendTypingIndicatorWithHttpInfo(@javax.annotation.Nonnull String conversationId, @javax.annotation.Nonnull SendTypingIndicatorRequest sendTypingIndicatorRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = sendTypingIndicatorRequestBuilder(conversationId, sendTypingIndicatorRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1407,7 +1407,7 @@ public class MessagesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateRedditSubreddits200Response>(
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1417,10 +1417,10 @@ public class MessagesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
         
 
-        return new ApiResponse<UpdateRedditSubreddits200Response>(
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

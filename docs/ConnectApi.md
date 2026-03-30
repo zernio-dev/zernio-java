@@ -28,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getRedditSubredditsWithHttpInfo**](ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits |
 | [**getTelegramConnectStatus**](ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code |
 | [**getTelegramConnectStatusWithHttpInfo**](ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code |
+| [**getYoutubePlaylists**](ConnectApi.md#getYoutubePlaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists |
+| [**getYoutubePlaylistsWithHttpInfo**](ConnectApi.md#getYoutubePlaylistsWithHttpInfo) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists |
 | [**handleOAuthCallback**](ConnectApi.md#handleOAuthCallback) | **POST** /v1/connect/{platform} | Complete OAuth callback |
 | [**handleOAuthCallbackWithHttpInfo**](ConnectApi.md#handleOAuthCallbackWithHttpInfo) | **POST** /v1/connect/{platform} | Complete OAuth callback |
 | [**initiateTelegramConnect**](ConnectApi.md#initiateTelegramConnect) | **POST** /v1/connect/telegram | Connect Telegram directly |
@@ -62,6 +64,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updatePinterestBoardsWithHttpInfo**](ConnectApi.md#updatePinterestBoardsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board |
 | [**updateRedditSubreddits**](ConnectApi.md#updateRedditSubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**updateRedditSubredditsWithHttpInfo**](ConnectApi.md#updateRedditSubredditsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
+| [**updateYoutubeDefaultPlaylist**](ConnectApi.md#updateYoutubeDefaultPlaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
+| [**updateYoutubeDefaultPlaylistWithHttpInfo**](ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
 
 
 
@@ -1877,6 +1881,156 @@ ApiResponse<[**GetTelegramConnectStatus200Response**](GetTelegramConnectStatus20
 | **403** | No access to this profile |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
+
+
+## getYoutubePlaylists
+
+> GetYoutubePlaylists200Response getYoutubePlaylists(accountId)
+
+List YouTube playlists
+
+Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetYoutubePlaylists200Response result = apiInstance.getYoutubePlaylists(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getYoutubePlaylists");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetYoutubePlaylists200Response**](GetYoutubePlaylists200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Playlists list |  -  |
+| **400** | Not a YouTube account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+
+## getYoutubePlaylistsWithHttpInfo
+
+> ApiResponse<GetYoutubePlaylists200Response> getYoutubePlaylists getYoutubePlaylistsWithHttpInfo(accountId)
+
+List YouTube playlists
+
+Returns the playlists available for a connected YouTube account. Use this to get a playlist ID when creating a YouTube post with the &#x60;playlistId&#x60; field.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetYoutubePlaylists200Response> response = apiInstance.getYoutubePlaylistsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getYoutubePlaylists");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetYoutubePlaylists200Response**](GetYoutubePlaylists200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Playlists list |  -  |
+| **400** | Not a YouTube account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
 
 
 ## handleOAuthCallback
@@ -4399,7 +4553,7 @@ ApiResponse<[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials
 
 ## updateRedditSubreddits
 
-> UpdateRedditSubreddits200Response updateRedditSubreddits(accountId, updateRedditSubredditsRequest)
+> UpdateYoutubeDefaultPlaylist200Response updateRedditSubreddits(accountId, updateRedditSubredditsRequest)
 
 Set default subreddit
 
@@ -4429,7 +4583,7 @@ public class Example {
         String accountId = "accountId_example"; // String | 
         UpdateRedditSubredditsRequest updateRedditSubredditsRequest = new UpdateRedditSubredditsRequest(); // UpdateRedditSubredditsRequest | 
         try {
-            UpdateRedditSubreddits200Response result = apiInstance.updateRedditSubreddits(accountId, updateRedditSubredditsRequest);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.updateRedditSubreddits(accountId, updateRedditSubredditsRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#updateRedditSubreddits");
@@ -4452,7 +4606,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 
 ### Authorization
@@ -4474,7 +4628,7 @@ public class Example {
 
 ## updateRedditSubredditsWithHttpInfo
 
-> ApiResponse<UpdateRedditSubreddits200Response> updateRedditSubreddits updateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> updateRedditSubreddits updateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest)
 
 Set default subreddit
 
@@ -4505,7 +4659,7 @@ public class Example {
         String accountId = "accountId_example"; // String | 
         UpdateRedditSubredditsRequest updateRedditSubredditsRequest = new UpdateRedditSubredditsRequest(); // UpdateRedditSubredditsRequest | 
         try {
-            ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.updateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.updateRedditSubredditsWithHttpInfo(accountId, updateRedditSubredditsRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4530,7 +4684,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)>
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
 
 
 ### Authorization
@@ -4546,6 +4700,160 @@ ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Default subreddit set |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+
+
+## updateYoutubeDefaultPlaylist
+
+> UpdateYoutubeDefaultPlaylist200Response updateYoutubeDefaultPlaylist(accountId, updateYoutubeDefaultPlaylistRequest)
+
+Set default YouTube playlist
+
+Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest = new UpdateYoutubeDefaultPlaylistRequest(); // UpdateYoutubeDefaultPlaylistRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.updateYoutubeDefaultPlaylist(accountId, updateYoutubeDefaultPlaylistRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#updateYoutubeDefaultPlaylist");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateYoutubeDefaultPlaylistRequest** | [**UpdateYoutubeDefaultPlaylistRequest**](UpdateYoutubeDefaultPlaylistRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Default playlist set |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+
+## updateYoutubeDefaultPlaylistWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> updateYoutubeDefaultPlaylist updateYoutubeDefaultPlaylistWithHttpInfo(accountId, updateYoutubeDefaultPlaylistRequest)
+
+Set default YouTube playlist
+
+Sets the default playlist used when publishing videos for this account. When a post does not specify a &#x60;playlistId&#x60;, the default playlist is not automatically used (it is stored for client-side convenience).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        UpdateYoutubeDefaultPlaylistRequest updateYoutubeDefaultPlaylistRequest = new UpdateYoutubeDefaultPlaylistRequest(); // UpdateYoutubeDefaultPlaylistRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.updateYoutubeDefaultPlaylistWithHttpInfo(accountId, updateYoutubeDefaultPlaylistRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#updateYoutubeDefaultPlaylist");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **updateYoutubeDefaultPlaylistRequest** | [**UpdateYoutubeDefaultPlaylistRequest**](UpdateYoutubeDefaultPlaylistRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Default playlist set |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |

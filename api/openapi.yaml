@@ -7008,6 +7008,96 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/youtube-playlists:
+    get:
+      description: Returns the playlists available for a connected YouTube account.
+        Use this to get a playlist ID when creating a YouTube post with the `playlistId`
+        field.
+      operationId: getYoutubePlaylists
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                playlists:
+                - id: PLxxxxxxxxxxxxx
+                  title: Tutorials
+                  description: Step-by-step video tutorials
+                  privacy: public
+                  itemCount: 24
+                  thumbnailUrl: https://i.ytimg.com/vi/xxx/mqdefault.jpg
+                - id: PLyyyyyyyyyyyyy
+                  title: Vlogs
+                  description: Weekly vlogs
+                  privacy: public
+                  itemCount: 52
+                  thumbnailUrl: https://i.ytimg.com/vi/yyy/mqdefault.jpg
+                defaultPlaylistId: null
+              schema:
+                $ref: "#/components/schemas/getYoutubePlaylists_200_response"
+          description: Playlists list
+        "400":
+          description: Not a YouTube account
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: List YouTube playlists
+      tags:
+      - Connect
+      x-accepts:
+      - application/json
+    put:
+      description: "Sets the default playlist used when publishing videos for this\
+        \ account. When a post does not specify a `playlistId`, the default playlist\
+        \ is not automatically used (it is stored for client-side convenience)."
+      operationId: updateYoutubeDefaultPlaylist
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              defaultPlaylistId: PLxxxxxxxxxxxxx
+              defaultPlaylistName: Tutorials
+            schema:
+              $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Default playlist set
+        "400":
+          description: Invalid request
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Set default YouTube playlist
+      tags:
+      - Connect
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/gmb-locations:
     get:
       description: "Returns all Google Business Profile locations the connected account\
@@ -7162,7 +7252,7 @@ paths:
               example:
                 success: true
               schema:
-                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Default subreddit set
         "400":
           description: Invalid request
@@ -7590,7 +7680,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Webhook deleted successfully
         "400":
           description: Webhook ID required
@@ -8543,7 +8633,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Message deleted
         "400":
           description: Platform does not support deletion or invalid request
@@ -8639,7 +8729,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Typing indicator sent (or no-op on unsupported platforms)
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -8693,7 +8783,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Reaction removed
         "400":
           description: Platform does not support reactions or invalid request
@@ -8745,7 +8835,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateRedditSubreddits_200_response"
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Reaction added
         "400":
           description: Platform does not support reactions or invalid request
@@ -15792,6 +15882,12 @@ components:
             \ Common: 1 (Film), 2 (Autos), 10 (Music), 15 (Pets), 17 (Sports), 20\
             \ (Gaming), 23 (Comedy), 24 (Entertainment), 25 (News), 26 (Howto), 27\
             \ (Education), 28 (Science & Tech)."
+          type: string
+        playlistId:
+          description: "Optional YouTube playlist ID to add the video to after upload\
+            \ (e.g. 'PLxxxxxxxxxxxxx'). Use GET /v1/accounts/{id}/youtube-playlists\
+            \ to list available playlists. Works for both immediate and scheduled\
+            \ uploads. Quota cost: 50 YouTube API units per call."
           type: string
     GoogleBusinessPlatformData:
       description: "Text and single image only (no videos). Optional call-to-action\
@@ -24880,6 +24976,69 @@ components:
           type: string
       required:
       - defaultBoardId
+    getYoutubePlaylists_200_response_playlists_inner:
+      example:
+        description: description
+        privacy: public
+        id: id
+        title: title
+        itemCount: 0
+        thumbnailUrl: thumbnailUrl
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        privacy:
+          enum:
+          - public
+          - private
+          - unlisted
+          type: string
+        itemCount:
+          type: integer
+        thumbnailUrl:
+          type: string
+    getYoutubePlaylists_200_response:
+      example:
+        playlists:
+        - description: description
+          privacy: public
+          id: id
+          title: title
+          itemCount: 0
+          thumbnailUrl: thumbnailUrl
+        - description: description
+          privacy: public
+          id: id
+          title: title
+          itemCount: 0
+          thumbnailUrl: thumbnailUrl
+        defaultPlaylistId: defaultPlaylistId
+      properties:
+        playlists:
+          items:
+            $ref: "#/components/schemas/getYoutubePlaylists_200_response_playlists_inner"
+          type: array
+        defaultPlaylistId:
+          type: string
+          nullable: true
+    updateYoutubeDefaultPlaylist_request:
+      properties:
+        defaultPlaylistId:
+          type: string
+        defaultPlaylistName:
+          type: string
+      required:
+      - defaultPlaylistId
+    updateYoutubeDefaultPlaylist_200_response:
+      example:
+        success: true
+      properties:
+        success:
+          type: boolean
     getGmbLocations_200_response_locations_inner:
       example:
         accountId: accountId
@@ -25000,12 +25159,6 @@ components:
           type: string
       required:
       - defaultSubreddit
-    updateRedditSubreddits_200_response:
-      example:
-        success: true
-      properties:
-        success:
-          type: boolean
     getRedditFlairs_200_response_flairs_inner:
       example:
         backgroundColor: backgroundColor

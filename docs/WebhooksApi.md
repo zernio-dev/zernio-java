@@ -169,7 +169,7 @@ ApiResponse<[**UpdateWebhookSettings200Response**](UpdateWebhookSettings200Respo
 
 ## deleteWebhookSettings
 
-> UpdateRedditSubreddits200Response deleteWebhookSettings(id)
+> UpdateYoutubeDefaultPlaylist200Response deleteWebhookSettings(id)
 
 Delete webhook
 
@@ -198,7 +198,7 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "id_example"; // String | Webhook ID to delete
         try {
-            UpdateRedditSubreddits200Response result = apiInstance.deleteWebhookSettings(id);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteWebhookSettings(id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WebhooksApi#deleteWebhookSettings");
@@ -220,7 +220,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 
 ### Authorization
@@ -241,7 +241,7 @@ public class Example {
 
 ## deleteWebhookSettingsWithHttpInfo
 
-> ApiResponse<UpdateRedditSubreddits200Response> deleteWebhookSettings deleteWebhookSettingsWithHttpInfo(id)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWebhookSettings deleteWebhookSettingsWithHttpInfo(id)
 
 Delete webhook
 
@@ -271,7 +271,7 @@ public class Example {
         WebhooksApi apiInstance = new WebhooksApi(defaultClient);
         String id = "id_example"; // String | Webhook ID to delete
         try {
-            ApiResponse<UpdateRedditSubreddits200Response> response = apiInstance.deleteWebhookSettingsWithHttpInfo(id);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteWebhookSettingsWithHttpInfo(id);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -295,7 +295,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateRedditSubreddits200Response**](UpdateRedditSubreddits200Response.md)>
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
 
 
 ### Authorization

@@ -333,6 +333,8 @@ docs/GetYouTubeDailyViews403Response.md
 docs/GetYouTubeDailyViews500Response.md
 docs/GetYouTubeTranscript200Response.md
 docs/GetYouTubeTranscript200ResponseSegmentsInner.md
+docs/GetYoutubePlaylists200Response.md
+docs/GetYoutubePlaylists200ResponsePlaylistsInner.md
 docs/GmbAttributesApi.md
 docs/GmbFoodMenusApi.md
 docs/GmbLocationDetailsApi.md
@@ -637,7 +639,6 @@ docs/UpdateProfile200Response.md
 docs/UpdateProfileRequest.md
 docs/UpdateQueueSlot200Response.md
 docs/UpdateQueueSlotRequest.md
-docs/UpdateRedditSubreddits200Response.md
 docs/UpdateRedditSubredditsRequest.md
 docs/UpdateSequence200Response.md
 docs/UpdateSequence200ResponseSequence.md
@@ -654,6 +655,8 @@ docs/UpdateWhatsAppGroupChatRequest.md
 docs/UpdateWhatsAppTemplate200Response.md
 docs/UpdateWhatsAppTemplate200ResponseTemplate.md
 docs/UpdateWhatsAppTemplateRequest.md
+docs/UpdateYoutubeDefaultPlaylist200Response.md
+docs/UpdateYoutubeDefaultPlaylistRequest.md
 docs/UploadMediaDirect200Response.md
 docs/UploadMediaDirectRequest.md
 docs/UploadTokenResponse.md
@@ -1097,6 +1100,8 @@ src/main/java/dev/zernio/model/GetYouTubeDailyViews403Response.java
 src/main/java/dev/zernio/model/GetYouTubeDailyViews500Response.java
 src/main/java/dev/zernio/model/GetYouTubeTranscript200Response.java
 src/main/java/dev/zernio/model/GetYouTubeTranscript200ResponseSegmentsInner.java
+src/main/java/dev/zernio/model/GetYoutubePlaylists200Response.java
+src/main/java/dev/zernio/model/GetYoutubePlaylists200ResponsePlaylistsInner.java
 src/main/java/dev/zernio/model/GoogleBusinessPlatformData.java
 src/main/java/dev/zernio/model/GoogleBusinessPlatformDataCallToAction.java
 src/main/java/dev/zernio/model/HandleOAuthCallbackRequest.java
@@ -1382,7 +1387,6 @@ src/main/java/dev/zernio/model/UpdateProfile200Response.java
 src/main/java/dev/zernio/model/UpdateProfileRequest.java
 src/main/java/dev/zernio/model/UpdateQueueSlot200Response.java
 src/main/java/dev/zernio/model/UpdateQueueSlotRequest.java
-src/main/java/dev/zernio/model/UpdateRedditSubreddits200Response.java
 src/main/java/dev/zernio/model/UpdateRedditSubredditsRequest.java
 src/main/java/dev/zernio/model/UpdateSequence200Response.java
 src/main/java/dev/zernio/model/UpdateSequence200ResponseSequence.java
@@ -1399,6 +1403,8 @@ src/main/java/dev/zernio/model/UpdateWhatsAppGroupChatRequest.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplate200Response.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplate200ResponseTemplate.java
 src/main/java/dev/zernio/model/UpdateWhatsAppTemplateRequest.java
+src/main/java/dev/zernio/model/UpdateYoutubeDefaultPlaylist200Response.java
+src/main/java/dev/zernio/model/UpdateYoutubeDefaultPlaylistRequest.java
 src/main/java/dev/zernio/model/UploadMediaDirect200Response.java
 src/main/java/dev/zernio/model/UploadMediaDirectRequest.java
 src/main/java/dev/zernio/model/UploadTokenResponse.java
@@ -1460,3 +1466,7 @@ src/main/java/dev/zernio/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/GetYoutubePlaylists200ResponsePlaylistsInnerTest.java
+src/test/java/dev/zernio/model/GetYoutubePlaylists200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateYoutubeDefaultPlaylist200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateYoutubeDefaultPlaylistRequestTest.java

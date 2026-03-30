@@ -24,9 +24,9 @@ import dev.zernio.model.GetWebhookSettings200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.TestWebhookRequest;
 import dev.zernio.model.UnpublishPost200Response;
-import dev.zernio.model.UpdateRedditSubreddits200Response;
 import dev.zernio.model.UpdateWebhookSettings200Response;
 import dev.zernio.model.UpdateWebhookSettingsRequest;
+import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T11:32:53.465629721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T16:57:55.652265708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhooksApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -303,10 +303,10 @@ public class WebhooksApi {
    * Delete webhook
    * Permanently delete a webhook configuration.
    * @param id Webhook ID to delete (required)
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response deleteWebhookSettings(@javax.annotation.Nonnull String id) throws ApiException {
+  public UpdateYoutubeDefaultPlaylist200Response deleteWebhookSettings(@javax.annotation.Nonnull String id) throws ApiException {
     return deleteWebhookSettings(id, null);
   }
 
@@ -315,11 +315,11 @@ public class WebhooksApi {
    * Permanently delete a webhook configuration.
    * @param id Webhook ID to delete (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateRedditSubreddits200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateRedditSubreddits200Response deleteWebhookSettings(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateRedditSubreddits200Response> localVarResponse = deleteWebhookSettingsWithHttpInfo(id, headers);
+  public UpdateYoutubeDefaultPlaylist200Response deleteWebhookSettings(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deleteWebhookSettingsWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -327,10 +327,10 @@ public class WebhooksApi {
    * Delete webhook
    * Permanently delete a webhook configuration.
    * @param id Webhook ID to delete (required)
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> deleteWebhookSettingsWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWebhookSettingsWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
     return deleteWebhookSettingsWithHttpInfo(id, null);
   }
 
@@ -339,10 +339,10 @@ public class WebhooksApi {
    * Permanently delete a webhook configuration.
    * @param id Webhook ID to delete (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateRedditSubreddits200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateRedditSubreddits200Response> deleteWebhookSettingsWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWebhookSettingsWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = deleteWebhookSettingsRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -358,7 +358,7 @@ public class WebhooksApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateRedditSubreddits200Response>(
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -368,10 +368,10 @@ public class WebhooksApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateRedditSubreddits200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateRedditSubreddits200Response>() {});
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
         
 
-        return new ApiResponse<UpdateRedditSubreddits200Response>(
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

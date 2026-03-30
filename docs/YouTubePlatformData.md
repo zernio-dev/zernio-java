@@ -14,6 +14,7 @@ Videos under 3 min auto-detected as Shorts. Custom thumbnails for regular videos
 |**firstComment** | **String** | Optional first comment to post immediately after video upload. Up to 10,000 characters (YouTube&#39;s comment limit). |  [optional] |
 |**containsSyntheticMedia** | **Boolean** | AI-generated content disclosure. Set true if the video contains synthetic content that could be mistaken for real. YouTube may add a label. |  [optional] |
 |**categoryId** | **String** | YouTube video category ID. Defaults to 22 (People &amp; Blogs). Common: 1 (Film), 2 (Autos), 10 (Music), 15 (Pets), 17 (Sports), 20 (Gaming), 23 (Comedy), 24 (Entertainment), 25 (News), 26 (Howto), 27 (Education), 28 (Science &amp; Tech). |  [optional] |
+|**playlistId** | **String** | Optional YouTube playlist ID to add the video to after upload (e.g. &#39;PLxxxxxxxxxxxxx&#39;). Use GET /v1/accounts/{id}/youtube-playlists to list available playlists. Works for both immediate and scheduled uploads. Quota cost: 50 YouTube API units per call. |  [optional] |
 
 
 
