@@ -16,7 +16,7 @@
 
 | Name | Value |
 |---- | -----|
-| BUTTONS | &quot;BUTTONS&quot; |
+| BUTTONS | &quot;buttons&quot; |
 
 
 

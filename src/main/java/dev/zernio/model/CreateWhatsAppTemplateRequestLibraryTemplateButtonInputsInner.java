@@ -38,17 +38,17 @@ import dev.zernio.ApiClient;
   CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner.JSON_PROPERTY_URL,
   CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T18:49:22.341670957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInner {
   /**
    * Gets or Sets type
    */
   public enum TypeEnum {
-    QUICK_REPLY(String.valueOf("QUICK_REPLY")),
+    QUICK_REPLY(String.valueOf("quick_reply")),
     
-    URL(String.valueOf("URL")),
+    URL(String.valueOf("url")),
     
-    PHONE_NUMBER(String.valueOf("PHONE_NUMBER"));
+    PHONE_NUMBER(String.valueOf("phone_number"));
 
     private String value;
 

@@ -39,13 +39,13 @@ import dev.zernio.ApiClient;
   WhatsAppHeaderComponent.JSON_PROPERTY_TEXT,
   WhatsAppHeaderComponent.JSON_PROPERTY_EXAMPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T18:49:22.341670957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppHeaderComponent {
   /**
    * Gets or Sets type
    */
   public enum TypeEnum {
-    HEADER(String.valueOf("HEADER"));
+    HEADER(String.valueOf("header"));
 
     private String value;
 
@@ -82,17 +82,17 @@ public class WhatsAppHeaderComponent {
    * Gets or Sets format
    */
   public enum FormatEnum {
-    TEXT(String.valueOf("TEXT")),
+    TEXT(String.valueOf("text")),
     
-    IMAGE(String.valueOf("IMAGE")),
+    IMAGE(String.valueOf("image")),
     
-    VIDEO(String.valueOf("VIDEO")),
+    VIDEO(String.valueOf("video")),
     
-    GIF(String.valueOf("GIF")),
+    GIF(String.valueOf("gif")),
     
-    DOCUMENT(String.valueOf("DOCUMENT")),
+    DOCUMENT(String.valueOf("document")),
     
-    LOCATION(String.valueOf("LOCATION"));
+    LOCATION(String.valueOf("location"));
 
     private String value;
 

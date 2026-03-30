@@ -19,9 +19,12 @@ import java.util.StringJoiner;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.WhatsAppBodyComponent;
@@ -60,7 +63,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T18:49:22.341670957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = WhatsAppTemplateComponent.WhatsAppTemplateComponentDeserializer.class)
 @JsonSerialize(using = WhatsAppTemplateComponent.WhatsAppTemplateComponentSerializer.class)
 public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
@@ -251,6 +254,14 @@ public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
         schemas.put("WhatsAppFooterComponent", WhatsAppFooterComponent.class);
         schemas.put("WhatsAppHeaderComponent", WhatsAppHeaderComponent.class);
         JSON.registerDescendants(WhatsAppTemplateComponent.class, Collections.unmodifiableMap(schemas));
+        // Initialize and register the discriminator mappings.
+        Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+        mappings.put("body", WhatsAppBodyComponent.class);
+        mappings.put("buttons", WhatsAppButtonsComponent.class);
+        mappings.put("footer", WhatsAppFooterComponent.class);
+        mappings.put("header", WhatsAppHeaderComponent.class);
+        mappings.put("WhatsAppTemplateComponent", WhatsAppTemplateComponent.class);
+        JSON.registerDiscriminator(WhatsAppTemplateComponent.class, "type", mappings);
     }
 
     @Override

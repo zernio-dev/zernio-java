@@ -51,25 +51,25 @@ import dev.zernio.ApiClient;
   WhatsAppTemplateButton.JSON_PROPERTY_FLOW_ACTION,
   WhatsAppTemplateButton.JSON_PROPERTY_NAVIGATE_SCREEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T18:49:22.341670957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplateButton {
   /**
    * Gets or Sets type
    */
   public enum TypeEnum {
-    QUICK_REPLY(String.valueOf("QUICK_REPLY")),
+    QUICK_REPLY(String.valueOf("quick_reply")),
     
-    URL(String.valueOf("URL")),
+    URL(String.valueOf("url")),
     
-    PHONE_NUMBER(String.valueOf("PHONE_NUMBER")),
+    PHONE_NUMBER(String.valueOf("phone_number")),
     
-    OTP(String.valueOf("OTP")),
+    OTP(String.valueOf("otp")),
     
-    FLOW(String.valueOf("FLOW")),
+    FLOW(String.valueOf("flow")),
     
-    MPM(String.valueOf("MPM")),
+    MPM(String.valueOf("mpm")),
     
-    CATALOG(String.valueOf("CATALOG"));
+    CATALOG(String.valueOf("catalog"));
 
     private String value;
 
@@ -119,14 +119,14 @@ public class WhatsAppTemplateButton {
   private String phoneNumber;
 
   /**
-   * Required when type is OTP
+   * Required when type is otp
    */
   public enum OtpTypeEnum {
-    COPY_CODE(String.valueOf("COPY_CODE")),
+    COPY_CODE(String.valueOf("copy_code")),
     
-    ONE_TAP(String.valueOf("ONE_TAP")),
+    ONE_TAP(String.valueOf("one_tap")),
     
-    ZERO_TAP(String.valueOf("ZERO_TAP"));
+    ZERO_TAP(String.valueOf("zero_tap"));
 
     private String value;
 
@@ -304,7 +304,7 @@ public class WhatsAppTemplateButton {
   }
 
   /**
-   * Required when type is PHONE_NUMBER
+   * Required when type is phone_number
    * @return phoneNumber
    */
   @javax.annotation.Nullable
@@ -328,7 +328,7 @@ public class WhatsAppTemplateButton {
   }
 
   /**
-   * Required when type is OTP
+   * Required when type is otp
    * @return otpType
    */
   @javax.annotation.Nullable

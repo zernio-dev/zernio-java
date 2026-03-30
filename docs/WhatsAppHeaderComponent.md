@@ -18,7 +18,7 @@
 
 | Name | Value |
 |---- | -----|
-| HEADER | &quot;HEADER&quot; |
+| HEADER | &quot;header&quot; |
 
 
 
@@ -26,12 +26,12 @@
 
 | Name | Value |
 |---- | -----|
-| TEXT | &quot;TEXT&quot; |
-| IMAGE | &quot;IMAGE&quot; |
-| VIDEO | &quot;VIDEO&quot; |
-| GIF | &quot;GIF&quot; |
-| DOCUMENT | &quot;DOCUMENT&quot; |
-| LOCATION | &quot;LOCATION&quot; |
+| TEXT | &quot;text&quot; |
+| IMAGE | &quot;image&quot; |
+| VIDEO | &quot;video&quot; |
+| GIF | &quot;gif&quot; |
+| DOCUMENT | &quot;document&quot; |
+| LOCATION | &quot;location&quot; |
 
 
 

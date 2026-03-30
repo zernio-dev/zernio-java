@@ -18,7 +18,7 @@
 
 | Name | Value |
 |---- | -----|
-| BODY | &quot;BODY&quot; |
+| BODY | &quot;body&quot; |
 
 
 

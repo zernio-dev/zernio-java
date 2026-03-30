@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppHeaderComponentExample.JSON_PROPERTY_HEADER_TEXT,
   WhatsAppHeaderComponentExample.JSON_PROPERTY_HEADER_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T18:49:22.341670957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppHeaderComponentExample {
   public static final String JSON_PROPERTY_HEADER_TEXT = "header_text";
   @javax.annotation.Nullable
@@ -98,7 +98,7 @@ public class WhatsAppHeaderComponentExample {
   }
 
   /**
-   * When the header format is a media type (IMAGE, VIDEO, GIF, DOCUMENT), provide a public URL here. Zernio will download and upload it to WhatsApp on your behalf, replacing it with the internal file handle before creating the template.
+   * When the header format is a media type (image, video, gif, document), provide a public URL here. Zernio will download and upload it to WhatsApp on your behalf, replacing it with the internal file handle before creating the template.
    * @return headerHandle
    */
   @javax.annotation.Nullable

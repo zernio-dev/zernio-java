@@ -17,7 +17,7 @@
 
 | Name | Value |
 |---- | -----|
-| FOOTER | &quot;FOOTER&quot; |
+| FOOTER | &quot;footer&quot; |
 
 
 

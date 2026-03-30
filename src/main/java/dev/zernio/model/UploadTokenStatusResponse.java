@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UploadTokenStatusResponse.JSON_PROPERTY_EXPIRES_AT,
   UploadTokenStatusResponse.JSON_PROPERTY_COMPLETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T18:49:22.341670957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadTokenStatusResponse {
   public static final String JSON_PROPERTY_TOKEN = "token";
   @javax.annotation.Nullable

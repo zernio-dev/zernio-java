@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestTemplateElementsInnerButtonsInner.JSON_PROPERTY_URL,
   SendInboxMessageRequestTemplateElementsInnerButtonsInner.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T18:49:22.341670957Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestTemplateElementsInnerButtonsInner {
   /**
    * Gets or Sets type

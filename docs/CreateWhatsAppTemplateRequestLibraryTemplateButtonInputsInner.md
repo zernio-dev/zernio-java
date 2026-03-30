@@ -17,9 +17,9 @@
 
 | Name | Value |
 |---- | -----|
-| QUICK_REPLY | &quot;QUICK_REPLY&quot; |
-| URL | &quot;URL&quot; |
-| PHONE_NUMBER | &quot;PHONE_NUMBER&quot; |
+| QUICK_REPLY | &quot;quick_reply&quot; |
+| URL | &quot;url&quot; |
+| PHONE_NUMBER | &quot;phone_number&quot; |
 
 
 

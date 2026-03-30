@@ -10730,23 +10730,23 @@ paths:
                   category: UTILITY
                   language: en_US
                   components:
-                  - type: HEADER
-                    format: IMAGE
+                  - type: header
+                    format: image
                     example:
                       header_handle:
                       - https://example.com/header.jpg
-                  - type: BODY
+                  - type: body
                     text: "Your order {{1}} has been confirmed. Expected delivery:\
                       \ {{2}}"
                     example:
                       body_text:
                       - - ORD-12345
                         - March 31
-                  - type: FOOTER
+                  - type: footer
                     text: Thank you for your purchase
-                  - type: BUTTONS
+                  - type: buttons
                     buttons:
-                    - type: QUICK_REPLY
+                    - type: quick_reply
                       text: Track Order
               library:
                 summary: "Library template (pre-approved, no review)"
@@ -10757,7 +10757,7 @@ paths:
                   language: en_US
                   library_template_name: appointment_reminder
                   library_template_button_inputs:
-                  - type: URL
+                  - type: url
                     url:
                       base_url: "https://myapp.com/appointments/{{1}}"
             schema:
@@ -10891,15 +10891,15 @@ paths:
             example:
               accountId: 507f1f77bcf86cd799439011
               components:
-              - type: BODY
+              - type: body
                 text: "Updated: Your order {{1}} is confirmed. Delivery by {{2}}"
                 example:
                   body_text:
                   - - ORD-12345
                     - April 1
-              - type: BUTTONS
+              - type: buttons
                 buttons:
-                - type: QUICK_REPLY
+                - type: quick_reply
                   text: Track Order
             schema:
               $ref: "#/components/schemas/updateWhatsAppTemplate_request"
@@ -13547,13 +13547,13 @@ components:
       properties:
         type:
           enum:
-          - QUICK_REPLY
-          - URL
-          - PHONE_NUMBER
-          - OTP
-          - FLOW
-          - MPM
-          - CATALOG
+          - quick_reply
+          - url
+          - phone_number
+          - otp
+          - flow
+          - mpm
+          - catalog
           type: string
         text:
           type: string
@@ -13567,14 +13567,14 @@ components:
             type: string
           type: array
         phone_number:
-          description: Required when type is PHONE_NUMBER
+          description: Required when type is phone_number
           type: string
         otp_type:
-          description: Required when type is OTP
+          description: Required when type is otp
           enum:
-          - COPY_CODE
-          - ONE_TAP
-          - ZERO_TAP
+          - copy_code
+          - one_tap
+          - zero_tap
           type: string
         autofill_text:
           type: string
@@ -13596,6 +13596,13 @@ components:
       - text
       - type
     WhatsAppTemplateComponent:
+      discriminator:
+        mapping:
+          header: "#/components/schemas/WhatsAppHeaderComponent"
+          body: "#/components/schemas/WhatsAppBodyComponent"
+          footer: "#/components/schemas/WhatsAppFooterComponent"
+          buttons: "#/components/schemas/WhatsAppButtonsComponent"
+        propertyName: type
       oneOf:
       - $ref: "#/components/schemas/WhatsAppHeaderComponent"
       - $ref: "#/components/schemas/WhatsAppBodyComponent"
@@ -13605,16 +13612,16 @@ components:
       properties:
         type:
           enum:
-          - HEADER
+          - header
           type: string
         format:
           enum:
-          - TEXT
-          - IMAGE
-          - VIDEO
-          - GIF
-          - DOCUMENT
-          - LOCATION
+          - text
+          - image
+          - video
+          - gif
+          - document
+          - location
           type: string
         text:
           description: "Header text (may include {{1}} variable). Used when format\
@@ -13629,7 +13636,7 @@ components:
       properties:
         type:
           enum:
-          - BODY
+          - body
           type: string
         text:
           description: "Body text with optional {{n}} variables"
@@ -13647,7 +13654,7 @@ components:
       properties:
         type:
           enum:
-          - FOOTER
+          - footer
           type: string
         text:
           description: Static footer text
@@ -13662,7 +13669,7 @@ components:
       properties:
         type:
           enum:
-          - BUTTONS
+          - buttons
           type: string
         buttons:
           items:
@@ -28725,9 +28732,9 @@ components:
       properties:
         type:
           enum:
-          - QUICK_REPLY
-          - URL
-          - PHONE_NUMBER
+          - quick_reply
+          - url
+          - phone_number
           type: string
         url:
           $ref: "#/components/schemas/createWhatsAppTemplate_request_library_template_button_inputs_inner_url"
@@ -28754,7 +28761,7 @@ components:
           description: "Template language code (e.g., en_US)"
           type: string
         components:
-          description: "Template components (HEADER, BODY, FOOTER, BUTTONS). Required\
+          description: "Template components (header, body, footer, buttons). Required\
             \ for custom templates, omit when using library_template_name."
           items:
             $ref: "#/components/schemas/WhatsAppTemplateComponent"
@@ -32370,8 +32377,8 @@ components:
             type: string
           type: array
         header_handle:
-          description: "When the header format is a media type (IMAGE, VIDEO, GIF,\
-            \ DOCUMENT), provide a public URL here. Zernio will download and upload\
+          description: "When the header format is a media type (image, video, gif,\
+            \ document), provide a public URL here. Zernio will download and upload\
             \ it to WhatsApp on your behalf, replacing it with the internal file handle\
             \ before creating the template."
           items:
