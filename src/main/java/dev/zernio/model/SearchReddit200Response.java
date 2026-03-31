@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SearchReddit200Response.JSON_PROPERTY_POSTS,
   SearchReddit200Response.JSON_PROPERTY_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:35:22.604931021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchReddit200Response {
   public static final String JSON_PROPERTY_POSTS = "posts";
   @javax.annotation.Nullable

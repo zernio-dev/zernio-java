@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   MediaItem.JSON_PROPERTY_INSTAGRAM_THUMBNAIL,
   MediaItem.JSON_PROPERTY_TIKTOK_PROCESSED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:35:22.604931021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MediaItem {
   /**
    * Gets or Sets type

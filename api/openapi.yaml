@@ -3144,6 +3144,13 @@ paths:
                   - seo
                   - youtube
                   - optimization
+              update-thumbnail:
+                summary: Update thumbnail on an existing video
+                value:
+                  platform: youtube
+                  videoId: dQw4w9WgXcQ
+                  accountId: 68fb37418bbca9c10cbfef26
+                  thumbnailUrl: https://example.com/my-thumbnail.jpg
             schema:
               $ref: "#/components/schemas/updatePostMetadata_request"
         required: true
@@ -20444,6 +20451,13 @@ components:
           - public
           - private
           - unlisted
+          type: string
+        thumbnailUrl:
+          description: "Public URL of a custom thumbnail image (JPEG, PNG, or GIF,\
+            \ max 2 MB, recommended 1280x720). Works on any video you own, including\
+            \ existing videos not published through Zernio. The channel must be verified\
+            \ (phone verification) to set custom thumbnails."
+          format: uri
           type: string
       required:
       - platform

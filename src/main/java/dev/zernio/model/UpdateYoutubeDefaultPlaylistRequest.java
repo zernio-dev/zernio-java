@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateYoutubeDefaultPlaylistRequest.JSON_PROPERTY_DEFAULT_PLAYLIST_ID,
   UpdateYoutubeDefaultPlaylistRequest.JSON_PROPERTY_DEFAULT_PLAYLIST_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-30T19:37:49.048780312Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:35:22.604931021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateYoutubeDefaultPlaylistRequest {
   public static final String JSON_PROPERTY_DEFAULT_PLAYLIST_ID = "defaultPlaylistId";
   @javax.annotation.Nonnull
