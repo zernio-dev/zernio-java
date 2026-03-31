@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_LANGUAGE,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_COMPONENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:35:22.604931021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:50:24.437613523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

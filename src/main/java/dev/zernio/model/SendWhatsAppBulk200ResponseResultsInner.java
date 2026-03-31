@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SendWhatsAppBulk200ResponseResultsInner.JSON_PROPERTY_MESSAGE_ID,
   SendWhatsAppBulk200ResponseResultsInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:35:22.604931021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:50:24.437613523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppBulk200ResponseResultsInner {
   public static final String JSON_PROPERTY_PHONE = "phone";
   @javax.annotation.Nullable

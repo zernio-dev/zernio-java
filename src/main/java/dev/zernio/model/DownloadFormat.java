@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   DownloadFormat.JSON_PROPERTY_FILESIZE,
   DownloadFormat.JSON_PROPERTY_QUALITY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:35:22.604931021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:50:24.437613523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DownloadFormat {
   public static final String JSON_PROPERTY_FORMAT_ID = "formatId";
   @javax.annotation.Nullable

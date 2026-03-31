@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ConnectionLogSuccess.JSON_PROPERTY_TOKEN_EXPIRES_AT,
   ConnectionLogSuccess.JSON_PROPERTY_ACCOUNT_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:35:22.604931021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-31T19:50:24.437613523Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectionLogSuccess {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable
