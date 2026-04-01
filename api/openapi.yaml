@@ -13960,6 +13960,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Ads add-on required
+        "422":
+          description: "Platform ads connection required (TikTok Ads, X Ads) or missing\
+            \ linked account"
       security:
       - bearerAuth: []
       summary: Boost an existing post as a paid ad
@@ -13992,6 +13995,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Ads add-on required
+        "422":
+          description: "Platform ads connection required (TikTok Ads, X Ads) or missing\
+            \ linked account"
       security:
       - bearerAuth: []
       summary: Create a standalone ad with custom creative
@@ -14107,6 +14113,8 @@ paths:
           description: Audiences
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads add-on required
       security:
       - bearerAuth: []
       summary: List custom audiences

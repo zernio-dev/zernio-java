@@ -99,6 +99,7 @@ public class Example {
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
+| **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 
 ## boostPostWithHttpInfo
 
@@ -175,6 +176,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
+| **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 
 
 ## createStandaloneAd
@@ -249,6 +251,7 @@ public class Example {
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
+| **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 
 ## createStandaloneAdWithHttpInfo
 
@@ -325,6 +328,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
+| **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 
 
 ## deleteAd

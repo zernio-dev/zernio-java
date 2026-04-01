@@ -699,6 +699,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
 
 ## listAdAudiencesWithHttpInfo
 
@@ -777,4 +778,5 @@ ApiResponse<[**ListAdAudiences200Response**](ListAdAudiences200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
 
