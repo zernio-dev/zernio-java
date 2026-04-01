@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest1.JSON_PROPERTY_MESSAGE_TAG,
   SendInboxMessageRequest1.JSON_PROPERTY_REPLY_TO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-01T06:39:52.065493300Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-01T14:15:18.197272190Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest1 {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
