@@ -101,6 +101,9 @@ tags:
     Rate limits: 50 requests per 15-min window per user. Retweets share the 300/3hr creation limit with tweet creation.
   name: Twitter Engagement
 - description: |
+    Pre-flight validation endpoints. Check post content, character limits, media URLs, and subreddit existence before publishing.
+  name: Validate
+- description: |
     Platform-specific account settings: Facebook persistent menu, Instagram ice breakers, and Telegram bot commands.
   name: Account Settings
 - description: |
@@ -161,6 +164,127 @@ tags:
     Requires a paid plan.
   name: WhatsApp Phone Numbers
 paths:
+  /v1/tools/validate/post-length:
+    post:
+      description: |
+        Check weighted character count per platform and whether the text is within each platform's limit.
+
+        Twitter/X uses weighted counting (URLs = 23 chars via t.co, emojis = 2 chars). All other platforms use plain character length.
+
+        Returns counts and limits for all 15 supported platform variants.
+      operationId: validatePostLength
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/validatePostLength_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validatePostLength_200_response"
+          description: Character counts per platform
+      security:
+      - bearerAuth: []
+      summary: Validate post character count
+      tags:
+      - Validate
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/tools/validate/post:
+    post:
+      description: |
+        Dry-run the full post validation pipeline without publishing. Catches issues like missing media for Instagram/TikTok/YouTube, hashtag limits, invalid thread formats, Facebook Reel requirements, and character limit violations.
+
+        Accepts the same body as `POST /v1/posts`. Does NOT validate accounts, process media, or track usage. This is content-only validation.
+
+        Returns errors for failures and warnings for near-limit content (>90% of character limit).
+      operationId: validatePost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/validatePost_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validatePost_200_response"
+          description: Validation result
+      security:
+      - bearerAuth: []
+      summary: Validate post content
+      tags:
+      - Validate
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/tools/validate/media:
+    post:
+      description: |
+        Check if a media URL is accessible and return metadata (content type, file size) plus per-platform size limit comparisons.
+
+        Performs a HEAD request (with GET fallback) to detect content type and size. Rejects private/localhost URLs for SSRF protection.
+
+        Platform limits are sourced from each platform's actual upload constraints.
+      operationId: validateMedia
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/validateMedia_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validateMedia_200_response"
+          description: Media validation result
+      security:
+      - bearerAuth: []
+      summary: Validate media URL
+      tags:
+      - Validate
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/tools/validate/subreddit:
+    get:
+      description: |
+        Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).
+
+        Uses Reddit's public JSON API (no Reddit auth needed). Returns `exists: false` for private, banned, or nonexistent subreddits.
+      operationId: validateSubreddit
+      parameters:
+      - description: Subreddit name (with or without "r/" prefix)
+        explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          example: programming
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/validateSubreddit_200_response"
+          description: Subreddit lookup result
+      security:
+      - bearerAuth: []
+      summary: Check subreddit existence
+      tags:
+      - Validate
+      x-accepts:
+      - application/json
   /v1/analytics:
     get:
       description: |
@@ -13238,6 +13362,111 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/tree:
+    get:
+      description: |
+        Returns a nested Campaign > Ad Set > Ad hierarchy with rolled-up metrics at each level.
+        Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns.
+        Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into
+        synthetic "Ungrouped" buckets.
+      operationId: getAdTree
+      parameters:
+      - $ref: "#/components/parameters/PageParam"
+      - description: Campaigns per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          default: zernio
+          enum:
+          - zernio
+          - all
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          type: string
+        style: form
+      - description: Filter by derived campaign status (post-aggregation)
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - active
+          - paused
+          - pending_review
+          - rejected
+          - completed
+          - cancelled
+          - error
+          type: string
+        style: form
+      - description: Platform ad account ID
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Profile ID
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdTree_200_response"
+          description: Nested campaign tree with pagination
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads add-on required
+      security:
+      - bearerAuth: []
+      summary: Get nested campaign/ad-set/ad tree
+      tags:
+      - Ad Campaigns
+      x-accepts:
+      - application/json
   /v1/ads/{adId}:
     delete:
       description: Cancels the ad on the platform and marks it as cancelled in the
@@ -18804,6 +19033,315 @@ components:
         updatedAt:
           format: date-time
           type: string
+    AdTreeAdSet:
+      description: Ad set (or ad group/line item depending on platform) with rolled-up
+        metrics and child ads
+      example:
+        ads:
+        - goal: engagement
+          adSetName: adSetName
+          isExternal: true
+          platformCampaignId: platformCampaignId
+          platformAdId: platformAdId
+          platform: facebook
+          creative: "{}"
+          schedule:
+            endDate: 2000-01-23T04:56:07.000+00:00
+            startDate: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          name: name
+          platformAdSetId: platformAdSetId
+          _id: _id
+          metrics: ""
+          rejectionReason: rejectionReason
+          campaignName: campaignName
+          platformAdAccountId: platformAdAccountId
+          status: active
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - goal: engagement
+          adSetName: adSetName
+          isExternal: true
+          platformCampaignId: platformCampaignId
+          platformAdId: platformAdId
+          platform: facebook
+          creative: "{}"
+          schedule:
+            endDate: 2000-01-23T04:56:07.000+00:00
+            startDate: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          name: name
+          platformAdSetId: platformAdSetId
+          _id: _id
+          metrics: ""
+          rejectionReason: rejectionReason
+          campaignName: campaignName
+          platformAdAccountId: platformAdAccountId
+          status: active
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        adSetName: adSetName
+        platformAdSetId: platformAdSetId
+        adCount: 1
+        metrics:
+          ctr: 2.3021358869347655
+          cpm: 9.301444243932576
+          engagement: 3
+          reach: 5
+          spend: 6.027456183070403
+          cpc: 7.061401241503109
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          clicks: 5
+          impressions: 1
+        status: active
+        budget:
+          amount: 0.8008281904610115
+          type: daily
+      properties:
+        platformAdSetId:
+          type: string
+        adSetName:
+          type: string
+        status:
+          description: Derived from child ad statuses
+          enum:
+          - active
+          - paused
+          - pending_review
+          - rejected
+          - completed
+          - cancelled
+          - error
+          type: string
+        adCount:
+          type: integer
+        budget:
+          $ref: "#/components/schemas/Ad_budget"
+        metrics:
+          $ref: "#/components/schemas/AdMetrics"
+        ads:
+          description: "Individual ads within this ad set (capped at 100). Returns\
+            \ a subset of Ad fields from the aggregation (core fields like _id, name,\
+            \ platform, status, budget, metrics, creative, goal are included; targeting\
+            \ and schedule may be absent)."
+          items:
+            $ref: "#/components/schemas/Ad"
+          type: array
+    AdTreeCampaign:
+      description: Campaign with nested ad sets and rolled-up metrics
+      example:
+        accountId: accountId
+        profileId: profileId
+        platformCampaignId: platformCampaignId
+        adCount: 0
+        adSets:
+        - ads:
+          - goal: engagement
+            adSetName: adSetName
+            isExternal: true
+            platformCampaignId: platformCampaignId
+            platformAdId: platformAdId
+            platform: facebook
+            creative: "{}"
+            schedule:
+              endDate: 2000-01-23T04:56:07.000+00:00
+              startDate: 2000-01-23T04:56:07.000+00:00
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            name: name
+            platformAdSetId: platformAdSetId
+            _id: _id
+            metrics: ""
+            rejectionReason: rejectionReason
+            campaignName: campaignName
+            platformAdAccountId: platformAdAccountId
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - goal: engagement
+            adSetName: adSetName
+            isExternal: true
+            platformCampaignId: platformCampaignId
+            platformAdId: platformAdId
+            platform: facebook
+            creative: "{}"
+            schedule:
+              endDate: 2000-01-23T04:56:07.000+00:00
+              startDate: 2000-01-23T04:56:07.000+00:00
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            name: name
+            platformAdSetId: platformAdSetId
+            _id: _id
+            metrics: ""
+            rejectionReason: rejectionReason
+            campaignName: campaignName
+            platformAdAccountId: platformAdAccountId
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          adSetName: adSetName
+          platformAdSetId: platformAdSetId
+          adCount: 1
+          metrics:
+            ctr: 2.3021358869347655
+            cpm: 9.301444243932576
+            engagement: 3
+            reach: 5
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            clicks: 5
+            impressions: 1
+          status: active
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+        - ads:
+          - goal: engagement
+            adSetName: adSetName
+            isExternal: true
+            platformCampaignId: platformCampaignId
+            platformAdId: platformAdId
+            platform: facebook
+            creative: "{}"
+            schedule:
+              endDate: 2000-01-23T04:56:07.000+00:00
+              startDate: 2000-01-23T04:56:07.000+00:00
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            name: name
+            platformAdSetId: platformAdSetId
+            _id: _id
+            metrics: ""
+            rejectionReason: rejectionReason
+            campaignName: campaignName
+            platformAdAccountId: platformAdAccountId
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          - goal: engagement
+            adSetName: adSetName
+            isExternal: true
+            platformCampaignId: platformCampaignId
+            platformAdId: platformAdId
+            platform: facebook
+            creative: "{}"
+            schedule:
+              endDate: 2000-01-23T04:56:07.000+00:00
+              startDate: 2000-01-23T04:56:07.000+00:00
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            adType: boost
+            targeting: "{}"
+            name: name
+            platformAdSetId: platformAdSetId
+            _id: _id
+            metrics: ""
+            rejectionReason: rejectionReason
+            campaignName: campaignName
+            platformAdAccountId: platformAdAccountId
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          adSetName: adSetName
+          platformAdSetId: platformAdSetId
+          adCount: 1
+          metrics:
+            ctr: 2.3021358869347655
+            cpm: 9.301444243932576
+            engagement: 3
+            reach: 5
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            clicks: 5
+            impressions: 1
+          status: active
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+        metrics:
+          ctr: 2.3021358869347655
+          cpm: 9.301444243932576
+          engagement: 3
+          reach: 5
+          spend: 6.027456183070403
+          cpc: 7.061401241503109
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          clicks: 5
+          impressions: 1
+        adSetCount: 6
+        campaignName: campaignName
+        platform: facebook
+        platformAdAccountId: platformAdAccountId
+        status: active
+        budget:
+          amount: 0.8008281904610115
+          type: daily
+      properties:
+        platformCampaignId:
+          type: string
+        platform:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          type: string
+        campaignName:
+          type: string
+        status:
+          description: Derived from child ad statuses
+          enum:
+          - active
+          - paused
+          - pending_review
+          - rejected
+          - completed
+          - cancelled
+          - error
+          type: string
+        adCount:
+          description: Total ads across all ad sets
+          type: integer
+        adSetCount:
+          type: integer
+        budget:
+          $ref: "#/components/schemas/Ad_budget"
+        metrics:
+          $ref: "#/components/schemas/AdMetrics"
+        platformAdAccountId:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+        adSets:
+          items:
+            $ref: "#/components/schemas/AdTreeAdSet"
+          type: array
     AdCampaign:
       example:
         accountId: accountId
@@ -18873,6 +19411,344 @@ components:
         latestAd:
           format: date-time
           type: string
+    validatePostLength_request:
+      properties:
+        text:
+          description: The post text to check
+          example: Check out https://zernio.com for scheduling posts!
+          type: string
+      required:
+      - text
+    validatePostLength_200_response_platforms_value:
+      properties:
+        count:
+          description: Character count for this platform
+          type: integer
+        limit:
+          description: Maximum allowed characters
+          type: integer
+        valid:
+          description: Whether the text is within the limit
+          type: boolean
+    validatePostLength_200_response:
+      example:
+        text: text
+        platforms:
+          twitter:
+            count: 51
+            limit: 280
+            valid: true
+          twitterPremium:
+            count: 51
+            limit: 25000
+            valid: true
+          instagram:
+            count: 51
+            limit: 2200
+            valid: true
+          bluesky:
+            count: 51
+            limit: 300
+            valid: true
+          snapchat:
+            count: 51
+            limit: 160
+            valid: true
+      properties:
+        text:
+          type: string
+        platforms:
+          additionalProperties:
+            $ref: "#/components/schemas/validatePostLength_200_response_platforms_value"
+          example:
+            twitter:
+              count: 51
+              limit: 280
+              valid: true
+            twitterPremium:
+              count: 51
+              limit: 25000
+              valid: true
+            instagram:
+              count: 51
+              limit: 2200
+              valid: true
+            bluesky:
+              count: 51
+              limit: 300
+              valid: true
+            snapchat:
+              count: 51
+              limit: 160
+              valid: true
+    validatePost_request_platforms_inner_customMedia_inner:
+      properties:
+        url:
+          type: string
+        type:
+          enum:
+          - image
+          - video
+          type: string
+    validatePost_request_platforms_inner:
+      properties:
+        platform:
+          enum:
+          - twitter
+          - instagram
+          - tiktok
+          - youtube
+          - facebook
+          - linkedin
+          - bluesky
+          - threads
+          - reddit
+          - pinterest
+          - telegram
+          - snapchat
+          - googlebusiness
+          type: string
+        customContent:
+          type: string
+        platformSpecificData:
+          type: object
+        customMedia:
+          items:
+            $ref: "#/components/schemas/validatePost_request_platforms_inner_customMedia_inner"
+          type: array
+      required:
+      - platform
+    validatePost_request_mediaItems_inner:
+      properties:
+        url:
+          format: uri
+          type: string
+        type:
+          enum:
+          - image
+          - video
+          type: string
+    validatePost_request:
+      properties:
+        content:
+          description: Post text content
+          example: Check out this video!
+          type: string
+        platforms:
+          description: Target platforms (same format as POST /v1/posts)
+          example:
+          - platform: youtube
+          - platform: twitter
+          items:
+            $ref: "#/components/schemas/validatePost_request_platforms_inner"
+          type: array
+        mediaItems:
+          description: Root media items shared across platforms
+          items:
+            $ref: "#/components/schemas/validatePost_request_mediaItems_inner"
+          type: array
+      required:
+      - platforms
+    validatePost_200_response_oneOf_warnings_inner:
+      example:
+        warning: warning
+        platform: platform
+      properties:
+        platform:
+          type: string
+        warning:
+          type: string
+    validatePost_200_response_oneOf:
+      description: Valid post
+      example:
+        valid: true
+        warnings:
+        - warning: warning
+          platform: platform
+        - warning: warning
+          platform: platform
+        message: No validation issues found.
+      properties:
+        valid:
+          type: boolean
+        message:
+          example: No validation issues found.
+          type: string
+        warnings:
+          items:
+            $ref: "#/components/schemas/validatePost_200_response_oneOf_warnings_inner"
+          type: array
+    validatePost_200_response_oneOf_1_errors_inner:
+      properties:
+        platform:
+          type: string
+        error:
+          type: string
+    validatePost_200_response_oneOf_1:
+      description: Invalid post
+      properties:
+        valid:
+          type: boolean
+        errors:
+          items:
+            $ref: "#/components/schemas/validatePost_200_response_oneOf_1_errors_inner"
+          type: array
+        warnings:
+          items:
+            $ref: "#/components/schemas/validatePost_200_response_oneOf_warnings_inner"
+          type: array
+    validatePost_200_response:
+      oneOf:
+      - $ref: "#/components/schemas/validatePost_200_response_oneOf"
+      - $ref: "#/components/schemas/validatePost_200_response_oneOf_1"
+    validateMedia_request:
+      properties:
+        url:
+          description: Public media URL to validate
+          example: https://example.com/image.jpg
+          format: uri
+          type: string
+      required:
+      - url
+    validateMedia_200_response_platformLimits_value:
+      properties:
+        limit:
+          description: Platform size limit in bytes
+          type: integer
+        limitFormatted:
+          type: string
+        withinLimit:
+          type: boolean
+    validateMedia_200_response:
+      example:
+        valid: true
+        size: 0
+        sizeFormatted: 245 KB
+        error: error
+        type: image
+        platformLimits:
+          instagram:
+            limit: 8388608
+            limitFormatted: 8.0 MB
+            withinLimit: true
+          twitter:
+            limit: 5242880
+            limitFormatted: 5.0 MB
+            withinLimit: true
+          bluesky:
+            limit: 1000000
+            limitFormatted: 977 KB
+            withinLimit: true
+        contentType: image/jpeg
+        url: https://openapi-generator.tech
+      properties:
+        valid:
+          type: boolean
+        url:
+          format: uri
+          type: string
+        error:
+          description: Error message if valid is false
+          type: string
+        contentType:
+          example: image/jpeg
+          type: string
+        size:
+          description: File size in bytes
+          type: integer
+          nullable: true
+        sizeFormatted:
+          example: 245 KB
+          type: string
+        type:
+          enum:
+          - image
+          - video
+          - unknown
+          type: string
+        platformLimits:
+          additionalProperties:
+            $ref: "#/components/schemas/validateMedia_200_response_platformLimits_value"
+          description: Per-platform size limit comparison (only present when size
+            and type are known)
+          example:
+            instagram:
+              limit: 8388608
+              limitFormatted: 8.0 MB
+              withinLimit: true
+            twitter:
+              limit: 5242880
+              limitFormatted: 5.0 MB
+              withinLimit: true
+            bluesky:
+              limit: 1000000
+              limitFormatted: 977 KB
+              withinLimit: true
+    validateSubreddit_200_response_oneOf_subreddit:
+      example:
+        allowVideos: true
+        subscribers: 6844284
+        isNSFW: true
+        name: programming
+        allowImages: true
+        description: Computer Programming
+        title: programming
+        type: public
+      properties:
+        name:
+          example: programming
+          type: string
+        title:
+          example: programming
+          type: string
+        description:
+          example: Computer Programming
+          type: string
+        subscribers:
+          example: 6844284
+          type: integer
+        isNSFW:
+          type: boolean
+        type:
+          enum:
+          - public
+          - private
+          - restricted
+          example: public
+          type: string
+        allowImages:
+          type: boolean
+        allowVideos:
+          type: boolean
+    validateSubreddit_200_response_oneOf:
+      description: Subreddit exists
+      example:
+        exists: true
+        subreddit:
+          allowVideos: true
+          subscribers: 6844284
+          isNSFW: true
+          name: programming
+          allowImages: true
+          description: Computer Programming
+          title: programming
+          type: public
+      properties:
+        exists:
+          type: boolean
+        subreddit:
+          $ref: "#/components/schemas/validateSubreddit_200_response_oneOf_subreddit"
+    validateSubreddit_200_response_oneOf_1:
+      description: Subreddit not found
+      properties:
+        exists:
+          type: boolean
+        error:
+          type: string
+    validateSubreddit_200_response:
+      oneOf:
+      - $ref: "#/components/schemas/validateSubreddit_200_response_oneOf"
+      - $ref: "#/components/schemas/validateSubreddit_200_response_oneOf_1"
     getAnalytics_200_response:
       oneOf:
       - $ref: "#/components/schemas/AnalyticsSinglePostResponse"
@@ -32367,6 +33243,339 @@ components:
         message:
           description: Human-readable summary (present when no ads were actionable)
           type: string
+    getAdTree_200_response:
+      example:
+        pagination:
+          total: 3
+          pages: 2
+          limit: 9
+          page: 7
+        campaigns:
+        - accountId: accountId
+          profileId: profileId
+          platformCampaignId: platformCampaignId
+          adCount: 0
+          adSets:
+          - ads:
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            adSetName: adSetName
+            platformAdSetId: platformAdSetId
+            adCount: 1
+            metrics:
+              ctr: 2.3021358869347655
+              cpm: 9.301444243932576
+              engagement: 3
+              reach: 5
+              spend: 6.027456183070403
+              cpc: 7.061401241503109
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              clicks: 5
+              impressions: 1
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+          - ads:
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            adSetName: adSetName
+            platformAdSetId: platformAdSetId
+            adCount: 1
+            metrics:
+              ctr: 2.3021358869347655
+              cpm: 9.301444243932576
+              engagement: 3
+              reach: 5
+              spend: 6.027456183070403
+              cpc: 7.061401241503109
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              clicks: 5
+              impressions: 1
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+          metrics:
+            ctr: 2.3021358869347655
+            cpm: 9.301444243932576
+            engagement: 3
+            reach: 5
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            clicks: 5
+            impressions: 1
+          adSetCount: 6
+          campaignName: campaignName
+          platform: facebook
+          platformAdAccountId: platformAdAccountId
+          status: active
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+        - accountId: accountId
+          profileId: profileId
+          platformCampaignId: platformCampaignId
+          adCount: 0
+          adSets:
+          - ads:
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            adSetName: adSetName
+            platformAdSetId: platformAdSetId
+            adCount: 1
+            metrics:
+              ctr: 2.3021358869347655
+              cpm: 9.301444243932576
+              engagement: 3
+              reach: 5
+              spend: 6.027456183070403
+              cpc: 7.061401241503109
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              clicks: 5
+              impressions: 1
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+          - ads:
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            - goal: engagement
+              adSetName: adSetName
+              isExternal: true
+              platformCampaignId: platformCampaignId
+              platformAdId: platformAdId
+              platform: facebook
+              creative: "{}"
+              schedule:
+                endDate: 2000-01-23T04:56:07.000+00:00
+                startDate: 2000-01-23T04:56:07.000+00:00
+              createdAt: 2000-01-23T04:56:07.000+00:00
+              adType: boost
+              targeting: "{}"
+              name: name
+              platformAdSetId: platformAdSetId
+              _id: _id
+              metrics: ""
+              rejectionReason: rejectionReason
+              campaignName: campaignName
+              platformAdAccountId: platformAdAccountId
+              status: active
+              budget:
+                amount: 0.8008281904610115
+                type: daily
+              updatedAt: 2000-01-23T04:56:07.000+00:00
+            adSetName: adSetName
+            platformAdSetId: platformAdSetId
+            adCount: 1
+            metrics:
+              ctr: 2.3021358869347655
+              cpm: 9.301444243932576
+              engagement: 3
+              reach: 5
+              spend: 6.027456183070403
+              cpc: 7.061401241503109
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              clicks: 5
+              impressions: 1
+            status: active
+            budget:
+              amount: 0.8008281904610115
+              type: daily
+          metrics:
+            ctr: 2.3021358869347655
+            cpm: 9.301444243932576
+            engagement: 3
+            reach: 5
+            spend: 6.027456183070403
+            cpc: 7.061401241503109
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            clicks: 5
+            impressions: 1
+          adSetCount: 6
+          campaignName: campaignName
+          platform: facebook
+          platformAdAccountId: platformAdAccountId
+          status: active
+          budget:
+            amount: 0.8008281904610115
+            type: daily
+      properties:
+        campaigns:
+          items:
+            $ref: "#/components/schemas/AdTreeCampaign"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/Pagination"
     getAd_200_response:
       example:
         ad:

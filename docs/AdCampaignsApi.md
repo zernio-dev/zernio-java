@@ -4,11 +4,189 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getAdTree**](AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get nested campaign/ad-set/ad tree |
+| [**getAdTreeWithHttpInfo**](AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get nested campaign/ad-set/ad tree |
 | [**listAdCampaigns**](AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns with aggregate metrics |
 | [**listAdCampaignsWithHttpInfo**](AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns with aggregate metrics |
 | [**updateAdCampaignStatus**](AdCampaignsApi.md#updateAdCampaignStatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
 | [**updateAdCampaignStatusWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignStatusWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
 
+
+
+## getAdTree
+
+> GetAdTree200Response getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId)
+
+Get nested campaign/ad-set/ad tree
+
+Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        Integer page = 1; // Integer | Page number (1-based)
+        Integer limit = 20; // Integer | Campaigns per page
+        String source = "zernio"; // String | 
+        String platform = "facebook"; // String | 
+        String status = "active"; // String | Filter by derived campaign status (post-aggregation)
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID
+        String accountId = "accountId_example"; // String | Social account ID
+        String profileId = "profileId_example"; // String | Profile ID
+        try {
+            GetAdTree200Response result = apiInstance.getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdTree");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
+| **limit** | **Integer**| Campaigns per page | [optional] [default to 20] |
+| **source** | **String**|  | [optional] [default to zernio] [enum: zernio, all] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **status** | **String**| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
+| **adAccountId** | **String**| Platform ad account ID | [optional] |
+| **accountId** | **String**| Social account ID | [optional] |
+| **profileId** | **String**| Profile ID | [optional] |
+
+### Return type
+
+[**GetAdTree200Response**](GetAdTree200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Nested campaign tree with pagination |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
+
+## getAdTreeWithHttpInfo
+
+> ApiResponse<GetAdTree200Response> getAdTree getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId)
+
+Get nested campaign/ad-set/ad tree
+
+Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        Integer page = 1; // Integer | Page number (1-based)
+        Integer limit = 20; // Integer | Campaigns per page
+        String source = "zernio"; // String | 
+        String platform = "facebook"; // String | 
+        String status = "active"; // String | Filter by derived campaign status (post-aggregation)
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID
+        String accountId = "accountId_example"; // String | Social account ID
+        String profileId = "profileId_example"; // String | Profile ID
+        try {
+            ApiResponse<GetAdTree200Response> response = apiInstance.getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdTree");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
+| **limit** | **Integer**| Campaigns per page | [optional] [default to 20] |
+| **source** | **String**|  | [optional] [default to zernio] [enum: zernio, all] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+| **status** | **String**| Filter by derived campaign status (post-aggregation) | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
+| **adAccountId** | **String**| Platform ad account ID | [optional] |
+| **accountId** | **String**| Social account ID | [optional] |
+| **profileId** | **String**| Profile ID | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdTree200Response**](GetAdTree200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Nested campaign tree with pagination |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
 
 
 ## listAdCampaigns

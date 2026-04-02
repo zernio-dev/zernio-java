@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.GetAdTree200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListAdCampaigns200Response;
 import dev.zernio.model.UpdateAdCampaignStatus200Response;
@@ -48,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:06:02.865206243Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:17:58.484369139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -163,6 +164,176 @@ public class AdCampaignsApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Get nested campaign/ad-set/ad tree
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit Campaigns per page (optional, default to 20)
+   * @param source  (optional, default to zernio)
+   * @param platform  (optional)
+   * @param status Filter by derived campaign status (post-aggregation) (optional)
+   * @param adAccountId Platform ad account ID (optional)
+   * @param accountId Social account ID (optional)
+   * @param profileId Profile ID (optional)
+   * @return GetAdTree200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId) throws ApiException {
+    return getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, null);
+  }
+
+  /**
+   * Get nested campaign/ad-set/ad tree
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit Campaigns per page (optional, default to 20)
+   * @param source  (optional, default to zernio)
+   * @param platform  (optional)
+   * @param status Filter by derived campaign status (post-aggregation) (optional)
+   * @param adAccountId Platform ad account ID (optional)
+   * @param accountId Social account ID (optional)
+   * @param profileId Profile ID (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdTree200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get nested campaign/ad-set/ad tree
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit Campaigns per page (optional, default to 20)
+   * @param source  (optional, default to zernio)
+   * @param platform  (optional)
+   * @param status Filter by derived campaign status (post-aggregation) (optional)
+   * @param adAccountId Platform ad account ID (optional)
+   * @param accountId Social account ID (optional)
+   * @param profileId Profile ID (optional)
+   * @return ApiResponse&lt;GetAdTree200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId) throws ApiException {
+    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, null);
+  }
+
+  /**
+   * Get nested campaign/ad-set/ad tree
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * @param page Page number (1-based) (optional, default to 1)
+   * @param limit Campaigns per page (optional, default to 20)
+   * @param source  (optional, default to zernio)
+   * @param platform  (optional)
+   * @param status Filter by derived campaign status (post-aggregation) (optional)
+   * @param adAccountId Platform ad account ID (optional)
+   * @param accountId Social account ID (optional)
+   * @param profileId Profile ID (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdTree200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdTree", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdTree200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdTree200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdTree200Response>() {});
+        
+
+        return new ApiResponse<GetAdTree200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/tree";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "page";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "source";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("source", source));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "status";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("status", status));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
