@@ -1526,6 +1526,3 @@ src/main/java/dev/zernio/model/YouTubeDailyViewsResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/AdTreeAdSetTest.java
-src/test/java/dev/zernio/model/AdTreeCampaignTest.java
-src/test/java/dev/zernio/model/GetAdTree200ResponseTest.java

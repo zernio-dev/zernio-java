@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListAccountGroups200Response.JSON_PROPERTY_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:17:58.484369139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:58:19.024551527Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAccountGroups200Response {
   public static final String JSON_PROPERTY_GROUPS = "groups";
   @javax.annotation.Nullable

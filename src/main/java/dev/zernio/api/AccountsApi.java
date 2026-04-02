@@ -57,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:17:58.484369139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:58:19.024551527Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -841,57 +841,65 @@ public class AccountsApi {
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
    * @param profileId Filter accounts by profile ID (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
+   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
+   * @param limit Page size. Required alongside page for pagination. (optional)
    * @return ListAccounts200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAccounts200Response listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit) throws ApiException {
-    return listAccounts(profileId, platform, includeOverLimit, null);
+  public ListAccounts200Response listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listAccounts(profileId, platform, includeOverLimit, page, limit, null);
   }
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
    * @param profileId Filter accounts by profile ID (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
+   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
+   * @param limit Page size. Required alongside page for pagination. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAccounts200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAccounts200Response listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAccounts200Response> localVarResponse = listAccountsWithHttpInfo(profileId, platform, includeOverLimit, headers);
+  public ListAccounts200Response listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAccounts200Response> localVarResponse = listAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
    * @param profileId Filter accounts by profile ID (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
+   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
+   * @param limit Page size. Required alongside page for pagination. (optional)
    * @return ApiResponse&lt;ListAccounts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAccounts200Response> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit) throws ApiException {
-    return listAccountsWithHttpInfo(profileId, platform, includeOverLimit, null);
+  public ApiResponse<ListAccounts200Response> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit, null);
   }
 
   /**
    * List accounts
-   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+   * Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
    * @param profileId Filter accounts by profile ID (optional)
    * @param platform Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). (optional)
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
+   * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
+   * @param limit Page size. Required alongside page for pagination. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAccounts200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAccounts200Response> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAccountsRequestBuilder(profileId, platform, includeOverLimit, headers);
+  public ApiResponse<ListAccounts200Response> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAccountsRequestBuilder(profileId, platform, includeOverLimit, page, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -938,7 +946,7 @@ public class AccountsApi {
     }
   }
 
-  private HttpRequest.Builder listAccountsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAccountsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -953,6 +961,10 @@ public class AccountsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
     localVarQueryParameterBaseName = "includeOverLimit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("includeOverLimit", includeOverLimit));
+    localVarQueryParameterBaseName = "page";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

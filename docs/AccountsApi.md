@@ -793,11 +793,11 @@ ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Respons
 
 ## listAccounts
 
-> ListAccounts200Response listAccounts(profileId, platform, includeOverLimit)
+> ListAccounts200Response listAccounts(profileId, platform, includeOverLimit, page, limit)
 
 List accounts
 
-Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
 
 ### Example
 
@@ -823,8 +823,10 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter accounts by profile ID
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
+        Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
+        Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
         try {
-            ListAccounts200Response result = apiInstance.listAccounts(profileId, platform, includeOverLimit);
+            ListAccounts200Response result = apiInstance.listAccounts(profileId, platform, includeOverLimit, page, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#listAccounts");
@@ -845,6 +847,8 @@ public class Example {
 | **profileId** | **String**| Filter accounts by profile ID | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
+| **page** | **Integer**| Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional] |
+| **limit** | **Integer**| Page size. Required alongside page for pagination. | [optional] |
 
 ### Return type
 
@@ -863,16 +867,16 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Accounts |  -  |
+| **200** | Accounts (with optional pagination) |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listAccountsWithHttpInfo
 
-> ApiResponse<ListAccounts200Response> listAccounts listAccountsWithHttpInfo(profileId, platform, includeOverLimit)
+> ApiResponse<ListAccounts200Response> listAccounts listAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit)
 
 List accounts
 
-Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). 
 
 ### Example
 
@@ -899,8 +903,10 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter accounts by profile ID
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
+        Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
+        Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
         try {
-            ApiResponse<ListAccounts200Response> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, includeOverLimit);
+            ApiResponse<ListAccounts200Response> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -923,6 +929,8 @@ public class Example {
 | **profileId** | **String**| Filter accounts by profile ID | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
+| **page** | **Integer**| Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional] |
+| **limit** | **Integer**| Page size. Required alongside page for pagination. | [optional] |
 
 ### Return type
 
@@ -941,7 +949,7 @@ ApiResponse<[**ListAccounts200Response**](ListAccounts200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Accounts |  -  |
+| **200** | Accounts (with optional pagination) |  -  |
 | **401** | Unauthorized |  -  |
 
 

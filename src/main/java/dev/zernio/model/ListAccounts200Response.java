@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.Pagination;
 import dev.zernio.model.SocialAccount;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,9 +38,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ListAccounts200Response.JSON_PROPERTY_ACCOUNTS,
-  ListAccounts200Response.JSON_PROPERTY_HAS_ANALYTICS_ACCESS
+  ListAccounts200Response.JSON_PROPERTY_HAS_ANALYTICS_ACCESS,
+  ListAccounts200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:17:58.484369139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-02T08:58:19.024551527Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAccounts200Response {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
   @javax.annotation.Nullable
@@ -48,6 +50,10 @@ public class ListAccounts200Response {
   public static final String JSON_PROPERTY_HAS_ANALYTICS_ACCESS = "hasAnalyticsAccess";
   @javax.annotation.Nullable
   private Boolean hasAnalyticsAccess;
+
+  public static final String JSON_PROPERTY_PAGINATION = "pagination";
+  @javax.annotation.Nullable
+  private Pagination pagination;
 
   public ListAccounts200Response() { 
   }
@@ -108,6 +114,30 @@ public class ListAccounts200Response {
   }
 
 
+  public ListAccounts200Response pagination(@javax.annotation.Nullable Pagination pagination) {
+    this.pagination = pagination;
+    return this;
+  }
+
+  /**
+   * Only present when page/limit params are provided
+   * @return pagination
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Pagination getPagination() {
+    return pagination;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPagination(@javax.annotation.Nullable Pagination pagination) {
+    this.pagination = pagination;
+  }
+
+
   /**
    * Return true if this listAccounts_200_response object is equal to o.
    */
@@ -121,12 +151,13 @@ public class ListAccounts200Response {
     }
     ListAccounts200Response listAccounts200Response = (ListAccounts200Response) o;
     return Objects.equals(this.accounts, listAccounts200Response.accounts) &&
-        Objects.equals(this.hasAnalyticsAccess, listAccounts200Response.hasAnalyticsAccess);
+        Objects.equals(this.hasAnalyticsAccess, listAccounts200Response.hasAnalyticsAccess) &&
+        Objects.equals(this.pagination, listAccounts200Response.pagination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accounts, hasAnalyticsAccess);
+    return Objects.hash(accounts, hasAnalyticsAccess, pagination);
   }
 
   @Override
@@ -135,6 +166,7 @@ public class ListAccounts200Response {
     sb.append("class ListAccounts200Response {\n");
     sb.append("    accounts: ").append(toIndentedString(accounts)).append("\n");
     sb.append("    hasAnalyticsAccess: ").append(toIndentedString(hasAnalyticsAccess)).append("\n");
+    sb.append("    pagination: ").append(toIndentedString(pagination)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -195,6 +227,11 @@ public class ListAccounts200Response {
     // add `hasAnalyticsAccess` to the URL query string
     if (getHasAnalyticsAccess() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shasAnalyticsAccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasAnalyticsAccess()))));
+    }
+
+    // add `pagination` to the URL query string
+    if (getPagination() != null) {
+      joiner.add(getPagination().toUrlQueryString(prefix + "pagination" + suffix));
     }
 
     return joiner.toString();

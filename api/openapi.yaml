@@ -3083,8 +3083,9 @@ paths:
       - application/json
   /v1/accounts:
     get:
-      description: Returns connected social accounts. Only includes accounts within
-        the plan limit by default. Follower data requires analytics add-on.
+      description: |
+        Returns connected social accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
+        Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible).
       operationId: listAccounts
       parameters:
       - description: Filter accounts by profile ID
@@ -3113,6 +3114,26 @@ paths:
           default: false
           type: boolean
         style: form
+      - description: "Page number (1-based). When provided with limit, enables server-side\
+          \ pagination. Omit for all accounts."
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          minimum: 1
+          type: integer
+        style: form
+      - description: Page size. Required alongside page for pagination.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -3134,7 +3155,7 @@ paths:
                     hasAnalyticsAccess: false
               schema:
                 $ref: "#/components/schemas/listAccounts_200_response"
-          description: Accounts
+          description: Accounts (with optional pagination)
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List accounts
@@ -21328,6 +21349,7 @@ components:
     listAccounts_200_response:
       example:
         hasAnalyticsAccess: true
+        pagination: ""
         accounts:
         - profileUrl: profileUrl
           metadata: "{}"
@@ -21357,6 +21379,10 @@ components:
         hasAnalyticsAccess:
           description: Whether user has analytics add-on access
           type: boolean
+        pagination:
+          allOf:
+          - $ref: "#/components/schemas/Pagination"
+          description: Only present when page/limit params are provided
     getFollowerStats_200_response_stats_value_inner:
       example:
         date: 2000-01-23
