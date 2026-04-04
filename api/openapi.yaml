@@ -2441,6 +2441,16 @@ paths:
         content:
           application/json:
             examples:
+              facebookDraft:
+                summary: Facebook draft post (visible in Publishing Tools)
+                value:
+                  content: Draft post for review before publishing
+                  platforms:
+                  - platform: facebook
+                    accountId: 64e1f0a9e2b5af0012ab34cd
+                  publishNow: true
+                  facebookSettings:
+                    draft: true
               recyclingPost:
                 summary: Post with weekly recycling and content variations
                 value:
@@ -3031,6 +3041,65 @@ paths:
         "500":
           description: Platform API deletion failed
       summary: Unpublish post
+      tags:
+      - Posts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/posts/{postId}/edit:
+    post:
+      description: |
+        Edit a published post on a social media platform. Currently only supported for X (Twitter).
+
+        **Requirements:**
+        - Connected X account must have an active X Premium subscription
+        - Must be within 1 hour of original publish time
+        - Maximum 5 edits per tweet (enforced by X)
+        - Text-only edits (media changes are not supported)
+
+        The post record in Zernio is updated with the new content and edit history.
+      operationId: editPost
+      parameters:
+      - explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              platform: twitter
+              content: Updated tweet text with corrected information
+            schema:
+              $ref: "#/components/schemas/editPost_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                id: "1234567890123456790"
+                url: https://twitter.com/i/web/status/1234567890123456790
+                message: Tweet edited successfully
+              schema:
+                $ref: "#/components/schemas/editPost_200_response"
+          description: Post edited successfully
+        "400":
+          description: "Invalid request: platform not supported, post not published,\
+            \ edit window expired, not Premium, or missing content."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Forbidden
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          description: Platform API edit failed
+      summary: Edit published post
       tags:
       - Posts
       x-content-type: application/json
@@ -8377,6 +8446,62 @@ paths:
       summary: List conversations
       tags:
       - Messages
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.
+
+        **Currently supported platforms:** Twitter/X only. Other platforms will return `PLATFORM_NOT_SUPPORTED`.
+
+        **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the `receives_your_dm` field). If not, a 422 error with code `DM_NOT_ALLOWED` is returned. You can skip this check with `skipDmCheck: true` if you have already verified eligibility.
+
+        **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.
+
+        **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints).
+      operationId: createInboxConversation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createInboxConversation_request"
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/createInboxConversation_request_1"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createInboxConversation_201_response"
+          description: Conversation created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createInboxConversation_400_response"
+          description: Validation error or platform not supported
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required or profile limit reached
+        "404":
+          description: Account or recipient user not found
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createInboxConversation_422_response"
+          description: Recipient does not accept DMs from this account
+        "429":
+          description: X API rate limit exceeded
+      security:
+      - bearerAuth: []
+      summary: Create conversation
+      tags:
+      - Messages
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/inbox/conversations/{conversationId}:
@@ -16526,6 +16651,7 @@ components:
     PlatformTarget:
       example:
         platformSpecificData:
+          longVideo: false
           replySettings: following
           threadItems:
           - mediaItems:
@@ -16709,6 +16835,7 @@ components:
         content: content
         platforms:
         - platformSpecificData:
+            longVideo: false
             replySettings: following
             threadItems:
             - mediaItems:
@@ -16790,6 +16917,7 @@ components:
           status: pending
           platformPostId: "1234567890123456789"
         - platformSpecificData:
+            longVideo: false
             replySettings: following
             threadItems:
             - mediaItems:
@@ -17088,6 +17216,7 @@ components:
           type: string
     TwitterPlatformData:
       example:
+        longVideo: false
         replySettings: following
         threadItems:
         - mediaItems:
@@ -17163,6 +17292,16 @@ components:
           type: array
         poll:
           $ref: "#/components/schemas/TwitterPlatformData_poll"
+        longVideo:
+          default: false
+          description: "Enable long video uploads (over 140 seconds) using amplify_video\
+            \ media category. Requires the connected X account to have an active X\
+            \ Premium subscription. When true, videos are uploaded with the amplify_video\
+            \ category which supports longer durations (up to 10 minutes via API).\
+            \ When false or omitted, the standard tweet_video category is used (140\
+            \ second limit). Note that not all Premium accounts have API long-video\
+            \ access, as X may require separate allowlisting."
+          type: boolean
     ThreadsPlatformData:
       description: "Up to 10 images per carousel (no videos). Videos must be H.264/AAC\
         \ MP4, max 5 min. Images JPEG/PNG, max 8 MB. Use threadItems for reply chains."
@@ -17185,6 +17324,13 @@ components:
         \ require single media (24h, no captions). Reels require single vertical video\
         \ (9:16, 3-60s)."
       properties:
+        draft:
+          default: false
+          description: "When true, creates the post as an unpublished draft visible\
+            \ in Facebook Publishing Tools instead of publishing immediately. Supported\
+            \ for feed posts (text, link, image, video) and reels. Not supported for\
+            \ stories. Drafts expire after ~30 days."
+          type: boolean
         contentType:
           description: Set to 'story' for Page Stories (24h ephemeral) or 'reel' for
             Reels (short vertical video). Defaults to feed post if omitted.
@@ -17198,7 +17344,7 @@ components:
           type: string
         firstComment:
           description: "Optional first comment to post immediately after publishing\
-            \ (feed posts only, not stories or reels)"
+            \ (feed posts only, not stories or reels). Skipped when draft is true."
           type: string
         pageId:
           description: "Target Facebook Page ID for multi-page posting. If omitted,\
@@ -18161,6 +18307,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -18242,6 +18389,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -18381,6 +18529,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -18462,6 +18611,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -18611,6 +18761,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -18692,6 +18843,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -18837,6 +18989,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -18918,6 +19071,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -19066,6 +19220,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -19147,6 +19302,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -19301,6 +19457,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -19382,6 +19539,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -21608,6 +21766,12 @@ components:
           description: "Root-level TikTok settings applied to all TikTok platforms.\
             \ Merged into each platform's platformSpecificData, with platform-specific\
             \ settings taking precedence."
+        facebookSettings:
+          allOf:
+          - $ref: "#/components/schemas/FacebookPlatformData"
+          description: "Root-level Facebook settings applied to all Facebook platforms.\
+            \ Merged into each platform's platformSpecificData, with platform-specific\
+            \ settings taking precedence."
         recycling:
           $ref: "#/components/schemas/RecyclingConfig"
         queuedFromProfile:
@@ -21672,6 +21836,12 @@ components:
           description: "Root-level TikTok settings applied to all TikTok platforms.\
             \ Merged into each platform's platformSpecificData, with platform-specific\
             \ settings taking precedence."
+        facebookSettings:
+          allOf:
+          - $ref: "#/components/schemas/FacebookPlatformData"
+          description: "Root-level Facebook settings applied to all Facebook platforms.\
+            \ Merged into each platform's platformSpecificData, with platform-specific\
+            \ settings taking precedence."
         recycling:
           $ref: "#/components/schemas/RecyclingConfig"
     bulkUploadPosts_request:
@@ -21723,6 +21893,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -21804,6 +21975,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -21943,6 +22115,7 @@ components:
           content: content
           platforms:
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -22024,6 +22197,7 @@ components:
             status: pending
             platformPostId: "1234567890123456789"
           - platformSpecificData:
+              longVideo: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -22191,6 +22365,38 @@ components:
       properties:
         success:
           type: boolean
+        message:
+          type: string
+    editPost_request:
+      properties:
+        platform:
+          description: The platform to edit the post on. Currently only twitter is
+            supported.
+          enum:
+          - twitter
+          type: string
+        content:
+          description: The new tweet text content
+          type: string
+      required:
+      - content
+      - platform
+    editPost_200_response:
+      example:
+        success: true
+        id: id
+        message: message
+        url: https://openapi-generator.tech
+      properties:
+        success:
+          type: boolean
+        id:
+          description: New tweet ID assigned by X after edit
+          type: string
+        url:
+          description: URL of the edited tweet
+          format: uri
+          type: string
         message:
           type: string
     updatePostMetadata_request:
@@ -28024,6 +28230,119 @@ components:
           $ref: "#/components/schemas/listInboxConversations_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listInboxConversations_200_response_meta"
+    createInboxConversation_request:
+      properties:
+        accountId:
+          description: The social account ID to send from
+          type: string
+        participantId:
+          description: Twitter numeric user ID of the recipient. Provide either this
+            or `participantUsername`.
+          type: string
+        participantUsername:
+          description: Twitter username (with or without @) of the recipient. Resolved
+            to a user ID via lookup. Provide either this or `participantId`.
+          type: string
+        message:
+          description: Text content of the message. At least one of `message` or attachment
+            is required.
+          type: string
+        skipDmCheck:
+          default: false
+          description: Skip the `receives_your_dm` eligibility check before sending.
+            Use if you have already verified the recipient accepts DMs.
+          type: boolean
+      required:
+      - accountId
+    createInboxConversation_request_1:
+      properties:
+        accountId:
+          description: The social account ID to send from
+          type: string
+        participantId:
+          description: Twitter numeric user ID of the recipient
+          type: string
+        participantUsername:
+          description: Twitter username (with or without @) of the recipient
+          type: string
+        message:
+          description: Text content of the message
+          type: string
+        attachment:
+          description: Media attachment (image or video). One attachment per message.
+          format: binary
+          type: string
+        skipDmCheck:
+          default: "false"
+          description: Skip the DM eligibility check
+          enum:
+          - "true"
+          - "false"
+          type: string
+      required:
+      - accountId
+    createInboxConversation_201_response_data:
+      example:
+        participantId: participantId
+        conversationId: conversationId
+        messageId: messageId
+        participantName: participantName
+        participantUsername: participantUsername
+      properties:
+        messageId:
+          description: Platform message ID (dm_event_id)
+          type: string
+        conversationId:
+          description: Platform conversation ID (dm_conversation_id)
+          type: string
+        participantId:
+          description: Twitter numeric user ID of the recipient
+          type: string
+        participantName:
+          description: Display name of the recipient
+          type: string
+          nullable: true
+        participantUsername:
+          description: Twitter username of the recipient
+          type: string
+          nullable: true
+    createInboxConversation_201_response:
+      example:
+        data:
+          participantId: participantId
+          conversationId: conversationId
+          messageId: messageId
+          participantName: participantName
+          participantUsername: participantUsername
+        success: true
+      properties:
+        success:
+          example: true
+          type: boolean
+        data:
+          $ref: "#/components/schemas/createInboxConversation_201_response_data"
+    createInboxConversation_400_response:
+      example:
+        code: PLATFORM_NOT_SUPPORTED
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          enum:
+          - PLATFORM_NOT_SUPPORTED
+          type: string
+    createInboxConversation_422_response:
+      example:
+        code: DM_NOT_ALLOWED
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          enum:
+          - DM_NOT_ALLOWED
+          type: string
     getInboxConversation_200_response_data:
       example:
         updatedTime: 2000-01-23T04:56:07.000+00:00

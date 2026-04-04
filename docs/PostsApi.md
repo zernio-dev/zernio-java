@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createPostWithHttpInfo**](PostsApi.md#createPostWithHttpInfo) | **POST** /v1/posts | Create post |
 | [**deletePost**](PostsApi.md#deletePost) | **DELETE** /v1/posts/{postId} | Delete post |
 | [**deletePostWithHttpInfo**](PostsApi.md#deletePostWithHttpInfo) | **DELETE** /v1/posts/{postId} | Delete post |
+| [**editPost**](PostsApi.md#editPost) | **POST** /v1/posts/{postId}/edit | Edit published post |
+| [**editPostWithHttpInfo**](PostsApi.md#editPostWithHttpInfo) | **POST** /v1/posts/{postId}/edit | Edit published post |
 | [**getPost**](PostsApi.md#getPost) | **GET** /v1/posts/{postId} | Get post |
 | [**getPostWithHttpInfo**](PostsApi.md#getPostWithHttpInfo) | **GET** /v1/posts/{postId} | Get post |
 | [**listPosts**](PostsApi.md#listPosts) | **GET** /v1/posts | List posts |
@@ -485,6 +487,164 @@ ApiResponse<[**PostDeleteResponse**](PostDeleteResponse.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
+
+
+## editPost
+
+> EditPost200Response editPost(postId, editPostRequest)
+
+Edit published post
+
+Edit a published post on a social media platform. Currently only supported for X (Twitter).  **Requirements:** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        EditPostRequest editPostRequest = new EditPostRequest(); // EditPostRequest | 
+        try {
+            EditPost200Response result = apiInstance.editPost(postId, editPostRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#editPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **editPostRequest** | [**EditPostRequest**](EditPostRequest.md)|  | |
+
+### Return type
+
+[**EditPost200Response**](EditPost200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Post edited successfully |  -  |
+| **400** | Invalid request: platform not supported, post not published, edit window expired, not Premium, or missing content. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Platform API edit failed |  -  |
+
+## editPostWithHttpInfo
+
+> ApiResponse<EditPost200Response> editPost editPostWithHttpInfo(postId, editPostRequest)
+
+Edit published post
+
+Edit a published post on a social media platform. Currently only supported for X (Twitter).  **Requirements:** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        EditPostRequest editPostRequest = new EditPostRequest(); // EditPostRequest | 
+        try {
+            ApiResponse<EditPost200Response> response = apiInstance.editPostWithHttpInfo(postId, editPostRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#editPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **editPostRequest** | [**EditPostRequest**](EditPostRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**EditPost200Response**](EditPost200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Post edited successfully |  -  |
+| **400** | Invalid request: platform not supported, post not published, edit window expired, not Premium, or missing content. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Platform API edit failed |  -  |
 
 
 ## getPost

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-04T15:56:45.572000024Z[Etc/UTC]
+- Build date: 2026-04-04T16:03:36.270211619Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -404,6 +404,8 @@ Class | Method | HTTP request | Description
 *MediaApi* | [**getMediaPresignedUrlWithHttpInfo**](docs/MediaApi.md#getMediaPresignedUrlWithHttpInfo) | **POST** /v1/media/presign | Get presigned upload URL
 *MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
+*MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
+*MessagesApi* | [**createInboxConversationWithHttpInfo**](docs/MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation
 *MessagesApi* | [**deleteInboxMessage**](docs/MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**deleteInboxMessageWithHttpInfo**](docs/MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**editInboxMessage**](docs/MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
@@ -430,6 +432,8 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**createPostWithHttpInfo**](docs/PostsApi.md#createPostWithHttpInfo) | **POST** /v1/posts | Create post
 *PostsApi* | [**deletePost**](docs/PostsApi.md#deletePost) | **DELETE** /v1/posts/{postId} | Delete post
 *PostsApi* | [**deletePostWithHttpInfo**](docs/PostsApi.md#deletePostWithHttpInfo) | **DELETE** /v1/posts/{postId} | Delete post
+*PostsApi* | [**editPost**](docs/PostsApi.md#editPost) | **POST** /v1/posts/{postId}/edit | Edit published post
+*PostsApi* | [**editPostWithHttpInfo**](docs/PostsApi.md#editPostWithHttpInfo) | **POST** /v1/posts/{postId}/edit | Edit published post
 *PostsApi* | [**getPost**](docs/PostsApi.md#getPost) | **GET** /v1/posts/{postId} | Get post
 *PostsApi* | [**getPostWithHttpInfo**](docs/PostsApi.md#getPostWithHttpInfo) | **GET** /v1/posts/{postId} | Get post
 *PostsApi* | [**listPosts**](docs/PostsApi.md#listPosts) | **GET** /v1/posts | List posts
@@ -744,6 +748,12 @@ Class | Method | HTTP request | Description
  - [CreateGoogleBusinessMediaRequest](docs/CreateGoogleBusinessMediaRequest.md)
  - [CreateGoogleBusinessPlaceAction200Response](docs/CreateGoogleBusinessPlaceAction200Response.md)
  - [CreateGoogleBusinessPlaceActionRequest](docs/CreateGoogleBusinessPlaceActionRequest.md)
+ - [CreateInboxConversation201Response](docs/CreateInboxConversation201Response.md)
+ - [CreateInboxConversation201ResponseData](docs/CreateInboxConversation201ResponseData.md)
+ - [CreateInboxConversation400Response](docs/CreateInboxConversation400Response.md)
+ - [CreateInboxConversation422Response](docs/CreateInboxConversation422Response.md)
+ - [CreateInboxConversationRequest](docs/CreateInboxConversationRequest.md)
+ - [CreateInboxConversationRequest1](docs/CreateInboxConversationRequest1.md)
  - [CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
@@ -796,6 +806,8 @@ Class | Method | HTTP request | Description
  - [EditInboxMessageRequest](docs/EditInboxMessageRequest.md)
  - [EditInboxMessageRequestReplyMarkup](docs/EditInboxMessageRequestReplyMarkup.md)
  - [EditInboxMessageRequestReplyMarkupKeyboardInnerInner](docs/EditInboxMessageRequestReplyMarkupKeyboardInnerInner.md)
+ - [EditPost200Response](docs/EditPost200Response.md)
+ - [EditPostRequest](docs/EditPostRequest.md)
  - [EnrollContacts200Response](docs/EnrollContacts200Response.md)
  - [EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [ErrorResponse](docs/ErrorResponse.md)

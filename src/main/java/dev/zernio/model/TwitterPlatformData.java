@@ -40,9 +40,10 @@ import dev.zernio.ApiClient;
   TwitterPlatformData.JSON_PROPERTY_REPLY_TO_TWEET_ID,
   TwitterPlatformData.JSON_PROPERTY_REPLY_SETTINGS,
   TwitterPlatformData.JSON_PROPERTY_THREAD_ITEMS,
-  TwitterPlatformData.JSON_PROPERTY_POLL
+  TwitterPlatformData.JSON_PROPERTY_POLL,
+  TwitterPlatformData.JSON_PROPERTY_LONG_VIDEO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T15:56:45.572000024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
   public static final String JSON_PROPERTY_REPLY_TO_TWEET_ID = "replyToTweetId";
   @javax.annotation.Nullable
@@ -98,6 +99,10 @@ public class TwitterPlatformData {
   public static final String JSON_PROPERTY_POLL = "poll";
   @javax.annotation.Nullable
   private TwitterPlatformDataPoll poll;
+
+  public static final String JSON_PROPERTY_LONG_VIDEO = "longVideo";
+  @javax.annotation.Nullable
+  private Boolean longVideo = false;
 
   public TwitterPlatformData() { 
   }
@@ -206,6 +211,30 @@ public class TwitterPlatformData {
   }
 
 
+  public TwitterPlatformData longVideo(@javax.annotation.Nullable Boolean longVideo) {
+    this.longVideo = longVideo;
+    return this;
+  }
+
+  /**
+   * Enable long video uploads (over 140 seconds) using amplify_video media category. Requires the connected X account to have an active X Premium subscription. When true, videos are uploaded with the amplify_video category which supports longer durations (up to 10 minutes via API). When false or omitted, the standard tweet_video category is used (140 second limit). Note that not all Premium accounts have API long-video access, as X may require separate allowlisting.
+   * @return longVideo
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LONG_VIDEO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getLongVideo() {
+    return longVideo;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LONG_VIDEO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLongVideo(@javax.annotation.Nullable Boolean longVideo) {
+    this.longVideo = longVideo;
+  }
+
+
   /**
    * Return true if this TwitterPlatformData object is equal to o.
    */
@@ -221,12 +250,13 @@ public class TwitterPlatformData {
     return Objects.equals(this.replyToTweetId, twitterPlatformData.replyToTweetId) &&
         Objects.equals(this.replySettings, twitterPlatformData.replySettings) &&
         Objects.equals(this.threadItems, twitterPlatformData.threadItems) &&
-        Objects.equals(this.poll, twitterPlatformData.poll);
+        Objects.equals(this.poll, twitterPlatformData.poll) &&
+        Objects.equals(this.longVideo, twitterPlatformData.longVideo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(replyToTweetId, replySettings, threadItems, poll);
+    return Objects.hash(replyToTweetId, replySettings, threadItems, poll, longVideo);
   }
 
   @Override
@@ -237,6 +267,7 @@ public class TwitterPlatformData {
     sb.append("    replySettings: ").append(toIndentedString(replySettings)).append("\n");
     sb.append("    threadItems: ").append(toIndentedString(threadItems)).append("\n");
     sb.append("    poll: ").append(toIndentedString(poll)).append("\n");
+    sb.append("    longVideo: ").append(toIndentedString(longVideo)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -307,6 +338,11 @@ public class TwitterPlatformData {
     // add `poll` to the URL query string
     if (getPoll() != null) {
       joiner.add(getPoll().toUrlQueryString(prefix + "poll" + suffix));
+    }
+
+    // add `longVideo` to the URL query string
+    if (getLongVideo() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slongVideo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLongVideo()))));
     }
 
     return joiner.toString();

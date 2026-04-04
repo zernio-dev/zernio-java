@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreatePostRequestMediaItemsInner;
 import dev.zernio.model.CreatePostRequestPlatformsInner;
+import dev.zernio.model.FacebookPlatformData;
 import dev.zernio.model.RecyclingConfig;
 import dev.zernio.model.TikTokPlatformData;
 import java.time.OffsetDateTime;
@@ -56,11 +57,12 @@ import dev.zernio.ApiClient;
   CreatePostRequest.JSON_PROPERTY_CROSSPOSTING_ENABLED,
   CreatePostRequest.JSON_PROPERTY_METADATA,
   CreatePostRequest.JSON_PROPERTY_TIKTOK_SETTINGS,
+  CreatePostRequest.JSON_PROPERTY_FACEBOOK_SETTINGS,
   CreatePostRequest.JSON_PROPERTY_RECYCLING,
   CreatePostRequest.JSON_PROPERTY_QUEUED_FROM_PROFILE,
   CreatePostRequest.JSON_PROPERTY_QUEUE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T15:56:45.572000024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -117,6 +119,10 @@ public class CreatePostRequest {
   public static final String JSON_PROPERTY_TIKTOK_SETTINGS = "tiktokSettings";
   @javax.annotation.Nullable
   private TikTokPlatformData tiktokSettings;
+
+  public static final String JSON_PROPERTY_FACEBOOK_SETTINGS = "facebookSettings";
+  @javax.annotation.Nullable
+  private FacebookPlatformData facebookSettings;
 
   public static final String JSON_PROPERTY_RECYCLING = "recycling";
   @javax.annotation.Nullable
@@ -517,6 +523,30 @@ public class CreatePostRequest {
   }
 
 
+  public CreatePostRequest facebookSettings(@javax.annotation.Nullable FacebookPlatformData facebookSettings) {
+    this.facebookSettings = facebookSettings;
+    return this;
+  }
+
+  /**
+   * Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
+   * @return facebookSettings
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public FacebookPlatformData getFacebookSettings() {
+    return facebookSettings;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFacebookSettings(@javax.annotation.Nullable FacebookPlatformData facebookSettings) {
+    this.facebookSettings = facebookSettings;
+  }
+
+
   public CreatePostRequest recycling(@javax.annotation.Nullable RecyclingConfig recycling) {
     this.recycling = recycling;
     return this;
@@ -615,6 +645,7 @@ public class CreatePostRequest {
         Objects.equals(this.crosspostingEnabled, createPostRequest.crosspostingEnabled) &&
         Objects.equals(this.metadata, createPostRequest.metadata) &&
         Objects.equals(this.tiktokSettings, createPostRequest.tiktokSettings) &&
+        Objects.equals(this.facebookSettings, createPostRequest.facebookSettings) &&
         Objects.equals(this.recycling, createPostRequest.recycling) &&
         Objects.equals(this.queuedFromProfile, createPostRequest.queuedFromProfile) &&
         Objects.equals(this.queueId, createPostRequest.queueId);
@@ -622,7 +653,7 @@ public class CreatePostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, content, mediaItems, platforms, scheduledFor, publishNow, isDraft, timezone, tags, hashtags, mentions, crosspostingEnabled, metadata, tiktokSettings, recycling, queuedFromProfile, queueId);
+    return Objects.hash(title, content, mediaItems, platforms, scheduledFor, publishNow, isDraft, timezone, tags, hashtags, mentions, crosspostingEnabled, metadata, tiktokSettings, facebookSettings, recycling, queuedFromProfile, queueId);
   }
 
   @Override
@@ -643,6 +674,7 @@ public class CreatePostRequest {
     sb.append("    crosspostingEnabled: ").append(toIndentedString(crosspostingEnabled)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    tiktokSettings: ").append(toIndentedString(tiktokSettings)).append("\n");
+    sb.append("    facebookSettings: ").append(toIndentedString(facebookSettings)).append("\n");
     sb.append("    recycling: ").append(toIndentedString(recycling)).append("\n");
     sb.append("    queuedFromProfile: ").append(toIndentedString(queuedFromProfile)).append("\n");
     sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
@@ -787,6 +819,11 @@ public class CreatePostRequest {
     // add `tiktokSettings` to the URL query string
     if (getTiktokSettings() != null) {
       joiner.add(getTiktokSettings().toUrlQueryString(prefix + "tiktokSettings" + suffix));
+    }
+
+    // add `facebookSettings` to the URL query string
+    if (getFacebookSettings() != null) {
+      joiner.add(getFacebookSettings().toUrlQueryString(prefix + "facebookSettings" + suffix));
     }
 
     // add `recycling` to the URL query string

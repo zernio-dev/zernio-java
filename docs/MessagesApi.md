@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**addMessageReaction**](MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**addMessageReactionWithHttpInfo**](MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
+| [**createInboxConversation**](MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation |
+| [**createInboxConversationWithHttpInfo**](MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation |
 | [**deleteInboxMessage**](MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message |
 | [**deleteInboxMessageWithHttpInfo**](MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message |
 | [**editInboxMessage**](MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message |
@@ -187,6 +189,162 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
+
+
+## createInboxConversation
+
+> CreateInboxConversation201Response createInboxConversation(createInboxConversationRequest)
+
+Create conversation
+
+Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        CreateInboxConversationRequest createInboxConversationRequest = new CreateInboxConversationRequest(); // CreateInboxConversationRequest | 
+        try {
+            CreateInboxConversation201Response result = apiInstance.createInboxConversation(createInboxConversationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#createInboxConversation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createInboxConversationRequest** | [**CreateInboxConversationRequest**](CreateInboxConversationRequest.md)|  | |
+
+### Return type
+
+[**CreateInboxConversation201Response**](CreateInboxConversation201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, multipart/form-data
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Conversation created successfully |  -  |
+| **400** | Validation error or platform not supported |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required or profile limit reached |  -  |
+| **404** | Account or recipient user not found |  -  |
+| **422** | Recipient does not accept DMs from this account |  -  |
+| **429** | X API rate limit exceeded |  -  |
+
+## createInboxConversationWithHttpInfo
+
+> ApiResponse<CreateInboxConversation201Response> createInboxConversation createInboxConversationWithHttpInfo(createInboxConversationRequest)
+
+Create conversation
+
+Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        CreateInboxConversationRequest createInboxConversationRequest = new CreateInboxConversationRequest(); // CreateInboxConversationRequest | 
+        try {
+            ApiResponse<CreateInboxConversation201Response> response = apiInstance.createInboxConversationWithHttpInfo(createInboxConversationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#createInboxConversation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createInboxConversationRequest** | [**CreateInboxConversationRequest**](CreateInboxConversationRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateInboxConversation201Response**](CreateInboxConversation201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json, multipart/form-data
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Conversation created successfully |  -  |
+| **400** | Validation error or platform not supported |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required or profile limit reached |  -  |
+| **404** | Account or recipient user not found |  -  |
+| **422** | Recipient does not accept DMs from this account |  -  |
+| **429** | X API rate limit exceeded |  -  |
 
 
 ## deleteInboxMessage

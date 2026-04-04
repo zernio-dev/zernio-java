@@ -23,6 +23,8 @@ import dev.zernio.model.BulkUploadPosts429Response;
 import dev.zernio.model.CreatePost409Response;
 import dev.zernio.model.CreatePost429Response;
 import dev.zernio.model.CreatePostRequest;
+import dev.zernio.model.EditPost200Response;
+import dev.zernio.model.EditPostRequest;
 import java.io.File;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.InlineObject;
@@ -71,7 +73,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T15:56:45.572000024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -584,6 +586,138 @@ public class PostsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Edit published post
+   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  **Requirements:** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * @param postId  (required)
+   * @param editPostRequest  (required)
+   * @return EditPost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EditPost200Response editPost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull EditPostRequest editPostRequest) throws ApiException {
+    return editPost(postId, editPostRequest, null);
+  }
+
+  /**
+   * Edit published post
+   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  **Requirements:** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * @param postId  (required)
+   * @param editPostRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return EditPost200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EditPost200Response editPost(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull EditPostRequest editPostRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<EditPost200Response> localVarResponse = editPostWithHttpInfo(postId, editPostRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Edit published post
+   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  **Requirements:** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * @param postId  (required)
+   * @param editPostRequest  (required)
+   * @return ApiResponse&lt;EditPost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EditPost200Response> editPostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull EditPostRequest editPostRequest) throws ApiException {
+    return editPostWithHttpInfo(postId, editPostRequest, null);
+  }
+
+  /**
+   * Edit published post
+   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  **Requirements:** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * @param postId  (required)
+   * @param editPostRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;EditPost200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EditPost200Response> editPostWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull EditPostRequest editPostRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = editPostRequestBuilder(postId, editPostRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("editPost", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<EditPost200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        EditPost200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<EditPost200Response>() {});
+        
+
+        return new ApiResponse<EditPost200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder editPostRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull EditPostRequest editPostRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling editPost");
+    }
+    // verify the required parameter 'editPostRequest' is set
+    if (editPostRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'editPostRequest' when calling editPost");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/posts/{postId}/edit"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(editPostRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

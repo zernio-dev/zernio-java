@@ -19,6 +19,11 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.AddMessageReactionRequest;
+import dev.zernio.model.CreateInboxConversation201Response;
+import dev.zernio.model.CreateInboxConversation400Response;
+import dev.zernio.model.CreateInboxConversation422Response;
+import dev.zernio.model.CreateInboxConversationRequest;
+import dev.zernio.model.CreateInboxConversationRequest1;
 import dev.zernio.model.EditInboxMessage200Response;
 import dev.zernio.model.EditInboxMessageRequest;
 import java.io.File;
@@ -67,7 +72,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T15:56:45.572000024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -310,6 +315,129 @@ public class MessagesApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addMessageReactionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create conversation
+   * Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+   * @param createInboxConversationRequest  (required)
+   * @return CreateInboxConversation201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateInboxConversation201Response createInboxConversation(@javax.annotation.Nonnull CreateInboxConversationRequest createInboxConversationRequest) throws ApiException {
+    return createInboxConversation(createInboxConversationRequest, null);
+  }
+
+  /**
+   * Create conversation
+   * Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+   * @param createInboxConversationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateInboxConversation201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateInboxConversation201Response createInboxConversation(@javax.annotation.Nonnull CreateInboxConversationRequest createInboxConversationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateInboxConversation201Response> localVarResponse = createInboxConversationWithHttpInfo(createInboxConversationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create conversation
+   * Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+   * @param createInboxConversationRequest  (required)
+   * @return ApiResponse&lt;CreateInboxConversation201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateInboxConversation201Response> createInboxConversationWithHttpInfo(@javax.annotation.Nonnull CreateInboxConversationRequest createInboxConversationRequest) throws ApiException {
+    return createInboxConversationWithHttpInfo(createInboxConversationRequest, null);
+  }
+
+  /**
+   * Create conversation
+   * Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.  **Currently supported platforms:** Twitter/X only. Other platforms will return &#x60;PLATFORM_NOT_SUPPORTED&#x60;.  **DM eligibility:** Before sending, the endpoint checks if the recipient accepts DMs from your account (via the &#x60;receives_your_dm&#x60; field). If not, a 422 error with code &#x60;DM_NOT_ALLOWED&#x60; is returned. You can skip this check with &#x60;skipDmCheck: true&#x60; if you have already verified eligibility.  **X API tier requirement:** DM write endpoints require X API Pro tier ($5,000/month) or Enterprise access. This applies to BYOK (Bring Your Own Key) users who provide their own X API credentials.  **Rate limits:** 200 requests per 15 minutes, 1,000 per 24 hours per user, 15,000 per 24 hours per app (shared across all DM endpoints). 
+   * @param createInboxConversationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateInboxConversation201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateInboxConversation201Response> createInboxConversationWithHttpInfo(@javax.annotation.Nonnull CreateInboxConversationRequest createInboxConversationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createInboxConversationRequestBuilder(createInboxConversationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createInboxConversation", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateInboxConversation201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateInboxConversation201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateInboxConversation201Response>() {});
+        
+
+        return new ApiResponse<CreateInboxConversation201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createInboxConversationRequestBuilder(@javax.annotation.Nonnull CreateInboxConversationRequest createInboxConversationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createInboxConversationRequest' is set
+    if (createInboxConversationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createInboxConversationRequest' when calling createInboxConversation");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/conversations";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createInboxConversationRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

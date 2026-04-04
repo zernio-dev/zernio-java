@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.FacebookPlatformData;
 import dev.zernio.model.RecyclingConfig;
 import dev.zernio.model.TikTokPlatformData;
 import java.time.OffsetDateTime;
@@ -43,9 +44,10 @@ import dev.zernio.ApiClient;
   UpdatePostRequest.JSON_PROPERTY_CONTENT,
   UpdatePostRequest.JSON_PROPERTY_SCHEDULED_FOR,
   UpdatePostRequest.JSON_PROPERTY_TIKTOK_SETTINGS,
+  UpdatePostRequest.JSON_PROPERTY_FACEBOOK_SETTINGS,
   UpdatePostRequest.JSON_PROPERTY_RECYCLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T15:56:45.572000024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostRequest {
   public static final String JSON_PROPERTY_CONTENT = "content";
   @javax.annotation.Nullable
@@ -58,6 +60,10 @@ public class UpdatePostRequest {
   public static final String JSON_PROPERTY_TIKTOK_SETTINGS = "tiktokSettings";
   @javax.annotation.Nullable
   private TikTokPlatformData tiktokSettings;
+
+  public static final String JSON_PROPERTY_FACEBOOK_SETTINGS = "facebookSettings";
+  @javax.annotation.Nullable
+  private FacebookPlatformData facebookSettings;
 
   public static final String JSON_PROPERTY_RECYCLING = "recycling";
   @javax.annotation.Nullable
@@ -135,6 +141,30 @@ public class UpdatePostRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTiktokSettings(@javax.annotation.Nullable TikTokPlatformData tiktokSettings) {
     this.tiktokSettings = tiktokSettings;
+  }
+
+
+  public UpdatePostRequest facebookSettings(@javax.annotation.Nullable FacebookPlatformData facebookSettings) {
+    this.facebookSettings = facebookSettings;
+    return this;
+  }
+
+  /**
+   * Root-level Facebook settings applied to all Facebook platforms. Merged into each platform&#39;s platformSpecificData, with platform-specific settings taking precedence.
+   * @return facebookSettings
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public FacebookPlatformData getFacebookSettings() {
+    return facebookSettings;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_SETTINGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFacebookSettings(@javax.annotation.Nullable FacebookPlatformData facebookSettings) {
+    this.facebookSettings = facebookSettings;
   }
 
 
@@ -220,13 +250,14 @@ public class UpdatePostRequest {
     return Objects.equals(this.content, updatePostRequest.content) &&
         Objects.equals(this.scheduledFor, updatePostRequest.scheduledFor) &&
         Objects.equals(this.tiktokSettings, updatePostRequest.tiktokSettings) &&
+        Objects.equals(this.facebookSettings, updatePostRequest.facebookSettings) &&
         Objects.equals(this.recycling, updatePostRequest.recycling)&&
         Objects.equals(this.additionalProperties, updatePostRequest.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, scheduledFor, tiktokSettings, recycling, additionalProperties);
+    return Objects.hash(content, scheduledFor, tiktokSettings, facebookSettings, recycling, additionalProperties);
   }
 
   @Override
@@ -236,6 +267,7 @@ public class UpdatePostRequest {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    scheduledFor: ").append(toIndentedString(scheduledFor)).append("\n");
     sb.append("    tiktokSettings: ").append(toIndentedString(tiktokSettings)).append("\n");
+    sb.append("    facebookSettings: ").append(toIndentedString(facebookSettings)).append("\n");
     sb.append("    recycling: ").append(toIndentedString(recycling)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
@@ -298,6 +330,11 @@ public class UpdatePostRequest {
     // add `tiktokSettings` to the URL query string
     if (getTiktokSettings() != null) {
       joiner.add(getTiktokSettings().toUrlQueryString(prefix + "tiktokSettings" + suffix));
+    }
+
+    // add `facebookSettings` to the URL query string
+    if (getFacebookSettings() != null) {
+      joiner.add(getFacebookSettings().toUrlQueryString(prefix + "facebookSettings" + suffix));
     }
 
     // add `recycling` to the URL query string

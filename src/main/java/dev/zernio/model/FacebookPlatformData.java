@@ -33,13 +33,18 @@ import dev.zernio.ApiClient;
  * Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s).
  */
 @JsonPropertyOrder({
+  FacebookPlatformData.JSON_PROPERTY_DRAFT,
   FacebookPlatformData.JSON_PROPERTY_CONTENT_TYPE,
   FacebookPlatformData.JSON_PROPERTY_TITLE,
   FacebookPlatformData.JSON_PROPERTY_FIRST_COMMENT,
   FacebookPlatformData.JSON_PROPERTY_PAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T15:56:45.572000024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPlatformData {
+  public static final String JSON_PROPERTY_DRAFT = "draft";
+  @javax.annotation.Nullable
+  private Boolean draft = false;
+
   /**
    * Set to &#39;story&#39; for Page Stories (24h ephemeral) or &#39;reel&#39; for Reels (short vertical video). Defaults to feed post if omitted.
    */
@@ -93,6 +98,30 @@ public class FacebookPlatformData {
 
   public FacebookPlatformData() { 
   }
+
+  public FacebookPlatformData draft(@javax.annotation.Nullable Boolean draft) {
+    this.draft = draft;
+    return this;
+  }
+
+  /**
+   * When true, creates the post as an unpublished draft visible in Facebook Publishing Tools instead of publishing immediately. Supported for feed posts (text, link, image, video) and reels. Not supported for stories. Drafts expire after ~30 days.
+   * @return draft
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DRAFT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getDraft() {
+    return draft;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DRAFT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDraft(@javax.annotation.Nullable Boolean draft) {
+    this.draft = draft;
+  }
+
 
   public FacebookPlatformData contentType(@javax.annotation.Nullable ContentTypeEnum contentType) {
     this.contentType = contentType;
@@ -148,7 +177,7 @@ public class FacebookPlatformData {
   }
 
   /**
-   * Optional first comment to post immediately after publishing (feed posts only, not stories or reels)
+   * Optional first comment to post immediately after publishing (feed posts only, not stories or reels). Skipped when draft is true.
    * @return firstComment
    */
   @javax.annotation.Nullable
@@ -202,7 +231,8 @@ public class FacebookPlatformData {
       return false;
     }
     FacebookPlatformData facebookPlatformData = (FacebookPlatformData) o;
-    return Objects.equals(this.contentType, facebookPlatformData.contentType) &&
+    return Objects.equals(this.draft, facebookPlatformData.draft) &&
+        Objects.equals(this.contentType, facebookPlatformData.contentType) &&
         Objects.equals(this.title, facebookPlatformData.title) &&
         Objects.equals(this.firstComment, facebookPlatformData.firstComment) &&
         Objects.equals(this.pageId, facebookPlatformData.pageId);
@@ -210,13 +240,14 @@ public class FacebookPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, title, firstComment, pageId);
+    return Objects.hash(draft, contentType, title, firstComment, pageId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FacebookPlatformData {\n");
+    sb.append("    draft: ").append(toIndentedString(draft)).append("\n");
     sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    firstComment: ").append(toIndentedString(firstComment)).append("\n");
@@ -267,6 +298,11 @@ public class FacebookPlatformData {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `draft` to the URL query string
+    if (getDraft() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdraft%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDraft()))));
+    }
 
     // add `contentType` to the URL query string
     if (getContentType() != null) {
