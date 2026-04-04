@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-03T21:11:30.282858424Z[Etc/UTC]
+- Build date: 2026-04-04T15:56:45.572000024Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -198,6 +198,10 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getDailyMetricsWithHttpInfo**](docs/AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics
 *AnalyticsApi* | [**getFollowerStats**](docs/AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AnalyticsApi* | [**getFollowerStatsWithHttpInfo**](docs/AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AnalyticsApi* | [**getGoogleBusinessPerformance**](docs/AnalyticsApi.md#getGoogleBusinessPerformance) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics
+*AnalyticsApi* | [**getGoogleBusinessPerformanceWithHttpInfo**](docs/AnalyticsApi.md#getGoogleBusinessPerformanceWithHttpInfo) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics
+*AnalyticsApi* | [**getGoogleBusinessSearchKeywords**](docs/AnalyticsApi.md#getGoogleBusinessSearchKeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords
+*AnalyticsApi* | [**getGoogleBusinessSearchKeywordsWithHttpInfo**](docs/AnalyticsApi.md#getGoogleBusinessSearchKeywordsWithHttpInfo) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords
 *AnalyticsApi* | [**getInstagramAccountInsights**](docs/AnalyticsApi.md#getInstagramAccountInsights) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights
 *AnalyticsApi* | [**getInstagramAccountInsightsWithHttpInfo**](docs/AnalyticsApi.md#getInstagramAccountInsightsWithHttpInfo) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights
 *AnalyticsApi* | [**getInstagramDemographics**](docs/AnalyticsApi.md#getInstagramDemographics) | **GET** /v1/analytics/instagram/demographics | Get Instagram audience demographics
@@ -872,10 +876,19 @@ Class | Method | HTTP request | Description
  - [GetGoogleBusinessLocationDetails200ResponseSpecialHours](docs/GetGoogleBusinessLocationDetails200ResponseSpecialHours.md)
  - [GetGoogleBusinessLocationDetails200ResponseSpecialHoursSpecialHourPeriodsInner](docs/GetGoogleBusinessLocationDetails200ResponseSpecialHoursSpecialHourPeriodsInner.md)
  - [GetGoogleBusinessLocationDetails200ResponseSpecialHoursSpecialHourPeriodsInnerStartDate](docs/GetGoogleBusinessLocationDetails200ResponseSpecialHoursSpecialHourPeriodsInnerStartDate.md)
+ - [GetGoogleBusinessPerformance200Response](docs/GetGoogleBusinessPerformance200Response.md)
+ - [GetGoogleBusinessPerformance200ResponseDateRange](docs/GetGoogleBusinessPerformance200ResponseDateRange.md)
+ - [GetGoogleBusinessPerformance200ResponseMetricsValue](docs/GetGoogleBusinessPerformance200ResponseMetricsValue.md)
+ - [GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner](docs/GetGoogleBusinessPerformance200ResponseMetricsValueValuesInner.md)
+ - [GetGoogleBusinessPerformance400Response](docs/GetGoogleBusinessPerformance400Response.md)
  - [GetGoogleBusinessReviews200Response](docs/GetGoogleBusinessReviews200Response.md)
  - [GetGoogleBusinessReviews200ResponseReviewsInner](docs/GetGoogleBusinessReviews200ResponseReviewsInner.md)
  - [GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply](docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply.md)
  - [GetGoogleBusinessReviews200ResponseReviewsInnerReviewer](docs/GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.md)
+ - [GetGoogleBusinessSearchKeywords200Response](docs/GetGoogleBusinessSearchKeywords200Response.md)
+ - [GetGoogleBusinessSearchKeywords200ResponseKeywordsInner](docs/GetGoogleBusinessSearchKeywords200ResponseKeywordsInner.md)
+ - [GetGoogleBusinessSearchKeywords200ResponseMonthRange](docs/GetGoogleBusinessSearchKeywords200ResponseMonthRange.md)
+ - [GetGoogleBusinessSearchKeywords400Response](docs/GetGoogleBusinessSearchKeywords400Response.md)
  - [GetInboxConversation200Response](docs/GetInboxConversation200Response.md)
  - [GetInboxConversation200ResponseData](docs/GetInboxConversation200ResponseData.md)
  - [GetInboxConversationMessages200Response](docs/GetInboxConversationMessages200Response.md)

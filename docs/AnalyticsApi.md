@@ -14,6 +14,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getDailyMetricsWithHttpInfo**](AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics |
 | [**getFollowerStats**](AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
+| [**getGoogleBusinessPerformance**](AnalyticsApi.md#getGoogleBusinessPerformance) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics |
+| [**getGoogleBusinessPerformanceWithHttpInfo**](AnalyticsApi.md#getGoogleBusinessPerformanceWithHttpInfo) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics |
+| [**getGoogleBusinessSearchKeywords**](AnalyticsApi.md#getGoogleBusinessSearchKeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords |
+| [**getGoogleBusinessSearchKeywordsWithHttpInfo**](AnalyticsApi.md#getGoogleBusinessSearchKeywordsWithHttpInfo) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords |
 | [**getInstagramAccountInsights**](AnalyticsApi.md#getInstagramAccountInsights) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights |
 | [**getInstagramAccountInsightsWithHttpInfo**](AnalyticsApi.md#getInstagramAccountInsightsWithHttpInfo) | **GET** /v1/analytics/instagram/account-insights | Get Instagram account-level insights |
 | [**getInstagramDemographics**](AnalyticsApi.md#getInstagramDemographics) | **GET** /v1/analytics/instagram/demographics | Get Instagram audience demographics |
@@ -875,6 +879,330 @@ ApiResponse<[**GetFollowerStats200Response**](GetFollowerStats200Response.md)>
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Analytics add-on required |  -  |
+
+
+## getGoogleBusinessPerformance
+
+> GetGoogleBusinessPerformance200Response getGoogleBusinessPerformance(accountId, metrics, startDate, endDate)
+
+Get Google Business Profile performance metrics
+
+Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
+        String metrics = "metrics_example"; // String | Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back.
+        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        try {
+            GetGoogleBusinessPerformance200Response result = apiInstance.getGoogleBusinessPerformance(accountId, metrics, startDate, endDate);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getGoogleBusinessPerformance");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
+| **metrics** | **String**| Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  | [optional] |
+| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional] |
+| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+
+### Return type
+
+[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerformance200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Performance metrics with daily time series |  -  |
+| **400** | Invalid parameters |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied |  -  |
+
+## getGoogleBusinessPerformanceWithHttpInfo
+
+> ApiResponse<GetGoogleBusinessPerformance200Response> getGoogleBusinessPerformance getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate)
+
+Get Google Business Profile performance metrics
+
+Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
+        String metrics = "metrics_example"; // String | Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back.
+        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        try {
+            ApiResponse<GetGoogleBusinessPerformance200Response> response = apiInstance.getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getGoogleBusinessPerformance");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
+| **metrics** | **String**| Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  | [optional] |
+| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional] |
+| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerformance200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Performance metrics with daily time series |  -  |
+| **400** | Invalid parameters |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied |  -  |
+
+
+## getGoogleBusinessSearchKeywords
+
+> GetGoogleBusinessSearchKeywords200Response getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth)
+
+Get Google Business Profile search keywords
+
+Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
+        String startMonth = "startMonth_example"; // String | Start month (YYYY-MM). Defaults to 3 months ago.
+        String endMonth = "endMonth_example"; // String | End month (YYYY-MM). Defaults to current month.
+        try {
+            GetGoogleBusinessSearchKeywords200Response result = apiInstance.getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getGoogleBusinessSearchKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
+| **startMonth** | **String**| Start month (YYYY-MM). Defaults to 3 months ago. | [optional] |
+| **endMonth** | **String**| End month (YYYY-MM). Defaults to current month. | [optional] |
+
+### Return type
+
+[**GetGoogleBusinessSearchKeywords200Response**](GetGoogleBusinessSearchKeywords200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Search keywords with impression counts |  -  |
+| **400** | Invalid parameters |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied |  -  |
+
+## getGoogleBusinessSearchKeywordsWithHttpInfo
+
+> ApiResponse<GetGoogleBusinessSearchKeywords200Response> getGoogleBusinessSearchKeywords getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth)
+
+Get Google Business Profile search keywords
+
+Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
+        String startMonth = "startMonth_example"; // String | Start month (YYYY-MM). Defaults to 3 months ago.
+        String endMonth = "endMonth_example"; // String | End month (YYYY-MM). Defaults to current month.
+        try {
+            ApiResponse<GetGoogleBusinessSearchKeywords200Response> response = apiInstance.getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getGoogleBusinessSearchKeywords");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
+| **startMonth** | **String**| Start month (YYYY-MM). Defaults to 3 months ago. | [optional] |
+| **endMonth** | **String**| End month (YYYY-MM). Defaults to current month. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetGoogleBusinessSearchKeywords200Response**](GetGoogleBusinessSearchKeywords200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Search keywords with impression counts |  -  |
+| **400** | Invalid parameters |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics add-on required |  -  |
+| **403** | Access denied |  -  |
 
 
 ## getInstagramAccountInsights

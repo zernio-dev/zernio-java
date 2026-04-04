@@ -29,6 +29,10 @@ import dev.zernio.model.GetContentDecay200Response;
 import dev.zernio.model.GetDailyMetrics200Response;
 import dev.zernio.model.GetFollowerStats200Response;
 import dev.zernio.model.GetFollowerStats403Response;
+import dev.zernio.model.GetGoogleBusinessPerformance200Response;
+import dev.zernio.model.GetGoogleBusinessPerformance400Response;
+import dev.zernio.model.GetGoogleBusinessSearchKeywords200Response;
+import dev.zernio.model.GetGoogleBusinessSearchKeywords400Response;
 import dev.zernio.model.GetInstagramAccountInsights404Response;
 import dev.zernio.model.GetLinkedInAggregateAnalytics200Response;
 import dev.zernio.model.GetLinkedInAggregateAnalytics400Response;
@@ -83,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-03T21:11:30.282858424Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T15:56:45.572000024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -952,6 +956,300 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "granularity";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Google Business Profile performance metrics
+   * Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param metrics Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @return GetGoogleBusinessPerformance200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetGoogleBusinessPerformance200Response getGoogleBusinessPerformance(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate) throws ApiException {
+    return getGoogleBusinessPerformance(accountId, metrics, startDate, endDate, null);
+  }
+
+  /**
+   * Get Google Business Profile performance metrics
+   * Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param metrics Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetGoogleBusinessPerformance200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetGoogleBusinessPerformance200Response getGoogleBusinessPerformance(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGoogleBusinessPerformance200Response> localVarResponse = getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Google Business Profile performance metrics
+   * Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param metrics Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @return ApiResponse&lt;GetGoogleBusinessPerformance200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetGoogleBusinessPerformance200Response> getGoogleBusinessPerformanceWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate) throws ApiException {
+    return getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate, null);
+  }
+
+  /**
+   * Get Google Business Profile performance metrics
+   * Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param metrics Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  (optional)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to today. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetGoogleBusinessPerformance200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetGoogleBusinessPerformance200Response> getGoogleBusinessPerformanceWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessPerformanceRequestBuilder(accountId, metrics, startDate, endDate, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getGoogleBusinessPerformance", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetGoogleBusinessPerformance200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetGoogleBusinessPerformance200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetGoogleBusinessPerformance200Response>() {});
+        
+
+        return new ApiResponse<GetGoogleBusinessPerformance200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getGoogleBusinessPerformanceRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String metrics, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGoogleBusinessPerformance");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/analytics/googlebusiness/performance";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "metrics";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("metrics", metrics));
+    localVarQueryParameterBaseName = "startDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("startDate", startDate));
+    localVarQueryParameterBaseName = "endDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("endDate", endDate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Google Business Profile search keywords
+   * Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param startMonth Start month (YYYY-MM). Defaults to 3 months ago. (optional)
+   * @param endMonth End month (YYYY-MM). Defaults to current month. (optional)
+   * @return GetGoogleBusinessSearchKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetGoogleBusinessSearchKeywords200Response getGoogleBusinessSearchKeywords(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String startMonth, @javax.annotation.Nullable String endMonth) throws ApiException {
+    return getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth, null);
+  }
+
+  /**
+   * Get Google Business Profile search keywords
+   * Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param startMonth Start month (YYYY-MM). Defaults to 3 months ago. (optional)
+   * @param endMonth End month (YYYY-MM). Defaults to current month. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetGoogleBusinessSearchKeywords200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetGoogleBusinessSearchKeywords200Response getGoogleBusinessSearchKeywords(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String startMonth, @javax.annotation.Nullable String endMonth, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGoogleBusinessSearchKeywords200Response> localVarResponse = getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Google Business Profile search keywords
+   * Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param startMonth Start month (YYYY-MM). Defaults to 3 months ago. (optional)
+   * @param endMonth End month (YYYY-MM). Defaults to current month. (optional)
+   * @return ApiResponse&lt;GetGoogleBusinessSearchKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetGoogleBusinessSearchKeywords200Response> getGoogleBusinessSearchKeywordsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String startMonth, @javax.annotation.Nullable String endMonth) throws ApiException {
+    return getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth, null);
+  }
+
+  /**
+   * Get Google Business Profile search keywords
+   * Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+   * @param accountId The Zernio SocialAccount ID for the Google Business Profile account. (required)
+   * @param startMonth Start month (YYYY-MM). Defaults to 3 months ago. (optional)
+   * @param endMonth End month (YYYY-MM). Defaults to current month. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetGoogleBusinessSearchKeywords200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetGoogleBusinessSearchKeywords200Response> getGoogleBusinessSearchKeywordsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String startMonth, @javax.annotation.Nullable String endMonth, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGoogleBusinessSearchKeywordsRequestBuilder(accountId, startMonth, endMonth, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getGoogleBusinessSearchKeywords", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetGoogleBusinessSearchKeywords200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetGoogleBusinessSearchKeywords200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetGoogleBusinessSearchKeywords200Response>() {});
+        
+
+        return new ApiResponse<GetGoogleBusinessSearchKeywords200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getGoogleBusinessSearchKeywordsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String startMonth, @javax.annotation.Nullable String endMonth, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGoogleBusinessSearchKeywords");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/analytics/googlebusiness/search-keywords";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "startMonth";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("startMonth", startMonth));
+    localVarQueryParameterBaseName = "endMonth";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("endMonth", endMonth));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
