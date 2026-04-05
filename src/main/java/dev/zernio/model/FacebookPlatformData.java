@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   FacebookPlatformData.JSON_PROPERTY_FIRST_COMMENT,
   FacebookPlatformData.JSON_PROPERTY_PAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-05T21:28:11.574282819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -177,7 +177,7 @@ public class FacebookPlatformData {
   }
 
   /**
-   * Optional first comment to post immediately after publishing (feed posts only, not stories or reels). Skipped when draft is true.
+   * Optional first comment to post immediately after publishing (feed posts and reels, not stories). Skipped when draft is true.
    * @return firstComment
    */
   @javax.annotation.Nullable

@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_LISTED_COUNT,
   AccountWithFollowerStatsAllOfAccountStats.JSON_PROPERTY_BOARD_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-04T16:03:36.270211619Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-05T21:28:11.574282819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStatsAllOfAccountStats {
   public static final String JSON_PROPERTY_FOLLOWING_COUNT = "followingCount";
   @javax.annotation.Nullable

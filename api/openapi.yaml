@@ -17344,7 +17344,7 @@ components:
           type: string
         firstComment:
           description: "Optional first comment to post immediately after publishing\
-            \ (feed posts only, not stories or reels). Skipped when draft is true."
+            \ (feed posts and reels, not stories). Skipped when draft is true."
           type: string
         pageId:
           description: "Target Facebook Page ID for multi-page posting. If omitted,\
