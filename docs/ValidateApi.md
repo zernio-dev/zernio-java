@@ -449,11 +449,11 @@ ApiResponse<[**ValidatePostLength200Response**](ValidatePostLength200Response.md
 
 ## validateSubreddit
 
-> ValidateSubreddit200Response validateSubreddit(name)
+> ValidateSubreddit200Response validateSubreddit(name, accountId)
 
 Check subreddit existence
 
-Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
 
 ### Example
 
@@ -477,8 +477,9 @@ public class Example {
 
         ValidateApi apiInstance = new ValidateApi(defaultClient);
         String name = "programming"; // String | Subreddit name (with or without \"r/\" prefix)
+        String accountId = "accountId_example"; // String | Reddit social account ID for authenticated lookup (recommended for reliable results)
         try {
-            ValidateSubreddit200Response result = apiInstance.validateSubreddit(name);
+            ValidateSubreddit200Response result = apiInstance.validateSubreddit(name, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ValidateApi#validateSubreddit");
@@ -497,6 +498,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**| Subreddit name (with or without \&quot;r/\&quot; prefix) | |
+| **accountId** | **String**| Reddit social account ID for authenticated lookup (recommended for reliable results) | [optional] |
 
 ### Return type
 
@@ -519,11 +521,11 @@ public class Example {
 
 ## validateSubredditWithHttpInfo
 
-> ApiResponse<ValidateSubreddit200Response> validateSubreddit validateSubredditWithHttpInfo(name)
+> ApiResponse<ValidateSubreddit200Response> validateSubreddit validateSubredditWithHttpInfo(name, accountId)
 
 Check subreddit existence
 
-Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
 
 ### Example
 
@@ -548,8 +550,9 @@ public class Example {
 
         ValidateApi apiInstance = new ValidateApi(defaultClient);
         String name = "programming"; // String | Subreddit name (with or without \"r/\" prefix)
+        String accountId = "accountId_example"; // String | Reddit social account ID for authenticated lookup (recommended for reliable results)
         try {
-            ApiResponse<ValidateSubreddit200Response> response = apiInstance.validateSubredditWithHttpInfo(name);
+            ApiResponse<ValidateSubreddit200Response> response = apiInstance.validateSubredditWithHttpInfo(name, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -570,6 +573,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**| Subreddit name (with or without \&quot;r/\&quot; prefix) | |
+| **accountId** | **String**| Reddit social account ID for authenticated lookup (recommended for reliable results) | [optional] |
 
 ### Return type
 

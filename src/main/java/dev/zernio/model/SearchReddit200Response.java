@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.SearchReddit200ResponsePostsInner;
+import dev.zernio.model.RedditPost;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,51 +36,56 @@ import dev.zernio.ApiClient;
  * SearchReddit200Response
  */
 @JsonPropertyOrder({
-  SearchReddit200Response.JSON_PROPERTY_POSTS,
-  SearchReddit200Response.JSON_PROPERTY_AFTER
+  SearchReddit200Response.JSON_PROPERTY_ITEMS,
+  SearchReddit200Response.JSON_PROPERTY_AFTER,
+  SearchReddit200Response.JSON_PROPERTY_BEFORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-05T21:28:11.574282819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-06T07:02:22.007854824Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchReddit200Response {
-  public static final String JSON_PROPERTY_POSTS = "posts";
+  public static final String JSON_PROPERTY_ITEMS = "items";
   @javax.annotation.Nullable
-  private List<SearchReddit200ResponsePostsInner> posts = new ArrayList<>();
+  private List<RedditPost> items = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AFTER = "after";
   @javax.annotation.Nullable
   private String after;
 
+  public static final String JSON_PROPERTY_BEFORE = "before";
+  @javax.annotation.Nullable
+  private String before;
+
   public SearchReddit200Response() { 
   }
 
-  public SearchReddit200Response posts(@javax.annotation.Nullable List<SearchReddit200ResponsePostsInner> posts) {
-    this.posts = posts;
+  public SearchReddit200Response items(@javax.annotation.Nullable List<RedditPost> items) {
+    this.items = items;
     return this;
   }
 
-  public SearchReddit200Response addPostsItem(SearchReddit200ResponsePostsInner postsItem) {
-    if (this.posts == null) {
-      this.posts = new ArrayList<>();
+  public SearchReddit200Response addItemsItem(RedditPost itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
     }
-    this.posts.add(postsItem);
+    this.items.add(itemsItem);
     return this;
   }
 
   /**
-   * Get posts
-   * @return posts
+   * Get items
+   * @return items
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_POSTS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<SearchReddit200ResponsePostsInner> getPosts() {
-    return posts;
+  public List<RedditPost> getItems() {
+    return items;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_POSTS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPosts(@javax.annotation.Nullable List<SearchReddit200ResponsePostsInner> posts) {
-    this.posts = posts;
+  public void setItems(@javax.annotation.Nullable List<RedditPost> items) {
+    this.items = items;
   }
 
 
@@ -108,6 +113,30 @@ public class SearchReddit200Response {
   }
 
 
+  public SearchReddit200Response before(@javax.annotation.Nullable String before) {
+    this.before = before;
+    return this;
+  }
+
+  /**
+   * Get before
+   * @return before
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BEFORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBefore() {
+    return before;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BEFORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBefore(@javax.annotation.Nullable String before) {
+    this.before = before;
+  }
+
+
   /**
    * Return true if this searchReddit_200_response object is equal to o.
    */
@@ -120,21 +149,23 @@ public class SearchReddit200Response {
       return false;
     }
     SearchReddit200Response searchReddit200Response = (SearchReddit200Response) o;
-    return Objects.equals(this.posts, searchReddit200Response.posts) &&
-        Objects.equals(this.after, searchReddit200Response.after);
+    return Objects.equals(this.items, searchReddit200Response.items) &&
+        Objects.equals(this.after, searchReddit200Response.after) &&
+        Objects.equals(this.before, searchReddit200Response.before);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(posts, after);
+    return Objects.hash(items, after, before);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchReddit200Response {\n");
-    sb.append("    posts: ").append(toIndentedString(posts)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    after: ").append(toIndentedString(after)).append("\n");
+    sb.append("    before: ").append(toIndentedString(before)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,11 +213,11 @@ public class SearchReddit200Response {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `posts` to the URL query string
-    if (getPosts() != null) {
-      for (int i = 0; i < getPosts().size(); i++) {
-        if (getPosts().get(i) != null) {
-          joiner.add(getPosts().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sposts%s%s", prefix, suffix,
+    // add `items` to the URL query string
+    if (getItems() != null) {
+      for (int i = 0; i < getItems().size(); i++) {
+        if (getItems().get(i) != null) {
+          joiner.add(getItems().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sitems%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
@@ -195,6 +226,11 @@ public class SearchReddit200Response {
     // add `after` to the URL query string
     if (getAfter() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%safter%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAfter()))));
+    }
+
+    // add `before` to the URL query string
+    if (getBefore() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbefore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBefore()))));
     }
 
     return joiner.toString();

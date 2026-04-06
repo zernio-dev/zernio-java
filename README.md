@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-05T21:28:11.574282819Z[Etc/UTC]
+- Build date: 2026-04-06T07:02:22.007854824Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -945,7 +945,6 @@ Class | Method | HTTP request | Description
  - [GetPostingFrequency200Response](docs/GetPostingFrequency200Response.md)
  - [GetPostingFrequency200ResponseFrequencyInner](docs/GetPostingFrequency200ResponseFrequencyInner.md)
  - [GetProfile200Response](docs/GetProfile200Response.md)
- - [GetRedditFeed200Response](docs/GetRedditFeed200Response.md)
  - [GetRedditFlairs200Response](docs/GetRedditFlairs200Response.md)
  - [GetRedditFlairs200ResponseFlairsInner](docs/GetRedditFlairs200ResponseFlairsInner.md)
  - [GetRedditSubreddits200Response](docs/GetRedditSubreddits200Response.md)
@@ -1162,6 +1161,7 @@ Class | Method | HTTP request | Description
  - [RecyclingConfig](docs/RecyclingConfig.md)
  - [RecyclingState](docs/RecyclingState.md)
  - [RedditPlatformData](docs/RedditPlatformData.md)
+ - [RedditPost](docs/RedditPost.md)
  - [RejectWhatsAppGroupJoinRequestsRequest](docs/RejectWhatsAppGroupJoinRequestsRequest.md)
  - [ReleaseWhatsAppPhoneNumber200Response](docs/ReleaseWhatsAppPhoneNumber200Response.md)
  - [ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber](docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md)
@@ -1188,7 +1188,6 @@ Class | Method | HTTP request | Description
  - [SearchAdInterests200Response](docs/SearchAdInterests200Response.md)
  - [SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
- - [SearchReddit200ResponsePostsInner](docs/SearchReddit200ResponsePostsInner.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
  - [SelectFacebookPageRequest](docs/SelectFacebookPageRequest.md)

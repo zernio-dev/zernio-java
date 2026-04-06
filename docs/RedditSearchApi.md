@@ -13,7 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## getRedditFeed
 
-> GetRedditFeed200Response getRedditFeed(accountId, subreddit, sort, limit, after, t)
+> SearchReddit200Response getRedditFeed(accountId, subreddit, sort, limit, after, t)
 
 Get subreddit feed
 
@@ -47,7 +47,7 @@ public class Example {
         String after = "after_example"; // String | 
         String t = "hour"; // String | 
         try {
-            GetRedditFeed200Response result = apiInstance.getRedditFeed(accountId, subreddit, sort, limit, after, t);
+            SearchReddit200Response result = apiInstance.getRedditFeed(accountId, subreddit, sort, limit, after, t);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling RedditSearchApi#getRedditFeed");
@@ -74,7 +74,7 @@ public class Example {
 
 ### Return type
 
-[**GetRedditFeed200Response**](GetRedditFeed200Response.md)
+[**SearchReddit200Response**](SearchReddit200Response.md)
 
 
 ### Authorization
@@ -96,7 +96,7 @@ public class Example {
 
 ## getRedditFeedWithHttpInfo
 
-> ApiResponse<GetRedditFeed200Response> getRedditFeed getRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t)
+> ApiResponse<SearchReddit200Response> getRedditFeed getRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t)
 
 Get subreddit feed
 
@@ -131,7 +131,7 @@ public class Example {
         String after = "after_example"; // String | 
         String t = "hour"; // String | 
         try {
-            ApiResponse<GetRedditFeed200Response> response = apiInstance.getRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t);
+            ApiResponse<SearchReddit200Response> response = apiInstance.getRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -160,7 +160,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetRedditFeed200Response**](GetRedditFeed200Response.md)>
+ApiResponse<[**SearchReddit200Response**](SearchReddit200Response.md)>
 
 
 ### Authorization

@@ -57,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-05T21:28:11.574282819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-06T07:02:22.007854824Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -545,49 +545,53 @@ public class ValidateApi {
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
+   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
    * @return ValidateSubreddit200Response
    * @throws ApiException if fails to make API call
    */
-  public ValidateSubreddit200Response validateSubreddit(@javax.annotation.Nonnull String name) throws ApiException {
-    return validateSubreddit(name, null);
+  public ValidateSubreddit200Response validateSubreddit(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String accountId) throws ApiException {
+    return validateSubreddit(name, accountId, null);
   }
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
+   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
    * @param headers Optional headers to include in the request
    * @return ValidateSubreddit200Response
    * @throws ApiException if fails to make API call
    */
-  public ValidateSubreddit200Response validateSubreddit(@javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
-    ApiResponse<ValidateSubreddit200Response> localVarResponse = validateSubredditWithHttpInfo(name, headers);
+  public ValidateSubreddit200Response validateSubreddit(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ValidateSubreddit200Response> localVarResponse = validateSubredditWithHttpInfo(name, accountId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
+   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
    * @return ApiResponse&lt;ValidateSubreddit200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ValidateSubreddit200Response> validateSubredditWithHttpInfo(@javax.annotation.Nonnull String name) throws ApiException {
-    return validateSubredditWithHttpInfo(name, null);
+  public ApiResponse<ValidateSubreddit200Response> validateSubredditWithHttpInfo(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String accountId) throws ApiException {
+    return validateSubredditWithHttpInfo(name, accountId, null);
   }
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  Uses Reddit&#39;s public JSON API (no Reddit auth needed). Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
+   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns &#x60;exists: false&#x60; for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
+   * @param accountId Reddit social account ID for authenticated lookup (recommended for reliable results) (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ValidateSubreddit200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ValidateSubreddit200Response> validateSubredditWithHttpInfo(@javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = validateSubredditRequestBuilder(name, headers);
+  public ApiResponse<ValidateSubreddit200Response> validateSubredditWithHttpInfo(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = validateSubredditRequestBuilder(name, accountId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -634,7 +638,7 @@ public class ValidateApi {
     }
   }
 
-  private HttpRequest.Builder validateSubredditRequestBuilder(@javax.annotation.Nonnull String name, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder validateSubredditRequestBuilder(@javax.annotation.Nonnull String name, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'name' is set
     if (name == null) {
       throw new ApiException(400, "Missing the required parameter 'name' when calling validateSubreddit");
@@ -649,6 +653,8 @@ public class ValidateApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "name";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("name", name));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

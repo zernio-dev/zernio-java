@@ -265,7 +265,7 @@ paths:
       description: |
         Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).
 
-        Uses Reddit's public JSON API (no Reddit auth needed). Returns `exists: false` for private, banned, or nonexistent subreddits.
+        When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit's public JSON API, which may be unreliable from server IPs. Returns `exists: false` for private, banned, or nonexistent subreddits.
       operationId: validateSubreddit
       parameters:
       - description: Subreddit name (with or without "r/" prefix)
@@ -275,6 +275,15 @@ paths:
         required: true
         schema:
           example: programming
+          type: string
+        style: form
+      - description: Reddit social account ID for authenticated lookup (recommended
+          for reliable results)
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
           type: string
         style: form
       responses:
@@ -2098,17 +2107,24 @@ paths:
           content:
             application/json:
               example:
-                posts:
+                items:
                 - id: 1abc234
+                  fullname: t3_1abc234
                   title: How to grow on social media in 2025
                   selftext: Here are my tips...
                   author: marketingpro
                   subreddit: socialmedia
+                  url: https://www.reddit.com/r/socialmedia/comments/1abc234/
+                  permalink: https://www.reddit.com/r/socialmedia/comments/1abc234/how_to_grow/
                   score: 156
-                  num_comments: 42
-                  created_utc: 1730000000
-                  permalink: /r/socialmedia/comments/1abc234/how_to_grow/
+                  numComments: 42
+                  createdUtc: 1730000000
+                  over18: false
+                  stickied: false
+                  flairText: null
+                  isGallery: false
                 after: t3_1abc234
+                before: null
               schema:
                 $ref: "#/components/schemas/searchReddit_200_response"
           description: Search results
@@ -2191,26 +2207,42 @@ paths:
           content:
             application/json:
               example:
-                posts:
+                items:
                 - id: 1xyz789
+                  fullname: t3_1xyz789
                   title: Top marketing trends this week
                   author: trendwatcher
                   subreddit: marketing
+                  url: https://www.reddit.com/r/marketing/comments/1xyz789/
+                  permalink: https://www.reddit.com/r/marketing/comments/1xyz789/top_marketing_trends/
                   score: 892
-                  num_comments: 134
-                  created_utc: 1730100000
-                  permalink: /r/marketing/comments/1xyz789/top_marketing_trends/
+                  numComments: 134
+                  createdUtc: 1730100000
+                  over18: false
+                  stickied: false
+                  flairText: null
+                  isGallery: false
                 - id: 1def456
-                  title: My social media strategy that worked
+                  fullname: t3_1def456
+                  title: Check out my grow setup
                   author: growthexpert
-                  subreddit: marketing
+                  subreddit: gardening
+                  url: https://www.reddit.com/gallery/1def456
+                  permalink: https://www.reddit.com/r/gardening/comments/1def456/check_out_my_grow_setup/
                   score: 567
-                  num_comments: 89
-                  created_utc: 1730050000
-                  permalink: /r/marketing/comments/1def456/my_social_media_strategy/
+                  numComments: 89
+                  createdUtc: 1730050000
+                  over18: false
+                  stickied: false
+                  flairText: null
+                  isGallery: true
+                  galleryImages:
+                  - https://i.redd.it/abc123.jpg
+                  - https://i.redd.it/def456.jpg
                 after: t3_1def456
+                before: null
               schema:
-                $ref: "#/components/schemas/getRedditFeed_200_response"
+                $ref: "#/components/schemas/searchReddit_200_response"
           description: Feed items
         "400":
           description: Missing params
@@ -14927,6 +14959,75 @@ components:
             $ref: "#/components/schemas/inline_object_1"
       description: Resource not found
   schemas:
+    RedditPost:
+      description: A normalized Reddit post returned by the feed and search endpoints
+      example:
+        selftext: selftext
+        over18: true
+        author: author
+        flairText: flairText
+        title: title
+        subreddit: subreddit
+        url: url
+        score: 6
+        numComments: 1
+        stickied: true
+        isGallery: true
+        id: id
+        fullname: fullname
+        permalink: permalink
+        createdUtc: 0.8008281904610115
+        galleryImages:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+      properties:
+        id:
+          description: Reddit post ID (without type prefix)
+          type: string
+        fullname:
+          description: Reddit fullname (e.g. t3_abc123)
+          type: string
+        title:
+          type: string
+        author:
+          type: string
+        subreddit:
+          type: string
+        url:
+          description: Post URL (may be a gallery URL
+          type: string
+        permalink:
+          description: Full permalink to the Reddit post
+          type: string
+        selftext:
+          description: Self-post body text (empty string for link posts)
+          type: string
+        createdUtc:
+          description: Unix timestamp of post creation
+          type: number
+        score:
+          type: integer
+        numComments:
+          type: integer
+        over18:
+          description: Whether the post is marked NSFW
+          type: boolean
+        stickied:
+          type: boolean
+        flairText:
+          description: Link flair text if set
+          type: string
+          nullable: true
+        isGallery:
+          description: Whether the post is a gallery with multiple images
+          type: boolean
+        galleryImages:
+          description: Individual image URLs for gallery posts (only present when
+            isGallery is true)
+          items:
+            format: uri
+            type: string
+          type: array
     ErrorResponse:
       example:
         details:
@@ -21581,78 +21682,58 @@ components:
           - video
           - document
           type: string
-    searchReddit_200_response_posts_inner:
-      example:
-        score: 0
-        num_comments: 6
-        selftext: selftext
-        author: author
-        id: id
-        title: title
-        created_utc: 1.4658129805029452
-        permalink: permalink
-        subreddit: subreddit
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-        selftext:
-          type: string
-        author:
-          type: string
-        subreddit:
-          type: string
-        score:
-          type: integer
-        num_comments:
-          type: integer
-        created_utc:
-          type: number
-        permalink:
-          type: string
     searchReddit_200_response:
       example:
+        before: before
         after: after
-        posts:
-        - score: 0
-          num_comments: 6
-          selftext: selftext
+        items:
+        - selftext: selftext
+          over18: true
           author: author
-          id: id
+          flairText: flairText
           title: title
-          created_utc: 1.4658129805029452
-          permalink: permalink
           subreddit: subreddit
-        - score: 0
-          num_comments: 6
-          selftext: selftext
+          url: url
+          score: 6
+          numComments: 1
+          stickied: true
+          isGallery: true
+          id: id
+          fullname: fullname
+          permalink: permalink
+          createdUtc: 0.8008281904610115
+          galleryImages:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+        - selftext: selftext
+          over18: true
           author: author
-          id: id
+          flairText: flairText
           title: title
-          created_utc: 1.4658129805029452
-          permalink: permalink
           subreddit: subreddit
+          url: url
+          score: 6
+          numComments: 1
+          stickied: true
+          isGallery: true
+          id: id
+          fullname: fullname
+          permalink: permalink
+          createdUtc: 0.8008281904610115
+          galleryImages:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
       properties:
-        posts:
+        items:
           items:
-            $ref: "#/components/schemas/searchReddit_200_response_posts_inner"
+            $ref: "#/components/schemas/RedditPost"
           type: array
         after:
           type: string
-    getRedditFeed_200_response:
-      example:
-        after: after
-        posts:
-        - "{}"
-        - "{}"
-      properties:
-        posts:
-          items:
-            type: object
-          type: array
-        after:
+          nullable: true
+        before:
           type: string
+          nullable: true
     createPost_request_mediaItems_inner:
       properties:
         type:

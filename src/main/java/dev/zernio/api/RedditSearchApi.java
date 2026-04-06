@@ -18,7 +18,6 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
-import dev.zernio.model.GetRedditFeed200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.SearchReddit200Response;
 
@@ -53,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-05T21:28:11.574282819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-06T07:02:22.007854824Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedditSearchApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -179,10 +178,10 @@ public class RedditSearchApi {
    * @param limit  (optional, default to 25)
    * @param after  (optional)
    * @param t  (optional)
-   * @return GetRedditFeed200Response
+   * @return SearchReddit200Response
    * @throws ApiException if fails to make API call
    */
-  public GetRedditFeed200Response getRedditFeed(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t) throws ApiException {
+  public SearchReddit200Response getRedditFeed(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t) throws ApiException {
     return getRedditFeed(accountId, subreddit, sort, limit, after, t, null);
   }
 
@@ -196,11 +195,11 @@ public class RedditSearchApi {
    * @param after  (optional)
    * @param t  (optional)
    * @param headers Optional headers to include in the request
-   * @return GetRedditFeed200Response
+   * @return SearchReddit200Response
    * @throws ApiException if fails to make API call
    */
-  public GetRedditFeed200Response getRedditFeed(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetRedditFeed200Response> localVarResponse = getRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t, headers);
+  public SearchReddit200Response getRedditFeed(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchReddit200Response> localVarResponse = getRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t, headers);
     return localVarResponse.getData();
   }
 
@@ -213,10 +212,10 @@ public class RedditSearchApi {
    * @param limit  (optional, default to 25)
    * @param after  (optional)
    * @param t  (optional)
-   * @return ApiResponse&lt;GetRedditFeed200Response&gt;
+   * @return ApiResponse&lt;SearchReddit200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetRedditFeed200Response> getRedditFeedWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t) throws ApiException {
+  public ApiResponse<SearchReddit200Response> getRedditFeedWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t) throws ApiException {
     return getRedditFeedWithHttpInfo(accountId, subreddit, sort, limit, after, t, null);
   }
 
@@ -230,10 +229,10 @@ public class RedditSearchApi {
    * @param after  (optional)
    * @param t  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetRedditFeed200Response&gt;
+   * @return ApiResponse&lt;SearchReddit200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetRedditFeed200Response> getRedditFeedWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t, Map<String, String> headers) throws ApiException {
+  public ApiResponse<SearchReddit200Response> getRedditFeedWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String subreddit, @javax.annotation.Nullable String sort, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, @javax.annotation.Nullable String t, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getRedditFeedRequestBuilder(accountId, subreddit, sort, limit, after, t, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -249,7 +248,7 @@ public class RedditSearchApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetRedditFeed200Response>(
+          return new ApiResponse<SearchReddit200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -259,10 +258,10 @@ public class RedditSearchApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetRedditFeed200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetRedditFeed200Response>() {});
+        SearchReddit200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchReddit200Response>() {});
         
 
-        return new ApiResponse<GetRedditFeed200Response>(
+        return new ApiResponse<SearchReddit200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
