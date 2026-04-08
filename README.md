@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-08T10:56:07.428135569Z[Etc/UTC]
+- Build date: 2026-04-08T16:20:32.263430656Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -278,6 +278,8 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**unlikeInboxCommentWithHttpInfo**](docs/CommentsApi.md#unlikeInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *ConnectApi* | [**completeTelegramConnect**](docs/ConnectApi.md#completeTelegramConnect) | **PATCH** /v1/connect/telegram | Check Telegram status
 *ConnectApi* | [**completeTelegramConnectWithHttpInfo**](docs/ConnectApi.md#completeTelegramConnectWithHttpInfo) | **PATCH** /v1/connect/telegram | Check Telegram status
+*ConnectApi* | [**connectAds**](docs/ConnectApi.md#connectAds) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
+*ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectBlueskyCredentials**](docs/ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectWhatsAppCredentials**](docs/ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
@@ -398,6 +400,8 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**getPostLogsWithHttpInfo**](docs/LogsApi.md#getPostLogsWithHttpInfo) | **GET** /v1/posts/{postId}/logs | Get post logs
 *LogsApi* | [**listConnectionLogs**](docs/LogsApi.md#listConnectionLogs) | **GET** /v1/connections/logs | List connection logs
 *LogsApi* | [**listConnectionLogsWithHttpInfo**](docs/LogsApi.md#listConnectionLogsWithHttpInfo) | **GET** /v1/connections/logs | List connection logs
+*LogsApi* | [**listLogs**](docs/LogsApi.md#listLogs) | **GET** /v1/logs | List activity logs
+*LogsApi* | [**listLogsWithHttpInfo**](docs/LogsApi.md#listLogsWithHttpInfo) | **GET** /v1/logs | List activity logs
 *LogsApi* | [**listPostsLogs**](docs/LogsApi.md#listPostsLogs) | **GET** /v1/posts/logs | List publishing logs
 *LogsApi* | [**listPostsLogsWithHttpInfo**](docs/LogsApi.md#listPostsLogsWithHttpInfo) | **GET** /v1/posts/logs | List publishing logs
 *MediaApi* | [**getMediaPresignedUrl**](docs/MediaApi.md#getMediaPresignedUrl) | **POST** /v1/media/presign | Get presigned upload URL
@@ -710,6 +714,9 @@ Class | Method | HTTP request | Description
  - [CancelWhatsAppBroadcastSchedule200Response](docs/CancelWhatsAppBroadcastSchedule200Response.md)
  - [CancelWhatsAppBroadcastSchedule200ResponseBroadcast](docs/CancelWhatsAppBroadcastSchedule200ResponseBroadcast.md)
  - [CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
+ - [ConnectAds200Response](docs/ConnectAds200Response.md)
+ - [ConnectAds200ResponseOneOf](docs/ConnectAds200ResponseOneOf.md)
+ - [ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
  - [ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
  - [ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
@@ -1091,6 +1098,9 @@ Class | Method | HTTP request | Description
  - [ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)
  - [ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
+ - [ListLogs200Response](docs/ListLogs200Response.md)
+ - [ListLogs200ResponseLogsInner](docs/ListLogs200ResponseLogsInner.md)
+ - [ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
  - [ListPinterestBoardsForSelection200Response](docs/ListPinterestBoardsForSelection200Response.md)
  - [ListPinterestBoardsForSelection200ResponseBoardsInner](docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md)
  - [ListPostsLogs200Response](docs/ListPostsLogs200Response.md)

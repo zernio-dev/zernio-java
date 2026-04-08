@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**total** | **Integer** | Total number of logs matching the query |  [optional] |
+|**total** | **Integer** |  |  [optional] |
 |**limit** | **Integer** |  |  [optional] |
 |**skip** | **Integer** |  |  [optional] |
-|**pages** | **Integer** | Total number of pages |  [optional] |
+|**pages** | **Integer** |  |  [optional] |
 |**hasMore** | **Boolean** |  |  [optional] |
 
 

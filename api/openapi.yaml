@@ -4273,6 +4273,111 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/connect/{platform}/ads:
+    get:
+      description: |
+        Unified ads connection endpoint. Handles all platforms through a single route:
+
+        **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns `alreadyConnected: true` immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.
+
+        **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (`accountId` param). If ads are already connected, returns `alreadyConnected: true`. Otherwise, starts the platform-specific marketing API OAuth flow.
+
+        **Ads-only platforms** (googleads): If a Google Ads account exists, returns `alreadyConnected: true`. Otherwise, starts the Google Ads OAuth flow.
+
+        Use the `adsStatus` field from `GET /v1/accounts` to check which accounts need ads connection.
+      operationId: connectAds
+      parameters:
+      - description: Platform to connect ads for. Only platforms with ads support
+          are accepted.
+        explode: false
+        in: path
+        name: platform
+        required: true
+        schema:
+          enum:
+          - facebook
+          - instagram
+          - linkedin
+          - tiktok
+          - twitter
+          - pinterest
+          - googleads
+          type: string
+        style: simple
+      - description: Your Zernio profile ID
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Existing SocialAccount ID. Required for separate-token platforms\
+          \ (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms."
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Custom redirect URL after OAuth completes (same-token platforms
+          only)
+        explode: true
+        in: query
+        name: redirect_url
+        required: false
+        schema:
+          format: uri
+          type: string
+        style: form
+      - description: Enable headless mode (same-token platforms only)
+        explode: true
+        in: query
+        name: headless
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                alreadyConnected:
+                  summary: Same-token platform (Meta) with existing account
+                  value:
+                    alreadyConnected: true
+                    accountId: 664a1b2c3d4e5f6789012345
+                    platform: instagram
+                    username: '@mybrand'
+                    displayName: My Brand
+                oauthRequired:
+                  summary: Separate-token platform (TikTok) needing ads OAuth
+                  value:
+                    authUrl: https://business-api.tiktok.com/portal/auth?app_id=...
+                    state: user123-profile456-account789-1234567890
+              schema:
+                $ref: "#/components/schemas/connectAds_200_response"
+          description: "Either an OAuth URL to redirect to, or confirmation that ads\
+            \ are already connected"
+        "400":
+          description: "Platform doesn't support ads, or missing accountId for separate-token\
+            \ platform"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or no access to profile"
+        "404":
+          description: Profile or posting account not found
+      security:
+      - bearerAuth: []
+      summary: Connect ads for a platform
+      tags:
+      - Connect
+      x-accepts:
+      - application/json
   /v1/connect/facebook/select-page:
     get:
       description: Returns the list of Facebook Pages the user can manage after OAuth.
@@ -7945,10 +8050,136 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /v1/webhooks/logs:
+  /v1/logs:
     get:
       description: |
-        Retrieve webhook delivery history. Logs are automatically deleted after 7 days.
+        Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging.
+        Filter by type, platform, status, and time range. Logs are retained for 90 days.
+      operationId: listLogs
+      parameters:
+      - description: Log category to query
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          default: publishing
+          enum:
+          - publishing
+          - connections
+          - webhooks
+          - messaging
+          type: string
+        style: form
+      - description: Filter by status
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - success
+          - failed
+          - pending
+          - skipped
+          - all
+          type: string
+        style: form
+      - description: Filter by platform
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - tiktok
+          - instagram
+          - whatsapp
+          - facebook
+          - youtube
+          - linkedin
+          - twitter
+          - threads
+          - pinterest
+          - reddit
+          - bluesky
+          - googlebusiness
+          - telegram
+          - snapchat
+          - all
+          type: string
+        style: form
+      - description: "Filter by action (e.g., post.published, message.sent, account.connected,\
+          \ webhook.delivered)"
+        explode: true
+        in: query
+        name: action
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Free-text search across log fields
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of days to look back (max 90)
+        explode: true
+        in: query
+        name: days
+        required: false
+        schema:
+          default: 90
+          maximum: 90
+          minimum: 1
+          type: integer
+        style: form
+      - description: Maximum number of logs to return (max 100)
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Number of logs to skip (for pagination)
+        explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listLogs_200_response"
+          description: Logs retrieved successfully
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List activity logs
+      tags:
+      - Logs
+      x-accepts:
+      - application/json
+  /v1/webhooks/logs:
+    get:
+      deprecated: true
+      description: |
+        **Deprecated.** Use `GET /v1/logs?type=webhooks` instead.
+        Retrieve webhook delivery history. Logs are retained for 90 days.
       operationId: getWebhookLogs
       parameters:
       - description: Maximum number of logs to return (max 100)
@@ -8019,8 +8250,10 @@ paths:
       - application/json
   /v1/posts/logs:
     get:
+      deprecated: true
       description: |
-        Retrieve publishing logs for all posts with detailed information about each publishing attempt. Filter by status, platform, or action. Logs are automatically deleted after 7 days.
+        **Deprecated.** Use `GET /v1/logs?type=publishing` instead.
+        Retrieve publishing logs for all posts. Logs are retained for 90 days.
       operationId: listPostsLogs
       parameters:
       - description: Filter by log status
@@ -8168,9 +8401,10 @@ paths:
       - application/json
   /v1/connections/logs:
     get:
+      deprecated: true
       description: |
-        Retrieve connection event logs showing account connection and disconnection history. Event types: connect_success, connect_failed, disconnect, reconnect_success, reconnect_failed.
-        Logs are automatically deleted after 7 days.
+        **Deprecated.** Use `GET /v1/logs?type=connections` instead.
+        Retrieve connection event logs. Logs are retained for 90 days.
       operationId: listConnectionLogs
       parameters:
       - description: Filter by platform
@@ -17884,6 +18118,7 @@ components:
     SocialAccount:
       example:
         profileUrl: profileUrl
+        adsStatus: connected
         metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         profileId: SocialAccount_profileId
@@ -17916,6 +18151,17 @@ components:
           description: Last time follower count was updated (only included if user
             has analytics add-on)
           format: date-time
+          type: string
+        adsStatus:
+          description: |
+            Ads connection status for this account.
+            - `connected`: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present).
+            - `not_connected`: Platform supports ads but requires a separate ads OAuth. Use `GET /v1/connect/{platform}/ads` to connect.
+            - `not_available`: Platform does not support ads (e.g., YouTube, Reddit, Bluesky).
+          enum:
+          - connected
+          - not_connected
+          - not_available
           type: string
         metadata:
           description: |
@@ -17953,6 +18199,7 @@ components:
             $ref: "#/components/schemas/AccountWithFollowerStats_allOf_accountStats"
       example:
         profileUrl: profileUrl
+        adsStatus: connected
         metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
@@ -22722,6 +22969,7 @@ components:
         pagination: ""
         accounts:
         - profileUrl: profileUrl
+          adsStatus: connected
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           profileId: SocialAccount_profileId
@@ -22732,6 +22980,7 @@ components:
           platform: platform
           username: username
         - profileUrl: profileUrl
+          adsStatus: connected
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           profileId: SocialAccount_profileId
@@ -22788,6 +23037,7 @@ components:
         granularity: granularity
         accounts:
         - profileUrl: profileUrl
+          adsStatus: connected
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
@@ -22816,6 +23066,7 @@ components:
           growthPercentage: 5.962133916683182
           username: username
         - profileUrl: profileUrl
+          adsStatus: connected
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
@@ -23418,6 +23669,38 @@ components:
       - code
       - profileId
       - state
+    connectAds_200_response_oneOf:
+      description: Ads already connected (no OAuth needed)
+      example:
+        accountId: accountId
+        alreadyConnected: true
+        displayName: displayName
+        platform: platform
+        username: username
+      properties:
+        alreadyConnected:
+          example: true
+          type: boolean
+        accountId:
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+    connectAds_200_response_oneOf_1:
+      description: OAuth URL to redirect user to
+      properties:
+        authUrl:
+          format: uri
+          type: string
+        state:
+          type: string
+    connectAds_200_response:
+      oneOf:
+      - $ref: "#/components/schemas/connectAds_200_response_oneOf"
+      - $ref: "#/components/schemas/connectAds_200_response_oneOf_1"
     listFacebookPages_200_response_pages_inner:
       example:
         access_token: access_token
@@ -26526,6 +26809,7 @@ components:
         message: message
         account:
           profileUrl: profileUrl
+          adsStatus: connected
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           profileId: SocialAccount_profileId
@@ -27781,6 +28065,131 @@ components:
           type: string
       required:
       - webhookId
+    listLogs_200_response_logs_inner:
+      example:
+        error_message: error_message
+        metadata: metadata
+        status_code: 0
+        response_body: response_body
+        created_at: 2000-01-23T04:56:07.000+00:00
+        type: type
+        platform: platform
+        duration_ms: 6
+        endpoint: endpoint
+        account_id: account_id
+        request_body: request_body
+        user_id: user_id
+        action: action
+        error_code: error_code
+        status: success
+      properties:
+        type:
+          description: "Log category (publishing, connections, webhooks, messaging)"
+          type: string
+        action:
+          description: "Specific action (post.published, message.sent, account.connected,\
+            \ etc.)"
+          type: string
+        user_id:
+          type: string
+        platform:
+          type: string
+        account_id:
+          type: string
+        status:
+          enum:
+          - success
+          - failed
+          - pending
+          - skipped
+          type: string
+        status_code:
+          type: integer
+        error_message:
+          type: string
+        error_code:
+          type: string
+        duration_ms:
+          type: integer
+        endpoint:
+          description: The API endpoint that triggered this log
+          type: string
+        request_body:
+          description: Request JSON (truncated to 5KB)
+          type: string
+        response_body:
+          description: Response JSON (truncated to 10KB)
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        metadata:
+          description: Additional context as JSON string
+          type: string
+    listLogs_200_response_pagination:
+      example:
+        total: 1
+        pages: 2
+        limit: 5
+        hasMore: true
+        skip: 5
+      properties:
+        total:
+          type: integer
+        limit:
+          type: integer
+        skip:
+          type: integer
+        pages:
+          type: integer
+        hasMore:
+          type: boolean
+    listLogs_200_response:
+      example:
+        pagination:
+          total: 1
+          pages: 2
+          limit: 5
+          hasMore: true
+          skip: 5
+        logs:
+        - error_message: error_message
+          metadata: metadata
+          status_code: 0
+          response_body: response_body
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          platform: platform
+          duration_ms: 6
+          endpoint: endpoint
+          account_id: account_id
+          request_body: request_body
+          user_id: user_id
+          action: action
+          error_code: error_code
+          status: success
+        - error_message: error_message
+          metadata: metadata
+          status_code: 0
+          response_body: response_body
+          created_at: 2000-01-23T04:56:07.000+00:00
+          type: type
+          platform: platform
+          duration_ms: 6
+          endpoint: endpoint
+          account_id: account_id
+          request_body: request_body
+          user_id: user_id
+          action: action
+          error_code: error_code
+          status: success
+      properties:
+        logs:
+          items:
+            $ref: "#/components/schemas/listLogs_200_response_logs_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listLogs_200_response_pagination"
     getWebhookLogs_200_response:
       example:
         logs:

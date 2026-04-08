@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T10:56:07.428135569Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T16:20:32.263430656Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhooksApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -433,21 +433,23 @@ public class WebhooksApi {
 
   /**
    * Get delivery logs
-   * Retrieve webhook delivery history. Logs are automatically deleted after 7 days. 
+   * **Deprecated.** Use &#x60;GET /v1/logs?type&#x3D;webhooks&#x60; instead. Retrieve webhook delivery history. Logs are retained for 90 days. 
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param status Filter by delivery status (optional)
    * @param event Filter by event type (optional)
    * @param webhookId Filter by webhook ID (optional)
    * @return GetWebhookLogs200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public GetWebhookLogs200Response getWebhookLogs(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId) throws ApiException {
     return getWebhookLogs(limit, status, event, webhookId, null);
   }
 
   /**
    * Get delivery logs
-   * Retrieve webhook delivery history. Logs are automatically deleted after 7 days. 
+   * **Deprecated.** Use &#x60;GET /v1/logs?type&#x3D;webhooks&#x60; instead. Retrieve webhook delivery history. Logs are retained for 90 days. 
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param status Filter by delivery status (optional)
    * @param event Filter by event type (optional)
@@ -455,7 +457,9 @@ public class WebhooksApi {
    * @param headers Optional headers to include in the request
    * @return GetWebhookLogs200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public GetWebhookLogs200Response getWebhookLogs(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId, Map<String, String> headers) throws ApiException {
     ApiResponse<GetWebhookLogs200Response> localVarResponse = getWebhookLogsWithHttpInfo(limit, status, event, webhookId, headers);
     return localVarResponse.getData();
@@ -463,21 +467,23 @@ public class WebhooksApi {
 
   /**
    * Get delivery logs
-   * Retrieve webhook delivery history. Logs are automatically deleted after 7 days. 
+   * **Deprecated.** Use &#x60;GET /v1/logs?type&#x3D;webhooks&#x60; instead. Retrieve webhook delivery history. Logs are retained for 90 days. 
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param status Filter by delivery status (optional)
    * @param event Filter by event type (optional)
    * @param webhookId Filter by webhook ID (optional)
    * @return ApiResponse&lt;GetWebhookLogs200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<GetWebhookLogs200Response> getWebhookLogsWithHttpInfo(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId) throws ApiException {
     return getWebhookLogsWithHttpInfo(limit, status, event, webhookId, null);
   }
 
   /**
    * Get delivery logs
-   * Retrieve webhook delivery history. Logs are automatically deleted after 7 days. 
+   * **Deprecated.** Use &#x60;GET /v1/logs?type&#x3D;webhooks&#x60; instead. Retrieve webhook delivery history. Logs are retained for 90 days. 
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param status Filter by delivery status (optional)
    * @param event Filter by event type (optional)
@@ -485,7 +491,9 @@ public class WebhooksApi {
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWebhookLogs200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<GetWebhookLogs200Response> getWebhookLogsWithHttpInfo(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getWebhookLogsRequestBuilder(limit, status, event, webhookId, headers);
     try {

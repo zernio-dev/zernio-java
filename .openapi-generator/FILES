@@ -72,6 +72,9 @@ docs/CancelWhatsAppBroadcastSchedule200ResponseBroadcast.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteTelegramConnect200Response.md
+docs/ConnectAds200Response.md
+docs/ConnectAds200ResponseOneOf.md
+docs/ConnectAds200ResponseOneOf1.md
 docs/ConnectApi.md
 docs/ConnectBlueskyCredentials200Response.md
 docs/ConnectBlueskyCredentialsRequest.md
@@ -464,6 +467,9 @@ docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
 docs/ListLinkedInOrganizations200Response.md
 docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
+docs/ListLogs200Response.md
+docs/ListLogs200ResponseLogsInner.md
+docs/ListLogs200ResponsePagination.md
 docs/ListPinterestBoardsForSelection200Response.md
 docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md
 docs/ListPostsLogs200Response.md
@@ -914,6 +920,9 @@ src/main/java/dev/zernio/model/CancelBroadcast200ResponseBroadcast.java
 src/main/java/dev/zernio/model/CancelWhatsAppBroadcastSchedule200Response.java
 src/main/java/dev/zernio/model/CancelWhatsAppBroadcastSchedule200ResponseBroadcast.java
 src/main/java/dev/zernio/model/CompleteTelegramConnect200Response.java
+src/main/java/dev/zernio/model/ConnectAds200Response.java
+src/main/java/dev/zernio/model/ConnectAds200ResponseOneOf.java
+src/main/java/dev/zernio/model/ConnectAds200ResponseOneOf1.java
 src/main/java/dev/zernio/model/ConnectBlueskyCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectBlueskyCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200Response.java
@@ -1295,6 +1304,9 @@ src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReviewer.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseSummary.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200Response.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200ResponseOrganizationsInner.java
+src/main/java/dev/zernio/model/ListLogs200Response.java
+src/main/java/dev/zernio/model/ListLogs200ResponseLogsInner.java
+src/main/java/dev/zernio/model/ListLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/ListPinterestBoardsForSelection200Response.java
 src/main/java/dev/zernio/model/ListPinterestBoardsForSelection200ResponseBoardsInner.java
 src/main/java/dev/zernio/model/ListPostsLogs200Response.java
@@ -1610,3 +1622,9 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/ConnectAds200ResponseOneOf1Test.java
+src/test/java/dev/zernio/model/ConnectAds200ResponseOneOfTest.java
+src/test/java/dev/zernio/model/ConnectAds200ResponseTest.java
+src/test/java/dev/zernio/model/ListLogs200ResponseLogsInnerTest.java
+src/test/java/dev/zernio/model/ListLogs200ResponsePaginationTest.java
+src/test/java/dev/zernio/model/ListLogs200ResponseTest.java

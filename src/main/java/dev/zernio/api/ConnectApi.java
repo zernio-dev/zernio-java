@@ -19,6 +19,7 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.CompleteTelegramConnect200Response;
+import dev.zernio.model.ConnectAds200Response;
 import dev.zernio.model.ConnectBlueskyCredentials200Response;
 import dev.zernio.model.ConnectBlueskyCredentialsRequest;
 import dev.zernio.model.ConnectWhatsAppCredentials200Response;
@@ -90,7 +91,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T10:56:07.428135569Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T16:20:32.263430656Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -328,6 +329,165 @@ public class ConnectApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Connect ads for a platform
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
+   * @param profileId Your Zernio profile ID (required)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
+   * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
+   * @return ConnectAds200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ConnectAds200Response connectAds(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless) throws ApiException {
+    return connectAds(platform, profileId, accountId, redirectUrl, headless, null);
+  }
+
+  /**
+   * Connect ads for a platform
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
+   * @param profileId Your Zernio profile ID (required)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
+   * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
+   * @param headers Optional headers to include in the request
+   * @return ConnectAds200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ConnectAds200Response connectAds(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, Map<String, String> headers) throws ApiException {
+    ApiResponse<ConnectAds200Response> localVarResponse = connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Connect ads for a platform
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
+   * @param profileId Your Zernio profile ID (required)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
+   * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
+   * @return ApiResponse&lt;ConnectAds200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ConnectAds200Response> connectAdsWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless) throws ApiException {
+    return connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, null);
+  }
+
+  /**
+   * Connect ads for a platform
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
+   * @param profileId Your Zernio profile ID (required)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
+   * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ConnectAds200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ConnectAds200Response> connectAdsWithHttpInfo(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectAdsRequestBuilder(platform, profileId, accountId, redirectUrl, headless, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("connectAds", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ConnectAds200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ConnectAds200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ConnectAds200Response>() {});
+        
+
+        return new ApiResponse<ConnectAds200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder connectAdsRequestBuilder(@javax.annotation.Nonnull String platform, @javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable URI redirectUrl, @javax.annotation.Nullable Boolean headless, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'platform' is set
+    if (platform == null) {
+      throw new ApiException(400, "Missing the required parameter 'platform' when calling connectAds");
+    }
+    // verify the required parameter 'profileId' is set
+    if (profileId == null) {
+      throw new ApiException(400, "Missing the required parameter 'profileId' when calling connectAds");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/connect/{platform}/ads"
+        .replace("{platform}", ApiClient.urlEncode(platform.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "redirect_url";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("redirect_url", redirectUrl));
+    localVarQueryParameterBaseName = "headless";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("headless", headless));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

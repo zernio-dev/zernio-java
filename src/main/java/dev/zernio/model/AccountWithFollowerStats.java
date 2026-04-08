@@ -46,6 +46,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_IS_ACTIVE,
   AccountWithFollowerStats.JSON_PROPERTY_FOLLOWERS_COUNT,
   AccountWithFollowerStats.JSON_PROPERTY_FOLLOWERS_LAST_UPDATED,
+  AccountWithFollowerStats.JSON_PROPERTY_ADS_STATUS,
   AccountWithFollowerStats.JSON_PROPERTY_METADATA,
   AccountWithFollowerStats.JSON_PROPERTY_PROFILE_PICTURE,
   AccountWithFollowerStats.JSON_PROPERTY_CURRENT_FOLLOWERS,
@@ -55,7 +56,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_DATA_POINTS,
   AccountWithFollowerStats.JSON_PROPERTY_ACCOUNT_STATS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T10:56:07.428135569Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T16:20:32.263430656Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -92,6 +93,47 @@ public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_FOLLOWERS_LAST_UPDATED = "followersLastUpdated";
   @javax.annotation.Nullable
   private OffsetDateTime followersLastUpdated;
+
+  /**
+   * Ads connection status for this account. - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). 
+   */
+  public enum AdsStatusEnum {
+    CONNECTED(String.valueOf("connected")),
+    
+    NOT_CONNECTED(String.valueOf("not_connected")),
+    
+    NOT_AVAILABLE(String.valueOf("not_available"));
+
+    private String value;
+
+    AdsStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AdsStatusEnum fromValue(String value) {
+      for (AdsStatusEnum b : AdsStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ADS_STATUS = "adsStatus";
+  @javax.annotation.Nullable
+  private AdsStatusEnum adsStatus;
 
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
@@ -344,6 +386,30 @@ public class AccountWithFollowerStats {
   }
 
 
+  public AccountWithFollowerStats adsStatus(@javax.annotation.Nullable AdsStatusEnum adsStatus) {
+    this.adsStatus = adsStatus;
+    return this;
+  }
+
+  /**
+   * Ads connection status for this account. - &#x60;connected&#x60;: Ads are ready to use (same-token platforms like Meta/LinkedIn, or separate ads token is present). - &#x60;not_connected&#x60;: Platform supports ads but requires a separate ads OAuth. Use &#x60;GET /v1/connect/{platform}/ads&#x60; to connect. - &#x60;not_available&#x60;: Platform does not support ads (e.g., YouTube, Reddit, Bluesky). 
+   * @return adsStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ADS_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdsStatusEnum getAdsStatus() {
+    return adsStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ADS_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdsStatus(@javax.annotation.Nullable AdsStatusEnum adsStatus) {
+    this.adsStatus = adsStatus;
+  }
+
+
   public AccountWithFollowerStats metadata(@javax.annotation.Nullable Object metadata) {
     this.metadata = metadata;
     return this;
@@ -557,6 +623,7 @@ public class AccountWithFollowerStats {
         Objects.equals(this.isActive, accountWithFollowerStats.isActive) &&
         Objects.equals(this.followersCount, accountWithFollowerStats.followersCount) &&
         Objects.equals(this.followersLastUpdated, accountWithFollowerStats.followersLastUpdated) &&
+        Objects.equals(this.adsStatus, accountWithFollowerStats.adsStatus) &&
         Objects.equals(this.metadata, accountWithFollowerStats.metadata) &&
         Objects.equals(this.profilePicture, accountWithFollowerStats.profilePicture) &&
         Objects.equals(this.currentFollowers, accountWithFollowerStats.currentFollowers) &&
@@ -569,7 +636,7 @@ public class AccountWithFollowerStats {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, profileId, username, displayName, profileUrl, isActive, followersCount, followersLastUpdated, metadata, profilePicture, currentFollowers, lastUpdated, growth, growthPercentage, dataPoints, accountStats);
+    return Objects.hash(id, platform, profileId, username, displayName, profileUrl, isActive, followersCount, followersLastUpdated, adsStatus, metadata, profilePicture, currentFollowers, lastUpdated, growth, growthPercentage, dataPoints, accountStats);
   }
 
   @Override
@@ -585,6 +652,7 @@ public class AccountWithFollowerStats {
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    followersCount: ").append(toIndentedString(followersCount)).append("\n");
     sb.append("    followersLastUpdated: ").append(toIndentedString(followersLastUpdated)).append("\n");
+    sb.append("    adsStatus: ").append(toIndentedString(adsStatus)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    profilePicture: ").append(toIndentedString(profilePicture)).append("\n");
     sb.append("    currentFollowers: ").append(toIndentedString(currentFollowers)).append("\n");
@@ -683,6 +751,11 @@ public class AccountWithFollowerStats {
     // add `followersLastUpdated` to the URL query string
     if (getFollowersLastUpdated() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfollowersLastUpdated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFollowersLastUpdated()))));
+    }
+
+    // add `adsStatus` to the URL query string
+    if (getAdsStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadsStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdsStatus()))));
     }
 
     // add `metadata` to the URL query string

@@ -321,7 +321,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Get delivery logs
 
-Retrieve webhook delivery history. Logs are automatically deleted after 7 days. 
+**Deprecated.** Use &#x60;GET /v1/logs?type&#x3D;webhooks&#x60; instead. Retrieve webhook delivery history. Logs are retained for 90 days. 
 
 ### Example
 
@@ -398,7 +398,7 @@ public class Example {
 
 Get delivery logs
 
-Retrieve webhook delivery history. Logs are automatically deleted after 7 days. 
+**Deprecated.** Use &#x60;GET /v1/logs?type&#x3D;webhooks&#x60; instead. Retrieve webhook delivery history. Logs are retained for 90 days. 
 
 ### Example
 
