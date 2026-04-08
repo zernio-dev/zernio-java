@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-07T11:02:59.333343802Z[Etc/UTC]
+- Build date: 2026-04-08T08:46:29.621751381Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1195,7 +1195,6 @@ Class | Method | HTTP request | Description
  - [SelectGoogleBusinessLocation200Response](docs/SelectGoogleBusinessLocation200Response.md)
  - [SelectGoogleBusinessLocation200ResponseAccount](docs/SelectGoogleBusinessLocation200ResponseAccount.md)
  - [SelectGoogleBusinessLocationRequest](docs/SelectGoogleBusinessLocationRequest.md)
- - [SelectGoogleBusinessLocationRequestUserProfile](docs/SelectGoogleBusinessLocationRequestUserProfile.md)
  - [SelectLinkedInOrganization200Response](docs/SelectLinkedInOrganization200Response.md)
  - [SelectLinkedInOrganization200ResponseAccount](docs/SelectLinkedInOrganization200ResponseAccount.md)
  - [SelectLinkedInOrganization200ResponseBulkRefresh](docs/SelectLinkedInOrganization200ResponseBulkRefresh.md)

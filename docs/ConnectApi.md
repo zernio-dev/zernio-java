@@ -2509,11 +2509,11 @@ ApiResponse<[**ListFacebookPages200Response**](ListFacebookPages200Response.md)>
 
 ## listGoogleBusinessLocations
 
-> ListGoogleBusinessLocations200Response listGoogleBusinessLocations(profileId, tempToken)
+> ListGoogleBusinessLocations200Response listGoogleBusinessLocations(profileId, pendingDataToken, tempToken)
 
 List GBP locations
 
-For headless flows. Returns the list of GBP locations the user can manage. Use X-Connect-Token if connecting via API key.
+For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
 
 ### Example
 
@@ -2542,10 +2542,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String profileId = "profileId_example"; // String | Profile ID from your connection flow
-        String tempToken = "tempToken_example"; // String | Temporary Google access token from the OAuth callback redirect
+        String profileId = "profileId_example"; // String | Profile ID from your connection flow. Required for auth validation when provided.
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required.
+        String tempToken = "tempToken_example"; // String | Legacy. Direct Google access token. Use pendingDataToken instead when available.
         try {
-            ListGoogleBusinessLocations200Response result = apiInstance.listGoogleBusinessLocations(profileId, tempToken);
+            ListGoogleBusinessLocations200Response result = apiInstance.listGoogleBusinessLocations(profileId, pendingDataToken, tempToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#listGoogleBusinessLocations");
@@ -2563,8 +2564,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Profile ID from your connection flow | |
-| **tempToken** | **String**| Temporary Google access token from the OAuth callback redirect | |
+| **profileId** | **String**| Profile ID from your connection flow. Required for auth validation when provided. | [optional] |
+| **pendingDataToken** | **String**| Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. | [optional] |
+| **tempToken** | **String**| Legacy. Direct Google access token. Use pendingDataToken instead when available. | [optional] |
 
 ### Return type
 
@@ -2590,11 +2592,11 @@ public class Example {
 
 ## listGoogleBusinessLocationsWithHttpInfo
 
-> ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocations listGoogleBusinessLocationsWithHttpInfo(profileId, tempToken)
+> ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocations listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken)
 
 List GBP locations
 
-For headless flows. Returns the list of GBP locations the user can manage. Use X-Connect-Token if connecting via API key.
+For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
 
 ### Example
 
@@ -2624,10 +2626,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String profileId = "profileId_example"; // String | Profile ID from your connection flow
-        String tempToken = "tempToken_example"; // String | Temporary Google access token from the OAuth callback redirect
+        String profileId = "profileId_example"; // String | Profile ID from your connection flow. Required for auth validation when provided.
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required.
+        String tempToken = "tempToken_example"; // String | Legacy. Direct Google access token. Use pendingDataToken instead when available.
         try {
-            ApiResponse<ListGoogleBusinessLocations200Response> response = apiInstance.listGoogleBusinessLocationsWithHttpInfo(profileId, tempToken);
+            ApiResponse<ListGoogleBusinessLocations200Response> response = apiInstance.listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2647,8 +2650,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Profile ID from your connection flow | |
-| **tempToken** | **String**| Temporary Google access token from the OAuth callback redirect | |
+| **profileId** | **String**| Profile ID from your connection flow. Required for auth validation when provided. | [optional] |
+| **pendingDataToken** | **String**| Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. | [optional] |
+| **tempToken** | **String**| Legacy. Direct Google access token. Use pendingDataToken instead when available. | [optional] |
 
 ### Return type
 
@@ -3317,7 +3321,7 @@ ApiResponse<[**SelectFacebookPage200Response**](SelectFacebookPage200Response.md
 
 Select GBP location
 
-Complete the headless flow by saving the user&#39;s selected GBP location. Include userProfile from the OAuth redirect (contains refresh token). Use X-Connect-Token if connecting via API key.
+Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
 
 ### Example
 
@@ -3398,7 +3402,7 @@ public class Example {
 
 Select GBP location
 
-Complete the headless flow by saving the user&#39;s selected GBP location. Include userProfile from the OAuth redirect (contains refresh token). Use X-Connect-Token if connecting via API key.
+Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
 
 ### Example
 

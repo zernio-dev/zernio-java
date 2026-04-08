@@ -4390,23 +4390,35 @@ paths:
       - application/json
   /v1/connect/googlebusiness/locations:
     get:
-      description: For headless flows. Returns the list of GBP locations the user
-        can manage. Use X-Connect-Token if connecting via API key.
+      description: |
+        For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key.
       operationId: listGoogleBusinessLocations
       parameters:
-      - description: Profile ID from your connection flow
+      - description: Profile ID from your connection flow. Required for auth validation
+          when provided.
         explode: true
         in: query
         name: profileId
-        required: true
+        required: false
         schema:
           type: string
         style: form
-      - description: Temporary Google access token from the OAuth callback redirect
+      - description: Token from the OAuth callback redirect. Preferred over tempToken
+          because it preserves server-side token storage. One of pendingDataToken
+          or tempToken is required.
+        explode: true
+        in: query
+        name: pendingDataToken
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Legacy. Direct Google access token. Use pendingDataToken instead
+          when available.
         explode: true
         in: query
         name: tempToken
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -4446,9 +4458,8 @@ paths:
       - application/json
   /v1/connect/googlebusiness/select-location:
     post:
-      description: Complete the headless flow by saving the user's selected GBP location.
-        Include userProfile from the OAuth redirect (contains refresh token). Use
-        X-Connect-Token if connecting via API key.
+      description: |
+        Complete the headless GBP flow by saving the user's selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step=select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key.
       operationId: selectGoogleBusinessLocation
       requestBody:
         content:
@@ -4456,13 +4467,7 @@ paths:
             example:
               profileId: 507f1f77bcf86cd799439011
               locationId: "9281089117903930794"
-              tempToken: ya29.xxxxx...
-              userProfile:
-                id: "113303573364907650416"
-                name: John Doe
-                refreshToken: 1//0gxxxxx...
-                tokenExpiresIn: 3599
-                scope: https://www.googleapis.com/auth/business.manage
+              pendingDataToken: a1b2c3d4e5f6...
               redirect_url: https://yourdomain.com/integrations/callback
             schema:
               $ref: "#/components/schemas/selectGoogleBusinessLocation_request"
@@ -23591,23 +23596,6 @@ components:
           items:
             $ref: "#/components/schemas/listGoogleBusinessLocations_200_response_locations_inner"
           type: array
-    selectGoogleBusinessLocation_request_userProfile:
-      description: Decoded user profile from the OAuth callback. Contains the refresh
-        token. Always include this field.
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        refreshToken:
-          description: Google refresh token for long-lived access
-          type: string
-        tokenExpiresIn:
-          description: Token expiration time in seconds
-          type: integer
-        scope:
-          description: Granted OAuth scopes
-          type: string
     selectGoogleBusinessLocation_request:
       properties:
         profileId:
@@ -23616,19 +23604,18 @@ components:
         locationId:
           description: The Google Business location ID selected by the user
           type: string
-        tempToken:
-          description: Temporary Google access token from OAuth
+        pendingDataToken:
+          description: Token from the OAuth callback redirect (pendingDataToken query
+            param). Tokens and profile data are retrieved server-side from this token.
           type: string
-        userProfile:
-          $ref: "#/components/schemas/selectGoogleBusinessLocation_request_userProfile"
         redirect_url:
           description: Optional custom redirect URL to return to after selection
           format: uri
           type: string
       required:
       - locationId
+      - pendingDataToken
       - profileId
-      - tempToken
     selectGoogleBusinessLocation_200_response_account:
       example:
         accountId: accountId

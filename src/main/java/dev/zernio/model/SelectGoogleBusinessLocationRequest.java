@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.SelectGoogleBusinessLocationRequestUserProfile;
 import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,11 +36,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_PROFILE_ID,
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_LOCATION_ID,
-  SelectGoogleBusinessLocationRequest.JSON_PROPERTY_TEMP_TOKEN,
-  SelectGoogleBusinessLocationRequest.JSON_PROPERTY_USER_PROFILE,
+  SelectGoogleBusinessLocationRequest.JSON_PROPERTY_PENDING_DATA_TOKEN,
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-07T11:02:59.333343802Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T08:46:29.621751381Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectGoogleBusinessLocationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -51,13 +49,9 @@ public class SelectGoogleBusinessLocationRequest {
   @javax.annotation.Nonnull
   private String locationId;
 
-  public static final String JSON_PROPERTY_TEMP_TOKEN = "tempToken";
+  public static final String JSON_PROPERTY_PENDING_DATA_TOKEN = "pendingDataToken";
   @javax.annotation.Nonnull
-  private String tempToken;
-
-  public static final String JSON_PROPERTY_USER_PROFILE = "userProfile";
-  @javax.annotation.Nullable
-  private SelectGoogleBusinessLocationRequestUserProfile userProfile;
+  private String pendingDataToken;
 
   public static final String JSON_PROPERTY_REDIRECT_URL = "redirect_url";
   @javax.annotation.Nullable
@@ -114,51 +108,27 @@ public class SelectGoogleBusinessLocationRequest {
   }
 
 
-  public SelectGoogleBusinessLocationRequest tempToken(@javax.annotation.Nonnull String tempToken) {
-    this.tempToken = tempToken;
+  public SelectGoogleBusinessLocationRequest pendingDataToken(@javax.annotation.Nonnull String pendingDataToken) {
+    this.pendingDataToken = pendingDataToken;
     return this;
   }
 
   /**
-   * Temporary Google access token from OAuth
-   * @return tempToken
+   * Token from the OAuth callback redirect (pendingDataToken query param). Tokens and profile data are retrieved server-side from this token.
+   * @return pendingDataToken
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TEMP_TOKEN, required = true)
+  @JsonProperty(value = JSON_PROPERTY_PENDING_DATA_TOKEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getTempToken() {
-    return tempToken;
+  public String getPendingDataToken() {
+    return pendingDataToken;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TEMP_TOKEN, required = true)
+  @JsonProperty(value = JSON_PROPERTY_PENDING_DATA_TOKEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTempToken(@javax.annotation.Nonnull String tempToken) {
-    this.tempToken = tempToken;
-  }
-
-
-  public SelectGoogleBusinessLocationRequest userProfile(@javax.annotation.Nullable SelectGoogleBusinessLocationRequestUserProfile userProfile) {
-    this.userProfile = userProfile;
-    return this;
-  }
-
-  /**
-   * Get userProfile
-   * @return userProfile
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USER_PROFILE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public SelectGoogleBusinessLocationRequestUserProfile getUserProfile() {
-    return userProfile;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_USER_PROFILE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserProfile(@javax.annotation.Nullable SelectGoogleBusinessLocationRequestUserProfile userProfile) {
-    this.userProfile = userProfile;
+  public void setPendingDataToken(@javax.annotation.Nonnull String pendingDataToken) {
+    this.pendingDataToken = pendingDataToken;
   }
 
 
@@ -200,14 +170,13 @@ public class SelectGoogleBusinessLocationRequest {
     SelectGoogleBusinessLocationRequest selectGoogleBusinessLocationRequest = (SelectGoogleBusinessLocationRequest) o;
     return Objects.equals(this.profileId, selectGoogleBusinessLocationRequest.profileId) &&
         Objects.equals(this.locationId, selectGoogleBusinessLocationRequest.locationId) &&
-        Objects.equals(this.tempToken, selectGoogleBusinessLocationRequest.tempToken) &&
-        Objects.equals(this.userProfile, selectGoogleBusinessLocationRequest.userProfile) &&
+        Objects.equals(this.pendingDataToken, selectGoogleBusinessLocationRequest.pendingDataToken) &&
         Objects.equals(this.redirectUrl, selectGoogleBusinessLocationRequest.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, locationId, tempToken, userProfile, redirectUrl);
+    return Objects.hash(profileId, locationId, pendingDataToken, redirectUrl);
   }
 
   @Override
@@ -216,8 +185,7 @@ public class SelectGoogleBusinessLocationRequest {
     sb.append("class SelectGoogleBusinessLocationRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    locationId: ").append(toIndentedString(locationId)).append("\n");
-    sb.append("    tempToken: ").append(toIndentedString(tempToken)).append("\n");
-    sb.append("    userProfile: ").append(toIndentedString(userProfile)).append("\n");
+    sb.append("    pendingDataToken: ").append(toIndentedString(pendingDataToken)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -276,14 +244,9 @@ public class SelectGoogleBusinessLocationRequest {
       joiner.add(String.format(java.util.Locale.ROOT, "%slocationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationId()))));
     }
 
-    // add `tempToken` to the URL query string
-    if (getTempToken() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%stempToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTempToken()))));
-    }
-
-    // add `userProfile` to the URL query string
-    if (getUserProfile() != null) {
-      joiner.add(getUserProfile().toUrlQueryString(prefix + "userProfile" + suffix));
+    // add `pendingDataToken` to the URL query string
+    if (getPendingDataToken() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spendingDataToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPendingDataToken()))));
     }
 
     // add `redirect_url` to the URL query string

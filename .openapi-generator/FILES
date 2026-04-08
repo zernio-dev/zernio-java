@@ -576,7 +576,6 @@ docs/SelectFacebookPageRequestUserProfile.md
 docs/SelectGoogleBusinessLocation200Response.md
 docs/SelectGoogleBusinessLocation200ResponseAccount.md
 docs/SelectGoogleBusinessLocationRequest.md
-docs/SelectGoogleBusinessLocationRequestUserProfile.md
 docs/SelectLinkedInOrganization200Response.md
 docs/SelectLinkedInOrganization200ResponseAccount.md
 docs/SelectLinkedInOrganization200ResponseBulkRefresh.md
@@ -1400,7 +1399,6 @@ src/main/java/dev/zernio/model/SelectFacebookPageRequestUserProfile.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocation200Response.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocation200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocationRequest.java
-src/main/java/dev/zernio/model/SelectGoogleBusinessLocationRequestUserProfile.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200Response.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200ResponseBulkRefresh.java

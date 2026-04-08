@@ -90,7 +90,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-07T11:02:59.333343802Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-08T08:46:29.621751381Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2236,53 +2236,57 @@ public class ConnectApi {
 
   /**
    * List GBP locations
-   * For headless flows. Returns the list of GBP locations the user can manage. Use X-Connect-Token if connecting via API key.
-   * @param profileId Profile ID from your connection flow (required)
-   * @param tempToken Temporary Google access token from the OAuth callback redirect (required)
+   * For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+   * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
+   * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
+   * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
    * @return ListGoogleBusinessLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken) throws ApiException {
-    return listGoogleBusinessLocations(profileId, tempToken, null);
+  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken) throws ApiException {
+    return listGoogleBusinessLocations(profileId, pendingDataToken, tempToken, null);
   }
 
   /**
    * List GBP locations
-   * For headless flows. Returns the list of GBP locations the user can manage. Use X-Connect-Token if connecting via API key.
-   * @param profileId Profile ID from your connection flow (required)
-   * @param tempToken Temporary Google access token from the OAuth callback redirect (required)
+   * For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+   * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
+   * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
+   * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
    * @param headers Optional headers to include in the request
    * @return ListGoogleBusinessLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = listGoogleBusinessLocationsWithHttpInfo(profileId, tempToken, headers);
+  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List GBP locations
-   * For headless flows. Returns the list of GBP locations the user can manage. Use X-Connect-Token if connecting via API key.
-   * @param profileId Profile ID from your connection flow (required)
-   * @param tempToken Temporary Google access token from the OAuth callback redirect (required)
+   * For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+   * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
+   * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
+   * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
    * @return ApiResponse&lt;ListGoogleBusinessLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken) throws ApiException {
-    return listGoogleBusinessLocationsWithHttpInfo(profileId, tempToken, null);
+  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken) throws ApiException {
+    return listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, null);
   }
 
   /**
    * List GBP locations
-   * For headless flows. Returns the list of GBP locations the user can manage. Use X-Connect-Token if connecting via API key.
-   * @param profileId Profile ID from your connection flow (required)
-   * @param tempToken Temporary Google access token from the OAuth callback redirect (required)
+   * For headless flows. Returns the list of GBP locations the user can manage. Use pendingDataToken (from the OAuth callback redirect) to list locations without consuming the token, so it remains available for select-location. Use X-Connect-Token header if connecting via API key. 
+   * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
+   * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
+   * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListGoogleBusinessLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessLocationsRequestBuilder(profileId, tempToken, headers);
+  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessLocationsRequestBuilder(profileId, pendingDataToken, tempToken, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2329,15 +2333,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder listGoogleBusinessLocationsRequestBuilder(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String tempToken, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'profileId' is set
-    if (profileId == null) {
-      throw new ApiException(400, "Missing the required parameter 'profileId' when calling listGoogleBusinessLocations");
-    }
-    // verify the required parameter 'tempToken' is set
-    if (tempToken == null) {
-      throw new ApiException(400, "Missing the required parameter 'tempToken' when calling listGoogleBusinessLocations");
-    }
+  private HttpRequest.Builder listGoogleBusinessLocationsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2348,6 +2344,8 @@ public class ConnectApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "pendingDataToken";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("pendingDataToken", pendingDataToken));
     localVarQueryParameterBaseName = "tempToken";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("tempToken", tempToken));
 
@@ -2949,7 +2947,7 @@ public class ConnectApi {
 
   /**
    * Select GBP location
-   * Complete the headless flow by saving the user&#39;s selected GBP location. Include userProfile from the OAuth redirect (contains refresh token). Use X-Connect-Token if connecting via API key.
+   * Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
    * @param selectGoogleBusinessLocationRequest  (required)
    * @return SelectGoogleBusinessLocation200Response
    * @throws ApiException if fails to make API call
@@ -2960,7 +2958,7 @@ public class ConnectApi {
 
   /**
    * Select GBP location
-   * Complete the headless flow by saving the user&#39;s selected GBP location. Include userProfile from the OAuth redirect (contains refresh token). Use X-Connect-Token if connecting via API key.
+   * Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
    * @param selectGoogleBusinessLocationRequest  (required)
    * @param headers Optional headers to include in the request
    * @return SelectGoogleBusinessLocation200Response
@@ -2973,7 +2971,7 @@ public class ConnectApi {
 
   /**
    * Select GBP location
-   * Complete the headless flow by saving the user&#39;s selected GBP location. Include userProfile from the OAuth redirect (contains refresh token). Use X-Connect-Token if connecting via API key.
+   * Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
    * @param selectGoogleBusinessLocationRequest  (required)
    * @return ApiResponse&lt;SelectGoogleBusinessLocation200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2984,7 +2982,7 @@ public class ConnectApi {
 
   /**
    * Select GBP location
-   * Complete the headless flow by saving the user&#39;s selected GBP location. Include userProfile from the OAuth redirect (contains refresh token). Use X-Connect-Token if connecting via API key.
+   * Complete the headless GBP flow by saving the user&#39;s selected location. The pendingDataToken is returned in your redirect URL after OAuth completes (step&#x3D;select_location). Tokens and profile data are stored server-side, so only the pendingDataToken is needed here. Use X-Connect-Token header if connecting via API key. 
    * @param selectGoogleBusinessLocationRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SelectGoogleBusinessLocation200Response&gt;
