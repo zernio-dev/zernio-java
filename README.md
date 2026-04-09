@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-09T09:29:13.038937774Z[Etc/UTC]
+- Build date: 2026-04-09T09:31:36.259498755Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -140,6 +140,8 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**setTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#setTelegramCommandsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
 *AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account
 *AccountsApi* | [**deleteAccountWithHttpInfo**](docs/AccountsApi.md#deleteAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId} | Disconnect account
+*AccountsApi* | [**disconnectAds**](docs/AccountsApi.md#disconnectAds) | **POST** /v1/accounts/{accountId}/disconnect-ads | Disconnect ads from an account
+*AccountsApi* | [**disconnectAdsWithHttpInfo**](docs/AccountsApi.md#disconnectAdsWithHttpInfo) | **POST** /v1/accounts/{accountId}/disconnect-ads | Disconnect ads from an account
 *AccountsApi* | [**getAccountHealth**](docs/AccountsApi.md#getAccountHealth) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**getAccountHealthWithHttpInfo**](docs/AccountsApi.md#getAccountHealthWithHttpInfo) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**getAllAccountsHealth**](docs/AccountsApi.md#getAllAccountsHealth) | **GET** /v1/accounts/health | Check accounts health
@@ -184,8 +186,6 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**listAdsWithHttpInfo**](docs/AdsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
 *AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
-*AdsApi* | [**syncExternalAds**](docs/AdsApi.md#syncExternalAds) | **POST** /v1/ads/sync | Sync external ads from platform ad managers
-*AdsApi* | [**syncExternalAdsWithHttpInfo**](docs/AdsApi.md#syncExternalAdsWithHttpInfo) | **POST** /v1/ads/sync | Sync external ads from platform ad managers
 *AdsApi* | [**updateAd**](docs/AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad (pause/resume, budget, targeting, name)
 *AdsApi* | [**updateAdWithHttpInfo**](docs/AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad (pause/resume, budget, targeting, name)
 *AnalyticsApi* | [**getAnalytics**](docs/AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics
@@ -808,6 +808,7 @@ Class | Method | HTTP request | Description
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [DeleteQueueSlot200Response](docs/DeleteQueueSlot200Response.md)
  - [DeleteWhatsAppGroupRequest](docs/DeleteWhatsAppGroupRequest.md)
+ - [DisconnectAdsRequest](docs/DisconnectAdsRequest.md)
  - [EditInboxMessage200Response](docs/EditInboxMessage200Response.md)
  - [EditInboxMessage200ResponseData](docs/EditInboxMessage200ResponseData.md)
  - [EditInboxMessageRequest](docs/EditInboxMessageRequest.md)
@@ -1252,7 +1253,6 @@ Class | Method | HTTP request | Description
  - [SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [SocialAccount](docs/SocialAccount.md)
  - [SocialAccountProfileId](docs/SocialAccountProfileId.md)
- - [SyncExternalAds200Response](docs/SyncExternalAds200Response.md)
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)

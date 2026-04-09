@@ -20,8 +20,6 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdsWithHttpInfo**](AdsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
 | [**searchAdInterests**](AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests |
 | [**searchAdInterestsWithHttpInfo**](AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests |
-| [**syncExternalAds**](AdsApi.md#syncExternalAds) | **POST** /v1/ads/sync | Sync external ads from platform ad managers |
-| [**syncExternalAdsWithHttpInfo**](AdsApi.md#syncExternalAdsWithHttpInfo) | **POST** /v1/ads/sync | Sync external ads from platform ad managers |
 | [**updateAd**](AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad (pause/resume, budget, targeting, name) |
 | [**updateAdWithHttpInfo**](AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad (pause/resume, budget, targeting, name) |
 
@@ -625,11 +623,11 @@ ApiResponse<[**GetAd200Response**](GetAd200Response.md)>
 
 ## getAdAnalytics
 
-> GetAdAnalytics200Response getAdAnalytics(adId, breakdowns)
+> GetAdAnalytics200Response getAdAnalytics(adId, fromDate, toDate, breakdowns)
 
 Get ad analytics with daily breakdown
 
-Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
 
 ### Example
 
@@ -653,9 +651,11 @@ public class Example {
 
         AdsApi apiInstance = new AdsApi(defaultClient);
         String adId = "adId_example"; // String | 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of date range (YYYY-MM-DD). Defaults to 90 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range.
         String breakdowns = "breakdowns_example"; // String | Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language.
         try {
-            GetAdAnalytics200Response result = apiInstance.getAdAnalytics(adId, breakdowns);
+            GetAdAnalytics200Response result = apiInstance.getAdAnalytics(adId, fromDate, toDate, breakdowns);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#getAdAnalytics");
@@ -674,6 +674,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**|  | |
+| **fromDate** | **LocalDate**| Start of date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **toDate** | **LocalDate**| End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. | [optional] |
 | **breakdowns** | **String**| Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. | [optional] |
 
 ### Return type
@@ -700,11 +702,11 @@ public class Example {
 
 ## getAdAnalyticsWithHttpInfo
 
-> ApiResponse<GetAdAnalytics200Response> getAdAnalytics getAdAnalyticsWithHttpInfo(adId, breakdowns)
+> ApiResponse<GetAdAnalytics200Response> getAdAnalytics getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns)
 
 Get ad analytics with daily breakdown
 
-Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
 
 ### Example
 
@@ -729,9 +731,11 @@ public class Example {
 
         AdsApi apiInstance = new AdsApi(defaultClient);
         String adId = "adId_example"; // String | 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of date range (YYYY-MM-DD). Defaults to 90 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range.
         String breakdowns = "breakdowns_example"; // String | Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language.
         try {
-            ApiResponse<GetAdAnalytics200Response> response = apiInstance.getAdAnalyticsWithHttpInfo(adId, breakdowns);
+            ApiResponse<GetAdAnalytics200Response> response = apiInstance.getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -752,6 +756,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**|  | |
+| **fromDate** | **LocalDate**| Start of date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **toDate** | **LocalDate**| End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. | [optional] |
 | **breakdowns** | **String**| Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. | [optional] |
 
 ### Return type
@@ -927,11 +933,11 @@ ApiResponse<[**ListAdAccounts200Response**](ListAdAccounts200Response.md)>
 
 ## listAds
 
-> ListAds200Response listAds(page, limit, source, status, platform, accountId, profileId, campaignId)
+> ListAds200Response listAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate)
 
 List ads
 
-Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
 
 ### Example
 
@@ -962,8 +968,10 @@ public class Example {
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
         String campaignId = "campaignId_example"; // String | Platform campaign ID (filter ads within a campaign)
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range.
         try {
-            ListAds200Response result = apiInstance.listAds(page, limit, source, status, platform, accountId, profileId, campaignId);
+            ListAds200Response result = apiInstance.listAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#listAds");
@@ -989,6 +997,8 @@ public class Example {
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
 | **campaignId** | **String**| Platform campaign ID (filter ads within a campaign) | [optional] |
+| **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. | [optional] |
 
 ### Return type
 
@@ -1013,11 +1023,11 @@ public class Example {
 
 ## listAdsWithHttpInfo
 
-> ApiResponse<ListAds200Response> listAds listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId)
+> ApiResponse<ListAds200Response> listAds listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate)
 
 List ads
 
-Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
 
 ### Example
 
@@ -1049,8 +1059,10 @@ public class Example {
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
         String campaignId = "campaignId_example"; // String | Platform campaign ID (filter ads within a campaign)
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range.
         try {
-            ApiResponse<ListAds200Response> response = apiInstance.listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId);
+            ApiResponse<ListAds200Response> response = apiInstance.listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1078,6 +1090,8 @@ public class Example {
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
 | **campaignId** | **String**| Platform campaign ID (filter ads within a campaign) | [optional] |
+| **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. | [optional] |
 
 ### Return type
 
@@ -1249,146 +1263,6 @@ ApiResponse<[**SearchAdInterests200Response**](SearchAdInterests200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Matching interests |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
-
-
-## syncExternalAds
-
-> SyncExternalAds200Response syncExternalAds()
-
-Sync external ads from platform ad managers
-
-Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.AdsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        AdsApi apiInstance = new AdsApi(defaultClient);
-        try {
-            SyncExternalAds200Response result = apiInstance.syncExternalAds();
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdsApi#syncExternalAds");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**SyncExternalAds200Response**](SyncExternalAds200Response.md)
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Sync completed |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
-
-## syncExternalAdsWithHttpInfo
-
-> ApiResponse<SyncExternalAds200Response> syncExternalAds syncExternalAdsWithHttpInfo()
-
-Sync external ads from platform ad managers
-
-Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.ApiResponse;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.AdsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        AdsApi apiInstance = new AdsApi(defaultClient);
-        try {
-            ApiResponse<SyncExternalAds200Response> response = apiInstance.syncExternalAdsWithHttpInfo();
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling AdsApi#syncExternalAds");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-ApiResponse<[**SyncExternalAds200Response**](SyncExternalAds200Response.md)>
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Sync completed |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
 

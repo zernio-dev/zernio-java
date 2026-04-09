@@ -129,7 +129,7 @@ tags:
   name: Comment Automations
 - description: |
     Paid advertising management across Meta (Facebook/Instagram), Google, TikTok, LinkedIn, Pinterest, and X/Twitter.
-    Create, boost, pause/resume ads and campaigns, view metrics, manage audiences, and sync external ads.
+    Create, boost, pause/resume ads and campaigns, view metrics, and manage audiences.
     Requires the Ads add-on.
   name: Ads
 - description: |
@@ -3754,6 +3754,58 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/disconnect-ads:
+    post:
+      description: |
+        Disconnects ads from a social account without removing the posting connection.
+
+        **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an `adsOptOut` flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.
+
+        **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.
+
+        **Standalone platforms** (googleads): Do not use this endpoint. Use `DELETE /v1/accounts/{accountId}` instead, since Google Ads accounts are standalone.
+      operationId: disconnectAds
+      parameters:
+      - description: The SocialAccount ID (parent posting account for same-token/separate-token
+          platforms)
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              adsPlatform: tiktokads
+            schema:
+              $ref: "#/components/schemas/disconnectAds_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                message: tiktokads disconnected successfully
+              schema:
+                $ref: "#/components/schemas/deleteAccountGroup_200_response"
+          description: Ads disconnected
+        "400":
+          description: Invalid ads platform
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Disconnect ads from an account
+      tags:
+      - Accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/accounts/health:
     get:
       description: "Returns health status of all connected accounts including token\
@@ -4278,9 +4330,9 @@ paths:
       description: |
         Unified ads connection endpoint. Handles all platforms through a single route:
 
-        **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns `alreadyConnected: true` immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.
+        **Same-token platforms** (facebook, instagram, linkedin, pinterest): If a posting account already exists, returns `alreadyConnected: true` immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.
 
-        **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (`accountId` param). If ads are already connected, returns `alreadyConnected: true`. Otherwise, starts the platform-specific marketing API OAuth flow.
+        **Separate-token platforms** (tiktok, twitter): Requires an existing posting account (`accountId` param). If ads are already connected, returns `alreadyConnected: true`. Otherwise, starts the platform-specific marketing API OAuth flow.
 
         **Ads-only platforms** (googleads): If a Google Ads account exists, returns `alreadyConnected: true`. Otherwise, starts the Google Ads OAuth flow.
 
@@ -4313,7 +4365,7 @@ paths:
           type: string
         style: form
       - description: "Existing SocialAccount ID. Required for separate-token platforms\
-          \ (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms."
+          \ (tiktok, twitter). Ignored for same-token and ads-only platforms."
         explode: true
         in: query
         name: accountId
@@ -14308,8 +14360,10 @@ paths:
       - application/json
   /v1/ads:
     get:
-      description: Returns a paginated list of ads with cached metrics. Use `source=all`
-        to include externally-synced ads from platform ad managers.
+      description: |
+        Returns a paginated list of ads with metrics computed over an optional date range.
+        Use `source=all` to include externally-synced ads from platform ad managers.
+        If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max.
       operationId: listAds
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -14387,6 +14441,26 @@ paths:
         name: campaignId
         required: false
         schema:
+          type: string
+        style: form
+      - description: Start of metrics date range (YYYY-MM-DD). Defaults to 90 days
+          ago.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End of metrics date range (YYYY-MM-DD). Defaults to today. Max
+          90-day range.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
           type: string
         style: form
       responses:
@@ -14557,8 +14631,10 @@ paths:
       description: |
         Returns a nested Campaign > Ad Set > Ad hierarchy with rolled-up metrics at each level.
         Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns.
-        Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into
-        synthetic "Ungrouped" buckets.
+        Metrics are computed over an optional date range, then rolled up from ad level to ad set
+        and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set
+        ID are grouped into synthetic "Ungrouped" buckets.
+        If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max.
       operationId: getAdTree
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -14637,6 +14713,26 @@ paths:
         name: profileId
         required: false
         schema:
+          type: string
+        style: form
+      - description: Start of metrics date range (YYYY-MM-DD). Defaults to 90 days
+          ago.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End of metrics date range (YYYY-MM-DD). Defaults to today. Max
+          90-day range.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
           type: string
         style: form
       responses:
@@ -14758,8 +14854,9 @@ paths:
   /v1/ads/{adId}/analytics:
     get:
       description: |
-        Returns real-time analytics from the platform API (not cached). Includes summary metrics,
-        daily breakdown, and optional demographic breakdowns (Meta and TikTok only).
+        Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline
+        over the requested date range, and optional demographic breakdowns (Meta and TikTok only).
+        If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max.
       operationId: getAdAnalytics
       parameters:
       - explode: false
@@ -14769,6 +14866,25 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Start of date range (YYYY-MM-DD). Defaults to 90 days ago.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End of date range (YYYY-MM-DD). Defaults to today. Max 90-day
+          range.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
       - description: "Comma-separated breakdown dimensions. Meta: age, gender, country,\
           \ publisher_platform, device_platform, region. TikTok: gender, age, country_code,\
           \ platform, ac, language."
@@ -14901,30 +15017,6 @@ paths:
       tags:
       - Ads
       x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/ads/sync:
-    post:
-      description: "Discovers and imports ads created outside Zernio (e.g. in Meta\
-        \ Ads Manager, Google Ads). Upserts new ads and updates metrics/status for\
-        \ existing ones. Also runs automatically every 30 minutes."
-      operationId: syncExternalAds
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/syncExternalAds_200_response"
-          description: Sync completed
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          description: Ads add-on required
-      security:
-      - bearerAuth: []
-      summary: Sync external ads from platform ad managers
-      tags:
-      - Ads
       x-accepts:
       - application/json
   /v1/ads/interests:
@@ -23142,6 +23234,19 @@ components:
           type: string
         displayName:
           type: string
+    disconnectAds_request:
+      properties:
+        adsPlatform:
+          description: The ads platform to disconnect
+          enum:
+          - metaads
+          - linkedinads
+          - pinterestads
+          - tiktokads
+          - xads
+          type: string
+      required:
+      - adsPlatform
     getAllAccountsHealth_200_response_summary:
       example:
         total: 0
@@ -36503,24 +36608,6 @@ components:
       - budgetType
       - goal
       - name
-    syncExternalAds_200_response:
-      example:
-        synced: 0
-        success: true
-        errors: 1
-        skipped: 6
-      properties:
-        success:
-          type: boolean
-        synced:
-          description: New ads imported
-          type: integer
-        skipped:
-          description: Already-known ads (skipped import
-          type: integer
-        errors:
-          description: Failed ad imports
-          type: integer
     searchAdInterests_200_response_interests_inner:
       example:
         name: name

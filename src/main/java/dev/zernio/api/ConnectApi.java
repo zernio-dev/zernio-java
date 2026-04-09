@@ -91,7 +91,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-09T09:29:13.038937774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-09T09:31:36.259498755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -342,10 +342,10 @@ public class ConnectApi {
 
   /**
    * Connect ads for a platform
-   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin, pinterest): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
    * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
    * @param profileId Your Zernio profile ID (required)
-   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and ads-only platforms. (optional)
    * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
    * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
    * @return ConnectAds200Response
@@ -357,10 +357,10 @@ public class ConnectApi {
 
   /**
    * Connect ads for a platform
-   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin, pinterest): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
    * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
    * @param profileId Your Zernio profile ID (required)
-   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and ads-only platforms. (optional)
    * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
    * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
    * @param headers Optional headers to include in the request
@@ -374,10 +374,10 @@ public class ConnectApi {
 
   /**
    * Connect ads for a platform
-   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin, pinterest): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
    * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
    * @param profileId Your Zernio profile ID (required)
-   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and ads-only platforms. (optional)
    * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
    * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
    * @return ApiResponse&lt;ConnectAds200Response&gt;
@@ -389,10 +389,10 @@ public class ConnectApi {
 
   /**
    * Connect ads for a platform
-   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter, pinterest): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
+   * Unified ads connection endpoint. Handles all platforms through a single route:  **Same-token platforms** (facebook, instagram, linkedin, pinterest): If a posting account already exists, returns &#x60;alreadyConnected: true&#x60; immediately (no extra OAuth needed). If not, starts the normal OAuth flow, and the resulting account supports both posting and ads.  **Separate-token platforms** (tiktok, twitter): Requires an existing posting account (&#x60;accountId&#x60; param). If ads are already connected, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the platform-specific marketing API OAuth flow.  **Ads-only platforms** (googleads): If a Google Ads account exists, returns &#x60;alreadyConnected: true&#x60;. Otherwise, starts the Google Ads OAuth flow.  Use the &#x60;adsStatus&#x60; field from &#x60;GET /v1/accounts&#x60; to check which accounts need ads connection. 
    * @param platform Platform to connect ads for. Only platforms with ads support are accepted. (required)
    * @param profileId Your Zernio profile ID (required)
-   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter, pinterest). Ignored for same-token and ads-only platforms. (optional)
+   * @param accountId Existing SocialAccount ID. Required for separate-token platforms (tiktok, twitter). Ignored for same-token and ads-only platforms. (optional)
    * @param redirectUrl Custom redirect URL after OAuth completes (same-token platforms only) (optional)
    * @param headless Enable headless mode (same-token platforms only) (optional, default to false)
    * @param headers Optional headers to include in the request

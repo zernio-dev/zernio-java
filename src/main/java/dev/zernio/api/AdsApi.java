@@ -27,8 +27,8 @@ import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
 import dev.zernio.model.ListAds200Response;
+import java.time.LocalDate;
 import dev.zernio.model.SearchAdInterests200Response;
-import dev.zernio.model.SyncExternalAds200Response;
 import dev.zernio.model.UpdateAd200Response;
 import dev.zernio.model.UpdateAdRequest;
 
@@ -57,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-09T09:29:13.038937774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-09T09:31:36.259498755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -658,53 +658,61 @@ public class AdsApi {
 
   /**
    * Get ad analytics with daily breakdown
-   * Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param adId  (required)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @return GetAdAnalytics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdAnalytics200Response getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String breakdowns) throws ApiException {
-    return getAdAnalytics(adId, breakdowns, null);
+  public GetAdAnalytics200Response getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+    return getAdAnalytics(adId, fromDate, toDate, breakdowns, null);
   }
 
   /**
    * Get ad analytics with daily breakdown
-   * Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param adId  (required)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdAnalytics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdAnalytics200Response getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdAnalytics200Response> localVarResponse = getAdAnalyticsWithHttpInfo(adId, breakdowns, headers);
+  public GetAdAnalytics200Response getAdAnalytics(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdAnalytics200Response> localVarResponse = getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get ad analytics with daily breakdown
-   * Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param adId  (required)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdAnalytics200Response> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String breakdowns) throws ApiException {
-    return getAdAnalyticsWithHttpInfo(adId, breakdowns, null);
+  public ApiResponse<GetAdAnalytics200Response> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+    return getAdAnalyticsWithHttpInfo(adId, fromDate, toDate, breakdowns, null);
   }
 
   /**
    * Get ad analytics with daily breakdown
-   * Returns real-time analytics from the platform API (not cached). Includes summary metrics, daily breakdown, and optional demographic breakdowns (Meta and TikTok only). 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param adId  (required)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdAnalytics200Response> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdAnalyticsRequestBuilder(adId, breakdowns, headers);
+  public ApiResponse<GetAdAnalytics200Response> getAdAnalyticsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdAnalyticsRequestBuilder(adId, fromDate, toDate, breakdowns, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -751,7 +759,7 @@ public class AdsApi {
     }
   }
 
-  private HttpRequest.Builder getAdAnalyticsRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdAnalyticsRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'adId' is set
     if (adId == null) {
       throw new ApiException(400, "Missing the required parameter 'adId' when calling getAdAnalytics");
@@ -765,6 +773,10 @@ public class AdsApi {
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
     String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "breakdowns";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdowns", breakdowns));
 
@@ -927,7 +939,7 @@ public class AdsApi {
 
   /**
    * List ads
-   * Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source zernio &#x3D; Zernio-created only, all &#x3D; include external ads (optional, default to zernio)
@@ -936,16 +948,18 @@ public class AdsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId) throws ApiException {
-    return listAds(page, limit, source, status, platform, accountId, profileId, campaignId, null);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, null);
   }
 
   /**
    * List ads
-   * Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source zernio &#x3D; Zernio-created only, all &#x3D; include external ads (optional, default to zernio)
@@ -954,18 +968,20 @@ public class AdsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, headers);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List ads
-   * Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source zernio &#x3D; Zernio-created only, all &#x3D; include external ads (optional, default to zernio)
@@ -974,16 +990,18 @@ public class AdsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId) throws ApiException {
-    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, null);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, null);
   }
 
   /**
    * List ads
-   * Returns a paginated list of ads with cached metrics. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers.
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use &#x60;source&#x3D;all&#x60; to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source zernio &#x3D; Zernio-created only, all &#x3D; include external ads (optional, default to zernio)
@@ -992,12 +1010,14 @@ public class AdsApi {
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, profileId, campaignId, headers);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1044,7 +1064,7 @@ public class AdsApi {
     }
   }
 
-  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1069,6 +1089,10 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
     localVarQueryParameterBaseName = "campaignId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("campaignId", campaignId));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -1226,115 +1250,6 @@ public class AdsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Sync external ads from platform ad managers
-   * Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-   * @return SyncExternalAds200Response
-   * @throws ApiException if fails to make API call
-   */
-  public SyncExternalAds200Response syncExternalAds() throws ApiException {
-    return syncExternalAds(null);
-  }
-
-  /**
-   * Sync external ads from platform ad managers
-   * Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-   * @param headers Optional headers to include in the request
-   * @return SyncExternalAds200Response
-   * @throws ApiException if fails to make API call
-   */
-  public SyncExternalAds200Response syncExternalAds(Map<String, String> headers) throws ApiException {
-    ApiResponse<SyncExternalAds200Response> localVarResponse = syncExternalAdsWithHttpInfo(headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Sync external ads from platform ad managers
-   * Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-   * @return ApiResponse&lt;SyncExternalAds200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SyncExternalAds200Response> syncExternalAdsWithHttpInfo() throws ApiException {
-    return syncExternalAdsWithHttpInfo(null);
-  }
-
-  /**
-   * Sync external ads from platform ad managers
-   * Discovers and imports ads created outside Zernio (e.g. in Meta Ads Manager, Google Ads). Upserts new ads and updates metrics/status for existing ones. Also runs automatically every 30 minutes.
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;SyncExternalAds200Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SyncExternalAds200Response> syncExternalAdsWithHttpInfo(Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = syncExternalAdsRequestBuilder(headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("syncExternalAds", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<SyncExternalAds200Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        SyncExternalAds200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SyncExternalAds200Response>() {});
-        
-
-        return new ApiResponse<SyncExternalAds200Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder syncExternalAdsRequestBuilder(Map<String, String> headers) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/ads/sync";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

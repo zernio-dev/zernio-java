@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**deleteAccount**](AccountsApi.md#deleteAccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account |
 | [**deleteAccountWithHttpInfo**](AccountsApi.md#deleteAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId} | Disconnect account |
+| [**disconnectAds**](AccountsApi.md#disconnectAds) | **POST** /v1/accounts/{accountId}/disconnect-ads | Disconnect ads from an account |
+| [**disconnectAdsWithHttpInfo**](AccountsApi.md#disconnectAdsWithHttpInfo) | **POST** /v1/accounts/{accountId}/disconnect-ads | Disconnect ads from an account |
 | [**getAccountHealth**](AccountsApi.md#getAccountHealth) | **GET** /v1/accounts/{accountId}/health | Check account health |
 | [**getAccountHealthWithHttpInfo**](AccountsApi.md#getAccountHealthWithHttpInfo) | **GET** /v1/accounts/{accountId}/health | Check account health |
 | [**getAllAccountsHealth**](AccountsApi.md#getAllAccountsHealth) | **GET** /v1/accounts/health | Check accounts health |
@@ -165,6 +167,160 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Disconnected |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+
+## disconnectAds
+
+> DeleteAccountGroup200Response disconnectAds(accountId, disconnectAdsRequest)
+
+Disconnect ads from an account
+
+Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The SocialAccount ID (parent posting account for same-token/separate-token platforms)
+        DisconnectAdsRequest disconnectAdsRequest = new DisconnectAdsRequest(); // DisconnectAdsRequest | 
+        try {
+            DeleteAccountGroup200Response result = apiInstance.disconnectAds(accountId, disconnectAdsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#disconnectAds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The SocialAccount ID (parent posting account for same-token/separate-token platforms) | |
+| **disconnectAdsRequest** | [**DisconnectAdsRequest**](DisconnectAdsRequest.md)|  | |
+
+### Return type
+
+[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ads disconnected |  -  |
+| **400** | Invalid ads platform |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+## disconnectAdsWithHttpInfo
+
+> ApiResponse<DeleteAccountGroup200Response> disconnectAds disconnectAdsWithHttpInfo(accountId, disconnectAdsRequest)
+
+Disconnect ads from an account
+
+Disconnects ads from a social account without removing the posting connection.  **Same-token platforms** (metaads, linkedinads, pinterestads): Sets an &#x60;adsOptOut&#x60; flag. The posting account and OAuth token are preserved. Reconnecting ads clears the flag.  **Separate-token platforms** (tiktokads, xads): Clears the ads-specific metadata (marketing API tokens). The posting account stays intact.  **Standalone platforms** (googleads): Do not use this endpoint. Use &#x60;DELETE /v1/accounts/{accountId}&#x60; instead, since Google Ads accounts are standalone. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The SocialAccount ID (parent posting account for same-token/separate-token platforms)
+        DisconnectAdsRequest disconnectAdsRequest = new DisconnectAdsRequest(); // DisconnectAdsRequest | 
+        try {
+            ApiResponse<DeleteAccountGroup200Response> response = apiInstance.disconnectAdsWithHttpInfo(accountId, disconnectAdsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#disconnectAds");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The SocialAccount ID (parent posting account for same-token/separate-token platforms) | |
+| **disconnectAdsRequest** | [**DisconnectAdsRequest**](DisconnectAdsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ads disconnected |  -  |
+| **400** | Invalid ads platform |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

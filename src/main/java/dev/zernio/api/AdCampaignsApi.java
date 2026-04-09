@@ -21,6 +21,7 @@ import dev.zernio.Pair;
 import dev.zernio.model.GetAdTree200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListAdCampaigns200Response;
+import java.time.LocalDate;
 import dev.zernio.model.UpdateAdCampaignStatus200Response;
 import dev.zernio.model.UpdateAdCampaignStatusRequest;
 
@@ -49,7 +50,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-09T09:29:13.038937774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-09T09:31:36.259498755Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -168,7 +169,7 @@ public class AdCampaignsApi {
 
   /**
    * Get nested campaign/ad-set/ad tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source  (optional, default to zernio)
@@ -177,16 +178,18 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId) throws ApiException {
-    return getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, null);
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
    * Get nested campaign/ad-set/ad tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source  (optional, default to zernio)
@@ -195,18 +198,20 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, headers);
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get nested campaign/ad-set/ad tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source  (optional, default to zernio)
@@ -215,16 +220,18 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId) throws ApiException {
-    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, null);
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
    * Get nested campaign/ad-set/ad tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source  (optional, default to zernio)
@@ -233,12 +240,14 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, headers);
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -285,7 +294,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -310,6 +319,10 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
