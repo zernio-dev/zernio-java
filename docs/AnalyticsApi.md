@@ -45,7 +45,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Get post analytics
 
-Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Zernio Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
+Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Zernio Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats.  **LinkedIn personal accounts:** Analytics are only available for posts published through Zernio. LinkedIn&#39;s API only returns metrics for posts authored by the authenticated user. Organization/company page analytics work for all posts. 
 
 ### Example
 
@@ -142,7 +142,7 @@ public class Example {
 
 Get post analytics
 
-Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Zernio Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats. 
+Returns analytics for posts. With postId, returns a single post. Without it, returns a paginated list with overview stats. Accepts both Zernio Post IDs and External Post IDs (auto-resolved). fromDate defaults to 90 days ago if omitted, max range 366 days. Single post lookups may return 202 (sync pending) or 424 (all platforms failed). For follower stats, use /v1/accounts/follower-stats.  **LinkedIn personal accounts:** Analytics are only available for posts published through Zernio. LinkedIn&#39;s API only returns metrics for posts authored by the authenticated user. Organization/company page analytics work for all posts. 
 
 ### Example
 
@@ -1551,7 +1551,7 @@ ApiResponse<[**InstagramDemographicsResponse**](InstagramDemographicsResponse.md
 
 Get LinkedIn aggregate stats
 
-Returns aggregate analytics across all posts for a LinkedIn personal account. Org accounts should use /v1/analytics instead. Requires r_member_postAnalytics scope.
+Returns aggregate analytics across all posts for a LinkedIn personal account. Only includes posts published through Zernio (LinkedIn API limitation). Org accounts should use /v1/analytics instead. Requires r_member_postAnalytics scope.
 
 ### Example
 
@@ -1634,7 +1634,7 @@ public class Example {
 
 Get LinkedIn aggregate stats
 
-Returns aggregate analytics across all posts for a LinkedIn personal account. Org accounts should use /v1/analytics instead. Requires r_member_postAnalytics scope.
+Returns aggregate analytics across all posts for a LinkedIn personal account. Only includes posts published through Zernio (LinkedIn API limitation). Org accounts should use /v1/analytics instead. Requires r_member_postAnalytics scope.
 
 ### Example
 
