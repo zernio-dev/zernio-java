@@ -18,7 +18,7 @@ Webhook delivery log entry
 |**requestPayload** | **Object** | Payload sent to webhook endpoint |  [optional] |
 |**responseBody** | **String** | Response body from webhook endpoint (truncated to 10KB) |  [optional] |
 |**errorMessage** | **String** | Error message if delivery failed |  [optional] |
-|**attemptNumber** | **Integer** | Delivery attempt number (max 3 retries) |  [optional] |
+|**attemptNumber** | **Integer** | Delivery attempt number (max 7 attempts) |  [optional] |
 |**responseTime** | **Integer** | Response time in milliseconds |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 

@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   WebhookLog.JSON_PROPERTY_RESPONSE_TIME,
   WebhookLog.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T13:43:01.575959011Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-10T16:29:54.019260460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookLog {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -442,7 +442,7 @@ public class WebhookLog {
   }
 
   /**
-   * Delivery attempt number (max 3 retries)
+   * Delivery attempt number (max 7 attempts)
    * @return attemptNumber
    */
   @javax.annotation.Nullable
