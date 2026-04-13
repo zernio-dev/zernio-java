@@ -22,6 +22,9 @@ import dev.zernio.model.WebhookPayloadAccountConnected;
 import dev.zernio.model.WebhookPayloadAccountDisconnected;
 import dev.zernio.model.WebhookPayloadComment;
 import dev.zernio.model.WebhookPayloadMessage;
+import dev.zernio.model.WebhookPayloadMessageDeleted;
+import dev.zernio.model.WebhookPayloadMessageDeliveryStatus;
+import dev.zernio.model.WebhookPayloadMessageEdited;
 import dev.zernio.model.WebhookPayloadMessageSent;
 import dev.zernio.model.WebhookPayloadPost;
 import dev.zernio.model.WebhookPayloadTest;
@@ -57,7 +60,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-13T10:07:07.330013060Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-13T11:13:13.015951855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -486,6 +489,551 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadComment);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Message deleted event
+   * Fired when a sender deletes (unsends) a message. Supported on Instagram (incoming unsend) and WhatsApp (when the business deletes an outgoing message via the Cloud API). The payload retains the pre-delete &#x60;text&#x60; and &#x60;attachments&#x60; so API consumers can access the original content for moderation or compliance — the Zernio dashboard UI hides it. 
+   * @param webhookPayloadMessageDeleted  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageDeleted(@javax.annotation.Nonnull WebhookPayloadMessageDeleted webhookPayloadMessageDeleted) throws ApiException {
+    onMessageDeleted(webhookPayloadMessageDeleted, null);
+  }
+
+  /**
+   * Message deleted event
+   * Fired when a sender deletes (unsends) a message. Supported on Instagram (incoming unsend) and WhatsApp (when the business deletes an outgoing message via the Cloud API). The payload retains the pre-delete &#x60;text&#x60; and &#x60;attachments&#x60; so API consumers can access the original content for moderation or compliance — the Zernio dashboard UI hides it. 
+   * @param webhookPayloadMessageDeleted  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageDeleted(@javax.annotation.Nonnull WebhookPayloadMessageDeleted webhookPayloadMessageDeleted, Map<String, String> headers) throws ApiException {
+    onMessageDeletedWithHttpInfo(webhookPayloadMessageDeleted, headers);
+  }
+
+  /**
+   * Message deleted event
+   * Fired when a sender deletes (unsends) a message. Supported on Instagram (incoming unsend) and WhatsApp (when the business deletes an outgoing message via the Cloud API). The payload retains the pre-delete &#x60;text&#x60; and &#x60;attachments&#x60; so API consumers can access the original content for moderation or compliance — the Zernio dashboard UI hides it. 
+   * @param webhookPayloadMessageDeleted  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageDeletedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeleted webhookPayloadMessageDeleted) throws ApiException {
+    return onMessageDeletedWithHttpInfo(webhookPayloadMessageDeleted, null);
+  }
+
+  /**
+   * Message deleted event
+   * Fired when a sender deletes (unsends) a message. Supported on Instagram (incoming unsend) and WhatsApp (when the business deletes an outgoing message via the Cloud API). The payload retains the pre-delete &#x60;text&#x60; and &#x60;attachments&#x60; so API consumers can access the original content for moderation or compliance — the Zernio dashboard UI hides it. 
+   * @param webhookPayloadMessageDeleted  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageDeletedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeleted webhookPayloadMessageDeleted, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onMessageDeletedRequestBuilder(webhookPayloadMessageDeleted, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onMessageDeleted", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onMessageDeletedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadMessageDeleted webhookPayloadMessageDeleted, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadMessageDeleted' is set
+    if (webhookPayloadMessageDeleted == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadMessageDeleted' when calling onMessageDeleted");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/message.deleted";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadMessageDeleted);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Message delivered event
+   * Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageDelivered(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus) throws ApiException {
+    onMessageDelivered(webhookPayloadMessageDeliveryStatus, null);
+  }
+
+  /**
+   * Message delivered event
+   * Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageDelivered(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    onMessageDeliveredWithHttpInfo(webhookPayloadMessageDeliveryStatus, headers);
+  }
+
+  /**
+   * Message delivered event
+   * Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageDeliveredWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus) throws ApiException {
+    return onMessageDeliveredWithHttpInfo(webhookPayloadMessageDeliveryStatus, null);
+  }
+
+  /**
+   * Message delivered event
+   * Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageDeliveredWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onMessageDeliveredRequestBuilder(webhookPayloadMessageDeliveryStatus, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onMessageDelivered", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onMessageDeliveredRequestBuilder(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadMessageDeliveryStatus' is set
+    if (webhookPayloadMessageDeliveryStatus == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadMessageDeliveryStatus' when calling onMessageDelivered");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/message.delivered";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadMessageDeliveryStatus);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Message edited event
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full &#x60;editHistory&#x60; so consumers can show prior versions. 
+   * @param webhookPayloadMessageEdited  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageEdited(@javax.annotation.Nonnull WebhookPayloadMessageEdited webhookPayloadMessageEdited) throws ApiException {
+    onMessageEdited(webhookPayloadMessageEdited, null);
+  }
+
+  /**
+   * Message edited event
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full &#x60;editHistory&#x60; so consumers can show prior versions. 
+   * @param webhookPayloadMessageEdited  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageEdited(@javax.annotation.Nonnull WebhookPayloadMessageEdited webhookPayloadMessageEdited, Map<String, String> headers) throws ApiException {
+    onMessageEditedWithHttpInfo(webhookPayloadMessageEdited, headers);
+  }
+
+  /**
+   * Message edited event
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full &#x60;editHistory&#x60; so consumers can show prior versions. 
+   * @param webhookPayloadMessageEdited  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageEditedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageEdited webhookPayloadMessageEdited) throws ApiException {
+    return onMessageEditedWithHttpInfo(webhookPayloadMessageEdited, null);
+  }
+
+  /**
+   * Message edited event
+   * Fired when a sender edits a previously-sent message. Supported on Instagram, Facebook Messenger, and Telegram. The payload includes the full &#x60;editHistory&#x60; so consumers can show prior versions. 
+   * @param webhookPayloadMessageEdited  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageEditedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageEdited webhookPayloadMessageEdited, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onMessageEditedRequestBuilder(webhookPayloadMessageEdited, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onMessageEdited", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onMessageEditedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadMessageEdited webhookPayloadMessageEdited, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadMessageEdited' is set
+    if (webhookPayloadMessageEdited == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadMessageEdited' when calling onMessageEdited");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/message.edited";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadMessageEdited);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Message delivery failed event
+   * Fired when an outgoing message fails to deliver. Currently only emitted for WhatsApp (other platforms don&#39;t expose per-message failure via webhook). The payload &#x60;error&#x60; object contains &#x60;code&#x60;, &#x60;title&#x60;, and &#x60;message&#x60; from the platform. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageFailed(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus) throws ApiException {
+    onMessageFailed(webhookPayloadMessageDeliveryStatus, null);
+  }
+
+  /**
+   * Message delivery failed event
+   * Fired when an outgoing message fails to deliver. Currently only emitted for WhatsApp (other platforms don&#39;t expose per-message failure via webhook). The payload &#x60;error&#x60; object contains &#x60;code&#x60;, &#x60;title&#x60;, and &#x60;message&#x60; from the platform. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageFailed(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    onMessageFailedWithHttpInfo(webhookPayloadMessageDeliveryStatus, headers);
+  }
+
+  /**
+   * Message delivery failed event
+   * Fired when an outgoing message fails to deliver. Currently only emitted for WhatsApp (other platforms don&#39;t expose per-message failure via webhook). The payload &#x60;error&#x60; object contains &#x60;code&#x60;, &#x60;title&#x60;, and &#x60;message&#x60; from the platform. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageFailedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus) throws ApiException {
+    return onMessageFailedWithHttpInfo(webhookPayloadMessageDeliveryStatus, null);
+  }
+
+  /**
+   * Message delivery failed event
+   * Fired when an outgoing message fails to deliver. Currently only emitted for WhatsApp (other platforms don&#39;t expose per-message failure via webhook). The payload &#x60;error&#x60; object contains &#x60;code&#x60;, &#x60;title&#x60;, and &#x60;message&#x60; from the platform. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageFailedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onMessageFailedRequestBuilder(webhookPayloadMessageDeliveryStatus, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onMessageFailed", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onMessageFailedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadMessageDeliveryStatus' is set
+    if (webhookPayloadMessageDeliveryStatus == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadMessageDeliveryStatus' when calling onMessageFailed");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/message.failed";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadMessageDeliveryStatus);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Message read event
+   * Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, and Instagram. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageRead(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus) throws ApiException {
+    onMessageRead(webhookPayloadMessageDeliveryStatus, null);
+  }
+
+  /**
+   * Message read event
+   * Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, and Instagram. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onMessageRead(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    onMessageReadWithHttpInfo(webhookPayloadMessageDeliveryStatus, headers);
+  }
+
+  /**
+   * Message read event
+   * Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, and Instagram. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageReadWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus) throws ApiException {
+    return onMessageReadWithHttpInfo(webhookPayloadMessageDeliveryStatus, null);
+  }
+
+  /**
+   * Message read event
+   * Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, and Instagram. 
+   * @param webhookPayloadMessageDeliveryStatus  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onMessageReadWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onMessageReadRequestBuilder(webhookPayloadMessageDeliveryStatus, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onMessageRead", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onMessageReadRequestBuilder(@javax.annotation.Nonnull WebhookPayloadMessageDeliveryStatus webhookPayloadMessageDeliveryStatus, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadMessageDeliveryStatus' is set
+    if (webhookPayloadMessageDeliveryStatus == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadMessageDeliveryStatus' when calling onMessageRead");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/message.read";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadMessageDeliveryStatus);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

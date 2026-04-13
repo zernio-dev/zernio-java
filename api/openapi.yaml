@@ -16944,6 +16944,70 @@ components:
         LATEST state; `editHistory` contains every prior version in order
         (oldest first), so the last entry is the version immediately before
         the current content.
+      example:
+        editHistory:
+        - attachments:
+          - payload: "{}"
+            type: type
+            url: url
+          - payload: "{}"
+            type: type
+            url: url
+          editedAt: 2000-01-23T04:56:07.000+00:00
+          text: text
+        - attachments:
+          - payload: "{}"
+            type: type
+            url: url
+          - payload: "{}"
+            type: type
+            url: url
+          editedAt: 2000-01-23T04:56:07.000+00:00
+          text: text
+        editedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        event: message.edited
+        message:
+          attachments:
+          - payload: "{}"
+            type: type
+            url: url
+          - payload: "{}"
+            type: type
+            url: url
+          sender:
+            name: name
+            id: id
+            picture: picture
+            instagramProfile:
+              isFollowing: true
+              isVerified: true
+              isFollower: true
+              followerCount: 0
+            username: username
+          conversationId: conversationId
+          isRead: true
+          id: id
+          text: text
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          platformMessageId: platformMessageId
+          platform: instagram
+          direction: incoming
+        conversation:
+          participantId: participantId
+          platformConversationId: platformConversationId
+          participantPicture: participantPicture
+          id: id
+          participantName: participantName
+          participantUsername: participantUsername
+          status: active
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        editCount: 0
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: string
@@ -16993,6 +17057,50 @@ components:
         that existed before the delete. The Zernio dashboard UI does not show
         this content, but authorized API consumers may access it for
         moderation, compliance, or archival use cases.
+      example:
+        deletedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        event: message.deleted
+        message:
+          attachments:
+          - payload: "{}"
+            type: type
+            url: url
+          - payload: "{}"
+            type: type
+            url: url
+          sender:
+            name: name
+            id: id
+            picture: picture
+            instagramProfile:
+              isFollowing: true
+              isVerified: true
+              isFollower: true
+              followerCount: 0
+            username: username
+          conversationId: conversationId
+          isRead: true
+          id: id
+          text: text
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          platformMessageId: platformMessageId
+          platform: instagram
+          direction: incoming
+        conversation:
+          participantId: participantId
+          platformConversationId: platformConversationId
+          participantPicture: participantPicture
+          id: id
+          participantName: participantName
+          participantUsername: participantUsername
+          status: active
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: string
@@ -17031,6 +17139,54 @@ components:
           * `message.read`      — WhatsApp, Facebook Messenger, Instagram.
           * `message.failed`    — WhatsApp only (other platforms don't expose
             per-message failure via webhook).
+      example:
+        id: id
+        event: message.delivered
+        message:
+          attachments:
+          - payload: "{}"
+            type: type
+            url: url
+          - payload: "{}"
+            type: type
+            url: url
+          sender:
+            name: name
+            id: id
+            picture: picture
+            instagramProfile:
+              isFollowing: true
+              isVerified: true
+              isFollower: true
+              followerCount: 0
+            username: username
+          conversationId: conversationId
+          isRead: true
+          id: id
+          text: text
+          sentAt: 2000-01-23T04:56:07.000+00:00
+          platformMessageId: platformMessageId
+          platform: instagram
+          direction: incoming
+        statusAt: 2000-01-23T04:56:07.000+00:00
+        error:
+          code: 0
+          title: title
+          message: message
+        conversation:
+          participantId: participantId
+          platformConversationId: platformConversationId
+          participantPicture: participantPicture
+          id: id
+          participantName: participantName
+          participantUsername: participantUsername
+          status: active
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: string
@@ -38191,6 +38347,16 @@ components:
       - sentAt
       - text
     WebhookPayloadMessageEdited_editHistory_inner:
+      example:
+        attachments:
+        - payload: "{}"
+          type: type
+          url: url
+        - payload: "{}"
+          type: type
+          url: url
+        editedAt: 2000-01-23T04:56:07.000+00:00
+        text: text
       properties:
         text:
           type: string
@@ -38208,6 +38374,10 @@ components:
       - text
     WebhookPayloadMessageDeliveryStatus_error:
       description: Populated only on `message.failed`.
+      example:
+        code: 0
+        title: title
+        message: message
       properties:
         code:
           type: integer
