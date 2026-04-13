@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   BulkUpdateWhatsAppContactsRequest.JSON_PROPERTY_TAGS,
   BulkUpdateWhatsAppContactsRequest.JSON_PROPERTY_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-13T11:23:03.545448702Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-13T11:36:49.915355466Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUpdateWhatsAppContactsRequest {
   /**
    * Bulk action to perform

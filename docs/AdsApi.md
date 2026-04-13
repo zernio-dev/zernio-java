@@ -933,7 +933,7 @@ ApiResponse<[**ListAdAccounts200Response**](ListAdAccounts200Response.md)>
 
 ## listAds
 
-> ListAds200Response listAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate)
+> ListAds200Response listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate)
 
 List ads
 
@@ -966,12 +966,13 @@ public class Example {
         String status = "active"; // String | 
         String platform = "facebook"; // String | 
         String accountId = "accountId_example"; // String | Social account ID
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree.
         String profileId = "profileId_example"; // String | Profile ID
         String campaignId = "campaignId_example"; // String | Platform campaign ID (filter ads within a campaign)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range.
         try {
-            ListAds200Response result = apiInstance.listAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
+            ListAds200Response result = apiInstance.listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#listAds");
@@ -995,6 +996,7 @@ public class Example {
 | **status** | **String**|  | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
 | **accountId** | **String**| Social account ID | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
 | **campaignId** | **String**| Platform campaign ID (filter ads within a campaign) | [optional] |
 | **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
@@ -1023,7 +1025,7 @@ public class Example {
 
 ## listAdsWithHttpInfo
 
-> ApiResponse<ListAds200Response> listAds listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate)
+> ApiResponse<ListAds200Response> listAds listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate)
 
 List ads
 
@@ -1057,12 +1059,13 @@ public class Example {
         String status = "active"; // String | 
         String platform = "facebook"; // String | 
         String accountId = "accountId_example"; // String | Social account ID
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree.
         String profileId = "profileId_example"; // String | Profile ID
         String campaignId = "campaignId_example"; // String | Platform campaign ID (filter ads within a campaign)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range.
         try {
-            ApiResponse<ListAds200Response> response = apiInstance.listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate);
+            ApiResponse<ListAds200Response> response = apiInstance.listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1088,6 +1091,7 @@ public class Example {
 | **status** | **String**|  | [optional] [enum: active, paused, pending_review, rejected, completed, cancelled, error] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
 | **accountId** | **String**| Social account ID | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
 | **campaignId** | **String**| Platform campaign ID (filter ads within a campaign) | [optional] |
 | **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |

@@ -57,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-13T11:23:03.545448702Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-13T11:36:49.915355466Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -946,6 +946,7 @@ public class AdsApi {
    * @param status  (optional)
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
@@ -953,8 +954,8 @@ public class AdsApi {
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAds(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, null);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, null);
   }
 
   /**
@@ -966,6 +967,7 @@ public class AdsApi {
    * @param status  (optional)
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
@@ -974,8 +976,8 @@ public class AdsApi {
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, headers);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
@@ -988,6 +990,7 @@ public class AdsApi {
    * @param status  (optional)
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
@@ -995,8 +998,8 @@ public class AdsApi {
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, null);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, null);
   }
 
   /**
@@ -1008,6 +1011,7 @@ public class AdsApi {
    * @param status  (optional)
    * @param platform  (optional)
    * @param accountId Social account ID (optional)
+   * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
@@ -1016,8 +1020,8 @@ public class AdsApi {
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, profileId, campaignId, fromDate, toDate, headers);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1064,7 +1068,7 @@ public class AdsApi {
     }
   }
 
-  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1085,6 +1089,8 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
     localVarQueryParameterBaseName = "campaignId";

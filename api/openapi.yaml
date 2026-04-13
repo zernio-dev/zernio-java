@@ -14480,6 +14480,15 @@ paths:
         schema:
           type: string
         style: form
+      - description: Platform ad account ID (e.g. act_123 for Meta). Mirrors the same
+          filter on /v1/ads/campaigns and /v1/ads/tree.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Profile ID
         explode: true
         in: query
