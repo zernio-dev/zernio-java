@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_DATA_POINTS,
   AccountWithFollowerStats.JSON_PROPERTY_ACCOUNT_STATS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-14T07:11:43.950164497Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-14T11:43:39.105583357Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -93,6 +93,8 @@ public class AccountWithFollowerStats {
     TELEGRAM(String.valueOf("telegram")),
     
     SNAPCHAT(String.valueOf("snapchat")),
+    
+    DISCORD(String.valueOf("discord")),
     
     WHATSAPP(String.valueOf("whatsapp")),
     

@@ -31,6 +31,7 @@
 | TELEGRAM | &quot;telegram&quot; |
 | SNAPCHAT | &quot;snapchat&quot; |
 | GOOGLEBUSINESS | &quot;googlebusiness&quot; |
+| DISCORD | &quot;discord&quot; |
 
 
 

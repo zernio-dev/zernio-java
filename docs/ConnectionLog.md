@@ -41,6 +41,7 @@ Connection event log showing account connection/disconnection history
 | GOOGLEBUSINESS | &quot;googlebusiness&quot; |
 | TELEGRAM | &quot;telegram&quot; |
 | SNAPCHAT | &quot;snapchat&quot; |
+| DISCORD | &quot;discord&quot; |
 
 
 

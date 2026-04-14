@@ -44,6 +44,7 @@ Publishing log entry showing details of a post publishing attempt
 | GOOGLEBUSINESS | &quot;googlebusiness&quot; |
 | TELEGRAM | &quot;telegram&quot; |
 | SNAPCHAT | &quot;snapchat&quot; |
+| DISCORD | &quot;discord&quot; |
 
 
 

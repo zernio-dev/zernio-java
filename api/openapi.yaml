@@ -3886,6 +3886,7 @@ paths:
           - googlebusiness
           - telegram
           - snapchat
+          - discord
           type: string
         style: form
       - description: Filter by health status
@@ -4277,6 +4278,7 @@ paths:
           - googlebusiness
           - telegram
           - snapchat
+          - discord
           type: string
         style: simple
       - description: Your Zernio profile ID (get from /v1/profiles)
@@ -17443,6 +17445,7 @@ components:
           - googlebusiness
           - telegram
           - snapchat
+          - discord
           type: string
         accountId:
           type: string
@@ -17545,6 +17548,7 @@ components:
           - googlebusiness
           - telegram
           - snapchat
+          - discord
           type: string
         eventType:
           description: "Type of connection event: connect_success, connect_failed,\
@@ -18810,6 +18814,7 @@ components:
           - googlebusiness
           - telegram
           - snapchat
+          - discord
           - whatsapp
           - linkedinads
           - metaads
@@ -21660,6 +21665,7 @@ components:
           - telegram
           - snapchat
           - googlebusiness
+          - discord
           type: string
         customContent:
           type: string

@@ -40,6 +40,7 @@
 | GOOGLEBUSINESS | &quot;googlebusiness&quot; |
 | TELEGRAM | &quot;telegram&quot; |
 | SNAPCHAT | &quot;snapchat&quot; |
+| DISCORD | &quot;discord&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
 | METAADS | &quot;metaads&quot; |
