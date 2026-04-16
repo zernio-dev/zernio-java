@@ -148,7 +148,7 @@ tags:
     Requires the Ads add-on.
   name: Ad Audiences
 - description: |
-    Configure webhooks for real-time notifications. Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, message.received, message.sent, comment.received, webhook.test.
+    Configure webhooks for real-time notifications. Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, message.received, message.sent, comment.received, gbp.review.new, gbp.review.updated, gbp.media.new, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -5638,6 +5638,64 @@ paths:
       - GMB Place Actions
       x-accepts:
       - application/json
+    patch:
+      description: |
+        Updates a place action link (change URL or action type).
+        Only the fields included in the request body will be updated.
+      operationId: updateGoogleBusinessPlaceAction
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Override which location to target. If omitted, uses the account's\
+          \ selected location."
+        explode: true
+        in: query
+        name: locationId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: locations/123/placeActionLinks/456
+              uri: https://order.doordash.com/joespizza
+            schema:
+              $ref: "#/components/schemas/updateGoogleBusinessPlaceAction_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateGoogleBusinessPlaceAction_200_response"
+          description: Place action updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Invalid request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized
+      security:
+      - bearerAuth: []
+      summary: Update action link
+      tags:
+      - GMB Place Actions
+      x-content-type: application/json
+      x-accepts:
+      - application/json
     post:
       description: |
         Creates a place action link for a location.
@@ -5694,6 +5752,168 @@ paths:
       summary: Create action link
       tags:
       - GMB Place Actions
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/gmb-services:
+    get:
+      description: |
+        Gets the services offered by a Google Business Profile location.
+        Returns an array of service items (structured or free-form with optional price).
+      operationId: getGoogleBusinessServices
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Override which location to query. If omitted, uses the account's\
+          \ selected location."
+        explode: true
+        in: query
+        name: locationId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getGoogleBusinessServices_200_response"
+          description: Services fetched successfully
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized
+      security:
+      - bearerAuth: []
+      summary: Get services
+      tags:
+      - GMB Services
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Replaces the entire service list for a location.
+        Google's API requires full replacement; individual item updates are not supported.
+        Each service can be structured (using a predefined serviceTypeId) or free-form (custom label).
+      operationId: updateGoogleBusinessServices
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Override which location to target. If omitted, uses the account's\
+          \ selected location."
+        explode: true
+        in: query
+        name: locationId
+        required: false
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            example:
+              serviceItems:
+              - freeFormServiceItem:
+                  category: categories/gcid:plumber
+                  label:
+                    displayName: Pipe Repair
+                    description: Emergency and scheduled pipe repair
+                price:
+                  currencyCode: USD
+                  units: "150"
+            schema:
+              $ref: "#/components/schemas/updateGoogleBusinessServices_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateGoogleBusinessServices_200_response"
+          description: Services updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Invalid request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized
+      security:
+      - bearerAuth: []
+      summary: Replace services
+      tags:
+      - GMB Services
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/gmb-reviews/batch:
+    post:
+      description: |
+        Fetches reviews across multiple locations in a single request.
+        More efficient than calling GET /gmb-reviews per location for multi-location businesses.
+        Reviews are grouped by location in the response.
+      operationId: batchGetGoogleBusinessReviews
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              locationNames:
+              - accounts/123/locations/456
+              - accounts/123/locations/789
+              pageSize: 50
+            schema:
+              $ref: "#/components/schemas/batchGetGoogleBusinessReviews_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/batchGetGoogleBusinessReviews_200_response"
+          description: Batch reviews fetched successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Invalid request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized
+      security:
+      - bearerAuth: []
+      summary: Batch get reviews
+      tags:
+      - GMB Reviews
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -8134,6 +8354,9 @@ paths:
                   - account.disconnected
                   - message.received
                   - comment.received
+                  - gbp.review.new
+                  - gbp.review.updated
+                  - gbp.media.new
                   isActive: true
             schema:
               $ref: "#/components/schemas/createWebhookSettings_request"
@@ -15311,6 +15534,9 @@ components:
             - message.read
             - message.failed
             - comment.received
+            - gbp.review.new
+            - gbp.review.updated
+            - gbp.media.new
             type: string
           type: array
         isActive:
@@ -17032,8 +17258,10 @@ components:
           type: string
     GoogleBusinessPlatformData:
       description: "Text and single image only (no videos). Supports STANDARD, EVENT,\
-        \ and OFFER post types. Posts appear on GBP, Google Search, and Maps. Use\
-        \ locationId for multi-location posting."
+        \ OFFER, and ALERT post types. Posts appear on GBP, Google Search, and Maps.\
+        \ Use locationId for multi-location posting. Schedule dates accept both ISO\
+        \ 8601 strings (e.g. '2026-04-15T09:00:00Z') and Google's native {year, month,\
+        \ day} objects."
       properties:
         locationId:
           description: "Target GBP location ID (e.g. \"locations/123456789\"). If\
@@ -25958,6 +26186,232 @@ components:
           type: boolean
         name:
           type: string
+    updateGoogleBusinessPlaceAction_request:
+      properties:
+        name:
+          description: Resource name of the place action link (e.g. locations/123/placeActionLinks/456)
+          type: string
+        uri:
+          description: New action URL
+          type: string
+        placeActionType:
+          description: New action type
+          enum:
+          - APPOINTMENT
+          - ONLINE_APPOINTMENT
+          - DINING_RESERVATION
+          - FOOD_ORDERING
+          - FOOD_DELIVERY
+          - FOOD_TAKEOUT
+          - SHOP_ONLINE
+          type: string
+      required:
+      - name
+    updateGoogleBusinessPlaceAction_200_response:
+      example:
+        placeActionType: placeActionType
+        success: true
+        name: name
+        uri: uri
+      properties:
+        success:
+          type: boolean
+        name:
+          type: string
+        uri:
+          type: string
+        placeActionType:
+          type: string
+    getGoogleBusinessServices_200_response_services_inner_freeFormServiceItem_label:
+      example:
+        displayName: displayName
+        description: description
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+    getGoogleBusinessServices_200_response_services_inner_freeFormServiceItem:
+      example:
+        label:
+          displayName: displayName
+          description: description
+        category: category
+      properties:
+        category:
+          type: string
+        label:
+          $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner_freeFormServiceItem_label"
+    getGoogleBusinessServices_200_response_services_inner_price:
+      example:
+        nanos: 0
+        units: "50"
+        currencyCode: USD
+      properties:
+        currencyCode:
+          example: USD
+          type: string
+        units:
+          example: "50"
+          type: string
+        nanos:
+          type: integer
+    getGoogleBusinessServices_200_response_services_inner:
+      example:
+        structuredServiceItem:
+          serviceTypeId: serviceTypeId
+          description: description
+        price:
+          nanos: 0
+          units: "50"
+          currencyCode: USD
+        freeFormServiceItem:
+          label:
+            displayName: displayName
+            description: description
+          category: category
+      properties:
+        structuredServiceItem:
+          $ref: "#/components/schemas/getGoogleBusinessLocationDetails_200_response_serviceItems_inner_structuredServiceItem"
+        freeFormServiceItem:
+          $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner_freeFormServiceItem"
+        price:
+          $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner_price"
+    getGoogleBusinessServices_200_response:
+      example:
+        accountId: accountId
+        success: true
+        locationId: locationId
+        services:
+        - structuredServiceItem:
+            serviceTypeId: serviceTypeId
+            description: description
+          price:
+            nanos: 0
+            units: "50"
+            currencyCode: USD
+          freeFormServiceItem:
+            label:
+              displayName: displayName
+              description: description
+            category: category
+        - structuredServiceItem:
+            serviceTypeId: serviceTypeId
+            description: description
+          price:
+            nanos: 0
+            units: "50"
+            currencyCode: USD
+          freeFormServiceItem:
+            label:
+              displayName: displayName
+              description: description
+            category: category
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        locationId:
+          type: string
+        services:
+          items:
+            $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner"
+          type: array
+    updateGoogleBusinessServices_request_serviceItems_inner:
+      properties:
+        structuredServiceItem:
+          $ref: "#/components/schemas/getGoogleBusinessLocationDetails_200_response_serviceItems_inner_structuredServiceItem"
+        freeFormServiceItem:
+          $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner_freeFormServiceItem"
+        price:
+          $ref: "#/components/schemas/getGoogleBusinessLocationDetails_200_response_serviceItems_inner_price"
+    updateGoogleBusinessServices_request:
+      properties:
+        serviceItems:
+          items:
+            $ref: "#/components/schemas/updateGoogleBusinessServices_request_serviceItems_inner"
+          type: array
+      required:
+      - serviceItems
+    updateGoogleBusinessServices_200_response:
+      example:
+        success: true
+        services:
+        - "{}"
+        - "{}"
+      properties:
+        success:
+          type: boolean
+        services:
+          items:
+            type: object
+          type: array
+    batchGetGoogleBusinessReviews_request:
+      properties:
+        locationNames:
+          description: "Array of full location resource names (e.g. ['accounts/123/locations/456'])"
+          items:
+            type: string
+          type: array
+        pageSize:
+          default: 50
+          description: Number of reviews per page (max 50)
+          maximum: 50
+          type: integer
+        pageToken:
+          description: Pagination token from previous response
+          type: string
+      required:
+      - locationNames
+    batchGetGoogleBusinessReviews_200_response_locationReviews_inner:
+      example:
+        locationName: locationName
+        reviews:
+        - "{}"
+        - "{}"
+        averageRating: 0.8008281904610115
+        totalReviewCount: 6
+      properties:
+        locationName:
+          type: string
+        reviews:
+          items:
+            type: object
+          type: array
+        averageRating:
+          type: number
+        totalReviewCount:
+          type: integer
+    batchGetGoogleBusinessReviews_200_response:
+      example:
+        accountId: accountId
+        success: true
+        nextPageToken: nextPageToken
+        locationReviews:
+        - locationName: locationName
+          reviews:
+          - "{}"
+          - "{}"
+          averageRating: 0.8008281904610115
+          totalReviewCount: 6
+        - locationName: locationName
+          reviews:
+          - "{}"
+          - "{}"
+          averageRating: 0.8008281904610115
+          totalReviewCount: 6
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        locationReviews:
+          items:
+            $ref: "#/components/schemas/batchGetGoogleBusinessReviews_200_response_locationReviews_inner"
+          type: array
+        nextPageToken:
+          type: string
     getPendingOAuthData_200_response_organizations_inner:
       example:
         urn: urn
@@ -27791,6 +28245,9 @@ components:
             - account.disconnected
             - message.received
             - comment.received
+            - gbp.review.new
+            - gbp.review.updated
+            - gbp.media.new
             type: string
           type: array
         isActive:
@@ -27850,6 +28307,9 @@ components:
             - account.disconnected
             - message.received
             - comment.received
+            - gbp.review.new
+            - gbp.review.updated
+            - gbp.media.new
             type: string
           type: array
         isActive:
@@ -37184,6 +37644,9 @@ x-documentation:
     - `message.read` - An outgoing message was read by the recipient (WhatsApp, Messenger, Instagram)
     - `message.failed` - An outgoing message failed delivery (WhatsApp)
     - `comment.received` - New comment received on a post
+    - `gbp.review.new` - New Google Business Profile review posted
+    - `gbp.review.updated` - Existing Google Business Profile review updated
+    - `gbp.media.new` - Customer uploaded media to a Google Business Profile location
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Webhook payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header.

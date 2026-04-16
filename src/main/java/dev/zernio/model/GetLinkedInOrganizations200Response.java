@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetLinkedInOrganizations200Response.JSON_PROPERTY_ORGANIZATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T10:56:32.804843189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T11:32:47.640118949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInOrganizations200Response {
   public static final String JSON_PROPERTY_ORGANIZATIONS = "organizations";
   @javax.annotation.Nullable

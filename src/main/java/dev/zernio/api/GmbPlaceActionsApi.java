@@ -23,6 +23,8 @@ import dev.zernio.model.CreateGoogleBusinessPlaceActionRequest;
 import dev.zernio.model.DeleteGoogleBusinessPlaceAction200Response;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.ListGoogleBusinessPlaceActions200Response;
+import dev.zernio.model.UpdateGoogleBusinessPlaceAction200Response;
+import dev.zernio.model.UpdateGoogleBusinessPlaceActionRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T10:56:32.804843189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T11:32:47.640118949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbPlaceActionsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -602,6 +604,157 @@ public class GmbPlaceActionsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update action link
+   * Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+   * @param accountId  (required)
+   * @param updateGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. (optional)
+   * @return UpdateGoogleBusinessPlaceAction200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateGoogleBusinessPlaceAction200Response updateGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessPlaceAction(accountId, updateGoogleBusinessPlaceActionRequest, locationId, null);
+  }
+
+  /**
+   * Update action link
+   * Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+   * @param accountId  (required)
+   * @param updateGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. (optional)
+   * @param headers Optional headers to include in the request
+   * @return UpdateGoogleBusinessPlaceAction200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateGoogleBusinessPlaceAction200Response updateGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateGoogleBusinessPlaceAction200Response> localVarResponse = updateGoogleBusinessPlaceActionWithHttpInfo(accountId, updateGoogleBusinessPlaceActionRequest, locationId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update action link
+   * Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+   * @param accountId  (required)
+   * @param updateGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. (optional)
+   * @return ApiResponse&lt;UpdateGoogleBusinessPlaceAction200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateGoogleBusinessPlaceAction200Response> updateGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+    return updateGoogleBusinessPlaceActionWithHttpInfo(accountId, updateGoogleBusinessPlaceActionRequest, locationId, null);
+  }
+
+  /**
+   * Update action link
+   * Updates a place action link (change URL or action type). Only the fields included in the request body will be updated. 
+   * @param accountId  (required)
+   * @param updateGoogleBusinessPlaceActionRequest  (required)
+   * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateGoogleBusinessPlaceAction200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateGoogleBusinessPlaceAction200Response> updateGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessPlaceActionRequestBuilder(accountId, updateGoogleBusinessPlaceActionRequest, locationId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateGoogleBusinessPlaceAction", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateGoogleBusinessPlaceAction200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateGoogleBusinessPlaceAction200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateGoogleBusinessPlaceAction200Response>() {});
+        
+
+        return new ApiResponse<UpdateGoogleBusinessPlaceAction200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateGoogleBusinessPlaceActionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateGoogleBusinessPlaceAction");
+    }
+    // verify the required parameter 'updateGoogleBusinessPlaceActionRequest' is set
+    if (updateGoogleBusinessPlaceActionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateGoogleBusinessPlaceActionRequest' when calling updateGoogleBusinessPlaceAction");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/gmb-place-actions"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "locationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locationId", locationId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateGoogleBusinessPlaceActionRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

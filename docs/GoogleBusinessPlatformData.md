@@ -2,7 +2,7 @@
 
 # GoogleBusinessPlatformData
 
-Text and single image only (no videos). Supports STANDARD, EVENT, and OFFER post types. Posts appear on GBP, Google Search, and Maps. Use locationId for multi-location posting.
+Text and single image only (no videos). Supports STANDARD, EVENT, OFFER, and ALERT post types. Posts appear on GBP, Google Search, and Maps. Use locationId for multi-location posting. Schedule dates accept both ISO 8601 strings (e.g. '2026-04-15T09:00:00Z') and Google's native {year, month, day} objects.
 
 ## Properties
 

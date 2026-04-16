@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Text and single image only (no videos). Supports STANDARD, EVENT, and OFFER post types. Posts appear on GBP, Google Search, and Maps. Use locationId for multi-location posting.
+ * Text and single image only (no videos). Supports STANDARD, EVENT, OFFER, and ALERT post types. Posts appear on GBP, Google Search, and Maps. Use locationId for multi-location posting. Schedule dates accept both ISO 8601 strings (e.g. &#39;2026-04-15T09:00:00Z&#39;) and Google&#39;s native {year, month, day} objects.
  */
 @JsonPropertyOrder({
   GoogleBusinessPlatformData.JSON_PROPERTY_LOCATION_ID,
@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GoogleBusinessPlatformData.JSON_PROPERTY_EVENT,
   GoogleBusinessPlatformData.JSON_PROPERTY_OFFER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T10:56:32.804843189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T11:32:47.640118949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleBusinessPlatformData {
   public static final String JSON_PROPERTY_LOCATION_ID = "locationId";
   @javax.annotation.Nullable

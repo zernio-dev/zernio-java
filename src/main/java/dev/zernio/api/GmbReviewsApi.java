@@ -18,6 +18,8 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.BatchGetGoogleBusinessReviews200Response;
+import dev.zernio.model.BatchGetGoogleBusinessReviewsRequest;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetGoogleBusinessReviews200Response;
 import dev.zernio.model.InlineObject1;
@@ -47,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T10:56:32.804843189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T11:32:47.640118949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -162,6 +164,138 @@ public class GmbReviewsApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Batch get reviews
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * @param accountId  (required)
+   * @param batchGetGoogleBusinessReviewsRequest  (required)
+   * @return BatchGetGoogleBusinessReviews200Response
+   * @throws ApiException if fails to make API call
+   */
+  public BatchGetGoogleBusinessReviews200Response batchGetGoogleBusinessReviews(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest) throws ApiException {
+    return batchGetGoogleBusinessReviews(accountId, batchGetGoogleBusinessReviewsRequest, null);
+  }
+
+  /**
+   * Batch get reviews
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * @param accountId  (required)
+   * @param batchGetGoogleBusinessReviewsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return BatchGetGoogleBusinessReviews200Response
+   * @throws ApiException if fails to make API call
+   */
+  public BatchGetGoogleBusinessReviews200Response batchGetGoogleBusinessReviews(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<BatchGetGoogleBusinessReviews200Response> localVarResponse = batchGetGoogleBusinessReviewsWithHttpInfo(accountId, batchGetGoogleBusinessReviewsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Batch get reviews
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * @param accountId  (required)
+   * @param batchGetGoogleBusinessReviewsRequest  (required)
+   * @return ApiResponse&lt;BatchGetGoogleBusinessReviews200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BatchGetGoogleBusinessReviews200Response> batchGetGoogleBusinessReviewsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest) throws ApiException {
+    return batchGetGoogleBusinessReviewsWithHttpInfo(accountId, batchGetGoogleBusinessReviewsRequest, null);
+  }
+
+  /**
+   * Batch get reviews
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * @param accountId  (required)
+   * @param batchGetGoogleBusinessReviewsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;BatchGetGoogleBusinessReviews200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BatchGetGoogleBusinessReviews200Response> batchGetGoogleBusinessReviewsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = batchGetGoogleBusinessReviewsRequestBuilder(accountId, batchGetGoogleBusinessReviewsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("batchGetGoogleBusinessReviews", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<BatchGetGoogleBusinessReviews200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        BatchGetGoogleBusinessReviews200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BatchGetGoogleBusinessReviews200Response>() {});
+        
+
+        return new ApiResponse<BatchGetGoogleBusinessReviews200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder batchGetGoogleBusinessReviewsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling batchGetGoogleBusinessReviews");
+    }
+    // verify the required parameter 'batchGetGoogleBusinessReviewsRequest' is set
+    if (batchGetGoogleBusinessReviewsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'batchGetGoogleBusinessReviewsRequest' when calling batchGetGoogleBusinessReviews");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/gmb-reviews/batch"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(batchGetGoogleBusinessReviewsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**

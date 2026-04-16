@@ -31,6 +31,9 @@
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
+| GBP_REVIEW_NEW | &quot;gbp.review.new&quot; |
+| GBP_REVIEW_UPDATED | &quot;gbp.review.updated&quot; |
+| GBP_MEDIA_NEW | &quot;gbp.media.new&quot; |
 
 
 

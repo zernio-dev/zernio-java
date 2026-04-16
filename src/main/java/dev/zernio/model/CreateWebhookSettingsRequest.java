@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   CreateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T10:56:32.804843189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T11:32:47.640118949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -81,7 +81,13 @@ public class CreateWebhookSettingsRequest {
     
     MESSAGE_RECEIVED(String.valueOf("message.received")),
     
-    COMMENT_RECEIVED(String.valueOf("comment.received"));
+    COMMENT_RECEIVED(String.valueOf("comment.received")),
+    
+    GBP_REVIEW_NEW(String.valueOf("gbp.review.new")),
+    
+    GBP_REVIEW_UPDATED(String.valueOf("gbp.review.updated")),
+    
+    GBP_MEDIA_NEW(String.valueOf("gbp.media.new"));
 
     private String value;
 
