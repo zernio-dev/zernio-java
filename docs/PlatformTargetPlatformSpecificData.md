@@ -6,6 +6,7 @@ Platform-specific overrides and options.
 
 ## oneOf schemas
 * [BlueskyPlatformData](BlueskyPlatformData.md)
+* [DiscordPlatformData](DiscordPlatformData.md)
 * [FacebookPlatformData](FacebookPlatformData.md)
 * [GoogleBusinessPlatformData](GoogleBusinessPlatformData.md)
 * [InstagramPlatformData](InstagramPlatformData.md)
@@ -24,6 +25,7 @@ Platform-specific overrides and options.
 // Import classes:
 import dev.zernio.model.PlatformTargetPlatformSpecificData;
 import dev.zernio.model.BlueskyPlatformData;
+import dev.zernio.model.DiscordPlatformData;
 import dev.zernio.model.FacebookPlatformData;
 import dev.zernio.model.GoogleBusinessPlatformData;
 import dev.zernio.model.InstagramPlatformData;
@@ -47,6 +49,13 @@ public class Example {
         examplePlatformTargetPlatformSpecificData.setActualInstance(exampleBlueskyPlatformData);
         // to get back the BlueskyPlatformData set earlier
         BlueskyPlatformData testBlueskyPlatformData = (BlueskyPlatformData) examplePlatformTargetPlatformSpecificData.getActualInstance();
+
+        // create a new DiscordPlatformData
+        DiscordPlatformData exampleDiscordPlatformData = new DiscordPlatformData();
+        // set PlatformTargetPlatformSpecificData to DiscordPlatformData
+        examplePlatformTargetPlatformSpecificData.setActualInstance(exampleDiscordPlatformData);
+        // to get back the DiscordPlatformData set earlier
+        DiscordPlatformData testDiscordPlatformData = (DiscordPlatformData) examplePlatformTargetPlatformSpecificData.getActualInstance();
 
         // create a new FacebookPlatformData
         FacebookPlatformData exampleFacebookPlatformData = new FacebookPlatformData();

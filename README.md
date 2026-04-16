@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-16T08:33:57.818543406Z[Etc/UTC]
+- Build date: 2026-04-16T09:02:59.930725623Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -368,6 +368,12 @@ Class | Method | HTTP request | Description
 *CustomFieldsApi* | [**setContactFieldValueWithHttpInfo**](docs/CustomFieldsApi.md#setContactFieldValueWithHttpInfo) | **PUT** /v1/contacts/{contactId}/fields/{slug} | Set custom field value
 *CustomFieldsApi* | [**updateCustomField**](docs/CustomFieldsApi.md#updateCustomField) | **PATCH** /v1/custom-fields/{fieldId} | Update custom field
 *CustomFieldsApi* | [**updateCustomFieldWithHttpInfo**](docs/CustomFieldsApi.md#updateCustomFieldWithHttpInfo) | **PATCH** /v1/custom-fields/{fieldId} | Update custom field
+*DiscordApi* | [**getDiscordChannels**](docs/DiscordApi.md#getDiscordChannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
+*DiscordApi* | [**getDiscordChannelsWithHttpInfo**](docs/DiscordApi.md#getDiscordChannelsWithHttpInfo) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
+*DiscordApi* | [**getDiscordSettings**](docs/DiscordApi.md#getDiscordSettings) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings
+*DiscordApi* | [**getDiscordSettingsWithHttpInfo**](docs/DiscordApi.md#getDiscordSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/discord-settings | Get Discord account settings
+*DiscordApi* | [**updateDiscordSettings**](docs/DiscordApi.md#updateDiscordSettings) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
+*DiscordApi* | [**updateDiscordSettingsWithHttpInfo**](docs/DiscordApi.md#updateDiscordSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
 *GmbAttributesApi* | [**getGoogleBusinessAttributes**](docs/GmbAttributesApi.md#getGoogleBusinessAttributes) | **GET** /v1/accounts/{accountId}/gmb-attributes | Get attributes
 *GmbAttributesApi* | [**getGoogleBusinessAttributesWithHttpInfo**](docs/GmbAttributesApi.md#getGoogleBusinessAttributesWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-attributes | Get attributes
 *GmbAttributesApi* | [**updateGoogleBusinessAttributes**](docs/GmbAttributesApi.md#updateGoogleBusinessAttributes) | **PUT** /v1/accounts/{accountId}/gmb-attributes | Update attributes
@@ -745,6 +751,17 @@ Class | Method | HTTP request | Description
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [DeleteQueueSlot200Response](docs/DeleteQueueSlot200Response.md)
+ - [DiscordPlatformData](docs/DiscordPlatformData.md)
+ - [DiscordPlatformDataEmbedsInner](docs/DiscordPlatformDataEmbedsInner.md)
+ - [DiscordPlatformDataEmbedsInnerAuthor](docs/DiscordPlatformDataEmbedsInnerAuthor.md)
+ - [DiscordPlatformDataEmbedsInnerFieldsInner](docs/DiscordPlatformDataEmbedsInnerFieldsInner.md)
+ - [DiscordPlatformDataEmbedsInnerFooter](docs/DiscordPlatformDataEmbedsInnerFooter.md)
+ - [DiscordPlatformDataEmbedsInnerImage](docs/DiscordPlatformDataEmbedsInnerImage.md)
+ - [DiscordPlatformDataPoll](docs/DiscordPlatformDataPoll.md)
+ - [DiscordPlatformDataPollAnswersInner](docs/DiscordPlatformDataPollAnswersInner.md)
+ - [DiscordPlatformDataPollAnswersInnerPollMedia](docs/DiscordPlatformDataPollAnswersInnerPollMedia.md)
+ - [DiscordPlatformDataPollQuestion](docs/DiscordPlatformDataPollQuestion.md)
+ - [DiscordPlatformDataThreadFromMessage](docs/DiscordPlatformDataThreadFromMessage.md)
  - [EditInboxMessage200Response](docs/EditInboxMessage200Response.md)
  - [EditInboxMessage200ResponseData](docs/EditInboxMessage200ResponseData.md)
  - [EditInboxMessageRequest](docs/EditInboxMessageRequest.md)
@@ -805,6 +822,10 @@ Class | Method | HTTP request | Description
  - [GetDailyMetrics200ResponseDailyDataInner](docs/GetDailyMetrics200ResponseDailyDataInner.md)
  - [GetDailyMetrics200ResponseDailyDataInnerMetrics](docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md)
  - [GetDailyMetrics200ResponsePlatformBreakdownInner](docs/GetDailyMetrics200ResponsePlatformBreakdownInner.md)
+ - [GetDiscordChannels200Response](docs/GetDiscordChannels200Response.md)
+ - [GetDiscordChannels200ResponseChannelsInner](docs/GetDiscordChannels200ResponseChannelsInner.md)
+ - [GetDiscordSettings200Response](docs/GetDiscordSettings200Response.md)
+ - [GetDiscordSettings200ResponseAccount](docs/GetDiscordSettings200ResponseAccount.md)
  - [GetFacebookPages200Response](docs/GetFacebookPages200Response.md)
  - [GetFacebookPages200ResponsePagesInner](docs/GetFacebookPages200ResponsePagesInner.md)
  - [GetFollowerStats200Response](docs/GetFollowerStats200Response.md)
@@ -1195,6 +1216,9 @@ Class | Method | HTTP request | Description
  - [UpdateCustomField200Response](docs/UpdateCustomField200Response.md)
  - [UpdateCustomField200ResponseField](docs/UpdateCustomField200ResponseField.md)
  - [UpdateCustomFieldRequest](docs/UpdateCustomFieldRequest.md)
+ - [UpdateDiscordSettings200Response](docs/UpdateDiscordSettings200Response.md)
+ - [UpdateDiscordSettings200ResponseAccount](docs/UpdateDiscordSettings200ResponseAccount.md)
+ - [UpdateDiscordSettingsRequest](docs/UpdateDiscordSettingsRequest.md)
  - [UpdateFacebookPage200Response](docs/UpdateFacebookPage200Response.md)
  - [UpdateFacebookPage200ResponseSelectedPage](docs/UpdateFacebookPage200ResponseSelectedPage.md)
  - [UpdateFacebookPageRequest](docs/UpdateFacebookPageRequest.md)

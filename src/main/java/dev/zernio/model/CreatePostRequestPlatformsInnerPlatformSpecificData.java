@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BlueskyPlatformData;
+import dev.zernio.model.DiscordPlatformData;
+import dev.zernio.model.DiscordPlatformDataEmbedsInner;
+import dev.zernio.model.DiscordPlatformDataPoll;
+import dev.zernio.model.DiscordPlatformDataThreadFromMessage;
 import dev.zernio.model.FacebookPlatformData;
 import dev.zernio.model.GoogleBusinessPlatformData;
 import dev.zernio.model.GoogleBusinessPlatformDataCallToAction;
@@ -39,7 +43,6 @@ import dev.zernio.model.TelegramPlatformData;
 import dev.zernio.model.ThreadsPlatformData;
 import dev.zernio.model.TikTokPlatformData;
 import dev.zernio.model.TwitterPlatformData;
-import dev.zernio.model.TwitterPlatformDataPoll;
 import dev.zernio.model.TwitterPlatformDataThreadItemsInner;
 import dev.zernio.model.YouTubePlatformData;
 import java.net.URI;
@@ -73,7 +76,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T08:33:57.818543406Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T09:02:59.930725623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CreatePostRequestPlatformsInnerPlatformSpecificData.CreatePostRequestPlatformsInnerPlatformSpecificDataDeserializer.class)
 @JsonSerialize(using = CreatePostRequestPlatformsInnerPlatformSpecificData.CreatePostRequestPlatformsInnerPlatformSpecificDataSerializer.class)
 public class CreatePostRequestPlatformsInnerPlatformSpecificData extends AbstractOpenApiSchema {
@@ -134,6 +137,32 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
             } catch (Exception e) {
                 // deserialization failed, continue
                 log.log(Level.FINER, "Input data does not match schema 'BlueskyPlatformData'", e);
+            }
+
+            // deserialize DiscordPlatformData
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (DiscordPlatformData.class.equals(Integer.class) || DiscordPlatformData.class.equals(Long.class) || DiscordPlatformData.class.equals(Float.class) || DiscordPlatformData.class.equals(Double.class) || DiscordPlatformData.class.equals(Boolean.class) || DiscordPlatformData.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((DiscordPlatformData.class.equals(Integer.class) || DiscordPlatformData.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((DiscordPlatformData.class.equals(Float.class) || DiscordPlatformData.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (DiscordPlatformData.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (DiscordPlatformData.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(DiscordPlatformData.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'DiscordPlatformData'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'DiscordPlatformData'", e);
             }
 
             // deserialize FacebookPlatformData
@@ -477,6 +506,11 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
         setActualInstance(o);
     }
 
+    public CreatePostRequestPlatformsInnerPlatformSpecificData(DiscordPlatformData o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     public CreatePostRequestPlatformsInnerPlatformSpecificData(FacebookPlatformData o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
@@ -539,6 +573,7 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
 
     static {
         schemas.put("BlueskyPlatformData", BlueskyPlatformData.class);
+        schemas.put("DiscordPlatformData", DiscordPlatformData.class);
         schemas.put("FacebookPlatformData", FacebookPlatformData.class);
         schemas.put("GoogleBusinessPlatformData", GoogleBusinessPlatformData.class);
         schemas.put("InstagramPlatformData", InstagramPlatformData.class);
@@ -562,7 +597,7 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * BlueskyPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
+     * BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -570,6 +605,11 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
     @Override
     public void setActualInstance(Object instance) {
         if (JSON.isInstanceOf(BlueskyPlatformData.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(DiscordPlatformData.class, instance, new HashSet<Class<?>>())) {
             super.setActualInstance(instance);
             return;
         }
@@ -634,14 +674,14 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be BlueskyPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData");
+        throw new RuntimeException("Invalid instance type. Must be BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * BlueskyPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
+     * BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData
      *
-     * @return The actual instance (BlueskyPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData)
+     * @return The actual instance (BlueskyPlatformData, DiscordPlatformData, FacebookPlatformData, GoogleBusinessPlatformData, InstagramPlatformData, LinkedInPlatformData, PinterestPlatformData, RedditPlatformData, SnapchatPlatformData, TelegramPlatformData, ThreadsPlatformData, TikTokPlatformData, TwitterPlatformData, YouTubePlatformData)
      */
     @Override
     public Object getActualInstance() {
@@ -657,6 +697,17 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
      */
     public BlueskyPlatformData getBlueskyPlatformData() throws ClassCastException {
         return (BlueskyPlatformData)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `DiscordPlatformData`. If the actual instance is not `DiscordPlatformData`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `DiscordPlatformData`
+     * @throws ClassCastException if the instance is not `DiscordPlatformData`
+     */
+    public DiscordPlatformData getDiscordPlatformData() throws ClassCastException {
+        return (DiscordPlatformData)super.getActualInstance();
     }
 
     /**
@@ -900,6 +951,12 @@ public class CreatePostRequestPlatformsInnerPlatformSpecificData extends Abstrac
     if (getActualInstance() instanceof BlueskyPlatformData) {
         if (getActualInstance() != null) {
           joiner.add(((BlueskyPlatformData)getActualInstance()).toUrlQueryString(prefix + "one_of_12" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof DiscordPlatformData) {
+        if (getActualInstance() != null) {
+          joiner.add(((DiscordPlatformData)getActualInstance()).toUrlQueryString(prefix + "one_of_13" + suffix));
         }
         return joiner.toString();
     }

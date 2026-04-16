@@ -66,7 +66,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T08:33:57.818543406Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T09:02:59.930725623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -169,7 +169,7 @@ public class Ad {
   private AdTypeEnum adType;
 
   /**
-   * Gets or Sets goal
+   * Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
    */
   public enum GoalEnum {
     ENGAGEMENT(String.valueOf("engagement")),
@@ -178,7 +178,13 @@ public class Ad {
     
     AWARENESS(String.valueOf("awareness")),
     
-    VIDEO_VIEWS(String.valueOf("video_views"));
+    VIDEO_VIEWS(String.valueOf("video_views")),
+    
+    LEAD_GENERATION(String.valueOf("lead_generation")),
+    
+    CONVERSIONS(String.valueOf("conversions")),
+    
+    APP_PROMOTION(String.valueOf("app_promotion"));
 
     private String value;
 
@@ -416,7 +422,7 @@ public class Ad {
   }
 
   /**
-   * Get goal
+   * Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
    * @return goal
    */
   @javax.annotation.Nullable

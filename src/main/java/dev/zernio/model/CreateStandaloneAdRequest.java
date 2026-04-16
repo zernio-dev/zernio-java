@@ -65,7 +65,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T08:33:57.818543406Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T09:02:59.930725623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -80,7 +80,7 @@ public class CreateStandaloneAdRequest {
   private String name;
 
   /**
-   * Gets or Sets goal
+   * Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
    */
   public enum GoalEnum {
     ENGAGEMENT(String.valueOf("engagement")),
@@ -89,7 +89,13 @@ public class CreateStandaloneAdRequest {
     
     AWARENESS(String.valueOf("awareness")),
     
-    VIDEO_VIEWS(String.valueOf("video_views"));
+    VIDEO_VIEWS(String.valueOf("video_views")),
+    
+    LEAD_GENERATION(String.valueOf("lead_generation")),
+    
+    CONVERSIONS(String.valueOf("conversions")),
+    
+    APP_PROMOTION(String.valueOf("app_promotion"));
 
     private String value;
 
@@ -408,7 +414,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Get goal
+   * Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
    * @return goal
    */
   @javax.annotation.Nonnull

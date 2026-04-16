@@ -37,6 +37,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   PlatformAnalytics.JSON_PROPERTY_PLATFORM,
   PlatformAnalytics.JSON_PROPERTY_STATUS,
+  PlatformAnalytics.JSON_PROPERTY_PLATFORM_POST_ID,
   PlatformAnalytics.JSON_PROPERTY_ACCOUNT_ID,
   PlatformAnalytics.JSON_PROPERTY_ACCOUNT_USERNAME,
   PlatformAnalytics.JSON_PROPERTY_ANALYTICS,
@@ -44,7 +45,7 @@ import dev.zernio.ApiClient;
   PlatformAnalytics.JSON_PROPERTY_PLATFORM_POST_URL,
   PlatformAnalytics.JSON_PROPERTY_ERROR_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T08:33:57.818543406Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-16T09:02:59.930725623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformAnalytics {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -88,6 +89,10 @@ public class PlatformAnalytics {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status;
+
+  public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
+  @javax.annotation.Nullable
+  private String platformPostId;
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -198,6 +203,30 @@ public class PlatformAnalytics {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public PlatformAnalytics platformPostId(@javax.annotation.Nullable String platformPostId) {
+    this.platformPostId = platformPostId;
+    return this;
+  }
+
+  /**
+   * The native post ID on the platform (e.g. Instagram media ID, tweet ID)
+   * @return platformPostId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlatformPostId() {
+    return platformPostId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformPostId(@javax.annotation.Nullable String platformPostId) {
+    this.platformPostId = platformPostId;
   }
 
 
@@ -359,6 +388,7 @@ public class PlatformAnalytics {
     PlatformAnalytics platformAnalytics = (PlatformAnalytics) o;
     return Objects.equals(this.platform, platformAnalytics.platform) &&
         Objects.equals(this.status, platformAnalytics.status) &&
+        Objects.equals(this.platformPostId, platformAnalytics.platformPostId) &&
         Objects.equals(this.accountId, platformAnalytics.accountId) &&
         Objects.equals(this.accountUsername, platformAnalytics.accountUsername) &&
         Objects.equals(this.analytics, platformAnalytics.analytics) &&
@@ -369,7 +399,7 @@ public class PlatformAnalytics {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, status, accountId, accountUsername, analytics, syncStatus, platformPostUrl, errorMessage);
+    return Objects.hash(platform, status, platformPostId, accountId, accountUsername, analytics, syncStatus, platformPostUrl, errorMessage);
   }
 
   @Override
@@ -378,6 +408,7 @@ public class PlatformAnalytics {
     sb.append("class PlatformAnalytics {\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    accountUsername: ").append(toIndentedString(accountUsername)).append("\n");
     sb.append("    analytics: ").append(toIndentedString(analytics)).append("\n");
@@ -439,6 +470,11 @@ public class PlatformAnalytics {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `platformPostId` to the URL query string
+    if (getPlatformPostId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatformPostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatformPostId()))));
     }
 
     // add `accountId` to the URL query string

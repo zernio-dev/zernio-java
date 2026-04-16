@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**platform** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**platformPostId** | **String** | The native post ID on the platform (e.g. Instagram media ID, tweet ID) |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**accountUsername** | **String** |  |  [optional] |
 |**analytics** | [**PostAnalytics**](PostAnalytics.md) |  |  [optional] |

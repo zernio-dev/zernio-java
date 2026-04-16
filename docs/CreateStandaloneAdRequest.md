@@ -10,7 +10,7 @@
 |**accountId** | **String** |  |  |
 |**adAccountId** | **String** |  |  |
 |**name** | **String** |  |  |
-|**goal** | [**GoalEnum**](#GoalEnum) |  |  |
+|**goal** | [**GoalEnum**](#GoalEnum) | Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views. |  |
 |**budgetAmount** | **BigDecimal** |  |  |
 |**budgetType** | [**BudgetTypeEnum**](#BudgetTypeEnum) |  |  |
 |**currency** | **String** |  |  [optional] |
@@ -43,6 +43,9 @@
 | TRAFFIC | &quot;traffic&quot; |
 | AWARENESS | &quot;awareness&quot; |
 | VIDEO_VIEWS | &quot;video_views&quot; |
+| LEAD_GENERATION | &quot;lead_generation&quot; |
+| CONVERSIONS | &quot;conversions&quot; |
+| APP_PROMOTION | &quot;app_promotion&quot; |
 
 
 

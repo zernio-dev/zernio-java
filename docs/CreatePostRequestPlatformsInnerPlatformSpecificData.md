@@ -4,6 +4,7 @@
 
 ## oneOf schemas
 * [BlueskyPlatformData](BlueskyPlatformData.md)
+* [DiscordPlatformData](DiscordPlatformData.md)
 * [FacebookPlatformData](FacebookPlatformData.md)
 * [GoogleBusinessPlatformData](GoogleBusinessPlatformData.md)
 * [InstagramPlatformData](InstagramPlatformData.md)
@@ -22,6 +23,7 @@
 // Import classes:
 import dev.zernio.model.CreatePostRequestPlatformsInnerPlatformSpecificData;
 import dev.zernio.model.BlueskyPlatformData;
+import dev.zernio.model.DiscordPlatformData;
 import dev.zernio.model.FacebookPlatformData;
 import dev.zernio.model.GoogleBusinessPlatformData;
 import dev.zernio.model.InstagramPlatformData;
@@ -45,6 +47,13 @@ public class Example {
         exampleCreatePostRequestPlatformsInnerPlatformSpecificData.setActualInstance(exampleBlueskyPlatformData);
         // to get back the BlueskyPlatformData set earlier
         BlueskyPlatformData testBlueskyPlatformData = (BlueskyPlatformData) exampleCreatePostRequestPlatformsInnerPlatformSpecificData.getActualInstance();
+
+        // create a new DiscordPlatformData
+        DiscordPlatformData exampleDiscordPlatformData = new DiscordPlatformData();
+        // set CreatePostRequestPlatformsInnerPlatformSpecificData to DiscordPlatformData
+        exampleCreatePostRequestPlatformsInnerPlatformSpecificData.setActualInstance(exampleDiscordPlatformData);
+        // to get back the DiscordPlatformData set earlier
+        DiscordPlatformData testDiscordPlatformData = (DiscordPlatformData) exampleCreatePostRequestPlatformsInnerPlatformSpecificData.getActualInstance();
 
         // create a new FacebookPlatformData
         FacebookPlatformData exampleFacebookPlatformData = new FacebookPlatformData();
