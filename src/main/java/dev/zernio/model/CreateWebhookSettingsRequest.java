@@ -45,14 +45,14 @@ import dev.zernio.ApiClient;
   CreateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   CreateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T11:23:37.226123413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T16:46:38.915820215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_NAME = "name";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String name;
 
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private URI url;
 
   public static final String JSON_PROPERTY_SECRET = "secret";
@@ -115,12 +115,12 @@ public class CreateWebhookSettingsRequest {
   }
 
   public static final String JSON_PROPERTY_EVENTS = "events";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<EventsEnum> events = new ArrayList<>();
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
-  private Boolean isActive;
+  private Boolean isActive = true;
 
   public static final String JSON_PROPERTY_CUSTOM_HEADERS = "customHeaders";
   @javax.annotation.Nullable
@@ -129,50 +129,50 @@ public class CreateWebhookSettingsRequest {
   public CreateWebhookSettingsRequest() { 
   }
 
-  public CreateWebhookSettingsRequest name(@javax.annotation.Nullable String name) {
+  public CreateWebhookSettingsRequest name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Webhook name (max 50 characters)
+   * Webhook name (1-50 characters)
    * @return name
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
   }
 
 
-  public CreateWebhookSettingsRequest url(@javax.annotation.Nullable URI url) {
+  public CreateWebhookSettingsRequest url(@javax.annotation.Nonnull URI url) {
     this.url = url;
     return this;
   }
 
   /**
-   * Webhook endpoint URL (must be HTTPS in production)
+   * Webhook endpoint URL (must be a valid URL, whitespace trimmed)
    * @return url
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public URI getUrl() {
     return url;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrl(@javax.annotation.Nullable URI url) {
+  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setUrl(@javax.annotation.Nonnull URI url) {
     this.url = url;
   }
 
@@ -201,7 +201,7 @@ public class CreateWebhookSettingsRequest {
   }
 
 
-  public CreateWebhookSettingsRequest events(@javax.annotation.Nullable List<EventsEnum> events) {
+  public CreateWebhookSettingsRequest events(@javax.annotation.Nonnull List<EventsEnum> events) {
     this.events = events;
     return this;
   }
@@ -215,20 +215,20 @@ public class CreateWebhookSettingsRequest {
   }
 
   /**
-   * Events to subscribe to
+   * Events to subscribe to (at least one required)
    * @return events
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EVENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_EVENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<EventsEnum> getEvents() {
     return events;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_EVENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEvents(@javax.annotation.Nullable List<EventsEnum> events) {
+  @JsonProperty(value = JSON_PROPERTY_EVENTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEvents(@javax.annotation.Nonnull List<EventsEnum> events) {
     this.events = events;
   }
 
@@ -239,7 +239,7 @@ public class CreateWebhookSettingsRequest {
   }
 
   /**
-   * Enable or disable webhook delivery
+   * Enable or disable webhook delivery. Defaults to &#x60;true&#x60; when omitted.
    * @return isActive
    */
   @javax.annotation.Nullable

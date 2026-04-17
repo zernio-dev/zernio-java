@@ -8,10 +8,10 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Webhook ID to update (required) |  |
-|**name** | **String** | Webhook name (max 50 characters) |  [optional] |
-|**url** | **URI** | Webhook endpoint URL (must be HTTPS in production) |  [optional] |
+|**name** | **String** | Webhook name (1-50 characters). Must be non-empty if provided. |  [optional] |
+|**url** | **URI** | Webhook endpoint URL (must be a valid URL, whitespace trimmed). Must be a valid URL if provided. |  [optional] |
 |**secret** | **String** | Secret key for HMAC-SHA256 signature verification |  [optional] |
-|**events** | [**List&lt;EventsEnum&gt;**](#List&lt;EventsEnum&gt;) | Events to subscribe to |  [optional] |
+|**events** | [**List&lt;EventsEnum&gt;**](#List&lt;EventsEnum&gt;) | Events to subscribe to. Must contain at least one event if provided. |  [optional] |
 |**isActive** | **Boolean** | Enable or disable webhook delivery |  [optional] |
 |**customHeaders** | **Map&lt;String, String&gt;** | Custom headers to include in webhook requests |  [optional] |
 

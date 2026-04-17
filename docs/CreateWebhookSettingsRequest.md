@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**name** | **String** | Webhook name (max 50 characters) |  [optional] |
-|**url** | **URI** | Webhook endpoint URL (must be HTTPS in production) |  [optional] |
+|**name** | **String** | Webhook name (1-50 characters) |  |
+|**url** | **URI** | Webhook endpoint URL (must be a valid URL, whitespace trimmed) |  |
 |**secret** | **String** | Secret key for HMAC-SHA256 signature verification |  [optional] |
-|**events** | [**List&lt;EventsEnum&gt;**](#List&lt;EventsEnum&gt;) | Events to subscribe to |  [optional] |
-|**isActive** | **Boolean** | Enable or disable webhook delivery |  [optional] |
+|**events** | [**List&lt;EventsEnum&gt;**](#List&lt;EventsEnum&gt;) | Events to subscribe to (at least one required) |  |
+|**isActive** | **Boolean** | Enable or disable webhook delivery. Defaults to &#x60;true&#x60; when omitted. |  [optional] |
 |**customHeaders** | **Map&lt;String, String&gt;** | Custom headers to include in webhook requests |  [optional] |
 
 

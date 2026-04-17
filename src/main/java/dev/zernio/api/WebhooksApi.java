@@ -58,7 +58,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T11:23:37.226123413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T16:46:38.915820215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhooksApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -177,7 +177,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @return UpdateWebhookSettings200Response
    * @throws ApiException if fails to make API call
@@ -188,7 +188,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateWebhookSettings200Response
@@ -201,7 +201,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @return ApiResponse&lt;UpdateWebhookSettings200Response&gt;
    * @throws ApiException if fails to make API call
@@ -212,7 +212,7 @@ public class WebhooksApi {
 
   /**
    * Create webhook
-   * Create a new webhook configuration. Maximum 10 webhooks per user.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Create a new webhook configuration. Maximum 10 webhooks per user.  &#x60;name&#x60;, &#x60;url&#x60; and &#x60;events&#x60; are required. &#x60;url&#x60; must be a valid URL and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param createWebhookSettingsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateWebhookSettings200Response&gt;
@@ -664,7 +664,7 @@ public class WebhooksApi {
 
   /**
    * Update webhook
-   * Update an existing webhook configuration. All fields except _id are optional; only provided fields will be updated.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param updateWebhookSettingsRequest  (required)
    * @return UpdateWebhookSettings200Response
    * @throws ApiException if fails to make API call
@@ -675,7 +675,7 @@ public class WebhooksApi {
 
   /**
    * Update webhook
-   * Update an existing webhook configuration. All fields except _id are optional; only provided fields will be updated.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param updateWebhookSettingsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateWebhookSettings200Response
@@ -688,7 +688,7 @@ public class WebhooksApi {
 
   /**
    * Update webhook
-   * Update an existing webhook configuration. All fields except _id are optional; only provided fields will be updated.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param updateWebhookSettingsRequest  (required)
    * @return ApiResponse&lt;UpdateWebhookSettings200Response&gt;
    * @throws ApiException if fails to make API call
@@ -699,7 +699,7 @@ public class WebhooksApi {
 
   /**
    * Update webhook
-   * Update an existing webhook configuration. All fields except _id are optional; only provided fields will be updated.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
+   * Update an existing webhook configuration. All fields except &#x60;_id&#x60; are optional; only provided fields will be updated.  When provided, &#x60;name&#x60; must be 1-50 characters, &#x60;url&#x60; must be a valid URL, and &#x60;events&#x60; must contain at least one event. Whitespace is trimmed from &#x60;url&#x60; before validation.  Webhooks are automatically disabled after 10 consecutive delivery failures. 
    * @param updateWebhookSettingsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateWebhookSettings200Response&gt;

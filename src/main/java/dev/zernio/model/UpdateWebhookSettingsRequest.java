@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   UpdateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T11:23:37.226123413Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T16:46:38.915820215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -164,7 +164,7 @@ public class UpdateWebhookSettingsRequest {
   }
 
   /**
-   * Webhook name (max 50 characters)
+   * Webhook name (1-50 characters). Must be non-empty if provided.
    * @return name
    */
   @javax.annotation.Nullable
@@ -188,7 +188,7 @@ public class UpdateWebhookSettingsRequest {
   }
 
   /**
-   * Webhook endpoint URL (must be HTTPS in production)
+   * Webhook endpoint URL (must be a valid URL, whitespace trimmed). Must be a valid URL if provided.
    * @return url
    */
   @javax.annotation.Nullable
@@ -244,7 +244,7 @@ public class UpdateWebhookSettingsRequest {
   }
 
   /**
-   * Events to subscribe to
+   * Events to subscribe to. Must contain at least one event if provided.
    * @return events
    */
   @javax.annotation.Nullable

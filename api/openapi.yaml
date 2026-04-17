@@ -8331,6 +8331,8 @@ paths:
       description: |
         Create a new webhook configuration. Maximum 10 webhooks per user.
 
+        `name`, `url` and `events` are required. `url` must be a valid URL and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.
+
         Webhooks are automatically disabled after 10 consecutive delivery failures.
       operationId: createWebhookSettings
       requestBody:
@@ -8381,7 +8383,9 @@ paths:
       - application/json
     put:
       description: |
-        Update an existing webhook configuration. All fields except _id are optional; only provided fields will be updated.
+        Update an existing webhook configuration. All fields except `_id` are optional; only provided fields will be updated.
+
+        When provided, `name` must be 1-50 characters, `url` must be a valid URL, and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.
 
         Webhooks are automatically disabled after 10 consecutive delivery failures.
       operationId: updateWebhookSettings
@@ -28231,18 +28235,21 @@ components:
           description: Webhook ID to update (required)
           type: string
         name:
-          description: Webhook name (max 50 characters)
+          description: Webhook name (1-50 characters). Must be non-empty if provided.
           maxLength: 50
+          minLength: 1
           type: string
         url:
-          description: Webhook endpoint URL (must be HTTPS in production)
+          description: "Webhook endpoint URL (must be a valid URL, whitespace trimmed).\
+            \ Must be a valid URL if provided."
           format: uri
           type: string
         secret:
           description: Secret key for HMAC-SHA256 signature verification
           type: string
         events:
-          description: Events to subscribe to
+          description: Events to subscribe to. Must contain at least one event if
+            provided.
           items:
             enum:
             - post.scheduled
@@ -28258,6 +28265,7 @@ components:
             - review.new
             - review.updated
             type: string
+          minItems: 1
           type: array
         isActive:
           description: Enable or disable webhook delivery
@@ -28292,18 +28300,19 @@ components:
     createWebhookSettings_request:
       properties:
         name:
-          description: Webhook name (max 50 characters)
+          description: Webhook name (1-50 characters)
           maxLength: 50
+          minLength: 1
           type: string
         url:
-          description: Webhook endpoint URL (must be HTTPS in production)
+          description: "Webhook endpoint URL (must be a valid URL, whitespace trimmed)"
           format: uri
           type: string
         secret:
           description: Secret key for HMAC-SHA256 signature verification
           type: string
         events:
-          description: Events to subscribe to
+          description: Events to subscribe to (at least one required)
           items:
             enum:
             - post.scheduled
@@ -28319,14 +28328,21 @@ components:
             - review.new
             - review.updated
             type: string
+          minItems: 1
           type: array
         isActive:
-          description: Enable or disable webhook delivery
+          default: true
+          description: Enable or disable webhook delivery. Defaults to `true` when
+            omitted.
           type: boolean
         customHeaders:
           additionalProperties:
             type: string
           description: Custom headers to include in webhook requests
+      required:
+      - events
+      - name
+      - url
     testWebhook_request:
       properties:
         webhookId:
