@@ -39,9 +39,10 @@ import dev.zernio.ApiClient;
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MIN,
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MAX,
   UpdateAdRequestTargeting.JSON_PROPERTY_COUNTRIES,
-  UpdateAdRequestTargeting.JSON_PROPERTY_INTERESTS
+  UpdateAdRequestTargeting.JSON_PROPERTY_INTERESTS,
+  UpdateAdRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-20T08:07:55.274877889Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-20T13:45:00.283799221Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -58,6 +59,45 @@ public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_INTERESTS = "interests";
   @javax.annotation.Nullable
   private List<UpdateAdRequestTargetingInterestsInner> interests = new ArrayList<>();
+
+  /**
+   * Meta only. Omit to preserve the existing setting on update. 0 &#x3D; disabled, 1 &#x3D; enabled.
+   */
+  public enum AdvantageAudienceEnum {
+    NUMBER_0(Integer.valueOf(0)),
+    
+    NUMBER_1(Integer.valueOf(1));
+
+    private Integer value;
+
+    AdvantageAudienceEnum(Integer value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public Integer getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AdvantageAudienceEnum fromValue(Integer value) {
+      for (AdvantageAudienceEnum b : AdvantageAudienceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ADVANTAGE_AUDIENCE = "advantage_audience";
+  @javax.annotation.Nullable
+  private AdvantageAudienceEnum advantageAudience;
 
   public UpdateAdRequestTargeting() { 
   }
@@ -178,6 +218,30 @@ public class UpdateAdRequestTargeting {
   }
 
 
+  public UpdateAdRequestTargeting advantageAudience(@javax.annotation.Nullable AdvantageAudienceEnum advantageAudience) {
+    this.advantageAudience = advantageAudience;
+    return this;
+  }
+
+  /**
+   * Meta only. Omit to preserve the existing setting on update. 0 &#x3D; disabled, 1 &#x3D; enabled.
+   * @return advantageAudience
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ADVANTAGE_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdvantageAudienceEnum getAdvantageAudience() {
+    return advantageAudience;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ADVANTAGE_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdvantageAudience(@javax.annotation.Nullable AdvantageAudienceEnum advantageAudience) {
+    this.advantageAudience = advantageAudience;
+  }
+
+
   /**
    * Return true if this updateAd_request_targeting object is equal to o.
    */
@@ -193,12 +257,13 @@ public class UpdateAdRequestTargeting {
     return Objects.equals(this.ageMin, updateAdRequestTargeting.ageMin) &&
         Objects.equals(this.ageMax, updateAdRequestTargeting.ageMax) &&
         Objects.equals(this.countries, updateAdRequestTargeting.countries) &&
-        Objects.equals(this.interests, updateAdRequestTargeting.interests);
+        Objects.equals(this.interests, updateAdRequestTargeting.interests) &&
+        Objects.equals(this.advantageAudience, updateAdRequestTargeting.advantageAudience);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ageMin, ageMax, countries, interests);
+    return Objects.hash(ageMin, ageMax, countries, interests, advantageAudience);
   }
 
   @Override
@@ -209,6 +274,7 @@ public class UpdateAdRequestTargeting {
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
+    sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -283,6 +349,11 @@ public class UpdateAdRequestTargeting {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `advantage_audience` to the URL query string
+    if (getAdvantageAudience() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadvantage_audience%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdvantageAudience()))));
     }
 
     return joiner.toString();

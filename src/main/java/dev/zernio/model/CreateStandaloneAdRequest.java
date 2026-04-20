@@ -63,9 +63,10 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_KEYWORDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
-  CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS
+  CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-20T08:07:55.274877889Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-20T13:45:00.283799221Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -332,6 +333,45 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS = "additionalDescriptions";
   @javax.annotation.Nullable
   private List<String> additionalDescriptions = new ArrayList<>();
+
+  /**
+   * Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests.
+   */
+  public enum AdvantageAudienceEnum {
+    NUMBER_0(Integer.valueOf(0)),
+    
+    NUMBER_1(Integer.valueOf(1));
+
+    private Integer value;
+
+    AdvantageAudienceEnum(Integer value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public Integer getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AdvantageAudienceEnum fromValue(Integer value) {
+      for (AdvantageAudienceEnum b : AdvantageAudienceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ADVANTAGE_AUDIENCE = "advantageAudience";
+  @javax.annotation.Nullable
+  private AdvantageAudienceEnum advantageAudience;
 
   public CreateStandaloneAdRequest() { 
   }
@@ -980,6 +1020,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest advantageAudience(@javax.annotation.Nullable AdvantageAudienceEnum advantageAudience) {
+    this.advantageAudience = advantageAudience;
+    return this;
+  }
+
+  /**
+   * Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests.
+   * @return advantageAudience
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ADVANTAGE_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdvantageAudienceEnum getAdvantageAudience() {
+    return advantageAudience;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ADVANTAGE_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdvantageAudience(@javax.annotation.Nullable AdvantageAudienceEnum advantageAudience) {
+    this.advantageAudience = advantageAudience;
+  }
+
+
   /**
    * Return true if this createStandaloneAd_request object is equal to o.
    */
@@ -1016,12 +1080,13 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
         Objects.equals(this.keywords, createStandaloneAdRequest.keywords) &&
         Objects.equals(this.additionalHeadlines, createStandaloneAdRequest.additionalHeadlines) &&
-        Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions);
+        Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions) &&
+        Objects.equals(this.advantageAudience, createStandaloneAdRequest.advantageAudience);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience);
   }
 
   @Override
@@ -1053,6 +1118,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    additionalHeadlines: ").append(toIndentedString(additionalHeadlines)).append("\n");
     sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
+    sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1244,6 +1310,11 @@ public class CreateStandaloneAdRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAdditionalDescriptions().get(i)))));
       }
+    }
+
+    // add `advantageAudience` to the URL query string
+    if (getAdvantageAudience() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadvantageAudience%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdvantageAudience()))));
     }
 
     return joiner.toString();

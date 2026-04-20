@@ -32,6 +32,7 @@
 |**keywords** | **List&lt;String&gt;** | Google Search only |  [optional] |
 |**additionalHeadlines** | **List&lt;String&gt;** | Google Search RSA only. Extra headlines. |  [optional] |
 |**additionalDescriptions** | **List&lt;String&gt;** | Google Search RSA only. Extra descriptions. |  [optional] |
+|**advantageAudience** | [**AdvantageAudienceEnum**](#AdvantageAudienceEnum) | Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests. |  [optional] |
 
 
 
@@ -81,6 +82,15 @@
 |---- | -----|
 | DISPLAY | &quot;display&quot; |
 | SEARCH | &quot;search&quot; |
+
+
+
+## Enum: AdvantageAudienceEnum
+
+| Name | Value |
+|---- | -----|
+| NUMBER_0 | 0 |
+| NUMBER_1 | 1 |
 
 
 
