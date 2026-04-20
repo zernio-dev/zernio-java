@@ -31,16 +31,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Posts are either link (with URL/media) or self (text-only). Use forceSelf to override. Subreddit defaults to the account&#39;s configured one. Some subreddits require a flair.
+ * Posts are either link (with URL/media), native video (via nativeVideo), or self (text-only). Use forceSelf to override. Subreddit defaults to the account&#39;s configured one. Some subreddits require a flair.
  */
 @JsonPropertyOrder({
   RedditPlatformData.JSON_PROPERTY_SUBREDDIT,
   RedditPlatformData.JSON_PROPERTY_TITLE,
   RedditPlatformData.JSON_PROPERTY_URL,
   RedditPlatformData.JSON_PROPERTY_FORCE_SELF,
-  RedditPlatformData.JSON_PROPERTY_FLAIR_ID
+  RedditPlatformData.JSON_PROPERTY_FLAIR_ID,
+  RedditPlatformData.JSON_PROPERTY_NATIVE_VIDEO,
+  RedditPlatformData.JSON_PROPERTY_VIDEOGIF,
+  RedditPlatformData.JSON_PROPERTY_VIDEO_POSTER_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T16:46:38.915820215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-20T07:18:42.061867304Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedditPlatformData {
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
   @javax.annotation.Nullable
@@ -61,6 +64,18 @@ public class RedditPlatformData {
   public static final String JSON_PROPERTY_FLAIR_ID = "flairId";
   @javax.annotation.Nullable
   private String flairId;
+
+  public static final String JSON_PROPERTY_NATIVE_VIDEO = "nativeVideo";
+  @javax.annotation.Nullable
+  private Boolean nativeVideo = true;
+
+  public static final String JSON_PROPERTY_VIDEOGIF = "videogif";
+  @javax.annotation.Nullable
+  private Boolean videogif;
+
+  public static final String JSON_PROPERTY_VIDEO_POSTER_URL = "videoPosterUrl";
+  @javax.annotation.Nullable
+  private URI videoPosterUrl;
 
   public RedditPlatformData() { 
   }
@@ -185,6 +200,78 @@ public class RedditPlatformData {
   }
 
 
+  public RedditPlatformData nativeVideo(@javax.annotation.Nullable Boolean nativeVideo) {
+    this.nativeVideo = nativeVideo;
+    return this;
+  }
+
+  /**
+   * Controls Reddit&#39;s native video upload flow. When true (default for video mediaItems), the video is uploaded to Reddit&#39;s CDN and submitted with kind&#x3D;video so it renders as an embedded Reddit video player. Reddit transcodes server-side (1080p/30fps cap). Set to false to fall back to a legacy link post. If the subreddit blocks video posts, the upload falls back to a link post automatically. 
+   * @return nativeVideo
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NATIVE_VIDEO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getNativeVideo() {
+    return nativeVideo;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NATIVE_VIDEO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNativeVideo(@javax.annotation.Nullable Boolean nativeVideo) {
+    this.nativeVideo = nativeVideo;
+  }
+
+
+  public RedditPlatformData videogif(@javax.annotation.Nullable Boolean videogif) {
+    this.videogif = videogif;
+    return this;
+  }
+
+  /**
+   * When true (and nativeVideo is active), submits the video as a silent videogif (kind&#x3D;videogif). Use for short looping clips without audio.
+   * @return videogif
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEOGIF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getVideogif() {
+    return videogif;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEOGIF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideogif(@javax.annotation.Nullable Boolean videogif) {
+    this.videogif = videogif;
+  }
+
+
+  public RedditPlatformData videoPosterUrl(@javax.annotation.Nullable URI videoPosterUrl) {
+    this.videoPosterUrl = videoPosterUrl;
+    return this;
+  }
+
+  /**
+   * Optional poster/thumbnail image URL for native video posts. If omitted, the first frame of the video is extracted and used automatically.
+   * @return videoPosterUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_POSTER_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getVideoPosterUrl() {
+    return videoPosterUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_POSTER_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoPosterUrl(@javax.annotation.Nullable URI videoPosterUrl) {
+    this.videoPosterUrl = videoPosterUrl;
+  }
+
+
   /**
    * Return true if this RedditPlatformData object is equal to o.
    */
@@ -201,12 +288,15 @@ public class RedditPlatformData {
         Objects.equals(this.title, redditPlatformData.title) &&
         Objects.equals(this.url, redditPlatformData.url) &&
         Objects.equals(this.forceSelf, redditPlatformData.forceSelf) &&
-        Objects.equals(this.flairId, redditPlatformData.flairId);
+        Objects.equals(this.flairId, redditPlatformData.flairId) &&
+        Objects.equals(this.nativeVideo, redditPlatformData.nativeVideo) &&
+        Objects.equals(this.videogif, redditPlatformData.videogif) &&
+        Objects.equals(this.videoPosterUrl, redditPlatformData.videoPosterUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(subreddit, title, url, forceSelf, flairId);
+    return Objects.hash(subreddit, title, url, forceSelf, flairId, nativeVideo, videogif, videoPosterUrl);
   }
 
   @Override
@@ -218,6 +308,9 @@ public class RedditPlatformData {
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    forceSelf: ").append(toIndentedString(forceSelf)).append("\n");
     sb.append("    flairId: ").append(toIndentedString(flairId)).append("\n");
+    sb.append("    nativeVideo: ").append(toIndentedString(nativeVideo)).append("\n");
+    sb.append("    videogif: ").append(toIndentedString(videogif)).append("\n");
+    sb.append("    videoPosterUrl: ").append(toIndentedString(videoPosterUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -288,6 +381,21 @@ public class RedditPlatformData {
     // add `flairId` to the URL query string
     if (getFlairId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sflairId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFlairId()))));
+    }
+
+    // add `nativeVideo` to the URL query string
+    if (getNativeVideo() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snativeVideo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNativeVideo()))));
+    }
+
+    // add `videogif` to the URL query string
+    if (getVideogif() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideogif%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideogif()))));
+    }
+
+    // add `videoPosterUrl` to the URL query string
+    if (getVideoPosterUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoPosterUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoPosterUrl()))));
     }
 
     return joiner.toString();

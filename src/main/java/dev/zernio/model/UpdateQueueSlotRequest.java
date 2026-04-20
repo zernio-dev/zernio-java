@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   UpdateQueueSlotRequest.JSON_PROPERTY_SET_AS_DEFAULT,
   UpdateQueueSlotRequest.JSON_PROPERTY_RESHUFFLE_EXISTING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-17T16:46:38.915820215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-20T07:18:42.061867304Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateQueueSlotRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
