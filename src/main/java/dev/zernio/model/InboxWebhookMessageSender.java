@@ -38,9 +38,13 @@ import dev.zernio.ApiClient;
   InboxWebhookMessageSender.JSON_PROPERTY_NAME,
   InboxWebhookMessageSender.JSON_PROPERTY_USERNAME,
   InboxWebhookMessageSender.JSON_PROPERTY_PICTURE,
+  InboxWebhookMessageSender.JSON_PROPERTY_PHONE_NUMBER,
+  InboxWebhookMessageSender.JSON_PROPERTY_BUSINESS_SCOPED_USER_ID,
+  InboxWebhookMessageSender.JSON_PROPERTY_PARENT_BUSINESS_SCOPED_USER_ID,
+  InboxWebhookMessageSender.JSON_PROPERTY_WHATSAPP_USERNAME,
   InboxWebhookMessageSender.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T08:00:43.403253513Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T09:11:28.743393890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -58,6 +62,22 @@ public class InboxWebhookMessageSender {
   @javax.annotation.Nullable
   private String picture;
 
+  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
+  @javax.annotation.Nullable
+  private String phoneNumber;
+
+  public static final String JSON_PROPERTY_BUSINESS_SCOPED_USER_ID = "businessScopedUserId";
+  @javax.annotation.Nullable
+  private String businessScopedUserId;
+
+  public static final String JSON_PROPERTY_PARENT_BUSINESS_SCOPED_USER_ID = "parentBusinessScopedUserId";
+  @javax.annotation.Nullable
+  private String parentBusinessScopedUserId;
+
+  public static final String JSON_PROPERTY_WHATSAPP_USERNAME = "whatsappUsername";
+  @javax.annotation.Nullable
+  private String whatsappUsername;
+
   public static final String JSON_PROPERTY_INSTAGRAM_PROFILE = "instagramProfile";
   @javax.annotation.Nullable
   private InboxWebhookMessageSenderInstagramProfile instagramProfile;
@@ -71,7 +91,7 @@ public class InboxWebhookMessageSender {
   }
 
   /**
-   * Get id
+   * Sender&#39;s platform identifier. For WhatsApp this is the phone number (without leading &#x60;+&#x60;) when available, otherwise the &#x60;businessScopedUserId&#x60;. For other platforms, the platform&#39;s own user ID. 
    * @return id
    */
   @javax.annotation.Nonnull
@@ -161,6 +181,102 @@ public class InboxWebhookMessageSender {
   }
 
 
+  public InboxWebhookMessageSender phoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Sender&#39;s phone number in E.164 format (with leading &#x60;+&#x60;).  **Nullable during the BSUID rollout (April 2026+).** WhatsApp users who adopt a username can message businesses without exposing a phone number — this field is omitted for them. Match by &#x60;businessScopedUserId&#x60; instead. See &#x60;docs/whatsapp-bsuid-migration.md&#x60;. 
+   * @return phoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+
+  public InboxWebhookMessageSender businessScopedUserId(@javax.annotation.Nullable String businessScopedUserId) {
+    this.businessScopedUserId = businessScopedUserId;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Business-scoped user ID (BSUID) — Meta&#39;s canonical identifier for a WhatsApp user within your business. Present when Meta includes it in the inbound payload (rollout in progress since early April 2026). **Recommended primary identity anchor** going forward; fall back to &#x60;phoneNumber&#x60; only when this field is absent. 
+   * @return businessScopedUserId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_SCOPED_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBusinessScopedUserId() {
+    return businessScopedUserId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_SCOPED_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBusinessScopedUserId(@javax.annotation.Nullable String businessScopedUserId) {
+    this.businessScopedUserId = businessScopedUserId;
+  }
+
+
+  public InboxWebhookMessageSender parentBusinessScopedUserId(@javax.annotation.Nullable String parentBusinessScopedUserId) {
+    this.parentBusinessScopedUserId = parentBusinessScopedUserId;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Parent BSUID for businesses with linked business portfolios. Omitted for standalone portfolios. 
+   * @return parentBusinessScopedUserId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARENT_BUSINESS_SCOPED_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getParentBusinessScopedUserId() {
+    return parentBusinessScopedUserId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARENT_BUSINESS_SCOPED_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParentBusinessScopedUserId(@javax.annotation.Nullable String parentBusinessScopedUserId) {
+    this.parentBusinessScopedUserId = parentBusinessScopedUserId;
+  }
+
+
+  public InboxWebhookMessageSender whatsappUsername(@javax.annotation.Nullable String whatsappUsername) {
+    this.whatsappUsername = whatsappUsername;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. User&#39;s WhatsApp username (e.g. &#x60;@jane&#x60;). Not a stable identifier — users can change it. Useful for display, not recommended as an identity anchor. 
+   * @return whatsappUsername
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_USERNAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getWhatsappUsername() {
+    return whatsappUsername;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WHATSAPP_USERNAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWhatsappUsername(@javax.annotation.Nullable String whatsappUsername) {
+    this.whatsappUsername = whatsappUsername;
+  }
+
+
   public InboxWebhookMessageSender instagramProfile(@javax.annotation.Nullable InboxWebhookMessageSenderInstagramProfile instagramProfile) {
     this.instagramProfile = instagramProfile;
     return this;
@@ -201,12 +317,16 @@ public class InboxWebhookMessageSender {
         Objects.equals(this.name, inboxWebhookMessageSender.name) &&
         Objects.equals(this.username, inboxWebhookMessageSender.username) &&
         Objects.equals(this.picture, inboxWebhookMessageSender.picture) &&
+        Objects.equals(this.phoneNumber, inboxWebhookMessageSender.phoneNumber) &&
+        Objects.equals(this.businessScopedUserId, inboxWebhookMessageSender.businessScopedUserId) &&
+        Objects.equals(this.parentBusinessScopedUserId, inboxWebhookMessageSender.parentBusinessScopedUserId) &&
+        Objects.equals(this.whatsappUsername, inboxWebhookMessageSender.whatsappUsername) &&
         Objects.equals(this.instagramProfile, inboxWebhookMessageSender.instagramProfile);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, username, picture, instagramProfile);
+    return Objects.hash(id, name, username, picture, phoneNumber, businessScopedUserId, parentBusinessScopedUserId, whatsappUsername, instagramProfile);
   }
 
   @Override
@@ -217,6 +337,10 @@ public class InboxWebhookMessageSender {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    businessScopedUserId: ").append(toIndentedString(businessScopedUserId)).append("\n");
+    sb.append("    parentBusinessScopedUserId: ").append(toIndentedString(parentBusinessScopedUserId)).append("\n");
+    sb.append("    whatsappUsername: ").append(toIndentedString(whatsappUsername)).append("\n");
     sb.append("    instagramProfile: ").append(toIndentedString(instagramProfile)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -283,6 +407,26 @@ public class InboxWebhookMessageSender {
     // add `picture` to the URL query string
     if (getPicture() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPicture()))));
+    }
+
+    // add `phoneNumber` to the URL query string
+    if (getPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
+    }
+
+    // add `businessScopedUserId` to the URL query string
+    if (getBusinessScopedUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbusinessScopedUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBusinessScopedUserId()))));
+    }
+
+    // add `parentBusinessScopedUserId` to the URL query string
+    if (getParentBusinessScopedUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sparentBusinessScopedUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParentBusinessScopedUserId()))));
+    }
+
+    // add `whatsappUsername` to the URL query string
+    if (getWhatsappUsername() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%swhatsappUsername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWhatsappUsername()))));
     }
 
     // add `instagramProfile` to the URL query string
