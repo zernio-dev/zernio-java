@@ -28,6 +28,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,10 +46,13 @@ import dev.zernio.ApiClient;
   GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_CPC,
   GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_CPM,
   GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_ENGAGEMENT,
+  GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_CONVERSIONS,
+  GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_COST_PER_CONVERSION,
+  GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_ACTIONS,
   GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_LAST_SYNCED_AT,
   GetAdAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-20T13:45:00.283799221Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T08:00:43.403253513Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAnalytics200ResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -80,6 +85,18 @@ public class GetAdAnalytics200ResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_ENGAGEMENT = "engagement";
   @javax.annotation.Nullable
   private Integer engagement;
+
+  public static final String JSON_PROPERTY_CONVERSIONS = "conversions";
+  @javax.annotation.Nullable
+  private Integer conversions;
+
+  public static final String JSON_PROPERTY_COST_PER_CONVERSION = "costPerConversion";
+  @javax.annotation.Nullable
+  private BigDecimal costPerConversion;
+
+  public static final String JSON_PROPERTY_ACTIONS = "actions";
+  @javax.annotation.Nullable
+  private Map<String, Integer> actions = new HashMap<>();
 
   public static final String JSON_PROPERTY_LAST_SYNCED_AT = "lastSyncedAt";
   @javax.annotation.Nullable
@@ -284,6 +301,86 @@ public class GetAdAnalytics200ResponseAnalyticsDailyInner {
   }
 
 
+  public GetAdAnalytics200ResponseAnalyticsDailyInner conversions(@javax.annotation.Nullable Integer conversions) {
+    this.conversions = conversions;
+    return this;
+  }
+
+  /**
+   * Count of conversion events matching the campaign&#39;s promoted_object.custom_event_type (PURCHASE, LEAD, etc.) over the requested date range. 0 for non-conversion campaigns or when no events have fired. Meta-only at time of writing; other platforms return 0.
+   * @return conversions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONVERSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getConversions() {
+    return conversions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONVERSIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConversions(@javax.annotation.Nullable Integer conversions) {
+    this.conversions = conversions;
+  }
+
+
+  public GetAdAnalytics200ResponseAnalyticsDailyInner costPerConversion(@javax.annotation.Nullable BigDecimal costPerConversion) {
+    this.costPerConversion = costPerConversion;
+    return this;
+  }
+
+  /**
+   * Derived spend / conversions in the same currency as spend. 0 when conversions is 0.
+   * @return costPerConversion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COST_PER_CONVERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getCostPerConversion() {
+    return costPerConversion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COST_PER_CONVERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCostPerConversion(@javax.annotation.Nullable BigDecimal costPerConversion) {
+    this.costPerConversion = costPerConversion;
+  }
+
+
+  public GetAdAnalytics200ResponseAnalyticsDailyInner actions(@javax.annotation.Nullable Map<String, Integer> actions) {
+    this.actions = actions;
+    return this;
+  }
+
+  public GetAdAnalytics200ResponseAnalyticsDailyInner putActionsItem(String key, Integer actionsItem) {
+    if (this.actions == null) {
+      this.actions = new HashMap<>();
+    }
+    this.actions.put(key, actionsItem);
+    return this;
+  }
+
+  /**
+   * Raw per-action-type counts from Meta&#39;s Insights actions[] array, summed over the date range. Keys are Meta action_type strings (e.g. link_click, offsite_conversion.fb_pixel_purchase, onsite_conversion.lead_grouped). Use this to extract any conversion event (purchases, leads, add_to_cart, etc.) without relying on the derived conversions field. Empty object when no actions are reported.
+   * @return actions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Integer> getActions() {
+    return actions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setActions(@javax.annotation.Nullable Map<String, Integer> actions) {
+    this.actions = actions;
+  }
+
+
   public GetAdAnalytics200ResponseAnalyticsDailyInner lastSyncedAt(@javax.annotation.Nullable OffsetDateTime lastSyncedAt) {
     this.lastSyncedAt = lastSyncedAt;
     return this;
@@ -352,13 +449,16 @@ public class GetAdAnalytics200ResponseAnalyticsDailyInner {
         Objects.equals(this.cpc, getAdAnalytics200ResponseAnalyticsDailyInner.cpc) &&
         Objects.equals(this.cpm, getAdAnalytics200ResponseAnalyticsDailyInner.cpm) &&
         Objects.equals(this.engagement, getAdAnalytics200ResponseAnalyticsDailyInner.engagement) &&
+        Objects.equals(this.conversions, getAdAnalytics200ResponseAnalyticsDailyInner.conversions) &&
+        Objects.equals(this.costPerConversion, getAdAnalytics200ResponseAnalyticsDailyInner.costPerConversion) &&
+        Objects.equals(this.actions, getAdAnalytics200ResponseAnalyticsDailyInner.actions) &&
         Objects.equals(this.lastSyncedAt, getAdAnalytics200ResponseAnalyticsDailyInner.lastSyncedAt) &&
         Objects.equals(this.date, getAdAnalytics200ResponseAnalyticsDailyInner.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, lastSyncedAt, date);
+    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, lastSyncedAt, date);
   }
 
   @Override
@@ -373,6 +473,9 @@ public class GetAdAnalytics200ResponseAnalyticsDailyInner {
     sb.append("    cpc: ").append(toIndentedString(cpc)).append("\n");
     sb.append("    cpm: ").append(toIndentedString(cpm)).append("\n");
     sb.append("    engagement: ").append(toIndentedString(engagement)).append("\n");
+    sb.append("    conversions: ").append(toIndentedString(conversions)).append("\n");
+    sb.append("    costPerConversion: ").append(toIndentedString(costPerConversion)).append("\n");
+    sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("    lastSyncedAt: ").append(toIndentedString(lastSyncedAt)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("}");
@@ -460,6 +563,25 @@ public class GetAdAnalytics200ResponseAnalyticsDailyInner {
     // add `engagement` to the URL query string
     if (getEngagement() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sengagement%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEngagement()))));
+    }
+
+    // add `conversions` to the URL query string
+    if (getConversions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconversions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConversions()))));
+    }
+
+    // add `costPerConversion` to the URL query string
+    if (getCostPerConversion() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scostPerConversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCostPerConversion()))));
+    }
+
+    // add `actions` to the URL query string
+    if (getActions() != null) {
+      for (String _key : getActions().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sactions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getActions().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getActions().get(_key)))));
+      }
     }
 
     // add `lastSyncedAt` to the URL query string
