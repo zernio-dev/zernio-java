@@ -24,10 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.AdBudget;
 import dev.zernio.model.AdMetrics;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.AdTreeAdSet;
+import dev.zernio.model.AdTreeCampaignBudget;
+import dev.zernio.model.AdTreeCampaignCampaignBudget;
 import dev.zernio.model.AdTreeCampaignPromotedObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,9 +45,16 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_PLATFORM,
   AdTreeCampaign.JSON_PROPERTY_CAMPAIGN_NAME,
   AdTreeCampaign.JSON_PROPERTY_STATUS,
+  AdTreeCampaign.JSON_PROPERTY_REVIEW_STATUS,
+  AdTreeCampaign.JSON_PROPERTY_PLATFORM_CAMPAIGN_STATUS,
+  AdTreeCampaign.JSON_PROPERTY_CAMPAIGN_ISSUES_INFO,
   AdTreeCampaign.JSON_PROPERTY_AD_COUNT,
   AdTreeCampaign.JSON_PROPERTY_AD_SET_COUNT,
   AdTreeCampaign.JSON_PROPERTY_BUDGET,
+  AdTreeCampaign.JSON_PROPERTY_CAMPAIGN_BUDGET,
+  AdTreeCampaign.JSON_PROPERTY_BUDGET_LEVEL,
+  AdTreeCampaign.JSON_PROPERTY_IS_BUDGET_SCHEDULE_ENABLED,
+  AdTreeCampaign.JSON_PROPERTY_CURRENCY,
   AdTreeCampaign.JSON_PROPERTY_METRICS,
   AdTreeCampaign.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_ID,
   AdTreeCampaign.JSON_PROPERTY_ACCOUNT_ID,
@@ -57,7 +65,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_PROMOTED_OBJECT,
   AdTreeCampaign.JSON_PROPERTY_AD_SETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T09:11:28.743393890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T16:25:38.385086731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -120,6 +128,57 @@ public class AdTreeCampaign {
   @javax.annotation.Nullable
   private AdStatus status;
 
+  /**
+   * Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. 
+   */
+  public enum ReviewStatusEnum {
+    IN_REVIEW(String.valueOf("in_review")),
+    
+    APPROVED(String.valueOf("approved")),
+    
+    REJECTED(String.valueOf("rejected")),
+    
+    WITH_ISSUES(String.valueOf("with_issues"));
+
+    private String value;
+
+    ReviewStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ReviewStatusEnum fromValue(String value) {
+      for (ReviewStatusEnum b : ReviewStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_REVIEW_STATUS = "reviewStatus";
+  @javax.annotation.Nullable
+  private ReviewStatusEnum reviewStatus;
+
+  public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_STATUS = "platformCampaignStatus";
+  @javax.annotation.Nullable
+  private String platformCampaignStatus;
+
+  public static final String JSON_PROPERTY_CAMPAIGN_ISSUES_INFO = "campaignIssuesInfo";
+  @javax.annotation.Nullable
+  private List<Object> campaignIssuesInfo = new ArrayList<>();
+
   public static final String JSON_PROPERTY_AD_COUNT = "adCount";
   @javax.annotation.Nullable
   private Integer adCount;
@@ -130,7 +189,58 @@ public class AdTreeCampaign {
 
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
-  private AdBudget budget;
+  private AdTreeCampaignBudget budget;
+
+  public static final String JSON_PROPERTY_CAMPAIGN_BUDGET = "campaignBudget";
+  @javax.annotation.Nullable
+  private AdTreeCampaignCampaignBudget campaignBudget;
+
+  /**
+   * Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.
+   */
+  public enum BudgetLevelEnum {
+    CAMPAIGN(String.valueOf("campaign")),
+    
+    ADSET(String.valueOf("adset"));
+
+    private String value;
+
+    BudgetLevelEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BudgetLevelEnum fromValue(String value) {
+      for (BudgetLevelEnum b : BudgetLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BUDGET_LEVEL = "budgetLevel";
+  @javax.annotation.Nullable
+  private BudgetLevelEnum budgetLevel;
+
+  public static final String JSON_PROPERTY_IS_BUDGET_SCHEDULE_ENABLED = "isBudgetScheduleEnabled";
+  @javax.annotation.Nullable
+  private Boolean isBudgetScheduleEnabled = false;
+
+  public static final String JSON_PROPERTY_CURRENCY = "currency";
+  @javax.annotation.Nullable
+  private String currency;
 
   public static final String JSON_PROPERTY_METRICS = "metrics";
   @javax.annotation.Nullable
@@ -249,7 +359,7 @@ public class AdTreeCampaign {
   }
 
   /**
-   * Derived from child ad statuses
+   * Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state.
    * @return status
    */
   @javax.annotation.Nullable
@@ -264,6 +374,86 @@ public class AdTreeCampaign {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable AdStatus status) {
     this.status = status;
+  }
+
+
+  public AdTreeCampaign reviewStatus(@javax.annotation.Nullable ReviewStatusEnum reviewStatus) {
+    this.reviewStatus = reviewStatus;
+    return this;
+  }
+
+  /**
+   * Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup. 
+   * @return reviewStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REVIEW_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ReviewStatusEnum getReviewStatus() {
+    return reviewStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REVIEW_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReviewStatus(@javax.annotation.Nullable ReviewStatusEnum reviewStatus) {
+    this.reviewStatus = reviewStatus;
+  }
+
+
+  public AdTreeCampaign platformCampaignStatus(@javax.annotation.Nullable String platformCampaignStatus) {
+    this.platformCampaignStatus = platformCampaignStatus;
+    return this;
+  }
+
+  /**
+   * Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;.
+   * @return platformCampaignStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_CAMPAIGN_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlatformCampaignStatus() {
+    return platformCampaignStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_CAMPAIGN_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformCampaignStatus(@javax.annotation.Nullable String platformCampaignStatus) {
+    this.platformCampaignStatus = platformCampaignStatus;
+  }
+
+
+  public AdTreeCampaign campaignIssuesInfo(@javax.annotation.Nullable List<Object> campaignIssuesInfo) {
+    this.campaignIssuesInfo = campaignIssuesInfo;
+    return this;
+  }
+
+  public AdTreeCampaign addCampaignIssuesInfoItem(Object campaignIssuesInfoItem) {
+    if (this.campaignIssuesInfo == null) {
+      this.campaignIssuesInfo = new ArrayList<>();
+    }
+    this.campaignIssuesInfo.add(campaignIssuesInfoItem);
+    return this;
+  }
+
+  /**
+   * Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages.
+   * @return campaignIssuesInfo
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_ISSUES_INFO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<Object> getCampaignIssuesInfo() {
+    return campaignIssuesInfo;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_ISSUES_INFO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignIssuesInfo(@javax.annotation.Nullable List<Object> campaignIssuesInfo) {
+    this.campaignIssuesInfo = campaignIssuesInfo;
   }
 
 
@@ -315,7 +505,7 @@ public class AdTreeCampaign {
   }
 
 
-  public AdTreeCampaign budget(@javax.annotation.Nullable AdBudget budget) {
+  public AdTreeCampaign budget(@javax.annotation.Nullable AdTreeCampaignBudget budget) {
     this.budget = budget;
     return this;
   }
@@ -327,15 +517,111 @@ public class AdTreeCampaign {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AdBudget getBudget() {
+  public AdTreeCampaignBudget getBudget() {
     return budget;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBudget(@javax.annotation.Nullable AdBudget budget) {
+  public void setBudget(@javax.annotation.Nullable AdTreeCampaignBudget budget) {
     this.budget = budget;
+  }
+
+
+  public AdTreeCampaign campaignBudget(@javax.annotation.Nullable AdTreeCampaignCampaignBudget campaignBudget) {
+    this.campaignBudget = campaignBudget;
+    return this;
+  }
+
+  /**
+   * Get campaignBudget
+   * @return campaignBudget
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdTreeCampaignCampaignBudget getCampaignBudget() {
+    return campaignBudget;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignBudget(@javax.annotation.Nullable AdTreeCampaignCampaignBudget campaignBudget) {
+    this.campaignBudget = campaignBudget;
+  }
+
+
+  public AdTreeCampaign budgetLevel(@javax.annotation.Nullable BudgetLevelEnum budgetLevel) {
+    this.budgetLevel = budgetLevel;
+    return this;
+  }
+
+  /**
+   * Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity.
+   * @return budgetLevel
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_LEVEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BudgetLevelEnum getBudgetLevel() {
+    return budgetLevel;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_LEVEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBudgetLevel(@javax.annotation.Nullable BudgetLevelEnum budgetLevel) {
+    this.budgetLevel = budgetLevel;
+  }
+
+
+  public AdTreeCampaign isBudgetScheduleEnabled(@javax.annotation.Nullable Boolean isBudgetScheduleEnabled) {
+    this.isBudgetScheduleEnabled = isBudgetScheduleEnabled;
+    return this;
+  }
+
+  /**
+   * Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO.
+   * @return isBudgetScheduleEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_BUDGET_SCHEDULE_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsBudgetScheduleEnabled() {
+    return isBudgetScheduleEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_BUDGET_SCHEDULE_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsBudgetScheduleEnabled(@javax.annotation.Nullable Boolean isBudgetScheduleEnabled) {
+    this.isBudgetScheduleEnabled = isBudgetScheduleEnabled;
+  }
+
+
+  public AdTreeCampaign currency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD.
+   * @return currency
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
   }
 
 
@@ -579,9 +865,16 @@ public class AdTreeCampaign {
         Objects.equals(this.platform, adTreeCampaign.platform) &&
         Objects.equals(this.campaignName, adTreeCampaign.campaignName) &&
         Objects.equals(this.status, adTreeCampaign.status) &&
+        Objects.equals(this.reviewStatus, adTreeCampaign.reviewStatus) &&
+        Objects.equals(this.platformCampaignStatus, adTreeCampaign.platformCampaignStatus) &&
+        Objects.equals(this.campaignIssuesInfo, adTreeCampaign.campaignIssuesInfo) &&
         Objects.equals(this.adCount, adTreeCampaign.adCount) &&
         Objects.equals(this.adSetCount, adTreeCampaign.adSetCount) &&
         Objects.equals(this.budget, adTreeCampaign.budget) &&
+        Objects.equals(this.campaignBudget, adTreeCampaign.campaignBudget) &&
+        Objects.equals(this.budgetLevel, adTreeCampaign.budgetLevel) &&
+        Objects.equals(this.isBudgetScheduleEnabled, adTreeCampaign.isBudgetScheduleEnabled) &&
+        Objects.equals(this.currency, adTreeCampaign.currency) &&
         Objects.equals(this.metrics, adTreeCampaign.metrics) &&
         Objects.equals(this.platformAdAccountId, adTreeCampaign.platformAdAccountId) &&
         Objects.equals(this.accountId, adTreeCampaign.accountId) &&
@@ -595,7 +888,7 @@ public class AdTreeCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformCampaignId, platform, campaignName, status, adCount, adSetCount, budget, metrics, platformAdAccountId, accountId, profileId, platformObjective, optimizationGoal, bidStrategy, promotedObject, adSets);
+    return Objects.hash(platformCampaignId, platform, campaignName, status, reviewStatus, platformCampaignStatus, campaignIssuesInfo, adCount, adSetCount, budget, campaignBudget, budgetLevel, isBudgetScheduleEnabled, currency, metrics, platformAdAccountId, accountId, profileId, platformObjective, optimizationGoal, bidStrategy, promotedObject, adSets);
   }
 
   @Override
@@ -606,9 +899,16 @@ public class AdTreeCampaign {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    campaignName: ").append(toIndentedString(campaignName)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    reviewStatus: ").append(toIndentedString(reviewStatus)).append("\n");
+    sb.append("    platformCampaignStatus: ").append(toIndentedString(platformCampaignStatus)).append("\n");
+    sb.append("    campaignIssuesInfo: ").append(toIndentedString(campaignIssuesInfo)).append("\n");
     sb.append("    adCount: ").append(toIndentedString(adCount)).append("\n");
     sb.append("    adSetCount: ").append(toIndentedString(adSetCount)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
+    sb.append("    campaignBudget: ").append(toIndentedString(campaignBudget)).append("\n");
+    sb.append("    budgetLevel: ").append(toIndentedString(budgetLevel)).append("\n");
+    sb.append("    isBudgetScheduleEnabled: ").append(toIndentedString(isBudgetScheduleEnabled)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
     sb.append("    platformAdAccountId: ").append(toIndentedString(platformAdAccountId)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
@@ -685,6 +985,25 @@ public class AdTreeCampaign {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
+    // add `reviewStatus` to the URL query string
+    if (getReviewStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreviewStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReviewStatus()))));
+    }
+
+    // add `platformCampaignStatus` to the URL query string
+    if (getPlatformCampaignStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatformCampaignStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatformCampaignStatus()))));
+    }
+
+    // add `campaignIssuesInfo` to the URL query string
+    if (getCampaignIssuesInfo() != null) {
+      for (int i = 0; i < getCampaignIssuesInfo().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scampaignIssuesInfo%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getCampaignIssuesInfo().get(i)))));
+      }
+    }
+
     // add `adCount` to the URL query string
     if (getAdCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sadCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdCount()))));
@@ -698,6 +1017,26 @@ public class AdTreeCampaign {
     // add `budget` to the URL query string
     if (getBudget() != null) {
       joiner.add(getBudget().toUrlQueryString(prefix + "budget" + suffix));
+    }
+
+    // add `campaignBudget` to the URL query string
+    if (getCampaignBudget() != null) {
+      joiner.add(getCampaignBudget().toUrlQueryString(prefix + "campaignBudget" + suffix));
+    }
+
+    // add `budgetLevel` to the URL query string
+    if (getBudgetLevel() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbudgetLevel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBudgetLevel()))));
+    }
+
+    // add `isBudgetScheduleEnabled` to the URL query string
+    if (getIsBudgetScheduleEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisBudgetScheduleEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBudgetScheduleEnabled()))));
+    }
+
+    // add `currency` to the URL query string
+    if (getCurrency() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrency()))));
     }
 
     // add `metrics` to the URL query string

@@ -19,12 +19,23 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.AdStatus;
+import dev.zernio.model.BulkUpdateAdCampaignStatus200Response;
+import dev.zernio.model.BulkUpdateAdCampaignStatusRequest;
+import dev.zernio.model.DeleteAdCampaign200Response;
+import dev.zernio.model.DeleteAdCampaignRequest;
+import dev.zernio.model.DuplicateAdCampaign200Response;
+import dev.zernio.model.DuplicateAdCampaignRequest;
 import dev.zernio.model.GetAdTree200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListAdCampaigns200Response;
 import java.time.LocalDate;
+import dev.zernio.model.UpdateAdCampaign200Response;
+import dev.zernio.model.UpdateAdCampaignRequest;
 import dev.zernio.model.UpdateAdCampaignStatus200Response;
 import dev.zernio.model.UpdateAdCampaignStatusRequest;
+import dev.zernio.model.UpdateAdSet200Response;
+import dev.zernio.model.UpdateAdSetRequest;
+import dev.zernio.model.UpdateAdSetStatus200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -51,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T09:11:28.743393890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T16:25:38.385086731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -169,11 +180,398 @@ public class AdCampaignsApi {
   }
 
   /**
+   * Pause or resume many campaigns
+   * Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+   * @param bulkUpdateAdCampaignStatusRequest  (required)
+   * @return BulkUpdateAdCampaignStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public BulkUpdateAdCampaignStatus200Response bulkUpdateAdCampaignStatus(@javax.annotation.Nonnull BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest) throws ApiException {
+    return bulkUpdateAdCampaignStatus(bulkUpdateAdCampaignStatusRequest, null);
+  }
+
+  /**
+   * Pause or resume many campaigns
+   * Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+   * @param bulkUpdateAdCampaignStatusRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return BulkUpdateAdCampaignStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public BulkUpdateAdCampaignStatus200Response bulkUpdateAdCampaignStatus(@javax.annotation.Nonnull BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<BulkUpdateAdCampaignStatus200Response> localVarResponse = bulkUpdateAdCampaignStatusWithHttpInfo(bulkUpdateAdCampaignStatusRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pause or resume many campaigns
+   * Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+   * @param bulkUpdateAdCampaignStatusRequest  (required)
+   * @return ApiResponse&lt;BulkUpdateAdCampaignStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BulkUpdateAdCampaignStatus200Response> bulkUpdateAdCampaignStatusWithHttpInfo(@javax.annotation.Nonnull BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest) throws ApiException {
+    return bulkUpdateAdCampaignStatusWithHttpInfo(bulkUpdateAdCampaignStatusRequest, null);
+  }
+
+  /**
+   * Pause or resume many campaigns
+   * Process up to 50 campaigns in one call. Each campaign is updated concurrently and the response contains a per-campaign result so a single bad row does not fail the whole batch. 
+   * @param bulkUpdateAdCampaignStatusRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;BulkUpdateAdCampaignStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BulkUpdateAdCampaignStatus200Response> bulkUpdateAdCampaignStatusWithHttpInfo(@javax.annotation.Nonnull BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = bulkUpdateAdCampaignStatusRequestBuilder(bulkUpdateAdCampaignStatusRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("bulkUpdateAdCampaignStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<BulkUpdateAdCampaignStatus200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        BulkUpdateAdCampaignStatus200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BulkUpdateAdCampaignStatus200Response>() {});
+        
+
+        return new ApiResponse<BulkUpdateAdCampaignStatus200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder bulkUpdateAdCampaignStatusRequestBuilder(@javax.annotation.Nonnull BulkUpdateAdCampaignStatusRequest bulkUpdateAdCampaignStatusRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'bulkUpdateAdCampaignStatusRequest' is set
+    if (bulkUpdateAdCampaignStatusRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'bulkUpdateAdCampaignStatusRequest' when calling bulkUpdateAdCampaignStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/bulk-status";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(bulkUpdateAdCampaignStatusRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a campaign
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * @param campaignId Platform campaign ID (required)
+   * @param deleteAdCampaignRequest  (required)
+   * @return DeleteAdCampaign200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdCampaign200Response deleteAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DeleteAdCampaignRequest deleteAdCampaignRequest) throws ApiException {
+    return deleteAdCampaign(campaignId, deleteAdCampaignRequest, null);
+  }
+
+  /**
+   * Delete a campaign
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * @param campaignId Platform campaign ID (required)
+   * @param deleteAdCampaignRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteAdCampaign200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteAdCampaign200Response deleteAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DeleteAdCampaignRequest deleteAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteAdCampaign200Response> localVarResponse = deleteAdCampaignWithHttpInfo(campaignId, deleteAdCampaignRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a campaign
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * @param campaignId Platform campaign ID (required)
+   * @param deleteAdCampaignRequest  (required)
+   * @return ApiResponse&lt;DeleteAdCampaign200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdCampaign200Response> deleteAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DeleteAdCampaignRequest deleteAdCampaignRequest) throws ApiException {
+    return deleteAdCampaignWithHttpInfo(campaignId, deleteAdCampaignRequest, null);
+  }
+
+  /**
+   * Delete a campaign
+   * Deletes the whole campaign on the platform, cascading to its ad sets and ads. Locally, all Ad documents for this campaign are marked &#x60;status: cancelled&#x60;.  Meta-only for now. Other platforms return 501 Not Implemented — fall back to DELETE /v1/ads/{adId} per ad in the meantime. 
+   * @param campaignId Platform campaign ID (required)
+   * @param deleteAdCampaignRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteAdCampaign200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteAdCampaign200Response> deleteAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DeleteAdCampaignRequest deleteAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteAdCampaignRequestBuilder(campaignId, deleteAdCampaignRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteAdCampaign", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteAdCampaign200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteAdCampaign200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteAdCampaign200Response>() {});
+        
+
+        return new ApiResponse<DeleteAdCampaign200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteAdCampaignRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DeleteAdCampaignRequest deleteAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling deleteAdCampaign");
+    }
+    // verify the required parameter 'deleteAdCampaignRequest' is set
+    if (deleteAdCampaignRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'deleteAdCampaignRequest' when calling deleteAdCampaign");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(deleteAdCampaignRequest);
+      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Duplicate a campaign
+   * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Source platform campaign ID (required)
+   * @param duplicateAdCampaignRequest  (required)
+   * @return DuplicateAdCampaign200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DuplicateAdCampaign200Response duplicateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest) throws ApiException {
+    return duplicateAdCampaign(campaignId, duplicateAdCampaignRequest, null);
+  }
+
+  /**
+   * Duplicate a campaign
+   * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Source platform campaign ID (required)
+   * @param duplicateAdCampaignRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return DuplicateAdCampaign200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DuplicateAdCampaign200Response duplicateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<DuplicateAdCampaign200Response> localVarResponse = duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Duplicate a campaign
+   * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Source platform campaign ID (required)
+   * @param duplicateAdCampaignRequest  (required)
+   * @return ApiResponse&lt;DuplicateAdCampaign200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest) throws ApiException {
+    return duplicateAdCampaignWithHttpInfo(campaignId, duplicateAdCampaignRequest, null);
+  }
+
+  /**
+   * Duplicate a campaign
+   * Duplicates a campaign, including its ad sets, ads, creatives, and targeting by default (&#x60;deepCopy: true&#x60;). On Meta, this uses &#x60;POST /{campaign-id}/copies&#x60;. The copy is created paused by default so callers can review before launching.  The platform&#39;s duplication is asynchronous from our side; once the copy is created on the platform, we trigger a sync discovery so the new hierarchy shows up in /v1/ads/tree. Set &#x60;syncAfter: false&#x60; to skip the discovery trigger and poll on your own cadence.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Source platform campaign ID (required)
+   * @param duplicateAdCampaignRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DuplicateAdCampaign200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DuplicateAdCampaign200Response> duplicateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = duplicateAdCampaignRequestBuilder(campaignId, duplicateAdCampaignRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("duplicateAdCampaign", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DuplicateAdCampaign200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DuplicateAdCampaign200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DuplicateAdCampaign200Response>() {});
+        
+
+        return new ApiResponse<DuplicateAdCampaign200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder duplicateAdCampaignRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull DuplicateAdCampaignRequest duplicateAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling duplicateAdCampaign");
+    }
+    // verify the required parameter 'duplicateAdCampaignRequest' is set
+    if (duplicateAdCampaignRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'duplicateAdCampaignRequest' when calling duplicateAdCampaign");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/duplicate"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(duplicateAdCampaignRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get campaign tree
    * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
@@ -193,7 +591,7 @@ public class AdCampaignsApi {
    * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
@@ -215,7 +613,7 @@ public class AdCampaignsApi {
    * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
@@ -235,7 +633,7 @@ public class AdCampaignsApi {
    * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (optional)
@@ -355,7 +753,7 @@ public class AdCampaignsApi {
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
@@ -373,7 +771,7 @@ public class AdCampaignsApi {
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
@@ -393,7 +791,7 @@ public class AdCampaignsApi {
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
@@ -411,7 +809,7 @@ public class AdCampaignsApi {
    * Returns campaigns as virtual aggregations over ad documents grouped by platform campaign ID. Metrics (spend, impressions, clicks, etc.) are summed across all ads in each campaign. Campaign status is derived from child ad statuses (active &gt; pending_review &gt; paused &gt; error &gt; completed &gt; cancelled &gt; rejected). 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 20)
-   * @param source  (optional, default to zernio)
+   * @param source &#x60;zernio&#x60; (default) returns only ads created via Zernio (isExternal&#x3D;false). &#x60;all&#x60; additionally returns ads discovered from the platform&#39;s ad manager (isExternal&#x3D;true). Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to zernio)
    * @param platform  (optional)
    * @param status Filter by derived campaign status (post-aggregation) (optional)
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
@@ -509,6 +907,138 @@ public class AdCampaignsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update a campaign (budget)
+   * Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Platform campaign ID (required)
+   * @param updateAdCampaignRequest  (required)
+   * @return UpdateAdCampaign200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdCampaign200Response updateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateAdCampaignRequest updateAdCampaignRequest) throws ApiException {
+    return updateAdCampaign(campaignId, updateAdCampaignRequest, null);
+  }
+
+  /**
+   * Update a campaign (budget)
+   * Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Platform campaign ID (required)
+   * @param updateAdCampaignRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdCampaign200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdCampaign200Response updateAdCampaign(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateAdCampaignRequest updateAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdCampaign200Response> localVarResponse = updateAdCampaignWithHttpInfo(campaignId, updateAdCampaignRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update a campaign (budget)
+   * Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Platform campaign ID (required)
+   * @param updateAdCampaignRequest  (required)
+   * @return ApiResponse&lt;UpdateAdCampaign200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdCampaign200Response> updateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateAdCampaignRequest updateAdCampaignRequest) throws ApiException {
+    return updateAdCampaignWithHttpInfo(campaignId, updateAdCampaignRequest, null);
+  }
+
+  /**
+   * Update a campaign (budget)
+   * Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget. For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.  Meta-only for now. Other platforms return 501 Not Implemented. 
+   * @param campaignId Platform campaign ID (required)
+   * @param updateAdCampaignRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdCampaign200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdCampaign200Response> updateAdCampaignWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateAdCampaignRequest updateAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdCampaignRequestBuilder(campaignId, updateAdCampaignRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdCampaign", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdCampaign200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdCampaign200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdCampaign200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdCampaign200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdCampaignRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateAdCampaignRequest updateAdCampaignRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling updateAdCampaign");
+    }
+    // verify the required parameter 'updateAdCampaignRequest' is set
+    if (updateAdCampaignRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdCampaignRequest' when calling updateAdCampaign");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdCampaignRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -629,6 +1159,270 @@ public class AdCampaignsApi {
 
     String localVarPath = "/v1/ads/campaigns/{campaignId}/status"
         .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdCampaignStatusRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update an ad set (budget and/or status)
+   * Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdSetRequest  (required)
+   * @return UpdateAdSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdSet200Response updateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdSetRequest updateAdSetRequest) throws ApiException {
+    return updateAdSet(adSetId, updateAdSetRequest, null);
+  }
+
+  /**
+   * Update an ad set (budget and/or status)
+   * Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdSetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdSet200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdSet200Response updateAdSet(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdSetRequest updateAdSetRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdSet200Response> localVarResponse = updateAdSetWithHttpInfo(adSetId, updateAdSetRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update an ad set (budget and/or status)
+   * Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdSetRequest  (required)
+   * @return ApiResponse&lt;UpdateAdSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdSet200Response> updateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdSetRequest updateAdSetRequest) throws ApiException {
+    return updateAdSetWithHttpInfo(adSetId, updateAdSetRequest, null);
+  }
+
+  /**
+   * Update an ad set (budget and/or status)
+   * Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped pause/resume. Provide &#x60;budget&#x60; and/or &#x60;status&#x60; in the body.  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdSetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdSet200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdSet200Response> updateAdSetWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdSetRequest updateAdSetRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdSetRequestBuilder(adSetId, updateAdSetRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdSet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdSet200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdSet200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdSet200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdSet200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdSetRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdSetRequest updateAdSetRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling updateAdSet");
+    }
+    // verify the required parameter 'updateAdSetRequest' is set
+    if (updateAdSetRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdSetRequest' when calling updateAdSet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdSetRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Pause or resume a single ad set
+   * Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdCampaignStatusRequest  (required)
+   * @return UpdateAdSetStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdSetStatus200Response updateAdSetStatus(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest) throws ApiException {
+    return updateAdSetStatus(adSetId, updateAdCampaignStatusRequest, null);
+  }
+
+  /**
+   * Pause or resume a single ad set
+   * Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdCampaignStatusRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdSetStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdSetStatus200Response updateAdSetStatus(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdSetStatus200Response> localVarResponse = updateAdSetStatusWithHttpInfo(adSetId, updateAdCampaignStatusRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pause or resume a single ad set
+   * Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdCampaignStatusRequest  (required)
+   * @return ApiResponse&lt;UpdateAdSetStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdSetStatus200Response> updateAdSetStatusWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest) throws ApiException {
+    return updateAdSetStatusWithHttpInfo(adSetId, updateAdCampaignStatusRequest, null);
+  }
+
+  /**
+   * Pause or resume a single ad set
+   * Ad-set-scoped pause/resume (doesn&#39;t touch sibling ad sets). Thin wrapper over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the status toggle and prefer a symmetric URL to /v1/ads/campaigns/{campaignId}/status. 
+   * @param adSetId Platform ad set ID (required)
+   * @param updateAdCampaignStatusRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdSetStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdSetStatus200Response> updateAdSetStatusWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdSetStatusRequestBuilder(adSetId, updateAdCampaignStatusRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdSetStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdSetStatus200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdSetStatus200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdSetStatus200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdSetStatus200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdSetStatusRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateAdCampaignStatusRequest updateAdCampaignStatusRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling updateAdSetStatus");
+    }
+    // verify the required parameter 'updateAdCampaignStatusRequest' is set
+    if (updateAdCampaignStatusRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdCampaignStatusRequest' when calling updateAdSetStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}/status"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

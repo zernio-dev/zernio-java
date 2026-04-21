@@ -25,9 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.Ad;
-import dev.zernio.model.AdBudget;
 import dev.zernio.model.AdMetrics;
 import dev.zernio.model.AdStatus;
+import dev.zernio.model.AdTreeAdSetAdSetBudget;
+import dev.zernio.model.AdTreeAdSetBudget;
 import dev.zernio.model.AdTreeAdSetPromotedObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,13 +46,14 @@ import dev.zernio.ApiClient;
   AdTreeAdSet.JSON_PROPERTY_STATUS,
   AdTreeAdSet.JSON_PROPERTY_AD_COUNT,
   AdTreeAdSet.JSON_PROPERTY_BUDGET,
+  AdTreeAdSet.JSON_PROPERTY_AD_SET_BUDGET,
   AdTreeAdSet.JSON_PROPERTY_METRICS,
   AdTreeAdSet.JSON_PROPERTY_OPTIMIZATION_GOAL,
   AdTreeAdSet.JSON_PROPERTY_BID_STRATEGY,
   AdTreeAdSet.JSON_PROPERTY_PROMOTED_OBJECT,
   AdTreeAdSet.JSON_PROPERTY_ADS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T09:11:28.743393890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T16:25:38.385086731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeAdSet {
   public static final String JSON_PROPERTY_PLATFORM_AD_SET_ID = "platformAdSetId";
   @javax.annotation.Nullable
@@ -71,7 +73,11 @@ public class AdTreeAdSet {
 
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
-  private AdBudget budget;
+  private AdTreeAdSetBudget budget;
+
+  public static final String JSON_PROPERTY_AD_SET_BUDGET = "adSetBudget";
+  @javax.annotation.Nullable
+  private AdTreeAdSetAdSetBudget adSetBudget;
 
   public static final String JSON_PROPERTY_METRICS = "metrics";
   @javax.annotation.Nullable
@@ -192,7 +198,7 @@ public class AdTreeAdSet {
   }
 
 
-  public AdTreeAdSet budget(@javax.annotation.Nullable AdBudget budget) {
+  public AdTreeAdSet budget(@javax.annotation.Nullable AdTreeAdSetBudget budget) {
     this.budget = budget;
     return this;
   }
@@ -204,15 +210,39 @@ public class AdTreeAdSet {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AdBudget getBudget() {
+  public AdTreeAdSetBudget getBudget() {
     return budget;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_BUDGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBudget(@javax.annotation.Nullable AdBudget budget) {
+  public void setBudget(@javax.annotation.Nullable AdTreeAdSetBudget budget) {
     this.budget = budget;
+  }
+
+
+  public AdTreeAdSet adSetBudget(@javax.annotation.Nullable AdTreeAdSetAdSetBudget adSetBudget) {
+    this.adSetBudget = adSetBudget;
+    return this;
+  }
+
+  /**
+   * Get adSetBudget
+   * @return adSetBudget
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdTreeAdSetAdSetBudget getAdSetBudget() {
+    return adSetBudget;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdSetBudget(@javax.annotation.Nullable AdTreeAdSetAdSetBudget adSetBudget) {
+    this.adSetBudget = adSetBudget;
   }
 
 
@@ -361,6 +391,7 @@ public class AdTreeAdSet {
         Objects.equals(this.status, adTreeAdSet.status) &&
         Objects.equals(this.adCount, adTreeAdSet.adCount) &&
         Objects.equals(this.budget, adTreeAdSet.budget) &&
+        Objects.equals(this.adSetBudget, adTreeAdSet.adSetBudget) &&
         Objects.equals(this.metrics, adTreeAdSet.metrics) &&
         Objects.equals(this.optimizationGoal, adTreeAdSet.optimizationGoal) &&
         Objects.equals(this.bidStrategy, adTreeAdSet.bidStrategy) &&
@@ -370,7 +401,7 @@ public class AdTreeAdSet {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformAdSetId, adSetName, status, adCount, budget, metrics, optimizationGoal, bidStrategy, promotedObject, ads);
+    return Objects.hash(platformAdSetId, adSetName, status, adCount, budget, adSetBudget, metrics, optimizationGoal, bidStrategy, promotedObject, ads);
   }
 
   @Override
@@ -382,6 +413,7 @@ public class AdTreeAdSet {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    adCount: ").append(toIndentedString(adCount)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
+    sb.append("    adSetBudget: ").append(toIndentedString(adSetBudget)).append("\n");
     sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
@@ -457,6 +489,11 @@ public class AdTreeAdSet {
     // add `budget` to the URL query string
     if (getBudget() != null) {
       joiner.add(getBudget().toUrlQueryString(prefix + "budget" + suffix));
+    }
+
+    // add `adSetBudget` to the URL query string
+    if (getAdSetBudget() != null) {
+      joiner.add(getAdSetBudget().toUrlQueryString(prefix + "adSetBudget" + suffix));
     }
 
     // add `metrics` to the URL query string

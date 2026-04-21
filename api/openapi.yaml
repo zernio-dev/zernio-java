@@ -13461,7 +13461,11 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: '`zernio` (default) returns only ads created via Zernio (isExternal=false).
+          `all` additionally returns ads discovered from the platform''s ad manager
+          (isExternal=true). Status is NOT filtered by default — use the `status`
+          param for that.'
+        explode: true
         in: query
         name: source
         required: false
@@ -13579,6 +13583,277 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/campaigns/{campaignId}:
+    delete:
+      description: |
+        Deletes the whole campaign on the platform, cascading to its ad sets
+        and ads. Locally, all Ad documents for this campaign are marked
+        `status: cancelled`.
+
+        Meta-only for now. Other platforms return 501 Not Implemented — fall
+        back to DELETE /v1/ads/{adId} per ad in the meantime.
+      operationId: deleteAdCampaign
+      parameters:
+      - description: Platform campaign ID
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/deleteAdCampaign_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteAdCampaign_200_response"
+          description: Campaign deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Campaign not found
+        "501":
+          description: Operation not supported on this platform
+      security:
+      - bearerAuth: []
+      summary: Delete a campaign
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Campaign-level edits. Currently supports updating the CBO (Campaign Budget Optimization) budget.
+        For ABO campaigns (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint will return 409 with code BUDGET_LEVEL_MISMATCH.
+
+        Meta-only for now. Other platforms return 501 Not Implemented.
+      operationId: updateAdCampaign
+      parameters:
+      - description: Platform campaign ID
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdCampaign_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdCampaign_200_response"
+          description: Campaign budget updated
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Campaign not found
+        "409":
+          description: "Campaign is ABO — route to /v1/ads/ad-sets/{adSetId} instead"
+        "501":
+          description: Operation not supported on this platform
+      security:
+      - bearerAuth: []
+      summary: Update a campaign (budget)
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/bulk-status:
+    post:
+      description: |
+        Process up to 50 campaigns in one call. Each campaign is updated
+        concurrently and the response contains a per-campaign result so a
+        single bad row does not fail the whole batch.
+      operationId: bulkUpdateAdCampaignStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/bulkUpdateAdCampaignStatus_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/bulkUpdateAdCampaignStatus_200_response"
+          description: Per-campaign results
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Pause or resume many campaigns
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/{campaignId}/duplicate:
+    post:
+      description: |
+        Duplicates a campaign, including its ad sets, ads, creatives, and
+        targeting by default (`deepCopy: true`). On Meta, this uses
+        `POST /{campaign-id}/copies`. The copy is created paused by default so
+        callers can review before launching.
+
+        The platform's duplication is asynchronous from our side; once the
+        copy is created on the platform, we trigger a sync discovery so the
+        new hierarchy shows up in /v1/ads/tree. Set `syncAfter: false` to
+        skip the discovery trigger and poll on your own cadence.
+
+        Meta-only for now. Other platforms return 501 Not Implemented.
+      operationId: duplicateAdCampaign
+      parameters:
+      - description: Source platform campaign ID
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/duplicateAdCampaign_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/duplicateAdCampaign_200_response"
+          description: Campaign duplicated
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Source campaign not found
+        "501":
+          description: Operation not supported on this platform
+      security:
+      - bearerAuth: []
+      summary: Duplicate a campaign
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/ad-sets/{adSetId}:
+    put:
+      description: |
+        Ad-set-level writes. Use this for ABO budget updates and ad-set-scoped
+        pause/resume. Provide `budget` and/or `status` in the body.
+
+        When updating `budget` on an ABO campaign: if the parent campaign is
+        CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to
+        PUT /v1/ads/campaigns/{campaignId} instead.
+      operationId: updateAdSet
+      parameters:
+      - description: Platform ad set ID
+        explode: false
+        in: path
+        name: adSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdSet_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdSet_200_response"
+          description: Ad set updated
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Ad set not found
+        "409":
+          description: "Campaign is CBO — route to /v1/ads/campaigns/{campaignId}\
+            \ instead"
+      security:
+      - bearerAuth: []
+      summary: Update an ad set (budget and/or status)
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/ad-sets/{adSetId}/status:
+    put:
+      description: |
+        Ad-set-scoped pause/resume (doesn't touch sibling ad sets). Thin wrapper
+        over PUT /v1/ads/ad-sets/{adSetId} for callers that only want the
+        status toggle and prefer a symmetric URL to
+        /v1/ads/campaigns/{campaignId}/status.
+      operationId: updateAdSetStatus
+      parameters:
+      - description: Platform ad set ID
+        explode: false
+        in: path
+        name: adSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdCampaignStatus_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdSetStatus_200_response"
+          description: Ad set status updated
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Ad set not found
+      security:
+      - bearerAuth: []
+      summary: Pause or resume a single ad set
+      tags:
+      - Ad Campaigns
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/tree:
     get:
       description: |
@@ -13602,7 +13877,11 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - explode: true
+      - description: '`zernio` (default) returns only ads created via Zernio (isExternal=false).
+          `all` additionally returns ads discovered from the platform''s ad manager
+          (isExternal=true). Status is NOT filtered by default — use the `status`
+          param for that.'
+        explode: true
         in: query
         name: source
         required: false
@@ -19886,17 +20165,17 @@ components:
           $ref: "#/components/schemas/User"
     AdMetrics:
       example:
-        ctr: 2.3021358869347655
-        cpm: 9.301444243932576
-        conversions: 2
-        engagement: 3
-        reach: 5
-        spend: 6.027456183070403
-        cpc: 7.061401241503109
+        ctr: 9.301444243932576
+        cpm: 2.027123023002322
+        conversions: 7
+        engagement: 4
+        reach: 2
+        spend: 5.962133916683182
+        cpc: 3.616076749251911
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-        clicks: 5
-        impressions: 1
-        costPerConversion: 4.145608029883936
+        clicks: 7
+        impressions: 5
+        costPerConversion: 1.2315135367772556
         actions:
           link_click: 160
           post_engagement: 300
@@ -19958,6 +20237,23 @@ components:
       - cancelled
       - error
       type: string
+    AdBudget:
+      description: Budget amount in the ad account's native currency (see the campaign's
+        `currency` field for the code).
+      example:
+        amount: 6.027456183070403
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+      required:
+      - amount
+      - type
     Ad:
       example:
         bidStrategy: LOWEST_COST_WITHOUT_CAP
@@ -20206,21 +20502,24 @@ components:
           platformAdAccountId: platformAdAccountId
           status: active
         adSetName: adSetName
+        adSetBudget:
+          amount: 7.061401241503109
+          type: daily
         platformAdSetId: platformAdSetId
-        adCount: 1
+        adCount: 5
         optimizationGoal: optimizationGoal
         metrics:
-          ctr: 2.3021358869347655
-          cpm: 9.301444243932576
-          conversions: 2
-          engagement: 3
-          reach: 5
-          spend: 6.027456183070403
-          cpc: 7.061401241503109
+          ctr: 9.301444243932576
+          cpm: 2.027123023002322
+          conversions: 7
+          engagement: 4
+          reach: 2
+          spend: 5.962133916683182
+          cpc: 3.616076749251911
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          clicks: 5
-          impressions: 1
-          costPerConversion: 4.145608029883936
+          clicks: 7
+          impressions: 5
+          costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
             post_engagement: 300
@@ -20231,7 +20530,7 @@ components:
           pixel_id: pixel_id
         status: ""
         budget:
-          amount: 0.8008281904610115
+          amount: 2.3021358869347655
           type: daily
       properties:
         platformAdSetId:
@@ -20245,7 +20544,9 @@ components:
         adCount:
           type: integer
         budget:
-          $ref: "#/components/schemas/Ad_budget"
+          $ref: "#/components/schemas/AdTreeAdSet_budget"
+        adSetBudget:
+          $ref: "#/components/schemas/AdTreeAdSet_adSetBudget"
         metrics:
           $ref: "#/components/schemas/AdMetrics"
         optimizationGoal:
@@ -20273,17 +20574,25 @@ components:
       example:
         bidStrategy: bidStrategy
         platformCampaignId: platformCampaignId
+        budgetLevel: campaign
         adCount: 0
         optimizationGoal: optimizationGoal
+        platformCampaignStatus: platformCampaignStatus
         adSetCount: 6
         platform: facebook
         promotedObject:
           page_id: page_id
           custom_event_type: custom_event_type
           pixel_id: pixel_id
+        isBudgetScheduleEnabled: false
         accountId: accountId
+        campaignBudget:
+          amount: 5.962133916683182
+          type: daily
         profileId: profileId
         platformObjective: platformObjective
+        reviewStatus: in_review
+        currency: currency
         adSets:
         - bidStrategy: bidStrategy
           ads:
@@ -20386,21 +20695,24 @@ components:
             platformAdAccountId: platformAdAccountId
             status: active
           adSetName: adSetName
+          adSetBudget:
+            amount: 7.061401241503109
+            type: daily
           platformAdSetId: platformAdSetId
-          adCount: 1
+          adCount: 5
           optimizationGoal: optimizationGoal
           metrics:
-            ctr: 2.3021358869347655
-            cpm: 9.301444243932576
-            conversions: 2
-            engagement: 3
-            reach: 5
-            spend: 6.027456183070403
-            cpc: 7.061401241503109
+            ctr: 9.301444243932576
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            clicks: 5
-            impressions: 1
-            costPerConversion: 4.145608029883936
+            clicks: 7
+            impressions: 5
+            costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
               post_engagement: 300
@@ -20411,7 +20723,7 @@ components:
             pixel_id: pixel_id
           status: ""
           budget:
-            amount: 0.8008281904610115
+            amount: 2.3021358869347655
             type: daily
         - bidStrategy: bidStrategy
           ads:
@@ -20514,21 +20826,24 @@ components:
             platformAdAccountId: platformAdAccountId
             status: active
           adSetName: adSetName
+          adSetBudget:
+            amount: 7.061401241503109
+            type: daily
           platformAdSetId: platformAdSetId
-          adCount: 1
+          adCount: 5
           optimizationGoal: optimizationGoal
           metrics:
-            ctr: 2.3021358869347655
-            cpm: 9.301444243932576
-            conversions: 2
-            engagement: 3
-            reach: 5
-            spend: 6.027456183070403
-            cpc: 7.061401241503109
+            ctr: 9.301444243932576
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            clicks: 5
-            impressions: 1
-            costPerConversion: 4.145608029883936
+            clicks: 7
+            impressions: 5
+            costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
               post_engagement: 300
@@ -20539,20 +20854,20 @@ components:
             pixel_id: pixel_id
           status: ""
           budget:
-            amount: 0.8008281904610115
+            amount: 2.3021358869347655
             type: daily
         metrics:
-          ctr: 2.3021358869347655
-          cpm: 9.301444243932576
-          conversions: 2
-          engagement: 3
-          reach: 5
-          spend: 6.027456183070403
-          cpc: 7.061401241503109
+          ctr: 9.301444243932576
+          cpm: 2.027123023002322
+          conversions: 7
+          engagement: 4
+          reach: 2
+          spend: 5.962133916683182
+          cpc: 3.616076749251911
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          clicks: 5
-          impressions: 1
-          costPerConversion: 4.145608029883936
+          clicks: 7
+          impressions: 5
+          costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
             post_engagement: 300
@@ -20560,8 +20875,11 @@ components:
         campaignName: campaignName
         platformAdAccountId: platformAdAccountId
         status: ""
+        campaignIssuesInfo:
+        - "{}"
+        - "{}"
         budget:
-          amount: 0.8008281904610115
+          amount: 1.4658129805029452
           type: daily
       properties:
         platformCampaignId:
@@ -20581,14 +20899,66 @@ components:
         status:
           allOf:
           - $ref: "#/components/schemas/AdStatus"
-          description: Derived from child ad statuses
+          description: "Delivery status derived from child ad statuses. Distinct from\
+            \ `reviewStatus`, which reflects the platform-side review state."
+        reviewStatus:
+          description: |
+            Platform-side review state of the campaign. Independent of the
+            children-derived delivery `status`: a campaign can have ads
+            already active (status=active) while the campaign itself is
+            still being reviewed by the platform (reviewStatus=in_review).
+            For Meta, derived from `effective_status` + `issues_info` on
+            the Campaign, plus ad-level PENDING_REVIEW rollup.
+          enum:
+          - in_review
+          - approved
+          - rejected
+          - with_issues
+          type: string
+          nullable: true
+        platformCampaignStatus:
+          description: "Raw platform-level campaign status (Meta `effective_status`:\
+            \ ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct\
+            \ from per-ad `platformStatus`."
+          type: string
+          nullable: true
+        campaignIssuesInfo:
+          description: "Platform-reported campaign issues (Meta `issues_info[]`).\
+            \ Populated only when the platform has delivery issues to report; contains\
+            \ the specific error codes and messages."
+          items:
+            type: object
+          type: array
+          nullable: true
         adCount:
           description: Total ads across all ad sets
           type: integer
         adSetCount:
           type: integer
         budget:
-          $ref: "#/components/schemas/Ad_budget"
+          $ref: "#/components/schemas/AdTreeCampaign_budget"
+        campaignBudget:
+          $ref: "#/components/schemas/AdTreeCampaign_campaignBudget"
+        budgetLevel:
+          description: "Canonical CBO/ABO indicator. `campaign` = CBO (Advantage Campaign\
+            \ Budget, budget lives on the campaign). `adset` = ABO (budget lives on\
+            \ each ad set). Route budget updates to the matching Meta entity."
+          enum:
+          - campaign
+          - adset
+          type: string
+          nullable: true
+        isBudgetScheduleEnabled:
+          default: false
+          description: Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true
+            when the campaign uses budget scheduling (time-based budget changes).
+            Independent of CBO/ABO.
+          type: boolean
+        currency:
+          description: "ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget\
+            \ amounts in this campaign node. Budgets are NOT normalized to USD."
+          type: string
+          nullable: true
         metrics:
           $ref: "#/components/schemas/AdMetrics"
         platformAdAccountId:
@@ -20622,30 +20992,38 @@ components:
       example:
         bidStrategy: bidStrategy
         platformCampaignId: platformCampaignId
+        budgetLevel: campaign
         adCount: 0
         optimizationGoal: optimizationGoal
+        platformCampaignStatus: platformCampaignStatus
         platform: facebook
         promotedObject:
           page_id: page_id
           custom_event_type: custom_event_type
           pixel_id: pixel_id
+        isBudgetScheduleEnabled: false
         accountId: accountId
+        campaignBudget:
+          amount: 1.4658129805029452
+          type: daily
         profileId: profileId
         earliestAd: 2000-01-23T04:56:07.000+00:00
         platformObjective: platformObjective
         latestAd: 2000-01-23T04:56:07.000+00:00
+        reviewStatus: in_review
+        currency: currency
         metrics:
-          ctr: 2.3021358869347655
-          cpm: 9.301444243932576
-          conversions: 2
-          engagement: 3
-          reach: 5
-          spend: 6.027456183070403
-          cpc: 7.061401241503109
+          ctr: 9.301444243932576
+          cpm: 2.027123023002322
+          conversions: 7
+          engagement: 4
+          reach: 2
+          spend: 5.962133916683182
+          cpc: 3.616076749251911
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          clicks: 5
-          impressions: 1
-          costPerConversion: 4.145608029883936
+          clicks: 7
+          impressions: 5
+          costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
             post_engagement: 300
@@ -20653,8 +21031,11 @@ components:
         campaignName: campaignName
         platformAdAccountId: platformAdAccountId
         status: ""
+        campaignIssuesInfo:
+        - "{}"
+        - "{}"
         budget:
-          amount: 0.8008281904610115
+          amount: 6.027456183070403
           type: daily
       properties:
         platformCampaignId:
@@ -20674,11 +21055,50 @@ components:
         status:
           allOf:
           - $ref: "#/components/schemas/AdStatus"
-          description: Derived from child ad statuses
+          description: Delivery status derived from child ad statuses. Distinct from
+            `reviewStatus`.
+        reviewStatus:
+          description: Platform-side review state of the campaign. See AdTreeCampaign.reviewStatus
+            for the full description.
+          enum:
+          - in_review
+          - approved
+          - rejected
+          - with_issues
+          type: string
+          nullable: true
+        platformCampaignStatus:
+          description: Raw platform-level campaign status (Meta `effective_status`).
+          type: string
+          nullable: true
+        campaignIssuesInfo:
+          description: "Platform-reported campaign issues (Meta `issues_info[]`)."
+          items:
+            type: object
+          type: array
+          nullable: true
         adCount:
           type: integer
         budget:
-          $ref: "#/components/schemas/Ad_budget"
+          $ref: "#/components/schemas/AdCampaign_budget"
+        campaignBudget:
+          $ref: "#/components/schemas/AdCampaign_campaignBudget"
+        budgetLevel:
+          description: Canonical CBO/ABO indicator. See AdTreeCampaign.budgetLevel.
+          enum:
+          - campaign
+          - adset
+          type: string
+          nullable: true
+        isBudgetScheduleEnabled:
+          default: false
+          description: Meta-only. Mirrors Campaign.is_budget_schedule_enabled.
+          type: boolean
+        currency:
+          description: ISO 4217 currency code for all budget amounts. Budgets are
+            NOT normalized to USD.
+          type: string
+          nullable: true
         metrics:
           $ref: "#/components/schemas/AdMetrics"
         platformAdAccountId:
@@ -34625,30 +35045,38 @@ components:
         campaigns:
         - bidStrategy: bidStrategy
           platformCampaignId: platformCampaignId
+          budgetLevel: campaign
           adCount: 0
           optimizationGoal: optimizationGoal
+          platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          isBudgetScheduleEnabled: false
           accountId: accountId
+          campaignBudget:
+            amount: 1.4658129805029452
+            type: daily
           profileId: profileId
           earliestAd: 2000-01-23T04:56:07.000+00:00
           platformObjective: platformObjective
           latestAd: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: in_review
+          currency: currency
           metrics:
-            ctr: 2.3021358869347655
-            cpm: 9.301444243932576
-            conversions: 2
-            engagement: 3
-            reach: 5
-            spend: 6.027456183070403
-            cpc: 7.061401241503109
+            ctr: 9.301444243932576
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            clicks: 5
-            impressions: 1
-            costPerConversion: 4.145608029883936
+            clicks: 7
+            impressions: 5
+            costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
               post_engagement: 300
@@ -34656,35 +35084,46 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
+          campaignIssuesInfo:
+          - "{}"
+          - "{}"
           budget:
-            amount: 0.8008281904610115
+            amount: 6.027456183070403
             type: daily
         - bidStrategy: bidStrategy
           platformCampaignId: platformCampaignId
+          budgetLevel: campaign
           adCount: 0
           optimizationGoal: optimizationGoal
+          platformCampaignStatus: platformCampaignStatus
           platform: facebook
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          isBudgetScheduleEnabled: false
           accountId: accountId
+          campaignBudget:
+            amount: 1.4658129805029452
+            type: daily
           profileId: profileId
           earliestAd: 2000-01-23T04:56:07.000+00:00
           platformObjective: platformObjective
           latestAd: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: in_review
+          currency: currency
           metrics:
-            ctr: 2.3021358869347655
-            cpm: 9.301444243932576
-            conversions: 2
-            engagement: 3
-            reach: 5
-            spend: 6.027456183070403
-            cpc: 7.061401241503109
+            ctr: 9.301444243932576
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            clicks: 5
-            impressions: 1
-            costPerConversion: 4.145608029883936
+            clicks: 7
+            impressions: 5
+            costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
               post_engagement: 300
@@ -34692,8 +35131,11 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
+          campaignIssuesInfo:
+          - "{}"
+          - "{}"
           budget:
-            amount: 0.8008281904610115
+            amount: 6.027456183070403
             type: daily
       properties:
         campaigns:
@@ -34744,6 +35186,285 @@ components:
         message:
           description: Human-readable summary (present when no ads were actionable)
           type: string
+    updateAdCampaign_request_budget:
+      properties:
+        amount:
+          description: Budget amount in the ad account's currency
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+      required:
+      - amount
+      - type
+    updateAdCampaign_request:
+      properties:
+        platform:
+          enum:
+          - facebook
+          - instagram
+          type: string
+        budget:
+          $ref: "#/components/schemas/updateAdCampaign_request_budget"
+      required:
+      - budget
+      - platform
+    updateAdCampaign_200_response:
+      example:
+        budgetLevel: campaign
+        updated: 0
+        budget:
+          amount: 6.027456183070403
+          type: daily
+      properties:
+        updated:
+          type: integer
+        budget:
+          $ref: "#/components/schemas/AdBudget"
+        budgetLevel:
+          enum:
+          - campaign
+          type: string
+    deleteAdCampaign_request:
+      properties:
+        platform:
+          enum:
+          - facebook
+          - instagram
+          type: string
+      required:
+      - platform
+    deleteAdCampaign_200_response:
+      example:
+        deleted: true
+        adCount: 0
+      properties:
+        deleted:
+          type: boolean
+        adCount:
+          description: Number of local Ad docs marked cancelled
+          type: integer
+    bulkUpdateAdCampaignStatus_request_campaigns_inner:
+      properties:
+        platformCampaignId:
+          type: string
+        platform:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          type: string
+      required:
+      - platform
+      - platformCampaignId
+    bulkUpdateAdCampaignStatus_request:
+      properties:
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+        campaigns:
+          items:
+            $ref: "#/components/schemas/bulkUpdateAdCampaignStatus_request_campaigns_inner"
+          maxItems: 50
+          type: array
+      required:
+      - campaigns
+      - status
+    bulkUpdateAdCampaignStatus_200_response_totals:
+      example:
+        failed: 1
+        updated: 0
+        skipped: 6
+      properties:
+        updated:
+          type: integer
+        skipped:
+          type: integer
+        failed:
+          type: integer
+    bulkUpdateAdCampaignStatus_200_response_results_inner:
+      example:
+        platformCampaignId: platformCampaignId
+        error: error
+        updated: 5
+        platform: platform
+        skipped: 5
+      properties:
+        platformCampaignId:
+          type: string
+        platform:
+          type: string
+        updated:
+          type: integer
+        skipped:
+          type: integer
+        error:
+          type: string
+    bulkUpdateAdCampaignStatus_200_response:
+      example:
+        totals:
+          failed: 1
+          updated: 0
+          skipped: 6
+        results:
+        - platformCampaignId: platformCampaignId
+          error: error
+          updated: 5
+          platform: platform
+          skipped: 5
+        - platformCampaignId: platformCampaignId
+          error: error
+          updated: 5
+          platform: platform
+          skipped: 5
+        status: active
+      properties:
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+        totals:
+          $ref: "#/components/schemas/bulkUpdateAdCampaignStatus_200_response_totals"
+        results:
+          items:
+            $ref: "#/components/schemas/bulkUpdateAdCampaignStatus_200_response_results_inner"
+          type: array
+    duplicateAdCampaign_request:
+      properties:
+        platform:
+          enum:
+          - facebook
+          - instagram
+          type: string
+        deepCopy:
+          default: true
+          description: Copy child ad sets + ads + creatives + targeting
+          type: boolean
+        statusOption:
+          default: PAUSED
+          enum:
+          - ACTIVE
+          - PAUSED
+          - INHERITED_FROM_SOURCE
+          type: string
+        startTime:
+          description: Reschedule the copied hierarchy's start time
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
+        renameStrategy:
+          enum:
+          - DEEP_RENAME
+          - ONLY_TOP_LEVEL_RENAME
+          - NO_RENAME
+          type: string
+        renamePrefix:
+          type: string
+        renameSuffix:
+          type: string
+        syncAfter:
+          default: true
+          description: Trigger ads discovery on the owning account after the copy
+            succeeds
+          type: boolean
+      required:
+      - platform
+    duplicateAdCampaign_200_response:
+      example:
+        copiedCampaignId: copiedCampaignId
+        discovery: triggered
+        raw: "{}"
+      properties:
+        copiedCampaignId:
+          description: Platform ID of the new campaign
+          type: string
+        discovery:
+          enum:
+          - triggered
+          - skipped
+          - failed
+          type: string
+        raw:
+          description: Platform-native response from the copy endpoint (Meta includes
+            ad_object_ids for child copies)
+          type: object
+    updateAdSet_request_budget:
+      description: Omit if only toggling status
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+    updateAdSet_request:
+      properties:
+        platform:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          type: string
+        budget:
+          $ref: "#/components/schemas/updateAdSet_request_budget"
+        status:
+          description: Omit if only updating budget
+          enum:
+          - active
+          - paused
+          type: string
+      required:
+      - platform
+    updateAdSet_200_response:
+      example:
+        statusSkipped: 6
+        budgetLevel: adset
+        statusUpdated: 0
+        budget:
+          amount: 6.027456183070403
+          type: daily
+        status: active
+      properties:
+        budget:
+          $ref: "#/components/schemas/AdBudget"
+        budgetLevel:
+          enum:
+          - adset
+          type: string
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+        statusUpdated:
+          type: integer
+        statusSkipped:
+          type: integer
+    updateAdSetStatus_200_response:
+      example:
+        updated: 0
+        skipped: 6
+      properties:
+        updated:
+          type: integer
+        skipped:
+          type: integer
     getAdTree_200_response:
       example:
         pagination:
@@ -34754,17 +35475,25 @@ components:
         campaigns:
         - bidStrategy: bidStrategy
           platformCampaignId: platformCampaignId
+          budgetLevel: campaign
           adCount: 0
           optimizationGoal: optimizationGoal
+          platformCampaignStatus: platformCampaignStatus
           adSetCount: 6
           platform: facebook
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          isBudgetScheduleEnabled: false
           accountId: accountId
+          campaignBudget:
+            amount: 5.962133916683182
+            type: daily
           profileId: profileId
           platformObjective: platformObjective
+          reviewStatus: in_review
+          currency: currency
           adSets:
           - bidStrategy: bidStrategy
             ads:
@@ -34867,21 +35596,24 @@ components:
               platformAdAccountId: platformAdAccountId
               status: active
             adSetName: adSetName
+            adSetBudget:
+              amount: 7.061401241503109
+              type: daily
             platformAdSetId: platformAdSetId
-            adCount: 1
+            adCount: 5
             optimizationGoal: optimizationGoal
             metrics:
-              ctr: 2.3021358869347655
-              cpm: 9.301444243932576
-              conversions: 2
-              engagement: 3
-              reach: 5
-              spend: 6.027456183070403
-              cpc: 7.061401241503109
+              ctr: 9.301444243932576
+              cpm: 2.027123023002322
+              conversions: 7
+              engagement: 4
+              reach: 2
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              clicks: 5
-              impressions: 1
-              costPerConversion: 4.145608029883936
+              clicks: 7
+              impressions: 5
+              costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -34892,7 +35624,7 @@ components:
               pixel_id: pixel_id
             status: ""
             budget:
-              amount: 0.8008281904610115
+              amount: 2.3021358869347655
               type: daily
           - bidStrategy: bidStrategy
             ads:
@@ -34995,21 +35727,24 @@ components:
               platformAdAccountId: platformAdAccountId
               status: active
             adSetName: adSetName
+            adSetBudget:
+              amount: 7.061401241503109
+              type: daily
             platformAdSetId: platformAdSetId
-            adCount: 1
+            adCount: 5
             optimizationGoal: optimizationGoal
             metrics:
-              ctr: 2.3021358869347655
-              cpm: 9.301444243932576
-              conversions: 2
-              engagement: 3
-              reach: 5
-              spend: 6.027456183070403
-              cpc: 7.061401241503109
+              ctr: 9.301444243932576
+              cpm: 2.027123023002322
+              conversions: 7
+              engagement: 4
+              reach: 2
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              clicks: 5
-              impressions: 1
-              costPerConversion: 4.145608029883936
+              clicks: 7
+              impressions: 5
+              costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -35020,20 +35755,20 @@ components:
               pixel_id: pixel_id
             status: ""
             budget:
-              amount: 0.8008281904610115
+              amount: 2.3021358869347655
               type: daily
           metrics:
-            ctr: 2.3021358869347655
-            cpm: 9.301444243932576
-            conversions: 2
-            engagement: 3
-            reach: 5
-            spend: 6.027456183070403
-            cpc: 7.061401241503109
+            ctr: 9.301444243932576
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            clicks: 5
-            impressions: 1
-            costPerConversion: 4.145608029883936
+            clicks: 7
+            impressions: 5
+            costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
               post_engagement: 300
@@ -35041,22 +35776,33 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
+          campaignIssuesInfo:
+          - "{}"
+          - "{}"
           budget:
-            amount: 0.8008281904610115
+            amount: 1.4658129805029452
             type: daily
         - bidStrategy: bidStrategy
           platformCampaignId: platformCampaignId
+          budgetLevel: campaign
           adCount: 0
           optimizationGoal: optimizationGoal
+          platformCampaignStatus: platformCampaignStatus
           adSetCount: 6
           platform: facebook
           promotedObject:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          isBudgetScheduleEnabled: false
           accountId: accountId
+          campaignBudget:
+            amount: 5.962133916683182
+            type: daily
           profileId: profileId
           platformObjective: platformObjective
+          reviewStatus: in_review
+          currency: currency
           adSets:
           - bidStrategy: bidStrategy
             ads:
@@ -35159,21 +35905,24 @@ components:
               platformAdAccountId: platformAdAccountId
               status: active
             adSetName: adSetName
+            adSetBudget:
+              amount: 7.061401241503109
+              type: daily
             platformAdSetId: platformAdSetId
-            adCount: 1
+            adCount: 5
             optimizationGoal: optimizationGoal
             metrics:
-              ctr: 2.3021358869347655
-              cpm: 9.301444243932576
-              conversions: 2
-              engagement: 3
-              reach: 5
-              spend: 6.027456183070403
-              cpc: 7.061401241503109
+              ctr: 9.301444243932576
+              cpm: 2.027123023002322
+              conversions: 7
+              engagement: 4
+              reach: 2
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              clicks: 5
-              impressions: 1
-              costPerConversion: 4.145608029883936
+              clicks: 7
+              impressions: 5
+              costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -35184,7 +35933,7 @@ components:
               pixel_id: pixel_id
             status: ""
             budget:
-              amount: 0.8008281904610115
+              amount: 2.3021358869347655
               type: daily
           - bidStrategy: bidStrategy
             ads:
@@ -35287,21 +36036,24 @@ components:
               platformAdAccountId: platformAdAccountId
               status: active
             adSetName: adSetName
+            adSetBudget:
+              amount: 7.061401241503109
+              type: daily
             platformAdSetId: platformAdSetId
-            adCount: 1
+            adCount: 5
             optimizationGoal: optimizationGoal
             metrics:
-              ctr: 2.3021358869347655
-              cpm: 9.301444243932576
-              conversions: 2
-              engagement: 3
-              reach: 5
-              spend: 6.027456183070403
-              cpc: 7.061401241503109
+              ctr: 9.301444243932576
+              cpm: 2.027123023002322
+              conversions: 7
+              engagement: 4
+              reach: 2
+              spend: 5.962133916683182
+              cpc: 3.616076749251911
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              clicks: 5
-              impressions: 1
-              costPerConversion: 4.145608029883936
+              clicks: 7
+              impressions: 5
+              costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
                 post_engagement: 300
@@ -35312,20 +36064,20 @@ components:
               pixel_id: pixel_id
             status: ""
             budget:
-              amount: 0.8008281904610115
+              amount: 2.3021358869347655
               type: daily
           metrics:
-            ctr: 2.3021358869347655
-            cpm: 9.301444243932576
-            conversions: 2
-            engagement: 3
-            reach: 5
-            spend: 6.027456183070403
-            cpc: 7.061401241503109
+            ctr: 9.301444243932576
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            clicks: 5
-            impressions: 1
-            costPerConversion: 4.145608029883936
+            clicks: 7
+            impressions: 5
+            costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
               post_engagement: 300
@@ -35333,8 +36085,11 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
+          campaignIssuesInfo:
+          - "{}"
+          - "{}"
           budget:
-            amount: 0.8008281904610115
+            amount: 1.4658129805029452
             type: daily
       properties:
         campaigns:
@@ -35559,17 +36314,17 @@ components:
     getAdAnalytics_200_response_analytics:
       example:
         summary:
-          ctr: 2.3021358869347655
-          cpm: 9.301444243932576
-          conversions: 2
-          engagement: 3
-          reach: 5
-          spend: 6.027456183070403
-          cpc: 7.061401241503109
+          ctr: 9.301444243932576
+          cpm: 2.027123023002322
+          conversions: 7
+          engagement: 4
+          reach: 2
+          spend: 5.962133916683182
+          cpc: 3.616076749251911
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          clicks: 5
-          impressions: 1
-          costPerConversion: 4.145608029883936
+          clicks: 7
+          impressions: 5
+          costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
             post_engagement: 300
@@ -35626,17 +36381,17 @@ components:
       example:
         analytics:
           summary:
-            ctr: 2.3021358869347655
-            cpm: 9.301444243932576
-            conversions: 2
-            engagement: 3
-            reach: 5
-            spend: 6.027456183070403
-            cpc: 7.061401241503109
+            ctr: 9.301444243932576
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            clicks: 5
-            impressions: 1
-            costPerConversion: 4.145608029883936
+            clicks: 7
+            impressions: 5
+            costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
               post_engagement: 300
@@ -37989,6 +38744,37 @@ components:
           format: date-time
           type: string
       nullable: true
+    AdTreeAdSet_budget:
+      description: Effective budget at this level (back-compat). For CBO campaigns
+        this mirrors the parent campaign's budget; for ABO this is the ad-set-specific
+        budget. Use `adSetBudget` / parent `campaignBudget` + `budgetLevel` to disambiguate.
+      example:
+        amount: 2.3021358869347655
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+      nullable: true
+    AdTreeAdSet_adSetBudget:
+      description: Ad-set-level budget (ABO). Null for CBO campaigns where the budget
+        is set on the campaign.
+      example:
+        amount: 7.061401241503109
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+      nullable: true
     AdTreeAdSet_promotedObject:
       description: Meta promoted object for this ad set (conversion event details)
       example:
@@ -38003,6 +38789,37 @@ components:
         page_id:
           type: string
       nullable: true
+    AdTreeCampaign_budget:
+      description: "Effective budget (back-compat). For CBO this mirrors `campaignBudget`,\
+        \ for ABO this mirrors the child ad-set budget. Use `budgetLevel` to disambiguate."
+      example:
+        amount: 1.4658129805029452
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+      nullable: true
+    AdTreeCampaign_campaignBudget:
+      description: Campaign-level budget (Campaign Budget Optimization / CBO). Populated
+        only when the platform set the budget at the campaign level. For ABO campaigns
+        this is null and the budget lives on the child ad set.
+      example:
+        amount: 5.962133916683182
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+      nullable: true
     AdTreeCampaign_promotedObject:
       description: Meta promoted object at campaign level (conversion event details)
       example:
@@ -38015,6 +38832,35 @@ components:
         pixel_id:
           type: string
         page_id:
+          type: string
+      nullable: true
+    AdCampaign_budget:
+      description: Effective budget (back-compat). Use `budgetLevel` to disambiguate
+        CBO vs ABO.
+      example:
+        amount: 6.027456183070403
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
+          type: string
+      nullable: true
+    AdCampaign_campaignBudget:
+      description: Campaign-level budget (CBO). Null for ABO campaigns.
+      example:
+        amount: 1.4658129805029452
+        type: daily
+      properties:
+        amount:
+          type: number
+        type:
+          enum:
+          - daily
+          - lifetime
           type: string
       nullable: true
     ConversionEvent_user_clickIds:

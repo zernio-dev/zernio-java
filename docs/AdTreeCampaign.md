@@ -11,10 +11,17 @@ Campaign with nested ad sets and rolled-up metrics
 |**platformCampaignId** | **String** |  |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**campaignName** | **String** |  |  [optional] |
-|**status** | **AdStatus** | Derived from child ad statuses |  [optional] |
+|**status** | **AdStatus** | Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;, which reflects the platform-side review state. |  [optional] |
+|**reviewStatus** | [**ReviewStatusEnum**](#ReviewStatusEnum) | Platform-side review state of the campaign. Independent of the children-derived delivery &#x60;status&#x60;: a campaign can have ads already active (status&#x3D;active) while the campaign itself is still being reviewed by the platform (reviewStatus&#x3D;in_review). For Meta, derived from &#x60;effective_status&#x60; + &#x60;issues_info&#x60; on the Campaign, plus ad-level PENDING_REVIEW rollup.  |  [optional] |
+|**platformCampaignStatus** | **String** | Raw platform-level campaign status (Meta &#x60;effective_status&#x60;: ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct from per-ad &#x60;platformStatus&#x60;. |  [optional] |
+|**campaignIssuesInfo** | **List&lt;Object&gt;** | Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). Populated only when the platform has delivery issues to report; contains the specific error codes and messages. |  [optional] |
 |**adCount** | **Integer** | Total ads across all ad sets |  [optional] |
 |**adSetCount** | **Integer** |  |  [optional] |
-|**budget** | [**AdBudget**](AdBudget.md) |  |  [optional] |
+|**budget** | [**AdTreeCampaignBudget**](AdTreeCampaignBudget.md) |  |  [optional] |
+|**campaignBudget** | [**AdTreeCampaignCampaignBudget**](AdTreeCampaignCampaignBudget.md) |  |  [optional] |
+|**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) | Canonical CBO/ABO indicator. &#x60;campaign&#x60; &#x3D; CBO (Advantage Campaign Budget, budget lives on the campaign). &#x60;adset&#x60; &#x3D; ABO (budget lives on each ad set). Route budget updates to the matching Meta entity. |  [optional] |
+|**isBudgetScheduleEnabled** | **Boolean** | Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO. |  [optional] |
+|**currency** | **String** | ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD. |  [optional] |
 |**metrics** | [**AdMetrics**](AdMetrics.md) |  |  [optional] |
 |**platformAdAccountId** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
@@ -38,6 +45,26 @@ Campaign with nested ad sets and rolled-up metrics
 | PINTEREST | &quot;pinterest&quot; |
 | GOOGLE | &quot;google&quot; |
 | TWITTER | &quot;twitter&quot; |
+
+
+
+## Enum: ReviewStatusEnum
+
+| Name | Value |
+|---- | -----|
+| IN_REVIEW | &quot;in_review&quot; |
+| APPROVED | &quot;approved&quot; |
+| REJECTED | &quot;rejected&quot; |
+| WITH_ISSUES | &quot;with_issues&quot; |
+
+
+
+## Enum: BudgetLevelEnum
+
+| Name | Value |
+|---- | -----|
+| CAMPAIGN | &quot;campaign&quot; |
+| ADSET | &quot;adset&quot; |
 
 
 
