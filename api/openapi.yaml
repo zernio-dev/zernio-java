@@ -20165,15 +20165,20 @@ components:
     AdMetrics:
       example:
         ctr: 9.301444243932576
+        purchaseValue: 1.0246457001441578
         cpm: 2.027123023002322
         conversions: 7
         engagement: 4
         reach: 2
+        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+        impressions: 5
+        actionValues:
+          offsite_conversion.fb_pixel_purchase: 2456.78
+          offsite_conversion.fb_pixel_add_to_cart: 980.5
         spend: 5.962133916683182
         cpc: 3.616076749251911
-        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
         clicks: 7
-        impressions: 5
+        roas: 1.4894159098541704
         costPerConversion: 1.2315135367772556
         actions:
           link_click: 160
@@ -20222,6 +20227,30 @@ components:
             link_click: 160
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
+        actionValues:
+          additionalProperties:
+            type: number
+          description: "Monetary mirror of `actions`, from Meta's Insights `action_values[]`\
+            \ array. Same keying — values are the revenue attributed to each action_type,\
+            \ in ad-account native currency (same unit as `spend`; see the campaign\
+            \ node's `currency` field). Use this to compute revenue-per-event (e.g.\
+            \ avg purchase value). Meta-only; other platforms return {}."
+          example:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+        purchaseValue:
+          description: Convenience sum of purchase-type action values — picked from
+            `actionValues` via the same priority list as `conversions` so both fields
+            describe the same events. In ad-account native currency. 0 when the campaign
+            has no purchase event configured. Meta-only.
+          type: number
+        roas:
+          description: Return on ad spend — derived as `purchaseValue / spend`. 0
+            when `spend` is 0. Equivalent to Meta's `purchase_roas` under default
+            attribution. At ad-set and campaign levels this is recomputed from summed
+            purchaseValue + spend (NOT averaged across children) so it's mathematically
+            correct at every rollup level.
+          type: number
         lastSyncedAt:
           description: "Present on individual ads only, not on campaign aggregations"
           format: date-time
@@ -20509,15 +20538,20 @@ components:
         optimizationGoal: optimizationGoal
         metrics:
           ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
           engagement: 4
           reach: 2
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 5
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
           spend: 5.962133916683182
           cpc: 3.616076749251911
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 7
-          impressions: 5
+          roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -20702,15 +20736,20 @@ components:
           optimizationGoal: optimizationGoal
           metrics:
             ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
             engagement: 4
             reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 5.962133916683182
             cpc: 3.616076749251911
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 7
-            impressions: 5
+            roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -20833,15 +20872,20 @@ components:
           optimizationGoal: optimizationGoal
           metrics:
             ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
             engagement: 4
             reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 5.962133916683182
             cpc: 3.616076749251911
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 7
-            impressions: 5
+            roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -20857,15 +20901,20 @@ components:
             type: daily
         metrics:
           ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
           engagement: 4
           reach: 2
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 5
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
           spend: 5.962133916683182
           cpc: 3.616076749251911
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 7
-          impressions: 5
+          roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -21013,15 +21062,20 @@ components:
         currency: currency
         metrics:
           ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
           engagement: 4
           reach: 2
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 5
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
           spend: 5.962133916683182
           cpc: 3.616076749251911
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 7
-          impressions: 5
+          roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -35061,15 +35115,20 @@ components:
           currency: currency
           metrics:
             ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
             engagement: 4
             reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 5.962133916683182
             cpc: 3.616076749251911
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 7
-            impressions: 5
+            roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -35108,15 +35167,20 @@ components:
           currency: currency
           metrics:
             ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
             engagement: 4
             reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 5.962133916683182
             cpc: 3.616076749251911
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 7
-            impressions: 5
+            roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -35598,15 +35662,20 @@ components:
             optimizationGoal: optimizationGoal
             metrics:
               ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
               engagement: 4
               reach: 2
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 5
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
               spend: 5.962133916683182
               cpc: 3.616076749251911
-              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 7
-              impressions: 5
+              roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -35729,15 +35798,20 @@ components:
             optimizationGoal: optimizationGoal
             metrics:
               ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
               engagement: 4
               reach: 2
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 5
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
               spend: 5.962133916683182
               cpc: 3.616076749251911
-              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 7
-              impressions: 5
+              roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -35753,15 +35827,20 @@ components:
               type: daily
           metrics:
             ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
             engagement: 4
             reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 5.962133916683182
             cpc: 3.616076749251911
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 7
-            impressions: 5
+            roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -35907,15 +35986,20 @@ components:
             optimizationGoal: optimizationGoal
             metrics:
               ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
               engagement: 4
               reach: 2
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 5
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
               spend: 5.962133916683182
               cpc: 3.616076749251911
-              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 7
-              impressions: 5
+              roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -36038,15 +36122,20 @@ components:
             optimizationGoal: optimizationGoal
             metrics:
               ctr: 9.301444243932576
+              purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
               engagement: 4
               reach: 2
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 5
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
               spend: 5.962133916683182
               cpc: 3.616076749251911
-              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
               clicks: 7
-              impressions: 5
+              roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
               actions:
                 link_click: 160
@@ -36062,15 +36151,20 @@ components:
               type: daily
           metrics:
             ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
             engagement: 4
             reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 5.962133916683182
             cpc: 3.616076749251911
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 7
-            impressions: 5
+            roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -36290,6 +36384,7 @@ components:
             type: string
       example:
         ctr: 5.637376656633329
+        purchaseValue: 4.145608029883936
         date: 2000-01-23
         cpm: 7.061401241503109
         conversions: 3
@@ -36297,9 +36392,13 @@ components:
         reach: 1
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
         impressions: 6
+        actionValues:
+          offsite_conversion.fb_pixel_purchase: 2456.78
+          offsite_conversion.fb_pixel_add_to_cart: 980.5
         spend: 0.8008281904610115
         cpc: 2.3021358869347655
         clicks: 5
+        roas: 7.386281948385884
         costPerConversion: 2.027123023002322
         actions:
           link_click: 160
@@ -36309,15 +36408,20 @@ components:
       example:
         summary:
           ctr: 9.301444243932576
+          purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
           engagement: 4
           reach: 2
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 5
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
           spend: 5.962133916683182
           cpc: 3.616076749251911
-          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           clicks: 7
-          impressions: 5
+          roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
           actions:
             link_click: 160
@@ -36325,6 +36429,7 @@ components:
             offsite_conversion.fb_pixel_purchase: 42
         daily:
         - ctr: 5.637376656633329
+          purchaseValue: 4.145608029883936
           date: 2000-01-23
           cpm: 7.061401241503109
           conversions: 3
@@ -36332,15 +36437,20 @@ components:
           reach: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           impressions: 6
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
           spend: 0.8008281904610115
           cpc: 2.3021358869347655
           clicks: 5
+          roas: 7.386281948385884
           costPerConversion: 2.027123023002322
           actions:
             link_click: 160
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         - ctr: 5.637376656633329
+          purchaseValue: 4.145608029883936
           date: 2000-01-23
           cpm: 7.061401241503109
           conversions: 3
@@ -36348,9 +36458,13 @@ components:
           reach: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           impressions: 6
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
           spend: 0.8008281904610115
           cpc: 2.3021358869347655
           clicks: 5
+          roas: 7.386281948385884
           costPerConversion: 2.027123023002322
           actions:
             link_click: 160
@@ -36376,15 +36490,20 @@ components:
         analytics:
           summary:
             ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
             engagement: 4
             reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 5.962133916683182
             cpc: 3.616076749251911
-            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             clicks: 7
-            impressions: 5
+            roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
             actions:
               link_click: 160
@@ -36392,6 +36511,7 @@ components:
               offsite_conversion.fb_pixel_purchase: 42
           daily:
           - ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
             date: 2000-01-23
             cpm: 7.061401241503109
             conversions: 3
@@ -36399,15 +36519,20 @@ components:
             reach: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             impressions: 6
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
             clicks: 5
+            roas: 7.386281948385884
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           - ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
             date: 2000-01-23
             cpm: 7.061401241503109
             conversions: 3
@@ -36415,9 +36540,13 @@ components:
             reach: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             impressions: 6
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
             clicks: 5
+            roas: 7.386281948385884
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160

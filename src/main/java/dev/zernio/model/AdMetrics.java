@@ -48,9 +48,12 @@ import dev.zernio.ApiClient;
   AdMetrics.JSON_PROPERTY_CONVERSIONS,
   AdMetrics.JSON_PROPERTY_COST_PER_CONVERSION,
   AdMetrics.JSON_PROPERTY_ACTIONS,
+  AdMetrics.JSON_PROPERTY_ACTION_VALUES,
+  AdMetrics.JSON_PROPERTY_PURCHASE_VALUE,
+  AdMetrics.JSON_PROPERTY_ROAS,
   AdMetrics.JSON_PROPERTY_LAST_SYNCED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-21T16:50:55.990977193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T08:19:24.539208718Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdMetrics {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -95,6 +98,18 @@ public class AdMetrics {
   public static final String JSON_PROPERTY_ACTIONS = "actions";
   @javax.annotation.Nullable
   private Map<String, Integer> actions = new HashMap<>();
+
+  public static final String JSON_PROPERTY_ACTION_VALUES = "actionValues";
+  @javax.annotation.Nullable
+  private Map<String, BigDecimal> actionValues = new HashMap<>();
+
+  public static final String JSON_PROPERTY_PURCHASE_VALUE = "purchaseValue";
+  @javax.annotation.Nullable
+  private BigDecimal purchaseValue;
+
+  public static final String JSON_PROPERTY_ROAS = "roas";
+  @javax.annotation.Nullable
+  private BigDecimal roas;
 
   public static final String JSON_PROPERTY_LAST_SYNCED_AT = "lastSyncedAt";
   @javax.annotation.Nullable
@@ -375,6 +390,86 @@ public class AdMetrics {
   }
 
 
+  public AdMetrics actionValues(@javax.annotation.Nullable Map<String, BigDecimal> actionValues) {
+    this.actionValues = actionValues;
+    return this;
+  }
+
+  public AdMetrics putActionValuesItem(String key, BigDecimal actionValuesItem) {
+    if (this.actionValues == null) {
+      this.actionValues = new HashMap<>();
+    }
+    this.actionValues.put(key, actionValuesItem);
+    return this;
+  }
+
+  /**
+   * Monetary mirror of &#x60;actions&#x60;, from Meta&#39;s Insights &#x60;action_values[]&#x60; array. Same keying — values are the revenue attributed to each action_type, in ad-account native currency (same unit as &#x60;spend&#x60;; see the campaign node&#39;s &#x60;currency&#x60; field). Use this to compute revenue-per-event (e.g. avg purchase value). Meta-only; other platforms return {}.
+   * @return actionValues
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACTION_VALUES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, BigDecimal> getActionValues() {
+    return actionValues;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACTION_VALUES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setActionValues(@javax.annotation.Nullable Map<String, BigDecimal> actionValues) {
+    this.actionValues = actionValues;
+  }
+
+
+  public AdMetrics purchaseValue(@javax.annotation.Nullable BigDecimal purchaseValue) {
+    this.purchaseValue = purchaseValue;
+    return this;
+  }
+
+  /**
+   * Convenience sum of purchase-type action values — picked from &#x60;actionValues&#x60; via the same priority list as &#x60;conversions&#x60; so both fields describe the same events. In ad-account native currency. 0 when the campaign has no purchase event configured. Meta-only.
+   * @return purchaseValue
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PURCHASE_VALUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getPurchaseValue() {
+    return purchaseValue;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PURCHASE_VALUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPurchaseValue(@javax.annotation.Nullable BigDecimal purchaseValue) {
+    this.purchaseValue = purchaseValue;
+  }
+
+
+  public AdMetrics roas(@javax.annotation.Nullable BigDecimal roas) {
+    this.roas = roas;
+    return this;
+  }
+
+  /**
+   * Return on ad spend — derived as &#x60;purchaseValue / spend&#x60;. 0 when &#x60;spend&#x60; is 0. Equivalent to Meta&#39;s &#x60;purchase_roas&#x60; under default attribution. At ad-set and campaign levels this is recomputed from summed purchaseValue + spend (NOT averaged across children) so it&#39;s mathematically correct at every rollup level.
+   * @return roas
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ROAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getRoas() {
+    return roas;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ROAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRoas(@javax.annotation.Nullable BigDecimal roas) {
+    this.roas = roas;
+  }
+
+
   public AdMetrics lastSyncedAt(@javax.annotation.Nullable OffsetDateTime lastSyncedAt) {
     this.lastSyncedAt = lastSyncedAt;
     return this;
@@ -422,12 +517,15 @@ public class AdMetrics {
         Objects.equals(this.conversions, adMetrics.conversions) &&
         Objects.equals(this.costPerConversion, adMetrics.costPerConversion) &&
         Objects.equals(this.actions, adMetrics.actions) &&
+        Objects.equals(this.actionValues, adMetrics.actionValues) &&
+        Objects.equals(this.purchaseValue, adMetrics.purchaseValue) &&
+        Objects.equals(this.roas, adMetrics.roas) &&
         Objects.equals(this.lastSyncedAt, adMetrics.lastSyncedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, lastSyncedAt);
+    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, lastSyncedAt);
   }
 
   @Override
@@ -445,6 +543,9 @@ public class AdMetrics {
     sb.append("    conversions: ").append(toIndentedString(conversions)).append("\n");
     sb.append("    costPerConversion: ").append(toIndentedString(costPerConversion)).append("\n");
     sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    actionValues: ").append(toIndentedString(actionValues)).append("\n");
+    sb.append("    purchaseValue: ").append(toIndentedString(purchaseValue)).append("\n");
+    sb.append("    roas: ").append(toIndentedString(roas)).append("\n");
     sb.append("    lastSyncedAt: ").append(toIndentedString(lastSyncedAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -550,6 +651,25 @@ public class AdMetrics {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getActions().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getActions().get(_key)))));
       }
+    }
+
+    // add `actionValues` to the URL query string
+    if (getActionValues() != null) {
+      for (String _key : getActionValues().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sactionValues%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getActionValues().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getActionValues().get(_key)))));
+      }
+    }
+
+    // add `purchaseValue` to the URL query string
+    if (getPurchaseValue() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spurchaseValue%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPurchaseValue()))));
+    }
+
+    // add `roas` to the URL query string
+    if (getRoas() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sroas%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoas()))));
     }
 
     // add `lastSyncedAt` to the URL query string
