@@ -13,7 +13,7 @@
 
 package dev.zernio;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T08:56:23.414494207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T22:49:41.803914240Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Pair {
   private final String name;
   private final String value;

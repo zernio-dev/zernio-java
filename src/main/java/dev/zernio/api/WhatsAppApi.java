@@ -76,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T08:56:23.414494207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T22:49:41.803914240Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -195,7 +195,7 @@ public class WhatsAppApi {
 
   /**
    * Add participants
-   * Add participants to a WhatsApp group. Maximum 8 participants per request. 
+   * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
@@ -208,7 +208,7 @@ public class WhatsAppApi {
 
   /**
    * Add participants
-   * Add participants to a WhatsApp group. Maximum 8 participants per request. 
+   * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
@@ -223,7 +223,7 @@ public class WhatsAppApi {
 
   /**
    * Add participants
-   * Add participants to a WhatsApp group. Maximum 8 participants per request. 
+   * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
@@ -236,7 +236,7 @@ public class WhatsAppApi {
 
   /**
    * Add participants
-   * Add participants to a WhatsApp group. Maximum 8 participants per request. 
+   * Add participants to a WhatsApp group. Maximum 8 participants per request.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param addWhatsAppGroupParticipantsRequest  (required)
@@ -350,7 +350,7 @@ public class WhatsAppApi {
 
   /**
    * Approve join requests
-   * Approve pending join requests for a WhatsApp group. 
+   * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
@@ -363,7 +363,7 @@ public class WhatsAppApi {
 
   /**
    * Approve join requests
-   * Approve pending join requests for a WhatsApp group. 
+   * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
@@ -378,7 +378,7 @@ public class WhatsAppApi {
 
   /**
    * Approve join requests
-   * Approve pending join requests for a WhatsApp group. 
+   * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
@@ -391,7 +391,7 @@ public class WhatsAppApi {
 
   /**
    * Approve join requests
-   * Approve pending join requests for a WhatsApp group. 
+   * Approve pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param approveWhatsAppGroupJoinRequestsRequest  (required)
@@ -505,7 +505,7 @@ public class WhatsAppApi {
 
   /**
    * Create group
-   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link. 
+   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param createWhatsAppGroupChatRequest  (required)
    * @return CreateWhatsAppGroupChat201Response
    * @throws ApiException if fails to make API call
@@ -516,7 +516,7 @@ public class WhatsAppApi {
 
   /**
    * Create group
-   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link. 
+   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param createWhatsAppGroupChatRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateWhatsAppGroupChat201Response
@@ -529,7 +529,7 @@ public class WhatsAppApi {
 
   /**
    * Create group
-   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link. 
+   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param createWhatsAppGroupChatRequest  (required)
    * @return ApiResponse&lt;CreateWhatsAppGroupChat201Response&gt;
    * @throws ApiException if fails to make API call
@@ -540,7 +540,7 @@ public class WhatsAppApi {
 
   /**
    * Create group
-   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link. 
+   * Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param createWhatsAppGroupChatRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateWhatsAppGroupChat201Response&gt;
@@ -628,7 +628,7 @@ public class WhatsAppApi {
 
   /**
    * Create invite link
-   * Create a new invite link for a WhatsApp group. The previous link is revoked. 
+   * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return CreateWhatsAppGroupInviteLink200Response
@@ -640,7 +640,7 @@ public class WhatsAppApi {
 
   /**
    * Create invite link
-   * Create a new invite link for a WhatsApp group. The previous link is revoked. 
+   * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -654,7 +654,7 @@ public class WhatsAppApi {
 
   /**
    * Create invite link
-   * Create a new invite link for a WhatsApp group. The previous link is revoked. 
+   * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return ApiResponse&lt;CreateWhatsAppGroupInviteLink200Response&gt;
@@ -666,7 +666,7 @@ public class WhatsAppApi {
 
   /**
    * Create invite link
-   * Create a new invite link for a WhatsApp group. The previous link is revoked. 
+   * Create a new invite link for a WhatsApp group. The previous link is revoked.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -892,7 +892,7 @@ public class WhatsAppApi {
 
   /**
    * Delete group
-   * Delete a WhatsApp group and remove all participants. 
+   * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return UnpublishPost200Response
@@ -904,7 +904,7 @@ public class WhatsAppApi {
 
   /**
    * Delete group
-   * Delete a WhatsApp group and remove all participants. 
+   * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -918,7 +918,7 @@ public class WhatsAppApi {
 
   /**
    * Delete group
-   * Delete a WhatsApp group and remove all participants. 
+   * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
@@ -930,7 +930,7 @@ public class WhatsAppApi {
 
   /**
    * Delete group
-   * Delete a WhatsApp group and remove all participants. 
+   * Delete a WhatsApp group and remove all participants.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -1438,7 +1438,7 @@ public class WhatsAppApi {
 
   /**
    * Get group info
-   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings. 
+   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return GetWhatsAppGroupChat200Response
@@ -1450,7 +1450,7 @@ public class WhatsAppApi {
 
   /**
    * Get group info
-   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings. 
+   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -1464,7 +1464,7 @@ public class WhatsAppApi {
 
   /**
    * Get group info
-   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings. 
+   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return ApiResponse&lt;GetWhatsAppGroupChat200Response&gt;
@@ -1476,7 +1476,7 @@ public class WhatsAppApi {
 
   /**
    * Get group info
-   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings. 
+   * Retrieve metadata about a WhatsApp group including subject, description, participants, and settings.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -1852,7 +1852,7 @@ public class WhatsAppApi {
 
   /**
    * List active groups
-   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform. 
+   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param accountId WhatsApp social account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
@@ -1865,7 +1865,7 @@ public class WhatsAppApi {
 
   /**
    * List active groups
-   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform. 
+   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param accountId WhatsApp social account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
@@ -1880,7 +1880,7 @@ public class WhatsAppApi {
 
   /**
    * List active groups
-   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform. 
+   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param accountId WhatsApp social account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
@@ -1893,7 +1893,7 @@ public class WhatsAppApi {
 
   /**
    * List active groups
-   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform. 
+   * List active WhatsApp group chats for a business phone number. These are actual WhatsApp group conversations on the platform.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param accountId WhatsApp social account ID (required)
    * @param limit Max groups to return (optional, default to 25)
    * @param after Pagination cursor (optional)
@@ -1996,7 +1996,7 @@ public class WhatsAppApi {
 
   /**
    * List join requests
-   * List pending join requests for a WhatsApp group (only for groups with approval_required mode). 
+   * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return ListWhatsAppGroupJoinRequests200Response
@@ -2008,7 +2008,7 @@ public class WhatsAppApi {
 
   /**
    * List join requests
-   * List pending join requests for a WhatsApp group (only for groups with approval_required mode). 
+   * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -2022,7 +2022,7 @@ public class WhatsAppApi {
 
   /**
    * List join requests
-   * List pending join requests for a WhatsApp group (only for groups with approval_required mode). 
+   * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @return ApiResponse&lt;ListWhatsAppGroupJoinRequests200Response&gt;
@@ -2034,7 +2034,7 @@ public class WhatsAppApi {
 
   /**
    * List join requests
-   * List pending join requests for a WhatsApp group (only for groups with approval_required mode). 
+   * List pending join requests for a WhatsApp group (only for groups with approval_required mode).  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
@@ -2137,7 +2137,7 @@ public class WhatsAppApi {
 
   /**
    * Reject join requests
-   * Reject pending join requests for a WhatsApp group. 
+   * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
@@ -2150,7 +2150,7 @@ public class WhatsAppApi {
 
   /**
    * Reject join requests
-   * Reject pending join requests for a WhatsApp group. 
+   * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
@@ -2165,7 +2165,7 @@ public class WhatsAppApi {
 
   /**
    * Reject join requests
-   * Reject pending join requests for a WhatsApp group. 
+   * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
@@ -2178,7 +2178,7 @@ public class WhatsAppApi {
 
   /**
    * Reject join requests
-   * Reject pending join requests for a WhatsApp group. 
+   * Reject pending join requests for a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param rejectWhatsAppGroupJoinRequestsRequest  (required)
@@ -2292,7 +2292,7 @@ public class WhatsAppApi {
 
   /**
    * Remove participants
-   * Remove participants from a WhatsApp group. 
+   * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
@@ -2305,7 +2305,7 @@ public class WhatsAppApi {
 
   /**
    * Remove participants
-   * Remove participants from a WhatsApp group. 
+   * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
@@ -2320,7 +2320,7 @@ public class WhatsAppApi {
 
   /**
    * Remove participants
-   * Remove participants from a WhatsApp group. 
+   * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
@@ -2333,7 +2333,7 @@ public class WhatsAppApi {
 
   /**
    * Remove participants
-   * Remove participants from a WhatsApp group. 
+   * Remove participants from a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param removeWhatsAppGroupParticipantsRequest  (required)
@@ -2693,7 +2693,7 @@ public class WhatsAppApi {
 
   /**
    * Update group settings
-   * Update the subject, description, or join approval mode of a WhatsApp group. 
+   * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
@@ -2706,7 +2706,7 @@ public class WhatsAppApi {
 
   /**
    * Update group settings
-   * Update the subject, description, or join approval mode of a WhatsApp group. 
+   * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
@@ -2721,7 +2721,7 @@ public class WhatsAppApi {
 
   /**
    * Update group settings
-   * Update the subject, description, or join approval mode of a WhatsApp group. 
+   * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
@@ -2734,7 +2734,7 @@ public class WhatsAppApi {
 
   /**
    * Update group settings
-   * Update the subject, description, or join approval mode of a WhatsApp group. 
+   * Update the subject, description, or join approval mode of a WhatsApp group.  Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number. 
    * @param groupId Group ID (required)
    * @param accountId WhatsApp social account ID (required)
    * @param updateWhatsAppGroupChatRequest  (required)
