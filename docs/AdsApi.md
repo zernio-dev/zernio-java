@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdWithHttpInfo**](AdsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdAnalytics**](AdsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdAnalyticsWithHttpInfo**](AdsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
+| [**getAdComments**](AdsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
+| [**getAdCommentsWithHttpInfo**](AdsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**listAdAccounts**](AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAds**](AdsApi.md#listAds) | **GET** /v1/ads | List ads |
@@ -789,6 +791,168 @@ ApiResponse<[**GetAdAnalytics200Response**](GetAdAnalytics200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getAdComments
+
+> GetAdComments200Response getAdComments(adId, limit, cursor)
+
+List comments on an ad
+
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID (ObjectId).
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | Pagination cursor from a previous response.
+        try {
+            GetAdComments200Response result = apiInstance.getAdComments(adId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdComments");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID (ObjectId). | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**| Pagination cursor from a previous response. | [optional] |
+
+### Return type
+
+[**GetAdComments200Response**](GetAdComments200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comments on the ad |  -  |
+| **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code &#x60;ad_not_commentable&#x60;).  |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required, or ad platform is not Meta (code &#x60;feature_not_available&#x60;). |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Ads connection missing or account token unavailable (code &#x60;ads_connection_required&#x60;). |  -  |
+
+## getAdCommentsWithHttpInfo
+
+> ApiResponse<GetAdComments200Response> getAdComments getAdCommentsWithHttpInfo(adId, limit, cursor)
+
+List comments on an ad
+
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String adId = "adId_example"; // String | Internal Zernio ad ID (ObjectId).
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | Pagination cursor from a previous response.
+        try {
+            ApiResponse<GetAdComments200Response> response = apiInstance.getAdCommentsWithHttpInfo(adId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdComments");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Internal Zernio ad ID (ObjectId). | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**| Pagination cursor from a previous response. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdComments200Response**](GetAdComments200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comments on the ad |  -  |
+| **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code &#x60;ad_not_commentable&#x60;).  |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required, or ad platform is not Meta (code &#x60;feature_not_available&#x60;). |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Ads connection missing or account token unavailable (code &#x60;ads_connection_required&#x60;). |  -  |
 
 
 ## listAdAccounts

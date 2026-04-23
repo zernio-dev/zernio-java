@@ -14162,6 +14162,76 @@ paths:
       - Ads
       x-accepts:
       - application/json
+  /v1/ads/{adId}/comments:
+    get:
+      description: |
+        Returns comments on an ad's underlying creative post. Useful for moderating or analyzing
+        engagement on dark posts (ad creatives that never went live organically), which the
+        regular `/v1/inbox/comments/{postId}` endpoint cannot serve because dark posts aren't
+        in Zernio's post database.
+
+        Resolves the ad's creative `effective_object_story_id` (Facebook) or
+        `effective_instagram_media_id` (Instagram) via the Marketing API on each call
+        (cached in-process by the platform client), then fetches comments from the Graph API.
+
+        **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not
+        expose a public per-ad comments API and return `feature_not_available`.
+
+        Requires the Ads add-on. Response shape matches `/v1/inbox/comments/{postId}`.
+      operationId: getAdComments
+      parameters:
+      - description: Internal Zernio ad ID (ObjectId).
+        explode: false
+        in: path
+        name: adId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Pagination cursor from a previous response.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdComments_200_response"
+          description: Comments on the ad
+        "400":
+          description: |
+            Invalid ad ID format, or the ad's creative format does not expose a commentable
+            underlying post (code `ad_not_commentable`).
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or ad platform is not Meta (code `feature_not_available`)."
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Ads connection missing or account token unavailable (code `ads_connection_required`).
+      security:
+      - bearerAuth: []
+      summary: List comments on an ad
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
   /v1/ads/accounts:
     get:
       description: "Returns the platform ad accounts available for the given social\
@@ -36760,6 +36830,88 @@ components:
           $ref: "#/components/schemas/getAdAnalytics_200_response_ad"
         analytics:
           $ref: "#/components/schemas/getAdAnalytics_200_response_analytics"
+    getAdComments_200_response_pagination:
+      example:
+        cursor: cursor
+        hasMore: true
+      properties:
+        hasMore:
+          type: boolean
+        cursor:
+          type: string
+    getAdComments_200_response_meta:
+      example:
+        accountId: accountId
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        adId: adId
+        platformAdId: platformAdId
+        platform: facebook
+        effectiveStoryId: effectiveStoryId
+      properties:
+        platform:
+          enum:
+          - facebook
+          - instagram
+          type: string
+        adId:
+          description: Internal Zernio ad ID.
+          type: string
+        platformAdId:
+          description: Meta ad ID.
+          type: string
+        effectiveStoryId:
+          description: "Underlying post ID the comments belong to (effective_object_story_id\
+            \ for FB, effective_instagram_media_id for IG)."
+          type: string
+        accountId:
+          description: Social account ID (ads SocialAccount).
+          type: string
+        lastUpdated:
+          format: date-time
+          type: string
+      required:
+      - accountId
+      - adId
+      - effectiveStoryId
+      - lastUpdated
+      - platform
+      - platformAdId
+    getAdComments_200_response:
+      example:
+        comments:
+        - "{}"
+        - "{}"
+        pagination:
+          cursor: cursor
+          hasMore: true
+        meta:
+          accountId: accountId
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          adId: adId
+          platformAdId: platformAdId
+          platform: facebook
+          effectiveStoryId: effectiveStoryId
+        status: success
+      properties:
+        status:
+          enum:
+          - success
+          type: string
+        comments:
+          items:
+            description: "Normalized comment. Same shape as /v1/inbox/comments/{postId}\
+              \ responses."
+            type: object
+          type: array
+        pagination:
+          $ref: "#/components/schemas/getAdComments_200_response_pagination"
+        meta:
+          $ref: "#/components/schemas/getAdComments_200_response_meta"
+      required:
+      - comments
+      - meta
+      - pagination
+      - status
     listAdAccounts_200_response_accounts_inner:
       example:
         name: name

@@ -25,6 +25,7 @@ import dev.zernio.model.CreateStandaloneAdRequest;
 import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
+import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
@@ -62,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:38:07.957906597Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:57:29.342536615Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -784,6 +785,149 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "breakdowns";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdowns", breakdowns));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List comments on an ad
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor Pagination cursor from a previous response. (optional)
+   * @return GetAdComments200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdComments200Response getAdComments(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return getAdComments(adId, limit, cursor, null);
+  }
+
+  /**
+   * List comments on an ad
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor Pagination cursor from a previous response. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdComments200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdComments200Response getAdComments(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdComments200Response> localVarResponse = getAdCommentsWithHttpInfo(adId, limit, cursor, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List comments on an ad
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor Pagination cursor from a previous response. (optional)
+   * @return ApiResponse&lt;GetAdComments200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdComments200Response> getAdCommentsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return getAdCommentsWithHttpInfo(adId, limit, cursor, null);
+  }
+
+  /**
+   * List comments on an ad
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * @param adId Internal Zernio ad ID (ObjectId). (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor Pagination cursor from a previous response. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdComments200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdComments200Response> getAdCommentsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdCommentsRequestBuilder(adId, limit, cursor, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdComments", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdComments200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdComments200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdComments200Response>() {});
+        
+
+        return new ApiResponse<GetAdComments200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdCommentsRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling getAdComments");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/comments"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "cursor";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
