@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveActionOneOf1.JSON_PROPERTY_NAME,
   SendInboxMessageRequestInteractiveActionOneOf1.JSON_PROPERTY_PARAMETERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:23:18.777907354Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:38:07.957906597Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf1 {
   /**
    * Gets or Sets name

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   BatchGetGoogleBusinessReviews200Response.JSON_PROPERTY_LOCATION_REVIEWS,
   BatchGetGoogleBusinessReviews200Response.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:23:18.777907354Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:38:07.957906597Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BatchGetGoogleBusinessReviews200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

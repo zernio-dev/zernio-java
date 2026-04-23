@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   Webhook.JSON_PROPERTY_FAILURE_COUNT,
   Webhook.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:23:18.777907354Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:38:07.957906597Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Webhook {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

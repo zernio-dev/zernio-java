@@ -584,6 +584,9 @@ docs/ReplyToInboxReview200ResponseReply.md
 docs/ReplyToInboxReviewRequest.md
 docs/RetweetPost200Response.md
 docs/RetweetPostRequest.md
+docs/ReviewWebhookReview.md
+docs/ReviewWebhookReviewReply.md
+docs/ReviewWebhookReviewReviewer.md
 docs/ReviewsApi.md
 docs/ScheduleBroadcast200Response.md
 docs/ScheduleBroadcast200ResponseBroadcast.md
@@ -827,6 +830,9 @@ docs/WebhookPayloadMessageSentMessageSender.md
 docs/WebhookPayloadPost.md
 docs/WebhookPayloadPostPost.md
 docs/WebhookPayloadPostPostPlatformsInner.md
+docs/WebhookPayloadReviewNew.md
+docs/WebhookPayloadReviewNewAccount.md
+docs/WebhookPayloadReviewUpdated.md
 docs/WebhookPayloadTest.md
 docs/WebhooksApi.md
 docs/WhatsAppApi.md
@@ -1461,6 +1467,9 @@ src/main/java/dev/zernio/model/ReplyToInboxReview200ResponseReply.java
 src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
 src/main/java/dev/zernio/model/RetweetPost200Response.java
 src/main/java/dev/zernio/model/RetweetPostRequest.java
+src/main/java/dev/zernio/model/ReviewWebhookReview.java
+src/main/java/dev/zernio/model/ReviewWebhookReviewReply.java
+src/main/java/dev/zernio/model/ReviewWebhookReviewReviewer.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200Response.java
 src/main/java/dev/zernio/model/ScheduleBroadcast200ResponseBroadcast.java
 src/main/java/dev/zernio/model/ScheduleBroadcastRequest.java
@@ -1697,6 +1706,9 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessageSender.java
 src/main/java/dev/zernio/model/WebhookPayloadPost.java
 src/main/java/dev/zernio/model/WebhookPayloadPostPost.java
 src/main/java/dev/zernio/model/WebhookPayloadPostPostPlatformsInner.java
+src/main/java/dev/zernio/model/WebhookPayloadReviewNew.java
+src/main/java/dev/zernio/model/WebhookPayloadReviewNewAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadReviewUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadTest.java
 src/main/java/dev/zernio/model/WhatsAppBodyComponent.java
 src/main/java/dev/zernio/model/WhatsAppBodyComponentExample.java
@@ -1716,3 +1728,9 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/ReviewWebhookReviewReplyTest.java
+src/test/java/dev/zernio/model/ReviewWebhookReviewReviewerTest.java
+src/test/java/dev/zernio/model/ReviewWebhookReviewTest.java
+src/test/java/dev/zernio/model/WebhookPayloadReviewNewAccountTest.java
+src/test/java/dev/zernio/model/WebhookPayloadReviewNewTest.java
+src/test/java/dev/zernio/model/WebhookPayloadReviewUpdatedTest.java

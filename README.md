@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-23T14:23:18.777907354Z[Etc/UTC]
+- Build date: 2026-04-23T14:38:07.957906597Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1182,6 +1182,9 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)
  - [RetweetPostRequest](docs/RetweetPostRequest.md)
+ - [ReviewWebhookReview](docs/ReviewWebhookReview.md)
+ - [ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
+ - [ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
  - [ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)
  - [ScheduleBroadcastRequest](docs/ScheduleBroadcastRequest.md)
@@ -1418,6 +1421,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadPost](docs/WebhookPayloadPost.md)
  - [WebhookPayloadPostPost](docs/WebhookPayloadPostPost.md)
  - [WebhookPayloadPostPostPlatformsInner](docs/WebhookPayloadPostPostPlatformsInner.md)
+ - [WebhookPayloadReviewNew](docs/WebhookPayloadReviewNew.md)
+ - [WebhookPayloadReviewNewAccount](docs/WebhookPayloadReviewNewAccount.md)
+ - [WebhookPayloadReviewUpdated](docs/WebhookPayloadReviewUpdated.md)
  - [WebhookPayloadTest](docs/WebhookPayloadTest.md)
  - [WhatsAppBodyComponent](docs/WhatsAppBodyComponent.md)
  - [WhatsAppBodyComponentExample](docs/WhatsAppBodyComponentExample.md)

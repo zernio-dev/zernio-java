@@ -16047,6 +16047,155 @@ components:
       - id
       - post
       - timestamp
+    ReviewWebhookReview:
+      description: Review data shared by review.new and review.updated payloads.
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        hasReply: true
+        rating: 1
+        id: id
+        text: text
+        reviewer:
+          name: name
+          id: id
+          profileImage: profileImage
+        reply:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          text: text
+        platform: googlebusiness
+      properties:
+        id:
+          description: Platform review ID (e.g. "accounts/123/locations/456/reviews/789"
+            for Google Business).
+          type: string
+        platform:
+          description: Platform the review originated on. Currently Google Business
+            Profile only.
+          enum:
+          - googlebusiness
+          type: string
+        rating:
+          description: Star rating the reviewer gave.
+          maximum: 5
+          minimum: 1
+          type: integer
+        text:
+          description: Review text content. May be empty if the reviewer left only
+            a rating.
+          type: string
+        reviewer:
+          $ref: "#/components/schemas/ReviewWebhookReview_reviewer"
+        createdAt:
+          format: date-time
+          type: string
+        hasReply:
+          description: Whether the connected account has replied to this review.
+          type: boolean
+        reply:
+          $ref: "#/components/schemas/ReviewWebhookReview_reply"
+      required:
+      - createdAt
+      - hasReply
+      - id
+      - platform
+      - rating
+      - reviewer
+      - text
+    WebhookPayloadReviewNew:
+      description: Webhook payload for the `review.new` event (new review posted on
+        a connected account).
+      example:
+        review:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          hasReply: true
+          rating: 1
+          id: id
+          text: text
+          reviewer:
+            name: name
+            id: id
+            profileImage: profileImage
+          reply:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            text: text
+          platform: googlebusiness
+        id: id
+        event: review.new
+        account:
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - review.new
+          type: string
+        review:
+          $ref: "#/components/schemas/ReviewWebhookReview"
+        account:
+          $ref: "#/components/schemas/WebhookPayloadReviewNew_account"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - review
+      - timestamp
+    WebhookPayloadReviewUpdated:
+      description: |
+        Webhook payload for the `review.updated` event. Fired when the reviewer edits
+        their text or rating, or when a reply is added (via the API or directly on the
+        platform). Same shape as `review.new`; when a reply is present `review.hasReply`
+        is `true` and `review.reply` is populated.
+      example:
+        review:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          hasReply: true
+          rating: 1
+          id: id
+          text: text
+          reviewer:
+            name: name
+            id: id
+            profileImage: profileImage
+          reply:
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            text: text
+          platform: googlebusiness
+        id: id
+        event: review.updated
+        account:
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - review.updated
+          type: string
+        review:
+          $ref: "#/components/schemas/ReviewWebhookReview"
+        account:
+          $ref: "#/components/schemas/WebhookPayloadReviewNew_account"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - review
+      - timestamp
     InboxWebhookMessage:
       description: The message object included in inbox webhook payloads.
       example:
@@ -37881,6 +38030,56 @@ components:
       properties:
         id:
           description: Social account ID
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+      required:
+      - id
+      - platform
+      - username
+    ReviewWebhookReview_reviewer:
+      example:
+        name: name
+        id: id
+        profileImage: profileImage
+      properties:
+        id:
+          description: Platform reviewer ID. Null when the platform does not expose
+            it (common on Google Business anonymous reviews).
+          type: string
+          nullable: true
+        name:
+          type: string
+        profileImage:
+          type: string
+          nullable: true
+      required:
+      - id
+      - name
+      - profileImage
+    ReviewWebhookReview_reply:
+      description: Present when `hasReply` is true.
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        text: text
+      properties:
+        text:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - text
+    WebhookPayloadReviewNew_account:
+      example:
+        id: id
+        platform: platform
+        username: username
+      properties:
+        id:
           type: string
         platform:
           type: string

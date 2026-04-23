@@ -27,6 +27,8 @@ import dev.zernio.model.WebhookPayloadMessageDeliveryStatus;
 import dev.zernio.model.WebhookPayloadMessageEdited;
 import dev.zernio.model.WebhookPayloadMessageSent;
 import dev.zernio.model.WebhookPayloadPost;
+import dev.zernio.model.WebhookPayloadReviewNew;
+import dev.zernio.model.WebhookPayloadReviewUpdated;
 import dev.zernio.model.WebhookPayloadTest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -60,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:23:18.777907354Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:38:07.957906597Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1906,6 +1908,224 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Review new event
+   * Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+   * @param webhookPayloadReviewNew  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onReviewNew(@javax.annotation.Nonnull WebhookPayloadReviewNew webhookPayloadReviewNew) throws ApiException {
+    onReviewNew(webhookPayloadReviewNew, null);
+  }
+
+  /**
+   * Review new event
+   * Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+   * @param webhookPayloadReviewNew  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onReviewNew(@javax.annotation.Nonnull WebhookPayloadReviewNew webhookPayloadReviewNew, Map<String, String> headers) throws ApiException {
+    onReviewNewWithHttpInfo(webhookPayloadReviewNew, headers);
+  }
+
+  /**
+   * Review new event
+   * Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+   * @param webhookPayloadReviewNew  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReviewNewWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReviewNew webhookPayloadReviewNew) throws ApiException {
+    return onReviewNewWithHttpInfo(webhookPayloadReviewNew, null);
+  }
+
+  /**
+   * Review new event
+   * Fired when a new review is posted on a connected account. Currently supported for Google Business Profile (real-time via Pub/Sub). Requires the Inbox add-on. 
+   * @param webhookPayloadReviewNew  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReviewNewWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReviewNew webhookPayloadReviewNew, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onReviewNewRequestBuilder(webhookPayloadReviewNew, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onReviewNew", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onReviewNewRequestBuilder(@javax.annotation.Nonnull WebhookPayloadReviewNew webhookPayloadReviewNew, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadReviewNew' is set
+    if (webhookPayloadReviewNew == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadReviewNew' when calling onReviewNew");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/review.new";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadReviewNew);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Review updated event
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * @param webhookPayloadReviewUpdated  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onReviewUpdated(@javax.annotation.Nonnull WebhookPayloadReviewUpdated webhookPayloadReviewUpdated) throws ApiException {
+    onReviewUpdated(webhookPayloadReviewUpdated, null);
+  }
+
+  /**
+   * Review updated event
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * @param webhookPayloadReviewUpdated  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onReviewUpdated(@javax.annotation.Nonnull WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, Map<String, String> headers) throws ApiException {
+    onReviewUpdatedWithHttpInfo(webhookPayloadReviewUpdated, headers);
+  }
+
+  /**
+   * Review updated event
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * @param webhookPayloadReviewUpdated  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReviewUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReviewUpdated webhookPayloadReviewUpdated) throws ApiException {
+    return onReviewUpdatedWithHttpInfo(webhookPayloadReviewUpdated, null);
+  }
+
+  /**
+   * Review updated event
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * @param webhookPayloadReviewUpdated  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReviewUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onReviewUpdatedRequestBuilder(webhookPayloadReviewUpdated, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onReviewUpdated", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onReviewUpdatedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadReviewUpdated webhookPayloadReviewUpdated, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadReviewUpdated' is set
+    if (webhookPayloadReviewUpdated == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadReviewUpdated' when calling onReviewUpdated");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/review.updated";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadReviewUpdated);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
