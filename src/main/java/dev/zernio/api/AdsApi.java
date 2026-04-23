@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:57:29.342536615Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T15:11:57.637395042Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -813,7 +813,7 @@ public class AdsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
    * @param adId Internal Zernio ad ID (ObjectId). (required)
    * @param limit  (optional, default to 25)
    * @param cursor Pagination cursor from a previous response. (optional)
@@ -826,7 +826,7 @@ public class AdsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
    * @param adId Internal Zernio ad ID (ObjectId). (required)
    * @param limit  (optional, default to 25)
    * @param cursor Pagination cursor from a previous response. (optional)
@@ -841,7 +841,7 @@ public class AdsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
    * @param adId Internal Zernio ad ID (ObjectId). (required)
    * @param limit  (optional, default to 25)
    * @param cursor Pagination cursor from a previous response. (optional)
@@ -854,7 +854,7 @@ public class AdsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular &#x60;/v1/inbox/comments/{postId}&#x60; endpoint cannot serve because dark posts aren&#39;t in Zernio&#39;s post database.  Resolves the ad&#39;s creative &#x60;effective_object_story_id&#x60; (Facebook) or &#x60;effective_instagram_media_id&#x60; (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return &#x60;feature_not_available&#x60;.  Requires the Ads add-on. Response shape matches &#x60;/v1/inbox/comments/{postId}&#x60;. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
    * @param adId Internal Zernio ad ID (ObjectId). (required)
    * @param limit  (optional, default to 25)
    * @param cursor Pagination cursor from a previous response. (optional)

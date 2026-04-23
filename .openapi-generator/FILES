@@ -1734,6 +1734,3 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/GetAdComments200ResponseMetaTest.java
-src/test/java/dev/zernio/model/GetAdComments200ResponsePaginationTest.java
-src/test/java/dev/zernio/model/GetAdComments200ResponseTest.java

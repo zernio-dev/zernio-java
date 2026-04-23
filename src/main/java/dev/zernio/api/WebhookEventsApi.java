@@ -62,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:57:29.342536615Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T15:11:57.637395042Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2034,7 +2034,7 @@ public class WebhookEventsApi {
 
   /**
    * Review updated event
-   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
    * @param webhookPayloadReviewUpdated  (required)
    * @throws ApiException if fails to make API call
    */
@@ -2044,7 +2044,7 @@ public class WebhookEventsApi {
 
   /**
    * Review updated event
-   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
    * @param webhookPayloadReviewUpdated  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -2055,7 +2055,7 @@ public class WebhookEventsApi {
 
   /**
    * Review updated event
-   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
    * @param webhookPayloadReviewUpdated  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -2066,7 +2066,7 @@ public class WebhookEventsApi {
 
   /**
    * Review updated event
-   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches &#x60;review.new&#x60;. Requires the Inbox add-on. 
+   * Fired when a review changes: the reviewer edits their text or rating, or a reply is added (via the API or directly through the Google Business dashboard). Payload shape matches review.new. Requires the Inbox add-on. 
    * @param webhookPayloadReviewUpdated  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

@@ -30,14 +30,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s &#x60;value.media.ad_id&#x60;/&#x60;ad_title&#x60;. Facebook: populated via a Graph API lookup of the parent post&#39;s &#x60;promotion_status&#x60;. Absent for comments on organic posts that are not currently promoted. 
+ * Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s value.media.ad_id and value.media.ad_title. Facebook: populated via a Graph API lookup of the parent post&#39;s promotion_status. Absent for comments on organic posts that are not currently promoted. 
  */
 @JsonPropertyOrder({
   WebhookPayloadCommentCommentAd.JSON_PROPERTY_ID,
   WebhookPayloadCommentCommentAd.JSON_PROPERTY_TITLE,
   WebhookPayloadCommentCommentAd.JSON_PROPERTY_PROMOTION_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:57:29.342536615Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T15:11:57.637395042Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentCommentAd {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -108,7 +108,7 @@ public class WebhookPayloadCommentCommentAd {
   }
 
   /**
-   * Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post / ad creative — not promotable because it already is an ad). 
+   * Facebook promotion status returned by Graph API. Common values: \&quot;active\&quot; (organic post currently boosted), \&quot;ineligible\&quot; (dark post or ad creative, not promotable because it already is an ad). 
    * @return promotionStatus
    */
   @javax.annotation.Nullable

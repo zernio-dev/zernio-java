@@ -2,7 +2,7 @@
 
 # WebhookPayloadReviewNew
 
-Webhook payload for the `review.new` event (new review posted on a connected account).
+Webhook payload for the review.new event (new review posted on a connected account).
 
 ## Properties
 

@@ -14167,17 +14167,17 @@ paths:
       description: |
         Returns comments on an ad's underlying creative post. Useful for moderating or analyzing
         engagement on dark posts (ad creatives that never went live organically), which the
-        regular `/v1/inbox/comments/{postId}` endpoint cannot serve because dark posts aren't
-        in Zernio's post database.
+        regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are
+        not in Zernio's post database.
 
-        Resolves the ad's creative `effective_object_story_id` (Facebook) or
-        `effective_instagram_media_id` (Instagram) via the Marketing API on each call
+        Resolves the ad's creative effective_object_story_id (Facebook) or
+        effective_instagram_media_id (Instagram) via the Marketing API on each call
         (cached in-process by the platform client), then fetches comments from the Graph API.
 
-        **Meta-only**: other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not
-        expose a public per-ad comments API and return `feature_not_available`.
+        Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not
+        expose a public per-ad comments API and return feature_not_available.
 
-        Requires the Ads add-on. Response shape matches `/v1/inbox/comments/{postId}`.
+        Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.
       operationId: getAdComments
       parameters:
       - description: Internal Zernio ad ID (ObjectId).
@@ -14216,15 +14216,15 @@ paths:
         "400":
           description: |
             Invalid ad ID format, or the ad's creative format does not expose a commentable
-            underlying post (code `ad_not_commentable`).
+            underlying post (code ad_not_commentable).
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads add-on required, or ad platform is not Meta (code `feature_not_available`)."
+          description: "Ads add-on required, or ad platform is not Meta (code feature_not_available)."
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
-          description: Ads connection missing or account token unavailable (code `ads_connection_required`).
+          description: Ads connection missing or account token unavailable (code ads_connection_required).
       security:
       - bearerAuth: []
       summary: List comments on an ad
@@ -16172,7 +16172,7 @@ components:
       - reviewer
       - text
     WebhookPayloadReviewNew:
-      description: Webhook payload for the `review.new` event (new review posted on
+      description: Webhook payload for the review.new event (new review posted on
         a connected account).
       example:
         review:
@@ -16219,10 +16219,10 @@ components:
       - timestamp
     WebhookPayloadReviewUpdated:
       description: |
-        Webhook payload for the `review.updated` event. Fired when the reviewer edits
+        Webhook payload for the review.updated event. Fired when the reviewer edits
         their text or rating, or when a reply is added (via the API or directly on the
-        platform). Same shape as `review.new`; when a reply is present `review.hasReply`
-        is `true` and `review.reply` is populated.
+        platform). Same shape as review.new. When a reply is present, review.hasReply
+        is true and review.reply is populated.
       example:
         review:
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -36860,8 +36860,8 @@ components:
           description: Meta ad ID.
           type: string
         effectiveStoryId:
-          description: "Underlying post ID the comments belong to (effective_object_story_id\
-            \ for FB, effective_instagram_media_id for IG)."
+          description: "Underlying post ID the comments belong to. effective_object_story_id\
+            \ for Facebook, effective_instagram_media_id for Instagram."
           type: string
         accountId:
           description: Social account ID (ads SocialAccount).
@@ -38072,8 +38072,8 @@ components:
     WebhookPayloadComment_comment_ad:
       description: |
         Ad context. Present only when the comment was made on paid content.
-        Instagram: populated from the webhook payload's `value.media.ad_id`/`ad_title`.
-        Facebook: populated via a Graph API lookup of the parent post's `promotion_status`.
+        Instagram: populated from the webhook payload's value.media.ad_id and value.media.ad_title.
+        Facebook: populated via a Graph API lookup of the parent post's promotion_status.
         Absent for comments on organic posts that are not currently promoted.
       example:
         id: id
@@ -38090,7 +38090,7 @@ components:
           description: |
             Facebook promotion status returned by Graph API. Common values:
             "active" (organic post currently boosted), "ineligible" (dark
-            post / ad creative — not promotable because it already is an ad).
+            post or ad creative, not promotable because it already is an ad).
           type: string
     WebhookPayloadComment_comment:
       example:
@@ -38212,7 +38212,7 @@ components:
       - name
       - profileImage
     ReviewWebhookReview_reply:
-      description: Present when `hasReply` is true.
+      description: Present when hasReply is true.
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
         text: text

@@ -31,13 +31,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Present when &#x60;hasReply&#x60; is true.
+ * Present when hasReply is true.
  */
 @JsonPropertyOrder({
   ReviewWebhookReviewReply.JSON_PROPERTY_TEXT,
   ReviewWebhookReviewReply.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T14:57:29.342536615Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T15:11:57.637395042Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewWebhookReviewReply {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull
