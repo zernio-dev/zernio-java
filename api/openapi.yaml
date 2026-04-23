@@ -14244,7 +14244,7 @@ paths:
 
         **Per-platform required fields** (the platform is inferred from `accountId`):
         - **Meta (facebook, instagram)**: `accountId`, `adAccountId`, `name`, `goal`, `budgetAmount`, `budgetType`, `headline`, `body`, `imageUrl`, `linkUrl`, `callToAction`.
-        - **Google Ads (Display)**: `accountId`, `adAccountId`, `name`, `goal`, `budgetAmount`, `budgetType`, `headline`, `body`, `linkUrl`, `imageUrl`, `businessName`. `longHeadline` defaults to `headline` if omitted (max 90 chars).
+        - **Google Ads (Display)**: `accountId`, `adAccountId`, `name`, `goal`, `budgetAmount`, `budgetType`, `headline`, `body`, `linkUrl`, `images.landscape` (1.91:1) + `images.square` (1:1), `businessName`. Google's Responsive Display Ads require BOTH a landscape and a square marketing image; supplying only one is rejected by Google as "Too few.". The legacy top-level `imageUrl` is accepted as an alias for `images.landscape` for back-compat. `longHeadline` defaults to `headline` if omitted (max 90 chars).
         - **Google Ads (Search)**: `accountId`, `adAccountId`, `name`, `goal`, `budgetAmount`, `budgetType`, `headline`, `body`, `linkUrl`, `businessName`. `imageUrl` is NOT required for Search. Set `campaignType: "search"`.
         - **TikTok**: `accountId`, `adAccountId`, `name`, `goal`, `budgetAmount`, `budgetType`, `body`, `linkUrl`, `imageUrl` (this field **carries the VIDEO URL** for TikTok; the TikTok ads endpoint is video-only and the field is named `imageUrl` for cross-platform consistency).
         - **Pinterest**: `accountId`, `adAccountId`, `name`, `goal`, `budgetAmount`, `budgetType`, `headline`, `body`, `imageUrl`, `linkUrl`. Optional `boardId` (auto-creates "Zernio Ads" board if omitted).
@@ -36757,6 +36757,24 @@ components:
       - budget
       - goal
       - name
+    createStandaloneAd_request_images:
+      description: "Google Display (Responsive Display Ads) only. Google RDA requires\
+        \ both a landscape (1.91:1) and a square (1:1) marketing image; sending only\
+        \ one is rejected upstream as 'Too few.' (NOT_ENOUGH_*_MARKETING_IMAGE_ASSET).\
+        \ Supply both URLs here. Either this field or the legacy `imageUrl` can provide\
+        \ the landscape, but `square` has no legacy counterpart so it must be set\
+        \ here for Display."
+      properties:
+        landscape:
+          description: Landscape 1.91:1 marketing image URL (e.g. 1200x628). Also
+            accepted via the top-level `imageUrl` for backward compatibility.
+          format: uri
+          type: string
+        square:
+          description: Square 1:1 marketing image URL (e.g. 1080x1080). Required for
+            Google Display.
+          format: uri
+          type: string
     createStandaloneAd_request_video:
       description: "Meta only (facebook, instagram). When set, creates a VIDEO ad\
         \ on the legacy or attach shape. Mutually exclusive with `imageUrl`. For multi-creative,\
@@ -36894,9 +36912,13 @@ components:
             \ shapes (mutually exclusive with `video`). Not required for Google Search\
             \ campaigns. For TikTok, this field carries the VIDEO URL (the TikTok\
             \ ads endpoint is video-only; the field retains the `imageUrl` name for\
-            \ cross-platform consistency). Ignored for X/Twitter."
+            \ cross-platform consistency). Ignored for X/Twitter. For Google Display,\
+            \ treated as the landscape image (alias of `images.landscape`); supply\
+            \ `images.square` alongside or the request is rejected."
           format: uri
           type: string
+        images:
+          $ref: "#/components/schemas/createStandaloneAd_request_images"
         video:
           $ref: "#/components/schemas/createStandaloneAd_request_video"
         creatives:

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
+import dev.zernio.model.CreateStandaloneAdRequestImages;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
@@ -54,6 +55,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_CALL_TO_ACTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequest.JSON_PROPERTY_IMAGE_URL,
+  CreateStandaloneAdRequest.JSON_PROPERTY_IMAGES,
   CreateStandaloneAdRequest.JSON_PROPERTY_VIDEO,
   CreateStandaloneAdRequest.JSON_PROPERTY_CREATIVES,
   CreateStandaloneAdRequest.JSON_PROPERTY_AD_SET_ID,
@@ -71,7 +73,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T10:00:18.886194013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T10:24:54.095844153Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -255,6 +257,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable
   private URI imageUrl;
+
+  public static final String JSON_PROPERTY_IMAGES = "images";
+  @javax.annotation.Nullable
+  private CreateStandaloneAdRequestImages images;
 
   public static final String JSON_PROPERTY_VIDEO = "video";
   @javax.annotation.Nullable
@@ -687,7 +693,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter.
+   * Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected.
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -702,6 +708,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageUrl(@javax.annotation.Nullable URI imageUrl) {
     this.imageUrl = imageUrl;
+  }
+
+
+  public CreateStandaloneAdRequest images(@javax.annotation.Nullable CreateStandaloneAdRequestImages images) {
+    this.images = images;
+    return this;
+  }
+
+  /**
+   * Get images
+   * @return images
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IMAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateStandaloneAdRequestImages getImages() {
+    return images;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IMAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImages(@javax.annotation.Nullable CreateStandaloneAdRequestImages images) {
+    this.images = images;
   }
 
 
@@ -1166,6 +1196,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.callToAction, createStandaloneAdRequest.callToAction) &&
         Objects.equals(this.linkUrl, createStandaloneAdRequest.linkUrl) &&
         Objects.equals(this.imageUrl, createStandaloneAdRequest.imageUrl) &&
+        Objects.equals(this.images, createStandaloneAdRequest.images) &&
         Objects.equals(this.video, createStandaloneAdRequest.video) &&
         Objects.equals(this.creatives, createStandaloneAdRequest.creatives) &&
         Objects.equals(this.adSetId, createStandaloneAdRequest.adSetId) &&
@@ -1186,7 +1217,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience);
   }
 
   @Override
@@ -1206,6 +1237,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
+    sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
     sb.append("    creatives: ").append(toIndentedString(creatives)).append("\n");
     sb.append("    adSetId: ").append(toIndentedString(adSetId)).append("\n");
@@ -1332,6 +1364,11 @@ public class CreateStandaloneAdRequest {
     // add `imageUrl` to the URL query string
     if (getImageUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%simageUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getImageUrl()))));
+    }
+
+    // add `images` to the URL query string
+    if (getImages() != null) {
+      joiner.add(getImages().toUrlQueryString(prefix + "images" + suffix));
     }
 
     // add `video` to the URL query string
