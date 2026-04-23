@@ -2,6 +2,7 @@
 
 # CreateStandaloneAdRequestCreativesInner
 
+Each creative must supply EXACTLY ONE of `imageUrl` (image creative) or `video` (video creative).
 
 ## Properties
 
@@ -9,7 +10,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**headline** | **String** |  |  |
 |**body** | **String** |  |  |
-|**imageUrl** | **URI** |  |  |
+|**imageUrl** | **URI** | Image creative. Mutually exclusive with &#x60;video&#x60;. |  [optional] |
+|**video** | [**CreateStandaloneAdRequestCreativesInnerVideo**](CreateStandaloneAdRequestCreativesInnerVideo.md) |  |  [optional] |
 |**linkUrl** | **URI** |  |  |
 |**callToAction** | [**CallToActionEnum**](#CallToActionEnum) |  |  |
 

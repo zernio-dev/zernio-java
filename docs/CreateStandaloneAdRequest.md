@@ -14,12 +14,13 @@
 |**budgetAmount** | **BigDecimal** | Required on legacy + multi-creative shapes. Inherited on attach. |  [optional] |
 |**budgetType** | [**BudgetTypeEnum**](#BudgetTypeEnum) | Required on legacy + multi-creative shapes. Inherited on attach. |  [optional] |
 |**currency** | **String** |  |  [optional] |
-|**headline** | **String** | Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100 |  [optional] |
-|**longHeadline** | **String** | Google Display only |  [optional] |
-|**body** | **String** | Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500 |  [optional] |
+|**headline** | **String** | Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100. |  [optional] |
+|**longHeadline** | **String** | Google Display only. Defaults to &#x60;headline&#x60; if omitted. |  [optional] |
+|**body** | **String** | Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500. |  [optional] |
 |**callToAction** | [**CallToActionEnum**](#CallToActionEnum) | Required on legacy + attach shapes. Meta only. |  [optional] |
 |**linkUrl** | **URI** | Required on legacy + attach shapes. Skip for multi-creative. |  [optional] |
-|**imageUrl** | **URI** | Required on legacy + attach shapes. Not required for Google Search campaigns. |  [optional] |
+|**imageUrl** | **URI** | Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. |  [optional] |
+|**video** | [**CreateStandaloneAdRequestVideo**](CreateStandaloneAdRequestVideo.md) |  |  [optional] |
 |**creatives** | [**List&lt;CreateStandaloneAdRequestCreativesInner&gt;**](CreateStandaloneAdRequestCreativesInner.md) | Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;.  |  [optional] |
 |**adSetId** | **String** | Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, and schedule are inherited from the ad set on Meta. Mutually exclusive with &#x60;creatives[]&#x60;.  |  [optional] |
 |**businessName** | **String** | Google Display only |  [optional] |

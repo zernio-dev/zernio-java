@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
+import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
 import java.net.URI;
@@ -53,6 +54,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_CALL_TO_ACTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequest.JSON_PROPERTY_IMAGE_URL,
+  CreateStandaloneAdRequest.JSON_PROPERTY_VIDEO,
   CreateStandaloneAdRequest.JSON_PROPERTY_CREATIVES,
   CreateStandaloneAdRequest.JSON_PROPERTY_AD_SET_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUSINESS_NAME,
@@ -69,7 +71,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-22T22:49:41.803914240Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-23T10:00:18.886194013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -253,6 +255,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable
   private URI imageUrl;
+
+  public static final String JSON_PROPERTY_VIDEO = "video";
+  @javax.annotation.Nullable
+  private CreateStandaloneAdRequestVideo video;
 
   public static final String JSON_PROPERTY_CREATIVES = "creatives";
   @javax.annotation.Nullable
@@ -561,7 +567,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100
+   * Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.
    * @return headline
    */
   @javax.annotation.Nullable
@@ -585,7 +591,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Display only
+   * Google Display only. Defaults to &#x60;headline&#x60; if omitted.
    * @return longHeadline
    */
   @javax.annotation.Nullable
@@ -609,7 +615,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes. Max: Google&#x3D;90, Pinterest&#x3D;500
+   * Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500.
    * @return body
    */
   @javax.annotation.Nullable
@@ -681,7 +687,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes. Not required for Google Search campaigns.
+   * Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter.
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -696,6 +702,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageUrl(@javax.annotation.Nullable URI imageUrl) {
     this.imageUrl = imageUrl;
+  }
+
+
+  public CreateStandaloneAdRequest video(@javax.annotation.Nullable CreateStandaloneAdRequestVideo video) {
+    this.video = video;
+    return this;
+  }
+
+  /**
+   * Get video
+   * @return video
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateStandaloneAdRequestVideo getVideo() {
+    return video;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideo(@javax.annotation.Nullable CreateStandaloneAdRequestVideo video) {
+    this.video = video;
   }
 
 
@@ -1136,6 +1166,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.callToAction, createStandaloneAdRequest.callToAction) &&
         Objects.equals(this.linkUrl, createStandaloneAdRequest.linkUrl) &&
         Objects.equals(this.imageUrl, createStandaloneAdRequest.imageUrl) &&
+        Objects.equals(this.video, createStandaloneAdRequest.video) &&
         Objects.equals(this.creatives, createStandaloneAdRequest.creatives) &&
         Objects.equals(this.adSetId, createStandaloneAdRequest.adSetId) &&
         Objects.equals(this.businessName, createStandaloneAdRequest.businessName) &&
@@ -1155,7 +1186,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience);
   }
 
   @Override
@@ -1175,6 +1206,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
+    sb.append("    video: ").append(toIndentedString(video)).append("\n");
     sb.append("    creatives: ").append(toIndentedString(creatives)).append("\n");
     sb.append("    adSetId: ").append(toIndentedString(adSetId)).append("\n");
     sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
@@ -1300,6 +1332,11 @@ public class CreateStandaloneAdRequest {
     // add `imageUrl` to the URL query string
     if (getImageUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%simageUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getImageUrl()))));
+    }
+
+    // add `video` to the URL query string
+    if (getVideo() != null) {
+      joiner.add(getVideo().toUrlQueryString(prefix + "video" + suffix));
     }
 
     // add `creatives` to the URL query string
