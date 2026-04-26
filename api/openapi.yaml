@@ -35671,8 +35671,10 @@ components:
     getCommentAutomation_200_response_logs_inner:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
+        commentReplyError: commentReplyError
         commenterName: commenterName
         commentId: commentId
+        commentReplyStatus: sent
         id: id
         error: error
         commentText: commentText
@@ -35690,12 +35692,26 @@ components:
         commentText:
           type: string
         status:
+          description: DM outcome
           enum:
           - sent
           - failed
           - skipped
           type: string
         error:
+          description: DM error message if status is failed
+          type: string
+        commentReplyStatus:
+          description: Outcome of the optional public reply on the triggering comment.
+            'skipped' if no commentReply was configured or if the DM failed (the public
+            reply is not attempted in that case).
+          enum:
+          - sent
+          - failed
+          - skipped
+          type: string
+        commentReplyError:
+          description: Public-reply error message if commentReplyStatus is failed
           type: string
         createdAt:
           format: date-time
@@ -35726,16 +35742,20 @@ components:
         success: true
         logs:
         - createdAt: 2000-01-23T04:56:07.000+00:00
+          commentReplyError: commentReplyError
           commenterName: commenterName
           commentId: commentId
+          commentReplyStatus: sent
           id: id
           error: error
           commentText: commentText
           commenterId: commenterId
           status: sent
         - createdAt: 2000-01-23T04:56:07.000+00:00
+          commentReplyError: commentReplyError
           commenterName: commenterName
           commentId: commentId
+          commentReplyStatus: sent
           id: id
           error: error
           commentText: commentText
@@ -35833,16 +35853,20 @@ components:
         success: true
         logs:
         - createdAt: 2000-01-23T04:56:07.000+00:00
+          commentReplyError: commentReplyError
           commenterName: commenterName
           commentId: commentId
+          commentReplyStatus: sent
           id: id
           error: error
           commentText: commentText
           commenterId: commenterId
           status: sent
         - createdAt: 2000-01-23T04:56:07.000+00:00
+          commentReplyError: commentReplyError
           commenterName: commenterName
           commentId: commentId
+          commentReplyStatus: sent
           id: id
           error: error
           commentText: commentText

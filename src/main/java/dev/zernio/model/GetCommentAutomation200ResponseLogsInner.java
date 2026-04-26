@@ -41,9 +41,11 @@ import dev.zernio.ApiClient;
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_TEXT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_STATUS,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_ERROR,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_REPLY_STATUS,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_REPLY_ERROR,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-24T09:56:51.792635768Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-26T15:35:48.914179291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -66,7 +68,7 @@ public class GetCommentAutomation200ResponseLogsInner {
   private String commentText;
 
   /**
-   * Gets or Sets status
+   * DM outcome
    */
   public enum StatusEnum {
     SENT(String.valueOf("sent")),
@@ -109,6 +111,51 @@ public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
+
+  /**
+   * Outcome of the optional public reply on the triggering comment. &#39;skipped&#39; if no commentReply was configured or if the DM failed (the public reply is not attempted in that case).
+   */
+  public enum CommentReplyStatusEnum {
+    SENT(String.valueOf("sent")),
+    
+    FAILED(String.valueOf("failed")),
+    
+    SKIPPED(String.valueOf("skipped"));
+
+    private String value;
+
+    CommentReplyStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CommentReplyStatusEnum fromValue(String value) {
+      for (CommentReplyStatusEnum b : CommentReplyStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_COMMENT_REPLY_STATUS = "commentReplyStatus";
+  @javax.annotation.Nullable
+  private CommentReplyStatusEnum commentReplyStatus;
+
+  public static final String JSON_PROPERTY_COMMENT_REPLY_ERROR = "commentReplyError";
+  @javax.annotation.Nullable
+  private String commentReplyError;
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -243,7 +290,7 @@ public class GetCommentAutomation200ResponseLogsInner {
   }
 
   /**
-   * Get status
+   * DM outcome
    * @return status
    */
   @javax.annotation.Nullable
@@ -267,7 +314,7 @@ public class GetCommentAutomation200ResponseLogsInner {
   }
 
   /**
-   * Get error
+   * DM error message if status is failed
    * @return error
    */
   @javax.annotation.Nullable
@@ -282,6 +329,54 @@ public class GetCommentAutomation200ResponseLogsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setError(@javax.annotation.Nullable String error) {
     this.error = error;
+  }
+
+
+  public GetCommentAutomation200ResponseLogsInner commentReplyStatus(@javax.annotation.Nullable CommentReplyStatusEnum commentReplyStatus) {
+    this.commentReplyStatus = commentReplyStatus;
+    return this;
+  }
+
+  /**
+   * Outcome of the optional public reply on the triggering comment. &#39;skipped&#39; if no commentReply was configured or if the DM failed (the public reply is not attempted in that case).
+   * @return commentReplyStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CommentReplyStatusEnum getCommentReplyStatus() {
+    return commentReplyStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommentReplyStatus(@javax.annotation.Nullable CommentReplyStatusEnum commentReplyStatus) {
+    this.commentReplyStatus = commentReplyStatus;
+  }
+
+
+  public GetCommentAutomation200ResponseLogsInner commentReplyError(@javax.annotation.Nullable String commentReplyError) {
+    this.commentReplyError = commentReplyError;
+    return this;
+  }
+
+  /**
+   * Public-reply error message if commentReplyStatus is failed
+   * @return commentReplyError
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCommentReplyError() {
+    return commentReplyError;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommentReplyError(@javax.annotation.Nullable String commentReplyError) {
+    this.commentReplyError = commentReplyError;
   }
 
 
@@ -328,12 +423,14 @@ public class GetCommentAutomation200ResponseLogsInner {
         Objects.equals(this.commentText, getCommentAutomation200ResponseLogsInner.commentText) &&
         Objects.equals(this.status, getCommentAutomation200ResponseLogsInner.status) &&
         Objects.equals(this.error, getCommentAutomation200ResponseLogsInner.error) &&
+        Objects.equals(this.commentReplyStatus, getCommentAutomation200ResponseLogsInner.commentReplyStatus) &&
+        Objects.equals(this.commentReplyError, getCommentAutomation200ResponseLogsInner.commentReplyError) &&
         Objects.equals(this.createdAt, getCommentAutomation200ResponseLogsInner.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, commentId, commenterId, commenterName, commentText, status, error, createdAt);
+    return Objects.hash(id, commentId, commenterId, commenterName, commentText, status, error, commentReplyStatus, commentReplyError, createdAt);
   }
 
   @Override
@@ -347,6 +444,8 @@ public class GetCommentAutomation200ResponseLogsInner {
     sb.append("    commentText: ").append(toIndentedString(commentText)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    commentReplyStatus: ").append(toIndentedString(commentReplyStatus)).append("\n");
+    sb.append("    commentReplyError: ").append(toIndentedString(commentReplyError)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -428,6 +527,16 @@ public class GetCommentAutomation200ResponseLogsInner {
     // add `error` to the URL query string
     if (getError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
+    }
+
+    // add `commentReplyStatus` to the URL query string
+    if (getCommentReplyStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommentReplyStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReplyStatus()))));
+    }
+
+    // add `commentReplyError` to the URL query string
+    if (getCommentReplyError() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommentReplyError%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReplyError()))));
     }
 
     // add `createdAt` to the URL query string
