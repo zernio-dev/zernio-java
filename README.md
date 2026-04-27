@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-27T07:56:17.256075157Z[Etc/UTC]
+- Build date: 2026-04-27T09:19:06.088210201Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1408,6 +1408,9 @@ Class | Method | HTTP request | Description
  - [ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
  - [Webhook](docs/Webhook.md)
+ - [WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
+ - [WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)
+ - [WebhookPayloadAccountAdsInitialSyncCompletedSync](docs/WebhookPayloadAccountAdsInitialSyncCompletedSync.md)
  - [WebhookPayloadAccountConnected](docs/WebhookPayloadAccountConnected.md)
  - [WebhookPayloadAccountConnectedAccount](docs/WebhookPayloadAccountConnectedAccount.md)
  - [WebhookPayloadAccountDisconnected](docs/WebhookPayloadAccountDisconnected.md)

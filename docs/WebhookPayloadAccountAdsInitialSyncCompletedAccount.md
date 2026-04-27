@@ -1,0 +1,19 @@
+
+
+# WebhookPayloadAccountAdsInitialSyncCompletedAccount
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**accountId** | **String** | The account&#39;s unique identifier (same as used in /v1/accounts/{accountId}) |  |
+|**profileId** | **String** | The profile&#39;s unique identifier this account belongs to |  |
+|**platform** | **String** |  |  |
+|**username** | **String** |  |  |
+|**displayName** | **String** |  |  [optional] |
+|**platformUserId** | **String** | The platform-side account/ad-account ID (e.g. Meta ad account ID). |  [optional] |
+|**profilePicture** | **URI** | URL of the account&#39;s profile picture, when available. |  [optional] |
+
+
+

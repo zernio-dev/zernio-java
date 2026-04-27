@@ -32,6 +32,7 @@ Individual webhook configuration for receiving real-time notifications
 | POST_RECYCLED | &quot;post.recycled&quot; |
 | ACCOUNT_CONNECTED | &quot;account.connected&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
+| ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
 | MESSAGE_SENT | &quot;message.sent&quot; |
 | MESSAGE_EDITED | &quot;message.edited&quot; |

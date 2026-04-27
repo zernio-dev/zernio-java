@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   Webhook.JSON_PROPERTY_FAILURE_COUNT,
   Webhook.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T07:56:17.256075157Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T09:19:06.088210201Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Webhook {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -86,6 +86,8 @@ public class Webhook {
     ACCOUNT_CONNECTED(String.valueOf("account.connected")),
     
     ACCOUNT_DISCONNECTED(String.valueOf("account.disconnected")),
+    
+    ACCOUNT_ADS_INITIAL_SYNC_COMPLETED(String.valueOf("account.ads.initial_sync_completed")),
     
     MESSAGE_RECEIVED(String.valueOf("message.received")),
     

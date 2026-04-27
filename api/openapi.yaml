@@ -148,7 +148,7 @@ tags:
     Requires the Ads add-on.
   name: Ad Audiences
 - description: |
-    Configure webhooks for real-time notifications. Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, message.received, message.sent, comment.received, review.new, review.updated, webhook.test.
+    Configure webhooks for real-time notifications. Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, comment.received, review.new, review.updated, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -8949,6 +8949,7 @@ paths:
                   - post.recycled
                   - account.connected
                   - account.disconnected
+                  - account.ads.initial_sync_completed
                   - message.received
                   - comment.received
                   - review.new
@@ -16535,6 +16536,7 @@ components:
             - post.recycled
             - account.connected
             - account.disconnected
+            - account.ads.initial_sync_completed
             - message.received
             - message.sent
             - message.edited
@@ -16669,6 +16671,49 @@ components:
       - account
       - event
       - id
+      - timestamp
+    WebhookPayloadAccountAdsInitialSyncCompleted:
+      description: |
+        Webhook payload for `account.ads.initial_sync_completed` events.
+        Fired once per ads-enabled account when the initial discovery + 90-day
+        ad backfill finishes (whether it succeeded fully, partially, or failed).
+      example:
+        id: id
+        event: account.ads.initial_sync_completed
+        sync:
+          synced: 6
+          totalAds: 0
+          failed: 1
+          status: success
+        account:
+          accountId: accountId
+          profilePicture: https://openapi-generator.tech
+          platformUserId: platformUserId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - account.ads.initial_sync_completed
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadAccountAdsInitialSyncCompleted_account"
+        sync:
+          $ref: "#/components/schemas/WebhookPayloadAccountAdsInitialSyncCompleted_sync"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - sync
       - timestamp
     WebhookPayloadComment:
       description: "Webhook payload for comment received events (Instagram, Facebook,\
@@ -29711,6 +29756,7 @@ components:
             - post.recycled
             - account.connected
             - account.disconnected
+            - account.ads.initial_sync_completed
             - message.received
             - comment.received
             - review.new
@@ -29774,6 +29820,7 @@ components:
             - post.recycled
             - account.connected
             - account.disconnected
+            - account.ads.initial_sync_completed
             - message.received
             - comment.received
             - review.new
@@ -38697,6 +38744,69 @@ components:
       - profileId
       - reason
       - username
+    WebhookPayloadAccountAdsInitialSyncCompleted_account:
+      example:
+        accountId: accountId
+        profilePicture: https://openapi-generator.tech
+        platformUserId: platformUserId
+        profileId: profileId
+        displayName: displayName
+        platform: platform
+        username: username
+      properties:
+        accountId:
+          description: "The account's unique identifier (same as used in /v1/accounts/{accountId})"
+          type: string
+        profileId:
+          description: The profile's unique identifier this account belongs to
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+        platformUserId:
+          description: The platform-side account/ad-account ID (e.g. Meta ad account
+            ID).
+          type: string
+        profilePicture:
+          description: "URL of the account's profile picture, when available."
+          format: uri
+          type: string
+      required:
+      - accountId
+      - platform
+      - profileId
+      - username
+    WebhookPayloadAccountAdsInitialSyncCompleted_sync:
+      description: Summary of the initial ads sync backfill results.
+      example:
+        synced: 6
+        totalAds: 0
+        failed: 1
+        status: success
+      properties:
+        status:
+          description: Overall outcome of the initial sync.
+          enum:
+          - success
+          - failure
+          type: string
+        totalAds:
+          description: Total number of ads discovered for backfill.
+          type: integer
+        synced:
+          description: Number of ads successfully synced.
+          type: integer
+        failed:
+          description: Number of ads that failed to sync.
+          type: integer
+      required:
+      - failed
+      - status
+      - synced
+      - totalAds
     WebhookPayloadComment_comment_author:
       example:
         name: name
@@ -40441,6 +40551,7 @@ x-documentation:
     - `post.recycled` - Post recycled (cloned and re-scheduled)
     - `account.connected` - Social account connected
     - `account.disconnected` - Social account disconnected (token expired)
+    - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
     - `message.received` - New DM received
     - `message.sent` - DM sent via the API
     - `message.edited` - A sender edited a message (Instagram, Messenger, Telegram)
