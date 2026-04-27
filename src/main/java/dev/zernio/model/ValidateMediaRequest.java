@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ValidateMediaRequest.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-26T15:35:48.914179291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T07:56:17.256075157Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateMediaRequest {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull

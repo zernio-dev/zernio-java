@@ -63,7 +63,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-26T15:35:48.914179291Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T07:56:17.256075157Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = WhatsAppTemplateComponent.WhatsAppTemplateComponentDeserializer.class)
 @JsonSerialize(using = WhatsAppTemplateComponent.WhatsAppTemplateComponentSerializer.class)
 public class WhatsAppTemplateComponent extends AbstractOpenApiSchema {
