@@ -37,6 +37,7 @@
 |**additionalHeadlines** | **List&lt;String&gt;** | Google Search RSA only. Extra headlines. |  [optional] |
 |**additionalDescriptions** | **List&lt;String&gt;** | Google Search RSA only. Extra descriptions. |  [optional] |
 |**advantageAudience** | [**AdvantageAudienceEnum**](#AdvantageAudienceEnum) | Meta only. Controls the Advantage audience feature (targeting_automation). 0 &#x3D; disabled (default), 1 &#x3D; enabled. Meta Marketing API requires this field on all ad set creation requests. |  [optional] |
+|**gender** | [**GenderEnum**](#GenderEnum) | Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms. |  [optional] |
 
 
 
@@ -95,6 +96,16 @@
 |---- | -----|
 | NUMBER_0 | 0 |
 | NUMBER_1 | 1 |
+
+
+
+## Enum: GenderEnum
+
+| Name | Value |
+|---- | -----|
+| ALL | &quot;all&quot; |
+| MALE | &quot;male&quot; |
+| FEMALE | &quot;female&quot; |
 
 
 

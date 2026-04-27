@@ -71,9 +71,10 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_KEYWORDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
-  CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE
+  CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_GENDER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T10:42:48.930914002Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T14:58:26.897653046Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -395,6 +396,47 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ADVANTAGE_AUDIENCE = "advantageAudience";
   @javax.annotation.Nullable
   private AdvantageAudienceEnum advantageAudience;
+
+  /**
+   * Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms.
+   */
+  public enum GenderEnum {
+    ALL(String.valueOf("all")),
+    
+    MALE(String.valueOf("male")),
+    
+    FEMALE(String.valueOf("female"));
+
+    private String value;
+
+    GenderEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static GenderEnum fromValue(String value) {
+      for (GenderEnum b : GenderEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_GENDER = "gender";
+  @javax.annotation.Nullable
+  private GenderEnum gender = GenderEnum.ALL;
 
   public CreateStandaloneAdRequest() { 
   }
@@ -1171,6 +1213,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest gender(@javax.annotation.Nullable GenderEnum gender) {
+    this.gender = gender;
+    return this;
+  }
+
+  /**
+   * Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms.
+   * @return gender
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GenderEnum getGender() {
+    return gender;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGender(@javax.annotation.Nullable GenderEnum gender) {
+    this.gender = gender;
+  }
+
+
   /**
    * Return true if this createStandaloneAd_request object is equal to o.
    */
@@ -1212,12 +1278,13 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.keywords, createStandaloneAdRequest.keywords) &&
         Objects.equals(this.additionalHeadlines, createStandaloneAdRequest.additionalHeadlines) &&
         Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions) &&
-        Objects.equals(this.advantageAudience, createStandaloneAdRequest.advantageAudience);
+        Objects.equals(this.advantageAudience, createStandaloneAdRequest.advantageAudience) &&
+        Objects.equals(this.gender, createStandaloneAdRequest.gender);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, gender);
   }
 
   @Override
@@ -1254,6 +1321,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    additionalHeadlines: ").append(toIndentedString(additionalHeadlines)).append("\n");
     sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
+    sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1475,6 +1543,11 @@ public class CreateStandaloneAdRequest {
     // add `advantageAudience` to the URL query string
     if (getAdvantageAudience() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sadvantageAudience%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdvantageAudience()))));
+    }
+
+    // add `gender` to the URL query string
+    if (getGender() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGender()))));
     }
 
     return joiner.toString();

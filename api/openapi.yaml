@@ -38127,6 +38127,16 @@ components:
           - 0
           - 1
           type: integer
+        gender:
+          default: all
+          description: "Meta only. Restrict the audience by gender. 'male' targets\
+            \ men only, 'female' targets women only, 'all' (default) targets everyone.\
+            \ Ignored by non-Meta platforms."
+          enum:
+          - all
+          - male
+          - female
+          type: string
       required:
       - accountId
       - adAccountId
