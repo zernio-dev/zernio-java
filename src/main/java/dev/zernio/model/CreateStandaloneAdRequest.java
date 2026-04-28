@@ -72,9 +72,11 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
-  CreateStandaloneAdRequest.JSON_PROPERTY_GENDER
+  CreateStandaloneAdRequest.JSON_PROPERTY_GENDER,
+  CreateStandaloneAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
+  CreateStandaloneAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T19:25:24.081402738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-28T09:08:55.727608412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -437,6 +439,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_GENDER = "gender";
   @javax.annotation.Nullable
   private GenderEnum gender = GenderEnum.ALL;
+
+  public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
+  @javax.annotation.Nullable
+  private String dsaBeneficiary;
+
+  public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
+  @javax.annotation.Nullable
+  private String dsaPayor;
 
   public CreateStandaloneAdRequest() { 
   }
@@ -1237,6 +1247,54 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest dsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
+    this.dsaBeneficiary = dsaBeneficiary;
+    return this;
+  }
+
+  /**
+   * Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. 
+   * @return dsaBeneficiary
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DSA_BENEFICIARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDsaBeneficiary() {
+    return dsaBeneficiary;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DSA_BENEFICIARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
+    this.dsaBeneficiary = dsaBeneficiary;
+  }
+
+
+  public CreateStandaloneAdRequest dsaPayor(@javax.annotation.Nullable String dsaPayor) {
+    this.dsaPayor = dsaPayor;
+    return this;
+  }
+
+  /**
+   * Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). 
+   * @return dsaPayor
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DSA_PAYOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDsaPayor() {
+    return dsaPayor;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DSA_PAYOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDsaPayor(@javax.annotation.Nullable String dsaPayor) {
+    this.dsaPayor = dsaPayor;
+  }
+
+
   /**
    * Return true if this createStandaloneAd_request object is equal to o.
    */
@@ -1279,12 +1337,14 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.additionalHeadlines, createStandaloneAdRequest.additionalHeadlines) &&
         Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions) &&
         Objects.equals(this.advantageAudience, createStandaloneAdRequest.advantageAudience) &&
-        Objects.equals(this.gender, createStandaloneAdRequest.gender);
+        Objects.equals(this.gender, createStandaloneAdRequest.gender) &&
+        Objects.equals(this.dsaBeneficiary, createStandaloneAdRequest.dsaBeneficiary) &&
+        Objects.equals(this.dsaPayor, createStandaloneAdRequest.dsaPayor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, gender);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, gender, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -1322,6 +1382,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
+    sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
+    sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1548,6 +1610,16 @@ public class CreateStandaloneAdRequest {
     // add `gender` to the URL query string
     if (getGender() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGender()))));
+    }
+
+    // add `dsaBeneficiary` to the URL query string
+    if (getDsaBeneficiary() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdsaBeneficiary%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaBeneficiary()))));
+    }
+
+    // add `dsaPayor` to the URL query string
+    if (getDsaPayor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
     }
 
     return joiner.toString();

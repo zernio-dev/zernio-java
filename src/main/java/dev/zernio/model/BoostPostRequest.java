@@ -52,9 +52,11 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_TARGETING,
   BoostPostRequest.JSON_PROPERTY_BID_AMOUNT,
   BoostPostRequest.JSON_PROPERTY_TRACKING,
-  BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES
+  BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
+  BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
+  BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T19:25:24.081402738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-28T09:08:55.727608412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -191,6 +193,14 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_SPECIAL_AD_CATEGORIES = "specialAdCategories";
   @javax.annotation.Nullable
   private List<SpecialAdCategoriesEnum> specialAdCategories = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
+  @javax.annotation.Nullable
+  private String dsaBeneficiary;
+
+  public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
+  @javax.annotation.Nullable
+  private String dsaPayor;
 
   public BoostPostRequest() { 
   }
@@ -515,6 +525,54 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest dsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
+    this.dsaBeneficiary = dsaBeneficiary;
+    return this;
+  }
+
+  /**
+   * Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. 
+   * @return dsaBeneficiary
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DSA_BENEFICIARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDsaBeneficiary() {
+    return dsaBeneficiary;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DSA_BENEFICIARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
+    this.dsaBeneficiary = dsaBeneficiary;
+  }
+
+
+  public BoostPostRequest dsaPayor(@javax.annotation.Nullable String dsaPayor) {
+    this.dsaPayor = dsaPayor;
+    return this;
+  }
+
+  /**
+   * Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). 
+   * @return dsaPayor
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DSA_PAYOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDsaPayor() {
+    return dsaPayor;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DSA_PAYOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDsaPayor(@javax.annotation.Nullable String dsaPayor) {
+    this.dsaPayor = dsaPayor;
+  }
+
+
   /**
    * Return true if this boostPost_request object is equal to o.
    */
@@ -539,12 +597,14 @@ public class BoostPostRequest {
         Objects.equals(this.targeting, boostPostRequest.targeting) &&
         Objects.equals(this.bidAmount, boostPostRequest.bidAmount) &&
         Objects.equals(this.tracking, boostPostRequest.tracking) &&
-        Objects.equals(this.specialAdCategories, boostPostRequest.specialAdCategories);
+        Objects.equals(this.specialAdCategories, boostPostRequest.specialAdCategories) &&
+        Objects.equals(this.dsaBeneficiary, boostPostRequest.dsaBeneficiary) &&
+        Objects.equals(this.dsaPayor, boostPostRequest.dsaPayor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, bidAmount, tracking, specialAdCategories);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, bidAmount, tracking, specialAdCategories, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -564,6 +624,8 @@ public class BoostPostRequest {
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
+    sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
+    sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -678,6 +740,16 @@ public class BoostPostRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSpecialAdCategories().get(i)))));
       }
+    }
+
+    // add `dsaBeneficiary` to the URL query string
+    if (getDsaBeneficiary() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdsaBeneficiary%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaBeneficiary()))));
+    }
+
+    // add `dsaPayor` to the URL query string
+    if (getDsaPayor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
     }
 
     return joiner.toString();

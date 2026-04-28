@@ -57,9 +57,11 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_INTERESTS,
   CreateCtwaAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateCtwaAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
-  CreateCtwaAdRequest.JSON_PROPERTY_OBJECTIVE
+  CreateCtwaAdRequest.JSON_PROPERTY_OBJECTIVE,
+  CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
+  CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-27T19:25:24.081402738Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-28T09:08:55.727608412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -239,6 +241,14 @@ public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_OBJECTIVE = "objective";
   @javax.annotation.Nullable
   private ObjectiveEnum objective;
+
+  public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
+  @javax.annotation.Nullable
+  private String dsaBeneficiary;
+
+  public static final String JSON_PROPERTY_DSA_PAYOR = "dsaPayor";
+  @javax.annotation.Nullable
+  private String dsaPayor;
 
   public CreateCtwaAdRequest() { 
   }
@@ -696,6 +706,54 @@ public class CreateCtwaAdRequest {
   }
 
 
+  public CreateCtwaAdRequest dsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
+    this.dsaBeneficiary = dsaBeneficiary;
+    return this;
+  }
+
+  /**
+   * Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. 
+   * @return dsaBeneficiary
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DSA_BENEFICIARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDsaBeneficiary() {
+    return dsaBeneficiary;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DSA_BENEFICIARY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
+    this.dsaBeneficiary = dsaBeneficiary;
+  }
+
+
+  public CreateCtwaAdRequest dsaPayor(@javax.annotation.Nullable String dsaPayor) {
+    this.dsaPayor = dsaPayor;
+    return this;
+  }
+
+  /**
+   * Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). 
+   * @return dsaPayor
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DSA_PAYOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDsaPayor() {
+    return dsaPayor;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DSA_PAYOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDsaPayor(@javax.annotation.Nullable String dsaPayor) {
+    this.dsaPayor = dsaPayor;
+  }
+
+
   /**
    * Return true if this createCtwaAd_request object is equal to o.
    */
@@ -725,12 +783,14 @@ public class CreateCtwaAdRequest {
         Objects.equals(this.interests, createCtwaAdRequest.interests) &&
         Objects.equals(this.audienceId, createCtwaAdRequest.audienceId) &&
         Objects.equals(this.advantageAudience, createCtwaAdRequest.advantageAudience) &&
-        Objects.equals(this.objective, createCtwaAdRequest.objective);
+        Objects.equals(this.objective, createCtwaAdRequest.objective) &&
+        Objects.equals(this.dsaBeneficiary, createCtwaAdRequest.dsaBeneficiary) &&
+        Objects.equals(this.dsaPayor, createCtwaAdRequest.dsaPayor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, budgetAmount, budgetType, currency, endDate, countries, ageMin, ageMax, interests, audienceId, advantageAudience, objective);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, budgetAmount, budgetType, currency, endDate, countries, ageMin, ageMax, interests, audienceId, advantageAudience, objective, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -755,6 +815,8 @@ public class CreateCtwaAdRequest {
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("    objective: ").append(toIndentedString(objective)).append("\n");
+    sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
+    sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -899,6 +961,16 @@ public class CreateCtwaAdRequest {
     // add `objective` to the URL query string
     if (getObjective() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobjective%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjective()))));
+    }
+
+    // add `dsaBeneficiary` to the URL query string
+    if (getDsaBeneficiary() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdsaBeneficiary%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaBeneficiary()))));
+    }
+
+    // add `dsaPayor` to the URL query string
+    if (getDsaPayor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdsaPayor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDsaPayor()))));
     }
 
     return joiner.toString();

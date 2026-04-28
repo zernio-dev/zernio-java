@@ -37970,6 +37970,20 @@ components:
             - ISSUES_ELECTIONS_POLITICS
             type: string
           type: array
+        dsaBeneficiary:
+          description: |
+            Name of the legal entity benefiting from the ad.
+            Required by Meta when targeting EU users (DSA Article 26).
+            Not enforced at schema level; enforced server-side when targeting intersects EU member states.
+          maxLength: 100
+          type: string
+        dsaPayor:
+          description: |
+            Name of the legal entity paying for the ad.
+            Required by Meta when targeting EU users (DSA Article 26).
+            Note Meta API spelling: dsa_payor (not dsa_payer).
+          maxLength: 100
+          type: string
       required:
       - accountId
       - adAccountId
@@ -38228,6 +38242,20 @@ components:
           - all
           - male
           - female
+          type: string
+        dsaBeneficiary:
+          description: |
+            Name of the legal entity benefiting from the ad.
+            Required by Meta when targeting EU users (DSA Article 26).
+            Not enforced at schema level; enforced server-side when targeting intersects EU member states.
+          maxLength: 100
+          type: string
+        dsaPayor:
+          description: |
+            Name of the legal entity paying for the ad.
+            Required by Meta when targeting EU users (DSA Article 26).
+            Note Meta API spelling: dsa_payor (not dsa_payer).
+          maxLength: 100
           type: string
       required:
       - accountId
@@ -38887,6 +38915,20 @@ components:
           - OUTCOME_ENGAGEMENT
           - OUTCOME_SALES
           - OUTCOME_LEADS
+          type: string
+        dsaBeneficiary:
+          description: |
+            Name of the legal entity benefiting from the ad.
+            Required by Meta when targeting EU users (DSA Article 26).
+            Not enforced at schema level; enforced server-side when targeting intersects EU member states.
+          maxLength: 100
+          type: string
+        dsaPayor:
+          description: |
+            Name of the legal entity paying for the ad.
+            Required by Meta when targeting EU users (DSA Article 26).
+            Note Meta API spelling: dsa_payor (not dsa_payer).
+          maxLength: 100
           type: string
       required:
       - accountId
