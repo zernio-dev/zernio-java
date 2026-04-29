@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   InstagramPlatformData.JSON_PROPERTY_INSTAGRAM_THUMBNAIL,
   InstagramPlatformData.JSON_PROPERTY_REEL_COVER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-29T17:10:20.227025585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-29T17:38:50.674145970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformData {
   /**
    * Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media.

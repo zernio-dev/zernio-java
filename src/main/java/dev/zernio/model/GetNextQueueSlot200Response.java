@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetNextQueueSlot200Response.JSON_PROPERTY_QUEUE_ID,
   GetNextQueueSlot200Response.JSON_PROPERTY_QUEUE_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-29T17:10:20.227025585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-29T17:38:50.674145970Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetNextQueueSlot200Response {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nullable
