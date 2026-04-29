@@ -40,8 +40,6 @@ import dev.zernio.model.SendConversions200Response;
 import dev.zernio.model.SendConversionsRequest;
 import dev.zernio.model.SendWhatsAppConversion200Response;
 import dev.zernio.model.SendWhatsAppConversionRequest;
-import dev.zernio.model.TriggerAdsInitialSync202Response;
-import dev.zernio.model.TriggerAdsInitialSyncRequest;
 import dev.zernio.model.UpdateAd200Response;
 import dev.zernio.model.UpdateAdRequest;
 
@@ -70,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-29T16:56:31.396922494Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-29T17:10:20.227025585Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2039,129 +2037,6 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendWhatsAppConversionRequest);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    // Add custom headers if provided
-    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Re-sync an ads account
-   * Enqueue a full re-sync (discovery + 90-day metrics backfill) for one ads SocialAccount. Returns immediately with a trace ID; subscribe to the &#x60;account.ads.initial_sync_completed&#x60; webhook for completion.  Use this when: - the customer changed which TikTok Business Center / Meta ad account a   token can reach and wants Zernio to discover the new ads, - a previous sync errored out and the customer wants a clean retry, - the customer rotated permissions on the platform side.  Per-account 1h debounce: subsequent calls within an hour return &#x60;202&#x60; with &#x60;status: \&quot;already_queued\&quot;&#x60; and the prior trace ID. 
-   * @param triggerAdsInitialSyncRequest  (required)
-   * @return TriggerAdsInitialSync202Response
-   * @throws ApiException if fails to make API call
-   */
-  public TriggerAdsInitialSync202Response triggerAdsInitialSync(@javax.annotation.Nonnull TriggerAdsInitialSyncRequest triggerAdsInitialSyncRequest) throws ApiException {
-    return triggerAdsInitialSync(triggerAdsInitialSyncRequest, null);
-  }
-
-  /**
-   * Re-sync an ads account
-   * Enqueue a full re-sync (discovery + 90-day metrics backfill) for one ads SocialAccount. Returns immediately with a trace ID; subscribe to the &#x60;account.ads.initial_sync_completed&#x60; webhook for completion.  Use this when: - the customer changed which TikTok Business Center / Meta ad account a   token can reach and wants Zernio to discover the new ads, - a previous sync errored out and the customer wants a clean retry, - the customer rotated permissions on the platform side.  Per-account 1h debounce: subsequent calls within an hour return &#x60;202&#x60; with &#x60;status: \&quot;already_queued\&quot;&#x60; and the prior trace ID. 
-   * @param triggerAdsInitialSyncRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return TriggerAdsInitialSync202Response
-   * @throws ApiException if fails to make API call
-   */
-  public TriggerAdsInitialSync202Response triggerAdsInitialSync(@javax.annotation.Nonnull TriggerAdsInitialSyncRequest triggerAdsInitialSyncRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<TriggerAdsInitialSync202Response> localVarResponse = triggerAdsInitialSyncWithHttpInfo(triggerAdsInitialSyncRequest, headers);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Re-sync an ads account
-   * Enqueue a full re-sync (discovery + 90-day metrics backfill) for one ads SocialAccount. Returns immediately with a trace ID; subscribe to the &#x60;account.ads.initial_sync_completed&#x60; webhook for completion.  Use this when: - the customer changed which TikTok Business Center / Meta ad account a   token can reach and wants Zernio to discover the new ads, - a previous sync errored out and the customer wants a clean retry, - the customer rotated permissions on the platform side.  Per-account 1h debounce: subsequent calls within an hour return &#x60;202&#x60; with &#x60;status: \&quot;already_queued\&quot;&#x60; and the prior trace ID. 
-   * @param triggerAdsInitialSyncRequest  (required)
-   * @return ApiResponse&lt;TriggerAdsInitialSync202Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<TriggerAdsInitialSync202Response> triggerAdsInitialSyncWithHttpInfo(@javax.annotation.Nonnull TriggerAdsInitialSyncRequest triggerAdsInitialSyncRequest) throws ApiException {
-    return triggerAdsInitialSyncWithHttpInfo(triggerAdsInitialSyncRequest, null);
-  }
-
-  /**
-   * Re-sync an ads account
-   * Enqueue a full re-sync (discovery + 90-day metrics backfill) for one ads SocialAccount. Returns immediately with a trace ID; subscribe to the &#x60;account.ads.initial_sync_completed&#x60; webhook for completion.  Use this when: - the customer changed which TikTok Business Center / Meta ad account a   token can reach and wants Zernio to discover the new ads, - a previous sync errored out and the customer wants a clean retry, - the customer rotated permissions on the platform side.  Per-account 1h debounce: subsequent calls within an hour return &#x60;202&#x60; with &#x60;status: \&quot;already_queued\&quot;&#x60; and the prior trace ID. 
-   * @param triggerAdsInitialSyncRequest  (required)
-   * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;TriggerAdsInitialSync202Response&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<TriggerAdsInitialSync202Response> triggerAdsInitialSyncWithHttpInfo(@javax.annotation.Nonnull TriggerAdsInitialSyncRequest triggerAdsInitialSyncRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = triggerAdsInitialSyncRequestBuilder(triggerAdsInitialSyncRequest, headers);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      InputStream localVarResponseBody = null;
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("triggerAdsInitialSync", localVarResponse);
-        }
-        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
-        if (localVarResponseBody == null) {
-          return new ApiResponse<TriggerAdsInitialSync202Response>(
-              localVarResponse.statusCode(),
-              localVarResponse.headers().map(),
-              null
-          );
-        }
-
-        
-        
-        String responseBody = new String(localVarResponseBody.readAllBytes());
-        TriggerAdsInitialSync202Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<TriggerAdsInitialSync202Response>() {});
-        
-
-        return new ApiResponse<TriggerAdsInitialSync202Response>(
-            localVarResponse.statusCode(),
-            localVarResponse.headers().map(),
-            responseValue
-        );
-      } finally {
-        if (localVarResponseBody != null) {
-          localVarResponseBody.close();
-        }
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder triggerAdsInitialSyncRequestBuilder(@javax.annotation.Nonnull TriggerAdsInitialSyncRequest triggerAdsInitialSyncRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'triggerAdsInitialSyncRequest' is set
-    if (triggerAdsInitialSyncRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'triggerAdsInitialSyncRequest' when calling triggerAdsInitialSync");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/v1/ads/sync/initial";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(triggerAdsInitialSyncRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

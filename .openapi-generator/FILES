@@ -679,8 +679,6 @@ docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
 docs/TikTokPlatformData.md
-docs/TriggerAdsInitialSync202Response.md
-docs/TriggerAdsInitialSyncRequest.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
@@ -1581,8 +1579,6 @@ src/main/java/dev/zernio/model/TelegramPlatformData.java
 src/main/java/dev/zernio/model/TestWebhookRequest.java
 src/main/java/dev/zernio/model/ThreadsPlatformData.java
 src/main/java/dev/zernio/model/TikTokPlatformData.java
-src/main/java/dev/zernio/model/TriggerAdsInitialSync202Response.java
-src/main/java/dev/zernio/model/TriggerAdsInitialSyncRequest.java
 src/main/java/dev/zernio/model/TwitterPlatformData.java
 src/main/java/dev/zernio/model/TwitterPlatformDataPoll.java
 src/main/java/dev/zernio/model/TwitterPlatformDataThreadItemsInner.java

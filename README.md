@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-29T16:56:31.396922494Z[Etc/UTC]
+- Build date: 2026-04-29T17:10:20.227025585Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -208,8 +208,6 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**sendConversionsWithHttpInfo**](docs/AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
 *AdsApi* | [**sendWhatsAppConversion**](docs/AdsApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *AdsApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
-*AdsApi* | [**triggerAdsInitialSync**](docs/AdsApi.md#triggerAdsInitialSync) | **POST** /v1/ads/sync/initial | Re-sync an ads account
-*AdsApi* | [**triggerAdsInitialSyncWithHttpInfo**](docs/AdsApi.md#triggerAdsInitialSyncWithHttpInfo) | **POST** /v1/ads/sync/initial | Re-sync an ads account
 *AdsApi* | [**updateAd**](docs/AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
 *AdsApi* | [**updateAdWithHttpInfo**](docs/AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
 *AnalyticsApi* | [**getAnalytics**](docs/AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics
@@ -1297,8 +1295,6 @@ Class | Method | HTTP request | Description
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
- - [TriggerAdsInitialSync202Response](docs/TriggerAdsInitialSync202Response.md)
- - [TriggerAdsInitialSyncRequest](docs/TriggerAdsInitialSyncRequest.md)
  - [TwitterPlatformData](docs/TwitterPlatformData.md)
  - [TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
  - [TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)

@@ -14982,51 +14982,6 @@ paths:
       - Ads
       x-accepts:
       - application/json
-  /v1/ads/sync/initial:
-    post:
-      description: |
-        Enqueue a full re-sync (discovery + 90-day metrics backfill) for one ads
-        SocialAccount. Returns immediately with a trace ID; subscribe to the
-        `account.ads.initial_sync_completed` webhook for completion.
-
-        Use this when:
-        - the customer changed which TikTok Business Center / Meta ad account a
-          token can reach and wants Zernio to discover the new ads,
-        - a previous sync errored out and the customer wants a clean retry,
-        - the customer rotated permissions on the platform side.
-
-        Per-account 1h debounce: subsequent calls within an hour return `202`
-        with `status: "already_queued"` and the prior trace ID.
-      operationId: triggerAdsInitialSync
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/triggerAdsInitialSync_request"
-        required: true
-      responses:
-        "202":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/triggerAdsInitialSync_202_response"
-          description: Sync queued (or already-queued debounce hit)
-        "400":
-          description: Invalid input
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          description: Ads SocialAccount not found
-        "503":
-          description: Sync queue not configured on this environment
-      security:
-      - bearerAuth: []
-      summary: Re-sync an ads account
-      tags:
-      - Ads
-      x-content-type: application/json
-      x-accepts:
-      - application/json
   /v1/ads/accounts:
     get:
       description: |
@@ -38334,33 +38289,6 @@ components:
           items:
             $ref: "#/components/schemas/BusinessCenter"
           type: array
-    triggerAdsInitialSync_request:
-      properties:
-        accountId:
-          description: |
-            ID of the ads SocialAccount to re-sync (e.g. `metaads` / `tiktokads` doc).
-            Posting accounts (`facebook` / `tiktok`) are rejected — pass the ads-side
-            account ID that owns the platform tokens.
-          type: string
-      required:
-      - accountId
-    triggerAdsInitialSync_202_response:
-      example:
-        traceId: traceId
-        message: message
-        status: queued
-      properties:
-        status:
-          enum:
-          - queued
-          - already_queued
-          type: string
-        traceId:
-          description: Trace ID for the enqueued job. Reused on `already_queued`.
-          type: string
-          nullable: true
-        message:
-          type: string
     listAdAccounts_200_response_accounts_inner:
       example:
         timezoneOffsetHoursUtc: 0.8008281904610115
