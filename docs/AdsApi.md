@@ -28,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listConversionDestinationsWithHttpInfo**](AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API |
 | [**searchAdInterests**](AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests |
 | [**searchAdInterestsWithHttpInfo**](AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests |
+| [**searchAdTargetingLocations**](AdsApi.md#searchAdTargetingLocations) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta) |
+| [**searchAdTargetingLocationsWithHttpInfo**](AdsApi.md#searchAdTargetingLocationsWithHttpInfo) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta) |
 | [**sendConversions**](AdsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform |
 | [**sendConversionsWithHttpInfo**](AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events to an ad platform |
 | [**sendWhatsAppConversion**](AdsApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
@@ -1913,6 +1915,174 @@ ApiResponse<[**SearchAdInterests200Response**](SearchAdInterests200Response.md)>
 | **200** | Matching interests |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
+
+
+## searchAdTargetingLocations
+
+> SearchAdTargetingLocations200Response searchAdTargetingLocations(accountId, q, type, countryCode, limit)
+
+Search geo targeting locations (Meta)
+
+Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID (must be a connected Facebook or Instagram account).
+        String q = "q_example"; // String | Location name. Locality only — no region/country suffix.
+        String type = "country"; // String | Type of location to search. Defaults to city.
+        String countryCode = "countryCode_example"; // String | ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search.
+        Integer limit = 25; // Integer | Maximum results to return.
+        try {
+            SearchAdTargetingLocations200Response result = apiInstance.searchAdTargetingLocations(accountId, q, type, countryCode, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#searchAdTargetingLocations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID (must be a connected Facebook or Instagram account). | |
+| **q** | **String**| Location name. Locality only — no region/country suffix. | |
+| **type** | **String**| Type of location to search. Defaults to city. | [optional] [default to city] [enum: country, region, city, subcity, neighborhood, zip, metro_area, geo_market] |
+| **countryCode** | **String**| ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. | [optional] |
+| **limit** | **Integer**| Maximum results to return. | [optional] [default to 25] |
+
+### Return type
+
+[**SearchAdTargetingLocations200Response**](SearchAdTargetingLocations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching locations |  -  |
+| **400** | Missing or invalid query parameters |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
+| **404** | Account not found, or platform does not support targeting search (Meta only) |  -  |
+
+## searchAdTargetingLocationsWithHttpInfo
+
+> ApiResponse<SearchAdTargetingLocations200Response> searchAdTargetingLocations searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit)
+
+Search geo targeting locations (Meta)
+
+Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID (must be a connected Facebook or Instagram account).
+        String q = "q_example"; // String | Location name. Locality only — no region/country suffix.
+        String type = "country"; // String | Type of location to search. Defaults to city.
+        String countryCode = "countryCode_example"; // String | ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search.
+        Integer limit = 25; // Integer | Maximum results to return.
+        try {
+            ApiResponse<SearchAdTargetingLocations200Response> response = apiInstance.searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#searchAdTargetingLocations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID (must be a connected Facebook or Instagram account). | |
+| **q** | **String**| Location name. Locality only — no region/country suffix. | |
+| **type** | **String**| Type of location to search. Defaults to city. | [optional] [default to city] [enum: country, region, city, subcity, neighborhood, zip, metro_area, geo_market] |
+| **countryCode** | **String**| ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. | [optional] |
+| **limit** | **Integer**| Maximum results to return. | [optional] [default to 25] |
+
+### Return type
+
+ApiResponse<[**SearchAdTargetingLocations200Response**](SearchAdTargetingLocations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Matching locations |  -  |
+| **400** | Missing or invalid query parameters |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
+| **404** | Account not found, or platform does not support targeting search (Meta only) |  -  |
 
 
 ## sendConversions

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-04-30T11:21:38.000702959Z[Etc/UTC]
+- Build date: 2026-04-30T12:59:05.421515593Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -204,6 +204,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**listConversionDestinationsWithHttpInfo**](docs/AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API
 *AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
+*AdsApi* | [**searchAdTargetingLocations**](docs/AdsApi.md#searchAdTargetingLocations) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta)
+*AdsApi* | [**searchAdTargetingLocationsWithHttpInfo**](docs/AdsApi.md#searchAdTargetingLocationsWithHttpInfo) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta)
 *AdsApi* | [**sendConversions**](docs/AdsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
 *AdsApi* | [**sendConversionsWithHttpInfo**](docs/AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
 *AdsApi* | [**sendWhatsAppConversion**](docs/AdsApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
@@ -794,10 +796,12 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAd201ResponseOneOf](docs/CreateStandaloneAd201ResponseOneOf.md)
  - [CreateStandaloneAd201ResponseOneOf1](docs/CreateStandaloneAd201ResponseOneOf1.md)
  - [CreateStandaloneAdRequest](docs/CreateStandaloneAdRequest.md)
+ - [CreateStandaloneAdRequestCitiesInner](docs/CreateStandaloneAdRequestCitiesInner.md)
  - [CreateStandaloneAdRequestCreativesInner](docs/CreateStandaloneAdRequestCreativesInner.md)
  - [CreateStandaloneAdRequestCreativesInnerVideo](docs/CreateStandaloneAdRequestCreativesInnerVideo.md)
  - [CreateStandaloneAdRequestImages](docs/CreateStandaloneAdRequestImages.md)
  - [CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
+ - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
  - [CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
  - [CreateWhatsAppFlow200Response](docs/CreateWhatsAppFlow200Response.md)
@@ -1223,6 +1227,9 @@ Class | Method | HTTP request | Description
  - [ScheduleBroadcastRequest](docs/ScheduleBroadcastRequest.md)
  - [SearchAdInterests200Response](docs/SearchAdInterests200Response.md)
  - [SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
+ - [SearchAdTargetingLocations200Response](docs/SearchAdTargetingLocations200Response.md)
+ - [SearchAdTargetingLocations200ResponseResultsInner](docs/SearchAdTargetingLocations200ResponseResultsInner.md)
+ - [SearchAdTargetingLocations200ResponseResultsInnerRegionId](docs/SearchAdTargetingLocations200ResponseResultsInnerRegionId.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)

@@ -15179,6 +15179,102 @@ paths:
       - Ads
       x-accepts:
       - application/json
+  /v1/ads/targeting/search:
+    get:
+      description: |
+        Resolve a human-readable location name into Meta's opaque `key` used in
+        `targeting.cities[]` / `targeting.regions[]` on `POST /v1/ads/create`
+        (and the same fields under `targeting.geo_locations` on
+        `POST /v1/ads/boost`). Wraps Meta's `/search?type=adgeolocation`
+        endpoint.
+
+        Meta-only for now. Other platforms have their own location id systems
+        and are not exposed here.
+
+        Per Meta's docs, `q` must contain only the locality name (e.g.
+        `"Amsterdam"`, not `"Amsterdam, NL"`). Use `countryCode` to
+        disambiguate when the same name exists in multiple countries.
+      operationId: searchAdTargetingLocations
+      parameters:
+      - description: Social account ID (must be a connected Facebook or Instagram
+          account).
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Location name. Locality only — no region/country suffix.
+        explode: true
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Type of location to search. Defaults to city.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          default: city
+          enum:
+          - country
+          - region
+          - city
+          - subcity
+          - neighborhood
+          - zip
+          - metro_area
+          - geo_market
+          type: string
+        style: form
+      - description: ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search.
+        explode: true
+        in: query
+        name: countryCode
+        required: false
+        schema:
+          maxLength: 2
+          minLength: 2
+          type: string
+        style: form
+      - description: Maximum results to return.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/searchAdTargetingLocations_200_response"
+          description: Matching locations
+        "400":
+          description: Missing or invalid query parameters
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads add-on required
+        "404":
+          description: "Account not found, or platform does not support targeting\
+            \ search (Meta only)"
+      security:
+      - bearerAuth: []
+      summary: Search geo targeting locations (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
   /v1/ads/audiences:
     get:
       description: "Returns custom audiences for the given ad account. Supports Meta,\
@@ -38620,6 +38716,30 @@ components:
       - callToAction
       - headline
       - linkUrl
+    createStandaloneAd_request_cities_inner:
+      properties:
+        key:
+          description: "Meta city ID, from /v1/ads/targeting/search results."
+          type: string
+        radius:
+          description: Optional radius around the city. Must be set together with
+            distance_unit.
+          type: number
+        distance_unit:
+          description: Unit for radius. Required if radius is set.
+          enum:
+          - mile
+          - kilometer
+          type: string
+      required:
+      - key
+    createStandaloneAd_request_regions_inner:
+      properties:
+        key:
+          description: "Meta region ID, from /v1/ads/targeting/search results."
+          type: string
+      required:
+      - key
     createStandaloneAd_request_promotedObject:
       description: |
         Meta only. Forwarded to the ad set's `promoted_object` (snake-cased).
@@ -38780,8 +38900,24 @@ components:
           description: Pinterest only. Board ID (auto-creates if not provided).
           type: string
         countries:
+          description: "ISO 3166-1 alpha-2 country codes (e.g. ['NL']). Defaults to\
+            \ ['US'] when no `cities` or `regions` are provided."
           items:
             type: string
+          type: array
+        cities:
+          description: |
+            Meta-only. City-level geo targeting. Each city is targeted by Meta's opaque `key` (the city ID) which can be looked up via `GET /v1/ads/targeting/search?type=city&q=<name>&country_code=<ISO>`. Optional `radius` + `distance_unit` extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).
+
+            Cannot overlap with the same country in `countries` (Meta returns a "locations overlap" error). Either drop the country or scope it to a different country.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_cities_inner"
+          type: array
+        regions:
+          description: |
+            Meta-only. Region-level (state/province) geo targeting. Each region is targeted by Meta's opaque `key` (the region ID) which can be looked up via `GET /v1/ads/targeting/search?type=region&q=<name>&country_code=<ISO>`.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_regions_inner"
           type: array
         ageMin:
           maximum: 65
@@ -38985,6 +39121,76 @@ components:
         interests:
           items:
             $ref: "#/components/schemas/searchAdInterests_200_response_interests_inner"
+          type: array
+    searchAdTargetingLocations_200_response_results_inner_regionId:
+      description: Parent region ID (cities only).
+      oneOf:
+      - type: string
+      - type: integer
+    searchAdTargetingLocations_200_response_results_inner:
+      example:
+        regionId: searchAdTargetingLocations_200_response_results_inner_regionId
+        supportsRegion: true
+        countryCode: countryCode
+        name: name
+        countryName: countryName
+        supportsCity: true
+        type: type
+        region: region
+        key: key
+      properties:
+        key:
+          description: "Meta's opaque location ID. Use this in targeting.cities[].key\
+            \ / regions[].key."
+          type: string
+        name:
+          type: string
+        type:
+          description: "Location type as returned by Meta (city, region, country,\
+            \ etc.)."
+          type: string
+        countryCode:
+          type: string
+        countryName:
+          type: string
+        region:
+          description: Parent region/state name (cities only).
+          type: string
+        regionId:
+          $ref: "#/components/schemas/searchAdTargetingLocations_200_response_results_inner_regionId"
+        supportsRegion:
+          type: boolean
+        supportsCity:
+          type: boolean
+      required:
+      - key
+      - name
+      - type
+    searchAdTargetingLocations_200_response:
+      example:
+        results:
+        - regionId: searchAdTargetingLocations_200_response_results_inner_regionId
+          supportsRegion: true
+          countryCode: countryCode
+          name: name
+          countryName: countryName
+          supportsCity: true
+          type: type
+          region: region
+          key: key
+        - regionId: searchAdTargetingLocations_200_response_results_inner_regionId
+          supportsRegion: true
+          countryCode: countryCode
+          name: name
+          countryName: countryName
+          supportsCity: true
+          type: type
+          region: region
+          key: key
+      properties:
+        results:
+          items:
+            $ref: "#/components/schemas/searchAdTargetingLocations_200_response_results_inner"
           type: array
     listAdAudiences_200_response_audiences_inner:
       example:

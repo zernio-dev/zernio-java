@@ -36,6 +36,7 @@ import dev.zernio.model.ListAdsBusinessCenters200Response;
 import dev.zernio.model.ListConversionDestinations200Response;
 import java.time.LocalDate;
 import dev.zernio.model.SearchAdInterests200Response;
+import dev.zernio.model.SearchAdTargetingLocations200Response;
 import dev.zernio.model.SendConversions200Response;
 import dev.zernio.model.SendConversionsRequest;
 import dev.zernio.model.SendWhatsAppConversion200Response;
@@ -68,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T11:21:38.000702959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T12:59:05.421515593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1780,6 +1781,166 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("q", q));
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Search geo targeting locations (Meta)
+   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
+   * @param q Location name. Locality only — no region/country suffix. (required)
+   * @param type Type of location to search. Defaults to city. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * @param limit Maximum results to return. (optional, default to 25)
+   * @return SearchAdTargetingLocations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchAdTargetingLocations200Response searchAdTargetingLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchAdTargetingLocations(accountId, q, type, countryCode, limit, null);
+  }
+
+  /**
+   * Search geo targeting locations (Meta)
+   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
+   * @param q Location name. Locality only — no region/country suffix. (required)
+   * @param type Type of location to search. Defaults to city. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * @param limit Maximum results to return. (optional, default to 25)
+   * @param headers Optional headers to include in the request
+   * @return SearchAdTargetingLocations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchAdTargetingLocations200Response searchAdTargetingLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchAdTargetingLocations200Response> localVarResponse = searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Search geo targeting locations (Meta)
+   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
+   * @param q Location name. Locality only — no region/country suffix. (required)
+   * @param type Type of location to search. Defaults to city. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * @param limit Maximum results to return. (optional, default to 25)
+   * @return ApiResponse&lt;SearchAdTargetingLocations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchAdTargetingLocations200Response> searchAdTargetingLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit, null);
+  }
+
+  /**
+   * Search geo targeting locations (Meta)
+   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
+   * @param q Location name. Locality only — no region/country suffix. (required)
+   * @param type Type of location to search. Defaults to city. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * @param limit Maximum results to return. (optional, default to 25)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SearchAdTargetingLocations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchAdTargetingLocations200Response> searchAdTargetingLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchAdTargetingLocationsRequestBuilder(accountId, q, type, countryCode, limit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchAdTargetingLocations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SearchAdTargetingLocations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SearchAdTargetingLocations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchAdTargetingLocations200Response>() {});
+        
+
+        return new ApiResponse<SearchAdTargetingLocations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchAdTargetingLocationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling searchAdTargetingLocations");
+    }
+    // verify the required parameter 'q' is set
+    if (q == null) {
+      throw new ApiException(400, "Missing the required parameter 'q' when calling searchAdTargetingLocations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/targeting/search";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "q";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("q", q));
+    localVarQueryParameterBaseName = "type";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("type", type));
+    localVarQueryParameterBaseName = "countryCode";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("countryCode", countryCode));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

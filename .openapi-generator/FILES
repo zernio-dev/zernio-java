@@ -158,10 +158,12 @@ docs/CreateStandaloneAd201Response.md
 docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
 docs/CreateStandaloneAdRequest.md
+docs/CreateStandaloneAdRequestCitiesInner.md
 docs/CreateStandaloneAdRequestCreativesInner.md
 docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestImages.md
 docs/CreateStandaloneAdRequestPromotedObject.md
+docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestVideo.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppFlow200Response.md
@@ -606,6 +608,9 @@ docs/ScheduleBroadcast200ResponseBroadcast.md
 docs/ScheduleBroadcastRequest.md
 docs/SearchAdInterests200Response.md
 docs/SearchAdInterests200ResponseInterestsInner.md
+docs/SearchAdTargetingLocations200Response.md
+docs/SearchAdTargetingLocations200ResponseResultsInner.md
+docs/SearchAdTargetingLocations200ResponseResultsInnerRegionId.md
 docs/SearchReddit200Response.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
@@ -1079,10 +1084,12 @@ src/main/java/dev/zernio/model/CreateStandaloneAd201Response.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf1.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequest.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestCitiesInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCreativesInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCreativesInnerVideo.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestImages.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestVideo.java
 src/main/java/dev/zernio/model/CreateWebhookSettingsRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppFlow200Response.java
@@ -1508,6 +1515,9 @@ src/main/java/dev/zernio/model/ScheduleBroadcast200ResponseBroadcast.java
 src/main/java/dev/zernio/model/ScheduleBroadcastRequest.java
 src/main/java/dev/zernio/model/SearchAdInterests200Response.java
 src/main/java/dev/zernio/model/SearchAdInterests200ResponseInterestsInner.java
+src/main/java/dev/zernio/model/SearchAdTargetingLocations200Response.java
+src/main/java/dev/zernio/model/SearchAdTargetingLocations200ResponseResultsInner.java
+src/main/java/dev/zernio/model/SearchAdTargetingLocations200ResponseResultsInnerRegionId.java
 src/main/java/dev/zernio/model/SearchReddit200Response.java
 src/main/java/dev/zernio/model/SelectFacebookPage200Response.java
 src/main/java/dev/zernio/model/SelectFacebookPage200ResponseAccount.java
@@ -1768,4 +1778,8 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObjectTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestCitiesInnerTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInnerTest.java
+src/test/java/dev/zernio/model/SearchAdTargetingLocations200ResponseResultsInnerRegionIdTest.java
+src/test/java/dev/zernio/model/SearchAdTargetingLocations200ResponseResultsInnerTest.java
+src/test/java/dev/zernio/model/SearchAdTargetingLocations200ResponseTest.java

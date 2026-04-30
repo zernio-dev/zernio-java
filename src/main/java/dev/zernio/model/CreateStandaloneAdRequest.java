@@ -25,9 +25,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
+import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
 import dev.zernio.model.CreateStandaloneAdRequestImages;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
+import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
@@ -64,6 +66,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BUSINESS_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_BOARD_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_COUNTRIES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CITIES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_REGIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_AGE_MIN,
   CreateStandaloneAdRequest.JSON_PROPERTY_AGE_MAX,
   CreateStandaloneAdRequest.JSON_PROPERTY_INTERESTS,
@@ -82,7 +86,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_DSA_PAYOR,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T11:21:38.000702959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-04-30T12:59:05.421515593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -294,6 +298,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
   private List<String> countries = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CITIES = "cities";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestCitiesInner> cities = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REGIONS = "regions";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestRegionsInner> regions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -951,7 +963,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Get countries
+   * ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided.
    * @return countries
    */
   @javax.annotation.Nullable
@@ -966,6 +978,70 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
+  }
+
+
+  public CreateStandaloneAdRequest cities(@javax.annotation.Nullable List<CreateStandaloneAdRequestCitiesInner> cities) {
+    this.cities = cities;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addCitiesItem(CreateStandaloneAdRequestCitiesInner citiesItem) {
+    if (this.cities == null) {
+      this.cities = new ArrayList<>();
+    }
+    this.cities.add(citiesItem);
+    return this;
+  }
+
+  /**
+   * Meta-only. City-level geo targeting. Each city is targeted by Meta&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;city&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  Cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. 
+   * @return cities
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestCitiesInner> getCities() {
+    return cities;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCities(@javax.annotation.Nullable List<CreateStandaloneAdRequestCitiesInner> cities) {
+    this.cities = cities;
+  }
+
+
+  public CreateStandaloneAdRequest regions(@javax.annotation.Nullable List<CreateStandaloneAdRequestRegionsInner> regions) {
+    this.regions = regions;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addRegionsItem(CreateStandaloneAdRequestRegionsInner regionsItem) {
+    if (this.regions == null) {
+      this.regions = new ArrayList<>();
+    }
+    this.regions.add(regionsItem);
+    return this;
+  }
+
+  /**
+   * Meta-only. Region-level (state/province) geo targeting. Each region is targeted by Meta&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;region&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. 
+   * @return regions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestRegionsInner> getRegions() {
+    return regions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegions(@javax.annotation.Nullable List<CreateStandaloneAdRequestRegionsInner> regions) {
+    this.regions = regions;
   }
 
 
@@ -1445,6 +1521,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.businessName, createStandaloneAdRequest.businessName) &&
         Objects.equals(this.boardId, createStandaloneAdRequest.boardId) &&
         Objects.equals(this.countries, createStandaloneAdRequest.countries) &&
+        Objects.equals(this.cities, createStandaloneAdRequest.cities) &&
+        Objects.equals(this.regions, createStandaloneAdRequest.regions) &&
         Objects.equals(this.ageMin, createStandaloneAdRequest.ageMin) &&
         Objects.equals(this.ageMax, createStandaloneAdRequest.ageMax) &&
         Objects.equals(this.interests, createStandaloneAdRequest.interests) &&
@@ -1466,7 +1544,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, cities, regions, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, promotedObject);
   }
 
   @Override
@@ -1493,6 +1571,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
     sb.append("    boardId: ").append(toIndentedString(boardId)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
+    sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
+    sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
@@ -1663,6 +1743,26 @@ public class CreateStandaloneAdRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%scountries%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCountries().get(i)))));
+      }
+    }
+
+    // add `cities` to the URL query string
+    if (getCities() != null) {
+      for (int i = 0; i < getCities().size(); i++) {
+        if (getCities().get(i) != null) {
+          joiner.add(getCities().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scities%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `regions` to the URL query string
+    if (getRegions() != null) {
+      for (int i = 0; i < getRegions().size(); i++) {
+        if (getRegions().get(i) != null) {
+          joiner.add(getRegions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sregions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 
