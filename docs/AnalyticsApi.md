@@ -249,7 +249,7 @@ ApiResponse<[**GetAnalytics200Response**](GetAnalytics200Response.md)>
 
 ## getBestTimeToPost
 
-> GetBestTimeToPost200Response getBestTimeToPost(platform, profileId, source)
+> GetBestTimeToPost200Response getBestTimeToPost(platform, profileId, accountId, source)
 
 Get best times to post
 
@@ -278,9 +278,10 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            GetBestTimeToPost200Response result = apiInstance.getBestTimeToPost(platform, profileId, source);
+            GetBestTimeToPost200Response result = apiInstance.getBestTimeToPost(platform, profileId, accountId, source);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getBestTimeToPost");
@@ -300,6 +301,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -325,7 +327,7 @@ public class Example {
 
 ## getBestTimeToPostWithHttpInfo
 
-> ApiResponse<GetBestTimeToPost200Response> getBestTimeToPost getBestTimeToPostWithHttpInfo(platform, profileId, source)
+> ApiResponse<GetBestTimeToPost200Response> getBestTimeToPost getBestTimeToPostWithHttpInfo(platform, profileId, accountId, source)
 
 Get best times to post
 
@@ -355,9 +357,10 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            ApiResponse<GetBestTimeToPost200Response> response = apiInstance.getBestTimeToPostWithHttpInfo(platform, profileId, source);
+            ApiResponse<GetBestTimeToPost200Response> response = apiInstance.getBestTimeToPostWithHttpInfo(platform, profileId, accountId, source);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -379,6 +382,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -405,7 +409,7 @@ ApiResponse<[**GetBestTimeToPost200Response**](GetBestTimeToPost200Response.md)>
 
 ## getContentDecay
 
-> GetContentDecay200Response getContentDecay(platform, profileId, source)
+> GetContentDecay200Response getContentDecay(platform, profileId, accountId, source)
 
 Get content performance decay
 
@@ -434,9 +438,10 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            GetContentDecay200Response result = apiInstance.getContentDecay(platform, profileId, source);
+            GetContentDecay200Response result = apiInstance.getContentDecay(platform, profileId, accountId, source);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getContentDecay");
@@ -456,6 +461,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -481,7 +487,7 @@ public class Example {
 
 ## getContentDecayWithHttpInfo
 
-> ApiResponse<GetContentDecay200Response> getContentDecay getContentDecayWithHttpInfo(platform, profileId, source)
+> ApiResponse<GetContentDecay200Response> getContentDecay getContentDecayWithHttpInfo(platform, profileId, accountId, source)
 
 Get content performance decay
 
@@ -511,9 +517,10 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            ApiResponse<GetContentDecay200Response> response = apiInstance.getContentDecayWithHttpInfo(platform, profileId, source);
+            ApiResponse<GetContentDecay200Response> response = apiInstance.getContentDecayWithHttpInfo(platform, profileId, accountId, source);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -535,6 +542,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -2721,7 +2729,7 @@ ApiResponse<[**GetPostTimeline200Response**](GetPostTimeline200Response.md)>
 
 ## getPostingFrequency
 
-> GetPostingFrequency200Response getPostingFrequency(platform, profileId, source)
+> GetPostingFrequency200Response getPostingFrequency(platform, profileId, accountId, source)
 
 Get frequency vs engagement
 
@@ -2750,9 +2758,10 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            GetPostingFrequency200Response result = apiInstance.getPostingFrequency(platform, profileId, source);
+            GetPostingFrequency200Response result = apiInstance.getPostingFrequency(platform, profileId, accountId, source);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getPostingFrequency");
@@ -2772,6 +2781,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
@@ -2797,7 +2807,7 @@ public class Example {
 
 ## getPostingFrequencyWithHttpInfo
 
-> ApiResponse<GetPostingFrequency200Response> getPostingFrequency getPostingFrequencyWithHttpInfo(platform, profileId, source)
+> ApiResponse<GetPostingFrequency200Response> getPostingFrequency getPostingFrequencyWithHttpInfo(platform, profileId, accountId, source)
 
 Get frequency vs engagement
 
@@ -2827,9 +2837,10 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String platform = "platform_example"; // String | Filter by platform (e.g. \"instagram\", \"tiktok\"). Omit for all platforms.
         String profileId = "profileId_example"; // String | Filter by profile ID. Omit for all profiles.
+        String accountId = "accountId_example"; // String | Filter by social account ID. Omit for all accounts.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
         try {
-            ApiResponse<GetPostingFrequency200Response> response = apiInstance.getPostingFrequencyWithHttpInfo(platform, profileId, source);
+            ApiResponse<GetPostingFrequency200Response> response = apiInstance.getPostingFrequencyWithHttpInfo(platform, profileId, accountId, source);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2851,6 +2862,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Filter by platform (e.g. \&quot;instagram\&quot;, \&quot;tiktok\&quot;). Omit for all platforms. | [optional] |
 | **profileId** | **String**| Filter by profile ID. Omit for all profiles. | [optional] |
+| **accountId** | **String**| Filter by social account ID. Omit for all accounts. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
 
 ### Return type
