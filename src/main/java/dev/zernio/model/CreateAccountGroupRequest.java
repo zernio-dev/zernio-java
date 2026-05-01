@@ -36,13 +36,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CreateAccountGroupRequest.JSON_PROPERTY_NAME,
+  CreateAccountGroupRequest.JSON_PROPERTY_PROFILE_ID,
   CreateAccountGroupRequest.JSON_PROPERTY_ACCOUNT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T08:31:59.518979470Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-01T13:34:26.179667795Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAccountGroupRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
   private String name;
+
+  public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
+  @javax.annotation.Nonnull
+  private String profileId;
 
   public static final String JSON_PROPERTY_ACCOUNT_IDS = "accountIds";
   @javax.annotation.Nonnull
@@ -72,6 +77,30 @@ public class CreateAccountGroupRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
+  }
+
+
+  public CreateAccountGroupRequest profileId(@javax.annotation.Nonnull String profileId) {
+    this.profileId = profileId;
+    return this;
+  }
+
+  /**
+   * ID of the profile this group belongs to. All accountIds must belong to this profile.
+   * @return profileId
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getProfileId() {
+    return profileId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setProfileId(@javax.annotation.Nonnull String profileId) {
+    this.profileId = profileId;
   }
 
 
@@ -120,12 +149,13 @@ public class CreateAccountGroupRequest {
     }
     CreateAccountGroupRequest createAccountGroupRequest = (CreateAccountGroupRequest) o;
     return Objects.equals(this.name, createAccountGroupRequest.name) &&
+        Objects.equals(this.profileId, createAccountGroupRequest.profileId) &&
         Objects.equals(this.accountIds, createAccountGroupRequest.accountIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, accountIds);
+    return Objects.hash(name, profileId, accountIds);
   }
 
   @Override
@@ -133,6 +163,7 @@ public class CreateAccountGroupRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateAccountGroupRequest {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    accountIds: ").append(toIndentedString(accountIds)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -184,6 +215,11 @@ public class CreateAccountGroupRequest {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `profileId` to the URL query string
+    if (getProfileId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
     }
 
     // add `accountIds` to the URL query string
