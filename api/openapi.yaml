@@ -2477,7 +2477,6 @@ paths:
           application/json:
             example:
               name: Marketing Accounts
-              profileId: 6507a1b2c3d4e5f6a7b8c9aa
               accountIds:
               - 64e1f0a9e2b5af0012ab34cd
               - 64e1f0a9e2b5af0012ab34ce
@@ -23822,10 +23821,6 @@ components:
       properties:
         name:
           type: string
-        profileId:
-          description: ID of the profile this group belongs to. All accountIds must
-            belong to this profile.
-          type: string
         accountIds:
           items:
             type: string
@@ -23833,7 +23828,6 @@ components:
       required:
       - accountIds
       - name
-      - profileId
     createAccountGroup_201_response:
       example:
         message: message
