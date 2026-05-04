@@ -959,7 +959,7 @@ ApiResponse<[**ListAccounts200Response**](ListAccounts200Response.md)>
 
 Update account
 
-Updates a connected social account&#39;s display name or username override.
+Updates a connected social account&#39;s display name or username override.  For X/Twitter accounts on usage-based billing, also accepts an &#x60;xCapabilities&#x60; object to toggle background API operations that incur X API pass-through costs. Both fields are opt-in (default &#x60;false&#x60;) — when off, no analytics syncs or DM polling are performed for that account, and no API call is metered for those operations. Publishing and deleting posts are always available regardless of these toggles. Setting &#x60;xCapabilities&#x60; on a non-X account returns 400. 
 
 ### Example
 
@@ -1024,7 +1024,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid request (e.g. xCapabilities on a non-X account) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1034,7 +1034,7 @@ public class Example {
 
 Update account
 
-Updates a connected social account&#39;s display name or username override.
+Updates a connected social account&#39;s display name or username override.  For X/Twitter accounts on usage-based billing, also accepts an &#x60;xCapabilities&#x60; object to toggle background API operations that incur X API pass-through costs. Both fields are opt-in (default &#x60;false&#x60;) — when off, no analytics syncs or DM polling are performed for that account, and no API call is metered for those operations. Publishing and deleting posts are always available regardless of these toggles. Setting &#x60;xCapabilities&#x60; on a non-X account returns 400. 
 
 ### Example
 
@@ -1102,7 +1102,7 @@ ApiResponse<[**UpdateAccount200Response**](UpdateAccount200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid request (e.g. xCapabilities on a non-X account) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

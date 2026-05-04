@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**username** | **String** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
+|**xCapabilities** | [**UpdateAccountRequestXCapabilities**](UpdateAccountRequestXCapabilities.md) |  |  [optional] |
 
 
 

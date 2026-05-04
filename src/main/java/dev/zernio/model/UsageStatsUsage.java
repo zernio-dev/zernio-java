@@ -24,21 +24,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.UsageStatsUsageXApiCalls;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * UsageStatsUsage
+ * Per-period usage counts. Fields present depend on &#x60;billingSystem&#x60;: Stripe returns &#x60;uploads&#x60; / &#x60;profiles&#x60; / &#x60;lastReset&#x60;; Metronome returns &#x60;connectedAccounts&#x60; / &#x60;xApiCalls&#x60; / &#x60;xApiCallsByOperation&#x60;. 
  */
 @JsonPropertyOrder({
   UsageStatsUsage.JSON_PROPERTY_UPLOADS,
   UsageStatsUsage.JSON_PROPERTY_PROFILES,
-  UsageStatsUsage.JSON_PROPERTY_LAST_RESET
+  UsageStatsUsage.JSON_PROPERTY_LAST_RESET,
+  UsageStatsUsage.JSON_PROPERTY_CONNECTED_ACCOUNTS,
+  UsageStatsUsage.JSON_PROPERTY_X_API_CALLS,
+  UsageStatsUsage.JSON_PROPERTY_X_API_CALLS_BY_OPERATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T07:25:20.776668489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T13:39:47.794420047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsUsage {
   public static final String JSON_PROPERTY_UPLOADS = "uploads";
   @javax.annotation.Nullable
@@ -52,6 +58,18 @@ public class UsageStatsUsage {
   @javax.annotation.Nullable
   private OffsetDateTime lastReset;
 
+  public static final String JSON_PROPERTY_CONNECTED_ACCOUNTS = "connectedAccounts";
+  @javax.annotation.Nullable
+  private Integer connectedAccounts;
+
+  public static final String JSON_PROPERTY_X_API_CALLS = "xApiCalls";
+  @javax.annotation.Nullable
+  private UsageStatsUsageXApiCalls xApiCalls;
+
+  public static final String JSON_PROPERTY_X_API_CALLS_BY_OPERATION = "xApiCallsByOperation";
+  @javax.annotation.Nullable
+  private Map<String, Integer> xApiCallsByOperation = new HashMap<>();
+
   public UsageStatsUsage() { 
   }
 
@@ -61,7 +79,7 @@ public class UsageStatsUsage {
   }
 
   /**
-   * Get uploads
+   * Stripe users only. Uploads consumed in the current period.
    * @return uploads
    */
   @javax.annotation.Nullable
@@ -85,7 +103,7 @@ public class UsageStatsUsage {
   }
 
   /**
-   * Get profiles
+   * Stripe users only. Profiles currently owned.
    * @return profiles
    */
   @javax.annotation.Nullable
@@ -109,7 +127,7 @@ public class UsageStatsUsage {
   }
 
   /**
-   * Get lastReset
+   * Stripe users only.
    * @return lastReset
    */
   @javax.annotation.Nullable
@@ -127,6 +145,86 @@ public class UsageStatsUsage {
   }
 
 
+  public UsageStatsUsage connectedAccounts(@javax.annotation.Nullable Integer connectedAccounts) {
+    this.connectedAccounts = connectedAccounts;
+    return this;
+  }
+
+  /**
+   * Metronome users only. Accounts currently connected across the team.
+   * @return connectedAccounts
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONNECTED_ACCOUNTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getConnectedAccounts() {
+    return connectedAccounts;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONNECTED_ACCOUNTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConnectedAccounts(@javax.annotation.Nullable Integer connectedAccounts) {
+    this.connectedAccounts = connectedAccounts;
+  }
+
+
+  public UsageStatsUsage xApiCalls(@javax.annotation.Nullable UsageStatsUsageXApiCalls xApiCalls) {
+    this.xApiCalls = xApiCalls;
+    return this;
+  }
+
+  /**
+   * Get xApiCalls
+   * @return xApiCalls
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_X_API_CALLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UsageStatsUsageXApiCalls getxApiCalls() {
+    return xApiCalls;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_X_API_CALLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setxApiCalls(@javax.annotation.Nullable UsageStatsUsageXApiCalls xApiCalls) {
+    this.xApiCalls = xApiCalls;
+  }
+
+
+  public UsageStatsUsage xApiCallsByOperation(@javax.annotation.Nullable Map<String, Integer> xApiCallsByOperation) {
+    this.xApiCallsByOperation = xApiCallsByOperation;
+    return this;
+  }
+
+  public UsageStatsUsage putXApiCallsByOperationItem(String key, Integer xApiCallsByOperationItem) {
+    if (this.xApiCallsByOperation == null) {
+      this.xApiCallsByOperation = new HashMap<>();
+    }
+    this.xApiCallsByOperation.put(key, xApiCallsByOperationItem);
+    return this;
+  }
+
+  /**
+   * Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. 
+   * @return xApiCallsByOperation
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_X_API_CALLS_BY_OPERATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Integer> getxApiCallsByOperation() {
+    return xApiCallsByOperation;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_X_API_CALLS_BY_OPERATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setxApiCallsByOperation(@javax.annotation.Nullable Map<String, Integer> xApiCallsByOperation) {
+    this.xApiCallsByOperation = xApiCallsByOperation;
+  }
+
+
   /**
    * Return true if this UsageStats_usage object is equal to o.
    */
@@ -141,12 +239,15 @@ public class UsageStatsUsage {
     UsageStatsUsage usageStatsUsage = (UsageStatsUsage) o;
     return Objects.equals(this.uploads, usageStatsUsage.uploads) &&
         Objects.equals(this.profiles, usageStatsUsage.profiles) &&
-        Objects.equals(this.lastReset, usageStatsUsage.lastReset);
+        Objects.equals(this.lastReset, usageStatsUsage.lastReset) &&
+        Objects.equals(this.connectedAccounts, usageStatsUsage.connectedAccounts) &&
+        Objects.equals(this.xApiCalls, usageStatsUsage.xApiCalls) &&
+        Objects.equals(this.xApiCallsByOperation, usageStatsUsage.xApiCallsByOperation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uploads, profiles, lastReset);
+    return Objects.hash(uploads, profiles, lastReset, connectedAccounts, xApiCalls, xApiCallsByOperation);
   }
 
   @Override
@@ -156,6 +257,9 @@ public class UsageStatsUsage {
     sb.append("    uploads: ").append(toIndentedString(uploads)).append("\n");
     sb.append("    profiles: ").append(toIndentedString(profiles)).append("\n");
     sb.append("    lastReset: ").append(toIndentedString(lastReset)).append("\n");
+    sb.append("    connectedAccounts: ").append(toIndentedString(connectedAccounts)).append("\n");
+    sb.append("    xApiCalls: ").append(toIndentedString(xApiCalls)).append("\n");
+    sb.append("    xApiCallsByOperation: ").append(toIndentedString(xApiCallsByOperation)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -216,6 +320,25 @@ public class UsageStatsUsage {
     // add `lastReset` to the URL query string
     if (getLastReset() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slastReset%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastReset()))));
+    }
+
+    // add `connectedAccounts` to the URL query string
+    if (getConnectedAccounts() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconnectedAccounts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectedAccounts()))));
+    }
+
+    // add `xApiCalls` to the URL query string
+    if (getxApiCalls() != null) {
+      joiner.add(getxApiCalls().toUrlQueryString(prefix + "xApiCalls" + suffix));
+    }
+
+    // add `xApiCallsByOperation` to the URL query string
+    if (getxApiCallsByOperation() != null) {
+      for (String _key : getxApiCallsByOperation().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sxApiCallsByOperation%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getxApiCallsByOperation().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getxApiCallsByOperation().get(_key)))));
+      }
     }
 
     return joiner.toString();

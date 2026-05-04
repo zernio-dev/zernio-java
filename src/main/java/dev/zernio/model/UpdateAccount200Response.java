@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.UpdateAccount200ResponseXCapabilities;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -35,9 +36,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateAccount200Response.JSON_PROPERTY_MESSAGE,
   UpdateAccount200Response.JSON_PROPERTY_USERNAME,
-  UpdateAccount200Response.JSON_PROPERTY_DISPLAY_NAME
+  UpdateAccount200Response.JSON_PROPERTY_DISPLAY_NAME,
+  UpdateAccount200Response.JSON_PROPERTY_X_CAPABILITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T07:25:20.776668489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T13:39:47.794420047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccount200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
@@ -50,6 +52,10 @@ public class UpdateAccount200Response {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable
   private String displayName;
+
+  public static final String JSON_PROPERTY_X_CAPABILITIES = "xCapabilities";
+  @javax.annotation.Nullable
+  private UpdateAccount200ResponseXCapabilities xCapabilities;
 
   public UpdateAccount200Response() { 
   }
@@ -126,6 +132,30 @@ public class UpdateAccount200Response {
   }
 
 
+  public UpdateAccount200Response xCapabilities(@javax.annotation.Nullable UpdateAccount200ResponseXCapabilities xCapabilities) {
+    this.xCapabilities = xCapabilities;
+    return this;
+  }
+
+  /**
+   * Get xCapabilities
+   * @return xCapabilities
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_X_CAPABILITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateAccount200ResponseXCapabilities getxCapabilities() {
+    return xCapabilities;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_X_CAPABILITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setxCapabilities(@javax.annotation.Nullable UpdateAccount200ResponseXCapabilities xCapabilities) {
+    this.xCapabilities = xCapabilities;
+  }
+
+
   /**
    * Return true if this updateAccount_200_response object is equal to o.
    */
@@ -140,12 +170,13 @@ public class UpdateAccount200Response {
     UpdateAccount200Response updateAccount200Response = (UpdateAccount200Response) o;
     return Objects.equals(this.message, updateAccount200Response.message) &&
         Objects.equals(this.username, updateAccount200Response.username) &&
-        Objects.equals(this.displayName, updateAccount200Response.displayName);
+        Objects.equals(this.displayName, updateAccount200Response.displayName) &&
+        Objects.equals(this.xCapabilities, updateAccount200Response.xCapabilities);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message, username, displayName);
+    return Objects.hash(message, username, displayName, xCapabilities);
   }
 
   @Override
@@ -155,6 +186,7 @@ public class UpdateAccount200Response {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    xCapabilities: ").append(toIndentedString(xCapabilities)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -215,6 +247,11 @@ public class UpdateAccount200Response {
     // add `displayName` to the URL query string
     if (getDisplayName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdisplayName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisplayName()))));
+    }
+
+    // add `xCapabilities` to the URL query string
+    if (getxCapabilities() != null) {
+      joiner.add(getxCapabilities().toUrlQueryString(prefix + "xCapabilities" + suffix));
     }
 
     return joiner.toString();

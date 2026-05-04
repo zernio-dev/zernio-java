@@ -21,6 +21,7 @@ import dev.zernio.Pair;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.UsageStats;
+import dev.zernio.model.XApiPricing;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T07:25:20.776668489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T13:39:47.794420047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -172,7 +173,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
    * @return UsageStats
    * @throws ApiException if fails to make API call
    */
@@ -182,7 +183,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
    * @param headers Optional headers to include in the request
    * @return UsageStats
    * @throws ApiException if fails to make API call
@@ -194,7 +195,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
    */
@@ -204,7 +205,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
@@ -262,6 +263,115 @@ public class UsageApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/usage-stats";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get X/Twitter API pricing table
+   * Returns Zernio&#39;s canonical X/Twitter API pricing table. Each X action has its own Metronome product and its own rate, and Zernio passes X API costs through at exact rates with zero markup.  The response is identical for every authenticated user (pricing is universal), so it is safe to cache on the client for the duration of a billing period.  To compute your own per-operation spend, pair this endpoint with &#x60;GET /v1/usage-stats&#x60; — that endpoint returns &#x60;usage.xApiCallsByOperation&#x60; keyed by the same &#x60;operation&#x60; field you get here. 
+   * @return XApiPricing
+   * @throws ApiException if fails to make API call
+   */
+  public XApiPricing getXApiPricing() throws ApiException {
+    return getXApiPricing(null);
+  }
+
+  /**
+   * Get X/Twitter API pricing table
+   * Returns Zernio&#39;s canonical X/Twitter API pricing table. Each X action has its own Metronome product and its own rate, and Zernio passes X API costs through at exact rates with zero markup.  The response is identical for every authenticated user (pricing is universal), so it is safe to cache on the client for the duration of a billing period.  To compute your own per-operation spend, pair this endpoint with &#x60;GET /v1/usage-stats&#x60; — that endpoint returns &#x60;usage.xApiCallsByOperation&#x60; keyed by the same &#x60;operation&#x60; field you get here. 
+   * @param headers Optional headers to include in the request
+   * @return XApiPricing
+   * @throws ApiException if fails to make API call
+   */
+  public XApiPricing getXApiPricing(Map<String, String> headers) throws ApiException {
+    ApiResponse<XApiPricing> localVarResponse = getXApiPricingWithHttpInfo(headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get X/Twitter API pricing table
+   * Returns Zernio&#39;s canonical X/Twitter API pricing table. Each X action has its own Metronome product and its own rate, and Zernio passes X API costs through at exact rates with zero markup.  The response is identical for every authenticated user (pricing is universal), so it is safe to cache on the client for the duration of a billing period.  To compute your own per-operation spend, pair this endpoint with &#x60;GET /v1/usage-stats&#x60; — that endpoint returns &#x60;usage.xApiCallsByOperation&#x60; keyed by the same &#x60;operation&#x60; field you get here. 
+   * @return ApiResponse&lt;XApiPricing&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<XApiPricing> getXApiPricingWithHttpInfo() throws ApiException {
+    return getXApiPricingWithHttpInfo(null);
+  }
+
+  /**
+   * Get X/Twitter API pricing table
+   * Returns Zernio&#39;s canonical X/Twitter API pricing table. Each X action has its own Metronome product and its own rate, and Zernio passes X API costs through at exact rates with zero markup.  The response is identical for every authenticated user (pricing is universal), so it is safe to cache on the client for the duration of a billing period.  To compute your own per-operation spend, pair this endpoint with &#x60;GET /v1/usage-stats&#x60; — that endpoint returns &#x60;usage.xApiCallsByOperation&#x60; keyed by the same &#x60;operation&#x60; field you get here. 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;XApiPricing&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<XApiPricing> getXApiPricingWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getXApiPricingRequestBuilder(headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getXApiPricing", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<XApiPricing>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        XApiPricing responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XApiPricing>() {});
+        
+
+        return new ApiResponse<XApiPricing>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getXApiPricingRequestBuilder(Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/billing/x-pricing";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

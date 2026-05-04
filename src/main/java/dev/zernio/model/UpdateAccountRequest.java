@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.UpdateAccountRequestXCapabilities;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -34,9 +35,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateAccountRequest.JSON_PROPERTY_USERNAME,
-  UpdateAccountRequest.JSON_PROPERTY_DISPLAY_NAME
+  UpdateAccountRequest.JSON_PROPERTY_DISPLAY_NAME,
+  UpdateAccountRequest.JSON_PROPERTY_X_CAPABILITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T07:25:20.776668489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T13:39:47.794420047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountRequest {
   public static final String JSON_PROPERTY_USERNAME = "username";
   @javax.annotation.Nullable
@@ -45,6 +47,10 @@ public class UpdateAccountRequest {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable
   private String displayName;
+
+  public static final String JSON_PROPERTY_X_CAPABILITIES = "xCapabilities";
+  @javax.annotation.Nullable
+  private UpdateAccountRequestXCapabilities xCapabilities;
 
   public UpdateAccountRequest() { 
   }
@@ -97,6 +103,30 @@ public class UpdateAccountRequest {
   }
 
 
+  public UpdateAccountRequest xCapabilities(@javax.annotation.Nullable UpdateAccountRequestXCapabilities xCapabilities) {
+    this.xCapabilities = xCapabilities;
+    return this;
+  }
+
+  /**
+   * Get xCapabilities
+   * @return xCapabilities
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_X_CAPABILITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateAccountRequestXCapabilities getxCapabilities() {
+    return xCapabilities;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_X_CAPABILITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setxCapabilities(@javax.annotation.Nullable UpdateAccountRequestXCapabilities xCapabilities) {
+    this.xCapabilities = xCapabilities;
+  }
+
+
   /**
    * Return true if this updateAccount_request object is equal to o.
    */
@@ -110,12 +140,13 @@ public class UpdateAccountRequest {
     }
     UpdateAccountRequest updateAccountRequest = (UpdateAccountRequest) o;
     return Objects.equals(this.username, updateAccountRequest.username) &&
-        Objects.equals(this.displayName, updateAccountRequest.displayName);
+        Objects.equals(this.displayName, updateAccountRequest.displayName) &&
+        Objects.equals(this.xCapabilities, updateAccountRequest.xCapabilities);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, displayName);
+    return Objects.hash(username, displayName, xCapabilities);
   }
 
   @Override
@@ -124,6 +155,7 @@ public class UpdateAccountRequest {
     sb.append("class UpdateAccountRequest {\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    xCapabilities: ").append(toIndentedString(xCapabilities)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +211,11 @@ public class UpdateAccountRequest {
     // add `displayName` to the URL query string
     if (getDisplayName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdisplayName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisplayName()))));
+    }
+
+    // add `xCapabilities` to the URL query string
+    if (getxCapabilities() != null) {
+      joiner.add(getxCapabilities().toUrlQueryString(prefix + "xCapabilities" + suffix));
     }
 
     return joiner.toString();

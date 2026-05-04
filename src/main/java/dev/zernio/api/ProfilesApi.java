@@ -23,6 +23,7 @@ import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.GetProfile200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ProfileCreateResponse;
 import dev.zernio.model.ProfilesListResponse;
 import dev.zernio.model.UpdateProfile200Response;
@@ -59,7 +60,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T07:25:20.776668489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T13:39:47.794420047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfilesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

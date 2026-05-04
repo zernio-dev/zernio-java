@@ -42,6 +42,7 @@ import dev.zernio.model.HandleOAuthCallbackRequest;
 import dev.zernio.model.InitiateTelegramConnect200Response;
 import dev.zernio.model.InitiateTelegramConnectRequest;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListFacebookPages200Response;
 import dev.zernio.model.ListGoogleBusinessLocations200Response;
 import dev.zernio.model.ListLinkedInOrganizations200Response;
@@ -93,7 +94,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T07:25:20.776668489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T13:39:47.794420047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

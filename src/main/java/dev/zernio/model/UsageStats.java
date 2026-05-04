@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.UsageStatsLimits;
+import dev.zernio.model.UsageStatsSpend;
 import dev.zernio.model.UsageStatsUsage;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -33,18 +34,63 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * UsageStats
+ * Plan and usage stats. The response shape depends on &#x60;billingSystem&#x60;:   * Stripe users (default): per-period counters like &#x60;usage.uploads&#x60; and     &#x60;usage.profiles&#x60; are returned, scoped by the plan&#39;s &#x60;limits&#x60;.   * Metronome users (usage-based): &#x60;limits&#x60; are unlimited (-1). The     &#x60;usage&#x60; block carries connected-account and per-X-operation counts,     and the &#x60;spend&#x60; block carries current-period costs plus the X cap. 
  */
 @JsonPropertyOrder({
+  UsageStats.JSON_PROPERTY_BILLING_SYSTEM,
   UsageStats.JSON_PROPERTY_PLAN_NAME,
   UsageStats.JSON_PROPERTY_BILLING_PERIOD,
   UsageStats.JSON_PROPERTY_SIGNUP_DATE,
   UsageStats.JSON_PROPERTY_BILLING_ANCHOR_DAY,
+  UsageStats.JSON_PROPERTY_HAS_ACCESS,
+  UsageStats.JSON_PROPERTY_CUSTOMER_ID,
+  UsageStats.JSON_PROPERTY_IS_INVITED_USER,
+  UsageStats.JSON_PROPERTY_AUTO_UPGRADE_ENABLED,
   UsageStats.JSON_PROPERTY_LIMITS,
-  UsageStats.JSON_PROPERTY_USAGE
+  UsageStats.JSON_PROPERTY_USAGE,
+  UsageStats.JSON_PROPERTY_SPEND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T07:25:20.776668489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T13:39:47.794420047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStats {
+  /**
+   * Which billing system the account is on. Shape of &#x60;usage&#x60;/&#x60;spend&#x60; differs.
+   */
+  public enum BillingSystemEnum {
+    STRIPE(String.valueOf("stripe")),
+    
+    METRONOME(String.valueOf("metronome"));
+
+    private String value;
+
+    BillingSystemEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BillingSystemEnum fromValue(String value) {
+      for (BillingSystemEnum b : BillingSystemEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BILLING_SYSTEM = "billingSystem";
+  @javax.annotation.Nullable
+  private BillingSystemEnum billingSystem;
+
   public static final String JSON_PROPERTY_PLAN_NAME = "planName";
   @javax.annotation.Nullable
   private String planName;
@@ -96,6 +142,22 @@ public class UsageStats {
   @javax.annotation.Nullable
   private Integer billingAnchorDay;
 
+  public static final String JSON_PROPERTY_HAS_ACCESS = "hasAccess";
+  @javax.annotation.Nullable
+  private Boolean hasAccess;
+
+  public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
+  @javax.annotation.Nullable
+  private String customerId;
+
+  public static final String JSON_PROPERTY_IS_INVITED_USER = "isInvitedUser";
+  @javax.annotation.Nullable
+  private Boolean isInvitedUser;
+
+  public static final String JSON_PROPERTY_AUTO_UPGRADE_ENABLED = "autoUpgradeEnabled";
+  @javax.annotation.Nullable
+  private Boolean autoUpgradeEnabled;
+
   public static final String JSON_PROPERTY_LIMITS = "limits";
   @javax.annotation.Nullable
   private UsageStatsLimits limits;
@@ -104,8 +166,36 @@ public class UsageStats {
   @javax.annotation.Nullable
   private UsageStatsUsage usage;
 
+  public static final String JSON_PROPERTY_SPEND = "spend";
+  @javax.annotation.Nullable
+  private UsageStatsSpend spend;
+
   public UsageStats() { 
   }
+
+  public UsageStats billingSystem(@javax.annotation.Nullable BillingSystemEnum billingSystem) {
+    this.billingSystem = billingSystem;
+    return this;
+  }
+
+  /**
+   * Which billing system the account is on. Shape of &#x60;usage&#x60;/&#x60;spend&#x60; differs.
+   * @return billingSystem
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BILLING_SYSTEM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BillingSystemEnum getBillingSystem() {
+    return billingSystem;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BILLING_SYSTEM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBillingSystem(@javax.annotation.Nullable BillingSystemEnum billingSystem) {
+    this.billingSystem = billingSystem;
+  }
+
 
   public UsageStats planName(@javax.annotation.Nullable String planName) {
     this.planName = planName;
@@ -203,6 +293,102 @@ public class UsageStats {
   }
 
 
+  public UsageStats hasAccess(@javax.annotation.Nullable Boolean hasAccess) {
+    this.hasAccess = hasAccess;
+    return this;
+  }
+
+  /**
+   * True if the account is in good standing. False for past-due/unpaid/paused subscriptions.
+   * @return hasAccess
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_ACCESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasAccess() {
+    return hasAccess;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_ACCESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasAccess(@javax.annotation.Nullable Boolean hasAccess) {
+    this.hasAccess = hasAccess;
+  }
+
+
+  public UsageStats customerId(@javax.annotation.Nullable String customerId) {
+    this.customerId = customerId;
+    return this;
+  }
+
+  /**
+   * Stripe customer ID, when present.
+   * @return customerId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCustomerId() {
+    return customerId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomerId(@javax.annotation.Nullable String customerId) {
+    this.customerId = customerId;
+  }
+
+
+  public UsageStats isInvitedUser(@javax.annotation.Nullable Boolean isInvitedUser) {
+    this.isInvitedUser = isInvitedUser;
+    return this;
+  }
+
+  /**
+   * True if this is a team member; limits/usage reflect the account owner.
+   * @return isInvitedUser
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_INVITED_USER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsInvitedUser() {
+    return isInvitedUser;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_INVITED_USER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsInvitedUser(@javax.annotation.Nullable Boolean isInvitedUser) {
+    this.isInvitedUser = isInvitedUser;
+  }
+
+
+  public UsageStats autoUpgradeEnabled(@javax.annotation.Nullable Boolean autoUpgradeEnabled) {
+    this.autoUpgradeEnabled = autoUpgradeEnabled;
+    return this;
+  }
+
+  /**
+   * Stripe-only. Always false for Metronome users.
+   * @return autoUpgradeEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AUTO_UPGRADE_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAutoUpgradeEnabled() {
+    return autoUpgradeEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AUTO_UPGRADE_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAutoUpgradeEnabled(@javax.annotation.Nullable Boolean autoUpgradeEnabled) {
+    this.autoUpgradeEnabled = autoUpgradeEnabled;
+  }
+
+
   public UsageStats limits(@javax.annotation.Nullable UsageStatsLimits limits) {
     this.limits = limits;
     return this;
@@ -251,6 +437,30 @@ public class UsageStats {
   }
 
 
+  public UsageStats spend(@javax.annotation.Nullable UsageStatsSpend spend) {
+    this.spend = spend;
+    return this;
+  }
+
+  /**
+   * Get spend
+   * @return spend
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPEND, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UsageStatsSpend getSpend() {
+    return spend;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPEND, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpend(@javax.annotation.Nullable UsageStatsSpend spend) {
+    this.spend = spend;
+  }
+
+
   /**
    * Return true if this UsageStats object is equal to o.
    */
@@ -263,29 +473,41 @@ public class UsageStats {
       return false;
     }
     UsageStats usageStats = (UsageStats) o;
-    return Objects.equals(this.planName, usageStats.planName) &&
+    return Objects.equals(this.billingSystem, usageStats.billingSystem) &&
+        Objects.equals(this.planName, usageStats.planName) &&
         Objects.equals(this.billingPeriod, usageStats.billingPeriod) &&
         Objects.equals(this.signupDate, usageStats.signupDate) &&
         Objects.equals(this.billingAnchorDay, usageStats.billingAnchorDay) &&
+        Objects.equals(this.hasAccess, usageStats.hasAccess) &&
+        Objects.equals(this.customerId, usageStats.customerId) &&
+        Objects.equals(this.isInvitedUser, usageStats.isInvitedUser) &&
+        Objects.equals(this.autoUpgradeEnabled, usageStats.autoUpgradeEnabled) &&
         Objects.equals(this.limits, usageStats.limits) &&
-        Objects.equals(this.usage, usageStats.usage);
+        Objects.equals(this.usage, usageStats.usage) &&
+        Objects.equals(this.spend, usageStats.spend);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(planName, billingPeriod, signupDate, billingAnchorDay, limits, usage);
+    return Objects.hash(billingSystem, planName, billingPeriod, signupDate, billingAnchorDay, hasAccess, customerId, isInvitedUser, autoUpgradeEnabled, limits, usage, spend);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UsageStats {\n");
+    sb.append("    billingSystem: ").append(toIndentedString(billingSystem)).append("\n");
     sb.append("    planName: ").append(toIndentedString(planName)).append("\n");
     sb.append("    billingPeriod: ").append(toIndentedString(billingPeriod)).append("\n");
     sb.append("    signupDate: ").append(toIndentedString(signupDate)).append("\n");
     sb.append("    billingAnchorDay: ").append(toIndentedString(billingAnchorDay)).append("\n");
+    sb.append("    hasAccess: ").append(toIndentedString(hasAccess)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    isInvitedUser: ").append(toIndentedString(isInvitedUser)).append("\n");
+    sb.append("    autoUpgradeEnabled: ").append(toIndentedString(autoUpgradeEnabled)).append("\n");
     sb.append("    limits: ").append(toIndentedString(limits)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
+    sb.append("    spend: ").append(toIndentedString(spend)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -333,6 +555,11 @@ public class UsageStats {
 
     StringJoiner joiner = new StringJoiner("&");
 
+    // add `billingSystem` to the URL query string
+    if (getBillingSystem() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbillingSystem%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBillingSystem()))));
+    }
+
     // add `planName` to the URL query string
     if (getPlanName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splanName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlanName()))));
@@ -353,6 +580,26 @@ public class UsageStats {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbillingAnchorDay%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBillingAnchorDay()))));
     }
 
+    // add `hasAccess` to the URL query string
+    if (getHasAccess() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasAccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasAccess()))));
+    }
+
+    // add `customerId` to the URL query string
+    if (getCustomerId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scustomerId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomerId()))));
+    }
+
+    // add `isInvitedUser` to the URL query string
+    if (getIsInvitedUser() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisInvitedUser%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsInvitedUser()))));
+    }
+
+    // add `autoUpgradeEnabled` to the URL query string
+    if (getAutoUpgradeEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sautoUpgradeEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutoUpgradeEnabled()))));
+    }
+
     // add `limits` to the URL query string
     if (getLimits() != null) {
       joiner.add(getLimits().toUrlQueryString(prefix + "limits" + suffix));
@@ -361,6 +608,11 @@ public class UsageStats {
     // add `usage` to the URL query string
     if (getUsage() != null) {
       joiner.add(getUsage().toUrlQueryString(prefix + "usage" + suffix));
+    }
+
+    // add `spend` to the URL query string
+    if (getSpend() != null) {
+      joiner.add(getSpend().toUrlQueryString(prefix + "spend" + suffix));
     }
 
     return joiner.toString();
