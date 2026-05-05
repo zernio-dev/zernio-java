@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SendPrivateReplyToCommentRequestButtonsInner;
 import dev.zernio.model.SendPrivateReplyToCommentRequestQuickRepliesInner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,9 +39,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SendPrivateReplyToCommentRequest.JSON_PROPERTY_ACCOUNT_ID,
   SendPrivateReplyToCommentRequest.JSON_PROPERTY_MESSAGE,
-  SendPrivateReplyToCommentRequest.JSON_PROPERTY_QUICK_REPLIES
+  SendPrivateReplyToCommentRequest.JSON_PROPERTY_QUICK_REPLIES,
+  SendPrivateReplyToCommentRequest.JSON_PROPERTY_BUTTONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-04T19:45:34.522646540Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-05T07:13:28.865186639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendPrivateReplyToCommentRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -53,6 +55,10 @@ public class SendPrivateReplyToCommentRequest {
   public static final String JSON_PROPERTY_QUICK_REPLIES = "quickReplies";
   @javax.annotation.Nullable
   private List<SendPrivateReplyToCommentRequestQuickRepliesInner> quickReplies = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BUTTONS = "buttons";
+  @javax.annotation.Nullable
+  private List<SendPrivateReplyToCommentRequestButtonsInner> buttons = new ArrayList<>();
 
   public SendPrivateReplyToCommentRequest() { 
   }
@@ -119,7 +125,7 @@ public class SendPrivateReplyToCommentRequest {
   }
 
   /**
-   * Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. 
+   * Optional quick-reply chips appended to the message. Visible only in the Instagram and Messenger apps (not on web). Maximum 13 entries. Mutually exclusive with &#x60;buttons&#x60;. Note: chips do NOT render in the Instagram Message Requests folder where DMs from non-followers land — use &#x60;buttons&#x60; instead for cold reach. 
    * @return quickReplies
    */
   @javax.annotation.Nullable
@@ -137,6 +143,38 @@ public class SendPrivateReplyToCommentRequest {
   }
 
 
+  public SendPrivateReplyToCommentRequest buttons(@javax.annotation.Nullable List<SendPrivateReplyToCommentRequestButtonsInner> buttons) {
+    this.buttons = buttons;
+    return this;
+  }
+
+  public SendPrivateReplyToCommentRequest addButtonsItem(SendPrivateReplyToCommentRequestButtonsInner buttonsItem) {
+    if (this.buttons == null) {
+      this.buttons = new ArrayList<>();
+    }
+    this.buttons.add(buttonsItem);
+    return this;
+  }
+
+  /**
+   * Optional 1-3 inline buttons rendered as part of the same message bubble via Meta&#39;s button_template. Visible in the Instagram Message Requests folder (unlike quick replies). Mutually exclusive with &#x60;quickReplies&#x60;. 
+   * @return buttons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<SendPrivateReplyToCommentRequestButtonsInner> getButtons() {
+    return buttons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setButtons(@javax.annotation.Nullable List<SendPrivateReplyToCommentRequestButtonsInner> buttons) {
+    this.buttons = buttons;
+  }
+
+
   /**
    * Return true if this sendPrivateReplyToComment_request object is equal to o.
    */
@@ -151,12 +189,13 @@ public class SendPrivateReplyToCommentRequest {
     SendPrivateReplyToCommentRequest sendPrivateReplyToCommentRequest = (SendPrivateReplyToCommentRequest) o;
     return Objects.equals(this.accountId, sendPrivateReplyToCommentRequest.accountId) &&
         Objects.equals(this.message, sendPrivateReplyToCommentRequest.message) &&
-        Objects.equals(this.quickReplies, sendPrivateReplyToCommentRequest.quickReplies);
+        Objects.equals(this.quickReplies, sendPrivateReplyToCommentRequest.quickReplies) &&
+        Objects.equals(this.buttons, sendPrivateReplyToCommentRequest.buttons);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, quickReplies);
+    return Objects.hash(accountId, message, quickReplies, buttons);
   }
 
   @Override
@@ -166,6 +205,7 @@ public class SendPrivateReplyToCommentRequest {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    quickReplies: ").append(toIndentedString(quickReplies)).append("\n");
+    sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -228,6 +268,16 @@ public class SendPrivateReplyToCommentRequest {
       for (int i = 0; i < getQuickReplies().size(); i++) {
         if (getQuickReplies().get(i) != null) {
           joiner.add(getQuickReplies().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%squickReplies%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `buttons` to the URL query string
+    if (getButtons() != null) {
+      for (int i = 0; i < getButtons().size(); i++) {
+        if (getButtons().get(i) != null) {
+          joiner.add(getButtons().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbuttons%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

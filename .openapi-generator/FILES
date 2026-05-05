@@ -675,6 +675,10 @@ docs/SendInboxMessageRequestTemplateElementsInner.md
 docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md
 docs/SendPrivateReplyToComment200Response.md
 docs/SendPrivateReplyToCommentRequest.md
+docs/SendPrivateReplyToCommentRequestButtonsInner.md
+docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
+docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.md
+docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.md
 docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md
 docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppConversion200Response.md
@@ -1602,6 +1606,10 @@ src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInner.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestTemplateElementsInnerButtonsInner.java
 src/main/java/dev/zernio/model/SendPrivateReplyToComment200Response.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequest.java
+src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInner.java
+src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf.java
+src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.java
+src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestQuickRepliesInner.java
 src/main/java/dev/zernio/model/SendTypingIndicatorRequest.java
 src/main/java/dev/zernio/model/SendWhatsAppConversion200Response.java
@@ -1818,8 +1826,7 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/CompleteWhatsAppPhoneSelection200ResponseAccountTest.java
-src/test/java/dev/zernio/model/CompleteWhatsAppPhoneSelection200ResponseTest.java
-src/test/java/dev/zernio/model/CompleteWhatsAppPhoneSelectionRequestTest.java
-src/test/java/dev/zernio/model/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInnerTest.java
-src/test/java/dev/zernio/model/ListWhatsAppPhoneNumbers200ResponseTest.java
+src/test/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf1Test.java
+src/test/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf2Test.java
+src/test/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOfTest.java
+src/test/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerTest.java

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-04T19:45:34.522646540Z[Etc/UTC]
+- Build date: 2026-05-05T07:13:28.865186639Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1302,6 +1302,10 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestTemplateElementsInnerButtonsInner](docs/SendInboxMessageRequestTemplateElementsInnerButtonsInner.md)
  - [SendPrivateReplyToComment200Response](docs/SendPrivateReplyToComment200Response.md)
  - [SendPrivateReplyToCommentRequest](docs/SendPrivateReplyToCommentRequest.md)
+ - [SendPrivateReplyToCommentRequestButtonsInner](docs/SendPrivateReplyToCommentRequestButtonsInner.md)
+ - [SendPrivateReplyToCommentRequestButtonsInnerOneOf](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md)
+ - [SendPrivateReplyToCommentRequestButtonsInnerOneOf1](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.md)
+ - [SendPrivateReplyToCommentRequestButtonsInnerOneOf2](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.md)
  - [SendPrivateReplyToCommentRequestQuickRepliesInner](docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md)
  - [SendTypingIndicatorRequest](docs/SendTypingIndicatorRequest.md)
  - [SendWhatsAppConversion200Response](docs/SendWhatsAppConversion200Response.md)
