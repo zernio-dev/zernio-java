@@ -50,10 +50,10 @@ import dev.zernio.ApiClient;
   SocialAccount.JSON_PROPERTY_ENABLED,
   SocialAccount.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-05T07:13:28.865186639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T08:11:10.748881617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SocialAccount {
   public static final String JSON_PROPERTY_ID = "_id";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String id;
 
   /**
@@ -130,11 +130,11 @@ public class SocialAccount {
   }
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private PlatformEnum platform;
 
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private SocialAccountProfileId profileId;
 
   public static final String JSON_PROPERTY_USERNAME = "username";
@@ -154,7 +154,7 @@ public class SocialAccount {
   private String profileUrl;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private Boolean isActive;
 
   public static final String JSON_PROPERTY_FOLLOWERS_COUNT = "followersCount";
@@ -180,7 +180,7 @@ public class SocialAccount {
   public SocialAccount() { 
   }
 
-  public SocialAccount id(@javax.annotation.Nullable String id) {
+  public SocialAccount id(@javax.annotation.Nonnull String id) {
     this.id = id;
     return this;
   }
@@ -189,22 +189,22 @@ public class SocialAccount {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
   }
 
 
-  public SocialAccount platform(@javax.annotation.Nullable PlatformEnum platform) {
+  public SocialAccount platform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
     return this;
   }
@@ -213,22 +213,22 @@ public class SocialAccount {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PlatformEnum getPlatform() {
     return platform;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable PlatformEnum platform) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
   }
 
 
-  public SocialAccount profileId(@javax.annotation.Nullable SocialAccountProfileId profileId) {
+  public SocialAccount profileId(@javax.annotation.Nonnull SocialAccountProfileId profileId) {
     this.profileId = profileId;
     return this;
   }
@@ -237,17 +237,17 @@ public class SocialAccount {
    * Get profileId
    * @return profileId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public SocialAccountProfileId getProfileId() {
     return profileId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfileId(@javax.annotation.Nullable SocialAccountProfileId profileId) {
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setProfileId(@javax.annotation.Nonnull SocialAccountProfileId profileId) {
     this.profileId = profileId;
   }
 
@@ -348,7 +348,7 @@ public class SocialAccount {
   }
 
 
-  public SocialAccount isActive(@javax.annotation.Nullable Boolean isActive) {
+  public SocialAccount isActive(@javax.annotation.Nonnull Boolean isActive) {
     this.isActive = isActive;
     return this;
   }
@@ -357,17 +357,17 @@ public class SocialAccount {
    * Get isActive
    * @return isActive
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_ACTIVE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_IS_ACTIVE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsActive() {
     return isActive;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_IS_ACTIVE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsActive(@javax.annotation.Nullable Boolean isActive) {
+  @JsonProperty(value = JSON_PROPERTY_IS_ACTIVE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setIsActive(@javax.annotation.Nonnull Boolean isActive) {
     this.isActive = isActive;
   }
 

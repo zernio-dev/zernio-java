@@ -41,14 +41,14 @@ import dev.zernio.ApiClient;
   ListAccounts200Response.JSON_PROPERTY_HAS_ANALYTICS_ACCESS,
   ListAccounts200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-05T07:13:28.865186639Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T08:11:10.748881617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAccounts200Response {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<SocialAccount> accounts = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HAS_ANALYTICS_ACCESS = "hasAnalyticsAccess";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private Boolean hasAnalyticsAccess;
 
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
@@ -58,7 +58,7 @@ public class ListAccounts200Response {
   public ListAccounts200Response() { 
   }
 
-  public ListAccounts200Response accounts(@javax.annotation.Nullable List<SocialAccount> accounts) {
+  public ListAccounts200Response accounts(@javax.annotation.Nonnull List<SocialAccount> accounts) {
     this.accounts = accounts;
     return this;
   }
@@ -75,22 +75,22 @@ public class ListAccounts200Response {
    * Get accounts
    * @return accounts
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<SocialAccount> getAccounts() {
     return accounts;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccounts(@javax.annotation.Nullable List<SocialAccount> accounts) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccounts(@javax.annotation.Nonnull List<SocialAccount> accounts) {
     this.accounts = accounts;
   }
 
 
-  public ListAccounts200Response hasAnalyticsAccess(@javax.annotation.Nullable Boolean hasAnalyticsAccess) {
+  public ListAccounts200Response hasAnalyticsAccess(@javax.annotation.Nonnull Boolean hasAnalyticsAccess) {
     this.hasAnalyticsAccess = hasAnalyticsAccess;
     return this;
   }
@@ -99,17 +99,17 @@ public class ListAccounts200Response {
    * Whether user has analytics add-on access
    * @return hasAnalyticsAccess
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getHasAnalyticsAccess() {
     return hasAnalyticsAccess;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHasAnalyticsAccess(@javax.annotation.Nullable Boolean hasAnalyticsAccess) {
+  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setHasAnalyticsAccess(@javax.annotation.Nonnull Boolean hasAnalyticsAccess) {
     this.hasAnalyticsAccess = hasAnalyticsAccess;
   }
 

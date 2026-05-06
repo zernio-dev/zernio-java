@@ -7,14 +7,14 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
-|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
-|**profileId** | [**SocialAccountProfileId**](SocialAccountProfileId.md) |  |  [optional] |
+|**id** | **String** |  |  |
+|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
+|**profileId** | [**SocialAccountProfileId**](SocialAccountProfileId.md) |  |  |
 |**username** | **String** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
 |**profilePicture** | **String** | URL to the account&#39;s profile picture on the platform. May be null if the platform does not provide one. |  [optional] |
 |**profileUrl** | **String** | Full profile URL for the connected account on its platform. |  [optional] |
-|**isActive** | **Boolean** |  |  [optional] |
+|**isActive** | **Boolean** |  |  |
 |**followersCount** | **BigDecimal** | Follower count (only included if user has analytics add-on) |  [optional] |
 |**followersLastUpdated** | **OffsetDateTime** | Last time follower count was updated (only included if user has analytics add-on) |  [optional] |
 |**parentAccountId** | **String** | Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts.  |  [optional] |
