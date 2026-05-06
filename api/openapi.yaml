@@ -14453,7 +14453,8 @@ paths:
       description: |
         Returns a paginated list of ads with metrics computed over an optional date range.
         Use source=all to include externally-synced ads from platform ad managers.
-        If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max.
+        If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.
+        Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests.
       operationId: listAds
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -14536,7 +14537,8 @@ paths:
           type: string
         style: form
       - description: Start of metrics date range (YYYY-MM-DD). Defaults to 90 days
-          ago.
+          ago. Ranges older than 90 days trigger an on-demand platform fetch when
+          scoped to a specific accountId.
         explode: true
         in: query
         name: fromDate
@@ -14546,7 +14548,7 @@ paths:
           type: string
         style: form
       - description: End of metrics date range (YYYY-MM-DD). Defaults to today. Max
-          90-day range.
+          730-day range.
         explode: true
         in: query
         name: toDate
@@ -15013,7 +15015,8 @@ paths:
         Metrics are computed over an optional date range, then rolled up from ad level to ad set
         and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set
         ID are grouped into synthetic "Ungrouped" buckets.
-        If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max.
+        If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.
+        Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests.
       operationId: getAdTree
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -15091,7 +15094,8 @@ paths:
           type: string
         style: form
       - description: Start of metrics date range (YYYY-MM-DD). Defaults to 90 days
-          ago.
+          ago. Ranges older than 90 days trigger an on-demand platform fetch when
+          scoped to a specific accountId.
         explode: true
         in: query
         name: fromDate
@@ -15101,7 +15105,7 @@ paths:
           type: string
         style: form
       - description: End of metrics date range (YYYY-MM-DD). Defaults to today. Max
-          90-day range.
+          730-day range.
         explode: true
         in: query
         name: toDate
@@ -15244,7 +15248,8 @@ paths:
       description: |
         Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline
         over the requested date range, and optional demographic breakdowns (Meta and TikTok only).
-        If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max.
+        If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.
+        Ranges older than 90 days trigger a one-time on-demand fetch from the platform, then serve from cache on subsequent requests.
       operationId: getAdAnalytics
       parameters:
       - explode: false
@@ -15254,7 +15259,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Start of date range (YYYY-MM-DD). Defaults to 90 days ago.
+      - description: Start of date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges
+          older than 90 days trigger an on-demand platform fetch.
         explode: true
         in: query
         name: fromDate
@@ -15263,7 +15269,7 @@ paths:
           format: date
           type: string
         style: form
-      - description: End of date range (YYYY-MM-DD). Defaults to today. Max 90-day
+      - description: End of date range (YYYY-MM-DD). Defaults to today. Max 730-day
           range.
         explode: true
         in: query

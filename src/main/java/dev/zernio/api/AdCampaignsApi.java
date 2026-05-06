@@ -62,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T08:11:10.748881617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T13:32:56.519718091Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -568,7 +568,7 @@ public class AdCampaignsApi {
 
   /**
    * Get campaign tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -577,8 +577,8 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
    */
@@ -588,7 +588,7 @@ public class AdCampaignsApi {
 
   /**
    * Get campaign tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -597,8 +597,8 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
@@ -610,7 +610,7 @@ public class AdCampaignsApi {
 
   /**
    * Get campaign tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -619,8 +619,8 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -630,7 +630,7 @@ public class AdCampaignsApi {
 
   /**
    * Get campaign tree
-   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a nested Campaign &gt; Ad Set &gt; Ad hierarchy with rolled-up metrics at each level. Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Campaigns per page (optional, default to 20)
    * @param source &#x60;all&#x60; (default) returns both Zernio-created ads and those discovered from the platform&#39;s ad manager — matches the web UI&#39;s default view. Pass &#x60;zernio&#x60; to restrict to isExternal&#x3D;false only. Status is NOT filtered by default — use the &#x60;status&#x60; param for that. (optional, default to all)
@@ -639,8 +639,8 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call

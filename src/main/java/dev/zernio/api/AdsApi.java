@@ -69,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T08:11:10.748881617Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T13:32:56.519718091Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -793,10 +793,10 @@ public class AdsApi {
 
   /**
    * Get ad analytics
-   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform, then serve from cache on subsequent requests. 
    * @param adId  (required)
-   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @return GetAdAnalytics200Response
    * @throws ApiException if fails to make API call
@@ -807,10 +807,10 @@ public class AdsApi {
 
   /**
    * Get ad analytics
-   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform, then serve from cache on subsequent requests. 
    * @param adId  (required)
-   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdAnalytics200Response
@@ -823,10 +823,10 @@ public class AdsApi {
 
   /**
    * Get ad analytics
-   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform, then serve from cache on subsequent requests. 
    * @param adId  (required)
-   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
@@ -837,10 +837,10 @@ public class AdsApi {
 
   /**
    * Get ad analytics
-   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform, then serve from cache on subsequent requests. 
    * @param adId  (required)
-   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
@@ -1229,7 +1229,7 @@ public class AdsApi {
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -1239,8 +1239,8 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
@@ -1250,7 +1250,7 @@ public class AdsApi {
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -1260,8 +1260,8 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
@@ -1273,7 +1273,7 @@ public class AdsApi {
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -1283,8 +1283,8 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1294,7 +1294,7 @@ public class AdsApi {
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 90 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Ranges older than 90 days trigger a one-time on-demand fetch from the platform when scoped to a specific accountId, then serve from cache on subsequent requests. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -1304,8 +1304,8 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
-   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 90-day range. (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. Ranges older than 90 days trigger an on-demand platform fetch when scoped to a specific accountId. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
