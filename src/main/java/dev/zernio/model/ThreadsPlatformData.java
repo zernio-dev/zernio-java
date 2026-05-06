@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ThreadsPlatformData.JSON_PROPERTY_TOPIC_TAG,
   ThreadsPlatformData.JSON_PROPERTY_THREAD_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T13:32:56.519718091Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T14:08:39.058458774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ThreadsPlatformData {
   public static final String JSON_PROPERTY_TOPIC_TAG = "topic_tag";
   @javax.annotation.Nullable
