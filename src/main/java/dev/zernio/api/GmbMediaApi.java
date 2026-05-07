@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T14:08:39.058458774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-07T16:25:23.351483204Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbMediaApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

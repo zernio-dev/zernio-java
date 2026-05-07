@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   UpdatePostMetadataRequest.JSON_PROPERTY_CONTAINS_SYNTHETIC_MEDIA,
   UpdatePostMetadataRequest.JSON_PROPERTY_PLAYLIST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-06T14:08:39.058458774Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-07T16:25:23.351483204Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostMetadataRequest {
   /**
    * The platform to update metadata on
