@@ -4,28 +4,42 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addConversionAssociations**](AdsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination |
+| [**addConversionAssociationsWithHttpInfo**](AdsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination |
 | [**boostPost**](AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**boostPostWithHttpInfo**](AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad |
+| [**createConversionDestination**](AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn) |
+| [**createConversionDestinationWithHttpInfo**](AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn) |
 | [**createCtwaAd**](AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad |
 | [**createCtwaAdWithHttpInfo**](AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad |
 | [**createStandaloneAd**](AdsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad |
 | [**createStandaloneAdWithHttpInfo**](AdsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad |
 | [**deleteAd**](AdsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**deleteAdWithHttpInfo**](AdsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad |
+| [**deleteConversionDestination**](AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination |
+| [**deleteConversionDestinationWithHttpInfo**](AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination |
 | [**getAd**](AdsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdWithHttpInfo**](AdsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdAnalytics**](AdsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdAnalyticsWithHttpInfo**](AdsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdComments**](AdsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**getAdCommentsWithHttpInfo**](AdsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
+| [**getConversionDestination**](AdsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination |
+| [**getConversionDestinationWithHttpInfo**](AdsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination |
+| [**getConversionMetrics**](AdsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination |
+| [**getConversionMetricsWithHttpInfo**](AdsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination |
 | [**listAdAccounts**](AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAds**](AdsApi.md#listAds) | **GET** /v1/ads | List ads |
 | [**listAdsWithHttpInfo**](AdsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
 | [**listAdsBusinessCenters**](AdsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
 | [**listAdsBusinessCentersWithHttpInfo**](AdsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
+| [**listConversionAssociations**](AdsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination |
+| [**listConversionAssociationsWithHttpInfo**](AdsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination |
 | [**listConversionDestinations**](AdsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API |
 | [**listConversionDestinationsWithHttpInfo**](AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API |
+| [**removeConversionAssociations**](AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations |
+| [**removeConversionAssociationsWithHttpInfo**](AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations |
 | [**searchAdInterests**](AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests |
 | [**searchAdInterestsWithHttpInfo**](AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests |
 | [**searchAdTargetingLocations**](AdsApi.md#searchAdTargetingLocations) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta) |
@@ -36,7 +50,173 @@ All URIs are relative to *https://zernio.com/api*
 | [**sendWhatsAppConversionWithHttpInfo**](AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**updateAd**](AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad |
 | [**updateAdWithHttpInfo**](AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad |
+| [**updateConversionDestination**](AdsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
+| [**updateConversionDestinationWithHttpInfo**](AdsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 
+
+
+## addConversionAssociations
+
+> AddConversionAssociations200Response addConversionAssociations(accountId, destinationId, addConversionAssociationsRequest)
+
+Associate campaigns with a conversion destination
+
+Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        AddConversionAssociationsRequest addConversionAssociationsRequest = new AddConversionAssociationsRequest(); // AddConversionAssociationsRequest | 
+        try {
+            AddConversionAssociations200Response result = apiInstance.addConversionAssociations(accountId, destinationId, addConversionAssociationsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#addConversionAssociations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **addConversionAssociationsRequest** | [**AddConversionAssociationsRequest**](AddConversionAssociationsRequest.md)|  | |
+
+### Return type
+
+[**AddConversionAssociations200Response**](AddConversionAssociations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-campaign batch result. Status is 200 even when some rows failed — inspect &#x60;failed[]&#x60; for details. Inputs that fail local URN validation are bucketed into &#x60;failed&#x60; without ever hitting LinkedIn.  |  -  |
+| **400** | Invalid body. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support associations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+## addConversionAssociationsWithHttpInfo
+
+> ApiResponse<AddConversionAssociations200Response> addConversionAssociations addConversionAssociationsWithHttpInfo(accountId, destinationId, addConversionAssociationsRequest)
+
+Associate campaigns with a conversion destination
+
+Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        AddConversionAssociationsRequest addConversionAssociationsRequest = new AddConversionAssociationsRequest(); // AddConversionAssociationsRequest | 
+        try {
+            ApiResponse<AddConversionAssociations200Response> response = apiInstance.addConversionAssociationsWithHttpInfo(accountId, destinationId, addConversionAssociationsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#addConversionAssociations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **addConversionAssociationsRequest** | [**AddConversionAssociationsRequest**](AddConversionAssociationsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AddConversionAssociations200Response**](AddConversionAssociations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-campaign batch result. Status is 200 even when some rows failed — inspect &#x60;failed[]&#x60; for details. Inputs that fail local URN validation are bucketed into &#x60;failed&#x60; without ever hitting LinkedIn.  |  -  |
+| **400** | Invalid body. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support associations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
 
 ## boostPost
@@ -189,6 +369,166 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
+
+
+## createConversionDestination
+
+> CreateConversionDestination201Response createConversionDestination(accountId, createConversionDestinationRequest)
+
+Create a conversion destination (LinkedIn)
+
+Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | SocialAccount ID (linkedinads).
+        CreateConversionDestinationRequest createConversionDestinationRequest = new CreateConversionDestinationRequest(); // CreateConversionDestinationRequest | 
+        try {
+            CreateConversionDestination201Response result = apiInstance.createConversionDestination(accountId, createConversionDestinationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| SocialAccount ID (linkedinads). | |
+| **createConversionDestinationRequest** | [**CreateConversionDestinationRequest**](CreateConversionDestinationRequest.md)|  | |
+
+### Return type
+
+[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Destination created |  -  |
+| **400** | Invalid body or LinkedIn validation failure. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required, or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
+| **404** | Account not found or not accessible. |  -  |
+| **405** | Platform does not support destination creation. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+## createConversionDestinationWithHttpInfo
+
+> ApiResponse<CreateConversionDestination201Response> createConversionDestination createConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest)
+
+Create a conversion destination (LinkedIn)
+
+Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | SocialAccount ID (linkedinads).
+        CreateConversionDestinationRequest createConversionDestinationRequest = new CreateConversionDestinationRequest(); // CreateConversionDestinationRequest | 
+        try {
+            ApiResponse<CreateConversionDestination201Response> response = apiInstance.createConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| SocialAccount ID (linkedinads). | |
+| **createConversionDestinationRequest** | [**CreateConversionDestinationRequest**](CreateConversionDestinationRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Destination created |  -  |
+| **400** | Invalid body or LinkedIn validation failure. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required, or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
+| **404** | Account not found or not accessible. |  -  |
+| **405** | Platform does not support destination creation. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
 
 ## createCtwaAd
@@ -645,6 +985,168 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 | **200** | Ad cancelled |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+
+
+## deleteConversionDestination
+
+> void deleteConversionDestination(accountId, destinationId, adAccountId)
+
+Soft-delete a conversion destination
+
+LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | Required as query OR in JSON body.
+        try {
+            apiInstance.deleteConversionDestination(accountId, destinationId, adAccountId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#deleteConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**| Required as query OR in JSON body. | [optional] |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Soft-deleted. |  -  |
+| **400** | adAccountId missing. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support deleting destinations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+## deleteConversionDestinationWithHttpInfo
+
+> ApiResponse<Void> deleteConversionDestination deleteConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId)
+
+Soft-delete a conversion destination
+
+LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | Required as query OR in JSON body.
+        try {
+            ApiResponse<Void> response = apiInstance.deleteConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#deleteConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**| Required as query OR in JSON body. | [optional] |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | Soft-deleted. |  -  |
+| **400** | adAccountId missing. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support deleting destinations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
 
 ## getAd
@@ -1117,6 +1619,346 @@ ApiResponse<[**GetAdComments200Response**](GetAdComments200Response.md)>
 | **403** | Ads add-on required, or ad platform is not Meta (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads connection missing or account token unavailable (code ads_connection_required). |  -  |
+
+
+## getConversionDestination
+
+> CreateConversionDestination201Response getConversionDestination(accountId, destinationId, adAccountId)
+
+Fetch a single conversion destination
+
+LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | Numeric ID or full `urn:li:sponsoredAccount:{id}` URN.
+        try {
+            CreateConversionDestination201Response result = apiInstance.getConversionDestination(accountId, destinationId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**| Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. | |
+
+### Return type
+
+[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destination fetched |  -  |
+| **400** | Validation error. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support fetching a single destination. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+## getConversionDestinationWithHttpInfo
+
+> ApiResponse<CreateConversionDestination201Response> getConversionDestination getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId)
+
+Fetch a single conversion destination
+
+LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | Numeric ID or full `urn:li:sponsoredAccount:{id}` URN.
+        try {
+            ApiResponse<CreateConversionDestination201Response> response = apiInstance.getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**| Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. | |
+
+### Return type
+
+ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destination fetched |  -  |
+| **400** | Validation error. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support fetching a single destination. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## getConversionMetrics
+
+> GetConversionMetrics200Response getConversionMetrics(accountId, destinationId, adAccountId, startDate, endDate, granularity)
+
+Fetch attribution metrics for a conversion destination
+
+LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        String startDate = "startDate_example"; // String | 
+        String endDate = "endDate_example"; // String | 
+        String granularity = "ALL"; // String | 
+        try {
+            GetConversionMetrics200Response result = apiInstance.getConversionMetrics(accountId, destinationId, adAccountId, startDate, endDate, granularity);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getConversionMetrics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+| **startDate** | **String**|  | |
+| **endDate** | **String**|  | [optional] |
+| **granularity** | **String**|  | [optional] [default to DAILY] [enum: ALL, DAILY, MONTHLY, YEARLY] |
+
+### Return type
+
+[**GetConversionMetrics200Response**](GetConversionMetrics200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metrics rows |  -  |
+| **400** | Validation error or invalid date range. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support metrics readback. |  -  |
+| **429** | LinkedIn analytics rate limit hit. |  -  |
+
+## getConversionMetricsWithHttpInfo
+
+> ApiResponse<GetConversionMetrics200Response> getConversionMetrics getConversionMetricsWithHttpInfo(accountId, destinationId, adAccountId, startDate, endDate, granularity)
+
+Fetch attribution metrics for a conversion destination
+
+LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        String startDate = "startDate_example"; // String | 
+        String endDate = "endDate_example"; // String | 
+        String granularity = "ALL"; // String | 
+        try {
+            ApiResponse<GetConversionMetrics200Response> response = apiInstance.getConversionMetricsWithHttpInfo(accountId, destinationId, adAccountId, startDate, endDate, granularity);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getConversionMetrics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+| **startDate** | **String**|  | |
+| **endDate** | **String**|  | [optional] |
+| **granularity** | **String**|  | [optional] [default to DAILY] [enum: ALL, DAILY, MONTHLY, YEARLY] |
+
+### Return type
+
+ApiResponse<[**GetConversionMetrics200Response**](GetConversionMetrics200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metrics rows |  -  |
+| **400** | Validation error or invalid date range. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support metrics readback. |  -  |
+| **429** | LinkedIn analytics rate limit hit. |  -  |
 
 
 ## listAdAccounts
@@ -1613,13 +2455,13 @@ ApiResponse<[**ListAdsBusinessCenters200Response**](ListAdsBusinessCenters200Res
 | **422** | TikTok Ads not connected |  -  |
 
 
-## listConversionDestinations
+## listConversionAssociations
 
-> ListConversionDestinations200Response listConversionDestinations(accountId)
+> ListConversionAssociations200Response listConversionAssociations(accountId, destinationId, adAccountId)
 
-List destinations for the Conversions API
+List campaigns associated with a conversion destination
 
-Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
 
 ### Example
 
@@ -1642,12 +2484,14 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount ID (metaads or googleads).
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         try {
-            ListConversionDestinations200Response result = apiInstance.listConversionDestinations(accountId);
+            ListConversionAssociations200Response result = apiInstance.listConversionAssociations(accountId, destinationId, adAccountId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AdsApi#listConversionDestinations");
+            System.err.println("Exception when calling AdsApi#listConversionAssociations");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -1662,11 +2506,13 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount ID (metaads or googleads). | |
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**|  | |
 
 ### Return type
 
-[**ListConversionDestinations200Response**](ListConversionDestinations200Response.md)
+[**ListConversionAssociations200Response**](ListConversionAssociations200Response.md)
 
 
 ### Authorization
@@ -1681,19 +2527,21 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Destinations listed |  -  |
-| **400** | Account&#39;s platform is not supported by the Conversions API. |  -  |
+| **200** | Associations listed |  -  |
+| **400** | Validation error. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required. |  -  |
-| **404** | Account not found or not accessible. |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support associations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
-## listConversionDestinationsWithHttpInfo
+## listConversionAssociationsWithHttpInfo
 
-> ApiResponse<ListConversionDestinations200Response> listConversionDestinations listConversionDestinationsWithHttpInfo(accountId)
+> ApiResponse<ListConversionAssociations200Response> listConversionAssociations listConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId)
 
-List destinations for the Conversions API
+List campaigns associated with a conversion destination
 
-Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
+LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
 
 ### Example
 
@@ -1717,7 +2565,166 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount ID (metaads or googleads).
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        try {
+            ApiResponse<ListConversionAssociations200Response> response = apiInstance.listConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listConversionAssociations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**ListConversionAssociations200Response**](ListConversionAssociations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Associations listed |  -  |
+| **400** | Validation error. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support associations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## listConversionDestinations
+
+> ListConversionDestinations200Response listConversionDestinations(accountId)
+
+List destinations for the Conversions API
+
+Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | SocialAccount ID (metaads, googleads, or linkedinads).
+        try {
+            ListConversionDestinations200Response result = apiInstance.listConversionDestinations(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listConversionDestinations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| SocialAccount ID (metaads, googleads, or linkedinads). | |
+
+### Return type
+
+[**ListConversionDestinations200Response**](ListConversionDestinations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destinations listed |  -  |
+| **400** | Account&#39;s platform is not supported by the Conversions API. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
+| **404** | Account not found or not accessible. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+## listConversionDestinationsWithHttpInfo
+
+> ApiResponse<ListConversionDestinations200Response> listConversionDestinations listConversionDestinationsWithHttpInfo(accountId)
+
+List destinations for the Conversions API
+
+Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | SocialAccount ID (metaads, googleads, or linkedinads).
         try {
             ApiResponse<ListConversionDestinations200Response> response = apiInstance.listConversionDestinationsWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1739,7 +2746,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount ID (metaads or googleads). | |
+| **accountId** | **String**| SocialAccount ID (metaads, googleads, or linkedinads). | |
 
 ### Return type
 
@@ -1761,8 +2768,177 @@ ApiResponse<[**ListConversionDestinations200Response**](ListConversionDestinatio
 | **200** | Destinations listed |  -  |
 | **400** | Account&#39;s platform is not supported by the Conversions API. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required. |  -  |
+| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## removeConversionAssociations
+
+> RemoveConversionAssociations200Response removeConversionAssociations(accountId, destinationId, adAccountId, campaignIds)
+
+Remove campaign↔conversion associations
+
+Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        String campaignIds = "campaignIds_example"; // String | Comma-separated list of campaign IDs.
+        try {
+            RemoveConversionAssociations200Response result = apiInstance.removeConversionAssociations(accountId, destinationId, adAccountId, campaignIds);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#removeConversionAssociations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+| **campaignIds** | **String**| Comma-separated list of campaign IDs. | |
+
+### Return type
+
+[**RemoveConversionAssociations200Response**](RemoveConversionAssociations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-campaign batch result. Status is 200 even when some rows failed — inspect &#x60;failed[]&#x60; for details.  |  -  |
+| **400** | Validation error: missing &#x60;adAccountId&#x60; or &#x60;campaignIds&#x60;, or campaignIds exceeds 100 entries per request.  |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support associations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+## removeConversionAssociationsWithHttpInfo
+
+> ApiResponse<RemoveConversionAssociations200Response> removeConversionAssociations removeConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId, campaignIds)
+
+Remove campaign↔conversion associations
+
+Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
+        String campaignIds = "campaignIds_example"; // String | Comma-separated list of campaign IDs.
+        try {
+            ApiResponse<RemoveConversionAssociations200Response> response = apiInstance.removeConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId, campaignIds);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#removeConversionAssociations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **adAccountId** | **String**|  | |
+| **campaignIds** | **String**| Comma-separated list of campaign IDs. | |
+
+### Return type
+
+ApiResponse<[**RemoveConversionAssociations200Response**](RemoveConversionAssociations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-campaign batch result. Status is 200 even when some rows failed — inspect &#x60;failed[]&#x60; for details.  |  -  |
+| **400** | Validation error: missing &#x60;adAccountId&#x60; or &#x60;campaignIds&#x60;, or campaignIds exceeds 100 entries per request.  |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support associations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
 
 ## searchAdInterests
@@ -2091,7 +3267,7 @@ ApiResponse<[**SearchAdTargetingLocations200Response**](SearchAdTargetingLocatio
 
 Send conversion events to an ad platform
 
-Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
 
 ### Example
 
@@ -2156,8 +3332,9 @@ public class Example {
 | **200** | Events processed. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failure. For Meta, a batch is all-or-nothing (either every event in a chunk succeeds, or every event in the chunk is listed in failures). For Google, the API returns success/failure at the request level only.  |  -  |
 | **400** | Invalid body (missing accountId/destinationId/events, malformed event shape). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required. |  -  |
+| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
+| **429** | LinkedIn token-level rate limit hit (600 requests/min, 300k/day per token). Retry with backoff. Meta and Google have their own rate-limit semantics surfaced via platform-specific 4xx responses.  |  -  |
 
 ## sendConversionsWithHttpInfo
 
@@ -2165,7 +3342,7 @@ public class Example {
 
 Send conversion events to an ad platform
 
-Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
 
 ### Example
 
@@ -2233,8 +3410,9 @@ ApiResponse<[**SendConversions200Response**](SendConversions200Response.md)>
 | **200** | Events processed. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failure. For Meta, a batch is all-or-nothing (either every event in a chunk succeeds, or every event in the chunk is listed in failures). For Google, the API returns success/failure at the request level only.  |  -  |
 | **400** | Invalid body (missing accountId/destinationId/events, malformed event shape). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required. |  -  |
+| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
+| **429** | LinkedIn token-level rate limit hit (600 requests/min, 300k/day per token). Retry with backoff. Meta and Google have their own rate-limit semantics surfaced via platform-specific 4xx responses.  |  -  |
 
 
 ## sendWhatsAppConversion
@@ -2543,4 +3721,168 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+
+
+## updateConversionDestination
+
+> CreateConversionDestination201Response updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest)
+
+Update a conversion destination
+
+Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        UpdateConversionDestinationRequest updateConversionDestinationRequest = new UpdateConversionDestinationRequest(); // UpdateConversionDestinationRequest | 
+        try {
+            CreateConversionDestination201Response result = apiInstance.updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#updateConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **updateConversionDestinationRequest** | [**UpdateConversionDestinationRequest**](UpdateConversionDestinationRequest.md)|  | |
+
+### Return type
+
+[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destination updated (re-fetched canonical state) |  -  |
+| **400** | Invalid body or LinkedIn validation failure. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support updating destinations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+## updateConversionDestinationWithHttpInfo
+
+> ApiResponse<CreateConversionDestination201Response> updateConversionDestination updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest)
+
+Update a conversion destination
+
+Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String destinationId = "destinationId_example"; // String | 
+        UpdateConversionDestinationRequest updateConversionDestinationRequest = new UpdateConversionDestinationRequest(); // UpdateConversionDestinationRequest | 
+        try {
+            ApiResponse<CreateConversionDestination201Response> response = apiInstance.updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#updateConversionDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **destinationId** | **String**|  | |
+| **updateConversionDestinationRequest** | [**UpdateConversionDestinationRequest**](UpdateConversionDestinationRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destination updated (re-fetched canonical state) |  -  |
+| **400** | Invalid body or LinkedIn validation failure. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on or LinkedIn reconnect required. |  -  |
+| **404** | Account or destination not found. |  -  |
+| **405** | Platform does not support updating destinations. |  -  |
+| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 

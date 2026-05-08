@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
   ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_ID,
   ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_NAME,
   ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_TYPE,
-  ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_STATUS
+  ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_STATUS,
+  ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListConversionDestinations200ResponseDestinationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -91,6 +92,10 @@ public class ListConversionDestinations200ResponseDestinationsInner {
   @javax.annotation.Nullable
   private StatusEnum status;
 
+  public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
+  @javax.annotation.Nullable
+  private String adAccountId;
+
   public ListConversionDestinations200ResponseDestinationsInner() { 
   }
 
@@ -100,7 +105,7 @@ public class ListConversionDestinations200ResponseDestinationsInner {
   }
 
   /**
-   * Destination identifier. Meta: pixel ID. Google: conversion action resource name. 
+   * Destination identifier. Meta: pixel ID. Google: conversion action resource name. LinkedIn: numeric conversion rule ID. 
    * @return id
    */
   @javax.annotation.Nullable
@@ -148,7 +153,7 @@ public class ListConversionDestinations200ResponseDestinationsInner {
   }
 
   /**
-   * Present when the platform locks event type to the destination (Google conversion actions). 
+   * Present when the platform locks event type to the destination (Google conversion actions, LinkedIn conversion rules). 
    * @return type
    */
   @javax.annotation.Nullable
@@ -190,6 +195,30 @@ public class ListConversionDestinations200ResponseDestinationsInner {
   }
 
 
+  public ListConversionDestinations200ResponseDestinationsInner adAccountId(@javax.annotation.Nullable String adAccountId) {
+    this.adAccountId = adAccountId;
+    return this;
+  }
+
+  /**
+   * Set by adapters whose destinations are scoped to a specific ad account (LinkedIn). Pass back on subsequent CRUD calls. 
+   * @return adAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdAccountId() {
+    return adAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdAccountId(@javax.annotation.Nullable String adAccountId) {
+    this.adAccountId = adAccountId;
+  }
+
+
   /**
    * Return true if this listConversionDestinations_200_response_destinations_inner object is equal to o.
    */
@@ -205,12 +234,13 @@ public class ListConversionDestinations200ResponseDestinationsInner {
     return Objects.equals(this.id, listConversionDestinations200ResponseDestinationsInner.id) &&
         Objects.equals(this.name, listConversionDestinations200ResponseDestinationsInner.name) &&
         Objects.equals(this.type, listConversionDestinations200ResponseDestinationsInner.type) &&
-        Objects.equals(this.status, listConversionDestinations200ResponseDestinationsInner.status);
+        Objects.equals(this.status, listConversionDestinations200ResponseDestinationsInner.status) &&
+        Objects.equals(this.adAccountId, listConversionDestinations200ResponseDestinationsInner.adAccountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, type, status);
+    return Objects.hash(id, name, type, status, adAccountId);
   }
 
   @Override
@@ -221,6 +251,7 @@ public class ListConversionDestinations200ResponseDestinationsInner {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -286,6 +317,11 @@ public class ListConversionDestinations200ResponseDestinationsInner {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `adAccountId` to the URL query string
+    if (getAdAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdAccountId()))));
     }
 
     return joiner.toString();

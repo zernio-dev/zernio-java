@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetYouTubeDemographics412ResponseScopeStatus.JSON_PROPERTY_REQUIRES_REAUTHORIZATION,
   GetYouTubeDemographics412ResponseScopeStatus.JSON_PROPERTY_REAUTHORIZE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYouTubeDemographics412ResponseScopeStatus {
   public static final String JSON_PROPERTY_HAS_ANALYTICS_SCOPE = "hasAnalyticsScope";
   @javax.annotation.Nullable

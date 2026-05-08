@@ -35,6 +35,9 @@ docs/AdTreeCampaignCampaignBudget.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AddBroadcastRecipients200Response.md
 docs/AddBroadcastRecipientsRequest.md
+docs/AddConversionAssociations200Response.md
+docs/AddConversionAssociations200ResponseFailedInner.md
+docs/AddConversionAssociationsRequest.md
 docs/AddMessageReactionRequest.md
 docs/AddUsersToAdAudience200Response.md
 docs/AddUsersToAdAudienceRequest.md
@@ -100,6 +103,7 @@ docs/ConnectWhatsAppCredentialsRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
 docs/ContactsApi.md
+docs/ConversionDestination.md
 docs/ConversionEvent.md
 docs/ConversionEventItemsInner.md
 docs/ConversionEventUser.md
@@ -126,6 +130,9 @@ docs/CreateContact200Response.md
 docs/CreateContact200ResponseChannel.md
 docs/CreateContact200ResponseContact.md
 docs/CreateContactRequest.md
+docs/CreateConversionDestination201Response.md
+docs/CreateConversionDestinationRequest.md
+docs/CreateConversionDestinationRequestValue.md
 docs/CreateCtwaAd201Response.md
 docs/CreateCtwaAdRequest.md
 docs/CreateCtwaAdRequestInterestsInner.md
@@ -269,6 +276,9 @@ docs/GetContactChannels200Response.md
 docs/GetContactChannels200ResponseChannelsInner.md
 docs/GetContentDecay200Response.md
 docs/GetContentDecay200ResponseBucketsInner.md
+docs/GetConversionMetrics200Response.md
+docs/GetConversionMetrics200ResponseRowsInner.md
+docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md
 docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
@@ -493,6 +503,8 @@ docs/ListContacts200Response.md
 docs/ListContacts200ResponseContactsInner.md
 docs/ListContacts200ResponseFilters.md
 docs/ListContacts200ResponsePagination.md
+docs/ListConversionAssociations200Response.md
+docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
 docs/ListConversionDestinations200ResponseDestinationsInner.md
 docs/ListCustomFields200Response.md
@@ -601,6 +613,7 @@ docs/RejectWhatsAppGroupJoinRequestsRequest.md
 docs/ReleaseWhatsAppPhoneNumber200Response.md
 docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md
 docs/RemoveBookmark200Response.md
+docs/RemoveConversionAssociations200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplyToInboxPost200Response.md
 docs/ReplyToInboxPost200ResponseData.md
@@ -739,6 +752,8 @@ docs/UpdateCommentAutomationRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
 docs/UpdateContactRequest.md
+docs/UpdateConversionDestinationRequest.md
+docs/UpdateConversionDestinationRequestValue.md
 docs/UpdateCustomField200Response.md
 docs/UpdateCustomField200ResponseField.md
 docs/UpdateCustomFieldRequest.md
@@ -994,6 +1009,9 @@ src/main/java/dev/zernio/model/AdTreeCampaignCampaignBudget.java
 src/main/java/dev/zernio/model/AdTreeCampaignPromotedObject.java
 src/main/java/dev/zernio/model/AddBroadcastRecipients200Response.java
 src/main/java/dev/zernio/model/AddBroadcastRecipientsRequest.java
+src/main/java/dev/zernio/model/AddConversionAssociations200Response.java
+src/main/java/dev/zernio/model/AddConversionAssociations200ResponseFailedInner.java
+src/main/java/dev/zernio/model/AddConversionAssociationsRequest.java
 src/main/java/dev/zernio/model/AddMessageReactionRequest.java
 src/main/java/dev/zernio/model/AddUsersToAdAudience200Response.java
 src/main/java/dev/zernio/model/AddUsersToAdAudienceRequest.java
@@ -1051,6 +1069,7 @@ src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentialsRequest.java
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
+src/main/java/dev/zernio/model/ConversionDestination.java
 src/main/java/dev/zernio/model/ConversionEvent.java
 src/main/java/dev/zernio/model/ConversionEventItemsInner.java
 src/main/java/dev/zernio/model/ConversionEventUser.java
@@ -1077,6 +1096,9 @@ src/main/java/dev/zernio/model/CreateContact200Response.java
 src/main/java/dev/zernio/model/CreateContact200ResponseChannel.java
 src/main/java/dev/zernio/model/CreateContact200ResponseContact.java
 src/main/java/dev/zernio/model/CreateContactRequest.java
+src/main/java/dev/zernio/model/CreateConversionDestination201Response.java
+src/main/java/dev/zernio/model/CreateConversionDestinationRequest.java
+src/main/java/dev/zernio/model/CreateConversionDestinationRequestValue.java
 src/main/java/dev/zernio/model/CreateCtwaAd201Response.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequest.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestInterestsInner.java
@@ -1218,6 +1240,9 @@ src/main/java/dev/zernio/model/GetContactChannels200Response.java
 src/main/java/dev/zernio/model/GetContactChannels200ResponseChannelsInner.java
 src/main/java/dev/zernio/model/GetContentDecay200Response.java
 src/main/java/dev/zernio/model/GetContentDecay200ResponseBucketsInner.java
+src/main/java/dev/zernio/model/GetConversionMetrics200Response.java
+src/main/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInner.java
+src/main/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInnerMetricsValue.java
 src/main/java/dev/zernio/model/GetDailyMetrics200Response.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInner.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInnerMetrics.java
@@ -1433,6 +1458,8 @@ src/main/java/dev/zernio/model/ListContacts200Response.java
 src/main/java/dev/zernio/model/ListContacts200ResponseContactsInner.java
 src/main/java/dev/zernio/model/ListContacts200ResponseFilters.java
 src/main/java/dev/zernio/model/ListContacts200ResponsePagination.java
+src/main/java/dev/zernio/model/ListConversionAssociations200Response.java
+src/main/java/dev/zernio/model/ListConversionAssociations200ResponseAssociationsInner.java
 src/main/java/dev/zernio/model/ListConversionDestinations200Response.java
 src/main/java/dev/zernio/model/ListConversionDestinations200ResponseDestinationsInner.java
 src/main/java/dev/zernio/model/ListCustomFields200Response.java
@@ -1534,6 +1561,7 @@ src/main/java/dev/zernio/model/RejectWhatsAppGroupJoinRequestsRequest.java
 src/main/java/dev/zernio/model/ReleaseWhatsAppPhoneNumber200Response.java
 src/main/java/dev/zernio/model/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.java
 src/main/java/dev/zernio/model/RemoveBookmark200Response.java
+src/main/java/dev/zernio/model/RemoveConversionAssociations200Response.java
 src/main/java/dev/zernio/model/RemoveWhatsAppGroupParticipantsRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200Response.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200ResponseData.java
@@ -1669,6 +1697,8 @@ src/main/java/dev/zernio/model/UpdateCommentAutomationRequest.java
 src/main/java/dev/zernio/model/UpdateContact200Response.java
 src/main/java/dev/zernio/model/UpdateContact200ResponseContact.java
 src/main/java/dev/zernio/model/UpdateContactRequest.java
+src/main/java/dev/zernio/model/UpdateConversionDestinationRequest.java
+src/main/java/dev/zernio/model/UpdateConversionDestinationRequestValue.java
 src/main/java/dev/zernio/model/UpdateCustomField200Response.java
 src/main/java/dev/zernio/model/UpdateCustomField200ResponseField.java
 src/main/java/dev/zernio/model/UpdateCustomFieldRequest.java
@@ -1828,4 +1858,18 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/WebhookPayloadMessageMetadataStoryReplyTest.java
+src/test/java/dev/zernio/model/AddConversionAssociations200ResponseFailedInnerTest.java
+src/test/java/dev/zernio/model/AddConversionAssociations200ResponseTest.java
+src/test/java/dev/zernio/model/AddConversionAssociationsRequestTest.java
+src/test/java/dev/zernio/model/ConversionDestinationTest.java
+src/test/java/dev/zernio/model/CreateConversionDestination201ResponseTest.java
+src/test/java/dev/zernio/model/CreateConversionDestinationRequestTest.java
+src/test/java/dev/zernio/model/CreateConversionDestinationRequestValueTest.java
+src/test/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInnerMetricsValueTest.java
+src/test/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInnerTest.java
+src/test/java/dev/zernio/model/GetConversionMetrics200ResponseTest.java
+src/test/java/dev/zernio/model/ListConversionAssociations200ResponseAssociationsInnerTest.java
+src/test/java/dev/zernio/model/ListConversionAssociations200ResponseTest.java
+src/test/java/dev/zernio/model/RemoveConversionAssociations200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateConversionDestinationRequestTest.java
+src/test/java/dev/zernio/model/UpdateConversionDestinationRequestValueTest.java

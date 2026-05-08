@@ -2,7 +2,7 @@
 
 # SendConversionsRequestConsent
 
-Batch-level user consent. Required by Google for EEA/UK events under the Feb 2026 restrictions. Ignored by Meta. 
+Batch-level user consent. Required by Google for EEA/UK events under the Feb 2026 restrictions. Ignored by Meta and LinkedIn. 
 
 ## Properties
 

@@ -30,13 +30,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Batch-level user consent. Required by Google for EEA/UK events under the Feb 2026 restrictions. Ignored by Meta. 
+ * Batch-level user consent. Required by Google for EEA/UK events under the Feb 2026 restrictions. Ignored by Meta and LinkedIn. 
  */
 @JsonPropertyOrder({
   SendConversionsRequestConsent.JSON_PROPERTY_AD_USER_DATA,
   SendConversionsRequestConsent.JSON_PROPERTY_AD_PERSONALIZATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversionsRequestConsent {
   /**
    * Gets or Sets adUserData

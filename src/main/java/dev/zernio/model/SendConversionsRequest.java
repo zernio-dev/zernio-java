@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendConversionsRequest.JSON_PROPERTY_TEST_CODE,
   SendConversionsRequest.JSON_PROPERTY_CONSENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversionsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -74,7 +74,7 @@ public class SendConversionsRequest {
   }
 
   /**
-   * SocialAccount ID (metaads or googleads).
+   * SocialAccount ID (metaads, googleads, or linkedinads).
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -98,7 +98,7 @@ public class SendConversionsRequest {
   }
 
   /**
-   * Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. 
+   * Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. For LinkedIn, the conversion rule ID or full &#x60;urn:lla:llaPartnerConversion:{id}&#x60; URN. 
    * @return destinationId
    */
   @javax.annotation.Nonnull
@@ -154,7 +154,7 @@ public class SendConversionsRequest {
   }
 
   /**
-   * Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google.
+   * Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google and LinkedIn.
    * @return testCode
    */
   @javax.annotation.Nullable

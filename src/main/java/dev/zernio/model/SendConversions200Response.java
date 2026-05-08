@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendConversions200Response.JSON_PROPERTY_FAILURES,
   SendConversions200Response.JSON_PROPERTY_TRACE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversions200Response {
   /**
    * Gets or Sets platform
@@ -50,7 +50,9 @@ public class SendConversions200Response {
   public enum PlatformEnum {
     METAADS(String.valueOf("metaads")),
     
-    GOOGLEADS(String.valueOf("googleads"));
+    GOOGLEADS(String.valueOf("googleads")),
+    
+    LINKEDINADS(String.valueOf("linkedinads"));
 
     private String value;
 
@@ -212,7 +214,7 @@ public class SendConversions200Response {
   }
 
   /**
-   * Platform trace ID (fbtrace_id for Meta, requestId for Google) for debugging.
+   * Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID). 
    * @return traceId
    */
   @javax.annotation.Nullable

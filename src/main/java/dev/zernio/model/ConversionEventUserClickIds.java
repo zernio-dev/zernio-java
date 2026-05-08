@@ -37,9 +37,10 @@ import dev.zernio.ApiClient;
   ConversionEventUserClickIds.JSON_PROPERTY_FBP,
   ConversionEventUserClickIds.JSON_PROPERTY_GCLID,
   ConversionEventUserClickIds.JSON_PROPERTY_GBRAID,
-  ConversionEventUserClickIds.JSON_PROPERTY_WBRAID
+  ConversionEventUserClickIds.JSON_PROPERTY_WBRAID,
+  ConversionEventUserClickIds.JSON_PROPERTY_LI_FAT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUserClickIds {
   public static final String JSON_PROPERTY_FBC = "fbc";
   @javax.annotation.Nullable
@@ -60,6 +61,10 @@ public class ConversionEventUserClickIds {
   public static final String JSON_PROPERTY_WBRAID = "wbraid";
   @javax.annotation.Nullable
   private String wbraid;
+
+  public static final String JSON_PROPERTY_LI_FAT_ID = "li_fat_id";
+  @javax.annotation.Nullable
+  private String liFatId;
 
   public ConversionEventUserClickIds() { 
   }
@@ -184,6 +189,30 @@ public class ConversionEventUserClickIds {
   }
 
 
+  public ConversionEventUserClickIds liFatId(@javax.annotation.Nullable String liFatId) {
+    this.liFatId = liFatId;
+    return this;
+  }
+
+  /**
+   * LinkedIn first-party ad tracking click ID. Captured by parsing &#x60;li_fat_id&#x60; from landing-page URLs after the advertiser enables enhanced conversion tracking on the LinkedIn Insight Tag. Sent to LinkedIn as the LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque token, not hashed. 
+   * @return liFatId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LI_FAT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLiFatId() {
+    return liFatId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LI_FAT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLiFatId(@javax.annotation.Nullable String liFatId) {
+    this.liFatId = liFatId;
+  }
+
+
   /**
    * Return true if this ConversionEvent_user_clickIds object is equal to o.
    */
@@ -200,12 +229,13 @@ public class ConversionEventUserClickIds {
         Objects.equals(this.fbp, conversionEventUserClickIds.fbp) &&
         Objects.equals(this.gclid, conversionEventUserClickIds.gclid) &&
         Objects.equals(this.gbraid, conversionEventUserClickIds.gbraid) &&
-        Objects.equals(this.wbraid, conversionEventUserClickIds.wbraid);
+        Objects.equals(this.wbraid, conversionEventUserClickIds.wbraid) &&
+        Objects.equals(this.liFatId, conversionEventUserClickIds.liFatId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fbc, fbp, gclid, gbraid, wbraid);
+    return Objects.hash(fbc, fbp, gclid, gbraid, wbraid, liFatId);
   }
 
   @Override
@@ -217,6 +247,7 @@ public class ConversionEventUserClickIds {
     sb.append("    gclid: ").append(toIndentedString(gclid)).append("\n");
     sb.append("    gbraid: ").append(toIndentedString(gbraid)).append("\n");
     sb.append("    wbraid: ").append(toIndentedString(wbraid)).append("\n");
+    sb.append("    liFatId: ").append(toIndentedString(liFatId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,6 +318,11 @@ public class ConversionEventUserClickIds {
     // add `wbraid` to the URL query string
     if (getWbraid() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%swbraid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWbraid()))));
+    }
+
+    // add `li_fat_id` to the URL query string
+    if (getLiFatId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sli_fat_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLiFatId()))));
     }
 
     return joiner.toString();

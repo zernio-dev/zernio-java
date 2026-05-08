@@ -19,7 +19,11 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.AdStatus;
+import dev.zernio.model.AddConversionAssociations200Response;
+import dev.zernio.model.AddConversionAssociationsRequest;
 import dev.zernio.model.BoostPostRequest;
+import dev.zernio.model.CreateConversionDestination201Response;
+import dev.zernio.model.CreateConversionDestinationRequest;
 import dev.zernio.model.CreateCtwaAd201Response;
 import dev.zernio.model.CreateCtwaAdRequest;
 import dev.zernio.model.CreateStandaloneAd201Response;
@@ -28,13 +32,16 @@ import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
+import dev.zernio.model.GetConversionMetrics200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
 import dev.zernio.model.ListAds200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
+import dev.zernio.model.ListConversionAssociations200Response;
 import dev.zernio.model.ListConversionDestinations200Response;
 import java.time.LocalDate;
+import dev.zernio.model.RemoveConversionAssociations200Response;
 import dev.zernio.model.SearchAdInterests200Response;
 import dev.zernio.model.SearchAdTargetingLocations200Response;
 import dev.zernio.model.SendConversions200Response;
@@ -43,6 +50,7 @@ import dev.zernio.model.SendWhatsAppConversion200Response;
 import dev.zernio.model.SendWhatsAppConversionRequest;
 import dev.zernio.model.UpdateAd200Response;
 import dev.zernio.model.UpdateAdRequest;
+import dev.zernio.model.UpdateConversionDestinationRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,7 +77,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -187,6 +195,147 @@ public class AdsApi {
   }
 
   /**
+   * Associate campaigns with a conversion destination
+   * Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param addConversionAssociationsRequest  (required)
+   * @return AddConversionAssociations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddConversionAssociations200Response addConversionAssociations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull AddConversionAssociationsRequest addConversionAssociationsRequest) throws ApiException {
+    return addConversionAssociations(accountId, destinationId, addConversionAssociationsRequest, null);
+  }
+
+  /**
+   * Associate campaigns with a conversion destination
+   * Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param addConversionAssociationsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AddConversionAssociations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddConversionAssociations200Response addConversionAssociations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull AddConversionAssociationsRequest addConversionAssociationsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AddConversionAssociations200Response> localVarResponse = addConversionAssociationsWithHttpInfo(accountId, destinationId, addConversionAssociationsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Associate campaigns with a conversion destination
+   * Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param addConversionAssociationsRequest  (required)
+   * @return ApiResponse&lt;AddConversionAssociations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddConversionAssociations200Response> addConversionAssociationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull AddConversionAssociationsRequest addConversionAssociationsRequest) throws ApiException {
+    return addConversionAssociationsWithHttpInfo(accountId, destinationId, addConversionAssociationsRequest, null);
+  }
+
+  /**
+   * Associate campaigns with a conversion destination
+   * Associate one or more campaigns with this conversion rule. Returns a per-campaign success/failure result so callers can retry only the rows that failed (e.g. wrong campaign type for the rule&#39;s objective). 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param addConversionAssociationsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AddConversionAssociations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddConversionAssociations200Response> addConversionAssociationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull AddConversionAssociationsRequest addConversionAssociationsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addConversionAssociationsRequestBuilder(accountId, destinationId, addConversionAssociationsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("addConversionAssociations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AddConversionAssociations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AddConversionAssociations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AddConversionAssociations200Response>() {});
+        
+
+        return new ApiResponse<AddConversionAssociations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder addConversionAssociationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull AddConversionAssociationsRequest addConversionAssociationsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling addConversionAssociations");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling addConversionAssociations");
+    }
+    // verify the required parameter 'addConversionAssociationsRequest' is set
+    if (addConversionAssociationsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'addConversionAssociationsRequest' when calling addConversionAssociations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{destinationId}", ApiClient.urlEncode(destinationId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addConversionAssociationsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Boost post as ad
    * Creates a paid ad campaign from an existing published post. Creates the full platform campaign hierarchy (campaign, ad set, ad).
    * @param boostPostRequest  (required)
@@ -294,6 +443,138 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(boostPostRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a conversion destination (LinkedIn)
+   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+   * @param accountId SocialAccount ID (linkedinads). (required)
+   * @param createConversionDestinationRequest  (required)
+   * @return CreateConversionDestination201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionDestination201Response createConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateConversionDestinationRequest createConversionDestinationRequest) throws ApiException {
+    return createConversionDestination(accountId, createConversionDestinationRequest, null);
+  }
+
+  /**
+   * Create a conversion destination (LinkedIn)
+   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+   * @param accountId SocialAccount ID (linkedinads). (required)
+   * @param createConversionDestinationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateConversionDestination201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionDestination201Response createConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateConversionDestinationRequest createConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateConversionDestination201Response> localVarResponse = createConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a conversion destination (LinkedIn)
+   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+   * @param accountId SocialAccount ID (linkedinads). (required)
+   * @param createConversionDestinationRequest  (required)
+   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionDestination201Response> createConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateConversionDestinationRequest createConversionDestinationRequest) throws ApiException {
+    return createConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest, null);
+  }
+
+  /**
+   * Create a conversion destination (LinkedIn)
+   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+   * @param accountId SocialAccount ID (linkedinads). (required)
+   * @param createConversionDestinationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionDestination201Response> createConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateConversionDestinationRequest createConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createConversionDestinationRequestBuilder(accountId, createConversionDestinationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createConversionDestination", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateConversionDestination201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateConversionDestination201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateConversionDestination201Response>() {});
+        
+
+        return new ApiResponse<CreateConversionDestination201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createConversionDestinationRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateConversionDestinationRequest createConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling createConversionDestination");
+    }
+    // verify the required parameter 'createConversionDestinationRequest' is set
+    if (createConversionDestinationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createConversionDestinationRequest' when calling createConversionDestination");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createConversionDestinationRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -658,6 +939,138 @@ public class AdsApi {
         .replace("{adId}", ApiClient.urlEncode(adId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Soft-delete a conversion destination
+   * LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Required as query OR in JSON body. (optional)
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nullable String adAccountId) throws ApiException {
+    deleteConversionDestination(accountId, destinationId, adAccountId, null);
+  }
+
+  /**
+   * Soft-delete a conversion destination
+   * LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Required as query OR in JSON body. (optional)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nullable String adAccountId, Map<String, String> headers) throws ApiException {
+    deleteConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId, headers);
+  }
+
+  /**
+   * Soft-delete a conversion destination
+   * LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Required as query OR in JSON body. (optional)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nullable String adAccountId) throws ApiException {
+    return deleteConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId, null);
+  }
+
+  /**
+   * Soft-delete a conversion destination
+   * LinkedIn-only today. LinkedIn does not expose hard-delete on conversion rules — what their UI calls \&quot;delete\&quot; is the same &#x60;enabled: false&#x60; flip we apply here. The rule remains fetchable via GET with &#x60;status: &#39;inactive&#39;&#x60;; the unified discovery endpoint hides it by default.  &#x60;adAccountId&#x60; may be passed as a query parameter (recommended) or as a JSON body field for clients that can send DELETE bodies. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Required as query OR in JSON body. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nullable String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteConversionDestinationRequestBuilder(accountId, destinationId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteConversionDestination", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteConversionDestinationRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nullable String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteConversionDestination");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling deleteConversionDestination");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations/{destinationId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{destinationId}", ApiClient.urlEncode(destinationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -1057,6 +1470,328 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "cursor";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Fetch a single conversion destination
+   * LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
+   * @return CreateConversionDestination201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionDestination201Response getConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getConversionDestination(accountId, destinationId, adAccountId, null);
+  }
+
+  /**
+   * Fetch a single conversion destination
+   * LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateConversionDestination201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionDestination201Response getConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateConversionDestination201Response> localVarResponse = getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Fetch a single conversion destination
+   * LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
+   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionDestination201Response> getConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId, null);
+  }
+
+  /**
+   * Fetch a single conversion destination
+   * LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionDestination201Response> getConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getConversionDestinationRequestBuilder(accountId, destinationId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getConversionDestination", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateConversionDestination201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateConversionDestination201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateConversionDestination201Response>() {});
+        
+
+        return new ApiResponse<CreateConversionDestination201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getConversionDestinationRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getConversionDestination");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling getConversionDestination");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getConversionDestination");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations/{destinationId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{destinationId}", ApiClient.urlEncode(destinationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Fetch attribution metrics for a conversion destination
+   * LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param startDate  (required)
+   * @param endDate  (optional)
+   * @param granularity  (optional, default to DAILY)
+   * @return GetConversionMetrics200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetConversionMetrics200Response getConversionMetrics(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String startDate, @javax.annotation.Nullable String endDate, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getConversionMetrics(accountId, destinationId, adAccountId, startDate, endDate, granularity, null);
+  }
+
+  /**
+   * Fetch attribution metrics for a conversion destination
+   * LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param startDate  (required)
+   * @param endDate  (optional)
+   * @param granularity  (optional, default to DAILY)
+   * @param headers Optional headers to include in the request
+   * @return GetConversionMetrics200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetConversionMetrics200Response getConversionMetrics(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String startDate, @javax.annotation.Nullable String endDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetConversionMetrics200Response> localVarResponse = getConversionMetricsWithHttpInfo(accountId, destinationId, adAccountId, startDate, endDate, granularity, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Fetch attribution metrics for a conversion destination
+   * LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param startDate  (required)
+   * @param endDate  (optional)
+   * @param granularity  (optional, default to DAILY)
+   * @return ApiResponse&lt;GetConversionMetrics200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetConversionMetrics200Response> getConversionMetricsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String startDate, @javax.annotation.Nullable String endDate, @javax.annotation.Nullable String granularity) throws ApiException {
+    return getConversionMetricsWithHttpInfo(accountId, destinationId, adAccountId, startDate, endDate, granularity, null);
+  }
+
+  /**
+   * Fetch attribution metrics for a conversion destination
+   * LinkedIn-only today. Returns conversion-attribution metrics (&#x60;externalWebsiteConversions&#x60;, &#x60;externalWebsitePostClickConversions&#x60;, &#x60;externalWebsitePostViewConversions&#x60;, &#x60;conversionValueInLocalCurrency&#x60;, &#x60;qualifiedLeads&#x60;, &#x60;costInLocalCurrency&#x60;) bucketed by date.  Date-range constraints (passed through from LinkedIn): - &#x60;granularity&#x3D;DAILY&#x60; is retained for ~6 months only - &#x60;granularity&#x3D;ALL&#x60; with a range &gt; 6 months auto-rounds to month boundaries - &#x60;granularity&#x3D;MONTHLY&#x60;/&#x60;YEARLY&#x60; retains 24 months  Throttle: LinkedIn caps adAnalytics at 45M metric values per 5-minute window across the calling token. Single-rule queries are well within that limit; surfaces as 429 if hit. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param startDate  (required)
+   * @param endDate  (optional)
+   * @param granularity  (optional, default to DAILY)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetConversionMetrics200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetConversionMetrics200Response> getConversionMetricsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String startDate, @javax.annotation.Nullable String endDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getConversionMetricsRequestBuilder(accountId, destinationId, adAccountId, startDate, endDate, granularity, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getConversionMetrics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetConversionMetrics200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetConversionMetrics200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetConversionMetrics200Response>() {});
+        
+
+        return new ApiResponse<GetConversionMetrics200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getConversionMetricsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String startDate, @javax.annotation.Nullable String endDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getConversionMetrics");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling getConversionMetrics");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getConversionMetrics");
+    }
+    // verify the required parameter 'startDate' is set
+    if (startDate == null) {
+      throw new ApiException(400, "Missing the required parameter 'startDate' when calling getConversionMetrics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{destinationId}", ApiClient.urlEncode(destinationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "startDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("startDate", startDate));
+    localVarQueryParameterBaseName = "endDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("endDate", endDate));
+    localVarQueryParameterBaseName = "granularity";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -1548,9 +2283,159 @@ public class AdsApi {
   }
 
   /**
+   * List campaigns associated with a conversion destination
+   * LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @return ListConversionAssociations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListConversionAssociations200Response listConversionAssociations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listConversionAssociations(accountId, destinationId, adAccountId, null);
+  }
+
+  /**
+   * List campaigns associated with a conversion destination
+   * LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ListConversionAssociations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListConversionAssociations200Response listConversionAssociations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListConversionAssociations200Response> localVarResponse = listConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List campaigns associated with a conversion destination
+   * LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @return ApiResponse&lt;ListConversionAssociations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListConversionAssociations200Response> listConversionAssociationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId, null);
+  }
+
+  /**
+   * List campaigns associated with a conversion destination
+   * LinkedIn-only today. Returns the campaigns currently associated with this conversion rule. Note that auto-association on rule creation runs once at create time; campaigns created after the rule still need explicit association. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListConversionAssociations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListConversionAssociations200Response> listConversionAssociationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listConversionAssociationsRequestBuilder(accountId, destinationId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listConversionAssociations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListConversionAssociations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListConversionAssociations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListConversionAssociations200Response>() {});
+        
+
+        return new ApiResponse<ListConversionAssociations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listConversionAssociationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listConversionAssociations");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling listConversionAssociations");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling listConversionAssociations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{destinationId}", ApiClient.urlEncode(destinationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List destinations for the Conversions API
-   * Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
-   * @param accountId SocialAccount ID (metaads or googleads). (required)
+   * Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+   * @param accountId SocialAccount ID (metaads, googleads, or linkedinads). (required)
    * @return ListConversionDestinations200Response
    * @throws ApiException if fails to make API call
    */
@@ -1560,8 +2445,8 @@ public class AdsApi {
 
   /**
    * List destinations for the Conversions API
-   * Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
-   * @param accountId SocialAccount ID (metaads or googleads). (required)
+   * Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+   * @param accountId SocialAccount ID (metaads, googleads, or linkedinads). (required)
    * @param headers Optional headers to include in the request
    * @return ListConversionDestinations200Response
    * @throws ApiException if fails to make API call
@@ -1573,8 +2458,8 @@ public class AdsApi {
 
   /**
    * List destinations for the Conversions API
-   * Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
-   * @param accountId SocialAccount ID (metaads or googleads). (required)
+   * Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+   * @param accountId SocialAccount ID (metaads, googleads, or linkedinads). (required)
    * @return ApiResponse&lt;ListConversionDestinations200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1584,8 +2469,8 @@ public class AdsApi {
 
   /**
    * List destinations for the Conversions API
-   * Returns the list of pixels (Meta) or conversion actions (Google) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google, each destination&#39;s &#x60;type&#x60; reflects the conversion action&#39;s category (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request. 
-   * @param accountId SocialAccount ID (metaads or googleads). (required)
+   * Returns the list of pixels (Meta), conversion actions (Google), or conversion rules (LinkedIn) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.) — the event type is locked to the destination. For Meta, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+   * @param accountId SocialAccount ID (metaads, googleads, or linkedinads). (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListConversionDestinations200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1654,6 +2539,166 @@ public class AdsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove campaign↔conversion associations
+   * Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param campaignIds Comma-separated list of campaign IDs. (required)
+   * @return RemoveConversionAssociations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveConversionAssociations200Response removeConversionAssociations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String campaignIds) throws ApiException {
+    return removeConversionAssociations(accountId, destinationId, adAccountId, campaignIds, null);
+  }
+
+  /**
+   * Remove campaign↔conversion associations
+   * Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param campaignIds Comma-separated list of campaign IDs. (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveConversionAssociations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveConversionAssociations200Response removeConversionAssociations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String campaignIds, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveConversionAssociations200Response> localVarResponse = removeConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId, campaignIds, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove campaign↔conversion associations
+   * Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param campaignIds Comma-separated list of campaign IDs. (required)
+   * @return ApiResponse&lt;RemoveConversionAssociations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveConversionAssociations200Response> removeConversionAssociationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String campaignIds) throws ApiException {
+    return removeConversionAssociationsWithHttpInfo(accountId, destinationId, adAccountId, campaignIds, null);
+  }
+
+  /**
+   * Remove campaign↔conversion associations
+   * Remove one or more campaign associations from this conversion rule. Pass &#x60;adAccountId&#x60; and &#x60;campaignIds&#x60; as query parameters (&#x60;campaignIds&#x60; is comma-separated). The route also accepts a JSON body with the same fields for clients that prefer DELETE-with-body, but the documented surface is query-only because some SDK code generators (e.g. Python) collapse query + body parameters with the same name into a single kwarg. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param adAccountId  (required)
+   * @param campaignIds Comma-separated list of campaign IDs. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveConversionAssociations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveConversionAssociations200Response> removeConversionAssociationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String campaignIds, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeConversionAssociationsRequestBuilder(accountId, destinationId, adAccountId, campaignIds, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeConversionAssociations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveConversionAssociations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveConversionAssociations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveConversionAssociations200Response>() {});
+        
+
+        return new ApiResponse<RemoveConversionAssociations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeConversionAssociationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nonnull String campaignIds, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling removeConversionAssociations");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling removeConversionAssociations");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling removeConversionAssociations");
+    }
+    // verify the required parameter 'campaignIds' is set
+    if (campaignIds == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignIds' when calling removeConversionAssociations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{destinationId}", ApiClient.urlEncode(destinationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "campaignIds";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("campaignIds", campaignIds));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -1969,7 +3014,7 @@ public class AdsApi {
 
   /**
    * Send conversion events to an ad platform
-   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
    * @param sendConversionsRequest  (required)
    * @return SendConversions200Response
    * @throws ApiException if fails to make API call
@@ -1980,7 +3025,7 @@ public class AdsApi {
 
   /**
    * Send conversion events to an ad platform
-   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
    * @param sendConversionsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return SendConversions200Response
@@ -1993,7 +3038,7 @@ public class AdsApi {
 
   /**
    * Send conversion events to an ad platform
-   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
    * @param sendConversionsRequest  (required)
    * @return ApiResponse&lt;SendConversions200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2004,7 +3049,7 @@ public class AdsApi {
 
   /**
    * Send conversion events to an ad platform
-   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext.  Requires the Ads add-on.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. Both are handled automatically by chunking.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta uses it to dedupe against pixel events; Google maps it to transactionId. 
+   * Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Supported platforms: Meta (metaads) via Graph API, Google Ads (googleads) via Data Manager API &#x60;ingestEvents&#x60;, LinkedIn (linkedinads) via &#x60;/rest/conversionEvents&#x60;.  Platform is inferred from the provided &#x60;accountId&#x60;. &#x60;destinationId&#x60; semantics differ per platform: - Meta: pixel (dataset) ID, e.g. \&quot;123456789012345\&quot; - Google: conversion action resource name, e.g.   \&quot;customers/1234567890/conversionActions/987654321\&quot; - LinkedIn: conversion rule ID or URN, e.g. \&quot;104012\&quot; or   \&quot;urn:lla:llaPartnerConversion:104012\&quot;  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec (including Google&#39;s Gmail-specific dot/plus-suffix stripping). Send plaintext. Note: LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec — only emails and phones are hashed.  Requires the Ads add-on. For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;); older accounts must reconnect.  Batching: Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. All three are handled automatically.  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to transactionId.  Per-platform &#x60;eventName&#x60; semantics: - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s   built-in events; custom strings are accepted. - Google: ignored — the conversion action&#39;s category determines the   event type. Send the standard name closest to your action for   documentation, but the platform will not branch on it. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE,   etc.) is locked to the destination at rule-creation time. Send the   standard name for documentation; LinkedIn does not branch on it. 
    * @param sendConversionsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SendConversions200Response&gt;
@@ -2331,6 +3376,147 @@ public class AdsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update a conversion destination
+   * Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param updateConversionDestinationRequest  (required)
+   * @return CreateConversionDestination201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionDestination201Response updateConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest) throws ApiException {
+    return updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest, null);
+  }
+
+  /**
+   * Update a conversion destination
+   * Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param updateConversionDestinationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateConversionDestination201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateConversionDestination201Response updateConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateConversionDestination201Response> localVarResponse = updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update a conversion destination
+   * Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param updateConversionDestinationRequest  (required)
+   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionDestination201Response> updateConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest) throws ApiException {
+    return updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest, null);
+  }
+
+  /**
+   * Update a conversion destination
+   * Partial-update a conversion rule. LinkedIn-only today. Whitelisted fields: &#x60;name&#x60;, &#x60;enabled&#x60;, attribution windows, &#x60;valueType&#x60;, &#x60;value&#x60;, &#x60;attributionType&#x60;. The rule&#39;s &#x60;type&#x60; and parent ad account are intentionally not exposed for update — recreate the rule if those need to change. 
+   * @param accountId  (required)
+   * @param destinationId  (required)
+   * @param updateConversionDestinationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateConversionDestination201Response> updateConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateConversionDestinationRequestBuilder(accountId, destinationId, updateConversionDestinationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateConversionDestination", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateConversionDestination201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateConversionDestination201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateConversionDestination201Response>() {});
+        
+
+        return new ApiResponse<CreateConversionDestination201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateConversionDestinationRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateConversionDestination");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling updateConversionDestination");
+    }
+    // verify the required parameter 'updateConversionDestinationRequest' is set
+    if (updateConversionDestinationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateConversionDestinationRequest' when calling updateConversionDestination");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/conversion-destinations/{destinationId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{destinationId}", ApiClient.urlEncode(destinationId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateConversionDestinationRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

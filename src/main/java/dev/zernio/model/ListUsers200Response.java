@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListUsers200Response.JSON_PROPERTY_CURRENT_USER_ID,
   ListUsers200Response.JSON_PROPERTY_USERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListUsers200Response {
   public static final String JSON_PROPERTY_CURRENT_USER_ID = "currentUserId";
   @javax.annotation.Nullable

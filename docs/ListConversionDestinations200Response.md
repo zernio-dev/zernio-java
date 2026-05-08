@@ -18,6 +18,7 @@
 |---- | -----|
 | METAADS | &quot;metaads&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
+| LINKEDINADS | &quot;linkedinads&quot; |
 
 
 

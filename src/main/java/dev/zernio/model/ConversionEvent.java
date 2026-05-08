@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ConversionEvent.JSON_PROPERTY_ACTION_SOURCE,
   ConversionEvent.JSON_PROPERTY_PLATFORM_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEvent {
   public static final String JSON_PROPERTY_EVENT_NAME = "eventName";
   @javax.annotation.Nonnull
@@ -146,7 +146,7 @@ public class ConversionEvent {
   }
 
   /**
-   * Standard event name (Purchase, Lead, CompleteRegistration, AddToCart, InitiateCheckout, AddPaymentInfo, Subscribe, StartTrial, ViewContent, Search, Contact, SubmitApplication, Schedule) or a custom string (only supported on platforms that accept custom events). 
+   * Standard event name (Purchase, Lead, CompleteRegistration, AddToCart, InitiateCheckout, AddPaymentInfo, Subscribe, StartTrial, ViewContent, Search, Contact, SubmitApplication, Schedule) or a custom string (only supported on platforms that accept custom events — Meta).  Per-platform behavior: - Meta: free-form; standard names match Meta&#39;s built-ins. - Google: ignored — the conversion action&#39;s category determines the type. - LinkedIn: ignored — the conversion rule&#39;s &#x60;type&#x60; is locked to the destination. 
    * @return eventName
    */
   @javax.annotation.Nonnull
@@ -194,7 +194,7 @@ public class ConversionEvent {
   }
 
   /**
-   * Unique dedup key. The same eventId must be used on pixel + CAPI to prevent double-counting. Mapped to event_id on Meta and transactionId on Google. 
+   * Unique dedup key. The same eventId must be used on pixel + CAPI to prevent double-counting. Mapped to event_id on Meta, transactionId on Google, eventId on LinkedIn (LinkedIn deduplicates against Insight Tag events with the same eventId; the Insight Tag event wins when both arrive). 
    * @return eventId
    */
   @javax.annotation.Nonnull

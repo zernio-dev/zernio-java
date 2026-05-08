@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ConversionEventUser.JSON_PROPERTY_COUNTRY,
   ConversionEventUser.JSON_PROPERTY_CLICK_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUser {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
@@ -187,7 +187,7 @@ public class ConversionEventUser {
   }
 
   /**
-   * Stable customer identifier (e.g. CRM user ID). Hashed server-side.
+   * Stable customer identifier (e.g. CRM user ID). Hashed server-side for Meta and Google. Sent as plaintext to LinkedIn (LinkedIn&#39;s Conversions API spec requires the raw value). Maximum effective list size on LinkedIn is 1. 
    * @return externalId
    */
   @javax.annotation.Nullable

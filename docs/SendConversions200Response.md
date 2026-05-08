@@ -11,7 +11,7 @@
 |**eventsReceived** | **Integer** | Events accepted by the platform. |  [optional] |
 |**eventsFailed** | **Integer** | Events rejected (see failures). |  [optional] |
 |**failures** | [**List&lt;SendConversions200ResponseFailuresInner&gt;**](SendConversions200ResponseFailuresInner.md) |  |  [optional] |
-|**traceId** | **String** | Platform trace ID (fbtrace_id for Meta, requestId for Google) for debugging. |  [optional] |
+|**traceId** | **String** | Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID).  |  [optional] |
 
 
 
@@ -21,6 +21,7 @@
 |---- | -----|
 | METAADS | &quot;metaads&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
+| LINKEDINADS | &quot;linkedinads&quot; |
 
 
 
