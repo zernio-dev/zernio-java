@@ -150,7 +150,8 @@ tags:
     Requires the Ads add-on.
   name: Ad Audiences
 - description: |
-    Configure webhooks for real-time notifications. Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, comment.received, review.new, review.updated, webhook.test.
+    Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -9372,6 +9373,12 @@ paths:
                   - account.disconnected
                   - account.ads.initial_sync_completed
                   - message.received
+                  - message.sent
+                  - message.edited
+                  - message.deleted
+                  - message.delivered
+                  - message.read
+                  - message.failed
                   - comment.received
                   - review.new
                   - review.updated
@@ -17911,6 +17918,9 @@ components:
           quickReplyPayload: quickReplyPayload
           interactiveType: button_reply
           postbackTitle: postbackTitle
+          storyReply:
+            storyId: storyId
+            storyUrl: storyUrl
           referral:
             video_url: video_url
             media_type: media_type
@@ -17922,6 +17932,7 @@ components:
             thumbnail_url: thumbnail_url
             headline: headline
             source_url: source_url
+          isStoryMention: true
           flowResponseJson: flowResponseJson
           callbackData: callbackData
           flowResponseData:
@@ -31265,6 +31276,12 @@ components:
             - account.disconnected
             - account.ads.initial_sync_completed
             - message.received
+            - message.sent
+            - message.edited
+            - message.deleted
+            - message.delivered
+            - message.read
+            - message.failed
             - comment.received
             - review.new
             - review.updated
@@ -31329,6 +31346,12 @@ components:
             - account.disconnected
             - account.ads.initial_sync_completed
             - message.received
+            - message.sent
+            - message.edited
+            - message.deleted
+            - message.delivered
+            - message.read
+            - message.failed
             - comment.received
             - review.new
             - review.updated
@@ -41776,6 +41799,26 @@ components:
       - id
       - platform
       - username
+    WebhookPayloadMessage_metadata_storyReply:
+      description: |
+        Instagram only. Populated when an IG user replies to one of the
+        account's stories (Meta `messaging_story_replies`). Mutually
+        exclusive in practice with `isStoryMention`.
+      example:
+        storyId: storyId
+        storyUrl: storyUrl
+      properties:
+        storyId:
+          description: The Instagram story ID the user replied to.
+          type: string
+        storyUrl:
+          description: |
+            Meta CDN URL for the story media. Expires approximately
+            24 hours after the story posted; consumers must fetch
+            promptly or treat 404s as expected.
+          type: string
+      required:
+      - storyId
     WebhookPayloadMessage_metadata_referral:
       description: |
         WhatsApp only. Click-to-WhatsApp (CTWA) ad attribution. Present
@@ -41823,6 +41866,9 @@ components:
         quickReplyPayload: quickReplyPayload
         interactiveType: button_reply
         postbackTitle: postbackTitle
+        storyReply:
+          storyId: storyId
+          storyUrl: storyUrl
         referral:
           video_url: video_url
           media_type: media_type
@@ -41834,6 +41880,7 @@ components:
           thumbnail_url: thumbnail_url
           headline: headline
           source_url: source_url
+        isStoryMention: true
         flowResponseJson: flowResponseJson
         callbackData: callbackData
         flowResponseData:
@@ -41888,6 +41935,14 @@ components:
             `flowResponseJson` is valid JSON; otherwise omitted. Keys and
             value types depend on the specific Flow that was submitted.
           type: object
+        storyReply:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_storyReply"
+        isStoryMention:
+          description: |
+            Instagram only. True when the message was generated by an IG
+            user mentioning the account in their own story (`story_mention`
+            attachment type). Mutually exclusive in practice with `storyReply`.
+          type: boolean
         referral:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral"
       nullable: true

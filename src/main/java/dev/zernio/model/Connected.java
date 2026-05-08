@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   Connected.JSON_PROPERTY_CHAT_TYPE,
   Connected.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-07T16:27:58.299685165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Connected {
   /**
    * Gets or Sets status

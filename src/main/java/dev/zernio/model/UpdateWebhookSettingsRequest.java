@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   UpdateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-07T16:27:58.299685165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T13:07:48.056264249Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -87,6 +87,18 @@ public class UpdateWebhookSettingsRequest {
     ACCOUNT_ADS_INITIAL_SYNC_COMPLETED(String.valueOf("account.ads.initial_sync_completed")),
     
     MESSAGE_RECEIVED(String.valueOf("message.received")),
+    
+    MESSAGE_SENT(String.valueOf("message.sent")),
+    
+    MESSAGE_EDITED(String.valueOf("message.edited")),
+    
+    MESSAGE_DELETED(String.valueOf("message.deleted")),
+    
+    MESSAGE_DELIVERED(String.valueOf("message.delivered")),
+    
+    MESSAGE_READ(String.valueOf("message.read")),
+    
+    MESSAGE_FAILED(String.valueOf("message.failed")),
     
     COMMENT_RECEIVED(String.valueOf("comment.received")),
     

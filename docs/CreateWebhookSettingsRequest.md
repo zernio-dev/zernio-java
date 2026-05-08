@@ -30,6 +30,12 @@
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
+| MESSAGE_SENT | &quot;message.sent&quot; |
+| MESSAGE_EDITED | &quot;message.edited&quot; |
+| MESSAGE_DELETED | &quot;message.deleted&quot; |
+| MESSAGE_DELIVERED | &quot;message.delivered&quot; |
+| MESSAGE_READ | &quot;message.read&quot; |
+| MESSAGE_FAILED | &quot;message.failed&quot; |
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
