@@ -24,13 +24,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.WebhookPayloadMessageMetadataReferralAdsContextData;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * WhatsApp only. Click-to-WhatsApp (CTWA) ad attribution. Present only on the FIRST inbound message after a user reaches the business via a CTWA ad. Forwarded verbatim from Meta&#39;s referral envelope so it can be replayed to the Conversions API for Business Messaging. Attribution window is 7 days from click. 
+ * Ad-click attribution forwarded verbatim from Meta. Populated only on the FIRST inbound message after the click; absent on subsequent messages of the same conversation.  The populated subset identifies the source platform:   - &#x60;ctwa_clid&#x60; and &#x60;source_*&#x60; fields: WhatsApp CTWA     (Click-to-WhatsApp). Attribution window is 7 days from click.     Forward to Meta Conversions API for Business Messaging replay.   - &#x60;ad_id&#x60; and &#x60;ads_context_data&#x60;: Facebook Messenger CTM     (Click-to-Message) or Instagram CTD (Click-to-Direct). Use     &#x60;ad_id&#x60; to attribute the conversation to a specific ad. 
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_CTWA_CLID,
@@ -42,9 +43,14 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_MEDIA_TYPE,
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_IMAGE_URL,
   WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_VIDEO_URL,
-  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_THUMBNAIL_URL
+  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_THUMBNAIL_URL,
+  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_AD_ID,
+  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_REF,
+  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_SOURCE,
+  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_TYPE,
+  WebhookPayloadMessageMetadataReferral.JSON_PROPERTY_ADS_CONTEXT_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T14:34:27.592478947Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:23:38.556864322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadataReferral {
   public static final String JSON_PROPERTY_CTWA_CLID = "ctwa_clid";
   @javax.annotation.Nullable
@@ -85,6 +91,26 @@ public class WebhookPayloadMessageMetadataReferral {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnail_url";
   @javax.annotation.Nullable
   private String thumbnailUrl;
+
+  public static final String JSON_PROPERTY_AD_ID = "ad_id";
+  @javax.annotation.Nullable
+  private String adId;
+
+  public static final String JSON_PROPERTY_REF = "ref";
+  @javax.annotation.Nullable
+  private String ref;
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  @javax.annotation.Nullable
+  private String source;
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  @javax.annotation.Nullable
+  private String type;
+
+  public static final String JSON_PROPERTY_ADS_CONTEXT_DATA = "ads_context_data";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageMetadataReferralAdsContextData adsContextData;
 
   public WebhookPayloadMessageMetadataReferral() { 
   }
@@ -329,6 +355,126 @@ public class WebhookPayloadMessageMetadataReferral {
   }
 
 
+  public WebhookPayloadMessageMetadataReferral adId(@javax.annotation.Nullable String adId) {
+    this.adId = adId;
+    return this;
+  }
+
+  /**
+   * Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the user clicked to start the conversation. 
+   * @return adId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdId() {
+    return adId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdId(@javax.annotation.Nullable String adId) {
+    this.adId = adId;
+  }
+
+
+  public WebhookPayloadMessageMetadataReferral ref(@javax.annotation.Nullable String ref) {
+    this.ref = ref;
+    return this;
+  }
+
+  /**
+   * Optional &#x60;ref&#x60; parameter passed through from the Meta ad creative. Facebook Messenger CTM / Instagram CTD only. 
+   * @return ref
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRef() {
+    return ref;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRef(@javax.annotation.Nullable String ref) {
+    this.ref = ref;
+  }
+
+
+  public WebhookPayloadMessageMetadataReferral source(@javax.annotation.Nullable String source) {
+    this.source = source;
+    return this;
+  }
+
+  /**
+   * Meta-supplied source identifier (e.g. &#x60;ADS&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+   * @return source
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSource() {
+    return source;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SOURCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSource(@javax.annotation.Nullable String source) {
+    this.source = source;
+  }
+
+
+  public WebhookPayloadMessageMetadataReferral type(@javax.annotation.Nullable String type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Meta-supplied referral type (e.g. &#x60;OPEN_THREAD&#x60;). Facebook Messenger CTM / Instagram CTD only. 
+   * @return type
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getType() {
+    return type;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(@javax.annotation.Nullable String type) {
+    this.type = type;
+  }
+
+
+  public WebhookPayloadMessageMetadataReferral adsContextData(@javax.annotation.Nullable WebhookPayloadMessageMetadataReferralAdsContextData adsContextData) {
+    this.adsContextData = adsContextData;
+    return this;
+  }
+
+  /**
+   * Get adsContextData
+   * @return adsContextData
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ADS_CONTEXT_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageMetadataReferralAdsContextData getAdsContextData() {
+    return adsContextData;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ADS_CONTEXT_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdsContextData(@javax.annotation.Nullable WebhookPayloadMessageMetadataReferralAdsContextData adsContextData) {
+    this.adsContextData = adsContextData;
+  }
+
+
   /**
    * Return true if this WebhookPayloadMessage_metadata_referral object is equal to o.
    */
@@ -350,12 +496,17 @@ public class WebhookPayloadMessageMetadataReferral {
         Objects.equals(this.mediaType, webhookPayloadMessageMetadataReferral.mediaType) &&
         Objects.equals(this.imageUrl, webhookPayloadMessageMetadataReferral.imageUrl) &&
         Objects.equals(this.videoUrl, webhookPayloadMessageMetadataReferral.videoUrl) &&
-        Objects.equals(this.thumbnailUrl, webhookPayloadMessageMetadataReferral.thumbnailUrl);
+        Objects.equals(this.thumbnailUrl, webhookPayloadMessageMetadataReferral.thumbnailUrl) &&
+        Objects.equals(this.adId, webhookPayloadMessageMetadataReferral.adId) &&
+        Objects.equals(this.ref, webhookPayloadMessageMetadataReferral.ref) &&
+        Objects.equals(this.source, webhookPayloadMessageMetadataReferral.source) &&
+        Objects.equals(this.type, webhookPayloadMessageMetadataReferral.type) &&
+        Objects.equals(this.adsContextData, webhookPayloadMessageMetadataReferral.adsContextData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ctwaClid, sourceId, sourceType, sourceUrl, headline, body, mediaType, imageUrl, videoUrl, thumbnailUrl);
+    return Objects.hash(ctwaClid, sourceId, sourceType, sourceUrl, headline, body, mediaType, imageUrl, videoUrl, thumbnailUrl, adId, ref, source, type, adsContextData);
   }
 
   @Override
@@ -372,6 +523,11 @@ public class WebhookPayloadMessageMetadataReferral {
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
+    sb.append("    adId: ").append(toIndentedString(adId)).append("\n");
+    sb.append("    ref: ").append(toIndentedString(ref)).append("\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    adsContextData: ").append(toIndentedString(adsContextData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -467,6 +623,31 @@ public class WebhookPayloadMessageMetadataReferral {
     // add `thumbnail_url` to the URL query string
     if (getThumbnailUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sthumbnail_url%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThumbnailUrl()))));
+    }
+
+    // add `ad_id` to the URL query string
+    if (getAdId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sad_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdId()))));
+    }
+
+    // add `ref` to the URL query string
+    if (getRef() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRef()))));
+    }
+
+    // add `source` to the URL query string
+    if (getSource() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSource()))));
+    }
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `ads_context_data` to the URL query string
+    if (getAdsContextData() != null) {
+      joiner.add(getAdsContextData().toUrlQueryString(prefix + "ads_context_data" + suffix));
     }
 
     return joiner.toString();

@@ -884,6 +884,7 @@ docs/WebhookPayloadMessageMessageSender.md
 docs/WebhookPayloadMessageMessageSenderInstagramProfile.md
 docs/WebhookPayloadMessageMetadata.md
 docs/WebhookPayloadMessageMetadataReferral.md
+docs/WebhookPayloadMessageMetadataReferralAdsContextData.md
 docs/WebhookPayloadMessageMetadataStoryReply.md
 docs/WebhookPayloadMessageSent.md
 docs/WebhookPayloadMessageSentMessage.md
@@ -1825,6 +1826,7 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageMessageSender.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMessageSenderInstagramProfile.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadata.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferral.java
+src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataReferralAdsContextData.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMetadataStoryReply.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSent.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageSentMessage.java
@@ -1858,18 +1860,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/AddConversionAssociations200ResponseFailedInnerTest.java
-src/test/java/dev/zernio/model/AddConversionAssociations200ResponseTest.java
-src/test/java/dev/zernio/model/AddConversionAssociationsRequestTest.java
-src/test/java/dev/zernio/model/ConversionDestinationTest.java
-src/test/java/dev/zernio/model/CreateConversionDestination201ResponseTest.java
-src/test/java/dev/zernio/model/CreateConversionDestinationRequestTest.java
-src/test/java/dev/zernio/model/CreateConversionDestinationRequestValueTest.java
-src/test/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInnerMetricsValueTest.java
-src/test/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInnerTest.java
-src/test/java/dev/zernio/model/GetConversionMetrics200ResponseTest.java
-src/test/java/dev/zernio/model/ListConversionAssociations200ResponseAssociationsInnerTest.java
-src/test/java/dev/zernio/model/ListConversionAssociations200ResponseTest.java
-src/test/java/dev/zernio/model/RemoveConversionAssociations200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateConversionDestinationRequestTest.java
-src/test/java/dev/zernio/model/UpdateConversionDestinationRequestValueTest.java
+src/test/java/dev/zernio/model/WebhookPayloadMessageMetadataReferralAdsContextDataTest.java

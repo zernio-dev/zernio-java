@@ -18464,16 +18464,27 @@ components:
             storyId: storyId
             storyUrl: storyUrl
           referral:
-            video_url: video_url
-            media_type: media_type
             image_url: image_url
             source_type: source_type
-            source_id: source_id
-            ctwa_clid: ctwa_clid
+            source: source
             body: body
             thumbnail_url: thumbnail_url
-            headline: headline
+            type: type
             source_url: source_url
+            ads_context_data:
+              video_url: video_url
+              post_id: post_id
+              flow_id: flow_id
+              product_id: product_id
+              photo_url: photo_url
+              ad_title: ad_title
+            ad_id: ad_id
+            ref: ref
+            video_url: video_url
+            media_type: media_type
+            source_id: source_id
+            ctwa_clid: ctwa_clid
+            headline: headline
           isStoryMention: true
           flowResponseJson: flowResponseJson
           callbackData: callbackData
@@ -42755,24 +42766,65 @@ components:
           type: string
       required:
       - storyId
-    WebhookPayloadMessage_metadata_referral:
+    WebhookPayloadMessage_metadata_referral_ads_context_data:
       description: |
-        WhatsApp only. Click-to-WhatsApp (CTWA) ad attribution. Present
-        only on the FIRST inbound message after a user reaches the
-        business via a CTWA ad. Forwarded verbatim from Meta's referral
-        envelope so it can be replayed to the Conversions API for
-        Business Messaging. Attribution window is 7 days from click.
+        Snapshot of the ad's public context at click time. Facebook
+        Messenger CTM / Instagram CTD only.
       example:
         video_url: video_url
-        media_type: media_type
+        post_id: post_id
+        flow_id: flow_id
+        product_id: product_id
+        photo_url: photo_url
+        ad_title: ad_title
+      properties:
+        ad_title:
+          type: string
+        photo_url:
+          type: string
+        video_url:
+          type: string
+        post_id:
+          type: string
+        product_id:
+          type: string
+        flow_id:
+          type: string
+    WebhookPayloadMessage_metadata_referral:
+      description: |
+        Ad-click attribution forwarded verbatim from Meta. Populated only on
+        the FIRST inbound message after the click; absent on subsequent
+        messages of the same conversation.
+
+        The populated subset identifies the source platform:
+          - `ctwa_clid` and `source_*` fields: WhatsApp CTWA
+            (Click-to-WhatsApp). Attribution window is 7 days from click.
+            Forward to Meta Conversions API for Business Messaging replay.
+          - `ad_id` and `ads_context_data`: Facebook Messenger CTM
+            (Click-to-Message) or Instagram CTD (Click-to-Direct). Use
+            `ad_id` to attribute the conversation to a specific ad.
+      example:
         image_url: image_url
         source_type: source_type
-        source_id: source_id
-        ctwa_clid: ctwa_clid
+        source: source
         body: body
         thumbnail_url: thumbnail_url
-        headline: headline
+        type: type
         source_url: source_url
+        ads_context_data:
+          video_url: video_url
+          post_id: post_id
+          flow_id: flow_id
+          product_id: product_id
+          photo_url: photo_url
+          ad_title: ad_title
+        ad_id: ad_id
+        ref: ref
+        video_url: video_url
+        media_type: media_type
+        source_id: source_id
+        ctwa_clid: ctwa_clid
+        headline: headline
       properties:
         ctwa_clid:
           description: Meta's GCLID-equivalent click identifier.
@@ -42795,6 +42847,29 @@ components:
           type: string
         thumbnail_url:
           type: string
+        ad_id:
+          description: |
+            Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the
+            user clicked to start the conversation.
+          type: string
+        ref:
+          description: |
+            Optional `ref` parameter passed through from the Meta ad
+            creative. Facebook Messenger CTM / Instagram CTD only.
+          type: string
+        source:
+          description: |
+            Meta-supplied source identifier (e.g. `ADS`). Facebook Messenger
+            CTM / Instagram CTD only.
+          type: string
+        type:
+          description: |
+            Meta-supplied referral type (e.g. `OPEN_THREAD`). Facebook
+            Messenger CTM / Instagram CTD only.
+          type: string
+        ads_context_data:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral_ads_context_data"
+      nullable: true
     WebhookPayloadMessage_metadata:
       description: "Interactive message metadata (present when message is a quick\
         \ reply tap, postback button tap, or inline keyboard callback)"
@@ -42806,16 +42881,27 @@ components:
           storyId: storyId
           storyUrl: storyUrl
         referral:
-          video_url: video_url
-          media_type: media_type
           image_url: image_url
           source_type: source_type
-          source_id: source_id
-          ctwa_clid: ctwa_clid
+          source: source
           body: body
           thumbnail_url: thumbnail_url
-          headline: headline
+          type: type
           source_url: source_url
+          ads_context_data:
+            video_url: video_url
+            post_id: post_id
+            flow_id: flow_id
+            product_id: product_id
+            photo_url: photo_url
+            ad_title: ad_title
+          ad_id: ad_id
+          ref: ref
+          video_url: video_url
+          media_type: media_type
+          source_id: source_id
+          ctwa_clid: ctwa_clid
+          headline: headline
         isStoryMention: true
         flowResponseJson: flowResponseJson
         callbackData: callbackData
