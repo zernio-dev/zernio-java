@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_CENTS,
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_LIMIT_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T10:25:18.393151626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsSpend {
   public static final String JSON_PROPERTY_CURRENT_PERIOD_CENTS = "currentPeriodCents";
   @javax.annotation.Nullable
@@ -113,7 +113,7 @@ public class UsageStatsSpend {
   }
 
   /**
-   * Current-period X/Twitter API spend in cents, derived from the per-tier call counts. Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. 
+   * Current-period X/Twitter API spend in cents, summed from &#x60;xApiCallsByOperation&#x60; × per-operation prices. Tier-agnostic (covers every price including the $0.200 URL tier). Rounded up for conservative enforcement against &#x60;xSpendLimitCents&#x60;. 
    * @return xSpendCents
    */
   @javax.annotation.Nullable

@@ -38,48 +38,11 @@ import dev.zernio.ApiClient;
   XApiPricingTiersInner.JSON_PROPERTY_PRICE_PER_CALL_USD,
   XApiPricingTiersInner.JSON_PROPERTY_OPERATION_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T10:25:18.393151626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiPricingTiersInner {
-  /**
-   * Historical bucket key used in &#x60;xApiCalls&#x60; aggregation.
-   */
-  public enum TierEnum {
-    X_API_005(String.valueOf("x_api_005")),
-    
-    X_API_010(String.valueOf("x_api_010")),
-    
-    X_API_015(String.valueOf("x_api_015"));
-
-    private String value;
-
-    TierEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TierEnum fromValue(String value) {
-      for (TierEnum b : TierEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_TIER = "tier";
   @javax.annotation.Nullable
-  private TierEnum tier;
+  private String tier;
 
   public static final String JSON_PROPERTY_PRICE_PER_CALL_USD = "pricePerCallUsd";
   @javax.annotation.Nullable
@@ -92,26 +55,26 @@ public class XApiPricingTiersInner {
   public XApiPricingTiersInner() { 
   }
 
-  public XApiPricingTiersInner tier(@javax.annotation.Nullable TierEnum tier) {
+  public XApiPricingTiersInner tier(@javax.annotation.Nullable String tier) {
     this.tier = tier;
     return this;
   }
 
   /**
-   * Historical bucket key used in &#x60;xApiCalls&#x60; aggregation.
+   * Tier key derived from price (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). The first three keys map to the legacy &#x60;xApiCalls&#x60; aggregate; new tiers (e.g. &#x60;x_api_200&#x60; for the URL tier added April 2026) are surfaced here but not in the legacy shape. 
    * @return tier
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_TIER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public TierEnum getTier() {
+  public String getTier() {
     return tier;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_TIER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTier(@javax.annotation.Nullable TierEnum tier) {
+  public void setTier(@javax.annotation.Nullable String tier) {
     this.tier = tier;
   }
 

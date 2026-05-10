@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   XApiOperation.JSON_PROPERTY_TIER,
   XApiOperation.JSON_PROPERTY_TRIGGERED_BY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T10:25:18.393151626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiOperation {
   public static final String JSON_PROPERTY_OPERATION = "operation";
   @javax.annotation.Nullable
@@ -67,46 +67,9 @@ public class XApiOperation {
   @javax.annotation.Nullable
   private BigDecimal pricePerCallCents;
 
-  /**
-   * Which aggregate price tier this operation falls into.
-   */
-  public enum TierEnum {
-    X_API_005(String.valueOf("x_api_005")),
-    
-    X_API_010(String.valueOf("x_api_010")),
-    
-    X_API_015(String.valueOf("x_api_015"));
-
-    private String value;
-
-    TierEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TierEnum fromValue(String value) {
-      for (TierEnum b : TierEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_TIER = "tier";
   @javax.annotation.Nullable
-  private TierEnum tier;
+  private String tier;
 
   public static final String JSON_PROPERTY_TRIGGERED_BY = "triggeredBy";
   @javax.annotation.Nullable
@@ -235,26 +198,26 @@ public class XApiOperation {
   }
 
 
-  public XApiOperation tier(@javax.annotation.Nullable TierEnum tier) {
+  public XApiOperation tier(@javax.annotation.Nullable String tier) {
     this.tier = tier;
     return this;
   }
 
   /**
-   * Which aggregate price tier this operation falls into.
+   * Tier key derived from &#x60;pricePerCallUsd&#x60; (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). Useful for grouping operations by price in dashboards. 
    * @return tier
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_TIER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public TierEnum getTier() {
+  public String getTier() {
     return tier;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_TIER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTier(@javax.annotation.Nullable TierEnum tier) {
+  public void setTier(@javax.annotation.Nullable String tier) {
     this.tier = tier;
   }
 

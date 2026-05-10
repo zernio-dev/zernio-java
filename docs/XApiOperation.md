@@ -13,18 +13,8 @@ A single X API operation with its per-call price and the Zernio platform methods
 |**displayName** | **String** | Human-readable label shown on Metronome invoices. |  [optional] |
 |**pricePerCallUsd** | **BigDecimal** |  |  [optional] |
 |**pricePerCallCents** | **BigDecimal** | Per-call price in cents. Fractional values are intentional. |  [optional] |
-|**tier** | [**TierEnum**](#TierEnum) | Which aggregate price tier this operation falls into. |  [optional] |
+|**tier** | **String** | Tier key derived from &#x60;pricePerCallUsd&#x60; (e.g. &#x60;x_api_005&#x60; for $0.005, &#x60;x_api_200&#x60; for $0.200). Useful for grouping operations by price in dashboards.  |  [optional] |
 |**triggeredBy** | [**List&lt;XApiOperationTriggeredByInner&gt;**](XApiOperationTriggeredByInner.md) | Zernio platform methods that emit this operation, with their metering rule. |  [optional] |
-
-
-
-## Enum: TierEnum
-
-| Name | Value |
-|---- | -----|
-| X_API_005 | &quot;x_api_005&quot; |
-| X_API_010 | &quot;x_api_010&quot; |
-| X_API_015 | &quot;x_api_015&quot; |
 
 
 

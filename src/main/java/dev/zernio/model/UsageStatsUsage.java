@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UsageStatsUsage.JSON_PROPERTY_X_API_CALLS,
   UsageStatsUsage.JSON_PROPERTY_X_API_CALLS_BY_OPERATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T10:25:18.393151626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsUsage {
   public static final String JSON_PROPERTY_UPLOADS = "uploads";
   @javax.annotation.Nullable
@@ -177,7 +177,9 @@ public class UsageStatsUsage {
   /**
    * Get xApiCalls
    * @return xApiCalls
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_X_API_CALLS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -207,7 +209,7 @@ public class UsageStatsUsage {
   }
 
   /**
-   * Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. 
+   * Metronome users only. Per-operation X API call counts keyed by operation (e.g. &#x60;posts_read&#x60;, &#x60;content_create&#x60;, &#x60;content_create_with_url&#x60;). Resolve each key to price and metadata via &#x60;GET /v1/billing/x-pricing&#x60;. This is the canonical source — covers every price tier including the $0.200 URL tier that &#x60;xApiCalls&#x60; excludes. 
    * @return xApiCallsByOperation
    */
   @javax.annotation.Nullable

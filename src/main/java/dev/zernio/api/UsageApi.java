@@ -54,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T10:25:18.393151626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -173,7 +173,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @return UsageStats
    * @throws ApiException if fails to make API call
    */
@@ -183,7 +183,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @param headers Optional headers to include in the request
    * @return UsageStats
    * @throws ApiException if fails to make API call
@@ -195,7 +195,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
    */
@@ -205,7 +205,7 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCalls&#x60; (aggregated by tier), &#x60;usage.xApiCallsByOperation&#x60;     (per-operation map — resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;),     plus a &#x60;spend&#x60; block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. 
+   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
