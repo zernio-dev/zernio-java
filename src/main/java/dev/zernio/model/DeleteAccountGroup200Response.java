@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   DeleteAccountGroup200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-08T17:23:38.556864322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T10:25:18.393151626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteAccountGroup200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
