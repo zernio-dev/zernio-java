@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   InstagramAccountInsightsResponseMetricsValueValuesInner.JSON_PROPERTY_DATE,
   InstagramAccountInsightsResponseMetricsValueValuesInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T16:25:42.446803600Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T16:37:56.207674447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramAccountInsightsResponseMetricsValueValuesInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable

@@ -725,6 +725,7 @@ docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
 docs/TikTokPlatformData.md
 docs/TrackingTag.md
+docs/TrackingTagsApi.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
@@ -987,6 +988,7 @@ src/main/java/dev/zernio/api/QueueApi.java
 src/main/java/dev/zernio/api/RedditSearchApi.java
 src/main/java/dev/zernio/api/ReviewsApi.java
 src/main/java/dev/zernio/api/SequencesApi.java
+src/main/java/dev/zernio/api/TrackingTagsApi.java
 src/main/java/dev/zernio/api/TwitterEngagementApi.java
 src/main/java/dev/zernio/api/UsageApi.java
 src/main/java/dev/zernio/api/UsersApi.java
@@ -1884,14 +1886,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/AddTrackingTagSharedAccount201ResponseTest.java
-src/test/java/dev/zernio/model/AddTrackingTagSharedAccountRequestTest.java
-src/test/java/dev/zernio/model/CreateTrackingTag201ResponseTest.java
-src/test/java/dev/zernio/model/CreateTrackingTagRequestTest.java
-src/test/java/dev/zernio/model/GetTrackingTagStats200ResponseStatsTest.java
-src/test/java/dev/zernio/model/GetTrackingTagStats200ResponseTest.java
-src/test/java/dev/zernio/model/ListTrackingTagSharedAccounts200ResponseTest.java
-src/test/java/dev/zernio/model/ListTrackingTags200ResponseTest.java
-src/test/java/dev/zernio/model/SharedAdAccountTest.java
-src/test/java/dev/zernio/model/TrackingTagTest.java
-src/test/java/dev/zernio/model/UpdateTrackingTagRequestTest.java
+src/test/java/dev/zernio/api/TrackingTagsApiTest.java
