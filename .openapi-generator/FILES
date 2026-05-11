@@ -39,6 +39,8 @@ docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
 docs/AddMessageReactionRequest.md
+docs/AddTrackingTagSharedAccount201Response.md
+docs/AddTrackingTagSharedAccountRequest.md
 docs/AddUsersToAdAudience200Response.md
 docs/AddUsersToAdAudienceRequest.md
 docs/AddUsersToAdAudienceRequestUsersInner.md
@@ -179,6 +181,8 @@ docs/CreateStandaloneAdRequestImages.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestVideo.md
+docs/CreateTrackingTag201Response.md
+docs/CreateTrackingTagRequest.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppFlow200Response.md
 docs/CreateWhatsAppFlow200ResponseFlow.md
@@ -398,6 +402,8 @@ docs/GetTikTokCreatorInfo200ResponseCommercialContentTypesInner.md
 docs/GetTikTokCreatorInfo200ResponseCreator.md
 docs/GetTikTokCreatorInfo200ResponsePostingLimits.md
 docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md
+docs/GetTrackingTagStats200Response.md
+docs/GetTrackingTagStats200ResponseStats.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
 docs/GetWebhookSettings200Response.md
@@ -548,6 +554,8 @@ docs/ListSequences200Response.md
 docs/ListSequences200ResponseSequencesInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
+docs/ListTrackingTagSharedAccounts200Response.md
+docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
 docs/ListUsers200ResponseUsersInner.md
 docs/ListWhatsAppFlows200Response.md
@@ -708,6 +716,7 @@ docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SharedAdAccount.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
@@ -715,6 +724,7 @@ docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
 docs/TikTokPlatformData.md
+docs/TrackingTag.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
@@ -804,6 +814,7 @@ docs/UpdateQueueSlotRequest.md
 docs/UpdateRedditSubredditsRequest.md
 docs/UpdateSequence200Response.md
 docs/UpdateSequence200ResponseSequence.md
+docs/UpdateTrackingTagRequest.md
 docs/UpdateWebhookSettings200Response.md
 docs/UpdateWebhookSettingsRequest.md
 docs/UpdateWhatsAppBusinessProfileRequest.md
@@ -1015,6 +1026,8 @@ src/main/java/dev/zernio/model/AddConversionAssociations200Response.java
 src/main/java/dev/zernio/model/AddConversionAssociations200ResponseFailedInner.java
 src/main/java/dev/zernio/model/AddConversionAssociationsRequest.java
 src/main/java/dev/zernio/model/AddMessageReactionRequest.java
+src/main/java/dev/zernio/model/AddTrackingTagSharedAccount201Response.java
+src/main/java/dev/zernio/model/AddTrackingTagSharedAccountRequest.java
 src/main/java/dev/zernio/model/AddUsersToAdAudience200Response.java
 src/main/java/dev/zernio/model/AddUsersToAdAudienceRequest.java
 src/main/java/dev/zernio/model/AddUsersToAdAudienceRequestUsersInner.java
@@ -1147,6 +1160,8 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestImages.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestVideo.java
+src/main/java/dev/zernio/model/CreateTrackingTag201Response.java
+src/main/java/dev/zernio/model/CreateTrackingTagRequest.java
 src/main/java/dev/zernio/model/CreateWebhookSettingsRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppFlow200Response.java
 src/main/java/dev/zernio/model/CreateWhatsAppFlow200ResponseFlow.java
@@ -1364,6 +1379,8 @@ src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCommercialContentT
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponseCreator.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePostingLimits.java
 src/main/java/dev/zernio/model/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.java
+src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
+src/main/java/dev/zernio/model/GetTrackingTagStats200ResponseStats.java
 src/main/java/dev/zernio/model/GetUser200Response.java
 src/main/java/dev/zernio/model/GetUser200ResponseUser.java
 src/main/java/dev/zernio/model/GetWebhookSettings200Response.java
@@ -1505,6 +1522,8 @@ src/main/java/dev/zernio/model/ListSequences200Response.java
 src/main/java/dev/zernio/model/ListSequences200ResponseSequencesInner.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200Response.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200ResponsePublicProfilesInner.java
+src/main/java/dev/zernio/model/ListTrackingTagSharedAccounts200Response.java
+src/main/java/dev/zernio/model/ListTrackingTags200Response.java
 src/main/java/dev/zernio/model/ListUsers200Response.java
 src/main/java/dev/zernio/model/ListUsers200ResponseUsersInner.java
 src/main/java/dev/zernio/model/ListWhatsAppFlows200Response.java
@@ -1656,6 +1675,7 @@ src/main/java/dev/zernio/model/SetInstagramIceBreakersRequestIceBreakersInner.ja
 src/main/java/dev/zernio/model/SetMessengerMenuRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequestCommandsInner.java
+src/main/java/dev/zernio/model/SharedAdAccount.java
 src/main/java/dev/zernio/model/SnapchatPlatformData.java
 src/main/java/dev/zernio/model/SocialAccount.java
 src/main/java/dev/zernio/model/SocialAccountProfileId.java
@@ -1663,6 +1683,7 @@ src/main/java/dev/zernio/model/TelegramPlatformData.java
 src/main/java/dev/zernio/model/TestWebhookRequest.java
 src/main/java/dev/zernio/model/ThreadsPlatformData.java
 src/main/java/dev/zernio/model/TikTokPlatformData.java
+src/main/java/dev/zernio/model/TrackingTag.java
 src/main/java/dev/zernio/model/TwitterPlatformData.java
 src/main/java/dev/zernio/model/TwitterPlatformDataPoll.java
 src/main/java/dev/zernio/model/TwitterPlatformDataThreadItemsInner.java
@@ -1751,6 +1772,7 @@ src/main/java/dev/zernio/model/UpdateQueueSlotRequest.java
 src/main/java/dev/zernio/model/UpdateRedditSubredditsRequest.java
 src/main/java/dev/zernio/model/UpdateSequence200Response.java
 src/main/java/dev/zernio/model/UpdateSequence200ResponseSequence.java
+src/main/java/dev/zernio/model/UpdateTrackingTagRequest.java
 src/main/java/dev/zernio/model/UpdateWebhookSettings200Response.java
 src/main/java/dev/zernio/model/UpdateWebhookSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateWhatsAppBusinessProfileRequest.java
@@ -1862,4 +1884,14 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/DmButtonTest.java
+src/test/java/dev/zernio/model/AddTrackingTagSharedAccount201ResponseTest.java
+src/test/java/dev/zernio/model/AddTrackingTagSharedAccountRequestTest.java
+src/test/java/dev/zernio/model/CreateTrackingTag201ResponseTest.java
+src/test/java/dev/zernio/model/CreateTrackingTagRequestTest.java
+src/test/java/dev/zernio/model/GetTrackingTagStats200ResponseStatsTest.java
+src/test/java/dev/zernio/model/GetTrackingTagStats200ResponseTest.java
+src/test/java/dev/zernio/model/ListTrackingTagSharedAccounts200ResponseTest.java
+src/test/java/dev/zernio/model/ListTrackingTags200ResponseTest.java
+src/test/java/dev/zernio/model/SharedAdAccountTest.java
+src/test/java/dev/zernio/model/TrackingTagTest.java
+src/test/java/dev/zernio/model/UpdateTrackingTagRequestTest.java

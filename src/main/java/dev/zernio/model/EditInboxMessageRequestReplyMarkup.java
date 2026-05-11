@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   EditInboxMessageRequestReplyMarkup.JSON_PROPERTY_TYPE,
   EditInboxMessageRequestReplyMarkup.JSON_PROPERTY_KEYBOARD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T07:24:35.332031796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T16:25:42.446803600Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditInboxMessageRequestReplyMarkup {
   /**
    * Gets or Sets type

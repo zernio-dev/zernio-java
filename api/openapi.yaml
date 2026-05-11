@@ -16669,6 +16669,472 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/tracking-tags:
+    get:
+      description: |
+        Returns the tracking tags (Meta Pixels) the connected ads account can
+        see. Pass `?adAccountId=act_...` to scope the list to a single ad
+        account; omit it to list every pixel reachable by the token (the name
+        is then suffixed with the ad account it was discovered on, for
+        disambiguation). The list view omits `code` — call `getTrackingTag` for
+        the install snippet and full detail.
+
+        Meta only today (platform `metaads`); other platforms return 405. The
+        `accountId` must be the Meta *ads* SocialAccount created by the Ads
+        add-on connect flow, not a Facebook/Instagram posting account. Get your
+        `act_...` ids from `GET /v1/ads/accounts`.
+      operationId: listTrackingTags
+      parameters:
+      - description: Meta ads SocialAccount id (platform `metaads`).
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Optional. Scope to one ad account, e.g. `act_123456789`."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listTrackingTags_200_response"
+          description: Tracking tags listed
+        "400":
+          description: "Account platform not supported, or invalid `adAccountId`."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account not found or not accessible.
+        "405":
+          description: Platform does not support listing tracking tags.
+      security:
+      - bearerAuth: []
+      summary: List tracking tags (Meta Pixels)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Creates a Meta Pixel on the given ad account (`POST /act_{id}/adspixels`
+        — `name` is the only input). Returns the created tag including its
+        install `code`. The pixel is owned by the Business Manager that owns the
+        ad account; a pixel created on a personal (non-BM) ad account ends up
+        with `ownerBusinessId: null` and can't be shared with other ad accounts.
+
+        Creating a pixel does NOT install it — install the returned `code`
+        snippet on the site, or send events server-side via
+        `POST /v1/ads/conversions`. The check `installed` is derived from
+        `lastFiredTime`.
+
+        NOT idempotent: each call creates a new pixel. Do not retry blindly on
+        timeout. Meta only (platform `metaads`); other platforms return 405.
+      operationId: createTrackingTag
+      parameters:
+      - description: Meta ads SocialAccount id (platform `metaads`).
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createTrackingTag_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingTag_201_response"
+          description: Tracking tag created
+        "400":
+          description: "Invalid body, invalid `adAccountId`, over the per-business\
+            \ pixel cap, or ad account not in a Business Manager."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account not found or not accessible.
+        "405":
+          description: Platform does not support creating tracking tags.
+      security:
+      - bearerAuth: []
+      summary: Create a tracking tag (Meta Pixel)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/tracking-tags/{tagId}:
+    get:
+      description: |
+        Returns the full tag record including the base-code `code` snippet,
+        `lastFiredTime`, `ownerBusinessId`, `isUnavailable`, etc. Meta only
+        (platform `metaads`); other platforms return 405.
+      operationId: getTrackingTag
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Pixel id.
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingTag_201_response"
+          description: Tracking tag fetched
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account or tracking tag not found.
+        "405":
+          description: Platform does not support fetching a tracking tag.
+      security:
+      - bearerAuth: []
+      summary: Fetch a single tracking tag (Meta Pixel)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Partial-update a pixel. Whitelisted fields: `name` (rename),
+        `enableAutomaticMatching`, `automaticMatchingFields`,
+        `firstPartyCookieStatus`, `dataUseSetting`. At least one is required.
+        Returns the re-fetched canonical tag. Meta only (platform `metaads`);
+        other platforms return 405.
+
+        There is no DELETE — Meta has no API to delete a pixel. To stop using
+        one, unshare it from your ad accounts (`DELETE
+        .../tracking-tags/{tagId}/shared-accounts`) or disable it in Events
+        Manager.
+      operationId: updateTrackingTag
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Pixel id.
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateTrackingTag_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createTrackingTag_201_response"
+          description: Tracking tag updated (re-fetched canonical state)
+        "400":
+          description: Invalid body (e.g. no fields supplied) or Meta validation failure.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account or tracking tag not found.
+        "405":
+          description: Platform does not support updating tracking tags.
+      security:
+      - bearerAuth: []
+      summary: Update a tracking tag (Meta Pixel)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts:
+    delete:
+      description: |
+        `adAccountId` may be passed as a query parameter (recommended) or as a
+        JSON body field for clients that can send DELETE bodies. Meta only
+        (platform `metaads`); other platforms return 405.
+      operationId: removeTrackingTagSharedAccount
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Pixel id.
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Ad account to unshare, e.g. `act_123456789`. May also be sent\
+          \ in the JSON body."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "204":
+          description: Ad account unshared (no content).
+        "400":
+          description: "`adAccountId` missing (neither query nor body), or Meta rejected\
+            \ the unshare."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account or tracking tag not found.
+        "405":
+          description: Platform does not support shared accounts.
+      security:
+      - bearerAuth: []
+      summary: Stop sharing a tracking tag with an ad account
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    get:
+      description: Meta only (platform `metaads`); other platforms return 405.
+      operationId: listTrackingTagSharedAccounts
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Pixel id.
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listTrackingTagSharedAccounts_200_response"
+          description: Shared ad accounts listed
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account or tracking tag not found.
+        "405":
+          description: Platform does not support shared accounts.
+      security:
+      - bearerAuth: []
+      summary: List ad accounts a tracking tag is shared with
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Shares the pixel with another ad account so campaigns/audiences in that
+        account can use it. Requires that you administer both the pixel's owning
+        Business Manager and the target ad account; a pixel on a personal
+        (non-BM) ad account can't be shared (Meta will reject the call). Meta
+        only (platform `metaads`); other platforms return 405.
+      operationId: addTrackingTagSharedAccount
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Pixel id.
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addTrackingTagSharedAccount_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addTrackingTagSharedAccount_201_response"
+          description: Tracking tag shared with the ad account
+        "400":
+          description: "Invalid body / `adAccountId`, or Meta rejected the share (e.g.\
+            \ personal ad account)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account or tracking tag not found.
+        "405":
+          description: Platform does not support shared accounts.
+      security:
+      - bearerAuth: []
+      summary: Share a tracking tag with an ad account
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/tracking-tags/{tagId}/stats:
+    get:
+      description: |
+        Returns aggregated event counts for the pixel (`GET /{pixel_id}/stats`).
+        Rows are passed through from Meta as-is — their shape depends on the
+        `aggregation` requested. Meta only (platform `metaads`); other platforms
+        return 405.
+      operationId: getTrackingTagStats
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Pixel id.
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Aggregation dimension. Defaults to `event`.
+        explode: true
+        in: query
+        name: aggregation
+        required: false
+        schema:
+          default: event
+          enum:
+          - event
+          - host
+          - url
+          - url_by_rule
+          - pixel_fire
+          - device_type
+          - device_os
+          - browser_type
+          - had_pii
+          - custom_data_field
+          - match_keys
+          - event_source
+          - event_detection_method
+          - event_processing_results
+          - event_total_counts
+          - event_value_count
+          type: string
+        style: form
+      - description: Unix seconds lower bound.
+        explode: true
+        in: query
+        name: startTime
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Unix seconds upper bound.
+        explode: true
+        in: query
+        name: endTime
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTrackingTagStats_200_response"
+          description: Stats fetched
+        "400":
+          description: Invalid query parameter.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads add-on required, or the Meta token lacks ads permissions\
+            \ (reconnect required)."
+        "404":
+          description: Account or tracking tag not found.
+        "405":
+          description: Platform does not support tracking-tag stats.
+      security:
+      - bearerAuth: []
+      summary: Aggregated event stats for a tracking tag (Meta Pixel)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
 components:
   parameters:
     PageParam:
@@ -24050,6 +24516,106 @@ components:
       required:
       - id
       - name
+    TrackingTag:
+      description: |
+        A platform measurement tag — the thing you create, install on a
+        website, send events to, and target ads against. On Meta this is a
+        Pixel (`kind: pixel`). The shape is platform-neutral so other platforms
+        (Pinterest Tag, LinkedIn Insight Tag, etc.) can be added without
+        changing the contract; platform-specific fields are simply absent where
+        a platform has no equivalent. Returned by `listTrackingTags`,
+        `createTrackingTag`, `getTrackingTag`, and `updateTrackingTag`.
+      example:
+        lastFiredTime: 0
+        installed: true
+        ownerBusinessId: ownerBusinessId
+        code: code
+        creationTime: 6
+        kind: pixel
+        ownerAdAccountId: ownerAdAccountId
+        name: name
+        id: id
+        isUnavailable: true
+        platform: metaads
+        status: active
+      properties:
+        id:
+          description: "Platform-native tag id. Meta: numeric pixel id, as a string."
+          type: string
+        name:
+          type: string
+        platform:
+          enum:
+          - metaads
+          type: string
+        kind:
+          description: "Platform-native flavor of the tag (Meta: `pixel`)."
+          enum:
+          - pixel
+          - tag
+          - insight_tag
+          type: string
+        status:
+          description: '`inactive` when the platform reports the tag as broken/unavailable.'
+          enum:
+          - active
+          - inactive
+          type: string
+        code:
+          description: |
+            The base-code `<script>` snippet to install on the site. Meta only;
+            populated by `getTrackingTag`, omitted from the list view.
+          type: string
+        lastFiredTime:
+          description: |
+            Unix seconds of the last event the tag received, or `null` if it
+            never fired. The practical "is it installed and working" signal.
+          type: integer
+          nullable: true
+        isUnavailable:
+          description: Whether the tag is in a broken/unavailable state (Meta `is_unavailable`).
+          type: boolean
+        installed:
+          description: Convenience flag derived from `lastFiredTime` — has the tag
+            ever fired.
+          type: boolean
+        creationTime:
+          description: Unix seconds the tag was created.
+          type: integer
+        ownerBusinessId:
+          description: |
+            Business Manager id that owns the tag, or `null` when the tag lives
+            on a personal (non-BM) ad account — such tags can't be shared with
+            other ad accounts.
+          type: string
+          nullable: true
+        ownerAdAccountId:
+          description: "Ad account id (`act_...`) that owns the tag, when reported."
+          type: string
+      required:
+      - id
+      - kind
+      - name
+      - platform
+      - status
+    SharedAdAccount:
+      description: An ad account a tracking tag is shared with (Meta `shared_accounts`
+        edge).
+      example:
+        name: name
+        businessId: businessId
+        id: id
+      properties:
+        id:
+          description: "Ad account id, in `act_<digits>` form."
+          type: string
+        name:
+          type: string
+        businessId:
+          description: Business Manager id that owns the ad account
+          type: string
+      required:
+      - id
     validatePostLength_request:
       properties:
         text:
@@ -41962,6 +42528,196 @@ components:
           type: object
         message:
           type: string
+    listTrackingTags_200_response:
+      example:
+        platform: metaads
+        tags:
+        - lastFiredTime: 0
+          installed: true
+          ownerBusinessId: ownerBusinessId
+          code: code
+          creationTime: 6
+          kind: pixel
+          ownerAdAccountId: ownerAdAccountId
+          name: name
+          id: id
+          isUnavailable: true
+          platform: metaads
+          status: active
+        - lastFiredTime: 0
+          installed: true
+          ownerBusinessId: ownerBusinessId
+          code: code
+          creationTime: 6
+          kind: pixel
+          ownerAdAccountId: ownerAdAccountId
+          name: name
+          id: id
+          isUnavailable: true
+          platform: metaads
+          status: active
+      properties:
+        platform:
+          enum:
+          - metaads
+          type: string
+        tags:
+          items:
+            $ref: "#/components/schemas/TrackingTag"
+          type: array
+    createTrackingTag_request:
+      properties:
+        adAccountId:
+          description: "Meta ad account id, e.g. `act_123456789`."
+          type: string
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+      required:
+      - adAccountId
+      - name
+    createTrackingTag_201_response:
+      example:
+        tag:
+          lastFiredTime: 0
+          installed: true
+          ownerBusinessId: ownerBusinessId
+          code: code
+          creationTime: 6
+          kind: pixel
+          ownerAdAccountId: ownerAdAccountId
+          name: name
+          id: id
+          isUnavailable: true
+          platform: metaads
+          status: active
+        platform: metaads
+      properties:
+        platform:
+          enum:
+          - metaads
+          type: string
+        tag:
+          $ref: "#/components/schemas/TrackingTag"
+    updateTrackingTag_request:
+      description: At least one field is required; the route returns 400 if the body
+        is empty.
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        enableAutomaticMatching:
+          description: Meta Advanced Matching toggle (`enable_automatic_matching`).
+          type: boolean
+        automaticMatchingFields:
+          description: |
+            Which user fields Advanced Matching may collect. Meta's
+            terse codes: em=email, ph=phone, fn=first name, ln=last
+            name, ge=gender, db=date of birth, ct=city, st=state,
+            zp=zip.
+          items:
+            enum:
+            - em
+            - ph
+            - fn
+            - ln
+            - ge
+            - db
+            - ct
+            - st
+            - zp
+            - country
+            - external_id
+            type: string
+          type: array
+        firstPartyCookieStatus:
+          enum:
+          - empty
+          - first_party_cookie_disabled
+          - first_party_cookie_enabled
+          type: string
+        dataUseSetting:
+          enum:
+          - advertising_and_analytics
+          - analytics_only
+          - empty
+          type: string
+    listTrackingTagSharedAccounts_200_response:
+      example:
+        sharedAccounts:
+        - name: name
+          businessId: businessId
+          id: id
+        - name: name
+          businessId: businessId
+          id: id
+        platform: metaads
+      properties:
+        platform:
+          enum:
+          - metaads
+          type: string
+        sharedAccounts:
+          items:
+            $ref: "#/components/schemas/SharedAdAccount"
+          type: array
+    addTrackingTagSharedAccount_request:
+      properties:
+        adAccountId:
+          description: "Ad account to share with, e.g. `act_123456789`."
+          type: string
+      required:
+      - adAccountId
+    addTrackingTagSharedAccount_201_response:
+      example:
+        ok: true
+        platform: metaads
+      properties:
+        platform:
+          enum:
+          - metaads
+          type: string
+        ok:
+          type: boolean
+    getTrackingTagStats_200_response_stats:
+      example:
+        aggregation: aggregation
+        startTime: 0
+        endTime: 6
+        rows:
+        - key: ""
+        - key: ""
+      properties:
+        aggregation:
+          type: string
+        startTime:
+          type: integer
+        endTime:
+          type: integer
+        rows:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+    getTrackingTagStats_200_response:
+      example:
+        stats:
+          aggregation: aggregation
+          startTime: 0
+          endTime: 6
+          rows:
+          - key: ""
+          - key: ""
+        platform: metaads
+      properties:
+        platform:
+          enum:
+          - metaads
+          type: string
+        stats:
+          $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
     WhatsAppHeaderComponent_example:
       properties:
         header_text:
