@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.DmButton;
 import dev.zernio.model.ListCommentAutomations200ResponseAutomationsInnerStats;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -46,12 +47,13 @@ import dev.zernio.ApiClient;
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_KEYWORDS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_MATCH_MODE,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_DM_MESSAGE,
+  ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_BUTTONS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_COMMENT_REPLY,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_IS_ACTIVE,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_STATS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T07:24:35.332031796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -158,6 +160,10 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_DM_MESSAGE = "dmMessage";
   @javax.annotation.Nullable
   private String dmMessage;
+
+  public static final String JSON_PROPERTY_BUTTONS = "buttons";
+  @javax.annotation.Nullable
+  private List<DmButton> buttons = new ArrayList<>();
 
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
@@ -402,6 +408,38 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   }
 
 
+  public ListCommentAutomations200ResponseAutomationsInner buttons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
+    return this;
+  }
+
+  public ListCommentAutomations200ResponseAutomationsInner addButtonsItem(DmButton buttonsItem) {
+    if (this.buttons == null) {
+      this.buttons = new ArrayList<>();
+    }
+    this.buttons.add(buttonsItem);
+    return this;
+  }
+
+  /**
+   * Inline DM buttons (up to 3). Omitted when none are set.
+   * @return buttons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<DmButton> getButtons() {
+    return buttons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setButtons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
+  }
+
+
   public ListCommentAutomations200ResponseAutomationsInner commentReply(@javax.annotation.Nullable String commentReply) {
     this.commentReply = commentReply;
     return this;
@@ -519,6 +557,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
         Objects.equals(this.keywords, listCommentAutomations200ResponseAutomationsInner.keywords) &&
         Objects.equals(this.matchMode, listCommentAutomations200ResponseAutomationsInner.matchMode) &&
         Objects.equals(this.dmMessage, listCommentAutomations200ResponseAutomationsInner.dmMessage) &&
+        Objects.equals(this.buttons, listCommentAutomations200ResponseAutomationsInner.buttons) &&
         Objects.equals(this.commentReply, listCommentAutomations200ResponseAutomationsInner.commentReply) &&
         Objects.equals(this.isActive, listCommentAutomations200ResponseAutomationsInner.isActive) &&
         Objects.equals(this.stats, listCommentAutomations200ResponseAutomationsInner.stats) &&
@@ -527,7 +566,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, accountId, platformPostId, postTitle, keywords, matchMode, dmMessage, commentReply, isActive, stats, createdAt);
+    return Objects.hash(id, name, platform, accountId, platformPostId, postTitle, keywords, matchMode, dmMessage, buttons, commentReply, isActive, stats, createdAt);
   }
 
   @Override
@@ -543,6 +582,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    matchMode: ").append(toIndentedString(matchMode)).append("\n");
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
+    sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
@@ -641,6 +681,16 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     // add `dmMessage` to the URL query string
     if (getDmMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdmMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDmMessage()))));
+    }
+
+    // add `buttons` to the URL query string
+    if (getButtons() != null) {
+      for (int i = 0; i < getButtons().size(); i++) {
+        if (getButtons().get(i) != null) {
+          joiner.add(getButtons().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbuttons%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `commentReply` to the URL query string

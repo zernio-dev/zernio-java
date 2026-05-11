@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.DmButton;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,10 +40,11 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomationRequest.JSON_PROPERTY_KEYWORDS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_MATCH_MODE,
   UpdateCommentAutomationRequest.JSON_PROPERTY_DM_MESSAGE,
+  UpdateCommentAutomationRequest.JSON_PROPERTY_BUTTONS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY,
   UpdateCommentAutomationRequest.JSON_PROPERTY_IS_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T07:24:35.332031796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -94,6 +96,10 @@ public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_DM_MESSAGE = "dmMessage";
   @javax.annotation.Nullable
   private String dmMessage;
+
+  public static final String JSON_PROPERTY_BUTTONS = "buttons";
+  @javax.annotation.Nullable
+  private List<DmButton> buttons = new ArrayList<>();
 
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
@@ -210,6 +216,38 @@ public class UpdateCommentAutomationRequest {
   }
 
 
+  public UpdateCommentAutomationRequest buttons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
+    return this;
+  }
+
+  public UpdateCommentAutomationRequest addButtonsItem(DmButton buttonsItem) {
+    if (this.buttons == null) {
+      this.buttons = new ArrayList<>();
+    }
+    this.buttons.add(buttonsItem);
+    return this;
+  }
+
+  /**
+   * Inline DM buttons (1-3). Pass [] to clear all buttons.
+   * @return buttons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<DmButton> getButtons() {
+    return buttons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setButtons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
+  }
+
+
   public UpdateCommentAutomationRequest commentReply(@javax.annotation.Nullable String commentReply) {
     this.commentReply = commentReply;
     return this;
@@ -274,13 +312,14 @@ public class UpdateCommentAutomationRequest {
         Objects.equals(this.keywords, updateCommentAutomationRequest.keywords) &&
         Objects.equals(this.matchMode, updateCommentAutomationRequest.matchMode) &&
         Objects.equals(this.dmMessage, updateCommentAutomationRequest.dmMessage) &&
+        Objects.equals(this.buttons, updateCommentAutomationRequest.buttons) &&
         Objects.equals(this.commentReply, updateCommentAutomationRequest.commentReply) &&
         Objects.equals(this.isActive, updateCommentAutomationRequest.isActive);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, keywords, matchMode, dmMessage, commentReply, isActive);
+    return Objects.hash(name, keywords, matchMode, dmMessage, buttons, commentReply, isActive);
   }
 
   @Override
@@ -291,6 +330,7 @@ public class UpdateCommentAutomationRequest {
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    matchMode: ").append(toIndentedString(matchMode)).append("\n");
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
+    sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("}");
@@ -362,6 +402,16 @@ public class UpdateCommentAutomationRequest {
     // add `dmMessage` to the URL query string
     if (getDmMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdmMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDmMessage()))));
+    }
+
+    // add `buttons` to the URL query string
+    if (getButtons() != null) {
+      for (int i = 0; i < getButtons().size(); i++) {
+        if (getButtons().get(i) != null) {
+          joiner.add(getButtons().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbuttons%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `commentReply` to the URL query string

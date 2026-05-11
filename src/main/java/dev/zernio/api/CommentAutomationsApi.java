@@ -53,7 +53,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T07:24:35.332031796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -794,7 +794,7 @@ public class CommentAutomationsApi {
 
   /**
    * Update automation settings
-   * Update an automation&#39;s keywords, DM message, comment reply, or active status.
+   * Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
    * @return UpdateCommentAutomation200Response
@@ -806,7 +806,7 @@ public class CommentAutomationsApi {
 
   /**
    * Update automation settings
-   * Update an automation&#39;s keywords, DM message, comment reply, or active status.
+   * Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
    * @param headers Optional headers to include in the request
@@ -820,7 +820,7 @@ public class CommentAutomationsApi {
 
   /**
    * Update automation settings
-   * Update an automation&#39;s keywords, DM message, comment reply, or active status.
+   * Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
    * @return ApiResponse&lt;UpdateCommentAutomation200Response&gt;
@@ -832,7 +832,7 @@ public class CommentAutomationsApi {
 
   /**
    * Update automation settings
-   * Update an automation&#39;s keywords, DM message, comment reply, or active status.
+   * Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. 
    * @param automationId  (required)
    * @param updateCommentAutomationRequest  (optional)
    * @param headers Optional headers to include in the request

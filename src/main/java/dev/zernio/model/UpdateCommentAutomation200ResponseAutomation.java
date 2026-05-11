@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.DmButton;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,11 +42,12 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_KEYWORDS,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_MATCH_MODE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_DM_MESSAGE,
+  UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_BUTTONS,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_COMMENT_REPLY,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_IS_ACTIVE,
   UpdateCommentAutomation200ResponseAutomation.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T07:24:35.332031796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -101,6 +103,10 @@ public class UpdateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_DM_MESSAGE = "dmMessage";
   @javax.annotation.Nullable
   private String dmMessage;
+
+  public static final String JSON_PROPERTY_BUTTONS = "buttons";
+  @javax.annotation.Nullable
+  private List<DmButton> buttons = new ArrayList<>();
 
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
@@ -245,6 +251,38 @@ public class UpdateCommentAutomation200ResponseAutomation {
   }
 
 
+  public UpdateCommentAutomation200ResponseAutomation buttons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
+    return this;
+  }
+
+  public UpdateCommentAutomation200ResponseAutomation addButtonsItem(DmButton buttonsItem) {
+    if (this.buttons == null) {
+      this.buttons = new ArrayList<>();
+    }
+    this.buttons.add(buttonsItem);
+    return this;
+  }
+
+  /**
+   * Inline DM buttons (up to 3). Omitted when none are set.
+   * @return buttons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<DmButton> getButtons() {
+    return buttons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setButtons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
+  }
+
+
   public UpdateCommentAutomation200ResponseAutomation commentReply(@javax.annotation.Nullable String commentReply) {
     this.commentReply = commentReply;
     return this;
@@ -334,6 +372,7 @@ public class UpdateCommentAutomation200ResponseAutomation {
         Objects.equals(this.keywords, updateCommentAutomation200ResponseAutomation.keywords) &&
         Objects.equals(this.matchMode, updateCommentAutomation200ResponseAutomation.matchMode) &&
         Objects.equals(this.dmMessage, updateCommentAutomation200ResponseAutomation.dmMessage) &&
+        Objects.equals(this.buttons, updateCommentAutomation200ResponseAutomation.buttons) &&
         Objects.equals(this.commentReply, updateCommentAutomation200ResponseAutomation.commentReply) &&
         Objects.equals(this.isActive, updateCommentAutomation200ResponseAutomation.isActive) &&
         Objects.equals(this.updatedAt, updateCommentAutomation200ResponseAutomation.updatedAt);
@@ -341,7 +380,7 @@ public class UpdateCommentAutomation200ResponseAutomation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, keywords, matchMode, dmMessage, commentReply, isActive, updatedAt);
+    return Objects.hash(id, name, keywords, matchMode, dmMessage, buttons, commentReply, isActive, updatedAt);
   }
 
   @Override
@@ -353,6 +392,7 @@ public class UpdateCommentAutomation200ResponseAutomation {
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    matchMode: ").append(toIndentedString(matchMode)).append("\n");
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
+    sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
@@ -430,6 +470,16 @@ public class UpdateCommentAutomation200ResponseAutomation {
     // add `dmMessage` to the URL query string
     if (getDmMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdmMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDmMessage()))));
+    }
+
+    // add `buttons` to the URL query string
+    if (getButtons() != null) {
+      for (int i = 0; i < getButtons().size(); i++) {
+        if (getButtons().get(i) != null) {
+          joiner.add(getButtons().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbuttons%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `commentReply` to the URL query string

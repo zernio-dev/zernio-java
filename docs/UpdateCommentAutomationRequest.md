@@ -11,6 +11,7 @@
 |**keywords** | **List&lt;String&gt;** |  |  [optional] |
 |**matchMode** | [**MatchModeEnum**](#MatchModeEnum) |  |  [optional] |
 |**dmMessage** | **String** |  |  [optional] |
+|**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (1-3). Pass [] to clear all buttons. |  [optional] |
 |**commentReply** | **String** |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 

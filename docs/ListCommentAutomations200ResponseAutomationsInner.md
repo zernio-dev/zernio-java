@@ -16,6 +16,7 @@
 |**keywords** | **List&lt;String&gt;** |  |  [optional] |
 |**matchMode** | [**MatchModeEnum**](#MatchModeEnum) |  |  [optional] |
 |**dmMessage** | **String** |  |  [optional] |
+|**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (up to 3). Omitted when none are set. |  [optional] |
 |**commentReply** | **String** |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**stats** | [**ListCommentAutomations200ResponseAutomationsInnerStats**](ListCommentAutomations200ResponseAutomationsInnerStats.md) |  |  [optional] |

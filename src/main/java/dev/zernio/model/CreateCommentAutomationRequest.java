@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.DmButton;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -44,9 +45,10 @@ import dev.zernio.ApiClient;
   CreateCommentAutomationRequest.JSON_PROPERTY_KEYWORDS,
   CreateCommentAutomationRequest.JSON_PROPERTY_MATCH_MODE,
   CreateCommentAutomationRequest.JSON_PROPERTY_DM_MESSAGE,
+  CreateCommentAutomationRequest.JSON_PROPERTY_BUTTONS,
   CreateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-10T11:09:57.724323199Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T07:24:35.332031796Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -118,6 +120,10 @@ public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_DM_MESSAGE = "dmMessage";
   @javax.annotation.Nonnull
   private String dmMessage;
+
+  public static final String JSON_PROPERTY_BUTTONS = "buttons";
+  @javax.annotation.Nullable
+  private List<DmButton> buttons = new ArrayList<>();
 
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
@@ -332,7 +338,7 @@ public class CreateCommentAutomationRequest {
   }
 
   /**
-   * DM text to send to commenter
+   * DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000.
    * @return dmMessage
    */
   @javax.annotation.Nonnull
@@ -347,6 +353,38 @@ public class CreateCommentAutomationRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDmMessage(@javax.annotation.Nonnull String dmMessage) {
     this.dmMessage = dmMessage;
+  }
+
+
+  public CreateCommentAutomationRequest buttons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
+    return this;
+  }
+
+  public CreateCommentAutomationRequest addButtonsItem(DmButton buttonsItem) {
+    if (this.buttons == null) {
+      this.buttons = new ArrayList<>();
+    }
+    this.buttons.add(buttonsItem);
+    return this;
+  }
+
+  /**
+   * Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM.
+   * @return buttons
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<DmButton> getButtons() {
+    return buttons;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUTTONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setButtons(@javax.annotation.Nullable List<DmButton> buttons) {
+    this.buttons = buttons;
   }
 
 
@@ -395,12 +433,13 @@ public class CreateCommentAutomationRequest {
         Objects.equals(this.keywords, createCommentAutomationRequest.keywords) &&
         Objects.equals(this.matchMode, createCommentAutomationRequest.matchMode) &&
         Objects.equals(this.dmMessage, createCommentAutomationRequest.dmMessage) &&
+        Objects.equals(this.buttons, createCommentAutomationRequest.buttons) &&
         Objects.equals(this.commentReply, createCommentAutomationRequest.commentReply);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, accountId, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, commentReply);
+    return Objects.hash(profileId, accountId, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply);
   }
 
   @Override
@@ -416,6 +455,7 @@ public class CreateCommentAutomationRequest {
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    matchMode: ").append(toIndentedString(matchMode)).append("\n");
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
+    sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -511,6 +551,16 @@ public class CreateCommentAutomationRequest {
     // add `dmMessage` to the URL query string
     if (getDmMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdmMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDmMessage()))));
+    }
+
+    // add `buttons` to the URL query string
+    if (getButtons() != null) {
+      for (int i = 0; i < getButtons().size(); i++) {
+        if (getButtons().get(i) != null) {
+          joiner.add(getButtons().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbuttons%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `commentReply` to the URL query string

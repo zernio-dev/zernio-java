@@ -14378,8 +14378,10 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: "Update an automation's keywords, DM message, comment reply, or\
-        \ active status."
+      description: |
+        Update an automation's keywords, DM message, inline buttons, comment reply, or active status.
+        Pass `buttons: []` to clear all buttons. When `buttons` is non-empty, `dmMessage` (the new
+        one if you're changing it, otherwise the stored one) must be 640 characters or less.
       operationId: updateCommentAutomation
       parameters:
       - explode: false
@@ -16820,6 +16822,44 @@ components:
         details:
           additionalProperties: true
           type: object
+    DmButton:
+      description: |
+        A single inline button rendered inside an auto-DM via Meta's button_template.
+        Up to 3 buttons per automation. `url` and `postback` work on Instagram and
+        Facebook; `phone` is Facebook-only. When buttons are set, `dmMessage` becomes
+        the button_template text and must be 640 characters or less.
+      example:
+        payload: payload
+        phone: phone
+        type: url
+        title: title
+        url: https://openapi-generator.tech
+      properties:
+        type:
+          enum:
+          - url
+          - postback
+          - phone
+          type: string
+        title:
+          description: Button label (20 chars max)
+          maxLength: 20
+          type: string
+        url:
+          description: Target URL (required when type is url)
+          format: uri
+          type: string
+        payload:
+          description: Postback payload delivered via the messaging_postbacks webhook
+            (required when type is postback)
+          type: string
+        phone:
+          description: "Phone number, e.g. +14155551234 (required when type is phone;\
+            \ Facebook only)"
+          type: string
+      required:
+      - title
+      - type
     WhatsAppTemplateButton:
       properties:
         type:
@@ -37699,6 +37739,17 @@ components:
     listCommentAutomations_200_response_automations_inner:
       example:
         dmMessage: dmMessage
+        buttons:
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
         keywords:
         - keywords
         - keywords
@@ -37744,6 +37795,11 @@ components:
           type: string
         dmMessage:
           type: string
+        buttons:
+          description: Inline DM buttons (up to 3). Omitted when none are set.
+          items:
+            $ref: "#/components/schemas/DmButton"
+          type: array
         commentReply:
           type: string
         isActive:
@@ -37757,6 +37813,17 @@ components:
       example:
         automations:
         - dmMessage: dmMessage
+          buttons:
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
           keywords:
           - keywords
           - keywords
@@ -37776,6 +37843,17 @@ components:
           matchMode: exact
           platformPostId: platformPostId
         - dmMessage: dmMessage
+          buttons:
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
           keywords:
           - keywords
           - keywords
@@ -37835,8 +37913,16 @@ components:
           - contains
           type: string
         dmMessage:
-          description: DM text to send to commenter
+          description: "DM text to send to commenter. Max 640 chars when buttons are\
+            \ set, otherwise ~1000."
           type: string
+        buttons:
+          description: "Optional inline DM buttons (1-3). Phone buttons are Facebook-only.\
+            \ Omit or pass [] for a plain-text DM."
+          items:
+            $ref: "#/components/schemas/DmButton"
+          maxItems: 3
+          type: array
         commentReply:
           description: Optional public reply to the comment
           type: string
@@ -37861,6 +37947,17 @@ components:
       example:
         dmMessage: dmMessage
         createdAt: 2000-01-23T04:56:07.000+00:00
+        buttons:
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
         keywords:
         - keywords
         - keywords
@@ -37895,6 +37992,11 @@ components:
           type: string
         dmMessage:
           type: string
+        buttons:
+          description: Inline DM buttons (up to 3). Omitted when none are set.
+          items:
+            $ref: "#/components/schemas/DmButton"
+          type: array
         commentReply:
           type: string
         isActive:
@@ -37909,6 +38011,17 @@ components:
         automation:
           dmMessage: dmMessage
           createdAt: 2000-01-23T04:56:07.000+00:00
+          buttons:
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
           keywords:
           - keywords
           - keywords
@@ -37932,6 +38045,17 @@ components:
     getCommentAutomation_200_response_automation:
       example:
         dmMessage: dmMessage
+        buttons:
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
         keywords:
         - keywords
         - keywords
@@ -37977,6 +38101,11 @@ components:
           type: string
         dmMessage:
           type: string
+        buttons:
+          description: Inline DM buttons (up to 3). Omitted when none are set.
+          items:
+            $ref: "#/components/schemas/DmButton"
+          type: array
         commentReply:
           type: string
         isActive:
@@ -38041,6 +38170,17 @@ components:
       example:
         automation:
           dmMessage: dmMessage
+          buttons:
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
           keywords:
           - keywords
           - keywords
@@ -38106,6 +38246,12 @@ components:
           type: string
         dmMessage:
           type: string
+        buttons:
+          description: "Inline DM buttons (1-3). Pass [] to clear all buttons."
+          items:
+            $ref: "#/components/schemas/DmButton"
+          maxItems: 3
+          type: array
         commentReply:
           type: string
         isActive:
@@ -38113,6 +38259,17 @@ components:
     updateCommentAutomation_200_response_automation:
       example:
         dmMessage: dmMessage
+        buttons:
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
+        - payload: payload
+          phone: phone
+          type: url
+          title: title
+          url: https://openapi-generator.tech
         keywords:
         - keywords
         - keywords
@@ -38138,6 +38295,11 @@ components:
           type: string
         dmMessage:
           type: string
+        buttons:
+          description: Inline DM buttons (up to 3). Omitted when none are set.
+          items:
+            $ref: "#/components/schemas/DmButton"
+          type: array
         commentReply:
           type: string
         isActive:
@@ -38149,6 +38311,17 @@ components:
       example:
         automation:
           dmMessage: dmMessage
+          buttons:
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
+          - payload: payload
+            phone: phone
+            type: url
+            title: title
+            url: https://openapi-generator.tech
           keywords:
           - keywords
           - keywords
