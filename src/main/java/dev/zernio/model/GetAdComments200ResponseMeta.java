@@ -39,13 +39,14 @@ import dev.zernio.ApiClient;
   GetAdComments200ResponseMeta.JSON_PROPERTY_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_PLATFORM_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_EFFECTIVE_STORY_ID,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_FACEBOOK_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_USER_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_PERMALINK,
   GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T10:33:53.094606819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T11:07:26.972687770Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdComments200ResponseMeta {
   /**
    * Which side these comments are on (same as &#x60;placement&#x60;).
@@ -136,6 +137,10 @@ public class GetAdComments200ResponseMeta {
   public static final String JSON_PROPERTY_EFFECTIVE_STORY_ID = "effectiveStoryId";
   @javax.annotation.Nonnull
   private String effectiveStoryId;
+
+  public static final String JSON_PROPERTY_FACEBOOK_ACCOUNT_ID = "facebookAccountId";
+  @javax.annotation.Nullable
+  private String facebookAccountId;
 
   public static final String JSON_PROPERTY_INSTAGRAM_USER_ID = "instagramUserId";
   @javax.annotation.Nullable
@@ -280,6 +285,30 @@ public class GetAdComments200ResponseMeta {
   }
 
 
+  public GetAdComments200ResponseMeta facebookAccountId(@javax.annotation.Nullable String facebookAccountId) {
+    this.facebookAccountId = facebookAccountId;
+    return this;
+  }
+
+  /**
+   * Facebook-only. The connected Facebook Page SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no connected Page was used (then moderation isn&#39;t possible).
+   * @return facebookAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getFacebookAccountId() {
+    return facebookAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFacebookAccountId(@javax.annotation.Nullable String facebookAccountId) {
+    this.facebookAccountId = facebookAccountId;
+  }
+
+
   public GetAdComments200ResponseMeta instagramUserId(@javax.annotation.Nullable String instagramUserId) {
     this.instagramUserId = instagramUserId;
     return this;
@@ -334,7 +363,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * Instagram-only. The connected Instagram SocialAccount these comments were read through — use it for reply/hide actions via /v1/inbox/comments.
+   * Instagram-only. The connected Instagram SocialAccount these comments were read through — pass it as &#x60;accountId&#x60; (with &#x60;effectiveStoryId&#x60; as the postId) to /v1/inbox/comments to reply/hide/delete.
    * @return instagramAccountId
    */
   @javax.annotation.Nullable
@@ -417,6 +446,7 @@ public class GetAdComments200ResponseMeta {
         Objects.equals(this.adId, getAdComments200ResponseMeta.adId) &&
         Objects.equals(this.platformAdId, getAdComments200ResponseMeta.platformAdId) &&
         Objects.equals(this.effectiveStoryId, getAdComments200ResponseMeta.effectiveStoryId) &&
+        Objects.equals(this.facebookAccountId, getAdComments200ResponseMeta.facebookAccountId) &&
         Objects.equals(this.instagramUserId, getAdComments200ResponseMeta.instagramUserId) &&
         Objects.equals(this.instagramPermalink, getAdComments200ResponseMeta.instagramPermalink) &&
         Objects.equals(this.instagramAccountId, getAdComments200ResponseMeta.instagramAccountId) &&
@@ -426,7 +456,7 @@ public class GetAdComments200ResponseMeta {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, placement, adId, platformAdId, effectiveStoryId, instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
+    return Objects.hash(platform, placement, adId, platformAdId, effectiveStoryId, facebookAccountId, instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
   }
 
   @Override
@@ -438,6 +468,7 @@ public class GetAdComments200ResponseMeta {
     sb.append("    adId: ").append(toIndentedString(adId)).append("\n");
     sb.append("    platformAdId: ").append(toIndentedString(platformAdId)).append("\n");
     sb.append("    effectiveStoryId: ").append(toIndentedString(effectiveStoryId)).append("\n");
+    sb.append("    facebookAccountId: ").append(toIndentedString(facebookAccountId)).append("\n");
     sb.append("    instagramUserId: ").append(toIndentedString(instagramUserId)).append("\n");
     sb.append("    instagramPermalink: ").append(toIndentedString(instagramPermalink)).append("\n");
     sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
@@ -513,6 +544,11 @@ public class GetAdComments200ResponseMeta {
     // add `effectiveStoryId` to the URL query string
     if (getEffectiveStoryId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%seffectiveStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffectiveStoryId()))));
+    }
+
+    // add `facebookAccountId` to the URL query string
+    if (getFacebookAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfacebookAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFacebookAccountId()))));
     }
 
     // add `instagramUserId` to the URL query string

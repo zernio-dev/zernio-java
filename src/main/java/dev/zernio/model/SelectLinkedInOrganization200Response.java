@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SelectLinkedInOrganization200Response.JSON_PROPERTY_ACCOUNT,
   SelectLinkedInOrganization200Response.JSON_PROPERTY_BULK_REFRESH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T10:33:53.094606819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T11:07:26.972687770Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectLinkedInOrganization200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
