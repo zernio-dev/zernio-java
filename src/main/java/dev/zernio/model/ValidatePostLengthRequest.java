@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ValidatePostLengthRequest.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T11:07:26.972687770Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T13:08:59.587822530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidatePostLengthRequest {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull
