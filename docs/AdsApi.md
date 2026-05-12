@@ -2119,11 +2119,11 @@ ApiResponse<[**ListAdAccounts200Response**](ListAdAccounts200Response.md)>
 
 ## listAds
 
-> ListAds200Response listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate)
+> ListAds200Response listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate)
 
 List ads
 
-Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram) — those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
 
 ### Example
 
@@ -2155,10 +2155,13 @@ public class Example {
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree.
         String profileId = "profileId_example"; // String | Profile ID
         String campaignId = "campaignId_example"; // String | Platform campaign ID (filter ads within a campaign)
+        String platformAdId = "platformAdId_example"; // String | Meta ad ID. Returns the ad with this platform-side ad ID.
+        String effectiveObjectStoryId = "effectiveObjectStoryId_example"; // String | Facebook `{pageId}_{postId}` of the post the ad's engagement lives on (Meta `effective_object_story_id`). Use to map a Business-Manager-visible post back to the Zernio ad.
+        String effectiveInstagramMediaId = "effectiveInstagramMediaId_example"; // String | Instagram media ID of the boosted post (Meta `effective_instagram_media_id`). Use to map a Business-Manager-visible IG post back to the Zernio ad.
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         try {
-            ListAds200Response result = apiInstance.listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
+            ListAds200Response result = apiInstance.listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#listAds");
@@ -2185,6 +2188,9 @@ public class Example {
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
 | **campaignId** | **String**| Platform campaign ID (filter ads within a campaign) | [optional] |
+| **platformAdId** | **String**| Meta ad ID. Returns the ad with this platform-side ad ID. | [optional] |
+| **effectiveObjectStoryId** | **String**| Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. | [optional] |
+| **effectiveInstagramMediaId** | **String**| Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. | [optional] |
 | **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 
@@ -2211,11 +2217,11 @@ public class Example {
 
 ## listAdsWithHttpInfo
 
-> ApiResponse<ListAds200Response> listAds listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate)
+> ApiResponse<ListAds200Response> listAds listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate)
 
 List ads
 
-Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram) — those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
 
 ### Example
 
@@ -2248,10 +2254,13 @@ public class Example {
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree.
         String profileId = "profileId_example"; // String | Profile ID
         String campaignId = "campaignId_example"; // String | Platform campaign ID (filter ads within a campaign)
+        String platformAdId = "platformAdId_example"; // String | Meta ad ID. Returns the ad with this platform-side ad ID.
+        String effectiveObjectStoryId = "effectiveObjectStoryId_example"; // String | Facebook `{pageId}_{postId}` of the post the ad's engagement lives on (Meta `effective_object_story_id`). Use to map a Business-Manager-visible post back to the Zernio ad.
+        String effectiveInstagramMediaId = "effectiveInstagramMediaId_example"; // String | Instagram media ID of the boosted post (Meta `effective_instagram_media_id`). Use to map a Business-Manager-visible IG post back to the Zernio ad.
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         try {
-            ApiResponse<ListAds200Response> response = apiInstance.listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate);
+            ApiResponse<ListAds200Response> response = apiInstance.listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2280,6 +2289,9 @@ public class Example {
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
 | **campaignId** | **String**| Platform campaign ID (filter ads within a campaign) | [optional] |
+| **platformAdId** | **String**| Meta ad ID. Returns the ad with this platform-side ad ID. | [optional] |
+| **effectiveObjectStoryId** | **String**| Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. | [optional] |
+| **effectiveInstagramMediaId** | **String**| Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. | [optional] |
 | **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 

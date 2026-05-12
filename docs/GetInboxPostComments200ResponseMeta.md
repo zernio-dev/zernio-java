@@ -12,6 +12,7 @@
 |**accountId** | **String** |  |  [optional] |
 |**subreddit** | **String** | (Reddit only) Subreddit name |  [optional] |
 |**lastUpdated** | **OffsetDateTime** |  |  [optional] |
+|**adComments** | [**GetInboxPostComments200ResponseMetaAdComments**](GetInboxPostComments200ResponseMetaAdComments.md) |  |  [optional] |
 
 
 

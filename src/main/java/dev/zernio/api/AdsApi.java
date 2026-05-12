@@ -77,7 +77,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:03:44.120211032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1964,7 +1964,7 @@ public class AdsApi {
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram) — those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -1974,18 +1974,21 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
+   * @param effectiveObjectStoryId Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)
+   * @param effectiveInstagramMediaId Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, null);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAds(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
   }
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram) — those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -1995,20 +1998,23 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
+   * @param effectiveObjectStoryId Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)
+   * @param effectiveInstagramMediaId Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAds200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, headers);
+  public ListAds200Response listAds(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAds200Response> localVarResponse = listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram) — those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -2018,18 +2024,21 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
+   * @param effectiveObjectStoryId Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)
+   * @param effectiveInstagramMediaId Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
-    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, null);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdsWithHttpInfo(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, null);
   }
 
   /**
    * List ads
-   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram) — those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit  (optional, default to 50)
    * @param source all (default) &#x3D; Zernio-created + platform-discovered ads. zernio &#x3D; restrict to Zernio-created only. (optional, default to all)
@@ -2039,14 +2048,17 @@ public class AdsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta). Mirrors the same filter on /v1/ads/campaigns and /v1/ads/tree. (optional)
    * @param profileId Profile ID (optional)
    * @param campaignId Platform campaign ID (filter ads within a campaign) (optional)
+   * @param platformAdId Meta ad ID. Returns the ad with this platform-side ad ID. (optional)
+   * @param effectiveObjectStoryId Facebook &#x60;{pageId}_{postId}&#x60; of the post the ad&#39;s engagement lives on (Meta &#x60;effective_object_story_id&#x60;). Use to map a Business-Manager-visible post back to the Zernio ad. (optional)
+   * @param effectiveInstagramMediaId Instagram media ID of the boosted post (Meta &#x60;effective_instagram_media_id&#x60;). Use to map a Business-Manager-visible IG post back to the Zernio ad. (optional)
    * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAds200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, fromDate, toDate, headers);
+  public ApiResponse<ListAds200Response> listAdsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdsRequestBuilder(page, limit, source, status, platform, accountId, adAccountId, profileId, campaignId, platformAdId, effectiveObjectStoryId, effectiveInstagramMediaId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2093,7 +2105,7 @@ public class AdsApi {
     }
   }
 
-  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable String platformAdId, @javax.annotation.Nullable String effectiveObjectStoryId, @javax.annotation.Nullable String effectiveInstagramMediaId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2120,6 +2132,12 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
     localVarQueryParameterBaseName = "campaignId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("campaignId", campaignId));
+    localVarQueryParameterBaseName = "platformAdId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platformAdId", platformAdId));
+    localVarQueryParameterBaseName = "effectiveObjectStoryId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("effectiveObjectStoryId", effectiveObjectStoryId));
+    localVarQueryParameterBaseName = "effectiveInstagramMediaId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("effectiveInstagramMediaId", effectiveInstagramMediaId));
     localVarQueryParameterBaseName = "fromDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";

@@ -40,6 +40,11 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_VIDEO_ID,
   AdCreative.JSON_PROPERTY_VIDEO_URL,
   AdCreative.JSON_PROPERTY_OBJECT_TYPE,
+  AdCreative.JSON_PROPERTY_OBJECT_STORY_ID,
+  AdCreative.JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID,
+  AdCreative.JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID,
+  AdCreative.JSON_PROPERTY_INSTAGRAM_USER_ID,
+  AdCreative.JSON_PROPERTY_INSTAGRAM_PERMALINK_URL,
   AdCreative.JSON_PROPERTY_MEDIA_URLS,
   AdCreative.JSON_PROPERTY_BODY,
   AdCreative.JSON_PROPERTY_GOOGLE_HEADLINE,
@@ -49,7 +54,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:03:44.120211032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
@@ -70,6 +75,26 @@ public class AdCreative {
   public static final String JSON_PROPERTY_OBJECT_TYPE = "objectType";
   @javax.annotation.Nullable
   private String objectType;
+
+  public static final String JSON_PROPERTY_OBJECT_STORY_ID = "objectStoryId";
+  @javax.annotation.Nullable
+  private String objectStoryId;
+
+  public static final String JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID = "effectiveObjectStoryId";
+  @javax.annotation.Nullable
+  private String effectiveObjectStoryId;
+
+  public static final String JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID = "effectiveInstagramMediaId";
+  @javax.annotation.Nullable
+  private String effectiveInstagramMediaId;
+
+  public static final String JSON_PROPERTY_INSTAGRAM_USER_ID = "instagramUserId";
+  @javax.annotation.Nullable
+  private String instagramUserId;
+
+  public static final String JSON_PROPERTY_INSTAGRAM_PERMALINK_URL = "instagramPermalinkUrl";
+  @javax.annotation.Nullable
+  private String instagramPermalinkUrl;
 
   public static final String JSON_PROPERTY_MEDIA_URLS = "mediaUrls";
   @javax.annotation.Nullable
@@ -223,6 +248,126 @@ public class AdCreative {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObjectType(@javax.annotation.Nullable String objectType) {
     this.objectType = objectType;
+  }
+
+
+  public AdCreative objectStoryId(@javax.annotation.Nullable String objectStoryId) {
+    this.objectStoryId = objectStoryId;
+    return this;
+  }
+
+  /**
+   * Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent — Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead.
+   * @return objectStoryId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getObjectStoryId() {
+    return objectStoryId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObjectStoryId(@javax.annotation.Nullable String objectStoryId) {
+    this.objectStoryId = objectStoryId;
+  }
+
+
+  public AdCreative effectiveObjectStoryId(@javax.annotation.Nullable String effectiveObjectStoryId) {
+    this.effectiveObjectStoryId = effectiveObjectStoryId;
+    return this;
+  }
+
+  /**
+   * Meta &#x60;effective_object_story_id&#x60; — &#x60;{pageId}_{postId}&#x60; of the Facebook post the ad&#39;s engagement (comments) lives on. Pass to GET /v1/ads?effectiveObjectStoryId&#x3D; to map a Business-Manager-visible post back to this ad; GET /v1/ads/{adId}/comments resolves comments against it.
+   * @return effectiveObjectStoryId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEffectiveObjectStoryId() {
+    return effectiveObjectStoryId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEffectiveObjectStoryId(@javax.annotation.Nullable String effectiveObjectStoryId) {
+    this.effectiveObjectStoryId = effectiveObjectStoryId;
+  }
+
+
+  public AdCreative effectiveInstagramMediaId(@javax.annotation.Nullable String effectiveInstagramMediaId) {
+    this.effectiveInstagramMediaId = effectiveInstagramMediaId;
+    return this;
+  }
+
+  /**
+   * Meta &#x60;effective_instagram_media_id&#x60; — the Instagram media ID of the boosted post the ad&#39;s engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId&#x3D; to map a Business-Manager-visible IG post back to this ad.
+   * @return effectiveInstagramMediaId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEffectiveInstagramMediaId() {
+    return effectiveInstagramMediaId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEffectiveInstagramMediaId(@javax.annotation.Nullable String effectiveInstagramMediaId) {
+    this.effectiveInstagramMediaId = effectiveInstagramMediaId;
+  }
+
+
+  public AdCreative instagramUserId(@javax.annotation.Nullable String instagramUserId) {
+    this.instagramUserId = instagramUserId;
+    return this;
+  }
+
+  /**
+   * Meta &#x60;instagram_user_id&#x60; — the Instagram-scoped business ID that owns the boosted media.
+   * @return instagramUserId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstagramUserId() {
+    return instagramUserId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramUserId(@javax.annotation.Nullable String instagramUserId) {
+    this.instagramUserId = instagramUserId;
+  }
+
+
+  public AdCreative instagramPermalinkUrl(@javax.annotation.Nullable String instagramPermalinkUrl) {
+    this.instagramPermalinkUrl = instagramPermalinkUrl;
+    return this;
+  }
+
+  /**
+   * Meta &#x60;instagram_permalink_url&#x60; — public Instagram post URL of the boosted media.
+   * @return instagramPermalinkUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PERMALINK_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstagramPermalinkUrl() {
+    return instagramPermalinkUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PERMALINK_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramPermalinkUrl(@javax.annotation.Nullable String instagramPermalinkUrl) {
+    this.instagramPermalinkUrl = instagramPermalinkUrl;
   }
 
 
@@ -443,6 +588,11 @@ public class AdCreative {
         Objects.equals(this.videoId, adCreative.videoId) &&
         Objects.equals(this.videoUrl, adCreative.videoUrl) &&
         Objects.equals(this.objectType, adCreative.objectType) &&
+        Objects.equals(this.objectStoryId, adCreative.objectStoryId) &&
+        Objects.equals(this.effectiveObjectStoryId, adCreative.effectiveObjectStoryId) &&
+        Objects.equals(this.effectiveInstagramMediaId, adCreative.effectiveInstagramMediaId) &&
+        Objects.equals(this.instagramUserId, adCreative.instagramUserId) &&
+        Objects.equals(this.instagramPermalinkUrl, adCreative.instagramPermalinkUrl) &&
         Objects.equals(this.mediaUrls, adCreative.mediaUrls) &&
         Objects.equals(this.body, adCreative.body) &&
         Objects.equals(this.googleHeadline, adCreative.googleHeadline) &&
@@ -455,7 +605,7 @@ public class AdCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(thumbnailUrl, imageUrl, videoId, videoUrl, objectType, mediaUrls, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(thumbnailUrl, imageUrl, videoId, videoUrl, objectType, objectStoryId, effectiveObjectStoryId, effectiveInstagramMediaId, instagramUserId, instagramPermalinkUrl, mediaUrls, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
   }
 
   @Override
@@ -467,6 +617,11 @@ public class AdCreative {
     sb.append("    videoId: ").append(toIndentedString(videoId)).append("\n");
     sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
     sb.append("    objectType: ").append(toIndentedString(objectType)).append("\n");
+    sb.append("    objectStoryId: ").append(toIndentedString(objectStoryId)).append("\n");
+    sb.append("    effectiveObjectStoryId: ").append(toIndentedString(effectiveObjectStoryId)).append("\n");
+    sb.append("    effectiveInstagramMediaId: ").append(toIndentedString(effectiveInstagramMediaId)).append("\n");
+    sb.append("    instagramUserId: ").append(toIndentedString(instagramUserId)).append("\n");
+    sb.append("    instagramPermalinkUrl: ").append(toIndentedString(instagramPermalinkUrl)).append("\n");
     sb.append("    mediaUrls: ").append(toIndentedString(mediaUrls)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    googleHeadline: ").append(toIndentedString(googleHeadline)).append("\n");
@@ -545,6 +700,31 @@ public class AdCreative {
     // add `objectType` to the URL query string
     if (getObjectType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobjectType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectType()))));
+    }
+
+    // add `objectStoryId` to the URL query string
+    if (getObjectStoryId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sobjectStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectStoryId()))));
+    }
+
+    // add `effectiveObjectStoryId` to the URL query string
+    if (getEffectiveObjectStoryId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%seffectiveObjectStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffectiveObjectStoryId()))));
+    }
+
+    // add `effectiveInstagramMediaId` to the URL query string
+    if (getEffectiveInstagramMediaId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%seffectiveInstagramMediaId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffectiveInstagramMediaId()))));
+    }
+
+    // add `instagramUserId` to the URL query string
+    if (getInstagramUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstagramUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstagramUserId()))));
+    }
+
+    // add `instagramPermalinkUrl` to the URL query string
+    if (getInstagramPermalinkUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstagramPermalinkUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstagramPermalinkUrl()))));
     }
 
     // add `mediaUrls` to the URL query string

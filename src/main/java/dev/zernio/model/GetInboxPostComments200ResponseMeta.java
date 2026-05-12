@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetInboxPostComments200ResponseMetaAdComments;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -38,9 +39,10 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_POST_ID,
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_SUBREDDIT,
-  GetInboxPostComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
+  GetInboxPostComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
+  GetInboxPostComments200ResponseMeta.JSON_PROPERTY_AD_COMMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:03:44.120211032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseMeta {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -61,6 +63,10 @@ public class GetInboxPostComments200ResponseMeta {
   public static final String JSON_PROPERTY_LAST_UPDATED = "lastUpdated";
   @javax.annotation.Nullable
   private OffsetDateTime lastUpdated;
+
+  public static final String JSON_PROPERTY_AD_COMMENTS = "adComments";
+  @javax.annotation.Nullable
+  private GetInboxPostComments200ResponseMetaAdComments adComments;
 
   public GetInboxPostComments200ResponseMeta() { 
   }
@@ -185,6 +191,30 @@ public class GetInboxPostComments200ResponseMeta {
   }
 
 
+  public GetInboxPostComments200ResponseMeta adComments(@javax.annotation.Nullable GetInboxPostComments200ResponseMetaAdComments adComments) {
+    this.adComments = adComments;
+    return this;
+  }
+
+  /**
+   * Get adComments
+   * @return adComments
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_COMMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetInboxPostComments200ResponseMetaAdComments getAdComments() {
+    return adComments;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_COMMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdComments(@javax.annotation.Nullable GetInboxPostComments200ResponseMetaAdComments adComments) {
+    this.adComments = adComments;
+  }
+
+
   /**
    * Return true if this getInboxPostComments_200_response_meta object is equal to o.
    */
@@ -201,12 +231,13 @@ public class GetInboxPostComments200ResponseMeta {
         Objects.equals(this.postId, getInboxPostComments200ResponseMeta.postId) &&
         Objects.equals(this.accountId, getInboxPostComments200ResponseMeta.accountId) &&
         Objects.equals(this.subreddit, getInboxPostComments200ResponseMeta.subreddit) &&
-        Objects.equals(this.lastUpdated, getInboxPostComments200ResponseMeta.lastUpdated);
+        Objects.equals(this.lastUpdated, getInboxPostComments200ResponseMeta.lastUpdated) &&
+        Objects.equals(this.adComments, getInboxPostComments200ResponseMeta.adComments);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, postId, accountId, subreddit, lastUpdated);
+    return Objects.hash(platform, postId, accountId, subreddit, lastUpdated, adComments);
   }
 
   @Override
@@ -218,6 +249,7 @@ public class GetInboxPostComments200ResponseMeta {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    subreddit: ").append(toIndentedString(subreddit)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
+    sb.append("    adComments: ").append(toIndentedString(adComments)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -288,6 +320,11 @@ public class GetInboxPostComments200ResponseMeta {
     // add `lastUpdated` to the URL query string
     if (getLastUpdated() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slastUpdated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastUpdated()))));
+    }
+
+    // add `adComments` to the URL query string
+    if (getAdComments() != null) {
+      joiner.add(getAdComments().toUrlQueryString(prefix + "adComments" + suffix));
     }
 
     return joiner.toString();

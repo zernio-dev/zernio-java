@@ -45,9 +45,11 @@ import dev.zernio.ApiClient;
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_COMMENT_COUNT,
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_LIKE_COUNT,
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_CID,
-  ListInboxComments200ResponseDataInner.JSON_PROPERTY_SUBREDDIT
+  ListInboxComments200ResponseDataInner.JSON_PROPERTY_SUBREDDIT,
+  ListInboxComments200ResponseDataInner.JSON_PROPERTY_IS_AD,
+  ListInboxComments200ResponseDataInner.JSON_PROPERTY_AD_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:03:44.120211032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxComments200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -96,6 +98,14 @@ public class ListInboxComments200ResponseDataInner {
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
   @javax.annotation.Nullable
   private String subreddit;
+
+  public static final String JSON_PROPERTY_IS_AD = "isAd";
+  @javax.annotation.Nullable
+  private Boolean isAd;
+
+  public static final String JSON_PROPERTY_AD_ID = "adId";
+  @javax.annotation.Nullable
+  private String adId;
 
   public ListInboxComments200ResponseDataInner() { 
   }
@@ -388,6 +398,54 @@ public class ListInboxComments200ResponseDataInner {
   }
 
 
+  public ListInboxComments200ResponseDataInner isAd(@javax.annotation.Nullable Boolean isAd) {
+    this.isAd = isAd;
+    return this;
+  }
+
+  /**
+   * True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the comment platform (facebook or instagram), &#x60;id&#x60; equals &#x60;adId&#x60;, and the thread is at GET /v1/ads/{adId}/comments.
+   * @return isAd
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_AD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsAd() {
+    return isAd;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_AD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsAd(@javax.annotation.Nullable Boolean isAd) {
+    this.isAd = isAd;
+  }
+
+
+  public ListInboxComments200ResponseDataInner adId(@javax.annotation.Nullable String adId) {
+    this.adId = adId;
+    return this;
+  }
+
+  /**
+   * Internal Zernio ad id — only on ad rows (same value as &#x60;id&#x60;).
+   * @return adId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdId() {
+    return adId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdId(@javax.annotation.Nullable String adId) {
+    this.adId = adId;
+  }
+
+
   /**
    * Return true if this listInboxComments_200_response_data_inner object is equal to o.
    */
@@ -411,12 +469,14 @@ public class ListInboxComments200ResponseDataInner {
         Objects.equals(this.commentCount, listInboxComments200ResponseDataInner.commentCount) &&
         Objects.equals(this.likeCount, listInboxComments200ResponseDataInner.likeCount) &&
         Objects.equals(this.cid, listInboxComments200ResponseDataInner.cid) &&
-        Objects.equals(this.subreddit, listInboxComments200ResponseDataInner.subreddit);
+        Objects.equals(this.subreddit, listInboxComments200ResponseDataInner.subreddit) &&
+        Objects.equals(this.isAd, listInboxComments200ResponseDataInner.isAd) &&
+        Objects.equals(this.adId, listInboxComments200ResponseDataInner.adId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, content, picture, permalink, createdTime, commentCount, likeCount, cid, subreddit);
+    return Objects.hash(id, platform, accountId, accountUsername, content, picture, permalink, createdTime, commentCount, likeCount, cid, subreddit, isAd, adId);
   }
 
   @Override
@@ -435,6 +495,8 @@ public class ListInboxComments200ResponseDataInner {
     sb.append("    likeCount: ").append(toIndentedString(likeCount)).append("\n");
     sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
     sb.append("    subreddit: ").append(toIndentedString(subreddit)).append("\n");
+    sb.append("    isAd: ").append(toIndentedString(isAd)).append("\n");
+    sb.append("    adId: ").append(toIndentedString(adId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -540,6 +602,16 @@ public class ListInboxComments200ResponseDataInner {
     // add `subreddit` to the URL query string
     if (getSubreddit() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubreddit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubreddit()))));
+    }
+
+    // add `isAd` to the URL query string
+    if (getIsAd() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisAd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAd()))));
+    }
+
+    // add `adId` to the URL query string
+    if (getAdId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdId()))));
     }
 
     return joiner.toString();

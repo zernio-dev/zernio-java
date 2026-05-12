@@ -60,7 +60,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:03:44.120211032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -777,9 +777,9 @@ public class CommentsApi {
 
   /**
    * List commented posts
-   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.
+   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too, flagged with &#x60;isAd: true&#x60; and an &#x60;adId&#x60;. Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch an ad row&#39;s thread from GET /v1/ads/{adId}/comments. Ad comment counts are read with the Marketing API token (Facebook) or the connected Instagram account&#39;s token (Instagram); an ad whose count can&#39;t be read is omitted. 
    * @param profileId Filter by profile ID (optional)
-   * @param platform Filter by platform (optional)
+   * @param platform Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)
    * @param minComments Minimum comment count (optional)
    * @param since Posts created after this date (optional)
    * @param sortBy Sort field (optional, default to date)
@@ -796,9 +796,9 @@ public class CommentsApi {
 
   /**
    * List commented posts
-   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.
+   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too, flagged with &#x60;isAd: true&#x60; and an &#x60;adId&#x60;. Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch an ad row&#39;s thread from GET /v1/ads/{adId}/comments. Ad comment counts are read with the Marketing API token (Facebook) or the connected Instagram account&#39;s token (Instagram); an ad whose count can&#39;t be read is omitted. 
    * @param profileId Filter by profile ID (optional)
-   * @param platform Filter by platform (optional)
+   * @param platform Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)
    * @param minComments Minimum comment count (optional)
    * @param since Posts created after this date (optional)
    * @param sortBy Sort field (optional, default to date)
@@ -817,9 +817,9 @@ public class CommentsApi {
 
   /**
    * List commented posts
-   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.
+   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too, flagged with &#x60;isAd: true&#x60; and an &#x60;adId&#x60;. Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch an ad row&#39;s thread from GET /v1/ads/{adId}/comments. Ad comment counts are read with the Marketing API token (Facebook) or the connected Instagram account&#39;s token (Instagram); an ad whose count can&#39;t be read is omitted. 
    * @param profileId Filter by profile ID (optional)
-   * @param platform Filter by platform (optional)
+   * @param platform Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)
    * @param minComments Minimum comment count (optional)
    * @param since Posts created after this date (optional)
    * @param sortBy Sort field (optional, default to date)
@@ -836,9 +836,9 @@ public class CommentsApi {
 
   /**
    * List commented posts
-   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.
+   * Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too, flagged with &#x60;isAd: true&#x60; and an &#x60;adId&#x60;. Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch an ad row&#39;s thread from GET /v1/ads/{adId}/comments. Ad comment counts are read with the Marketing API token (Facebook) or the connected Instagram account&#39;s token (Instagram); an ad whose count can&#39;t be read is omitted. 
    * @param profileId Filter by profile ID (optional)
-   * @param platform Filter by platform (optional)
+   * @param platform Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. (optional)
    * @param minComments Minimum comment count (optional)
    * @param since Posts created after this date (optional)
    * @param sortBy Sort field (optional, default to date)

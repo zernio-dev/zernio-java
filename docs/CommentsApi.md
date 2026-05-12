@@ -262,6 +262,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
+| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT — response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -347,6 +348,7 @@ ApiResponse<[**GetInboxPostComments200Response**](GetInboxPostComments200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comments for the post |  -  |
+| **400** | Invalid request, or the postId belongs to a Meta ad creative / ad ID rather than an organic post (code USE_AD_COMMENTS_ENDPOINT — response includes &#x60;adId&#x60; and &#x60;adCommentsUrl&#x60;).  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -673,7 +675,7 @@ ApiResponse<[**LikeInboxComment200Response**](LikeInboxComment200Response.md)>
 
 List commented posts
 
-Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.
+Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too, flagged with &#x60;isAd: true&#x60; and an &#x60;adId&#x60;. Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch an ad row&#39;s thread from GET /v1/ads/{adId}/comments. Ad comment counts are read with the Marketing API token (Facebook) or the connected Instagram account&#39;s token (Instagram); an ad whose count can&#39;t be read is omitted. 
 
 ### Example
 
@@ -697,7 +699,7 @@ public class Example {
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter by profile ID
-        String platform = "facebook"; // String | Filter by platform
+        String platform = "facebook"; // String | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only.
         Integer minComments = 56; // Integer | Minimum comment count
         OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Posts created after this date
         String sortBy = "date"; // String | Sort field
@@ -725,7 +727,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit] |
+| **platform** | **String**| Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit, metaads] |
 | **minComments** | **Integer**| Minimum comment count | [optional] |
 | **since** | **OffsetDateTime**| Posts created after this date | [optional] |
 | **sortBy** | **String**| Sort field | [optional] [default to date] [enum: date, comments] |
@@ -761,7 +763,7 @@ public class Example {
 
 List commented posts
 
-Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.
+Returns posts with comment counts from all connected accounts. Aggregates data across multiple accounts.  For users with the Ads add-on (Metronome plans always qualify), the user&#39;s Meta ads (boosted/dark posts) are included too, flagged with &#x60;isAd: true&#x60; and an &#x60;adId&#x60;. Use &#x60;?platform&#x3D;metaads&#x60; to return *only* ad rows; passing &#x60;facebook&#x60;/&#x60;instagram&#x60; returns *organic* posts only (no ads); omitting &#x60;platform&#x60; returns both. Fetch an ad row&#39;s thread from GET /v1/ads/{adId}/comments. Ad comment counts are read with the Marketing API token (Facebook) or the connected Instagram account&#39;s token (Instagram); an ad whose count can&#39;t be read is omitted. 
 
 ### Example
 
@@ -786,7 +788,7 @@ public class Example {
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter by profile ID
-        String platform = "facebook"; // String | Filter by platform
+        String platform = "facebook"; // String | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only.
         Integer minComments = 56; // Integer | Minimum comment count
         OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Posts created after this date
         String sortBy = "date"; // String | Sort field
@@ -816,7 +818,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit] |
+| **platform** | **String**| Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit, metaads] |
 | **minComments** | **Integer**| Minimum comment count | [optional] |
 | **since** | **OffsetDateTime**| Posts created after this date | [optional] |
 | **sortBy** | **String**| Sort field | [optional] [default to date] [enum: date, comments] |
