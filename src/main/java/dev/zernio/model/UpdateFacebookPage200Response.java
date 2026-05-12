@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateFacebookPage200Response.JSON_PROPERTY_MESSAGE,
   UpdateFacebookPage200Response.JSON_PROPERTY_SELECTED_PAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T08:46:55.127802140Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:03:44.120211032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateFacebookPage200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   BulkCreateContactsRequestContactsInner.JSON_PROPERTY_COMPANY,
   BulkCreateContactsRequestContactsInner.JSON_PROPERTY_TAGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T08:46:55.127802140Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:03:44.120211032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkCreateContactsRequestContactsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
