@@ -38,10 +38,13 @@ import dev.zernio.ApiClient;
   GetAdComments200ResponseMeta.JSON_PROPERTY_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_PLATFORM_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_EFFECTIVE_STORY_ID,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_USER_ID,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_PERMALINK,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-11T16:37:56.207674447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T08:46:55.127802140Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdComments200ResponseMeta {
   /**
    * Gets or Sets platform
@@ -93,6 +96,18 @@ public class GetAdComments200ResponseMeta {
   public static final String JSON_PROPERTY_EFFECTIVE_STORY_ID = "effectiveStoryId";
   @javax.annotation.Nonnull
   private String effectiveStoryId;
+
+  public static final String JSON_PROPERTY_INSTAGRAM_USER_ID = "instagramUserId";
+  @javax.annotation.Nullable
+  private String instagramUserId;
+
+  public static final String JSON_PROPERTY_INSTAGRAM_PERMALINK = "instagramPermalink";
+  @javax.annotation.Nullable
+  private String instagramPermalink;
+
+  public static final String JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID = "instagramAccountId";
+  @javax.annotation.Nullable
+  private String instagramAccountId;
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -201,6 +216,78 @@ public class GetAdComments200ResponseMeta {
   }
 
 
+  public GetAdComments200ResponseMeta instagramUserId(@javax.annotation.Nullable String instagramUserId) {
+    this.instagramUserId = instagramUserId;
+    return this;
+  }
+
+  /**
+   * Instagram-only. The Instagram-scoped business ID that owns the boosted media (creative.instagram_user_id).
+   * @return instagramUserId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstagramUserId() {
+    return instagramUserId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramUserId(@javax.annotation.Nullable String instagramUserId) {
+    this.instagramUserId = instagramUserId;
+  }
+
+
+  public GetAdComments200ResponseMeta instagramPermalink(@javax.annotation.Nullable String instagramPermalink) {
+    this.instagramPermalink = instagramPermalink;
+    return this;
+  }
+
+  /**
+   * Instagram-only. Public permalink of the boosted IG post (creative.instagram_permalink_url).
+   * @return instagramPermalink
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PERMALINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstagramPermalink() {
+    return instagramPermalink;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PERMALINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramPermalink(@javax.annotation.Nullable String instagramPermalink) {
+    this.instagramPermalink = instagramPermalink;
+  }
+
+
+  public GetAdComments200ResponseMeta instagramAccountId(@javax.annotation.Nullable String instagramAccountId) {
+    this.instagramAccountId = instagramAccountId;
+    return this;
+  }
+
+  /**
+   * Instagram-only. The connected Instagram SocialAccount these comments were read through — use it for reply/hide actions via /v1/inbox/comments.
+   * @return instagramAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstagramAccountId() {
+    return instagramAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramAccountId(@javax.annotation.Nullable String instagramAccountId) {
+    this.instagramAccountId = instagramAccountId;
+  }
+
+
   public GetAdComments200ResponseMeta accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
@@ -265,13 +352,16 @@ public class GetAdComments200ResponseMeta {
         Objects.equals(this.adId, getAdComments200ResponseMeta.adId) &&
         Objects.equals(this.platformAdId, getAdComments200ResponseMeta.platformAdId) &&
         Objects.equals(this.effectiveStoryId, getAdComments200ResponseMeta.effectiveStoryId) &&
+        Objects.equals(this.instagramUserId, getAdComments200ResponseMeta.instagramUserId) &&
+        Objects.equals(this.instagramPermalink, getAdComments200ResponseMeta.instagramPermalink) &&
+        Objects.equals(this.instagramAccountId, getAdComments200ResponseMeta.instagramAccountId) &&
         Objects.equals(this.accountId, getAdComments200ResponseMeta.accountId) &&
         Objects.equals(this.lastUpdated, getAdComments200ResponseMeta.lastUpdated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, adId, platformAdId, effectiveStoryId, accountId, lastUpdated);
+    return Objects.hash(platform, adId, platformAdId, effectiveStoryId, instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
   }
 
   @Override
@@ -282,6 +372,9 @@ public class GetAdComments200ResponseMeta {
     sb.append("    adId: ").append(toIndentedString(adId)).append("\n");
     sb.append("    platformAdId: ").append(toIndentedString(platformAdId)).append("\n");
     sb.append("    effectiveStoryId: ").append(toIndentedString(effectiveStoryId)).append("\n");
+    sb.append("    instagramUserId: ").append(toIndentedString(instagramUserId)).append("\n");
+    sb.append("    instagramPermalink: ").append(toIndentedString(instagramPermalink)).append("\n");
+    sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
     sb.append("}");
@@ -349,6 +442,21 @@ public class GetAdComments200ResponseMeta {
     // add `effectiveStoryId` to the URL query string
     if (getEffectiveStoryId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%seffectiveStoryId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffectiveStoryId()))));
+    }
+
+    // add `instagramUserId` to the URL query string
+    if (getInstagramUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstagramUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstagramUserId()))));
+    }
+
+    // add `instagramPermalink` to the URL query string
+    if (getInstagramPermalink() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstagramPermalink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstagramPermalink()))));
+    }
+
+    // add `instagramAccountId` to the URL query string
+    if (getInstagramAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstagramAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstagramAccountId()))));
     }
 
     // add `accountId` to the URL query string
