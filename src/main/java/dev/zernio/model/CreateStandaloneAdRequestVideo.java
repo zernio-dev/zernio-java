@@ -31,20 +31,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta only (facebook, instagram). When set, creates a VIDEO ad on the legacy or attach shape. Mutually exclusive with &#x60;imageUrl&#x60;. For multi-creative, set &#x60;video&#x60; per entry inside &#x60;creatives[]&#x60; instead.
+ * Meta (facebook, instagram) and LinkedIn. When set, creates a VIDEO ad on the legacy (or, for Meta, attach) shape. Mutually exclusive with &#x60;imageUrl&#x60;. For Meta multi-creative, set &#x60;video&#x60; per entry inside &#x60;creatives[]&#x60; instead. For LinkedIn the video is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;) and the campaign format is set to SINGLE_VIDEO; LinkedIn ignores &#x60;thumbnailUrl&#x60; (it auto-generates the poster frame) — supply MP4 H.264/AAC, 3s-30min, 75KB-500MB.
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_URL,
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T15:07:17.141017843Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T15:35:32.652565805Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestVideo {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
   private URI url;
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private URI thumbnailUrl;
 
   public CreateStandaloneAdRequestVideo() { 
@@ -56,7 +56,7 @@ public class CreateStandaloneAdRequestVideo {
   }
 
   /**
-   * Public URL of the video. Uploaded to Meta via chunked transfer on /act_X/advideos; then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;.
+   * Public URL of the video. Meta: uploaded via chunked transfer on /act_X/advideos, then the request blocks on Meta&#39;s transcoding until status.video_status &#x3D;&#x3D;&#x3D; &#39;ready&#39;. LinkedIn: uploaded via the Videos API (multipart), then the request blocks until LinkedIn finishes transcoding (status AVAILABLE) — short clips take ~10-30s.
    * @return url
    */
   @javax.annotation.Nonnull
@@ -74,26 +74,26 @@ public class CreateStandaloneAdRequestVideo {
   }
 
 
-  public CreateStandaloneAdRequestVideo thumbnailUrl(@javax.annotation.Nonnull URI thumbnailUrl) {
+  public CreateStandaloneAdRequestVideo thumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
     return this;
   }
 
   /**
-   * Public URL of a still-image thumbnail for the video. Required by Meta on every video creative. Uploaded to Meta as an ad image and referenced as the thumbnail in object_story_spec.video_data.
+   * Public URL of a still-image thumbnail for the video. Required by Meta on every video creative (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame).
    * @return thumbnailUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public URI getThumbnailUrl() {
     return thumbnailUrl;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setThumbnailUrl(@javax.annotation.Nonnull URI thumbnailUrl) {
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
   }
 
