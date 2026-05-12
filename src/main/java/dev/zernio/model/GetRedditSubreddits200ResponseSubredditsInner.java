@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetRedditSubreddits200ResponseSubredditsInner.JSON_PROPERTY_URL,
   GetRedditSubreddits200ResponseSubredditsInner.JSON_PROPERTY_OVER18
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T10:33:53.094606819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetRedditSubreddits200ResponseSubredditsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

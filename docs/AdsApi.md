@@ -1461,11 +1461,11 @@ ApiResponse<[**GetAdAnalytics200Response**](GetAdAnalytics200Response.md)>
 
 ## getAdComments
 
-> GetAdComments200Response getAdComments(adId, limit, cursor)
+> GetAdComments200Response getAdComments(adId, placement, limit, cursor)
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
 
 ### Example
 
@@ -1489,10 +1489,11 @@ public class Example {
 
         AdsApi apiInstance = new AdsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID (ObjectId).
+        String placement = "facebook"; // String | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | Pagination cursor from a previous response.
         try {
-            GetAdComments200Response result = apiInstance.getAdComments(adId, limit, cursor);
+            GetAdComments200Response result = apiInstance.getAdComments(adId, placement, limit, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#getAdComments");
@@ -1511,6 +1512,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID (ObjectId). | |
+| **placement** | **String**| Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. | [optional] [enum: facebook, instagram] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor from a previous response. | [optional] |
 
@@ -1540,11 +1542,11 @@ public class Example {
 
 ## getAdCommentsWithHttpInfo
 
-> ApiResponse<GetAdComments200Response> getAdComments getAdCommentsWithHttpInfo(adId, limit, cursor)
+> ApiResponse<GetAdComments200Response> getAdComments getAdCommentsWithHttpInfo(adId, placement, limit, cursor)
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  Resolves the ad&#39;s creative effective_object_story_id (Facebook) or effective_instagram_media_id (Instagram) via the Marketing API on each call (cached in-process by the platform client), then fetches comments from the Graph API.  For Instagram-placed ads, the Instagram account that runs the ad must be connected to Zernio — comments are read through that account&#39;s token. If none of the connected Instagram accounts on the profile can read the ad&#39;s media, the call returns ads_connection_required.  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio — those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  Meta-only. Other ad platforms (TikTok, LinkedIn, Pinterest, Google, X) do not expose a public per-ad comments API and return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}. 
 
 ### Example
 
@@ -1569,10 +1571,11 @@ public class Example {
 
         AdsApi apiInstance = new AdsApi(defaultClient);
         String adId = "adId_example"; // String | Internal Zernio ad ID (ObjectId).
+        String placement = "facebook"; // String | Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | Pagination cursor from a previous response.
         try {
-            ApiResponse<GetAdComments200Response> response = apiInstance.getAdCommentsWithHttpInfo(adId, limit, cursor);
+            ApiResponse<GetAdComments200Response> response = apiInstance.getAdCommentsWithHttpInfo(adId, placement, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1593,6 +1596,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Internal Zernio ad ID (ObjectId). | |
+| **placement** | **String**| Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. | [optional] [enum: facebook, instagram] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor from a previous response. | [optional] |
 

@@ -47,9 +47,10 @@ import dev.zernio.ApiClient;
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_CID,
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_SUBREDDIT,
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_IS_AD,
-  ListInboxComments200ResponseDataInner.JSON_PROPERTY_AD_ID
+  ListInboxComments200ResponseDataInner.JSON_PROPERTY_AD_ID,
+  ListInboxComments200ResponseDataInner.JSON_PROPERTY_PLACEMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T10:33:53.094606819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxComments200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -106,6 +107,45 @@ public class ListInboxComments200ResponseDataInner {
   public static final String JSON_PROPERTY_AD_ID = "adId";
   @javax.annotation.Nullable
   private String adId;
+
+  /**
+   * Which side of the ad this row&#39;s comments are on — only on ad rows.
+   */
+  public enum PlacementEnum {
+    FACEBOOK(String.valueOf("facebook")),
+    
+    INSTAGRAM(String.valueOf("instagram"));
+
+    private String value;
+
+    PlacementEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PlacementEnum fromValue(String value) {
+      for (PlacementEnum b : PlacementEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PLACEMENT = "placement";
+  @javax.annotation.Nullable
+  private PlacementEnum placement;
 
   public ListInboxComments200ResponseDataInner() { 
   }
@@ -404,7 +444,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the comment platform (facebook or instagram), &#x60;id&#x60; equals &#x60;adId&#x60;, and the thread is at GET /v1/ads/{adId}/comments.
+   * True when this row is an ad (boosted/dark post). &#x60;platform&#x60; is then the placement (facebook &#x3D; the Page dark post / instagram &#x3D; the IG media), &#x60;id&#x60; is &#x60;{adId}:{placement}&#x60;, and the thread is at GET /v1/ads/{adId}/comments?placement&#x3D;{placement}.
    * @return isAd
    */
   @javax.annotation.Nullable
@@ -428,7 +468,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * Internal Zernio ad id — only on ad rows (same value as &#x60;id&#x60;).
+   * Internal Zernio ad id — only on ad rows.
    * @return adId
    */
   @javax.annotation.Nullable
@@ -443,6 +483,30 @@ public class ListInboxComments200ResponseDataInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdId(@javax.annotation.Nullable String adId) {
     this.adId = adId;
+  }
+
+
+  public ListInboxComments200ResponseDataInner placement(@javax.annotation.Nullable PlacementEnum placement) {
+    this.placement = placement;
+    return this;
+  }
+
+  /**
+   * Which side of the ad this row&#39;s comments are on — only on ad rows.
+   * @return placement
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public PlacementEnum getPlacement() {
+    return placement;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlacement(@javax.annotation.Nullable PlacementEnum placement) {
+    this.placement = placement;
   }
 
 
@@ -471,12 +535,13 @@ public class ListInboxComments200ResponseDataInner {
         Objects.equals(this.cid, listInboxComments200ResponseDataInner.cid) &&
         Objects.equals(this.subreddit, listInboxComments200ResponseDataInner.subreddit) &&
         Objects.equals(this.isAd, listInboxComments200ResponseDataInner.isAd) &&
-        Objects.equals(this.adId, listInboxComments200ResponseDataInner.adId);
+        Objects.equals(this.adId, listInboxComments200ResponseDataInner.adId) &&
+        Objects.equals(this.placement, listInboxComments200ResponseDataInner.placement);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, content, picture, permalink, createdTime, commentCount, likeCount, cid, subreddit, isAd, adId);
+    return Objects.hash(id, platform, accountId, accountUsername, content, picture, permalink, createdTime, commentCount, likeCount, cid, subreddit, isAd, adId, placement);
   }
 
   @Override
@@ -497,6 +562,7 @@ public class ListInboxComments200ResponseDataInner {
     sb.append("    subreddit: ").append(toIndentedString(subreddit)).append("\n");
     sb.append("    isAd: ").append(toIndentedString(isAd)).append("\n");
     sb.append("    adId: ").append(toIndentedString(adId)).append("\n");
+    sb.append("    placement: ").append(toIndentedString(placement)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -612,6 +678,11 @@ public class ListInboxComments200ResponseDataInner {
     // add `adId` to the URL query string
     if (getAdId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sadId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdId()))));
+    }
+
+    // add `placement` to the URL query string
+    if (getPlacement() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splacement%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlacement()))));
     }
 
     return joiner.toString();

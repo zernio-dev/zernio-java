@@ -35,6 +35,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetAdComments200ResponseMeta.JSON_PROPERTY_PLATFORM,
+  GetAdComments200ResponseMeta.JSON_PROPERTY_PLACEMENT,
   GetAdComments200ResponseMeta.JSON_PROPERTY_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_PLATFORM_AD_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_EFFECTIVE_STORY_ID,
@@ -44,10 +45,10 @@ import dev.zernio.ApiClient;
   GetAdComments200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T09:47:34.878465165Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T10:33:53.094606819Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdComments200ResponseMeta {
   /**
-   * Gets or Sets platform
+   * Which side these comments are on (same as &#x60;placement&#x60;).
    */
   public enum PlatformEnum {
     FACEBOOK(String.valueOf("facebook")),
@@ -84,6 +85,45 @@ public class GetAdComments200ResponseMeta {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull
   private PlatformEnum platform;
+
+  /**
+   * The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+   */
+  public enum PlacementEnum {
+    FACEBOOK(String.valueOf("facebook")),
+    
+    INSTAGRAM(String.valueOf("instagram"));
+
+    private String value;
+
+    PlacementEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PlacementEnum fromValue(String value) {
+      for (PlacementEnum b : PlacementEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PLACEMENT = "placement";
+  @javax.annotation.Nonnull
+  private PlacementEnum placement;
 
   public static final String JSON_PROPERTY_AD_ID = "adId";
   @javax.annotation.Nonnull
@@ -126,7 +166,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * Get platform
+   * Which side these comments are on (same as &#x60;placement&#x60;).
    * @return platform
    */
   @javax.annotation.Nonnull
@@ -141,6 +181,30 @@ public class GetAdComments200ResponseMeta {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPlatform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
+  }
+
+
+  public GetAdComments200ResponseMeta placement(@javax.annotation.Nonnull PlacementEnum placement) {
+    this.placement = placement;
+    return this;
+  }
+
+  /**
+   * The placement these comments are for — useful when you didn&#39;t pass ?placement&#x3D; and want to know which one you got.
+   * @return placement
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public PlacementEnum getPlacement() {
+    return placement;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlacement(@javax.annotation.Nonnull PlacementEnum placement) {
+    this.placement = placement;
   }
 
 
@@ -198,7 +262,7 @@ public class GetAdComments200ResponseMeta {
   }
 
   /**
-   * Underlying post ID the comments belong to. effective_object_story_id for Facebook, effective_instagram_media_id for Instagram.
+   * Underlying post ID the comments belong to. effective_object_story_id for the Facebook side, effective_instagram_media_id for the Instagram side.
    * @return effectiveStoryId
    */
   @javax.annotation.Nonnull
@@ -349,6 +413,7 @@ public class GetAdComments200ResponseMeta {
     }
     GetAdComments200ResponseMeta getAdComments200ResponseMeta = (GetAdComments200ResponseMeta) o;
     return Objects.equals(this.platform, getAdComments200ResponseMeta.platform) &&
+        Objects.equals(this.placement, getAdComments200ResponseMeta.placement) &&
         Objects.equals(this.adId, getAdComments200ResponseMeta.adId) &&
         Objects.equals(this.platformAdId, getAdComments200ResponseMeta.platformAdId) &&
         Objects.equals(this.effectiveStoryId, getAdComments200ResponseMeta.effectiveStoryId) &&
@@ -361,7 +426,7 @@ public class GetAdComments200ResponseMeta {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, adId, platformAdId, effectiveStoryId, instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
+    return Objects.hash(platform, placement, adId, platformAdId, effectiveStoryId, instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
   }
 
   @Override
@@ -369,6 +434,7 @@ public class GetAdComments200ResponseMeta {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetAdComments200ResponseMeta {\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    placement: ").append(toIndentedString(placement)).append("\n");
     sb.append("    adId: ").append(toIndentedString(adId)).append("\n");
     sb.append("    platformAdId: ").append(toIndentedString(platformAdId)).append("\n");
     sb.append("    effectiveStoryId: ").append(toIndentedString(effectiveStoryId)).append("\n");
@@ -427,6 +493,11 @@ public class GetAdComments200ResponseMeta {
     // add `platform` to the URL query string
     if (getPlatform() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
+    // add `placement` to the URL query string
+    if (getPlacement() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splacement%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlacement()))));
     }
 
     // add `adId` to the URL query string
