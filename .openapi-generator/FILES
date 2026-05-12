@@ -173,6 +173,7 @@ docs/CreateStandaloneAd201Response.md
 docs/CreateStandaloneAd201ResponseOneOf.md
 docs/CreateStandaloneAd201ResponseOneOf1.md
 docs/CreateStandaloneAdRequest.md
+docs/CreateStandaloneAdRequestAttributionSpecInner.md
 docs/CreateStandaloneAdRequestBrandIdentity.md
 docs/CreateStandaloneAdRequestCitiesInner.md
 docs/CreateStandaloneAdRequestCreativesInner.md
@@ -1155,6 +1156,7 @@ src/main/java/dev/zernio/model/CreateStandaloneAd201Response.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf.java
 src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf1.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequest.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestAttributionSpecInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestBrandIdentity.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCitiesInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCreativesInner.java
@@ -1888,3 +1890,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestAttributionSpecInnerTest.java

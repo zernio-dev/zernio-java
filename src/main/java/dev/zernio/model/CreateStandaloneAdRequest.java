@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
+import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
 import dev.zernio.model.CreateStandaloneAdRequestBrandIdentity;
 import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
@@ -66,6 +67,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_AD_SET_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUSINESS_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_BOARD_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_ORGANIZATION_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_COUNTRIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_CITIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_REGIONS,
@@ -79,6 +81,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_HEADLINES,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_ATTRIBUTION_SPEC,
   CreateStandaloneAdRequest.JSON_PROPERTY_GENDER,
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_STRATEGY,
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_AMOUNT,
@@ -89,7 +92,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T13:08:59.587822530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T14:41:18.497782509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -104,7 +107,7 @@ public class CreateStandaloneAdRequest {
   private String name;
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).
+   * Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). LinkedIn-specific: only &#x60;engagement&#x60;, &#x60;traffic&#x60;, and &#x60;awareness&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image ad); &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;. For &#x60;video_views&#x60; / &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.
    */
   public enum GoalEnum {
     ENGAGEMENT(String.valueOf("engagement")),
@@ -212,7 +215,7 @@ public class CreateStandaloneAdRequest {
   private String body;
 
   /**
-   * Required on legacy + attach shapes for Meta. Honoured on TikTok too — passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. Ignored by other platforms.
+   * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
    */
   public enum CallToActionEnum {
     LEARN_MORE(String.valueOf("LEARN_MORE")),
@@ -233,7 +236,23 @@ public class CreateStandaloneAdRequest {
     
     SUBSCRIBE(String.valueOf("SUBSCRIBE")),
     
-    WATCH_MORE(String.valueOf("WATCH_MORE"));
+    WATCH_MORE(String.valueOf("WATCH_MORE")),
+    
+    REGISTER(String.valueOf("REGISTER")),
+    
+    JOIN(String.valueOf("JOIN")),
+    
+    ATTEND(String.valueOf("ATTEND")),
+    
+    REQUEST_DEMO(String.valueOf("REQUEST_DEMO")),
+    
+    VIEW_QUOTE(String.valueOf("VIEW_QUOTE")),
+    
+    APPLY(String.valueOf("APPLY")),
+    
+    SEE_MORE(String.valueOf("SEE_MORE")),
+    
+    BUY_NOW(String.valueOf("BUY_NOW"));
 
     private String value;
 
@@ -297,6 +316,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_BOARD_ID = "boardId";
   @javax.annotation.Nullable
   private String boardId;
+
+  public static final String JSON_PROPERTY_ORGANIZATION_ID = "organizationId";
+  @javax.annotation.Nullable
+  private String organizationId;
 
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -419,6 +442,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ADVANTAGE_AUDIENCE = "advantageAudience";
   @javax.annotation.Nullable
   private AdvantageAudienceEnum advantageAudience;
+
+  public static final String JSON_PROPERTY_ATTRIBUTION_SPEC = "attributionSpec";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec = new ArrayList<>();
 
   /**
    * Meta only. Restrict the audience by gender. &#39;male&#39; targets men only, &#39;female&#39; targets women only, &#39;all&#39; (default) targets everyone. Ignored by non-Meta platforms.
@@ -609,7 +636,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted).
+   * Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). LinkedIn-specific: only &#x60;engagement&#x60;, &#x60;traffic&#x60;, and &#x60;awareness&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image ad); &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;. For &#x60;video_views&#x60; / &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.
    * @return goal
    */
   @javax.annotation.Nullable
@@ -705,7 +732,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required for Meta, Google, and Pinterest on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100.
+   * Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title.
    * @return headline
    */
   @javax.annotation.Nullable
@@ -729,7 +756,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Display only. Defaults to &#x60;headline&#x60; if omitted.
+   * Google Display only — defaults to &#x60;headline&#x60; if omitted. On LinkedIn, reused as the optional secondary description text on traffic (link) ads; omitted if not provided.
    * @return longHeadline
    */
   @javax.annotation.Nullable
@@ -753,7 +780,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). Max: Google&#x3D;90, Pinterest&#x3D;500.
+   * Required on legacy + attach shapes. For X/Twitter this is the tweet text (max 280 chars including a ~24-char URL when &#x60;linkUrl&#x60; is set). On LinkedIn this is the post commentary (the intro text shown above the ad). Max: Google&#x3D;90, Pinterest&#x3D;500.
    * @return body
    */
   @javax.annotation.Nullable
@@ -777,7 +804,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes for Meta. Honoured on TikTok too — passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. Ignored by other platforms.
+   * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
    * @return callToAction
    */
   @javax.annotation.Nullable
@@ -801,7 +828,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes. Skip for multi-creative.
+   * Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;.
    * @return linkUrl
    */
   @javax.annotation.Nullable
@@ -825,7 +852,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Image creative for Meta/Google/Pinterest on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected.
+   * Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes (mutually exclusive with &#x60;video&#x60;). Required for LinkedIn ads. Not required for Google Search campaigns. For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the field retains the &#x60;imageUrl&#x60; name for cross-platform consistency). Ignored for X/Twitter. For Google Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. For LinkedIn the image is uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627).
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -995,6 +1022,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest organizationId(@javax.annotation.Nullable String organizationId) {
+    this.organizationId = organizationId;
+    return this;
+  }
+
+  /**
+   * LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad — accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform.
+   * @return organizationId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORGANIZATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOrganizationId() {
+    return organizationId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORGANIZATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOrganizationId(@javax.annotation.Nullable String organizationId) {
+    this.organizationId = organizationId;
+  }
+
+
   public CreateStandaloneAdRequest countries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
     return this;
@@ -1009,7 +1060,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided.
+   * ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided. (LinkedIn currently honours country-level targeting only.)
    * @return countries
    */
   @javax.annotation.Nullable
@@ -1367,6 +1418,38 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest attributionSpec(@javax.annotation.Nullable List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec) {
+    this.attributionSpec = attributionSpec;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addAttributionSpecItem(CreateStandaloneAdRequestAttributionSpecInner attributionSpecItem) {
+    if (this.attributionSpec == null) {
+      this.attributionSpec = new ArrayList<>();
+    }
+    this.attributionSpec.add(attributionSpecItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Conversion attribution window for the ad set — maps 1:1 to Meta&#39;s ad-set &#x60;attribution_spec&#x60;. Only honored for conversion goals (&#x60;conversions&#x60;, &#x60;lead_generation&#x60;, &#x60;app_promotion&#x60;); ignored for awareness/traffic/engagement. Omit to use Meta&#39;s default (&#x60;7-day click&#x60; + &#x60;1-day view&#x60;). Meta enforces the valid combinations: &#x60;VIEW_THROUGH&#x60; only allows &#x60;windowDays: 1&#x60; (7d/28d view windows were removed Jan 2026); &#x60;ENGAGED_VIDEO_VIEW&#x60; only &#x60;1&#x60; and only alongside &#x60;VIEW_THROUGH: 1&#x60;; &#x60;CLICK_THROUGH: 28&#x60; only on certain objectives. Invalid combos surface as a Meta 400. Example: &#x60;[{ \&quot;eventType\&quot;: \&quot;CLICK_THROUGH\&quot;, \&quot;windowDays\&quot;: 7 }, { \&quot;eventType\&quot;: \&quot;VIEW_THROUGH\&quot;, \&quot;windowDays\&quot;: 1 }]&#x60; 
+   * @return attributionSpec
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTION_SPEC, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestAttributionSpecInner> getAttributionSpec() {
+    return attributionSpec;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTION_SPEC, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAttributionSpec(@javax.annotation.Nullable List<CreateStandaloneAdRequestAttributionSpecInner> attributionSpec) {
+    this.attributionSpec = attributionSpec;
+  }
+
+
   public CreateStandaloneAdRequest gender(@javax.annotation.Nullable GenderEnum gender) {
     this.gender = gender;
     return this;
@@ -1614,6 +1697,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.adSetId, createStandaloneAdRequest.adSetId) &&
         Objects.equals(this.businessName, createStandaloneAdRequest.businessName) &&
         Objects.equals(this.boardId, createStandaloneAdRequest.boardId) &&
+        Objects.equals(this.organizationId, createStandaloneAdRequest.organizationId) &&
         Objects.equals(this.countries, createStandaloneAdRequest.countries) &&
         Objects.equals(this.cities, createStandaloneAdRequest.cities) &&
         Objects.equals(this.regions, createStandaloneAdRequest.regions) &&
@@ -1627,6 +1711,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.additionalHeadlines, createStandaloneAdRequest.additionalHeadlines) &&
         Objects.equals(this.additionalDescriptions, createStandaloneAdRequest.additionalDescriptions) &&
         Objects.equals(this.advantageAudience, createStandaloneAdRequest.advantageAudience) &&
+        Objects.equals(this.attributionSpec, createStandaloneAdRequest.attributionSpec) &&
         Objects.equals(this.gender, createStandaloneAdRequest.gender) &&
         Objects.equals(this.bidStrategy, createStandaloneAdRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, createStandaloneAdRequest.bidAmount) &&
@@ -1640,7 +1725,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, countries, cities, regions, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -1666,6 +1751,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    adSetId: ").append(toIndentedString(adSetId)).append("\n");
     sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
     sb.append("    boardId: ").append(toIndentedString(boardId)).append("\n");
+    sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
     sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
     sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
@@ -1679,6 +1765,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    additionalHeadlines: ").append(toIndentedString(additionalHeadlines)).append("\n");
     sb.append("    additionalDescriptions: ").append(toIndentedString(additionalDescriptions)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
+    sb.append("    attributionSpec: ").append(toIndentedString(attributionSpec)).append("\n");
     sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
@@ -1835,6 +1922,11 @@ public class CreateStandaloneAdRequest {
       joiner.add(String.format(java.util.Locale.ROOT, "%sboardId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBoardId()))));
     }
 
+    // add `organizationId` to the URL query string
+    if (getOrganizationId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sorganizationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOrganizationId()))));
+    }
+
     // add `countries` to the URL query string
     if (getCountries() != null) {
       for (int i = 0; i < getCountries().size(); i++) {
@@ -1929,6 +2021,16 @@ public class CreateStandaloneAdRequest {
     // add `advantageAudience` to the URL query string
     if (getAdvantageAudience() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sadvantageAudience%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdvantageAudience()))));
+    }
+
+    // add `attributionSpec` to the URL query string
+    if (getAttributionSpec() != null) {
+      for (int i = 0; i < getAttributionSpec().size(); i++) {
+        if (getAttributionSpec().get(i) != null) {
+          joiner.add(getAttributionSpec().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sattributionSpec%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `gender` to the URL query string
