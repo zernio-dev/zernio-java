@@ -4517,6 +4517,56 @@ paths:
       - Accounts
       x-accepts:
       - application/json
+    patch:
+      description: |
+        Moves a connected social account to a different profile owned by the same
+        user. The target profile must belong to the same user as the account.
+
+        For API keys restricted to specific profiles, BOTH the source account's
+        current profile AND the target profile must be in the key's allowed set.
+        Calls with a target profile outside the key's scope return 403.
+      operationId: moveAccountToProfile
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              profileId: 65f1a2b3c4d5e6f7a8b9c0d1
+            schema:
+              $ref: "#/components/schemas/moveAccountToProfile_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                message: Account updated successfully
+                profileId: 65f1a2b3c4d5e6f7a8b9c0d1
+              schema:
+                $ref: "#/components/schemas/moveAccountToProfile_200_response"
+          description: Account moved
+        "400":
+          description: Missing or invalid profileId
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: API key does not have access to the source account or target
+            profile
+        "404":
+          description: Account or target profile not found
+      summary: Move account to a different profile
+      tags:
+      - Accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
     put:
       description: |
         Updates a connected social account's display name or username override.
@@ -27148,6 +27198,23 @@ components:
           type: string
         xCapabilities:
           $ref: "#/components/schemas/updateAccount_200_response_xCapabilities"
+    moveAccountToProfile_request:
+      properties:
+        profileId:
+          description: Target profile ID (must be a valid ObjectId and owned by the
+            same user as the account).
+          type: string
+      required:
+      - profileId
+    moveAccountToProfile_200_response:
+      example:
+        profileId: profileId
+        message: message
+      properties:
+        message:
+          type: string
+        profileId:
+          type: string
     getAllAccountsHealth_200_response_summary:
       example:
         total: 0

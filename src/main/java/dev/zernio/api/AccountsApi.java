@@ -29,6 +29,8 @@ import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAccounts200Response;
 import java.time.LocalDate;
+import dev.zernio.model.MoveAccountToProfile200Response;
+import dev.zernio.model.MoveAccountToProfileRequest;
 import dev.zernio.model.UpdateAccount200Response;
 import dev.zernio.model.UpdateAccountRequest;
 
@@ -57,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-12T15:35:32.652565805Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T07:59:07.650760605Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -980,6 +982,138 @@ public class AccountsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Move account to a different profile
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * @param accountId  (required)
+   * @param moveAccountToProfileRequest  (required)
+   * @return MoveAccountToProfile200Response
+   * @throws ApiException if fails to make API call
+   */
+  public MoveAccountToProfile200Response moveAccountToProfile(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull MoveAccountToProfileRequest moveAccountToProfileRequest) throws ApiException {
+    return moveAccountToProfile(accountId, moveAccountToProfileRequest, null);
+  }
+
+  /**
+   * Move account to a different profile
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * @param accountId  (required)
+   * @param moveAccountToProfileRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return MoveAccountToProfile200Response
+   * @throws ApiException if fails to make API call
+   */
+  public MoveAccountToProfile200Response moveAccountToProfile(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull MoveAccountToProfileRequest moveAccountToProfileRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<MoveAccountToProfile200Response> localVarResponse = moveAccountToProfileWithHttpInfo(accountId, moveAccountToProfileRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Move account to a different profile
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * @param accountId  (required)
+   * @param moveAccountToProfileRequest  (required)
+   * @return ApiResponse&lt;MoveAccountToProfile200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<MoveAccountToProfile200Response> moveAccountToProfileWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull MoveAccountToProfileRequest moveAccountToProfileRequest) throws ApiException {
+    return moveAccountToProfileWithHttpInfo(accountId, moveAccountToProfileRequest, null);
+  }
+
+  /**
+   * Move account to a different profile
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * @param accountId  (required)
+   * @param moveAccountToProfileRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;MoveAccountToProfile200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<MoveAccountToProfile200Response> moveAccountToProfileWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull MoveAccountToProfileRequest moveAccountToProfileRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = moveAccountToProfileRequestBuilder(accountId, moveAccountToProfileRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("moveAccountToProfile", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<MoveAccountToProfile200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        MoveAccountToProfile200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<MoveAccountToProfile200Response>() {});
+        
+
+        return new ApiResponse<MoveAccountToProfile200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder moveAccountToProfileRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull MoveAccountToProfileRequest moveAccountToProfileRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling moveAccountToProfile");
+    }
+    // verify the required parameter 'moveAccountToProfileRequest' is set
+    if (moveAccountToProfileRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'moveAccountToProfileRequest' when calling moveAccountToProfile");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(moveAccountToProfileRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-12T15:35:32.652565805Z[Etc/UTC]
+- Build date: 2026-05-13T07:59:07.650760605Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -150,6 +150,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getTikTokCreatorInfoWithHttpInfo**](docs/AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**listAccounts**](docs/AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**listAccountsWithHttpInfo**](docs/AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts
+*AccountsApi* | [**moveAccountToProfile**](docs/AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile
+*AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
 *AdAudiencesApi* | [**addUsersToAdAudience**](docs/AdAudiencesApi.md#addUsersToAdAudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
@@ -1240,6 +1242,8 @@ Class | Method | HTTP request | Description
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [Money](docs/Money.md)
+ - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
+ - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
  - [Pagination](docs/Pagination.md)
  - [Pending](docs/Pending.md)
  - [PinterestPlatformData](docs/PinterestPlatformData.md)

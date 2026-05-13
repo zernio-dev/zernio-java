@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTikTokCreatorInfoWithHttpInfo**](AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**listAccounts**](AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts |
 | [**listAccountsWithHttpInfo**](AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts |
+| [**moveAccountToProfile**](AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile |
+| [**moveAccountToProfileWithHttpInfo**](AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateAccountWithHttpInfo**](AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account |
 
@@ -951,6 +953,162 @@ ApiResponse<[**ListAccounts200Response**](ListAccounts200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Accounts (with optional pagination) |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## moveAccountToProfile
+
+> MoveAccountToProfile200Response moveAccountToProfile(accountId, moveAccountToProfileRequest)
+
+Move account to a different profile
+
+Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        MoveAccountToProfileRequest moveAccountToProfileRequest = new MoveAccountToProfileRequest(); // MoveAccountToProfileRequest | 
+        try {
+            MoveAccountToProfile200Response result = apiInstance.moveAccountToProfile(accountId, moveAccountToProfileRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#moveAccountToProfile");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **moveAccountToProfileRequest** | [**MoveAccountToProfileRequest**](MoveAccountToProfileRequest.md)|  | |
+
+### Return type
+
+[**MoveAccountToProfile200Response**](MoveAccountToProfile200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account moved |  -  |
+| **400** | Missing or invalid profileId |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | API key does not have access to the source account or target profile |  -  |
+| **404** | Account or target profile not found |  -  |
+
+## moveAccountToProfileWithHttpInfo
+
+> ApiResponse<MoveAccountToProfile200Response> moveAccountToProfile moveAccountToProfileWithHttpInfo(accountId, moveAccountToProfileRequest)
+
+Move account to a different profile
+
+Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        MoveAccountToProfileRequest moveAccountToProfileRequest = new MoveAccountToProfileRequest(); // MoveAccountToProfileRequest | 
+        try {
+            ApiResponse<MoveAccountToProfile200Response> response = apiInstance.moveAccountToProfileWithHttpInfo(accountId, moveAccountToProfileRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#moveAccountToProfile");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **moveAccountToProfileRequest** | [**MoveAccountToProfileRequest**](MoveAccountToProfileRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**MoveAccountToProfile200Response**](MoveAccountToProfile200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account moved |  -  |
+| **400** | Missing or invalid profileId |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | API key does not have access to the source account or target profile |  -  |
+| **404** | Account or target profile not found |  -  |
 
 
 ## updateAccount

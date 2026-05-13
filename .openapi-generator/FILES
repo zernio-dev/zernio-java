@@ -576,6 +576,8 @@ docs/MediaItem.md
 docs/MediaUploadResponse.md
 docs/MessagesApi.md
 docs/Money.md
+docs/MoveAccountToProfile200Response.md
+docs/MoveAccountToProfileRequest.md
 docs/Pagination.md
 docs/Pending.md
 docs/PinterestPlatformData.md
@@ -1545,6 +1547,8 @@ src/main/java/dev/zernio/model/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersIn
 src/main/java/dev/zernio/model/MediaItem.java
 src/main/java/dev/zernio/model/MediaUploadResponse.java
 src/main/java/dev/zernio/model/Money.java
+src/main/java/dev/zernio/model/MoveAccountToProfile200Response.java
+src/main/java/dev/zernio/model/MoveAccountToProfileRequest.java
 src/main/java/dev/zernio/model/Pagination.java
 src/main/java/dev/zernio/model/Pending.java
 src/main/java/dev/zernio/model/PinterestPlatformData.java
@@ -1890,3 +1894,5 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/MoveAccountToProfile200ResponseTest.java
+src/test/java/dev/zernio/model/MoveAccountToProfileRequestTest.java
