@@ -90,7 +90,7 @@ public class Example {
 | **200** | Users added |  -  |
 | **400** | Invalid input (empty users array, missing email/phone) |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Audience is not a customer_list type or has no platform ID yet |  -  |
 
@@ -170,7 +170,7 @@ ApiResponse<[**AddUsersToAdAudience200Response**](AddUsersToAdAudience200Respons
 | **200** | Users added |  -  |
 | **400** | Invalid input (empty users array, missing email/phone) |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Audience is not a customer_list type or has no platform ID yet |  -  |
 
@@ -246,7 +246,7 @@ public class Example {
 | **201** | Audience created |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## createAdAudienceWithHttpInfo
 
@@ -322,7 +322,7 @@ ApiResponse<[**CreateAdAudience201Response**](CreateAdAudience201Response.md)>
 | **201** | Audience created |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
 ## deleteAdAudience
@@ -395,7 +395,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Audience deleted |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteAdAudienceWithHttpInfo
@@ -471,7 +471,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 |-------------|-------------|------------------|
 | **200** | Audience deleted |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -545,7 +545,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Audience details |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getAdAudienceWithHttpInfo
@@ -621,7 +621,7 @@ ApiResponse<[**GetAdAudience200Response**](GetAdAudience200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Audience details |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -699,7 +699,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## listAdAudiencesWithHttpInfo
 
@@ -778,5 +778,5 @@ ApiResponse<[**ListAdAudiences200Response**](ListAdAudiences200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 

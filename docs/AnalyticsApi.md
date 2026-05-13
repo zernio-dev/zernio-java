@@ -141,7 +141,7 @@ public class Example {
 | **202** | Analytics are being synced from the platform (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message. |  -  |
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
 | **500** | Internal server error |  -  |
@@ -241,7 +241,7 @@ ApiResponse<[**GetAnalytics200Response**](GetAnalytics200Response.md)>
 | **202** | Analytics are being synced from the platform (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message. |  -  |
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
 | **500** | Internal server error |  -  |
@@ -323,7 +323,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Best time slots |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getBestTimeToPostWithHttpInfo
 
@@ -404,7 +404,7 @@ ApiResponse<[**GetBestTimeToPost200Response**](GetBestTimeToPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Best time slots |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
 ## getContentDecay
@@ -483,7 +483,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Content decay buckets |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getContentDecayWithHttpInfo
 
@@ -564,7 +564,7 @@ ApiResponse<[**GetContentDecay200Response**](GetContentDecay200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Content decay buckets |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
 ## getDailyMetrics
@@ -647,7 +647,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Daily metrics and platform breakdown |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getDailyMetricsWithHttpInfo
 
@@ -732,7 +732,7 @@ ApiResponse<[**GetDailyMetrics200Response**](GetDailyMetrics200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Daily metrics and platform breakdown |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
 ## getFacebookPageInsights
@@ -814,7 +814,7 @@ public class Example {
 | **200** | Page insights data |  -  |
 | **400** | Bad request. Common cases:   - Requested a deprecated metric (page_impressions, page_fans, page_fan_adds, page_fan_removes) - use current names instead   - Account has no Page selected (metadata.pageAccessToken missing)   - Invalid accountId / metrics / metricType / date range   - Account is not a Facebook account  |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
 ## getFacebookPageInsightsWithHttpInfo
@@ -899,7 +899,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **200** | Page insights data |  -  |
 | **400** | Bad request. Common cases:   - Requested a deprecated metric (page_impressions, page_fans, page_fan_adds, page_fan_removes) - use current names instead   - Account has no Page selected (metadata.pageAccessToken missing)   - Invalid accountId / metrics / metricType / date range   - Account is not a Facebook account  |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -981,7 +981,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getFollowerStatsWithHttpInfo
 
@@ -1064,7 +1064,7 @@ ApiResponse<[**GetFollowerStats200Response**](GetFollowerStats200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
 ## getGoogleBusinessPerformance
@@ -1144,7 +1144,7 @@ public class Example {
 | **200** | Performance metrics with daily time series |  -  |
 | **400** | Invalid parameters |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 
 ## getGoogleBusinessPerformanceWithHttpInfo
@@ -1227,7 +1227,7 @@ ApiResponse<[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerfo
 | **200** | Performance metrics with daily time series |  -  |
 | **400** | Invalid parameters |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 
 
@@ -1306,7 +1306,7 @@ public class Example {
 | **200** | Search keywords with impression counts |  -  |
 | **400** | Invalid parameters |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 
 ## getGoogleBusinessSearchKeywordsWithHttpInfo
@@ -1387,7 +1387,7 @@ ApiResponse<[**GetGoogleBusinessSearchKeywords200Response**](GetGoogleBusinessSe
 | **200** | Search keywords with impression counts |  -  |
 | **400** | Invalid parameters |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 
 
@@ -1472,7 +1472,7 @@ public class Example {
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 
@@ -1560,7 +1560,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 
@@ -1642,7 +1642,7 @@ public class Example {
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 
@@ -1726,7 +1726,7 @@ ApiResponse<[**InstagramDemographicsResponse**](InstagramDemographicsResponse.md
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 
@@ -1810,7 +1810,7 @@ public class Example {
 | **200** | Follower history data |  -  |
 | **400** | Bad request (invalid accountId / metrics / date range, or account is not an Instagram account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
 ## getInstagramFollowerHistoryWithHttpInfo
@@ -1895,7 +1895,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **200** | Follower history data |  -  |
 | **400** | Bad request (invalid accountId / metrics / date range, or account is not an Instagram account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -1978,7 +1978,7 @@ public class Example {
 | **200** | Aggregate analytics data |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account not found |  -  |
 
@@ -2064,7 +2064,7 @@ ApiResponse<[**GetLinkedInAggregateAnalytics200Response**](GetLinkedInAggregateA
 | **200** | Aggregate analytics data |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account not found |  -  |
 
@@ -2148,7 +2148,7 @@ public class Example {
 | **200** | Organization analytics data |  -  |
 | **400** | Bad request. Common cases:   - Account is a personal LinkedIn account, not organization (code personal_account_not_supported, use /v1/accounts/{id}/linkedin-aggregate-analytics instead)   - Invalid metric name, metricType, or date range  |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Platform error. The authenticated member lacks the required ADMINISTRATOR role on the organization. LinkedIn enforces admin-only access for all three org statistics endpoints. The error envelope is type platform_error, and the raw LinkedIn error is echoed in the platformError field.  |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing LinkedIn organization analytics scopes (r_organization_social + r_organization_followers + r_organization_admin) |  -  |
@@ -2235,7 +2235,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **200** | Organization analytics data |  -  |
 | **400** | Bad request. Common cases:   - Account is a personal LinkedIn account, not organization (code personal_account_not_supported, use /v1/accounts/{id}/linkedin-aggregate-analytics instead)   - Invalid metric name, metricType, or date range  |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Platform error. The authenticated member lacks the required ADMINISTRATOR role on the organization. LinkedIn enforces admin-only access for all three org statistics endpoints. The error envelope is type platform_error, and the raw LinkedIn error is echoed in the platformError field.  |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing LinkedIn organization analytics scopes (r_organization_social + r_organization_followers + r_organization_admin) |  -  |
@@ -2314,7 +2314,7 @@ public class Example {
 | **200** | Post analytics data |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
 
@@ -2394,7 +2394,7 @@ ApiResponse<[**GetLinkedInPostAnalytics200Response**](GetLinkedInPostAnalytics20
 | **200** | Post analytics data |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
 
@@ -2476,7 +2476,7 @@ public class Example {
 | **200** | Reactions with reactor profiles |  -  |
 | **400** | Invalid request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
 
@@ -2560,7 +2560,7 @@ ApiResponse<[**GetLinkedInPostReactions200Response**](GetLinkedInPostReactions20
 | **200** | Reactions with reactor profiles |  -  |
 | **400** | Invalid request or platform limitation |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
 
@@ -2640,7 +2640,7 @@ public class Example {
 | **200** | Daily analytics timeline |  -  |
 | **400** | Missing required postId parameter |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Forbidden (post belongs to another user or API key scope violation) |  -  |
 | **404** | Post not found |  -  |
 
@@ -2722,7 +2722,7 @@ ApiResponse<[**GetPostTimeline200Response**](GetPostTimeline200Response.md)>
 | **200** | Daily analytics timeline |  -  |
 | **400** | Missing required postId parameter |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Forbidden (post belongs to another user or API key scope violation) |  -  |
 | **404** | Post not found |  -  |
 
@@ -2803,7 +2803,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Posting frequency data |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getPostingFrequencyWithHttpInfo
 
@@ -2884,7 +2884,7 @@ ApiResponse<[**GetPostingFrequency200Response**](GetPostingFrequency200Response.
 |-------------|-------------|------------------|
 | **200** | Posting frequency data |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
 ## getTikTokAccountInsights
@@ -2966,7 +2966,7 @@ public class Example {
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a TikTok account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing user.info.stats scope |  -  |
 
@@ -3052,7 +3052,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a TikTok account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing user.info.stats scope |  -  |
 
@@ -3136,7 +3136,7 @@ public class Example {
 | **200** | Channel insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a YouTube account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
 
@@ -3222,7 +3222,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **200** | Channel insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a YouTube account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
 
@@ -3304,7 +3304,7 @@ public class Example {
 | **200** | Daily views breakdown |  -  |
 | **400** | Bad request (missing or invalid parameters) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
 | **500** | Internal server error |  -  |
@@ -3389,7 +3389,7 @@ ApiResponse<[**YouTubeDailyViewsResponse**](YouTubeDailyViewsResponse.md)>
 | **200** | Daily views breakdown |  -  |
 | **400** | Bad request (missing or invalid parameters) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
 | **500** | Internal server error |  -  |
@@ -3472,7 +3472,7 @@ public class Example {
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters or not a YouTube account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
@@ -3557,7 +3557,7 @@ ApiResponse<[**YouTubeDemographicsResponse**](YouTubeDemographicsResponse.md)>
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters or not a YouTube account) |  -  |
 | **401** | Unauthorized |  -  |
-| **402** | Analytics add-on required |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |

@@ -620,7 +620,7 @@ public class Example {
 | **200** | Either an OAuth URL to redirect to, or confirmation that ads are already connected |  -  |
 | **400** | Platform doesn&#39;t support ads, or missing accountId for X Ads |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or no access to profile |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or no access to profile |  -  |
 | **404** | Profile or posting account not found |  -  |
 
 ## connectAdsWithHttpInfo
@@ -709,7 +709,7 @@ ApiResponse<[**ConnectAds200Response**](ConnectAds200Response.md)>
 | **200** | Either an OAuth URL to redirect to, or confirmation that ads are already connected |  -  |
 | **400** | Platform doesn&#39;t support ads, or missing accountId for X Ads |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or no access to profile |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or no access to profile |  -  |
 | **404** | Profile or posting account not found |  -  |
 
 

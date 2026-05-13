@@ -551,7 +551,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getFollowerStatsWithHttpInfo
 
@@ -634,7 +634,7 @@ ApiResponse<[**GetFollowerStats200Response**](GetFollowerStats200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Analytics add-on required |  -  |
+| **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
 ## getTikTokCreatorInfo

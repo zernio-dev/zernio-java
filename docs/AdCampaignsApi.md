@@ -573,7 +573,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## getAdTreeWithHttpInfo
 
@@ -666,7 +666,7 @@ ApiResponse<[**GetAdTree200Response**](GetAdTree200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
 ## getAdsTimeline
@@ -747,7 +747,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## getAdsTimelineWithHttpInfo
 
@@ -830,7 +830,7 @@ ApiResponse<[**GetAdsTimeline200Response**](GetAdsTimeline200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
 ## listAdCampaigns
@@ -917,7 +917,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Paginated campaigns |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## listAdCampaignsWithHttpInfo
 
@@ -1006,7 +1006,7 @@ ApiResponse<[**ListAdCampaigns200Response**](ListAdCampaigns200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Paginated campaigns |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
 ## updateAdCampaign

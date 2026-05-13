@@ -98,7 +98,7 @@ public class Example {
 | **201** | Tracking tag shared with the ad account |  -  |
 | **400** | Invalid body / &#x60;adAccountId&#x60;, or Meta rejected the share (e.g. personal ad account). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
 
@@ -180,7 +180,7 @@ ApiResponse<[**AddTrackingTagSharedAccount201Response**](AddTrackingTagSharedAcc
 | **201** | Tracking tag shared with the ad account |  -  |
 | **400** | Invalid body / &#x60;adAccountId&#x60;, or Meta rejected the share (e.g. personal ad account). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
 
@@ -258,7 +258,7 @@ public class Example {
 | **201** | Tracking tag created |  -  |
 | **400** | Invalid body, invalid &#x60;adAccountId&#x60;, over the per-business pixel cap, or ad account not in a Business Manager. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support creating tracking tags. |  -  |
 
@@ -338,7 +338,7 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 | **201** | Tracking tag created |  -  |
 | **400** | Invalid body, invalid &#x60;adAccountId&#x60;, over the per-business pixel cap, or ad account not in a Business Manager. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support creating tracking tags. |  -  |
 
@@ -415,7 +415,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tracking tag fetched |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support fetching a tracking tag. |  -  |
 
@@ -494,7 +494,7 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 |-------------|-------------|------------------|
 | **200** | Tracking tag fetched |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support fetching a tracking tag. |  -  |
 
@@ -578,7 +578,7 @@ public class Example {
 | **200** | Stats fetched |  -  |
 | **400** | Invalid query parameter. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support tracking-tag stats. |  -  |
 
@@ -664,7 +664,7 @@ ApiResponse<[**GetTrackingTagStats200Response**](GetTrackingTagStats200Response.
 | **200** | Stats fetched |  -  |
 | **400** | Invalid query parameter. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support tracking-tag stats. |  -  |
 
@@ -741,7 +741,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Shared ad accounts listed |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
 
@@ -820,7 +820,7 @@ ApiResponse<[**ListTrackingTagSharedAccounts200Response**](ListTrackingTagShared
 |-------------|-------------|------------------|
 | **200** | Shared ad accounts listed |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
 
@@ -898,7 +898,7 @@ public class Example {
 | **200** | Tracking tags listed |  -  |
 | **400** | Account platform not supported, or invalid &#x60;adAccountId&#x60;. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support listing tracking tags. |  -  |
 
@@ -978,7 +978,7 @@ ApiResponse<[**ListTrackingTags200Response**](ListTrackingTags200Response.md)>
 | **200** | Tracking tags listed |  -  |
 | **400** | Account platform not supported, or invalid &#x60;adAccountId&#x60;. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support listing tracking tags. |  -  |
 
@@ -1057,7 +1057,7 @@ null (empty response body)
 | **204** | Ad account unshared (no content). |  -  |
 | **400** | &#x60;adAccountId&#x60; missing (neither query nor body), or Meta rejected the unshare. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
 
@@ -1138,7 +1138,7 @@ ApiResponse<Void>
 | **204** | Ad account unshared (no content). |  -  |
 | **400** | &#x60;adAccountId&#x60; missing (neither query nor body), or Meta rejected the unshare. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support shared accounts. |  -  |
 
@@ -1218,7 +1218,7 @@ public class Example {
 | **200** | Tracking tag updated (re-fetched canonical state) |  -  |
 | **400** | Invalid body (e.g. no fields supplied) or Meta validation failure. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support updating tracking tags. |  -  |
 
@@ -1300,7 +1300,7 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 | **200** | Tracking tag updated (re-fetched canonical state) |  -  |
 | **400** | Invalid body (e.g. no fields supplied) or Meta validation failure. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | Account or tracking tag not found. |  -  |
 | **405** | Platform does not support updating tracking tags. |  -  |
 

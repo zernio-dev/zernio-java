@@ -290,7 +290,7 @@ public class Example {
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
 
 ## boostPostWithHttpInfo
@@ -367,7 +367,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or — for TikTok — the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step.  |  -  |
 
 
@@ -444,7 +444,7 @@ public class Example {
 | **201** | Destination created |  -  |
 | **400** | Invalid body or LinkedIn validation failure. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support destination creation. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
@@ -525,7 +525,7 @@ ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestina
 | **201** | Destination created |  -  |
 | **400** | Invalid body or LinkedIn validation failure. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support destination creation. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
@@ -602,7 +602,7 @@ public class Example {
 | **201** | CTWA ad created and submitted to Meta for review. |  -  |
 | **400** | Invalid body. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | SocialAccount not found. |  -  |
 | **422** | Page is not connected to a verified WhatsApp number. |  -  |
 | **502** | Meta rejected the request (e.g. WABA business verification missing). Inspect &#x60;platformError&#x60; for the upstream Meta payload.  |  -  |
@@ -681,7 +681,7 @@ ApiResponse<[**CreateCtwaAd201Response**](CreateCtwaAd201Response.md)>
 | **201** | CTWA ad created and submitted to Meta for review. |  -  |
 | **400** | Invalid body. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | SocialAccount not found. |  -  |
 | **422** | Page is not connected to a verified WhatsApp number. |  -  |
 | **502** | Meta rejected the request (e.g. WABA business verification missing). Inspect &#x60;platformError&#x60; for the upstream Meta payload.  |  -  |
@@ -758,7 +758,7 @@ public class Example {
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, or non-Meta platform used with creatives[] / adSetId |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 
 ## createStandaloneAdWithHttpInfo
@@ -835,7 +835,7 @@ ApiResponse<[**CreateStandaloneAd201Response**](CreateStandaloneAd201Response.md
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, or non-Meta platform used with creatives[] / adSetId |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 
 
@@ -1373,7 +1373,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getAdAnalyticsWithHttpInfo
@@ -1455,7 +1455,7 @@ ApiResponse<[**GetAdAnalytics200Response**](GetAdAnalytics200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1536,7 +1536,7 @@ public class Example {
 | **200** | Comments on the ad |  -  |
 | **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code ad_not_commentable).  |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or ad platform is not Meta (code feature_not_available). |  -  |
+| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
 
@@ -1620,7 +1620,7 @@ ApiResponse<[**GetAdComments200Response**](GetAdComments200Response.md)>
 | **200** | Comments on the ad |  -  |
 | **400** | Invalid ad ID format, or the ad&#39;s creative format does not expose a commentable underlying post (code ad_not_commentable).  |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, or ad platform is not Meta (code feature_not_available). |  -  |
+| **403** | Ads access required (legacy plans need the Ads add-on; included by default on usage-based plans), or ad platform is not Meta (code feature_not_available). |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Ads account token unavailable, or (for Instagram-placed ads) no connected Instagram account on the profile can read the ad&#39;s media (code ads_connection_required).  |  -  |
 
@@ -2217,7 +2217,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Paginated ads |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## listAdsWithHttpInfo
 
@@ -2318,7 +2318,7 @@ ApiResponse<[**ListAds200Response**](ListAds200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Paginated ads |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
 ## listAdsBusinessCenters
@@ -2706,7 +2706,7 @@ public class Example {
 | **200** | Destinations listed |  -  |
 | **400** | Account&#39;s platform is not supported by the Conversions API. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
@@ -2784,7 +2784,7 @@ ApiResponse<[**ListConversionDestinations200Response**](ListConversionDestinatio
 | **200** | Destinations listed |  -  |
 | **400** | Account&#39;s platform is not supported by the Conversions API. |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
@@ -3029,7 +3029,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Matching interests |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## searchAdInterestsWithHttpInfo
 
@@ -3106,7 +3106,7 @@ ApiResponse<[**SearchAdInterests200Response**](SearchAdInterests200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Matching interests |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
 ## searchAdTargetingLocations
@@ -3188,7 +3188,7 @@ public class Example {
 | **200** | Matching locations |  -  |
 | **400** | Missing or invalid query parameters |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found, or platform does not support targeting search (Meta only) |  -  |
 
 ## searchAdTargetingLocationsWithHttpInfo
@@ -3273,7 +3273,7 @@ ApiResponse<[**SearchAdTargetingLocations200Response**](SearchAdTargetingLocatio
 | **200** | Matching locations |  -  |
 | **400** | Missing or invalid query parameters |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found, or platform does not support targeting search (Meta only) |  -  |
 
 
@@ -3348,7 +3348,7 @@ public class Example {
 | **200** | Events processed. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failure. For Meta, a batch is all-or-nothing (either every event in a chunk succeeds, or every event in the chunk is listed in failures). For Google, the API returns success/failure at the request level only.  |  -  |
 | **400** | Invalid body (missing accountId/destinationId/events, malformed event shape). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **429** | LinkedIn token-level rate limit hit (600 requests/min, 300k/day per token). Retry with backoff. Meta and Google have their own rate-limit semantics surfaced via platform-specific 4xx responses.  |  -  |
 
@@ -3426,7 +3426,7 @@ ApiResponse<[**SendConversions200Response**](SendConversions200Response.md)>
 | **200** | Events processed. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failure. For Meta, a batch is all-or-nothing (either every event in a chunk succeeds, or every event in the chunk is listed in failures). For Google, the API returns success/failure at the request level only.  |  -  |
 | **400** | Invalid body (missing accountId/destinationId/events, malformed event shape). |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads add-on required, OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **429** | LinkedIn token-level rate limit hit (600 requests/min, 300k/day per token). Retry with backoff. Meta and Google have their own rate-limit semantics surfaced via platform-specific 4xx responses.  |  -  |
 
