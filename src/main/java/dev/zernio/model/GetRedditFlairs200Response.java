@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetRedditFlairs200Response.JSON_PROPERTY_FLAIRS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T09:17:16.384219575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:36:36.977310529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetRedditFlairs200Response {
   public static final String JSON_PROPERTY_FLAIRS = "flairs";
   @javax.annotation.Nullable

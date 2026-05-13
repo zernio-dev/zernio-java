@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**duplicateAdCampaignWithHttpInfo**](AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**getAdTree**](AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree |
 | [**getAdTreeWithHttpInfo**](AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree |
+| [**getAdsTimeline**](AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account |
+| [**getAdsTimelineWithHttpInfo**](AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account |
 | [**listAdCampaigns**](AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdCampaignsWithHttpInfo**](AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns |
 | [**updateAdCampaign**](AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign (budget and/or bid strategy) |
@@ -663,6 +665,166 @@ ApiResponse<[**GetAdTree200Response**](GetAdTree200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
+
+
+## getAdsTimeline
+
+> GetAdsTimeline200Response getAdsTimeline(accountId, fromDate, toDate, platform)
+
+Get daily aggregate ad metrics for an account
+
+Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID. Sibling-expanded to its linked posting↔ads pair.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range.
+        String platform = "facebook"; // String | Restrict to one platform.
+        try {
+            GetAdsTimeline200Response result = apiInstance.getAdsTimeline(accountId, fromDate, toDate, platform);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdsTimeline");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID. Sibling-expanded to its linked posting↔ads pair. | |
+| **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+
+### Return type
+
+[**GetAdsTimeline200Response**](GetAdsTimeline200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required |  -  |
+
+## getAdsTimelineWithHttpInfo
+
+> ApiResponse<GetAdsTimeline200Response> getAdsTimeline getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform)
+
+Get daily aggregate ad metrics for an account
+
+Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID. Sibling-expanded to its linked posting↔ads pair.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range.
+        String platform = "facebook"; // String | Restrict to one platform.
+        try {
+            ApiResponse<GetAdsTimeline200Response> response = apiInstance.getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdsTimeline");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID. Sibling-expanded to its linked posting↔ads pair. | |
+| **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
+| **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
+
+### Return type
+
+ApiResponse<[**GetAdsTimeline200Response**](GetAdsTimeline200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required |  -  |
 

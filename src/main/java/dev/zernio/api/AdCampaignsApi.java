@@ -26,6 +26,7 @@ import dev.zernio.model.DeleteAdCampaignRequest;
 import dev.zernio.model.DuplicateAdCampaign200Response;
 import dev.zernio.model.DuplicateAdCampaignRequest;
 import dev.zernio.model.GetAdTree200Response;
+import dev.zernio.model.GetAdsTimeline200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListAdCampaigns200Response;
 import java.time.LocalDate;
@@ -62,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T09:17:16.384219575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:36:36.977310529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -722,6 +723,156 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get daily aggregate ad metrics for an account
+   * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+   * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param platform Restrict to one platform. (optional)
+   * @return GetAdsTimeline200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
+    return getAdsTimeline(accountId, fromDate, toDate, platform, null);
+  }
+
+  /**
+   * Get daily aggregate ad metrics for an account
+   * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+   * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param platform Restrict to one platform. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdsTimeline200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdsTimeline200Response> localVarResponse = getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get daily aggregate ad metrics for an account
+   * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+   * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param platform Restrict to one platform. (optional)
+   * @return ApiResponse&lt;GetAdsTimeline200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
+    return getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform, null);
+  }
+
+  /**
+   * Get daily aggregate ad metrics for an account
+   * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
+   * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param platform Restrict to one platform. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdsTimeline200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdsTimelineRequestBuilder(accountId, fromDate, toDate, platform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdsTimeline", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdsTimeline200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdsTimeline200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdsTimeline200Response>() {});
+        
+
+        return new ApiResponse<GetAdsTimeline200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdsTimelineRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdsTimeline");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/timeline";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateProfileRequest.JSON_PROPERTY_DESCRIPTION,
   CreateProfileRequest.JSON_PROPERTY_COLOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T09:17:16.384219575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:36:36.977310529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateProfileRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

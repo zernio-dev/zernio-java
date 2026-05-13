@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-13T09:17:16.384219575Z[Etc/UTC]
+- Build date: 2026-05-13T14:36:36.977310529Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -172,6 +172,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**duplicateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdTreeWithHttpInfo**](docs/AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree
+*AdCampaignsApi* | [**getAdsTimeline**](docs/AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account
+*AdCampaignsApi* | [**getAdsTimelineWithHttpInfo**](docs/AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account
 *AdCampaignsApi* | [**listAdCampaigns**](docs/AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdCampaignsWithHttpInfo**](docs/AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**updateAdCampaign**](docs/AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign (budget and/or bid strategy)
@@ -936,6 +938,8 @@ Class | Method | HTTP request | Description
  - [GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
  - [GetAdTree200Response](docs/GetAdTree200Response.md)
+ - [GetAdsTimeline200Response](docs/GetAdsTimeline200Response.md)
+ - [GetAdsTimeline200ResponseRowsInner](docs/GetAdsTimeline200ResponseRowsInner.md)
  - [GetAllAccountsHealth200Response](docs/GetAllAccountsHealth200Response.md)
  - [GetAllAccountsHealth200ResponseAccountsInner](docs/GetAllAccountsHealth200ResponseAccountsInner.md)
  - [GetAllAccountsHealth200ResponseSummary](docs/GetAllAccountsHealth200ResponseSummary.md)

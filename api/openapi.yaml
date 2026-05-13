@@ -15263,6 +15263,87 @@ paths:
       - Ad Campaigns
       x-accepts:
       - application/json
+  /v1/ads/timeline:
+    get:
+      description: |
+        Returns daily aggregate metrics across all ads in a SocialAccount as a single
+        time series — one row per calendar day in the requested range. Use this for
+        dashboards that draw a daily-spend or daily-conversions chart, instead of
+        calling `/v1/ads/tree` once per day.
+
+        `accountId` is required. The lookup is sibling-expanded so passing the `metaads`
+        ID also includes ads under the linked `facebook` / `instagram` posting account
+        (and vice-versa) — same convention as `/v1/ads/tree` and `/v1/ads`.
+
+        Date range defaults to the last 90 days. Capped at 730 days. Ranges older
+        than the 90-day cache window trigger an on-demand backfill from the platform
+        before returning.
+      operationId: getAdsTimeline
+      parameters:
+      - description: Social account ID. Sibling-expanded to its linked posting↔ads
+          pair.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90
+          days ago.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Inclusive end of metrics range (YYYY-MM-DD). Defaults to today.
+          Max 730-day range.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Restrict to one platform.
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - facebook
+          - instagram
+          - tiktok
+          - linkedin
+          - pinterest
+          - google
+          - twitter
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdsTimeline_200_response"
+          description: Daily time series of aggregate metrics. Empty `rows` means
+            the account has no ad activity in the range.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads add-on required
+      security:
+      - bearerAuth: []
+      summary: Get daily aggregate ad metrics for an account
+      tags:
+      - Ad Campaigns
+      x-accepts:
+      - application/json
   /v1/ads/{adId}:
     delete:
       description: Cancels the ad on the platform and marks it as cancelled in the
@@ -40539,6 +40620,112 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/Pagination"
+    getAdsTimeline_200_response_rows_inner:
+      example:
+        date: 2000-01-23
+        ctr: 2.3021358869347655
+        purchaseValue: 1.2315135367772556
+        cpm: 9.301444243932576
+        conversions: 3
+        engagement: 5
+        reach: 1
+        impressions: 6
+        actionValues:
+          key: 7.386281948385884
+        spend: 0.8008281904610115
+        cpc: 7.061401241503109
+        clicks: 5
+        roas: 1.0246457001441578
+        costPerConversion: 2.027123023002322
+        actions:
+          key: 4.145608029883936
+      properties:
+        date:
+          format: date
+          type: string
+        spend:
+          description: Native currency units (matches /ads/tree convention).
+          type: number
+        impressions:
+          type: integer
+        reach:
+          type: integer
+        clicks:
+          type: integer
+        engagement:
+          type: integer
+        ctr:
+          description: Click-through rate as a percentage (0–100).
+          type: number
+        cpc:
+          description: Cost per click in native currency.
+          type: number
+        cpm:
+          description: Cost per 1000 impressions in native currency.
+          type: number
+        conversions:
+          description: Sum of conversion events matching the campaign optimization
+            goal. Meta-only at time of writing.
+          type: integer
+        costPerConversion:
+          type: number
+        actions:
+          additionalProperties:
+            type: number
+          description: Per-action-type counts merged across all ads on this day. Keys
+            are platform-native action types.
+        actionValues:
+          additionalProperties:
+            type: number
+          description: Monetary mirror of `actions` in native currency.
+        purchaseValue:
+          description: "Sum of purchase-type action values on this day, native currency."
+          type: number
+        roas:
+          description: Derived purchaseValue / spend.
+          type: number
+    getAdsTimeline_200_response:
+      example:
+        rows:
+        - date: 2000-01-23
+          ctr: 2.3021358869347655
+          purchaseValue: 1.2315135367772556
+          cpm: 9.301444243932576
+          conversions: 3
+          engagement: 5
+          reach: 1
+          impressions: 6
+          actionValues:
+            key: 7.386281948385884
+          spend: 0.8008281904610115
+          cpc: 7.061401241503109
+          clicks: 5
+          roas: 1.0246457001441578
+          costPerConversion: 2.027123023002322
+          actions:
+            key: 4.145608029883936
+        - date: 2000-01-23
+          ctr: 2.3021358869347655
+          purchaseValue: 1.2315135367772556
+          cpm: 9.301444243932576
+          conversions: 3
+          engagement: 5
+          reach: 1
+          impressions: 6
+          actionValues:
+            key: 7.386281948385884
+          spend: 0.8008281904610115
+          cpc: 7.061401241503109
+          clicks: 5
+          roas: 1.0246457001441578
+          costPerConversion: 2.027123023002322
+          actions:
+            key: 4.145608029883936
+      properties:
+        rows:
+          items:
+            $ref: "#/components/schemas/getAdsTimeline_200_response_rows_inner"
+          type: array
     getAd_200_response:
       example:
         ad:
