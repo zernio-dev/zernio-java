@@ -671,7 +671,7 @@ ApiResponse<[**GetAdTree200Response**](GetAdTree200Response.md)>
 
 ## getAdsTimeline
 
-> GetAdsTimeline200Response getAdsTimeline(accountId, fromDate, toDate, platform)
+> GetAdsTimeline200Response getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform)
 
 Get daily aggregate ad metrics for an account
 
@@ -699,11 +699,12 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String accountId = "accountId_example"; // String | Social account ID. Sibling-expanded to its linked posting↔ads pair.
+        String adAccountId = "adAccountId_example"; // String | Optional platform-native ad account ID (e.g. Meta `act_…`, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don't carry this column; the recurring 7-day re-sync repopulates them naturally.
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String platform = "facebook"; // String | Restrict to one platform.
         try {
-            GetAdsTimeline200Response result = apiInstance.getAdsTimeline(accountId, fromDate, toDate, platform);
+            GetAdsTimeline200Response result = apiInstance.getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#getAdsTimeline");
@@ -722,6 +723,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Social account ID. Sibling-expanded to its linked posting↔ads pair. | |
+| **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. | [optional] |
 | **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 | **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |
@@ -749,7 +751,7 @@ public class Example {
 
 ## getAdsTimelineWithHttpInfo
 
-> ApiResponse<GetAdsTimeline200Response> getAdsTimeline getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform)
+> ApiResponse<GetAdsTimeline200Response> getAdsTimeline getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform)
 
 Get daily aggregate ad metrics for an account
 
@@ -778,11 +780,12 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String accountId = "accountId_example"; // String | Social account ID. Sibling-expanded to its linked posting↔ads pair.
+        String adAccountId = "adAccountId_example"; // String | Optional platform-native ad account ID (e.g. Meta `act_…`, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don't carry this column; the recurring 7-day re-sync repopulates them naturally.
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String platform = "facebook"; // String | Restrict to one platform.
         try {
-            ApiResponse<GetAdsTimeline200Response> response = apiInstance.getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform);
+            ApiResponse<GetAdsTimeline200Response> response = apiInstance.getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -803,6 +806,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Social account ID. Sibling-expanded to its linked posting↔ads pair. | |
+| **adAccountId** | **String**| Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. | [optional] |
 | **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 | **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter] |

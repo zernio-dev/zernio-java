@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:36:36.977310529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T14:49:14.616254874Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -753,20 +753,22 @@ public class AdCampaignsApi {
    * Get daily aggregate ad metrics for an account
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
    * @return GetAdsTimeline200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
-    return getAdsTimeline(accountId, fromDate, toDate, platform, null);
+  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
+    return getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, null);
   }
 
   /**
    * Get daily aggregate ad metrics for an account
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
@@ -774,8 +776,8 @@ public class AdCampaignsApi {
    * @return GetAdsTimeline200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdsTimeline200Response> localVarResponse = getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform, headers);
+  public GetAdsTimeline200Response getAdsTimeline(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdsTimeline200Response> localVarResponse = getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, headers);
     return localVarResponse.getData();
   }
 
@@ -783,20 +785,22 @@ public class AdCampaignsApi {
    * Get daily aggregate ad metrics for an account
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
    * @return ApiResponse&lt;GetAdsTimeline200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
-    return getAdsTimelineWithHttpInfo(accountId, fromDate, toDate, platform, null);
+  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform) throws ApiException {
+    return getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, null);
   }
 
   /**
    * Get daily aggregate ad metrics for an account
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
+   * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
    * @param fromDate Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param platform Restrict to one platform. (optional)
@@ -804,8 +808,8 @@ public class AdCampaignsApi {
    * @return ApiResponse&lt;GetAdsTimeline200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdsTimelineRequestBuilder(accountId, fromDate, toDate, platform, headers);
+  public ApiResponse<GetAdsTimeline200Response> getAdsTimelineWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdsTimelineRequestBuilder(accountId, adAccountId, fromDate, toDate, platform, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -852,7 +856,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder getAdsTimelineRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdsTimelineRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdsTimeline");
@@ -867,6 +871,8 @@ public class AdCampaignsApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
     localVarQueryParameterBaseName = "fromDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";
