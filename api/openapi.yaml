@@ -18571,8 +18571,7 @@ components:
           format: uri
           type: string
         secret:
-          description: Secret key for HMAC-SHA256 signature (not returned in responses
-            for security)
+          description: Secret key for HMAC-SHA256 signature verification.
           type: string
         events:
           description: Events subscribed to

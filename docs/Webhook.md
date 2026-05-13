@@ -11,7 +11,7 @@ Individual webhook configuration for receiving real-time notifications
 |**id** | **String** | Unique webhook identifier |  [optional] |
 |**name** | **String** | Webhook name (for identification) |  [optional] |
 |**url** | **URI** | Webhook endpoint URL |  [optional] |
-|**secret** | **String** | Secret key for HMAC-SHA256 signature (not returned in responses for security) |  [optional] |
+|**secret** | **String** | Secret key for HMAC-SHA256 signature verification. |  [optional] |
 |**events** | [**List&lt;EventsEnum&gt;**](#List&lt;EventsEnum&gt;) | Events subscribed to |  [optional] |
 |**isActive** | **Boolean** | Whether webhook delivery is enabled |  [optional] |
 |**lastFiredAt** | **OffsetDateTime** | Timestamp of last successful webhook delivery |  [optional] |

@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   Webhook.JSON_PROPERTY_FAILURE_COUNT,
   Webhook.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T07:59:07.650760605Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T09:17:16.384219575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Webhook {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -237,7 +237,7 @@ public class Webhook {
   }
 
   /**
-   * Secret key for HMAC-SHA256 signature (not returned in responses for security)
+   * Secret key for HMAC-SHA256 signature verification.
    * @return secret
    */
   @javax.annotation.Nullable
