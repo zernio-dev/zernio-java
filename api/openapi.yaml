@@ -159,7 +159,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, ad.status_changed, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -9478,6 +9478,7 @@ paths:
                   - comment.received
                   - review.new
                   - review.updated
+                  - ad.status_changed
                   isActive: true
             schema:
               $ref: "#/components/schemas/createWebhookSettings_request"
@@ -18735,6 +18736,7 @@ components:
             - comment.received
             - review.new
             - review.updated
+            - ad.status_changed
             type: string
           type: array
         isActive:
@@ -19721,6 +19723,64 @@ components:
       - id
       - message
       - statusAt
+      - timestamp
+    WebhookPayloadAdStatusChanged:
+      description: |
+        Webhook payload for the `ad.status_changed` event. Currently emitted
+        only for Meta (`metaads`).
+
+        Sourced from two Meta `ad_account` webhook fields:
+          - `in_process_ad_objects` - the ad object finished processing and
+            exited `IN_PROCESS`. `status.raw` carries Meta's `status_name`.
+          - `with_issues_ad_objects` - the ad object entered `WITH_ISSUES`.
+            `status.raw` is `WITH_ISSUES` and the `error` block is populated
+            from Meta's `error_code` / `error_summary` / `error_message`.
+      example:
+        adObject:
+          level: CAMPAIGN
+          platformId: "120244894077860689"
+          platformAdAccountId: act_2129800524463520
+        id: id
+        event: ad.status_changed
+        error:
+          summary: Ad Processing Error
+          code: "2643001"
+          message: message
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: metaads
+          username: username
+        status:
+          raw: ACTIVE
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - ad.status_changed
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadAdStatusChanged_account"
+        adObject:
+          $ref: "#/components/schemas/WebhookPayloadAdStatusChanged_adObject"
+        status:
+          $ref: "#/components/schemas/WebhookPayloadAdStatusChanged_status"
+        error:
+          $ref: "#/components/schemas/WebhookPayloadAdStatusChanged_error"
+        timestamp:
+          description: ISO-8601 timestamp the webhook was produced.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adObject
+      - event
+      - id
+      - status
       - timestamp
     WebhookPayloadTest:
       description: Webhook payload for test deliveries
@@ -32837,6 +32897,7 @@ components:
             - comment.received
             - review.new
             - review.updated
+            - ad.status_changed
             type: string
           minItems: 1
           type: array
@@ -32907,6 +32968,7 @@ components:
             - comment.received
             - review.new
             - review.updated
+            - ad.status_changed
             type: string
           minItems: 1
           type: array
@@ -44737,6 +44799,116 @@ components:
         message:
           type: string
       nullable: true
+    WebhookPayloadAdStatusChanged_account:
+      description: The connected ad-platform account that owns the ad object.
+      example:
+        accountId: accountId
+        profileId: profileId
+        displayName: displayName
+        platform: metaads
+        username: username
+      properties:
+        accountId:
+          description: "Internal Zernio account ID (same as used in /v1/accounts/{accountId})."
+          type: string
+        profileId:
+          description: Internal Zernio profile ID this account belongs to.
+          type: string
+        platform:
+          description: Ad platform identifier. Currently always `metaads`.
+          example: metaads
+          type: string
+        username:
+          description: Display username of the connected ad-platform account.
+          type: string
+        displayName:
+          description: "Human-readable display name of the account, when available."
+          type: string
+      required:
+      - accountId
+      - platform
+      - profileId
+      - username
+    WebhookPayloadAdStatusChanged_adObject:
+      description: The ad-platform object the status change applies to.
+      example:
+        level: CAMPAIGN
+        platformId: "120244894077860689"
+        platformAdAccountId: act_2129800524463520
+      properties:
+        level:
+          description: Hierarchy level the status applies to. Mirrors Meta's `level`.
+            Creative-level events are not forwarded.
+          enum:
+          - CAMPAIGN
+          - AD_SET
+          - AD
+          type: string
+        platformId:
+          description: |
+            Platform-native ID of the campaign / ad set / ad. For Meta this is
+            the bare numeric ID (e.g. `120244894077860689`).
+          example: "120244894077860689"
+          type: string
+        platformAdAccountId:
+          description: |
+            Platform-native ad-account ID. For Meta this uses the `act_<id>`
+            shape.
+          example: act_2129800524463520
+          type: string
+      required:
+      - level
+      - platformAdAccountId
+      - platformId
+    WebhookPayloadAdStatusChanged_status:
+      description: Status info. Branch on `status.raw` to handle each transition.
+      example:
+        raw: ACTIVE
+      properties:
+        raw:
+          description: |
+            Platform-native status string, forwarded verbatim. For Meta
+            this is `status_name` from `in_process_ad_objects` (e.g.
+            `ACTIVE`, `PAUSED`, `PENDING_REVIEW`, `ARCHIVED`, `DELETED`,
+            `DISAPPROVED`), or `WITH_ISSUES` when sourced from
+            `with_issues_ad_objects`. Not constrained by an `enum` — Meta
+            may add new values.
+          example: ACTIVE
+          type: string
+      required:
+      - raw
+    WebhookPayloadAdStatusChanged_error:
+      description: |
+        Optional. Present on most `WITH_ISSUES` events, carrying the
+        platform's error diagnostics. May be absent on some `WITH_ISSUES`
+        events (Meta does not always include diagnostics). Always absent
+        for any other `status.raw` value. Always null-check before reading.
+      example:
+        summary: Ad Processing Error
+        code: "2643001"
+        message: message
+      properties:
+        code:
+          description: |
+            Platform-native error code, forwarded verbatim. For Meta this
+            is `error_code` as a string. Use as the stable discriminator —
+            `summary` and `message` are localized.
+          example: "2643001"
+          type: string
+        summary:
+          description: |
+            Short human-readable summary (Meta `error_summary`). Localized
+            to the ad-account owner's Meta locale — display only, do not
+            match on it.
+          example: Ad Processing Error
+          type: string
+        message:
+          description: |
+            Full human-readable error message (Meta `error_message`).
+            Localized — display only.
+          type: string
+      required:
+      - code
     PlatformTarget_accountId:
       oneOf:
       - type: string
@@ -46070,6 +46242,7 @@ x-documentation:
     - `comment.received` - New comment received on a post
     - `review.new` - New review posted on a connected account (Google Business Profile)
     - `review.updated` - Review updated or reply added (Google Business Profile, or via reply API)
+    - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Webhook payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header.

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-14T12:26:13.675429721Z[Etc/UTC]
+- Build date: 2026-05-14T12:27:33.415860759Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1540,6 +1540,11 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAccountConnectedAccount](docs/WebhookPayloadAccountConnectedAccount.md)
  - [WebhookPayloadAccountDisconnected](docs/WebhookPayloadAccountDisconnected.md)
  - [WebhookPayloadAccountDisconnectedAccount](docs/WebhookPayloadAccountDisconnectedAccount.md)
+ - [WebhookPayloadAdStatusChanged](docs/WebhookPayloadAdStatusChanged.md)
+ - [WebhookPayloadAdStatusChangedAccount](docs/WebhookPayloadAdStatusChangedAccount.md)
+ - [WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)
+ - [WebhookPayloadAdStatusChangedError](docs/WebhookPayloadAdStatusChangedError.md)
+ - [WebhookPayloadAdStatusChangedStatus](docs/WebhookPayloadAdStatusChangedStatus.md)
  - [WebhookPayloadComment](docs/WebhookPayloadComment.md)
  - [WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)

@@ -884,6 +884,11 @@ docs/WebhookPayloadAccountConnected.md
 docs/WebhookPayloadAccountConnectedAccount.md
 docs/WebhookPayloadAccountDisconnected.md
 docs/WebhookPayloadAccountDisconnectedAccount.md
+docs/WebhookPayloadAdStatusChanged.md
+docs/WebhookPayloadAdStatusChangedAccount.md
+docs/WebhookPayloadAdStatusChangedAdObject.md
+docs/WebhookPayloadAdStatusChangedError.md
+docs/WebhookPayloadAdStatusChangedStatus.md
 docs/WebhookPayloadComment.md
 docs/WebhookPayloadCommentAccount.md
 docs/WebhookPayloadCommentComment.md
@@ -1845,6 +1850,11 @@ src/main/java/dev/zernio/model/WebhookPayloadAccountConnected.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountConnectedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountDisconnected.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountDisconnectedAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadAdStatusChanged.java
+src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAdObject.java
+src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedError.java
+src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedStatus.java
 src/main/java/dev/zernio/model/WebhookPayloadComment.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentComment.java
@@ -1898,3 +1908,8 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/WebhookPayloadAdStatusChangedAccountTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdStatusChangedAdObjectTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdStatusChangedErrorTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdStatusChangedStatusTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdStatusChangedTest.java

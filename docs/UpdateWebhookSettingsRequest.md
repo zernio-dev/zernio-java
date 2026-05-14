@@ -40,6 +40,7 @@
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
+| AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 
 
 
