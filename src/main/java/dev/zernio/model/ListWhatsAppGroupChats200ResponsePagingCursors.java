@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppGroupChats200ResponsePagingCursors.JSON_PROPERTY_AFTER,
   ListWhatsAppGroupChats200ResponsePagingCursors.JSON_PROPERTY_BEFORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T12:27:33.415860759Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T16:40:03.697423378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppGroupChats200ResponsePagingCursors {
   public static final String JSON_PROPERTY_AFTER = "after";
   @javax.annotation.Nullable

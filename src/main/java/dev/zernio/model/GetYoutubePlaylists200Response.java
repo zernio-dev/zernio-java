@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetYoutubePlaylists200Response.JSON_PROPERTY_PLAYLISTS,
   GetYoutubePlaylists200Response.JSON_PROPERTY_DEFAULT_PLAYLIST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T12:27:33.415860759Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T16:40:03.697423378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYoutubePlaylists200Response {
   public static final String JSON_PROPERTY_PLAYLISTS = "playlists";
   @javax.annotation.Nullable
