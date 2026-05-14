@@ -41008,6 +41008,7 @@ components:
     getAdAnalytics_200_response_ad:
       example:
         name: name
+        currency: currency
         id: id
         platform: platform
         status: status
@@ -41020,6 +41021,12 @@ components:
           type: string
         status:
           type: string
+        currency:
+          description: "ISO 4217 code of the ad account that owns this ad (e.g. USD,\
+            \ THB, INR). All money values in `summary` and `daily` are in this currency.\
+            \ Null only on legacy ads synced before currency was persisted."
+          type: string
+          nullable: true
     getAdAnalytics_200_response_analytics_daily_inner:
       allOf:
       - $ref: "#/components/schemas/AdMetrics"
@@ -41203,6 +41210,7 @@ components:
             - "{}"
         ad:
           name: name
+          currency: currency
           id: id
           platform: platform
           status: status

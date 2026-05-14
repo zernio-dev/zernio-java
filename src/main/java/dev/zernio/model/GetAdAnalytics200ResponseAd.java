@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_ID,
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_NAME,
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_PLATFORM,
-  GetAdAnalytics200ResponseAd.JSON_PROPERTY_STATUS
+  GetAdAnalytics200ResponseAd.JSON_PROPERTY_STATUS,
+  GetAdAnalytics200ResponseAd.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-13T15:57:44.223465215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T12:26:13.675429721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAnalytics200ResponseAd {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -55,6 +56,10 @@ public class GetAdAnalytics200ResponseAd {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private String status;
+
+  public static final String JSON_PROPERTY_CURRENCY = "currency";
+  @javax.annotation.Nullable
+  private String currency;
 
   public GetAdAnalytics200ResponseAd() { 
   }
@@ -155,6 +160,30 @@ public class GetAdAnalytics200ResponseAd {
   }
 
 
+  public GetAdAnalytics200ResponseAd currency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+    return this;
+  }
+
+  /**
+   * ISO 4217 code of the ad account that owns this ad (e.g. USD, THB, INR). All money values in &#x60;summary&#x60; and &#x60;daily&#x60; are in this currency. Null only on legacy ads synced before currency was persisted.
+   * @return currency
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCurrency() {
+    return currency;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = currency;
+  }
+
+
   /**
    * Return true if this getAdAnalytics_200_response_ad object is equal to o.
    */
@@ -170,12 +199,13 @@ public class GetAdAnalytics200ResponseAd {
     return Objects.equals(this.id, getAdAnalytics200ResponseAd.id) &&
         Objects.equals(this.name, getAdAnalytics200ResponseAd.name) &&
         Objects.equals(this.platform, getAdAnalytics200ResponseAd.platform) &&
-        Objects.equals(this.status, getAdAnalytics200ResponseAd.status);
+        Objects.equals(this.status, getAdAnalytics200ResponseAd.status) &&
+        Objects.equals(this.currency, getAdAnalytics200ResponseAd.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, status);
+    return Objects.hash(id, name, platform, status, currency);
   }
 
   @Override
@@ -186,6 +216,7 @@ public class GetAdAnalytics200ResponseAd {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,6 +282,11 @@ public class GetAdAnalytics200ResponseAd {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `currency` to the URL query string
+    if (getCurrency() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrency()))));
     }
 
     return joiner.toString();
