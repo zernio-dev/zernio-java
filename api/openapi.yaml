@@ -14957,6 +14957,26 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Start of metrics date range (YYYY-MM-DD, inclusive). Defaults\
+          \ to 90 days ago when both date params are omitted."
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "End of metrics date range (YYYY-MM-DD, inclusive). Defaults\
+          \ to today. Max 730-day range."
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
       responses:
         "200":
           content:

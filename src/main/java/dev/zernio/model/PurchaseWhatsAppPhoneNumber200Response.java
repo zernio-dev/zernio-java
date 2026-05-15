@@ -56,7 +56,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T09:37:30.971793509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T10:05:54.253289405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = PurchaseWhatsAppPhoneNumber200Response.PurchaseWhatsAppPhoneNumber200ResponseDeserializer.class)
 @JsonSerialize(using = PurchaseWhatsAppPhoneNumber200Response.PurchaseWhatsAppPhoneNumber200ResponseSerializer.class)
 public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchema {

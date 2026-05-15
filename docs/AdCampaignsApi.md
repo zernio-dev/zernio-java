@@ -835,7 +835,7 @@ ApiResponse<[**GetAdsTimeline200Response**](GetAdsTimeline200Response.md)>
 
 ## listAdCampaigns
 
-> ListAdCampaigns200Response listAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId)
+> ListAdCampaigns200Response listAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate)
 
 List campaigns
 
@@ -870,8 +870,10 @@ public class Example {
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (e.g. act_123 for Meta)
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range.
         try {
-            ListAdCampaigns200Response result = apiInstance.listAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId);
+            ListAdCampaigns200Response result = apiInstance.listAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#listAdCampaigns");
@@ -897,6 +899,8 @@ public class Example {
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta) | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
+| **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. | [optional] |
+| **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. | [optional] |
 
 ### Return type
 
@@ -921,7 +925,7 @@ public class Example {
 
 ## listAdCampaignsWithHttpInfo
 
-> ApiResponse<ListAdCampaigns200Response> listAdCampaigns listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId)
+> ApiResponse<ListAdCampaigns200Response> listAdCampaigns listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate)
 
 List campaigns
 
@@ -957,8 +961,10 @@ public class Example {
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID (e.g. act_123 for Meta)
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range.
         try {
-            ApiResponse<ListAdCampaigns200Response> response = apiInstance.listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId);
+            ApiResponse<ListAdCampaigns200Response> response = apiInstance.listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -986,6 +992,8 @@ public class Example {
 | **adAccountId** | **String**| Platform ad account ID (e.g. act_123 for Meta) | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
+| **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. | [optional] |
+| **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. | [optional] |
 
 ### Return type
 

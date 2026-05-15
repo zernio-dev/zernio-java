@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T09:37:30.971793509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T10:05:54.253289405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -916,11 +916,13 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId) throws ApiException {
-    return listAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, null);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdCampaigns(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
@@ -934,12 +936,14 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAdCampaigns200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, headers);
+  public ListAdCampaigns200Response listAdCampaigns(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdCampaigns200Response> localVarResponse = listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, headers);
     return localVarResponse.getData();
   }
 
@@ -954,11 +958,13 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId) throws ApiException {
-    return listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, null);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return listAdCampaignsWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, null);
   }
 
   /**
@@ -972,12 +978,14 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (e.g. act_123 for Meta) (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
+   * @param fromDate Start of metrics date range (YYYY-MM-DD, inclusive). Defaults to 90 days ago when both date params are omitted. (optional)
+   * @param toDate End of metrics date range (YYYY-MM-DD, inclusive). Defaults to today. Max 730-day range. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAdCampaigns200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, headers);
+  public ApiResponse<ListAdCampaigns200Response> listAdCampaignsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdCampaignsRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1024,7 +1032,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdCampaignsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1049,6 +1057,10 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
