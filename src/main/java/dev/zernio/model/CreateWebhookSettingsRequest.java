@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   CreateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T10:05:54.253289405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:22:51.331211102Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -75,6 +75,10 @@ public class CreateWebhookSettingsRequest {
     
     POST_RECYCLED(String.valueOf("post.recycled")),
     
+    POST_PLATFORM_PUBLISHED(String.valueOf("post.platform.published")),
+    
+    POST_PLATFORM_FAILED(String.valueOf("post.platform.failed")),
+    
     ACCOUNT_CONNECTED(String.valueOf("account.connected")),
     
     ACCOUNT_DISCONNECTED(String.valueOf("account.disconnected")),
@@ -101,7 +105,9 @@ public class CreateWebhookSettingsRequest {
     
     REVIEW_UPDATED(String.valueOf("review.updated")),
     
-    AD_STATUS_CHANGED(String.valueOf("ad.status_changed"));
+    AD_STATUS_CHANGED(String.valueOf("ad.status_changed")),
+    
+    WHATSAPP_TEMPLATE_STATUS_UPDATED(String.valueOf("whatsapp.template.status_updated"));
 
     private String value;
 

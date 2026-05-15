@@ -29,6 +29,7 @@ import dev.zernio.model.WebhookPayloadMessageDeliveryStatus;
 import dev.zernio.model.WebhookPayloadMessageEdited;
 import dev.zernio.model.WebhookPayloadMessageSent;
 import dev.zernio.model.WebhookPayloadPost;
+import dev.zernio.model.WebhookPayloadPostPlatform;
 import dev.zernio.model.WebhookPayloadReviewNew;
 import dev.zernio.model.WebhookPayloadReviewUpdated;
 import dev.zernio.model.WebhookPayloadTest;
@@ -65,7 +66,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T10:05:54.253289405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:22:51.331211102Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1802,6 +1803,224 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Post platform failed event
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event — only permanent ones, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostPlatformFailed(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform) throws ApiException {
+    onPostPlatformFailed(webhookPayloadPostPlatform, null);
+  }
+
+  /**
+   * Post platform failed event
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event — only permanent ones, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostPlatformFailed(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    onPostPlatformFailedWithHttpInfo(webhookPayloadPostPlatform, headers);
+  }
+
+  /**
+   * Post platform failed event
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event — only permanent ones, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostPlatformFailedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform) throws ApiException {
+    return onPostPlatformFailedWithHttpInfo(webhookPayloadPostPlatform, null);
+  }
+
+  /**
+   * Post platform failed event
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event — only permanent ones, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostPlatformFailedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onPostPlatformFailedRequestBuilder(webhookPayloadPostPlatform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onPostPlatformFailed", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onPostPlatformFailedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadPostPlatform' is set
+    if (webhookPayloadPostPlatform == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadPostPlatform' when calling onPostPlatformFailed");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/post.platform.failed";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPostPlatform);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Post platform published event
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup — consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostPlatformPublished(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform) throws ApiException {
+    onPostPlatformPublished(webhookPayloadPostPlatform, null);
+  }
+
+  /**
+   * Post platform published event
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup — consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostPlatformPublished(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    onPostPlatformPublishedWithHttpInfo(webhookPayloadPostPlatform, headers);
+  }
+
+  /**
+   * Post platform published event
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup — consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostPlatformPublishedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform) throws ApiException {
+    return onPostPlatformPublishedWithHttpInfo(webhookPayloadPostPlatform, null);
+  }
+
+  /**
+   * Post platform published event
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup — consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostPlatformPublishedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onPostPlatformPublishedRequestBuilder(webhookPayloadPostPlatform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onPostPlatformPublished", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onPostPlatformPublishedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadPostPlatform' is set
+    if (webhookPayloadPostPlatform == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadPostPlatform' when calling onPostPlatformPublished");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/post.platform.published";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPostPlatform);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

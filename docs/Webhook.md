@@ -30,6 +30,8 @@ Individual webhook configuration for receiving real-time notifications
 | POST_PARTIAL | &quot;post.partial&quot; |
 | POST_CANCELLED | &quot;post.cancelled&quot; |
 | POST_RECYCLED | &quot;post.recycled&quot; |
+| POST_PLATFORM_PUBLISHED | &quot;post.platform.published&quot; |
+| POST_PLATFORM_FAILED | &quot;post.platform.failed&quot; |
 | ACCOUNT_CONNECTED | &quot;account.connected&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |

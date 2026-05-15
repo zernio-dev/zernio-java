@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadataReferralAdsContextData.JSON_PROPERTY_PRODUCT_ID,
   WebhookPayloadMessageMetadataReferralAdsContextData.JSON_PROPERTY_FLOW_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T10:05:54.253289405Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:22:51.331211102Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadataReferralAdsContextData {
   public static final String JSON_PROPERTY_AD_TITLE = "ad_title";
   @javax.annotation.Nullable

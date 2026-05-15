@@ -159,7 +159,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, ad.status_changed, whatsapp.template.status_updated, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, ad.status_changed, whatsapp.template.status_updated, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -18906,6 +18906,8 @@ components:
             - post.partial
             - post.cancelled
             - post.recycled
+            - post.platform.published
+            - post.platform.failed
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
@@ -18982,6 +18984,73 @@ components:
       required:
       - event
       - id
+      - post
+      - timestamp
+    WebhookPayloadPostPlatform:
+      description: |
+        Webhook payload for the per-platform terminal events
+        `post.platform.published` and `post.platform.failed`. Fires once
+        per platform target inside a post as that platform reaches a
+        terminal state (published or permanent failure). The `post`
+        envelope mirrors the shape of `WebhookPayloadPost` so consumers
+        can reuse rendering logic; the `platform` block identifies which
+        specific platform transitioned; the `account` block identifies
+        the connected social account behind that platform-write.
+      example:
+        post:
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          scheduledFor: 2000-01-23T04:56:07.000+00:00
+          id: id
+          content: content
+          status: status
+          platforms:
+          - publishedUrl: publishedUrl
+            error: error
+            platform: platform
+            status: status
+            platformPostId: platformPostId
+          - publishedUrl: publishedUrl
+            error: error
+            platform: platform
+            status: status
+            platformPostId: platformPostId
+        id: id
+        event: post.platform.published
+        platform:
+          name: name
+          publishedUrl: publishedUrl
+          error: error
+          status: published
+          platformPostId: platformPostId
+        account:
+          accountId: accountId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID.
+          type: string
+        event:
+          enum:
+          - post.platform.published
+          - post.platform.failed
+          type: string
+        post:
+          $ref: "#/components/schemas/WebhookPayloadPostPlatform_post"
+        platform:
+          $ref: "#/components/schemas/WebhookPayloadPostPlatform_platform"
+        account:
+          $ref: "#/components/schemas/WebhookPayloadPostPlatform_account"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - platform
       - post
       - timestamp
     WebhookPayloadAccountConnected:
@@ -33198,6 +33267,8 @@ components:
             - post.partial
             - post.cancelled
             - post.recycled
+            - post.platform.published
+            - post.platform.failed
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
@@ -33212,6 +33283,7 @@ components:
             - review.new
             - review.updated
             - ad.status_changed
+            - whatsapp.template.status_updated
             type: string
           minItems: 1
           type: array
@@ -33269,6 +33341,8 @@ components:
             - post.partial
             - post.cancelled
             - post.recycled
+            - post.platform.published
+            - post.platform.failed
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
@@ -33283,6 +33357,7 @@ components:
             - review.new
             - review.updated
             - ad.status_changed
+            - whatsapp.template.status_updated
             type: string
           minItems: 1
           type: array
@@ -44165,6 +44240,104 @@ components:
       - platforms
       - scheduledFor
       - status
+    WebhookPayloadPostPlatform_post:
+      example:
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        scheduledFor: 2000-01-23T04:56:07.000+00:00
+        id: id
+        content: content
+        status: status
+        platforms:
+        - publishedUrl: publishedUrl
+          error: error
+          platform: platform
+          status: status
+          platformPostId: platformPostId
+        - publishedUrl: publishedUrl
+          error: error
+          platform: platform
+          status: status
+          platformPostId: platformPostId
+      properties:
+        id:
+          type: string
+        content:
+          type: string
+        status:
+          description: |
+            Post-level status AT FIRE TIME. May still be `publishing`
+            if other platforms haven't terminated; check this field
+            rather than assuming.
+          type: string
+        scheduledFor:
+          format: date-time
+          type: string
+        publishedAt:
+          format: date-time
+          type: string
+        platforms:
+          items:
+            $ref: "#/components/schemas/WebhookPayloadPost_post_platforms_inner"
+          type: array
+      required:
+      - content
+      - id
+      - platforms
+      - scheduledFor
+      - status
+    WebhookPayloadPostPlatform_platform:
+      description: The specific platform that just transitioned to a terminal state.
+      example:
+        name: name
+        publishedUrl: publishedUrl
+        error: error
+        status: published
+        platformPostId: platformPostId
+      properties:
+        name:
+          description: "Platform name (e.g. `twitter`, `tiktok`, `instagram`)."
+          type: string
+        status:
+          description: Terminal status this event fires on. Matches the event suffix.
+          enum:
+          - published
+          - failed
+          type: string
+        platformPostId:
+          description: "Platform-native post id. Present on `published`, absent on\
+            \ `failed`."
+          type: string
+        publishedUrl:
+          description: Public URL to the platform-side post. Present on `published`
+            (when the platform exposes one and it is not a draft).
+          type: string
+        error:
+          description: "Error message from the platform. Present on `failed`, absent\
+            \ on `published`."
+          type: string
+      required:
+      - name
+      - status
+    WebhookPayloadPostPlatform_account:
+      description: The connected social account the platform-write went through.
+      example:
+        accountId: accountId
+        displayName: displayName
+        platform: platform
+        username: username
+      properties:
+        accountId:
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+      required:
+      - accountId
+      - platform
+      - username
     WebhookPayloadAccountConnected_account:
       example:
         accountId: accountId
@@ -46707,6 +46880,8 @@ x-documentation:
     - `post.partial` - Post published to some platforms, failed on others
     - `post.cancelled` - Post publishing was cancelled
     - `post.recycled` - Post recycled (cloned and re-scheduled)
+    - `post.platform.published` - A single platform target inside a post finished publishing successfully. Fires once per platform-account as it terminates, without waiting for other platforms on the same post. Use this for incremental UIs; use `post.published` for the post-level rollup.
+    - `post.platform.failed` - A single platform target inside a post failed permanently. Temporary/retryable failures do NOT fire this event, only permanent ones, so retry loops stay quiet.
     - `account.connected` - Social account connected
     - `account.disconnected` - Social account disconnected (token expired)
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
