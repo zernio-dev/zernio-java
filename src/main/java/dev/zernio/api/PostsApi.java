@@ -36,6 +36,7 @@ import dev.zernio.model.PostGetResponse;
 import dev.zernio.model.PostRetryResponse;
 import dev.zernio.model.PostUpdateResponse;
 import dev.zernio.model.PostsListResponse;
+import java.util.UUID;
 import dev.zernio.model.UnpublishPost200Response;
 import dev.zernio.model.UnpublishPostRequest;
 import dev.zernio.model.UpdatePostMetadata200Response;
@@ -73,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:50:19.699731053Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T17:15:07.260050223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -358,49 +359,53 @@ public class PostsApi {
 
   /**
    * Create post
-   * Create and optionally publish a post. Immediate posts (publishNow: true) include platformPostUrl in the response. Content is optional when media is attached or all platforms have customContent. See each platform&#39;s schema for media constraints. 
+   * Create and optionally publish a post. Immediate posts (&#x60;publishNow: true&#x60;) include &#x60;platformPostUrl&#x60; in the response. Content is optional when media is attached or all platforms have &#x60;customContent&#x60;. See each platform&#39;s schema for media constraints.  ## Idempotency  Two layers of duplicate-protection apply, so safe-to-retry callers (network blips, n8n / Zapier retries, etc.) don&#39;t accidentally double-post.  **1. Same-request idempotency (5-minute window).** Pass an &#x60;x-request-id&#x60; header to mark a logical request. If a second request arrives with the same &#x60;x-request-id&#x60; while the first is in-flight (or within ~5 minutes of completion), we return **HTTP 200** with the original post in the &#x60;existingPost&#x60; field — no new post is created. The official Zernio SDKs auto-generate a unique &#x60;x-request-id&#x60; per call. If you&#39;re using a generic HTTP client (curl, n8n&#39;s HTTP node, Zapier, custom code), either: - Set a unique &#x60;x-request-id&#x60; per logical call (recommended — UUIDv4 is fine) - Or simply omit the header — we&#39;ll treat each request as new  **Common pitfall**: if your workflow tool uses a single execution-level request ID and reuses it across multiple HTTP nodes (e.g. one ID for the whole run, shared across 6 different platform calls), every call after the first will look like a retry of the first and return its post. Generate a fresh ID per node.  **2. Content-hash dedup (24-hour window).** Independently, we hash &#x60;(platform, accountId, content + media URLs)&#x60; and reject duplicates within 24 hours with **HTTP 409**. This catches genuine \&quot;same content posted twice to the same account\&quot; cases regardless of &#x60;x-request-id&#x60;. Returns &#x60;error&#x60;, &#x60;accountId&#x60;, &#x60;platform&#x60;, and &#x60;existingPostId&#x60; so you can find the original. To intentionally re-post identical content within 24h, change something (the caption, the media, the account) — the dedup is keyed on the full content fingerprint.  Order: same-&#x60;x-request-id&#x60; retries (200) are checked first; if no idempotency match, the content-hash dedup (409) runs. 
    * @param createPostRequest  (required)
+   * @param xRequestId Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)
    * @return PostCreateResponse
    * @throws ApiException if fails to make API call
    */
-  public PostCreateResponse createPost(@javax.annotation.Nonnull CreatePostRequest createPostRequest) throws ApiException {
-    return createPost(createPostRequest, null);
+  public PostCreateResponse createPost(@javax.annotation.Nonnull CreatePostRequest createPostRequest, @javax.annotation.Nullable UUID xRequestId) throws ApiException {
+    return createPost(createPostRequest, xRequestId, null);
   }
 
   /**
    * Create post
-   * Create and optionally publish a post. Immediate posts (publishNow: true) include platformPostUrl in the response. Content is optional when media is attached or all platforms have customContent. See each platform&#39;s schema for media constraints. 
+   * Create and optionally publish a post. Immediate posts (&#x60;publishNow: true&#x60;) include &#x60;platformPostUrl&#x60; in the response. Content is optional when media is attached or all platforms have &#x60;customContent&#x60;. See each platform&#39;s schema for media constraints.  ## Idempotency  Two layers of duplicate-protection apply, so safe-to-retry callers (network blips, n8n / Zapier retries, etc.) don&#39;t accidentally double-post.  **1. Same-request idempotency (5-minute window).** Pass an &#x60;x-request-id&#x60; header to mark a logical request. If a second request arrives with the same &#x60;x-request-id&#x60; while the first is in-flight (or within ~5 minutes of completion), we return **HTTP 200** with the original post in the &#x60;existingPost&#x60; field — no new post is created. The official Zernio SDKs auto-generate a unique &#x60;x-request-id&#x60; per call. If you&#39;re using a generic HTTP client (curl, n8n&#39;s HTTP node, Zapier, custom code), either: - Set a unique &#x60;x-request-id&#x60; per logical call (recommended — UUIDv4 is fine) - Or simply omit the header — we&#39;ll treat each request as new  **Common pitfall**: if your workflow tool uses a single execution-level request ID and reuses it across multiple HTTP nodes (e.g. one ID for the whole run, shared across 6 different platform calls), every call after the first will look like a retry of the first and return its post. Generate a fresh ID per node.  **2. Content-hash dedup (24-hour window).** Independently, we hash &#x60;(platform, accountId, content + media URLs)&#x60; and reject duplicates within 24 hours with **HTTP 409**. This catches genuine \&quot;same content posted twice to the same account\&quot; cases regardless of &#x60;x-request-id&#x60;. Returns &#x60;error&#x60;, &#x60;accountId&#x60;, &#x60;platform&#x60;, and &#x60;existingPostId&#x60; so you can find the original. To intentionally re-post identical content within 24h, change something (the caption, the media, the account) — the dedup is keyed on the full content fingerprint.  Order: same-&#x60;x-request-id&#x60; retries (200) are checked first; if no idempotency match, the content-hash dedup (409) runs. 
    * @param createPostRequest  (required)
+   * @param xRequestId Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)
    * @param headers Optional headers to include in the request
    * @return PostCreateResponse
    * @throws ApiException if fails to make API call
    */
-  public PostCreateResponse createPost(@javax.annotation.Nonnull CreatePostRequest createPostRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<PostCreateResponse> localVarResponse = createPostWithHttpInfo(createPostRequest, headers);
+  public PostCreateResponse createPost(@javax.annotation.Nonnull CreatePostRequest createPostRequest, @javax.annotation.Nullable UUID xRequestId, Map<String, String> headers) throws ApiException {
+    ApiResponse<PostCreateResponse> localVarResponse = createPostWithHttpInfo(createPostRequest, xRequestId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Create post
-   * Create and optionally publish a post. Immediate posts (publishNow: true) include platformPostUrl in the response. Content is optional when media is attached or all platforms have customContent. See each platform&#39;s schema for media constraints. 
+   * Create and optionally publish a post. Immediate posts (&#x60;publishNow: true&#x60;) include &#x60;platformPostUrl&#x60; in the response. Content is optional when media is attached or all platforms have &#x60;customContent&#x60;. See each platform&#39;s schema for media constraints.  ## Idempotency  Two layers of duplicate-protection apply, so safe-to-retry callers (network blips, n8n / Zapier retries, etc.) don&#39;t accidentally double-post.  **1. Same-request idempotency (5-minute window).** Pass an &#x60;x-request-id&#x60; header to mark a logical request. If a second request arrives with the same &#x60;x-request-id&#x60; while the first is in-flight (or within ~5 minutes of completion), we return **HTTP 200** with the original post in the &#x60;existingPost&#x60; field — no new post is created. The official Zernio SDKs auto-generate a unique &#x60;x-request-id&#x60; per call. If you&#39;re using a generic HTTP client (curl, n8n&#39;s HTTP node, Zapier, custom code), either: - Set a unique &#x60;x-request-id&#x60; per logical call (recommended — UUIDv4 is fine) - Or simply omit the header — we&#39;ll treat each request as new  **Common pitfall**: if your workflow tool uses a single execution-level request ID and reuses it across multiple HTTP nodes (e.g. one ID for the whole run, shared across 6 different platform calls), every call after the first will look like a retry of the first and return its post. Generate a fresh ID per node.  **2. Content-hash dedup (24-hour window).** Independently, we hash &#x60;(platform, accountId, content + media URLs)&#x60; and reject duplicates within 24 hours with **HTTP 409**. This catches genuine \&quot;same content posted twice to the same account\&quot; cases regardless of &#x60;x-request-id&#x60;. Returns &#x60;error&#x60;, &#x60;accountId&#x60;, &#x60;platform&#x60;, and &#x60;existingPostId&#x60; so you can find the original. To intentionally re-post identical content within 24h, change something (the caption, the media, the account) — the dedup is keyed on the full content fingerprint.  Order: same-&#x60;x-request-id&#x60; retries (200) are checked first; if no idempotency match, the content-hash dedup (409) runs. 
    * @param createPostRequest  (required)
+   * @param xRequestId Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)
    * @return ApiResponse&lt;PostCreateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PostCreateResponse> createPostWithHttpInfo(@javax.annotation.Nonnull CreatePostRequest createPostRequest) throws ApiException {
-    return createPostWithHttpInfo(createPostRequest, null);
+  public ApiResponse<PostCreateResponse> createPostWithHttpInfo(@javax.annotation.Nonnull CreatePostRequest createPostRequest, @javax.annotation.Nullable UUID xRequestId) throws ApiException {
+    return createPostWithHttpInfo(createPostRequest, xRequestId, null);
   }
 
   /**
    * Create post
-   * Create and optionally publish a post. Immediate posts (publishNow: true) include platformPostUrl in the response. Content is optional when media is attached or all platforms have customContent. See each platform&#39;s schema for media constraints. 
+   * Create and optionally publish a post. Immediate posts (&#x60;publishNow: true&#x60;) include &#x60;platformPostUrl&#x60; in the response. Content is optional when media is attached or all platforms have &#x60;customContent&#x60;. See each platform&#39;s schema for media constraints.  ## Idempotency  Two layers of duplicate-protection apply, so safe-to-retry callers (network blips, n8n / Zapier retries, etc.) don&#39;t accidentally double-post.  **1. Same-request idempotency (5-minute window).** Pass an &#x60;x-request-id&#x60; header to mark a logical request. If a second request arrives with the same &#x60;x-request-id&#x60; while the first is in-flight (or within ~5 minutes of completion), we return **HTTP 200** with the original post in the &#x60;existingPost&#x60; field — no new post is created. The official Zernio SDKs auto-generate a unique &#x60;x-request-id&#x60; per call. If you&#39;re using a generic HTTP client (curl, n8n&#39;s HTTP node, Zapier, custom code), either: - Set a unique &#x60;x-request-id&#x60; per logical call (recommended — UUIDv4 is fine) - Or simply omit the header — we&#39;ll treat each request as new  **Common pitfall**: if your workflow tool uses a single execution-level request ID and reuses it across multiple HTTP nodes (e.g. one ID for the whole run, shared across 6 different platform calls), every call after the first will look like a retry of the first and return its post. Generate a fresh ID per node.  **2. Content-hash dedup (24-hour window).** Independently, we hash &#x60;(platform, accountId, content + media URLs)&#x60; and reject duplicates within 24 hours with **HTTP 409**. This catches genuine \&quot;same content posted twice to the same account\&quot; cases regardless of &#x60;x-request-id&#x60;. Returns &#x60;error&#x60;, &#x60;accountId&#x60;, &#x60;platform&#x60;, and &#x60;existingPostId&#x60; so you can find the original. To intentionally re-post identical content within 24h, change something (the caption, the media, the account) — the dedup is keyed on the full content fingerprint.  Order: same-&#x60;x-request-id&#x60; retries (200) are checked first; if no idempotency match, the content-hash dedup (409) runs. 
    * @param createPostRequest  (required)
+   * @param xRequestId Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PostCreateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PostCreateResponse> createPostWithHttpInfo(@javax.annotation.Nonnull CreatePostRequest createPostRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createPostRequestBuilder(createPostRequest, headers);
+  public ApiResponse<PostCreateResponse> createPostWithHttpInfo(@javax.annotation.Nonnull CreatePostRequest createPostRequest, @javax.annotation.Nullable UUID xRequestId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createPostRequestBuilder(createPostRequest, xRequestId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -447,7 +452,7 @@ public class PostsApi {
     }
   }
 
-  private HttpRequest.Builder createPostRequestBuilder(@javax.annotation.Nonnull CreatePostRequest createPostRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder createPostRequestBuilder(@javax.annotation.Nonnull CreatePostRequest createPostRequest, @javax.annotation.Nullable UUID xRequestId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'createPostRequest' is set
     if (createPostRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createPostRequest' when calling createPost");
@@ -459,6 +464,9 @@ public class PostsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (xRequestId != null) {
+      localVarRequestBuilder.header("x-request-id", xRequestId.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 

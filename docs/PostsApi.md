@@ -185,11 +185,11 @@ ApiResponse<[**BulkUploadPosts200Response**](BulkUploadPosts200Response.md)>
 
 ## createPost
 
-> PostCreateResponse createPost(createPostRequest)
+> PostCreateResponse createPost(createPostRequest, xRequestId)
 
 Create post
 
-Create and optionally publish a post. Immediate posts (publishNow: true) include platformPostUrl in the response. Content is optional when media is attached or all platforms have customContent. See each platform&#39;s schema for media constraints. 
+Create and optionally publish a post. Immediate posts (&#x60;publishNow: true&#x60;) include &#x60;platformPostUrl&#x60; in the response. Content is optional when media is attached or all platforms have &#x60;customContent&#x60;. See each platform&#39;s schema for media constraints.  ## Idempotency  Two layers of duplicate-protection apply, so safe-to-retry callers (network blips, n8n / Zapier retries, etc.) don&#39;t accidentally double-post.  **1. Same-request idempotency (5-minute window).** Pass an &#x60;x-request-id&#x60; header to mark a logical request. If a second request arrives with the same &#x60;x-request-id&#x60; while the first is in-flight (or within ~5 minutes of completion), we return **HTTP 200** with the original post in the &#x60;existingPost&#x60; field — no new post is created. The official Zernio SDKs auto-generate a unique &#x60;x-request-id&#x60; per call. If you&#39;re using a generic HTTP client (curl, n8n&#39;s HTTP node, Zapier, custom code), either: - Set a unique &#x60;x-request-id&#x60; per logical call (recommended — UUIDv4 is fine) - Or simply omit the header — we&#39;ll treat each request as new  **Common pitfall**: if your workflow tool uses a single execution-level request ID and reuses it across multiple HTTP nodes (e.g. one ID for the whole run, shared across 6 different platform calls), every call after the first will look like a retry of the first and return its post. Generate a fresh ID per node.  **2. Content-hash dedup (24-hour window).** Independently, we hash &#x60;(platform, accountId, content + media URLs)&#x60; and reject duplicates within 24 hours with **HTTP 409**. This catches genuine \&quot;same content posted twice to the same account\&quot; cases regardless of &#x60;x-request-id&#x60;. Returns &#x60;error&#x60;, &#x60;accountId&#x60;, &#x60;platform&#x60;, and &#x60;existingPostId&#x60; so you can find the original. To intentionally re-post identical content within 24h, change something (the caption, the media, the account) — the dedup is keyed on the full content fingerprint.  Order: same-&#x60;x-request-id&#x60; retries (200) are checked first; if no idempotency match, the content-hash dedup (409) runs. 
 
 ### Example
 
@@ -213,8 +213,9 @@ public class Example {
 
         PostsApi apiInstance = new PostsApi(defaultClient);
         CreatePostRequest createPostRequest = new CreatePostRequest(); // CreatePostRequest | 
+        UUID xRequestId = UUID.randomUUID(); // UUID | Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract. 
         try {
-            PostCreateResponse result = apiInstance.createPost(createPostRequest);
+            PostCreateResponse result = apiInstance.createPost(createPostRequest, xRequestId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PostsApi#createPost");
@@ -233,6 +234,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createPostRequest** | [**CreatePostRequest**](CreatePostRequest.md)|  | |
+| **xRequestId** | **UUID**| Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  | [optional] |
 
 ### Return type
 
@@ -255,16 +257,16 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **409** | Duplicate content detected |  -  |
+| **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry of an in-flight call. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post — see operation description for the idempotency contract).  Body fields: - &#x60;error&#x60; — human-readable message - &#x60;details.accountId&#x60; — the account that already has this content - &#x60;details.platform&#x60; — the platform that already has this content - &#x60;details.existingPostId&#x60; — Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request — see &#x60;parameters.x-request-id&#x60; above.  |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (15 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds until the rate limit resets (for API rate limits) <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  |
 
 ## createPostWithHttpInfo
 
-> ApiResponse<PostCreateResponse> createPost createPostWithHttpInfo(createPostRequest)
+> ApiResponse<PostCreateResponse> createPost createPostWithHttpInfo(createPostRequest, xRequestId)
 
 Create post
 
-Create and optionally publish a post. Immediate posts (publishNow: true) include platformPostUrl in the response. Content is optional when media is attached or all platforms have customContent. See each platform&#39;s schema for media constraints. 
+Create and optionally publish a post. Immediate posts (&#x60;publishNow: true&#x60;) include &#x60;platformPostUrl&#x60; in the response. Content is optional when media is attached or all platforms have &#x60;customContent&#x60;. See each platform&#39;s schema for media constraints.  ## Idempotency  Two layers of duplicate-protection apply, so safe-to-retry callers (network blips, n8n / Zapier retries, etc.) don&#39;t accidentally double-post.  **1. Same-request idempotency (5-minute window).** Pass an &#x60;x-request-id&#x60; header to mark a logical request. If a second request arrives with the same &#x60;x-request-id&#x60; while the first is in-flight (or within ~5 minutes of completion), we return **HTTP 200** with the original post in the &#x60;existingPost&#x60; field — no new post is created. The official Zernio SDKs auto-generate a unique &#x60;x-request-id&#x60; per call. If you&#39;re using a generic HTTP client (curl, n8n&#39;s HTTP node, Zapier, custom code), either: - Set a unique &#x60;x-request-id&#x60; per logical call (recommended — UUIDv4 is fine) - Or simply omit the header — we&#39;ll treat each request as new  **Common pitfall**: if your workflow tool uses a single execution-level request ID and reuses it across multiple HTTP nodes (e.g. one ID for the whole run, shared across 6 different platform calls), every call after the first will look like a retry of the first and return its post. Generate a fresh ID per node.  **2. Content-hash dedup (24-hour window).** Independently, we hash &#x60;(platform, accountId, content + media URLs)&#x60; and reject duplicates within 24 hours with **HTTP 409**. This catches genuine \&quot;same content posted twice to the same account\&quot; cases regardless of &#x60;x-request-id&#x60;. Returns &#x60;error&#x60;, &#x60;accountId&#x60;, &#x60;platform&#x60;, and &#x60;existingPostId&#x60; so you can find the original. To intentionally re-post identical content within 24h, change something (the caption, the media, the account) — the dedup is keyed on the full content fingerprint.  Order: same-&#x60;x-request-id&#x60; retries (200) are checked first; if no idempotency match, the content-hash dedup (409) runs. 
 
 ### Example
 
@@ -289,8 +291,9 @@ public class Example {
 
         PostsApi apiInstance = new PostsApi(defaultClient);
         CreatePostRequest createPostRequest = new CreatePostRequest(); // CreatePostRequest | 
+        UUID xRequestId = UUID.randomUUID(); // UUID | Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract. 
         try {
-            ApiResponse<PostCreateResponse> response = apiInstance.createPostWithHttpInfo(createPostRequest);
+            ApiResponse<PostCreateResponse> response = apiInstance.createPostWithHttpInfo(createPostRequest, xRequestId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -311,6 +314,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createPostRequest** | [**CreatePostRequest**](CreatePostRequest.md)|  | |
+| **xRequestId** | **UUID**| Optional client-generated request identifier for safe retry (idempotency). When two requests carry the same value, the second is treated as a retry of the first and returns the original post (HTTP 200) instead of creating a duplicate. Window is ~5 minutes from the first request. Generate a UUID per logical call. SDKs do this automatically; HTTP clients should set it themselves or omit it. See the operation description for the full idempotency contract.  | [optional] |
 
 ### Return type
 
@@ -333,7 +337,7 @@ ApiResponse<[**PostCreateResponse**](PostCreateResponse.md)>
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
-| **409** | Duplicate content detected |  -  |
+| **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry of an in-flight call. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post — see operation description for the idempotency contract).  Body fields: - &#x60;error&#x60; — human-readable message - &#x60;details.accountId&#x60; — the account that already has this content - &#x60;details.platform&#x60; — the platform that already has this content - &#x60;details.existingPostId&#x60; — Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request — see &#x60;parameters.x-request-id&#x60; above.  |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (15 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds until the rate limit resets (for API rate limits) <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  |
 
 
