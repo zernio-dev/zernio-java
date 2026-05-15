@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateCtwaAdRequestCreativesInner;
 import dev.zernio.model.CreateCtwaAdRequestInterestsInner;
 import dev.zernio.model.CreateCtwaAdRequestVideo;
 import java.math.BigDecimal;
@@ -37,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * In addition to the &#x60;required&#x60; list, exactly one of &#x60;imageUrl&#x60; or &#x60;video&#x60; must be supplied (they are mutually exclusive). The route enforces this at the Zod boundary; OpenAPI&#39;s &#x60;required&#x60; cannot express OR-required cleanly. 
+ * In addition to the &#x60;required&#x60; list, the request must use EXACTLY ONE of the two shapes:  - Single-creative: &#x60;headline&#x60;, &#x60;body&#x60;, and one of   &#x60;imageUrl&#x60; / &#x60;video&#x60; (mutually exclusive). - Multi-creative: a non-empty &#x60;creatives[]&#x60; array. Top-level   &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60; must NOT be set   on this shape.  The route enforces this at the Zod boundary; OpenAPI&#39;s &#x60;required&#x60; cannot express the OR cleanly. 
  */
 @JsonPropertyOrder({
   CreateCtwaAdRequest.JSON_PROPERTY_ACCOUNT_ID,
@@ -47,6 +48,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_BODY,
   CreateCtwaAdRequest.JSON_PROPERTY_IMAGE_URL,
   CreateCtwaAdRequest.JSON_PROPERTY_VIDEO,
+  CreateCtwaAdRequest.JSON_PROPERTY_CREATIVES,
   CreateCtwaAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateCtwaAdRequest.JSON_PROPERTY_BUDGET_TYPE,
   CreateCtwaAdRequest.JSON_PROPERTY_CURRENCY,
@@ -58,10 +60,13 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateCtwaAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
   CreateCtwaAdRequest.JSON_PROPERTY_OBJECTIVE,
+  CreateCtwaAdRequest.JSON_PROPERTY_BID_STRATEGY,
+  CreateCtwaAdRequest.JSON_PROPERTY_BID_AMOUNT,
+  CreateCtwaAdRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T16:40:03.697423378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T08:54:09.334012896Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -76,11 +81,11 @@ public class CreateCtwaAdRequest {
   private String name;
 
   public static final String JSON_PROPERTY_HEADLINE = "headline";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String headline;
 
   public static final String JSON_PROPERTY_BODY = "body";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String body;
 
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
@@ -90,6 +95,10 @@ public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_VIDEO = "video";
   @javax.annotation.Nullable
   private CreateCtwaAdRequestVideo video;
+
+  public static final String JSON_PROPERTY_CREATIVES = "creatives";
+  @javax.annotation.Nullable
+  private List<CreateCtwaAdRequestCreativesInner> creatives = new ArrayList<>();
 
   public static final String JSON_PROPERTY_BUDGET_AMOUNT = "budgetAmount";
   @javax.annotation.Nonnull
@@ -242,6 +251,57 @@ public class CreateCtwaAdRequest {
   @javax.annotation.Nullable
   private ObjectiveEnum objective;
 
+  /**
+   * Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. 
+   */
+  public enum BidStrategyEnum {
+    LOWEST_COST_WITHOUT_CAP(String.valueOf("LOWEST_COST_WITHOUT_CAP")),
+    
+    LOWEST_COST_WITH_BID_CAP(String.valueOf("LOWEST_COST_WITH_BID_CAP")),
+    
+    COST_CAP(String.valueOf("COST_CAP")),
+    
+    LOWEST_COST_WITH_MIN_ROAS(String.valueOf("LOWEST_COST_WITH_MIN_ROAS"));
+
+    private String value;
+
+    BidStrategyEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BidStrategyEnum fromValue(String value) {
+      for (BidStrategyEnum b : BidStrategyEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
+  @javax.annotation.Nullable
+  private BidStrategyEnum bidStrategy;
+
+  public static final String JSON_PROPERTY_BID_AMOUNT = "bidAmount";
+  @javax.annotation.Nullable
+  private BigDecimal bidAmount;
+
+  public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
+  @javax.annotation.Nullable
+  private BigDecimal roasAverageFloor;
+
   public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
   @javax.annotation.Nullable
   private String dsaBeneficiary;
@@ -307,7 +367,7 @@ public class CreateCtwaAdRequest {
   }
 
   /**
-   * Ad display name. Used to derive campaign / ad set names.
+   * Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch. 
    * @return name
    */
   @javax.annotation.Nonnull
@@ -325,50 +385,50 @@ public class CreateCtwaAdRequest {
   }
 
 
-  public CreateCtwaAdRequest headline(@javax.annotation.Nonnull String headline) {
+  public CreateCtwaAdRequest headline(@javax.annotation.Nullable String headline) {
     this.headline = headline;
     return this;
   }
 
   /**
-   * Get headline
+   * Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. 
    * @return headline
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHeadline() {
     return headline;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setHeadline(@javax.annotation.Nonnull String headline) {
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeadline(@javax.annotation.Nullable String headline) {
     this.headline = headline;
   }
 
 
-  public CreateCtwaAdRequest body(@javax.annotation.Nonnull String body) {
+  public CreateCtwaAdRequest body(@javax.annotation.Nullable String body) {
     this.body = body;
     return this;
   }
 
   /**
-   * Primary text shown above the image / video.
+   * Primary text shown above the image / video. Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;. 
    * @return body
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBody() {
     return body;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_BODY, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBody(@javax.annotation.Nonnull String body) {
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBody(@javax.annotation.Nullable String body) {
     this.body = body;
   }
 
@@ -379,7 +439,7 @@ public class CreateCtwaAdRequest {
   }
 
   /**
-   * Image asset for image creatives. Mutually exclusive with &#x60;video&#x60;. Required if &#x60;video&#x60; is not supplied. 
+   * Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if &#x60;video&#x60; is not supplied. 
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -418,6 +478,38 @@ public class CreateCtwaAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVideo(@javax.annotation.Nullable CreateCtwaAdRequestVideo video) {
     this.video = video;
+  }
+
+
+  public CreateCtwaAdRequest creatives(@javax.annotation.Nullable List<CreateCtwaAdRequestCreativesInner> creatives) {
+    this.creatives = creatives;
+    return this;
+  }
+
+  public CreateCtwaAdRequest addCreativesItem(CreateCtwaAdRequestCreativesInner creativesItem) {
+    if (this.creatives == null) {
+      this.creatives = new ArrayList<>();
+    }
+    this.creatives.add(creativesItem);
+    return this;
+  }
+
+  /**
+   * Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;). Each entry must supply its own headline, body, and exactly one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. 
+   * @return creatives
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CREATIVES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateCtwaAdRequestCreativesInner> getCreatives() {
+    return creatives;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CREATIVES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCreatives(@javax.annotation.Nullable List<CreateCtwaAdRequestCreativesInner> creatives) {
+    this.creatives = creatives;
   }
 
 
@@ -706,6 +798,80 @@ public class CreateCtwaAdRequest {
   }
 
 
+  public CreateCtwaAdRequest bidStrategy(@javax.annotation.Nullable BidStrategyEnum bidStrategy) {
+    this.bidStrategy = bidStrategy;
+    return this;
+  }
+
+  /**
+   * Meta bid strategy applied to the shared ad set. Defaults to &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) when omitted. &#x60;LOWEST_COST_WITH_BID_CAP&#x60; and &#x60;COST_CAP&#x60; require &#x60;bidAmount&#x60;. &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; requires &#x60;roasAverageFloor&#x60;. CTWA&#39;s &#x60;optimization_goal&#x60; is fixed to &#x60;CONVERSATIONS&#x60;, but the bid strategy is independent. 
+   * @return bidStrategy
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BidStrategyEnum getBidStrategy() {
+    return bidStrategy;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBidStrategy(@javax.annotation.Nullable BidStrategyEnum bidStrategy) {
+    this.bidStrategy = bidStrategy;
+  }
+
+
+  public CreateCtwaAdRequest bidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = bidAmount;
+    return this;
+  }
+
+  /**
+   * Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. 
+   * minimum: 0
+   * @return bidAmount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getBidAmount() {
+    return bidAmount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = bidAmount;
+  }
+
+
+  public CreateCtwaAdRequest roasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = roasAverageFloor;
+    return this;
+  }
+
+  /**
+   * Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. 
+   * minimum: 0
+   * @return roasAverageFloor
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getRoasAverageFloor() {
+    return roasAverageFloor;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = roasAverageFloor;
+  }
+
+
   public CreateCtwaAdRequest dsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
     this.dsaBeneficiary = dsaBeneficiary;
     return this;
@@ -773,6 +939,7 @@ public class CreateCtwaAdRequest {
         Objects.equals(this.body, createCtwaAdRequest.body) &&
         Objects.equals(this.imageUrl, createCtwaAdRequest.imageUrl) &&
         Objects.equals(this.video, createCtwaAdRequest.video) &&
+        Objects.equals(this.creatives, createCtwaAdRequest.creatives) &&
         Objects.equals(this.budgetAmount, createCtwaAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createCtwaAdRequest.budgetType) &&
         Objects.equals(this.currency, createCtwaAdRequest.currency) &&
@@ -784,13 +951,16 @@ public class CreateCtwaAdRequest {
         Objects.equals(this.audienceId, createCtwaAdRequest.audienceId) &&
         Objects.equals(this.advantageAudience, createCtwaAdRequest.advantageAudience) &&
         Objects.equals(this.objective, createCtwaAdRequest.objective) &&
+        Objects.equals(this.bidStrategy, createCtwaAdRequest.bidStrategy) &&
+        Objects.equals(this.bidAmount, createCtwaAdRequest.bidAmount) &&
+        Objects.equals(this.roasAverageFloor, createCtwaAdRequest.roasAverageFloor) &&
         Objects.equals(this.dsaBeneficiary, createCtwaAdRequest.dsaBeneficiary) &&
         Objects.equals(this.dsaPayor, createCtwaAdRequest.dsaPayor);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, budgetAmount, budgetType, currency, endDate, countries, ageMin, ageMax, interests, audienceId, advantageAudience, objective, dsaBeneficiary, dsaPayor);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, budgetAmount, budgetType, currency, endDate, countries, ageMin, ageMax, interests, audienceId, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -804,6 +974,7 @@ public class CreateCtwaAdRequest {
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
+    sb.append("    creatives: ").append(toIndentedString(creatives)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
@@ -815,6 +986,9 @@ public class CreateCtwaAdRequest {
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("    objective: ").append(toIndentedString(objective)).append("\n");
+    sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
+    sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
+    sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("}");
@@ -899,6 +1073,16 @@ public class CreateCtwaAdRequest {
       joiner.add(getVideo().toUrlQueryString(prefix + "video" + suffix));
     }
 
+    // add `creatives` to the URL query string
+    if (getCreatives() != null) {
+      for (int i = 0; i < getCreatives().size(); i++) {
+        if (getCreatives().get(i) != null) {
+          joiner.add(getCreatives().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%screatives%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
     // add `budgetAmount` to the URL query string
     if (getBudgetAmount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbudgetAmount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBudgetAmount()))));
@@ -961,6 +1145,21 @@ public class CreateCtwaAdRequest {
     // add `objective` to the URL query string
     if (getObjective() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sobjective%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjective()))));
+    }
+
+    // add `bidStrategy` to the URL query string
+    if (getBidStrategy() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbidStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidStrategy()))));
+    }
+
+    // add `bidAmount` to the URL query string
+    if (getBidAmount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbidAmount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidAmount()))));
+    }
+
+    // add `roasAverageFloor` to the URL query string
+    if (getRoasAverageFloor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
     }
 
     // add `dsaBeneficiary` to the URL query string

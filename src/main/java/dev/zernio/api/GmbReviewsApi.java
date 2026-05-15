@@ -20,9 +20,12 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.BatchGetGoogleBusinessReviews200Response;
 import dev.zernio.model.BatchGetGoogleBusinessReviewsRequest;
+import dev.zernio.model.DeleteGoogleBusinessReviewReply200Response;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetGoogleBusinessReviews200Response;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ReplyToGoogleBusinessReview200Response;
+import dev.zernio.model.ReplyToGoogleBusinessReviewRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T16:40:03.697423378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T08:54:09.334012896Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -299,6 +302,133 @@ public class GmbReviewsApi {
   }
 
   /**
+   * Delete a review reply
+   * Removes the business owner reply from a Google Business review. The review itself remains.
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @return DeleteGoogleBusinessReviewReply200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteGoogleBusinessReviewReply200Response deleteGoogleBusinessReviewReply(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId) throws ApiException {
+    return deleteGoogleBusinessReviewReply(accountId, reviewId, null);
+  }
+
+  /**
+   * Delete a review reply
+   * Removes the business owner reply from a Google Business review. The review itself remains.
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param headers Optional headers to include in the request
+   * @return DeleteGoogleBusinessReviewReply200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeleteGoogleBusinessReviewReply200Response deleteGoogleBusinessReviewReply(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeleteGoogleBusinessReviewReply200Response> localVarResponse = deleteGoogleBusinessReviewReplyWithHttpInfo(accountId, reviewId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a review reply
+   * Removes the business owner reply from a Google Business review. The review itself remains.
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @return ApiResponse&lt;DeleteGoogleBusinessReviewReply200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteGoogleBusinessReviewReply200Response> deleteGoogleBusinessReviewReplyWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId) throws ApiException {
+    return deleteGoogleBusinessReviewReplyWithHttpInfo(accountId, reviewId, null);
+  }
+
+  /**
+   * Delete a review reply
+   * Removes the business owner reply from a Google Business review. The review itself remains.
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeleteGoogleBusinessReviewReply200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeleteGoogleBusinessReviewReply200Response> deleteGoogleBusinessReviewReplyWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteGoogleBusinessReviewReplyRequestBuilder(accountId, reviewId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteGoogleBusinessReviewReply", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeleteGoogleBusinessReviewReply200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeleteGoogleBusinessReviewReply200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteGoogleBusinessReviewReply200Response>() {});
+        
+
+        return new ApiResponse<DeleteGoogleBusinessReviewReply200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteGoogleBusinessReviewReplyRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteGoogleBusinessReviewReply");
+    }
+    // verify the required parameter 'reviewId' is set
+    if (reviewId == null) {
+      throw new ApiException(400, "Missing the required parameter 'reviewId' when calling deleteGoogleBusinessReviewReply");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{reviewId}", ApiClient.urlEncode(reviewId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get reviews
    * Returns reviews for a GBP account including ratings, comments, and owner replies. Use nextPageToken for pagination.
    * @param accountId The Zernio account ID (from /v1/accounts) (required)
@@ -436,6 +566,147 @@ public class GmbReviewsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Reply to a review
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param replyToGoogleBusinessReviewRequest  (required)
+   * @return ReplyToGoogleBusinessReview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToGoogleBusinessReview200Response replyToGoogleBusinessReview(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest) throws ApiException {
+    return replyToGoogleBusinessReview(accountId, reviewId, replyToGoogleBusinessReviewRequest, null);
+  }
+
+  /**
+   * Reply to a review
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param replyToGoogleBusinessReviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReplyToGoogleBusinessReview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToGoogleBusinessReview200Response replyToGoogleBusinessReview(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplyToGoogleBusinessReview200Response> localVarResponse = replyToGoogleBusinessReviewWithHttpInfo(accountId, reviewId, replyToGoogleBusinessReviewRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Reply to a review
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param replyToGoogleBusinessReviewRequest  (required)
+   * @return ApiResponse&lt;ReplyToGoogleBusinessReview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToGoogleBusinessReview200Response> replyToGoogleBusinessReviewWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest) throws ApiException {
+    return replyToGoogleBusinessReviewWithHttpInfo(accountId, reviewId, replyToGoogleBusinessReviewRequest, null);
+  }
+
+  /**
+   * Reply to a review
+   * Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+   * @param accountId The Zernio account ID (from /v1/accounts) (required)
+   * @param reviewId The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name (required)
+   * @param replyToGoogleBusinessReviewRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReplyToGoogleBusinessReview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToGoogleBusinessReview200Response> replyToGoogleBusinessReviewWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replyToGoogleBusinessReviewRequestBuilder(accountId, reviewId, replyToGoogleBusinessReviewRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("replyToGoogleBusinessReview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReplyToGoogleBusinessReview200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReplyToGoogleBusinessReview200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplyToGoogleBusinessReview200Response>() {});
+        
+
+        return new ApiResponse<ReplyToGoogleBusinessReview200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder replyToGoogleBusinessReviewRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String reviewId, @javax.annotation.Nonnull ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling replyToGoogleBusinessReview");
+    }
+    // verify the required parameter 'reviewId' is set
+    if (reviewId == null) {
+      throw new ApiException(400, "Missing the required parameter 'reviewId' when calling replyToGoogleBusinessReview");
+    }
+    // verify the required parameter 'replyToGoogleBusinessReviewRequest' is set
+    if (replyToGoogleBusinessReviewRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'replyToGoogleBusinessReviewRequest' when calling replyToGoogleBusinessReview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{reviewId}", ApiClient.urlEncode(reviewId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replyToGoogleBusinessReviewRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -6,8 +6,12 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**batchGetGoogleBusinessReviews**](GmbReviewsApi.md#batchGetGoogleBusinessReviews) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews |
 | [**batchGetGoogleBusinessReviewsWithHttpInfo**](GmbReviewsApi.md#batchGetGoogleBusinessReviewsWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-reviews/batch | Batch get reviews |
+| [**deleteGoogleBusinessReviewReply**](GmbReviewsApi.md#deleteGoogleBusinessReviewReply) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply |
+| [**deleteGoogleBusinessReviewReplyWithHttpInfo**](GmbReviewsApi.md#deleteGoogleBusinessReviewReplyWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Delete a review reply |
 | [**getGoogleBusinessReviews**](GmbReviewsApi.md#getGoogleBusinessReviews) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews |
 | [**getGoogleBusinessReviewsWithHttpInfo**](GmbReviewsApi.md#getGoogleBusinessReviewsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-reviews | Get reviews |
+| [**replyToGoogleBusinessReview**](GmbReviewsApi.md#replyToGoogleBusinessReview) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review |
+| [**replyToGoogleBusinessReviewWithHttpInfo**](GmbReviewsApi.md#replyToGoogleBusinessReviewWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply | Reply to a review |
 
 
 
@@ -161,6 +165,162 @@ ApiResponse<[**BatchGetGoogleBusinessReviews200Response**](BatchGetGoogleBusines
 | **200** | Batch reviews fetched successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## deleteGoogleBusinessReviewReply
+
+> DeleteGoogleBusinessReviewReply200Response deleteGoogleBusinessReviewReply(accountId, reviewId)
+
+Delete a review reply
+
+Removes the business owner reply from a Google Business review. The review itself remains.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
+        String reviewId = "reviewId_example"; // String | The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the full resource name
+        try {
+            DeleteGoogleBusinessReviewReply200Response result = apiInstance.deleteGoogleBusinessReviewReply(accountId, reviewId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GmbReviewsApi#deleteGoogleBusinessReviewReply");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
+| **reviewId** | **String**| The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name | |
+
+### Return type
+
+[**DeleteGoogleBusinessReviewReply200Response**](DeleteGoogleBusinessReviewReply200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply deleted successfully |  -  |
+| **400** | Invalid request, non-GBP account, or account missing location metadata |  -  |
+| **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Failed to delete reply |  -  |
+
+## deleteGoogleBusinessReviewReplyWithHttpInfo
+
+> ApiResponse<DeleteGoogleBusinessReviewReply200Response> deleteGoogleBusinessReviewReply deleteGoogleBusinessReviewReplyWithHttpInfo(accountId, reviewId)
+
+Delete a review reply
+
+Removes the business owner reply from a Google Business review. The review itself remains.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
+        String reviewId = "reviewId_example"; // String | The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the full resource name
+        try {
+            ApiResponse<DeleteGoogleBusinessReviewReply200Response> response = apiInstance.deleteGoogleBusinessReviewReplyWithHttpInfo(accountId, reviewId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GmbReviewsApi#deleteGoogleBusinessReviewReply");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
+| **reviewId** | **String**| The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name | |
+
+### Return type
+
+ApiResponse<[**DeleteGoogleBusinessReviewReply200Response**](DeleteGoogleBusinessReviewReply200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply deleted successfully |  -  |
+| **400** | Invalid request, non-GBP account, or account missing location metadata |  -  |
+| **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Failed to delete reply |  -  |
 
 
 ## getGoogleBusinessReviews
@@ -327,4 +487,164 @@ ApiResponse<[**GetGoogleBusinessReviews200Response**](GetGoogleBusinessReviews20
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to fetch reviews |  -  |
+
+
+## replyToGoogleBusinessReview
+
+> ReplyToGoogleBusinessReview200Response replyToGoogleBusinessReview(accountId, reviewId, replyToGoogleBusinessReviewRequest)
+
+Reply to a review
+
+Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
+        String reviewId = "reviewId_example"; // String | The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the full resource name
+        ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest = new ReplyToGoogleBusinessReviewRequest(); // ReplyToGoogleBusinessReviewRequest | 
+        try {
+            ReplyToGoogleBusinessReview200Response result = apiInstance.replyToGoogleBusinessReview(accountId, reviewId, replyToGoogleBusinessReviewRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GmbReviewsApi#replyToGoogleBusinessReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
+| **reviewId** | **String**| The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name | |
+| **replyToGoogleBusinessReviewRequest** | [**ReplyToGoogleBusinessReviewRequest**](ReplyToGoogleBusinessReviewRequest.md)|  | |
+
+### Return type
+
+[**ReplyToGoogleBusinessReview200Response**](ReplyToGoogleBusinessReview200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply posted successfully |  -  |
+| **400** | Invalid request, missing comment, non-GBP account, or account missing location metadata |  -  |
+| **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Failed to post reply |  -  |
+
+## replyToGoogleBusinessReviewWithHttpInfo
+
+> ApiResponse<ReplyToGoogleBusinessReview200Response> replyToGoogleBusinessReview replyToGoogleBusinessReviewWithHttpInfo(accountId, reviewId, replyToGoogleBusinessReviewRequest)
+
+Reply to a review
+
+Posts (or updates) the business owner reply to a Google Business review. The reply is associated with the account&#39;s currently selected location (set via /v1/accounts/{accountId}/gmb-locations). Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google&#39;s side). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.GmbReviewsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        GmbReviewsApi apiInstance = new GmbReviewsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio account ID (from /v1/accounts)
+        String reviewId = "reviewId_example"; // String | The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the full resource name
+        ReplyToGoogleBusinessReviewRequest replyToGoogleBusinessReviewRequest = new ReplyToGoogleBusinessReviewRequest(); // ReplyToGoogleBusinessReviewRequest | 
+        try {
+            ApiResponse<ReplyToGoogleBusinessReview200Response> response = apiInstance.replyToGoogleBusinessReviewWithHttpInfo(accountId, reviewId, replyToGoogleBusinessReviewRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling GmbReviewsApi#replyToGoogleBusinessReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio account ID (from /v1/accounts) | |
+| **reviewId** | **String**| The review ID portion (e.g. \&quot;AIe9_BGx1234567890\&quot;), not the full resource name | |
+| **replyToGoogleBusinessReviewRequest** | [**ReplyToGoogleBusinessReviewRequest**](ReplyToGoogleBusinessReviewRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ReplyToGoogleBusinessReview200Response**](ReplyToGoogleBusinessReview200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply posted successfully |  -  |
+| **400** | Invalid request, missing comment, non-GBP account, or account missing location metadata |  -  |
+| **401** | Unauthorized or token invalid (account must be reconnected) |  -  |
+| **404** | Resource not found |  -  |
+| **500** | Failed to post reply |  -  |
 

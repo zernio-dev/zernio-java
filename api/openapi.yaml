@@ -6857,6 +6857,150 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/gmb-reviews/{reviewId}/reply:
+    delete:
+      description: Removes the business owner reply from a Google Business review.
+        The review itself remains.
+      operationId: deleteGoogleBusinessReviewReply
+      parameters:
+      - description: The Zernio account ID (from /v1/accounts)
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the\
+          \ full resource name"
+        explode: false
+        in: path
+        name: reviewId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                message: Reply deleted successfully
+                platform: googlebusiness
+              schema:
+                $ref: "#/components/schemas/deleteGoogleBusinessReviewReply_200_response"
+          description: Reply deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request, non-GBP account, or account missing location\
+            \ metadata"
+        "401":
+          content:
+            application/json:
+              example:
+                error: Access token invalid. Please reconnect your Google Business
+                  Profile account.
+                code: token_invalid
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized or token invalid (account must be reconnected)
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Failed to delete reply
+      security:
+      - bearerAuth: []
+      summary: Delete a review reply
+      tags:
+      - GMB Reviews
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Posts (or updates) the business owner reply to a Google Business review.
+        The reply is associated with the account's currently selected location (set via /v1/accounts/{accountId}/gmb-locations).
+        Calling this endpoint a second time on the same review overwrites the previous reply (PUT semantics on Google's side).
+      operationId: replyToGoogleBusinessReview
+      parameters:
+      - description: The Zernio account ID (from /v1/accounts)
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "The review ID portion (e.g. \"AIe9_BGx1234567890\"), not the\
+          \ full resource name"
+        explode: false
+        in: path
+        name: reviewId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              comment: "Thank you for your kind words, we really appreciate it!"
+            schema:
+              $ref: "#/components/schemas/replyToGoogleBusinessReview_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                reviewId: AIe9_BGx1234567890
+                platform: googlebusiness
+              schema:
+                $ref: "#/components/schemas/replyToGoogleBusinessReview_200_response"
+          description: Reply posted successfully
+        "400":
+          content:
+            application/json:
+              example:
+                error: comment is required and must be a non-empty string
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request, missing comment, non-GBP account, or account\
+            \ missing location metadata"
+        "401":
+          content:
+            application/json:
+              example:
+                error: Access token invalid. Please reconnect your Google Business
+                  Profile account.
+                code: token_invalid
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Unauthorized or token invalid (account must be reconnected)
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Failed to post reply
+      security:
+      - bearerAuth: []
+      summary: Reply to a review
+      tags:
+      - GMB Reviews
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/connect/pending-data:
     get:
       description: |
@@ -16890,16 +17034,23 @@ paths:
       - application/json
   /v1/ads/ctwa:
     post:
-      description: "Creates a Click-to-WhatsApp (CTWA) ad on Meta. When tapped, the\
-        \ ad opens a WhatsApp conversation with the business attached to the supplied\
-        \ Facebook Page, and the full hierarchy (campaign, ad set, creative, ad) is\
-        \ created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE\
-        \ and the destination is hard-coded to api.whatsapp.com/send; Meta resolves\
-        \ the actual WhatsApp number from the Page-to-WA pairing configured in Page\
-        \ settings or Business Manager. Prerequisites enforced by Meta (surfaced as\
-        \ platform_error on failure), the Facebook Page must be paired with a verified\
-        \ WhatsApp Business number, the WhatsApp Business Account must be business-verified,\
-        \ and the Meta access token must carry ads_management."
+      description: |-
+        Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.
+
+        Supports two mutually-exclusive shapes:
+
+        - **Single-creative**: supply top-level `headline`, `body`, and one of
+          `imageUrl` / `video`. Creates 1 campaign + 1 ad set + 1 ad.
+
+        - **Multi-creative**: supply a `creatives[]` array with N entries
+          (each carrying its own headline, body, and image/video). Creates
+          1 campaign + 1 ad set + N ads sharing budget and targeting so Meta
+          A/Bs the creatives inside a single auction instead of fragmenting
+          budget across N parallel campaigns. Recommended when launching
+          multiple creative variants for the same campaign.
+
+
+        Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
       operationId: createCtwaAd
       requestBody:
         content:
@@ -16913,7 +17064,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/createCtwaAd_201_response"
-          description: CTWA ad created and submitted to Meta for review.
+          description: |
+            CTWA ad(s) created and submitted to Meta for review. Response is a
+            tagged union discriminated by `adType`:
+
+            - `adType: "single"` → single-creative request: `{ adType, ad,
+              message }` where `ad` is the persisted Ad document.
+            - `adType: "multi"` → multi-creative request: `{ adType, ads,
+              platformCampaignId, platformAdSetId, message }` where `ads` is
+              the array of N persisted Ad documents all sharing the returned
+              campaign and ad set IDs.
+
+            Generated SDK clients can narrow on `adType` instead of sniffing
+            for field presence.
         "400":
           description: Invalid body.
         "401":
@@ -16931,7 +17094,7 @@ paths:
             missing). Inspect `platformError` for the upstream Meta payload.
       security:
       - bearerAuth: []
-      summary: Create Click-to-WhatsApp ad
+      summary: Create Click-to-WhatsApp ad(s)
       tags:
       - Ads
       x-content-type: application/json
@@ -24885,6 +25048,59 @@ components:
       required:
       - id
       - name
+    CtwaSingleResponse:
+      description: |
+        Response returned by `POST /v1/ads/ctwa` when the request used the
+        single-creative shape (top-level headline / body / imageUrl|video).
+        `adType` is the union discriminator.
+      example:
+        adType: single
+        ad: "{}"
+        message: message
+      properties:
+        adType:
+          enum:
+          - single
+          type: string
+        ad:
+          description: The persisted Ad document.
+          type: object
+        message:
+          type: string
+      required:
+      - ad
+      - adType
+      - message
+    CtwaMultiResponse:
+      description: |
+        Response returned by `POST /v1/ads/ctwa` when the request used the
+        multi-creative shape (`creatives[]`). N persisted Ad documents share
+        the returned `platformCampaignId` and `platformAdSetId`. `adType` is
+        the union discriminator.
+      properties:
+        adType:
+          enum:
+          - multi
+          type: string
+        ads:
+          description: |
+            The persisted Ad documents (one per creative), all sharing the same
+            `platformCampaignId` and `platformAdSetId`.
+          items:
+            type: object
+          type: array
+        platformCampaignId:
+          type: string
+        platformAdSetId:
+          type: string
+        message:
+          type: string
+      required:
+      - adType
+      - ads
+      - message
+      - platformAdSetId
+      - platformCampaignId
     TrackingTag:
       description: |
         A platform measurement tag — the thing you create, install on a
@@ -30914,6 +31130,39 @@ components:
             $ref: "#/components/schemas/batchGetGoogleBusinessReviews_200_response_locationReviews_inner"
           type: array
         nextPageToken:
+          type: string
+    replyToGoogleBusinessReview_request:
+      properties:
+        comment:
+          description: The reply text to post on the review. Must be non-empty.
+          type: string
+      required:
+      - comment
+    replyToGoogleBusinessReview_200_response:
+      example:
+        success: true
+        reviewId: reviewId
+        platform: googlebusiness
+      properties:
+        success:
+          type: boolean
+        reviewId:
+          type: string
+        platform:
+          example: googlebusiness
+          type: string
+    deleteGoogleBusinessReviewReply_200_response:
+      example:
+        success: true
+        message: message
+        platform: googlebusiness
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        platform:
+          example: googlebusiness
           type: string
     getPendingOAuthData_200_response_organizations_inner:
       example:
@@ -43128,8 +43377,9 @@ components:
           type: string
     createCtwaAd_request_video:
       description: |
-        Video creative. Mutually exclusive with `imageUrl`.
-        Required if `imageUrl` is not supplied.
+        Video creative for single-creative shape. Mutually
+        exclusive with `imageUrl` and with `creatives[]`. Required
+        on the single-creative shape if `imageUrl` is not supplied.
       properties:
         url:
           format: uri
@@ -43143,33 +43393,28 @@ components:
       required:
       - thumbnailUrl
       - url
-    createCtwaAd_request_interests_inner:
+    createCtwaAd_request_creatives_inner_video:
+      description: |
+        Video creative. Mutually exclusive with this entry's
+        `imageUrl`. Required if `imageUrl` is not supplied.
       properties:
-        id:
+        url:
+          format: uri
           type: string
-        name:
+        thumbnailUrl:
+          description: |
+            Required by Meta for every video creative. Used
+            as the ad thumbnail.
+          format: uri
           type: string
       required:
-      - id
-    createCtwaAd_request:
+      - thumbnailUrl
+      - url
+    createCtwaAd_request_creatives_inner:
       description: |
-        In addition to the `required` list, exactly one of `imageUrl`
-        or `video` must be supplied (they are mutually exclusive). The
-        route enforces this at the Zod boundary; OpenAPI's `required`
-        cannot express OR-required cleanly.
+        Each entry must also include exactly one of `imageUrl`
+        or `video`.
       properties:
-        accountId:
-          description: Facebook or Instagram SocialAccount ID.
-          minLength: 1
-          type: string
-        adAccountId:
-          description: "Meta ad account ID, e.g. `act_123456789`."
-          minLength: 1
-          type: string
-        name:
-          description: Ad display name. Used to derive campaign / ad set names.
-          minLength: 1
-          type: string
         headline:
           maxLength: 255
           minLength: 1
@@ -43180,12 +43425,87 @@ components:
           type: string
         imageUrl:
           description: |
-            Image asset for image creatives. Mutually exclusive with
+            Image asset. Mutually exclusive with this entry's
             `video`. Required if `video` is not supplied.
           format: uri
           type: string
         video:
+          $ref: "#/components/schemas/createCtwaAd_request_creatives_inner_video"
+      required:
+      - body
+      - headline
+    createCtwaAd_request_interests_inner:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+    createCtwaAd_request:
+      description: |
+        In addition to the `required` list, the request must use
+        EXACTLY ONE of the two shapes:
+
+        - Single-creative: `headline`, `body`, and one of
+          `imageUrl` / `video` (mutually exclusive).
+        - Multi-creative: a non-empty `creatives[]` array. Top-level
+          `headline` / `body` / `imageUrl` / `video` must NOT be set
+          on this shape.
+
+        The route enforces this at the Zod boundary; OpenAPI's
+        `required` cannot express the OR cleanly.
+      properties:
+        accountId:
+          description: Facebook or Instagram SocialAccount ID.
+          minLength: 1
+          type: string
+        adAccountId:
+          description: "Meta ad account ID, e.g. `act_123456789`."
+          minLength: 1
+          type: string
+        name:
+          description: |
+            Ad display name. Used to derive campaign / ad set names.
+            On the multi-creative shape, each ad's Meta name gets a
+            " #N" suffix (1-indexed) so Ads Manager shows them as a
+            numbered batch.
+          minLength: 1
+          type: string
+        headline:
+          description: |
+            Single-creative shape only. Mutually exclusive with
+            `creatives[]`.
+          maxLength: 255
+          minLength: 1
+          type: string
+        body:
+          description: |
+            Primary text shown above the image / video. Single-creative
+            shape only. Mutually exclusive with `creatives[]`.
+          minLength: 1
+          type: string
+        imageUrl:
+          description: |
+            Image asset for single-creative shape. Mutually exclusive
+            with `video` and with `creatives[]`. Required on the
+            single-creative shape if `video` is not supplied.
+          format: uri
+          type: string
+        video:
           $ref: "#/components/schemas/createCtwaAd_request_video"
+        creatives:
+          description: |
+            Multi-creative shape: N CTWA ads under one campaign + one
+            ad set, sharing budget and targeting. Mutually exclusive
+            with the top-level single-creative fields (`headline` /
+            `body` / `imageUrl` / `video`). Each entry must supply its
+            own headline, body, and exactly one of `imageUrl` /
+            `video`.
+          items:
+            $ref: "#/components/schemas/createCtwaAd_request_creatives_inner"
+          minItems: 1
+          type: array
         budgetAmount:
           description: |
             Budget amount in the ad account's currency major units
@@ -43253,6 +43573,35 @@ components:
           - OUTCOME_SALES
           - OUTCOME_LEADS
           type: string
+        bidStrategy:
+          description: |
+            Meta bid strategy applied to the shared ad set. Defaults to
+            `LOWEST_COST_WITHOUT_CAP` (auto-bid) when omitted.
+            `LOWEST_COST_WITH_BID_CAP` and `COST_CAP` require
+            `bidAmount`. `LOWEST_COST_WITH_MIN_ROAS` requires
+            `roasAverageFloor`. CTWA's `optimization_goal` is fixed to
+            `CONVERSATIONS`, but the bid strategy is independent.
+          enum:
+          - LOWEST_COST_WITHOUT_CAP
+          - LOWEST_COST_WITH_BID_CAP
+          - COST_CAP
+          - LOWEST_COST_WITH_MIN_ROAS
+          type: string
+        bidAmount:
+          description: |
+            Whole currency units (e.g. `5` = $5.00 on a USD account).
+            Required when `bidStrategy` is `LOWEST_COST_WITH_BID_CAP`
+            or `COST_CAP`; rejected otherwise.
+          minimum: 0
+          type: number
+        roasAverageFloor:
+          description: |
+            Decimal ROAS multiplier (e.g. `2.0` = 2.0× ROAS floor).
+            Required when `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`;
+            rejected otherwise. Meta enforces its own upper bound
+            server-side.
+          minimum: 0
+          type: number
         dsaBeneficiary:
           description: |
             Name of the legal entity benefiting from the ad.
@@ -43270,21 +43619,18 @@ components:
       required:
       - accountId
       - adAccountId
-      - body
       - budgetAmount
       - budgetType
-      - headline
       - name
     createCtwaAd_201_response:
-      example:
-        ad: "{}"
-        message: message
-      properties:
-        ad:
-          description: The persisted Ad document.
-          type: object
-        message:
-          type: string
+      discriminator:
+        mapping:
+          single: "#/components/schemas/CtwaSingleResponse"
+          multi: "#/components/schemas/CtwaMultiResponse"
+        propertyName: adType
+      oneOf:
+      - $ref: "#/components/schemas/CtwaSingleResponse"
+      - $ref: "#/components/schemas/CtwaMultiResponse"
     listTrackingTags_200_response:
       example:
         platform: metaads

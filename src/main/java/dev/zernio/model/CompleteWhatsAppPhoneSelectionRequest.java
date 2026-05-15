@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CompleteWhatsAppPhoneSelectionRequest.JSON_PROPERTY_USER_PROFILE,
   CompleteWhatsAppPhoneSelectionRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T16:40:03.697423378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T08:54:09.334012896Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CompleteWhatsAppPhoneSelectionRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

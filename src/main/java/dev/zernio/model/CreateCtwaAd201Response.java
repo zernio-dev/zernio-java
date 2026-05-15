@@ -19,125 +19,243 @@ import java.util.StringJoiner;
 import java.util.Objects;
 import java.util.Map;
 import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CtwaMultiResponse;
+import dev.zernio.model.CtwaSingleResponse;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * CreateCtwaAd201Response
- */
-@JsonPropertyOrder({
-  CreateCtwaAd201Response.JSON_PROPERTY_AD,
-  CreateCtwaAd201Response.JSON_PROPERTY_MESSAGE
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-14T16:40:03.697423378Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class CreateCtwaAd201Response {
-  public static final String JSON_PROPERTY_AD = "ad";
-  @javax.annotation.Nullable
-  private Object ad;
+import dev.zernio.JSON;
 
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  @javax.annotation.Nullable
-  private String message;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T08:54:09.334012896Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using = CreateCtwaAd201Response.CreateCtwaAd201ResponseDeserializer.class)
+@JsonSerialize(using = CreateCtwaAd201Response.CreateCtwaAd201ResponseSerializer.class)
+public class CreateCtwaAd201Response extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(CreateCtwaAd201Response.class.getName());
 
-  public CreateCtwaAd201Response() { 
-  }
+    public static class CreateCtwaAd201ResponseSerializer extends StdSerializer<CreateCtwaAd201Response> {
+        public CreateCtwaAd201ResponseSerializer(Class<CreateCtwaAd201Response> t) {
+            super(t);
+        }
 
-  public CreateCtwaAd201Response ad(@javax.annotation.Nullable Object ad) {
-    this.ad = ad;
-    return this;
-  }
+        public CreateCtwaAd201ResponseSerializer() {
+            this(null);
+        }
 
-  /**
-   * The persisted Ad document.
-   * @return ad
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getAd() {
-    return ad;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_AD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAd(@javax.annotation.Nullable Object ad) {
-    this.ad = ad;
-  }
-
-
-  public CreateCtwaAd201Response message(@javax.annotation.Nullable String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * Get message
-   * @return message
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMessage() {
-    return message;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable String message) {
-    this.message = message;
-  }
-
-
-  /**
-   * Return true if this createCtwaAd_201_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+        @Override
+        public void serialize(CreateCtwaAd201Response value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public static class CreateCtwaAd201ResponseDeserializer extends StdDeserializer<CreateCtwaAd201Response> {
+        public CreateCtwaAd201ResponseDeserializer() {
+            this(CreateCtwaAd201Response.class);
+        }
+
+        public CreateCtwaAd201ResponseDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        public CreateCtwaAd201Response deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize CtwaMultiResponse
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (CtwaMultiResponse.class.equals(Integer.class) || CtwaMultiResponse.class.equals(Long.class) || CtwaMultiResponse.class.equals(Float.class) || CtwaMultiResponse.class.equals(Double.class) || CtwaMultiResponse.class.equals(Boolean.class) || CtwaMultiResponse.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((CtwaMultiResponse.class.equals(Integer.class) || CtwaMultiResponse.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((CtwaMultiResponse.class.equals(Float.class) || CtwaMultiResponse.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (CtwaMultiResponse.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (CtwaMultiResponse.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(CtwaMultiResponse.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'CtwaMultiResponse'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'CtwaMultiResponse'", e);
+            }
+
+            // deserialize CtwaSingleResponse
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (CtwaSingleResponse.class.equals(Integer.class) || CtwaSingleResponse.class.equals(Long.class) || CtwaSingleResponse.class.equals(Float.class) || CtwaSingleResponse.class.equals(Double.class) || CtwaSingleResponse.class.equals(Boolean.class) || CtwaSingleResponse.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((CtwaSingleResponse.class.equals(Integer.class) || CtwaSingleResponse.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((CtwaSingleResponse.class.equals(Float.class) || CtwaSingleResponse.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (CtwaSingleResponse.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (CtwaSingleResponse.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(CtwaSingleResponse.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'CtwaSingleResponse'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'CtwaSingleResponse'", e);
+            }
+
+            if (match == 1) {
+                CreateCtwaAd201Response ret = new CreateCtwaAd201Response();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for CreateCtwaAd201Response: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public CreateCtwaAd201Response getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "CreateCtwaAd201Response cannot be null");
+        }
     }
-    CreateCtwaAd201Response createCtwaAd201Response = (CreateCtwaAd201Response) o;
-    return Objects.equals(this.ad, createCtwaAd201Response.ad) &&
-        Objects.equals(this.message, createCtwaAd201Response.message);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(ad, message);
-  }
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateCtwaAd201Response {\n");
-    sb.append("    ad: ").append(toIndentedString(ad)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public CreateCtwaAd201Response() {
+        super("oneOf", Boolean.FALSE);
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public CreateCtwaAd201Response(CtwaMultiResponse o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public CreateCtwaAd201Response(CtwaSingleResponse o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("CtwaMultiResponse", CtwaMultiResponse.class);
+        schemas.put("CtwaSingleResponse", CtwaSingleResponse.class);
+        JSON.registerDescendants(CreateCtwaAd201Response.class, Collections.unmodifiableMap(schemas));
+        // Initialize and register the discriminator mappings.
+        Map<String, Class<?>> mappings = new HashMap<String, Class<?>>();
+        mappings.put("multi", CtwaMultiResponse.class);
+        mappings.put("single", CtwaSingleResponse.class);
+        mappings.put("createCtwaAd_201_response", CreateCtwaAd201Response.class);
+        JSON.registerDiscriminator(CreateCtwaAd201Response.class, "adType", mappings);
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return CreateCtwaAd201Response.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * CtwaMultiResponse, CtwaSingleResponse
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(CtwaMultiResponse.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(CtwaSingleResponse.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be CtwaMultiResponse, CtwaSingleResponse");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * CtwaMultiResponse, CtwaSingleResponse
+     *
+     * @return The actual instance (CtwaMultiResponse, CtwaSingleResponse)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CtwaMultiResponse`. If the actual instance is not `CtwaMultiResponse`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CtwaMultiResponse`
+     * @throws ClassCastException if the instance is not `CtwaMultiResponse`
+     */
+    public CtwaMultiResponse getCtwaMultiResponse() throws ClassCastException {
+        return (CtwaMultiResponse)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CtwaSingleResponse`. If the actual instance is not `CtwaSingleResponse`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CtwaSingleResponse`
+     * @throws ClassCastException if the instance is not `CtwaSingleResponse`
+     */
+    public CtwaSingleResponse getCtwaSingleResponse() throws ClassCastException {
+        return (CtwaSingleResponse)super.getActualInstance();
+    }
+
+
 
   /**
    * Convert the instance into URL query string.
@@ -171,17 +289,20 @@ public class CreateCtwaAd201Response {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `ad` to the URL query string
-    if (getAd() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sad%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAd()))));
+    if (getActualInstance() instanceof CtwaSingleResponse) {
+        if (getActualInstance() != null) {
+          joiner.add(((CtwaSingleResponse)getActualInstance()).toUrlQueryString(prefix + "one_of_0" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `message` to the URL query string
-    if (getMessage() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    if (getActualInstance() instanceof CtwaMultiResponse) {
+        if (getActualInstance() != null) {
+          joiner.add(((CtwaMultiResponse)getActualInstance()).toUrlQueryString(prefix + "one_of_1" + suffix));
+        }
+        return joiner.toString();
     }
-
-    return joiner.toString();
+    return null;
   }
+
 }
 
