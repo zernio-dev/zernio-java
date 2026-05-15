@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-15T08:54:09.334012896Z[Etc/UTC]
+- Build date: 2026-05-15T09:37:30.971793509Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1587,6 +1587,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadReviewNewAccount](docs/WebhookPayloadReviewNewAccount.md)
  - [WebhookPayloadReviewUpdated](docs/WebhookPayloadReviewUpdated.md)
  - [WebhookPayloadTest](docs/WebhookPayloadTest.md)
+ - [WebhookPayloadWhatsAppTemplateStatusUpdated](docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md)
+ - [WebhookPayloadWhatsAppTemplateStatusUpdatedAccount](docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md)
+ - [WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate](docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md)
  - [WhatsAppBodyComponent](docs/WhatsAppBodyComponent.md)
  - [WhatsAppBodyComponentExample](docs/WhatsAppBodyComponentExample.md)
  - [WhatsAppButtonsComponent](docs/WhatsAppButtonsComponent.md)

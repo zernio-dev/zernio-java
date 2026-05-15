@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   Webhook.JSON_PROPERTY_FAILURE_COUNT,
   Webhook.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T08:54:09.334012896Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T09:37:30.971793509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Webhook {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -109,7 +109,9 @@ public class Webhook {
     
     REVIEW_UPDATED(String.valueOf("review.updated")),
     
-    AD_STATUS_CHANGED(String.valueOf("ad.status_changed"));
+    AD_STATUS_CHANGED(String.valueOf("ad.status_changed")),
+    
+    WHATSAPP_TEMPLATE_STATUS_UPDATED(String.valueOf("whatsapp.template.status_updated"));
 
     private String value;
 

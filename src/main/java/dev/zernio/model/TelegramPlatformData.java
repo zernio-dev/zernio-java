@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   TelegramPlatformData.JSON_PROPERTY_DISABLE_NOTIFICATION,
   TelegramPlatformData.JSON_PROPERTY_PROTECT_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T08:54:09.334012896Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T09:37:30.971793509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TelegramPlatformData {
   /**
    * Text formatting mode for the message (default is HTML)

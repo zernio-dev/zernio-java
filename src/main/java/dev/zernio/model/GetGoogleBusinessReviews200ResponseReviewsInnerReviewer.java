@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.JSON_PROPERTY_PROFILE_PHOTO_URL,
   GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.JSON_PROPERTY_IS_ANONYMOUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T08:54:09.334012896Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T09:37:30.971793509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessReviews200ResponseReviewsInnerReviewer {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable

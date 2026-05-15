@@ -44,6 +44,7 @@ Individual webhook configuration for receiving real-time notifications
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
+| WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 
 
 

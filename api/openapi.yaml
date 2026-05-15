@@ -159,7 +159,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, ad.status_changed, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, comment.received, review.new, review.updated, ad.status_changed, whatsapp.template.status_updated, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -18900,6 +18900,7 @@ components:
             - review.new
             - review.updated
             - ad.status_changed
+            - whatsapp.template.status_updated
             type: string
           type: array
         isActive:
@@ -19944,6 +19945,50 @@ components:
       - event
       - id
       - status
+      - timestamp
+    WebhookPayloadWhatsAppTemplateStatusUpdated:
+      description: |
+        Webhook payload for the `whatsapp.template.status_updated` event.
+        Fired when Meta completes (re)review of a template attached to a
+        connected WABA. Maps Meta's `message_template_status_update` field
+        onto our event envelope.
+      example:
+        template:
+          reason: reason
+          name: name
+          language: language
+          templateId: templateId
+          status: APPROVED
+        id: id
+        event: whatsapp.template.status_updated
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: whatsapp
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - whatsapp.template.status_updated
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppTemplateStatusUpdated_account"
+        template:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppTemplateStatusUpdated_template"
+        timestamp:
+          description: ISO-8601 timestamp the webhook was produced.
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - template
       - timestamp
     WebhookPayloadTest:
       description: Webhook payload for test deliveries
@@ -45255,6 +45300,73 @@ components:
           type: string
       required:
       - code
+    WebhookPayloadWhatsAppTemplateStatusUpdated_account:
+      example:
+        accountId: accountId
+        profileId: profileId
+        displayName: displayName
+        platform: whatsapp
+        username: username
+      properties:
+        accountId:
+          type: string
+        profileId:
+          type: string
+        platform:
+          enum:
+          - whatsapp
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+      required:
+      - accountId
+      - platform
+      - profileId
+      - username
+    WebhookPayloadWhatsAppTemplateStatusUpdated_template:
+      example:
+        reason: reason
+        name: name
+        language: language
+        templateId: templateId
+        status: APPROVED
+      properties:
+        templateId:
+          description: "Meta's `message_template_id`, returned as a string."
+          type: string
+        name:
+          description: Meta's `message_template_name`.
+          type: string
+        language:
+          description: Meta's `message_template_language` (e.g. `en_US`).
+          type: string
+        status:
+          description: |
+            New status. Forwarded verbatim from Meta's `event` field.
+            `PENDING_DELETION` is the 24h-grace state after a delete
+            request before the template is actually removed.
+          enum:
+          - APPROVED
+          - REJECTED
+          - PENDING
+          - PAUSED
+          - DISABLED
+          - IN_APPEAL
+          - PENDING_DELETION
+          type: string
+        reason:
+          description: |
+            Meta's free-form reason for the transition. `"NONE"` on
+            approval; an explanation string on rejection.
+          type: string
+      required:
+      - language
+      - name
+      - reason
+      - status
+      - templateId
     PlatformTarget_accountId:
       oneOf:
       - type: string
@@ -46589,6 +46701,7 @@ x-documentation:
     - `review.new` - New review posted on a connected account (Google Business Profile)
     - `review.updated` - Review updated or reply added (Google Business Profile, or via reply API)
     - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
+    - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Webhook payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header.
