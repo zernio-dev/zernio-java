@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessFoodMenus200Response.JSON_PROPERTY_NAME,
   GetGoogleBusinessFoodMenus200Response.JSON_PROPERTY_MENUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:22:51.331211102Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:50:19.699731053Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessFoodMenus200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

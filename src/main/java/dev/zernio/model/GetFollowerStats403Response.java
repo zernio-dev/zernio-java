@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetFollowerStats403Response.JSON_PROPERTY_MESSAGE,
   GetFollowerStats403Response.JSON_PROPERTY_REQUIRES_ADDON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:22:51.331211102Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T15:50:19.699731053Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetFollowerStats403Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
