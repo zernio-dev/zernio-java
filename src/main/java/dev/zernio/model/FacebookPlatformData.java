@@ -24,14 +24,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.FacebookPlatformDataCarouselCardsInner;
 import dev.zernio.model.GeoRestriction;
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. 
+ * Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Carousel posts (carouselCards) render a 2-5 card multi-link post, images only, mutually exclusive with story/reel. Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. 
  */
 @JsonPropertyOrder({
   FacebookPlatformData.JSON_PROPERTY_DRAFT,
@@ -39,9 +43,11 @@ import dev.zernio.ApiClient;
   FacebookPlatformData.JSON_PROPERTY_TITLE,
   FacebookPlatformData.JSON_PROPERTY_FIRST_COMMENT,
   FacebookPlatformData.JSON_PROPERTY_PAGE_ID,
-  FacebookPlatformData.JSON_PROPERTY_GEO_RESTRICTION
+  FacebookPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
+  FacebookPlatformData.JSON_PROPERTY_CAROUSEL_CARDS,
+  FacebookPlatformData.JSON_PROPERTY_CAROUSEL_LINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T17:15:07.260050223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T18:43:18.345666499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -101,6 +107,14 @@ public class FacebookPlatformData {
   public static final String JSON_PROPERTY_GEO_RESTRICTION = "geoRestriction";
   @javax.annotation.Nullable
   private GeoRestriction geoRestriction;
+
+  public static final String JSON_PROPERTY_CAROUSEL_CARDS = "carouselCards";
+  @javax.annotation.Nullable
+  private List<FacebookPlatformDataCarouselCardsInner> carouselCards = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CAROUSEL_LINK = "carouselLink";
+  @javax.annotation.Nullable
+  private URI carouselLink;
 
   public FacebookPlatformData() { 
   }
@@ -249,6 +263,62 @@ public class FacebookPlatformData {
   }
 
 
+  public FacebookPlatformData carouselCards(@javax.annotation.Nullable List<FacebookPlatformDataCarouselCardsInner> carouselCards) {
+    this.carouselCards = carouselCards;
+    return this;
+  }
+
+  public FacebookPlatformData addCarouselCardsItem(FacebookPlatformDataCarouselCardsInner carouselCardsItem) {
+    if (this.carouselCards == null) {
+      this.carouselCards = new ArrayList<>();
+    }
+    this.carouselCards.add(carouselCardsItem);
+    return this;
+  }
+
+  /**
+   * Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType&#x3D;story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render. 
+   * @return carouselCards
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_CARDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<FacebookPlatformDataCarouselCardsInner> getCarouselCards() {
+    return carouselCards;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_CARDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCarouselCards(@javax.annotation.Nullable List<FacebookPlatformDataCarouselCardsInner> carouselCards) {
+    this.carouselCards = carouselCards;
+  }
+
+
+  public FacebookPlatformData carouselLink(@javax.annotation.Nullable URI carouselLink) {
+    this.carouselLink = carouselLink;
+    return this;
+  }
+
+  /**
+   * Optional top-level \&quot;See more\&quot; destination shown on the carousel end card. Defaults to the first card&#39;s link when omitted. Only used together with carouselCards. 
+   * @return carouselLink
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getCarouselLink() {
+    return carouselLink;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCarouselLink(@javax.annotation.Nullable URI carouselLink) {
+    this.carouselLink = carouselLink;
+  }
+
+
   /**
    * Return true if this FacebookPlatformData object is equal to o.
    */
@@ -266,12 +336,14 @@ public class FacebookPlatformData {
         Objects.equals(this.title, facebookPlatformData.title) &&
         Objects.equals(this.firstComment, facebookPlatformData.firstComment) &&
         Objects.equals(this.pageId, facebookPlatformData.pageId) &&
-        Objects.equals(this.geoRestriction, facebookPlatformData.geoRestriction);
+        Objects.equals(this.geoRestriction, facebookPlatformData.geoRestriction) &&
+        Objects.equals(this.carouselCards, facebookPlatformData.carouselCards) &&
+        Objects.equals(this.carouselLink, facebookPlatformData.carouselLink);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(draft, contentType, title, firstComment, pageId, geoRestriction);
+    return Objects.hash(draft, contentType, title, firstComment, pageId, geoRestriction, carouselCards, carouselLink);
   }
 
   @Override
@@ -284,6 +356,8 @@ public class FacebookPlatformData {
     sb.append("    firstComment: ").append(toIndentedString(firstComment)).append("\n");
     sb.append("    pageId: ").append(toIndentedString(pageId)).append("\n");
     sb.append("    geoRestriction: ").append(toIndentedString(geoRestriction)).append("\n");
+    sb.append("    carouselCards: ").append(toIndentedString(carouselCards)).append("\n");
+    sb.append("    carouselLink: ").append(toIndentedString(carouselLink)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -359,6 +433,21 @@ public class FacebookPlatformData {
     // add `geoRestriction` to the URL query string
     if (getGeoRestriction() != null) {
       joiner.add(getGeoRestriction().toUrlQueryString(prefix + "geoRestriction" + suffix));
+    }
+
+    // add `carouselCards` to the URL query string
+    if (getCarouselCards() != null) {
+      for (int i = 0; i < getCarouselCards().size(); i++) {
+        if (getCarouselCards().get(i) != null) {
+          joiner.add(getCarouselCards().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scarouselCards%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `carouselLink` to the URL query string
+    if (getCarouselLink() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scarouselLink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCarouselLink()))));
     }
 
     return joiner.toString();

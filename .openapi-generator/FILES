@@ -239,6 +239,7 @@ docs/EnrollContactsRequest.md
 docs/ErrorResponse.md
 docs/Expired.md
 docs/FacebookPlatformData.md
+docs/FacebookPlatformDataCarouselCardsInner.md
 docs/FollowUser200Response.md
 docs/FollowUserRequest.md
 docs/FollowerStatsResponse.md
@@ -1243,6 +1244,7 @@ src/main/java/dev/zernio/model/EnrollContactsRequest.java
 src/main/java/dev/zernio/model/ErrorResponse.java
 src/main/java/dev/zernio/model/Expired.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
+src/main/java/dev/zernio/model/FacebookPlatformDataCarouselCardsInner.java
 src/main/java/dev/zernio/model/FollowUser200Response.java
 src/main/java/dev/zernio/model/FollowUserRequest.java
 src/main/java/dev/zernio/model/FollowerStatsResponse.java
@@ -1936,3 +1938,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/FacebookPlatformDataCarouselCardsInnerTest.java

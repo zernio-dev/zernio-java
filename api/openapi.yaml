@@ -3282,6 +3282,37 @@ paths:
                   publishNow: true
                   facebookSettings:
                     draft: true
+              facebookCarousel:
+                description: |
+                  Posts a 2-5 card carousel where each image has its own click-through link
+                  and optional headline. mediaItems and carouselCards must have the same
+                  length, in the same order. Images only (no video cards).
+                summary: Facebook multi-link carousel post
+                value:
+                  content: Check out our new inventory
+                  mediaItems:
+                  - url: https://cdn.example.com/car-1.jpg
+                    type: image
+                  - url: https://cdn.example.com/car-2.jpg
+                    type: image
+                  - url: https://cdn.example.com/car-3.jpg
+                    type: image
+                  platforms:
+                  - platform: facebook
+                    accountId: 64e1f0a9e2b5af0012ab34cd
+                  publishNow: true
+                  facebookSettings:
+                    carouselLink: https://example.com/inventory
+                    carouselCards:
+                    - link: https://example.com/inventory/car-1
+                      name: 2024 Sedan
+                      description: Low miles
+                    - link: https://example.com/inventory/car-2
+                      name: 2023 SUV
+                      description: Certified pre-owned
+                    - link: https://example.com/inventory/car-3
+                      name: 2024 Truck
+                      description: Loaded
               recyclingPost:
                 summary: Post with weekly recycling and content variations
                 value:
@@ -20936,7 +20967,7 @@ components:
           type: array
     FacebookPlatformData:
       description: |
-        Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories.
+        Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Carousel posts (carouselCards) render a 2-5 card multi-link post, images only, mutually exclusive with story/reel. Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories.
       properties:
         draft:
           default: false
@@ -20967,6 +20998,19 @@ components:
           type: string
         geoRestriction:
           $ref: "#/components/schemas/GeoRestriction"
+        carouselCards:
+          description: |
+            Renders the post as a multi-link carousel (organic Page post). When set, mediaItems must be provided with the same length and all items must be images (no videos). Each cards[i] adds the click-through link and headline for the image at mediaItems[i]. Mutually exclusive with contentType=story|reel. Facebook display truncates name at ~35 chars and description at ~30 chars; longer strings are accepted but get truncated on render.
+          items:
+            $ref: "#/components/schemas/FacebookPlatformData_carouselCards_inner"
+          maxItems: 5
+          minItems: 2
+          type: array
+        carouselLink:
+          description: |
+            Optional top-level "See more" destination shown on the carousel end card. Defaults to the first card's link when omitted. Only used together with carouselCards.
+          format: uri
+          type: string
     InstagramPlatformData:
       description: "Feed aspect ratio 0.8-1.91, carousels up to 10 items, stories\
         \ require media (no captions). User tag coordinates 0.0-1.0 from top-left.\
@@ -45695,6 +45739,22 @@ components:
       required:
       - duration_minutes
       - options
+    FacebookPlatformData_carouselCards_inner:
+      properties:
+        link:
+          description: Per-card click destination (required).
+          format: uri
+          type: string
+        name:
+          description: "Per-card headline (optional, ~35-char display)."
+          maxLength: 255
+          type: string
+        description:
+          description: "Per-card subhead (optional, ~30-char display)."
+          maxLength: 255
+          type: string
+      required:
+      - link
     InstagramPlatformData_trialParams:
       description: Trial Reels configuration. Trial reels are shared to non-followers
         first and can later be graduated to regular reels manually or automatically

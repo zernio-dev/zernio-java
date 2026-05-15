@@ -30,6 +30,7 @@ import dev.zernio.model.DiscordPlatformDataEmbedsInner;
 import dev.zernio.model.DiscordPlatformDataPoll;
 import dev.zernio.model.DiscordPlatformDataThreadFromMessage;
 import dev.zernio.model.FacebookPlatformData;
+import dev.zernio.model.FacebookPlatformDataCarouselCardsInner;
 import dev.zernio.model.GeoRestriction;
 import dev.zernio.model.GoogleBusinessPlatformData;
 import dev.zernio.model.GoogleBusinessPlatformDataCallToAction;
@@ -79,7 +80,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T17:15:07.260050223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T18:43:18.345666499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CreatePostRequestPlatformsInnerPlatformSpecificData.CreatePostRequestPlatformsInnerPlatformSpecificDataDeserializer.class)
 @JsonSerialize(using = CreatePostRequestPlatformsInnerPlatformSpecificData.CreatePostRequestPlatformsInnerPlatformSpecificDataSerializer.class)
 public class CreatePostRequestPlatformsInnerPlatformSpecificData extends AbstractOpenApiSchema {
