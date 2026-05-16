@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   MoveAccountToProfile200Response.JSON_PROPERTY_MESSAGE,
   MoveAccountToProfile200Response.JSON_PROPERTY_PROFILE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-16T11:37:47.992085254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-16T12:11:07.820801407Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MoveAccountToProfile200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

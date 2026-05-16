@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BulkUploadPosts200ResponseErrorsInner.JSON_PROPERTY_ROW,
   BulkUploadPosts200ResponseErrorsInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-16T11:37:47.992085254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-16T12:11:07.820801407Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUploadPosts200ResponseErrorsInner {
   public static final String JSON_PROPERTY_ROW = "row";
   @javax.annotation.Nullable
