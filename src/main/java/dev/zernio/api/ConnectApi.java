@@ -97,7 +97,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-15T18:43:18.345666499Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-16T11:37:47.992085254Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1173,23 +1173,25 @@ public class ConnectApi {
    * List Facebook pages
    * Returns all Facebook pages the connected account has access to, including the currently selected page.
    * @param accountId  (required)
+   * @param refresh When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)
    * @return GetFacebookPages200Response
    * @throws ApiException if fails to make API call
    */
-  public GetFacebookPages200Response getFacebookPages(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getFacebookPages(accountId, null);
+  public GetFacebookPages200Response getFacebookPages(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean refresh) throws ApiException {
+    return getFacebookPages(accountId, refresh, null);
   }
 
   /**
    * List Facebook pages
    * Returns all Facebook pages the connected account has access to, including the currently selected page.
    * @param accountId  (required)
+   * @param refresh When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)
    * @param headers Optional headers to include in the request
    * @return GetFacebookPages200Response
    * @throws ApiException if fails to make API call
    */
-  public GetFacebookPages200Response getFacebookPages(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetFacebookPages200Response> localVarResponse = getFacebookPagesWithHttpInfo(accountId, headers);
+  public GetFacebookPages200Response getFacebookPages(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetFacebookPages200Response> localVarResponse = getFacebookPagesWithHttpInfo(accountId, refresh, headers);
     return localVarResponse.getData();
   }
 
@@ -1197,23 +1199,25 @@ public class ConnectApi {
    * List Facebook pages
    * Returns all Facebook pages the connected account has access to, including the currently selected page.
    * @param accountId  (required)
+   * @param refresh When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)
    * @return ApiResponse&lt;GetFacebookPages200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetFacebookPages200Response> getFacebookPagesWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getFacebookPagesWithHttpInfo(accountId, null);
+  public ApiResponse<GetFacebookPages200Response> getFacebookPagesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean refresh) throws ApiException {
+    return getFacebookPagesWithHttpInfo(accountId, refresh, null);
   }
 
   /**
    * List Facebook pages
    * Returns all Facebook pages the connected account has access to, including the currently selected page.
    * @param accountId  (required)
+   * @param refresh When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetFacebookPages200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetFacebookPages200Response> getFacebookPagesWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getFacebookPagesRequestBuilder(accountId, headers);
+  public ApiResponse<GetFacebookPages200Response> getFacebookPagesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getFacebookPagesRequestBuilder(accountId, refresh, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1260,7 +1264,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder getFacebookPagesRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getFacebookPagesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean refresh, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getFacebookPages");
@@ -1271,7 +1275,22 @@ public class ConnectApi {
     String localVarPath = "/v1/accounts/{accountId}/facebook-page"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "refresh";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("refresh", refresh));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

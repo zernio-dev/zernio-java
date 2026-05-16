@@ -1181,7 +1181,7 @@ ApiResponse<[**GetConnectUrl200Response**](GetConnectUrl200Response.md)>
 
 ## getFacebookPages
 
-> GetFacebookPages200Response getFacebookPages(accountId)
+> GetFacebookPages200Response getFacebookPages(accountId, refresh)
 
 List Facebook pages
 
@@ -1209,8 +1209,9 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        Boolean refresh = true; // Boolean | When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh. 
         try {
-            GetFacebookPages200Response result = apiInstance.getFacebookPages(accountId);
+            GetFacebookPages200Response result = apiInstance.getFacebookPages(accountId, refresh);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getFacebookPages");
@@ -1229,6 +1230,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **refresh** | **Boolean**| When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  | [optional] |
 
 ### Return type
 
@@ -1253,7 +1255,7 @@ public class Example {
 
 ## getFacebookPagesWithHttpInfo
 
-> ApiResponse<GetFacebookPages200Response> getFacebookPages getFacebookPagesWithHttpInfo(accountId)
+> ApiResponse<GetFacebookPages200Response> getFacebookPages getFacebookPagesWithHttpInfo(accountId, refresh)
 
 List Facebook pages
 
@@ -1282,8 +1284,9 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        Boolean refresh = true; // Boolean | When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh. 
         try {
-            ApiResponse<GetFacebookPages200Response> response = apiInstance.getFacebookPagesWithHttpInfo(accountId);
+            ApiResponse<GetFacebookPages200Response> response = apiInstance.getFacebookPagesWithHttpInfo(accountId, refresh);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1304,6 +1307,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **refresh** | **Boolean**| When true, bypasses the page cache and fetches fresh pages from Meta. Rate-limited server-side to 1 refresh per 60s. Pages no longer accessible to the connected account will be removed from the list on refresh.  | [optional] |
 
 ### Return type
 
