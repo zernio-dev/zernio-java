@@ -15510,6 +15510,23 @@ paths:
           format: date
           type: string
         style: form
+      - description: Campaign-level sort order. `newest` (default) / `oldest` order
+          by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` order
+          by aggregated spend in the requested date range; campaigns with no spend
+          land at the end.
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          default: newest
+          enum:
+          - newest
+          - oldest
+          - spend_desc
+          - spend_asc
+          type: string
+        style: form
       responses:
         "200":
           content:

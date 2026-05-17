@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateGoogleBusinessLocationDetailsRequestRegularHours.JSON_PROPERTY_PERIODS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-16T12:26:13.496808542Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-17T08:02:50.467070204Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequestRegularHours {
   public static final String JSON_PROPERTY_PERIODS = "periods";
   @javax.annotation.Nullable
