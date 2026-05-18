@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateTrackingTagRequest.JSON_PROPERTY_FIRST_PARTY_COOKIE_STATUS,
   UpdateTrackingTagRequest.JSON_PROPERTY_DATA_USE_SETTING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T10:14:49.505908313Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T10:43:22.919552122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateTrackingTagRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

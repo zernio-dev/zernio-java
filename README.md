@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-18T10:14:49.505908313Z[Etc/UTC]
+- Build date: 2026-05-18T10:43:22.919552122Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -470,6 +470,10 @@ Class | Method | HTTP request | Description
 *GmbServicesApi* | [**getGoogleBusinessServicesWithHttpInfo**](docs/GmbServicesApi.md#getGoogleBusinessServicesWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-services | Get services
 *GmbServicesApi* | [**updateGoogleBusinessServices**](docs/GmbServicesApi.md#updateGoogleBusinessServices) | **PUT** /v1/accounts/{accountId}/gmb-services | Replace services
 *GmbServicesApi* | [**updateGoogleBusinessServicesWithHttpInfo**](docs/GmbServicesApi.md#updateGoogleBusinessServicesWithHttpInfo) | **PUT** /v1/accounts/{accountId}/gmb-services | Replace services
+*InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
+*InstagramApi* | [**getInstagramStoryInsightsWithHttpInfo**](docs/InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
+*InstagramApi* | [**listInstagramStories**](docs/InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
+*InstagramApi* | [**listInstagramStoriesWithHttpInfo**](docs/InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InvitesApi* | [**createInviteToken**](docs/InvitesApi.md#createInviteToken) | **POST** /v1/invite/tokens | Create invite token
 *InvitesApi* | [**createInviteTokenWithHttpInfo**](docs/InvitesApi.md#createInviteTokenWithHttpInfo) | **POST** /v1/invite/tokens | Create invite token
 *LinkedInMentionsApi* | [**getLinkedInMentions**](docs/LinkedInMentionsApi.md#getLinkedInMentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
@@ -1048,6 +1052,9 @@ Class | Method | HTTP request | Description
  - [GetInboxPostComments200ResponseMetaAdComments](docs/GetInboxPostComments200ResponseMetaAdComments.md)
  - [GetInboxPostComments200ResponsePagination](docs/GetInboxPostComments200ResponsePagination.md)
  - [GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
+ - [GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
+ - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
+ - [GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
  - [GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
@@ -1223,6 +1230,8 @@ Class | Method | HTTP request | Description
  - [ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
  - [ListInboxReviews200ResponseDataInnerReviewer](docs/ListInboxReviews200ResponseDataInnerReviewer.md)
  - [ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)
+ - [ListInstagramStories200Response](docs/ListInstagramStories200Response.md)
+ - [ListInstagramStories200ResponseDataInner](docs/ListInstagramStories200ResponseDataInner.md)
  - [ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
  - [ListLogs200Response](docs/ListLogs200Response.md)

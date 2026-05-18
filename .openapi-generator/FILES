@@ -364,6 +364,9 @@ docs/GetInboxPostComments200ResponseMeta.md
 docs/GetInboxPostComments200ResponseMetaAdComments.md
 docs/GetInboxPostComments200ResponsePagination.md
 docs/GetInstagramAccountInsights404Response.md
+docs/GetInstagramStoryInsights200Response.md
+docs/GetInstagramStoryInsights200ResponseData.md
+docs/GetInstagramStoryInsights200ResponseDataMetrics.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
 docs/GetLinkedInAggregateAnalytics402Response.md
@@ -481,6 +484,7 @@ docs/InstagramAccountInsightsResponseDateRange.md
 docs/InstagramAccountInsightsResponseMetricsValue.md
 docs/InstagramAccountInsightsResponseMetricsValueBreakdownsInner.md
 docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md
+docs/InstagramApi.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
 docs/InstagramPlatformData.md
@@ -548,6 +552,8 @@ docs/ListInboxReviews200ResponseDataInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
 docs/ListInboxReviews200ResponseDataInnerReviewer.md
 docs/ListInboxReviews200ResponseSummary.md
+docs/ListInstagramStories200Response.md
+docs/ListInstagramStories200ResponseDataInner.md
 docs/ListLinkedInOrganizations200Response.md
 docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
 docs/ListLogs200Response.md
@@ -1003,6 +1009,7 @@ src/main/java/dev/zernio/api/GmbMediaApi.java
 src/main/java/dev/zernio/api/GmbPlaceActionsApi.java
 src/main/java/dev/zernio/api/GmbReviewsApi.java
 src/main/java/dev/zernio/api/GmbServicesApi.java
+src/main/java/dev/zernio/api/InstagramApi.java
 src/main/java/dev/zernio/api/InvitesApi.java
 src/main/java/dev/zernio/api/LinkedInMentionsApi.java
 src/main/java/dev/zernio/api/LogsApi.java
@@ -1369,6 +1376,9 @@ src/main/java/dev/zernio/model/GetInboxPostComments200ResponseMeta.java
 src/main/java/dev/zernio/model/GetInboxPostComments200ResponseMetaAdComments.java
 src/main/java/dev/zernio/model/GetInboxPostComments200ResponsePagination.java
 src/main/java/dev/zernio/model/GetInstagramAccountInsights404Response.java
+src/main/java/dev/zernio/model/GetInstagramStoryInsights200Response.java
+src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseData.java
+src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseDataMetrics.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics200Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics400Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics402Response.java
@@ -1544,6 +1554,8 @@ src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReply.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReviewer.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseSummary.java
+src/main/java/dev/zernio/model/ListInstagramStories200Response.java
+src/main/java/dev/zernio/model/ListInstagramStories200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200Response.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200ResponseOrganizationsInner.java
 src/main/java/dev/zernio/model/ListLogs200Response.java
@@ -1938,3 +1950,9 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/api/InstagramApiTest.java
+src/test/java/dev/zernio/model/GetInstagramStoryInsights200ResponseDataMetricsTest.java
+src/test/java/dev/zernio/model/GetInstagramStoryInsights200ResponseDataTest.java
+src/test/java/dev/zernio/model/GetInstagramStoryInsights200ResponseTest.java
+src/test/java/dev/zernio/model/ListInstagramStories200ResponseDataInnerTest.java
+src/test/java/dev/zernio/model/ListInstagramStories200ResponseTest.java

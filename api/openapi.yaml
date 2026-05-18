@@ -8712,6 +8712,97 @@ paths:
       - LinkedIn Mentions
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/instagram/stories:
+    get:
+      description: |
+        Returns the IG Business/Creator account's currently-active stories.
+        Meta keeps stories live for 24h; expired stories are not returned.
+
+        Limitations propagated from Meta (these are NOT bugs):
+        - 24h window only
+        - Live videos excluded
+        - Reshared stories not returned
+        - `mediaUrl` may be null if Meta flagged the story for copyright
+        - `caption`, `likeCount`, `commentsCount` do not apply to story media
+      operationId: listInstagramStories
+      parameters:
+      - description: The Instagram account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listInstagramStories_200_response"
+          description: Active stories
+        "400":
+          description: Invalid request.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Instagram account not found.
+      summary: List active Instagram stories
+      tags:
+      - Instagram
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/instagram/stories/{storyId}/insights:
+    get:
+      description: |
+        Returns metrics for a single story. The `source` field discriminates
+        between three states:
+
+        - `live` — fetched from Meta in real time (story is still active)
+        - `cached` — fetched from a persisted `story_insights` webhook payload
+          (story has expired but we received its final-state metrics from Meta)
+        - `unavailable` — story has expired and we never received its webhook
+          payload (for example, the account connected after the story expired)
+
+        Field semantics follow Meta's API. Counts below 5 may be returned as 0
+        due to Meta's privacy floor on small audiences. The `navigation` field
+        is the sum of `tapsForward + tapsBack + exits + swipesForward`.
+      operationId: getInstagramStoryInsights
+      parameters:
+      - description: The Instagram account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The Instagram media ID of the story.
+        explode: false
+        in: path
+        name: storyId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInstagramStoryInsights_200_response"
+          description: Story insights
+        "400":
+          description: Invalid request.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Instagram account not found.
+      summary: Get Instagram story insights
+      tags:
+      - Instagram
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/pinterest-boards:
     get:
       description: Returns the boards available for a connected Pinterest account.
@@ -32692,6 +32783,189 @@ components:
           example: "For clickable person mentions, provide the displayName parameter\
             \ with the exact name as shown on their LinkedIn profile."
           type: string
+    listInstagramStories_200_response_data_inner:
+      example:
+        mediaUrl: mediaUrl
+        mediaProductType: mediaProductType
+        mediaType: mediaType
+        id: id
+        permalink: permalink
+        thumbnailUrl: thumbnailUrl
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Instagram media ID of the story.
+          type: string
+        mediaType:
+          description: IMAGE / VIDEO / CAROUSEL_ALBUM
+          type: string
+          nullable: true
+        mediaProductType:
+          description: Always 'STORY' for this endpoint.
+          type: string
+          nullable: true
+        mediaUrl:
+          description: Direct media URL. Null if Meta flagged the story for copyright.
+            URL expires when the story expires.
+          type: string
+          nullable: true
+        permalink:
+          description: Public Instagram permalink to the story (only viewable while
+            live).
+          type: string
+          nullable: true
+        thumbnailUrl:
+          description: Thumbnail URL for video stories.
+          type: string
+          nullable: true
+        timestamp:
+          description: When the story was posted.
+          format: date-time
+          type: string
+          nullable: true
+      required:
+      - id
+    listInstagramStories_200_response:
+      example:
+        data:
+        - mediaUrl: mediaUrl
+          mediaProductType: mediaProductType
+          mediaType: mediaType
+          id: id
+          permalink: permalink
+          thumbnailUrl: thumbnailUrl
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - mediaUrl: mediaUrl
+          mediaProductType: mediaProductType
+          mediaType: mediaType
+          id: id
+          permalink: permalink
+          thumbnailUrl: thumbnailUrl
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/listInstagramStories_200_response_data_inner"
+          type: array
+      required:
+      - data
+    getInstagramStoryInsights_200_response_data_metrics:
+      example:
+        tapsBack: 7
+        reach: 6
+        follows: 4
+        totalInteractions: 1
+        swipesForward: 3
+        profileVisits: 2
+        shares: 5
+        navigation: 5
+        exits: 9
+        replies: 1
+        tapsForward: 2
+        views: 0
+        reposts: 7
+      properties:
+        views:
+          description: Total story plays. Replaces deprecated 'impressions' for media
+            created after 2024-07-02.
+          type: integer
+        reach:
+          description: Unique accounts that saw the story.
+          type: integer
+        replies:
+          description: DMs sent in reply to the story.
+          type: integer
+        shares:
+          type: integer
+        navigation:
+          description: Total nav actions (tapsForward + tapsBack + exits + swipesForward).
+          type: integer
+        tapsForward:
+          description: Tapped right to next slide of SAME story.
+          type: integer
+        tapsBack:
+          description: Tapped left to previous slide.
+          type: integer
+        exits:
+          description: Closed Stories interface entirely.
+          type: integer
+        swipesForward:
+          description: Swiped left to next account's story.
+          type: integer
+        profileVisits:
+          type: integer
+        follows:
+          type: integer
+        reposts:
+          type: integer
+        totalInteractions:
+          type: integer
+      required:
+      - exits
+      - follows
+      - navigation
+      - profileVisits
+      - reach
+      - replies
+      - reposts
+      - shares
+      - swipesForward
+      - tapsBack
+      - tapsForward
+      - totalInteractions
+      - views
+    getInstagramStoryInsights_200_response_data:
+      example:
+        source: live
+        metrics:
+          tapsBack: 7
+          reach: 6
+          follows: 4
+          totalInteractions: 1
+          swipesForward: 3
+          profileVisits: 2
+          shares: 5
+          navigation: 5
+          exits: 9
+          replies: 1
+          tapsForward: 2
+          views: 0
+          reposts: 7
+      properties:
+        source:
+          enum:
+          - live
+          - cached
+          - unavailable
+          type: string
+        metrics:
+          $ref: "#/components/schemas/getInstagramStoryInsights_200_response_data_metrics"
+      required:
+      - metrics
+      - source
+    getInstagramStoryInsights_200_response:
+      example:
+        data:
+          source: live
+          metrics:
+            tapsBack: 7
+            reach: 6
+            follows: 4
+            totalInteractions: 1
+            swipesForward: 3
+            profileVisits: 2
+            shares: 5
+            navigation: 5
+            exits: 9
+            replies: 1
+            tapsForward: 2
+            views: 0
+            reposts: 7
+      properties:
+        data:
+          $ref: "#/components/schemas/getInstagramStoryInsights_200_response_data"
+      required:
+      - data
     getPinterestBoards_200_response_boards_inner:
       example:
         name: name
