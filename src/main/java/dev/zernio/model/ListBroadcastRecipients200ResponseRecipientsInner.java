@@ -42,11 +42,12 @@ import dev.zernio.ApiClient;
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_STATUS,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_MESSAGE_ID,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR,
+  ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR_CODE,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_SENT_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_DELIVERED_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T10:43:22.919552122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T17:05:08.399980987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBroadcastRecipients200ResponseRecipientsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -120,6 +121,10 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
+
+  public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
+  @javax.annotation.Nullable
+  private Integer errorCode;
 
   public static final String JSON_PROPERTY_SENT_AT = "sentAt";
   @javax.annotation.Nullable
@@ -328,6 +333,30 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
   }
 
 
+  public ListBroadcastRecipients200ResponseRecipientsInner errorCode(@javax.annotation.Nullable Integer errorCode) {
+    this.errorCode = errorCode;
+    return this;
+  }
+
+  /**
+   * Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed.
+   * @return errorCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ERROR_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getErrorCode() {
+    return errorCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ERROR_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setErrorCode(@javax.annotation.Nullable Integer errorCode) {
+    this.errorCode = errorCode;
+  }
+
+
   public ListBroadcastRecipients200ResponseRecipientsInner sentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
     this.sentAt = sentAt;
     return this;
@@ -420,6 +449,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
         Objects.equals(this.status, listBroadcastRecipients200ResponseRecipientsInner.status) &&
         Objects.equals(this.messageId, listBroadcastRecipients200ResponseRecipientsInner.messageId) &&
         Objects.equals(this.error, listBroadcastRecipients200ResponseRecipientsInner.error) &&
+        Objects.equals(this.errorCode, listBroadcastRecipients200ResponseRecipientsInner.errorCode) &&
         Objects.equals(this.sentAt, listBroadcastRecipients200ResponseRecipientsInner.sentAt) &&
         Objects.equals(this.deliveredAt, listBroadcastRecipients200ResponseRecipientsInner.deliveredAt) &&
         Objects.equals(this.readAt, listBroadcastRecipients200ResponseRecipientsInner.readAt);
@@ -427,7 +457,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, sentAt, deliveredAt, readAt);
+    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, errorCode, sentAt, deliveredAt, readAt);
   }
 
   @Override
@@ -442,6 +472,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    deliveredAt: ").append(toIndentedString(deliveredAt)).append("\n");
     sb.append("    readAt: ").append(toIndentedString(readAt)).append("\n");
@@ -530,6 +561,11 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
     // add `error` to the URL query string
     if (getError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
+    }
+
+    // add `errorCode` to the URL query string
+    if (getErrorCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%serrorCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorCode()))));
     }
 
     // add `sentAt` to the URL query string

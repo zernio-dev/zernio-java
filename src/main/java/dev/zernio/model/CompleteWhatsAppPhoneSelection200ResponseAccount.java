@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CompleteWhatsAppPhoneSelection200ResponseAccount.JSON_PROPERTY_IS_ACTIVE,
   CompleteWhatsAppPhoneSelection200ResponseAccount.JSON_PROPERTY_SELECTED_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T10:43:22.919552122Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T17:05:08.399980987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CompleteWhatsAppPhoneSelection200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
