@@ -4743,6 +4743,7 @@ paths:
           - telegram
           - snapchat
           - discord
+          - whatsapp
           type: string
         style: form
       - description: Filter by health status
@@ -5135,6 +5136,7 @@ paths:
           - telegram
           - snapchat
           - discord
+          - whatsapp
           type: string
         style: simple
       - description: Your Zernio profile ID (get from /v1/profiles)

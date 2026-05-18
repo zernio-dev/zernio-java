@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AddConversionAssociations200ResponseFailedInner.JSON_PROPERTY_CAMPAIGN_ID,
   AddConversionAssociations200ResponseFailedInner.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-17T08:04:21.116145766Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-18T10:14:49.505908313Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddConversionAssociations200ResponseFailedInner {
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable
