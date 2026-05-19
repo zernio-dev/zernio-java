@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.JSON_PROPERTY_VALUE,
   GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.JSON_PROPERTY_LABEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:41:24.844471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T19:17:51.197398979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokCreatorInfo200ResponsePrivacyLevelsInner {
   public static final String JSON_PROPERTY_VALUE = "value";
   @javax.annotation.Nullable

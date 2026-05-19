@@ -54,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:41:24.844471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T19:17:51.197398979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -174,44 +174,48 @@ public class UsageApi {
   /**
    * Get plan and usage stats
    * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @return UsageStats
    * @throws ApiException if fails to make API call
    */
-  public UsageStats getUsageStats() throws ApiException {
-    return getUsageStats(null);
+  public UsageStats getUsageStats(@javax.annotation.Nullable Boolean reconcile) throws ApiException {
+    return getUsageStats(reconcile, null);
   }
 
   /**
    * Get plan and usage stats
    * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @param headers Optional headers to include in the request
    * @return UsageStats
    * @throws ApiException if fails to make API call
    */
-  public UsageStats getUsageStats(Map<String, String> headers) throws ApiException {
-    ApiResponse<UsageStats> localVarResponse = getUsageStatsWithHttpInfo(headers);
+  public UsageStats getUsageStats(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
+    ApiResponse<UsageStats> localVarResponse = getUsageStatsWithHttpInfo(reconcile, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get plan and usage stats
    * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UsageStats> getUsageStatsWithHttpInfo() throws ApiException {
-    return getUsageStatsWithHttpInfo(null);
+  public ApiResponse<UsageStats> getUsageStatsWithHttpInfo(@javax.annotation.Nullable Boolean reconcile) throws ApiException {
+    return getUsageStatsWithHttpInfo(reconcile, null);
   }
 
   /**
    * Get plan and usage stats
    * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UsageStats> getUsageStatsWithHttpInfo(Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getUsageStatsRequestBuilder(headers);
+  public ApiResponse<UsageStats> getUsageStatsWithHttpInfo(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUsageStatsRequestBuilder(reconcile, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -258,13 +262,28 @@ public class UsageApi {
     }
   }
 
-  private HttpRequest.Builder getUsageStatsRequestBuilder(Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getUsageStatsRequestBuilder(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/usage-stats";
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "reconcile";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("reconcile", reconcile));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

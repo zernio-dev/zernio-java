@@ -2987,6 +2987,20 @@ paths:
             $0.200 URL tier and any future tiers — new clients should
             consume `xApiCallsByOperation` only.
       operationId: getUsageStats
+      parameters:
+      - description: |
+          For Stripe subscription users, `true` forces a subscription
+          reconciliation pass even when cached plan data looks complete.
+          Omit the parameter, or pass `false`, to use the default
+          first-time-only reconciliation behavior. Invalid boolean values are
+          rejected.
+        explode: true
+        in: query
+        name: reconcile
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -3042,6 +3056,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/UsageStats"
           description: Usage stats
+        "400":
+          description: Invalid query parameter
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":

@@ -13,7 +13,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## getUsageStats
 
-> UsageStats getUsageStats()
+> UsageStats getUsageStats(reconcile)
 
 Get plan and usage stats
 
@@ -40,8 +40,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         UsageApi apiInstance = new UsageApi(defaultClient);
+        Boolean reconcile = true; // Boolean | For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass `false`, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected. 
         try {
-            UsageStats result = apiInstance.getUsageStats();
+            UsageStats result = apiInstance.getUsageStats(reconcile);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsageApi#getUsageStats");
@@ -56,7 +57,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **reconcile** | **Boolean**| For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  | [optional] |
 
 ### Return type
 
@@ -76,12 +80,13 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Usage stats |  -  |
+| **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
 ## getUsageStatsWithHttpInfo
 
-> ApiResponse<UsageStats> getUsageStats getUsageStatsWithHttpInfo()
+> ApiResponse<UsageStats> getUsageStats getUsageStatsWithHttpInfo(reconcile)
 
 Get plan and usage stats
 
@@ -109,8 +114,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         UsageApi apiInstance = new UsageApi(defaultClient);
+        Boolean reconcile = true; // Boolean | For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass `false`, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected. 
         try {
-            ApiResponse<UsageStats> response = apiInstance.getUsageStatsWithHttpInfo();
+            ApiResponse<UsageStats> response = apiInstance.getUsageStatsWithHttpInfo(reconcile);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -127,7 +133,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **reconcile** | **Boolean**| For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  | [optional] |
 
 ### Return type
 
@@ -147,6 +156,7 @@ ApiResponse<[**UsageStats**](UsageStats.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Usage stats |  -  |
+| **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
