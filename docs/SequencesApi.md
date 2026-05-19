@@ -1389,11 +1389,11 @@ ApiResponse<Void>
 
 ## updateSequence
 
-> UpdateSequence200Response updateSequence(sequenceId)
+> UpdateSequence200Response updateSequence(sequenceId, updateSequenceRequest)
 
 Update sequence
 
-Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
 
 ### Example
 
@@ -1417,8 +1417,9 @@ public class Example {
 
         SequencesApi apiInstance = new SequencesApi(defaultClient);
         String sequenceId = "sequenceId_example"; // String | 
+        UpdateSequenceRequest updateSequenceRequest = new UpdateSequenceRequest(); // UpdateSequenceRequest | 
         try {
-            UpdateSequence200Response result = apiInstance.updateSequence(sequenceId);
+            UpdateSequence200Response result = apiInstance.updateSequence(sequenceId, updateSequenceRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SequencesApi#updateSequence");
@@ -1437,6 +1438,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sequenceId** | **String**|  | |
+| **updateSequenceRequest** | [**UpdateSequenceRequest**](UpdateSequenceRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1449,7 +1451,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
@@ -1461,11 +1463,11 @@ public class Example {
 
 ## updateSequenceWithHttpInfo
 
-> ApiResponse<UpdateSequence200Response> updateSequence updateSequenceWithHttpInfo(sequenceId)
+> ApiResponse<UpdateSequence200Response> updateSequence updateSequenceWithHttpInfo(sequenceId, updateSequenceRequest)
 
 Update sequence
 
-Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
 
 ### Example
 
@@ -1490,8 +1492,9 @@ public class Example {
 
         SequencesApi apiInstance = new SequencesApi(defaultClient);
         String sequenceId = "sequenceId_example"; // String | 
+        UpdateSequenceRequest updateSequenceRequest = new UpdateSequenceRequest(); // UpdateSequenceRequest | 
         try {
-            ApiResponse<UpdateSequence200Response> response = apiInstance.updateSequenceWithHttpInfo(sequenceId);
+            ApiResponse<UpdateSequence200Response> response = apiInstance.updateSequenceWithHttpInfo(sequenceId, updateSequenceRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1512,6 +1515,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sequenceId** | **String**|  | |
+| **updateSequenceRequest** | [**UpdateSequenceRequest**](UpdateSequenceRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1524,7 +1528,7 @@ ApiResponse<[**UpdateSequence200Response**](UpdateSequence200Response.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details

@@ -1397,7 +1397,7 @@ ApiResponse<[**SendBroadcast200Response**](SendBroadcast200Response.md)>
 
 ## updateBroadcast
 
-> UpdateBroadcast200Response updateBroadcast(broadcastId)
+> UpdateBroadcast200Response updateBroadcast(broadcastId, updateBroadcastRequest)
 
 Update broadcast
 
@@ -1425,8 +1425,9 @@ public class Example {
 
         BroadcastsApi apiInstance = new BroadcastsApi(defaultClient);
         String broadcastId = "broadcastId_example"; // String | 
+        UpdateBroadcastRequest updateBroadcastRequest = new UpdateBroadcastRequest(); // UpdateBroadcastRequest | 
         try {
-            UpdateBroadcast200Response result = apiInstance.updateBroadcast(broadcastId);
+            UpdateBroadcast200Response result = apiInstance.updateBroadcast(broadcastId, updateBroadcastRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BroadcastsApi#updateBroadcast");
@@ -1445,6 +1446,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **broadcastId** | **String**|  | |
+| **updateBroadcastRequest** | [**UpdateBroadcastRequest**](UpdateBroadcastRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1457,7 +1459,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
@@ -1469,7 +1471,7 @@ public class Example {
 
 ## updateBroadcastWithHttpInfo
 
-> ApiResponse<UpdateBroadcast200Response> updateBroadcast updateBroadcastWithHttpInfo(broadcastId)
+> ApiResponse<UpdateBroadcast200Response> updateBroadcast updateBroadcastWithHttpInfo(broadcastId, updateBroadcastRequest)
 
 Update broadcast
 
@@ -1498,8 +1500,9 @@ public class Example {
 
         BroadcastsApi apiInstance = new BroadcastsApi(defaultClient);
         String broadcastId = "broadcastId_example"; // String | 
+        UpdateBroadcastRequest updateBroadcastRequest = new UpdateBroadcastRequest(); // UpdateBroadcastRequest | 
         try {
-            ApiResponse<UpdateBroadcast200Response> response = apiInstance.updateBroadcastWithHttpInfo(broadcastId);
+            ApiResponse<UpdateBroadcast200Response> response = apiInstance.updateBroadcastWithHttpInfo(broadcastId, updateBroadcastRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1520,6 +1523,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **broadcastId** | **String**|  | |
+| **updateBroadcastRequest** | [**UpdateBroadcastRequest**](UpdateBroadcastRequest.md)|  | [optional] |
 
 ### Return type
 
@@ -1532,7 +1536,7 @@ ApiResponse<[**UpdateBroadcast200Response**](UpdateBroadcast200Response.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details

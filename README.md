@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-19T17:17:51.262047958Z[Etc/UTC]
+- Build date: 2026-05-19T17:41:24.844471725Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1445,6 +1445,10 @@ Class | Method | HTTP request | Description
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
  - [UpdateBroadcast200Response](docs/UpdateBroadcast200Response.md)
  - [UpdateBroadcast200ResponseBroadcast](docs/UpdateBroadcast200ResponseBroadcast.md)
+ - [UpdateBroadcastRequest](docs/UpdateBroadcastRequest.md)
+ - [UpdateBroadcastRequestMessage](docs/UpdateBroadcastRequestMessage.md)
+ - [UpdateBroadcastRequestTemplate](docs/UpdateBroadcastRequestTemplate.md)
+ - [UpdateBroadcastRequestTemplateVariableMappingValue](docs/UpdateBroadcastRequestTemplateVariableMappingValue.md)
  - [UpdateCommentAutomation200Response](docs/UpdateCommentAutomation200Response.md)
  - [UpdateCommentAutomation200ResponseAutomation](docs/UpdateCommentAutomation200ResponseAutomation.md)
  - [UpdateCommentAutomationRequest](docs/UpdateCommentAutomationRequest.md)
@@ -1502,6 +1506,9 @@ Class | Method | HTTP request | Description
  - [UpdateRedditSubredditsRequest](docs/UpdateRedditSubredditsRequest.md)
  - [UpdateSequence200Response](docs/UpdateSequence200Response.md)
  - [UpdateSequence200ResponseSequence](docs/UpdateSequence200ResponseSequence.md)
+ - [UpdateSequenceRequest](docs/UpdateSequenceRequest.md)
+ - [UpdateSequenceRequestStepsInner](docs/UpdateSequenceRequestStepsInner.md)
+ - [UpdateSequenceRequestStepsInnerTemplate](docs/UpdateSequenceRequestStepsInnerTemplate.md)
  - [UpdateTrackingTagRequest](docs/UpdateTrackingTagRequest.md)
  - [UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)

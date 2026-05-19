@@ -29,6 +29,7 @@ import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListSequenceEnrollments200Response;
 import dev.zernio.model.ListSequences200Response;
 import dev.zernio.model.UpdateSequence200Response;
+import dev.zernio.model.UpdateSequenceRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -61,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:17:51.262047958Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:41:24.844471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SequencesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1301,49 +1302,53 @@ public class SequencesApi {
 
   /**
    * Update sequence
-   * Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+   * Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
    * @param sequenceId  (required)
+   * @param updateSequenceRequest  (optional)
    * @return UpdateSequence200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateSequence200Response updateSequence(@javax.annotation.Nonnull String sequenceId) throws ApiException {
-    return updateSequence(sequenceId, null);
+  public UpdateSequence200Response updateSequence(@javax.annotation.Nonnull String sequenceId, @javax.annotation.Nullable UpdateSequenceRequest updateSequenceRequest) throws ApiException {
+    return updateSequence(sequenceId, updateSequenceRequest, null);
   }
 
   /**
    * Update sequence
-   * Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+   * Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
    * @param sequenceId  (required)
+   * @param updateSequenceRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return UpdateSequence200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateSequence200Response updateSequence(@javax.annotation.Nonnull String sequenceId, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateSequence200Response> localVarResponse = updateSequenceWithHttpInfo(sequenceId, headers);
+  public UpdateSequence200Response updateSequence(@javax.annotation.Nonnull String sequenceId, @javax.annotation.Nullable UpdateSequenceRequest updateSequenceRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateSequence200Response> localVarResponse = updateSequenceWithHttpInfo(sequenceId, updateSequenceRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Update sequence
-   * Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+   * Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
    * @param sequenceId  (required)
+   * @param updateSequenceRequest  (optional)
    * @return ApiResponse&lt;UpdateSequence200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateSequence200Response> updateSequenceWithHttpInfo(@javax.annotation.Nonnull String sequenceId) throws ApiException {
-    return updateSequenceWithHttpInfo(sequenceId, null);
+  public ApiResponse<UpdateSequence200Response> updateSequenceWithHttpInfo(@javax.annotation.Nonnull String sequenceId, @javax.annotation.Nullable UpdateSequenceRequest updateSequenceRequest) throws ApiException {
+    return updateSequenceWithHttpInfo(sequenceId, updateSequenceRequest, null);
   }
 
   /**
    * Update sequence
-   * Update a sequence&#39;s name, steps, or exit conditions. Active sequences can be updated without pausing.
+   * Update a sequence&#39;s name, steps, or exit conditions. Steps can only be modified while the sequence is draft or paused.
    * @param sequenceId  (required)
+   * @param updateSequenceRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateSequence200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateSequence200Response> updateSequenceWithHttpInfo(@javax.annotation.Nonnull String sequenceId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateSequenceRequestBuilder(sequenceId, headers);
+  public ApiResponse<UpdateSequence200Response> updateSequenceWithHttpInfo(@javax.annotation.Nonnull String sequenceId, @javax.annotation.Nullable UpdateSequenceRequest updateSequenceRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateSequenceRequestBuilder(sequenceId, updateSequenceRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1390,7 +1395,7 @@ public class SequencesApi {
     }
   }
 
-  private HttpRequest.Builder updateSequenceRequestBuilder(@javax.annotation.Nonnull String sequenceId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateSequenceRequestBuilder(@javax.annotation.Nonnull String sequenceId, @javax.annotation.Nullable UpdateSequenceRequest updateSequenceRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'sequenceId' is set
     if (sequenceId == null) {
       throw new ApiException(400, "Missing the required parameter 'sequenceId' when calling updateSequence");
@@ -1403,9 +1408,15 @@ public class SequencesApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
-    localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.noBody());
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateSequenceRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

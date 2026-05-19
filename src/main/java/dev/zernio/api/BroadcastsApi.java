@@ -32,6 +32,7 @@ import dev.zernio.model.ScheduleBroadcast200Response;
 import dev.zernio.model.ScheduleBroadcastRequest;
 import dev.zernio.model.SendBroadcast200Response;
 import dev.zernio.model.UpdateBroadcast200Response;
+import dev.zernio.model.UpdateBroadcastRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:17:51.262047958Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:41:24.844471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BroadcastsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1325,23 +1326,25 @@ public class BroadcastsApi {
    * Update broadcast
    * Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
    * @param broadcastId  (required)
+   * @param updateBroadcastRequest  (optional)
    * @return UpdateBroadcast200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateBroadcast200Response updateBroadcast(@javax.annotation.Nonnull String broadcastId) throws ApiException {
-    return updateBroadcast(broadcastId, null);
+  public UpdateBroadcast200Response updateBroadcast(@javax.annotation.Nonnull String broadcastId, @javax.annotation.Nullable UpdateBroadcastRequest updateBroadcastRequest) throws ApiException {
+    return updateBroadcast(broadcastId, updateBroadcastRequest, null);
   }
 
   /**
    * Update broadcast
    * Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
    * @param broadcastId  (required)
+   * @param updateBroadcastRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return UpdateBroadcast200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateBroadcast200Response updateBroadcast(@javax.annotation.Nonnull String broadcastId, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateBroadcast200Response> localVarResponse = updateBroadcastWithHttpInfo(broadcastId, headers);
+  public UpdateBroadcast200Response updateBroadcast(@javax.annotation.Nonnull String broadcastId, @javax.annotation.Nullable UpdateBroadcastRequest updateBroadcastRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateBroadcast200Response> localVarResponse = updateBroadcastWithHttpInfo(broadcastId, updateBroadcastRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1349,23 +1352,25 @@ public class BroadcastsApi {
    * Update broadcast
    * Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
    * @param broadcastId  (required)
+   * @param updateBroadcastRequest  (optional)
    * @return ApiResponse&lt;UpdateBroadcast200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateBroadcast200Response> updateBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId) throws ApiException {
-    return updateBroadcastWithHttpInfo(broadcastId, null);
+  public ApiResponse<UpdateBroadcast200Response> updateBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId, @javax.annotation.Nullable UpdateBroadcastRequest updateBroadcastRequest) throws ApiException {
+    return updateBroadcastWithHttpInfo(broadcastId, updateBroadcastRequest, null);
   }
 
   /**
    * Update broadcast
    * Update a broadcast&#39;s name, message, template, or segment filters. Only draft broadcasts can be updated.
    * @param broadcastId  (required)
+   * @param updateBroadcastRequest  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateBroadcast200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateBroadcast200Response> updateBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateBroadcastRequestBuilder(broadcastId, headers);
+  public ApiResponse<UpdateBroadcast200Response> updateBroadcastWithHttpInfo(@javax.annotation.Nonnull String broadcastId, @javax.annotation.Nullable UpdateBroadcastRequest updateBroadcastRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateBroadcastRequestBuilder(broadcastId, updateBroadcastRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1412,7 +1417,7 @@ public class BroadcastsApi {
     }
   }
 
-  private HttpRequest.Builder updateBroadcastRequestBuilder(@javax.annotation.Nonnull String broadcastId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateBroadcastRequestBuilder(@javax.annotation.Nonnull String broadcastId, @javax.annotation.Nullable UpdateBroadcastRequest updateBroadcastRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'broadcastId' is set
     if (broadcastId == null) {
       throw new ApiException(400, "Missing the required parameter 'broadcastId' when calling updateBroadcast");
@@ -1425,9 +1430,15 @@ public class BroadcastsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
-    localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.noBody());
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateBroadcastRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

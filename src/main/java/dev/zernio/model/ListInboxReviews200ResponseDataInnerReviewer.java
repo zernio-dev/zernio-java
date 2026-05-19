@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInnerReviewer.JSON_PROPERTY_NAME,
   ListInboxReviews200ResponseDataInnerReviewer.JSON_PROPERTY_PROFILE_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:17:51.262047958Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T17:41:24.844471725Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInnerReviewer {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
