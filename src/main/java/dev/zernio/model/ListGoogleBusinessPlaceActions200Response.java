@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListGoogleBusinessPlaceActions200Response.JSON_PROPERTY_PLACE_ACTION_LINKS,
   ListGoogleBusinessPlaceActions200Response.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:43:53.894855694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T15:00:55.278217703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleBusinessPlaceActions200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

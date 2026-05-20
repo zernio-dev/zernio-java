@@ -16439,7 +16439,7 @@ paths:
   /v1/ads/audiences:
     get:
       description: "Returns custom audiences for the given ad account. Supports Meta,\
-        \ Google, TikTok, and Pinterest."
+        \ Google, TikTok, Pinterest, LinkedIn, and X (Twitter)."
       operationId: listAdAudiences
       parameters:
       - description: Social account ID
@@ -16468,7 +16468,12 @@ paths:
           - instagram
           - googleads
           - tiktok
+          - tiktokads
           - pinterest
+          - linkedin
+          - linkedinads
+          - twitter
+          - xads
           type: string
         style: form
       responses:

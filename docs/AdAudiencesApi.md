@@ -631,7 +631,7 @@ ApiResponse<[**GetAdAudience200Response**](GetAdAudience200Response.md)>
 
 List custom audiences
 
-Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
 
 ### Example
 
@@ -678,7 +678,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, pinterest] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
 
 ### Return type
 
@@ -707,7 +707,7 @@ public class Example {
 
 List custom audiences
 
-Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, and Pinterest.
+Returns custom audiences for the given ad account. Supports Meta, Google, TikTok, Pinterest, LinkedIn, and X (Twitter).
 
 ### Example
 
@@ -757,7 +757,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, pinterest] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
 
 ### Return type
 
