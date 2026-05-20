@@ -29,7 +29,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## bulkUploadPosts
 
-> BulkUploadPosts200Response bulkUploadPosts(dryRun, _file)
+> BulkUploadResult bulkUploadPosts(dryRun, _file)
 
 Bulk upload from CSV
 
@@ -59,7 +59,7 @@ public class Example {
         Boolean dryRun = false; // Boolean | 
         File _file = new File("/path/to/file"); // File | 
         try {
-            BulkUploadPosts200Response result = apiInstance.bulkUploadPosts(dryRun, _file);
+            BulkUploadResult result = apiInstance.bulkUploadPosts(dryRun, _file);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PostsApi#bulkUploadPosts");
@@ -82,7 +82,7 @@ public class Example {
 
 ### Return type
 
-[**BulkUploadPosts200Response**](BulkUploadPosts200Response.md)
+[**BulkUploadResult**](BulkUploadResult.md)
 
 
 ### Authorization
@@ -97,15 +97,15 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Bulk upload results |  -  |
-| **207** | Partial success |  -  |
+| **200** | Bulk upload results. Returned when every row succeeded (or every row failed). A mix of successes and failures returns &#x60;207&#x60; instead, with the same body shape.  |  -  |
+| **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |
 
 ## bulkUploadPostsWithHttpInfo
 
-> ApiResponse<BulkUploadPosts200Response> bulkUploadPosts bulkUploadPostsWithHttpInfo(dryRun, _file)
+> ApiResponse<BulkUploadResult> bulkUploadPosts bulkUploadPostsWithHttpInfo(dryRun, _file)
 
 Bulk upload from CSV
 
@@ -136,7 +136,7 @@ public class Example {
         Boolean dryRun = false; // Boolean | 
         File _file = new File("/path/to/file"); // File | 
         try {
-            ApiResponse<BulkUploadPosts200Response> response = apiInstance.bulkUploadPostsWithHttpInfo(dryRun, _file);
+            ApiResponse<BulkUploadResult> response = apiInstance.bulkUploadPostsWithHttpInfo(dryRun, _file);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -161,7 +161,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**BulkUploadPosts200Response**](BulkUploadPosts200Response.md)>
+ApiResponse<[**BulkUploadResult**](BulkUploadResult.md)>
 
 
 ### Authorization
@@ -176,8 +176,8 @@ ApiResponse<[**BulkUploadPosts200Response**](BulkUploadPosts200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Bulk upload results |  -  |
-| **207** | Partial success |  -  |
+| **200** | Bulk upload results. Returned when every row succeeded (or every row failed). A mix of successes and failures returns &#x60;207&#x60; instead, with the same body shape.  |  -  |
+| **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
 | **401** | Unauthorized |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |

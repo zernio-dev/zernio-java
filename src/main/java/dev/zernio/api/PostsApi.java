@@ -18,8 +18,8 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
-import dev.zernio.model.BulkUploadPosts200Response;
 import dev.zernio.model.BulkUploadPosts429Response;
+import dev.zernio.model.BulkUploadResult;
 import dev.zernio.model.CreatePost409Response;
 import dev.zernio.model.CreatePost429Response;
 import dev.zernio.model.CreatePostRequest;
@@ -74,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-19T19:17:51.197398979Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:14:53.513632809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -196,10 +196,10 @@ public class PostsApi {
    * Create multiple posts by uploading a CSV file. Use dryRun&#x3D;true to validate without creating posts.
    * @param dryRun  (optional, default to false)
    * @param _file  (optional)
-   * @return BulkUploadPosts200Response
+   * @return BulkUploadResult
    * @throws ApiException if fails to make API call
    */
-  public BulkUploadPosts200Response bulkUploadPosts(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file) throws ApiException {
+  public BulkUploadResult bulkUploadPosts(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file) throws ApiException {
     return bulkUploadPosts(dryRun, _file, null);
   }
 
@@ -209,11 +209,11 @@ public class PostsApi {
    * @param dryRun  (optional, default to false)
    * @param _file  (optional)
    * @param headers Optional headers to include in the request
-   * @return BulkUploadPosts200Response
+   * @return BulkUploadResult
    * @throws ApiException if fails to make API call
    */
-  public BulkUploadPosts200Response bulkUploadPosts(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file, Map<String, String> headers) throws ApiException {
-    ApiResponse<BulkUploadPosts200Response> localVarResponse = bulkUploadPostsWithHttpInfo(dryRun, _file, headers);
+  public BulkUploadResult bulkUploadPosts(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file, Map<String, String> headers) throws ApiException {
+    ApiResponse<BulkUploadResult> localVarResponse = bulkUploadPostsWithHttpInfo(dryRun, _file, headers);
     return localVarResponse.getData();
   }
 
@@ -222,10 +222,10 @@ public class PostsApi {
    * Create multiple posts by uploading a CSV file. Use dryRun&#x3D;true to validate without creating posts.
    * @param dryRun  (optional, default to false)
    * @param _file  (optional)
-   * @return ApiResponse&lt;BulkUploadPosts200Response&gt;
+   * @return ApiResponse&lt;BulkUploadResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<BulkUploadPosts200Response> bulkUploadPostsWithHttpInfo(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file) throws ApiException {
+  public ApiResponse<BulkUploadResult> bulkUploadPostsWithHttpInfo(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file) throws ApiException {
     return bulkUploadPostsWithHttpInfo(dryRun, _file, null);
   }
 
@@ -235,10 +235,10 @@ public class PostsApi {
    * @param dryRun  (optional, default to false)
    * @param _file  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;BulkUploadPosts200Response&gt;
+   * @return ApiResponse&lt;BulkUploadResult&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<BulkUploadPosts200Response> bulkUploadPostsWithHttpInfo(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file, Map<String, String> headers) throws ApiException {
+  public ApiResponse<BulkUploadResult> bulkUploadPostsWithHttpInfo(@javax.annotation.Nullable Boolean dryRun, @javax.annotation.Nullable File _file, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = bulkUploadPostsRequestBuilder(dryRun, _file, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -254,7 +254,7 @@ public class PostsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<BulkUploadPosts200Response>(
+          return new ApiResponse<BulkUploadResult>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -264,10 +264,10 @@ public class PostsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        BulkUploadPosts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BulkUploadPosts200Response>() {});
+        BulkUploadResult responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BulkUploadResult>() {});
         
 
-        return new ApiResponse<BulkUploadPosts200Response>(
+        return new ApiResponse<BulkUploadResult>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

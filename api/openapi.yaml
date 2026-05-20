@@ -3833,25 +3833,39 @@ paths:
           content:
             application/json:
               example:
-                success: true
-                totalRows: 10
-                created: 8
-                failed: 2
-                errors:
-                - row: 3
-                  error: Invalid date format
-                - row: 7
-                  error: Account not found
-                posts:
-                - _id: 65f1c0a9e2b5af0012ab34cd
-                  content: First bulk post
-                  status: scheduled
-                  scheduledFor: 2024-11-01T10:00:00Z
+                total: 1
+                valid: 1
+                invalid: 0
+                results:
+                - rowIndex: 1
+                  ok: true
+                  createdPostId: 69df8c12f102e11169c53cd3
+                warnings: []
               schema:
-                $ref: "#/components/schemas/bulkUploadPosts_200_response"
-          description: Bulk upload results
+                $ref: "#/components/schemas/BulkUploadResult"
+          description: |
+            Bulk upload results. Returned when every row succeeded (or every row failed).
+            A mix of successes and failures returns `207` instead, with the same body shape.
         "207":
-          description: Partial success
+          content:
+            application/json:
+              example:
+                total: 1
+                valid: 0
+                invalid: 1
+                results:
+                - rowIndex: 1
+                  ok: false
+                  errors:
+                  - unknown_profile:693ae023a552465131f3bdca1
+                  - no_account_for_platform:tiktok
+                warnings: []
+              schema:
+                $ref: "#/components/schemas/BulkUploadResult"
+          description: |
+            Partial success: some rows were created and some failed. Body is identical in
+            shape to the `200` response. Inspect each entry in `results` (`ok` plus `errors`)
+            to see which rows failed and why.
         "400":
           description: Invalid CSV or validation errors
         "401":
@@ -17889,6 +17903,69 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) so they can talk to sales.
   schemas:
+    BulkUploadResult:
+      description: |
+        Result of a CSV bulk upload. The same shape is returned for `200` (all rows
+        succeeded or all failed) and `207` (mixed). Per-row outcomes live in `results`;
+        the row's success is `ok`, and failures carry machine-readable codes in `errors`.
+      example:
+        valid: 6
+        total: 0
+        warnings:
+        - warnings
+        - warnings
+        invalid: 1
+        rateLimitedAccounts:
+        - accountId: accountId
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+          platform: platform
+          username: username
+        - accountId: accountId
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+          platform: platform
+          username: username
+        results:
+        - createdPostId: createdPostId
+          rowIndex: 5
+          ok: true
+          errors:
+          - errors
+          - errors
+        - createdPostId: createdPostId
+          rowIndex: 5
+          ok: true
+          errors:
+          - errors
+          - errors
+      properties:
+        total:
+          description: Number of data rows processed from the CSV
+          type: integer
+        valid:
+          description: "Count of rows that succeeded (results[].ok === true)"
+          type: integer
+        invalid:
+          description: Count of rows that failed (total - valid)
+          type: integer
+        results:
+          description: "One entry per CSV data row, in row order."
+          items:
+            $ref: "#/components/schemas/BulkUploadResult_results_inner"
+          type: array
+        warnings:
+          description: Top-level advisory warnings (e.g. `rows_exceed_advisory_limit:500`).
+            Empty when none.
+          items:
+            type: string
+          type: array
+        rateLimitedAccounts:
+          description: |
+            Present only when one or more rows targeted an account currently in cooldown.
+            Lets callers map `rate_limited:*` row errors back to structured metadata without
+            parsing the error strings.
+          items:
+            $ref: "#/components/schemas/BulkUploadResult_rateLimitedAccounts_inner"
+          type: array
     RedditPost:
       description: A normalized Reddit post returned by the feed and search endpoints
       example:
@@ -26953,508 +27030,6 @@ components:
         file:
           format: binary
           type: string
-    bulkUploadPosts_200_response_errors_inner:
-      example:
-        row: 5
-        error: error
-      properties:
-        row:
-          type: integer
-        error:
-          type: string
-    bulkUploadPosts_200_response:
-      example:
-        success: true
-        created: 6
-        totalRows: 0
-        failed: 1
-        posts:
-        - queueId: queueId
-          metadata:
-            key: ""
-          hashtags:
-          - hashtags
-          - hashtags
-          visibility: public
-          timezone: timezone
-          recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
-            lastRecycledAt: 2000-01-23T04:56:07.000+00:00
-            expireDate: 2000-01-23T04:56:07.000+00:00
-            nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
-            gapFreq: week
-            enabled: true
-            startDate: 2000-01-23T04:56:07.000+00:00
-            contentVariations:
-            - contentVariations
-            - contentVariations
-          recycledFromPostId: recycledFromPostId
-          title: title
-          userId: Post_userId
-          content: content
-          platforms:
-          - platformSpecificData:
-              longVideo: false
-              replySettings: following
-              threadItems:
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              replyToTweetId: replyToTweetId
-              geoRestriction:
-                countries:
-                - US
-                - CA
-                - GB
-              poll:
-                duration_minutes: 6077
-                options:
-                - options
-                - options
-                - options
-                - options
-            publishedAt: 2000-01-23T04:56:07.000+00:00
-            errorSource: user
-            errorMessage: errorMessage
-            platform: twitter
-            accountId: PlatformTarget_accountId
-            customContent: customContent
-            errorCategory: auth_expired
-            scheduledFor: 2000-01-23T04:56:07.000+00:00
-            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
-            customMedia:
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            status: pending
-            platformPostId: "1234567890123456789"
-          - platformSpecificData:
-              longVideo: false
-              replySettings: following
-              threadItems:
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              replyToTweetId: replyToTweetId
-              geoRestriction:
-                countries:
-                - US
-                - CA
-                - GB
-              poll:
-                duration_minutes: 6077
-                options:
-                - options
-                - options
-                - options
-                - options
-            publishedAt: 2000-01-23T04:56:07.000+00:00
-            errorSource: user
-            errorMessage: errorMessage
-            platform: twitter
-            accountId: PlatformTarget_accountId
-            customContent: customContent
-            errorCategory: auth_expired
-            scheduledFor: 2000-01-23T04:56:07.000+00:00
-            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
-            customMedia:
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            status: pending
-            platformPostId: "1234567890123456789"
-          tags:
-          - tags
-          - tags
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          mediaItems:
-          - thumbnail: https://openapi-generator.tech
-            filename: filename
-            size: 0
-            instagramThumbnail: https://openapi-generator.tech
-            tiktokProcessed: true
-            mimeType: mimeType
-            type: image
-            title: title
-            url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
-            filename: filename
-            size: 0
-            instagramThumbnail: https://openapi-generator.tech
-            tiktokProcessed: true
-            mimeType: mimeType
-            type: image
-            title: title
-            url: https://openapi-generator.tech
-          queuedFromProfile: queuedFromProfile
-          scheduledFor: 2000-01-23T04:56:07.000+00:00
-          mentions:
-          - mentions
-          - mentions
-          _id: _id
-          status: draft
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        - queueId: queueId
-          metadata:
-            key: ""
-          hashtags:
-          - hashtags
-          - hashtags
-          visibility: public
-          timezone: timezone
-          recycling:
-            recycleCount: 2
-            gap: 1
-            expireCount: 5
-            lastRecycledAt: 2000-01-23T04:56:07.000+00:00
-            expireDate: 2000-01-23T04:56:07.000+00:00
-            nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
-            gapFreq: week
-            enabled: true
-            startDate: 2000-01-23T04:56:07.000+00:00
-            contentVariations:
-            - contentVariations
-            - contentVariations
-          recycledFromPostId: recycledFromPostId
-          title: title
-          userId: Post_userId
-          content: content
-          platforms:
-          - platformSpecificData:
-              longVideo: false
-              replySettings: following
-              threadItems:
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              replyToTweetId: replyToTweetId
-              geoRestriction:
-                countries:
-                - US
-                - CA
-                - GB
-              poll:
-                duration_minutes: 6077
-                options:
-                - options
-                - options
-                - options
-                - options
-            publishedAt: 2000-01-23T04:56:07.000+00:00
-            errorSource: user
-            errorMessage: errorMessage
-            platform: twitter
-            accountId: PlatformTarget_accountId
-            customContent: customContent
-            errorCategory: auth_expired
-            scheduledFor: 2000-01-23T04:56:07.000+00:00
-            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
-            customMedia:
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            status: pending
-            platformPostId: "1234567890123456789"
-          - platformSpecificData:
-              longVideo: false
-              replySettings: following
-              threadItems:
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              - mediaItems:
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                - thumbnail: https://openapi-generator.tech
-                  filename: filename
-                  size: 0
-                  instagramThumbnail: https://openapi-generator.tech
-                  tiktokProcessed: true
-                  mimeType: mimeType
-                  type: image
-                  title: title
-                  url: https://openapi-generator.tech
-                content: content
-              replyToTweetId: replyToTweetId
-              geoRestriction:
-                countries:
-                - US
-                - CA
-                - GB
-              poll:
-                duration_minutes: 6077
-                options:
-                - options
-                - options
-                - options
-                - options
-            publishedAt: 2000-01-23T04:56:07.000+00:00
-            errorSource: user
-            errorMessage: errorMessage
-            platform: twitter
-            accountId: PlatformTarget_accountId
-            customContent: customContent
-            errorCategory: auth_expired
-            scheduledFor: 2000-01-23T04:56:07.000+00:00
-            platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
-            customMedia:
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
-              filename: filename
-              size: 0
-              instagramThumbnail: https://openapi-generator.tech
-              tiktokProcessed: true
-              mimeType: mimeType
-              type: image
-              title: title
-              url: https://openapi-generator.tech
-            status: pending
-            platformPostId: "1234567890123456789"
-          tags:
-          - tags
-          - tags
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          mediaItems:
-          - thumbnail: https://openapi-generator.tech
-            filename: filename
-            size: 0
-            instagramThumbnail: https://openapi-generator.tech
-            tiktokProcessed: true
-            mimeType: mimeType
-            type: image
-            title: title
-            url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
-            filename: filename
-            size: 0
-            instagramThumbnail: https://openapi-generator.tech
-            tiktokProcessed: true
-            mimeType: mimeType
-            type: image
-            title: title
-            url: https://openapi-generator.tech
-          queuedFromProfile: queuedFromProfile
-          scheduledFor: 2000-01-23T04:56:07.000+00:00
-          mentions:
-          - mentions
-          - mentions
-          _id: _id
-          status: draft
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        errors:
-        - row: 5
-          error: error
-        - row: 5
-          error: error
-      properties:
-        success:
-          type: boolean
-        totalRows:
-          type: integer
-        created:
-          type: integer
-        failed:
-          type: integer
-        errors:
-          items:
-            $ref: "#/components/schemas/bulkUploadPosts_200_response_errors_inner"
-          type: array
-        posts:
-          items:
-            $ref: "#/components/schemas/Post"
-          type: array
     bulkUploadPosts_429_response:
       example:
         details: "{}"
@@ -44468,6 +44043,49 @@ components:
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
+    BulkUploadResult_results_inner:
+      example:
+        createdPostId: createdPostId
+        rowIndex: 5
+        ok: true
+        errors:
+        - errors
+        - errors
+      properties:
+        rowIndex:
+          description: 1-based index of the CSV data row (header excluded)
+          type: integer
+        ok:
+          description: Whether the row was created successfully
+          type: boolean
+        createdPostId:
+          description: ID of the created post. Present only when `ok` is true and
+            not a dry run.
+          type: string
+        errors:
+          description: |
+            Machine-readable failure codes for this row. Present only when `ok` is false.
+            Examples: `unknown_profile:<id>`, `no_account_for_platform:<platform>`,
+            `schedule_time_missing`, `rate_limited:<platform>:@<username>:<remaining>`.
+          items:
+            type: string
+          type: array
+    BulkUploadResult_rateLimitedAccounts_inner:
+      example:
+        accountId: accountId
+        rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+        platform: platform
+        username: username
+      properties:
+        accountId:
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+        rateLimitedUntil:
+          format: date-time
+          type: string
     WhatsAppHeaderComponent_example:
       properties:
         header_text:

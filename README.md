@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-19T19:17:51.197398979Z[Etc/UTC]
+- Build date: 2026-05-20T08:14:53.513632809Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -772,10 +772,11 @@ Class | Method | HTTP request | Description
  - [BulkUpdateAdCampaignStatus200ResponseTotals](docs/BulkUpdateAdCampaignStatus200ResponseTotals.md)
  - [BulkUpdateAdCampaignStatusRequest](docs/BulkUpdateAdCampaignStatusRequest.md)
  - [BulkUpdateAdCampaignStatusRequestCampaignsInner](docs/BulkUpdateAdCampaignStatusRequestCampaignsInner.md)
- - [BulkUploadPosts200Response](docs/BulkUploadPosts200Response.md)
- - [BulkUploadPosts200ResponseErrorsInner](docs/BulkUploadPosts200ResponseErrorsInner.md)
  - [BulkUploadPosts429Response](docs/BulkUploadPosts429Response.md)
  - [BulkUploadPostsRequest](docs/BulkUploadPostsRequest.md)
+ - [BulkUploadResult](docs/BulkUploadResult.md)
+ - [BulkUploadResultRateLimitedAccountsInner](docs/BulkUploadResultRateLimitedAccountsInner.md)
+ - [BulkUploadResultResultsInner](docs/BulkUploadResultResultsInner.md)
  - [BusinessCenter](docs/BusinessCenter.md)
  - [CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [CancelBroadcast200ResponseBroadcast](docs/CancelBroadcast200ResponseBroadcast.md)
