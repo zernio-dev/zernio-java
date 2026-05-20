@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UnfollowUser200Response.JSON_PROPERTY_FOLLOWING,
   UnfollowUser200Response.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:14:53.513632809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:43:53.894855694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UnfollowUser200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

@@ -586,6 +586,7 @@ docs/ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner.md
 docs/ListWhatsAppPhoneNumbers200Response.md
 docs/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.md
 docs/LogsApi.md
+docs/MarkConversationRead200Response.md
 docs/MediaApi.md
 docs/MediaItem.md
 docs/MediaUploadResponse.md
@@ -1595,6 +1596,7 @@ src/main/java/dev/zernio/model/ListWhatsAppGroupJoinRequests200Response.java
 src/main/java/dev/zernio/model/ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner.java
 src/main/java/dev/zernio/model/ListWhatsAppPhoneNumbers200Response.java
 src/main/java/dev/zernio/model/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.java
+src/main/java/dev/zernio/model/MarkConversationRead200Response.java
 src/main/java/dev/zernio/model/MediaItem.java
 src/main/java/dev/zernio/model/MediaUploadResponse.java
 src/main/java/dev/zernio/model/Money.java
@@ -1966,6 +1968,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/BulkUploadResultRateLimitedAccountsInnerTest.java
-src/test/java/dev/zernio/model/BulkUploadResultResultsInnerTest.java
-src/test/java/dev/zernio/model/BulkUploadResultTest.java
+src/test/java/dev/zernio/model/MarkConversationRead200ResponseTest.java

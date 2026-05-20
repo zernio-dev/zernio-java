@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   InboxWebhookConversation.JSON_PROPERTY_PARTICIPANT_PICTURE,
   InboxWebhookConversation.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:14:53.513632809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:43:53.894855694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookConversation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

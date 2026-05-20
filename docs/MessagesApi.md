@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInboxConversationMessagesWithHttpInfo**](MessagesApi.md#getInboxConversationMessagesWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
 | [**listInboxConversations**](MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations |
 | [**listInboxConversationsWithHttpInfo**](MessagesApi.md#listInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations | List conversations |
+| [**markConversationRead**](MessagesApi.md#markConversationRead) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
+| [**markConversationReadWithHttpInfo**](MessagesApi.md#markConversationReadWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
 | [**removeMessageReaction**](MessagesApi.md#removeMessageReaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
 | [**removeMessageReactionWithHttpInfo**](MessagesApi.md#removeMessageReactionWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
 | [**sendInboxMessage**](MessagesApi.md#sendInboxMessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
@@ -825,7 +827,7 @@ ApiResponse<[**GetInboxConversation200Response**](GetInboxConversation200Respons
 
 List messages
 
-Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
 
 ### Example
 
@@ -905,7 +907,7 @@ public class Example {
 
 List messages
 
-Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details. 
+Fetch messages for a specific conversation, with cursor-based pagination and ordering control.  Pagination: pass &#x60;pagination.nextCursor&#x60; from a prior response back as the &#x60;cursor&#x60; query param to fetch the next page. The cursor is opaque; do not parse or construct it client-side.  Sort order: defaults to &#x60;asc&#x60; (oldest first, chat style). For the \&quot;show me the latest messages\&quot; pattern, pass &#x60;?sortOrder&#x3D;desc&amp;limit&#x3D;N&#x60;. For Twitter, Facebook and Bluesky, the upstream APIs only return newest-first and have no order parameter — sort order is best-effort and only reverses items within a single page (pages still walk newest→oldest). The response field &#x60;sortOrderApplied&#x60; tells you what was actually applied.  Reddit threads are paginated client-side because Reddit&#39;s API has no per-thread cursor. Very long threads may be upstream-truncated by Reddit&#39;s inbox/sent windows (~100 most-recent items each); this is a Reddit platform limitation.  Twitter/X limitation: X&#39;s encrypted \&quot;X Chat\&quot; messages are not accessible via the API. Conversations where the other participant uses encrypted X Chat may only show your outgoing messages. See the list conversations endpoint for more details.  This endpoint is read-only and does NOT mark messages as read or send read receipts. To mark a conversation read (and send WhatsApp blue ticks on eligible accounts), call &#x60;POST /v1/inbox/conversations/{conversationId}/read&#x60;. 
 
 ### Example
 
@@ -1153,6 +1155,160 @@ ApiResponse<[**ListInboxConversations200Response**](ListInboxConversations200Res
 | **200** | Aggregated conversations |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+
+
+## markConversationRead
+
+> MarkConversationRead200Response markConversationRead(conversationId, sendTypingIndicatorRequest)
+
+Mark a conversation as read
+
+Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The conversation ID
+        SendTypingIndicatorRequest sendTypingIndicatorRequest = new SendTypingIndicatorRequest(); // SendTypingIndicatorRequest | 
+        try {
+            MarkConversationRead200Response result = apiInstance.markConversationRead(conversationId, sendTypingIndicatorRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#markConversationRead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The conversation ID | |
+| **sendTypingIndicatorRequest** | [**SendTypingIndicatorRequest**](SendTypingIndicatorRequest.md)|  | |
+
+### Return type
+
+[**MarkConversationRead200Response**](MarkConversationRead200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversation marked read |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+
+## markConversationReadWithHttpInfo
+
+> ApiResponse<MarkConversationRead200Response> markConversationRead markConversationReadWithHttpInfo(conversationId, sendTypingIndicatorRequest)
+
+Mark a conversation as read
+
+Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The conversation ID
+        SendTypingIndicatorRequest sendTypingIndicatorRequest = new SendTypingIndicatorRequest(); // SendTypingIndicatorRequest | 
+        try {
+            ApiResponse<MarkConversationRead200Response> response = apiInstance.markConversationReadWithHttpInfo(conversationId, sendTypingIndicatorRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#markConversationRead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The conversation ID | |
+| **sendTypingIndicatorRequest** | [**SendTypingIndicatorRequest**](SendTypingIndicatorRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**MarkConversationRead200Response**](MarkConversationRead200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversation marked read |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
 
 
 ## removeMessageReaction

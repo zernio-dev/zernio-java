@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ValidateSubreddit200ResponseOneOf1.JSON_PROPERTY_EXISTS,
   ValidateSubreddit200ResponseOneOf1.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:14:53.513632809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T08:43:53.894855694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateSubreddit200ResponseOneOf1 {
   public static final String JSON_PROPERTY_EXISTS = "exists";
   @javax.annotation.Nullable
