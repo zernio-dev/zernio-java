@@ -38744,6 +38744,19 @@ components:
           items:
             $ref: "#/components/schemas/createBroadcast_request_message_attachments_inner"
           type: array
+    createBroadcast_request_template_variableMapping_value:
+      properties:
+        field:
+          enum:
+          - name
+          - phone
+          - email
+          - company
+          - custom
+          type: string
+        customValue:
+          description: Static value used when field is "custom"
+          type: string
     createBroadcast_request_template:
       description: WhatsApp template (required when platform is whatsapp)
       properties:
@@ -38754,6 +38767,11 @@ components:
         components:
           items: {}
           type: array
+        variableMapping:
+          additionalProperties:
+            $ref: "#/components/schemas/createBroadcast_request_template_variableMapping_value"
+          description: "Maps template variable positions (\"1\", \"2\") to contact\
+            \ fields or static values. Resolved per recipient at send time."
     createBroadcast_request_segmentFilters:
       properties:
         tags:

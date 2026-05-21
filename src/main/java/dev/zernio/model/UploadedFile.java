@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UploadedFile.JSON_PROPERTY_SIZE,
   UploadedFile.JSON_PROPERTY_MIME_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T15:39:15.475041943Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T15:57:15.778300355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedFile {
   /**
    * Gets or Sets type

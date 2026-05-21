@@ -24,9 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateBroadcastRequestTemplateVariableMappingValue;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,9 +40,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateBroadcastRequestTemplate.JSON_PROPERTY_NAME,
   CreateBroadcastRequestTemplate.JSON_PROPERTY_LANGUAGE,
-  CreateBroadcastRequestTemplate.JSON_PROPERTY_COMPONENTS
+  CreateBroadcastRequestTemplate.JSON_PROPERTY_COMPONENTS,
+  CreateBroadcastRequestTemplate.JSON_PROPERTY_VARIABLE_MAPPING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T15:39:15.475041943Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T15:57:15.778300355Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBroadcastRequestTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -52,6 +56,10 @@ public class CreateBroadcastRequestTemplate {
   public static final String JSON_PROPERTY_COMPONENTS = "components";
   @javax.annotation.Nullable
   private List<Object> components = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_VARIABLE_MAPPING = "variableMapping";
+  @javax.annotation.Nullable
+  private Map<String, CreateBroadcastRequestTemplateVariableMappingValue> variableMapping = new HashMap<>();
 
   public CreateBroadcastRequestTemplate() { 
   }
@@ -136,6 +144,38 @@ public class CreateBroadcastRequestTemplate {
   }
 
 
+  public CreateBroadcastRequestTemplate variableMapping(@javax.annotation.Nullable Map<String, CreateBroadcastRequestTemplateVariableMappingValue> variableMapping) {
+    this.variableMapping = variableMapping;
+    return this;
+  }
+
+  public CreateBroadcastRequestTemplate putVariableMappingItem(String key, CreateBroadcastRequestTemplateVariableMappingValue variableMappingItem) {
+    if (this.variableMapping == null) {
+      this.variableMapping = new HashMap<>();
+    }
+    this.variableMapping.put(key, variableMappingItem);
+    return this;
+  }
+
+  /**
+   * Maps template variable positions (\&quot;1\&quot;, \&quot;2\&quot;) to contact fields or static values. Resolved per recipient at send time.
+   * @return variableMapping
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VARIABLE_MAPPING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, CreateBroadcastRequestTemplateVariableMappingValue> getVariableMapping() {
+    return variableMapping;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VARIABLE_MAPPING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVariableMapping(@javax.annotation.Nullable Map<String, CreateBroadcastRequestTemplateVariableMappingValue> variableMapping) {
+    this.variableMapping = variableMapping;
+  }
+
+
   /**
    * Return true if this createBroadcast_request_template object is equal to o.
    */
@@ -150,12 +190,13 @@ public class CreateBroadcastRequestTemplate {
     CreateBroadcastRequestTemplate createBroadcastRequestTemplate = (CreateBroadcastRequestTemplate) o;
     return Objects.equals(this.name, createBroadcastRequestTemplate.name) &&
         Objects.equals(this.language, createBroadcastRequestTemplate.language) &&
-        Objects.equals(this.components, createBroadcastRequestTemplate.components);
+        Objects.equals(this.components, createBroadcastRequestTemplate.components) &&
+        Objects.equals(this.variableMapping, createBroadcastRequestTemplate.variableMapping);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, language, components);
+    return Objects.hash(name, language, components, variableMapping);
   }
 
   @Override
@@ -165,6 +206,7 @@ public class CreateBroadcastRequestTemplate {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    components: ").append(toIndentedString(components)).append("\n");
+    sb.append("    variableMapping: ").append(toIndentedString(variableMapping)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -228,6 +270,16 @@ public class CreateBroadcastRequestTemplate {
         joiner.add(String.format(java.util.Locale.ROOT, "%scomponents%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getComponents().get(i)))));
+      }
+    }
+
+    // add `variableMapping` to the URL query string
+    if (getVariableMapping() != null) {
+      for (String _key : getVariableMapping().keySet()) {
+        if (getVariableMapping().get(_key) != null) {
+          joiner.add(getVariableMapping().get(_key).toUrlQueryString(String.format(java.util.Locale.ROOT, "%svariableMapping%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
       }
     }
 

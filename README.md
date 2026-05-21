@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-21T15:39:15.475041943Z[Etc/UTC]
+- Build date: 2026-05-21T15:57:15.778300355Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -826,6 +826,7 @@ Class | Method | HTTP request | Description
  - [CreateBroadcastRequestMessageAttachmentsInner](docs/CreateBroadcastRequestMessageAttachmentsInner.md)
  - [CreateBroadcastRequestSegmentFilters](docs/CreateBroadcastRequestSegmentFilters.md)
  - [CreateBroadcastRequestTemplate](docs/CreateBroadcastRequestTemplate.md)
+ - [CreateBroadcastRequestTemplateVariableMappingValue](docs/CreateBroadcastRequestTemplateVariableMappingValue.md)
  - [CreateCommentAutomation200Response](docs/CreateCommentAutomation200Response.md)
  - [CreateCommentAutomation200ResponseAutomation](docs/CreateCommentAutomation200ResponseAutomation.md)
  - [CreateCommentAutomation200ResponseAutomationStats](docs/CreateCommentAutomation200ResponseAutomationStats.md)

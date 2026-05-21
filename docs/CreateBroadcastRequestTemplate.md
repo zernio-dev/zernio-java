@@ -11,6 +11,7 @@ WhatsApp template (required when platform is whatsapp)
 |**name** | **String** |  |  [optional] |
 |**language** | **String** |  |  [optional] |
 |**components** | **List&lt;Object&gt;** |  |  [optional] |
+|**variableMapping** | [**Map&lt;String, CreateBroadcastRequestTemplateVariableMappingValue&gt;**](CreateBroadcastRequestTemplateVariableMappingValue.md) | Maps template variable positions (\&quot;1\&quot;, \&quot;2\&quot;) to contact fields or static values. Resolved per recipient at send time. |  [optional] |
 
 
 
