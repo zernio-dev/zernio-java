@@ -88,6 +88,7 @@ docs/CancelBroadcast200Response.md
 docs/CancelBroadcast200ResponseBroadcast.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
+docs/CompleteGoogleBusinessVerificationRequest.md
 docs/CompleteTelegramConnect200Response.md
 docs/CompleteWhatsAppPhoneSelection200Response.md
 docs/CompleteWhatsAppPhoneSelection200ResponseAccount.md
@@ -241,6 +242,9 @@ docs/ErrorResponse.md
 docs/Expired.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
+docs/FetchGoogleBusinessVerificationOptions200Response.md
+docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
+docs/FetchGoogleBusinessVerificationOptionsRequest.md
 docs/FollowUser200Response.md
 docs/FollowUserRequest.md
 docs/FollowerStatsResponse.md
@@ -349,6 +353,10 @@ docs/GetGoogleBusinessServices200ResponseServicesInner.md
 docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.md
 docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel.md
 docs/GetGoogleBusinessServices200ResponseServicesInnerPrice.md
+docs/GetGoogleBusinessVerifications200Response.md
+docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md
+docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md
+docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md
 docs/GetInboxConversation200Response.md
 docs/GetInboxConversation200ResponseData.md
 docs/GetInboxConversationMessages200Response.md
@@ -455,6 +463,7 @@ docs/GmbMediaApi.md
 docs/GmbPlaceActionsApi.md
 docs/GmbReviewsApi.md
 docs/GmbServicesApi.md
+docs/GmbVerificationsApi.md
 docs/GoogleBusinessPlatformData.md
 docs/GoogleBusinessPlatformDataCallToAction.md
 docs/GoogleBusinessPlatformDataEvent.md
@@ -742,6 +751,9 @@ docs/SharedAdAccount.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
+docs/StartGoogleBusinessVerification200Response.md
+docs/StartGoogleBusinessVerification200ResponseVerification.md
+docs/StartGoogleBusinessVerificationRequest.md
 docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
@@ -1021,6 +1033,7 @@ src/main/java/dev/zernio/api/GmbMediaApi.java
 src/main/java/dev/zernio/api/GmbPlaceActionsApi.java
 src/main/java/dev/zernio/api/GmbReviewsApi.java
 src/main/java/dev/zernio/api/GmbServicesApi.java
+src/main/java/dev/zernio/api/GmbVerificationsApi.java
 src/main/java/dev/zernio/api/InstagramApi.java
 src/main/java/dev/zernio/api/InvitesApi.java
 src/main/java/dev/zernio/api/LinkedInMentionsApi.java
@@ -1116,6 +1129,7 @@ src/main/java/dev/zernio/model/BulkUploadResultResultsInner.java
 src/main/java/dev/zernio/model/BusinessCenter.java
 src/main/java/dev/zernio/model/CancelBroadcast200Response.java
 src/main/java/dev/zernio/model/CancelBroadcast200ResponseBroadcast.java
+src/main/java/dev/zernio/model/CompleteGoogleBusinessVerificationRequest.java
 src/main/java/dev/zernio/model/CompleteTelegramConnect200Response.java
 src/main/java/dev/zernio/model/CompleteWhatsAppPhoneSelection200Response.java
 src/main/java/dev/zernio/model/CompleteWhatsAppPhoneSelection200ResponseAccount.java
@@ -1265,6 +1279,9 @@ src/main/java/dev/zernio/model/ErrorResponse.java
 src/main/java/dev/zernio/model/Expired.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
 src/main/java/dev/zernio/model/FacebookPlatformDataCarouselCardsInner.java
+src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200Response.java
+src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.java
+src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequest.java
 src/main/java/dev/zernio/model/FollowUser200Response.java
 src/main/java/dev/zernio/model/FollowUserRequest.java
 src/main/java/dev/zernio/model/FollowerStatsResponse.java
@@ -1373,6 +1390,10 @@ src/main/java/dev/zernio/model/GetGoogleBusinessServices200ResponseServicesInner
 src/main/java/dev/zernio/model/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.java
 src/main/java/dev/zernio/model/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel.java
 src/main/java/dev/zernio/model/GetGoogleBusinessServices200ResponseServicesInnerPrice.java
+src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200Response.java
+src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVerificationsInner.java
+src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.java
+src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.java
 src/main/java/dev/zernio/model/GetInboxConversation200Response.java
 src/main/java/dev/zernio/model/GetInboxConversation200ResponseData.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200Response.java
@@ -1747,6 +1768,9 @@ src/main/java/dev/zernio/model/SharedAdAccount.java
 src/main/java/dev/zernio/model/SnapchatPlatformData.java
 src/main/java/dev/zernio/model/SocialAccount.java
 src/main/java/dev/zernio/model/SocialAccountProfileId.java
+src/main/java/dev/zernio/model/StartGoogleBusinessVerification200Response.java
+src/main/java/dev/zernio/model/StartGoogleBusinessVerification200ResponseVerification.java
+src/main/java/dev/zernio/model/StartGoogleBusinessVerificationRequest.java
 src/main/java/dev/zernio/model/TelegramPlatformData.java
 src/main/java/dev/zernio/model/TestWebhookRequest.java
 src/main/java/dev/zernio/model/ThreadsPlatformData.java
@@ -1974,3 +1998,15 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/api/GmbVerificationsApiTest.java
+src/test/java/dev/zernio/model/CompleteGoogleBusinessVerificationRequestTest.java
+src/test/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInnerTest.java
+src/test/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200ResponseTest.java
+src/test/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequestTest.java
+src/test/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseTest.java
+src/test/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVerificationsInnerTest.java
+src/test/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateTest.java
+src/test/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerifyTest.java
+src/test/java/dev/zernio/model/StartGoogleBusinessVerification200ResponseTest.java
+src/test/java/dev/zernio/model/StartGoogleBusinessVerification200ResponseVerificationTest.java
+src/test/java/dev/zernio/model/StartGoogleBusinessVerificationRequestTest.java

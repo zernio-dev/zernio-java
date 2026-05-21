@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   CreateAdAudienceRequest.JSON_PROPERTY_RULE,
   CreateAdAudienceRequest.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T10:42:33.230301353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T15:39:15.475041943Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdAudienceRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -167,7 +167,7 @@ public class CreateAdAudienceRequest {
   }
 
   /**
-   * Must start with act_
+   * Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id).
    * @return adAccountId
    */
   @javax.annotation.Nonnull

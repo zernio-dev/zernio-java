@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   ListLogs200ResponseLogsInner.JSON_PROPERTY_CREATED_AT,
   ListLogs200ResponseLogsInner.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T10:42:33.230301353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T15:39:15.475041943Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLogs200ResponseLogsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable

@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** |  |  |
-|**adAccountId** | **String** | Must start with act_ |  |
+|**adAccountId** | **String** | Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id). |  |
 |**name** | **String** |  |  |
 |**description** | **String** |  |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |

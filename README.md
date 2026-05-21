@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-21T10:42:33.230301353Z[Etc/UTC]
+- Build date: 2026-05-21T15:39:15.475041943Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -470,6 +470,14 @@ Class | Method | HTTP request | Description
 *GmbServicesApi* | [**getGoogleBusinessServicesWithHttpInfo**](docs/GmbServicesApi.md#getGoogleBusinessServicesWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-services | Get services
 *GmbServicesApi* | [**updateGoogleBusinessServices**](docs/GmbServicesApi.md#updateGoogleBusinessServices) | **PUT** /v1/accounts/{accountId}/gmb-services | Replace services
 *GmbServicesApi* | [**updateGoogleBusinessServicesWithHttpInfo**](docs/GmbServicesApi.md#updateGoogleBusinessServicesWithHttpInfo) | **PUT** /v1/accounts/{accountId}/gmb-services | Replace services
+*GmbVerificationsApi* | [**completeGoogleBusinessVerification**](docs/GmbVerificationsApi.md#completeGoogleBusinessVerification) | **POST** /v1/accounts/{accountId}/gmb-verifications/{verificationId}/complete | Complete a verification
+*GmbVerificationsApi* | [**completeGoogleBusinessVerificationWithHttpInfo**](docs/GmbVerificationsApi.md#completeGoogleBusinessVerificationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-verifications/{verificationId}/complete | Complete a verification
+*GmbVerificationsApi* | [**fetchGoogleBusinessVerificationOptions**](docs/GmbVerificationsApi.md#fetchGoogleBusinessVerificationOptions) | **POST** /v1/accounts/{accountId}/gmb-verifications/options | Fetch verification options
+*GmbVerificationsApi* | [**fetchGoogleBusinessVerificationOptionsWithHttpInfo**](docs/GmbVerificationsApi.md#fetchGoogleBusinessVerificationOptionsWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-verifications/options | Fetch verification options
+*GmbVerificationsApi* | [**getGoogleBusinessVerifications**](docs/GmbVerificationsApi.md#getGoogleBusinessVerifications) | **GET** /v1/accounts/{accountId}/gmb-verifications | Get verification state
+*GmbVerificationsApi* | [**getGoogleBusinessVerificationsWithHttpInfo**](docs/GmbVerificationsApi.md#getGoogleBusinessVerificationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-verifications | Get verification state
+*GmbVerificationsApi* | [**startGoogleBusinessVerification**](docs/GmbVerificationsApi.md#startGoogleBusinessVerification) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
+*GmbVerificationsApi* | [**startGoogleBusinessVerificationWithHttpInfo**](docs/GmbVerificationsApi.md#startGoogleBusinessVerificationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
 *InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**getInstagramStoryInsightsWithHttpInfo**](docs/InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**listInstagramStories**](docs/InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
@@ -782,6 +790,7 @@ Class | Method | HTTP request | Description
  - [BusinessCenter](docs/BusinessCenter.md)
  - [CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [CancelBroadcast200ResponseBroadcast](docs/CancelBroadcast200ResponseBroadcast.md)
+ - [CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
  - [CompleteWhatsAppPhoneSelection200Response](docs/CompleteWhatsAppPhoneSelection200Response.md)
  - [CompleteWhatsAppPhoneSelection200ResponseAccount](docs/CompleteWhatsAppPhoneSelection200ResponseAccount.md)
@@ -931,6 +940,9 @@ Class | Method | HTTP request | Description
  - [Expired](docs/Expired.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
+ - [FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)
+ - [FetchGoogleBusinessVerificationOptions200ResponseOptionsInner](docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md)
+ - [FetchGoogleBusinessVerificationOptionsRequest](docs/FetchGoogleBusinessVerificationOptionsRequest.md)
  - [FollowUser200Response](docs/FollowUser200Response.md)
  - [FollowUserRequest](docs/FollowUserRequest.md)
  - [FollowerStatsResponse](docs/FollowerStatsResponse.md)
@@ -1039,6 +1051,10 @@ Class | Method | HTTP request | Description
  - [GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem](docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.md)
  - [GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel](docs/GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItemLabel.md)
  - [GetGoogleBusinessServices200ResponseServicesInnerPrice](docs/GetGoogleBusinessServices200ResponseServicesInnerPrice.md)
+ - [GetGoogleBusinessVerifications200Response](docs/GetGoogleBusinessVerifications200Response.md)
+ - [GetGoogleBusinessVerifications200ResponseVerificationsInner](docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md)
+ - [GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState](docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md)
+ - [GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify](docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md)
  - [GetInboxConversation200Response](docs/GetInboxConversation200Response.md)
  - [GetInboxConversation200ResponseData](docs/GetInboxConversation200ResponseData.md)
  - [GetInboxConversationMessages200Response](docs/GetInboxConversationMessages200Response.md)
@@ -1413,6 +1429,9 @@ Class | Method | HTTP request | Description
  - [SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [SocialAccount](docs/SocialAccount.md)
  - [SocialAccountProfileId](docs/SocialAccountProfileId.md)
+ - [StartGoogleBusinessVerification200Response](docs/StartGoogleBusinessVerification200Response.md)
+ - [StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
+ - [StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)

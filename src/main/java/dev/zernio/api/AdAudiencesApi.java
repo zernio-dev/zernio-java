@@ -53,7 +53,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T10:42:33.230301353Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T15:39:15.475041943Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAudiencesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -172,7 +172,7 @@ public class AdAudiencesApi {
 
   /**
    * Add users to audience
-   * Upload user data (emails and/or phone numbers) to a customer_list audience. Data is SHA256-hashed server-side before sending to Meta. Max 10,000 users per request.
+   * Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
    * @param audienceId  (required)
    * @param addUsersToAdAudienceRequest  (required)
    * @return AddUsersToAdAudience200Response
@@ -184,7 +184,7 @@ public class AdAudiencesApi {
 
   /**
    * Add users to audience
-   * Upload user data (emails and/or phone numbers) to a customer_list audience. Data is SHA256-hashed server-side before sending to Meta. Max 10,000 users per request.
+   * Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
    * @param audienceId  (required)
    * @param addUsersToAdAudienceRequest  (required)
    * @param headers Optional headers to include in the request
@@ -198,7 +198,7 @@ public class AdAudiencesApi {
 
   /**
    * Add users to audience
-   * Upload user data (emails and/or phone numbers) to a customer_list audience. Data is SHA256-hashed server-side before sending to Meta. Max 10,000 users per request.
+   * Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
    * @param audienceId  (required)
    * @param addUsersToAdAudienceRequest  (required)
    * @return ApiResponse&lt;AddUsersToAdAudience200Response&gt;
@@ -210,7 +210,7 @@ public class AdAudiencesApi {
 
   /**
    * Add users to audience
-   * Upload user data (emails and/or phone numbers) to a customer_list audience. Data is SHA256-hashed server-side before sending to Meta. Max 10,000 users per request.
+   * Upload user data to a customer_list audience. Data is SHA256-hashed server-side before sending to the platform. Email is used on every platform; phone is used on Meta only (other platforms ignore it). On TikTok and Pinterest, the first upload also provisions the audience (deferred create). LinkedIn uploads are full-replace. Max 10,000 users per request. 
    * @param audienceId  (required)
    * @param addUsersToAdAudienceRequest  (required)
    * @param headers Optional headers to include in the request
@@ -304,7 +304,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a customer list, website retargeting, or lookalike audience on Meta (Facebook/Instagram).
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @return CreateAdAudience201Response
    * @throws ApiException if fails to make API call
@@ -315,7 +315,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a customer list, website retargeting, or lookalike audience on Meta (Facebook/Instagram).
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateAdAudience201Response
@@ -328,7 +328,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a customer list, website retargeting, or lookalike audience on Meta (Facebook/Instagram).
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @return ApiResponse&lt;CreateAdAudience201Response&gt;
    * @throws ApiException if fails to make API call
@@ -339,7 +339,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a customer list, website retargeting, or lookalike audience on Meta (Facebook/Instagram).
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateAdAudience201Response&gt;
