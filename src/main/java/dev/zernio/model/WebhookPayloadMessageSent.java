@@ -24,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.WebhookPayloadMessageAccount;
-import dev.zernio.model.WebhookPayloadMessageConversation;
 import dev.zernio.model.WebhookPayloadMessageSentMessage;
+import dev.zernio.model.WebhookPayloadReactionAccount;
+import dev.zernio.model.WebhookPayloadReactionConversation;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSent.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadMessageSent.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T15:00:55.278217703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T10:12:15.418350338Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSent {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -93,11 +93,11 @@ public class WebhookPayloadMessageSent {
 
   public static final String JSON_PROPERTY_CONVERSATION = "conversation";
   @javax.annotation.Nonnull
-  private WebhookPayloadMessageConversation conversation;
+  private WebhookPayloadReactionConversation conversation;
 
   public static final String JSON_PROPERTY_ACCOUNT = "account";
   @javax.annotation.Nonnull
-  private WebhookPayloadMessageAccount account;
+  private WebhookPayloadReactionAccount account;
 
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nonnull
@@ -178,7 +178,7 @@ public class WebhookPayloadMessageSent {
   }
 
 
-  public WebhookPayloadMessageSent conversation(@javax.annotation.Nonnull WebhookPayloadMessageConversation conversation) {
+  public WebhookPayloadMessageSent conversation(@javax.annotation.Nonnull WebhookPayloadReactionConversation conversation) {
     this.conversation = conversation;
     return this;
   }
@@ -190,19 +190,19 @@ public class WebhookPayloadMessageSent {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public WebhookPayloadMessageConversation getConversation() {
+  public WebhookPayloadReactionConversation getConversation() {
     return conversation;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setConversation(@javax.annotation.Nonnull WebhookPayloadMessageConversation conversation) {
+  public void setConversation(@javax.annotation.Nonnull WebhookPayloadReactionConversation conversation) {
     this.conversation = conversation;
   }
 
 
-  public WebhookPayloadMessageSent account(@javax.annotation.Nonnull WebhookPayloadMessageAccount account) {
+  public WebhookPayloadMessageSent account(@javax.annotation.Nonnull WebhookPayloadReactionAccount account) {
     this.account = account;
     return this;
   }
@@ -214,14 +214,14 @@ public class WebhookPayloadMessageSent {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public WebhookPayloadMessageAccount getAccount() {
+  public WebhookPayloadReactionAccount getAccount() {
     return account;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ACCOUNT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAccount(@javax.annotation.Nonnull WebhookPayloadMessageAccount account) {
+  public void setAccount(@javax.annotation.Nonnull WebhookPayloadReactionAccount account) {
     this.account = account;
   }
 

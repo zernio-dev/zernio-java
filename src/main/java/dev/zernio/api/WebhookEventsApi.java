@@ -30,6 +30,7 @@ import dev.zernio.model.WebhookPayloadMessageEdited;
 import dev.zernio.model.WebhookPayloadMessageSent;
 import dev.zernio.model.WebhookPayloadPost;
 import dev.zernio.model.WebhookPayloadPostPlatform;
+import dev.zernio.model.WebhookPayloadReaction;
 import dev.zernio.model.WebhookPayloadReviewNew;
 import dev.zernio.model.WebhookPayloadReviewUpdated;
 import dev.zernio.model.WebhookPayloadTest;
@@ -66,7 +67,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-20T15:00:55.278217703Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-21T10:12:15.418350338Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2348,6 +2349,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Reaction received event
+   * Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+   * @param webhookPayloadReaction  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onReactionReceived(@javax.annotation.Nonnull WebhookPayloadReaction webhookPayloadReaction) throws ApiException {
+    onReactionReceived(webhookPayloadReaction, null);
+  }
+
+  /**
+   * Reaction received event
+   * Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+   * @param webhookPayloadReaction  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onReactionReceived(@javax.annotation.Nonnull WebhookPayloadReaction webhookPayloadReaction, Map<String, String> headers) throws ApiException {
+    onReactionReceivedWithHttpInfo(webhookPayloadReaction, headers);
+  }
+
+  /**
+   * Reaction received event
+   * Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+   * @param webhookPayloadReaction  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReactionReceivedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReaction webhookPayloadReaction) throws ApiException {
+    return onReactionReceivedWithHttpInfo(webhookPayloadReaction, null);
+  }
+
+  /**
+   * Reaction received event
+   * Fired when a participant adds or removes an emoji reaction on a message. Supported on WhatsApp and Telegram. Distinct from message.received so a reaction (e.g. a thumbs-up) is not mistaken for an inbound message. The &#x60;reaction.action&#x60; field is &#x60;added&#x60; or &#x60;removed&#x60;. On WhatsApp removals the platform does not report which emoji was removed, so &#x60;reaction.emoji&#x60; may be an empty string. Requires the Inbox add-on. 
+   * @param webhookPayloadReaction  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onReactionReceivedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadReaction webhookPayloadReaction, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onReactionReceivedRequestBuilder(webhookPayloadReaction, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onReactionReceived", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onReactionReceivedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadReaction webhookPayloadReaction, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadReaction' is set
+    if (webhookPayloadReaction == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadReaction' when calling onReactionReceived");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/reaction.received";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadReaction);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

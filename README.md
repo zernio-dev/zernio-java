@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.1
 
-- Build date: 2026-05-20T15:00:55.278217703Z[Etc/UTC]
+- Build date: 2026-05-21T10:12:15.418350338Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1584,8 +1584,6 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCommentCommentAuthor](docs/WebhookPayloadCommentCommentAuthor.md)
  - [WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)
  - [WebhookPayloadMessage](docs/WebhookPayloadMessage.md)
- - [WebhookPayloadMessageAccount](docs/WebhookPayloadMessageAccount.md)
- - [WebhookPayloadMessageConversation](docs/WebhookPayloadMessageConversation.md)
  - [WebhookPayloadMessageDeleted](docs/WebhookPayloadMessageDeleted.md)
  - [WebhookPayloadMessageDeliveryStatus](docs/WebhookPayloadMessageDeliveryStatus.md)
  - [WebhookPayloadMessageDeliveryStatusError](docs/WebhookPayloadMessageDeliveryStatusError.md)
@@ -1608,6 +1606,11 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadPostPlatformPost](docs/WebhookPayloadPostPlatformPost.md)
  - [WebhookPayloadPostPost](docs/WebhookPayloadPostPost.md)
  - [WebhookPayloadPostPostPlatformsInner](docs/WebhookPayloadPostPostPlatformsInner.md)
+ - [WebhookPayloadReaction](docs/WebhookPayloadReaction.md)
+ - [WebhookPayloadReactionAccount](docs/WebhookPayloadReactionAccount.md)
+ - [WebhookPayloadReactionConversation](docs/WebhookPayloadReactionConversation.md)
+ - [WebhookPayloadReactionReaction](docs/WebhookPayloadReactionReaction.md)
+ - [WebhookPayloadReactionReactionSender](docs/WebhookPayloadReactionReactionSender.md)
  - [WebhookPayloadReviewNew](docs/WebhookPayloadReviewNew.md)
  - [WebhookPayloadReviewNewAccount](docs/WebhookPayloadReviewNewAccount.md)
  - [WebhookPayloadReviewUpdated](docs/WebhookPayloadReviewUpdated.md)
