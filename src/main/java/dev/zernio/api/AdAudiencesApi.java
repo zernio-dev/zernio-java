@@ -53,7 +53,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAudiencesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -304,7 +304,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @return CreateAdAudience201Response
    * @throws ApiException if fails to make API call
@@ -315,7 +315,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateAdAudience201Response
@@ -328,7 +328,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @return ApiResponse&lt;CreateAdAudience201Response&gt;
    * @throws ApiException if fails to make API call
@@ -339,7 +339,7 @@ public class AdAudiencesApi {
 
   /**
    * Create custom audience
-   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+   * Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
    * @param createAdAudienceRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateAdAudience201Response&gt;
@@ -667,11 +667,12 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
    * @return ListAdAudiences200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdAudiences200Response listAdAudiences(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform) throws ApiException {
-    return listAdAudiences(accountId, adAccountId, platform, null);
+  public ListAdAudiences200Response listAdAudiences(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String type) throws ApiException {
+    return listAdAudiences(accountId, adAccountId, platform, type, null);
   }
 
   /**
@@ -680,12 +681,13 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAdAudiences200Response
    * @throws ApiException if fails to make API call
    */
-  public ListAdAudiences200Response listAdAudiences(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAdAudiences200Response> localVarResponse = listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, headers);
+  public ListAdAudiences200Response listAdAudiences(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String type, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdAudiences200Response> localVarResponse = listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type, headers);
     return localVarResponse.getData();
   }
 
@@ -695,11 +697,12 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
    * @return ApiResponse&lt;ListAdAudiences200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdAudiences200Response> listAdAudiencesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform) throws ApiException {
-    return listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, null);
+  public ApiResponse<ListAdAudiences200Response> listAdAudiencesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String type) throws ApiException {
+    return listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type, null);
   }
 
   /**
@@ -708,12 +711,13 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAdAudiences200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAdAudiences200Response> listAdAudiencesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listAdAudiencesRequestBuilder(accountId, adAccountId, platform, headers);
+  public ApiResponse<ListAdAudiences200Response> listAdAudiencesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String type, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdAudiencesRequestBuilder(accountId, adAccountId, platform, type, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -760,7 +764,7 @@ public class AdAudiencesApi {
     }
   }
 
-  private HttpRequest.Builder listAdAudiencesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listAdAudiencesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String type, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdAudiences");
@@ -783,6 +787,8 @@ public class AdAudiencesApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
     localVarQueryParameterBaseName = "platform";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "type";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("type", type));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

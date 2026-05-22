@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.TargetingSpec;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -38,11 +39,12 @@ import dev.zernio.ApiClient;
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_NAME,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_DESCRIPTION,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_TYPE,
+  ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_SPEC,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_PLATFORM,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_SIZE,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAudiences200ResponseAudiencesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -68,7 +70,9 @@ public class ListAdAudiences200ResponseAudiencesInner {
     
     WEBSITE(String.valueOf("website")),
     
-    LOOKALIKE(String.valueOf("lookalike"));
+    LOOKALIKE(String.valueOf("lookalike")),
+    
+    SAVED_TARGETING(String.valueOf("saved_targeting"));
 
     private String value;
 
@@ -100,6 +104,10 @@ public class ListAdAudiences200ResponseAudiencesInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable
   private TypeEnum type;
+
+  public static final String JSON_PROPERTY_SPEC = "spec";
+  @javax.annotation.Nullable
+  private TargetingSpec spec;
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -236,6 +244,30 @@ public class ListAdAudiences200ResponseAudiencesInner {
   }
 
 
+  public ListAdAudiences200ResponseAudiencesInner spec(@javax.annotation.Nullable TargetingSpec spec) {
+    this.spec = spec;
+    return this;
+  }
+
+  /**
+   * Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types.
+   * @return spec
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TargetingSpec getSpec() {
+    return spec;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpec(@javax.annotation.Nullable TargetingSpec spec) {
+    this.spec = spec;
+  }
+
+
   public ListAdAudiences200ResponseAudiencesInner platform(@javax.annotation.Nullable String platform) {
     this.platform = platform;
     return this;
@@ -325,6 +357,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
         Objects.equals(this.name, listAdAudiences200ResponseAudiencesInner.name) &&
         Objects.equals(this.description, listAdAudiences200ResponseAudiencesInner.description) &&
         Objects.equals(this.type, listAdAudiences200ResponseAudiencesInner.type) &&
+        Objects.equals(this.spec, listAdAudiences200ResponseAudiencesInner.spec) &&
         Objects.equals(this.platform, listAdAudiences200ResponseAudiencesInner.platform) &&
         Objects.equals(this.size, listAdAudiences200ResponseAudiencesInner.size) &&
         Objects.equals(this.status, listAdAudiences200ResponseAudiencesInner.status);
@@ -332,7 +365,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformAudienceId, name, description, type, platform, size, status);
+    return Objects.hash(id, platformAudienceId, name, description, type, spec, platform, size, status);
   }
 
   @Override
@@ -344,6 +377,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    spec: ").append(toIndentedString(spec)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -417,6 +451,11 @@ public class ListAdAudiences200ResponseAudiencesInner {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `spec` to the URL query string
+    if (getSpec() != null) {
+      joiner.add(getSpec().toUrlQueryString(prefix + "spec" + suffix));
     }
 
     // add `platform` to the URL query string

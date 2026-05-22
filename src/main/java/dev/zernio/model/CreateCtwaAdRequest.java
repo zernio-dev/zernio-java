@@ -25,8 +25,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateCtwaAdRequestCreativesInner;
-import dev.zernio.model.CreateCtwaAdRequestInterestsInner;
 import dev.zernio.model.CreateCtwaAdRequestVideo;
+import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.time.OffsetDateTime;
@@ -66,7 +66,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -165,7 +165,7 @@ public class CreateCtwaAdRequest {
 
   public static final String JSON_PROPERTY_INTERESTS = "interests";
   @javax.annotation.Nullable
-  private List<CreateCtwaAdRequestInterestsInner> interests = new ArrayList<>();
+  private List<CreateStandaloneAdRequestBehaviorsInner> interests = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AUDIENCE_ID = "audienceId";
   @javax.annotation.Nullable
@@ -694,12 +694,12 @@ public class CreateCtwaAdRequest {
   }
 
 
-  public CreateCtwaAdRequest interests(@javax.annotation.Nullable List<CreateCtwaAdRequestInterestsInner> interests) {
+  public CreateCtwaAdRequest interests(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> interests) {
     this.interests = interests;
     return this;
   }
 
-  public CreateCtwaAdRequest addInterestsItem(CreateCtwaAdRequestInterestsInner interestsItem) {
+  public CreateCtwaAdRequest addInterestsItem(CreateStandaloneAdRequestBehaviorsInner interestsItem) {
     if (this.interests == null) {
       this.interests = new ArrayList<>();
     }
@@ -714,14 +714,14 @@ public class CreateCtwaAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_INTERESTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateCtwaAdRequestInterestsInner> getInterests() {
+  public List<CreateStandaloneAdRequestBehaviorsInner> getInterests() {
     return interests;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_INTERESTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInterests(@javax.annotation.Nullable List<CreateCtwaAdRequestInterestsInner> interests) {
+  public void setInterests(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> interests) {
     this.interests = interests;
   }
 

@@ -29,6 +29,8 @@ import dev.zernio.model.CreateCtwaAdRequest;
 import dev.zernio.model.CreateStandaloneAd201Response;
 import dev.zernio.model.CreateStandaloneAdRequest;
 import dev.zernio.model.DeleteAccountGroup200Response;
+import dev.zernio.model.EstimateAdReach200Response;
+import dev.zernio.model.EstimateAdReachRequest;
 import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
@@ -43,7 +45,7 @@ import dev.zernio.model.ListConversionDestinations200Response;
 import java.time.LocalDate;
 import dev.zernio.model.RemoveConversionAssociations200Response;
 import dev.zernio.model.SearchAdInterests200Response;
-import dev.zernio.model.SearchAdTargetingLocations200Response;
+import dev.zernio.model.SearchAdTargeting200Response;
 import dev.zernio.model.SendConversions200Response;
 import dev.zernio.model.SendConversionsRequest;
 import dev.zernio.model.SendWhatsAppConversion200Response;
@@ -77,7 +79,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1075,6 +1077,129 @@ public class AdsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Estimate audience reach
+   * Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+   * @param estimateAdReachRequest  (required)
+   * @return EstimateAdReach200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EstimateAdReach200Response estimateAdReach(@javax.annotation.Nonnull EstimateAdReachRequest estimateAdReachRequest) throws ApiException {
+    return estimateAdReach(estimateAdReachRequest, null);
+  }
+
+  /**
+   * Estimate audience reach
+   * Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+   * @param estimateAdReachRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return EstimateAdReach200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EstimateAdReach200Response estimateAdReach(@javax.annotation.Nonnull EstimateAdReachRequest estimateAdReachRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<EstimateAdReach200Response> localVarResponse = estimateAdReachWithHttpInfo(estimateAdReachRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Estimate audience reach
+   * Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+   * @param estimateAdReachRequest  (required)
+   * @return ApiResponse&lt;EstimateAdReach200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EstimateAdReach200Response> estimateAdReachWithHttpInfo(@javax.annotation.Nonnull EstimateAdReachRequest estimateAdReachRequest) throws ApiException {
+    return estimateAdReachWithHttpInfo(estimateAdReachRequest, null);
+  }
+
+  /**
+   * Estimate audience reach
+   * Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+   * @param estimateAdReachRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;EstimateAdReach200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EstimateAdReach200Response> estimateAdReachWithHttpInfo(@javax.annotation.Nonnull EstimateAdReachRequest estimateAdReachRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = estimateAdReachRequestBuilder(estimateAdReachRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("estimateAdReach", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<EstimateAdReach200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        EstimateAdReach200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<EstimateAdReach200Response>() {});
+        
+
+        return new ApiResponse<EstimateAdReach200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder estimateAdReachRequestBuilder(@javax.annotation.Nonnull EstimateAdReachRequest estimateAdReachRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'estimateAdReachRequest' is set
+    if (estimateAdReachRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'estimateAdReachRequest' when calling estimateAdReach");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/targeting/reach-estimate";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(estimateAdReachRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -2735,52 +2860,60 @@ public class AdsApi {
   }
 
   /**
-   * Search targeting interests
-   * Search for interest-based targeting options available on the platform.
+   * Search targeting interests (deprecated)
+   * Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
    * @param q Search query (required)
    * @param accountId Social account ID (required)
    * @return SearchAdInterests200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public SearchAdInterests200Response searchAdInterests(@javax.annotation.Nonnull String q, @javax.annotation.Nonnull String accountId) throws ApiException {
     return searchAdInterests(q, accountId, null);
   }
 
   /**
-   * Search targeting interests
-   * Search for interest-based targeting options available on the platform.
+   * Search targeting interests (deprecated)
+   * Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
    * @param q Search query (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
    * @return SearchAdInterests200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public SearchAdInterests200Response searchAdInterests(@javax.annotation.Nonnull String q, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
     ApiResponse<SearchAdInterests200Response> localVarResponse = searchAdInterestsWithHttpInfo(q, accountId, headers);
     return localVarResponse.getData();
   }
 
   /**
-   * Search targeting interests
-   * Search for interest-based targeting options available on the platform.
+   * Search targeting interests (deprecated)
+   * Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
    * @param q Search query (required)
    * @param accountId Social account ID (required)
    * @return ApiResponse&lt;SearchAdInterests200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<SearchAdInterests200Response> searchAdInterestsWithHttpInfo(@javax.annotation.Nonnull String q, @javax.annotation.Nonnull String accountId) throws ApiException {
     return searchAdInterestsWithHttpInfo(q, accountId, null);
   }
 
   /**
-   * Search targeting interests
-   * Search for interest-based targeting options available on the platform.
+   * Search targeting interests (deprecated)
+   * Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
    * @param q Search query (required)
    * @param accountId Social account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SearchAdInterests200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<SearchAdInterests200Response> searchAdInterestsWithHttpInfo(@javax.annotation.Nonnull String q, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = searchAdInterestsRequestBuilder(q, accountId, headers);
     try {
@@ -2877,66 +3010,70 @@ public class AdsApi {
   }
 
   /**
-   * Search geo targeting locations (Meta)
-   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
-   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
-   * @param q Location name. Locality only — no region/country suffix. (required)
-   * @param type Type of location to search. Defaults to city. (optional, default to city)
-   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * Search targeting options
+   * Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
+   * @param accountId Social account ID (a connected account on the target ad platform). (required)
+   * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
+   * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
-   * @return SearchAdTargetingLocations200Response
+   * @return SearchAdTargeting200Response
    * @throws ApiException if fails to make API call
    */
-  public SearchAdTargetingLocations200Response searchAdTargetingLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit) throws ApiException {
-    return searchAdTargetingLocations(accountId, q, type, countryCode, limit, null);
+  public SearchAdTargeting200Response searchAdTargeting(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String dimension, @javax.annotation.Nullable String geoType, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchAdTargeting(accountId, q, dimension, geoType, countryCode, limit, null);
   }
 
   /**
-   * Search geo targeting locations (Meta)
-   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
-   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
-   * @param q Location name. Locality only — no region/country suffix. (required)
-   * @param type Type of location to search. Defaults to city. (optional, default to city)
-   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * Search targeting options
+   * Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
+   * @param accountId Social account ID (a connected account on the target ad platform). (required)
+   * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
+   * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
    * @param headers Optional headers to include in the request
-   * @return SearchAdTargetingLocations200Response
+   * @return SearchAdTargeting200Response
    * @throws ApiException if fails to make API call
    */
-  public SearchAdTargetingLocations200Response searchAdTargetingLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
-    ApiResponse<SearchAdTargetingLocations200Response> localVarResponse = searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit, headers);
+  public SearchAdTargeting200Response searchAdTargeting(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String dimension, @javax.annotation.Nullable String geoType, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchAdTargeting200Response> localVarResponse = searchAdTargetingWithHttpInfo(accountId, q, dimension, geoType, countryCode, limit, headers);
     return localVarResponse.getData();
   }
 
   /**
-   * Search geo targeting locations (Meta)
-   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
-   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
-   * @param q Location name. Locality only — no region/country suffix. (required)
-   * @param type Type of location to search. Defaults to city. (optional, default to city)
-   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * Search targeting options
+   * Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
+   * @param accountId Social account ID (a connected account on the target ad platform). (required)
+   * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
+   * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
-   * @return ApiResponse&lt;SearchAdTargetingLocations200Response&gt;
+   * @return ApiResponse&lt;SearchAdTargeting200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SearchAdTargetingLocations200Response> searchAdTargetingLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit) throws ApiException {
-    return searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit, null);
+  public ApiResponse<SearchAdTargeting200Response> searchAdTargetingWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String dimension, @javax.annotation.Nullable String geoType, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchAdTargetingWithHttpInfo(accountId, q, dimension, geoType, countryCode, limit, null);
   }
 
   /**
-   * Search geo targeting locations (Meta)
-   * Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
-   * @param accountId Social account ID (must be a connected Facebook or Instagram account). (required)
-   * @param q Location name. Locality only — no region/country suffix. (required)
-   * @param type Type of location to search. Defaults to city. (optional, default to city)
-   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. (optional)
+   * Search targeting options
+   * Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
+   * @param accountId Social account ID (a connected account on the target ad platform). (required)
+   * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
+   * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;SearchAdTargetingLocations200Response&gt;
+   * @return ApiResponse&lt;SearchAdTargeting200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SearchAdTargetingLocations200Response> searchAdTargetingLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchAdTargetingLocationsRequestBuilder(accountId, q, type, countryCode, limit, headers);
+  public ApiResponse<SearchAdTargeting200Response> searchAdTargetingWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String dimension, @javax.annotation.Nullable String geoType, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchAdTargetingRequestBuilder(accountId, q, dimension, geoType, countryCode, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2947,11 +3084,11 @@ public class AdsApi {
       InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("searchAdTargetingLocations", localVarResponse);
+          throw getApiException("searchAdTargeting", localVarResponse);
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<SearchAdTargetingLocations200Response>(
+          return new ApiResponse<SearchAdTargeting200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -2961,10 +3098,10 @@ public class AdsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        SearchAdTargetingLocations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchAdTargetingLocations200Response>() {});
+        SearchAdTargeting200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchAdTargeting200Response>() {});
         
 
-        return new ApiResponse<SearchAdTargetingLocations200Response>(
+        return new ApiResponse<SearchAdTargeting200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -2983,14 +3120,14 @@ public class AdsApi {
     }
   }
 
-  private HttpRequest.Builder searchAdTargetingLocationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String type, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder searchAdTargetingRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String q, @javax.annotation.Nullable String dimension, @javax.annotation.Nullable String geoType, @javax.annotation.Nullable String countryCode, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
-      throw new ApiException(400, "Missing the required parameter 'accountId' when calling searchAdTargetingLocations");
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling searchAdTargeting");
     }
     // verify the required parameter 'q' is set
     if (q == null) {
-      throw new ApiException(400, "Missing the required parameter 'q' when calling searchAdTargetingLocations");
+      throw new ApiException(400, "Missing the required parameter 'q' when calling searchAdTargeting");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -3004,8 +3141,10 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "q";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("q", q));
-    localVarQueryParameterBaseName = "type";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("type", type));
+    localVarQueryParameterBaseName = "dimension";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("dimension", dimension));
+    localVarQueryParameterBaseName = "geoType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("geoType", geoType));
     localVarQueryParameterBaseName = "countryCode";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("countryCode", countryCode));
     localVarQueryParameterBaseName = "limit";

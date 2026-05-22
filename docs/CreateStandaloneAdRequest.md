@@ -33,6 +33,14 @@
 |**ageMin** | **Integer** |  |  [optional] |
 |**ageMax** | **Integer** |  |  [optional] |
 |**interests** | [**List&lt;UpdateAdRequestTargetingInterestsInner&gt;**](UpdateAdRequestTargetingInterestsInner.md) | Interest objects from /v1/ads/interests. Each must include id and name. |  [optional] |
+|**zips** | [**List&lt;CreateStandaloneAdRequestZipsInner&gt;**](CreateStandaloneAdRequestZipsInner.md) | Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X. |  [optional] |
+|**metros** | [**List&lt;CreateStandaloneAdRequestZipsInner&gt;**](CreateStandaloneAdRequestZipsInner.md) | DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro. |  [optional] |
+|**customLocations** | [**List&lt;CreateStandaloneAdRequestCustomLocationsInner&gt;**](CreateStandaloneAdRequestCustomLocationsInner.md) | Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support. |  [optional] |
+|**behaviors** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id. |  [optional] |
+|**incomeTier** | [**IncomeTierEnum**](#IncomeTierEnum) | Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;.  |  [optional] |
+|**languages** | **List&lt;String&gt;** | Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language. |  [optional] |
+|**savedTargetingId** | **String** | ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field.  |  [optional] |
+|**specialAdCategories** | [**List&lt;SpecialAdCategoriesEnum&gt;**](#List&lt;SpecialAdCategoriesEnum&gt;) | Meta only. Declares the ad&#39;s special category, required for housing, employment, credit, or political/social-issue ads (Meta enforces restricted targeting for these). Note: setting a special category disables income/zip targeting on Meta.  |  [optional] |
 |**endDate** | **OffsetDateTime** | Required for lifetime budgets |  [optional] |
 |**audienceId** | **String** | Custom audience ID for targeting |  [optional] |
 |**campaignType** | [**CampaignTypeEnum**](#CampaignTypeEnum) | Google only |  [optional] |
@@ -98,6 +106,28 @@
 | APPLY | &quot;APPLY&quot; |
 | SEE_MORE | &quot;SEE_MORE&quot; |
 | BUY_NOW | &quot;BUY_NOW&quot; |
+
+
+
+## Enum: IncomeTierEnum
+
+| Name | Value |
+|---- | -----|
+| TOP_5 | &quot;top_5&quot; |
+| TOP_10 | &quot;top_10&quot; |
+| TOP_10_25 | &quot;top_10_25&quot; |
+| TOP_25_50 | &quot;top_25_50&quot; |
+
+
+
+## Enum: List&lt;SpecialAdCategoriesEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| HOUSING | &quot;HOUSING&quot; |
+| EMPLOYMENT | &quot;EMPLOYMENT&quot; |
+| CREDIT | &quot;CREDIT&quot; |
+| ISSUES_ELECTIONS_POLITICS | &quot;ISSUES_ELECTIONS_POLITICS&quot; |
 
 
 

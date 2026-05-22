@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppBusinessProfileRequest.JSON_PROPERTY_VERTICAL,
   UpdateWhatsAppBusinessProfileRequest.JSON_PROPERTY_PROFILE_PICTURE_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppBusinessProfileRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

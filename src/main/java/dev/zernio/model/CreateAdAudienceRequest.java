@@ -24,472 +24,229 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SavedTargetingAudience;
+import dev.zernio.model.TargetingSpec;
+import dev.zernio.model.UploadedOrDerivedAudience;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * CreateAdAudienceRequest
- */
-@JsonPropertyOrder({
-  CreateAdAudienceRequest.JSON_PROPERTY_ACCOUNT_ID,
-  CreateAdAudienceRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
-  CreateAdAudienceRequest.JSON_PROPERTY_NAME,
-  CreateAdAudienceRequest.JSON_PROPERTY_DESCRIPTION,
-  CreateAdAudienceRequest.JSON_PROPERTY_TYPE,
-  CreateAdAudienceRequest.JSON_PROPERTY_PIXEL_ID,
-  CreateAdAudienceRequest.JSON_PROPERTY_RETENTION_DAYS,
-  CreateAdAudienceRequest.JSON_PROPERTY_SOURCE_AUDIENCE_ID,
-  CreateAdAudienceRequest.JSON_PROPERTY_COUNTRY,
-  CreateAdAudienceRequest.JSON_PROPERTY_RATIO,
-  CreateAdAudienceRequest.JSON_PROPERTY_RULE,
-  CreateAdAudienceRequest.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class CreateAdAudienceRequest {
-  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
-  @javax.annotation.Nonnull
-  private String accountId;
+import dev.zernio.JSON;
 
-  public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
-  @javax.annotation.Nonnull
-  private String adAccountId;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using = CreateAdAudienceRequest.CreateAdAudienceRequestDeserializer.class)
+@JsonSerialize(using = CreateAdAudienceRequest.CreateAdAudienceRequestSerializer.class)
+public class CreateAdAudienceRequest extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(CreateAdAudienceRequest.class.getName());
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  @javax.annotation.Nonnull
-  private String name;
+    public static class CreateAdAudienceRequestSerializer extends StdSerializer<CreateAdAudienceRequest> {
+        public CreateAdAudienceRequestSerializer(Class<CreateAdAudienceRequest> t) {
+            super(t);
+        }
 
-  public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+        public CreateAdAudienceRequestSerializer() {
+            this(null);
+        }
 
-  /**
-   * Gets or Sets type
-   */
-  public enum TypeEnum {
-    CUSTOMER_LIST(String.valueOf("customer_list")),
-    
-    WEBSITE(String.valueOf("website")),
-    
-    LOOKALIKE(String.valueOf("lookalike"));
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
+        @Override
+        public void serialize(CreateAdAudienceRequest value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
 
-    @JsonValue
-    public String getValue() {
-      return value;
+    public static class CreateAdAudienceRequestDeserializer extends StdDeserializer<CreateAdAudienceRequest> {
+        public CreateAdAudienceRequestDeserializer() {
+            this(CreateAdAudienceRequest.class);
+        }
+
+        public CreateAdAudienceRequestDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        public CreateAdAudienceRequest deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize SavedTargetingAudience
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (SavedTargetingAudience.class.equals(Integer.class) || SavedTargetingAudience.class.equals(Long.class) || SavedTargetingAudience.class.equals(Float.class) || SavedTargetingAudience.class.equals(Double.class) || SavedTargetingAudience.class.equals(Boolean.class) || SavedTargetingAudience.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((SavedTargetingAudience.class.equals(Integer.class) || SavedTargetingAudience.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((SavedTargetingAudience.class.equals(Float.class) || SavedTargetingAudience.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (SavedTargetingAudience.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (SavedTargetingAudience.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(SavedTargetingAudience.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'SavedTargetingAudience'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'SavedTargetingAudience'", e);
+            }
+
+            // deserialize UploadedOrDerivedAudience
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (UploadedOrDerivedAudience.class.equals(Integer.class) || UploadedOrDerivedAudience.class.equals(Long.class) || UploadedOrDerivedAudience.class.equals(Float.class) || UploadedOrDerivedAudience.class.equals(Double.class) || UploadedOrDerivedAudience.class.equals(Boolean.class) || UploadedOrDerivedAudience.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((UploadedOrDerivedAudience.class.equals(Integer.class) || UploadedOrDerivedAudience.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((UploadedOrDerivedAudience.class.equals(Float.class) || UploadedOrDerivedAudience.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (UploadedOrDerivedAudience.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (UploadedOrDerivedAudience.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(UploadedOrDerivedAudience.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'UploadedOrDerivedAudience'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'UploadedOrDerivedAudience'", e);
+            }
+
+            if (match == 1) {
+                CreateAdAudienceRequest ret = new CreateAdAudienceRequest();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for CreateAdAudienceRequest: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public CreateAdAudienceRequest getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "CreateAdAudienceRequest cannot be null");
+        }
+    }
+
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
+
+    public CreateAdAudienceRequest() {
+        super("oneOf", Boolean.FALSE);
+    }
+
+    public CreateAdAudienceRequest(SavedTargetingAudience o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public CreateAdAudienceRequest(UploadedOrDerivedAudience o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("SavedTargetingAudience", SavedTargetingAudience.class);
+        schemas.put("UploadedOrDerivedAudience", UploadedOrDerivedAudience.class);
+        JSON.registerDescendants(CreateAdAudienceRequest.class, Collections.unmodifiableMap(schemas));
     }
 
     @Override
-    public String toString() {
-      return String.valueOf(value);
+    public Map<String, Class<?>> getSchemas() {
+        return CreateAdAudienceRequest.schemas;
     }
 
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * SavedTargetingAudience, UploadedOrDerivedAudience
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(SavedTargetingAudience.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+
+        if (JSON.isInstanceOf(UploadedOrDerivedAudience.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be SavedTargetingAudience, UploadedOrDerivedAudience");
     }
-  }
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  @javax.annotation.Nonnull
-  private TypeEnum type;
-
-  public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
-  @javax.annotation.Nullable
-  private String pixelId;
-
-  public static final String JSON_PROPERTY_RETENTION_DAYS = "retentionDays";
-  @javax.annotation.Nullable
-  private Integer retentionDays;
-
-  public static final String JSON_PROPERTY_SOURCE_AUDIENCE_ID = "sourceAudienceId";
-  @javax.annotation.Nullable
-  private String sourceAudienceId;
-
-  public static final String JSON_PROPERTY_COUNTRY = "country";
-  @javax.annotation.Nullable
-  private String country;
-
-  public static final String JSON_PROPERTY_RATIO = "ratio";
-  @javax.annotation.Nullable
-  private BigDecimal ratio;
-
-  public static final String JSON_PROPERTY_RULE = "rule";
-  @javax.annotation.Nullable
-  private Object rule;
-
-  public static final String JSON_PROPERTY_CUSTOMER_FILE_SOURCE = "customerFileSource";
-  @javax.annotation.Nullable
-  private String customerFileSource;
-
-  public CreateAdAudienceRequest() { 
-  }
-
-  public CreateAdAudienceRequest accountId(@javax.annotation.Nonnull String accountId) {
-    this.accountId = accountId;
-    return this;
-  }
-
-  /**
-   * Get accountId
-   * @return accountId
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getAccountId() {
-    return accountId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAccountId(@javax.annotation.Nonnull String accountId) {
-    this.accountId = accountId;
-  }
-
-
-  public CreateAdAudienceRequest adAccountId(@javax.annotation.Nonnull String adAccountId) {
-    this.adAccountId = adAccountId;
-    return this;
-  }
-
-  /**
-   * Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id).
-   * @return adAccountId
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getAdAccountId() {
-    return adAccountId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAdAccountId(@javax.annotation.Nonnull String adAccountId) {
-    this.adAccountId = adAccountId;
-  }
-
-
-  public CreateAdAudienceRequest name(@javax.annotation.Nonnull String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(@javax.annotation.Nonnull String name) {
-    this.name = name;
-  }
-
-
-  public CreateAdAudienceRequest description(@javax.annotation.Nullable String description) {
-    this.description = description;
-    return this;
-  }
-
-  /**
-   * Get description
-   * @return description
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
-    this.description = description;
-  }
-
-
-  public CreateAdAudienceRequest type(@javax.annotation.Nonnull TypeEnum type) {
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Get type
-   * @return type
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public TypeEnum getType() {
-    return type;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(@javax.annotation.Nonnull TypeEnum type) {
-    this.type = type;
-  }
-
-
-  public CreateAdAudienceRequest pixelId(@javax.annotation.Nullable String pixelId) {
-    this.pixelId = pixelId;
-    return this;
-  }
-
-  /**
-   * Required for website audiences
-   * @return pixelId
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PIXEL_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPixelId() {
-    return pixelId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PIXEL_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPixelId(@javax.annotation.Nullable String pixelId) {
-    this.pixelId = pixelId;
-  }
-
-
-  public CreateAdAudienceRequest retentionDays(@javax.annotation.Nullable Integer retentionDays) {
-    this.retentionDays = retentionDays;
-    return this;
-  }
-
-  /**
-   * Required for website audiences
-   * minimum: 1
-   * maximum: 180
-   * @return retentionDays
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RETENTION_DAYS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getRetentionDays() {
-    return retentionDays;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_RETENTION_DAYS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRetentionDays(@javax.annotation.Nullable Integer retentionDays) {
-    this.retentionDays = retentionDays;
-  }
-
-
-  public CreateAdAudienceRequest sourceAudienceId(@javax.annotation.Nullable String sourceAudienceId) {
-    this.sourceAudienceId = sourceAudienceId;
-    return this;
-  }
-
-  /**
-   * Required for lookalike audiences
-   * @return sourceAudienceId
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_AUDIENCE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSourceAudienceId() {
-    return sourceAudienceId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_AUDIENCE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceAudienceId(@javax.annotation.Nullable String sourceAudienceId) {
-    this.sourceAudienceId = sourceAudienceId;
-  }
-
-
-  public CreateAdAudienceRequest country(@javax.annotation.Nullable String country) {
-    this.country = country;
-    return this;
-  }
-
-  /**
-   * 2-letter code, required for lookalike audiences
-   * @return country
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCountry() {
-    return country;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCountry(@javax.annotation.Nullable String country) {
-    this.country = country;
-  }
-
-
-  public CreateAdAudienceRequest ratio(@javax.annotation.Nullable BigDecimal ratio) {
-    this.ratio = ratio;
-    return this;
-  }
-
-  /**
-   * Required for lookalike audiences
-   * minimum: 0.01
-   * maximum: 0.2
-   * @return ratio
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RATIO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public BigDecimal getRatio() {
-    return ratio;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_RATIO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRatio(@javax.annotation.Nullable BigDecimal ratio) {
-    this.ratio = ratio;
-  }
-
-
-  public CreateAdAudienceRequest rule(@javax.annotation.Nullable Object rule) {
-    this.rule = rule;
-    return this;
-  }
-
-  /**
-   * Pixel event rule for website audiences (optional)
-   * @return rule
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RULE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getRule() {
-    return rule;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_RULE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRule(@javax.annotation.Nullable Object rule) {
-    this.rule = rule;
-  }
-
-
-  public CreateAdAudienceRequest customerFileSource(@javax.annotation.Nullable String customerFileSource) {
-    this.customerFileSource = customerFileSource;
-    return this;
-  }
-
-  /**
-   * Data source declaration for GDPR compliance (customer_list only)
-   * @return customerFileSource
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_FILE_SOURCE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCustomerFileSource() {
-    return customerFileSource;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_FILE_SOURCE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomerFileSource(@javax.annotation.Nullable String customerFileSource) {
-    this.customerFileSource = customerFileSource;
-  }
-
-
-  /**
-   * Return true if this createAdAudience_request object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get the actual instance, which can be the following:
+     * SavedTargetingAudience, UploadedOrDerivedAudience
+     *
+     * @return The actual instance (SavedTargetingAudience, UploadedOrDerivedAudience)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get the actual instance of `SavedTargetingAudience`. If the actual instance is not `SavedTargetingAudience`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `SavedTargetingAudience`
+     * @throws ClassCastException if the instance is not `SavedTargetingAudience`
+     */
+    public SavedTargetingAudience getSavedTargetingAudience() throws ClassCastException {
+        return (SavedTargetingAudience)super.getActualInstance();
     }
-    CreateAdAudienceRequest createAdAudienceRequest = (CreateAdAudienceRequest) o;
-    return Objects.equals(this.accountId, createAdAudienceRequest.accountId) &&
-        Objects.equals(this.adAccountId, createAdAudienceRequest.adAccountId) &&
-        Objects.equals(this.name, createAdAudienceRequest.name) &&
-        Objects.equals(this.description, createAdAudienceRequest.description) &&
-        Objects.equals(this.type, createAdAudienceRequest.type) &&
-        Objects.equals(this.pixelId, createAdAudienceRequest.pixelId) &&
-        Objects.equals(this.retentionDays, createAdAudienceRequest.retentionDays) &&
-        Objects.equals(this.sourceAudienceId, createAdAudienceRequest.sourceAudienceId) &&
-        Objects.equals(this.country, createAdAudienceRequest.country) &&
-        Objects.equals(this.ratio, createAdAudienceRequest.ratio) &&
-        Objects.equals(this.rule, createAdAudienceRequest.rule) &&
-        Objects.equals(this.customerFileSource, createAdAudienceRequest.customerFileSource);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, description, type, pixelId, retentionDays, sourceAudienceId, country, ratio, rule, customerFileSource);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateAdAudienceRequest {\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
-    sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    pixelId: ").append(toIndentedString(pixelId)).append("\n");
-    sb.append("    retentionDays: ").append(toIndentedString(retentionDays)).append("\n");
-    sb.append("    sourceAudienceId: ").append(toIndentedString(sourceAudienceId)).append("\n");
-    sb.append("    country: ").append(toIndentedString(country)).append("\n");
-    sb.append("    ratio: ").append(toIndentedString(ratio)).append("\n");
-    sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
-    sb.append("    customerFileSource: ").append(toIndentedString(customerFileSource)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Get the actual instance of `UploadedOrDerivedAudience`. If the actual instance is not `UploadedOrDerivedAudience`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `UploadedOrDerivedAudience`
+     * @throws ClassCastException if the instance is not `UploadedOrDerivedAudience`
+     */
+    public UploadedOrDerivedAudience getUploadedOrDerivedAudience() throws ClassCastException {
+        return (UploadedOrDerivedAudience)super.getActualInstance();
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
 
   /**
    * Convert the instance into URL query string.
@@ -523,67 +280,20 @@ public class CreateAdAudienceRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `accountId` to the URL query string
-    if (getAccountId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    if (getActualInstance() instanceof UploadedOrDerivedAudience) {
+        if (getActualInstance() != null) {
+          joiner.add(((UploadedOrDerivedAudience)getActualInstance()).toUrlQueryString(prefix + "one_of_0" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `adAccountId` to the URL query string
-    if (getAdAccountId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sadAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdAccountId()))));
+    if (getActualInstance() instanceof SavedTargetingAudience) {
+        if (getActualInstance() != null) {
+          joiner.add(((SavedTargetingAudience)getActualInstance()).toUrlQueryString(prefix + "one_of_1" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
-    }
-
-    // add `description` to the URL query string
-    if (getDescription() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
-    }
-
-    // add `type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
-    }
-
-    // add `pixelId` to the URL query string
-    if (getPixelId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%spixelId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPixelId()))));
-    }
-
-    // add `retentionDays` to the URL query string
-    if (getRetentionDays() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sretentionDays%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetentionDays()))));
-    }
-
-    // add `sourceAudienceId` to the URL query string
-    if (getSourceAudienceId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%ssourceAudienceId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSourceAudienceId()))));
-    }
-
-    // add `country` to the URL query string
-    if (getCountry() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
-    }
-
-    // add `ratio` to the URL query string
-    if (getRatio() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sratio%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRatio()))));
-    }
-
-    // add `rule` to the URL query string
-    if (getRule() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%srule%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRule()))));
-    }
-
-    // add `customerFileSource` to the URL query string
-    if (getCustomerFileSource() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scustomerFileSource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomerFileSource()))));
-    }
-
-    return joiner.toString();
+    return null;
   }
+
 }
 

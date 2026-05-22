@@ -26,13 +26,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
+import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBrandIdentity;
 import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
+import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestImages;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
+import dev.zernio.model.CreateStandaloneAdRequestZipsInner;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
 import java.net.URI;
@@ -74,6 +77,14 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_AGE_MIN,
   CreateStandaloneAdRequest.JSON_PROPERTY_AGE_MAX,
   CreateStandaloneAdRequest.JSON_PROPERTY_INTERESTS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_ZIPS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_METROS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CUSTOM_LOCATIONS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_BEHAVIORS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_INCOME_TIER,
+  CreateStandaloneAdRequest.JSON_PROPERTY_LANGUAGES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_SAVED_TARGETING_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_END_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
@@ -92,7 +103,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -344,6 +355,116 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_INTERESTS = "interests";
   @javax.annotation.Nullable
   private List<UpdateAdRequestTargetingInterestsInner> interests = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ZIPS = "zips";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestZipsInner> zips = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_METROS = "metros";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestZipsInner> metros = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BEHAVIORS = "behaviors";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestBehaviorsInner> behaviors = new ArrayList<>();
+
+  /**
+   * Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. 
+   */
+  public enum IncomeTierEnum {
+    TOP_5(String.valueOf("top_5")),
+    
+    TOP_10(String.valueOf("top_10")),
+    
+    TOP_10_25(String.valueOf("top_10_25")),
+    
+    TOP_25_50(String.valueOf("top_25_50"));
+
+    private String value;
+
+    IncomeTierEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static IncomeTierEnum fromValue(String value) {
+      for (IncomeTierEnum b : IncomeTierEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_INCOME_TIER = "incomeTier";
+  @javax.annotation.Nullable
+  private IncomeTierEnum incomeTier;
+
+  public static final String JSON_PROPERTY_LANGUAGES = "languages";
+  @javax.annotation.Nullable
+  private List<String> languages = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SAVED_TARGETING_ID = "savedTargetingId";
+  @javax.annotation.Nullable
+  private String savedTargetingId;
+
+  /**
+   * Gets or Sets specialAdCategories
+   */
+  public enum SpecialAdCategoriesEnum {
+    HOUSING(String.valueOf("HOUSING")),
+    
+    EMPLOYMENT(String.valueOf("EMPLOYMENT")),
+    
+    CREDIT(String.valueOf("CREDIT")),
+    
+    ISSUES_ELECTIONS_POLITICS(String.valueOf("ISSUES_ELECTIONS_POLITICS"));
+
+    private String value;
+
+    SpecialAdCategoriesEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SpecialAdCategoriesEnum fromValue(String value) {
+      for (SpecialAdCategoriesEnum b : SpecialAdCategoriesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SPECIAL_AD_CATEGORIES = "specialAdCategories";
+  @javax.annotation.Nullable
+  private List<SpecialAdCategoriesEnum> specialAdCategories = new ArrayList<>();
 
   public static final String JSON_PROPERTY_END_DATE = "endDate";
   @javax.annotation.Nullable
@@ -1226,6 +1347,246 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest zips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+    this.zips = zips;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addZipsItem(CreateStandaloneAdRequestZipsInner zipsItem) {
+    if (this.zips == null) {
+      this.zips = new ArrayList<>();
+    }
+    this.zips.add(zipsItem);
+    return this;
+  }
+
+  /**
+   * Postal/ZIP geo targeting. &#x60;key&#x60; is the platform&#39;s postal location ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;zip. Supported on Meta, Google, TikTok, Pinterest, X.
+   * @return zips
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestZipsInner> getZips() {
+    return zips;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setZips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+    this.zips = zips;
+  }
+
+
+  public CreateStandaloneAdRequest metros(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> metros) {
+    this.metros = metros;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addMetrosItem(CreateStandaloneAdRequestZipsInner metrosItem) {
+    if (this.metros == null) {
+      this.metros = new ArrayList<>();
+    }
+    this.metros.add(metrosItem);
+    return this;
+  }
+
+  /**
+   * DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro.
+   * @return metros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestZipsInner> getMetros() {
+    return metros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetros(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> metros) {
+    this.metros = metros;
+  }
+
+
+  public CreateStandaloneAdRequest customLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addCustomLocationsItem(CreateStandaloneAdRequestCustomLocationsInner customLocationsItem) {
+    if (this.customLocations == null) {
+      this.customLocations = new ArrayList<>();
+    }
+    this.customLocations.add(customLocationsItem);
+    return this;
+  }
+
+  /**
+   * Point-radius (lat/lng) geo targeting. Meta only (custom_locations). Rejected on platforms without radius support.
+   * @return customLocations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestCustomLocationsInner> getCustomLocations() {
+    return customLocations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
+  }
+
+
+  public CreateStandaloneAdRequest behaviors(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> behaviors) {
+    this.behaviors = behaviors;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addBehaviorsItem(CreateStandaloneAdRequestBehaviorsInner behaviorsItem) {
+    if (this.behaviors == null) {
+      this.behaviors = new ArrayList<>();
+    }
+    this.behaviors.add(behaviorsItem);
+    return this;
+  }
+
+  /**
+   * Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.
+   * @return behaviors
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BEHAVIORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestBehaviorsInner> getBehaviors() {
+    return behaviors;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BEHAVIORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBehaviors(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> behaviors) {
+    this.behaviors = behaviors;
+  }
+
+
+  public CreateStandaloneAdRequest incomeTier(@javax.annotation.Nullable IncomeTierEnum incomeTier) {
+    this.incomeTier = incomeTier;
+    return this;
+  }
+
+  /**
+   * Normalized household-income tier. Meta and TikTok express all four; Google maps only &#x60;top_10&#x60;; rejected on LinkedIn, X, and Pinterest. On Meta, income targeting is incompatible with housing/employment/credit &#x60;specialAdCategories&#x60;. 
+   * @return incomeTier
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INCOME_TIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public IncomeTierEnum getIncomeTier() {
+    return incomeTier;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INCOME_TIER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIncomeTier(@javax.annotation.Nullable IncomeTierEnum incomeTier) {
+    this.incomeTier = incomeTier;
+  }
+
+
+  public CreateStandaloneAdRequest languages(@javax.annotation.Nullable List<String> languages) {
+    this.languages = languages;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addLanguagesItem(String languagesItem) {
+    if (this.languages == null) {
+      this.languages = new ArrayList<>();
+    }
+    this.languages.add(languagesItem);
+    return this;
+  }
+
+  /**
+   * Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language.
+   * @return languages
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getLanguages() {
+    return languages;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguages(@javax.annotation.Nullable List<String> languages) {
+    this.languages = languages;
+  }
+
+
+  public CreateStandaloneAdRequest savedTargetingId(@javax.annotation.Nullable String savedTargetingId) {
+    this.savedTargetingId = savedTargetingId;
+    return this;
+  }
+
+  /**
+   * ID of a &#x60;saved_targeting&#x60; audience (created via POST /v1/ads/audiences). When set, its stored TargetingSpec is expanded as the base targeting; inline fields on this body merge on top. Lets you reuse a named targeting preset without re-sending every field. 
+   * @return savedTargetingId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SAVED_TARGETING_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSavedTargetingId() {
+    return savedTargetingId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SAVED_TARGETING_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSavedTargetingId(@javax.annotation.Nullable String savedTargetingId) {
+    this.savedTargetingId = savedTargetingId;
+  }
+
+
+  public CreateStandaloneAdRequest specialAdCategories(@javax.annotation.Nullable List<SpecialAdCategoriesEnum> specialAdCategories) {
+    this.specialAdCategories = specialAdCategories;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addSpecialAdCategoriesItem(SpecialAdCategoriesEnum specialAdCategoriesItem) {
+    if (this.specialAdCategories == null) {
+      this.specialAdCategories = new ArrayList<>();
+    }
+    this.specialAdCategories.add(specialAdCategoriesItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Declares the ad&#39;s special category, required for housing, employment, credit, or political/social-issue ads (Meta enforces restricted targeting for these). Note: setting a special category disables income/zip targeting on Meta. 
+   * @return specialAdCategories
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPECIAL_AD_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<SpecialAdCategoriesEnum> getSpecialAdCategories() {
+    return specialAdCategories;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPECIAL_AD_CATEGORIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpecialAdCategories(@javax.annotation.Nullable List<SpecialAdCategoriesEnum> specialAdCategories) {
+    this.specialAdCategories = specialAdCategories;
+  }
+
+
   public CreateStandaloneAdRequest endDate(@javax.annotation.Nullable OffsetDateTime endDate) {
     this.endDate = endDate;
     return this;
@@ -1704,6 +2065,14 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.ageMin, createStandaloneAdRequest.ageMin) &&
         Objects.equals(this.ageMax, createStandaloneAdRequest.ageMax) &&
         Objects.equals(this.interests, createStandaloneAdRequest.interests) &&
+        Objects.equals(this.zips, createStandaloneAdRequest.zips) &&
+        Objects.equals(this.metros, createStandaloneAdRequest.metros) &&
+        Objects.equals(this.customLocations, createStandaloneAdRequest.customLocations) &&
+        Objects.equals(this.behaviors, createStandaloneAdRequest.behaviors) &&
+        Objects.equals(this.incomeTier, createStandaloneAdRequest.incomeTier) &&
+        Objects.equals(this.languages, createStandaloneAdRequest.languages) &&
+        Objects.equals(this.savedTargetingId, createStandaloneAdRequest.savedTargetingId) &&
+        Objects.equals(this.specialAdCategories, createStandaloneAdRequest.specialAdCategories) &&
         Objects.equals(this.endDate, createStandaloneAdRequest.endDate) &&
         Objects.equals(this.audienceId, createStandaloneAdRequest.audienceId) &&
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
@@ -1725,7 +2094,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, savedTargetingId, specialAdCategories, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -1758,6 +2127,14 @@ public class CreateStandaloneAdRequest {
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
+    sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
+    sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
+    sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
+    sb.append("    behaviors: ").append(toIndentedString(behaviors)).append("\n");
+    sb.append("    incomeTier: ").append(toIndentedString(incomeTier)).append("\n");
+    sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
+    sb.append("    savedTargetingId: ").append(toIndentedString(savedTargetingId)).append("\n");
+    sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    campaignType: ").append(toIndentedString(campaignType)).append("\n");
@@ -1973,6 +2350,74 @@ public class CreateStandaloneAdRequest {
           joiner.add(getInterests().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sinterests%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
+      }
+    }
+
+    // add `zips` to the URL query string
+    if (getZips() != null) {
+      for (int i = 0; i < getZips().size(); i++) {
+        if (getZips().get(i) != null) {
+          joiner.add(getZips().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%szips%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `metros` to the URL query string
+    if (getMetros() != null) {
+      for (int i = 0; i < getMetros().size(); i++) {
+        if (getMetros().get(i) != null) {
+          joiner.add(getMetros().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smetros%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `customLocations` to the URL query string
+    if (getCustomLocations() != null) {
+      for (int i = 0; i < getCustomLocations().size(); i++) {
+        if (getCustomLocations().get(i) != null) {
+          joiner.add(getCustomLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomLocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `behaviors` to the URL query string
+    if (getBehaviors() != null) {
+      for (int i = 0; i < getBehaviors().size(); i++) {
+        if (getBehaviors().get(i) != null) {
+          joiner.add(getBehaviors().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbehaviors%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `incomeTier` to the URL query string
+    if (getIncomeTier() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sincomeTier%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIncomeTier()))));
+    }
+
+    // add `languages` to the URL query string
+    if (getLanguages() != null) {
+      for (int i = 0; i < getLanguages().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%slanguages%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getLanguages().get(i)))));
+      }
+    }
+
+    // add `savedTargetingId` to the URL query string
+    if (getSavedTargetingId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssavedTargetingId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSavedTargetingId()))));
+    }
+
+    // add `specialAdCategories` to the URL query string
+    if (getSpecialAdCategories() != null) {
+      for (int i = 0; i < getSpecialAdCategories().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sspecialAdCategories%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getSpecialAdCategories().get(i)))));
       }
     }
 

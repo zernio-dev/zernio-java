@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-22T12:47:29.680463247Z[Etc/UTC]
+- Build date: 2026-05-22T16:09:53.172959643Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -198,6 +198,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**deleteAdWithHttpInfo**](docs/AdsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdsApi* | [**deleteConversionDestination**](docs/AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination
 *AdsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination
+*AdsApi* | [**estimateAdReach**](docs/AdsApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
+*AdsApi* | [**estimateAdReachWithHttpInfo**](docs/AdsApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdsApi* | [**getAd**](docs/AdsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details
 *AdsApi* | [**getAdWithHttpInfo**](docs/AdsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details
 *AdsApi* | [**getAdAnalytics**](docs/AdsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
@@ -220,10 +222,10 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**listConversionDestinationsWithHttpInfo**](docs/AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API
 *AdsApi* | [**removeConversionAssociations**](docs/AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
 *AdsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
-*AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests
-*AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
-*AdsApi* | [**searchAdTargetingLocations**](docs/AdsApi.md#searchAdTargetingLocations) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta)
-*AdsApi* | [**searchAdTargetingLocationsWithHttpInfo**](docs/AdsApi.md#searchAdTargetingLocationsWithHttpInfo) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta)
+*AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests (deprecated)
+*AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests (deprecated)
+*AdsApi* | [**searchAdTargeting**](docs/AdsApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options
+*AdsApi* | [**searchAdTargetingWithHttpInfo**](docs/AdsApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options
 *AdsApi* | [**sendConversions**](docs/AdsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
 *AdsApi* | [**sendConversionsWithHttpInfo**](docs/AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
 *AdsApi* | [**sendWhatsAppConversion**](docs/AdsApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
@@ -842,7 +844,6 @@ Class | Method | HTTP request | Description
  - [CreateCtwaAdRequest](docs/CreateCtwaAdRequest.md)
  - [CreateCtwaAdRequestCreativesInner](docs/CreateCtwaAdRequestCreativesInner.md)
  - [CreateCtwaAdRequestCreativesInnerVideo](docs/CreateCtwaAdRequestCreativesInnerVideo.md)
- - [CreateCtwaAdRequestInterestsInner](docs/CreateCtwaAdRequestInterestsInner.md)
  - [CreateCtwaAdRequestVideo](docs/CreateCtwaAdRequestVideo.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
  - [CreateCustomFieldRequest](docs/CreateCustomFieldRequest.md)
@@ -878,14 +879,17 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAd201ResponseOneOf1](docs/CreateStandaloneAd201ResponseOneOf1.md)
  - [CreateStandaloneAdRequest](docs/CreateStandaloneAdRequest.md)
  - [CreateStandaloneAdRequestAttributionSpecInner](docs/CreateStandaloneAdRequestAttributionSpecInner.md)
+ - [CreateStandaloneAdRequestBehaviorsInner](docs/CreateStandaloneAdRequestBehaviorsInner.md)
  - [CreateStandaloneAdRequestBrandIdentity](docs/CreateStandaloneAdRequestBrandIdentity.md)
  - [CreateStandaloneAdRequestCitiesInner](docs/CreateStandaloneAdRequestCitiesInner.md)
  - [CreateStandaloneAdRequestCreativesInner](docs/CreateStandaloneAdRequestCreativesInner.md)
  - [CreateStandaloneAdRequestCreativesInnerVideo](docs/CreateStandaloneAdRequestCreativesInnerVideo.md)
+ - [CreateStandaloneAdRequestCustomLocationsInner](docs/CreateStandaloneAdRequestCustomLocationsInner.md)
  - [CreateStandaloneAdRequestImages](docs/CreateStandaloneAdRequestImages.md)
  - [CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
+ - [CreateStandaloneAdRequestZipsInner](docs/CreateStandaloneAdRequestZipsInner.md)
  - [CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
  - [CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
@@ -937,6 +941,8 @@ Class | Method | HTTP request | Description
  - [EnrollContacts200Response](docs/EnrollContacts200Response.md)
  - [EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [EstimateAdReach200Response](docs/EstimateAdReach200Response.md)
+ - [EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
  - [Expired](docs/Expired.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
@@ -1347,14 +1353,14 @@ Class | Method | HTTP request | Description
  - [ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
+ - [SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)
  - [ScheduleBroadcastRequest](docs/ScheduleBroadcastRequest.md)
  - [SearchAdInterests200Response](docs/SearchAdInterests200Response.md)
  - [SearchAdInterests200ResponseInterestsInner](docs/SearchAdInterests200ResponseInterestsInner.md)
- - [SearchAdTargetingLocations200Response](docs/SearchAdTargetingLocations200Response.md)
- - [SearchAdTargetingLocations200ResponseResultsInner](docs/SearchAdTargetingLocations200ResponseResultsInner.md)
- - [SearchAdTargetingLocations200ResponseResultsInnerRegionId](docs/SearchAdTargetingLocations200ResponseResultsInnerRegionId.md)
+ - [SearchAdTargeting200Response](docs/SearchAdTargeting200Response.md)
+ - [SearchAdTargeting200ResponseResultsInner](docs/SearchAdTargeting200ResponseResultsInner.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
@@ -1433,6 +1439,10 @@ Class | Method | HTTP request | Description
  - [StartGoogleBusinessVerification200Response](docs/StartGoogleBusinessVerification200Response.md)
  - [StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
  - [StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
+ - [TargetingSpec](docs/TargetingSpec.md)
+ - [TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
+ - [TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)
+ - [TargetingSpecExcludedLocations](docs/TargetingSpecExcludedLocations.md)
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)
@@ -1557,6 +1567,7 @@ Class | Method | HTTP request | Description
  - [UploadWhatsAppFlowJsonRequestFlowJson](docs/UploadWhatsAppFlowJsonRequestFlowJson.md)
  - [UploadWhatsAppProfilePhotoRequest](docs/UploadWhatsAppProfilePhotoRequest.md)
  - [UploadedFile](docs/UploadedFile.md)
+ - [UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)
  - [UsageStats](docs/UsageStats.md)
  - [UsageStatsLimits](docs/UsageStatsLimits.md)
  - [UsageStatsSpend](docs/UsageStatsSpend.md)

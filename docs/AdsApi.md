@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteAdWithHttpInfo**](AdsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**deleteConversionDestination**](AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination |
 | [**deleteConversionDestinationWithHttpInfo**](AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination |
+| [**estimateAdReach**](AdsApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
+| [**estimateAdReachWithHttpInfo**](AdsApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
 | [**getAd**](AdsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdWithHttpInfo**](AdsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdAnalytics**](AdsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
@@ -40,10 +42,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**listConversionDestinationsWithHttpInfo**](AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API |
 | [**removeConversionAssociations**](AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations |
 | [**removeConversionAssociationsWithHttpInfo**](AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations |
-| [**searchAdInterests**](AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests |
-| [**searchAdInterestsWithHttpInfo**](AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests |
-| [**searchAdTargetingLocations**](AdsApi.md#searchAdTargetingLocations) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta) |
-| [**searchAdTargetingLocationsWithHttpInfo**](AdsApi.md#searchAdTargetingLocationsWithHttpInfo) | **GET** /v1/ads/targeting/search | Search geo targeting locations (Meta) |
+| [**searchAdInterests**](AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests (deprecated) |
+| [**searchAdInterestsWithHttpInfo**](AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests (deprecated) |
+| [**searchAdTargeting**](AdsApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options |
+| [**searchAdTargetingWithHttpInfo**](AdsApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options |
 | [**sendConversions**](AdsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform |
 | [**sendConversionsWithHttpInfo**](AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events to an ad platform |
 | [**sendWhatsAppConversion**](AdsApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
@@ -1147,6 +1149,158 @@ ApiResponse<Void>
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support deleting destinations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## estimateAdReach
+
+> EstimateAdReach200Response estimateAdReach(estimateAdReachRequest)
+
+Estimate audience reach
+
+Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        EstimateAdReachRequest estimateAdReachRequest = new EstimateAdReachRequest(); // EstimateAdReachRequest | 
+        try {
+            EstimateAdReach200Response result = apiInstance.estimateAdReach(estimateAdReachRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#estimateAdReach");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **estimateAdReachRequest** | [**EstimateAdReachRequest**](EstimateAdReachRequest.md)|  | |
+
+### Return type
+
+[**EstimateAdReach200Response**](EstimateAdReach200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Normalized reach estimate |  -  |
+| **400** | Missing required fields or a targeting field the platform cannot honour |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+
+## estimateAdReachWithHttpInfo
+
+> ApiResponse<EstimateAdReach200Response> estimateAdReach estimateAdReachWithHttpInfo(estimateAdReachRequest)
+
+Estimate audience reach
+
+Returns a normalized pre-flight audience-size estimate for a targeting spec, before any campaign is created. Backed by each platform&#39;s native reach API (Meta &#x60;delivery_estimate&#x60;, LinkedIn &#x60;audienceCounts&#x60;, X &#x60;audience_summary&#x60;, Pinterest &#x60;audience_sizing&#x60;).  Platforms without a usable pre-flight reach API (Google Search/Display, TikTok) return &#x60;available: false&#x60; with no bounds, so clients can hide or grey out the estimate rather than treat the absence as an error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        EstimateAdReachRequest estimateAdReachRequest = new EstimateAdReachRequest(); // EstimateAdReachRequest | 
+        try {
+            ApiResponse<EstimateAdReach200Response> response = apiInstance.estimateAdReachWithHttpInfo(estimateAdReachRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#estimateAdReach");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **estimateAdReachRequest** | [**EstimateAdReachRequest**](EstimateAdReachRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**EstimateAdReach200Response**](EstimateAdReach200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Normalized reach estimate |  -  |
+| **400** | Missing required fields or a targeting field the platform cannot honour |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getAd
@@ -2961,9 +3115,9 @@ ApiResponse<[**RemoveConversionAssociations200Response**](RemoveConversionAssoci
 
 > SearchAdInterests200Response searchAdInterests(q, accountId)
 
-Search targeting interests
+Search targeting interests (deprecated)
 
-Search for interest-based targeting options available on the platform.
+Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
 
 ### Example
 
@@ -3035,9 +3189,9 @@ public class Example {
 
 > ApiResponse<SearchAdInterests200Response> searchAdInterests searchAdInterestsWithHttpInfo(q, accountId)
 
-Search targeting interests
+Search targeting interests (deprecated)
 
-Search for interest-based targeting options available on the platform.
+Deprecated alias for &#x60;GET /v1/ads/targeting/search?dimension&#x3D;interest&#x60;. Kept for backward compatibility, it returns the legacy &#x60;{ interests: [...] }&#x60; shape rather than the normalized &#x60;{ results: [...] }&#x60;. New integrations should use &#x60;GET /v1/ads/targeting/search&#x60; with &#x60;dimension&#x3D;interest&#x60;. 
 
 ### Example
 
@@ -3109,13 +3263,13 @@ ApiResponse<[**SearchAdInterests200Response**](SearchAdInterests200Response.md)>
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
-## searchAdTargetingLocations
+## searchAdTargeting
 
-> SearchAdTargetingLocations200Response searchAdTargetingLocations(accountId, q, type, countryCode, limit)
+> SearchAdTargeting200Response searchAdTargeting(accountId, q, dimension, geoType, countryCode, limit)
 
-Search geo targeting locations (Meta)
+Search targeting options
 
-Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
 
 ### Example
 
@@ -3138,16 +3292,17 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID (must be a connected Facebook or Instagram account).
-        String q = "q_example"; // String | Location name. Locality only — no region/country suffix.
-        String type = "country"; // String | Type of location to search. Defaults to city.
-        String countryCode = "countryCode_example"; // String | ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search.
+        String accountId = "accountId_example"; // String | Social account ID (a connected account on the target ad platform).
+        String q = "q_example"; // String | Search query. For geo, the locality name only (no region/country suffix).
+        String dimension = "geo"; // String | What to search. `geo` resolves locations (scope further with `geoType`), `interest`/`behavior` resolve audience entities, `income` resolves income-tier options. Defaults to `interest` for backward compatibility with the deprecated /v1/ads/interests alias.
+        String geoType = "country"; // String | Only used when `dimension=geo`. The kind of location to resolve. Defaults to `city`.
+        String countryCode = "countryCode_example"; // String | ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search.
         Integer limit = 25; // Integer | Maximum results to return.
         try {
-            SearchAdTargetingLocations200Response result = apiInstance.searchAdTargetingLocations(accountId, q, type, countryCode, limit);
+            SearchAdTargeting200Response result = apiInstance.searchAdTargeting(accountId, q, dimension, geoType, countryCode, limit);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AdsApi#searchAdTargetingLocations");
+            System.err.println("Exception when calling AdsApi#searchAdTargeting");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -3162,15 +3317,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID (must be a connected Facebook or Instagram account). | |
-| **q** | **String**| Location name. Locality only — no region/country suffix. | |
-| **type** | **String**| Type of location to search. Defaults to city. | [optional] [default to city] [enum: country, region, city, subcity, neighborhood, zip, metro_area, geo_market] |
-| **countryCode** | **String**| ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. | [optional] |
+| **accountId** | **String**| Social account ID (a connected account on the target ad platform). | |
+| **q** | **String**| Search query. For geo, the locality name only (no region/country suffix). | |
+| **dimension** | **String**| What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. | [optional] [default to interest] [enum: geo, interest, behavior, income] |
+| **geoType** | **String**| Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. | [optional] [default to city] [enum: country, region, city, zip, metro] |
+| **countryCode** | **String**| ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. | [optional] |
 | **limit** | **Integer**| Maximum results to return. | [optional] [default to 25] |
 
 ### Return type
 
-[**SearchAdTargetingLocations200Response**](SearchAdTargetingLocations200Response.md)
+[**SearchAdTargeting200Response**](SearchAdTargeting200Response.md)
 
 
 ### Authorization
@@ -3185,19 +3341,19 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Matching locations |  -  |
+| **200** | Matching targeting options (normalized) |  -  |
 | **400** | Missing or invalid query parameters |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
-| **404** | Account not found, or platform does not support targeting search (Meta only) |  -  |
+| **404** | Account not found, or the platform does not support the requested dimension |  -  |
 
-## searchAdTargetingLocationsWithHttpInfo
+## searchAdTargetingWithHttpInfo
 
-> ApiResponse<SearchAdTargetingLocations200Response> searchAdTargetingLocations searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit)
+> ApiResponse<SearchAdTargeting200Response> searchAdTargeting searchAdTargetingWithHttpInfo(accountId, q, dimension, geoType, countryCode, limit)
 
-Search geo targeting locations (Meta)
+Search targeting options
 
-Resolve a human-readable location name into Meta&#39;s opaque &#x60;key&#x60; used in &#x60;targeting.cities[]&#x60; / &#x60;targeting.regions[]&#x60; on &#x60;POST /v1/ads/create&#x60; (and the same fields under &#x60;targeting.geo_locations&#x60; on &#x60;POST /v1/ads/boost&#x60;). Wraps Meta&#39;s &#x60;/search?type&#x3D;adgeolocation&#x60; endpoint.  Meta-only for now. Other platforms have their own location id systems and are not exposed here.  Per Meta&#39;s docs, &#x60;q&#x60; must contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate when the same name exists in multiple countries. 
+Resolve a human-readable query into the platform&#39;s opaque targeting ids used in the &#x60;TargetingSpec&#x60; (&#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; geo keys, and &#x60;interests&#x60;/&#x60;behaviors&#x60; entity ids) on &#x60;POST /v1/ads/create&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences.  The &#x60;dimension&#x60; param selects what is searched, &#x60;geo&#x60; (locations, further scoped by &#x60;geoType&#x60;), &#x60;interest&#x60;, &#x60;behavior&#x60;, or &#x60;income&#x60;. Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only). Results are normalized across platforms into a single shape, so the same client code consumes Meta, TikTok, LinkedIn, X, Pinterest, and Google results.  For geo queries, &#x60;q&#x60; should contain only the locality name (e.g. &#x60;\&quot;Amsterdam\&quot;&#x60;, not &#x60;\&quot;Amsterdam, NL\&quot;&#x60;). Use &#x60;countryCode&#x60; to disambiguate. 
 
 ### Example
 
@@ -3221,18 +3377,19 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Social account ID (must be a connected Facebook or Instagram account).
-        String q = "q_example"; // String | Location name. Locality only — no region/country suffix.
-        String type = "country"; // String | Type of location to search. Defaults to city.
-        String countryCode = "countryCode_example"; // String | ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search.
+        String accountId = "accountId_example"; // String | Social account ID (a connected account on the target ad platform).
+        String q = "q_example"; // String | Search query. For geo, the locality name only (no region/country suffix).
+        String dimension = "geo"; // String | What to search. `geo` resolves locations (scope further with `geoType`), `interest`/`behavior` resolve audience entities, `income` resolves income-tier options. Defaults to `interest` for backward compatibility with the deprecated /v1/ads/interests alias.
+        String geoType = "country"; // String | Only used when `dimension=geo`. The kind of location to resolve. Defaults to `city`.
+        String countryCode = "countryCode_example"; // String | ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search.
         Integer limit = 25; // Integer | Maximum results to return.
         try {
-            ApiResponse<SearchAdTargetingLocations200Response> response = apiInstance.searchAdTargetingLocationsWithHttpInfo(accountId, q, type, countryCode, limit);
+            ApiResponse<SearchAdTargeting200Response> response = apiInstance.searchAdTargetingWithHttpInfo(accountId, q, dimension, geoType, countryCode, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling AdsApi#searchAdTargetingLocations");
+            System.err.println("Exception when calling AdsApi#searchAdTargeting");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -3247,15 +3404,16 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Social account ID (must be a connected Facebook or Instagram account). | |
-| **q** | **String**| Location name. Locality only — no region/country suffix. | |
-| **type** | **String**| Type of location to search. Defaults to city. | [optional] [default to city] [enum: country, region, city, subcity, neighborhood, zip, metro_area, geo_market] |
-| **countryCode** | **String**| ISO 3166-1 alpha-2 country code (e.g. NL) to scope the search. | [optional] |
+| **accountId** | **String**| Social account ID (a connected account on the target ad platform). | |
+| **q** | **String**| Search query. For geo, the locality name only (no region/country suffix). | |
+| **dimension** | **String**| What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. | [optional] [default to interest] [enum: geo, interest, behavior, income] |
+| **geoType** | **String**| Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. | [optional] [default to city] [enum: country, region, city, zip, metro] |
+| **countryCode** | **String**| ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. | [optional] |
 | **limit** | **Integer**| Maximum results to return. | [optional] [default to 25] |
 
 ### Return type
 
-ApiResponse<[**SearchAdTargetingLocations200Response**](SearchAdTargetingLocations200Response.md)>
+ApiResponse<[**SearchAdTargeting200Response**](SearchAdTargeting200Response.md)>
 
 
 ### Authorization
@@ -3270,11 +3428,11 @@ ApiResponse<[**SearchAdTargetingLocations200Response**](SearchAdTargetingLocatio
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Matching locations |  -  |
+| **200** | Matching targeting options (normalized) |  -  |
 | **400** | Missing or invalid query parameters |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
-| **404** | Account not found, or platform does not support targeting search (Meta only) |  -  |
+| **404** | Account not found, or the platform does not support the requested dimension |  -  |
 
 
 ## sendConversions

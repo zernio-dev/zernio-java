@@ -2,33 +2,36 @@
 
 # CreateAdAudienceRequest
 
+## oneOf schemas
+* [SavedTargetingAudience](SavedTargetingAudience.md)
+* [UploadedOrDerivedAudience](UploadedOrDerivedAudience.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import dev.zernio.model.CreateAdAudienceRequest;
+import dev.zernio.model.SavedTargetingAudience;
+import dev.zernio.model.UploadedOrDerivedAudience;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** |  |  |
-|**adAccountId** | **String** | Platform ad account ID. Must start with act_ for Meta; bare platform id for others (Google customer id, X/TikTok/LinkedIn/Pinterest account id). |  |
-|**name** | **String** |  |  |
-|**description** | **String** |  |  [optional] |
-|**type** | [**TypeEnum**](#TypeEnum) |  |  |
-|**pixelId** | **String** | Required for website audiences |  [optional] |
-|**retentionDays** | **Integer** | Required for website audiences |  [optional] |
-|**sourceAudienceId** | **String** | Required for lookalike audiences |  [optional] |
-|**country** | **String** | 2-letter code, required for lookalike audiences |  [optional] |
-|**ratio** | **BigDecimal** | Required for lookalike audiences |  [optional] |
-|**rule** | **Object** | Pixel event rule for website audiences (optional) |  [optional] |
-|**customerFileSource** | **String** | Data source declaration for GDPR compliance (customer_list only) |  [optional] |
+public class Example {
+    public static void main(String[] args) {
+        CreateAdAudienceRequest exampleCreateAdAudienceRequest = new CreateAdAudienceRequest();
 
+        // create a new SavedTargetingAudience
+        SavedTargetingAudience exampleSavedTargetingAudience = new SavedTargetingAudience();
+        // set CreateAdAudienceRequest to SavedTargetingAudience
+        exampleCreateAdAudienceRequest.setActualInstance(exampleSavedTargetingAudience);
+        // to get back the SavedTargetingAudience set earlier
+        SavedTargetingAudience testSavedTargetingAudience = (SavedTargetingAudience) exampleCreateAdAudienceRequest.getActualInstance();
 
-
-## Enum: TypeEnum
-
-| Name | Value |
-|---- | -----|
-| CUSTOMER_LIST | &quot;customer_list&quot; |
-| WEBSITE | &quot;website&quot; |
-| LOOKALIKE | &quot;lookalike&quot; |
-
+        // create a new UploadedOrDerivedAudience
+        UploadedOrDerivedAudience exampleUploadedOrDerivedAudience = new UploadedOrDerivedAudience();
+        // set CreateAdAudienceRequest to UploadedOrDerivedAudience
+        exampleCreateAdAudienceRequest.setActualInstance(exampleUploadedOrDerivedAudience);
+        // to get back the UploadedOrDerivedAudience set earlier
+        UploadedOrDerivedAudience testUploadedOrDerivedAudience = (UploadedOrDerivedAudience) exampleCreateAdAudienceRequest.getActualInstance();
+    }
+}
+```
 
 

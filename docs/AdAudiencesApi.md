@@ -181,7 +181,7 @@ ApiResponse<[**AddUsersToAdAudience200Response**](AddUsersToAdAudience200Respons
 
 Create custom audience
 
-Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
 
 ### Example
 
@@ -254,7 +254,7 @@ public class Example {
 
 Create custom audience
 
-Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. The audience is created empty — add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent — never auto-retry. 
+Create a custom audience. &#x60;customer_list&#x60; is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest; &#x60;website&#x60; and &#x60;lookalike&#x60; are Meta-only. &#x60;saved_targeting&#x60; stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via &#x60;savedTargetingId&#x60; on &#x60;POST /v1/ads/create&#x60;. Upload-backed audiences are created empty, add members via &#x60;POST /v1/ads/audiences/{audienceId}/users&#x60;. On TikTok and Pinterest the audience is provisioned lazily on the first member upload (until then its status is &#x60;pending&#x60;). Create is not idempotent, never auto-retry. 
 
 ### Example
 
@@ -627,7 +627,7 @@ ApiResponse<[**GetAdAudience200Response**](GetAdAudience200Response.md)>
 
 ## listAdAudiences
 
-> ListAdAudiences200Response listAdAudiences(accountId, adAccountId, platform)
+> ListAdAudiences200Response listAdAudiences(accountId, adAccountId, platform, type)
 
 List custom audiences
 
@@ -657,8 +657,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Social account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
+        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences (each item carries a `spec`); the other types return uploaded/derived audiences.
         try {
-            ListAdAudiences200Response result = apiInstance.listAdAudiences(accountId, adAccountId, platform);
+            ListAdAudiences200Response result = apiInstance.listAdAudiences(accountId, adAccountId, platform, type);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAudiencesApi#listAdAudiences");
@@ -679,6 +680,7 @@ public class Example {
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. | [optional] [enum: customer_list, website, lookalike, saved_targeting] |
 
 ### Return type
 
@@ -703,7 +705,7 @@ public class Example {
 
 ## listAdAudiencesWithHttpInfo
 
-> ApiResponse<ListAdAudiences200Response> listAdAudiences listAdAudiencesWithHttpInfo(accountId, adAccountId, platform)
+> ApiResponse<ListAdAudiences200Response> listAdAudiences listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type)
 
 List custom audiences
 
@@ -734,8 +736,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Social account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
+        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences (each item carries a `spec`); the other types return uploaded/derived audiences.
         try {
-            ApiResponse<ListAdAudiences200Response> response = apiInstance.listAdAudiencesWithHttpInfo(accountId, adAccountId, platform);
+            ApiResponse<ListAdAudiences200Response> response = apiInstance.listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -758,6 +761,7 @@ public class Example {
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. | [optional] [enum: customer_list, website, lookalike, saved_targeting] |
 
 ### Return type
 
