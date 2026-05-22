@@ -10,7 +10,7 @@
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
 |**customContent** | **String** |  |  [optional] |
 |**platformSpecificData** | **Object** |  |  [optional] |
-|**customMedia** | [**List&lt;ValidatePostRequestPlatformsInnerCustomMediaInner&gt;**](ValidatePostRequestPlatformsInnerCustomMediaInner.md) |  |  [optional] |
+|**customMedia** | [**List&lt;MediaItem&gt;**](MediaItem.md) |  |  [optional] |
 
 
 

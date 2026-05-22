@@ -903,9 +903,7 @@ docs/ValidatePostLength200Response.md
 docs/ValidatePostLength200ResponsePlatformsValue.md
 docs/ValidatePostLengthRequest.md
 docs/ValidatePostRequest.md
-docs/ValidatePostRequestMediaItemsInner.md
 docs/ValidatePostRequestPlatformsInner.md
-docs/ValidatePostRequestPlatformsInnerCustomMediaInner.md
 docs/ValidateSubreddit200Response.md
 docs/ValidateSubreddit200ResponseOneOf.md
 docs/ValidateSubreddit200ResponseOneOf1.md
@@ -1915,9 +1913,7 @@ src/main/java/dev/zernio/model/ValidatePostLength200Response.java
 src/main/java/dev/zernio/model/ValidatePostLength200ResponsePlatformsValue.java
 src/main/java/dev/zernio/model/ValidatePostLengthRequest.java
 src/main/java/dev/zernio/model/ValidatePostRequest.java
-src/main/java/dev/zernio/model/ValidatePostRequestMediaItemsInner.java
 src/main/java/dev/zernio/model/ValidatePostRequestPlatformsInner.java
-src/main/java/dev/zernio/model/ValidatePostRequestPlatformsInnerCustomMediaInner.java
 src/main/java/dev/zernio/model/ValidateSubreddit200Response.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOf.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOf1.java

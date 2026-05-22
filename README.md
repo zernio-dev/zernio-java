@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.0.3
+- API version: 1.0.4
 
-- Build date: 2026-05-22T11:42:47.288371617Z[Etc/UTC]
+- Build date: 2026-05-22T11:44:43.091037221Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -47,7 +47,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.0.3"
+compile "dev.zernio:zernio-sdk:1.0.4"
 ```
 
 ### Others
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.0.3.jar`
+- `target/zernio-sdk-1.0.4.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1576,9 +1576,7 @@ Class | Method | HTTP request | Description
  - [ValidatePostLength200ResponsePlatformsValue](docs/ValidatePostLength200ResponsePlatformsValue.md)
  - [ValidatePostLengthRequest](docs/ValidatePostLengthRequest.md)
  - [ValidatePostRequest](docs/ValidatePostRequest.md)
- - [ValidatePostRequestMediaItemsInner](docs/ValidatePostRequestMediaItemsInner.md)
  - [ValidatePostRequestPlatformsInner](docs/ValidatePostRequestPlatformsInner.md)
- - [ValidatePostRequestPlatformsInnerCustomMediaInner](docs/ValidatePostRequestPlatformsInnerCustomMediaInner.md)
  - [ValidateSubreddit200Response](docs/ValidateSubreddit200Response.md)
  - [ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)

@@ -9,7 +9,7 @@ info:
     Base URL: https://zernio.com/api
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.0.3
+  version: 1.0.4
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -26218,15 +26218,6 @@ components:
               count: 51
               limit: 160
               valid: true
-    validatePost_request_platforms_inner_customMedia_inner:
-      properties:
-        url:
-          type: string
-        type:
-          enum:
-          - image
-          - video
-          type: string
     validatePost_request_platforms_inner:
       properties:
         platform:
@@ -26252,20 +26243,10 @@ components:
           type: object
         customMedia:
           items:
-            $ref: "#/components/schemas/validatePost_request_platforms_inner_customMedia_inner"
+            $ref: "#/components/schemas/MediaItem"
           type: array
       required:
       - platform
-    validatePost_request_mediaItems_inner:
-      properties:
-        url:
-          format: uri
-          type: string
-        type:
-          enum:
-          - image
-          - video
-          type: string
     validatePost_request:
       properties:
         content:
@@ -26283,7 +26264,7 @@ components:
         mediaItems:
           description: Root media items shared across platforms
           items:
-            $ref: "#/components/schemas/validatePost_request_mediaItems_inner"
+            $ref: "#/components/schemas/MediaItem"
           type: array
       required:
       - platforms
