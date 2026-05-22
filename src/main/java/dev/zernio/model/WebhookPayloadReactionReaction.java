@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadReactionReaction.JSON_PROPERTY_SENDER,
   WebhookPayloadReactionReaction.JSON_PROPERTY_REACTED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T11:13:35.828991004Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T11:31:55.614474410Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadReactionReaction {
   public static final String JSON_PROPERTY_EMOJI = "emoji";
   @javax.annotation.Nonnull
