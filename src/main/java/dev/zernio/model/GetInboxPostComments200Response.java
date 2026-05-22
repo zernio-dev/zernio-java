@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetInboxPostComments200ResponseCommentsInner;
 import dev.zernio.model.GetInboxPostComments200ResponseMeta;
 import dev.zernio.model.GetInboxPostComments200ResponsePagination;
+import dev.zernio.model.GetInboxPostComments200ResponsePost;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,10 +41,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetInboxPostComments200Response.JSON_PROPERTY_STATUS,
   GetInboxPostComments200Response.JSON_PROPERTY_COMMENTS,
+  GetInboxPostComments200Response.JSON_PROPERTY_POST,
   GetInboxPostComments200Response.JSON_PROPERTY_PAGINATION,
   GetInboxPostComments200Response.JSON_PROPERTY_META
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T11:44:43.091037221Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T12:47:29.680463247Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -52,6 +54,10 @@ public class GetInboxPostComments200Response {
   public static final String JSON_PROPERTY_COMMENTS = "comments";
   @javax.annotation.Nullable
   private List<GetInboxPostComments200ResponseCommentsInner> comments = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_POST = "post";
+  @javax.annotation.Nullable
+  private GetInboxPostComments200ResponsePost post;
 
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
@@ -120,6 +126,30 @@ public class GetInboxPostComments200Response {
   }
 
 
+  public GetInboxPostComments200Response post(@javax.annotation.Nullable GetInboxPostComments200ResponsePost post) {
+    this.post = post;
+    return this;
+  }
+
+  /**
+   * Get post
+   * @return post
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_POST, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetInboxPostComments200ResponsePost getPost() {
+    return post;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_POST, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPost(@javax.annotation.Nullable GetInboxPostComments200ResponsePost post) {
+    this.post = post;
+  }
+
+
   public GetInboxPostComments200Response pagination(@javax.annotation.Nullable GetInboxPostComments200ResponsePagination pagination) {
     this.pagination = pagination;
     return this;
@@ -182,13 +212,14 @@ public class GetInboxPostComments200Response {
     GetInboxPostComments200Response getInboxPostComments200Response = (GetInboxPostComments200Response) o;
     return Objects.equals(this.status, getInboxPostComments200Response.status) &&
         Objects.equals(this.comments, getInboxPostComments200Response.comments) &&
+        Objects.equals(this.post, getInboxPostComments200Response.post) &&
         Objects.equals(this.pagination, getInboxPostComments200Response.pagination) &&
         Objects.equals(this.meta, getInboxPostComments200Response.meta);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, comments, pagination, meta);
+    return Objects.hash(status, comments, post, pagination, meta);
   }
 
   @Override
@@ -197,6 +228,7 @@ public class GetInboxPostComments200Response {
     sb.append("class GetInboxPostComments200Response {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
+    sb.append("    post: ").append(toIndentedString(post)).append("\n");
     sb.append("    pagination: ").append(toIndentedString(pagination)).append("\n");
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");
@@ -259,6 +291,11 @@ public class GetInboxPostComments200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `post` to the URL query string
+    if (getPost() != null) {
+      joiner.add(getPost().toUrlQueryString(prefix + "post" + suffix));
     }
 
     // add `pagination` to the URL query string

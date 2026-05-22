@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-22T11:44:43.091037221Z[Etc/UTC]
+- Build date: 2026-05-22T12:47:29.680463247Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1070,6 +1070,7 @@ Class | Method | HTTP request | Description
  - [GetInboxPostComments200ResponseMeta](docs/GetInboxPostComments200ResponseMeta.md)
  - [GetInboxPostComments200ResponseMetaAdComments](docs/GetInboxPostComments200ResponseMetaAdComments.md)
  - [GetInboxPostComments200ResponsePagination](docs/GetInboxPostComments200ResponsePagination.md)
+ - [GetInboxPostComments200ResponsePost](docs/GetInboxPostComments200ResponsePost.md)
  - [GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
  - [GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
  - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)

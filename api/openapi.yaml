@@ -35975,6 +35975,72 @@ components:
           description: Bluesky root post CID
           type: string
           nullable: true
+    getInboxPostComments_200_response_post:
+      description: |
+        (Reddit only) Metadata for the target post, returned alongside the comments in Reddit's
+        single round-trip. Lets integrators render a preview of the post the user is commenting on
+        without an additional request. Absent for non-Reddit platforms and when the upstream
+        response is missing the post listing (deleted post, malformed response).
+      example:
+        selftext: selftext
+        over18: true
+        author: author
+        flairText: flairText
+        title: title
+        subreddit: subreddit
+        url: url
+        score: 1
+        numComments: 5
+        stickied: true
+        isGallery: true
+        id: id
+        fullname: fullname
+        permalink: permalink
+        createdUtc: 5
+      properties:
+        id:
+          description: Reddit post base36 id (e.g. "1tjtj26")
+          type: string
+        fullname:
+          description: Fullname with type prefix (e.g. "t3_1tjtj26")
+          type: string
+        title:
+          type: string
+        selftext:
+          description: Body text for self-posts (empty for link posts)
+          type: string
+        author:
+          description: Reddit username
+          type: string
+        subreddit:
+          description: Subreddit name
+          type: string
+        permalink:
+          description: Absolute URL to the post on reddit.com
+          type: string
+        url:
+          description: For link posts
+          type: string
+        score:
+          description: Net upvotes (upvotes minus downvotes)
+          type: integer
+        numComments:
+          type: integer
+        createdUtc:
+          description: Unix timestamp in seconds
+          type: integer
+        over18:
+          type: boolean
+        stickied:
+          type: boolean
+        flairText:
+          description: Link flair text if any
+          type: string
+          nullable: true
+        isGallery:
+          description: True if the post is a Reddit gallery (multiple images)
+          type: boolean
+      nullable: true
     getInboxPostComments_200_response_pagination:
       example:
         cursor: cursor
@@ -36088,6 +36154,22 @@ components:
         pagination:
           cursor: cursor
           hasMore: true
+        post:
+          selftext: selftext
+          over18: true
+          author: author
+          flairText: flairText
+          title: title
+          subreddit: subreddit
+          url: url
+          score: 1
+          numComments: 5
+          stickied: true
+          isGallery: true
+          id: id
+          fullname: fullname
+          permalink: permalink
+          createdUtc: 5
         meta:
           accountId: accountId
           lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -36105,6 +36187,8 @@ components:
           items:
             $ref: "#/components/schemas/getInboxPostComments_200_response_comments_inner"
           type: array
+        post:
+          $ref: "#/components/schemas/getInboxPostComments_200_response_post"
         pagination:
           $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
         meta:
