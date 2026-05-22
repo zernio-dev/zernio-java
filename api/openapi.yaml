@@ -9,7 +9,7 @@ info:
     Base URL: https://zernio.com/api
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.0.1
+  version: 1.0.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20820,6 +20820,7 @@ components:
       example:
         thumbnail: https://openapi-generator.tech
         filename: filename
+        altText: altText
         size: 0
         instagramThumbnail: https://openapi-generator.tech
         tiktokProcessed: true
@@ -20842,6 +20843,15 @@ components:
           description: "Optional title for the media item. Used as the document title\
             \ for LinkedIn PDF/carousel posts. If omitted, falls back to the post\
             \ title, then the filename."
+          type: string
+        altText:
+          description: "Accessibility alternative text for an image, applied on every\
+            \ platform that supports it: Instagram (feed images only, not Reels/Stories),\
+            \ Facebook, Threads, X/Twitter (max 1000 chars), LinkedIn, Bluesky, and\
+            \ Pinterest (max 500 chars). Ignored on platforms without alt-text support\
+            \ (TikTok, YouTube, Snapchat, Telegram, Reddit, Google Business, WhatsApp)\
+            \ and on video items where the platform does not accept it. Set once per\
+            \ image; the same value is sent to each selected platform."
           type: string
         filename:
           type: string
@@ -20877,6 +20887,7 @@ components:
           - mediaItems:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -20886,6 +20897,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -20897,6 +20909,7 @@ components:
           - mediaItems:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -20906,6 +20919,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -20939,6 +20953,7 @@ components:
         customMedia:
         - thumbnail: https://openapi-generator.tech
           filename: filename
+          altText: altText
           size: 0
           instagramThumbnail: https://openapi-generator.tech
           tiktokProcessed: true
@@ -20948,6 +20963,7 @@ components:
           url: https://openapi-generator.tech
         - thumbnail: https://openapi-generator.tech
           filename: filename
+          altText: altText
           size: 0
           instagramThumbnail: https://openapi-generator.tech
           tiktokProcessed: true
@@ -21066,6 +21082,7 @@ components:
             - mediaItems:
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21075,6 +21092,7 @@ components:
                 url: https://openapi-generator.tech
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21086,6 +21104,7 @@ components:
             - mediaItems:
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21095,6 +21114,7 @@ components:
                 url: https://openapi-generator.tech
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21128,6 +21148,7 @@ components:
           customMedia:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -21137,6 +21158,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -21153,6 +21175,7 @@ components:
             - mediaItems:
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21162,6 +21185,7 @@ components:
                 url: https://openapi-generator.tech
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21173,6 +21197,7 @@ components:
             - mediaItems:
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21182,6 +21207,7 @@ components:
                 url: https://openapi-generator.tech
               - thumbnail: https://openapi-generator.tech
                 filename: filename
+                altText: altText
                 size: 0
                 instagramThumbnail: https://openapi-generator.tech
                 tiktokProcessed: true
@@ -21215,6 +21241,7 @@ components:
           customMedia:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -21224,6 +21251,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -21240,6 +21268,7 @@ components:
         mediaItems:
         - thumbnail: https://openapi-generator.tech
           filename: filename
+          altText: altText
           size: 0
           instagramThumbnail: https://openapi-generator.tech
           tiktokProcessed: true
@@ -21249,6 +21278,7 @@ components:
           url: https://openapi-generator.tech
         - thumbnail: https://openapi-generator.tech
           filename: filename
+          altText: altText
           size: 0
           instagramThumbnail: https://openapi-generator.tech
           tiktokProcessed: true
@@ -21459,6 +21489,7 @@ components:
         - mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -21468,6 +21499,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -21479,6 +21511,7 @@ components:
         - mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -21488,6 +21521,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -22895,6 +22929,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -22904,6 +22939,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -22915,6 +22951,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -22924,6 +22961,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -22957,6 +22995,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -22966,6 +23005,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -22982,6 +23022,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -22991,6 +23032,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23002,6 +23044,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23011,6 +23054,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23044,6 +23088,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23053,6 +23098,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23069,6 +23115,7 @@ components:
           mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23078,6 +23125,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23127,6 +23175,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23136,6 +23185,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23147,6 +23197,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23156,6 +23207,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23189,6 +23241,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23198,6 +23251,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23214,6 +23268,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23223,6 +23278,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23234,6 +23290,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23243,6 +23300,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23276,6 +23334,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23285,6 +23344,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23301,6 +23361,7 @@ components:
           mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23310,6 +23371,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23369,6 +23431,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23378,6 +23441,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23389,6 +23453,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23398,6 +23463,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23431,6 +23497,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23440,6 +23507,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23456,6 +23524,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23465,6 +23534,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23476,6 +23546,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23485,6 +23556,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23518,6 +23590,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23527,6 +23600,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23543,6 +23617,7 @@ components:
           mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23552,6 +23627,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23607,6 +23683,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23616,6 +23693,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23627,6 +23705,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23636,6 +23715,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23669,6 +23749,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23678,6 +23759,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23694,6 +23776,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23703,6 +23786,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23714,6 +23798,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23723,6 +23808,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23756,6 +23842,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23765,6 +23852,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23781,6 +23869,7 @@ components:
           mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23790,6 +23879,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -23848,6 +23938,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23857,6 +23948,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23868,6 +23960,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23877,6 +23970,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23910,6 +24004,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23919,6 +24014,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -23935,6 +24031,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23944,6 +24041,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23955,6 +24053,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23964,6 +24063,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -23997,6 +24097,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -24006,6 +24107,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -24022,6 +24124,7 @@ components:
           mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -24031,6 +24134,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -24095,6 +24199,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24104,6 +24209,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24115,6 +24221,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24124,6 +24231,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24157,6 +24265,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -24166,6 +24275,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -24182,6 +24292,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24191,6 +24302,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24202,6 +24314,7 @@ components:
               - mediaItems:
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24211,6 +24324,7 @@ components:
                   url: https://openapi-generator.tech
                 - thumbnail: https://openapi-generator.tech
                   filename: filename
+                  altText: altText
                   size: 0
                   instagramThumbnail: https://openapi-generator.tech
                   tiktokProcessed: true
@@ -24244,6 +24358,7 @@ components:
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -24253,6 +24368,7 @@ components:
               url: https://openapi-generator.tech
             - thumbnail: https://openapi-generator.tech
               filename: filename
+              altText: altText
               size: 0
               instagramThumbnail: https://openapi-generator.tech
               tiktokProcessed: true
@@ -24269,6 +24385,7 @@ components:
           mediaItems:
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -24278,6 +24395,7 @@ components:
             url: https://openapi-generator.tech
           - thumbnail: https://openapi-generator.tech
             filename: filename
+            altText: altText
             size: 0
             instagramThumbnail: https://openapi-generator.tech
             tiktokProcessed: true
@@ -46420,6 +46538,7 @@ components:
         mediaItems:
         - thumbnail: https://openapi-generator.tech
           filename: filename
+          altText: altText
           size: 0
           instagramThumbnail: https://openapi-generator.tech
           tiktokProcessed: true
@@ -46429,6 +46548,7 @@ components:
           url: https://openapi-generator.tech
         - thumbnail: https://openapi-generator.tech
           filename: filename
+          altText: altText
           size: 0
           instagramThumbnail: https://openapi-generator.tech
           tiktokProcessed: true
