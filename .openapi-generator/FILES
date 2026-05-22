@@ -162,7 +162,6 @@ docs/CreatePost409Response.md
 docs/CreatePost409ResponseDetails.md
 docs/CreatePost429Response.md
 docs/CreatePostRequest.md
-docs/CreatePostRequestMediaItemsInner.md
 docs/CreatePostRequestPlatformsInner.md
 docs/CreatePostRequestPlatformsInnerPlatformSpecificData.md
 docs/CreateProfileRequest.md
@@ -1202,7 +1201,6 @@ src/main/java/dev/zernio/model/CreatePost409Response.java
 src/main/java/dev/zernio/model/CreatePost409ResponseDetails.java
 src/main/java/dev/zernio/model/CreatePost429Response.java
 src/main/java/dev/zernio/model/CreatePostRequest.java
-src/main/java/dev/zernio/model/CreatePostRequestMediaItemsInner.java
 src/main/java/dev/zernio/model/CreatePostRequestPlatformsInner.java
 src/main/java/dev/zernio/model/CreatePostRequestPlatformsInnerPlatformSpecificData.java
 src/main/java/dev/zernio/model/CreateProfileRequest.java

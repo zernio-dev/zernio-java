@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**title** | **String** |  |  [optional] |
 |**content** | **String** | Post caption/text. Optional when media is attached or all platforms have customContent. Required for text-only posts. |  [optional] |
-|**mediaItems** | [**List&lt;CreatePostRequestMediaItemsInner&gt;**](CreatePostRequestMediaItemsInner.md) |  |  [optional] |
+|**mediaItems** | [**List&lt;MediaItem&gt;**](MediaItem.md) |  |  [optional] |
 |**platforms** | [**List&lt;CreatePostRequestPlatformsInner&gt;**](CreatePostRequestPlatformsInner.md) | Target platforms and accounts for this post. Required for non-draft posts (returns 400 if empty). Drafts can omit platforms. |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
 |**publishNow** | **Boolean** |  |  [optional] |

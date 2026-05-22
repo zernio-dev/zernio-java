@@ -9,7 +9,7 @@ info:
     Base URL: https://zernio.com/api
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.0.2
+  version: 1.0.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -27334,18 +27334,6 @@ components:
         before:
           type: string
           nullable: true
-    createPost_request_mediaItems_inner:
-      properties:
-        type:
-          enum:
-          - image
-          - video
-          - gif
-          - document
-          type: string
-        url:
-          format: uri
-          type: string
     createPost_request_platforms_inner_platformSpecificData:
       oneOf:
       - $ref: "#/components/schemas/TwitterPlatformData"
@@ -27376,7 +27364,7 @@ components:
           type: string
         customMedia:
           items:
-            $ref: "#/components/schemas/createPost_request_mediaItems_inner"
+            $ref: "#/components/schemas/MediaItem"
           type: array
         scheduledFor:
           description: "Optional per-platform scheduled time override. When omitted,\
@@ -27395,7 +27383,7 @@ components:
           type: string
         mediaItems:
           items:
-            $ref: "#/components/schemas/createPost_request_mediaItems_inner"
+            $ref: "#/components/schemas/MediaItem"
           type: array
         platforms:
           description: Target platforms and accounts for this post. Required for non-draft

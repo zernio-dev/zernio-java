@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.0.2
+- API version: 1.0.3
 
-- Build date: 2026-05-22T11:31:55.614474410Z[Etc/UTC]
+- Build date: 2026-05-22T11:42:47.288371617Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -47,7 +47,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.0.2"
+compile "dev.zernio:zernio-sdk:1.0.3"
 ```
 
 ### Others
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.0.2.jar`
+- `target/zernio-sdk-1.0.3.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -862,7 +862,6 @@ Class | Method | HTTP request | Description
  - [CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
  - [CreatePost429Response](docs/CreatePost429Response.md)
  - [CreatePostRequest](docs/CreatePostRequest.md)
- - [CreatePostRequestMediaItemsInner](docs/CreatePostRequestMediaItemsInner.md)
  - [CreatePostRequestPlatformsInner](docs/CreatePostRequestPlatformsInner.md)
  - [CreatePostRequestPlatformsInnerPlatformSpecificData](docs/CreatePostRequestPlatformsInnerPlatformSpecificData.md)
  - [CreateProfileRequest](docs/CreateProfileRequest.md)
