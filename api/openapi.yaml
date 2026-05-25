@@ -20225,6 +20225,49 @@ components:
       - id
       - post
       - timestamp
+    WebhookPayloadLead:
+      description: Webhook payload for lead.received events (Meta Lead Gen / Instant
+        Forms).
+      example:
+        id: id
+        event: lead.received
+        lead:
+          formId: formId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adId: adId
+          campaignId: campaignId
+          formName: formName
+          isOrganic: true
+          id: id
+          fields:
+            key: fields
+          leadgenId: leadgenId
+          adsetId: adsetId
+        account:
+          id: id
+          platform: facebook
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - lead.received
+          type: string
+        lead:
+          $ref: "#/components/schemas/WebhookPayloadLead_lead"
+        account:
+          $ref: "#/components/schemas/WebhookPayloadLead_account"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - lead
+      - timestamp
     ReviewWebhookReview:
       description: Review data shared by review.new and review.updated payloads.
       example:
@@ -46623,6 +46666,78 @@ components:
       - id
       - platform
       - username
+    WebhookPayloadLead_lead:
+      example:
+        formId: formId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        adId: adId
+        campaignId: campaignId
+        formName: formName
+        isOrganic: true
+        id: id
+        fields:
+          key: fields
+        leadgenId: leadgenId
+        adsetId: adsetId
+      properties:
+        id:
+          description: Zernio lead ID (AdLead document ID)
+          type: string
+        leadgenId:
+          description: Meta lead ID (the platform's leadgen_id)
+          type: string
+        formId:
+          description: Lead Gen form ID the lead was submitted against
+          type: string
+        formName:
+          description: Human-readable form name (best-effort; may be null)
+          type: string
+          nullable: true
+        adId:
+          description: Meta ad ID that drove the lead (null for organic/test leads)
+          type: string
+          nullable: true
+        adsetId:
+          type: string
+          nullable: true
+        campaignId:
+          type: string
+          nullable: true
+        fields:
+          additionalProperties:
+            type: string
+          description: |
+            Flattened question key -> answer map. For multiple-choice questions the value is the option key (e.g. "k1"), not the display label.
+        isOrganic:
+          description: True when the lead came from an organic post rather than a
+            paid ad
+          type: boolean
+        createdAt:
+          description: Meta's lead creation time (ISO 8601)
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - fields
+      - formId
+      - id
+      - isOrganic
+      - leadgenId
+    WebhookPayloadLead_account:
+      example:
+        id: id
+        platform: facebook
+      properties:
+        id:
+          description: Social account ID (the facebook account owning the Page)
+          type: string
+        platform:
+          enum:
+          - facebook
+          type: string
+      required:
+      - id
+      - platform
     ReviewWebhookReview_reviewer:
       example:
         name: name
