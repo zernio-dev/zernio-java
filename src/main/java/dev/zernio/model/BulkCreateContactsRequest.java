@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   BulkCreateContactsRequest.JSON_PROPERTY_PLATFORM,
   BulkCreateContactsRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T09:45:44.760208202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkCreateContactsRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

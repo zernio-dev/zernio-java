@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   RemoveConversionAssociations200Response.JSON_PROPERTY_SUCCEEDED,
   RemoveConversionAssociations200Response.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T09:45:44.760208202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemoveConversionAssociations200Response {
   /**
    * Gets or Sets platform

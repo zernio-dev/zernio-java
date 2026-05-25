@@ -21,13 +21,18 @@ import dev.zernio.Pair;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.AddConversionAssociations200Response;
 import dev.zernio.model.AddConversionAssociationsRequest;
+import dev.zernio.model.ArchiveLeadForm200Response;
 import dev.zernio.model.BoostPostRequest;
 import dev.zernio.model.CreateConversionDestination201Response;
 import dev.zernio.model.CreateConversionDestinationRequest;
 import dev.zernio.model.CreateCtwaAd201Response;
 import dev.zernio.model.CreateCtwaAdRequest;
+import dev.zernio.model.CreateLeadForm200Response;
+import dev.zernio.model.CreateLeadFormRequest;
 import dev.zernio.model.CreateStandaloneAd201Response;
 import dev.zernio.model.CreateStandaloneAdRequest;
+import dev.zernio.model.CreateTestLead200Response;
+import dev.zernio.model.CreateTestLeadRequest;
 import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.EstimateAdReach200Response;
 import dev.zernio.model.EstimateAdReachRequest;
@@ -35,6 +40,7 @@ import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
+import dev.zernio.model.GetLeadForm200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
@@ -42,6 +48,9 @@ import dev.zernio.model.ListAds200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
 import dev.zernio.model.ListConversionAssociations200Response;
 import dev.zernio.model.ListConversionDestinations200Response;
+import dev.zernio.model.ListFormLeads200Response;
+import dev.zernio.model.ListLeadForms200Response;
+import dev.zernio.model.ListLeads200Response;
 import java.time.LocalDate;
 import dev.zernio.model.RemoveConversionAssociations200Response;
 import dev.zernio.model.SearchAdInterests200Response;
@@ -79,7 +88,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T09:45:44.760208202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -326,6 +335,147 @@ public class AdsApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Archive a Lead Gen form
+   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @return ArchiveLeadForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ArchiveLeadForm200Response archiveLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return archiveLeadForm(formId, accountId, null);
+  }
+
+  /**
+   * Archive a Lead Gen form
+   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ArchiveLeadForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ArchiveLeadForm200Response archiveLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ArchiveLeadForm200Response> localVarResponse = archiveLeadFormWithHttpInfo(formId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Archive a Lead Gen form
+   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @return ApiResponse&lt;ArchiveLeadForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ArchiveLeadForm200Response> archiveLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return archiveLeadFormWithHttpInfo(formId, accountId, null);
+  }
+
+  /**
+   * Archive a Lead Gen form
+   * Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ArchiveLeadForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ArchiveLeadForm200Response> archiveLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = archiveLeadFormRequestBuilder(formId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("archiveLeadForm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ArchiveLeadForm200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ArchiveLeadForm200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ArchiveLeadForm200Response>() {});
+        
+
+        return new ApiResponse<ArchiveLeadForm200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder archiveLeadFormRequestBuilder(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'formId' is set
+    if (formId == null) {
+      throw new ApiException(400, "Missing the required parameter 'formId' when calling archiveLeadForm");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling archiveLeadForm");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/lead-forms/{formId}"
+        .replace("{formId}", ApiClient.urlEncode(formId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -716,6 +866,129 @@ public class AdsApi {
   }
 
   /**
+   * Create a Lead Gen (Instant) form
+   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * @param createLeadFormRequest  (required)
+   * @return CreateLeadForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateLeadForm200Response createLeadForm(@javax.annotation.Nonnull CreateLeadFormRequest createLeadFormRequest) throws ApiException {
+    return createLeadForm(createLeadFormRequest, null);
+  }
+
+  /**
+   * Create a Lead Gen (Instant) form
+   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * @param createLeadFormRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateLeadForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateLeadForm200Response createLeadForm(@javax.annotation.Nonnull CreateLeadFormRequest createLeadFormRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateLeadForm200Response> localVarResponse = createLeadFormWithHttpInfo(createLeadFormRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a Lead Gen (Instant) form
+   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * @param createLeadFormRequest  (required)
+   * @return ApiResponse&lt;CreateLeadForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateLeadForm200Response> createLeadFormWithHttpInfo(@javax.annotation.Nonnull CreateLeadFormRequest createLeadFormRequest) throws ApiException {
+    return createLeadFormWithHttpInfo(createLeadFormRequest, null);
+  }
+
+  /**
+   * Create a Lead Gen (Instant) form
+   * Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+   * @param createLeadFormRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateLeadForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateLeadForm200Response> createLeadFormWithHttpInfo(@javax.annotation.Nonnull CreateLeadFormRequest createLeadFormRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createLeadFormRequestBuilder(createLeadFormRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createLeadForm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateLeadForm200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateLeadForm200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateLeadForm200Response>() {});
+        
+
+        return new ApiResponse<CreateLeadForm200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createLeadFormRequestBuilder(@javax.annotation.Nonnull CreateLeadFormRequest createLeadFormRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createLeadFormRequest' is set
+    if (createLeadFormRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createLeadFormRequest' when calling createLeadForm");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/lead-forms";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createLeadFormRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Create standalone ad
    * Creates a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X/Twitter, and LinkedIn. Supports three mutually-exclusive request shapes selected by the body, a legacy single-creative shape (all platforms, default), a Meta-only multi-creative shape via the creatives array (one ad set with N ads sharing budget and targeting), and a Meta-only attach shape via adSetId (adds one new ad to an existing ad set). Per-platform required fields, budget minimums, and video-ad rules are documented on each property below. LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;); supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.
    * @param createStandaloneAdRequest  (required)
@@ -823,6 +1096,138 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createStandaloneAdRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a synthetic test lead
+   * Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+   * @param formId  (required)
+   * @param createTestLeadRequest  (required)
+   * @return CreateTestLead200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateTestLead200Response createTestLead(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull CreateTestLeadRequest createTestLeadRequest) throws ApiException {
+    return createTestLead(formId, createTestLeadRequest, null);
+  }
+
+  /**
+   * Create a synthetic test lead
+   * Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+   * @param formId  (required)
+   * @param createTestLeadRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateTestLead200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateTestLead200Response createTestLead(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull CreateTestLeadRequest createTestLeadRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateTestLead200Response> localVarResponse = createTestLeadWithHttpInfo(formId, createTestLeadRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a synthetic test lead
+   * Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+   * @param formId  (required)
+   * @param createTestLeadRequest  (required)
+   * @return ApiResponse&lt;CreateTestLead200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateTestLead200Response> createTestLeadWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull CreateTestLeadRequest createTestLeadRequest) throws ApiException {
+    return createTestLeadWithHttpInfo(formId, createTestLeadRequest, null);
+  }
+
+  /**
+   * Create a synthetic test lead
+   * Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+   * @param formId  (required)
+   * @param createTestLeadRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateTestLead200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateTestLead200Response> createTestLeadWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull CreateTestLeadRequest createTestLeadRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createTestLeadRequestBuilder(formId, createTestLeadRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createTestLead", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateTestLead200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateTestLead200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateTestLead200Response>() {});
+        
+
+        return new ApiResponse<CreateTestLead200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createTestLeadRequestBuilder(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull CreateTestLeadRequest createTestLeadRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'formId' is set
+    if (formId == null) {
+      throw new ApiException(400, "Missing the required parameter 'formId' when calling createTestLead");
+    }
+    // verify the required parameter 'createTestLeadRequest' is set
+    if (createTestLeadRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createTestLeadRequest' when calling createTestLead");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/lead-forms/{formId}/test-leads"
+        .replace("{formId}", ApiClient.urlEncode(formId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createTestLeadRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1950,6 +2355,147 @@ public class AdsApi {
   }
 
   /**
+   * Get a single Lead Gen form
+   * 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @return GetLeadForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetLeadForm200Response getLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getLeadForm(formId, accountId, null);
+  }
+
+  /**
+   * Get a single Lead Gen form
+   * 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetLeadForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetLeadForm200Response getLeadForm(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetLeadForm200Response> localVarResponse = getLeadFormWithHttpInfo(formId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a single Lead Gen form
+   * 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @return ApiResponse&lt;GetLeadForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetLeadForm200Response> getLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getLeadFormWithHttpInfo(formId, accountId, null);
+  }
+
+  /**
+   * Get a single Lead Gen form
+   * 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetLeadForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetLeadForm200Response> getLeadFormWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getLeadFormRequestBuilder(formId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getLeadForm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetLeadForm200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetLeadForm200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetLeadForm200Response>() {});
+        
+
+        return new ApiResponse<GetLeadForm200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getLeadFormRequestBuilder(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'formId' is set
+    if (formId == null) {
+      throw new ApiException(400, "Missing the required parameter 'formId' when calling getLeadForm");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getLeadForm");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/lead-forms/{formId}"
+        .replace("{formId}", ApiClient.urlEncode(formId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List ad accounts
    * Returns the platform ad accounts available for the given social account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry. 
    * @param accountId Social account ID (required)
@@ -2684,6 +3230,461 @@ public class AdsApi {
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List leads for a single form
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @param since Unix seconds. (optional)
+   * @return ListFormLeads200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListFormLeads200Response listFormLeads(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer since) throws ApiException {
+    return listFormLeads(formId, accountId, limit, cursor, since, null);
+  }
+
+  /**
+   * List leads for a single form
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @param since Unix seconds. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListFormLeads200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListFormLeads200Response listFormLeads(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer since, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListFormLeads200Response> localVarResponse = listFormLeadsWithHttpInfo(formId, accountId, limit, cursor, since, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List leads for a single form
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @param since Unix seconds. (optional)
+   * @return ApiResponse&lt;ListFormLeads200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListFormLeads200Response> listFormLeadsWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer since) throws ApiException {
+    return listFormLeadsWithHttpInfo(formId, accountId, limit, cursor, since, null);
+  }
+
+  /**
+   * List leads for a single form
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * @param formId  (required)
+   * @param accountId  (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @param since Unix seconds. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListFormLeads200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListFormLeads200Response> listFormLeadsWithHttpInfo(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer since, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listFormLeadsRequestBuilder(formId, accountId, limit, cursor, since, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listFormLeads", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListFormLeads200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListFormLeads200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListFormLeads200Response>() {});
+        
+
+        return new ApiResponse<ListFormLeads200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listFormLeadsRequestBuilder(@javax.annotation.Nonnull String formId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, @javax.annotation.Nullable Integer since, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'formId' is set
+    if (formId == null) {
+      throw new ApiException(400, "Missing the required parameter 'formId' when calling listFormLeads");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listFormLeads");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/lead-forms/{formId}/leads"
+        .replace("{formId}", ApiClient.urlEncode(formId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "cursor";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List Lead Gen (Instant) forms
+   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+   * @param accountId Connected facebook account id. (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @return ListLeadForms200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLeadForms200Response listLeadForms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeadForms(accountId, limit, cursor, null);
+  }
+
+  /**
+   * List Lead Gen (Instant) forms
+   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+   * @param accountId Connected facebook account id. (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListLeadForms200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLeadForms200Response listLeadForms(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLeadForms200Response> localVarResponse = listLeadFormsWithHttpInfo(accountId, limit, cursor, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Lead Gen (Instant) forms
+   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+   * @param accountId Connected facebook account id. (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @return ApiResponse&lt;ListLeadForms200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLeadForms200Response> listLeadFormsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeadFormsWithHttpInfo(accountId, limit, cursor, null);
+  }
+
+  /**
+   * List Lead Gen (Instant) forms
+   * Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+   * @param accountId Connected facebook account id. (required)
+   * @param limit  (optional, default to 25)
+   * @param cursor  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListLeadForms200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLeadForms200Response> listLeadFormsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLeadFormsRequestBuilder(accountId, limit, cursor, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listLeadForms", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListLeadForms200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListLeadForms200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListLeadForms200Response>() {});
+        
+
+        return new ApiResponse<ListLeadForms200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listLeadFormsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listLeadForms");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/lead-forms";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "cursor";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List submitted leads (cross-form CRM view)
+   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * @param formId Filter to a single lead form. (optional)
+   * @param accountId Filter to a single connected account. (optional)
+   * @param limit  (optional, default to 25)
+   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @return ListLeads200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLeads200Response listLeads(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeads(formId, accountId, limit, since, cursor, null);
+  }
+
+  /**
+   * List submitted leads (cross-form CRM view)
+   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * @param formId Filter to a single lead form. (optional)
+   * @param accountId Filter to a single connected account. (optional)
+   * @param limit  (optional, default to 25)
+   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListLeads200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListLeads200Response listLeads(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLeads200Response> localVarResponse = listLeadsWithHttpInfo(formId, accountId, limit, since, cursor, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List submitted leads (cross-form CRM view)
+   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * @param formId Filter to a single lead form. (optional)
+   * @param accountId Filter to a single connected account. (optional)
+   * @param limit  (optional, default to 25)
+   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @return ApiResponse&lt;ListLeads200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLeads200Response> listLeadsWithHttpInfo(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor) throws ApiException {
+    return listLeadsWithHttpInfo(formId, accountId, limit, since, cursor, null);
+  }
+
+  /**
+   * List submitted leads (cross-form CRM view)
+   * Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+   * @param formId Filter to a single lead form. (optional)
+   * @param accountId Filter to a single connected account. (optional)
+   * @param limit  (optional, default to 25)
+   * @param since Unix seconds; only leads created at/after this Meta timestamp. (optional)
+   * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListLeads200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListLeads200Response> listLeadsWithHttpInfo(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLeadsRequestBuilder(formId, accountId, limit, since, cursor, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listLeads", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListLeads200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListLeads200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListLeads200Response>() {});
+        
+
+        return new ApiResponse<ListLeads200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listLeadsRequestBuilder(@javax.annotation.Nullable String formId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer since, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/leads";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "formId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("formId", formId));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "cursor";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

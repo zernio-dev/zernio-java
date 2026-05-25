@@ -63,6 +63,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BODY,
   CreateStandaloneAdRequest.JSON_PROPERTY_CALL_TO_ACTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_LINK_URL,
+  CreateStandaloneAdRequest.JSON_PROPERTY_LEAD_GEN_FORM_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_IMAGE_URL,
   CreateStandaloneAdRequest.JSON_PROPERTY_IMAGES,
   CreateStandaloneAdRequest.JSON_PROPERTY_VIDEO,
@@ -103,7 +104,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-22T16:09:53.172959643Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T09:45:44.760208202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -299,6 +300,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_LINK_URL = "linkUrl";
   @javax.annotation.Nullable
   private URI linkUrl;
+
+  public static final String JSON_PROPERTY_LEAD_GEN_FORM_ID = "leadGenFormId";
+  @javax.annotation.Nullable
+  private String leadGenFormId;
 
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable
@@ -949,7 +954,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;.
+   * Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;. NOT required when &#x60;goal&#x60; is &#x60;lead_generation&#x60; (the ad opens a Lead Gen form instead of a destination).
    * @return linkUrl
    */
   @javax.annotation.Nullable
@@ -964,6 +969,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLinkUrl(@javax.annotation.Nullable URI linkUrl) {
     this.linkUrl = linkUrl;
+  }
+
+
+  public CreateStandaloneAdRequest leadGenFormId(@javax.annotation.Nullable String leadGenFormId) {
+    this.leadGenFormId = leadGenFormId;
+    return this;
+  }
+
+  /**
+   * Meta Lead Gen forms only (facebook/instagram). The leadgen_forms ID to attach to the ad&#39;s creative — create one via POST /v1/ads/lead-forms. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;; ignored otherwise. The ad set&#39;s promoted_object.page_id + LEAD_GENERATION optimization are derived automatically from the goal.
+   * @return leadGenFormId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LEAD_GEN_FORM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLeadGenFormId() {
+    return leadGenFormId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LEAD_GEN_FORM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLeadGenFormId(@javax.annotation.Nullable String leadGenFormId) {
+    this.leadGenFormId = leadGenFormId;
   }
 
 
@@ -2051,6 +2080,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.body, createStandaloneAdRequest.body) &&
         Objects.equals(this.callToAction, createStandaloneAdRequest.callToAction) &&
         Objects.equals(this.linkUrl, createStandaloneAdRequest.linkUrl) &&
+        Objects.equals(this.leadGenFormId, createStandaloneAdRequest.leadGenFormId) &&
         Objects.equals(this.imageUrl, createStandaloneAdRequest.imageUrl) &&
         Objects.equals(this.images, createStandaloneAdRequest.images) &&
         Objects.equals(this.video, createStandaloneAdRequest.video) &&
@@ -2094,7 +2124,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, savedTargetingId, specialAdCategories, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, savedTargetingId, specialAdCategories, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2113,6 +2143,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
+    sb.append("    leadGenFormId: ").append(toIndentedString(leadGenFormId)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
@@ -2257,6 +2288,11 @@ public class CreateStandaloneAdRequest {
     // add `linkUrl` to the URL query string
     if (getLinkUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slinkUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkUrl()))));
+    }
+
+    // add `leadGenFormId` to the URL query string
+    if (getLeadGenFormId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sleadGenFormId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLeadGenFormId()))));
     }
 
     // add `imageUrl` to the URL query string

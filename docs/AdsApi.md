@@ -6,14 +6,20 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**addConversionAssociations**](AdsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination |
 | [**addConversionAssociationsWithHttpInfo**](AdsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination |
+| [**archiveLeadForm**](AdsApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form |
+| [**archiveLeadFormWithHttpInfo**](AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form |
 | [**boostPost**](AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**boostPostWithHttpInfo**](AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad |
 | [**createConversionDestination**](AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn) |
 | [**createConversionDestinationWithHttpInfo**](AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn) |
 | [**createCtwaAd**](AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s) |
 | [**createCtwaAdWithHttpInfo**](AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s) |
+| [**createLeadForm**](AdsApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form |
+| [**createLeadFormWithHttpInfo**](AdsApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form |
 | [**createStandaloneAd**](AdsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad |
 | [**createStandaloneAdWithHttpInfo**](AdsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad |
+| [**createTestLead**](AdsApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a synthetic test lead |
+| [**createTestLeadWithHttpInfo**](AdsApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a synthetic test lead |
 | [**deleteAd**](AdsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**deleteAdWithHttpInfo**](AdsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad |
 | [**deleteConversionDestination**](AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination |
@@ -30,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionDestinationWithHttpInfo**](AdsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination |
 | [**getConversionMetrics**](AdsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination |
 | [**getConversionMetricsWithHttpInfo**](AdsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination |
+| [**getLeadForm**](AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form |
+| [**getLeadFormWithHttpInfo**](AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form |
 | [**listAdAccounts**](AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAds**](AdsApi.md#listAds) | **GET** /v1/ads | List ads |
@@ -40,6 +48,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**listConversionAssociationsWithHttpInfo**](AdsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination |
 | [**listConversionDestinations**](AdsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API |
 | [**listConversionDestinationsWithHttpInfo**](AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API |
+| [**listFormLeads**](AdsApi.md#listFormLeads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form |
+| [**listFormLeadsWithHttpInfo**](AdsApi.md#listFormLeadsWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form |
+| [**listLeadForms**](AdsApi.md#listLeadForms) | **GET** /v1/ads/lead-forms | List Lead Gen (Instant) forms |
+| [**listLeadFormsWithHttpInfo**](AdsApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List Lead Gen (Instant) forms |
+| [**listLeads**](AdsApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads (cross-form CRM view) |
+| [**listLeadsWithHttpInfo**](AdsApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads (cross-form CRM view) |
 | [**removeConversionAssociations**](AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations |
 | [**removeConversionAssociationsWithHttpInfo**](AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations |
 | [**searchAdInterests**](AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests (deprecated) |
@@ -219,6 +233,156 @@ ApiResponse<[**AddConversionAssociations200Response**](AddConversionAssociations
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support associations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## archiveLeadForm
+
+> ArchiveLeadForm200Response archiveLeadForm(formId, accountId)
+
+Archive a Lead Gen form
+
+Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            ArchiveLeadForm200Response result = apiInstance.archiveLeadForm(formId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#archiveLeadForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Archived. |  -  |
+| **401** | Unauthorized |  -  |
+
+## archiveLeadFormWithHttpInfo
+
+> ApiResponse<ArchiveLeadForm200Response> archiveLeadForm archiveLeadFormWithHttpInfo(formId, accountId)
+
+Archive a Lead Gen form
+
+Meta has no hard delete for forms; this archives the form (status&#x3D;ARCHIVED).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<ArchiveLeadForm200Response> response = apiInstance.archiveLeadFormWithHttpInfo(formId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#archiveLeadForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Archived. |  -  |
+| **401** | Unauthorized |  -  |
 
 
 ## boostPost
@@ -689,6 +853,154 @@ ApiResponse<[**CreateCtwaAd201Response**](CreateCtwaAd201Response.md)>
 | **502** | Meta rejected the request (e.g. WABA business verification missing). Inspect &#x60;platformError&#x60; for the upstream Meta payload.  |  -  |
 
 
+## createLeadForm
+
+> CreateLeadForm200Response createLeadForm(createLeadFormRequest)
+
+Create a Lead Gen (Instant) form
+
+Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateLeadFormRequest createLeadFormRequest = new CreateLeadFormRequest(); // CreateLeadFormRequest | 
+        try {
+            CreateLeadForm200Response result = apiInstance.createLeadForm(createLeadFormRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createLeadForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createLeadFormRequest** | [**CreateLeadFormRequest**](CreateLeadFormRequest.md)|  | |
+
+### Return type
+
+[**CreateLeadForm200Response**](CreateLeadForm200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Created form. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required. |  -  |
+
+## createLeadFormWithHttpInfo
+
+> ApiResponse<CreateLeadForm200Response> createLeadForm createLeadFormWithHttpInfo(createLeadFormRequest)
+
+Create a Lead Gen (Instant) form
+
+Creates a Lead Gen form on the connected Facebook Page (POST /{page-id}/leadgen_forms). NOT idempotent — a retry creates a second form. Prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateLeadFormRequest createLeadFormRequest = new CreateLeadFormRequest(); // CreateLeadFormRequest | 
+        try {
+            ApiResponse<CreateLeadForm200Response> response = apiInstance.createLeadFormWithHttpInfo(createLeadFormRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createLeadForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createLeadFormRequest** | [**CreateLeadFormRequest**](CreateLeadFormRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateLeadForm200Response**](CreateLeadForm200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Created form. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required. |  -  |
+
+
 ## createStandaloneAd
 
 > CreateStandaloneAd201Response createStandaloneAd(createStandaloneAdRequest)
@@ -839,6 +1151,156 @@ ApiResponse<[**CreateStandaloneAd201Response**](CreateStandaloneAd201Response.md
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
+
+
+## createTestLead
+
+> CreateTestLead200Response createTestLead(formId, createTestLeadRequest)
+
+Create a synthetic test lead
+
+Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        CreateTestLeadRequest createTestLeadRequest = new CreateTestLeadRequest(); // CreateTestLeadRequest | 
+        try {
+            CreateTestLead200Response result = apiInstance.createTestLead(formId, createTestLeadRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createTestLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **createTestLeadRequest** | [**CreateTestLeadRequest**](CreateTestLeadRequest.md)|  | |
+
+### Return type
+
+[**CreateTestLead200Response**](CreateTestLead200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Test lead created. |  -  |
+| **401** | Unauthorized |  -  |
+
+## createTestLeadWithHttpInfo
+
+> ApiResponse<CreateTestLead200Response> createTestLead createTestLeadWithHttpInfo(formId, createTestLeadRequest)
+
+Create a synthetic test lead
+
+Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        CreateTestLeadRequest createTestLeadRequest = new CreateTestLeadRequest(); // CreateTestLeadRequest | 
+        try {
+            ApiResponse<CreateTestLead200Response> response = apiInstance.createTestLeadWithHttpInfo(formId, createTestLeadRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createTestLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **createTestLeadRequest** | [**CreateTestLeadRequest**](CreateTestLeadRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateTestLead200Response**](CreateTestLead200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Test lead created. |  -  |
+| **401** | Unauthorized |  -  |
 
 
 ## deleteAd
@@ -2119,6 +2581,152 @@ ApiResponse<[**GetConversionMetrics200Response**](GetConversionMetrics200Respons
 | **429** | LinkedIn analytics rate limit hit. |  -  |
 
 
+## getLeadForm
+
+> GetLeadForm200Response getLeadForm(formId, accountId)
+
+Get a single Lead Gen form
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetLeadForm200Response result = apiInstance.getLeadForm(formId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getLeadForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetLeadForm200Response**](GetLeadForm200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Form metadata. |  -  |
+| **401** | Unauthorized |  -  |
+
+## getLeadFormWithHttpInfo
+
+> ApiResponse<GetLeadForm200Response> getLeadForm getLeadFormWithHttpInfo(formId, accountId)
+
+Get a single Lead Gen form
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetLeadForm200Response> response = apiInstance.getLeadFormWithHttpInfo(formId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getLeadForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Form metadata. |  -  |
+| **401** | Unauthorized |  -  |
+
+
 ## listAdAccounts
 
 > ListAdAccounts200Response listAdAccounts(accountId, adAccountId, limit)
@@ -2941,6 +3549,488 @@ ApiResponse<[**ListConversionDestinations200Response**](ListConversionDestinatio
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected.  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## listFormLeads
+
+> ListFormLeads200Response listFormLeads(formId, accountId, limit, cursor, since)
+
+List leads for a single form
+
+Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        Integer since = 56; // Integer | Unix seconds.
+        try {
+            ListFormLeads200Response result = apiInstance.listFormLeads(formId, accountId, limit, cursor, since);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listFormLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**|  | [optional] |
+| **since** | **Integer**| Unix seconds. | [optional] |
+
+### Return type
+
+[**ListFormLeads200Response**](ListFormLeads200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Leads for the form. |  -  |
+| **401** | Unauthorized |  -  |
+
+## listFormLeadsWithHttpInfo
+
+> ApiResponse<ListFormLeads200Response> listFormLeads listFormLeadsWithHttpInfo(formId, accountId, limit, cursor, since)
+
+List leads for a single form
+
+Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        Integer since = 56; // Integer | Unix seconds.
+        try {
+            ApiResponse<ListFormLeads200Response> response = apiInstance.listFormLeadsWithHttpInfo(formId, accountId, limit, cursor, since);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listFormLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**|  | [optional] |
+| **since** | **Integer**| Unix seconds. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListFormLeads200Response**](ListFormLeads200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Leads for the form. |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## listLeadForms
+
+> ListLeadForms200Response listLeadForms(accountId, limit, cursor)
+
+List Lead Gen (Instant) forms
+
+Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Connected facebook account id.
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        try {
+            ListLeadForms200Response result = apiInstance.listLeadForms(accountId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listLeadForms");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Connected facebook account id. | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**|  | [optional] |
+
+### Return type
+
+[**ListLeadForms200Response**](ListLeadForms200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Forms list. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required. |  -  |
+
+## listLeadFormsWithHttpInfo
+
+> ApiResponse<ListLeadForms200Response> listLeadForms listLeadFormsWithHttpInfo(accountId, limit, cursor)
+
+List Lead Gen (Instant) forms
+
+Lists the Lead Gen forms owned by the connected Facebook Page. Requires the Ads add-on.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Connected facebook account id.
+        Integer limit = 25; // Integer | 
+        String cursor = "cursor_example"; // String | 
+        try {
+            ApiResponse<ListLeadForms200Response> response = apiInstance.listLeadFormsWithHttpInfo(accountId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listLeadForms");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Connected facebook account id. | |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **cursor** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListLeadForms200Response**](ListLeadForms200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Forms list. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required. |  -  |
+
+
+## listLeads
+
+> ListLeads200Response listLeads(formId, accountId, limit, since, cursor)
+
+List submitted leads (cross-form CRM view)
+
+Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | Filter to a single lead form.
+        String accountId = "accountId_example"; // String | Filter to a single connected account.
+        Integer limit = 25; // Integer | 
+        Integer since = 56; // Integer | Unix seconds; only leads created at/after this Meta timestamp.
+        String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor.
+        try {
+            ListLeads200Response result = apiInstance.listLeads(formId, accountId, limit, since, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**| Filter to a single lead form. | [optional] |
+| **accountId** | **String**| Filter to a single connected account. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **since** | **Integer**| Unix seconds; only leads created at/after this Meta timestamp. | [optional] |
+| **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor. | [optional] |
+
+### Return type
+
+[**ListLeads200Response**](ListLeads200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead list. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required. |  -  |
+
+## listLeadsWithHttpInfo
+
+> ApiResponse<ListLeads200Response> listLeads listLeadsWithHttpInfo(formId, accountId, limit, since, cursor)
+
+List submitted leads (cross-form CRM view)
+
+Returns persisted Meta Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. Leads are ingested in real time from the &#x60;leadgen&#x60; webhook. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String formId = "formId_example"; // String | Filter to a single lead form.
+        String accountId = "accountId_example"; // String | Filter to a single connected account.
+        Integer limit = 25; // Integer | 
+        Integer since = 56; // Integer | Unix seconds; only leads created at/after this Meta timestamp.
+        String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor.
+        try {
+            ApiResponse<ListLeads200Response> response = apiInstance.listLeadsWithHttpInfo(formId, accountId, limit, since, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**| Filter to a single lead form. | [optional] |
+| **accountId** | **String**| Filter to a single connected account. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 25] |
+| **since** | **Integer**| Unix seconds; only leads created at/after this Meta timestamp. | [optional] |
+| **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListLeads200Response**](ListLeads200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead list. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads add-on required. |  -  |
 
 
 ## removeConversionAssociations
