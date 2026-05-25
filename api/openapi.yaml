@@ -22990,7 +22990,9 @@ components:
         lastUpdated: 2000-01-23T04:56:07.000+00:00
         comments: 0
         saves: 0
+        igReelsAvgWatchTime: 0
         reach: 0
+        igReelsVideoViewTotalTime: 0
         clicks: 0
         impressions: 0
         views: 0
@@ -23019,6 +23021,16 @@ components:
           example: 0
           type: integer
         views:
+          example: 0
+          type: integer
+        igReelsAvgWatchTime:
+          description: "Instagram Reels only: average watch time per play, in milliseconds.\
+            \ 0 for non-Reels media and other platforms."
+          example: 0
+          type: integer
+        igReelsVideoViewTotalTime:
+          description: "Instagram Reels only: total watch time including replays,\
+            \ in milliseconds. 0 for non-Reels media and other platforms."
           example: 0
           type: integer
         engagementRate:
@@ -23123,7 +23135,9 @@ components:
           lastUpdated: 2000-01-23T04:56:07.000+00:00
           comments: 0
           saves: 0
+          igReelsAvgWatchTime: 0
           reach: 0
+          igReelsVideoViewTotalTime: 0
           clicks: 0
           impressions: 0
           views: 0

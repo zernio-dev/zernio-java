@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateQueueSlot200Response.JSON_PROPERTY_NEXT_SLOTS,
   UpdateQueueSlot200Response.JSON_PROPERTY_RESHUFFLED_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T10:14:18.561300536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T16:01:24.855161855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateQueueSlot200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

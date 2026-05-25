@@ -43,10 +43,12 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_SAVES,
   PostAnalytics.JSON_PROPERTY_CLICKS,
   PostAnalytics.JSON_PROPERTY_VIEWS,
+  PostAnalytics.JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME,
+  PostAnalytics.JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME,
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T10:14:18.561300536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T16:01:24.855161855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -79,6 +81,14 @@ public class PostAnalytics {
   public static final String JSON_PROPERTY_VIEWS = "views";
   @javax.annotation.Nullable
   private Integer views;
+
+  public static final String JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME = "igReelsAvgWatchTime";
+  @javax.annotation.Nullable
+  private Integer igReelsAvgWatchTime;
+
+  public static final String JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME = "igReelsVideoViewTotalTime";
+  @javax.annotation.Nullable
+  private Integer igReelsVideoViewTotalTime;
 
   public static final String JSON_PROPERTY_ENGAGEMENT_RATE = "engagementRate";
   @javax.annotation.Nullable
@@ -283,6 +293,54 @@ public class PostAnalytics {
   }
 
 
+  public PostAnalytics igReelsAvgWatchTime(@javax.annotation.Nullable Integer igReelsAvgWatchTime) {
+    this.igReelsAvgWatchTime = igReelsAvgWatchTime;
+    return this;
+  }
+
+  /**
+   * Instagram Reels only: average watch time per play, in milliseconds. 0 for non-Reels media and other platforms.
+   * @return igReelsAvgWatchTime
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getIgReelsAvgWatchTime() {
+    return igReelsAvgWatchTime;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIgReelsAvgWatchTime(@javax.annotation.Nullable Integer igReelsAvgWatchTime) {
+    this.igReelsAvgWatchTime = igReelsAvgWatchTime;
+  }
+
+
+  public PostAnalytics igReelsVideoViewTotalTime(@javax.annotation.Nullable Integer igReelsVideoViewTotalTime) {
+    this.igReelsVideoViewTotalTime = igReelsVideoViewTotalTime;
+    return this;
+  }
+
+  /**
+   * Instagram Reels only: total watch time including replays, in milliseconds. 0 for non-Reels media and other platforms.
+   * @return igReelsVideoViewTotalTime
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getIgReelsVideoViewTotalTime() {
+    return igReelsVideoViewTotalTime;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIgReelsVideoViewTotalTime(@javax.annotation.Nullable Integer igReelsVideoViewTotalTime) {
+    this.igReelsVideoViewTotalTime = igReelsVideoViewTotalTime;
+  }
+
+
   public PostAnalytics engagementRate(@javax.annotation.Nullable BigDecimal engagementRate) {
     this.engagementRate = engagementRate;
     return this;
@@ -351,13 +409,15 @@ public class PostAnalytics {
         Objects.equals(this.saves, postAnalytics.saves) &&
         Objects.equals(this.clicks, postAnalytics.clicks) &&
         Objects.equals(this.views, postAnalytics.views) &&
+        Objects.equals(this.igReelsAvgWatchTime, postAnalytics.igReelsAvgWatchTime) &&
+        Objects.equals(this.igReelsVideoViewTotalTime, postAnalytics.igReelsVideoViewTotalTime) &&
         Objects.equals(this.engagementRate, postAnalytics.engagementRate) &&
         Objects.equals(this.lastUpdated, postAnalytics.lastUpdated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, engagementRate, lastUpdated);
+    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, igReelsAvgWatchTime, igReelsVideoViewTotalTime, engagementRate, lastUpdated);
   }
 
   @Override
@@ -372,6 +432,8 @@ public class PostAnalytics {
     sb.append("    saves: ").append(toIndentedString(saves)).append("\n");
     sb.append("    clicks: ").append(toIndentedString(clicks)).append("\n");
     sb.append("    views: ").append(toIndentedString(views)).append("\n");
+    sb.append("    igReelsAvgWatchTime: ").append(toIndentedString(igReelsAvgWatchTime)).append("\n");
+    sb.append("    igReelsVideoViewTotalTime: ").append(toIndentedString(igReelsVideoViewTotalTime)).append("\n");
     sb.append("    engagementRate: ").append(toIndentedString(engagementRate)).append("\n");
     sb.append("    lastUpdated: ").append(toIndentedString(lastUpdated)).append("\n");
     sb.append("}");
@@ -459,6 +521,16 @@ public class PostAnalytics {
     // add `views` to the URL query string
     if (getViews() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sviews%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getViews()))));
+    }
+
+    // add `igReelsAvgWatchTime` to the URL query string
+    if (getIgReelsAvgWatchTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sigReelsAvgWatchTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIgReelsAvgWatchTime()))));
+    }
+
+    // add `igReelsVideoViewTotalTime` to the URL query string
+    if (getIgReelsVideoViewTotalTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sigReelsVideoViewTotalTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIgReelsVideoViewTotalTime()))));
     }
 
     // add `engagementRate` to the URL query string
