@@ -35364,6 +35364,8 @@ components:
           type: string
     getInboxConversationMessages_200_response_messages_inner:
       example:
+        metadata:
+          key: ""
         attachments:
         - filename: filename
           previewUrl: previewUrl
@@ -35533,6 +35535,14 @@ components:
           items:
             $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_reactions_inner"
           type: array
+        metadata:
+          additionalProperties: {}
+          description: |
+            Platform-specific extras. Free-form, but commonly includes:
+            `quotedMessageId` (platformMessageId this message replies to),
+            `waInteractive` (a compact descriptor of WhatsApp interactive
+            content sent: buttons / list / cta_url / flow), and for inbound
+            interactive taps `interactiveType` / `interactiveId`.
     getInboxConversationMessages_200_response:
       example:
         sortOrderApplied: asc
@@ -35541,7 +35551,9 @@ components:
           nextCursor: nextCursor
           hasMore: true
         messages:
-        - attachments:
+        - metadata:
+            key: ""
+          attachments:
           - filename: filename
             previewUrl: previewUrl
             id: id
@@ -35604,7 +35616,9 @@ components:
             fromMe: true
             reactedAt: 2000-01-23T04:56:07.000+00:00
           deliveryStatus: sent
-        - attachments:
+        - metadata:
+            key: ""
+          attachments:
           - filename: filename
             previewUrl: previewUrl
             id: id
@@ -36175,6 +36189,13 @@ components:
           description: "Platform message ID to quote-reply to. For WhatsApp, pass\
             \ the wamid (available in message.platformMessageId from webhooks). For\
             \ Telegram, pass the Telegram message ID."
+          type: string
+        voiceNote:
+          description: WhatsApp-only. Set to "true" when the audio attachment is an
+            in-browser voice recording; the server transcodes it to a WhatsApp-native
+            container (ogg/Opus). Omit for regular audio file uploads.
+          enum:
+          - "true"
           type: string
       required:
       - accountId

@@ -17,6 +17,15 @@
 |**messagingType** | **String** | Messaging type (Facebook only). RESPONSE, UPDATE, or MESSAGE_TAG. |  [optional] |
 |**messageTag** | **String** | Message tag (requires messagingType MESSAGE_TAG) |  [optional] |
 |**replyTo** | **String** | Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID. |  [optional] |
+|**voiceNote** | [**VoiceNoteEnum**](#VoiceNoteEnum) | WhatsApp-only. Set to \&quot;true\&quot; when the audio attachment is an in-browser voice recording; the server transcodes it to a WhatsApp-native container (ogg/Opus). Omit for regular audio file uploads. |  [optional] |
+
+
+
+## Enum: VoiceNoteEnum
+
+| Name | Value |
+|---- | -----|
+| TRUE | &quot;true&quot; |
 
 
 

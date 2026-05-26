@@ -43,9 +43,10 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest1.JSON_PROPERTY_REPLY_MARKUP,
   SendInboxMessageRequest1.JSON_PROPERTY_MESSAGING_TYPE,
   SendInboxMessageRequest1.JSON_PROPERTY_MESSAGE_TAG,
-  SendInboxMessageRequest1.JSON_PROPERTY_REPLY_TO
+  SendInboxMessageRequest1.JSON_PROPERTY_REPLY_TO,
+  SendInboxMessageRequest1.JSON_PROPERTY_VOICE_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:50:29.782003638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:53:19.987905222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest1 {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -86,6 +87,43 @@ public class SendInboxMessageRequest1 {
   public static final String JSON_PROPERTY_REPLY_TO = "replyTo";
   @javax.annotation.Nullable
   private String replyTo;
+
+  /**
+   * WhatsApp-only. Set to \&quot;true\&quot; when the audio attachment is an in-browser voice recording; the server transcodes it to a WhatsApp-native container (ogg/Opus). Omit for regular audio file uploads.
+   */
+  public enum VoiceNoteEnum {
+    TRUE(String.valueOf("true"));
+
+    private String value;
+
+    VoiceNoteEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static VoiceNoteEnum fromValue(String value) {
+      for (VoiceNoteEnum b : VoiceNoteEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_VOICE_NOTE = "voiceNote";
+  @javax.annotation.Nullable
+  private VoiceNoteEnum voiceNote;
 
   public SendInboxMessageRequest1() { 
   }
@@ -330,6 +368,30 @@ public class SendInboxMessageRequest1 {
   }
 
 
+  public SendInboxMessageRequest1 voiceNote(@javax.annotation.Nullable VoiceNoteEnum voiceNote) {
+    this.voiceNote = voiceNote;
+    return this;
+  }
+
+  /**
+   * WhatsApp-only. Set to \&quot;true\&quot; when the audio attachment is an in-browser voice recording; the server transcodes it to a WhatsApp-native container (ogg/Opus). Omit for regular audio file uploads.
+   * @return voiceNote
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VOICE_NOTE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public VoiceNoteEnum getVoiceNote() {
+    return voiceNote;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VOICE_NOTE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVoiceNote(@javax.annotation.Nullable VoiceNoteEnum voiceNote) {
+    this.voiceNote = voiceNote;
+  }
+
+
   /**
    * Return true if this sendInboxMessage_request_1 object is equal to o.
    */
@@ -351,12 +413,13 @@ public class SendInboxMessageRequest1 {
         Objects.equals(this.replyMarkup, sendInboxMessageRequest1.replyMarkup) &&
         Objects.equals(this.messagingType, sendInboxMessageRequest1.messagingType) &&
         Objects.equals(this.messageTag, sendInboxMessageRequest1.messageTag) &&
-        Objects.equals(this.replyTo, sendInboxMessageRequest1.replyTo);
+        Objects.equals(this.replyTo, sendInboxMessageRequest1.replyTo) &&
+        Objects.equals(this.voiceNote, sendInboxMessageRequest1.voiceNote);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, attachment, quickReplies, buttons, template, replyMarkup, messagingType, messageTag, replyTo);
+    return Objects.hash(accountId, message, attachment, quickReplies, buttons, template, replyMarkup, messagingType, messageTag, replyTo, voiceNote);
   }
 
   @Override
@@ -373,6 +436,7 @@ public class SendInboxMessageRequest1 {
     sb.append("    messagingType: ").append(toIndentedString(messagingType)).append("\n");
     sb.append("    messageTag: ").append(toIndentedString(messageTag)).append("\n");
     sb.append("    replyTo: ").append(toIndentedString(replyTo)).append("\n");
+    sb.append("    voiceNote: ").append(toIndentedString(voiceNote)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -468,6 +532,11 @@ public class SendInboxMessageRequest1 {
     // add `replyTo` to the URL query string
     if (getReplyTo() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreplyTo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReplyTo()))));
+    }
+
+    // add `voiceNote` to the URL query string
+    if (getVoiceNote() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svoiceNote%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVoiceNote()))));
     }
 
     return joiner.toString();

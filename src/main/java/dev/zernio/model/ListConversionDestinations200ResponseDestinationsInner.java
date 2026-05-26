@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_STATUS,
   ListConversionDestinations200ResponseDestinationsInner.JSON_PROPERTY_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:50:29.782003638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:53:19.987905222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListConversionDestinations200ResponseDestinationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

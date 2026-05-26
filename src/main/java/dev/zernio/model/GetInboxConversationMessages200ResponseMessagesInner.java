@@ -31,7 +31,9 @@ import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerReac
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -65,9 +67,10 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_READ_AT,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENT_AT,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_DELIVERY_ERROR,
-  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_REACTIONS
+  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_REACTIONS,
+  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:50:29.782003638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:53:19.987905222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -287,6 +290,10 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_REACTIONS = "reactions";
   @javax.annotation.Nullable
   private List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nullable
+  private Map<String, Object> metadata = new HashMap<>();
 
   public GetInboxConversationMessages200ResponseMessagesInner() { 
   }
@@ -939,6 +946,38 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
 
+  public GetInboxConversationMessages200ResponseMessagesInner metadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public GetInboxConversationMessages200ResponseMessagesInner putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Platform-specific extras. Free-form, but commonly includes: &#x60;quotedMessageId&#x60; (platformMessageId this message replies to), &#x60;waInteractive&#x60; (a compact descriptor of WhatsApp interactive content sent: buttons / list / cta_url / flow), and for inbound interactive taps &#x60;interactiveType&#x60; / &#x60;interactiveId&#x60;. 
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
   /**
    * Return true if this getInboxConversationMessages_200_response_messages_inner object is equal to o.
    */
@@ -976,12 +1015,13 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
         Objects.equals(this.readAt, getInboxConversationMessages200ResponseMessagesInner.readAt) &&
         Objects.equals(this.sentAt, getInboxConversationMessages200ResponseMessagesInner.sentAt) &&
         Objects.equals(this.deliveryError, getInboxConversationMessages200ResponseMessagesInner.deliveryError) &&
-        Objects.equals(this.reactions, getInboxConversationMessages200ResponseMessagesInner.reactions);
+        Objects.equals(this.reactions, getInboxConversationMessages200ResponseMessagesInner.reactions) &&
+        Objects.equals(this.metadata, getInboxConversationMessages200ResponseMessagesInner.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, accountId, platform, message, senderId, senderName, senderVerifiedType, direction, createdAt, attachments, subject, storyReply, isStoryMention, isEdited, editedAt, editCount, editHistory, isDeleted, deletedAt, deliveryStatus, deliveredAt, readAt, sentAt, deliveryError, reactions);
+    return Objects.hash(id, conversationId, accountId, platform, message, senderId, senderName, senderVerifiedType, direction, createdAt, attachments, subject, storyReply, isStoryMention, isEdited, editedAt, editCount, editHistory, isDeleted, deletedAt, deliveryStatus, deliveredAt, readAt, sentAt, deliveryError, reactions, metadata);
   }
 
   @Override
@@ -1014,6 +1054,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    deliveryError: ").append(toIndentedString(deliveryError)).append("\n");
     sb.append("    reactions: ").append(toIndentedString(reactions)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1203,6 +1244,15 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
           joiner.add(getReactions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sreactions%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
+      }
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      for (String _key : getMetadata().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
       }
     }
 
