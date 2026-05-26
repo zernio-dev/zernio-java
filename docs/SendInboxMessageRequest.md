@@ -19,6 +19,8 @@
 |**messagingType** | [**MessagingTypeEnum**](#MessagingTypeEnum) | Facebook messaging type. Required when using messageTag. |  [optional] |
 |**messageTag** | [**MessageTagEnum**](#MessageTagEnum) | Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT. |  [optional] |
 |**replyTo** | **String** | Platform message ID to quote-reply to. For WhatsApp, pass the wamid (available in message.platformMessageId from webhooks). For Telegram, pass the Telegram message ID. |  [optional] |
+|**location** | [**SendInboxMessageRequestLocation**](SendInboxMessageRequestLocation.md) |  |  [optional] |
+|**contacts** | [**List&lt;SendInboxMessageRequestContactsInner&gt;**](SendInboxMessageRequestContactsInner.md) | WhatsApp-only. Send one or more contact cards. |  [optional] |
 
 
 

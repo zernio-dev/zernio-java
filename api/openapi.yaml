@@ -35348,6 +35348,20 @@ components:
         message:
           type: string
       nullable: true
+    getInboxConversationMessages_200_response_messages_inner_reactions_inner:
+      example:
+        emoji: emoji
+        fromMe: true
+        reactedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        emoji:
+          type: string
+        fromMe:
+          description: true if the connected account reacted
+          type: boolean
+        reactedAt:
+          format: date-time
+          type: string
     getInboxConversationMessages_200_response_messages_inner:
       example:
         attachments:
@@ -35405,6 +35419,13 @@ components:
         accountId: accountId
         deletedAt: 2000-01-23T04:56:07.000+00:00
         editedAt: 2000-01-23T04:56:07.000+00:00
+        reactions:
+        - emoji: emoji
+          fromMe: true
+          reactedAt: 2000-01-23T04:56:07.000+00:00
+        - emoji: emoji
+          fromMe: true
+          reactedAt: 2000-01-23T04:56:07.000+00:00
         deliveryStatus: sent
       properties:
         id:
@@ -35506,6 +35527,12 @@ components:
           nullable: true
         deliveryError:
           $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_deliveryError"
+        reactions:
+          description: Emoji reactions on this message (WhatsApp / Telegram). At most
+            one per party in a 1:1 thread.
+          items:
+            $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_reactions_inner"
+          type: array
     getInboxConversationMessages_200_response:
       example:
         sortOrderApplied: asc
@@ -35569,6 +35596,13 @@ components:
           accountId: accountId
           deletedAt: 2000-01-23T04:56:07.000+00:00
           editedAt: 2000-01-23T04:56:07.000+00:00
+          reactions:
+          - emoji: emoji
+            fromMe: true
+            reactedAt: 2000-01-23T04:56:07.000+00:00
+          - emoji: emoji
+            fromMe: true
+            reactedAt: 2000-01-23T04:56:07.000+00:00
           deliveryStatus: sent
         - attachments:
           - filename: filename
@@ -35625,6 +35659,13 @@ components:
           accountId: accountId
           deletedAt: 2000-01-23T04:56:07.000+00:00
           editedAt: 2000-01-23T04:56:07.000+00:00
+          reactions:
+          - emoji: emoji
+            fromMe: true
+            reactedAt: 2000-01-23T04:56:07.000+00:00
+          - emoji: emoji
+            fromMe: true
+            reactedAt: 2000-01-23T04:56:07.000+00:00
           deliveryStatus: sent
         status: status
       properties:
@@ -35968,6 +36009,62 @@ components:
           default: true
           description: Hide keyboard after use (reply_keyboard only)
           type: boolean
+    sendInboxMessage_request_location:
+      description: WhatsApp-only. Send a location pin.
+      properties:
+        latitude:
+          description: Latitude in decimal degrees.
+          type: number
+        longitude:
+          description: Longitude in decimal degrees.
+          type: number
+        name:
+          description: Optional location name.
+          type: string
+        address:
+          description: Optional street address.
+          type: string
+      required:
+      - latitude
+      - longitude
+    sendInboxMessage_request_contacts_inner_name:
+      properties:
+        formatted_name:
+          description: Full display name.
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+      required:
+      - formatted_name
+    sendInboxMessage_request_contacts_inner_phones_inner:
+      properties:
+        phone:
+          type: string
+        type:
+          description: "e.g. CELL, WORK, HOME."
+          type: string
+    sendInboxMessage_request_contacts_inner_emails_inner:
+      properties:
+        email:
+          type: string
+        type:
+          type: string
+    sendInboxMessage_request_contacts_inner:
+      properties:
+        name:
+          $ref: "#/components/schemas/sendInboxMessage_request_contacts_inner_name"
+        phones:
+          items:
+            $ref: "#/components/schemas/sendInboxMessage_request_contacts_inner_phones_inner"
+          type: array
+        emails:
+          items:
+            $ref: "#/components/schemas/sendInboxMessage_request_contacts_inner_emails_inner"
+          type: array
+      required:
+      - name
     sendInboxMessage_request:
       properties:
         accountId:
@@ -36030,6 +36127,13 @@ components:
             \ the wamid (available in message.platformMessageId from webhooks). For\
             \ Telegram, pass the Telegram message ID."
           type: string
+        location:
+          $ref: "#/components/schemas/sendInboxMessage_request_location"
+        contacts:
+          description: WhatsApp-only. Send one or more contact cards.
+          items:
+            $ref: "#/components/schemas/sendInboxMessage_request_contacts_inner"
+          type: array
       required:
       - accountId
     sendInboxMessage_request_1:

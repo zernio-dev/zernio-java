@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner;
 import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerDeliveryError;
 import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner;
+import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerReactionsInner;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,9 +64,10 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_DELIVERED_AT,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_READ_AT,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_SENT_AT,
-  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_DELIVERY_ERROR
+  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_DELIVERY_ERROR,
+  GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_REACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T14:54:56.303350495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:50:29.782003638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -281,6 +283,10 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_DELIVERY_ERROR = "deliveryError";
   @javax.annotation.Nullable
   private GetInboxConversationMessages200ResponseMessagesInnerDeliveryError deliveryError;
+
+  public static final String JSON_PROPERTY_REACTIONS = "reactions";
+  @javax.annotation.Nullable
+  private List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions = new ArrayList<>();
 
   public GetInboxConversationMessages200ResponseMessagesInner() { 
   }
@@ -901,6 +907,38 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
 
+  public GetInboxConversationMessages200ResponseMessagesInner reactions(@javax.annotation.Nullable List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions) {
+    this.reactions = reactions;
+    return this;
+  }
+
+  public GetInboxConversationMessages200ResponseMessagesInner addReactionsItem(GetInboxConversationMessages200ResponseMessagesInnerReactionsInner reactionsItem) {
+    if (this.reactions == null) {
+      this.reactions = new ArrayList<>();
+    }
+    this.reactions.add(reactionsItem);
+    return this;
+  }
+
+  /**
+   * Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread.
+   * @return reactions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> getReactions() {
+    return reactions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReactions(@javax.annotation.Nullable List<GetInboxConversationMessages200ResponseMessagesInnerReactionsInner> reactions) {
+    this.reactions = reactions;
+  }
+
+
   /**
    * Return true if this getInboxConversationMessages_200_response_messages_inner object is equal to o.
    */
@@ -937,12 +975,13 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
         Objects.equals(this.deliveredAt, getInboxConversationMessages200ResponseMessagesInner.deliveredAt) &&
         Objects.equals(this.readAt, getInboxConversationMessages200ResponseMessagesInner.readAt) &&
         Objects.equals(this.sentAt, getInboxConversationMessages200ResponseMessagesInner.sentAt) &&
-        Objects.equals(this.deliveryError, getInboxConversationMessages200ResponseMessagesInner.deliveryError);
+        Objects.equals(this.deliveryError, getInboxConversationMessages200ResponseMessagesInner.deliveryError) &&
+        Objects.equals(this.reactions, getInboxConversationMessages200ResponseMessagesInner.reactions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, accountId, platform, message, senderId, senderName, senderVerifiedType, direction, createdAt, attachments, subject, storyReply, isStoryMention, isEdited, editedAt, editCount, editHistory, isDeleted, deletedAt, deliveryStatus, deliveredAt, readAt, sentAt, deliveryError);
+    return Objects.hash(id, conversationId, accountId, platform, message, senderId, senderName, senderVerifiedType, direction, createdAt, attachments, subject, storyReply, isStoryMention, isEdited, editedAt, editCount, editHistory, isDeleted, deletedAt, deliveryStatus, deliveredAt, readAt, sentAt, deliveryError, reactions);
   }
 
   @Override
@@ -974,6 +1013,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
     sb.append("    readAt: ").append(toIndentedString(readAt)).append("\n");
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    deliveryError: ").append(toIndentedString(deliveryError)).append("\n");
+    sb.append("    reactions: ").append(toIndentedString(reactions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1154,6 +1194,16 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
     // add `deliveryError` to the URL query string
     if (getDeliveryError() != null) {
       joiner.add(getDeliveryError().toUrlQueryString(prefix + "deliveryError" + suffix));
+    }
+
+    // add `reactions` to the URL query string
+    if (getReactions() != null) {
+      for (int i = 0; i < getReactions().size(); i++) {
+        if (getReactions().get(i) != null) {
+          joiner.add(getReactions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sreactions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

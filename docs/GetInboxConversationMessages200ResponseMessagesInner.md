@@ -32,6 +32,7 @@
 |**readAt** | **OffsetDateTime** |  |  [optional] |
 |**sentAt** | **OffsetDateTime** | Original send time for outgoing messages (used for Messenger watermark queries). |  [optional] |
 |**deliveryError** | [**GetInboxConversationMessages200ResponseMessagesInnerDeliveryError**](GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.md) |  |  [optional] |
+|**reactions** | [**List&lt;GetInboxConversationMessages200ResponseMessagesInnerReactionsInner&gt;**](GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.md) | Emoji reactions on this message (WhatsApp / Telegram). At most one per party in a 1:1 thread. |  [optional] |
 
 
 

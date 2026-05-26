@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-26T14:54:56.303350495Z[Etc/UTC]
+- Build date: 2026-05-26T16:50:29.782003638Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1092,6 +1092,7 @@ Class | Method | HTTP request | Description
  - [GetInboxConversationMessages200ResponseMessagesInnerDeliveryError](docs/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.md)
  - [GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner](docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.md)
  - [GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner](docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner.md)
+ - [GetInboxConversationMessages200ResponseMessagesInnerReactionsInner](docs/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.md)
  - [GetInboxConversationMessages200ResponsePagination](docs/GetInboxConversationMessages200ResponsePagination.md)
  - [GetInboxPostComments200Response](docs/GetInboxPostComments200Response.md)
  - [GetInboxPostComments200ResponseCommentsInner](docs/GetInboxPostComments200ResponseCommentsInner.md)
@@ -1421,6 +1422,10 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequest](docs/SendInboxMessageRequest.md)
  - [SendInboxMessageRequest1](docs/SendInboxMessageRequest1.md)
  - [SendInboxMessageRequestButtonsInner](docs/SendInboxMessageRequestButtonsInner.md)
+ - [SendInboxMessageRequestContactsInner](docs/SendInboxMessageRequestContactsInner.md)
+ - [SendInboxMessageRequestContactsInnerEmailsInner](docs/SendInboxMessageRequestContactsInnerEmailsInner.md)
+ - [SendInboxMessageRequestContactsInnerName](docs/SendInboxMessageRequestContactsInnerName.md)
+ - [SendInboxMessageRequestContactsInnerPhonesInner](docs/SendInboxMessageRequestContactsInnerPhonesInner.md)
  - [SendInboxMessageRequestInteractive](docs/SendInboxMessageRequestInteractive.md)
  - [SendInboxMessageRequestInteractiveAction](docs/SendInboxMessageRequestInteractiveAction.md)
  - [SendInboxMessageRequestInteractiveActionOneOf](docs/SendInboxMessageRequestInteractiveActionOneOf.md)
@@ -1435,6 +1440,7 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestInteractiveFooter](docs/SendInboxMessageRequestInteractiveFooter.md)
  - [SendInboxMessageRequestInteractiveHeader](docs/SendInboxMessageRequestInteractiveHeader.md)
  - [SendInboxMessageRequestInteractiveHeaderImage](docs/SendInboxMessageRequestInteractiveHeaderImage.md)
+ - [SendInboxMessageRequestLocation](docs/SendInboxMessageRequestLocation.md)
  - [SendInboxMessageRequestQuickRepliesInner](docs/SendInboxMessageRequestQuickRepliesInner.md)
  - [SendInboxMessageRequestReplyMarkup](docs/SendInboxMessageRequestReplyMarkup.md)
  - [SendInboxMessageRequestReplyMarkupKeyboardInnerInner](docs/SendInboxMessageRequestReplyMarkupKeyboardInnerInner.md)

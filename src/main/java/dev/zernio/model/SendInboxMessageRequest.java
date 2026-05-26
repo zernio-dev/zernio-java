@@ -25,7 +25,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.SendInboxMessageRequestButtonsInner;
+import dev.zernio.model.SendInboxMessageRequestContactsInner;
 import dev.zernio.model.SendInboxMessageRequestInteractive;
+import dev.zernio.model.SendInboxMessageRequestLocation;
 import dev.zernio.model.SendInboxMessageRequestQuickRepliesInner;
 import dev.zernio.model.SendInboxMessageRequestReplyMarkup;
 import dev.zernio.model.SendInboxMessageRequestTemplate;
@@ -51,9 +53,11 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_REPLY_MARKUP,
   SendInboxMessageRequest.JSON_PROPERTY_MESSAGING_TYPE,
   SendInboxMessageRequest.JSON_PROPERTY_MESSAGE_TAG,
-  SendInboxMessageRequest.JSON_PROPERTY_REPLY_TO
+  SendInboxMessageRequest.JSON_PROPERTY_REPLY_TO,
+  SendInboxMessageRequest.JSON_PROPERTY_LOCATION,
+  SendInboxMessageRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T14:54:56.303350495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:50:29.782003638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -217,6 +221,14 @@ public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_REPLY_TO = "replyTo";
   @javax.annotation.Nullable
   private String replyTo;
+
+  public static final String JSON_PROPERTY_LOCATION = "location";
+  @javax.annotation.Nullable
+  private SendInboxMessageRequestLocation location;
+
+  public static final String JSON_PROPERTY_CONTACTS = "contacts";
+  @javax.annotation.Nullable
+  private List<SendInboxMessageRequestContactsInner> contacts = new ArrayList<>();
 
   public SendInboxMessageRequest() { 
   }
@@ -525,6 +537,62 @@ public class SendInboxMessageRequest {
   }
 
 
+  public SendInboxMessageRequest location(@javax.annotation.Nullable SendInboxMessageRequestLocation location) {
+    this.location = location;
+    return this;
+  }
+
+  /**
+   * Get location
+   * @return location
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SendInboxMessageRequestLocation getLocation() {
+    return location;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocation(@javax.annotation.Nullable SendInboxMessageRequestLocation location) {
+    this.location = location;
+  }
+
+
+  public SendInboxMessageRequest contacts(@javax.annotation.Nullable List<SendInboxMessageRequestContactsInner> contacts) {
+    this.contacts = contacts;
+    return this;
+  }
+
+  public SendInboxMessageRequest addContactsItem(SendInboxMessageRequestContactsInner contactsItem) {
+    if (this.contacts == null) {
+      this.contacts = new ArrayList<>();
+    }
+    this.contacts.add(contactsItem);
+    return this;
+  }
+
+  /**
+   * WhatsApp-only. Send one or more contact cards.
+   * @return contacts
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<SendInboxMessageRequestContactsInner> getContacts() {
+    return contacts;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContacts(@javax.annotation.Nullable List<SendInboxMessageRequestContactsInner> contacts) {
+    this.contacts = contacts;
+  }
+
+
   /**
    * Return true if this sendInboxMessage_request object is equal to o.
    */
@@ -548,12 +616,14 @@ public class SendInboxMessageRequest {
         Objects.equals(this.replyMarkup, sendInboxMessageRequest.replyMarkup) &&
         Objects.equals(this.messagingType, sendInboxMessageRequest.messagingType) &&
         Objects.equals(this.messageTag, sendInboxMessageRequest.messageTag) &&
-        Objects.equals(this.replyTo, sendInboxMessageRequest.replyTo);
+        Objects.equals(this.replyTo, sendInboxMessageRequest.replyTo) &&
+        Objects.equals(this.location, sendInboxMessageRequest.location) &&
+        Objects.equals(this.contacts, sendInboxMessageRequest.contacts);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, attachmentUrl, attachmentType, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo);
+    return Objects.hash(accountId, message, attachmentUrl, attachmentType, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
   }
 
   @Override
@@ -572,6 +642,8 @@ public class SendInboxMessageRequest {
     sb.append("    messagingType: ").append(toIndentedString(messagingType)).append("\n");
     sb.append("    messageTag: ").append(toIndentedString(messageTag)).append("\n");
     sb.append("    replyTo: ").append(toIndentedString(replyTo)).append("\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    contacts: ").append(toIndentedString(contacts)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -687,6 +759,21 @@ public class SendInboxMessageRequest {
     // add `replyTo` to the URL query string
     if (getReplyTo() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreplyTo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReplyTo()))));
+    }
+
+    // add `location` to the URL query string
+    if (getLocation() != null) {
+      joiner.add(getLocation().toUrlQueryString(prefix + "location" + suffix));
+    }
+
+    // add `contacts` to the URL query string
+    if (getContacts() != null) {
+      for (int i = 0; i < getContacts().size(); i++) {
+        if (getContacts().get(i) != null) {
+          joiner.add(getContacts().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scontacts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();
