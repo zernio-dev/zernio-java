@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UnpublishPostRequest.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T16:01:24.855161855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T14:54:56.303350495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UnpublishPostRequest {
   /**
    * The platform to delete the post from

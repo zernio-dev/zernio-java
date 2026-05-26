@@ -24,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,9 +39,12 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_PARTICIPANT_ID,
   CreateInboxConversationRequest.JSON_PROPERTY_PARTICIPANT_USERNAME,
   CreateInboxConversationRequest.JSON_PROPERTY_MESSAGE,
-  CreateInboxConversationRequest.JSON_PROPERTY_SKIP_DM_CHECK
+  CreateInboxConversationRequest.JSON_PROPERTY_SKIP_DM_CHECK,
+  CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_NAME,
+  CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
+  CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-25T16:01:24.855161855Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T14:54:56.303350495Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -60,6 +65,18 @@ public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_SKIP_DM_CHECK = "skipDmCheck";
   @javax.annotation.Nullable
   private Boolean skipDmCheck = false;
+
+  public static final String JSON_PROPERTY_TEMPLATE_NAME = "templateName";
+  @javax.annotation.Nullable
+  private String templateName;
+
+  public static final String JSON_PROPERTY_TEMPLATE_LANGUAGE = "templateLanguage";
+  @javax.annotation.Nullable
+  private String templateLanguage;
+
+  public static final String JSON_PROPERTY_TEMPLATE_PARAMS = "templateParams";
+  @javax.annotation.Nullable
+  private List<String> templateParams = new ArrayList<>();
 
   public CreateInboxConversationRequest() { 
   }
@@ -94,7 +111,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * Twitter numeric user ID of the recipient. Provide either this or participantUsername.
+   * Recipient identifier. For X this is the numeric user ID; for WhatsApp, the recipient phone number in international format (digits, country code included). Provide either this or participantUsername.
    * @return participantId
    */
   @javax.annotation.Nullable
@@ -118,7 +135,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * Twitter username (with or without @) of the recipient. Resolved to a user ID via lookup. Provide either this or participantId.
+   * Recipient handle/username — an X or Bluesky handle (with or without @) or a Reddit username (with or without u/). Resolved via lookup. Provide either this or participantId.
    * @return participantUsername
    */
   @javax.annotation.Nullable
@@ -142,7 +159,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * Text content of the message. At least one of message or attachment is required.
+   * Text content of the message. At least one of message, attachment, or (for WhatsApp) templateName is required.
    * @return message
    */
   @javax.annotation.Nullable
@@ -166,7 +183,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
+   * X/Twitter only. Skip the receives_your_dm eligibility check before sending. Use if you have already verified the recipient accepts DMs.
    * @return skipDmCheck
    */
   @javax.annotation.Nullable
@@ -181,6 +198,86 @@ public class CreateInboxConversationRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSkipDmCheck(@javax.annotation.Nullable Boolean skipDmCheck) {
     this.skipDmCheck = skipDmCheck;
+  }
+
+
+  public CreateInboxConversationRequest templateName(@javax.annotation.Nullable String templateName) {
+    this.templateName = templateName;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Name of the approved template to start the conversation with (required for WhatsApp).
+   * @return templateName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTemplateName() {
+    return templateName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplateName(@javax.annotation.Nullable String templateName) {
+    this.templateName = templateName;
+  }
+
+
+  public CreateInboxConversationRequest templateLanguage(@javax.annotation.Nullable String templateLanguage) {
+    this.templateLanguage = templateLanguage;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Template language code (e.g. en_US).
+   * @return templateLanguage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTemplateLanguage() {
+    return templateLanguage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplateLanguage(@javax.annotation.Nullable String templateLanguage) {
+    this.templateLanguage = templateLanguage;
+  }
+
+
+  public CreateInboxConversationRequest templateParams(@javax.annotation.Nullable List<String> templateParams) {
+    this.templateParams = templateParams;
+    return this;
+  }
+
+  public CreateInboxConversationRequest addTemplateParamsItem(String templateParamsItem) {
+    if (this.templateParams == null) {
+      this.templateParams = new ArrayList<>();
+    }
+    this.templateParams.add(templateParamsItem);
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Body variable values, in order, substituted into the template body ({{1}}, {{2}}, ...).
+   * @return templateParams
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getTemplateParams() {
+    return templateParams;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_PARAMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplateParams(@javax.annotation.Nullable List<String> templateParams) {
+    this.templateParams = templateParams;
   }
 
 
@@ -200,12 +297,15 @@ public class CreateInboxConversationRequest {
         Objects.equals(this.participantId, createInboxConversationRequest.participantId) &&
         Objects.equals(this.participantUsername, createInboxConversationRequest.participantUsername) &&
         Objects.equals(this.message, createInboxConversationRequest.message) &&
-        Objects.equals(this.skipDmCheck, createInboxConversationRequest.skipDmCheck);
+        Objects.equals(this.skipDmCheck, createInboxConversationRequest.skipDmCheck) &&
+        Objects.equals(this.templateName, createInboxConversationRequest.templateName) &&
+        Objects.equals(this.templateLanguage, createInboxConversationRequest.templateLanguage) &&
+        Objects.equals(this.templateParams, createInboxConversationRequest.templateParams);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck);
+    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, templateLanguage, templateParams);
   }
 
   @Override
@@ -217,6 +317,9 @@ public class CreateInboxConversationRequest {
     sb.append("    participantUsername: ").append(toIndentedString(participantUsername)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    skipDmCheck: ").append(toIndentedString(skipDmCheck)).append("\n");
+    sb.append("    templateName: ").append(toIndentedString(templateName)).append("\n");
+    sb.append("    templateLanguage: ").append(toIndentedString(templateLanguage)).append("\n");
+    sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,6 +390,25 @@ public class CreateInboxConversationRequest {
     // add `skipDmCheck` to the URL query string
     if (getSkipDmCheck() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sskipDmCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSkipDmCheck()))));
+    }
+
+    // add `templateName` to the URL query string
+    if (getTemplateName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stemplateName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTemplateName()))));
+    }
+
+    // add `templateLanguage` to the URL query string
+    if (getTemplateLanguage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stemplateLanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTemplateLanguage()))));
+    }
+
+    // add `templateParams` to the URL query string
+    if (getTemplateParams() != null) {
+      for (int i = 0; i < getTemplateParams().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%stemplateParams%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getTemplateParams().get(i)))));
+      }
     }
 
     return joiner.toString();
