@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_URL,
   AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_THUMBNAIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:53:19.987905222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T07:46:03.328510983Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponseMediaItemsInner {
   /**
    * Gets or Sets type

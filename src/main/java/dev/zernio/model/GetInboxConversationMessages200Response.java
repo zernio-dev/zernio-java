@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200Response.JSON_PROPERTY_MESSAGES,
   GetInboxConversationMessages200Response.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-26T16:53:19.987905222Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T07:46:03.328510983Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -55,7 +55,7 @@ public class GetInboxConversationMessages200Response {
   private GetInboxConversationMessages200ResponsePagination pagination;
 
   /**
-   * Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Twitter, Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
+   * Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
    */
   public enum SortOrderAppliedEnum {
     ASC(String.valueOf("asc")),
@@ -158,7 +158,7 @@ public class GetInboxConversationMessages200Response {
   }
 
   /**
-   * Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Twitter, Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
+   * Sort order actually applied to the returned page. May differ from the requested &#x60;sortOrder&#x60; for Facebook and Bluesky (always &#x60;desc&#x60; regardless of request). 
    * @return sortOrderApplied
    */
   @javax.annotation.Nullable
