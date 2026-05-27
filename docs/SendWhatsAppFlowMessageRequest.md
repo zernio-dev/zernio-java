@@ -12,7 +12,7 @@
 |**flowId** | **String** | Published flow ID |  |
 |**flowCta** | **String** | CTA button text (e.g. &#39;Book Now&#39;, &#39;Sign Up&#39;) |  |
 |**flowAction** | [**FlowActionEnum**](#FlowActionEnum) | Action type: navigate opens a screen directly, data_exchange hits your endpoint first |  [optional] |
-|**flowToken** | **String** | Unique token to correlate responses. Auto-generated UUID if omitted. |  [optional] |
+|**flowToken** | **String** | Unique token to correlate responses. If omitted, auto-generated as &#39;&lt;flowId&gt;:&lt;uuid&gt;&#39; so the response can be attributed to this flow in the Flow Responses view. |  [optional] |
 |**flowActionPayload** | [**SendWhatsAppFlowMessageRequestFlowActionPayload**](SendWhatsAppFlowMessageRequestFlowActionPayload.md) |  |  [optional] |
 |**body** | **String** | Message body text |  |
 |**header** | [**SendWhatsAppFlowMessageRequestHeader**](SendWhatsAppFlowMessageRequestHeader.md) |  |  [optional] |

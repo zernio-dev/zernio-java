@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   SendWhatsAppFlowMessageRequest.JSON_PROPERTY_FOOTER,
   SendWhatsAppFlowMessageRequest.JSON_PROPERTY_DRAFT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T13:39:57.205746518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T14:03:49.693017485Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppFlowMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -257,7 +257,7 @@ public class SendWhatsAppFlowMessageRequest {
   }
 
   /**
-   * Unique token to correlate responses. Auto-generated UUID if omitted.
+   * Unique token to correlate responses. If omitted, auto-generated as &#39;&lt;flowId&gt;:&lt;uuid&gt;&#39; so the response can be attributed to this flow in the Flow Responses view.
    * @return flowToken
    */
   @javax.annotation.Nullable

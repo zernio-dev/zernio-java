@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppFlowJsonWithHttpInfo**](WhatsAppFlowsApi.md#getWhatsAppFlowJsonWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset |
 | [**getWhatsAppFlowPreview**](WhatsAppFlowsApi.md#getWhatsAppFlowPreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL |
 | [**getWhatsAppFlowPreviewWithHttpInfo**](WhatsAppFlowsApi.md#getWhatsAppFlowPreviewWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL |
+| [**listWhatsAppFlowResponses**](WhatsAppFlowsApi.md#listWhatsAppFlowResponses) | **GET** /v1/whatsapp/flow-responses | List flow responses |
+| [**listWhatsAppFlowResponsesWithHttpInfo**](WhatsAppFlowsApi.md#listWhatsAppFlowResponsesWithHttpInfo) | **GET** /v1/whatsapp/flow-responses | List flow responses |
 | [**listWhatsAppFlowVersions**](WhatsAppFlowsApi.md#listWhatsAppFlowVersions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions |
 | [**listWhatsAppFlowVersionsWithHttpInfo**](WhatsAppFlowsApi.md#listWhatsAppFlowVersionsWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions |
 | [**listWhatsAppFlows**](WhatsAppFlowsApi.md#listWhatsAppFlows) | **GET** /v1/whatsapp/flows | List flows |
@@ -951,6 +953,162 @@ ApiResponse<[**GetWhatsAppFlowPreview200Response**](GetWhatsAppFlowPreview200Res
 | **200** | Preview URL |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Flow or account not found |  -  |
+
+
+## listWhatsAppFlowResponses
+
+> ListWhatsAppFlowResponses200Response listWhatsAppFlowResponses(accountId, flowId, limit)
+
+List flow responses
+
+List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppFlowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String flowId = "flowId_example"; // String | Scope to responses for this flow
+        Integer limit = 50; // Integer | Max responses to return
+        try {
+            ListWhatsAppFlowResponses200Response result = apiInstance.listWhatsAppFlowResponses(accountId, flowId, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppFlowsApi#listWhatsAppFlowResponses");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+| **flowId** | **String**| Scope to responses for this flow | [optional] |
+| **limit** | **Integer**| Max responses to return | [optional] [default to 50] |
+
+### Return type
+
+[**ListWhatsAppFlowResponses200Response**](ListWhatsAppFlowResponses200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Flow responses |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## listWhatsAppFlowResponsesWithHttpInfo
+
+> ApiResponse<ListWhatsAppFlowResponses200Response> listWhatsAppFlowResponses listWhatsAppFlowResponsesWithHttpInfo(accountId, flowId, limit)
+
+List flow responses
+
+List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppFlowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        String flowId = "flowId_example"; // String | Scope to responses for this flow
+        Integer limit = 50; // Integer | Max responses to return
+        try {
+            ApiResponse<ListWhatsAppFlowResponses200Response> response = apiInstance.listWhatsAppFlowResponsesWithHttpInfo(accountId, flowId, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppFlowsApi#listWhatsAppFlowResponses");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+| **flowId** | **String**| Scope to responses for this flow | [optional] |
+| **limit** | **Integer**| Max responses to return | [optional] [default to 50] |
+
+### Return type
+
+ApiResponse<[**ListWhatsAppFlowResponses200Response**](ListWhatsAppFlowResponses200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Flow responses |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
 
 
 ## listWhatsAppFlowVersions

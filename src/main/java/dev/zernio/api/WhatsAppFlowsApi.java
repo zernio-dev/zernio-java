@@ -24,6 +24,7 @@ import dev.zernio.model.GetWhatsAppFlow200Response;
 import dev.zernio.model.GetWhatsAppFlowJson200Response;
 import dev.zernio.model.GetWhatsAppFlowPreview200Response;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.ListWhatsAppFlowResponses200Response;
 import dev.zernio.model.ListWhatsAppFlowVersions200Response;
 import dev.zernio.model.ListWhatsAppFlows200Response;
 import dev.zernio.model.PublishWhatsAppFlowRequest;
@@ -65,7 +66,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T13:39:57.205746518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T14:03:49.693017485Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppFlowsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -987,6 +988,150 @@ public class WhatsAppFlowsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "invalidate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("invalidate", invalidate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List flow responses
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param flowId Scope to responses for this flow (optional)
+   * @param limit Max responses to return (optional, default to 50)
+   * @return ListWhatsAppFlowResponses200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppFlowResponses200Response listWhatsAppFlowResponses(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String flowId, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppFlowResponses(accountId, flowId, limit, null);
+  }
+
+  /**
+   * List flow responses
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param flowId Scope to responses for this flow (optional)
+   * @param limit Max responses to return (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ListWhatsAppFlowResponses200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppFlowResponses200Response listWhatsAppFlowResponses(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String flowId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWhatsAppFlowResponses200Response> localVarResponse = listWhatsAppFlowResponsesWithHttpInfo(accountId, flowId, limit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List flow responses
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param flowId Scope to responses for this flow (optional)
+   * @param limit Max responses to return (optional, default to 50)
+   * @return ApiResponse&lt;ListWhatsAppFlowResponses200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppFlowResponses200Response> listWhatsAppFlowResponsesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String flowId, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppFlowResponsesWithHttpInfo(accountId, flowId, limit, null);
+  }
+
+  /**
+   * List flow responses
+   * List the responses customers submitted when completing a flow (parsed from the nfm_reply messages received via webhook), newest first. Scope to a single flow with &#x60;flowId&#x60; — this matches responses whose flow_token carries the &#x60;&lt;flowId&gt;:&#x60; prefix that Zernio stamps on auto-generated tokens at send time. Responses sent with a custom integrator-supplied flow_token are not attributed to a flow. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param flowId Scope to responses for this flow (optional)
+   * @param limit Max responses to return (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListWhatsAppFlowResponses200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppFlowResponses200Response> listWhatsAppFlowResponsesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String flowId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWhatsAppFlowResponsesRequestBuilder(accountId, flowId, limit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWhatsAppFlowResponses", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListWhatsAppFlowResponses200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListWhatsAppFlowResponses200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWhatsAppFlowResponses200Response>() {});
+        
+
+        return new ApiResponse<ListWhatsAppFlowResponses200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWhatsAppFlowResponsesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String flowId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listWhatsAppFlowResponses");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/flow-responses";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "flowId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("flowId", flowId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

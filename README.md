@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-27T13:39:57.205746518Z[Etc/UTC]
+- Build date: 2026-05-27T14:03:49.693017485Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -714,6 +714,8 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**getWhatsAppFlowJsonWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowJsonWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
 *WhatsAppFlowsApi* | [**getWhatsAppFlowPreview**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowPreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
 *WhatsAppFlowsApi* | [**getWhatsAppFlowPreviewWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowPreviewWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
+*WhatsAppFlowsApi* | [**listWhatsAppFlowResponses**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowResponses) | **GET** /v1/whatsapp/flow-responses | List flow responses
+*WhatsAppFlowsApi* | [**listWhatsAppFlowResponsesWithHttpInfo**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowResponsesWithHttpInfo) | **GET** /v1/whatsapp/flow-responses | List flow responses
 *WhatsAppFlowsApi* | [**listWhatsAppFlowVersions**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowVersions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
 *WhatsAppFlowsApi* | [**listWhatsAppFlowVersionsWithHttpInfo**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowVersionsWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
 *WhatsAppFlowsApi* | [**listWhatsAppFlows**](docs/WhatsAppFlowsApi.md#listWhatsAppFlows) | **GET** /v1/whatsapp/flows | List flows
@@ -1313,6 +1315,8 @@ Class | Method | HTTP request | Description
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
  - [ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [ListWhatsAppFlowResponses200Response](docs/ListWhatsAppFlowResponses200Response.md)
+ - [ListWhatsAppFlowResponses200ResponseResponsesInner](docs/ListWhatsAppFlowResponses200ResponseResponsesInner.md)
  - [ListWhatsAppFlowVersions200Response](docs/ListWhatsAppFlowVersions200Response.md)
  - [ListWhatsAppFlowVersions200ResponseVersionsInner](docs/ListWhatsAppFlowVersions200ResponseVersionsInner.md)
  - [ListWhatsAppFlows200Response](docs/ListWhatsAppFlows200Response.md)

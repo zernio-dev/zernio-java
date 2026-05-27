@@ -13965,6 +13965,60 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/flow-responses:
+    get:
+      description: |
+        List the responses customers submitted when completing a flow (parsed from the
+        nfm_reply messages received via webhook), newest first. Scope to a single flow
+        with `flowId` — this matches responses whose flow_token carries the `<flowId>:`
+        prefix that Zernio stamps on auto-generated tokens at send time. Responses sent
+        with a custom integrator-supplied flow_token are not attributed to a flow.
+      operationId: listWhatsAppFlowResponses
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Scope to responses for this flow
+        explode: true
+        in: query
+        name: flowId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Max responses to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppFlowResponses_200_response"
+          description: Flow responses
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: List flow responses
+      tags:
+      - WhatsApp Flows
+      x-accepts:
+      - application/json
   /v1/contacts:
     get:
       description: "List and search contacts for a profile. Supports filtering by\
@@ -38883,8 +38937,9 @@ components:
           - data_exchange
           type: string
         flow_token:
-          description: Unique token to correlate responses. Auto-generated UUID if
-            omitted.
+          description: "Unique token to correlate responses. If omitted, auto-generated\
+            \ as '<flowId>:<uuid>' so the response can be attributed to this flow\
+            \ in the Flow Responses view."
           maxLength: 200
           type: string
         flow_action_payload:
@@ -38916,6 +38971,67 @@ components:
         messageId:
           description: WhatsApp message ID (WAMID)
           type: string
+    listWhatsAppFlowResponses_200_response_responses_inner:
+      example:
+        flowToken: flowToken
+        senderName: senderName
+        data: "{}"
+        conversationId: conversationId
+        raw: raw
+        from: from
+        id: id
+        receivedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Message ID
+          type: string
+        receivedAt:
+          format: date-time
+          type: string
+        from:
+          description: Sender wa_id / phone
+          type: string
+          nullable: true
+        senderName:
+          type: string
+          nullable: true
+        conversationId:
+          type: string
+          nullable: true
+        flowToken:
+          type: string
+          nullable: true
+        data:
+          description: Submitted field values (flow_token removed)
+          type: object
+        raw:
+          description: Raw response_json string
+          type: string
+          nullable: true
+    listWhatsAppFlowResponses_200_response:
+      example:
+        responses:
+        - flowToken: flowToken
+          senderName: senderName
+          data: "{}"
+          conversationId: conversationId
+          raw: raw
+          from: from
+          id: id
+          receivedAt: 2000-01-23T04:56:07.000+00:00
+        - flowToken: flowToken
+          senderName: senderName
+          data: "{}"
+          conversationId: conversationId
+          raw: raw
+          from: from
+          id: id
+          receivedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        responses:
+          items:
+            $ref: "#/components/schemas/listWhatsAppFlowResponses_200_response_responses_inner"
+          type: array
     listContacts_200_response_contacts_inner:
       example:
         messagesReceivedCount: 6
