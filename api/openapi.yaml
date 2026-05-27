@@ -12837,6 +12837,45 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/number-info:
+    get:
+      description: |
+        Live snapshot of a connected number straight from Meta: the phone-number node
+        (display number, display name + approval, quality rating, messaging-limit tier,
+        throughput, official-business badge, connection status, health_status) and its
+        owning WhatsApp Business Account (name, business verification, timezone,
+        health_status). Fetched live because Meta updates quality/tier/name/health over
+        time; the call also refreshes the cached values shown on the connection card.
+      operationId: getWhatsAppNumberInfo
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response"
+          description: Number + WABA status
+        "400":
+          description: Phone number ID not found on account
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Get number status
+      tags:
+      - WhatsApp Phone Numbers
+      x-accepts:
+      - application/json
   /v1/whatsapp/phone-numbers:
     get:
       description: |
@@ -38166,6 +38205,97 @@ components:
           type: string
         displayName:
           $ref: "#/components/schemas/updateWhatsAppDisplayName_200_response_displayName"
+    getWhatsAppNumberInfo_200_response_phone_throughput:
+      example:
+        level: level
+      properties:
+        level:
+          description: STANDARD or HIGH
+          type: string
+    getWhatsAppNumberInfo_200_response_phone:
+      example:
+        messaging_limit_tier: messaging_limit_tier
+        display_phone_number: display_phone_number
+        platform_type: platform_type
+        quality_rating: quality_rating
+        name_status: name_status
+        verified_name: verified_name
+        throughput:
+          level: level
+        health_status: "{}"
+        is_official_business_account: true
+        status: status
+      properties:
+        display_phone_number:
+          type: string
+        verified_name:
+          type: string
+        name_status:
+          description: "APPROVED, AVAILABLE_WITHOUT_REVIEW, PENDING_REVIEW, DECLINED,\
+            \ EXPIRED, NONE"
+          type: string
+        quality_rating:
+          description: "GREEN, YELLOW, RED, UNKNOWN"
+          type: string
+        messaging_limit_tier:
+          description: "e.g. TIER_250, TIER_1K, TIER_UNLIMITED"
+          type: string
+        throughput:
+          $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_phone_throughput"
+        status:
+          description: e.g. CONNECTED
+          type: string
+        is_official_business_account:
+          type: boolean
+        platform_type:
+          description: e.g. CLOUD_API
+          type: string
+        health_status:
+          description: Meta's can_send_message health object (messaging + calling
+            signals)
+          type: object
+    getWhatsAppNumberInfo_200_response_waba:
+      example:
+        business_verification_status: business_verification_status
+        name: name
+        timezone_id: timezone_id
+        health_status: "{}"
+      properties:
+        name:
+          type: string
+        business_verification_status:
+          description: "verified, not_verified, pending, ..."
+          type: string
+        timezone_id:
+          description: Meta integer timezone-enum id
+          type: string
+        health_status:
+          type: object
+      nullable: true
+    getWhatsAppNumberInfo_200_response:
+      example:
+        phone:
+          messaging_limit_tier: messaging_limit_tier
+          display_phone_number: display_phone_number
+          platform_type: platform_type
+          quality_rating: quality_rating
+          name_status: name_status
+          verified_name: verified_name
+          throughput:
+            level: level
+          health_status: "{}"
+          is_official_business_account: true
+          status: status
+        waba:
+          business_verification_status: business_verification_status
+          name: name
+          timezone_id: timezone_id
+          health_status: "{}"
+      properties:
+        phone:
+          $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_phone"
+        waba:
+          $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_waba"
     getWhatsAppPhoneNumbers_200_response_numbers_inner:
       example:
         metaPreverifiedId: metaPreverifiedId

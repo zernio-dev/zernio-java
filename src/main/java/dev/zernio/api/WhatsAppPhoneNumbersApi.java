@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.GetWhatsAppNumberInfo200Response;
 import dev.zernio.model.GetWhatsAppPhoneNumber200Response;
 import dev.zernio.model.GetWhatsAppPhoneNumbers200Response;
 import dev.zernio.model.InlineObject;
@@ -57,7 +58,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T14:50:30.685161253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T15:44:39.433959623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -172,6 +173,138 @@ public class WhatsAppPhoneNumbersApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Get number status
+   * Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+   * @param accountId WhatsApp social account ID (required)
+   * @return GetWhatsAppNumberInfo200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppNumberInfo200Response getWhatsAppNumberInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppNumberInfo(accountId, null);
+  }
+
+  /**
+   * Get number status
+   * Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppNumberInfo200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppNumberInfo200Response getWhatsAppNumberInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppNumberInfo200Response> localVarResponse = getWhatsAppNumberInfoWithHttpInfo(accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get number status
+   * Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+   * @param accountId WhatsApp social account ID (required)
+   * @return ApiResponse&lt;GetWhatsAppNumberInfo200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppNumberInfo200Response> getWhatsAppNumberInfoWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppNumberInfoWithHttpInfo(accountId, null);
+  }
+
+  /**
+   * Get number status
+   * Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppNumberInfo200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppNumberInfo200Response> getWhatsAppNumberInfoWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppNumberInfoRequestBuilder(accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppNumberInfo", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppNumberInfo200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppNumberInfo200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppNumberInfo200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppNumberInfo200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppNumberInfoRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppNumberInfo");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/number-info";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**

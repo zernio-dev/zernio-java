@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getWhatsAppNumberInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfo) | **GET** /v1/whatsapp/number-info | Get number status |
+| [**getWhatsAppNumberInfoWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfoWithHttpInfo) | **GET** /v1/whatsapp/number-info | Get number status |
 | [**getWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number |
 | [**getWhatsAppPhoneNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumberWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number |
 | [**getWhatsAppPhoneNumbers**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers |
@@ -13,6 +15,156 @@ All URIs are relative to *https://zernio.com/api*
 | [**releaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number |
 | [**releaseWhatsAppPhoneNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumberWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number |
 
+
+
+## getWhatsAppNumberInfo
+
+> GetWhatsAppNumberInfo200Response getWhatsAppNumberInfo(accountId)
+
+Get number status
+
+Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            GetWhatsAppNumberInfo200Response result = apiInstance.getWhatsAppNumberInfo(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#getWhatsAppNumberInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+[**GetWhatsAppNumberInfo200Response**](GetWhatsAppNumberInfo200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number + WABA status |  -  |
+| **400** | Phone number ID not found on account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## getWhatsAppNumberInfoWithHttpInfo
+
+> ApiResponse<GetWhatsAppNumberInfo200Response> getWhatsAppNumberInfo getWhatsAppNumberInfoWithHttpInfo(accountId)
+
+Get number status
+
+Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            ApiResponse<GetWhatsAppNumberInfo200Response> response = apiInstance.getWhatsAppNumberInfoWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#getWhatsAppNumberInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppNumberInfo200Response**](GetWhatsAppNumberInfo200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Number + WABA status |  -  |
+| **400** | Phone number ID not found on account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
 
 
 ## getWhatsAppPhoneNumber

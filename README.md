@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-27T14:50:30.685161253Z[Etc/UTC]
+- Build date: 2026-05-27T15:44:39.433959623Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -728,6 +728,8 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**updateWhatsAppFlowWithHttpInfo**](docs/WhatsAppFlowsApi.md#updateWhatsAppFlowWithHttpInfo) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**uploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadWhatsAppFlowJson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
 *WhatsAppFlowsApi* | [**uploadWhatsAppFlowJsonWithHttpInfo**](docs/WhatsAppFlowsApi.md#uploadWhatsAppFlowJsonWithHttpInfo) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfo) | **GET** /v1/whatsapp/number-info | Get number status
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberInfoWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfoWithHttpInfo) | **GET** /v1/whatsapp/number-info | Get number status
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumberWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
@@ -1183,6 +1185,10 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppLibraryTemplate200Response](docs/GetWhatsAppLibraryTemplate200Response.md)
  - [GetWhatsAppLibraryTemplate200ResponseTemplate](docs/GetWhatsAppLibraryTemplate200ResponseTemplate.md)
  - [GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner](docs/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.md)
+ - [GetWhatsAppNumberInfo200Response](docs/GetWhatsAppNumberInfo200Response.md)
+ - [GetWhatsAppNumberInfo200ResponsePhone](docs/GetWhatsAppNumberInfo200ResponsePhone.md)
+ - [GetWhatsAppNumberInfo200ResponsePhoneThroughput](docs/GetWhatsAppNumberInfo200ResponsePhoneThroughput.md)
+ - [GetWhatsAppNumberInfo200ResponseWaba](docs/GetWhatsAppNumberInfo200ResponseWaba.md)
  - [GetWhatsAppPhoneNumber200Response](docs/GetWhatsAppPhoneNumber200Response.md)
  - [GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [GetWhatsAppPhoneNumbers200Response](docs/GetWhatsAppPhoneNumbers200Response.md)

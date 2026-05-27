@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RetweetPostRequest.JSON_PROPERTY_ACCOUNT_ID,
   RetweetPostRequest.JSON_PROPERTY_TWEET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T14:50:30.685161253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T15:44:39.433959623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RetweetPostRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

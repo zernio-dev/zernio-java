@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CreateQueueSlotRequest.JSON_PROPERTY_SLOTS,
   CreateQueueSlotRequest.JSON_PROPERTY_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T14:50:30.685161253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T15:44:39.433959623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateQueueSlotRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
