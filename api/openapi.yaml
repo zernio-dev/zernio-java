@@ -13742,6 +13742,98 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/flows/{flowId}/preview:
+    get:
+      description: |
+        Get Meta's public web-preview URL for a flow (drafts included), embeddable as an
+        interactive iframe. The link is reused across calls (valid ~30 days); pass
+        invalidate=true to mint a fresh one (the previous link stops working).
+      operationId: getWhatsAppFlowPreview
+      parameters:
+      - description: Flow ID
+        explode: false
+        in: path
+        name: flowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Mint a fresh preview link (default false)
+        explode: true
+        in: query
+        name: invalidate
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppFlowPreview_200_response"
+          description: Preview URL
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Flow or account not found
+      security:
+      - bearerAuth: []
+      summary: Get flow preview URL
+      tags:
+      - WhatsApp Flows
+      x-accepts:
+      - application/json
+  /v1/whatsapp/flows/{flowId}/versions:
+    get:
+      description: |
+        List the flow's version history (the clone lineage Zernio tracks, since Meta has no
+        native versioning), newest version first. Each entry is enriched with the version's
+        live name and status from Meta. A flow with no lineage returns just itself as version 1.
+      operationId: listWhatsAppFlowVersions
+      parameters:
+      - description: Flow ID
+        explode: false
+        in: path
+        name: flowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppFlowVersions_200_response"
+          description: Version history
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Flow or account not found
+      security:
+      - bearerAuth: []
+      summary: List flow versions
+      tags:
+      - WhatsApp Flows
+      x-accepts:
+      - application/json
   /v1/whatsapp/flows/{flowId}/publish:
     post:
       description: |
@@ -38354,6 +38446,8 @@ components:
         categories:
         - categories
         - categories
+        version: 0
+        lineageId: lineageId
         status: DRAFT
       properties:
         id:
@@ -38376,6 +38470,14 @@ components:
           items:
             type: object
           type: array
+        version:
+          description: 1-based version within the flow's clone lineage (Zernio-tracked;
+            Meta has no native versioning). Standalone flows are version 1.
+          type: integer
+        lineageId:
+          description: Stable group key for the flow's version lineage (the root flow's
+            ID).
+          type: string
     listWhatsAppFlows_200_response:
       example:
         flows:
@@ -38387,6 +38489,8 @@ components:
           categories:
           - categories
           - categories
+          version: 0
+          lineageId: lineageId
           status: DRAFT
         - name: name
           validation_errors:
@@ -38396,6 +38500,8 @@ components:
           categories:
           - categories
           - categories
+          version: 0
+          lineageId: lineageId
           status: DRAFT
         success: true
       properties:
@@ -38430,8 +38536,13 @@ components:
           minItems: 1
           type: array
         cloneFlowId:
-          description: "Optional: ID of an existing flow to clone"
+          description: "Optional: ID of an existing flow to clone the Flow JSON from"
           type: string
+        asVersion:
+          description: "When cloning, true keeps the clone in cloneFlowId's version\
+            \ lineage (auto-numbered next version); false/absent creates an independent\
+            \ flow. Ignored without cloneFlowId."
+          type: boolean
       required:
       - accountId
       - categories
@@ -38443,6 +38554,8 @@ components:
         categories:
         - categories
         - categories
+        version: 0
+        lineageId: lineageId
         status: DRAFT
       properties:
         id:
@@ -38456,6 +38569,12 @@ components:
           items:
             type: string
           type: array
+        version:
+          description: Version within the clone lineage
+          type: integer
+        lineageId:
+          description: Version-lineage group key
+          type: string
     createWhatsAppFlow_200_response:
       example:
         success: true
@@ -38465,6 +38584,8 @@ components:
           categories:
           - categories
           - categories
+          version: 0
+          lineageId: lineageId
           status: DRAFT
       properties:
         success:
@@ -38658,6 +38779,62 @@ components:
             \ details from Meta"
           items:
             $ref: "#/components/schemas/uploadWhatsAppFlowJson_200_response_validation_errors_inner"
+          type: array
+    getWhatsAppFlowPreview_200_response:
+      example:
+        expires_at: expires_at
+        preview_url: preview_url
+      properties:
+        preview_url:
+          type: string
+          nullable: true
+        expires_at:
+          type: string
+          nullable: true
+    listWhatsAppFlowVersions_200_response_versions_inner:
+      example:
+        parentFlowId: parentFlowId
+        name: name
+        missing: true
+        flowId: flowId
+        version: 0
+        status: status
+      properties:
+        flowId:
+          type: string
+        version:
+          type: integer
+        parentFlowId:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        missing:
+          description: True when Meta no longer has this flow
+          type: boolean
+    listWhatsAppFlowVersions_200_response:
+      example:
+        versions:
+        - parentFlowId: parentFlowId
+          name: name
+          missing: true
+          flowId: flowId
+          version: 0
+          status: status
+        - parentFlowId: parentFlowId
+          name: name
+          missing: true
+          flowId: flowId
+          version: 0
+          status: status
+      properties:
+        versions:
+          items:
+            $ref: "#/components/schemas/listWhatsAppFlowVersions_200_response_versions_inner"
           type: array
     publishWhatsAppFlow_request:
       properties:

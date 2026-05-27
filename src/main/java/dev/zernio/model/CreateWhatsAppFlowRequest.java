@@ -38,9 +38,10 @@ import dev.zernio.ApiClient;
   CreateWhatsAppFlowRequest.JSON_PROPERTY_ACCOUNT_ID,
   CreateWhatsAppFlowRequest.JSON_PROPERTY_NAME,
   CreateWhatsAppFlowRequest.JSON_PROPERTY_CATEGORIES,
-  CreateWhatsAppFlowRequest.JSON_PROPERTY_CLONE_FLOW_ID
+  CreateWhatsAppFlowRequest.JSON_PROPERTY_CLONE_FLOW_ID,
+  CreateWhatsAppFlowRequest.JSON_PROPERTY_AS_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T12:16:56.258733260Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T13:39:57.205746518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppFlowRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -104,6 +105,10 @@ public class CreateWhatsAppFlowRequest {
   public static final String JSON_PROPERTY_CLONE_FLOW_ID = "cloneFlowId";
   @javax.annotation.Nullable
   private String cloneFlowId;
+
+  public static final String JSON_PROPERTY_AS_VERSION = "asVersion";
+  @javax.annotation.Nullable
+  private Boolean asVersion;
 
   public CreateWhatsAppFlowRequest() { 
   }
@@ -194,7 +199,7 @@ public class CreateWhatsAppFlowRequest {
   }
 
   /**
-   * Optional: ID of an existing flow to clone
+   * Optional: ID of an existing flow to clone the Flow JSON from
    * @return cloneFlowId
    */
   @javax.annotation.Nullable
@@ -209,6 +214,30 @@ public class CreateWhatsAppFlowRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCloneFlowId(@javax.annotation.Nullable String cloneFlowId) {
     this.cloneFlowId = cloneFlowId;
+  }
+
+
+  public CreateWhatsAppFlowRequest asVersion(@javax.annotation.Nullable Boolean asVersion) {
+    this.asVersion = asVersion;
+    return this;
+  }
+
+  /**
+   * When cloning, true keeps the clone in cloneFlowId&#39;s version lineage (auto-numbered next version); false/absent creates an independent flow. Ignored without cloneFlowId.
+   * @return asVersion
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AS_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAsVersion() {
+    return asVersion;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AS_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAsVersion(@javax.annotation.Nullable Boolean asVersion) {
+    this.asVersion = asVersion;
   }
 
 
@@ -227,12 +256,13 @@ public class CreateWhatsAppFlowRequest {
     return Objects.equals(this.accountId, createWhatsAppFlowRequest.accountId) &&
         Objects.equals(this.name, createWhatsAppFlowRequest.name) &&
         Objects.equals(this.categories, createWhatsAppFlowRequest.categories) &&
-        Objects.equals(this.cloneFlowId, createWhatsAppFlowRequest.cloneFlowId);
+        Objects.equals(this.cloneFlowId, createWhatsAppFlowRequest.cloneFlowId) &&
+        Objects.equals(this.asVersion, createWhatsAppFlowRequest.asVersion);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, name, categories, cloneFlowId);
+    return Objects.hash(accountId, name, categories, cloneFlowId, asVersion);
   }
 
   @Override
@@ -243,6 +273,7 @@ public class CreateWhatsAppFlowRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    cloneFlowId: ").append(toIndentedString(cloneFlowId)).append("\n");
+    sb.append("    asVersion: ").append(toIndentedString(asVersion)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -312,6 +343,11 @@ public class CreateWhatsAppFlowRequest {
     // add `cloneFlowId` to the URL query string
     if (getCloneFlowId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scloneFlowId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCloneFlowId()))));
+    }
+
+    // add `asVersion` to the URL query string
+    if (getAsVersion() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sasVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAsVersion()))));
     }
 
     return joiner.toString();

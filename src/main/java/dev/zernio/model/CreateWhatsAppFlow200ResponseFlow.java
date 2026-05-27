@@ -38,9 +38,11 @@ import dev.zernio.ApiClient;
   CreateWhatsAppFlow200ResponseFlow.JSON_PROPERTY_ID,
   CreateWhatsAppFlow200ResponseFlow.JSON_PROPERTY_NAME,
   CreateWhatsAppFlow200ResponseFlow.JSON_PROPERTY_STATUS,
-  CreateWhatsAppFlow200ResponseFlow.JSON_PROPERTY_CATEGORIES
+  CreateWhatsAppFlow200ResponseFlow.JSON_PROPERTY_CATEGORIES,
+  CreateWhatsAppFlow200ResponseFlow.JSON_PROPERTY_VERSION,
+  CreateWhatsAppFlow200ResponseFlow.JSON_PROPERTY_LINEAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T12:16:56.258733260Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T13:39:57.205746518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppFlow200ResponseFlow {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -57,6 +59,14 @@ public class CreateWhatsAppFlow200ResponseFlow {
   public static final String JSON_PROPERTY_CATEGORIES = "categories";
   @javax.annotation.Nullable
   private List<String> categories = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_VERSION = "version";
+  @javax.annotation.Nullable
+  private Integer version;
+
+  public static final String JSON_PROPERTY_LINEAGE_ID = "lineageId";
+  @javax.annotation.Nullable
+  private String lineageId;
 
   public CreateWhatsAppFlow200ResponseFlow() { 
   }
@@ -165,6 +175,54 @@ public class CreateWhatsAppFlow200ResponseFlow {
   }
 
 
+  public CreateWhatsAppFlow200ResponseFlow version(@javax.annotation.Nullable Integer version) {
+    this.version = version;
+    return this;
+  }
+
+  /**
+   * Version within the clone lineage
+   * @return version
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVersion() {
+    return version;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVersion(@javax.annotation.Nullable Integer version) {
+    this.version = version;
+  }
+
+
+  public CreateWhatsAppFlow200ResponseFlow lineageId(@javax.annotation.Nullable String lineageId) {
+    this.lineageId = lineageId;
+    return this;
+  }
+
+  /**
+   * Version-lineage group key
+   * @return lineageId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINEAGE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLineageId() {
+    return lineageId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINEAGE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLineageId(@javax.annotation.Nullable String lineageId) {
+    this.lineageId = lineageId;
+  }
+
+
   /**
    * Return true if this createWhatsAppFlow_200_response_flow object is equal to o.
    */
@@ -180,12 +238,14 @@ public class CreateWhatsAppFlow200ResponseFlow {
     return Objects.equals(this.id, createWhatsAppFlow200ResponseFlow.id) &&
         Objects.equals(this.name, createWhatsAppFlow200ResponseFlow.name) &&
         Objects.equals(this.status, createWhatsAppFlow200ResponseFlow.status) &&
-        Objects.equals(this.categories, createWhatsAppFlow200ResponseFlow.categories);
+        Objects.equals(this.categories, createWhatsAppFlow200ResponseFlow.categories) &&
+        Objects.equals(this.version, createWhatsAppFlow200ResponseFlow.version) &&
+        Objects.equals(this.lineageId, createWhatsAppFlow200ResponseFlow.lineageId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, status, categories);
+    return Objects.hash(id, name, status, categories, version, lineageId);
   }
 
   @Override
@@ -196,6 +256,8 @@ public class CreateWhatsAppFlow200ResponseFlow {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    lineageId: ").append(toIndentedString(lineageId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -265,6 +327,16 @@ public class CreateWhatsAppFlow200ResponseFlow {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCategories().get(i)))));
       }
+    }
+
+    // add `version` to the URL query string
+    if (getVersion() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
+    }
+
+    // add `lineageId` to the URL query string
+    if (getLineageId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slineageId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineageId()))));
     }
 
     return joiner.toString();

@@ -39,9 +39,11 @@ import dev.zernio.ApiClient;
   ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_NAME,
   ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_STATUS,
   ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_CATEGORIES,
-  ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_VALIDATION_ERRORS
+  ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_VALIDATION_ERRORS,
+  ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_VERSION,
+  ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_LINEAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T12:16:56.258733260Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T13:39:57.205746518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppFlows200ResponseFlowsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -103,6 +105,14 @@ public class ListWhatsAppFlows200ResponseFlowsInner {
   public static final String JSON_PROPERTY_VALIDATION_ERRORS = "validation_errors";
   @javax.annotation.Nullable
   private List<Object> validationErrors = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_VERSION = "version";
+  @javax.annotation.Nullable
+  private Integer version;
+
+  public static final String JSON_PROPERTY_LINEAGE_ID = "lineageId";
+  @javax.annotation.Nullable
+  private String lineageId;
 
   public ListWhatsAppFlows200ResponseFlowsInner() { 
   }
@@ -243,6 +253,54 @@ public class ListWhatsAppFlows200ResponseFlowsInner {
   }
 
 
+  public ListWhatsAppFlows200ResponseFlowsInner version(@javax.annotation.Nullable Integer version) {
+    this.version = version;
+    return this;
+  }
+
+  /**
+   * 1-based version within the flow&#39;s clone lineage (Zernio-tracked; Meta has no native versioning). Standalone flows are version 1.
+   * @return version
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVersion() {
+    return version;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVersion(@javax.annotation.Nullable Integer version) {
+    this.version = version;
+  }
+
+
+  public ListWhatsAppFlows200ResponseFlowsInner lineageId(@javax.annotation.Nullable String lineageId) {
+    this.lineageId = lineageId;
+    return this;
+  }
+
+  /**
+   * Stable group key for the flow&#39;s version lineage (the root flow&#39;s ID).
+   * @return lineageId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINEAGE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLineageId() {
+    return lineageId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINEAGE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLineageId(@javax.annotation.Nullable String lineageId) {
+    this.lineageId = lineageId;
+  }
+
+
   /**
    * Return true if this listWhatsAppFlows_200_response_flows_inner object is equal to o.
    */
@@ -259,12 +317,14 @@ public class ListWhatsAppFlows200ResponseFlowsInner {
         Objects.equals(this.name, listWhatsAppFlows200ResponseFlowsInner.name) &&
         Objects.equals(this.status, listWhatsAppFlows200ResponseFlowsInner.status) &&
         Objects.equals(this.categories, listWhatsAppFlows200ResponseFlowsInner.categories) &&
-        Objects.equals(this.validationErrors, listWhatsAppFlows200ResponseFlowsInner.validationErrors);
+        Objects.equals(this.validationErrors, listWhatsAppFlows200ResponseFlowsInner.validationErrors) &&
+        Objects.equals(this.version, listWhatsAppFlows200ResponseFlowsInner.version) &&
+        Objects.equals(this.lineageId, listWhatsAppFlows200ResponseFlowsInner.lineageId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, status, categories, validationErrors);
+    return Objects.hash(id, name, status, categories, validationErrors, version, lineageId);
   }
 
   @Override
@@ -276,6 +336,8 @@ public class ListWhatsAppFlows200ResponseFlowsInner {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    validationErrors: ").append(toIndentedString(validationErrors)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    lineageId: ").append(toIndentedString(lineageId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -354,6 +416,16 @@ public class ListWhatsAppFlows200ResponseFlowsInner {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getValidationErrors().get(i)))));
       }
+    }
+
+    // add `version` to the URL query string
+    if (getVersion() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
+    }
+
+    // add `lineageId` to the URL query string
+    if (getLineageId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slineageId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineageId()))));
     }
 
     return joiner.toString();

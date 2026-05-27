@@ -12,6 +12,8 @@
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**categories** | **List&lt;String&gt;** |  |  [optional] |
 |**validationErrors** | **List&lt;Object&gt;** |  |  [optional] |
+|**version** | **Integer** | 1-based version within the flow&#39;s clone lineage (Zernio-tracked; Meta has no native versioning). Standalone flows are version 1. |  [optional] |
+|**lineageId** | **String** | Stable group key for the flow&#39;s version lineage (the root flow&#39;s ID). |  [optional] |
 
 
 

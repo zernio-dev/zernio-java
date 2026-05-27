@@ -22,7 +22,9 @@ import dev.zernio.model.CreateWhatsAppFlow200Response;
 import dev.zernio.model.CreateWhatsAppFlowRequest;
 import dev.zernio.model.GetWhatsAppFlow200Response;
 import dev.zernio.model.GetWhatsAppFlowJson200Response;
+import dev.zernio.model.GetWhatsAppFlowPreview200Response;
 import dev.zernio.model.InlineObject;
+import dev.zernio.model.ListWhatsAppFlowVersions200Response;
 import dev.zernio.model.ListWhatsAppFlows200Response;
 import dev.zernio.model.PublishWhatsAppFlowRequest;
 import dev.zernio.model.SendWhatsAppFlowMessage200Response;
@@ -63,7 +65,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T12:16:56.258733260Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T13:39:57.205746518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppFlowsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -831,6 +833,294 @@ public class WhatsAppFlowsApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/whatsapp/flows/{flowId}/json"
+        .replace("{flowId}", ApiClient.urlEncode(flowId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get flow preview URL
+   * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param invalidate Mint a fresh preview link (default false) (optional)
+   * @return GetWhatsAppFlowPreview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppFlowPreview200Response getWhatsAppFlowPreview(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean invalidate) throws ApiException {
+    return getWhatsAppFlowPreview(flowId, accountId, invalidate, null);
+  }
+
+  /**
+   * Get flow preview URL
+   * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param invalidate Mint a fresh preview link (default false) (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppFlowPreview200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppFlowPreview200Response getWhatsAppFlowPreview(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean invalidate, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppFlowPreview200Response> localVarResponse = getWhatsAppFlowPreviewWithHttpInfo(flowId, accountId, invalidate, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get flow preview URL
+   * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param invalidate Mint a fresh preview link (default false) (optional)
+   * @return ApiResponse&lt;GetWhatsAppFlowPreview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppFlowPreview200Response> getWhatsAppFlowPreviewWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean invalidate) throws ApiException {
+    return getWhatsAppFlowPreviewWithHttpInfo(flowId, accountId, invalidate, null);
+  }
+
+  /**
+   * Get flow preview URL
+   * Get Meta&#39;s public web-preview URL for a flow (drafts included), embeddable as an interactive iframe. The link is reused across calls (valid ~30 days); pass invalidate&#x3D;true to mint a fresh one (the previous link stops working). 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param invalidate Mint a fresh preview link (default false) (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppFlowPreview200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppFlowPreview200Response> getWhatsAppFlowPreviewWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean invalidate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppFlowPreviewRequestBuilder(flowId, accountId, invalidate, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppFlowPreview", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppFlowPreview200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppFlowPreview200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppFlowPreview200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppFlowPreview200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppFlowPreviewRequestBuilder(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean invalidate, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'flowId' is set
+    if (flowId == null) {
+      throw new ApiException(400, "Missing the required parameter 'flowId' when calling getWhatsAppFlowPreview");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppFlowPreview");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/flows/{flowId}/preview"
+        .replace("{flowId}", ApiClient.urlEncode(flowId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "invalidate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("invalidate", invalidate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List flow versions
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @return ListWhatsAppFlowVersions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppFlowVersions200Response listWhatsAppFlowVersions(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return listWhatsAppFlowVersions(flowId, accountId, null);
+  }
+
+  /**
+   * List flow versions
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ListWhatsAppFlowVersions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppFlowVersions200Response listWhatsAppFlowVersions(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWhatsAppFlowVersions200Response> localVarResponse = listWhatsAppFlowVersionsWithHttpInfo(flowId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List flow versions
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @return ApiResponse&lt;ListWhatsAppFlowVersions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppFlowVersions200Response> listWhatsAppFlowVersionsWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return listWhatsAppFlowVersionsWithHttpInfo(flowId, accountId, null);
+  }
+
+  /**
+   * List flow versions
+   * List the flow&#39;s version history (the clone lineage Zernio tracks, since Meta has no native versioning), newest version first. Each entry is enriched with the version&#39;s live name and status from Meta. A flow with no lineage returns just itself as version 1. 
+   * @param flowId Flow ID (required)
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListWhatsAppFlowVersions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppFlowVersions200Response> listWhatsAppFlowVersionsWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWhatsAppFlowVersionsRequestBuilder(flowId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWhatsAppFlowVersions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListWhatsAppFlowVersions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListWhatsAppFlowVersions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWhatsAppFlowVersions200Response>() {});
+        
+
+        return new ApiResponse<ListWhatsAppFlowVersions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWhatsAppFlowVersionsRequestBuilder(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'flowId' is set
+    if (flowId == null) {
+      throw new ApiException(400, "Missing the required parameter 'flowId' when calling listWhatsAppFlowVersions");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listWhatsAppFlowVersions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/flows/{flowId}/versions"
         .replace("{flowId}", ApiClient.urlEncode(flowId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<>();

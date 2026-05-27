@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   BulkUploadResultRateLimitedAccountsInner.JSON_PROPERTY_USERNAME,
   BulkUploadResultRateLimitedAccountsInner.JSON_PROPERTY_RATE_LIMITED_UNTIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T12:16:56.258733260Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T13:39:57.205746518Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUploadResultRateLimitedAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

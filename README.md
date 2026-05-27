@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-27T12:16:56.258733260Z[Etc/UTC]
+- Build date: 2026-05-27T13:39:57.205746518Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -712,6 +712,10 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**getWhatsAppFlowWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId} | Get flow
 *WhatsAppFlowsApi* | [**getWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowJson) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
 *WhatsAppFlowsApi* | [**getWhatsAppFlowJsonWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowJsonWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/json | Get flow JSON asset
+*WhatsAppFlowsApi* | [**getWhatsAppFlowPreview**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowPreview) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
+*WhatsAppFlowsApi* | [**getWhatsAppFlowPreviewWithHttpInfo**](docs/WhatsAppFlowsApi.md#getWhatsAppFlowPreviewWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/preview | Get flow preview URL
+*WhatsAppFlowsApi* | [**listWhatsAppFlowVersions**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowVersions) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
+*WhatsAppFlowsApi* | [**listWhatsAppFlowVersionsWithHttpInfo**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowVersionsWithHttpInfo) | **GET** /v1/whatsapp/flows/{flowId}/versions | List flow versions
 *WhatsAppFlowsApi* | [**listWhatsAppFlows**](docs/WhatsAppFlowsApi.md#listWhatsAppFlows) | **GET** /v1/whatsapp/flows | List flows
 *WhatsAppFlowsApi* | [**listWhatsAppFlowsWithHttpInfo**](docs/WhatsAppFlowsApi.md#listWhatsAppFlowsWithHttpInfo) | **GET** /v1/whatsapp/flows | List flows
 *WhatsAppFlowsApi* | [**publishWhatsAppFlow**](docs/WhatsAppFlowsApi.md#publishWhatsAppFlow) | **POST** /v1/whatsapp/flows/{flowId}/publish | Publish flow
@@ -1168,6 +1172,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppFlow200ResponseFlowPreview](docs/GetWhatsAppFlow200ResponseFlowPreview.md)
  - [GetWhatsAppFlowJson200Response](docs/GetWhatsAppFlowJson200Response.md)
  - [GetWhatsAppFlowJson200ResponseAssetsInner](docs/GetWhatsAppFlowJson200ResponseAssetsInner.md)
+ - [GetWhatsAppFlowPreview200Response](docs/GetWhatsAppFlowPreview200Response.md)
  - [GetWhatsAppGroupChat200Response](docs/GetWhatsAppGroupChat200Response.md)
  - [GetWhatsAppGroupChat200ResponseGroup](docs/GetWhatsAppGroupChat200ResponseGroup.md)
  - [GetWhatsAppGroupChat200ResponseGroupParticipantsInner](docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md)
@@ -1308,6 +1313,8 @@ Class | Method | HTTP request | Description
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
  - [ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [ListWhatsAppFlowVersions200Response](docs/ListWhatsAppFlowVersions200Response.md)
+ - [ListWhatsAppFlowVersions200ResponseVersionsInner](docs/ListWhatsAppFlowVersions200ResponseVersionsInner.md)
  - [ListWhatsAppFlows200Response](docs/ListWhatsAppFlows200Response.md)
  - [ListWhatsAppFlows200ResponseFlowsInner](docs/ListWhatsAppFlows200ResponseFlowsInner.md)
  - [ListWhatsAppGroupChats200Response](docs/ListWhatsAppGroupChats200Response.md)
