@@ -12612,6 +12612,52 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/template-library:
+    get:
+      description: |
+        Look up a single pre-approved Template Library template by its exact name, to
+        introspect its structure before importing it. Most importantly it returns the
+        template's `buttons`: a library template with `URL` / `PHONE_NUMBER` buttons
+        must be created with a matching `library_template_button_inputs` array (see
+        Create Template), or Meta rejects it. Use this to discover which inputs to collect.
+      operationId: getWhatsAppLibraryTemplate
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Exact library template name
+        explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppLibraryTemplate_200_response"
+          description: Library template (or null if no exact match)
+        "400":
+          description: Missing or invalid query params
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Look up a library template
+      tags:
+      - WhatsApp Templates
+      x-accepts:
+      - application/json
   /v1/whatsapp/business-profile:
     get:
       description: |
@@ -37892,6 +37938,66 @@ components:
           type: boolean
         template:
           $ref: "#/components/schemas/updateWhatsAppTemplate_200_response_template"
+    getWhatsAppLibraryTemplate_200_response_template_buttons_inner:
+      example:
+        text: text
+        type: type
+      properties:
+        type:
+          description: "QUICK_REPLY, URL, PHONE_NUMBER, OTP, FLOW, ..."
+          type: string
+        text:
+          type: string
+    getWhatsAppLibraryTemplate_200_response_template:
+      example:
+        buttons:
+        - text: text
+          type: type
+        - text: text
+          type: type
+        name: name
+        language: language
+        body_params:
+        - body_params
+        - body_params
+        category: category
+        body: body
+      properties:
+        name:
+          type: string
+        language:
+          type: string
+        category:
+          type: string
+        body:
+          type: string
+        body_params:
+          items:
+            type: string
+          type: array
+        buttons:
+          items:
+            $ref: "#/components/schemas/getWhatsAppLibraryTemplate_200_response_template_buttons_inner"
+          type: array
+      nullable: true
+    getWhatsAppLibraryTemplate_200_response:
+      example:
+        template:
+          buttons:
+          - text: text
+            type: type
+          - text: text
+            type: type
+          name: name
+          language: language
+          body_params:
+          - body_params
+          - body_params
+          category: category
+          body: body
+      properties:
+        template:
+          $ref: "#/components/schemas/getWhatsAppLibraryTemplate_200_response_template"
     getWhatsAppBusinessProfile_200_response_businessProfile:
       example:
         profilePictureUrl: https://openapi-generator.tech

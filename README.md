@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-27T14:03:49.693017485Z[Etc/UTC]
+- Build date: 2026-05-27T14:50:30.685161253Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -736,6 +736,8 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**purchaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumberWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
+*WhatsAppTemplatesApi* | [**getWhatsAppLibraryTemplate**](docs/WhatsAppTemplatesApi.md#getWhatsAppLibraryTemplate) | **GET** /v1/whatsapp/template-library | Look up a library template
+*WhatsAppTemplatesApi* | [**getWhatsAppLibraryTemplateWithHttpInfo**](docs/WhatsAppTemplatesApi.md#getWhatsAppLibraryTemplateWithHttpInfo) | **GET** /v1/whatsapp/template-library | Look up a library template
 
 
 ## Documentation for Models
@@ -1178,6 +1180,9 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppGroupChat200Response](docs/GetWhatsAppGroupChat200Response.md)
  - [GetWhatsAppGroupChat200ResponseGroup](docs/GetWhatsAppGroupChat200ResponseGroup.md)
  - [GetWhatsAppGroupChat200ResponseGroupParticipantsInner](docs/GetWhatsAppGroupChat200ResponseGroupParticipantsInner.md)
+ - [GetWhatsAppLibraryTemplate200Response](docs/GetWhatsAppLibraryTemplate200Response.md)
+ - [GetWhatsAppLibraryTemplate200ResponseTemplate](docs/GetWhatsAppLibraryTemplate200ResponseTemplate.md)
+ - [GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner](docs/GetWhatsAppLibraryTemplate200ResponseTemplateButtonsInner.md)
  - [GetWhatsAppPhoneNumber200Response](docs/GetWhatsAppPhoneNumber200Response.md)
  - [GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [GetWhatsAppPhoneNumbers200Response](docs/GetWhatsAppPhoneNumbers200Response.md)
