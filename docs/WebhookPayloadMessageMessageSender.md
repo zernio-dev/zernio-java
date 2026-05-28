@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Sender&#39;s platform identifier. For WhatsApp this is the phone number (without leading &#x60;+&#x60;) when available, otherwise the &#x60;businessScopedUserId&#x60;.  |  |
+|**contactId** | **String** | Zernio CRM Contact id for this sender, when one exists (omitted for outgoing/business sender). |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**username** | **String** |  |  [optional] |
 |**picture** | **String** |  |  [optional] |

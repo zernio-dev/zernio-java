@@ -35,6 +35,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_ID,
+  WebhookPayloadMessageMessageSender.JSON_PROPERTY_CONTACT_ID,
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_NAME,
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_USERNAME,
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_PICTURE,
@@ -44,11 +45,15 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_WHATSAPP_USERNAME,
   WebhookPayloadMessageMessageSender.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:22:26.215736162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:48:27.830437388Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
   private String id;
+
+  public static final String JSON_PROPERTY_CONTACT_ID = "contactId";
+  @javax.annotation.Nullable
+  private String contactId;
 
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -106,6 +111,30 @@ public class WebhookPayloadMessageMessageSender {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
+  }
+
+
+  public WebhookPayloadMessageMessageSender contactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
+    return this;
+  }
+
+  /**
+   * Zernio CRM Contact id for this sender, when one exists (omitted for outgoing/business sender).
+   * @return contactId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContactId() {
+    return contactId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
   }
 
 
@@ -314,6 +343,7 @@ public class WebhookPayloadMessageMessageSender {
     }
     WebhookPayloadMessageMessageSender webhookPayloadMessageMessageSender = (WebhookPayloadMessageMessageSender) o;
     return Objects.equals(this.id, webhookPayloadMessageMessageSender.id) &&
+        Objects.equals(this.contactId, webhookPayloadMessageMessageSender.contactId) &&
         Objects.equals(this.name, webhookPayloadMessageMessageSender.name) &&
         Objects.equals(this.username, webhookPayloadMessageMessageSender.username) &&
         Objects.equals(this.picture, webhookPayloadMessageMessageSender.picture) &&
@@ -326,7 +356,7 @@ public class WebhookPayloadMessageMessageSender {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, username, picture, phoneNumber, businessScopedUserId, parentBusinessScopedUserId, whatsappUsername, instagramProfile);
+    return Objects.hash(id, contactId, name, username, picture, phoneNumber, businessScopedUserId, parentBusinessScopedUserId, whatsappUsername, instagramProfile);
   }
 
   @Override
@@ -334,6 +364,7 @@ public class WebhookPayloadMessageMessageSender {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessageMessageSender {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    contactId: ").append(toIndentedString(contactId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
@@ -392,6 +423,11 @@ public class WebhookPayloadMessageMessageSender {
     // add `id` to the URL query string
     if (getId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
+    // add `contactId` to the URL query string
+    if (getContactId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontactId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactId()))));
     }
 
     // add `name` to the URL query string

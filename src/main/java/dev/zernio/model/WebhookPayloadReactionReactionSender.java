@@ -34,16 +34,21 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_ID,
+  WebhookPayloadReactionReactionSender.JSON_PROPERTY_CONTACT_ID,
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_NAME,
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_USERNAME,
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_PICTURE,
   WebhookPayloadReactionReactionSender.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:22:26.215736162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:48:27.830437388Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadReactionReactionSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
   private String id;
+
+  public static final String JSON_PROPERTY_CONTACT_ID = "contactId";
+  @javax.annotation.Nullable
+  private String contactId;
 
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -85,6 +90,30 @@ public class WebhookPayloadReactionReactionSender {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
+  }
+
+
+  public WebhookPayloadReactionReactionSender contactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
+    return this;
+  }
+
+  /**
+   * Zernio CRM Contact id for this sender, when one exists.
+   * @return contactId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContactId() {
+    return contactId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
   }
 
 
@@ -197,6 +226,7 @@ public class WebhookPayloadReactionReactionSender {
     }
     WebhookPayloadReactionReactionSender webhookPayloadReactionReactionSender = (WebhookPayloadReactionReactionSender) o;
     return Objects.equals(this.id, webhookPayloadReactionReactionSender.id) &&
+        Objects.equals(this.contactId, webhookPayloadReactionReactionSender.contactId) &&
         Objects.equals(this.name, webhookPayloadReactionReactionSender.name) &&
         Objects.equals(this.username, webhookPayloadReactionReactionSender.username) &&
         Objects.equals(this.picture, webhookPayloadReactionReactionSender.picture) &&
@@ -205,7 +235,7 @@ public class WebhookPayloadReactionReactionSender {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, username, picture, phoneNumber);
+    return Objects.hash(id, contactId, name, username, picture, phoneNumber);
   }
 
   @Override
@@ -213,6 +243,7 @@ public class WebhookPayloadReactionReactionSender {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadReactionReactionSender {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    contactId: ").append(toIndentedString(contactId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    picture: ").append(toIndentedString(picture)).append("\n");
@@ -267,6 +298,11 @@ public class WebhookPayloadReactionReactionSender {
     // add `id` to the URL query string
     if (getId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
+    // add `contactId` to the URL query string
+    if (getContactId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontactId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactId()))));
     }
 
     // add `name` to the URL query string

@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Sender&#39;s platform identifier. For WhatsApp this is the phone number (without leading &#x60;+&#x60;) when available, otherwise the &#x60;businessScopedUserId&#x60;. For other platforms, the platform&#39;s own user ID.  |  |
+|**contactId** | **String** | Zernio CRM Contact id for this sender, when one exists (joined via the ContactChannel mapping). Lets integrators link a message straight to a Contact without a follow-up Contacts API call. Omitted when the sender isn&#39;t a tracked contact (e.g. outgoing messages where the sender is the business, or first-touch messages before the contact is created).  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**username** | **String** |  |  [optional] |
 |**picture** | **String** |  |  [optional] |
