@@ -3585,6 +3585,13 @@ paths:
               schema:
                 type: integer
               style: simple
+            X-RateLimit-Reset:
+              description: Unix timestamp (seconds since epoch) when the next slot
+                frees up in the sliding window
+              explode: false
+              schema:
+                type: integer
+              style: simple
       summary: Create post
       tags:
       - Posts
