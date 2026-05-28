@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   QueueSchedule.JSON_PROPERTY_CREATED_AT,
   QueueSchedule.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T15:40:18.137139260Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T16:43:20.872874851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueSchedule {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
