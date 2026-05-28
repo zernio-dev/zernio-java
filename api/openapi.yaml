@@ -21452,6 +21452,57 @@ components:
       - message
       - statusAt
       - timestamp
+    WebhookPayloadConversationStarted:
+      description: |
+        Fired once when a new conversation begins, in either direction. A conversation
+        starts the first time an account and a contact exchange a message on any DM
+        platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, Twitter, Reddit,
+        Bluesky). Platform-agnostic — one subscription covers every DM platform.
+      example:
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        event: conversation.started
+        conversation:
+          participantId: participantId
+          platformConversationId: platformConversationId
+          participantPicture: participantPicture
+          id: id
+          participantName: participantName
+          participantUsername: participantUsername
+          platform: instagram
+          status: active
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - conversation.started
+          type: string
+        conversation:
+          $ref: "#/components/schemas/WebhookPayloadConversationStarted_conversation"
+        account:
+          $ref: "#/components/schemas/InboxWebhookAccount"
+        startedAt:
+          description: When the conversation document was created.
+          format: date-time
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - conversation
+      - event
+      - id
+      - startedAt
+      - timestamp
     WebhookPayloadAdStatusChanged:
       description: |
         Webhook payload for the `ad.status_changed` event. Currently emitted
@@ -48461,6 +48512,53 @@ components:
         message:
           type: string
       nullable: true
+    WebhookPayloadConversationStarted_conversation:
+      example:
+        participantId: participantId
+        platformConversationId: platformConversationId
+        participantPicture: participantPicture
+        id: id
+        participantName: participantName
+        participantUsername: participantUsername
+        platform: instagram
+        status: active
+      properties:
+        id:
+          description: Internal conversation ID
+          type: string
+        platform:
+          enum:
+          - instagram
+          - facebook
+          - telegram
+          - whatsapp
+          - twitter
+          - reddit
+          - bluesky
+          type: string
+        platformConversationId:
+          type: string
+        participantId:
+          description: Contact's platform identifier (IGSID
+          type: string
+        participantName:
+          type: string
+        participantUsername:
+          description: Contact's handle when the platform exposes one
+          type: string
+        participantPicture:
+          type: string
+        status:
+          enum:
+          - active
+          - archived
+          type: string
+      required:
+      - id
+      - participantName
+      - platform
+      - platformConversationId
+      - status
     WebhookPayloadAdStatusChanged_account:
       description: The connected ad-platform account that owns the ad object.
       example:

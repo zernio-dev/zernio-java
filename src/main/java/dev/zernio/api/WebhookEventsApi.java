@@ -23,6 +23,7 @@ import dev.zernio.model.WebhookPayloadAccountConnected;
 import dev.zernio.model.WebhookPayloadAccountDisconnected;
 import dev.zernio.model.WebhookPayloadAdStatusChanged;
 import dev.zernio.model.WebhookPayloadComment;
+import dev.zernio.model.WebhookPayloadConversationStarted;
 import dev.zernio.model.WebhookPayloadLead;
 import dev.zernio.model.WebhookPayloadMessage;
 import dev.zernio.model.WebhookPayloadMessageDeleted;
@@ -68,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:58:04.821891954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T10:30:47.328748537Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -715,6 +716,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadComment);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Conversation started event
+   * Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, Twitter, Reddit, Bluesky). Naturally deduped — a given conversation only fires this event the very first time it appears. 
+   * @param webhookPayloadConversationStarted  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onConversationStarted(@javax.annotation.Nonnull WebhookPayloadConversationStarted webhookPayloadConversationStarted) throws ApiException {
+    onConversationStarted(webhookPayloadConversationStarted, null);
+  }
+
+  /**
+   * Conversation started event
+   * Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, Twitter, Reddit, Bluesky). Naturally deduped — a given conversation only fires this event the very first time it appears. 
+   * @param webhookPayloadConversationStarted  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onConversationStarted(@javax.annotation.Nonnull WebhookPayloadConversationStarted webhookPayloadConversationStarted, Map<String, String> headers) throws ApiException {
+    onConversationStartedWithHttpInfo(webhookPayloadConversationStarted, headers);
+  }
+
+  /**
+   * Conversation started event
+   * Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, Twitter, Reddit, Bluesky). Naturally deduped — a given conversation only fires this event the very first time it appears. 
+   * @param webhookPayloadConversationStarted  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onConversationStartedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadConversationStarted webhookPayloadConversationStarted) throws ApiException {
+    return onConversationStartedWithHttpInfo(webhookPayloadConversationStarted, null);
+  }
+
+  /**
+   * Conversation started event
+   * Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, Twitter, Reddit, Bluesky). Naturally deduped — a given conversation only fires this event the very first time it appears. 
+   * @param webhookPayloadConversationStarted  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onConversationStartedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadConversationStarted webhookPayloadConversationStarted, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onConversationStartedRequestBuilder(webhookPayloadConversationStarted, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onConversationStarted", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onConversationStartedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadConversationStarted webhookPayloadConversationStarted, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadConversationStarted' is set
+    if (webhookPayloadConversationStarted == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadConversationStarted' when calling onConversationStarted");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/conversation.started";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadConversationStarted);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
