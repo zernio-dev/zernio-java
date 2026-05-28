@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateContact200ResponseChannel.JSON_PROPERTY_PLATFORM_IDENTIFIER,
   CreateContact200ResponseChannel.JSON_PROPERTY_DISPLAY_IDENTIFIER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T15:44:39.433959623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:22:26.215736162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateContact200ResponseChannel {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

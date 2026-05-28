@@ -339,7 +339,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 ## deprecateWhatsAppFlow
 
-> UpdateYoutubeDefaultPlaylist200Response deprecateWhatsAppFlow(flowId, publishWhatsAppFlowRequest)
+> UpdateYoutubeDefaultPlaylist200Response deprecateWhatsAppFlow(flowId, createWhatsAppDatasetRequest)
 
 Deprecate flow
 
@@ -367,9 +367,9 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        PublishWhatsAppFlowRequest publishWhatsAppFlowRequest = new PublishWhatsAppFlowRequest(); // PublishWhatsAppFlowRequest | 
+        CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
         try {
-            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deprecateWhatsAppFlow(flowId, publishWhatsAppFlowRequest);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deprecateWhatsAppFlow(flowId, createWhatsAppDatasetRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppFlowsApi#deprecateWhatsAppFlow");
@@ -388,7 +388,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **publishWhatsAppFlowRequest** | [**PublishWhatsAppFlowRequest**](PublishWhatsAppFlowRequest.md)|  | |
+| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md)|  | |
 
 ### Return type
 
@@ -414,7 +414,7 @@ public class Example {
 
 ## deprecateWhatsAppFlowWithHttpInfo
 
-> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deprecateWhatsAppFlow deprecateWhatsAppFlowWithHttpInfo(flowId, publishWhatsAppFlowRequest)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deprecateWhatsAppFlow deprecateWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest)
 
 Deprecate flow
 
@@ -443,9 +443,9 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        PublishWhatsAppFlowRequest publishWhatsAppFlowRequest = new PublishWhatsAppFlowRequest(); // PublishWhatsAppFlowRequest | 
+        CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
         try {
-            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deprecateWhatsAppFlowWithHttpInfo(flowId, publishWhatsAppFlowRequest);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deprecateWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -466,7 +466,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **publishWhatsAppFlowRequest** | [**PublishWhatsAppFlowRequest**](PublishWhatsAppFlowRequest.md)|  | |
+| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md)|  | |
 
 ### Return type
 
@@ -1415,7 +1415,7 @@ ApiResponse<[**ListWhatsAppFlows200Response**](ListWhatsAppFlows200Response.md)>
 
 ## publishWhatsAppFlow
 
-> UpdateYoutubeDefaultPlaylist200Response publishWhatsAppFlow(flowId, publishWhatsAppFlowRequest)
+> UpdateYoutubeDefaultPlaylist200Response publishWhatsAppFlow(flowId, createWhatsAppDatasetRequest)
 
 Publish flow
 
@@ -1443,9 +1443,9 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        PublishWhatsAppFlowRequest publishWhatsAppFlowRequest = new PublishWhatsAppFlowRequest(); // PublishWhatsAppFlowRequest | 
+        CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
         try {
-            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.publishWhatsAppFlow(flowId, publishWhatsAppFlowRequest);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.publishWhatsAppFlow(flowId, createWhatsAppDatasetRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppFlowsApi#publishWhatsAppFlow");
@@ -1464,7 +1464,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **publishWhatsAppFlowRequest** | [**PublishWhatsAppFlowRequest**](PublishWhatsAppFlowRequest.md)|  | |
+| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md)|  | |
 
 ### Return type
 
@@ -1490,7 +1490,7 @@ public class Example {
 
 ## publishWhatsAppFlowWithHttpInfo
 
-> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> publishWhatsAppFlow publishWhatsAppFlowWithHttpInfo(flowId, publishWhatsAppFlowRequest)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> publishWhatsAppFlow publishWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest)
 
 Publish flow
 
@@ -1519,9 +1519,9 @@ public class Example {
 
         WhatsAppFlowsApi apiInstance = new WhatsAppFlowsApi(defaultClient);
         String flowId = "flowId_example"; // String | Flow ID
-        PublishWhatsAppFlowRequest publishWhatsAppFlowRequest = new PublishWhatsAppFlowRequest(); // PublishWhatsAppFlowRequest | 
+        CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
         try {
-            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.publishWhatsAppFlowWithHttpInfo(flowId, publishWhatsAppFlowRequest);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.publishWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1542,7 +1542,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | **String**| Flow ID | |
-| **publishWhatsAppFlowRequest** | [**PublishWhatsAppFlowRequest**](PublishWhatsAppFlowRequest.md)|  | |
+| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md)|  | |
 
 ### Return type
 

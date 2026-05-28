@@ -20,6 +20,8 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AddWhatsAppGroupParticipantsRequest;
 import dev.zernio.model.ApproveWhatsAppGroupJoinRequestsRequest;
+import dev.zernio.model.CreateWhatsAppDataset200Response;
+import dev.zernio.model.CreateWhatsAppDatasetRequest;
 import dev.zernio.model.CreateWhatsAppGroupChat201Response;
 import dev.zernio.model.CreateWhatsAppGroupChatRequest;
 import dev.zernio.model.CreateWhatsAppGroupInviteLink200Response;
@@ -27,6 +29,7 @@ import dev.zernio.model.CreateWhatsAppTemplate200Response;
 import dev.zernio.model.CreateWhatsAppTemplateRequest;
 import java.io.File;
 import dev.zernio.model.GetWhatsAppBusinessProfile200Response;
+import dev.zernio.model.GetWhatsAppDataset200Response;
 import dev.zernio.model.GetWhatsAppDisplayName200Response;
 import dev.zernio.model.GetWhatsAppGroupChat200Response;
 import dev.zernio.model.GetWhatsAppTemplate200Response;
@@ -78,7 +81,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-27T15:44:39.433959623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:22:26.215736162Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -490,6 +493,129 @@ public class WhatsAppApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(approveWhatsAppGroupJoinRequestsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Provision CTWA conversions dataset
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * @param createWhatsAppDatasetRequest  (required)
+   * @return CreateWhatsAppDataset200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateWhatsAppDataset200Response createWhatsAppDataset(@javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest) throws ApiException {
+    return createWhatsAppDataset(createWhatsAppDatasetRequest, null);
+  }
+
+  /**
+   * Provision CTWA conversions dataset
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * @param createWhatsAppDatasetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateWhatsAppDataset200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateWhatsAppDataset200Response createWhatsAppDataset(@javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateWhatsAppDataset200Response> localVarResponse = createWhatsAppDatasetWithHttpInfo(createWhatsAppDatasetRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Provision CTWA conversions dataset
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * @param createWhatsAppDatasetRequest  (required)
+   * @return ApiResponse&lt;CreateWhatsAppDataset200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateWhatsAppDataset200Response> createWhatsAppDatasetWithHttpInfo(@javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest) throws ApiException {
+    return createWhatsAppDatasetWithHttpInfo(createWhatsAppDatasetRequest, null);
+  }
+
+  /**
+   * Provision CTWA conversions dataset
+   * Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
+   * @param createWhatsAppDatasetRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateWhatsAppDataset200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateWhatsAppDataset200Response> createWhatsAppDatasetWithHttpInfo(@javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWhatsAppDatasetRequestBuilder(createWhatsAppDatasetRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createWhatsAppDataset", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateWhatsAppDataset200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateWhatsAppDataset200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateWhatsAppDataset200Response>() {});
+        
+
+        return new ApiResponse<CreateWhatsAppDataset200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createWhatsAppDatasetRequestBuilder(@javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createWhatsAppDatasetRequest' is set
+    if (createWhatsAppDatasetRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createWhatsAppDatasetRequest' when calling createWhatsAppDataset");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/dataset";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWhatsAppDatasetRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1274,6 +1400,138 @@ public class WhatsAppApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/whatsapp/business-profile";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get CTWA conversions dataset
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp social account ID (required)
+   * @return GetWhatsAppDataset200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppDataset200Response getWhatsAppDataset(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppDataset(accountId, null);
+  }
+
+  /**
+   * Get CTWA conversions dataset
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppDataset200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppDataset200Response getWhatsAppDataset(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppDataset200Response> localVarResponse = getWhatsAppDatasetWithHttpInfo(accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get CTWA conversions dataset
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp social account ID (required)
+   * @return ApiResponse&lt;GetWhatsAppDataset200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppDataset200Response> getWhatsAppDatasetWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppDatasetWithHttpInfo(accountId, null);
+  }
+
+  /**
+   * Get CTWA conversions dataset
+   * Returns the Meta Click-to-WhatsApp conversions dataset currently linked to the WhatsApp account, if one has been provisioned. Reads only from the stored &#x60;metadata.metaCapiDatasetId&#x60; — never hits Meta, never creates a dataset. Use this to detect whether &#x60;POST /v1/whatsapp/conversions&#x60; is configured for an account. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppDataset200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppDataset200Response> getWhatsAppDatasetWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppDatasetRequestBuilder(accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppDataset", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppDataset200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppDataset200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppDataset200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppDataset200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppDatasetRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppDataset");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/dataset";
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-27T15:44:39.433959623Z[Etc/UTC]
+- Build date: 2026-05-28T08:22:26.215736162Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -662,6 +662,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**addWhatsAppGroupParticipantsWithHttpInfo**](docs/WhatsAppApi.md#addWhatsAppGroupParticipantsWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId}/participants | Add participants
 *WhatsAppApi* | [**approveWhatsAppGroupJoinRequests**](docs/WhatsAppApi.md#approveWhatsAppGroupJoinRequests) | **POST** /v1/whatsapp/wa-groups/{groupId}/join-requests | Approve join requests
 *WhatsAppApi* | [**approveWhatsAppGroupJoinRequestsWithHttpInfo**](docs/WhatsAppApi.md#approveWhatsAppGroupJoinRequestsWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId}/join-requests | Approve join requests
+*WhatsAppApi* | [**createWhatsAppDataset**](docs/WhatsAppApi.md#createWhatsAppDataset) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset
+*WhatsAppApi* | [**createWhatsAppDatasetWithHttpInfo**](docs/WhatsAppApi.md#createWhatsAppDatasetWithHttpInfo) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset
 *WhatsAppApi* | [**createWhatsAppGroupChat**](docs/WhatsAppApi.md#createWhatsAppGroupChat) | **POST** /v1/whatsapp/wa-groups | Create group
 *WhatsAppApi* | [**createWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#createWhatsAppGroupChatWithHttpInfo) | **POST** /v1/whatsapp/wa-groups | Create group
 *WhatsAppApi* | [**createWhatsAppGroupInviteLink**](docs/WhatsAppApi.md#createWhatsAppGroupInviteLink) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link
@@ -674,6 +676,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**deleteWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppTemplateWithHttpInfo) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
 *WhatsAppApi* | [**getWhatsAppBusinessProfile**](docs/WhatsAppApi.md#getWhatsAppBusinessProfile) | **GET** /v1/whatsapp/business-profile | Get business profile
 *WhatsAppApi* | [**getWhatsAppBusinessProfileWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppBusinessProfileWithHttpInfo) | **GET** /v1/whatsapp/business-profile | Get business profile
+*WhatsAppApi* | [**getWhatsAppDataset**](docs/WhatsAppApi.md#getWhatsAppDataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
+*WhatsAppApi* | [**getWhatsAppDatasetWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppDatasetWithHttpInfo) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
 *WhatsAppApi* | [**getWhatsAppDisplayName**](docs/WhatsAppApi.md#getWhatsAppDisplayName) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status
 *WhatsAppApi* | [**getWhatsAppDisplayNameWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppDisplayNameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status
 *WhatsAppApi* | [**getWhatsAppGroupChat**](docs/WhatsAppApi.md#getWhatsAppGroupChat) | **GET** /v1/whatsapp/wa-groups/{groupId} | Get group info
@@ -926,6 +930,8 @@ Class | Method | HTTP request | Description
  - [CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
  - [CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
+ - [CreateWhatsAppDataset200Response](docs/CreateWhatsAppDataset200Response.md)
+ - [CreateWhatsAppDatasetRequest](docs/CreateWhatsAppDatasetRequest.md)
  - [CreateWhatsAppFlow200Response](docs/CreateWhatsAppFlow200Response.md)
  - [CreateWhatsAppFlow200ResponseFlow](docs/CreateWhatsAppFlow200ResponseFlow.md)
  - [CreateWhatsAppFlowRequest](docs/CreateWhatsAppFlowRequest.md)
@@ -1171,6 +1177,7 @@ Class | Method | HTTP request | Description
  - [GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
  - [GetWhatsAppBusinessProfile200Response](docs/GetWhatsAppBusinessProfile200Response.md)
  - [GetWhatsAppBusinessProfile200ResponseBusinessProfile](docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md)
+ - [GetWhatsAppDataset200Response](docs/GetWhatsAppDataset200Response.md)
  - [GetWhatsAppDisplayName200Response](docs/GetWhatsAppDisplayName200Response.md)
  - [GetWhatsAppDisplayName200ResponseDisplayName](docs/GetWhatsAppDisplayName200ResponseDisplayName.md)
  - [GetWhatsAppFlow200Response](docs/GetWhatsAppFlow200Response.md)
@@ -1369,7 +1376,6 @@ Class | Method | HTTP request | Description
  - [ProfileGetResponse](docs/ProfileGetResponse.md)
  - [ProfileUpdateResponse](docs/ProfileUpdateResponse.md)
  - [ProfilesListResponse](docs/ProfilesListResponse.md)
- - [PublishWhatsAppFlowRequest](docs/PublishWhatsAppFlowRequest.md)
  - [PurchaseWhatsAppPhoneNumber200Response](docs/PurchaseWhatsAppPhoneNumber200Response.md)
  - [PurchaseWhatsAppPhoneNumber200ResponseOneOf](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md)
  - [PurchaseWhatsAppPhoneNumber200ResponseOneOf1](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md)
