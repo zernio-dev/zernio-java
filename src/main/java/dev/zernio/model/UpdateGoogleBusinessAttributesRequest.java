@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessAttributesRequest.JSON_PROPERTY_ATTRIBUTES,
   UpdateGoogleBusinessAttributesRequest.JSON_PROPERTY_ATTRIBUTE_MASK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T13:49:19.872639009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T14:59:36.438659968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessAttributesRequest {
   public static final String JSON_PROPERTY_ATTRIBUTES = "attributes";
   @javax.annotation.Nonnull

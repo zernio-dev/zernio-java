@@ -39,9 +39,10 @@ import dev.zernio.ApiClient;
   InboxWebhookConversation.JSON_PROPERTY_PARTICIPANT_NAME,
   InboxWebhookConversation.JSON_PROPERTY_PARTICIPANT_USERNAME,
   InboxWebhookConversation.JSON_PROPERTY_PARTICIPANT_PICTURE,
-  InboxWebhookConversation.JSON_PROPERTY_STATUS
+  InboxWebhookConversation.JSON_PROPERTY_STATUS,
+  InboxWebhookConversation.JSON_PROPERTY_CONTACT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T13:49:19.872639009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T14:59:36.438659968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookConversation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -105,6 +106,10 @@ public class InboxWebhookConversation {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nonnull
   private StatusEnum status;
+
+  public static final String JSON_PROPERTY_CONTACT_ID = "contactId";
+  @javax.annotation.Nullable
+  private String contactId;
 
   public InboxWebhookConversation() { 
   }
@@ -277,6 +282,30 @@ public class InboxWebhookConversation {
   }
 
 
+  public InboxWebhookConversation contactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
+    return this;
+  }
+
+  /**
+   * Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection. Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators join any inbox webhook back to the CRM Contact without needing to look at the sender — which matters for outgoing and delivery-status events whose sender is the business. 
+   * @return contactId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContactId() {
+    return contactId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
+  }
+
+
   /**
    * Return true if this InboxWebhookConversation object is equal to o.
    */
@@ -295,12 +324,13 @@ public class InboxWebhookConversation {
         Objects.equals(this.participantName, inboxWebhookConversation.participantName) &&
         Objects.equals(this.participantUsername, inboxWebhookConversation.participantUsername) &&
         Objects.equals(this.participantPicture, inboxWebhookConversation.participantPicture) &&
-        Objects.equals(this.status, inboxWebhookConversation.status);
+        Objects.equals(this.status, inboxWebhookConversation.status) &&
+        Objects.equals(this.contactId, inboxWebhookConversation.contactId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformConversationId, participantId, participantName, participantUsername, participantPicture, status);
+    return Objects.hash(id, platformConversationId, participantId, participantName, participantUsername, participantPicture, status, contactId);
   }
 
   @Override
@@ -314,6 +344,7 @@ public class InboxWebhookConversation {
     sb.append("    participantUsername: ").append(toIndentedString(participantUsername)).append("\n");
     sb.append("    participantPicture: ").append(toIndentedString(participantPicture)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    contactId: ").append(toIndentedString(contactId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -394,6 +425,11 @@ public class InboxWebhookConversation {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `contactId` to the URL query string
+    if (getContactId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontactId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactId()))));
     }
 
     return joiner.toString();

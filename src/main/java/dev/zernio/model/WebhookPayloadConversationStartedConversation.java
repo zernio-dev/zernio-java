@@ -40,9 +40,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadConversationStartedConversation.JSON_PROPERTY_PARTICIPANT_NAME,
   WebhookPayloadConversationStartedConversation.JSON_PROPERTY_PARTICIPANT_USERNAME,
   WebhookPayloadConversationStartedConversation.JSON_PROPERTY_PARTICIPANT_PICTURE,
-  WebhookPayloadConversationStartedConversation.JSON_PROPERTY_STATUS
+  WebhookPayloadConversationStartedConversation.JSON_PROPERTY_STATUS,
+  WebhookPayloadConversationStartedConversation.JSON_PROPERTY_CONTACT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T13:49:19.872639009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T14:59:36.438659968Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadConversationStartedConversation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -155,6 +156,10 @@ public class WebhookPayloadConversationStartedConversation {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nonnull
   private StatusEnum status;
+
+  public static final String JSON_PROPERTY_CONTACT_ID = "contactId";
+  @javax.annotation.Nullable
+  private String contactId;
 
   public WebhookPayloadConversationStartedConversation() { 
   }
@@ -351,6 +356,30 @@ public class WebhookPayloadConversationStartedConversation {
   }
 
 
+  public WebhookPayloadConversationStartedConversation contactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
+    return this;
+  }
+
+  /**
+   * Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection (same join used by message.*, reaction.received, and call.* webhooks). Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators seed the CRM straight from &#x60;conversation.started&#x60; without waiting for the first &#x60;message.*&#x60; event. 
+   * @return contactId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getContactId() {
+    return contactId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContactId(@javax.annotation.Nullable String contactId) {
+    this.contactId = contactId;
+  }
+
+
   /**
    * Return true if this WebhookPayloadConversationStarted_conversation object is equal to o.
    */
@@ -370,12 +399,13 @@ public class WebhookPayloadConversationStartedConversation {
         Objects.equals(this.participantName, webhookPayloadConversationStartedConversation.participantName) &&
         Objects.equals(this.participantUsername, webhookPayloadConversationStartedConversation.participantUsername) &&
         Objects.equals(this.participantPicture, webhookPayloadConversationStartedConversation.participantPicture) &&
-        Objects.equals(this.status, webhookPayloadConversationStartedConversation.status);
+        Objects.equals(this.status, webhookPayloadConversationStartedConversation.status) &&
+        Objects.equals(this.contactId, webhookPayloadConversationStartedConversation.contactId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, platformConversationId, participantId, participantName, participantUsername, participantPicture, status);
+    return Objects.hash(id, platform, platformConversationId, participantId, participantName, participantUsername, participantPicture, status, contactId);
   }
 
   @Override
@@ -390,6 +420,7 @@ public class WebhookPayloadConversationStartedConversation {
     sb.append("    participantUsername: ").append(toIndentedString(participantUsername)).append("\n");
     sb.append("    participantPicture: ").append(toIndentedString(participantPicture)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    contactId: ").append(toIndentedString(contactId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -475,6 +506,11 @@ public class WebhookPayloadConversationStartedConversation {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `contactId` to the URL query string
+    if (getContactId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontactId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContactId()))));
     }
 
     return joiner.toString();

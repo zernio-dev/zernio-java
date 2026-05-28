@@ -11,8 +11,8 @@ Webhook payload for message received events
 |**id** | **String** | Stable webhook event ID |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**message** | [**WebhookPayloadMessageMessage**](WebhookPayloadMessageMessage.md) |  |  |
-|**conversation** | [**WebhookPayloadReactionConversation**](WebhookPayloadReactionConversation.md) |  |  |
-|**account** | [**WebhookPayloadReactionAccount**](WebhookPayloadReactionAccount.md) |  |  |
+|**conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  |  |
+|**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |
 |**metadata** | [**WebhookPayloadMessageMetadata**](WebhookPayloadMessageMetadata.md) |  |  [optional] |
 |**timestamp** | **OffsetDateTime** |  |  |
 

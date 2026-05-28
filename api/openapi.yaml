@@ -20870,6 +20870,7 @@ components:
       description: The conversation context included in inbox webhook payloads.
       example:
         participantId: participantId
+        contactId: contactId
         platformConversationId: platformConversationId
         participantPicture: participantPicture
         id: id
@@ -20893,6 +20894,15 @@ components:
           enum:
           - active
           - archived
+          type: string
+        contactId:
+          description: |
+            Zernio CRM Contact ID for the participant, when one exists. Resolved by
+            joining `participantId` to the ContactChannel collection. Best-effort:
+            omitted when no channel matches or `participantId` is absent. Lets
+            integrators join any inbox webhook back to the CRM Contact without
+            needing to look at the sender — which matters for outgoing and
+            delivery-status events whose sender is the business.
           type: string
       required:
       - id
@@ -20939,6 +20949,7 @@ components:
         event: reaction.received
         conversation:
           participantId: participantId
+          contactId: contactId
           platformConversationId: platformConversationId
           participantPicture: participantPicture
           id: id
@@ -20962,9 +20973,9 @@ components:
         reaction:
           $ref: "#/components/schemas/WebhookPayloadReaction_reaction"
         conversation:
-          $ref: "#/components/schemas/WebhookPayloadReaction_conversation"
+          $ref: "#/components/schemas/InboxWebhookConversation"
         account:
-          $ref: "#/components/schemas/WebhookPayloadReaction_account"
+          $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
           format: date-time
           type: string
@@ -21050,6 +21061,7 @@ components:
           direction: incoming
         conversation:
           participantId: participantId
+          contactId: contactId
           platformConversationId: platformConversationId
           participantPicture: participantPicture
           id: id
@@ -21073,9 +21085,9 @@ components:
         message:
           $ref: "#/components/schemas/WebhookPayloadMessage_message"
         conversation:
-          $ref: "#/components/schemas/WebhookPayloadReaction_conversation"
+          $ref: "#/components/schemas/InboxWebhookConversation"
         account:
-          $ref: "#/components/schemas/WebhookPayloadReaction_account"
+          $ref: "#/components/schemas/InboxWebhookAccount"
         metadata:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata"
         timestamp:
@@ -21118,6 +21130,7 @@ components:
           direction: incoming
         conversation:
           participantId: participantId
+          contactId: contactId
           platformConversationId: platformConversationId
           participantPicture: participantPicture
           id: id
@@ -21141,9 +21154,9 @@ components:
         message:
           $ref: "#/components/schemas/WebhookPayloadMessageSent_message"
         conversation:
-          $ref: "#/components/schemas/WebhookPayloadReaction_conversation"
+          $ref: "#/components/schemas/InboxWebhookConversation"
         account:
-          $ref: "#/components/schemas/WebhookPayloadReaction_account"
+          $ref: "#/components/schemas/InboxWebhookAccount"
         timestamp:
           format: date-time
           type: string
@@ -21218,6 +21231,7 @@ components:
           direction: incoming
         conversation:
           participantId: participantId
+          contactId: contactId
           platformConversationId: platformConversationId
           participantPicture: participantPicture
           id: id
@@ -21317,6 +21331,7 @@ components:
           direction: incoming
         conversation:
           participantId: participantId
+          contactId: contactId
           platformConversationId: platformConversationId
           participantPicture: participantPicture
           id: id
@@ -21408,6 +21423,7 @@ components:
           message: message
         conversation:
           participantId: participantId
+          contactId: contactId
           platformConversationId: platformConversationId
           participantPicture: participantPicture
           id: id
@@ -21464,6 +21480,7 @@ components:
         event: conversation.started
         conversation:
           participantId: participantId
+          contactId: contactId
           platformConversationId: platformConversationId
           participantPicture: participantPicture
           id: id
@@ -48006,57 +48023,6 @@ components:
       - platformMessageId
       - reactedAt
       - sender
-    WebhookPayloadReaction_conversation:
-      example:
-        participantId: participantId
-        platformConversationId: platformConversationId
-        participantPicture: participantPicture
-        id: id
-        participantName: participantName
-        participantUsername: participantUsername
-        status: active
-      properties:
-        id:
-          type: string
-        platformConversationId:
-          type: string
-        participantId:
-          type: string
-        participantName:
-          type: string
-        participantUsername:
-          type: string
-        participantPicture:
-          type: string
-        status:
-          enum:
-          - active
-          - archived
-          type: string
-      required:
-      - id
-      - platformConversationId
-      - status
-    WebhookPayloadReaction_account:
-      example:
-        displayName: displayName
-        id: id
-        platform: platform
-        username: username
-      properties:
-        id:
-          description: Social account ID
-          type: string
-        platform:
-          type: string
-        username:
-          type: string
-        displayName:
-          type: string
-      required:
-      - id
-      - platform
-      - username
     WebhookPayloadMessage_message_sender_instagramProfile:
       description: Instagram profile data for the sender. Only present for Instagram
         conversations.
@@ -48587,6 +48553,7 @@ components:
     WebhookPayloadConversationStarted_conversation:
       example:
         participantId: participantId
+        contactId: contactId
         platformConversationId: platformConversationId
         participantPicture: participantPicture
         id: id
@@ -48624,6 +48591,15 @@ components:
           enum:
           - active
           - archived
+          type: string
+        contactId:
+          description: |
+            Zernio CRM Contact ID for the participant, when one exists. Resolved by
+            joining `participantId` to the ContactChannel collection (same join
+            used by message.*, reaction.received, and call.* webhooks). Best-effort:
+            omitted when no channel matches or `participantId` is absent. Lets
+            integrators seed the CRM straight from `conversation.started` without
+            waiting for the first `message.*` event.
           type: string
       required:
       - id

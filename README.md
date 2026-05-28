@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-28T13:49:19.872639009Z[Etc/UTC]
+- Build date: 2026-05-28T14:59:36.438659968Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1713,8 +1713,6 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadPostPost](docs/WebhookPayloadPostPost.md)
  - [WebhookPayloadPostPostPlatformsInner](docs/WebhookPayloadPostPostPlatformsInner.md)
  - [WebhookPayloadReaction](docs/WebhookPayloadReaction.md)
- - [WebhookPayloadReactionAccount](docs/WebhookPayloadReactionAccount.md)
- - [WebhookPayloadReactionConversation](docs/WebhookPayloadReactionConversation.md)
  - [WebhookPayloadReactionReaction](docs/WebhookPayloadReactionReaction.md)
  - [WebhookPayloadReactionReactionSender](docs/WebhookPayloadReactionReactionSender.md)
  - [WebhookPayloadReviewNew](docs/WebhookPayloadReviewNew.md)

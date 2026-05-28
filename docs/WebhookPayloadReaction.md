@@ -11,8 +11,8 @@ Webhook payload for reaction received events (WhatsApp, Telegram)
 |**id** | **String** | Stable webhook event ID |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**reaction** | [**WebhookPayloadReactionReaction**](WebhookPayloadReactionReaction.md) |  |  |
-|**conversation** | [**WebhookPayloadReactionConversation**](WebhookPayloadReactionConversation.md) |  |  |
-|**account** | [**WebhookPayloadReactionAccount**](WebhookPayloadReactionAccount.md) |  |  |
+|**conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  |  |
+|**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |
 |**timestamp** | **OffsetDateTime** |  |  |
 
 

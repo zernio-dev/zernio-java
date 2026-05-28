@@ -11,8 +11,8 @@ Webhook payload for message sent events (fired when a message is sent via the AP
 |**id** | **String** | Stable webhook event ID |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**message** | [**WebhookPayloadMessageSentMessage**](WebhookPayloadMessageSentMessage.md) |  |  |
-|**conversation** | [**WebhookPayloadReactionConversation**](WebhookPayloadReactionConversation.md) |  |  |
-|**account** | [**WebhookPayloadReactionAccount**](WebhookPayloadReactionAccount.md) |  |  |
+|**conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  |  |
+|**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |
 |**timestamp** | **OffsetDateTime** |  |  |
 
 
