@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SetTelegramCommandsRequestCommandsInner.JSON_PROPERTY_COMMAND,
   SetTelegramCommandsRequestCommandsInner.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:51:40.357797491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:58:04.821891954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetTelegramCommandsRequestCommandsInner {
   public static final String JSON_PROPERTY_COMMAND = "command";
   @javax.annotation.Nonnull

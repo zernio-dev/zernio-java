@@ -46,6 +46,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_MESSAGE,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_URL,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_TYPE,
+  SendInboxMessageRequest.JSON_PROPERTY_VOICE_NOTE,
   SendInboxMessageRequest.JSON_PROPERTY_QUICK_REPLIES,
   SendInboxMessageRequest.JSON_PROPERTY_BUTTONS,
   SendInboxMessageRequest.JSON_PROPERTY_TEMPLATE,
@@ -57,7 +58,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_LOCATION,
   SendInboxMessageRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:51:40.357797491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:58:04.821891954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -113,6 +114,10 @@ public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ATTACHMENT_TYPE = "attachmentType";
   @javax.annotation.Nullable
   private AttachmentTypeEnum attachmentType;
+
+  public static final String JSON_PROPERTY_VOICE_NOTE = "voiceNote";
+  @javax.annotation.Nullable
+  private Boolean voiceNote;
 
   public static final String JSON_PROPERTY_QUICK_REPLIES = "quickReplies";
   @javax.annotation.Nullable
@@ -326,6 +331,30 @@ public class SendInboxMessageRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachmentType(@javax.annotation.Nullable AttachmentTypeEnum attachmentType) {
     this.attachmentType = attachmentType;
+  }
+
+
+  public SendInboxMessageRequest voiceNote(@javax.annotation.Nullable Boolean voiceNote) {
+    this.voiceNote = voiceNote;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. When &#x60;true&#x60; on an audio attachment, the message is sent as a voice message (PTT) — the recipient sees the waveform + voice-note UI instead of a basic audio attachment. The audio file MUST be &#x60;.ogg&#x60; encoded with the OPUS codec (mono) per Meta&#39;s voice-message contract; other formats are rejected by WhatsApp. Ignored for non-audio attachments. 
+   * @return voiceNote
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VOICE_NOTE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getVoiceNote() {
+    return voiceNote;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VOICE_NOTE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVoiceNote(@javax.annotation.Nullable Boolean voiceNote) {
+    this.voiceNote = voiceNote;
   }
 
 
@@ -609,6 +638,7 @@ public class SendInboxMessageRequest {
         Objects.equals(this.message, sendInboxMessageRequest.message) &&
         Objects.equals(this.attachmentUrl, sendInboxMessageRequest.attachmentUrl) &&
         Objects.equals(this.attachmentType, sendInboxMessageRequest.attachmentType) &&
+        Objects.equals(this.voiceNote, sendInboxMessageRequest.voiceNote) &&
         Objects.equals(this.quickReplies, sendInboxMessageRequest.quickReplies) &&
         Objects.equals(this.buttons, sendInboxMessageRequest.buttons) &&
         Objects.equals(this.template, sendInboxMessageRequest.template) &&
@@ -623,7 +653,7 @@ public class SendInboxMessageRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, attachmentUrl, attachmentType, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
+    return Objects.hash(accountId, message, attachmentUrl, attachmentType, voiceNote, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
   }
 
   @Override
@@ -634,6 +664,7 @@ public class SendInboxMessageRequest {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    attachmentUrl: ").append(toIndentedString(attachmentUrl)).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType)).append("\n");
+    sb.append("    voiceNote: ").append(toIndentedString(voiceNote)).append("\n");
     sb.append("    quickReplies: ").append(toIndentedString(quickReplies)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    template: ").append(toIndentedString(template)).append("\n");
@@ -709,6 +740,11 @@ public class SendInboxMessageRequest {
     // add `attachmentType` to the URL query string
     if (getAttachmentType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sattachmentType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttachmentType()))));
+    }
+
+    // add `voiceNote` to the URL query string
+    if (getVoiceNote() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svoiceNote%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVoiceNote()))));
     }
 
     // add `quickReplies` to the URL query string
