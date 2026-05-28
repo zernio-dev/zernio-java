@@ -12619,6 +12619,409 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/calling:
+    get:
+      description: |
+        Returns the local calling configuration snapshot for the connected
+        WhatsApp account: whether calling is enabled, the forward-to
+        destination URI, recording opt-in state, the WhatsAppPhoneNumber
+        doc id (use as `{id}` on the calling-config write endpoints) and
+        whether SIP digest credentials are stored (the encrypted password
+        itself is never returned).
+      operationId: getWhatsAppCallingConfig
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppCallingConfig_200_response"
+          description: Calling config
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp phone number not found for this account
+      security:
+      - bearerAuth: []
+      summary: Get calling config for an account
+      tags:
+      - WhatsApp Calling
+      x-accepts:
+      - application/json
+  /v1/whatsapp/phone-numbers/{id}/calling:
+    delete:
+      description: |
+        Disable calling. Sends calling.status=DISABLED to Meta (best-effort)
+        and flips the local `callingEnabled` flag off. forwardTo and SIP
+        creds are preserved so a re-enable does not lose the destination.
+      operationId: disableWhatsAppCalling
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          description: Disabled
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp phone number not found
+      security:
+      - bearerAuth: []
+      summary: Disable calling on a number
+      tags:
+      - WhatsApp Calling
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Update fields on an already-enabled number. Only fields present in
+        the body are written; `undefined` leaves the stored value alone,
+        explicit `null` clears a nullable field. No Meta side effect, this
+        only changes local routing state consumed by the Telnyx webhook
+        handler.
+      operationId: updateWhatsAppCalling
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateWhatsAppCalling_request"
+        required: true
+      responses:
+        "200":
+          description: Updated
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp phone number not found
+        "422":
+          description: Calling must be enabled before settings can be updated
+      security:
+      - bearerAuth: []
+      summary: Update calling config
+      tags:
+      - WhatsApp Calling
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Enable WhatsApp Business Calling on a connected number. Configures
+        Meta calling.status=ENABLED with our Telnyx SIP endpoint, fetches and
+        stores the Meta-issued SIP password (encrypted), and snapshots the
+        customer's forward-to destination.
+      operationId: enableWhatsAppCalling
+      parameters:
+      - description: WhatsAppPhoneNumber Mongo ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/enableWhatsAppCalling_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/enableWhatsAppCalling_200_response"
+          description: Calling enabled
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp phone number not found
+        "422":
+          description: BIC country block
+      security:
+      - bearerAuth: []
+      summary: Enable calling on a number
+      tags:
+      - WhatsApp Calling
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/whatsapp/call-permissions:
+    get:
+      description: |
+        Returns the permission state and the list of available actions for
+        a given consumer wa_id (e.g. `start_call`, `send_call_permission_request`).
+        Use this before placing a call to decide whether to prompt for
+        consent first.
+      operationId: getWhatsAppCallPermissions
+      parameters:
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Consumer wa_id (E.164
+        explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppCallPermissions_200_response"
+          description: Permission state
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Check call permission for a consumer
+      tags:
+      - WhatsApp Calling
+      x-accepts:
+      - application/json
+  /v1/whatsapp/calls:
+    get:
+      description: |
+        Compact history listing for a single connected account. Results are
+        scoped to the resolved SocialAccount; profile-scoped team members
+        cannot read calls on sibling accounts.
+      operationId: listWhatsAppCalls
+      parameters:
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - ringing
+          - answered
+          - ended
+          - failed
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: direction
+        required: false
+        schema:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: since
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: until
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppCalls_200_response"
+          description: Calls
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List call history for an account
+      tags:
+      - WhatsApp Calling
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Initiates an outbound Business-Initiated Call. The Telnyx-side SIP
+        leg is originated server-side (Option B: SIP-first). Telnyx INVITEs
+        Meta directly over TLS:5061 with the SIP digest credentials we
+        captured at calling-enablement time). No client-side SDP is
+        required; pass only `accountId` and `to`.
+      operationId: initiateWhatsAppCall
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/initiateWhatsAppCall_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/initiateWhatsAppCall_200_response"
+          description: Call originated; lifecycle continues asynchronously via webhooks.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "409":
+          description: No active call permission — send a permission request first.
+        "422":
+          description: Calling not enabled
+        "502":
+          description: Telnyx-side originate failed; the Call doc has been marked
+            failed.
+      security:
+      - bearerAuth: []
+      summary: Initiate outbound call
+      tags:
+      - WhatsApp Calling
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/whatsapp/calls/{callId}:
+    get:
+      operationId: getWhatsAppCall
+      parameters:
+      - explode: false
+        in: path
+        name: callId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppCall_200_response"
+          description: Call
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Call not found
+      security:
+      - bearerAuth: []
+      summary: Get a single call
+      tags:
+      - WhatsApp Calling
+      x-accepts:
+      - application/json
+  /v1/whatsapp/calls/estimate:
+    get:
+      description: |
+        Returns a zero-markup estimated cost for an outbound call to the
+        given destination, broken down by Meta + Telnyx + recording line
+        items. Costs are pass-through, no margin applied.
+      operationId: getWhatsAppCallEstimate
+      parameters:
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: to
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: minutes
+        required: false
+        schema:
+          maximum: 120
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: recording
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppCallEstimate_200_response"
+          description: Estimate
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Estimate per-minute cost for a destination
+      tags:
+      - WhatsApp Calling
+      x-accepts:
+      - application/json
   /v1/whatsapp/template-library:
     get:
       description: |
@@ -21530,6 +21933,190 @@ components:
       - event
       - id
       - startedAt
+      - timestamp
+    WebhookPayloadCallReceived:
+      description: |
+        Webhook payload for the `call.received` event. Fires for both
+        inbound (UIC) and outbound (BIC) calls; branch on
+        `call.direction` to tell them apart.
+      example:
+        call:
+          accountId: accountId
+          contactId: contactId
+          metaCallId: metaCallId
+          conversationId: conversationId
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          from: from
+          forwardTo: forwardTo
+          id: id
+          to: to
+          phoneNumberId: phoneNumberId
+          direction: inbound
+        id: id
+        event: call.received
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - call.received
+          type: string
+        call:
+          $ref: "#/components/schemas/WebhookPayloadCallReceived_call"
+        account:
+          $ref: "#/components/schemas/InboxWebhookAccount"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - call
+      - event
+      - id
+      - timestamp
+    WebhookPayloadCallEnded:
+      description: |
+        Webhook payload for the `call.ended` event. Fires on call hangup
+        with the duration and a zero-markup billing breakdown.
+      example:
+        call:
+          durationSeconds: 0
+          endReason: hangup
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          phoneNumberId: phoneNumberId
+          billing:
+            metaCostUSD: 6.027456183070403
+            totalCostUSD: 5.637376656633329
+            recordingCostUSD: 5.962133916683182
+            telnyxCostUSD: 1.4658129805029452
+          accountId: accountId
+          recordingExpiresAt: 2000-01-23T04:56:07.000+00:00
+          metaCallId: metaCallId
+          endedAt: 2000-01-23T04:56:07.000+00:00
+          recordingUrl: recordingUrl
+          from: from
+          id: id
+          to: to
+          direction: inbound
+        id: id
+        event: call.ended
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - call.ended
+          type: string
+        call:
+          $ref: "#/components/schemas/WebhookPayloadCallEnded_call"
+        account:
+          $ref: "#/components/schemas/InboxWebhookAccount"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - call
+      - event
+      - id
+      - timestamp
+    WebhookPayloadCallFailed:
+      description: |
+        Webhook payload for the `call.failed` event. Fired when a call
+        setup or in-progress call fails.
+      example:
+        call:
+          accountId: accountId
+          failedAt: 2000-01-23T04:56:07.000+00:00
+          metaCallId: metaCallId
+          from: from
+          id: id
+          to: to
+          error:
+            code: 0
+            message: message
+          phoneNumberId: phoneNumberId
+          direction: inbound
+        id: id
+        event: call.failed
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - call.failed
+          type: string
+        call:
+          $ref: "#/components/schemas/WebhookPayloadCallFailed_call"
+        account:
+          $ref: "#/components/schemas/InboxWebhookAccount"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - call
+      - event
+      - id
+      - timestamp
+    WebhookPayloadCallPermissionRequest:
+      description: |
+        Webhook payload for the `call.permission_request` event. Fires
+        when a consumer accepts or rejects an interactive
+        `call_permission_request` message.
+      example:
+        permission:
+          isPermanent: true
+          response: accept
+          from: from
+          expirationTimestamp: 2000-01-23T04:56:07.000+00:00
+          responseSource: responseSource
+        id: id
+        event: call.permission_request
+        account:
+          displayName: displayName
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - call.permission_request
+          type: string
+        permission:
+          $ref: "#/components/schemas/WebhookPayloadCallPermissionRequest_permission"
+        account:
+          $ref: "#/components/schemas/InboxWebhookAccount"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - permission
       - timestamp
     WebhookPayloadAdStatusChanged:
       description: |
@@ -38205,6 +38792,365 @@ components:
           type: boolean
         template:
           $ref: "#/components/schemas/updateWhatsAppTemplate_200_response_template"
+    getWhatsAppCallingConfig_200_response:
+      example:
+        callingEnabled: true
+        phoneNumber: phoneNumber
+        sipAuthPasswordConfigured: true
+        recordingEnabled: true
+        forwardTo: forwardTo
+        phoneNumberDocId: phoneNumberDocId
+        sipAuthUsername: sipAuthUsername
+        callIconCountries:
+        - callIconCountries
+        - callIconCountries
+      properties:
+        phoneNumberDocId:
+          description: "WhatsAppPhoneNumber Mongo ID (use on /v1/whatsapp/phone-numbers/{id}/calling)"
+          type: string
+        phoneNumber:
+          type: string
+        callingEnabled:
+          type: boolean
+        forwardTo:
+          description: tel:+E164 / sip:... / wss://... destination
+          type: string
+          nullable: true
+        recordingEnabled:
+          type: boolean
+        sipAuthUsername:
+          type: string
+          nullable: true
+        sipAuthPasswordConfigured:
+          description: True when a SIP digest password is stored. The plaintext is
+            never returned.
+          type: boolean
+        callIconCountries:
+          items:
+            maxLength: 2
+            minLength: 2
+            type: string
+          type: array
+          nullable: true
+    enableWhatsAppCalling_request:
+      properties:
+        accountId:
+          type: string
+        forwardTo:
+          description: tel:+E164 / sip:... / wss://... destination
+          type: string
+        sipAuthUsername:
+          type: string
+        sipAuthPassword:
+          description: Stored encrypted
+          type: string
+        recordingEnabled:
+          default: false
+          type: boolean
+        callIconCountries:
+          items:
+            maxLength: 2
+            minLength: 2
+            type: string
+          type: array
+      required:
+      - accountId
+      - forwardTo
+    enableWhatsAppCalling_200_response:
+      example:
+        callingEnabled: true
+        sipHostname: sipHostname
+        success: true
+        forwardTo: forwardTo
+      properties:
+        success:
+          type: boolean
+        callingEnabled:
+          type: boolean
+        sipHostname:
+          type: string
+        forwardTo:
+          type: string
+    updateWhatsAppCalling_request:
+      properties:
+        accountId:
+          type: string
+        forwardTo:
+          type: string
+        sipAuthUsername:
+          type: string
+          nullable: true
+        sipAuthPassword:
+          type: string
+          nullable: true
+        recordingEnabled:
+          type: boolean
+        callIconCountries:
+          items:
+            maxLength: 2
+            minLength: 2
+            type: string
+          type: array
+          nullable: true
+      required:
+      - accountId
+    getWhatsAppCallPermissions_200_response_permission:
+      example:
+        expiration_time: 0
+        status: temporary
+      properties:
+        status:
+          enum:
+          - temporary
+          - no_permission
+          - permanent
+          type: string
+        expiration_time:
+          description: Unix seconds when temporary
+          type: integer
+    getWhatsAppCallPermissions_200_response_actions_inner:
+      example:
+        can_perform_action: true
+        action_name: send_call_permission_request
+      properties:
+        action_name:
+          enum:
+          - send_call_permission_request
+          - start_call
+          type: string
+        can_perform_action:
+          type: boolean
+    getWhatsAppCallPermissions_200_response:
+      example:
+        permission:
+          expiration_time: 0
+          status: temporary
+        actions:
+        - can_perform_action: true
+          action_name: send_call_permission_request
+        - can_perform_action: true
+          action_name: send_call_permission_request
+      properties:
+        permission:
+          $ref: "#/components/schemas/getWhatsAppCallPermissions_200_response_permission"
+        actions:
+          items:
+            $ref: "#/components/schemas/getWhatsAppCallPermissions_200_response_actions_inner"
+          type: array
+    listWhatsAppCalls_200_response_calls_inner_billing:
+      example:
+        metaCostUSD: 6.027456183070403
+        totalCostUSD: 5.637376656633329
+        recordingCostUSD: 5.962133916683182
+        currency: currency
+        telnyxCostUSD: 1.4658129805029452
+      properties:
+        metaCostUSD:
+          type: number
+        telnyxCostUSD:
+          type: number
+        recordingCostUSD:
+          type: number
+        totalCostUSD:
+          type: number
+        currency:
+          type: string
+    listWhatsAppCalls_200_response_calls_inner:
+      example:
+        durationSeconds: 0
+        endReason: hangup
+        endedAt: 2000-01-23T04:56:07.000+00:00
+        recordingUrl: recordingUrl
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        from: from
+        _id: _id
+        to: to
+        direction: inbound
+        status: ringing
+        billing:
+          metaCostUSD: 6.027456183070403
+          totalCostUSD: 5.637376656633329
+          recordingCostUSD: 5.962133916683182
+          currency: currency
+          telnyxCostUSD: 1.4658129805029452
+      properties:
+        _id:
+          type: string
+        direction:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        status:
+          enum:
+          - ringing
+          - answered
+          - ended
+          - failed
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+        endedAt:
+          format: date-time
+          type: string
+        durationSeconds:
+          type: integer
+        endReason:
+          enum:
+          - hangup
+          - no_answer
+          - rejected
+          - error
+          type: string
+        recordingUrl:
+          type: string
+        billing:
+          $ref: "#/components/schemas/listWhatsAppCalls_200_response_calls_inner_billing"
+    listWhatsAppCalls_200_response:
+      example:
+        calls:
+        - durationSeconds: 0
+          endReason: hangup
+          endedAt: 2000-01-23T04:56:07.000+00:00
+          recordingUrl: recordingUrl
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          from: from
+          _id: _id
+          to: to
+          direction: inbound
+          status: ringing
+          billing:
+            metaCostUSD: 6.027456183070403
+            totalCostUSD: 5.637376656633329
+            recordingCostUSD: 5.962133916683182
+            currency: currency
+            telnyxCostUSD: 1.4658129805029452
+        - durationSeconds: 0
+          endReason: hangup
+          endedAt: 2000-01-23T04:56:07.000+00:00
+          recordingUrl: recordingUrl
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          from: from
+          _id: _id
+          to: to
+          direction: inbound
+          status: ringing
+          billing:
+            metaCostUSD: 6.027456183070403
+            totalCostUSD: 5.637376656633329
+            recordingCostUSD: 5.962133916683182
+            currency: currency
+            telnyxCostUSD: 1.4658129805029452
+      properties:
+        calls:
+          items:
+            $ref: "#/components/schemas/listWhatsAppCalls_200_response_calls_inner"
+          type: array
+    initiateWhatsAppCall_request:
+      properties:
+        accountId:
+          type: string
+        to:
+          description: Consumer wa_id (E.164
+          type: string
+        forwardTo:
+          description: |
+            Per-call destination override. Same accepted shape as the
+            number's stored forwardTo (tel:+E164, sip:..., wss://...).
+          type: string
+        recordOverride:
+          type: boolean
+        biz_opaque_callback_data:
+          description: |
+            Accepted for forward compatibility. Not currently echoed
+            back in webhook payloads (SIP-first flow does not pass
+            through Meta's Graph API where Meta would echo this).
+          maxLength: 512
+          type: string
+      required:
+      - accountId
+      - to
+    initiateWhatsAppCall_200_response:
+      example:
+        callId: callId
+        telnyxCallControlId: telnyxCallControlId
+        recordingEnabled: true
+        success: true
+        forwardTo: forwardTo
+        to: to
+        status: dialing
+        direction: outbound
+      properties:
+        success:
+          type: boolean
+        callId:
+          description: Internal Call doc ID
+          type: string
+        telnyxCallControlId:
+          description: Telnyx call_control_id of the outbound leg
+          type: string
+        status:
+          enum:
+          - dialing
+          type: string
+        direction:
+          enum:
+          - outbound
+          type: string
+        to:
+          type: string
+        forwardTo:
+          type: string
+          nullable: true
+        recordingEnabled:
+          type: boolean
+    getWhatsAppCall_200_response:
+      example:
+        call: "{}"
+      properties:
+        call:
+          type: object
+    getWhatsAppCallEstimate_200_response_breakdown:
+      example:
+        metaCostUSD: 1.4658129805029452
+        metaMinutes: 6
+        totalCostUSD: 2.3021358869347655
+        recordingCostUSD: 5.637376656633329
+        telnyxCostUSD: 5.962133916683182
+      properties:
+        metaMinutes:
+          type: integer
+        metaCostUSD:
+          type: number
+        telnyxCostUSD:
+          type: number
+        recordingCostUSD:
+          type: number
+        totalCostUSD:
+          type: number
+    getWhatsAppCallEstimate_200_response:
+      example:
+        breakdown:
+          metaCostUSD: 1.4658129805029452
+          metaMinutes: 6
+          totalCostUSD: 2.3021358869347655
+          recordingCostUSD: 5.637376656633329
+          telnyxCostUSD: 5.962133916683182
+        perMinuteUsd: 0.8008281904610115
+        destinationCountry: destinationCountry
+      properties:
+        destinationCountry:
+          type: string
+          nullable: true
+        perMinuteUsd:
+          type: number
+        breakdown:
+          $ref: "#/components/schemas/getWhatsAppCallEstimate_200_response_breakdown"
     getWhatsAppLibraryTemplate_200_response_template_buttons_inner:
       example:
         text: text
@@ -48618,6 +49564,200 @@ components:
       - platform
       - platformConversationId
       - status
+    WebhookPayloadCallReceived_call:
+      example:
+        accountId: accountId
+        contactId: contactId
+        metaCallId: metaCallId
+        conversationId: conversationId
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        from: from
+        forwardTo: forwardTo
+        id: id
+        to: to
+        phoneNumberId: phoneNumberId
+        direction: inbound
+      properties:
+        id:
+          description: Internal Zernio Call doc id
+          type: string
+        metaCallId:
+          description: Meta wacid.* call id when known
+          type: string
+          nullable: true
+        accountId:
+          type: string
+        phoneNumberId:
+          description: Meta phone_number_id
+          type: string
+        direction:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        from:
+          description: Consumer wa_id / E.164
+          type: string
+        to:
+          description: Business number (E.164)
+          type: string
+        forwardTo:
+          description: Destination snapshot at routing time
+          type: string
+        contactId:
+          type: string
+        conversationId:
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+    WebhookPayloadCallEnded_call_billing:
+      example:
+        metaCostUSD: 6.027456183070403
+        totalCostUSD: 5.637376656633329
+        recordingCostUSD: 5.962133916683182
+        telnyxCostUSD: 1.4658129805029452
+      properties:
+        metaCostUSD:
+          type: number
+        telnyxCostUSD:
+          type: number
+        recordingCostUSD:
+          type: number
+        totalCostUSD:
+          type: number
+    WebhookPayloadCallEnded_call:
+      example:
+        durationSeconds: 0
+        endReason: hangup
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        phoneNumberId: phoneNumberId
+        billing:
+          metaCostUSD: 6.027456183070403
+          totalCostUSD: 5.637376656633329
+          recordingCostUSD: 5.962133916683182
+          telnyxCostUSD: 1.4658129805029452
+        accountId: accountId
+        recordingExpiresAt: 2000-01-23T04:56:07.000+00:00
+        metaCallId: metaCallId
+        endedAt: 2000-01-23T04:56:07.000+00:00
+        recordingUrl: recordingUrl
+        from: from
+        id: id
+        to: to
+        direction: inbound
+      properties:
+        id:
+          type: string
+        metaCallId:
+          type: string
+          nullable: true
+        accountId:
+          type: string
+        phoneNumberId:
+          type: string
+        direction:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+        endedAt:
+          format: date-time
+          type: string
+        durationSeconds:
+          type: integer
+        endReason:
+          enum:
+          - hangup
+          - no_answer
+          - rejected
+          - error
+          type: string
+        recordingUrl:
+          type: string
+        recordingExpiresAt:
+          format: date-time
+          type: string
+        billing:
+          $ref: "#/components/schemas/WebhookPayloadCallEnded_call_billing"
+    WebhookPayloadCallFailed_call_error:
+      example:
+        code: 0
+        message: message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    WebhookPayloadCallFailed_call:
+      example:
+        accountId: accountId
+        failedAt: 2000-01-23T04:56:07.000+00:00
+        metaCallId: metaCallId
+        from: from
+        id: id
+        to: to
+        error:
+          code: 0
+          message: message
+        phoneNumberId: phoneNumberId
+        direction: inbound
+      properties:
+        id:
+          type: string
+        metaCallId:
+          type: string
+          nullable: true
+        accountId:
+          type: string
+        phoneNumberId:
+          type: string
+        direction:
+          enum:
+          - inbound
+          - outbound
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        failedAt:
+          format: date-time
+          type: string
+        error:
+          $ref: "#/components/schemas/WebhookPayloadCallFailed_call_error"
+    WebhookPayloadCallPermissionRequest_permission:
+      example:
+        isPermanent: true
+        response: accept
+        from: from
+        expirationTimestamp: 2000-01-23T04:56:07.000+00:00
+        responseSource: responseSource
+      properties:
+        from:
+          description: Consumer wa_id who replied
+          type: string
+        response:
+          enum:
+          - accept
+          - reject
+          type: string
+        isPermanent:
+          type: boolean
+        expirationTimestamp:
+          description: Present only when temporary
+          format: date-time
+          type: string
+        responseSource:
+          description: "Meta's response source, typically `user_action`"
+          type: string
     WebhookPayloadAdStatusChanged_account:
       description: The connected ad-platform account that owns the ad object.
       example:

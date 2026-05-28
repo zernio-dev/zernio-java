@@ -22,6 +22,10 @@ import dev.zernio.model.WebhookPayloadAccountAdsInitialSyncCompleted;
 import dev.zernio.model.WebhookPayloadAccountConnected;
 import dev.zernio.model.WebhookPayloadAccountDisconnected;
 import dev.zernio.model.WebhookPayloadAdStatusChanged;
+import dev.zernio.model.WebhookPayloadCallEnded;
+import dev.zernio.model.WebhookPayloadCallFailed;
+import dev.zernio.model.WebhookPayloadCallPermissionRequest;
+import dev.zernio.model.WebhookPayloadCallReceived;
 import dev.zernio.model.WebhookPayloadComment;
 import dev.zernio.model.WebhookPayloadConversationStarted;
 import dev.zernio.model.WebhookPayloadLead;
@@ -69,7 +73,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T16:43:20.872874851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T17:04:05.625464513Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -607,6 +611,442 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadAdStatusChanged);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Call ended event
+   * Fired on call hangup with the duration and a zero-markup billing breakdown (Meta cost, Telnyx cost, recording surcharge, total). Costs are pass-through; no margin is applied. 
+   * @param webhookPayloadCallEnded  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallEnded(@javax.annotation.Nonnull WebhookPayloadCallEnded webhookPayloadCallEnded) throws ApiException {
+    onCallEnded(webhookPayloadCallEnded, null);
+  }
+
+  /**
+   * Call ended event
+   * Fired on call hangup with the duration and a zero-markup billing breakdown (Meta cost, Telnyx cost, recording surcharge, total). Costs are pass-through; no margin is applied. 
+   * @param webhookPayloadCallEnded  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallEnded(@javax.annotation.Nonnull WebhookPayloadCallEnded webhookPayloadCallEnded, Map<String, String> headers) throws ApiException {
+    onCallEndedWithHttpInfo(webhookPayloadCallEnded, headers);
+  }
+
+  /**
+   * Call ended event
+   * Fired on call hangup with the duration and a zero-markup billing breakdown (Meta cost, Telnyx cost, recording surcharge, total). Costs are pass-through; no margin is applied. 
+   * @param webhookPayloadCallEnded  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallEndedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallEnded webhookPayloadCallEnded) throws ApiException {
+    return onCallEndedWithHttpInfo(webhookPayloadCallEnded, null);
+  }
+
+  /**
+   * Call ended event
+   * Fired on call hangup with the duration and a zero-markup billing breakdown (Meta cost, Telnyx cost, recording surcharge, total). Costs are pass-through; no margin is applied. 
+   * @param webhookPayloadCallEnded  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallEndedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallEnded webhookPayloadCallEnded, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onCallEndedRequestBuilder(webhookPayloadCallEnded, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onCallEnded", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onCallEndedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadCallEnded webhookPayloadCallEnded, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadCallEnded' is set
+    if (webhookPayloadCallEnded == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadCallEnded' when calling onCallEnded");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/call.ended";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadCallEnded);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Call failed event
+   * Fired when a call setup or in-progress call fails (Meta rejected the connect, Telnyx returned an error, etc.). Payload carries the upstream error code and message. 
+   * @param webhookPayloadCallFailed  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallFailed(@javax.annotation.Nonnull WebhookPayloadCallFailed webhookPayloadCallFailed) throws ApiException {
+    onCallFailed(webhookPayloadCallFailed, null);
+  }
+
+  /**
+   * Call failed event
+   * Fired when a call setup or in-progress call fails (Meta rejected the connect, Telnyx returned an error, etc.). Payload carries the upstream error code and message. 
+   * @param webhookPayloadCallFailed  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallFailed(@javax.annotation.Nonnull WebhookPayloadCallFailed webhookPayloadCallFailed, Map<String, String> headers) throws ApiException {
+    onCallFailedWithHttpInfo(webhookPayloadCallFailed, headers);
+  }
+
+  /**
+   * Call failed event
+   * Fired when a call setup or in-progress call fails (Meta rejected the connect, Telnyx returned an error, etc.). Payload carries the upstream error code and message. 
+   * @param webhookPayloadCallFailed  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallFailedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallFailed webhookPayloadCallFailed) throws ApiException {
+    return onCallFailedWithHttpInfo(webhookPayloadCallFailed, null);
+  }
+
+  /**
+   * Call failed event
+   * Fired when a call setup or in-progress call fails (Meta rejected the connect, Telnyx returned an error, etc.). Payload carries the upstream error code and message. 
+   * @param webhookPayloadCallFailed  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallFailedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallFailed webhookPayloadCallFailed, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onCallFailedRequestBuilder(webhookPayloadCallFailed, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onCallFailed", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onCallFailedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadCallFailed webhookPayloadCallFailed, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadCallFailed' is set
+    if (webhookPayloadCallFailed == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadCallFailed' when calling onCallFailed");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/call.failed";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadCallFailed);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Call permission request reply event
+   * Fired when a consumer replies to a &#x60;call_permission_request&#x60; interactive message (or its marketing-template variant). Carries the response (&#x60;accept&#x60; / &#x60;reject&#x60;), whether the grant is permanent, and the expiration timestamp when it is temporary. 
+   * @param webhookPayloadCallPermissionRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallPermissionRequest(@javax.annotation.Nonnull WebhookPayloadCallPermissionRequest webhookPayloadCallPermissionRequest) throws ApiException {
+    onCallPermissionRequest(webhookPayloadCallPermissionRequest, null);
+  }
+
+  /**
+   * Call permission request reply event
+   * Fired when a consumer replies to a &#x60;call_permission_request&#x60; interactive message (or its marketing-template variant). Carries the response (&#x60;accept&#x60; / &#x60;reject&#x60;), whether the grant is permanent, and the expiration timestamp when it is temporary. 
+   * @param webhookPayloadCallPermissionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallPermissionRequest(@javax.annotation.Nonnull WebhookPayloadCallPermissionRequest webhookPayloadCallPermissionRequest, Map<String, String> headers) throws ApiException {
+    onCallPermissionRequestWithHttpInfo(webhookPayloadCallPermissionRequest, headers);
+  }
+
+  /**
+   * Call permission request reply event
+   * Fired when a consumer replies to a &#x60;call_permission_request&#x60; interactive message (or its marketing-template variant). Carries the response (&#x60;accept&#x60; / &#x60;reject&#x60;), whether the grant is permanent, and the expiration timestamp when it is temporary. 
+   * @param webhookPayloadCallPermissionRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallPermissionRequestWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallPermissionRequest webhookPayloadCallPermissionRequest) throws ApiException {
+    return onCallPermissionRequestWithHttpInfo(webhookPayloadCallPermissionRequest, null);
+  }
+
+  /**
+   * Call permission request reply event
+   * Fired when a consumer replies to a &#x60;call_permission_request&#x60; interactive message (or its marketing-template variant). Carries the response (&#x60;accept&#x60; / &#x60;reject&#x60;), whether the grant is permanent, and the expiration timestamp when it is temporary. 
+   * @param webhookPayloadCallPermissionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallPermissionRequestWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallPermissionRequest webhookPayloadCallPermissionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onCallPermissionRequestRequestBuilder(webhookPayloadCallPermissionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onCallPermissionRequest", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onCallPermissionRequestRequestBuilder(@javax.annotation.Nonnull WebhookPayloadCallPermissionRequest webhookPayloadCallPermissionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadCallPermissionRequest' is set
+    if (webhookPayloadCallPermissionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadCallPermissionRequest' when calling onCallPermissionRequest");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/call.permission_request";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadCallPermissionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Call received event
+   * Fired when a WhatsApp Business Call connects. For inbound (UIC) calls the event fires at the moment our Telnyx trunk bridges the consumer leg to the customer&amp;apos;s forward-to destination; for outbound (BIC) calls it fires immediately after Meta accepts the connect. Branch on &#x60;call.direction&#x60; to distinguish. 
+   * @param webhookPayloadCallReceived  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallReceived(@javax.annotation.Nonnull WebhookPayloadCallReceived webhookPayloadCallReceived) throws ApiException {
+    onCallReceived(webhookPayloadCallReceived, null);
+  }
+
+  /**
+   * Call received event
+   * Fired when a WhatsApp Business Call connects. For inbound (UIC) calls the event fires at the moment our Telnyx trunk bridges the consumer leg to the customer&amp;apos;s forward-to destination; for outbound (BIC) calls it fires immediately after Meta accepts the connect. Branch on &#x60;call.direction&#x60; to distinguish. 
+   * @param webhookPayloadCallReceived  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onCallReceived(@javax.annotation.Nonnull WebhookPayloadCallReceived webhookPayloadCallReceived, Map<String, String> headers) throws ApiException {
+    onCallReceivedWithHttpInfo(webhookPayloadCallReceived, headers);
+  }
+
+  /**
+   * Call received event
+   * Fired when a WhatsApp Business Call connects. For inbound (UIC) calls the event fires at the moment our Telnyx trunk bridges the consumer leg to the customer&amp;apos;s forward-to destination; for outbound (BIC) calls it fires immediately after Meta accepts the connect. Branch on &#x60;call.direction&#x60; to distinguish. 
+   * @param webhookPayloadCallReceived  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallReceivedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallReceived webhookPayloadCallReceived) throws ApiException {
+    return onCallReceivedWithHttpInfo(webhookPayloadCallReceived, null);
+  }
+
+  /**
+   * Call received event
+   * Fired when a WhatsApp Business Call connects. For inbound (UIC) calls the event fires at the moment our Telnyx trunk bridges the consumer leg to the customer&amp;apos;s forward-to destination; for outbound (BIC) calls it fires immediately after Meta accepts the connect. Branch on &#x60;call.direction&#x60; to distinguish. 
+   * @param webhookPayloadCallReceived  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onCallReceivedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadCallReceived webhookPayloadCallReceived, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onCallReceivedRequestBuilder(webhookPayloadCallReceived, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onCallReceived", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onCallReceivedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadCallReceived webhookPayloadCallReceived, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadCallReceived' is set
+    if (webhookPayloadCallReceived == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadCallReceived' when calling onCallReceived");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/call.received";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadCallReceived);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

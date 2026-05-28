@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-28T16:43:20.872874851Z[Etc/UTC]
+- Build date: 2026-05-28T17:04:05.625464513Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -710,6 +710,24 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**updateWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppTemplateWithHttpInfo) | **PATCH** /v1/whatsapp/templates/{templateName} | Update template
 *WhatsAppApi* | [**uploadWhatsAppProfilePhoto**](docs/WhatsAppApi.md#uploadWhatsAppProfilePhoto) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
 *WhatsAppApi* | [**uploadWhatsAppProfilePhotoWithHttpInfo**](docs/WhatsAppApi.md#uploadWhatsAppProfilePhotoWithHttpInfo) | **POST** /v1/whatsapp/business-profile/photo | Upload profile picture
+*WhatsAppCallingApi* | [**disableWhatsAppCalling**](docs/WhatsAppCallingApi.md#disableWhatsAppCalling) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number
+*WhatsAppCallingApi* | [**disableWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#disableWhatsAppCallingWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number
+*WhatsAppCallingApi* | [**enableWhatsAppCalling**](docs/WhatsAppCallingApi.md#enableWhatsAppCalling) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number
+*WhatsAppCallingApi* | [**enableWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#enableWhatsAppCallingWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number
+*WhatsAppCallingApi* | [**getWhatsAppCall**](docs/WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call
+*WhatsAppCallingApi* | [**getWhatsAppCallWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId} | Get a single call
+*WhatsAppCallingApi* | [**getWhatsAppCallEstimate**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination
+*WhatsAppCallingApi* | [**getWhatsAppCallEstimateWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination
+*WhatsAppCallingApi* | [**getWhatsAppCallPermissions**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer
+*WhatsAppCallingApi* | [**getWhatsAppCallPermissionsWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer
+*WhatsAppCallingApi* | [**getWhatsAppCallingConfig**](docs/WhatsAppCallingApi.md#getWhatsAppCallingConfig) | **GET** /v1/whatsapp/calling | Get calling config for an account
+*WhatsAppCallingApi* | [**getWhatsAppCallingConfigWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallingConfigWithHttpInfo) | **GET** /v1/whatsapp/calling | Get calling config for an account
+*WhatsAppCallingApi* | [**initiateWhatsAppCall**](docs/WhatsAppCallingApi.md#initiateWhatsAppCall) | **POST** /v1/whatsapp/calls | Initiate outbound call
+*WhatsAppCallingApi* | [**initiateWhatsAppCallWithHttpInfo**](docs/WhatsAppCallingApi.md#initiateWhatsAppCallWithHttpInfo) | **POST** /v1/whatsapp/calls | Initiate outbound call
+*WhatsAppCallingApi* | [**listWhatsAppCalls**](docs/WhatsAppCallingApi.md#listWhatsAppCalls) | **GET** /v1/whatsapp/calls | List call history for an account
+*WhatsAppCallingApi* | [**listWhatsAppCallsWithHttpInfo**](docs/WhatsAppCallingApi.md#listWhatsAppCallsWithHttpInfo) | **GET** /v1/whatsapp/calls | List call history for an account
+*WhatsAppCallingApi* | [**updateWhatsAppCalling**](docs/WhatsAppCallingApi.md#updateWhatsAppCalling) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config
+*WhatsAppCallingApi* | [**updateWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#updateWhatsAppCallingWithHttpInfo) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config
 *WhatsAppFlowsApi* | [**createWhatsAppFlow**](docs/WhatsAppFlowsApi.md#createWhatsAppFlow) | **POST** /v1/whatsapp/flows | Create flow
 *WhatsAppFlowsApi* | [**createWhatsAppFlowWithHttpInfo**](docs/WhatsAppFlowsApi.md#createWhatsAppFlowWithHttpInfo) | **POST** /v1/whatsapp/flows | Create flow
 *WhatsAppFlowsApi* | [**deleteWhatsAppFlow**](docs/WhatsAppFlowsApi.md#deleteWhatsAppFlow) | **DELETE** /v1/whatsapp/flows/{flowId} | Delete flow
@@ -984,6 +1002,8 @@ Class | Method | HTTP request | Description
  - [EditInboxMessageRequestReplyMarkupKeyboardInnerInner](docs/EditInboxMessageRequestReplyMarkupKeyboardInnerInner.md)
  - [EditPost200Response](docs/EditPost200Response.md)
  - [EditPostRequest](docs/EditPostRequest.md)
+ - [EnableWhatsAppCalling200Response](docs/EnableWhatsAppCalling200Response.md)
+ - [EnableWhatsAppCallingRequest](docs/EnableWhatsAppCallingRequest.md)
  - [EnrollContacts200Response](docs/EnrollContacts200Response.md)
  - [EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [ErrorResponse](docs/ErrorResponse.md)
@@ -1184,6 +1204,13 @@ Class | Method | HTTP request | Description
  - [GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
  - [GetWhatsAppBusinessProfile200Response](docs/GetWhatsAppBusinessProfile200Response.md)
  - [GetWhatsAppBusinessProfile200ResponseBusinessProfile](docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md)
+ - [GetWhatsAppCall200Response](docs/GetWhatsAppCall200Response.md)
+ - [GetWhatsAppCallEstimate200Response](docs/GetWhatsAppCallEstimate200Response.md)
+ - [GetWhatsAppCallEstimate200ResponseBreakdown](docs/GetWhatsAppCallEstimate200ResponseBreakdown.md)
+ - [GetWhatsAppCallPermissions200Response](docs/GetWhatsAppCallPermissions200Response.md)
+ - [GetWhatsAppCallPermissions200ResponseActionsInner](docs/GetWhatsAppCallPermissions200ResponseActionsInner.md)
+ - [GetWhatsAppCallPermissions200ResponsePermission](docs/GetWhatsAppCallPermissions200ResponsePermission.md)
+ - [GetWhatsAppCallingConfig200Response](docs/GetWhatsAppCallingConfig200Response.md)
  - [GetWhatsAppDataset200Response](docs/GetWhatsAppDataset200Response.md)
  - [GetWhatsAppDisplayName200Response](docs/GetWhatsAppDisplayName200Response.md)
  - [GetWhatsAppDisplayName200ResponseDisplayName](docs/GetWhatsAppDisplayName200ResponseDisplayName.md)
@@ -1239,6 +1266,8 @@ Class | Method | HTTP request | Description
  - [InitiateTelegramConnect200Response](docs/InitiateTelegramConnect200Response.md)
  - [InitiateTelegramConnect200ResponseAccount](docs/InitiateTelegramConnect200ResponseAccount.md)
  - [InitiateTelegramConnectRequest](docs/InitiateTelegramConnectRequest.md)
+ - [InitiateWhatsAppCall200Response](docs/InitiateWhatsAppCall200Response.md)
+ - [InitiateWhatsAppCallRequest](docs/InitiateWhatsAppCallRequest.md)
  - [InlineObject](docs/InlineObject.md)
  - [InlineObject1](docs/InlineObject1.md)
  - [InlineObject2](docs/InlineObject2.md)
@@ -1340,6 +1369,9 @@ Class | Method | HTTP request | Description
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
  - [ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [ListWhatsAppCalls200Response](docs/ListWhatsAppCalls200Response.md)
+ - [ListWhatsAppCalls200ResponseCallsInner](docs/ListWhatsAppCalls200ResponseCallsInner.md)
+ - [ListWhatsAppCalls200ResponseCallsInnerBilling](docs/ListWhatsAppCalls200ResponseCallsInnerBilling.md)
  - [ListWhatsAppConversions200Response](docs/ListWhatsAppConversions200Response.md)
  - [ListWhatsAppConversions200ResponseEventsInner](docs/ListWhatsAppConversions200ResponseEventsInner.md)
  - [ListWhatsAppFlowResponses200Response](docs/ListWhatsAppFlowResponses200Response.md)
@@ -1619,6 +1651,7 @@ Class | Method | HTTP request | Description
  - [UpdateWebhookSettings200Response](docs/UpdateWebhookSettings200Response.md)
  - [UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)
  - [UpdateWhatsAppBusinessProfileRequest](docs/UpdateWhatsAppBusinessProfileRequest.md)
+ - [UpdateWhatsAppCallingRequest](docs/UpdateWhatsAppCallingRequest.md)
  - [UpdateWhatsAppDisplayName200Response](docs/UpdateWhatsAppDisplayName200Response.md)
  - [UpdateWhatsAppDisplayName200ResponseDisplayName](docs/UpdateWhatsAppDisplayName200ResponseDisplayName.md)
  - [UpdateWhatsAppDisplayNameRequest](docs/UpdateWhatsAppDisplayNameRequest.md)
@@ -1678,6 +1711,16 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)
  - [WebhookPayloadAdStatusChangedError](docs/WebhookPayloadAdStatusChangedError.md)
  - [WebhookPayloadAdStatusChangedStatus](docs/WebhookPayloadAdStatusChangedStatus.md)
+ - [WebhookPayloadCallEnded](docs/WebhookPayloadCallEnded.md)
+ - [WebhookPayloadCallEndedCall](docs/WebhookPayloadCallEndedCall.md)
+ - [WebhookPayloadCallEndedCallBilling](docs/WebhookPayloadCallEndedCallBilling.md)
+ - [WebhookPayloadCallFailed](docs/WebhookPayloadCallFailed.md)
+ - [WebhookPayloadCallFailedCall](docs/WebhookPayloadCallFailedCall.md)
+ - [WebhookPayloadCallFailedCallError](docs/WebhookPayloadCallFailedCallError.md)
+ - [WebhookPayloadCallPermissionRequest](docs/WebhookPayloadCallPermissionRequest.md)
+ - [WebhookPayloadCallPermissionRequestPermission](docs/WebhookPayloadCallPermissionRequestPermission.md)
+ - [WebhookPayloadCallReceived](docs/WebhookPayloadCallReceived.md)
+ - [WebhookPayloadCallReceivedCall](docs/WebhookPayloadCallReceivedCall.md)
  - [WebhookPayloadComment](docs/WebhookPayloadComment.md)
  - [WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)

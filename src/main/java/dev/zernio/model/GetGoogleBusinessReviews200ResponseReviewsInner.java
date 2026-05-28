@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_UPDATE_TIME,
   GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_REVIEW_REPLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T16:43:20.872874851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T17:04:05.625464513Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessReviews200ResponseReviewsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
