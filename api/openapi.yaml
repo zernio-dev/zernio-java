@@ -18241,6 +18241,59 @@ paths:
       x-accepts:
       - application/json
   /v1/whatsapp/conversions:
+    get:
+      description: |
+        Returns the most recent conversion events sent through
+        `POST /v1/whatsapp/conversions` for the given WhatsApp account.
+        Sourced from delivery logs (Axiom `late` dataset), so the visible
+        window is bounded by log retention (about 30 days). Useful for
+        rendering a "recent activity" panel on the conversions setup tab
+        without standing up a parallel persistence layer.
+
+        Per-event payload mirrors the structured log we write on every
+        successful send: `eventName`, `conversationId`, `eventsReceived`,
+        `eventsFailed`, `traceId`, `durationMs`, and the wall-clock
+        `timestamp`.
+      operationId: listWhatsAppConversions
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Max events to return (1-200, default 50)."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppConversions_200_response"
+          description: Recent conversion events
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: List recent WhatsApp conversion events
+      tags:
+      - WhatsApp
+      - Ads
+      x-accepts:
+      - application/json
     post:
       description: |
         Forward a WhatsApp Business Messaging conversion event (`LeadSubmitted`,
@@ -46143,6 +46196,64 @@ components:
         rows:
           items:
             $ref: "#/components/schemas/getConversionMetrics_200_response_rows_inner"
+          type: array
+    listWhatsAppConversions_200_response_events_inner:
+      example:
+        traceId: traceId
+        eventsFailed: 6
+        conversationId: conversationId
+        eventsReceived: 0
+        eventName: eventName
+        durationMs: 1
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        timestamp:
+          description: When the event was sent to Meta.
+          format: date-time
+          type: string
+        eventName:
+          description: "One of LeadSubmitted, Purchase, AddToCart, InitiateCheckout,\
+            \ ViewContent."
+          type: string
+        conversationId:
+          type: string
+          nullable: true
+        eventsReceived:
+          description: Number of events Meta accepted on this send (usually 1).
+          type: integer
+          nullable: true
+        eventsFailed:
+          description: Number of events Meta rejected (usually 0).
+          type: integer
+          nullable: true
+        traceId:
+          description: Meta fbtrace_id for cross-referencing in Events Manager.
+          type: string
+          nullable: true
+        durationMs:
+          type: integer
+          nullable: true
+    listWhatsAppConversions_200_response:
+      example:
+        events:
+        - traceId: traceId
+          eventsFailed: 6
+          conversationId: conversationId
+          eventsReceived: 0
+          eventName: eventName
+          durationMs: 1
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - traceId: traceId
+          eventsFailed: 6
+          conversationId: conversationId
+          eventsReceived: 0
+          eventName: eventName
+          durationMs: 1
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        events:
+          items:
+            $ref: "#/components/schemas/listWhatsAppConversions_200_response_events_inner"
           type: array
     sendWhatsAppConversion_request:
       description: |

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   TwitterPlatformData.JSON_PROPERTY_LONG_VIDEO,
   TwitterPlatformData.JSON_PROPERTY_GEO_RESTRICTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:48:27.830437388Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:51:40.357797491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
   public static final String JSON_PROPERTY_REPLY_TO_TWEET_ID = "replyToTweetId";
   @javax.annotation.Nullable

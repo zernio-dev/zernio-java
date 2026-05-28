@@ -36,6 +36,7 @@ import dev.zernio.model.GetWhatsAppTemplate200Response;
 import dev.zernio.model.GetWhatsAppTemplates200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListWhatsAppConversions200Response;
 import dev.zernio.model.ListWhatsAppGroupChats200Response;
 import dev.zernio.model.ListWhatsAppGroupJoinRequests200Response;
 import dev.zernio.model.RejectWhatsAppGroupJoinRequestsRequest;
@@ -81,7 +82,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:48:27.830437388Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T08:51:40.357797491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2084,6 +2085,144 @@ public class WhatsAppApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List recent WhatsApp conversion events
+   * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Max events to return (1-200, default 50). (optional, default to 50)
+   * @return ListWhatsAppConversions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppConversions200Response listWhatsAppConversions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppConversions(accountId, limit, null);
+  }
+
+  /**
+   * List recent WhatsApp conversion events
+   * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Max events to return (1-200, default 50). (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ListWhatsAppConversions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppConversions200Response listWhatsAppConversions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWhatsAppConversions200Response> localVarResponse = listWhatsAppConversionsWithHttpInfo(accountId, limit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List recent WhatsApp conversion events
+   * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Max events to return (1-200, default 50). (optional, default to 50)
+   * @return ApiResponse&lt;ListWhatsAppConversions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppConversions200Response> listWhatsAppConversionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppConversionsWithHttpInfo(accountId, limit, null);
+  }
+
+  /**
+   * List recent WhatsApp conversion events
+   * Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Max events to return (1-200, default 50). (optional, default to 50)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListWhatsAppConversions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppConversions200Response> listWhatsAppConversionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWhatsAppConversionsRequestBuilder(accountId, limit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWhatsAppConversions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListWhatsAppConversions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListWhatsAppConversions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWhatsAppConversions200Response>() {});
+        
+
+        return new ApiResponse<ListWhatsAppConversions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWhatsAppConversionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listWhatsAppConversions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/conversions";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

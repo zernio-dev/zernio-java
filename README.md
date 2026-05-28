@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-28T08:48:27.830437388Z[Etc/UTC]
+- Build date: 2026-05-28T08:51:40.357797491Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -234,6 +234,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**listLeadFormsWithHttpInfo**](docs/AdsApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List Lead Gen (Instant) forms
 *AdsApi* | [**listLeads**](docs/AdsApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads (cross-form CRM view)
 *AdsApi* | [**listLeadsWithHttpInfo**](docs/AdsApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads (cross-form CRM view)
+*AdsApi* | [**listWhatsAppConversions**](docs/AdsApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
+*AdsApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/AdsApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
 *AdsApi* | [**removeConversionAssociations**](docs/AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
 *AdsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
 *AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests (deprecated)
@@ -686,6 +688,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template
 *WhatsAppApi* | [**getWhatsAppTemplates**](docs/WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates
 *WhatsAppApi* | [**getWhatsAppTemplatesWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplatesWithHttpInfo) | **GET** /v1/whatsapp/templates | List templates
+*WhatsAppApi* | [**listWhatsAppConversions**](docs/WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
+*WhatsAppApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
 *WhatsAppApi* | [**listWhatsAppGroupChats**](docs/WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups
 *WhatsAppApi* | [**listWhatsAppGroupChatsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppGroupChatsWithHttpInfo) | **GET** /v1/whatsapp/wa-groups | List active groups
 *WhatsAppApi* | [**listWhatsAppGroupJoinRequests**](docs/WhatsAppApi.md#listWhatsAppGroupJoinRequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests
@@ -1333,6 +1337,8 @@ Class | Method | HTTP request | Description
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
  - [ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
+ - [ListWhatsAppConversions200Response](docs/ListWhatsAppConversions200Response.md)
+ - [ListWhatsAppConversions200ResponseEventsInner](docs/ListWhatsAppConversions200ResponseEventsInner.md)
  - [ListWhatsAppFlowResponses200Response](docs/ListWhatsAppFlowResponses200Response.md)
  - [ListWhatsAppFlowResponses200ResponseResponsesInner](docs/ListWhatsAppFlowResponses200ResponseResponsesInner.md)
  - [ListWhatsAppFlowVersions200Response](docs/ListWhatsAppFlowVersions200Response.md)
