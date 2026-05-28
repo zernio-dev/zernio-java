@@ -141,9 +141,12 @@ docs/CreateConversionDestinationRequest.md
 docs/CreateConversionDestinationRequestValue.md
 docs/CreateCtwaAd201Response.md
 docs/CreateCtwaAdRequest.md
+docs/CreateCtwaAdRequestCitiesInner.md
 docs/CreateCtwaAdRequestCreativesInner.md
 docs/CreateCtwaAdRequestCreativesInnerVideo.md
+docs/CreateCtwaAdRequestRegionsInner.md
 docs/CreateCtwaAdRequestVideo.md
+docs/CreateCtwaAdRequestZipsInner.md
 docs/CreateCustomField200Response.md
 docs/CreateCustomFieldRequest.md
 docs/CreateGoogleBusinessMedia200Response.md
@@ -1232,9 +1235,12 @@ src/main/java/dev/zernio/model/CreateConversionDestinationRequest.java
 src/main/java/dev/zernio/model/CreateConversionDestinationRequestValue.java
 src/main/java/dev/zernio/model/CreateCtwaAd201Response.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequest.java
+src/main/java/dev/zernio/model/CreateCtwaAdRequestCitiesInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCreativesInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCreativesInnerVideo.java
+src/main/java/dev/zernio/model/CreateCtwaAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestVideo.java
+src/main/java/dev/zernio/model/CreateCtwaAdRequestZipsInner.java
 src/main/java/dev/zernio/model/CreateCustomField200Response.java
 src/main/java/dev/zernio/model/CreateCustomFieldRequest.java
 src/main/java/dev/zernio/model/CreateGoogleBusinessMedia200Response.java
@@ -2100,5 +2106,6 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/WebhookPayloadConversationStartedConversationTest.java
-src/test/java/dev/zernio/model/WebhookPayloadConversationStartedTest.java
+src/test/java/dev/zernio/model/CreateCtwaAdRequestCitiesInnerTest.java
+src/test/java/dev/zernio/model/CreateCtwaAdRequestRegionsInnerTest.java
+src/test/java/dev/zernio/model/CreateCtwaAdRequestZipsInnerTest.java

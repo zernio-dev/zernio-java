@@ -24,9 +24,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateCtwaAdRequestCitiesInner;
 import dev.zernio.model.CreateCtwaAdRequestCreativesInner;
+import dev.zernio.model.CreateCtwaAdRequestRegionsInner;
 import dev.zernio.model.CreateCtwaAdRequestVideo;
+import dev.zernio.model.CreateCtwaAdRequestZipsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
+import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.time.OffsetDateTime;
@@ -54,6 +58,11 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_CURRENCY,
   CreateCtwaAdRequest.JSON_PROPERTY_END_DATE,
   CreateCtwaAdRequest.JSON_PROPERTY_COUNTRIES,
+  CreateCtwaAdRequest.JSON_PROPERTY_CITIES,
+  CreateCtwaAdRequest.JSON_PROPERTY_REGIONS,
+  CreateCtwaAdRequest.JSON_PROPERTY_ZIPS,
+  CreateCtwaAdRequest.JSON_PROPERTY_METROS,
+  CreateCtwaAdRequest.JSON_PROPERTY_CUSTOM_LOCATIONS,
   CreateCtwaAdRequest.JSON_PROPERTY_AGE_MIN,
   CreateCtwaAdRequest.JSON_PROPERTY_AGE_MAX,
   CreateCtwaAdRequest.JSON_PROPERTY_INTERESTS,
@@ -66,7 +75,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T10:30:47.328748537Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T13:49:19.872639009Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -154,6 +163,26 @@ public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
   private List<String> countries = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CITIES = "cities";
+  @javax.annotation.Nullable
+  private List<CreateCtwaAdRequestCitiesInner> cities = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REGIONS = "regions";
+  @javax.annotation.Nullable
+  private List<CreateCtwaAdRequestRegionsInner> regions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ZIPS = "zips";
+  @javax.annotation.Nullable
+  private List<CreateCtwaAdRequestZipsInner> zips = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_METROS = "metros";
+  @javax.annotation.Nullable
+  private List<CreateCtwaAdRequestZipsInner> metros = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -624,7 +653,7 @@ public class CreateCtwaAdRequest {
   }
 
   /**
-   * ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60;.
+   * ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60; only when no other geo (&#x60;cities&#x60;, &#x60;regions&#x60;, &#x60;zips&#x60;, &#x60;metros&#x60;, &#x60;customLocations&#x60;) is supplied. 
    * @return countries
    */
   @javax.annotation.Nullable
@@ -639,6 +668,166 @@ public class CreateCtwaAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
+  }
+
+
+  public CreateCtwaAdRequest cities(@javax.annotation.Nullable List<CreateCtwaAdRequestCitiesInner> cities) {
+    this.cities = cities;
+    return this;
+  }
+
+  public CreateCtwaAdRequest addCitiesItem(CreateCtwaAdRequestCitiesInner citiesItem) {
+    if (this.cities == null) {
+      this.cities = new ArrayList<>();
+    }
+    this.cities.add(citiesItem);
+    return this;
+  }
+
+  /**
+   * City-level geo targeting for local CTWA campaigns (e.g. 25km radius around Milan). Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID (lookupable via GET /v1/ads/targeting/search). &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. 
+   * @return cities
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateCtwaAdRequestCitiesInner> getCities() {
+    return cities;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCities(@javax.annotation.Nullable List<CreateCtwaAdRequestCitiesInner> cities) {
+    this.cities = cities;
+  }
+
+
+  public CreateCtwaAdRequest regions(@javax.annotation.Nullable List<CreateCtwaAdRequestRegionsInner> regions) {
+    this.regions = regions;
+    return this;
+  }
+
+  public CreateCtwaAdRequest addRegionsItem(CreateCtwaAdRequestRegionsInner regionsItem) {
+    if (this.regions == null) {
+      this.regions = new ArrayList<>();
+    }
+    this.regions.add(regionsItem);
+    return this;
+  }
+
+  /**
+   * Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region). 
+   * @return regions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateCtwaAdRequestRegionsInner> getRegions() {
+    return regions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegions(@javax.annotation.Nullable List<CreateCtwaAdRequestRegionsInner> regions) {
+    this.regions = regions;
+  }
+
+
+  public CreateCtwaAdRequest zips(@javax.annotation.Nullable List<CreateCtwaAdRequestZipsInner> zips) {
+    this.zips = zips;
+    return this;
+  }
+
+  public CreateCtwaAdRequest addZipsItem(CreateCtwaAdRequestZipsInner zipsItem) {
+    if (this.zips == null) {
+      this.zips = new ArrayList<>();
+    }
+    this.zips.add(zipsItem);
+    return this;
+  }
+
+  /**
+   * ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search. 
+   * @return zips
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateCtwaAdRequestZipsInner> getZips() {
+    return zips;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setZips(@javax.annotation.Nullable List<CreateCtwaAdRequestZipsInner> zips) {
+    this.zips = zips;
+  }
+
+
+  public CreateCtwaAdRequest metros(@javax.annotation.Nullable List<CreateCtwaAdRequestZipsInner> metros) {
+    this.metros = metros;
+    return this;
+  }
+
+  public CreateCtwaAdRequest addMetrosItem(CreateCtwaAdRequestZipsInner metrosItem) {
+    if (this.metros == null) {
+      this.metros = new ArrayList<>();
+    }
+    this.metros.add(metrosItem);
+    return this;
+  }
+
+  /**
+   * DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;). 
+   * @return metros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateCtwaAdRequestZipsInner> getMetros() {
+    return metros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetros(@javax.annotation.Nullable List<CreateCtwaAdRequestZipsInner> metros) {
+    this.metros = metros;
+  }
+
+
+  public CreateCtwaAdRequest customLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
+    return this;
+  }
+
+  public CreateCtwaAdRequest addCustomLocationsItem(CreateStandaloneAdRequestCustomLocationsInner customLocationsItem) {
+    if (this.customLocations == null) {
+      this.customLocations = new ArrayList<>();
+    }
+    this.customLocations.add(customLocationsItem);
+    return this;
+  }
+
+  /**
+   * Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required. 
+   * @return customLocations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestCustomLocationsInner> getCustomLocations() {
+    return customLocations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
   }
 
 
@@ -945,6 +1134,11 @@ public class CreateCtwaAdRequest {
         Objects.equals(this.currency, createCtwaAdRequest.currency) &&
         Objects.equals(this.endDate, createCtwaAdRequest.endDate) &&
         Objects.equals(this.countries, createCtwaAdRequest.countries) &&
+        Objects.equals(this.cities, createCtwaAdRequest.cities) &&
+        Objects.equals(this.regions, createCtwaAdRequest.regions) &&
+        Objects.equals(this.zips, createCtwaAdRequest.zips) &&
+        Objects.equals(this.metros, createCtwaAdRequest.metros) &&
+        Objects.equals(this.customLocations, createCtwaAdRequest.customLocations) &&
         Objects.equals(this.ageMin, createCtwaAdRequest.ageMin) &&
         Objects.equals(this.ageMax, createCtwaAdRequest.ageMax) &&
         Objects.equals(this.interests, createCtwaAdRequest.interests) &&
@@ -960,7 +1154,7 @@ public class CreateCtwaAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, budgetAmount, budgetType, currency, endDate, countries, ageMin, ageMax, interests, audienceId, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -980,6 +1174,11 @@ public class CreateCtwaAdRequest {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
+    sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
+    sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
+    sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
+    sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
+    sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
@@ -1109,6 +1308,56 @@ public class CreateCtwaAdRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%scountries%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCountries().get(i)))));
+      }
+    }
+
+    // add `cities` to the URL query string
+    if (getCities() != null) {
+      for (int i = 0; i < getCities().size(); i++) {
+        if (getCities().get(i) != null) {
+          joiner.add(getCities().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scities%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `regions` to the URL query string
+    if (getRegions() != null) {
+      for (int i = 0; i < getRegions().size(); i++) {
+        if (getRegions().get(i) != null) {
+          joiner.add(getRegions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sregions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `zips` to the URL query string
+    if (getZips() != null) {
+      for (int i = 0; i < getZips().size(); i++) {
+        if (getZips().get(i) != null) {
+          joiner.add(getZips().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%szips%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `metros` to the URL query string
+    if (getMetros() != null) {
+      for (int i = 0; i < getMetros().size(); i++) {
+        if (getMetros().get(i) != null) {
+          joiner.add(getMetros().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smetros%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `customLocations` to the URL query string
+    if (getCustomLocations() != null) {
+      for (int i = 0; i < getCustomLocations().size(); i++) {
+        if (getCustomLocations().get(i) != null) {
+          joiner.add(getCustomLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomLocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

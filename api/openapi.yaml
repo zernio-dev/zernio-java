@@ -46503,6 +46503,36 @@ components:
       required:
       - body
       - headline
+    createCtwaAd_request_cities_inner:
+      properties:
+        key:
+          minLength: 1
+          type: string
+        radius:
+          type: number
+        distance_unit:
+          enum:
+          - mile
+          - kilometer
+          type: string
+      required:
+      - key
+    createCtwaAd_request_regions_inner:
+      properties:
+        key:
+          minLength: 1
+          type: string
+      required:
+      - key
+    createCtwaAd_request_zips_inner:
+      properties:
+        key:
+          minLength: 1
+          type: string
+        name:
+          type: string
+      required:
+      - key
     createCtwaAd_request:
       description: |
         In addition to the `required` list, the request must use
@@ -46592,11 +46622,53 @@ components:
           format: date-time
           type: string
         countries:
-          description: "ISO 3166-1 alpha-2 country codes. Defaults to `[\"US\"]`."
+          description: |
+            ISO 3166-1 alpha-2 country codes. Defaults to `["US"]` only
+            when no other geo (`cities`, `regions`, `zips`, `metros`,
+            `customLocations`) is supplied.
           items:
             maxLength: 2
             minLength: 2
             type: string
+          type: array
+        cities:
+          description: |
+            City-level geo targeting for local CTWA campaigns (e.g.
+            25km radius around Milan). Each entry maps to Meta's
+            TargetingGeoLocationCity. `key` is Meta's city ID
+            (lookupable via GET /v1/ads/targeting/search). `radius`
+            and `distance_unit` are coupled: set both or neither.
+          items:
+            $ref: "#/components/schemas/createCtwaAd_request_cities_inner"
+          type: array
+        regions:
+          description: |
+            Region / state-level geo targeting. `key` is Meta's region
+            ID (lookupable via GET /v1/ads/targeting/search?type=region).
+          items:
+            $ref: "#/components/schemas/createCtwaAd_request_regions_inner"
+          type: array
+        zips:
+          description: |
+            ZIP / postal-code geo targeting. `key` is the platform's
+            postal id resolved via /v1/ads/targeting/search.
+          items:
+            $ref: "#/components/schemas/createCtwaAd_request_zips_inner"
+          type: array
+        metros:
+          description: |
+            DMA / metro-area geo targeting. `key` is Meta's metro id
+            (e.g. `DMA:807`).
+          items:
+            $ref: "#/components/schemas/createCtwaAd_request_zips_inner"
+          type: array
+        customLocations:
+          description: |
+            Point-radius geo (Meta `geo_locations.custom_locations`).
+            Use for targeting a radius around a specific lat/long when
+            no Meta city/region key fits. `distanceUnit` is required.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_customLocations_inner"
           type: array
         ageMin:
           maximum: 65
