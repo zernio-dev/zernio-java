@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListFacebookPages200ResponsePagesInner.JSON_PROPERTY_CATEGORY,
   ListFacebookPages200ResponsePagesInner.JSON_PROPERTY_TASKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:22:11.387140670Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:56:28.636382320Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListFacebookPages200ResponsePagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

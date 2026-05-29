@@ -37,10 +37,11 @@ import dev.zernio.ApiClient;
   ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_META_COST_U_S_D,
   ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_TELNYX_COST_U_S_D,
   ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_RECORDING_COST_U_S_D,
+  ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_BILLABLE_COST_U_S_D,
   ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_TOTAL_COST_U_S_D,
   ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:22:11.387140670Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:56:28.636382320Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppCalls200ResponseCallsInnerBilling {
   public static final String JSON_PROPERTY_META_COST_U_S_D = "metaCostUSD";
   @javax.annotation.Nullable
@@ -53,6 +54,10 @@ public class ListWhatsAppCalls200ResponseCallsInnerBilling {
   public static final String JSON_PROPERTY_RECORDING_COST_U_S_D = "recordingCostUSD";
   @javax.annotation.Nullable
   private BigDecimal recordingCostUSD;
+
+  public static final String JSON_PROPERTY_BILLABLE_COST_U_S_D = "billableCostUSD";
+  @javax.annotation.Nullable
+  private BigDecimal billableCostUSD;
 
   public static final String JSON_PROPERTY_TOTAL_COST_U_S_D = "totalCostUSD";
   @javax.annotation.Nullable
@@ -71,7 +76,7 @@ public class ListWhatsAppCalls200ResponseCallsInnerBilling {
   }
 
   /**
-   * Get metaCostUSD
+   * Meta per-minute charge, billed by Meta directly to your WABA. Display only; not billed by Zernio.
    * @return metaCostUSD
    */
   @javax.annotation.Nullable
@@ -137,13 +142,37 @@ public class ListWhatsAppCalls200ResponseCallsInnerBilling {
   }
 
 
+  public ListWhatsAppCalls200ResponseCallsInnerBilling billableCostUSD(@javax.annotation.Nullable BigDecimal billableCostUSD) {
+    this.billableCostUSD = billableCostUSD;
+    return this;
+  }
+
+  /**
+   * Amount Zernio bills you &#x3D; Telnyx leg + recording (excludes Meta).
+   * @return billableCostUSD
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BILLABLE_COST_U_S_D, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getBillableCostUSD() {
+    return billableCostUSD;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BILLABLE_COST_U_S_D, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBillableCostUSD(@javax.annotation.Nullable BigDecimal billableCostUSD) {
+    this.billableCostUSD = billableCostUSD;
+  }
+
+
   public ListWhatsAppCalls200ResponseCallsInnerBilling totalCostUSD(@javax.annotation.Nullable BigDecimal totalCostUSD) {
     this.totalCostUSD = totalCostUSD;
     return this;
   }
 
   /**
-   * Get totalCostUSD
+   * Full cost incl. the Meta portion you pay directly. Display only.
    * @return totalCostUSD
    */
   @javax.annotation.Nullable
@@ -200,13 +229,14 @@ public class ListWhatsAppCalls200ResponseCallsInnerBilling {
     return Objects.equals(this.metaCostUSD, listWhatsAppCalls200ResponseCallsInnerBilling.metaCostUSD) &&
         Objects.equals(this.telnyxCostUSD, listWhatsAppCalls200ResponseCallsInnerBilling.telnyxCostUSD) &&
         Objects.equals(this.recordingCostUSD, listWhatsAppCalls200ResponseCallsInnerBilling.recordingCostUSD) &&
+        Objects.equals(this.billableCostUSD, listWhatsAppCalls200ResponseCallsInnerBilling.billableCostUSD) &&
         Objects.equals(this.totalCostUSD, listWhatsAppCalls200ResponseCallsInnerBilling.totalCostUSD) &&
         Objects.equals(this.currency, listWhatsAppCalls200ResponseCallsInnerBilling.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metaCostUSD, telnyxCostUSD, recordingCostUSD, totalCostUSD, currency);
+    return Objects.hash(metaCostUSD, telnyxCostUSD, recordingCostUSD, billableCostUSD, totalCostUSD, currency);
   }
 
   @Override
@@ -216,6 +246,7 @@ public class ListWhatsAppCalls200ResponseCallsInnerBilling {
     sb.append("    metaCostUSD: ").append(toIndentedString(metaCostUSD)).append("\n");
     sb.append("    telnyxCostUSD: ").append(toIndentedString(telnyxCostUSD)).append("\n");
     sb.append("    recordingCostUSD: ").append(toIndentedString(recordingCostUSD)).append("\n");
+    sb.append("    billableCostUSD: ").append(toIndentedString(billableCostUSD)).append("\n");
     sb.append("    totalCostUSD: ").append(toIndentedString(totalCostUSD)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
@@ -278,6 +309,11 @@ public class ListWhatsAppCalls200ResponseCallsInnerBilling {
     // add `recordingCostUSD` to the URL query string
     if (getRecordingCostUSD() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srecordingCostUSD%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecordingCostUSD()))));
+    }
+
+    // add `billableCostUSD` to the URL query string
+    if (getBillableCostUSD() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbillableCostUSD%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBillableCostUSD()))));
     }
 
     // add `totalCostUSD` to the URL query string

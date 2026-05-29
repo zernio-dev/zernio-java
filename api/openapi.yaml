@@ -22568,7 +22568,8 @@ components:
           phoneNumberId: phoneNumberId
           billing:
             metaCostUSD: 6.027456183070403
-            totalCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
             recordingCostUSD: 5.962133916683182
             telnyxCostUSD: 1.4658129805029452
           accountId: accountId
@@ -39515,18 +39516,27 @@ components:
     listWhatsAppCalls_200_response_calls_inner_billing:
       example:
         metaCostUSD: 6.027456183070403
-        totalCostUSD: 5.637376656633329
+        billableCostUSD: 5.637376656633329
+        totalCostUSD: 2.3021358869347655
         recordingCostUSD: 5.962133916683182
         currency: currency
         telnyxCostUSD: 1.4658129805029452
       properties:
         metaCostUSD:
+          description: "Meta per-minute charge, billed by Meta directly to your WABA.\
+            \ Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
           type: number
         recordingCostUSD:
           type: number
+        billableCostUSD:
+          description: Amount Zernio bills you = Telnyx leg + recording (excludes
+            Meta).
+          type: number
         totalCostUSD:
+          description: Full cost incl. the Meta portion you pay directly. Display
+            only.
           type: number
         currency:
           type: string
@@ -39544,7 +39554,8 @@ components:
         status: ringing
         billing:
           metaCostUSD: 6.027456183070403
-          totalCostUSD: 5.637376656633329
+          billableCostUSD: 5.637376656633329
+          totalCostUSD: 2.3021358869347655
           recordingCostUSD: 5.962133916683182
           currency: currency
           telnyxCostUSD: 1.4658129805029452
@@ -39601,7 +39612,8 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            totalCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
             recordingCostUSD: 5.962133916683182
             currency: currency
             telnyxCostUSD: 1.4658129805029452
@@ -39617,7 +39629,8 @@ components:
           status: ringing
           billing:
             metaCostUSD: 6.027456183070403
-            totalCostUSD: 5.637376656633329
+            billableCostUSD: 5.637376656633329
+            totalCostUSD: 2.3021358869347655
             recordingCostUSD: 5.962133916683182
             currency: currency
             telnyxCostUSD: 1.4658129805029452
@@ -39694,26 +39707,36 @@ components:
       example:
         metaCostUSD: 1.4658129805029452
         metaMinutes: 6
-        totalCostUSD: 2.3021358869347655
+        billableCostUSD: 2.3021358869347655
+        totalCostUSD: 7.061401241503109
         recordingCostUSD: 5.637376656633329
         telnyxCostUSD: 5.962133916683182
       properties:
         metaMinutes:
           type: integer
         metaCostUSD:
+          description: "Estimated Meta per-minute charge, billed by Meta directly\
+            \ to your WABA. Display only; not billed by Zernio."
           type: number
         telnyxCostUSD:
           type: number
         recordingCostUSD:
           type: number
+        billableCostUSD:
+          description: Estimated amount Zernio bills you = Telnyx leg + recording
+            (excludes Meta).
+          type: number
         totalCostUSD:
+          description: Estimated full cost incl. the Meta portion you pay directly.
+            Display only.
           type: number
     getWhatsAppCallEstimate_200_response:
       example:
         breakdown:
           metaCostUSD: 1.4658129805029452
           metaMinutes: 6
-          totalCostUSD: 2.3021358869347655
+          billableCostUSD: 2.3021358869347655
+          totalCostUSD: 7.061401241503109
           recordingCostUSD: 5.637376656633329
           telnyxCostUSD: 5.962133916683182
         perMinuteUsd: 0.8008281904610115
@@ -50906,17 +50929,27 @@ components:
     WebhookPayloadCallEnded_call_billing:
       example:
         metaCostUSD: 6.027456183070403
-        totalCostUSD: 5.637376656633329
+        billableCostUSD: 5.637376656633329
+        totalCostUSD: 2.3021358869347655
         recordingCostUSD: 5.962133916683182
         telnyxCostUSD: 1.4658129805029452
       properties:
         metaCostUSD:
+          description: Meta per-minute charge. Billed by Meta DIRECTLY to your WhatsApp
+            Business Account payment method (your separate Meta invoice). Zernio does
+            NOT charge this. Display only.
           type: number
         telnyxCostUSD:
           type: number
         recordingCostUSD:
           type: number
+        billableCostUSD:
+          description: The amount Zernio bills you = Telnyx leg + recording. Excludes
+            Meta (billed by Meta directly).
+          type: number
         totalCostUSD:
+          description: "Full economic cost incl. the Meta portion you pay directly\
+            \ (Meta + Telnyx + recording). Display only, not the Zernio-billed amount."
           type: number
     WebhookPayloadCallEnded_call:
       example:
@@ -50926,7 +50959,8 @@ components:
         phoneNumberId: phoneNumberId
         billing:
           metaCostUSD: 6.027456183070403
-          totalCostUSD: 5.637376656633329
+          billableCostUSD: 5.637376656633329
+          totalCostUSD: 2.3021358869347655
           recordingCostUSD: 5.962133916683182
           telnyxCostUSD: 1.4658129805029452
         accountId: accountId

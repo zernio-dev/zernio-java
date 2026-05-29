@@ -37,9 +37,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallEndedCallBilling.JSON_PROPERTY_META_COST_U_S_D,
   WebhookPayloadCallEndedCallBilling.JSON_PROPERTY_TELNYX_COST_U_S_D,
   WebhookPayloadCallEndedCallBilling.JSON_PROPERTY_RECORDING_COST_U_S_D,
+  WebhookPayloadCallEndedCallBilling.JSON_PROPERTY_BILLABLE_COST_U_S_D,
   WebhookPayloadCallEndedCallBilling.JSON_PROPERTY_TOTAL_COST_U_S_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:22:11.387140670Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:56:28.636382320Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallEndedCallBilling {
   public static final String JSON_PROPERTY_META_COST_U_S_D = "metaCostUSD";
   @javax.annotation.Nullable
@@ -52,6 +53,10 @@ public class WebhookPayloadCallEndedCallBilling {
   public static final String JSON_PROPERTY_RECORDING_COST_U_S_D = "recordingCostUSD";
   @javax.annotation.Nullable
   private BigDecimal recordingCostUSD;
+
+  public static final String JSON_PROPERTY_BILLABLE_COST_U_S_D = "billableCostUSD";
+  @javax.annotation.Nullable
+  private BigDecimal billableCostUSD;
 
   public static final String JSON_PROPERTY_TOTAL_COST_U_S_D = "totalCostUSD";
   @javax.annotation.Nullable
@@ -66,7 +71,7 @@ public class WebhookPayloadCallEndedCallBilling {
   }
 
   /**
-   * Get metaCostUSD
+   * Meta per-minute charge. Billed by Meta DIRECTLY to your WhatsApp Business Account payment method (your separate Meta invoice). Zernio does NOT charge this. Display only.
    * @return metaCostUSD
    */
   @javax.annotation.Nullable
@@ -132,13 +137,37 @@ public class WebhookPayloadCallEndedCallBilling {
   }
 
 
+  public WebhookPayloadCallEndedCallBilling billableCostUSD(@javax.annotation.Nullable BigDecimal billableCostUSD) {
+    this.billableCostUSD = billableCostUSD;
+    return this;
+  }
+
+  /**
+   * The amount Zernio bills you &#x3D; Telnyx leg + recording. Excludes Meta (billed by Meta directly).
+   * @return billableCostUSD
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BILLABLE_COST_U_S_D, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getBillableCostUSD() {
+    return billableCostUSD;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BILLABLE_COST_U_S_D, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBillableCostUSD(@javax.annotation.Nullable BigDecimal billableCostUSD) {
+    this.billableCostUSD = billableCostUSD;
+  }
+
+
   public WebhookPayloadCallEndedCallBilling totalCostUSD(@javax.annotation.Nullable BigDecimal totalCostUSD) {
     this.totalCostUSD = totalCostUSD;
     return this;
   }
 
   /**
-   * Get totalCostUSD
+   * Full economic cost incl. the Meta portion you pay directly (Meta + Telnyx + recording). Display only, not the Zernio-billed amount.
    * @return totalCostUSD
    */
   @javax.annotation.Nullable
@@ -171,12 +200,13 @@ public class WebhookPayloadCallEndedCallBilling {
     return Objects.equals(this.metaCostUSD, webhookPayloadCallEndedCallBilling.metaCostUSD) &&
         Objects.equals(this.telnyxCostUSD, webhookPayloadCallEndedCallBilling.telnyxCostUSD) &&
         Objects.equals(this.recordingCostUSD, webhookPayloadCallEndedCallBilling.recordingCostUSD) &&
+        Objects.equals(this.billableCostUSD, webhookPayloadCallEndedCallBilling.billableCostUSD) &&
         Objects.equals(this.totalCostUSD, webhookPayloadCallEndedCallBilling.totalCostUSD);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metaCostUSD, telnyxCostUSD, recordingCostUSD, totalCostUSD);
+    return Objects.hash(metaCostUSD, telnyxCostUSD, recordingCostUSD, billableCostUSD, totalCostUSD);
   }
 
   @Override
@@ -186,6 +216,7 @@ public class WebhookPayloadCallEndedCallBilling {
     sb.append("    metaCostUSD: ").append(toIndentedString(metaCostUSD)).append("\n");
     sb.append("    telnyxCostUSD: ").append(toIndentedString(telnyxCostUSD)).append("\n");
     sb.append("    recordingCostUSD: ").append(toIndentedString(recordingCostUSD)).append("\n");
+    sb.append("    billableCostUSD: ").append(toIndentedString(billableCostUSD)).append("\n");
     sb.append("    totalCostUSD: ").append(toIndentedString(totalCostUSD)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -247,6 +278,11 @@ public class WebhookPayloadCallEndedCallBilling {
     // add `recordingCostUSD` to the URL query string
     if (getRecordingCostUSD() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%srecordingCostUSD%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRecordingCostUSD()))));
+    }
+
+    // add `billableCostUSD` to the URL query string
+    if (getBillableCostUSD() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbillableCostUSD%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBillableCostUSD()))));
     }
 
     // add `totalCostUSD` to the URL query string
