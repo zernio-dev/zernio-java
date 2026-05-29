@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetWhatsAppPhoneNumbers200ResponseNumbersInner;
+import dev.zernio.model.GetWhatsAppPhoneNumbers200ResponseSandbox;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,13 +37,18 @@ import dev.zernio.ApiClient;
  * GetWhatsAppPhoneNumbers200Response
  */
 @JsonPropertyOrder({
-  GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_NUMBERS
+  GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_NUMBERS,
+  GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_SANDBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T17:04:05.625464513Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T09:18:01.699099909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200Response {
   public static final String JSON_PROPERTY_NUMBERS = "numbers";
   @javax.annotation.Nullable
   private List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> numbers = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SANDBOX = "sandbox";
+  @javax.annotation.Nullable
+  private GetWhatsAppPhoneNumbers200ResponseSandbox sandbox;
 
   public GetWhatsAppPhoneNumbers200Response() { 
   }
@@ -79,6 +85,30 @@ public class GetWhatsAppPhoneNumbers200Response {
   }
 
 
+  public GetWhatsAppPhoneNumbers200Response sandbox(@javax.annotation.Nullable GetWhatsAppPhoneNumbers200ResponseSandbox sandbox) {
+    this.sandbox = sandbox;
+    return this;
+  }
+
+  /**
+   * Get sandbox
+   * @return sandbox
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SANDBOX, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetWhatsAppPhoneNumbers200ResponseSandbox getSandbox() {
+    return sandbox;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SANDBOX, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSandbox(@javax.annotation.Nullable GetWhatsAppPhoneNumbers200ResponseSandbox sandbox) {
+    this.sandbox = sandbox;
+  }
+
+
   /**
    * Return true if this getWhatsAppPhoneNumbers_200_response object is equal to o.
    */
@@ -91,12 +121,13 @@ public class GetWhatsAppPhoneNumbers200Response {
       return false;
     }
     GetWhatsAppPhoneNumbers200Response getWhatsAppPhoneNumbers200Response = (GetWhatsAppPhoneNumbers200Response) o;
-    return Objects.equals(this.numbers, getWhatsAppPhoneNumbers200Response.numbers);
+    return Objects.equals(this.numbers, getWhatsAppPhoneNumbers200Response.numbers) &&
+        Objects.equals(this.sandbox, getWhatsAppPhoneNumbers200Response.sandbox);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numbers);
+    return Objects.hash(numbers, sandbox);
   }
 
   @Override
@@ -104,6 +135,7 @@ public class GetWhatsAppPhoneNumbers200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetWhatsAppPhoneNumbers200Response {\n");
     sb.append("    numbers: ").append(toIndentedString(numbers)).append("\n");
+    sb.append("    sandbox: ").append(toIndentedString(sandbox)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -159,6 +191,11 @@ public class GetWhatsAppPhoneNumbers200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `sandbox` to the URL query string
+    if (getSandbox() != null) {
+      joiner.add(getSandbox().toUrlQueryString(prefix + "sandbox" + suffix));
     }
 
     return joiner.toString();

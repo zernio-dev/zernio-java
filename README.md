@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-05-28T17:04:05.625464513Z[Etc/UTC]
+- Build date: 2026-05-29T09:18:01.699099909Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -764,6 +764,12 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**purchaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumberWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
+*WhatsAppSandboxApi* | [**createWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSession) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
+*WhatsAppSandboxApi* | [**createWhatsAppSandboxSessionWithHttpInfo**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSessionWithHttpInfo) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
+*WhatsAppSandboxApi* | [**deleteWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#deleteWhatsAppSandboxSession) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
+*WhatsAppSandboxApi* | [**deleteWhatsAppSandboxSessionWithHttpInfo**](docs/WhatsAppSandboxApi.md#deleteWhatsAppSandboxSessionWithHttpInfo) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
+*WhatsAppSandboxApi* | [**listWhatsAppSandboxSessions**](docs/WhatsAppSandboxApi.md#listWhatsAppSandboxSessions) | **GET** /v1/whatsapp/sandbox/sessions | List your sandbox sessions
+*WhatsAppSandboxApi* | [**listWhatsAppSandboxSessionsWithHttpInfo**](docs/WhatsAppSandboxApi.md#listWhatsAppSandboxSessionsWithHttpInfo) | **GET** /v1/whatsapp/sandbox/sessions | List your sandbox sessions
 *WhatsAppTemplatesApi* | [**getWhatsAppLibraryTemplate**](docs/WhatsAppTemplatesApi.md#getWhatsAppLibraryTemplate) | **GET** /v1/whatsapp/template-library | Look up a library template
 *WhatsAppTemplatesApi* | [**getWhatsAppLibraryTemplateWithHttpInfo**](docs/WhatsAppTemplatesApi.md#getWhatsAppLibraryTemplateWithHttpInfo) | **GET** /v1/whatsapp/template-library | Look up a library template
 
@@ -964,6 +970,8 @@ Class | Method | HTTP request | Description
  - [CreateWhatsAppGroupChat201ResponseGroup](docs/CreateWhatsAppGroupChat201ResponseGroup.md)
  - [CreateWhatsAppGroupChatRequest](docs/CreateWhatsAppGroupChatRequest.md)
  - [CreateWhatsAppGroupInviteLink200Response](docs/CreateWhatsAppGroupInviteLink200Response.md)
+ - [CreateWhatsAppSandboxSession200Response](docs/CreateWhatsAppSandboxSession200Response.md)
+ - [CreateWhatsAppSandboxSessionRequest](docs/CreateWhatsAppSandboxSessionRequest.md)
  - [CreateWhatsAppTemplate200Response](docs/CreateWhatsAppTemplate200Response.md)
  - [CreateWhatsAppTemplate200ResponseTemplate](docs/CreateWhatsAppTemplate200ResponseTemplate.md)
  - [CreateWhatsAppTemplateRequest](docs/CreateWhatsAppTemplateRequest.md)
@@ -981,6 +989,7 @@ Class | Method | HTTP request | Description
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [DeleteQueueSlot200Response](docs/DeleteQueueSlot200Response.md)
+ - [DeleteWhatsAppSandboxSession200Response](docs/DeleteWhatsAppSandboxSession200Response.md)
  - [DiscordPlatformData](docs/DiscordPlatformData.md)
  - [DiscordPlatformDataEmbedsInner](docs/DiscordPlatformDataEmbedsInner.md)
  - [DiscordPlatformDataEmbedsInnerAuthor](docs/DiscordPlatformDataEmbedsInnerAuthor.md)
@@ -1234,6 +1243,8 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [GetWhatsAppPhoneNumbers200Response](docs/GetWhatsAppPhoneNumbers200Response.md)
  - [GetWhatsAppPhoneNumbers200ResponseNumbersInner](docs/GetWhatsAppPhoneNumbers200ResponseNumbersInner.md)
+ - [GetWhatsAppPhoneNumbers200ResponseSandbox](docs/GetWhatsAppPhoneNumbers200ResponseSandbox.md)
+ - [GetWhatsAppPhoneNumbers200ResponseSandboxTemplate](docs/GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.md)
  - [GetWhatsAppTemplate200Response](docs/GetWhatsAppTemplate200Response.md)
  - [GetWhatsAppTemplate200ResponseTemplate](docs/GetWhatsAppTemplate200ResponseTemplate.md)
  - [GetWhatsAppTemplates200Response](docs/GetWhatsAppTemplates200Response.md)
@@ -1388,6 +1399,7 @@ Class | Method | HTTP request | Description
  - [ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner](docs/ListWhatsAppGroupJoinRequests200ResponseJoinRequestsInner.md)
  - [ListWhatsAppPhoneNumbers200Response](docs/ListWhatsAppPhoneNumbers200Response.md)
  - [ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner](docs/ListWhatsAppPhoneNumbers200ResponsePhoneNumbersInner.md)
+ - [ListWhatsAppSandboxSessions200Response](docs/ListWhatsAppSandboxSessions200Response.md)
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
@@ -1771,6 +1783,7 @@ Class | Method | HTTP request | Description
  - [WhatsAppFooterComponent](docs/WhatsAppFooterComponent.md)
  - [WhatsAppHeaderComponent](docs/WhatsAppHeaderComponent.md)
  - [WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)
+ - [WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)
  - [WhatsAppTemplateComponent](docs/WhatsAppTemplateComponent.md)
  - [XApiOperation](docs/XApiOperation.md)

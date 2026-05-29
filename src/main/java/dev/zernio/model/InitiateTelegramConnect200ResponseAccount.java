@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   InitiateTelegramConnect200ResponseAccount.JSON_PROPERTY_IS_ACTIVE,
   InitiateTelegramConnect200ResponseAccount.JSON_PROPERTY_CHAT_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-28T17:04:05.625464513Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T09:18:01.699099909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InitiateTelegramConnect200ResponseAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
