@@ -132,6 +132,13 @@ tags:
     between steps. Supports auto-exit on reply or unsubscribe.
   name: Sequences
 - description: |
+    Branching conversation automations. An inbound message matches a workflow's trigger and walks a
+    directed graph of nodes (send message, wait for reply, condition, set variable, delay, webhook,
+    handoff, end). Unlike Sequences (linear, time-based drips), Workflows are event-driven and
+    interactive. Fully supported on WhatsApp, Instagram, and Messenger; `send_message` template and
+    interactive modes are WhatsApp-only.
+  name: Workflows
+- description: |
     Comment-to-DM growth automations. Set up keyword triggers on Instagram/Facebook so
     commenters automatically receive a DM. Scope per post or account-wide (omit
     `platformPostId` to match comments on every post on the account, with unlimited
@@ -15529,6 +15536,329 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/workflows:
+    get:
+      description: Returns workflows with run stats. Filter by status or profile.
+      operationId: listWorkflows
+      parameters:
+      - description: Filter by profile. Omit to list across all profiles
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflows_200_response"
+          description: Workflows list
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      summary: List workflows
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Create a branching conversation workflow (draft) from a node/edge graph. Created in `draft` status; activate it to start matching inbound messages. The graph is validated structurally; completeness (a trigger node + reachable entry) is required at activation.
+      operationId: createWorkflow
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createWorkflow_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createWorkflow_200_response"
+          description: Workflow created
+        "400":
+          description: Invalid graph (duplicate node ids
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      summary: Create workflow
+      tags:
+      - Workflows
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}:
+    delete:
+      description: Permanently delete a workflow and all of its executions.
+      operationId: deleteWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          description: Workflow deleted
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Delete workflow
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+    get:
+      description: Returns a workflow including its full node/edge graph and run stats.
+      operationId: getWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWorkflow_200_response"
+          description: Workflow details
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get workflow with graph
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+    patch:
+      description: "Update name, description, or the graph. The graph can only be\
+        \ modified while the workflow is draft or paused."
+      operationId: updateWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateWorkflow_request"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateWorkflow_200_response"
+          description: Workflow updated
+        "400":
+          description: Invalid graph
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Update workflow
+      tags:
+      - Workflows
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/activate:
+    post:
+      description: "Validate the graph is runnable and set the workflow live. Once\
+        \ active, matching inbound messages start executions. Idempotent."
+      operationId: activateWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/activateWorkflow_200_response"
+          description: Workflow activated
+        "400":
+          description: Incomplete or invalid graph
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Activate workflow
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/pause:
+    post:
+      description: Stop matching new inbound messages. In-flight executions continue
+        to completion. Idempotent.
+      operationId: pauseWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/pauseWorkflow_200_response"
+          description: Workflow paused
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Pause workflow
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/executions:
+    get:
+      description: "Returns recent executions (runs) with their status, current node,\
+        \ and accumulated variables."
+      operationId: listWorkflowExecutions
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - running
+          - waiting
+          - completed
+          - exited
+          - failed
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflowExecutions_200_response"
+          description: Executions list
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: List workflow runs
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Kick off a run without waiting for an inbound message (useful for testing). Target an existing conversation by `conversationId`, or — WhatsApp only — a phone number via `to` (a conversation is found or created). `text` seeds the run's `lastMessage` variable. The graph must be runnable.
+      operationId: triggerWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/triggerWorkflow_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/triggerWorkflow_200_response"
+          description: Run started
+        "400":
+          description: Missing target
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Manually start a workflow run
+      tags:
+      - Workflows
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/sequences:
     get:
       description: "Returns sequences with enrollment stats. Filter by status, platform,\
@@ -19522,6 +19852,67 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) so they can talk to sales.
   schemas:
+    WorkflowNode:
+      description: A node in a workflow graph. `config` shape depends on `type`.
+      example:
+        id: id
+        position:
+          x: 0.8008281904610115
+          "y": 6.027456183070403
+        type: trigger
+        config:
+          key: ""
+      properties:
+        id:
+          description: Stable node id referenced by edges
+          type: string
+        type:
+          enum:
+          - trigger
+          - send_message
+          - wait_for_reply
+          - condition
+          - set_variable
+          - delay
+          - webhook
+          - handoff
+          - end
+          type: string
+        config:
+          additionalProperties: true
+          description: |
+            Type-specific settings. trigger: { keywords:[string], matchType: any|contains|exact|regex, onlyFirstMessage:boolean }. send_message: { messageType: text|template|media|interactive, text, template:{name,language,variableMapping}, media:{mediaType,url,caption}, interactive } (template/interactive are WhatsApp-only). wait_for_reply: { timeoutMinutes:int, saveAs:string }. condition: { rules:[{ id, variable, operator: equals|not_equals|contains|not_contains|starts_with|ends_with|exists|not_exists|matches, value }] }. set_variable: { assignments:[{ name, value }] }. delay: { delayMinutes:int }. webhook: { url, method, headers, bodyTemplate, saveAs }. handoff: { note, assignTo }. String fields support {{variable}} interpolation.
+          type: object
+        position:
+          $ref: "#/components/schemas/WorkflowNode_position"
+      required:
+      - id
+      - type
+    WorkflowEdge:
+      description: A directed edge between two nodes.
+      example:
+        sourceHandle: sourceHandle
+        id: id
+        source: source
+        target: target
+      properties:
+        id:
+          type: string
+        source:
+          description: Source node id
+          type: string
+        target:
+          description: Target node id
+          type: string
+        sourceHandle:
+          description: |
+            Selects a branch output of a multi-output node: a condition rule id or 'default'; 'reply' or 'timeout' for wait_for_reply; 'success' or 'error' for webhook. Null = the node's single/default output.
+          type: string
+          nullable: true
+      required:
+      - id
+      - source
+      - target
     BulkUploadResult:
       description: |
         Result of a CSV bulk upload. The same shape is returned for `200` (all rows
@@ -42147,6 +42538,569 @@ components:
         skipped:
           description: Number skipped (duplicates or missing channels)
           type: integer
+    listWorkflows_200_response_workflows_inner:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        totalCompleted: 1
+        accountName: accountName
+        name: name
+        totalExited: 5
+        description: description
+        nodeCount: 0
+        id: id
+        totalStarted: 6
+        platform: platform
+        status: draft
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        accountName:
+          type: string
+        status:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        nodeCount:
+          type: integer
+        totalStarted:
+          type: integer
+        totalCompleted:
+          type: integer
+        totalExited:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+    listWorkflows_200_response:
+      example:
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+        workflows:
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          totalCompleted: 1
+          accountName: accountName
+          name: name
+          totalExited: 5
+          description: description
+          nodeCount: 0
+          id: id
+          totalStarted: 6
+          platform: platform
+          status: draft
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          totalCompleted: 1
+          accountName: accountName
+          name: name
+          totalExited: 5
+          description: description
+          nodeCount: 0
+          id: id
+          totalStarted: 6
+          platform: platform
+          status: draft
+      properties:
+        success:
+          type: boolean
+        workflows:
+          items:
+            $ref: "#/components/schemas/listWorkflows_200_response_workflows_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listContacts_200_response_pagination"
+    createWorkflow_request:
+      properties:
+        profileId:
+          type: string
+        accountId:
+          type: string
+        platform:
+          default: whatsapp
+          enum:
+          - whatsapp
+          - instagram
+          - facebook
+          - telegram
+          - twitter
+          - bluesky
+          - reddit
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        entryNodeId:
+          description: The trigger node id; derived from the single trigger node if
+            omitted
+          type: string
+      required:
+      - accountId
+      - name
+      - profileId
+    createWorkflow_200_response_workflow:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        platform: platform
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        status:
+          type: string
+        nodeCount:
+          type: integer
+        entryNodeId:
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    createWorkflow_200_response:
+      example:
+        workflow:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          platform: platform
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/createWorkflow_200_response_workflow"
+    getWorkflow_200_response_workflow:
+      example:
+        totalCompleted: 5
+        entryNodeId: entryNodeId
+        edges:
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        description: description
+        platform: platform
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        nodes:
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        profileId: profileId
+        name: name
+        totalExited: 5
+        id: id
+        totalStarted: 1
+        status: draft
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+        status:
+          enum:
+          - draft
+          - active
+          - paused
+          type: string
+        entryNodeId:
+          type: string
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        totalStarted:
+          type: integer
+        totalCompleted:
+          type: integer
+        totalExited:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+    getWorkflow_200_response:
+      example:
+        workflow:
+          totalCompleted: 5
+          entryNodeId: entryNodeId
+          edges:
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          description: description
+          platform: platform
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          nodes:
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          profileId: profileId
+          name: name
+          totalExited: 5
+          id: id
+          totalStarted: 1
+          status: draft
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/getWorkflow_200_response_workflow"
+    updateWorkflow_request:
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        entryNodeId:
+          type: string
+          nullable: true
+    updateWorkflow_200_response_workflow:
+      example:
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        status: status
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        entryNodeId:
+          type: string
+        nodeCount:
+          type: integer
+        updatedAt:
+          format: date-time
+          type: string
+    updateWorkflow_200_response:
+      example:
+        workflow:
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          status: status
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/updateWorkflow_200_response_workflow"
+    activateWorkflow_200_response_workflow:
+      example:
+        entryNodeId: entryNodeId
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        entryNodeId:
+          type: string
+    activateWorkflow_200_response:
+      example:
+        workflow:
+          entryNodeId: entryNodeId
+          id: id
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/activateWorkflow_200_response_workflow"
+    pauseWorkflow_200_response:
+      example:
+        workflow:
+          id: id
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/cancelBroadcast_200_response_broadcast"
+    listWorkflowExecutions_200_response_executions_inner_waitingFor:
+      example:
+        kind: timer
+        nodeId: nodeId
+      properties:
+        kind:
+          enum:
+          - timer
+          - reply
+          type: string
+        nodeId:
+          type: string
+      nullable: true
+    listWorkflowExecutions_200_response_executions_inner:
+      example:
+        variables:
+          key: ""
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        lastError: lastError
+        conversationId: conversationId
+        platformIdentifier: platformIdentifier
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        waitingFor:
+          kind: timer
+          nodeId: nodeId
+        currentNodeId: currentNodeId
+        id: id
+        resumeAt: 2000-01-23T04:56:07.000+00:00
+        stepCount: 0
+        status: running
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - running
+          - waiting
+          - completed
+          - exited
+          - failed
+          type: string
+        currentNodeId:
+          type: string
+        waitingFor:
+          $ref: "#/components/schemas/listWorkflowExecutions_200_response_executions_inner_waitingFor"
+        variables:
+          additionalProperties: true
+          type: object
+        platformIdentifier:
+          type: string
+        conversationId:
+          type: string
+        stepCount:
+          type: integer
+        lastError:
+          type: string
+          nullable: true
+        resumeAt:
+          format: date-time
+          type: string
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        completedAt:
+          format: date-time
+          type: string
+          nullable: true
+    listWorkflowExecutions_200_response:
+      example:
+        executions:
+        - variables:
+            key: ""
+          completedAt: 2000-01-23T04:56:07.000+00:00
+          lastError: lastError
+          conversationId: conversationId
+          platformIdentifier: platformIdentifier
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          waitingFor:
+            kind: timer
+            nodeId: nodeId
+          currentNodeId: currentNodeId
+          id: id
+          resumeAt: 2000-01-23T04:56:07.000+00:00
+          stepCount: 0
+          status: running
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - variables:
+            key: ""
+          completedAt: 2000-01-23T04:56:07.000+00:00
+          lastError: lastError
+          conversationId: conversationId
+          platformIdentifier: platformIdentifier
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          waitingFor:
+            kind: timer
+            nodeId: nodeId
+          currentNodeId: currentNodeId
+          id: id
+          resumeAt: 2000-01-23T04:56:07.000+00:00
+          stepCount: 0
+          status: running
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        pagination:
+          total: 1
+          limit: 5
+          hasMore: true
+          skip: 5
+        success: true
+      properties:
+        success:
+          type: boolean
+        executions:
+          items:
+            $ref: "#/components/schemas/listWorkflowExecutions_200_response_executions_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listContacts_200_response_pagination"
+    triggerWorkflow_request:
+      description: Provide either `to` (WhatsApp phone) or `conversationId`.
+      properties:
+        to:
+          description: Recipient phone (WhatsApp only)
+          type: string
+        conversationId:
+          description: An existing conversation to run in (required for non-WhatsApp
+            workflows)
+          type: string
+        text:
+          description: Simulated inbound text
+          type: string
+    triggerWorkflow_200_response_execution:
+      example:
+        variables:
+          key: ""
+        waitingFor: "{}"
+        conversationId: conversationId
+        currentNodeId: currentNodeId
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        currentNodeId:
+          type: string
+        waitingFor:
+          type: object
+          nullable: true
+        variables:
+          additionalProperties: true
+          type: object
+        conversationId:
+          type: string
+      nullable: true
+    triggerWorkflow_200_response:
+      example:
+        execution:
+          variables:
+            key: ""
+          waitingFor: "{}"
+          conversationId: conversationId
+          currentNodeId: currentNodeId
+          id: id
+          status: status
+        success: true
+      properties:
+        success:
+          type: boolean
+        execution:
+          $ref: "#/components/schemas/triggerWorkflow_200_response_execution"
     listSequences_200_response_sequences_inner:
       example:
         exitOnUnsubscribe: true
@@ -48218,6 +49172,17 @@ components:
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
+    WorkflowNode_position:
+      description: Canvas coordinates (ignored by the executor; used by the future
+        visual builder).
+      example:
+        x: 0.8008281904610115
+        "y": 6.027456183070403
+      properties:
+        x:
+          type: number
+        "y":
+          type: number
     BulkUploadResult_results_inner:
       example:
         createdPostId: createdPostId

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignStatusRequest.JSON_PROPERTY_STATUS,
   UpdateAdCampaignStatusRequest.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T09:30:17.300455432Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T10:30:10.719815006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignStatusRequest {
   /**
    * Gets or Sets status
