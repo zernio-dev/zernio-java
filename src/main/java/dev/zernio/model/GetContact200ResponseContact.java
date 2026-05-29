@@ -44,13 +44,17 @@ import dev.zernio.ApiClient;
   GetContact200ResponseContact.JSON_PROPERTY_TAGS,
   GetContact200ResponseContact.JSON_PROPERTY_IS_SUBSCRIBED,
   GetContact200ResponseContact.JSON_PROPERTY_IS_BLOCKED,
+  GetContact200ResponseContact.JSON_PROPERTY_MESSAGES_SENT_COUNT,
+  GetContact200ResponseContact.JSON_PROPERTY_MESSAGES_RECEIVED_COUNT,
+  GetContact200ResponseContact.JSON_PROPERTY_LAST_MESSAGE_SENT_AT,
+  GetContact200ResponseContact.JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT,
   GetContact200ResponseContact.JSON_PROPERTY_CUSTOM_FIELDS,
   GetContact200ResponseContact.JSON_PROPERTY_NOTES,
   GetContact200ResponseContact.JSON_PROPERTY_CONVERSATION_IDS,
   GetContact200ResponseContact.JSON_PROPERTY_CREATED_AT,
   GetContact200ResponseContact.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T10:30:10.719815006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:22:11.387140670Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetContact200ResponseContact {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -83,6 +87,22 @@ public class GetContact200ResponseContact {
   public static final String JSON_PROPERTY_IS_BLOCKED = "isBlocked";
   @javax.annotation.Nullable
   private Boolean isBlocked;
+
+  public static final String JSON_PROPERTY_MESSAGES_SENT_COUNT = "messagesSentCount";
+  @javax.annotation.Nullable
+  private Integer messagesSentCount;
+
+  public static final String JSON_PROPERTY_MESSAGES_RECEIVED_COUNT = "messagesReceivedCount";
+  @javax.annotation.Nullable
+  private Integer messagesReceivedCount;
+
+  public static final String JSON_PROPERTY_LAST_MESSAGE_SENT_AT = "lastMessageSentAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime lastMessageSentAt;
+
+  public static final String JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT = "lastMessageReceivedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime lastMessageReceivedAt;
 
   public static final String JSON_PROPERTY_CUSTOM_FIELDS = "customFields";
   @javax.annotation.Nullable
@@ -307,6 +327,102 @@ public class GetContact200ResponseContact {
   }
 
 
+  public GetContact200ResponseContact messagesSentCount(@javax.annotation.Nullable Integer messagesSentCount) {
+    this.messagesSentCount = messagesSentCount;
+    return this;
+  }
+
+  /**
+   * Messages sent to the contact, derived live from message history across all linked conversations.
+   * @return messagesSentCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGES_SENT_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getMessagesSentCount() {
+    return messagesSentCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGES_SENT_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessagesSentCount(@javax.annotation.Nullable Integer messagesSentCount) {
+    this.messagesSentCount = messagesSentCount;
+  }
+
+
+  public GetContact200ResponseContact messagesReceivedCount(@javax.annotation.Nullable Integer messagesReceivedCount) {
+    this.messagesReceivedCount = messagesReceivedCount;
+    return this;
+  }
+
+  /**
+   * Messages received from the contact, derived live from message history across all linked conversations.
+   * @return messagesReceivedCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGES_RECEIVED_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getMessagesReceivedCount() {
+    return messagesReceivedCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGES_RECEIVED_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessagesReceivedCount(@javax.annotation.Nullable Integer messagesReceivedCount) {
+    this.messagesReceivedCount = messagesReceivedCount;
+  }
+
+
+  public GetContact200ResponseContact lastMessageSentAt(@javax.annotation.Nullable OffsetDateTime lastMessageSentAt) {
+    this.lastMessageSentAt = lastMessageSentAt;
+    return this;
+  }
+
+  /**
+   * Timestamp of the most recent outgoing message, or null if none.
+   * @return lastMessageSentAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_SENT_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getLastMessageSentAt() {
+    return lastMessageSentAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_SENT_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLastMessageSentAt(@javax.annotation.Nullable OffsetDateTime lastMessageSentAt) {
+    this.lastMessageSentAt = lastMessageSentAt;
+  }
+
+
+  public GetContact200ResponseContact lastMessageReceivedAt(@javax.annotation.Nullable OffsetDateTime lastMessageReceivedAt) {
+    this.lastMessageReceivedAt = lastMessageReceivedAt;
+    return this;
+  }
+
+  /**
+   * Timestamp of the most recent incoming message, or null if none.
+   * @return lastMessageReceivedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getLastMessageReceivedAt() {
+    return lastMessageReceivedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLastMessageReceivedAt(@javax.annotation.Nullable OffsetDateTime lastMessageReceivedAt) {
+    this.lastMessageReceivedAt = lastMessageReceivedAt;
+  }
+
+
   public GetContact200ResponseContact customFields(@javax.annotation.Nullable Object customFields) {
     this.customFields = customFields;
     return this;
@@ -455,6 +571,10 @@ public class GetContact200ResponseContact {
         Objects.equals(this.tags, getContact200ResponseContact.tags) &&
         Objects.equals(this.isSubscribed, getContact200ResponseContact.isSubscribed) &&
         Objects.equals(this.isBlocked, getContact200ResponseContact.isBlocked) &&
+        Objects.equals(this.messagesSentCount, getContact200ResponseContact.messagesSentCount) &&
+        Objects.equals(this.messagesReceivedCount, getContact200ResponseContact.messagesReceivedCount) &&
+        Objects.equals(this.lastMessageSentAt, getContact200ResponseContact.lastMessageSentAt) &&
+        Objects.equals(this.lastMessageReceivedAt, getContact200ResponseContact.lastMessageReceivedAt) &&
         Objects.equals(this.customFields, getContact200ResponseContact.customFields) &&
         Objects.equals(this.notes, getContact200ResponseContact.notes) &&
         Objects.equals(this.conversationIds, getContact200ResponseContact.conversationIds) &&
@@ -464,7 +584,7 @@ public class GetContact200ResponseContact {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, email, company, avatarUrl, tags, isSubscribed, isBlocked, customFields, notes, conversationIds, createdAt, updatedAt);
+    return Objects.hash(id, name, email, company, avatarUrl, tags, isSubscribed, isBlocked, messagesSentCount, messagesReceivedCount, lastMessageSentAt, lastMessageReceivedAt, customFields, notes, conversationIds, createdAt, updatedAt);
   }
 
   @Override
@@ -479,6 +599,10 @@ public class GetContact200ResponseContact {
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    isSubscribed: ").append(toIndentedString(isSubscribed)).append("\n");
     sb.append("    isBlocked: ").append(toIndentedString(isBlocked)).append("\n");
+    sb.append("    messagesSentCount: ").append(toIndentedString(messagesSentCount)).append("\n");
+    sb.append("    messagesReceivedCount: ").append(toIndentedString(messagesReceivedCount)).append("\n");
+    sb.append("    lastMessageSentAt: ").append(toIndentedString(lastMessageSentAt)).append("\n");
+    sb.append("    lastMessageReceivedAt: ").append(toIndentedString(lastMessageReceivedAt)).append("\n");
     sb.append("    customFields: ").append(toIndentedString(customFields)).append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    conversationIds: ").append(toIndentedString(conversationIds)).append("\n");
@@ -573,6 +697,26 @@ public class GetContact200ResponseContact {
     // add `isBlocked` to the URL query string
     if (getIsBlocked() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisBlocked%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBlocked()))));
+    }
+
+    // add `messagesSentCount` to the URL query string
+    if (getMessagesSentCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessagesSentCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessagesSentCount()))));
+    }
+
+    // add `messagesReceivedCount` to the URL query string
+    if (getMessagesReceivedCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessagesReceivedCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessagesReceivedCount()))));
+    }
+
+    // add `lastMessageSentAt` to the URL query string
+    if (getLastMessageSentAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastMessageSentAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastMessageSentAt()))));
+    }
+
+    // add `lastMessageReceivedAt` to the URL query string
+    if (getLastMessageReceivedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastMessageReceivedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastMessageReceivedAt()))));
     }
 
     // add `customFields` to the URL query string

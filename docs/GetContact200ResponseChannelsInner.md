@@ -14,6 +14,7 @@
 |**displayIdentifier** | **String** |  |  [optional] |
 |**isSubscribed** | **Boolean** |  |  [optional] |
 |**conversationId** | **String** |  |  [optional] |
+|**lastActiveAt** | **OffsetDateTime** | Most recent message (either direction) in this channel&#39;s conversation, or null if none. |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 
 

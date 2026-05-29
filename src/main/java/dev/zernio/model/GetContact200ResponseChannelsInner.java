@@ -41,9 +41,10 @@ import dev.zernio.ApiClient;
   GetContact200ResponseChannelsInner.JSON_PROPERTY_DISPLAY_IDENTIFIER,
   GetContact200ResponseChannelsInner.JSON_PROPERTY_IS_SUBSCRIBED,
   GetContact200ResponseChannelsInner.JSON_PROPERTY_CONVERSATION_ID,
+  GetContact200ResponseChannelsInner.JSON_PROPERTY_LAST_ACTIVE_AT,
   GetContact200ResponseChannelsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T10:30:10.719815006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:22:11.387140670Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetContact200ResponseChannelsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -72,6 +73,10 @@ public class GetContact200ResponseChannelsInner {
   public static final String JSON_PROPERTY_CONVERSATION_ID = "conversationId";
   @javax.annotation.Nullable
   private String conversationId;
+
+  public static final String JSON_PROPERTY_LAST_ACTIVE_AT = "lastActiveAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime lastActiveAt;
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -248,6 +253,30 @@ public class GetContact200ResponseChannelsInner {
   }
 
 
+  public GetContact200ResponseChannelsInner lastActiveAt(@javax.annotation.Nullable OffsetDateTime lastActiveAt) {
+    this.lastActiveAt = lastActiveAt;
+    return this;
+  }
+
+  /**
+   * Most recent message (either direction) in this channel&#39;s conversation, or null if none.
+   * @return lastActiveAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LAST_ACTIVE_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getLastActiveAt() {
+    return lastActiveAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_ACTIVE_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLastActiveAt(@javax.annotation.Nullable OffsetDateTime lastActiveAt) {
+    this.lastActiveAt = lastActiveAt;
+  }
+
+
   public GetContact200ResponseChannelsInner createdAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -291,12 +320,13 @@ public class GetContact200ResponseChannelsInner {
         Objects.equals(this.displayIdentifier, getContact200ResponseChannelsInner.displayIdentifier) &&
         Objects.equals(this.isSubscribed, getContact200ResponseChannelsInner.isSubscribed) &&
         Objects.equals(this.conversationId, getContact200ResponseChannelsInner.conversationId) &&
+        Objects.equals(this.lastActiveAt, getContact200ResponseChannelsInner.lastActiveAt) &&
         Objects.equals(this.createdAt, getContact200ResponseChannelsInner.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, platform, platformIdentifier, displayIdentifier, isSubscribed, conversationId, createdAt);
+    return Objects.hash(id, accountId, platform, platformIdentifier, displayIdentifier, isSubscribed, conversationId, lastActiveAt, createdAt);
   }
 
   @Override
@@ -310,6 +340,7 @@ public class GetContact200ResponseChannelsInner {
     sb.append("    displayIdentifier: ").append(toIndentedString(displayIdentifier)).append("\n");
     sb.append("    isSubscribed: ").append(toIndentedString(isSubscribed)).append("\n");
     sb.append("    conversationId: ").append(toIndentedString(conversationId)).append("\n");
+    sb.append("    lastActiveAt: ").append(toIndentedString(lastActiveAt)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -391,6 +422,11 @@ public class GetContact200ResponseChannelsInner {
     // add `conversationId` to the URL query string
     if (getConversationId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconversationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConversationId()))));
+    }
+
+    // add `lastActiveAt` to the URL query string
+    if (getLastActiveAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastActiveAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastActiveAt()))));
     }
 
     // add `createdAt` to the URL query string

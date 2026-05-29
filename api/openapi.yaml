@@ -41415,8 +41415,10 @@ components:
           type: string
     getContact_200_response_contact:
       example:
+        messagesReceivedCount: 6
         notes: notes
         avatarUrl: avatarUrl
+        lastMessageSentAt: 2000-01-23T04:56:07.000+00:00
         customFields: "{}"
         isBlocked: true
         tags:
@@ -41430,7 +41432,9 @@ components:
         name: name
         company: company
         id: id
+        lastMessageReceivedAt: 2000-01-23T04:56:07.000+00:00
         email: email
+        messagesSentCount: 0
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -41451,6 +41455,26 @@ components:
           type: boolean
         isBlocked:
           type: boolean
+        messagesSentCount:
+          description: "Messages sent to the contact, derived live from message history\
+            \ across all linked conversations."
+          type: integer
+        messagesReceivedCount:
+          description: "Messages received from the contact, derived live from message\
+            \ history across all linked conversations."
+          type: integer
+        lastMessageSentAt:
+          description: "Timestamp of the most recent outgoing message, or null if\
+            \ none."
+          format: date-time
+          type: string
+          nullable: true
+        lastMessageReceivedAt:
+          description: "Timestamp of the most recent incoming message, or null if\
+            \ none."
+          format: date-time
+          type: string
+          nullable: true
         customFields:
           type: object
         notes:
@@ -41467,6 +41491,7 @@ components:
           type: string
     getContact_200_response_channels_inner:
       example:
+        lastActiveAt: 2000-01-23T04:56:07.000+00:00
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
         isSubscribed: true
@@ -41490,13 +41515,20 @@ components:
           type: boolean
         conversationId:
           type: string
+        lastActiveAt:
+          description: "Most recent message (either direction) in this channel's conversation,\
+            \ or null if none."
+          format: date-time
+          type: string
+          nullable: true
         createdAt:
           format: date-time
           type: string
     getContact_200_response:
       example:
         channels:
-        - accountId: accountId
+        - lastActiveAt: 2000-01-23T04:56:07.000+00:00
+          accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           isSubscribed: true
           conversationId: conversationId
@@ -41504,7 +41536,8 @@ components:
           id: id
           platform: platform
           platformIdentifier: platformIdentifier
-        - accountId: accountId
+        - lastActiveAt: 2000-01-23T04:56:07.000+00:00
+          accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           isSubscribed: true
           conversationId: conversationId
@@ -41514,8 +41547,10 @@ components:
           platformIdentifier: platformIdentifier
         success: true
         contact:
+          messagesReceivedCount: 6
           notes: notes
           avatarUrl: avatarUrl
+          lastMessageSentAt: 2000-01-23T04:56:07.000+00:00
           customFields: "{}"
           isBlocked: true
           tags:
@@ -41529,7 +41564,9 @@ components:
           name: name
           company: company
           id: id
+          lastMessageReceivedAt: 2000-01-23T04:56:07.000+00:00
           email: email
+          messagesSentCount: 0
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         success:
