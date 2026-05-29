@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallEndedCall.JSON_PROPERTY_RECORDING_EXPIRES_AT,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_BILLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T09:18:01.699099909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T09:30:17.300455432Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallEndedCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

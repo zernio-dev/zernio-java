@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetInstagramStoryInsights200ResponseData.JSON_PROPERTY_SOURCE,
   GetInstagramStoryInsights200ResponseData.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T09:18:01.699099909Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T09:30:17.300455432Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInstagramStoryInsights200ResponseData {
   /**
    * Gets or Sets source
