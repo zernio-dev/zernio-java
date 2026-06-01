@@ -37,7 +37,10 @@ jobs:
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Publish
-        run: mvn --batch-mode --no-transfer-progress -P sign-artifacts -DskipTests deploy
+        # maven.test.skip (not skipTests) so the auto-generated, never-built test
+        # stubs are not even compiled — they lag the regenerated API signatures
+        # and generate.yml only ever runs `mvn compile`, so they have never built.
+        run: mvn --batch-mode --no-transfer-progress -P sign-artifacts -Dmaven.test.skip=true deploy
         env:
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
