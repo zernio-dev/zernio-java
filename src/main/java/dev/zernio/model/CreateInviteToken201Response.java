@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CreateInviteToken201Response.JSON_PROPERTY_EXPIRES_AT,
   CreateInviteToken201Response.JSON_PROPERTY_INVITE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:56:28.636382320Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInviteToken201Response {
   public static final String JSON_PROPERTY_TOKEN = "token";
   @javax.annotation.Nullable

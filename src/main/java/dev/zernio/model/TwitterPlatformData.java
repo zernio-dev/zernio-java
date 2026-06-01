@@ -39,17 +39,22 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   TwitterPlatformData.JSON_PROPERTY_REPLY_TO_TWEET_ID,
+  TwitterPlatformData.JSON_PROPERTY_QUOTE_TWEET_ID,
   TwitterPlatformData.JSON_PROPERTY_REPLY_SETTINGS,
   TwitterPlatformData.JSON_PROPERTY_THREAD_ITEMS,
   TwitterPlatformData.JSON_PROPERTY_POLL,
   TwitterPlatformData.JSON_PROPERTY_LONG_VIDEO,
   TwitterPlatformData.JSON_PROPERTY_GEO_RESTRICTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-05-29T16:56:28.636382320Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
   public static final String JSON_PROPERTY_REPLY_TO_TWEET_ID = "replyToTweetId";
   @javax.annotation.Nullable
   private String replyToTweetId;
+
+  public static final String JSON_PROPERTY_QUOTE_TWEET_ID = "quoteTweetId";
+  @javax.annotation.Nullable
+  private String quoteTweetId;
 
   /**
    * Controls who can reply to the tweet. \&quot;following\&quot; allows only people you follow, \&quot;mentionedUsers\&quot; allows only mentioned users, \&quot;subscribers\&quot; allows only subscribers, \&quot;verified\&quot; allows only verified users. Omit for default (everyone can reply). For threads, applies to the first tweet only. Cannot be combined with replyToTweetId.
@@ -134,6 +139,30 @@ public class TwitterPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReplyToTweetId(@javax.annotation.Nullable String replyToTweetId) {
     this.replyToTweetId = replyToTweetId;
+  }
+
+
+  public TwitterPlatformData quoteTweetId(@javax.annotation.Nullable String quoteTweetId) {
+    this.quoteTweetId = quoteTweetId;
+    return this;
+  }
+
+  /**
+   * ID (or full status URL) of an existing tweet to quote-repost. The published tweet becomes a quote tweet of the target. Mutually exclusive with media and poll. X only permits quoting your own posts or posts you are mentioned in / part of the conversation thread of; quoting an arbitrary other account&#39;s post is rejected by X. Billed at the standard create rate ($0.015), unlike pasting a tweet URL into the text which is billed at the URL rate ($0.20). For threads, applies to the first tweet only.
+   * @return quoteTweetId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUOTE_TWEET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQuoteTweetId() {
+    return quoteTweetId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUOTE_TWEET_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuoteTweetId(@javax.annotation.Nullable String quoteTweetId) {
+    this.quoteTweetId = quoteTweetId;
   }
 
 
@@ -278,6 +307,7 @@ public class TwitterPlatformData {
     }
     TwitterPlatformData twitterPlatformData = (TwitterPlatformData) o;
     return Objects.equals(this.replyToTweetId, twitterPlatformData.replyToTweetId) &&
+        Objects.equals(this.quoteTweetId, twitterPlatformData.quoteTweetId) &&
         Objects.equals(this.replySettings, twitterPlatformData.replySettings) &&
         Objects.equals(this.threadItems, twitterPlatformData.threadItems) &&
         Objects.equals(this.poll, twitterPlatformData.poll) &&
@@ -287,7 +317,7 @@ public class TwitterPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(replyToTweetId, replySettings, threadItems, poll, longVideo, geoRestriction);
+    return Objects.hash(replyToTweetId, quoteTweetId, replySettings, threadItems, poll, longVideo, geoRestriction);
   }
 
   @Override
@@ -295,6 +325,7 @@ public class TwitterPlatformData {
     StringBuilder sb = new StringBuilder();
     sb.append("class TwitterPlatformData {\n");
     sb.append("    replyToTweetId: ").append(toIndentedString(replyToTweetId)).append("\n");
+    sb.append("    quoteTweetId: ").append(toIndentedString(quoteTweetId)).append("\n");
     sb.append("    replySettings: ").append(toIndentedString(replySettings)).append("\n");
     sb.append("    threadItems: ").append(toIndentedString(threadItems)).append("\n");
     sb.append("    poll: ").append(toIndentedString(poll)).append("\n");
@@ -350,6 +381,11 @@ public class TwitterPlatformData {
     // add `replyToTweetId` to the URL query string
     if (getReplyToTweetId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreplyToTweetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReplyToTweetId()))));
+    }
+
+    // add `quoteTweetId` to the URL query string
+    if (getQuoteTweetId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squoteTweetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQuoteTweetId()))));
     }
 
     // add `replySettings` to the URL query string
