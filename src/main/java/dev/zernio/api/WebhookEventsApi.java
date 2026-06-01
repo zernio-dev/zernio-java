@@ -18,6 +18,9 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.OnWhatsAppNumberActivatedRequest;
+import dev.zernio.model.OnWhatsAppNumberDeclinedRequest;
+import dev.zernio.model.OnWhatsAppNumberVerificationRequiredRequest;
 import dev.zernio.model.WebhookPayloadAccountAdsInitialSyncCompleted;
 import dev.zernio.model.WebhookPayloadAccountConnected;
 import dev.zernio.model.WebhookPayloadAccountDisconnected;
@@ -73,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3445,6 +3448,333 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadTest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number activated event
+   * Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+   * @param onWhatsAppNumberActivatedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberActivated(@javax.annotation.Nonnull OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest) throws ApiException {
+    onWhatsAppNumberActivated(onWhatsAppNumberActivatedRequest, null);
+  }
+
+  /**
+   * WhatsApp number activated event
+   * Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+   * @param onWhatsAppNumberActivatedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberActivated(@javax.annotation.Nonnull OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberActivatedWithHttpInfo(onWhatsAppNumberActivatedRequest, headers);
+  }
+
+  /**
+   * WhatsApp number activated event
+   * Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+   * @param onWhatsAppNumberActivatedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberActivatedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest) throws ApiException {
+    return onWhatsAppNumberActivatedWithHttpInfo(onWhatsAppNumberActivatedRequest, null);
+  }
+
+  /**
+   * WhatsApp number activated event
+   * Fired when a purchased WhatsApp number becomes active and usable — both the synchronous (Tier 1/2) path and the asynchronous regulated (Tier 3/4) path land here. Lets integrators react without polling GET /v1/whatsapp/phone-numbers. 
+   * @param onWhatsAppNumberActivatedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberActivatedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberActivatedRequestBuilder(onWhatsAppNumberActivatedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberActivated", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberActivatedRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberActivatedRequest onWhatsAppNumberActivatedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberActivatedRequest' is set
+    if (onWhatsAppNumberActivatedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberActivatedRequest' when calling onWhatsAppNumberActivated");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.activated";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberActivatedRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number declined event
+   * Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+   * @param onWhatsAppNumberDeclinedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberDeclined(@javax.annotation.Nonnull OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest) throws ApiException {
+    onWhatsAppNumberDeclined(onWhatsAppNumberDeclinedRequest, null);
+  }
+
+  /**
+   * WhatsApp number declined event
+   * Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+   * @param onWhatsAppNumberDeclinedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberDeclined(@javax.annotation.Nonnull OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberDeclinedWithHttpInfo(onWhatsAppNumberDeclinedRequest, headers);
+  }
+
+  /**
+   * WhatsApp number declined event
+   * Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+   * @param onWhatsAppNumberDeclinedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberDeclinedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest) throws ApiException {
+    return onWhatsAppNumberDeclinedWithHttpInfo(onWhatsAppNumberDeclinedRequest, null);
+  }
+
+  /**
+   * WhatsApp number declined event
+   * Fired when a regulated (Tier 3/4) number order is declined or fails review. The number is never billed. &#x60;reason&#x60; carries the reviewer&#39;s rejection reason when available. 
+   * @param onWhatsAppNumberDeclinedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberDeclinedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberDeclinedRequestBuilder(onWhatsAppNumberDeclinedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberDeclined", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberDeclinedRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberDeclinedRequest onWhatsAppNumberDeclinedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberDeclinedRequest' is set
+    if (onWhatsAppNumberDeclinedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberDeclinedRequest' when calling onWhatsAppNumberDeclined");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.declined";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberDeclinedRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number verification-required event
+   * Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+   * @param onWhatsAppNumberVerificationRequiredRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberVerificationRequired(@javax.annotation.Nonnull OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest) throws ApiException {
+    onWhatsAppNumberVerificationRequired(onWhatsAppNumberVerificationRequiredRequest, null);
+  }
+
+  /**
+   * WhatsApp number verification-required event
+   * Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+   * @param onWhatsAppNumberVerificationRequiredRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberVerificationRequired(@javax.annotation.Nonnull OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberVerificationRequiredWithHttpInfo(onWhatsAppNumberVerificationRequiredRequest, headers);
+  }
+
+  /**
+   * WhatsApp number verification-required event
+   * Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+   * @param onWhatsAppNumberVerificationRequiredRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberVerificationRequiredWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest) throws ApiException {
+    return onWhatsAppNumberVerificationRequiredWithHttpInfo(onWhatsAppNumberVerificationRequiredRequest, null);
+  }
+
+  /**
+   * WhatsApp number verification-required event
+   * Fired when a regulated number has an out-of-band identity-verification step (e.g. Onfido). &#x60;verificationUrl&#x60; is the link to forward to the number&#39;s end user; the order completes once they pass. 
+   * @param onWhatsAppNumberVerificationRequiredRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberVerificationRequiredWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberVerificationRequiredRequestBuilder(onWhatsAppNumberVerificationRequiredRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberVerificationRequired", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberVerificationRequiredRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberVerificationRequiredRequest onWhatsAppNumberVerificationRequiredRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberVerificationRequiredRequest' is set
+    if (onWhatsAppNumberVerificationRequiredRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberVerificationRequiredRequest' when calling onWhatsAppNumberVerificationRequired");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.verification_required";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberVerificationRequiredRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateWhatsAppDisplayName200Response.JSON_PROPERTY_MESSAGE,
   UpdateWhatsAppDisplayName200Response.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWhatsAppDisplayName200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

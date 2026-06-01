@@ -19,13 +19,19 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.GetWhatsAppNumberInfo200Response;
+import dev.zernio.model.GetWhatsAppNumberKycForm200Response;
 import dev.zernio.model.GetWhatsAppPhoneNumber200Response;
 import dev.zernio.model.GetWhatsAppPhoneNumbers200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListWhatsAppNumberCountries200Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200Response;
+import dev.zernio.model.PurchaseWhatsAppPhoneNumber202Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumberRequest;
 import dev.zernio.model.ReleaseWhatsAppPhoneNumber200Response;
+import dev.zernio.model.SearchAvailableWhatsAppNumbers200Response;
+import dev.zernio.model.SubmitWhatsAppNumberKyc200Response;
+import dev.zernio.model.SubmitWhatsAppNumberKycRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -308,8 +314,150 @@ public class WhatsAppPhoneNumbersApi {
   }
 
   /**
+   * Get regulated-number KYC form spec
+   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * @param country  (required)
+   * @param profileId  (required)
+   * @return GetWhatsAppNumberKycForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppNumberKycForm200Response getWhatsAppNumberKycForm(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId) throws ApiException {
+    return getWhatsAppNumberKycForm(country, profileId, null);
+  }
+
+  /**
+   * Get regulated-number KYC form spec
+   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * @param country  (required)
+   * @param profileId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppNumberKycForm200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppNumberKycForm200Response getWhatsAppNumberKycForm(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppNumberKycForm200Response> localVarResponse = getWhatsAppNumberKycFormWithHttpInfo(country, profileId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get regulated-number KYC form spec
+   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * @param country  (required)
+   * @param profileId  (required)
+   * @return ApiResponse&lt;GetWhatsAppNumberKycForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppNumberKycForm200Response> getWhatsAppNumberKycFormWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId) throws ApiException {
+    return getWhatsAppNumberKycFormWithHttpInfo(country, profileId, null);
+  }
+
+  /**
+   * Get regulated-number KYC form spec
+   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * @param country  (required)
+   * @param profileId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppNumberKycForm200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppNumberKycForm200Response> getWhatsAppNumberKycFormWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppNumberKycFormRequestBuilder(country, profileId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppNumberKycForm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppNumberKycForm200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppNumberKycForm200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppNumberKycForm200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppNumberKycForm200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppNumberKycFormRequestBuilder(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'country' is set
+    if (country == null) {
+      throw new ApiException(400, "Missing the required parameter 'country' when calling getWhatsAppNumberKycForm");
+    }
+    // verify the required parameter 'profileId' is set
+    if (profileId == null) {
+      throw new ApiException(400, "Missing the required parameter 'profileId' when calling getWhatsAppNumberKycForm");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/kyc";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "country";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("country", country));
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
    * @return GetWhatsAppPhoneNumber200Response
    * @throws ApiException if fails to make API call
@@ -320,7 +468,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppPhoneNumber200Response
@@ -333,7 +481,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
    * @return ApiResponse&lt;GetWhatsAppPhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
@@ -344,7 +492,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Used to poll for Meta pre-verification completion after purchase. 
+   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppPhoneNumber200Response&gt;
@@ -544,6 +692,115 @@ public class WhatsAppPhoneNumbersApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List offerable number countries
+   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * @return ListWhatsAppNumberCountries200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppNumberCountries200Response listWhatsAppNumberCountries() throws ApiException {
+    return listWhatsAppNumberCountries(null);
+  }
+
+  /**
+   * List offerable number countries
+   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * @param headers Optional headers to include in the request
+   * @return ListWhatsAppNumberCountries200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWhatsAppNumberCountries200Response listWhatsAppNumberCountries(Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWhatsAppNumberCountries200Response> localVarResponse = listWhatsAppNumberCountriesWithHttpInfo(headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List offerable number countries
+   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * @return ApiResponse&lt;ListWhatsAppNumberCountries200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppNumberCountries200Response> listWhatsAppNumberCountriesWithHttpInfo() throws ApiException {
+    return listWhatsAppNumberCountriesWithHttpInfo(null);
+  }
+
+  /**
+   * List offerable number countries
+   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListWhatsAppNumberCountries200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWhatsAppNumberCountries200Response> listWhatsAppNumberCountriesWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWhatsAppNumberCountriesRequestBuilder(headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWhatsAppNumberCountries", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListWhatsAppNumberCountries200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListWhatsAppNumberCountries200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWhatsAppNumberCountries200Response>() {});
+        
+
+        return new ApiResponse<ListWhatsAppNumberCountries200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWhatsAppNumberCountriesRequestBuilder(Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/countries";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -789,6 +1046,287 @@ public class WhatsAppPhoneNumbersApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Search available numbers to purchase
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * @param country  (optional, default to US)
+   * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
+   * @param prefix Area code (optional)
+   * @param locality City (optional)
+   * @param contains Pattern to match within the number (optional)
+   * @param limit  (optional, default to 20)
+   * @return SearchAvailableWhatsAppNumbers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchAvailableWhatsAppNumbers200Response searchAvailableWhatsAppNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchAvailableWhatsAppNumbers(country, type, prefix, locality, contains, limit, null);
+  }
+
+  /**
+   * Search available numbers to purchase
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * @param country  (optional, default to US)
+   * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
+   * @param prefix Area code (optional)
+   * @param locality City (optional)
+   * @param contains Pattern to match within the number (optional)
+   * @param limit  (optional, default to 20)
+   * @param headers Optional headers to include in the request
+   * @return SearchAvailableWhatsAppNumbers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchAvailableWhatsAppNumbers200Response searchAvailableWhatsAppNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchAvailableWhatsAppNumbers200Response> localVarResponse = searchAvailableWhatsAppNumbersWithHttpInfo(country, type, prefix, locality, contains, limit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Search available numbers to purchase
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * @param country  (optional, default to US)
+   * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
+   * @param prefix Area code (optional)
+   * @param locality City (optional)
+   * @param contains Pattern to match within the number (optional)
+   * @param limit  (optional, default to 20)
+   * @return ApiResponse&lt;SearchAvailableWhatsAppNumbers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchAvailableWhatsAppNumbers200Response> searchAvailableWhatsAppNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return searchAvailableWhatsAppNumbersWithHttpInfo(country, type, prefix, locality, contains, limit, null);
+  }
+
+  /**
+   * Search available numbers to purchase
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * @param country  (optional, default to US)
+   * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
+   * @param prefix Area code (optional)
+   * @param locality City (optional)
+   * @param contains Pattern to match within the number (optional)
+   * @param limit  (optional, default to 20)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SearchAvailableWhatsAppNumbers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchAvailableWhatsAppNumbers200Response> searchAvailableWhatsAppNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchAvailableWhatsAppNumbersRequestBuilder(country, type, prefix, locality, contains, limit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchAvailableWhatsAppNumbers", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SearchAvailableWhatsAppNumbers200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SearchAvailableWhatsAppNumbers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchAvailableWhatsAppNumbers200Response>() {});
+        
+
+        return new ApiResponse<SearchAvailableWhatsAppNumbers200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchAvailableWhatsAppNumbersRequestBuilder(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/available";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "country";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("country", country));
+    localVarQueryParameterBaseName = "type";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("type", type));
+    localVarQueryParameterBaseName = "prefix";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("prefix", prefix));
+    localVarQueryParameterBaseName = "locality";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("locality", locality));
+    localVarQueryParameterBaseName = "contains";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("contains", contains));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Submit regulated-number KYC
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+   * @param submitWhatsAppNumberKycRequest  (required)
+   * @return SubmitWhatsAppNumberKyc200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SubmitWhatsAppNumberKyc200Response submitWhatsAppNumberKyc(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest) throws ApiException {
+    return submitWhatsAppNumberKyc(submitWhatsAppNumberKycRequest, null);
+  }
+
+  /**
+   * Submit regulated-number KYC
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+   * @param submitWhatsAppNumberKycRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return SubmitWhatsAppNumberKyc200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SubmitWhatsAppNumberKyc200Response submitWhatsAppNumberKyc(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<SubmitWhatsAppNumberKyc200Response> localVarResponse = submitWhatsAppNumberKycWithHttpInfo(submitWhatsAppNumberKycRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Submit regulated-number KYC
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+   * @param submitWhatsAppNumberKycRequest  (required)
+   * @return ApiResponse&lt;SubmitWhatsAppNumberKyc200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SubmitWhatsAppNumberKyc200Response> submitWhatsAppNumberKycWithHttpInfo(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest) throws ApiException {
+    return submitWhatsAppNumberKycWithHttpInfo(submitWhatsAppNumberKycRequest, null);
+  }
+
+  /**
+   * Submit regulated-number KYC
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+   * @param submitWhatsAppNumberKycRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SubmitWhatsAppNumberKyc200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SubmitWhatsAppNumberKyc200Response> submitWhatsAppNumberKycWithHttpInfo(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = submitWhatsAppNumberKycRequestBuilder(submitWhatsAppNumberKycRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("submitWhatsAppNumberKyc", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SubmitWhatsAppNumberKyc200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SubmitWhatsAppNumberKyc200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SubmitWhatsAppNumberKyc200Response>() {});
+        
+
+        return new ApiResponse<SubmitWhatsAppNumberKyc200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder submitWhatsAppNumberKycRequestBuilder(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'submitWhatsAppNumberKycRequest' is set
+    if (submitWhatsAppNumberKycRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'submitWhatsAppNumberKycRequest' when calling submitWhatsAppNumberKyc");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/kyc";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(submitWhatsAppNumberKycRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

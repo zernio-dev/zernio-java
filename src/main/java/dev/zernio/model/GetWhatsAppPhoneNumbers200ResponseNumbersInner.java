@@ -38,13 +38,18 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PHONE_NUMBER,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_COUNTRY,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_STATUS,
+  GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_MONTHLY_CENTS,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PROFILE_ID,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PROVISIONED_AT,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_META_PREVERIFIED_ID,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_META_VERIFICATION_STATUS,
+  GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_ONFIDO_VERIFICATION_URL,
+  GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_END_USER_FIRST_NAME,
+  GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_END_USER_LAST_NAME,
+  GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_REGULATORY_DECLINE_REASON,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -63,6 +68,10 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
    */
   public enum StatusEnum {
     PENDING_PAYMENT(String.valueOf("pending_payment")),
+    
+    PENDING_REGULATORY(String.valueOf("pending_regulatory")),
+    
+    REGULATORY_DECLINED(String.valueOf("regulatory_declined")),
     
     PROVISIONING(String.valueOf("provisioning")),
     
@@ -105,6 +114,10 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   @javax.annotation.Nullable
   private StatusEnum status;
 
+  public static final String JSON_PROPERTY_MONTHLY_CENTS = "monthlyCents";
+  @javax.annotation.Nullable
+  private Integer monthlyCents;
+
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nullable
   private Object profileId;
@@ -120,6 +133,22 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_META_VERIFICATION_STATUS = "metaVerificationStatus";
   @javax.annotation.Nullable
   private String metaVerificationStatus;
+
+  public static final String JSON_PROPERTY_ONFIDO_VERIFICATION_URL = "onfidoVerificationUrl";
+  @javax.annotation.Nullable
+  private String onfidoVerificationUrl;
+
+  public static final String JSON_PROPERTY_END_USER_FIRST_NAME = "endUserFirstName";
+  @javax.annotation.Nullable
+  private String endUserFirstName;
+
+  public static final String JSON_PROPERTY_END_USER_LAST_NAME = "endUserLastName";
+  @javax.annotation.Nullable
+  private String endUserLastName;
+
+  public static final String JSON_PROPERTY_REGULATORY_DECLINE_REASON = "regulatoryDeclineReason";
+  @javax.annotation.Nullable
+  private String regulatoryDeclineReason;
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -224,6 +253,30 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   }
 
 
+  public GetWhatsAppPhoneNumbers200ResponseNumbersInner monthlyCents(@javax.annotation.Nullable Integer monthlyCents) {
+    this.monthlyCents = monthlyCents;
+    return this;
+  }
+
+  /**
+   * Per-country monthly price in cents ($2..$25).
+   * @return monthlyCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MONTHLY_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getMonthlyCents() {
+    return monthlyCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MONTHLY_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMonthlyCents(@javax.annotation.Nullable Integer monthlyCents) {
+    this.monthlyCents = monthlyCents;
+  }
+
+
   public GetWhatsAppPhoneNumbers200ResponseNumbersInner profileId(@javax.annotation.Nullable Object profileId) {
     this.profileId = profileId;
     return this;
@@ -320,6 +373,102 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   }
 
 
+  public GetWhatsAppPhoneNumbers200ResponseNumbersInner onfidoVerificationUrl(@javax.annotation.Nullable String onfidoVerificationUrl) {
+    this.onfidoVerificationUrl = onfidoVerificationUrl;
+    return this;
+  }
+
+  /**
+   * For regulated (Tier 3/4) numbers with an Onfido ID-verification step — the link to forward to the end user. Set once the order is placed; null otherwise. Poll this field after submitting KYC.
+   * @return onfidoVerificationUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ONFIDO_VERIFICATION_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOnfidoVerificationUrl() {
+    return onfidoVerificationUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ONFIDO_VERIFICATION_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOnfidoVerificationUrl(@javax.annotation.Nullable String onfidoVerificationUrl) {
+    this.onfidoVerificationUrl = onfidoVerificationUrl;
+  }
+
+
+  public GetWhatsAppPhoneNumbers200ResponseNumbersInner endUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
+    this.endUserFirstName = endUserFirstName;
+    return this;
+  }
+
+  /**
+   * Get endUserFirstName
+   * @return endUserFirstName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_END_USER_FIRST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEndUserFirstName() {
+    return endUserFirstName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_END_USER_FIRST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEndUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
+    this.endUserFirstName = endUserFirstName;
+  }
+
+
+  public GetWhatsAppPhoneNumbers200ResponseNumbersInner endUserLastName(@javax.annotation.Nullable String endUserLastName) {
+    this.endUserLastName = endUserLastName;
+    return this;
+  }
+
+  /**
+   * Get endUserLastName
+   * @return endUserLastName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_END_USER_LAST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEndUserLastName() {
+    return endUserLastName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_END_USER_LAST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEndUserLastName(@javax.annotation.Nullable String endUserLastName) {
+    this.endUserLastName = endUserLastName;
+  }
+
+
+  public GetWhatsAppPhoneNumbers200ResponseNumbersInner regulatoryDeclineReason(@javax.annotation.Nullable String regulatoryDeclineReason) {
+    this.regulatoryDeclineReason = regulatoryDeclineReason;
+    return this;
+  }
+
+  /**
+   * Reviewer rejection reason when status is regulatory_declined.
+   * @return regulatoryDeclineReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGULATORY_DECLINE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRegulatoryDeclineReason() {
+    return regulatoryDeclineReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGULATORY_DECLINE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegulatoryDeclineReason(@javax.annotation.Nullable String regulatoryDeclineReason) {
+    this.regulatoryDeclineReason = regulatoryDeclineReason;
+  }
+
+
   public GetWhatsAppPhoneNumbers200ResponseNumbersInner createdAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -360,16 +509,21 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
         Objects.equals(this.phoneNumber, getWhatsAppPhoneNumbers200ResponseNumbersInner.phoneNumber) &&
         Objects.equals(this.country, getWhatsAppPhoneNumbers200ResponseNumbersInner.country) &&
         Objects.equals(this.status, getWhatsAppPhoneNumbers200ResponseNumbersInner.status) &&
+        Objects.equals(this.monthlyCents, getWhatsAppPhoneNumbers200ResponseNumbersInner.monthlyCents) &&
         Objects.equals(this.profileId, getWhatsAppPhoneNumbers200ResponseNumbersInner.profileId) &&
         Objects.equals(this.provisionedAt, getWhatsAppPhoneNumbers200ResponseNumbersInner.provisionedAt) &&
         Objects.equals(this.metaPreverifiedId, getWhatsAppPhoneNumbers200ResponseNumbersInner.metaPreverifiedId) &&
         Objects.equals(this.metaVerificationStatus, getWhatsAppPhoneNumbers200ResponseNumbersInner.metaVerificationStatus) &&
+        Objects.equals(this.onfidoVerificationUrl, getWhatsAppPhoneNumbers200ResponseNumbersInner.onfidoVerificationUrl) &&
+        Objects.equals(this.endUserFirstName, getWhatsAppPhoneNumbers200ResponseNumbersInner.endUserFirstName) &&
+        Objects.equals(this.endUserLastName, getWhatsAppPhoneNumbers200ResponseNumbersInner.endUserLastName) &&
+        Objects.equals(this.regulatoryDeclineReason, getWhatsAppPhoneNumbers200ResponseNumbersInner.regulatoryDeclineReason) &&
         Objects.equals(this.createdAt, getWhatsAppPhoneNumbers200ResponseNumbersInner.createdAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, country, status, profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, createdAt);
+    return Objects.hash(id, phoneNumber, country, status, monthlyCents, profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, onfidoVerificationUrl, endUserFirstName, endUserLastName, regulatoryDeclineReason, createdAt);
   }
 
   @Override
@@ -380,10 +534,15 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    monthlyCents: ").append(toIndentedString(monthlyCents)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    provisionedAt: ").append(toIndentedString(provisionedAt)).append("\n");
     sb.append("    metaPreverifiedId: ").append(toIndentedString(metaPreverifiedId)).append("\n");
     sb.append("    metaVerificationStatus: ").append(toIndentedString(metaVerificationStatus)).append("\n");
+    sb.append("    onfidoVerificationUrl: ").append(toIndentedString(onfidoVerificationUrl)).append("\n");
+    sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
+    sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
+    sb.append("    regulatoryDeclineReason: ").append(toIndentedString(regulatoryDeclineReason)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -452,6 +611,11 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
+    // add `monthlyCents` to the URL query string
+    if (getMonthlyCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smonthlyCents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMonthlyCents()))));
+    }
+
     // add `profileId` to the URL query string
     if (getProfileId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
@@ -470,6 +634,26 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
     // add `metaVerificationStatus` to the URL query string
     if (getMetaVerificationStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smetaVerificationStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMetaVerificationStatus()))));
+    }
+
+    // add `onfidoVerificationUrl` to the URL query string
+    if (getOnfidoVerificationUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sonfidoVerificationUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOnfidoVerificationUrl()))));
+    }
+
+    // add `endUserFirstName` to the URL query string
+    if (getEndUserFirstName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sendUserFirstName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndUserFirstName()))));
+    }
+
+    // add `endUserLastName` to the URL query string
+    if (getEndUserLastName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sendUserLastName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndUserLastName()))));
+    }
+
+    // add `regulatoryDeclineReason` to the URL query string
+    if (getRegulatoryDeclineReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sregulatoryDeclineReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRegulatoryDeclineReason()))));
     }
 
     // add `createdAt` to the URL query string

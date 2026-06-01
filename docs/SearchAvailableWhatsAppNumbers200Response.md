@@ -7,7 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**numbers** | **List&lt;Object&gt;** |  |  [optional] |
+|**country** | **String** |  |  [optional] |
+|**numberType** | **String** |  |  [optional] |
+|**numbers** | [**List&lt;SearchAvailableWhatsAppNumbers200ResponseNumbersInner&gt;**](SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md) |  |  [optional] |
 
 
 

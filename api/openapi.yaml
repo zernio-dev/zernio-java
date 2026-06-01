@@ -171,7 +171,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.verification_required, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -13410,6 +13410,9 @@ paths:
         schema:
           enum:
           - provisioning
+          - pending_payment
+          - pending_regulatory
+          - regulatory_declined
           - active
           - suspended
           - releasing
@@ -13454,6 +13457,7 @@ paths:
           application/json:
             example:
               profileId: 507f1f77bcf86cd799439011
+              country: DE
             schema:
               $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_request"
         required: true
@@ -13466,14 +13470,202 @@ paths:
           description: |
             Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).
         "400":
-          description: Plan limit reached or profileId required
+          description: Plan limit reached
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: A paid plan is required
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_202_response"
+          description: Country requires end-user KYC before the number can be ordered.
+        "402":
+          description: "Payment method required (Metronome user with no card on file).\
+            \ Response body carries code: PAYMENT_REQUIRED; add a card, then retry."
+        "422":
+          description: "International numbers require usage-based billing (legacy\
+            \ Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED."
       security:
       - bearerAuth: []
       summary: Purchase phone number
+      tags:
+      - WhatsApp Phone Numbers
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/whatsapp/phone-numbers/countries:
+    get:
+      description: |
+        The WhatsApp number countries available to purchase, each with its flat
+        monthly price (cents), regulatory tier, whether it needs end-user KYC
+        (Tier 3/4), and whether outbound calling is available (not BIC-blocked).
+        Drives the country picker. Tier-4 countries appear only when enabled.
+      operationId: listWhatsAppNumberCountries
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppNumberCountries_200_response"
+          description: "Offerable countries, cheapest first."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List offerable number countries
+      tags:
+      - WhatsApp Phone Numbers
+      x-accepts:
+      - application/json
+  /v1/whatsapp/phone-numbers/available:
+    get:
+      description: |
+        Search the provider's inventory for numbers available to purchase in a
+        country (default US). Optional filters narrow the results. The country
+        must be offerable (see GET /v1/whatsapp/phone-numbers/countries).
+      operationId: searchAvailableWhatsAppNumbers
+      parameters:
+      - explode: true
+        in: query
+        name: country
+        required: false
+        schema:
+          default: US
+          type: string
+        style: form
+      - description: Number type; defaults to the country's WhatsApp-safe type
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Area code
+        explode: true
+        in: query
+        name: prefix
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: City
+        explode: true
+        in: query
+        name: locality
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Pattern to match within the number
+        explode: true
+        in: query
+        name: contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/searchAvailableWhatsAppNumbers_200_response"
+          description: Available numbers.
+        "400":
+          description: Country not available
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Search available numbers to purchase
+      tags:
+      - WhatsApp Phone Numbers
+      x-accepts:
+      - application/json
+  /v1/whatsapp/phone-numbers/kyc:
+    get:
+      description: |
+        For a Tier 3/4 country, the fields the end customer must provide (Telnyx
+        regulatory requirements) before a number can be ordered: text, date,
+        address, or file (document) per requirement.
+      operationId: getWhatsAppNumberKycForm
+      parameters:
+      - explode: true
+        in: query
+        name: country
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response"
+          description: The KYC form spec.
+        "400":
+          description: Country not available
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Get regulated-number KYC form spec
+      tags:
+      - WhatsApp Phone Numbers
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Submit the end customer's KYC (textual values, uploaded documents,
+        address) for a Tier 3/4 country. Documents are streamed straight to the
+        number provider and are not stored by Zernio. Builds + submits a
+        regulatory requirement group and claims a pending_regulatory slot; the
+        number is ordered + activated once the provider approves (asynchronous).
+        Idempotent per (owner, country).
+      operationId: submitWhatsAppNumberKyc
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/submitWhatsAppNumberKyc_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response"
+          description: KYC submitted (or already submitted); number pending review.
+        "400":
+          description: Validation error (e.g. address not in-country
+        "409":
+          description: reuse requested but no prior approved verification exists for
+            this country
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Submit regulated-number KYC
       tags:
       - WhatsApp Phone Numbers
       x-content-type: application/json
@@ -13519,8 +13711,13 @@ paths:
       - application/json
     get:
       description: |
-        Retrieve the current status of a purchased phone number. Used to poll for
-        Meta pre-verification completion after purchase.
+        Retrieve the current status of a purchased phone number. Poll this to
+        track Meta pre-verification (US sync path) and, for regulated (Tier 3/4)
+        numbers, the async lifecycle: pending_regulatory → active (or
+        regulatory_declined). When a regulated number has an Onfido ID step,
+        `onfidoVerificationUrl` appears here once the order is placed — forward
+        it to the end user. (Or subscribe to the whatsapp.number.* webhooks
+        instead of polling.)
       operationId: getWhatsAppPhoneNumber
       parameters:
       - description: Phone number record ID
@@ -21282,6 +21479,9 @@ components:
             - review.updated
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.number.activated
+            - whatsapp.number.declined
+            - whatsapp.number.verification_required
             type: string
           type: array
         isActive:
@@ -36175,6 +36375,9 @@ components:
             - review.updated
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.number.activated
+            - whatsapp.number.declined
+            - whatsapp.number.verification_required
             type: string
           minItems: 1
           type: array
@@ -36250,6 +36453,9 @@ components:
             - review.updated
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.number.activated
+            - whatsapp.number.declined
+            - whatsapp.number.verification_required
             type: string
           minItems: 1
           type: array
@@ -40124,14 +40330,19 @@ components:
           type: boolean
     getWhatsAppPhoneNumbers_200_response_numbers_inner:
       example:
-        metaPreverifiedId: metaPreverifiedId
         country: country
+        endUserFirstName: endUserFirstName
+        regulatoryDeclineReason: regulatoryDeclineReason
+        provisionedAt: 2000-01-23T04:56:07.000+00:00
+        metaVerificationStatus: metaVerificationStatus
+        monthlyCents: 0
+        metaPreverifiedId: metaPreverifiedId
         createdAt: 2000-01-23T04:56:07.000+00:00
         phoneNumber: phoneNumber
+        endUserLastName: endUserLastName
         profileId: "{}"
-        provisionedAt: 2000-01-23T04:56:07.000+00:00
+        onfidoVerificationUrl: onfidoVerificationUrl
         _id: _id
-        metaVerificationStatus: metaVerificationStatus
         status: pending_payment
       properties:
         _id:
@@ -40143,12 +40354,17 @@ components:
         status:
           enum:
           - pending_payment
+          - pending_regulatory
+          - regulatory_declined
           - provisioning
           - active
           - suspended
           - releasing
           - released
           type: string
+        monthlyCents:
+          description: Per-country monthly price in cents ($2..$25).
+          type: integer
         profileId:
           type: object
         provisionedAt:
@@ -40158,6 +40374,22 @@ components:
           type: string
         metaVerificationStatus:
           type: string
+        onfidoVerificationUrl:
+          description: For regulated (Tier 3/4) numbers with an Onfido ID-verification
+            step — the link to forward to the end user. Set once the order is placed;
+            null otherwise. Poll this field after submitting KYC.
+          type: string
+          nullable: true
+        endUserFirstName:
+          type: string
+          nullable: true
+        endUserLastName:
+          type: string
+          nullable: true
+        regulatoryDeclineReason:
+          description: Reviewer rejection reason when status is regulatory_declined.
+          type: string
+          nullable: true
         createdAt:
           format: date-time
           type: string
@@ -40202,23 +40434,33 @@ components:
     getWhatsAppPhoneNumbers_200_response:
       example:
         numbers:
-        - metaPreverifiedId: metaPreverifiedId
-          country: country
+        - country: country
+          endUserFirstName: endUserFirstName
+          regulatoryDeclineReason: regulatoryDeclineReason
+          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          metaVerificationStatus: metaVerificationStatus
+          monthlyCents: 0
+          metaPreverifiedId: metaPreverifiedId
           createdAt: 2000-01-23T04:56:07.000+00:00
           phoneNumber: phoneNumber
+          endUserLastName: endUserLastName
           profileId: "{}"
-          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          onfidoVerificationUrl: onfidoVerificationUrl
           _id: _id
-          metaVerificationStatus: metaVerificationStatus
           status: pending_payment
-        - metaPreverifiedId: metaPreverifiedId
-          country: country
+        - country: country
+          endUserFirstName: endUserFirstName
+          regulatoryDeclineReason: regulatoryDeclineReason
+          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          metaVerificationStatus: metaVerificationStatus
+          monthlyCents: 0
+          metaPreverifiedId: metaPreverifiedId
           createdAt: 2000-01-23T04:56:07.000+00:00
           phoneNumber: phoneNumber
+          endUserLastName: endUserLastName
           profileId: "{}"
-          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          onfidoVerificationUrl: onfidoVerificationUrl
           _id: _id
-          metaVerificationStatus: metaVerificationStatus
           status: pending_payment
         sandbox:
           template:
@@ -40238,6 +40480,11 @@ components:
       properties:
         profileId:
           description: Profile to associate the number with
+          type: string
+        country:
+          default: US
+          description: |
+            ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: "kyc_required", kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries.
           type: string
       required:
       - profileId
@@ -40280,11 +40527,257 @@ components:
       oneOf:
       - $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf"
       - $ref: "#/components/schemas/purchaseWhatsAppPhoneNumber_200_response_oneOf_1"
+    purchaseWhatsAppPhoneNumber_202_response:
+      example:
+        country: country
+        kycUrl: kycUrl
+        status: kyc_required
+      properties:
+        status:
+          enum:
+          - kyc_required
+          type: string
+        country:
+          type: string
+        kycUrl:
+          type: string
+    listWhatsAppNumberCountries_200_response_countries_inner:
+      example:
+        code: code
+        tier: 0
+        outboundCallingAvailable: true
+        monthlyCents: 6
+        needsKyc: true
+      properties:
+        code:
+          description: ISO 3166-1 alpha-2
+          type: string
+        tier:
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          type: integer
+        monthlyCents:
+          type: integer
+        needsKyc:
+          type: boolean
+        outboundCallingAvailable:
+          type: boolean
+    listWhatsAppNumberCountries_200_response:
+      example:
+        countries:
+        - code: code
+          tier: 0
+          outboundCallingAvailable: true
+          monthlyCents: 6
+          needsKyc: true
+        - code: code
+          tier: 0
+          outboundCallingAvailable: true
+          monthlyCents: 6
+          needsKyc: true
+      properties:
+        countries:
+          items:
+            $ref: "#/components/schemas/listWhatsAppNumberCountries_200_response_countries_inner"
+          type: array
+    searchAvailableWhatsAppNumbers_200_response_numbers_inner:
+      example:
+        phoneNumber: phoneNumber
+      properties:
+        phoneNumber:
+          type: string
+    searchAvailableWhatsAppNumbers_200_response:
+      example:
+        country: country
+        numberType: numberType
+        numbers:
+        - phoneNumber: phoneNumber
+        - phoneNumber: phoneNumber
+      properties:
+        country:
+          type: string
+        numberType:
+          type: string
+        numbers:
+          items:
+            $ref: "#/components/schemas/searchAvailableWhatsAppNumbers_200_response_numbers_inner"
+          type: array
+    getWhatsAppNumberKycForm_200_response_fields_inner:
+      example:
+        kind: text
+        description: description
+        label: label
+        requirementId: requirementId
+        localTo: localTo
+        example: example
+      properties:
+        requirementId:
+          type: string
+        label:
+          type: string
+        kind:
+          description: "\"action\" = an out-of-band verification (e.g. Onfido); not\
+            \ filled here, fulfilled after the order via a link."
+          enum:
+          - text
+          - date
+          - address
+          - file
+          - action
+          type: string
+        description:
+          description: Plain-English explanation of what to provide.
+          type: string
+          nullable: true
+        example:
+          description: Concrete example value.
+          type: string
+          nullable: true
+        localTo:
+          description: ISO country the value must be local to
+          type: string
+          nullable: true
+    getWhatsAppNumberKycForm_200_response_reusable:
+      description: Present when this account already has an approved verification
+        for the country that can be reused (skip the form).
+      example:
+        available: true
+        fromPhoneNumber: fromPhoneNumber
+      properties:
+        available:
+          type: boolean
+        fromPhoneNumber:
+          type: string
+      nullable: true
+    getWhatsAppNumberKycForm_200_response:
+      example:
+        country: country
+        numberType: numberType
+        fields:
+        - kind: text
+          description: description
+          label: label
+          requirementId: requirementId
+          localTo: localTo
+          example: example
+        - kind: text
+          description: description
+          label: label
+          requirementId: requirementId
+          localTo: localTo
+          example: example
+        reusable:
+          available: true
+          fromPhoneNumber: fromPhoneNumber
+      properties:
+        country:
+          type: string
+        numberType:
+          type: string
+        fields:
+          items:
+            $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_fields_inner"
+          type: array
+        reusable:
+          $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable"
+    submitWhatsAppNumberKyc_request_documents_inner:
+      properties:
+        requirementId:
+          type: string
+        filename:
+          type: string
+        base64:
+          type: string
+    submitWhatsAppNumberKyc_request_address:
+      properties:
+        requirementId:
+          type: string
+        country_code:
+          type: string
+        business_name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        street_address:
+          type: string
+        locality:
+          type: string
+        administrative_area:
+          type: string
+        postal_code:
+          type: string
+    submitWhatsAppNumberKyc_request:
+      properties:
+        profileId:
+          type: string
+        country:
+          type: string
+        reuse:
+          description: Reuse a prior approved verification for this country (skips
+            document/field collection; places the order immediately).
+          type: boolean
+        endUserFirstName:
+          description: End user's legal first name. Required when the country has
+            an action/ID-verification (Onfido) requirement.
+          type: string
+        endUserLastName:
+          description: End user's legal last name. Same condition as endUserFirstName.
+          type: string
+        values:
+          additionalProperties:
+            type: string
+          description: requirementId → textual value
+        documents:
+          items:
+            $ref: "#/components/schemas/submitWhatsAppNumberKyc_request_documents_inner"
+          type: array
+        address:
+          $ref: "#/components/schemas/submitWhatsAppNumberKyc_request_address"
+      required:
+      - country
+      - profileId
+    submitWhatsAppNumberKyc_200_response_phoneNumber:
+      example:
+        country: country
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        country:
+          type: string
+    submitWhatsAppNumberKyc_200_response:
+      example:
+        phoneNumber:
+          country: country
+          id: id
+          status: status
+        status: kyc_submitted
+      properties:
+        status:
+          enum:
+          - kyc_submitted
+          - kyc_reused
+          - kyc_already_submitted
+          type: string
+        phoneNumber:
+          $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response_phoneNumber"
     getWhatsAppPhoneNumber_200_response_phoneNumber:
       example:
         metaPreverifiedId: metaPreverifiedId
         country: country
         phoneNumber: phoneNumber
+        endUserFirstName: endUserFirstName
+        endUserLastName: endUserLastName
+        regulatoryDeclineReason: regulatoryDeclineReason
+        onfidoVerificationUrl: onfidoVerificationUrl
         provisionedAt: 2000-01-23T04:56:07.000+00:00
         id: id
         metaVerificationStatus: metaVerificationStatus
@@ -40297,6 +40790,8 @@ components:
         status:
           enum:
           - pending_payment
+          - pending_regulatory
+          - regulatory_declined
           - provisioning
           - active
           - suspended
@@ -40309,6 +40804,21 @@ components:
           type: string
         metaVerificationStatus:
           type: string
+        onfidoVerificationUrl:
+          description: For a regulated number with an Onfido ID step — the link to
+            forward to the end user. Appears once the order is placed; null otherwise.
+          type: string
+          nullable: true
+        endUserFirstName:
+          type: string
+          nullable: true
+        endUserLastName:
+          type: string
+          nullable: true
+        regulatoryDeclineReason:
+          description: Reviewer rejection reason when status is regulatory_declined.
+          type: string
+          nullable: true
         provisionedAt:
           format: date-time
           type: string
@@ -40318,6 +40828,10 @@ components:
           metaPreverifiedId: metaPreverifiedId
           country: country
           phoneNumber: phoneNumber
+          endUserFirstName: endUserFirstName
+          endUserLastName: endUserLastName
+          regulatoryDeclineReason: regulatoryDeclineReason
+          onfidoVerificationUrl: onfidoVerificationUrl
           provisionedAt: 2000-01-23T04:56:07.000+00:00
           id: id
           metaVerificationStatus: metaVerificationStatus
@@ -49258,6 +49772,63 @@ components:
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
+    onWhatsAppNumberActivated_request_number:
+      properties:
+        id:
+          type: string
+        phoneNumber:
+          type: string
+        country:
+          type: string
+        profileId:
+          type: string
+    onWhatsAppNumberActivated_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.activated
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberActivated_request_number"
+    onWhatsAppNumberDeclined_request_number:
+      properties:
+        id: {}
+        phoneNumber: {}
+        country: {}
+        profileId: {}
+    onWhatsAppNumberDeclined_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.declined
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+        reason:
+          type: string
+          nullable: true
+    onWhatsAppNumberVerificationRequired_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.verification_required
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+        verificationUrl:
+          type: string
     WorkflowNode_position:
       description: Canvas coordinates (ignored by the executor; used by the future
         visual builder).

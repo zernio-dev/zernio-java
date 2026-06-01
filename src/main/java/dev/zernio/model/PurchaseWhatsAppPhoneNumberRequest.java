@@ -33,13 +33,18 @@ import dev.zernio.ApiClient;
  * PurchaseWhatsAppPhoneNumberRequest
  */
 @JsonPropertyOrder({
-  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PROFILE_ID
+  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PROFILE_ID,
+  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_COUNTRY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchaseWhatsAppPhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
   private String profileId;
+
+  public static final String JSON_PROPERTY_COUNTRY = "country";
+  @javax.annotation.Nullable
+  private String country = "US";
 
   public PurchaseWhatsAppPhoneNumberRequest() { 
   }
@@ -68,6 +73,30 @@ public class PurchaseWhatsAppPhoneNumberRequest {
   }
 
 
+  public PurchaseWhatsAppPhoneNumberRequest country(@javax.annotation.Nullable String country) {
+    this.country = country;
+    return this;
+  }
+
+  /**
+   * ISO 3166-1 alpha-2 country for the number (default US). International numbers require usage-based billing. Tier 3/4 countries return 202 { status: \&quot;kyc_required\&quot;, kycUrl } — the customer must complete KYC at that URL before the number is ordered. See GET /v1/whatsapp/phone-numbers/countries. 
+   * @return country
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCountry() {
+    return country;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCountry(@javax.annotation.Nullable String country) {
+    this.country = country;
+  }
+
+
   /**
    * Return true if this purchaseWhatsAppPhoneNumber_request object is equal to o.
    */
@@ -80,12 +109,13 @@ public class PurchaseWhatsAppPhoneNumberRequest {
       return false;
     }
     PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest = (PurchaseWhatsAppPhoneNumberRequest) o;
-    return Objects.equals(this.profileId, purchaseWhatsAppPhoneNumberRequest.profileId);
+    return Objects.equals(this.profileId, purchaseWhatsAppPhoneNumberRequest.profileId) &&
+        Objects.equals(this.country, purchaseWhatsAppPhoneNumberRequest.country);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId);
+    return Objects.hash(profileId, country);
   }
 
   @Override
@@ -93,6 +123,7 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class PurchaseWhatsAppPhoneNumberRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
+    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -143,6 +174,11 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     // add `profileId` to the URL query string
     if (getProfileId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
+    }
+
+    // add `country` to the URL query string
+    if (getCountry() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
     }
 
     return joiner.toString();

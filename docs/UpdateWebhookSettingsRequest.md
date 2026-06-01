@@ -45,6 +45,9 @@
 | REVIEW_UPDATED | &quot;review.updated&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
+| WHATSAPP_NUMBER_ACTIVATED | &quot;whatsapp.number.activated&quot; |
+| WHATSAPP_NUMBER_DECLINED | &quot;whatsapp.number.declined&quot; |
+| WHATSAPP_NUMBER_VERIFICATION_REQUIRED | &quot;whatsapp.number.verification_required&quot; |
 
 
 

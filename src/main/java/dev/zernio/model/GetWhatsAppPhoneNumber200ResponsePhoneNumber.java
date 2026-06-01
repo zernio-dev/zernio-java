@@ -40,9 +40,13 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_COUNTRY,
   GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_META_PREVERIFIED_ID,
   GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_META_VERIFICATION_STATUS,
+  GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_ONFIDO_VERIFICATION_URL,
+  GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_END_USER_FIRST_NAME,
+  GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_END_USER_LAST_NAME,
+  GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_REGULATORY_DECLINE_REASON,
   GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_PROVISIONED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T08:43:28.898114503Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -57,6 +61,10 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
    */
   public enum StatusEnum {
     PENDING_PAYMENT(String.valueOf("pending_payment")),
+    
+    PENDING_REGULATORY(String.valueOf("pending_regulatory")),
+    
+    REGULATORY_DECLINED(String.valueOf("regulatory_declined")),
     
     PROVISIONING(String.valueOf("provisioning")),
     
@@ -110,6 +118,22 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
   public static final String JSON_PROPERTY_META_VERIFICATION_STATUS = "metaVerificationStatus";
   @javax.annotation.Nullable
   private String metaVerificationStatus;
+
+  public static final String JSON_PROPERTY_ONFIDO_VERIFICATION_URL = "onfidoVerificationUrl";
+  @javax.annotation.Nullable
+  private String onfidoVerificationUrl;
+
+  public static final String JSON_PROPERTY_END_USER_FIRST_NAME = "endUserFirstName";
+  @javax.annotation.Nullable
+  private String endUserFirstName;
+
+  public static final String JSON_PROPERTY_END_USER_LAST_NAME = "endUserLastName";
+  @javax.annotation.Nullable
+  private String endUserLastName;
+
+  public static final String JSON_PROPERTY_REGULATORY_DECLINE_REASON = "regulatoryDeclineReason";
+  @javax.annotation.Nullable
+  private String regulatoryDeclineReason;
 
   public static final String JSON_PROPERTY_PROVISIONED_AT = "provisionedAt";
   @javax.annotation.Nullable
@@ -262,6 +286,102 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
   }
 
 
+  public GetWhatsAppPhoneNumber200ResponsePhoneNumber onfidoVerificationUrl(@javax.annotation.Nullable String onfidoVerificationUrl) {
+    this.onfidoVerificationUrl = onfidoVerificationUrl;
+    return this;
+  }
+
+  /**
+   * For a regulated number with an Onfido ID step — the link to forward to the end user. Appears once the order is placed; null otherwise.
+   * @return onfidoVerificationUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ONFIDO_VERIFICATION_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOnfidoVerificationUrl() {
+    return onfidoVerificationUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ONFIDO_VERIFICATION_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOnfidoVerificationUrl(@javax.annotation.Nullable String onfidoVerificationUrl) {
+    this.onfidoVerificationUrl = onfidoVerificationUrl;
+  }
+
+
+  public GetWhatsAppPhoneNumber200ResponsePhoneNumber endUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
+    this.endUserFirstName = endUserFirstName;
+    return this;
+  }
+
+  /**
+   * Get endUserFirstName
+   * @return endUserFirstName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_END_USER_FIRST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEndUserFirstName() {
+    return endUserFirstName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_END_USER_FIRST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEndUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
+    this.endUserFirstName = endUserFirstName;
+  }
+
+
+  public GetWhatsAppPhoneNumber200ResponsePhoneNumber endUserLastName(@javax.annotation.Nullable String endUserLastName) {
+    this.endUserLastName = endUserLastName;
+    return this;
+  }
+
+  /**
+   * Get endUserLastName
+   * @return endUserLastName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_END_USER_LAST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getEndUserLastName() {
+    return endUserLastName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_END_USER_LAST_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEndUserLastName(@javax.annotation.Nullable String endUserLastName) {
+    this.endUserLastName = endUserLastName;
+  }
+
+
+  public GetWhatsAppPhoneNumber200ResponsePhoneNumber regulatoryDeclineReason(@javax.annotation.Nullable String regulatoryDeclineReason) {
+    this.regulatoryDeclineReason = regulatoryDeclineReason;
+    return this;
+  }
+
+  /**
+   * Reviewer rejection reason when status is regulatory_declined.
+   * @return regulatoryDeclineReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGULATORY_DECLINE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRegulatoryDeclineReason() {
+    return regulatoryDeclineReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGULATORY_DECLINE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegulatoryDeclineReason(@javax.annotation.Nullable String regulatoryDeclineReason) {
+    this.regulatoryDeclineReason = regulatoryDeclineReason;
+  }
+
+
   public GetWhatsAppPhoneNumber200ResponsePhoneNumber provisionedAt(@javax.annotation.Nullable OffsetDateTime provisionedAt) {
     this.provisionedAt = provisionedAt;
     return this;
@@ -304,12 +424,16 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
         Objects.equals(this.country, getWhatsAppPhoneNumber200ResponsePhoneNumber.country) &&
         Objects.equals(this.metaPreverifiedId, getWhatsAppPhoneNumber200ResponsePhoneNumber.metaPreverifiedId) &&
         Objects.equals(this.metaVerificationStatus, getWhatsAppPhoneNumber200ResponsePhoneNumber.metaVerificationStatus) &&
+        Objects.equals(this.onfidoVerificationUrl, getWhatsAppPhoneNumber200ResponsePhoneNumber.onfidoVerificationUrl) &&
+        Objects.equals(this.endUserFirstName, getWhatsAppPhoneNumber200ResponsePhoneNumber.endUserFirstName) &&
+        Objects.equals(this.endUserLastName, getWhatsAppPhoneNumber200ResponsePhoneNumber.endUserLastName) &&
+        Objects.equals(this.regulatoryDeclineReason, getWhatsAppPhoneNumber200ResponsePhoneNumber.regulatoryDeclineReason) &&
         Objects.equals(this.provisionedAt, getWhatsAppPhoneNumber200ResponsePhoneNumber.provisionedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, status, country, metaPreverifiedId, metaVerificationStatus, provisionedAt);
+    return Objects.hash(id, phoneNumber, status, country, metaPreverifiedId, metaVerificationStatus, onfidoVerificationUrl, endUserFirstName, endUserLastName, regulatoryDeclineReason, provisionedAt);
   }
 
   @Override
@@ -322,6 +446,10 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    metaPreverifiedId: ").append(toIndentedString(metaPreverifiedId)).append("\n");
     sb.append("    metaVerificationStatus: ").append(toIndentedString(metaVerificationStatus)).append("\n");
+    sb.append("    onfidoVerificationUrl: ").append(toIndentedString(onfidoVerificationUrl)).append("\n");
+    sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
+    sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
+    sb.append("    regulatoryDeclineReason: ").append(toIndentedString(regulatoryDeclineReason)).append("\n");
     sb.append("    provisionedAt: ").append(toIndentedString(provisionedAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -398,6 +526,26 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
     // add `metaVerificationStatus` to the URL query string
     if (getMetaVerificationStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smetaVerificationStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMetaVerificationStatus()))));
+    }
+
+    // add `onfidoVerificationUrl` to the URL query string
+    if (getOnfidoVerificationUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sonfidoVerificationUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOnfidoVerificationUrl()))));
+    }
+
+    // add `endUserFirstName` to the URL query string
+    if (getEndUserFirstName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sendUserFirstName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndUserFirstName()))));
+    }
+
+    // add `endUserLastName` to the URL query string
+    if (getEndUserLastName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sendUserLastName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndUserLastName()))));
+    }
+
+    // add `regulatoryDeclineReason` to the URL query string
+    if (getRegulatoryDeclineReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sregulatoryDeclineReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRegulatoryDeclineReason()))));
     }
 
     // add `provisionedAt` to the URL query string
