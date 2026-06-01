@@ -21,3 +21,7 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+# Zernio: hand-maintained for Maven Central publishing (groupId com.zernio,
+# central-publishing-maven-plugin, real project metadata). Do not regenerate.
+pom.xml

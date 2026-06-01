@@ -1,0 +1,44 @@
+name: Publish to Maven Central
+
+# Publishes the signed SDK to Maven Central via the Sonatype Central Portal.
+# Fires automatically whenever generate.yml cuts a new GitHub Release, and can
+# be run manually (workflow_dispatch) to (re)publish the current version on a
+# branch — useful for the very first publish before any new release is cut.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    name: Build, sign & deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # On a release event, build the exact tagged commit (its pom version
+          # matches the tag). On manual dispatch, build whatever ref was chosen.
+          ref: ${{ github.event.release.tag_name || github.ref }}
+
+      - name: Setup Java + Central credentials + GPG
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          # Injects a <server id="central"> into settings.xml that reads the
+          # username/password from the env vars named below. Must match the
+          # <publishingServerId>central</publishingServerId> in pom.xml.
+          server-id: central
+          server-username: MAVEN_CENTRAL_USERNAME
+          server-password: MAVEN_CENTRAL_PASSWORD
+          # Imports the signing key and wires gpg.passphrase to MAVEN_GPG_PASSPHRASE.
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
+
+      - name: Publish
+        run: mvn --batch-mode --no-transfer-progress -P sign-artifacts -DskipTests deploy
+        env:
+          MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}

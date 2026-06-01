@@ -1,38 +1,53 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>dev.zernio</groupId>
+    <groupId>com.zernio</groupId>
     <artifactId>zernio-sdk</artifactId>
     <packaging>jar</packaging>
     <name>zernio-sdk</name>
     <version>0.0.307</version>
-    <url>https://github.com/openapitools/openapi-generator</url>
-    <description>OpenAPI Java</description>
+    <url>https://github.com/zernio-dev/zernio-java</url>
+    <description>Official Zernio API Java SDK - schedule and publish social media posts across 14+ platforms.</description>
     <scm>
-        <connection>scm:git:git@github.com:openapitools/openapi-generator.git</connection>
-        <developerConnection>scm:git:git@github.com:openapitools/openapi-generator.git</developerConnection>
-        <url>https://github.com/openapitools/openapi-generator</url>
+        <connection>scm:git:git@github.com:zernio-dev/zernio-java.git</connection>
+        <developerConnection>scm:git:git@github.com:zernio-dev/zernio-java.git</developerConnection>
+        <url>https://github.com/zernio-dev/zernio-java</url>
     </scm>
 
     <licenses>
         <license>
-            <name>Unlicense</name>
-            <url>http://unlicense.org</url>
+            <name>MIT License</name>
+            <url>https://github.com/zernio-dev/zernio-java/blob/main/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
 
     <developers>
         <developer>
-            <name>OpenAPI-Generator Contributors</name>
-            <email>team@openapitools.org</email>
-            <organization>OpenAPITools.org</organization>
-            <organizationUrl>http://openapitools.org</organizationUrl>
+            <name>Zernio</name>
+            <email>dev@zernio.com</email>
+            <organization>Zernio</organization>
+            <organizationUrl>https://zernio.com</organizationUrl>
         </developer>
     </developers>
 
     <build>
         <plugins>
+            <!-- Publishes signed artifacts to Maven Central via the Sonatype Central Portal.
+                 publishingServerId matches the <server> id injected into settings.xml by
+                 actions/setup-java (server-id: central). autoPublish releases without a
+                 manual "publish" click in the portal. -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.7.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.1.0</version>
@@ -177,7 +192,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.0.1</version>
+                        <version>3.2.7</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
@@ -185,6 +200,15 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <!-- loopback lets gpg take the passphrase non-interactively
+                                         (from gpg.passphrase, injected by setup-java) on CI runners
+                                         with no TTY/agent. -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
