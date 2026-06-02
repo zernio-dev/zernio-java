@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_AVAILABLE,
   GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_FROM_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T11:05:44.799090640Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T11:18:59.494518893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200ResponseReusable {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nullable
