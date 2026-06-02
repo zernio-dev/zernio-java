@@ -44276,10 +44276,12 @@ components:
     listCommentAutomations_200_response_automations_inner_stats:
       example:
         triggered: 0
+        read: 9
         dmsFailed: 1
         linkClicks: 5
         uniqueContacts: 5
         dmsSent: 6
+        delivered: 7
         uniqueClicks: 2
       properties:
         triggered:
@@ -44295,6 +44297,12 @@ components:
           type: integer
         uniqueClicks:
           description: Distinct people who clicked a tracked link.
+          type: integer
+        delivered:
+          description: DMs confirmed delivered (Messenger; IG emits no delivery receipt).
+          type: integer
+        read:
+          description: DMs confirmed read (IG messaging_seen / Messenger message_reads).
           type: integer
     listCommentAutomations_200_response_automations_inner:
       example:
@@ -44322,10 +44330,12 @@ components:
         clickTag: clickTag
         stats:
           triggered: 0
+          read: 9
           dmsFailed: 1
           linkClicks: 5
           uniqueContacts: 5
           dmsSent: 6
+          delivered: 7
           uniqueClicks: 2
         name: name
         postTitle: postTitle
@@ -44407,10 +44417,12 @@ components:
           clickTag: clickTag
           stats:
             triggered: 0
+            read: 9
             dmsFailed: 1
             linkClicks: 5
             uniqueContacts: 5
             dmsSent: 6
+            delivered: 7
             uniqueClicks: 2
           name: name
           postTitle: postTitle
@@ -44441,10 +44453,12 @@ components:
           clickTag: clickTag
           stats:
             triggered: 0
+            read: 9
             dmsFailed: 1
             linkClicks: 5
             uniqueContacts: 5
             dmsSent: 6
+            delivered: 7
             uniqueClicks: 2
           name: name
           postTitle: postTitle

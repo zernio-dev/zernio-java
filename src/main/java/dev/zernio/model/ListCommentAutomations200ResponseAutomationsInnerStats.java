@@ -38,9 +38,11 @@ import dev.zernio.ApiClient;
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_DMS_FAILED,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CONTACTS,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_LINK_CLICKS,
-  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CLICKS
+  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CLICKS,
+  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_DELIVERED,
+  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:41:41.129905673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:49:32.128433616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomations200ResponseAutomationsInnerStats {
   public static final String JSON_PROPERTY_TRIGGERED = "triggered";
   @javax.annotation.Nullable
@@ -65,6 +67,14 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
   public static final String JSON_PROPERTY_UNIQUE_CLICKS = "uniqueClicks";
   @javax.annotation.Nullable
   private Integer uniqueClicks;
+
+  public static final String JSON_PROPERTY_DELIVERED = "delivered";
+  @javax.annotation.Nullable
+  private Integer delivered;
+
+  public static final String JSON_PROPERTY_READ = "read";
+  @javax.annotation.Nullable
+  private Integer read;
 
   public ListCommentAutomations200ResponseAutomationsInnerStats() { 
   }
@@ -213,6 +223,54 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
   }
 
 
+  public ListCommentAutomations200ResponseAutomationsInnerStats delivered(@javax.annotation.Nullable Integer delivered) {
+    this.delivered = delivered;
+    return this;
+  }
+
+  /**
+   * DMs confirmed delivered (Messenger; IG emits no delivery receipt).
+   * @return delivered
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DELIVERED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getDelivered() {
+    return delivered;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DELIVERED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDelivered(@javax.annotation.Nullable Integer delivered) {
+    this.delivered = delivered;
+  }
+
+
+  public ListCommentAutomations200ResponseAutomationsInnerStats read(@javax.annotation.Nullable Integer read) {
+    this.read = read;
+    return this;
+  }
+
+  /**
+   * DMs confirmed read (IG messaging_seen / Messenger message_reads).
+   * @return read
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_READ, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getRead() {
+    return read;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_READ, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRead(@javax.annotation.Nullable Integer read) {
+    this.read = read;
+  }
+
+
   /**
    * Return true if this listCommentAutomations_200_response_automations_inner_stats object is equal to o.
    */
@@ -230,12 +288,14 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
         Objects.equals(this.dmsFailed, listCommentAutomations200ResponseAutomationsInnerStats.dmsFailed) &&
         Objects.equals(this.uniqueContacts, listCommentAutomations200ResponseAutomationsInnerStats.uniqueContacts) &&
         Objects.equals(this.linkClicks, listCommentAutomations200ResponseAutomationsInnerStats.linkClicks) &&
-        Objects.equals(this.uniqueClicks, listCommentAutomations200ResponseAutomationsInnerStats.uniqueClicks);
+        Objects.equals(this.uniqueClicks, listCommentAutomations200ResponseAutomationsInnerStats.uniqueClicks) &&
+        Objects.equals(this.delivered, listCommentAutomations200ResponseAutomationsInnerStats.delivered) &&
+        Objects.equals(this.read, listCommentAutomations200ResponseAutomationsInnerStats.read);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(triggered, dmsSent, dmsFailed, uniqueContacts, linkClicks, uniqueClicks);
+    return Objects.hash(triggered, dmsSent, dmsFailed, uniqueContacts, linkClicks, uniqueClicks, delivered, read);
   }
 
   @Override
@@ -248,6 +308,8 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
     sb.append("    uniqueContacts: ").append(toIndentedString(uniqueContacts)).append("\n");
     sb.append("    linkClicks: ").append(toIndentedString(linkClicks)).append("\n");
     sb.append("    uniqueClicks: ").append(toIndentedString(uniqueClicks)).append("\n");
+    sb.append("    delivered: ").append(toIndentedString(delivered)).append("\n");
+    sb.append("    read: ").append(toIndentedString(read)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -323,6 +385,16 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
     // add `uniqueClicks` to the URL query string
     if (getUniqueClicks() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%suniqueClicks%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUniqueClicks()))));
+    }
+
+    // add `delivered` to the URL query string
+    if (getDelivered() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdelivered%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDelivered()))));
+    }
+
+    // add `read` to the URL query string
+    if (getRead() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sread%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRead()))));
     }
 
     return joiner.toString();
