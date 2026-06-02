@@ -203,6 +203,9 @@ docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestCustomLocationsInner.md
 docs/CreateStandaloneAdRequestDynamicCreative.md
 docs/CreateStandaloneAdRequestImages.md
+docs/CreateStandaloneAdRequestPlacementAssets.md
+docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
+docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
@@ -1413,6 +1416,9 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestCreativesInnerVideo.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCustomLocationsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestDynamicCreative.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestImages.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssets.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInner.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
@@ -2333,5 +2339,6 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/CreateStandaloneAdRequestDynamicCreativeTest.java
-src/test/java/dev/zernio/model/CreateStandaloneAdRequestPlacementsTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacementsTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInnerTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsTest.java

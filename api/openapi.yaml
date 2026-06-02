@@ -49658,6 +49658,126 @@ components:
           type: string
       required:
       - imageUrls
+    createStandaloneAd_request_placementAssets_rules_inner_placements:
+      description: Placements this image is pinned to. At least one field must be
+        set (an empty rule is invalid — that role is served by defaultImageUrl). Same
+        enums as the top-level `placements` object.
+      properties:
+        publisherPlatforms:
+          items:
+            enum:
+            - facebook
+            - instagram
+            - threads
+            - messenger
+            - audience_network
+            type: string
+          type: array
+        facebookPositions:
+          items:
+            enum:
+            - feed
+            - right_hand_column
+            - marketplace
+            - video_feeds
+            - story
+            - search
+            - instream_video
+            - facebook_reels
+            - facebook_reels_overlay
+            - profile_feed
+            - notification
+            type: string
+          type: array
+        instagramPositions:
+          items:
+            enum:
+            - stream
+            - story
+            - explore
+            - explore_home
+            - reels
+            - profile_feed
+            - ig_search
+            - profile_reels
+            type: string
+          type: array
+        messengerPositions:
+          items:
+            enum:
+            - messenger_home
+            - sponsored_messages
+            - story
+            type: string
+          type: array
+        audienceNetworkPositions:
+          items:
+            enum:
+            - classic
+            - rewarded_video
+            type: string
+          type: array
+        threadsPositions:
+          items:
+            enum:
+            - threads_stream
+            type: string
+          type: array
+        whatsappPositions:
+          items:
+            enum:
+            - status
+            type: string
+          type: array
+        devicePlatforms:
+          items:
+            enum:
+            - mobile
+            - desktop
+            type: string
+          type: array
+    createStandaloneAd_request_placementAssets_rules_inner:
+      properties:
+        imageUrl:
+          description: The image to deliver for this rule's placements.
+          format: uri
+          type: string
+        placements:
+          $ref: "#/components/schemas/createStandaloneAd_request_placementAssets_rules_inner_placements"
+      required:
+      - imageUrl
+      - placements
+    createStandaloneAd_request_placementAssets:
+      description: |
+        Meta only. Placement asset customization: pin a SPECIFIC image to each placement
+        group on a SINGLE ad (e.g. a 9:16 image on Stories/Reels and a 4:5 on Feed). This
+        is the same thing Meta Ads Manager produces with "different creative per placement",
+        mapped to the creative's `asset_feed_spec` + `asset_customization_rules`. It is
+        deterministic pinning, NOT the auto-optimizing pool of `dynamicCreative` (the two are
+        mutually exclusive, and it cannot be combined with `creatives[]` or `adSetId`). The
+        shared copy (headline, body, link, CTA) comes from the top-level single-creative
+        fields (`headline`, `body`, `linkUrl`, `callToAction`) since only the image varies by
+        placement. Each rule's `placements` accepts the same fields as the top-level
+        `placements` object; Meta enforces co-selection rules and returns an actionable error.
+      properties:
+        defaultImageUrl:
+          description: |
+            Catch-all image for any placement not matched by a rule. REQUIRED — Meta mandates
+            a default asset customization rule (empty placement spec, lowest priority) on every
+            placement-customized creative.
+          format: uri
+          type: string
+        rules:
+          description: One entry per placement group you want to pin a specific image
+            to.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_placementAssets_rules_inner"
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - defaultImageUrl
+      - rules
     createStandaloneAd_request_attributionSpec_inner:
       properties:
         eventType:
@@ -50064,6 +50184,8 @@ components:
           type: string
         dynamicCreative:
           $ref: "#/components/schemas/createStandaloneAd_request_dynamicCreative"
+        placementAssets:
+          $ref: "#/components/schemas/createStandaloneAd_request_placementAssets"
         audienceId:
           description: Custom audience ID for targeting
           type: string

@@ -33,6 +33,7 @@ import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestDynamicCreative;
 import dev.zernio.model.CreateStandaloneAdRequestImages;
+import dev.zernio.model.CreateStandaloneAdRequestPlacementAssets;
 import dev.zernio.model.CreateStandaloneAdRequestPlacements;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
@@ -94,6 +95,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_START_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_DYNAMIC_CREATIVE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_PLACEMENT_ASSETS,
   CreateStandaloneAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_KEYWORDS,
@@ -111,7 +113,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T12:18:41.680089126Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T14:37:56.978467017Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -536,6 +538,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_DYNAMIC_CREATIVE = "dynamicCreative";
   @javax.annotation.Nullable
   private CreateStandaloneAdRequestDynamicCreative dynamicCreative;
+
+  public static final String JSON_PROPERTY_PLACEMENT_ASSETS = "placementAssets";
+  @javax.annotation.Nullable
+  private CreateStandaloneAdRequestPlacementAssets placementAssets;
 
   public static final String JSON_PROPERTY_AUDIENCE_ID = "audienceId";
   @javax.annotation.Nullable
@@ -1822,6 +1828,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest placementAssets(@javax.annotation.Nullable CreateStandaloneAdRequestPlacementAssets placementAssets) {
+    this.placementAssets = placementAssets;
+    return this;
+  }
+
+  /**
+   * Get placementAssets
+   * @return placementAssets
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT_ASSETS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateStandaloneAdRequestPlacementAssets getPlacementAssets() {
+    return placementAssets;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENT_ASSETS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlacementAssets(@javax.annotation.Nullable CreateStandaloneAdRequestPlacementAssets placementAssets) {
+    this.placementAssets = placementAssets;
+  }
+
+
   public CreateStandaloneAdRequest audienceId(@javax.annotation.Nullable String audienceId) {
     this.audienceId = audienceId;
     return this;
@@ -2291,6 +2321,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.startDate, createStandaloneAdRequest.startDate) &&
         Objects.equals(this.instagramAccountId, createStandaloneAdRequest.instagramAccountId) &&
         Objects.equals(this.dynamicCreative, createStandaloneAdRequest.dynamicCreative) &&
+        Objects.equals(this.placementAssets, createStandaloneAdRequest.placementAssets) &&
         Objects.equals(this.audienceId, createStandaloneAdRequest.audienceId) &&
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
         Objects.equals(this.keywords, createStandaloneAdRequest.keywords) &&
@@ -2311,7 +2342,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2359,6 +2390,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
     sb.append("    dynamicCreative: ").append(toIndentedString(dynamicCreative)).append("\n");
+    sb.append("    placementAssets: ").append(toIndentedString(placementAssets)).append("\n");
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    campaignType: ").append(toIndentedString(campaignType)).append("\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
@@ -2677,6 +2709,11 @@ public class CreateStandaloneAdRequest {
     // add `dynamicCreative` to the URL query string
     if (getDynamicCreative() != null) {
       joiner.add(getDynamicCreative().toUrlQueryString(prefix + "dynamicCreative" + suffix));
+    }
+
+    // add `placementAssets` to the URL query string
+    if (getPlacementAssets() != null) {
+      joiner.add(getPlacementAssets().toUrlQueryString(prefix + "placementAssets" + suffix));
     }
 
     // add `audienceId` to the URL query string
