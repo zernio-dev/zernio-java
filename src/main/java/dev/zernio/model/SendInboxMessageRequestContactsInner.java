@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestContactsInner.JSON_PROPERTY_PHONES,
   SendInboxMessageRequestContactsInner.JSON_PROPERTY_EMAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:59:31.501399486Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T11:05:44.799090640Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestContactsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
