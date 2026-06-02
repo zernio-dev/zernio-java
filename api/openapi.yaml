@@ -15866,8 +15866,8 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: "Update name, description, or the graph. The graph can only be\
-        \ modified while the workflow is draft or paused."
+      description: |
+        Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a `start_call` node as an error instead of silently saving an unrunnable graph).
       operationId: updateWorkflow
       parameters:
       - explode: false
@@ -16054,6 +16054,174 @@ paths:
       tags:
       - Workflows
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/executions/{executionId}/events:
+    get:
+      description: |
+        Returns the per-step run-log for a single workflow execution: trigger fired, each node visited, edge handles taken, errors, and durations. Backed by Tinybird (90-day retention). Used by the Runs UI drawer to render the timeline.
+      operationId: listWorkflowExecutionEvents
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: executionId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflowExecutionEvents_200_response"
+          description: Timeline events for the execution
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get an execution's timeline
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/duplicate:
+    post:
+      description: |
+        Create an independent copy of a workflow's graph, name, description, and account binding. The copy is created in `draft` status with fresh execution counters and a new id — execution history is NOT copied. Useful for branching off a known-good workflow before making experimental edits.
+      operationId: duplicateWorkflow
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/duplicateWorkflow_201_response"
+          description: Workflow duplicated
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Duplicate a workflow
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/versions:
+    get:
+      description: |
+        Returns the snapshot history. A new version is recorded automatically before every PATCH to `nodes` / `edges` / `entryNodeId`, and explicitly when a previous version is restored. Lightweight list — call `getWorkflowVersion` for the full snapshot graph.
+      operationId: listWorkflowVersions
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWorkflowVersions_200_response"
+          description: Versions list
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: List a workflow's version history
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/versions/{version}:
+    get:
+      description: "Returns the full snapshot for a single historical version, including\
+        \ the graph."
+      operationId: getWorkflowVersion
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWorkflowVersion_200_response"
+          description: Version snapshot
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get a specific workflow version
+      tags:
+      - Workflows
+      x-accepts:
+      - application/json
+  /v1/workflows/{workflowId}/versions/{version}/restore:
+    post:
+      description: |
+        Replace the current graph with the named version's snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in `draft` or `paused` status (same gate as a normal graph edit). The returned workflow carries `restoredFromVersion` so the UI can surface which version was rolled back to.
+      operationId: restoreWorkflowVersion
+      parameters:
+      - explode: false
+        in: path
+        name: workflowId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: version
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/restoreWorkflowVersion_200_response"
+          description: Workflow restored to the named version
+        "400":
+          description: Workflow is not draft/paused
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Restore a previous workflow version
+      tags:
+      - Workflows
       x-accepts:
       - application/json
   /v1/sequences:
@@ -20064,6 +20232,12 @@ components:
           description: Stable node id referenced by edges
           type: string
         type:
+          description: |
+            Node kind. The 16 supported types break into four groups:
+              messaging (send_message),
+              control flow (trigger, condition, delay, wait_for_reply, a_b_split, end),
+              data ops (set_variable, set_field, add_tag, remove_tag, enroll_sequence),
+              integrations (webhook, ai, handoff, start_call).
           enum:
           - trigger
           - send_message
@@ -20072,13 +20246,50 @@ components:
           - set_variable
           - delay
           - webhook
+          - ai
           - handoff
+          - start_call
+          - a_b_split
+          - set_field
+          - enroll_sequence
+          - add_tag
+          - remove_tag
           - end
           type: string
         config:
           additionalProperties: true
           description: |
-            Type-specific settings. trigger: { keywords:[string], matchType: any|contains|exact|regex, onlyFirstMessage:boolean }. send_message: { messageType: text|template|media|interactive, text, template:{name,language,variableMapping}, media:{mediaType,url,caption}, interactive } (template/interactive are WhatsApp-only). wait_for_reply: { timeoutMinutes:int, saveAs:string }. condition: { rules:[{ id, variable, operator: equals|not_equals|contains|not_contains|starts_with|ends_with|exists|not_exists|matches, value }] }. set_variable: { assignments:[{ name, value }] }. delay: { delayMinutes:int }. webhook: { url, method, headers, bodyTemplate, saveAs }. handoff: { note, assignTo }. String fields support {{variable}} interpolation.
+            Type-specific settings. All string fields support `{{variable}}` interpolation against the run's variable bag (resolved at execution time).
+
+            **trigger**: `{ triggerType: inbound_message|api_call|whatsapp_event, keywords:[string], matchType: any|contains|exact|regex, onlyFirstMessage:boolean, eventType: message_sent|message_delivered|message_read|message_failed|reaction }`. Default `triggerType` is `inbound_message` for legacy nodes. `eventType` is only honored when `triggerType` is `whatsapp_event` (WhatsApp-only).
+
+            **send_message**: `{ messageType: text|template|media|interactive, text, template:{name,language,variableMapping}, media:{mediaType:image|video|audio|document, url,caption}, interactive }`. `template` and `interactive` are WhatsApp-only.
+
+            **wait_for_reply**: `{ timeoutMinutes:int (max 43200), saveAs:string }`. Resume via the `'reply'` edge on inbound, or `'timeout'` edge after `timeoutMinutes` of silence.
+
+            **condition**: `{ rules:[{ id, variable, operator: equals|not_equals|contains|not_contains|starts_with|ends_with|exists|not_exists|matches, value }] }`. First matching rule takes its `id` as the sourceHandle; otherwise `'default'`.
+
+            **set_variable**: `{ assignments:[{ name, value }] }`. Run-scoped (lives only for this execution; use `set_field` for persistent values).
+
+            **delay**: `{ delayMinutes:int (max 43200) }`. Suspends the run, resumes via timer.
+
+            **webhook**: `{ url, method: GET|POST|PUT|PATCH|DELETE, headers, bodyTemplate, saveAs }`. SSRF-guarded (private/loopback/metadata IPs rejected). Response saved as `{ status, ok, body }` to `vars[saveAs]`. Edge: `'success'` on 2xx, `'error'` otherwise.
+
+            **ai**: `{ provider: anthropic|openai|google|mistral|groq, model, preset: smart|tools|cheap, systemPrompt, userPromptTemplate, saveAs, temperature, maxTokens, outputType: text|json, tools:[{ name, description, parameters }] }`. Set `provider` + `model` for BYOK (uses your stored API key); omit `provider` for the legacy Telnyx path. Edges: `'success'`, `'tool:<name>'` (model picked a tool), `'error'`.
+
+            **handoff**: `{ note, assignTo }`. Terminates the run as `exited`, flags the conversation for a human operator.
+
+            **start_call**: `{ to, forwardTo, requirePermissionFirst, recordingEnabled, saveAs }`. WhatsApp-only. `forwardTo` can be `tel:+E164`, `sip:user@host`, or `wss://…` (AI voice agent). Edges: `'success'`, `'permission_required'`, `'failed'`.
+
+            **a_b_split**: `{ percentage: number 0-100 (default 50) }`. Random branch picker. Edges: `'a'` (with probability `percentage/100`), `'b'`.
+
+            **set_field**: `{ field, value }`. Persistent custom field on the Contact (vs `set_variable` which is run-scoped). Field name is sanitized to `[A-Za-z0-9_]`. No-op on `api_call` runs (no contact).
+
+            **enroll_sequence**: `{ sequenceId, saveAs }`. Enrolls the run's contact into a Sequence. Edges: `'success'`, `'error'`.
+
+            **add_tag** / **remove_tag**: `{ tag }`. Push or pull a tag on the Contact. No-op on `api_call` runs.
+
+            **end**: no config. Terminates the run as `completed`.
           type: object
         position:
           $ref: "#/components/schemas/WorkflowNode_position"
@@ -20103,13 +20314,92 @@ components:
           type: string
         sourceHandle:
           description: |
-            Selects a branch output of a multi-output node: a condition rule id or 'default'; 'reply' or 'timeout' for wait_for_reply; 'success' or 'error' for webhook. Null = the node's single/default output.
+            Selects a branch output of a multi-output node. Null (or omitted) = the node's single/default output. Known handles per node type:
+
+              - **condition** — a rule's `id`, or `'default'` (no rule matched)
+              - **wait_for_reply** — `'reply'` (contact replied) | `'timeout'` (no reply in window)
+              - **webhook** — `'success'` (2xx) | `'error'` (non-2xx / fetch failed)
+              - **ai** — `'success'` (text/JSON response) | `'tool:<toolName>'` (model invoked
+                that tool) | `'error'` (upstream failure / non-JSON in JSON mode)
+              - **start_call** — `'success'` | `'permission_required'` | `'failed'`
+              - **a_b_split** — `'a'` | `'b'`
+              - **enroll_sequence** — `'success'` | `'error'`
           type: string
           nullable: true
       required:
       - id
       - source
       - target
+    WorkflowExecutionEvent:
+      description: |
+        One entry in a workflow execution's timeline. Emitted by the executor on every node visit and lifecycle transition, surfaced by `GET /v1/workflows/{workflowId}/executions/ {executionId}/events` for run inspection in the Runs UI.
+      example:
+        sourceHandle: sourceHandle
+        at: 2000-01-23T04:56:07.000+00:00
+        meta:
+          key: ""
+        errorMessage: errorMessage
+        action: execution_started
+        nodeType: nodeType
+        nodeId: nodeId
+        durationMs: 0
+        status: success
+      properties:
+        action:
+          enum:
+          - execution_started
+          - execution_completed
+          - execution_exited
+          - execution_paused
+          - execution_resumed
+          - node_started
+          - node_completed
+          - node_failed
+          - node_skipped
+          type: string
+        status:
+          enum:
+          - success
+          - failed
+          - pending
+          type: string
+          nullable: true
+        nodeId:
+          description: Present on `node_*` events
+          type: string
+          nullable: true
+        nodeType:
+          description: Present on `node_*` events
+          type: string
+          nullable: true
+        sourceHandle:
+          description: The edge handle the executor followed out of this node (see
+            `WorkflowEdge.sourceHandle`)
+          type: string
+          nullable: true
+        durationMs:
+          description: Node run time; present on `node_completed` and `node_failed`
+          type: integer
+          nullable: true
+        errorMessage:
+          description: Failure detail; present on `node_failed` and `execution_exited`
+          type: string
+          nullable: true
+        meta:
+          additionalProperties: true
+          description: |
+            Per-node-type payload. Shape varies — see WorkflowNode `type`. Examples:
+              `send_message` → `{ messageType, text, recipient }`,
+              `webhook` → `{ url, method, statusCode, responseTimeMs, responsePreview }`,
+              `ai` → `{ model, provider, inputTokens, outputTokens, responsePreview }`,
+              `condition` → `{ matchedHandle, rulesEvaluated }`,
+              `a_b_split` → `{ percentage, chosen }`.
+          type: object
+          nullable: true
+        at:
+          description: Event timestamp (UTC)
+          format: date-time
+          type: string
     BulkUploadResult:
       description: |
         Result of a CSV bulk upload. The same shape is returned for `200` (all rows
@@ -43449,6 +43739,10 @@ components:
         entryNodeId:
           type: string
           nullable: true
+        accountId:
+          description: |
+            Reassign the workflow to a different `SocialAccount`. `platform` and `profileId` are derived server-side from the new account (the client never sends them directly). The account must belong to the caller's workspace and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform.
+          type: string
     updateWorkflow_200_response_workflow:
       example:
         entryNodeId: entryNodeId
@@ -43701,6 +43995,348 @@ components:
           type: boolean
         execution:
           $ref: "#/components/schemas/triggerWorkflow_200_response_execution"
+    listWorkflowExecutionEvents_200_response_execution:
+      example:
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        status: running
+      properties:
+        id:
+          type: string
+        status:
+          enum:
+          - running
+          - waiting
+          - completed
+          - exited
+          - failed
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+          nullable: true
+        completedAt:
+          format: date-time
+          type: string
+          nullable: true
+    listWorkflowExecutionEvents_200_response:
+      example:
+        execution:
+          completedAt: 2000-01-23T04:56:07.000+00:00
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          status: running
+        success: true
+        events:
+        - sourceHandle: sourceHandle
+          at: 2000-01-23T04:56:07.000+00:00
+          meta:
+            key: ""
+          errorMessage: errorMessage
+          action: execution_started
+          nodeType: nodeType
+          nodeId: nodeId
+          durationMs: 0
+          status: success
+        - sourceHandle: sourceHandle
+          at: 2000-01-23T04:56:07.000+00:00
+          meta:
+            key: ""
+          errorMessage: errorMessage
+          action: execution_started
+          nodeType: nodeType
+          nodeId: nodeId
+          durationMs: 0
+          status: success
+      properties:
+        success:
+          type: boolean
+        execution:
+          $ref: "#/components/schemas/listWorkflowExecutionEvents_200_response_execution"
+        events:
+          description: Events in chronological order (oldest first).
+          items:
+            $ref: "#/components/schemas/WorkflowExecutionEvent"
+          type: array
+    duplicateWorkflow_201_response_workflow:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        profileId: profileId
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        platform: platform
+        status: draft
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          enum:
+          - draft
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+        entryNodeId:
+          type: string
+          nullable: true
+        nodeCount:
+          type: integer
+        createdAt:
+          format: date-time
+          type: string
+    duplicateWorkflow_201_response:
+      example:
+        workflow:
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          profileId: profileId
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          platform: platform
+          status: draft
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/duplicateWorkflow_201_response_workflow"
+    listWorkflowVersions_200_response_versions_inner:
+      example:
+        createdByEmail: createdByEmail
+        restoredFromVersion: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        createdBy: createdBy
+        name: name
+        description: description
+        version: 0
+      properties:
+        version:
+          description: Monotonically increasing version number
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        createdBy:
+          description: User id that authored this version
+          type: string
+          nullable: true
+        createdByEmail:
+          description: Denormalized email so the history UI can render without a join
+          type: string
+          nullable: true
+        restoredFromVersion:
+          description: When non-null
+          type: integer
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+    listWorkflowVersions_200_response:
+      example:
+        versions:
+        - createdByEmail: createdByEmail
+          restoredFromVersion: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          createdBy: createdBy
+          name: name
+          description: description
+          version: 0
+        - createdByEmail: createdByEmail
+          restoredFromVersion: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          createdBy: createdBy
+          name: name
+          description: description
+          version: 0
+        success: true
+      properties:
+        success:
+          type: boolean
+        versions:
+          description: Versions in reverse chronological order (newest first).
+          items:
+            $ref: "#/components/schemas/listWorkflowVersions_200_response_versions_inner"
+          type: array
+    getWorkflowVersion_200_response_version:
+      example:
+        entryNodeId: entryNodeId
+        edges:
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        - sourceHandle: sourceHandle
+          id: id
+          source: source
+          target: target
+        description: description
+        version: 0
+        platform: platform
+        createdByEmail: createdByEmail
+        accountId: accountId
+        restoredFromVersion: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        nodes:
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        - id: id
+          position:
+            x: 0.8008281904610115
+            "y": 6.027456183070403
+          type: trigger
+          config:
+            key: ""
+        createdBy: createdBy
+        profileId: profileId
+        name: name
+      properties:
+        version:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        entryNodeId:
+          type: string
+          nullable: true
+        nodes:
+          items:
+            $ref: "#/components/schemas/WorkflowNode"
+          type: array
+        edges:
+          items:
+            $ref: "#/components/schemas/WorkflowEdge"
+          type: array
+        platform:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+        createdBy:
+          type: string
+          nullable: true
+        createdByEmail:
+          type: string
+          nullable: true
+        restoredFromVersion:
+          type: integer
+          nullable: true
+        createdAt:
+          format: date-time
+          type: string
+    getWorkflowVersion_200_response:
+      example:
+        success: true
+        version:
+          entryNodeId: entryNodeId
+          edges:
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          - sourceHandle: sourceHandle
+            id: id
+            source: source
+            target: target
+          description: description
+          version: 0
+          platform: platform
+          createdByEmail: createdByEmail
+          accountId: accountId
+          restoredFromVersion: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          nodes:
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          - id: id
+            position:
+              x: 0.8008281904610115
+              "y": 6.027456183070403
+            type: trigger
+            config:
+              key: ""
+          createdBy: createdBy
+          profileId: profileId
+          name: name
+      properties:
+        success:
+          type: boolean
+        version:
+          $ref: "#/components/schemas/getWorkflowVersion_200_response_version"
+    restoreWorkflowVersion_200_response_workflow:
+      example:
+        entryNodeId: entryNodeId
+        name: name
+        description: description
+        nodeCount: 0
+        id: id
+        status: status
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        entryNodeId:
+          type: string
+          nullable: true
+        nodeCount:
+          type: integer
+        updatedAt:
+          format: date-time
+          type: string
+    restoreWorkflowVersion_200_response:
+      example:
+        restoredFromVersion: 6
+        workflow:
+          entryNodeId: entryNodeId
+          name: name
+          description: description
+          nodeCount: 0
+          id: id
+          status: status
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        success: true
+      properties:
+        success:
+          type: boolean
+        workflow:
+          $ref: "#/components/schemas/restoreWorkflowVersion_200_response_workflow"
+        restoredFromVersion:
+          type: integer
     listSequences_200_response_sequences_inner:
       example:
         exitOnUnsubscribe: true
@@ -49943,8 +50579,8 @@ components:
         verificationUrl:
           type: string
     WorkflowNode_position:
-      description: Canvas coordinates (ignored by the executor; used by the future
-        visual builder).
+      description: Canvas coordinates (ignored by the executor; used by the visual
+        builder).
       example:
         x: 0.8008281904610115
         "y": 6.027456183070403

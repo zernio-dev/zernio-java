@@ -21,12 +21,17 @@ import dev.zernio.Pair;
 import dev.zernio.model.ActivateWorkflow200Response;
 import dev.zernio.model.CreateWorkflow200Response;
 import dev.zernio.model.CreateWorkflowRequest;
+import dev.zernio.model.DuplicateWorkflow201Response;
 import dev.zernio.model.GetWorkflow200Response;
+import dev.zernio.model.GetWorkflowVersion200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListWorkflowExecutionEvents200Response;
 import dev.zernio.model.ListWorkflowExecutions200Response;
+import dev.zernio.model.ListWorkflowVersions200Response;
 import dev.zernio.model.ListWorkflows200Response;
 import dev.zernio.model.PauseWorkflow200Response;
+import dev.zernio.model.RestoreWorkflowVersion200Response;
 import dev.zernio.model.TriggerWorkflow200Response;
 import dev.zernio.model.TriggerWorkflowRequest;
 import dev.zernio.model.UpdateWorkflow200Response;
@@ -63,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:03:19.504916501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:15:31.382232209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -526,6 +531,124 @@ public class WorkflowsApi {
   }
 
   /**
+   * Duplicate a workflow
+   * Create an independent copy of a workflow&#39;s graph, name, description, and account binding. The copy is created in &#x60;draft&#x60; status with fresh execution counters and a new id — execution history is NOT copied. Useful for branching off a known-good workflow before making experimental edits. 
+   * @param workflowId  (required)
+   * @return DuplicateWorkflow201Response
+   * @throws ApiException if fails to make API call
+   */
+  public DuplicateWorkflow201Response duplicateWorkflow(@javax.annotation.Nonnull String workflowId) throws ApiException {
+    return duplicateWorkflow(workflowId, null);
+  }
+
+  /**
+   * Duplicate a workflow
+   * Create an independent copy of a workflow&#39;s graph, name, description, and account binding. The copy is created in &#x60;draft&#x60; status with fresh execution counters and a new id — execution history is NOT copied. Useful for branching off a known-good workflow before making experimental edits. 
+   * @param workflowId  (required)
+   * @param headers Optional headers to include in the request
+   * @return DuplicateWorkflow201Response
+   * @throws ApiException if fails to make API call
+   */
+  public DuplicateWorkflow201Response duplicateWorkflow(@javax.annotation.Nonnull String workflowId, Map<String, String> headers) throws ApiException {
+    ApiResponse<DuplicateWorkflow201Response> localVarResponse = duplicateWorkflowWithHttpInfo(workflowId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Duplicate a workflow
+   * Create an independent copy of a workflow&#39;s graph, name, description, and account binding. The copy is created in &#x60;draft&#x60; status with fresh execution counters and a new id — execution history is NOT copied. Useful for branching off a known-good workflow before making experimental edits. 
+   * @param workflowId  (required)
+   * @return ApiResponse&lt;DuplicateWorkflow201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DuplicateWorkflow201Response> duplicateWorkflowWithHttpInfo(@javax.annotation.Nonnull String workflowId) throws ApiException {
+    return duplicateWorkflowWithHttpInfo(workflowId, null);
+  }
+
+  /**
+   * Duplicate a workflow
+   * Create an independent copy of a workflow&#39;s graph, name, description, and account binding. The copy is created in &#x60;draft&#x60; status with fresh execution counters and a new id — execution history is NOT copied. Useful for branching off a known-good workflow before making experimental edits. 
+   * @param workflowId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DuplicateWorkflow201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DuplicateWorkflow201Response> duplicateWorkflowWithHttpInfo(@javax.annotation.Nonnull String workflowId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = duplicateWorkflowRequestBuilder(workflowId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("duplicateWorkflow", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DuplicateWorkflow201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DuplicateWorkflow201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DuplicateWorkflow201Response>() {});
+        
+
+        return new ApiResponse<DuplicateWorkflow201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder duplicateWorkflowRequestBuilder(@javax.annotation.Nonnull String workflowId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(400, "Missing the required parameter 'workflowId' when calling duplicateWorkflow");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/workflows/{workflowId}/duplicate"
+        .replace("{workflowId}", ApiClient.urlEncode(workflowId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get workflow with graph
    * Returns a workflow including its full node/edge graph and run stats.
    * @param workflowId  (required)
@@ -626,6 +749,260 @@ public class WorkflowsApi {
 
     String localVarPath = "/v1/workflows/{workflowId}"
         .replace("{workflowId}", ApiClient.urlEncode(workflowId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get a specific workflow version
+   * Returns the full snapshot for a single historical version, including the graph.
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @return GetWorkflowVersion200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWorkflowVersion200Response getWorkflowVersion(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version) throws ApiException {
+    return getWorkflowVersion(workflowId, version, null);
+  }
+
+  /**
+   * Get a specific workflow version
+   * Returns the full snapshot for a single historical version, including the graph.
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWorkflowVersion200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWorkflowVersion200Response getWorkflowVersion(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWorkflowVersion200Response> localVarResponse = getWorkflowVersionWithHttpInfo(workflowId, version, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a specific workflow version
+   * Returns the full snapshot for a single historical version, including the graph.
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @return ApiResponse&lt;GetWorkflowVersion200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWorkflowVersion200Response> getWorkflowVersionWithHttpInfo(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version) throws ApiException {
+    return getWorkflowVersionWithHttpInfo(workflowId, version, null);
+  }
+
+  /**
+   * Get a specific workflow version
+   * Returns the full snapshot for a single historical version, including the graph.
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWorkflowVersion200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWorkflowVersion200Response> getWorkflowVersionWithHttpInfo(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWorkflowVersionRequestBuilder(workflowId, version, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWorkflowVersion", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWorkflowVersion200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWorkflowVersion200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWorkflowVersion200Response>() {});
+        
+
+        return new ApiResponse<GetWorkflowVersion200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWorkflowVersionRequestBuilder(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(400, "Missing the required parameter 'workflowId' when calling getWorkflowVersion");
+    }
+    // verify the required parameter 'version' is set
+    if (version == null) {
+      throw new ApiException(400, "Missing the required parameter 'version' when calling getWorkflowVersion");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/workflows/{workflowId}/versions/{version}"
+        .replace("{workflowId}", ApiClient.urlEncode(workflowId.toString()))
+        .replace("{version}", ApiClient.urlEncode(version.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get an execution&#39;s timeline
+   * Returns the per-step run-log for a single workflow execution: trigger fired, each node visited, edge handles taken, errors, and durations. Backed by Tinybird (90-day retention). Used by the Runs UI drawer to render the timeline. 
+   * @param workflowId  (required)
+   * @param executionId  (required)
+   * @return ListWorkflowExecutionEvents200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWorkflowExecutionEvents200Response listWorkflowExecutionEvents(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull String executionId) throws ApiException {
+    return listWorkflowExecutionEvents(workflowId, executionId, null);
+  }
+
+  /**
+   * Get an execution&#39;s timeline
+   * Returns the per-step run-log for a single workflow execution: trigger fired, each node visited, edge handles taken, errors, and durations. Backed by Tinybird (90-day retention). Used by the Runs UI drawer to render the timeline. 
+   * @param workflowId  (required)
+   * @param executionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ListWorkflowExecutionEvents200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWorkflowExecutionEvents200Response listWorkflowExecutionEvents(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull String executionId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWorkflowExecutionEvents200Response> localVarResponse = listWorkflowExecutionEventsWithHttpInfo(workflowId, executionId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get an execution&#39;s timeline
+   * Returns the per-step run-log for a single workflow execution: trigger fired, each node visited, edge handles taken, errors, and durations. Backed by Tinybird (90-day retention). Used by the Runs UI drawer to render the timeline. 
+   * @param workflowId  (required)
+   * @param executionId  (required)
+   * @return ApiResponse&lt;ListWorkflowExecutionEvents200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWorkflowExecutionEvents200Response> listWorkflowExecutionEventsWithHttpInfo(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull String executionId) throws ApiException {
+    return listWorkflowExecutionEventsWithHttpInfo(workflowId, executionId, null);
+  }
+
+  /**
+   * Get an execution&#39;s timeline
+   * Returns the per-step run-log for a single workflow execution: trigger fired, each node visited, edge handles taken, errors, and durations. Backed by Tinybird (90-day retention). Used by the Runs UI drawer to render the timeline. 
+   * @param workflowId  (required)
+   * @param executionId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListWorkflowExecutionEvents200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWorkflowExecutionEvents200Response> listWorkflowExecutionEventsWithHttpInfo(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull String executionId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWorkflowExecutionEventsRequestBuilder(workflowId, executionId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWorkflowExecutionEvents", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListWorkflowExecutionEvents200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListWorkflowExecutionEvents200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWorkflowExecutionEvents200Response>() {});
+        
+
+        return new ApiResponse<ListWorkflowExecutionEvents200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWorkflowExecutionEventsRequestBuilder(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull String executionId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(400, "Missing the required parameter 'workflowId' when calling listWorkflowExecutionEvents");
+    }
+    // verify the required parameter 'executionId' is set
+    if (executionId == null) {
+      throw new ApiException(400, "Missing the required parameter 'executionId' when calling listWorkflowExecutionEvents");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/workflows/{workflowId}/executions/{executionId}/events"
+        .replace("{workflowId}", ApiClient.urlEncode(workflowId.toString()))
+        .replace("{executionId}", ApiClient.urlEncode(executionId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -777,6 +1154,124 @@ public class WorkflowsApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List a workflow&#39;s version history
+   * Returns the snapshot history. A new version is recorded automatically before every PATCH to &#x60;nodes&#x60; / &#x60;edges&#x60; / &#x60;entryNodeId&#x60;, and explicitly when a previous version is restored. Lightweight list — call &#x60;getWorkflowVersion&#x60; for the full snapshot graph. 
+   * @param workflowId  (required)
+   * @return ListWorkflowVersions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWorkflowVersions200Response listWorkflowVersions(@javax.annotation.Nonnull String workflowId) throws ApiException {
+    return listWorkflowVersions(workflowId, null);
+  }
+
+  /**
+   * List a workflow&#39;s version history
+   * Returns the snapshot history. A new version is recorded automatically before every PATCH to &#x60;nodes&#x60; / &#x60;edges&#x60; / &#x60;entryNodeId&#x60;, and explicitly when a previous version is restored. Lightweight list — call &#x60;getWorkflowVersion&#x60; for the full snapshot graph. 
+   * @param workflowId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ListWorkflowVersions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListWorkflowVersions200Response listWorkflowVersions(@javax.annotation.Nonnull String workflowId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWorkflowVersions200Response> localVarResponse = listWorkflowVersionsWithHttpInfo(workflowId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List a workflow&#39;s version history
+   * Returns the snapshot history. A new version is recorded automatically before every PATCH to &#x60;nodes&#x60; / &#x60;edges&#x60; / &#x60;entryNodeId&#x60;, and explicitly when a previous version is restored. Lightweight list — call &#x60;getWorkflowVersion&#x60; for the full snapshot graph. 
+   * @param workflowId  (required)
+   * @return ApiResponse&lt;ListWorkflowVersions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWorkflowVersions200Response> listWorkflowVersionsWithHttpInfo(@javax.annotation.Nonnull String workflowId) throws ApiException {
+    return listWorkflowVersionsWithHttpInfo(workflowId, null);
+  }
+
+  /**
+   * List a workflow&#39;s version history
+   * Returns the snapshot history. A new version is recorded automatically before every PATCH to &#x60;nodes&#x60; / &#x60;edges&#x60; / &#x60;entryNodeId&#x60;, and explicitly when a previous version is restored. Lightweight list — call &#x60;getWorkflowVersion&#x60; for the full snapshot graph. 
+   * @param workflowId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListWorkflowVersions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListWorkflowVersions200Response> listWorkflowVersionsWithHttpInfo(@javax.annotation.Nonnull String workflowId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWorkflowVersionsRequestBuilder(workflowId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listWorkflowVersions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListWorkflowVersions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListWorkflowVersions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListWorkflowVersions200Response>() {});
+        
+
+        return new ApiResponse<ListWorkflowVersions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listWorkflowVersionsRequestBuilder(@javax.annotation.Nonnull String workflowId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(400, "Missing the required parameter 'workflowId' when calling listWorkflowVersions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/workflows/{workflowId}/versions"
+        .replace("{workflowId}", ApiClient.urlEncode(workflowId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -1057,6 +1552,133 @@ public class WorkflowsApi {
   }
 
   /**
+   * Restore a previous workflow version
+   * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @return RestoreWorkflowVersion200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RestoreWorkflowVersion200Response restoreWorkflowVersion(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version) throws ApiException {
+    return restoreWorkflowVersion(workflowId, version, null);
+  }
+
+  /**
+   * Restore a previous workflow version
+   * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @param headers Optional headers to include in the request
+   * @return RestoreWorkflowVersion200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RestoreWorkflowVersion200Response restoreWorkflowVersion(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version, Map<String, String> headers) throws ApiException {
+    ApiResponse<RestoreWorkflowVersion200Response> localVarResponse = restoreWorkflowVersionWithHttpInfo(workflowId, version, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Restore a previous workflow version
+   * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @return ApiResponse&lt;RestoreWorkflowVersion200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RestoreWorkflowVersion200Response> restoreWorkflowVersionWithHttpInfo(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version) throws ApiException {
+    return restoreWorkflowVersionWithHttpInfo(workflowId, version, null);
+  }
+
+  /**
+   * Restore a previous workflow version
+   * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+   * @param workflowId  (required)
+   * @param version  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RestoreWorkflowVersion200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RestoreWorkflowVersion200Response> restoreWorkflowVersionWithHttpInfo(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = restoreWorkflowVersionRequestBuilder(workflowId, version, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("restoreWorkflowVersion", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RestoreWorkflowVersion200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RestoreWorkflowVersion200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RestoreWorkflowVersion200Response>() {});
+        
+
+        return new ApiResponse<RestoreWorkflowVersion200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder restoreWorkflowVersionRequestBuilder(@javax.annotation.Nonnull String workflowId, @javax.annotation.Nonnull Integer version, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'workflowId' is set
+    if (workflowId == null) {
+      throw new ApiException(400, "Missing the required parameter 'workflowId' when calling restoreWorkflowVersion");
+    }
+    // verify the required parameter 'version' is set
+    if (version == null) {
+      throw new ApiException(400, "Missing the required parameter 'version' when calling restoreWorkflowVersion");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/workflows/{workflowId}/versions/{version}/restore"
+        .replace("{workflowId}", ApiClient.urlEncode(workflowId.toString()))
+        .replace("{version}", ApiClient.urlEncode(version.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Manually start a workflow run
    * Kick off a run without waiting for an inbound message (useful for testing). Target an existing conversation by &#x60;conversationId&#x60;, or — WhatsApp only — a phone number via &#x60;to&#x60; (a conversation is found or created). &#x60;text&#x60; seeds the run&#39;s &#x60;lastMessage&#x60; variable. The graph must be runnable. 
    * @param workflowId  (required)
@@ -1190,7 +1812,7 @@ public class WorkflowsApi {
 
   /**
    * Update workflow
-   * Update name, description, or the graph. The graph can only be modified while the workflow is draft or paused.
+   * Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
    * @param workflowId  (required)
    * @param updateWorkflowRequest  (optional)
    * @return UpdateWorkflow200Response
@@ -1202,7 +1824,7 @@ public class WorkflowsApi {
 
   /**
    * Update workflow
-   * Update name, description, or the graph. The graph can only be modified while the workflow is draft or paused.
+   * Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
    * @param workflowId  (required)
    * @param updateWorkflowRequest  (optional)
    * @param headers Optional headers to include in the request
@@ -1216,7 +1838,7 @@ public class WorkflowsApi {
 
   /**
    * Update workflow
-   * Update name, description, or the graph. The graph can only be modified while the workflow is draft or paused.
+   * Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
    * @param workflowId  (required)
    * @param updateWorkflowRequest  (optional)
    * @return ApiResponse&lt;UpdateWorkflow200Response&gt;
@@ -1228,7 +1850,7 @@ public class WorkflowsApi {
 
   /**
    * Update workflow
-   * Update name, description, or the graph. The graph can only be modified while the workflow is draft or paused.
+   * Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
    * @param workflowId  (required)
    * @param updateWorkflowRequest  (optional)
    * @param headers Optional headers to include in the request

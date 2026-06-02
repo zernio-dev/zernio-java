@@ -2,7 +2,7 @@
 
 # WorkflowNodePosition
 
-Canvas coordinates (ignored by the executor; used by the future visual builder).
+Canvas coordinates (ignored by the executor; used by the visual builder).
 
 ## Properties
 

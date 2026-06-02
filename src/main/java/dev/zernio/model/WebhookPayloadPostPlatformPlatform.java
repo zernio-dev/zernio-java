@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_PUBLISHED_URL,
   WebhookPayloadPostPlatformPlatform.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:03:19.504916501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:15:31.382232209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPlatformPlatform {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

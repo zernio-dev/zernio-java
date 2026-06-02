@@ -41,9 +41,10 @@ import dev.zernio.ApiClient;
   UpdateWorkflowRequest.JSON_PROPERTY_DESCRIPTION,
   UpdateWorkflowRequest.JSON_PROPERTY_NODES,
   UpdateWorkflowRequest.JSON_PROPERTY_EDGES,
-  UpdateWorkflowRequest.JSON_PROPERTY_ENTRY_NODE_ID
+  UpdateWorkflowRequest.JSON_PROPERTY_ENTRY_NODE_ID,
+  UpdateWorkflowRequest.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:03:19.504916501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:15:31.382232209Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWorkflowRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -64,6 +65,10 @@ public class UpdateWorkflowRequest {
   public static final String JSON_PROPERTY_ENTRY_NODE_ID = "entryNodeId";
   @javax.annotation.Nullable
   private String entryNodeId;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   public UpdateWorkflowRequest() { 
   }
@@ -204,6 +209,30 @@ public class UpdateWorkflowRequest {
   }
 
 
+  public UpdateWorkflowRequest accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Reassign the workflow to a different &#x60;SocialAccount&#x60;. &#x60;platform&#x60; and &#x60;profileId&#x60; are derived server-side from the new account (the client never sends them directly). The account must belong to the caller&#39;s workspace and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform. 
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+  }
+
+
   /**
    * Return true if this updateWorkflow_request object is equal to o.
    */
@@ -220,12 +249,13 @@ public class UpdateWorkflowRequest {
         Objects.equals(this.description, updateWorkflowRequest.description) &&
         Objects.equals(this.nodes, updateWorkflowRequest.nodes) &&
         Objects.equals(this.edges, updateWorkflowRequest.edges) &&
-        Objects.equals(this.entryNodeId, updateWorkflowRequest.entryNodeId);
+        Objects.equals(this.entryNodeId, updateWorkflowRequest.entryNodeId) &&
+        Objects.equals(this.accountId, updateWorkflowRequest.accountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, nodes, edges, entryNodeId);
+    return Objects.hash(name, description, nodes, edges, entryNodeId, accountId);
   }
 
   @Override
@@ -237,6 +267,7 @@ public class UpdateWorkflowRequest {
     sb.append("    nodes: ").append(toIndentedString(nodes)).append("\n");
     sb.append("    edges: ").append(toIndentedString(edges)).append("\n");
     sb.append("    entryNodeId: ").append(toIndentedString(entryNodeId)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -317,6 +348,11 @@ public class UpdateWorkflowRequest {
     // add `entryNodeId` to the URL query string
     if (getEntryNodeId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sentryNodeId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEntryNodeId()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     return joiner.toString();
