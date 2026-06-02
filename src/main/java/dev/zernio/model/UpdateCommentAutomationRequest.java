@@ -42,9 +42,10 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomationRequest.JSON_PROPERTY_DM_MESSAGE,
   UpdateCommentAutomationRequest.JSON_PROPERTY_BUTTONS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY,
+  UpdateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING,
   UpdateCommentAutomationRequest.JSON_PROPERTY_IS_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -104,6 +105,10 @@ public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
   private String commentReply;
+
+  public static final String JSON_PROPERTY_LINK_TRACKING = "linkTracking";
+  @javax.annotation.Nullable
+  private Boolean linkTracking;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
@@ -272,6 +277,30 @@ public class UpdateCommentAutomationRequest {
   }
 
 
+  public UpdateCommentAutomationRequest linkTracking(@javax.annotation.Nullable Boolean linkTracking) {
+    this.linkTracking = linkTracking;
+    return this;
+  }
+
+  /**
+   * Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched.
+   * @return linkTracking
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINK_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getLinkTracking() {
+    return linkTracking;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINK_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinkTracking(@javax.annotation.Nullable Boolean linkTracking) {
+    this.linkTracking = linkTracking;
+  }
+
+
   public UpdateCommentAutomationRequest isActive(@javax.annotation.Nullable Boolean isActive) {
     this.isActive = isActive;
     return this;
@@ -314,12 +343,13 @@ public class UpdateCommentAutomationRequest {
         Objects.equals(this.dmMessage, updateCommentAutomationRequest.dmMessage) &&
         Objects.equals(this.buttons, updateCommentAutomationRequest.buttons) &&
         Objects.equals(this.commentReply, updateCommentAutomationRequest.commentReply) &&
+        Objects.equals(this.linkTracking, updateCommentAutomationRequest.linkTracking) &&
         Objects.equals(this.isActive, updateCommentAutomationRequest.isActive);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, keywords, matchMode, dmMessage, buttons, commentReply, isActive);
+    return Objects.hash(name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, isActive);
   }
 
   @Override
@@ -332,6 +362,7 @@ public class UpdateCommentAutomationRequest {
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
+    sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -417,6 +448,11 @@ public class UpdateCommentAutomationRequest {
     // add `commentReply` to the URL query string
     if (getCommentReply() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scommentReply%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReply()))));
+    }
+
+    // add `linkTracking` to the URL query string
+    if (getLinkTracking() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slinkTracking%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkTracking()))));
     }
 
     // add `isActive` to the URL query string

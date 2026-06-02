@@ -44277,8 +44277,10 @@ components:
       example:
         triggered: 0
         dmsFailed: 1
+        linkClicks: 5
         uniqueContacts: 5
         dmsSent: 6
+        uniqueClicks: 2
       properties:
         triggered:
           type: integer
@@ -44287,6 +44289,12 @@ components:
         dmsFailed:
           type: integer
         uniqueContacts:
+          type: integer
+        linkClicks:
+          description: Total clicks on tracked links (bots/prefetch excluded).
+          type: integer
+        uniqueClicks:
+          description: Distinct people who clicked a tracked link.
           type: integer
     listCommentAutomations_200_response_automations_inner:
       example:
@@ -44307,14 +44315,17 @@ components:
         - keywords
         commentReply: commentReply
         isActive: true
+        linkTracking: true
         platform: instagram
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
         stats:
           triggered: 0
           dmsFailed: 1
+          linkClicks: 5
           uniqueContacts: 5
           dmsSent: 6
+          uniqueClicks: 2
         name: name
         postTitle: postTitle
         id: id
@@ -44354,6 +44365,10 @@ components:
           type: array
         commentReply:
           type: string
+        linkTracking:
+          description: Whether link buttons in the DM are wrapped in a tracked redirect
+            to count clicks.
+          type: boolean
         isActive:
           type: boolean
         stats:
@@ -44381,14 +44396,17 @@ components:
           - keywords
           commentReply: commentReply
           isActive: true
+          linkTracking: true
           platform: instagram
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           stats:
             triggered: 0
             dmsFailed: 1
+            linkClicks: 5
             uniqueContacts: 5
             dmsSent: 6
+            uniqueClicks: 2
           name: name
           postTitle: postTitle
           id: id
@@ -44411,14 +44429,17 @@ components:
           - keywords
           commentReply: commentReply
           isActive: true
+          linkTracking: true
           platform: instagram
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
           stats:
             triggered: 0
             dmsFailed: 1
+            linkClicks: 5
             uniqueContacts: 5
             dmsSent: 6
+            uniqueClicks: 2
           name: name
           postTitle: postTitle
           id: id
@@ -44478,6 +44499,12 @@ components:
         commentReply:
           description: Optional public reply to the comment
           type: string
+        linkTracking:
+          default: true
+          description: Wrap link buttons in the DM in a tracked redirect so clicks
+            are counted (Link Clicks / CTR). Pass false to send links exactly as written.
+            Defaults to on.
+          type: boolean
       required:
       - accountId
       - dmMessage
@@ -44498,7 +44525,6 @@ components:
     createCommentAutomation_200_response_automation:
       example:
         dmMessage: dmMessage
-        createdAt: 2000-01-23T04:56:07.000+00:00
         buttons:
         - payload: payload
           phone: phone
@@ -44514,14 +44540,16 @@ components:
         - keywords
         - keywords
         commentReply: commentReply
+        isActive: true
+        linkTracking: true
+        platform: platform
+        createdAt: 2000-01-23T04:56:07.000+00:00
         stats:
           totalFailed: 1
           totalSent: 6
           totalTriggered: 0
         name: name
         id: id
-        isActive: true
-        platform: platform
         matchMode: exact
         platformPostId: platformPostId
       properties:
@@ -44551,6 +44579,8 @@ components:
           type: array
         commentReply:
           type: string
+        linkTracking:
+          type: boolean
         isActive:
           type: boolean
         stats:
@@ -44562,7 +44592,6 @@ components:
       example:
         automation:
           dmMessage: dmMessage
-          createdAt: 2000-01-23T04:56:07.000+00:00
           buttons:
           - payload: payload
             phone: phone
@@ -44578,14 +44607,16 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          isActive: true
+          linkTracking: true
+          platform: platform
+          createdAt: 2000-01-23T04:56:07.000+00:00
           stats:
             totalFailed: 1
             totalSent: 6
             totalTriggered: 0
           name: name
           id: id
-          isActive: true
-          platform: platform
           matchMode: exact
           platformPostId: platformPostId
         success: true
@@ -44614,6 +44645,7 @@ components:
         commentReply: commentReply
         postId: postId
         isActive: true
+        linkTracking: true
         platform: platform
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -44660,6 +44692,8 @@ components:
           type: array
         commentReply:
           type: string
+        linkTracking:
+          type: boolean
         isActive:
           type: boolean
         stats:
@@ -44739,6 +44773,7 @@ components:
           commentReply: commentReply
           postId: postId
           isActive: true
+          linkTracking: true
           platform: platform
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -44806,6 +44841,10 @@ components:
           type: array
         commentReply:
           type: string
+        linkTracking:
+          description: Wrap link buttons in a tracked redirect to count clicks. Pass
+            false to send links untouched.
+          type: boolean
         isActive:
           type: boolean
     updateCommentAutomation_200_response_automation:

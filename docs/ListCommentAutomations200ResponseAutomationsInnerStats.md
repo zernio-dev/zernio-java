@@ -11,6 +11,8 @@
 |**dmsSent** | **Integer** |  |  [optional] |
 |**dmsFailed** | **Integer** |  |  [optional] |
 |**uniqueContacts** | **Integer** |  |  [optional] |
+|**linkClicks** | **Integer** | Total clicks on tracked links (bots/prefetch excluded). |  [optional] |
+|**uniqueClicks** | **Integer** | Distinct people who clicked a tracked link. |  [optional] |
 
 
 

@@ -18,6 +18,7 @@
 |**dmMessage** | **String** | DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. |  |
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM. |  [optional] |
 |**commentReply** | **String** | Optional public reply to the comment |  [optional] |
+|**linkTracking** | **Boolean** | Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. |  [optional] |
 
 
 

@@ -36,9 +36,11 @@ import dev.zernio.ApiClient;
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_TRIGGERED,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_DMS_SENT,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_DMS_FAILED,
-  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CONTACTS
+  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CONTACTS,
+  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_LINK_CLICKS,
+  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CLICKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomations200ResponseAutomationsInnerStats {
   public static final String JSON_PROPERTY_TRIGGERED = "triggered";
   @javax.annotation.Nullable
@@ -55,6 +57,14 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
   public static final String JSON_PROPERTY_UNIQUE_CONTACTS = "uniqueContacts";
   @javax.annotation.Nullable
   private Integer uniqueContacts;
+
+  public static final String JSON_PROPERTY_LINK_CLICKS = "linkClicks";
+  @javax.annotation.Nullable
+  private Integer linkClicks;
+
+  public static final String JSON_PROPERTY_UNIQUE_CLICKS = "uniqueClicks";
+  @javax.annotation.Nullable
+  private Integer uniqueClicks;
 
   public ListCommentAutomations200ResponseAutomationsInnerStats() { 
   }
@@ -155,6 +165,54 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
   }
 
 
+  public ListCommentAutomations200ResponseAutomationsInnerStats linkClicks(@javax.annotation.Nullable Integer linkClicks) {
+    this.linkClicks = linkClicks;
+    return this;
+  }
+
+  /**
+   * Total clicks on tracked links (bots/prefetch excluded).
+   * @return linkClicks
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINK_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getLinkClicks() {
+    return linkClicks;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINK_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinkClicks(@javax.annotation.Nullable Integer linkClicks) {
+    this.linkClicks = linkClicks;
+  }
+
+
+  public ListCommentAutomations200ResponseAutomationsInnerStats uniqueClicks(@javax.annotation.Nullable Integer uniqueClicks) {
+    this.uniqueClicks = uniqueClicks;
+    return this;
+  }
+
+  /**
+   * Distinct people who clicked a tracked link.
+   * @return uniqueClicks
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getUniqueClicks() {
+    return uniqueClicks;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNIQUE_CLICKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUniqueClicks(@javax.annotation.Nullable Integer uniqueClicks) {
+    this.uniqueClicks = uniqueClicks;
+  }
+
+
   /**
    * Return true if this listCommentAutomations_200_response_automations_inner_stats object is equal to o.
    */
@@ -170,12 +228,14 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
     return Objects.equals(this.triggered, listCommentAutomations200ResponseAutomationsInnerStats.triggered) &&
         Objects.equals(this.dmsSent, listCommentAutomations200ResponseAutomationsInnerStats.dmsSent) &&
         Objects.equals(this.dmsFailed, listCommentAutomations200ResponseAutomationsInnerStats.dmsFailed) &&
-        Objects.equals(this.uniqueContacts, listCommentAutomations200ResponseAutomationsInnerStats.uniqueContacts);
+        Objects.equals(this.uniqueContacts, listCommentAutomations200ResponseAutomationsInnerStats.uniqueContacts) &&
+        Objects.equals(this.linkClicks, listCommentAutomations200ResponseAutomationsInnerStats.linkClicks) &&
+        Objects.equals(this.uniqueClicks, listCommentAutomations200ResponseAutomationsInnerStats.uniqueClicks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(triggered, dmsSent, dmsFailed, uniqueContacts);
+    return Objects.hash(triggered, dmsSent, dmsFailed, uniqueContacts, linkClicks, uniqueClicks);
   }
 
   @Override
@@ -186,6 +246,8 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
     sb.append("    dmsSent: ").append(toIndentedString(dmsSent)).append("\n");
     sb.append("    dmsFailed: ").append(toIndentedString(dmsFailed)).append("\n");
     sb.append("    uniqueContacts: ").append(toIndentedString(uniqueContacts)).append("\n");
+    sb.append("    linkClicks: ").append(toIndentedString(linkClicks)).append("\n");
+    sb.append("    uniqueClicks: ").append(toIndentedString(uniqueClicks)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,6 +313,16 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
     // add `uniqueContacts` to the URL query string
     if (getUniqueContacts() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%suniqueContacts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUniqueContacts()))));
+    }
+
+    // add `linkClicks` to the URL query string
+    if (getLinkClicks() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slinkClicks%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkClicks()))));
+    }
+
+    // add `uniqueClicks` to the URL query string
+    if (getUniqueClicks() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suniqueClicks%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUniqueClicks()))));
     }
 
     return joiner.toString();

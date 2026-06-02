@@ -16,6 +16,7 @@
 |**dmMessage** | **String** |  |  [optional] |
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (up to 3). Omitted when none are set. |  [optional] |
 |**commentReply** | **String** |  |  [optional] |
+|**linkTracking** | **Boolean** |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**stats** | [**CreateCommentAutomation200ResponseAutomationStats**](CreateCommentAutomation200ResponseAutomationStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |

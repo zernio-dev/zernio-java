@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversation201ResponseData.JSON_PROPERTY_PARTICIPANT_NAME,
   CreateInboxConversation201ResponseData.JSON_PROPERTY_PARTICIPANT_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversation201ResponseData {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable

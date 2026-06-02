@@ -46,9 +46,10 @@ import dev.zernio.ApiClient;
   CreateCommentAutomationRequest.JSON_PROPERTY_MATCH_MODE,
   CreateCommentAutomationRequest.JSON_PROPERTY_DM_MESSAGE,
   CreateCommentAutomationRequest.JSON_PROPERTY_BUTTONS,
-  CreateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY
+  CreateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY,
+  CreateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-01T14:28:59.536093361Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -128,6 +129,10 @@ public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
   private String commentReply;
+
+  public static final String JSON_PROPERTY_LINK_TRACKING = "linkTracking";
+  @javax.annotation.Nullable
+  private Boolean linkTracking = true;
 
   public CreateCommentAutomationRequest() { 
   }
@@ -412,6 +417,30 @@ public class CreateCommentAutomationRequest {
   }
 
 
+  public CreateCommentAutomationRequest linkTracking(@javax.annotation.Nullable Boolean linkTracking) {
+    this.linkTracking = linkTracking;
+    return this;
+  }
+
+  /**
+   * Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on.
+   * @return linkTracking
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LINK_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getLinkTracking() {
+    return linkTracking;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LINK_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLinkTracking(@javax.annotation.Nullable Boolean linkTracking) {
+    this.linkTracking = linkTracking;
+  }
+
+
   /**
    * Return true if this createCommentAutomation_request object is equal to o.
    */
@@ -434,12 +463,13 @@ public class CreateCommentAutomationRequest {
         Objects.equals(this.matchMode, createCommentAutomationRequest.matchMode) &&
         Objects.equals(this.dmMessage, createCommentAutomationRequest.dmMessage) &&
         Objects.equals(this.buttons, createCommentAutomationRequest.buttons) &&
-        Objects.equals(this.commentReply, createCommentAutomationRequest.commentReply);
+        Objects.equals(this.commentReply, createCommentAutomationRequest.commentReply) &&
+        Objects.equals(this.linkTracking, createCommentAutomationRequest.linkTracking);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, accountId, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply);
+    return Objects.hash(profileId, accountId, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking);
   }
 
   @Override
@@ -457,6 +487,7 @@ public class CreateCommentAutomationRequest {
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
+    sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -566,6 +597,11 @@ public class CreateCommentAutomationRequest {
     // add `commentReply` to the URL query string
     if (getCommentReply() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scommentReply%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReply()))));
+    }
+
+    // add `linkTracking` to the URL query string
+    if (getLinkTracking() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slinkTracking%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkTracking()))));
     }
 
     return joiner.toString();
