@@ -31,7 +31,9 @@ import dev.zernio.model.CreateStandaloneAdRequestBrandIdentity;
 import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
+import dev.zernio.model.CreateStandaloneAdRequestDynamicCreative;
 import dev.zernio.model.CreateStandaloneAdRequestImages;
+import dev.zernio.model.CreateStandaloneAdRequestPlacements;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
@@ -57,6 +59,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_LEVEL,
   CreateStandaloneAdRequest.JSON_PROPERTY_CURRENCY,
   CreateStandaloneAdRequest.JSON_PROPERTY_HEADLINE,
   CreateStandaloneAdRequest.JSON_PROPERTY_LONG_HEADLINE,
@@ -84,9 +87,13 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BEHAVIORS,
   CreateStandaloneAdRequest.JSON_PROPERTY_INCOME_TIER,
   CreateStandaloneAdRequest.JSON_PROPERTY_LANGUAGES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_PLACEMENTS,
   CreateStandaloneAdRequest.JSON_PROPERTY_SAVED_TARGETING_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_END_DATE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_START_DATE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_DYNAMIC_CREATIVE,
   CreateStandaloneAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_KEYWORDS,
@@ -104,7 +111,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T12:05:12.557831626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T12:18:41.680089126Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -209,6 +216,45 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_BUDGET_TYPE = "budgetType";
   @javax.annotation.Nullable
   private BudgetTypeEnum budgetType;
+
+  /**
+   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+   */
+  public enum BudgetLevelEnum {
+    ADSET(String.valueOf("adset")),
+    
+    CAMPAIGN(String.valueOf("campaign"));
+
+    private String value;
+
+    BudgetLevelEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BudgetLevelEnum fromValue(String value) {
+      for (BudgetLevelEnum b : BudgetLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BUDGET_LEVEL = "budgetLevel";
+  @javax.annotation.Nullable
+  private BudgetLevelEnum budgetLevel = BudgetLevelEnum.ADSET;
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable
@@ -424,6 +470,10 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   private List<String> languages = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_PLACEMENTS = "placements";
+  @javax.annotation.Nullable
+  private CreateStandaloneAdRequestPlacements placements;
+
   public static final String JSON_PROPERTY_SAVED_TARGETING_ID = "savedTargetingId";
   @javax.annotation.Nullable
   private String savedTargetingId;
@@ -474,6 +524,18 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_END_DATE = "endDate";
   @javax.annotation.Nullable
   private OffsetDateTime endDate;
+
+  public static final String JSON_PROPERTY_START_DATE = "startDate";
+  @javax.annotation.Nullable
+  private OffsetDateTime startDate;
+
+  public static final String JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID = "instagramAccountId";
+  @javax.annotation.Nullable
+  private String instagramAccountId;
+
+  public static final String JSON_PROPERTY_DYNAMIC_CREATIVE = "dynamicCreative";
+  @javax.annotation.Nullable
+  private CreateStandaloneAdRequestDynamicCreative dynamicCreative;
 
   public static final String JSON_PROPERTY_AUDIENCE_ID = "audienceId";
   @javax.annotation.Nullable
@@ -825,6 +887,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBudgetType(@javax.annotation.Nullable BudgetTypeEnum budgetType) {
     this.budgetType = budgetType;
+  }
+
+
+  public CreateStandaloneAdRequest budgetLevel(@javax.annotation.Nullable BudgetLevelEnum budgetLevel) {
+    this.budgetLevel = budgetLevel;
+    return this;
+  }
+
+  /**
+   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+   * @return budgetLevel
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_LEVEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BudgetLevelEnum getBudgetLevel() {
+    return budgetLevel;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_LEVEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBudgetLevel(@javax.annotation.Nullable BudgetLevelEnum budgetLevel) {
+    this.budgetLevel = budgetLevel;
   }
 
 
@@ -1560,6 +1646,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest placements(@javax.annotation.Nullable CreateStandaloneAdRequestPlacements placements) {
+    this.placements = placements;
+    return this;
+  }
+
+  /**
+   * Get placements
+   * @return placements
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateStandaloneAdRequestPlacements getPlacements() {
+    return placements;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlacements(@javax.annotation.Nullable CreateStandaloneAdRequestPlacements placements) {
+    this.placements = placements;
+  }
+
+
   public CreateStandaloneAdRequest savedTargetingId(@javax.annotation.Nullable String savedTargetingId) {
     this.savedTargetingId = savedTargetingId;
     return this;
@@ -1637,6 +1747,78 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEndDate(@javax.annotation.Nullable OffsetDateTime endDate) {
     this.endDate = endDate;
+  }
+
+
+  public CreateStandaloneAdRequest startDate(@javax.annotation.Nullable OffsetDateTime startDate) {
+    this.startDate = startDate;
+    return this;
+  }
+
+  /**
+   * Meta only. Ad-set start time (ISO 8601, e.g. \&quot;2026-06-10T09:00:00Z\&quot;), mapped to the ad set&#39;s &#x60;start_time&#x60;. When omitted the ad starts delivering immediately. For lifetime budgets Meta also requires &#x60;endDate&#x60;. (Same &#x60;schedule.startDate&#x60; semantics already available on &#x60;POST /v1/ads/boost&#x60;.) 
+   * @return startDate
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_START_DATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getStartDate() {
+    return startDate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_START_DATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStartDate(@javax.annotation.Nullable OffsetDateTime startDate) {
+    this.startDate = startDate;
+  }
+
+
+  public CreateStandaloneAdRequest instagramAccountId(@javax.annotation.Nullable String instagramAccountId) {
+    this.instagramAccountId = instagramAccountId;
+    return this;
+  }
+
+  /**
+   * Meta only. Override the Instagram account the ad is delivered as — pass an Instagram Business Account ID (e.g. 17841...), mapped to the creative&#39;s &#x60;instagram_user_id&#x60;. When omitted we auto-resolve the IG account linked to the connected Facebook Page (the existing default). Useful when a Page has more than one eligible IG account. 
+   * @return instagramAccountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getInstagramAccountId() {
+    return instagramAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInstagramAccountId(@javax.annotation.Nullable String instagramAccountId) {
+    this.instagramAccountId = instagramAccountId;
+  }
+
+
+  public CreateStandaloneAdRequest dynamicCreative(@javax.annotation.Nullable CreateStandaloneAdRequestDynamicCreative dynamicCreative) {
+    this.dynamicCreative = dynamicCreative;
+    return this;
+  }
+
+  /**
+   * Get dynamicCreative
+   * @return dynamicCreative
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DYNAMIC_CREATIVE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateStandaloneAdRequestDynamicCreative getDynamicCreative() {
+    return dynamicCreative;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DYNAMIC_CREATIVE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDynamicCreative(@javax.annotation.Nullable CreateStandaloneAdRequestDynamicCreative dynamicCreative) {
+    this.dynamicCreative = dynamicCreative;
   }
 
 
@@ -2074,6 +2256,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.goal, createStandaloneAdRequest.goal) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
+        Objects.equals(this.budgetLevel, createStandaloneAdRequest.budgetLevel) &&
         Objects.equals(this.currency, createStandaloneAdRequest.currency) &&
         Objects.equals(this.headline, createStandaloneAdRequest.headline) &&
         Objects.equals(this.longHeadline, createStandaloneAdRequest.longHeadline) &&
@@ -2101,9 +2284,13 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.behaviors, createStandaloneAdRequest.behaviors) &&
         Objects.equals(this.incomeTier, createStandaloneAdRequest.incomeTier) &&
         Objects.equals(this.languages, createStandaloneAdRequest.languages) &&
+        Objects.equals(this.placements, createStandaloneAdRequest.placements) &&
         Objects.equals(this.savedTargetingId, createStandaloneAdRequest.savedTargetingId) &&
         Objects.equals(this.specialAdCategories, createStandaloneAdRequest.specialAdCategories) &&
         Objects.equals(this.endDate, createStandaloneAdRequest.endDate) &&
+        Objects.equals(this.startDate, createStandaloneAdRequest.startDate) &&
+        Objects.equals(this.instagramAccountId, createStandaloneAdRequest.instagramAccountId) &&
+        Objects.equals(this.dynamicCreative, createStandaloneAdRequest.dynamicCreative) &&
         Objects.equals(this.audienceId, createStandaloneAdRequest.audienceId) &&
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
         Objects.equals(this.keywords, createStandaloneAdRequest.keywords) &&
@@ -2124,7 +2311,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, savedTargetingId, specialAdCategories, endDate, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2137,6 +2324,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
+    sb.append("    budgetLevel: ").append(toIndentedString(budgetLevel)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    longHeadline: ").append(toIndentedString(longHeadline)).append("\n");
@@ -2164,9 +2352,13 @@ public class CreateStandaloneAdRequest {
     sb.append("    behaviors: ").append(toIndentedString(behaviors)).append("\n");
     sb.append("    incomeTier: ").append(toIndentedString(incomeTier)).append("\n");
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
+    sb.append("    placements: ").append(toIndentedString(placements)).append("\n");
     sb.append("    savedTargetingId: ").append(toIndentedString(savedTargetingId)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
+    sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
+    sb.append("    dynamicCreative: ").append(toIndentedString(dynamicCreative)).append("\n");
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    campaignType: ").append(toIndentedString(campaignType)).append("\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
@@ -2258,6 +2450,11 @@ public class CreateStandaloneAdRequest {
     // add `budgetType` to the URL query string
     if (getBudgetType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbudgetType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBudgetType()))));
+    }
+
+    // add `budgetLevel` to the URL query string
+    if (getBudgetLevel() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbudgetLevel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBudgetLevel()))));
     }
 
     // add `currency` to the URL query string
@@ -2443,6 +2640,11 @@ public class CreateStandaloneAdRequest {
       }
     }
 
+    // add `placements` to the URL query string
+    if (getPlacements() != null) {
+      joiner.add(getPlacements().toUrlQueryString(prefix + "placements" + suffix));
+    }
+
     // add `savedTargetingId` to the URL query string
     if (getSavedTargetingId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssavedTargetingId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSavedTargetingId()))));
@@ -2460,6 +2662,21 @@ public class CreateStandaloneAdRequest {
     // add `endDate` to the URL query string
     if (getEndDate() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sendDate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEndDate()))));
+    }
+
+    // add `startDate` to the URL query string
+    if (getStartDate() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstartDate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStartDate()))));
+    }
+
+    // add `instagramAccountId` to the URL query string
+    if (getInstagramAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstagramAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstagramAccountId()))));
+    }
+
+    // add `dynamicCreative` to the URL query string
+    if (getDynamicCreative() != null) {
+      joiner.add(getDynamicCreative().toUrlQueryString(prefix + "dynamicCreative" + suffix));
     }
 
     // add `audienceId` to the URL query string

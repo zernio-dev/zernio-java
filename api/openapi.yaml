@@ -49494,6 +49494,170 @@ components:
           type: string
       required:
       - id
+    createStandaloneAd_request_placements:
+      description: |
+        Meta only. Manual ad placements. Omit for automatic placements (Meta's default,
+        recommended for most cases — Meta optimises delivery across all eligible surfaces).
+        When set, restricts delivery to the chosen surfaces, mapped onto the ad set's
+        `targeting.{publisher_platforms, facebook_positions, instagram_positions,
+        messenger_positions, audience_network_positions, threads_positions,
+        whatsapp_positions, device_platforms}`. Enum membership is validated here; Meta
+        additionally enforces co-selection rules (e.g. some positions require their parent
+        publisher platform) and returns an actionable error which we surface. Non-Meta
+        platforms reject this field.
+      properties:
+        publisherPlatforms:
+          description: Top-level platforms to deliver on. A position field below is
+            only honoured when its parent platform is included here.
+          items:
+            enum:
+            - facebook
+            - instagram
+            - threads
+            - messenger
+            - audience_network
+            type: string
+          type: array
+        facebookPositions:
+          items:
+            enum:
+            - feed
+            - right_hand_column
+            - marketplace
+            - video_feeds
+            - story
+            - search
+            - instream_video
+            - facebook_reels
+            - facebook_reels_overlay
+            - profile_feed
+            - notification
+            type: string
+          type: array
+        instagramPositions:
+          items:
+            enum:
+            - stream
+            - story
+            - explore
+            - explore_home
+            - reels
+            - profile_feed
+            - ig_search
+            - profile_reels
+            type: string
+          type: array
+        messengerPositions:
+          items:
+            enum:
+            - messenger_home
+            - sponsored_messages
+            - story
+            type: string
+          type: array
+        audienceNetworkPositions:
+          items:
+            enum:
+            - classic
+            - rewarded_video
+            type: string
+          type: array
+        threadsPositions:
+          items:
+            enum:
+            - threads_stream
+            type: string
+          type: array
+        whatsappPositions:
+          items:
+            enum:
+            - status
+            type: string
+          type: array
+        devicePlatforms:
+          description: Restrict by device. Omit to deliver on both mobile and desktop.
+          items:
+            enum:
+            - mobile
+            - desktop
+            type: string
+          type: array
+    createStandaloneAd_request_dynamicCreative:
+      description: |
+        Meta only. Dynamic Creative: supply a POOL of assets and Meta auto-combines and
+        optimises them into the best-performing variations within a single ad (mapped to the
+        creative's `asset_feed_spec`). When set, the top-level single-creative fields
+        (`imageUrl`, `headline`, `body`, `linkUrl`, `callToAction`) are ignored. Mutually
+        exclusive with the `creatives[]` multi-creative shape. Meta limits: ≤10 images,
+        ≤5 bodies / titles / descriptions.
+      properties:
+        imageUrls:
+          description: Pool of image URLs (1-10). Uploaded to the ad account and referenced
+            by hash in the asset feed.
+          items:
+            format: uri
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        bodies:
+          description: Primary-text variations (the body copy).
+          items:
+            type: string
+          maxItems: 5
+          type: array
+        titles:
+          description: Headline variations.
+          items:
+            type: string
+          maxItems: 5
+          type: array
+        descriptions:
+          description: Description (link caption) variations.
+          items:
+            type: string
+          maxItems: 5
+          type: array
+        linkUrls:
+          description: Destination URL variations. At least one is required unless
+            `goal` is `lead_generation`.
+          items:
+            format: uri
+            type: string
+          type: array
+        callToActionTypes:
+          description: CTA-button variations. Required.
+          items:
+            enum:
+            - LEARN_MORE
+            - SHOP_NOW
+            - SIGN_UP
+            - BOOK_TRAVEL
+            - CONTACT_US
+            - DOWNLOAD
+            - GET_OFFER
+            - GET_QUOTE
+            - SUBSCRIBE
+            - WATCH_MORE
+            - REGISTER
+            - JOIN
+            - ATTEND
+            - REQUEST_DEMO
+            - VIEW_QUOTE
+            - APPLY
+            - SEE_MORE
+            - BUY_NOW
+            type: string
+          type: array
+        adFormat:
+          default: SINGLE_IMAGE
+          description: Asset-feed ad format. Defaults to SINGLE_IMAGE.
+          enum:
+          - SINGLE_IMAGE
+          - CAROUSEL_IMAGE
+          type: string
+      required:
+      - imageUrls
     createStandaloneAd_request_attributionSpec_inner:
       properties:
         eventType:
@@ -49645,6 +49809,21 @@ components:
           enum:
           - daily
           - lifetime
+          type: string
+        budgetLevel:
+          default: adset
+          description: |
+            Meta only. Where the budget lives, which selects the Meta budget model:
+              - `adset` (default): ABO (Ad-set Budget Optimization). The budget is set on the
+                ad set. This is the back-compatible behaviour — omit this field to keep it.
+              - `campaign`: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The
+                budget AND `bidStrategy` are set on the CAMPAIGN, and Meta distributes spend
+                across ad sets automatically.
+            Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore
+            this field. Ignored on the attach shape (`adSetId`), which inherits the existing budget.
+          enum:
+          - adset
+          - campaign
           type: string
         currency:
           type: string
@@ -49843,6 +50022,8 @@ components:
           items:
             type: string
           type: array
+        placements:
+          $ref: "#/components/schemas/createStandaloneAd_request_placements"
         savedTargetingId:
           description: |
             ID of a `saved_targeting` audience (created via POST /v1/ads/audiences). When set, its stored
@@ -49866,6 +50047,23 @@ components:
           description: Required for lifetime budgets
           format: date-time
           type: string
+        startDate:
+          description: |
+            Meta only. Ad-set start time (ISO 8601, e.g. "2026-06-10T09:00:00Z"), mapped to the
+            ad set's `start_time`. When omitted the ad starts delivering immediately. For lifetime
+            budgets Meta also requires `endDate`. (Same `schedule.startDate` semantics already
+            available on `POST /v1/ads/boost`.)
+          format: date-time
+          type: string
+        instagramAccountId:
+          description: |
+            Meta only. Override the Instagram account the ad is delivered as — pass an Instagram
+            Business Account ID (e.g. 17841...), mapped to the creative's `instagram_user_id`.
+            When omitted we auto-resolve the IG account linked to the connected Facebook Page
+            (the existing default). Useful when a Page has more than one eligible IG account.
+          type: string
+        dynamicCreative:
+          $ref: "#/components/schemas/createStandaloneAd_request_dynamicCreative"
         audienceId:
           description: Custom audience ID for targeting
           type: string
