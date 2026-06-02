@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200ResponseSandbox.JSON_PROPERTY_TEMPLATE,
   GetWhatsAppPhoneNumbers200ResponseSandbox.JSON_PROPERTY_IS_SANDBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T11:18:59.494518893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T12:05:12.557831626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200ResponseSandbox {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -53,42 +53,9 @@ public class GetWhatsAppPhoneNumbers200ResponseSandbox {
   @javax.annotation.Nullable
   private GetWhatsAppPhoneNumbers200ResponseSandboxTemplate template;
 
-  /**
-   * Gets or Sets isSandbox
-   */
-  public enum IsSandboxEnum {
-    TRUE(Boolean.valueOf("true"));
-
-    private Boolean value;
-
-    IsSandboxEnum(Boolean value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Boolean getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static IsSandboxEnum fromValue(Boolean value) {
-      for (IsSandboxEnum b : IsSandboxEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_IS_SANDBOX = "isSandbox";
   @javax.annotation.Nullable
-  private IsSandboxEnum isSandbox;
+  private Boolean isSandbox;
 
   public GetWhatsAppPhoneNumbers200ResponseSandbox() { 
   }
@@ -165,7 +132,7 @@ public class GetWhatsAppPhoneNumbers200ResponseSandbox {
   }
 
 
-  public GetWhatsAppPhoneNumbers200ResponseSandbox isSandbox(@javax.annotation.Nullable IsSandboxEnum isSandbox) {
+  public GetWhatsAppPhoneNumbers200ResponseSandbox isSandbox(@javax.annotation.Nullable Boolean isSandbox) {
     this.isSandbox = isSandbox;
     return this;
   }
@@ -177,14 +144,14 @@ public class GetWhatsAppPhoneNumbers200ResponseSandbox {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_IS_SANDBOX, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public IsSandboxEnum getIsSandbox() {
+  public Boolean getIsSandbox() {
     return isSandbox;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_IS_SANDBOX, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsSandbox(@javax.annotation.Nullable IsSandboxEnum isSandbox) {
+  public void setIsSandbox(@javax.annotation.Nullable Boolean isSandbox) {
     this.isSandbox = isSandbox;
   }
 

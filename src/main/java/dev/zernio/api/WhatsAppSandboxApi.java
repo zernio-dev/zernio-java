@@ -20,9 +20,9 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.CreateWhatsAppSandboxSession200Response;
 import dev.zernio.model.CreateWhatsAppSandboxSessionRequest;
-import dev.zernio.model.DeleteWhatsAppSandboxSession200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListWhatsAppSandboxSessions200Response;
+import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T11:18:59.494518893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T12:05:12.557831626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppSandboxApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -299,10 +299,10 @@ public class WhatsAppSandboxApi {
    * Revoke a sandbox session
    * Hard-deletes the session. The user loses the ability to send to that phone via the sandbox until they re-activate it. Existing conversations and messages already exchanged with that phone are untouched — revocation only blocks FUTURE sends.  Sessions belonging to other users cannot be revoked; the response is the same 400 as \&quot;session not found\&quot; so existence isn&#39;t leaked. 
    * @param sessionId The session id returned by POST /v1/whatsapp/sandbox/sessions. (required)
-   * @return DeleteWhatsAppSandboxSession200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteWhatsAppSandboxSession200Response deleteWhatsAppSandboxSession(@javax.annotation.Nonnull String sessionId) throws ApiException {
+  public UpdateYoutubeDefaultPlaylist200Response deleteWhatsAppSandboxSession(@javax.annotation.Nonnull String sessionId) throws ApiException {
     return deleteWhatsAppSandboxSession(sessionId, null);
   }
 
@@ -311,11 +311,11 @@ public class WhatsAppSandboxApi {
    * Hard-deletes the session. The user loses the ability to send to that phone via the sandbox until they re-activate it. Existing conversations and messages already exchanged with that phone are untouched — revocation only blocks FUTURE sends.  Sessions belonging to other users cannot be revoked; the response is the same 400 as \&quot;session not found\&quot; so existence isn&#39;t leaked. 
    * @param sessionId The session id returned by POST /v1/whatsapp/sandbox/sessions. (required)
    * @param headers Optional headers to include in the request
-   * @return DeleteWhatsAppSandboxSession200Response
+   * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public DeleteWhatsAppSandboxSession200Response deleteWhatsAppSandboxSession(@javax.annotation.Nonnull String sessionId, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteWhatsAppSandboxSession200Response> localVarResponse = deleteWhatsAppSandboxSessionWithHttpInfo(sessionId, headers);
+  public UpdateYoutubeDefaultPlaylist200Response deleteWhatsAppSandboxSession(@javax.annotation.Nonnull String sessionId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deleteWhatsAppSandboxSessionWithHttpInfo(sessionId, headers);
     return localVarResponse.getData();
   }
 
@@ -323,10 +323,10 @@ public class WhatsAppSandboxApi {
    * Revoke a sandbox session
    * Hard-deletes the session. The user loses the ability to send to that phone via the sandbox until they re-activate it. Existing conversations and messages already exchanged with that phone are untouched — revocation only blocks FUTURE sends.  Sessions belonging to other users cannot be revoked; the response is the same 400 as \&quot;session not found\&quot; so existence isn&#39;t leaked. 
    * @param sessionId The session id returned by POST /v1/whatsapp/sandbox/sessions. (required)
-   * @return ApiResponse&lt;DeleteWhatsAppSandboxSession200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteWhatsAppSandboxSession200Response> deleteWhatsAppSandboxSessionWithHttpInfo(@javax.annotation.Nonnull String sessionId) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWhatsAppSandboxSessionWithHttpInfo(@javax.annotation.Nonnull String sessionId) throws ApiException {
     return deleteWhatsAppSandboxSessionWithHttpInfo(sessionId, null);
   }
 
@@ -335,10 +335,10 @@ public class WhatsAppSandboxApi {
    * Hard-deletes the session. The user loses the ability to send to that phone via the sandbox until they re-activate it. Existing conversations and messages already exchanged with that phone are untouched — revocation only blocks FUTURE sends.  Sessions belonging to other users cannot be revoked; the response is the same 400 as \&quot;session not found\&quot; so existence isn&#39;t leaked. 
    * @param sessionId The session id returned by POST /v1/whatsapp/sandbox/sessions. (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;DeleteWhatsAppSandboxSession200Response&gt;
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteWhatsAppSandboxSession200Response> deleteWhatsAppSandboxSessionWithHttpInfo(@javax.annotation.Nonnull String sessionId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWhatsAppSandboxSessionWithHttpInfo(@javax.annotation.Nonnull String sessionId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = deleteWhatsAppSandboxSessionRequestBuilder(sessionId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -354,7 +354,7 @@ public class WhatsAppSandboxApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<DeleteWhatsAppSandboxSession200Response>(
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -364,10 +364,10 @@ public class WhatsAppSandboxApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        DeleteWhatsAppSandboxSession200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteWhatsAppSandboxSession200Response>() {});
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
         
 
-        return new ApiResponse<DeleteWhatsAppSandboxSession200Response>(
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

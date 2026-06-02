@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateBroadcastRequestTemplate.JSON_PROPERTY_LANGUAGE,
   UpdateBroadcastRequestTemplate.JSON_PROPERTY_VARIABLE_MAPPING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T11:18:59.494518893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T12:05:12.557831626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateBroadcastRequestTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

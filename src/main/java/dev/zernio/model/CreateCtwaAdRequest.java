@@ -26,11 +26,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateCtwaAdRequestCitiesInner;
 import dev.zernio.model.CreateCtwaAdRequestCreativesInner;
+import dev.zernio.model.CreateCtwaAdRequestCustomLocationsInner;
 import dev.zernio.model.CreateCtwaAdRequestRegionsInner;
 import dev.zernio.model.CreateCtwaAdRequestVideo;
 import dev.zernio.model.CreateCtwaAdRequestZipsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
-import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.time.OffsetDateTime;
@@ -75,7 +75,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T11:18:59.494518893Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T12:05:12.557831626Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -182,7 +182,7 @@ public class CreateCtwaAdRequest {
 
   public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
+  private List<CreateCtwaAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -799,12 +799,12 @@ public class CreateCtwaAdRequest {
   }
 
 
-  public CreateCtwaAdRequest customLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
+  public CreateCtwaAdRequest customLocations(@javax.annotation.Nullable List<CreateCtwaAdRequestCustomLocationsInner> customLocations) {
     this.customLocations = customLocations;
     return this;
   }
 
-  public CreateCtwaAdRequest addCustomLocationsItem(CreateStandaloneAdRequestCustomLocationsInner customLocationsItem) {
+  public CreateCtwaAdRequest addCustomLocationsItem(CreateCtwaAdRequestCustomLocationsInner customLocationsItem) {
     if (this.customLocations == null) {
       this.customLocations = new ArrayList<>();
     }
@@ -819,14 +819,14 @@ public class CreateCtwaAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestCustomLocationsInner> getCustomLocations() {
+  public List<CreateCtwaAdRequestCustomLocationsInner> getCustomLocations() {
     return customLocations;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
+  public void setCustomLocations(@javax.annotation.Nullable List<CreateCtwaAdRequestCustomLocationsInner> customLocations) {
     this.customLocations = customLocations;
   }
 

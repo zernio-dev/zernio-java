@@ -11,15 +11,7 @@ The shared WhatsApp sandbox (one Zernio-owned number, all users test against it)
 |**phoneNumber** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**template** | [**GetWhatsAppPhoneNumbers200ResponseSandboxTemplate**](GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.md) |  |  [optional] |
-|**isSandbox** | [**IsSandboxEnum**](#IsSandboxEnum) |  |  [optional] |
-
-
-
-## Enum: IsSandboxEnum
-
-| Name | Value |
-|---- | -----|
-| TRUE | &quot;true&quot; |
+|**isSandbox** | **Boolean** |  |  [optional] |
 
 
 

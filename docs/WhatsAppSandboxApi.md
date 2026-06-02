@@ -165,7 +165,7 @@ ApiResponse<[**CreateWhatsAppSandboxSession200Response**](CreateWhatsAppSandboxS
 
 ## deleteWhatsAppSandboxSession
 
-> DeleteWhatsAppSandboxSession200Response deleteWhatsAppSandboxSession(sessionId)
+> UpdateYoutubeDefaultPlaylist200Response deleteWhatsAppSandboxSession(sessionId)
 
 Revoke a sandbox session
 
@@ -194,7 +194,7 @@ public class Example {
         WhatsAppSandboxApi apiInstance = new WhatsAppSandboxApi(defaultClient);
         String sessionId = "sessionId_example"; // String | The session id returned by POST /v1/whatsapp/sandbox/sessions.
         try {
-            DeleteWhatsAppSandboxSession200Response result = apiInstance.deleteWhatsAppSandboxSession(sessionId);
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteWhatsAppSandboxSession(sessionId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppSandboxApi#deleteWhatsAppSandboxSession");
@@ -216,7 +216,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteWhatsAppSandboxSession200Response**](DeleteWhatsAppSandboxSession200Response.md)
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
 
 
 ### Authorization
@@ -238,7 +238,7 @@ public class Example {
 
 ## deleteWhatsAppSandboxSessionWithHttpInfo
 
-> ApiResponse<DeleteWhatsAppSandboxSession200Response> deleteWhatsAppSandboxSession deleteWhatsAppSandboxSessionWithHttpInfo(sessionId)
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWhatsAppSandboxSession deleteWhatsAppSandboxSessionWithHttpInfo(sessionId)
 
 Revoke a sandbox session
 
@@ -268,7 +268,7 @@ public class Example {
         WhatsAppSandboxApi apiInstance = new WhatsAppSandboxApi(defaultClient);
         String sessionId = "sessionId_example"; // String | The session id returned by POST /v1/whatsapp/sandbox/sessions.
         try {
-            ApiResponse<DeleteWhatsAppSandboxSession200Response> response = apiInstance.deleteWhatsAppSandboxSessionWithHttpInfo(sessionId);
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteWhatsAppSandboxSessionWithHttpInfo(sessionId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -292,7 +292,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**DeleteWhatsAppSandboxSession200Response**](DeleteWhatsAppSandboxSession200Response.md)>
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
 
 
 ### Authorization
