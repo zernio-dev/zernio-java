@@ -43,9 +43,10 @@ import dev.zernio.ApiClient;
   UpdateCommentAutomationRequest.JSON_PROPERTY_BUTTONS,
   UpdateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY,
   UpdateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING,
+  UpdateCommentAutomationRequest.JSON_PROPERTY_CLICK_TAG,
   UpdateCommentAutomationRequest.JSON_PROPERTY_IS_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:41:41.129905673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -109,6 +110,10 @@ public class UpdateCommentAutomationRequest {
   public static final String JSON_PROPERTY_LINK_TRACKING = "linkTracking";
   @javax.annotation.Nullable
   private Boolean linkTracking;
+
+  public static final String JSON_PROPERTY_CLICK_TAG = "clickTag";
+  @javax.annotation.Nullable
+  private String clickTag;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
@@ -301,6 +306,30 @@ public class UpdateCommentAutomationRequest {
   }
 
 
+  public UpdateCommentAutomationRequest clickTag(@javax.annotation.Nullable String clickTag) {
+    this.clickTag = clickTag;
+    return this;
+  }
+
+  /**
+   * Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it.
+   * @return clickTag
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLICK_TAG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClickTag() {
+    return clickTag;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLICK_TAG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClickTag(@javax.annotation.Nullable String clickTag) {
+    this.clickTag = clickTag;
+  }
+
+
   public UpdateCommentAutomationRequest isActive(@javax.annotation.Nullable Boolean isActive) {
     this.isActive = isActive;
     return this;
@@ -344,12 +373,13 @@ public class UpdateCommentAutomationRequest {
         Objects.equals(this.buttons, updateCommentAutomationRequest.buttons) &&
         Objects.equals(this.commentReply, updateCommentAutomationRequest.commentReply) &&
         Objects.equals(this.linkTracking, updateCommentAutomationRequest.linkTracking) &&
+        Objects.equals(this.clickTag, updateCommentAutomationRequest.clickTag) &&
         Objects.equals(this.isActive, updateCommentAutomationRequest.isActive);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, isActive);
+    return Objects.hash(name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag, isActive);
   }
 
   @Override
@@ -363,6 +393,7 @@ public class UpdateCommentAutomationRequest {
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
+    sb.append("    clickTag: ").append(toIndentedString(clickTag)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -453,6 +484,11 @@ public class UpdateCommentAutomationRequest {
     // add `linkTracking` to the URL query string
     if (getLinkTracking() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slinkTracking%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkTracking()))));
+    }
+
+    // add `clickTag` to the URL query string
+    if (getClickTag() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclickTag%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClickTag()))));
     }
 
     // add `isActive` to the URL query string

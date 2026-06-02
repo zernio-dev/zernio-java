@@ -44319,6 +44319,7 @@ components:
         platform: instagram
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
+        clickTag: clickTag
         stats:
           triggered: 0
           dmsFailed: 1
@@ -44369,6 +44370,9 @@ components:
           description: Whether link buttons in the DM are wrapped in a tracked redirect
             to count clicks.
           type: boolean
+        clickTag:
+          description: Tag applied to a contact when they click a tracked link.
+          type: string
         isActive:
           type: boolean
         stats:
@@ -44400,6 +44404,7 @@ components:
           platform: instagram
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             triggered: 0
             dmsFailed: 1
@@ -44433,6 +44438,7 @@ components:
           platform: instagram
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             triggered: 0
             dmsFailed: 1
@@ -44505,6 +44511,10 @@ components:
             are counted (Link Clicks / CTR). Pass false to send links exactly as written.
             Defaults to on.
           type: boolean
+        clickTag:
+          description: Optional tag applied to a contact when they click a tracked
+            link (requires linkTracking). Lets you segment clickers for broadcasts/sequences.
+          type: string
       required:
       - accountId
       - dmMessage
@@ -44544,6 +44554,7 @@ components:
         linkTracking: true
         platform: platform
         createdAt: 2000-01-23T04:56:07.000+00:00
+        clickTag: clickTag
         stats:
           totalFailed: 1
           totalSent: 6
@@ -44581,6 +44592,8 @@ components:
           type: string
         linkTracking:
           type: boolean
+        clickTag:
+          type: string
         isActive:
           type: boolean
         stats:
@@ -44611,6 +44624,7 @@ components:
           linkTracking: true
           platform: platform
           createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             totalFailed: 1
             totalSent: 6
@@ -44649,6 +44663,7 @@ components:
         platform: platform
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
+        clickTag: clickTag
         stats:
           totalFailed: 1
           totalSent: 6
@@ -44694,6 +44709,8 @@ components:
           type: string
         linkTracking:
           type: boolean
+        clickTag:
+          type: string
         isActive:
           type: boolean
         stats:
@@ -44777,6 +44794,7 @@ components:
           platform: platform
           accountId: accountId
           createdAt: 2000-01-23T04:56:07.000+00:00
+          clickTag: clickTag
           stats:
             totalFailed: 1
             totalSent: 6
@@ -44845,6 +44863,10 @@ components:
           description: Wrap link buttons in a tracked redirect to count clicks. Pass
             false to send links untouched.
           type: boolean
+        clickTag:
+          description: Tag applied to a contact when they click a tracked link (requires
+            linkTracking). Empty string clears it.
+          type: string
         isActive:
           type: boolean
     updateCommentAutomation_200_response_automation:

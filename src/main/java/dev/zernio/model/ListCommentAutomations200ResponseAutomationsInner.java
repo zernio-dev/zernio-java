@@ -50,11 +50,12 @@ import dev.zernio.ApiClient;
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_BUTTONS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_COMMENT_REPLY,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_LINK_TRACKING,
+  ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_CLICK_TAG,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_IS_ACTIVE,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_STATS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:41:41.129905673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -173,6 +174,10 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_LINK_TRACKING = "linkTracking";
   @javax.annotation.Nullable
   private Boolean linkTracking;
+
+  public static final String JSON_PROPERTY_CLICK_TAG = "clickTag";
+  @javax.annotation.Nullable
+  private String clickTag;
 
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nullable
@@ -493,6 +498,30 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   }
 
 
+  public ListCommentAutomations200ResponseAutomationsInner clickTag(@javax.annotation.Nullable String clickTag) {
+    this.clickTag = clickTag;
+    return this;
+  }
+
+  /**
+   * Tag applied to a contact when they click a tracked link.
+   * @return clickTag
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLICK_TAG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClickTag() {
+    return clickTag;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLICK_TAG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClickTag(@javax.annotation.Nullable String clickTag) {
+    this.clickTag = clickTag;
+  }
+
+
   public ListCommentAutomations200ResponseAutomationsInner isActive(@javax.annotation.Nullable Boolean isActive) {
     this.isActive = isActive;
     return this;
@@ -589,6 +618,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
         Objects.equals(this.buttons, listCommentAutomations200ResponseAutomationsInner.buttons) &&
         Objects.equals(this.commentReply, listCommentAutomations200ResponseAutomationsInner.commentReply) &&
         Objects.equals(this.linkTracking, listCommentAutomations200ResponseAutomationsInner.linkTracking) &&
+        Objects.equals(this.clickTag, listCommentAutomations200ResponseAutomationsInner.clickTag) &&
         Objects.equals(this.isActive, listCommentAutomations200ResponseAutomationsInner.isActive) &&
         Objects.equals(this.stats, listCommentAutomations200ResponseAutomationsInner.stats) &&
         Objects.equals(this.createdAt, listCommentAutomations200ResponseAutomationsInner.createdAt);
@@ -596,7 +626,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, accountId, platformPostId, postTitle, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, isActive, stats, createdAt);
+    return Objects.hash(id, name, platform, accountId, platformPostId, postTitle, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag, isActive, stats, createdAt);
   }
 
   @Override
@@ -615,6 +645,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
+    sb.append("    clickTag: ").append(toIndentedString(clickTag)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
@@ -732,6 +763,11 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     // add `linkTracking` to the URL query string
     if (getLinkTracking() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slinkTracking%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkTracking()))));
+    }
+
+    // add `clickTag` to the URL query string
+    if (getClickTag() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclickTag%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClickTag()))));
     }
 
     // add `isActive` to the URL query string

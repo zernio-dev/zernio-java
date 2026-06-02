@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WorkflowEdge.JSON_PROPERTY_TARGET,
   WorkflowEdge.JSON_PROPERTY_SOURCE_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:41:41.129905673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowEdge {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

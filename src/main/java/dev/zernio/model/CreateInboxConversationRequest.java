@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:41:41.129905673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

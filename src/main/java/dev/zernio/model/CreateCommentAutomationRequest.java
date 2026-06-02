@@ -47,9 +47,10 @@ import dev.zernio.ApiClient;
   CreateCommentAutomationRequest.JSON_PROPERTY_DM_MESSAGE,
   CreateCommentAutomationRequest.JSON_PROPERTY_BUTTONS,
   CreateCommentAutomationRequest.JSON_PROPERTY_COMMENT_REPLY,
-  CreateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING
+  CreateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING,
+  CreateCommentAutomationRequest.JSON_PROPERTY_CLICK_TAG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:24:12.637229707Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:41:41.129905673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -133,6 +134,10 @@ public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_LINK_TRACKING = "linkTracking";
   @javax.annotation.Nullable
   private Boolean linkTracking = true;
+
+  public static final String JSON_PROPERTY_CLICK_TAG = "clickTag";
+  @javax.annotation.Nullable
+  private String clickTag;
 
   public CreateCommentAutomationRequest() { 
   }
@@ -441,6 +446,30 @@ public class CreateCommentAutomationRequest {
   }
 
 
+  public CreateCommentAutomationRequest clickTag(@javax.annotation.Nullable String clickTag) {
+    this.clickTag = clickTag;
+    return this;
+  }
+
+  /**
+   * Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences.
+   * @return clickTag
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLICK_TAG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClickTag() {
+    return clickTag;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLICK_TAG, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClickTag(@javax.annotation.Nullable String clickTag) {
+    this.clickTag = clickTag;
+  }
+
+
   /**
    * Return true if this createCommentAutomation_request object is equal to o.
    */
@@ -464,12 +493,13 @@ public class CreateCommentAutomationRequest {
         Objects.equals(this.dmMessage, createCommentAutomationRequest.dmMessage) &&
         Objects.equals(this.buttons, createCommentAutomationRequest.buttons) &&
         Objects.equals(this.commentReply, createCommentAutomationRequest.commentReply) &&
-        Objects.equals(this.linkTracking, createCommentAutomationRequest.linkTracking);
+        Objects.equals(this.linkTracking, createCommentAutomationRequest.linkTracking) &&
+        Objects.equals(this.clickTag, createCommentAutomationRequest.clickTag);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, accountId, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking);
+    return Objects.hash(profileId, accountId, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag);
   }
 
   @Override
@@ -488,6 +518,7 @@ public class CreateCommentAutomationRequest {
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
     sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
+    sb.append("    clickTag: ").append(toIndentedString(clickTag)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -602,6 +633,11 @@ public class CreateCommentAutomationRequest {
     // add `linkTracking` to the URL query string
     if (getLinkTracking() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slinkTracking%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLinkTracking()))));
+    }
+
+    // add `clickTag` to the URL query string
+    if (getClickTag() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclickTag%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClickTag()))));
     }
 
     return joiner.toString();

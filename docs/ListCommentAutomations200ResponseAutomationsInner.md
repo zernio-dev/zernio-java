@@ -19,6 +19,7 @@
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (up to 3). Omitted when none are set. |  [optional] |
 |**commentReply** | **String** |  |  [optional] |
 |**linkTracking** | **Boolean** | Whether link buttons in the DM are wrapped in a tracked redirect to count clicks. |  [optional] |
+|**clickTag** | **String** | Tag applied to a contact when they click a tracked link. |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
 |**stats** | [**ListCommentAutomations200ResponseAutomationsInnerStats**](ListCommentAutomations200ResponseAutomationsInnerStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
