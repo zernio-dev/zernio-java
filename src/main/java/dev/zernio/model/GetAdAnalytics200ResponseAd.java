@@ -36,10 +36,11 @@ import dev.zernio.ApiClient;
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_ID,
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_NAME,
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_PLATFORM,
+  GetAdAnalytics200ResponseAd.JSON_PROPERTY_TRIGGER,
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_STATUS,
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:49:32.128433616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:03:19.504916501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAnalytics200ResponseAd {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -52,6 +53,45 @@ public class GetAdAnalytics200ResponseAd {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
   private String platform;
+
+  /**
+   * Gets or Sets trigger
+   */
+  public enum TriggerEnum {
+    COMMENT(String.valueOf("comment")),
+    
+    STORY_REPLY(String.valueOf("story_reply"));
+
+    private String value;
+
+    TriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TriggerEnum fromValue(String value) {
+      for (TriggerEnum b : TriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TRIGGER = "trigger";
+  @javax.annotation.Nullable
+  private TriggerEnum trigger;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -136,6 +176,30 @@ public class GetAdAnalytics200ResponseAd {
   }
 
 
+  public GetAdAnalytics200ResponseAd trigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
+    return this;
+  }
+
+  /**
+   * Get trigger
+   * @return trigger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TriggerEnum getTrigger() {
+    return trigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTrigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
+  }
+
+
   public GetAdAnalytics200ResponseAd status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
@@ -199,13 +263,14 @@ public class GetAdAnalytics200ResponseAd {
     return Objects.equals(this.id, getAdAnalytics200ResponseAd.id) &&
         Objects.equals(this.name, getAdAnalytics200ResponseAd.name) &&
         Objects.equals(this.platform, getAdAnalytics200ResponseAd.platform) &&
+        Objects.equals(this.trigger, getAdAnalytics200ResponseAd.trigger) &&
         Objects.equals(this.status, getAdAnalytics200ResponseAd.status) &&
         Objects.equals(this.currency, getAdAnalytics200ResponseAd.currency);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, status, currency);
+    return Objects.hash(id, name, platform, trigger, status, currency);
   }
 
   @Override
@@ -215,6 +280,7 @@ public class GetAdAnalytics200ResponseAd {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    trigger: ").append(toIndentedString(trigger)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("}");
@@ -277,6 +343,11 @@ public class GetAdAnalytics200ResponseAd {
     // add `platform` to the URL query string
     if (getPlatform() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
+    // add `trigger` to the URL query string
+    if (getTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%strigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrigger()))));
     }
 
     // add `status` to the URL query string

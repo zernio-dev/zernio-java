@@ -10,6 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
+|**trigger** | [**TriggerEnum**](#TriggerEnum) |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**platformPostId** | **String** |  |  [optional] |
 |**postTitle** | **String** |  |  [optional] |
@@ -32,6 +33,15 @@
 |---- | -----|
 | INSTAGRAM | &quot;instagram&quot; |
 | FACEBOOK | &quot;facebook&quot; |
+
+
+
+## Enum: TriggerEnum
+
+| Name | Value |
+|---- | -----|
+| COMMENT | &quot;comment&quot; |
+| STORY_REPLY | &quot;story_reply&quot; |
 
 
 

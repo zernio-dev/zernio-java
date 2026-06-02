@@ -38,6 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateCommentAutomationRequest.JSON_PROPERTY_PROFILE_ID,
   CreateCommentAutomationRequest.JSON_PROPERTY_ACCOUNT_ID,
+  CreateCommentAutomationRequest.JSON_PROPERTY_TRIGGER,
   CreateCommentAutomationRequest.JSON_PROPERTY_PLATFORM_POST_ID,
   CreateCommentAutomationRequest.JSON_PROPERTY_POST_ID,
   CreateCommentAutomationRequest.JSON_PROPERTY_POST_TITLE,
@@ -50,7 +51,7 @@ import dev.zernio.ApiClient;
   CreateCommentAutomationRequest.JSON_PROPERTY_LINK_TRACKING,
   CreateCommentAutomationRequest.JSON_PROPERTY_CLICK_TAG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:49:32.128433616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:03:19.504916501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -59,6 +60,45 @@ public class CreateCommentAutomationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
+
+  /**
+   * What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story).
+   */
+  public enum TriggerEnum {
+    COMMENT(String.valueOf("comment")),
+    
+    STORY_REPLY(String.valueOf("story_reply"));
+
+    private String value;
+
+    TriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TriggerEnum fromValue(String value) {
+      for (TriggerEnum b : TriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TRIGGER = "trigger";
+  @javax.annotation.Nullable
+  private TriggerEnum trigger = TriggerEnum.COMMENT;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
   @javax.annotation.Nullable
@@ -190,13 +230,37 @@ public class CreateCommentAutomationRequest {
   }
 
 
+  public CreateCommentAutomationRequest trigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
+    return this;
+  }
+
+  /**
+   * What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story).
+   * @return trigger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TriggerEnum getTrigger() {
+    return trigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTrigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
+  }
+
+
   public CreateCommentAutomationRequest platformPostId(@javax.annotation.Nullable String platformPostId) {
     this.platformPostId = platformPostId;
     return this;
   }
 
   /**
-   * Platform media/post ID. Omit for an account-wide (any-post) automation.
+   * Platform media/post ID (or story media id when trigger&#x3D;story_reply). Omit for an account-wide (any-post / any-story) automation.
    * @return platformPostId
    */
   @javax.annotation.Nullable
@@ -484,6 +548,7 @@ public class CreateCommentAutomationRequest {
     CreateCommentAutomationRequest createCommentAutomationRequest = (CreateCommentAutomationRequest) o;
     return Objects.equals(this.profileId, createCommentAutomationRequest.profileId) &&
         Objects.equals(this.accountId, createCommentAutomationRequest.accountId) &&
+        Objects.equals(this.trigger, createCommentAutomationRequest.trigger) &&
         Objects.equals(this.platformPostId, createCommentAutomationRequest.platformPostId) &&
         Objects.equals(this.postId, createCommentAutomationRequest.postId) &&
         Objects.equals(this.postTitle, createCommentAutomationRequest.postTitle) &&
@@ -499,7 +564,7 @@ public class CreateCommentAutomationRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, accountId, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag);
+    return Objects.hash(profileId, accountId, trigger, platformPostId, postId, postTitle, name, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag);
   }
 
   @Override
@@ -508,6 +573,7 @@ public class CreateCommentAutomationRequest {
     sb.append("class CreateCommentAutomationRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    trigger: ").append(toIndentedString(trigger)).append("\n");
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    postId: ").append(toIndentedString(postId)).append("\n");
     sb.append("    postTitle: ").append(toIndentedString(postTitle)).append("\n");
@@ -574,6 +640,11 @@ public class CreateCommentAutomationRequest {
     // add `accountId` to the URL query string
     if (getAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
+
+    // add `trigger` to the URL query string
+    if (getTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%strigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrigger()))));
     }
 
     // add `platformPostId` to the URL query string

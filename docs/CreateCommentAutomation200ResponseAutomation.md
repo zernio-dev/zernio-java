@@ -10,6 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**platform** | **String** |  |  [optional] |
+|**trigger** | [**TriggerEnum**](#TriggerEnum) |  |  [optional] |
 |**platformPostId** | **String** |  |  [optional] |
 |**keywords** | **List&lt;String&gt;** |  |  [optional] |
 |**matchMode** | [**MatchModeEnum**](#MatchModeEnum) |  |  [optional] |
@@ -21,6 +22,15 @@
 |**isActive** | **Boolean** |  |  [optional] |
 |**stats** | [**CreateCommentAutomation200ResponseAutomationStats**](CreateCommentAutomation200ResponseAutomationStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
+
+
+
+## Enum: TriggerEnum
+
+| Name | Value |
+|---- | -----|
+| COMMENT | &quot;comment&quot; |
+| STORY_REPLY | &quot;story_reply&quot; |
 
 
 

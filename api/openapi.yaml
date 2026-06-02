@@ -44322,6 +44322,7 @@ components:
         - keywords
         - keywords
         commentReply: commentReply
+        trigger: comment
         isActive: true
         linkTracking: true
         platform: instagram
@@ -44351,6 +44352,11 @@ components:
           enum:
           - instagram
           - facebook
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         accountId:
           type: string
@@ -44409,6 +44415,7 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
           isActive: true
           linkTracking: true
           platform: instagram
@@ -44445,6 +44452,7 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
           isActive: true
           linkTracking: true
           platform: instagram
@@ -44480,9 +44488,18 @@ components:
         accountId:
           description: Instagram or Facebook account ID
           type: string
+        trigger:
+          default: comment
+          description: "What fires the automation. 'comment' (keyword comment on a\
+            \ post) or 'story_reply' (keyword reply to an Instagram story). For 'story_reply',\
+            \ platformPostId is the story media id (omit for any story)."
+          enum:
+          - comment
+          - story_reply
+          type: string
         platformPostId:
-          description: Platform media/post ID. Omit for an account-wide (any-post)
-            automation.
+          description: Platform media/post ID (or story media id when trigger=story_reply).
+            Omit for an account-wide (any-post / any-story) automation.
           type: string
         postId:
           description: Zernio post ID. Required only when also targeting a specific
@@ -44564,6 +44581,7 @@ components:
         - keywords
         - keywords
         commentReply: commentReply
+        trigger: comment
         isActive: true
         linkTracking: true
         platform: platform
@@ -44583,6 +44601,11 @@ components:
         name:
           type: string
         platform:
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         platformPostId:
           type: string
@@ -44634,6 +44657,7 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
           isActive: true
           linkTracking: true
           platform: platform
@@ -44671,6 +44695,7 @@ components:
         - keywords
         - keywords
         commentReply: commentReply
+        trigger: comment
         postId: postId
         isActive: true
         linkTracking: true
@@ -44694,6 +44719,11 @@ components:
         name:
           type: string
         platform:
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         accountId:
           type: string
@@ -44802,6 +44832,7 @@ components:
           - keywords
           - keywords
           commentReply: commentReply
+          trigger: comment
           postId: postId
           isActive: true
           linkTracking: true
@@ -46698,6 +46729,7 @@ components:
         name: name
         currency: currency
         id: id
+        trigger: comment
         platform: platform
         status: status
       properties:
@@ -46706,6 +46738,11 @@ components:
         name:
           type: string
         platform:
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
           type: string
         status:
           type: string
@@ -46900,6 +46937,7 @@ components:
           name: name
           currency: currency
           id: id
+          trigger: comment
           platform: platform
           status: status
       properties:

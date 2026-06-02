@@ -9,7 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**profileId** | **String** |  |  |
 |**accountId** | **String** | Instagram or Facebook account ID |  |
-|**platformPostId** | **String** | Platform media/post ID. Omit for an account-wide (any-post) automation. |  [optional] |
+|**trigger** | [**TriggerEnum**](#TriggerEnum) | What fires the automation. &#39;comment&#39; (keyword comment on a post) or &#39;story_reply&#39; (keyword reply to an Instagram story). For &#39;story_reply&#39;, platformPostId is the story media id (omit for any story). |  [optional] |
+|**platformPostId** | **String** | Platform media/post ID (or story media id when trigger&#x3D;story_reply). Omit for an account-wide (any-post / any-story) automation. |  [optional] |
 |**postId** | **String** | Zernio post ID. Required only when also targeting a specific post via platformPostId. |  [optional] |
 |**postTitle** | **String** | Post content snippet for display |  [optional] |
 |**name** | **String** | Automation label |  |
@@ -20,6 +21,15 @@
 |**commentReply** | **String** | Optional public reply to the comment |  [optional] |
 |**linkTracking** | **Boolean** | Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. |  [optional] |
 |**clickTag** | **String** | Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences. |  [optional] |
+
+
+
+## Enum: TriggerEnum
+
+| Name | Value |
+|---- | -----|
+| COMMENT | &quot;comment&quot; |
+| STORY_REPLY | &quot;story_reply&quot; |
 
 
 

@@ -10,6 +10,7 @@
 |**id** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**platform** | **String** |  |  [optional] |
+|**trigger** | [**TriggerEnum**](#TriggerEnum) |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**platformPostId** | **String** |  |  [optional] |
 |**postId** | **String** |  |  [optional] |
@@ -25,6 +26,15 @@
 |**stats** | [**CreateCommentAutomation200ResponseAutomationStats**](CreateCommentAutomation200ResponseAutomationStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
+
+
+
+## Enum: TriggerEnum
+
+| Name | Value |
+|---- | -----|
+| COMMENT | &quot;comment&quot; |
+| STORY_REPLY | &quot;story_reply&quot; |
 
 
 

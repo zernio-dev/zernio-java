@@ -41,6 +41,7 @@ import dev.zernio.ApiClient;
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_ID,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_NAME,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_PLATFORM,
+  CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_TRIGGER,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_PLATFORM_POST_ID,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_KEYWORDS,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_MATCH_MODE,
@@ -53,7 +54,7 @@ import dev.zernio.ApiClient;
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_STATS,
   CreateCommentAutomation200ResponseAutomation.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T09:49:32.128433616Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T10:03:19.504916501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -66,6 +67,45 @@ public class CreateCommentAutomation200ResponseAutomation {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
   private String platform;
+
+  /**
+   * Gets or Sets trigger
+   */
+  public enum TriggerEnum {
+    COMMENT(String.valueOf("comment")),
+    
+    STORY_REPLY(String.valueOf("story_reply"));
+
+    private String value;
+
+    TriggerEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TriggerEnum fromValue(String value) {
+      for (TriggerEnum b : TriggerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TRIGGER = "trigger";
+  @javax.annotation.Nullable
+  private TriggerEnum trigger;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
   @javax.annotation.Nullable
@@ -218,6 +258,30 @@ public class CreateCommentAutomation200ResponseAutomation {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlatform(@javax.annotation.Nullable String platform) {
     this.platform = platform;
+  }
+
+
+  public CreateCommentAutomation200ResponseAutomation trigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
+    return this;
+  }
+
+  /**
+   * Get trigger
+   * @return trigger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TriggerEnum getTrigger() {
+    return trigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTrigger(@javax.annotation.Nullable TriggerEnum trigger) {
+    this.trigger = trigger;
   }
 
 
@@ -516,6 +580,7 @@ public class CreateCommentAutomation200ResponseAutomation {
     return Objects.equals(this.id, createCommentAutomation200ResponseAutomation.id) &&
         Objects.equals(this.name, createCommentAutomation200ResponseAutomation.name) &&
         Objects.equals(this.platform, createCommentAutomation200ResponseAutomation.platform) &&
+        Objects.equals(this.trigger, createCommentAutomation200ResponseAutomation.trigger) &&
         Objects.equals(this.platformPostId, createCommentAutomation200ResponseAutomation.platformPostId) &&
         Objects.equals(this.keywords, createCommentAutomation200ResponseAutomation.keywords) &&
         Objects.equals(this.matchMode, createCommentAutomation200ResponseAutomation.matchMode) &&
@@ -531,7 +596,7 @@ public class CreateCommentAutomation200ResponseAutomation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, platformPostId, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag, isActive, stats, createdAt);
+    return Objects.hash(id, name, platform, trigger, platformPostId, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag, isActive, stats, createdAt);
   }
 
   @Override
@@ -541,6 +606,7 @@ public class CreateCommentAutomation200ResponseAutomation {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    trigger: ").append(toIndentedString(trigger)).append("\n");
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    matchMode: ").append(toIndentedString(matchMode)).append("\n");
@@ -612,6 +678,11 @@ public class CreateCommentAutomation200ResponseAutomation {
     // add `platform` to the URL query string
     if (getPlatform() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
+    // add `trigger` to the URL query string
+    if (getTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%strigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrigger()))));
     }
 
     // add `platformPostId` to the URL query string
