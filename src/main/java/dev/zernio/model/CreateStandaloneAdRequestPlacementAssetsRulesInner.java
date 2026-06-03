@@ -36,13 +36,23 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_IMAGE_URL,
+  CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_VIDEO_URL,
+  CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_THUMBNAIL_URL,
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_PLACEMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:35:29.551659520Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private URI imageUrl;
+
+  public static final String JSON_PROPERTY_VIDEO_URL = "videoUrl";
+  @javax.annotation.Nullable
+  private URI videoUrl;
+
+  public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
+  @javax.annotation.Nullable
+  private URI thumbnailUrl;
 
   public static final String JSON_PROPERTY_PLACEMENTS = "placements";
   @javax.annotation.Nonnull
@@ -51,27 +61,75 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
   public CreateStandaloneAdRequestPlacementAssetsRulesInner() { 
   }
 
-  public CreateStandaloneAdRequestPlacementAssetsRulesInner imageUrl(@javax.annotation.Nonnull URI imageUrl) {
+  public CreateStandaloneAdRequestPlacementAssetsRulesInner imageUrl(@javax.annotation.Nullable URI imageUrl) {
     this.imageUrl = imageUrl;
     return this;
   }
 
   /**
-   * The image to deliver for this rule&#39;s placements.
+   * Image mode. The image to deliver for this rule&#39;s placements.
    * @return imageUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_IMAGE_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public URI getImageUrl() {
     return imageUrl;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_IMAGE_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setImageUrl(@javax.annotation.Nonnull URI imageUrl) {
+  @JsonProperty(value = JSON_PROPERTY_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImageUrl(@javax.annotation.Nullable URI imageUrl) {
     this.imageUrl = imageUrl;
+  }
+
+
+  public CreateStandaloneAdRequestPlacementAssetsRulesInner videoUrl(@javax.annotation.Nullable URI videoUrl) {
+    this.videoUrl = videoUrl;
+    return this;
+  }
+
+  /**
+   * Video mode. The video to deliver for this rule&#39;s placements.
+   * @return videoUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getVideoUrl() {
+    return videoUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoUrl(@javax.annotation.Nullable URI videoUrl) {
+    this.videoUrl = videoUrl;
+  }
+
+
+  public CreateStandaloneAdRequestPlacementAssetsRulesInner thumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
+    this.thumbnailUrl = thumbnailUrl;
+    return this;
+  }
+
+  /**
+   * Video mode (optional). Poster image for this rule&#39;s video; auto-generated when omitted.
+   * @return thumbnailUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getThumbnailUrl() {
+    return thumbnailUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
+    this.thumbnailUrl = thumbnailUrl;
   }
 
 
@@ -112,12 +170,14 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
     }
     CreateStandaloneAdRequestPlacementAssetsRulesInner createStandaloneAdRequestPlacementAssetsRulesInner = (CreateStandaloneAdRequestPlacementAssetsRulesInner) o;
     return Objects.equals(this.imageUrl, createStandaloneAdRequestPlacementAssetsRulesInner.imageUrl) &&
+        Objects.equals(this.videoUrl, createStandaloneAdRequestPlacementAssetsRulesInner.videoUrl) &&
+        Objects.equals(this.thumbnailUrl, createStandaloneAdRequestPlacementAssetsRulesInner.thumbnailUrl) &&
         Objects.equals(this.placements, createStandaloneAdRequestPlacementAssetsRulesInner.placements);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(imageUrl, placements);
+    return Objects.hash(imageUrl, videoUrl, thumbnailUrl, placements);
   }
 
   @Override
@@ -125,6 +185,8 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStandaloneAdRequestPlacementAssetsRulesInner {\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
+    sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
+    sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("    placements: ").append(toIndentedString(placements)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -176,6 +238,16 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
     // add `imageUrl` to the URL query string
     if (getImageUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%simageUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getImageUrl()))));
+    }
+
+    // add `videoUrl` to the URL query string
+    if (getVideoUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoUrl()))));
+    }
+
+    // add `thumbnailUrl` to the URL query string
+    if (getThumbnailUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sthumbnailUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThumbnailUrl()))));
     }
 
     // add `placements` to the URL query string

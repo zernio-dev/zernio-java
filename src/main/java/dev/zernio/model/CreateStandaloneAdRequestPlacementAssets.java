@@ -34,17 +34,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta only. Placement asset customization: pin a SPECIFIC image to each placement group on a SINGLE ad (e.g. a 9:16 image on Stories/Reels and a 4:5 on Feed). This is the same thing Meta Ads Manager produces with \&quot;different creative per placement\&quot;, mapped to the creative&#39;s &#x60;asset_feed_spec&#x60; + &#x60;asset_customization_rules&#x60;. It is deterministic pinning, NOT the auto-optimizing pool of &#x60;dynamicCreative&#x60; (the two are mutually exclusive, and it cannot be combined with &#x60;creatives[]&#x60; or &#x60;adSetId&#x60;). The shared copy (headline, body, link, CTA) comes from the top-level single-creative fields (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;) since only the image varies by placement. Each rule&#39;s &#x60;placements&#x60; accepts the same fields as the top-level &#x60;placements&#x60; object; Meta enforces co-selection rules and returns an actionable error. 
+ * Meta only. Placement asset customization: pin a SPECIFIC asset (image OR video) to each placement group on a SINGLE ad (e.g. a 9:16 on Stories/Reels and a 4:5 on Feed). The same thing Meta Ads Manager produces with \&quot;different creative per placement\&quot;, mapped to the creative&#39;s &#x60;asset_feed_spec&#x60; + &#x60;asset_customization_rules&#x60;. Deterministic pinning, NOT the auto-optimizing pool of &#x60;dynamicCreative&#x60; (mutually exclusive, and it cannot be combined with &#x60;creatives[]&#x60; or &#x60;adSetId&#x60;). Shared copy (headline, body, link, CTA) comes from the top-level single-creative fields since only the asset varies by placement. Each rule&#39;s &#x60;placements&#x60; accepts the same fields as the top-level &#x60;placements&#x60; object; Meta enforces co-selection rules and returns an actionable error.  A block is all-image OR all-video, never mixed (Meta&#39;s asset_feed_spec carries one ad format). Image mode: &#x60;defaultImageUrl&#x60; + &#x60;rules[].imageUrl&#x60;. Video mode: &#x60;defaultVideoUrl&#x60; + &#x60;rules[].videoUrl&#x60; (optional &#x60;thumbnailUrl&#x60;/&#x60;defaultThumbnailUrl&#x60; posters; Meta auto-generates when omitted). Exactly one catch-all default is required. 
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestPlacementAssets.JSON_PROPERTY_DEFAULT_IMAGE_URL,
+  CreateStandaloneAdRequestPlacementAssets.JSON_PROPERTY_DEFAULT_VIDEO_URL,
+  CreateStandaloneAdRequestPlacementAssets.JSON_PROPERTY_DEFAULT_THUMBNAIL_URL,
   CreateStandaloneAdRequestPlacementAssets.JSON_PROPERTY_RULES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:35:29.551659520Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPlacementAssets {
   public static final String JSON_PROPERTY_DEFAULT_IMAGE_URL = "defaultImageUrl";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private URI defaultImageUrl;
+
+  public static final String JSON_PROPERTY_DEFAULT_VIDEO_URL = "defaultVideoUrl";
+  @javax.annotation.Nullable
+  private URI defaultVideoUrl;
+
+  public static final String JSON_PROPERTY_DEFAULT_THUMBNAIL_URL = "defaultThumbnailUrl";
+  @javax.annotation.Nullable
+  private URI defaultThumbnailUrl;
 
   public static final String JSON_PROPERTY_RULES = "rules";
   @javax.annotation.Nonnull
@@ -53,27 +63,75 @@ public class CreateStandaloneAdRequestPlacementAssets {
   public CreateStandaloneAdRequestPlacementAssets() { 
   }
 
-  public CreateStandaloneAdRequestPlacementAssets defaultImageUrl(@javax.annotation.Nonnull URI defaultImageUrl) {
+  public CreateStandaloneAdRequestPlacementAssets defaultImageUrl(@javax.annotation.Nullable URI defaultImageUrl) {
     this.defaultImageUrl = defaultImageUrl;
     return this;
   }
 
   /**
-   * Catch-all image for any placement not matched by a rule. REQUIRED — Meta mandates a default asset customization rule (empty placement spec, lowest priority) on every placement-customized creative. 
+   * Image mode. Catch-all image for any placement no rule matches. Required in image mode (Meta mandates a default rule).
    * @return defaultImageUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_DEFAULT_IMAGE_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public URI getDefaultImageUrl() {
     return defaultImageUrl;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_DEFAULT_IMAGE_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDefaultImageUrl(@javax.annotation.Nonnull URI defaultImageUrl) {
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDefaultImageUrl(@javax.annotation.Nullable URI defaultImageUrl) {
     this.defaultImageUrl = defaultImageUrl;
+  }
+
+
+  public CreateStandaloneAdRequestPlacementAssets defaultVideoUrl(@javax.annotation.Nullable URI defaultVideoUrl) {
+    this.defaultVideoUrl = defaultVideoUrl;
+    return this;
+  }
+
+  /**
+   * Video mode. Catch-all video for any placement no rule matches. Required in video mode.
+   * @return defaultVideoUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_VIDEO_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getDefaultVideoUrl() {
+    return defaultVideoUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_VIDEO_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDefaultVideoUrl(@javax.annotation.Nullable URI defaultVideoUrl) {
+    this.defaultVideoUrl = defaultVideoUrl;
+  }
+
+
+  public CreateStandaloneAdRequestPlacementAssets defaultThumbnailUrl(@javax.annotation.Nullable URI defaultThumbnailUrl) {
+    this.defaultThumbnailUrl = defaultThumbnailUrl;
+    return this;
+  }
+
+  /**
+   * Video mode (optional). Poster image for the default video; Meta auto-generates one when omitted.
+   * @return defaultThumbnailUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getDefaultThumbnailUrl() {
+    return defaultThumbnailUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDefaultThumbnailUrl(@javax.annotation.Nullable URI defaultThumbnailUrl) {
+    this.defaultThumbnailUrl = defaultThumbnailUrl;
   }
 
 
@@ -91,7 +149,7 @@ public class CreateStandaloneAdRequestPlacementAssets {
   }
 
   /**
-   * One entry per placement group you want to pin a specific image to.
+   * One entry per placement group you want to pin a specific asset to.
    * @return rules
    */
   @javax.annotation.Nonnull
@@ -122,12 +180,14 @@ public class CreateStandaloneAdRequestPlacementAssets {
     }
     CreateStandaloneAdRequestPlacementAssets createStandaloneAdRequestPlacementAssets = (CreateStandaloneAdRequestPlacementAssets) o;
     return Objects.equals(this.defaultImageUrl, createStandaloneAdRequestPlacementAssets.defaultImageUrl) &&
+        Objects.equals(this.defaultVideoUrl, createStandaloneAdRequestPlacementAssets.defaultVideoUrl) &&
+        Objects.equals(this.defaultThumbnailUrl, createStandaloneAdRequestPlacementAssets.defaultThumbnailUrl) &&
         Objects.equals(this.rules, createStandaloneAdRequestPlacementAssets.rules);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultImageUrl, rules);
+    return Objects.hash(defaultImageUrl, defaultVideoUrl, defaultThumbnailUrl, rules);
   }
 
   @Override
@@ -135,6 +195,8 @@ public class CreateStandaloneAdRequestPlacementAssets {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStandaloneAdRequestPlacementAssets {\n");
     sb.append("    defaultImageUrl: ").append(toIndentedString(defaultImageUrl)).append("\n");
+    sb.append("    defaultVideoUrl: ").append(toIndentedString(defaultVideoUrl)).append("\n");
+    sb.append("    defaultThumbnailUrl: ").append(toIndentedString(defaultThumbnailUrl)).append("\n");
     sb.append("    rules: ").append(toIndentedString(rules)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -186,6 +248,16 @@ public class CreateStandaloneAdRequestPlacementAssets {
     // add `defaultImageUrl` to the URL query string
     if (getDefaultImageUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdefaultImageUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDefaultImageUrl()))));
+    }
+
+    // add `defaultVideoUrl` to the URL query string
+    if (getDefaultVideoUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdefaultVideoUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDefaultVideoUrl()))));
+    }
+
+    // add `defaultThumbnailUrl` to the URL query string
+    if (getDefaultThumbnailUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdefaultThumbnailUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDefaultThumbnailUrl()))));
     }
 
     // add `rules` to the URL query string

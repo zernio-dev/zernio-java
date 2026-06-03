@@ -2,7 +2,7 @@
 
 # CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements
 
-Placements this image is pinned to. At least one field must be set (an empty rule is invalid — that role is served by defaultImageUrl). Same enums as the top-level `placements` object.
+Placements this asset is pinned to. At least one field must be set (an empty rule is invalid — that role is served by the default asset). Same enums as the top-level `placements` object.
 
 ## Properties
 
