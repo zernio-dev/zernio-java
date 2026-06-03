@@ -29,10 +29,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.FacebookPlatformData;
+import dev.zernio.model.MediaItem;
 import dev.zernio.model.RecyclingConfig;
 import dev.zernio.model.TikTokPlatformData;
+import dev.zernio.model.UpdatePostRequestPlatformsInner;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,21 +47,128 @@ import dev.zernio.ApiClient;
  * UpdatePostRequest
  */
 @JsonPropertyOrder({
+  UpdatePostRequest.JSON_PROPERTY_TITLE,
   UpdatePostRequest.JSON_PROPERTY_CONTENT,
+  UpdatePostRequest.JSON_PROPERTY_MEDIA_ITEMS,
+  UpdatePostRequest.JSON_PROPERTY_PLATFORMS,
   UpdatePostRequest.JSON_PROPERTY_SCHEDULED_FOR,
+  UpdatePostRequest.JSON_PROPERTY_PUBLISH_NOW,
+  UpdatePostRequest.JSON_PROPERTY_IS_DRAFT,
+  UpdatePostRequest.JSON_PROPERTY_TIMEZONE,
+  UpdatePostRequest.JSON_PROPERTY_VISIBILITY,
+  UpdatePostRequest.JSON_PROPERTY_TAGS,
+  UpdatePostRequest.JSON_PROPERTY_HASHTAGS,
+  UpdatePostRequest.JSON_PROPERTY_MENTIONS,
+  UpdatePostRequest.JSON_PROPERTY_CROSSPOSTING_ENABLED,
+  UpdatePostRequest.JSON_PROPERTY_METADATA,
+  UpdatePostRequest.JSON_PROPERTY_QUEUED_FROM_PROFILE,
+  UpdatePostRequest.JSON_PROPERTY_QUEUE_ID,
   UpdatePostRequest.JSON_PROPERTY_TIKTOK_SETTINGS,
   UpdatePostRequest.JSON_PROPERTY_FACEBOOK_SETTINGS,
   UpdatePostRequest.JSON_PROPERTY_RECYCLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T14:37:56.978467017Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T08:55:25.327447252Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostRequest {
+  public static final String JSON_PROPERTY_TITLE = "title";
+  @javax.annotation.Nullable
+  private String title;
+
   public static final String JSON_PROPERTY_CONTENT = "content";
   @javax.annotation.Nullable
   private String content;
 
+  public static final String JSON_PROPERTY_MEDIA_ITEMS = "mediaItems";
+  @javax.annotation.Nullable
+  private List<MediaItem> mediaItems = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_PLATFORMS = "platforms";
+  @javax.annotation.Nullable
+  private List<UpdatePostRequestPlatformsInner> platforms = new ArrayList<>();
+
   public static final String JSON_PROPERTY_SCHEDULED_FOR = "scheduledFor";
   @javax.annotation.Nullable
   private OffsetDateTime scheduledFor;
+
+  public static final String JSON_PROPERTY_PUBLISH_NOW = "publishNow";
+  @javax.annotation.Nullable
+  private Boolean publishNow = false;
+
+  public static final String JSON_PROPERTY_IS_DRAFT = "isDraft";
+  @javax.annotation.Nullable
+  private Boolean isDraft;
+
+  public static final String JSON_PROPERTY_TIMEZONE = "timezone";
+  @javax.annotation.Nullable
+  private String timezone;
+
+  /**
+   * Gets or Sets visibility
+   */
+  public enum VisibilityEnum {
+    PUBLIC(String.valueOf("public")),
+    
+    PRIVATE(String.valueOf("private")),
+    
+    UNLISTED(String.valueOf("unlisted"));
+
+    private String value;
+
+    VisibilityEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static VisibilityEnum fromValue(String value) {
+      for (VisibilityEnum b : VisibilityEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_VISIBILITY = "visibility";
+  @javax.annotation.Nullable
+  private VisibilityEnum visibility;
+
+  public static final String JSON_PROPERTY_TAGS = "tags";
+  @javax.annotation.Nullable
+  private List<String> tags = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_HASHTAGS = "hashtags";
+  @javax.annotation.Nullable
+  private List<String> hashtags = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MENTIONS = "mentions";
+  @javax.annotation.Nullable
+  private List<String> mentions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CROSSPOSTING_ENABLED = "crosspostingEnabled";
+  @javax.annotation.Nullable
+  private Boolean crosspostingEnabled;
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nullable
+  private Map<String, Object> metadata = new HashMap<>();
+
+  public static final String JSON_PROPERTY_QUEUED_FROM_PROFILE = "queuedFromProfile";
+  @javax.annotation.Nullable
+  private String queuedFromProfile;
+
+  public static final String JSON_PROPERTY_QUEUE_ID = "queueId";
+  @javax.annotation.Nullable
+  private String queueId;
 
   public static final String JSON_PROPERTY_TIKTOK_SETTINGS = "tiktokSettings";
   @javax.annotation.Nullable
@@ -71,6 +184,30 @@ public class UpdatePostRequest {
 
   public UpdatePostRequest() { 
   }
+
+  public UpdatePostRequest title(@javax.annotation.Nullable String title) {
+    this.title = title;
+    return this;
+  }
+
+  /**
+   * Get title
+   * @return title
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTitle() {
+    return title;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTitle(@javax.annotation.Nullable String title) {
+    this.title = title;
+  }
+
 
   public UpdatePostRequest content(@javax.annotation.Nullable String content) {
     this.content = content;
@@ -96,6 +233,70 @@ public class UpdatePostRequest {
   }
 
 
+  public UpdatePostRequest mediaItems(@javax.annotation.Nullable List<MediaItem> mediaItems) {
+    this.mediaItems = mediaItems;
+    return this;
+  }
+
+  public UpdatePostRequest addMediaItemsItem(MediaItem mediaItemsItem) {
+    if (this.mediaItems == null) {
+      this.mediaItems = new ArrayList<>();
+    }
+    this.mediaItems.add(mediaItemsItem);
+    return this;
+  }
+
+  /**
+   * Get mediaItems
+   * @return mediaItems
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<MediaItem> getMediaItems() {
+    return mediaItems;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MEDIA_ITEMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMediaItems(@javax.annotation.Nullable List<MediaItem> mediaItems) {
+    this.mediaItems = mediaItems;
+  }
+
+
+  public UpdatePostRequest platforms(@javax.annotation.Nullable List<UpdatePostRequestPlatformsInner> platforms) {
+    this.platforms = platforms;
+    return this;
+  }
+
+  public UpdatePostRequest addPlatformsItem(UpdatePostRequestPlatformsInner platformsItem) {
+    if (this.platforms == null) {
+      this.platforms = new ArrayList<>();
+    }
+    this.platforms.add(platformsItem);
+    return this;
+  }
+
+  /**
+   * Target platforms and accounts for this post. Each item must include platform and accountId.
+   * @return platforms
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdatePostRequestPlatformsInner> getPlatforms() {
+    return platforms;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatforms(@javax.annotation.Nullable List<UpdatePostRequestPlatformsInner> platforms) {
+    this.platforms = platforms;
+  }
+
+
   public UpdatePostRequest scheduledFor(@javax.annotation.Nullable OffsetDateTime scheduledFor) {
     this.scheduledFor = scheduledFor;
     return this;
@@ -117,6 +318,302 @@ public class UpdatePostRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setScheduledFor(@javax.annotation.Nullable OffsetDateTime scheduledFor) {
     this.scheduledFor = scheduledFor;
+  }
+
+
+  public UpdatePostRequest publishNow(@javax.annotation.Nullable Boolean publishNow) {
+    this.publishNow = publishNow;
+    return this;
+  }
+
+  /**
+   * Get publishNow
+   * @return publishNow
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PUBLISH_NOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPublishNow() {
+    return publishNow;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PUBLISH_NOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPublishNow(@javax.annotation.Nullable Boolean publishNow) {
+    this.publishNow = publishNow;
+  }
+
+
+  public UpdatePostRequest isDraft(@javax.annotation.Nullable Boolean isDraft) {
+    this.isDraft = isDraft;
+    return this;
+  }
+
+  /**
+   * Get isDraft
+   * @return isDraft
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_DRAFT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsDraft() {
+    return isDraft;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_DRAFT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsDraft(@javax.annotation.Nullable Boolean isDraft) {
+    this.isDraft = isDraft;
+  }
+
+
+  public UpdatePostRequest timezone(@javax.annotation.Nullable String timezone) {
+    this.timezone = timezone;
+    return this;
+  }
+
+  /**
+   * Get timezone
+   * @return timezone
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TIMEZONE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTimezone() {
+    return timezone;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TIMEZONE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTimezone(@javax.annotation.Nullable String timezone) {
+    this.timezone = timezone;
+  }
+
+
+  public UpdatePostRequest visibility(@javax.annotation.Nullable VisibilityEnum visibility) {
+    this.visibility = visibility;
+    return this;
+  }
+
+  /**
+   * Get visibility
+   * @return visibility
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VISIBILITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public VisibilityEnum getVisibility() {
+    return visibility;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VISIBILITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVisibility(@javax.annotation.Nullable VisibilityEnum visibility) {
+    this.visibility = visibility;
+  }
+
+
+  public UpdatePostRequest tags(@javax.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public UpdatePostRequest addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Get tags
+   * @return tags
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getTags() {
+    return tags;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTags(@javax.annotation.Nullable List<String> tags) {
+    this.tags = tags;
+  }
+
+
+  public UpdatePostRequest hashtags(@javax.annotation.Nullable List<String> hashtags) {
+    this.hashtags = hashtags;
+    return this;
+  }
+
+  public UpdatePostRequest addHashtagsItem(String hashtagsItem) {
+    if (this.hashtags == null) {
+      this.hashtags = new ArrayList<>();
+    }
+    this.hashtags.add(hashtagsItem);
+    return this;
+  }
+
+  /**
+   * Get hashtags
+   * @return hashtags
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HASHTAGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getHashtags() {
+    return hashtags;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HASHTAGS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHashtags(@javax.annotation.Nullable List<String> hashtags) {
+    this.hashtags = hashtags;
+  }
+
+
+  public UpdatePostRequest mentions(@javax.annotation.Nullable List<String> mentions) {
+    this.mentions = mentions;
+    return this;
+  }
+
+  public UpdatePostRequest addMentionsItem(String mentionsItem) {
+    if (this.mentions == null) {
+      this.mentions = new ArrayList<>();
+    }
+    this.mentions.add(mentionsItem);
+    return this;
+  }
+
+  /**
+   * Get mentions
+   * @return mentions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MENTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getMentions() {
+    return mentions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MENTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMentions(@javax.annotation.Nullable List<String> mentions) {
+    this.mentions = mentions;
+  }
+
+
+  public UpdatePostRequest crosspostingEnabled(@javax.annotation.Nullable Boolean crosspostingEnabled) {
+    this.crosspostingEnabled = crosspostingEnabled;
+    return this;
+  }
+
+  /**
+   * Get crosspostingEnabled
+   * @return crosspostingEnabled
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CROSSPOSTING_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getCrosspostingEnabled() {
+    return crosspostingEnabled;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CROSSPOSTING_ENABLED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCrosspostingEnabled(@javax.annotation.Nullable Boolean crosspostingEnabled) {
+    this.crosspostingEnabled = crosspostingEnabled;
+  }
+
+
+  public UpdatePostRequest metadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public UpdatePostRequest putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * Get metadata
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
+  public UpdatePostRequest queuedFromProfile(@javax.annotation.Nullable String queuedFromProfile) {
+    this.queuedFromProfile = queuedFromProfile;
+    return this;
+  }
+
+  /**
+   * Profile ID to schedule via queue.
+   * @return queuedFromProfile
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUEUED_FROM_PROFILE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQueuedFromProfile() {
+    return queuedFromProfile;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUEUED_FROM_PROFILE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueuedFromProfile(@javax.annotation.Nullable String queuedFromProfile) {
+    this.queuedFromProfile = queuedFromProfile;
+  }
+
+
+  public UpdatePostRequest queueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
+    return this;
+  }
+
+  /**
+   * Specific queue ID to use when scheduling via queue.
+   * @return queueId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQueueId() {
+    return queueId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
   }
 
 
@@ -247,8 +744,22 @@ public class UpdatePostRequest {
       return false;
     }
     UpdatePostRequest updatePostRequest = (UpdatePostRequest) o;
-    return Objects.equals(this.content, updatePostRequest.content) &&
+    return Objects.equals(this.title, updatePostRequest.title) &&
+        Objects.equals(this.content, updatePostRequest.content) &&
+        Objects.equals(this.mediaItems, updatePostRequest.mediaItems) &&
+        Objects.equals(this.platforms, updatePostRequest.platforms) &&
         Objects.equals(this.scheduledFor, updatePostRequest.scheduledFor) &&
+        Objects.equals(this.publishNow, updatePostRequest.publishNow) &&
+        Objects.equals(this.isDraft, updatePostRequest.isDraft) &&
+        Objects.equals(this.timezone, updatePostRequest.timezone) &&
+        Objects.equals(this.visibility, updatePostRequest.visibility) &&
+        Objects.equals(this.tags, updatePostRequest.tags) &&
+        Objects.equals(this.hashtags, updatePostRequest.hashtags) &&
+        Objects.equals(this.mentions, updatePostRequest.mentions) &&
+        Objects.equals(this.crosspostingEnabled, updatePostRequest.crosspostingEnabled) &&
+        Objects.equals(this.metadata, updatePostRequest.metadata) &&
+        Objects.equals(this.queuedFromProfile, updatePostRequest.queuedFromProfile) &&
+        Objects.equals(this.queueId, updatePostRequest.queueId) &&
         Objects.equals(this.tiktokSettings, updatePostRequest.tiktokSettings) &&
         Objects.equals(this.facebookSettings, updatePostRequest.facebookSettings) &&
         Objects.equals(this.recycling, updatePostRequest.recycling)&&
@@ -257,15 +768,29 @@ public class UpdatePostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(content, scheduledFor, tiktokSettings, facebookSettings, recycling, additionalProperties);
+    return Objects.hash(title, content, mediaItems, platforms, scheduledFor, publishNow, isDraft, timezone, visibility, tags, hashtags, mentions, crosspostingEnabled, metadata, queuedFromProfile, queueId, tiktokSettings, facebookSettings, recycling, additionalProperties);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdatePostRequest {\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    mediaItems: ").append(toIndentedString(mediaItems)).append("\n");
+    sb.append("    platforms: ").append(toIndentedString(platforms)).append("\n");
     sb.append("    scheduledFor: ").append(toIndentedString(scheduledFor)).append("\n");
+    sb.append("    publishNow: ").append(toIndentedString(publishNow)).append("\n");
+    sb.append("    isDraft: ").append(toIndentedString(isDraft)).append("\n");
+    sb.append("    timezone: ").append(toIndentedString(timezone)).append("\n");
+    sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    hashtags: ").append(toIndentedString(hashtags)).append("\n");
+    sb.append("    mentions: ").append(toIndentedString(mentions)).append("\n");
+    sb.append("    crosspostingEnabled: ").append(toIndentedString(crosspostingEnabled)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    queuedFromProfile: ").append(toIndentedString(queuedFromProfile)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
     sb.append("    tiktokSettings: ").append(toIndentedString(tiktokSettings)).append("\n");
     sb.append("    facebookSettings: ").append(toIndentedString(facebookSettings)).append("\n");
     sb.append("    recycling: ").append(toIndentedString(recycling)).append("\n");
@@ -317,14 +842,110 @@ public class UpdatePostRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
+    // add `title` to the URL query string
+    if (getTitle() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stitle%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTitle()))));
+    }
+
     // add `content` to the URL query string
     if (getContent() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scontent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContent()))));
     }
 
+    // add `mediaItems` to the URL query string
+    if (getMediaItems() != null) {
+      for (int i = 0; i < getMediaItems().size(); i++) {
+        if (getMediaItems().get(i) != null) {
+          joiner.add(getMediaItems().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smediaItems%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `platforms` to the URL query string
+    if (getPlatforms() != null) {
+      for (int i = 0; i < getPlatforms().size(); i++) {
+        if (getPlatforms().get(i) != null) {
+          joiner.add(getPlatforms().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%splatforms%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
     // add `scheduledFor` to the URL query string
     if (getScheduledFor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sscheduledFor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getScheduledFor()))));
+    }
+
+    // add `publishNow` to the URL query string
+    if (getPublishNow() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spublishNow%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublishNow()))));
+    }
+
+    // add `isDraft` to the URL query string
+    if (getIsDraft() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisDraft%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsDraft()))));
+    }
+
+    // add `timezone` to the URL query string
+    if (getTimezone() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimezone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimezone()))));
+    }
+
+    // add `visibility` to the URL query string
+    if (getVisibility() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svisibility%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVisibility()))));
+    }
+
+    // add `tags` to the URL query string
+    if (getTags() != null) {
+      for (int i = 0; i < getTags().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getTags().get(i)))));
+      }
+    }
+
+    // add `hashtags` to the URL query string
+    if (getHashtags() != null) {
+      for (int i = 0; i < getHashtags().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%shashtags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getHashtags().get(i)))));
+      }
+    }
+
+    // add `mentions` to the URL query string
+    if (getMentions() != null) {
+      for (int i = 0; i < getMentions().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smentions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getMentions().get(i)))));
+      }
+    }
+
+    // add `crosspostingEnabled` to the URL query string
+    if (getCrosspostingEnabled() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scrosspostingEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCrosspostingEnabled()))));
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      for (String _key : getMetadata().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
+      }
+    }
+
+    // add `queuedFromProfile` to the URL query string
+    if (getQueuedFromProfile() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeuedFromProfile%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueuedFromProfile()))));
+    }
+
+    // add `queueId` to the URL query string
+    if (getQueueId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeueId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueueId()))));
     }
 
     // add `tiktokSettings` to the URL query string

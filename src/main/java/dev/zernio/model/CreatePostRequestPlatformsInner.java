@@ -45,14 +45,14 @@ import dev.zernio.ApiClient;
   CreatePostRequestPlatformsInner.JSON_PROPERTY_SCHEDULED_FOR,
   CreatePostRequestPlatformsInner.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T14:37:56.978467017Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T08:55:25.327447252Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePostRequestPlatformsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String platform;
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String accountId;
 
   public static final String JSON_PROPERTY_CUSTOM_CONTENT = "customContent";
@@ -74,7 +74,7 @@ public class CreatePostRequestPlatformsInner {
   public CreatePostRequestPlatformsInner() { 
   }
 
-  public CreatePostRequestPlatformsInner platform(@javax.annotation.Nullable String platform) {
+  public CreatePostRequestPlatformsInner platform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
     return this;
   }
@@ -83,22 +83,22 @@ public class CreatePostRequestPlatformsInner {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPlatform() {
     return platform;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(@javax.annotation.Nullable String platform) {
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPlatform(@javax.annotation.Nonnull String platform) {
     this.platform = platform;
   }
 
 
-  public CreatePostRequestPlatformsInner accountId(@javax.annotation.Nullable String accountId) {
+  public CreatePostRequestPlatformsInner accountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
     return this;
   }
@@ -107,17 +107,17 @@ public class CreatePostRequestPlatformsInner {
    * Get accountId
    * @return accountId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getAccountId() {
     return accountId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountId(@javax.annotation.Nullable String accountId) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
   }
 

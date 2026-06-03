@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-02T14:37:56.978467017Z[Etc/UTC]
+- Build date: 2026-06-03T08:55:25.327447252Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1788,6 +1788,7 @@ Class | Method | HTTP request | Description
  - [UpdatePostMetadata200Response](docs/UpdatePostMetadata200Response.md)
  - [UpdatePostMetadataRequest](docs/UpdatePostMetadataRequest.md)
  - [UpdatePostRequest](docs/UpdatePostRequest.md)
+ - [UpdatePostRequestPlatformsInner](docs/UpdatePostRequestPlatformsInner.md)
  - [UpdateProfile200Response](docs/UpdateProfile200Response.md)
  - [UpdateProfileRequest](docs/UpdateProfileRequest.md)
  - [UpdateQueueSlot200Response](docs/UpdateQueueSlot200Response.md)

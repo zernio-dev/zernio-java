@@ -12,8 +12,8 @@ Configure automatic post recycling (reposting at regular intervals). After the p
 |**gap** | **Integer** | Number of interval units between each repost. Required when enabling recycling. |  [optional] |
 |**gapFreq** | [**GapFreqEnum**](#GapFreqEnum) | Interval unit for the gap. Defaults to &#39;month&#39;. |  [optional] |
 |**startDate** | **OffsetDateTime** | When to start the recycling cycle. Defaults to the post&#39;s scheduledFor date. |  [optional] |
-|**expireCount** | **Integer** | Stop recycling after this many copies have been created |  [optional] |
-|**expireDate** | **OffsetDateTime** | Stop recycling after this date, regardless of count |  [optional] |
+|**expireCount** | **Integer** | Stop recycling after this many copies have been created. Send null on update to clear this limit. |  [optional] |
+|**expireDate** | **OffsetDateTime** | Stop recycling after this date, regardless of count. Send null on update to clear this limit. |  [optional] |
 |**contentVariations** | **List&lt;String&gt;** | Array of content variations for recycled copies. On each recycle, the next variation is used in round-robin order. Recommended for Twitter and Pinterest to avoid duplicate content flags. If omitted, the original post content is used for all recycled copies. Send an empty array [] to clear existing variations. Must have 2+ entries when setting variations. Platform-level customContent still overrides the base content per platform.  |  [optional] |
 
 

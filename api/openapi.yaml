@@ -3793,8 +3793,8 @@ paths:
       - application/json
     put:
       description: |
-        Update an existing post. Only draft, scheduled, failed, and partial posts can be edited.
-        Published, publishing, and cancelled posts cannot be modified.
+        Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited.
+        Published posts can only have their recycling config updated.
       operationId: updatePost
       parameters:
       - explode: false
@@ -24662,14 +24662,18 @@ components:
           format: date-time
           type: string
         expireCount:
-          description: Stop recycling after this many copies have been created
+          description: Stop recycling after this many copies have been created. Send
+            null on update to clear this limit.
           example: 5
           minimum: 1
           type: integer
+          nullable: true
         expireDate:
-          description: "Stop recycling after this date, regardless of count"
+          description: "Stop recycling after this date, regardless of count. Send\
+            \ null on update to clear this limit."
           format: date-time
           type: string
+          nullable: true
         contentVariations:
           description: |
             Array of content variations for recycled copies. On each recycle, the next
@@ -30861,6 +30865,9 @@ components:
           type: string
         platformSpecificData:
           $ref: "#/components/schemas/createPost_request_platforms_inner_platformSpecificData"
+      required:
+      - accountId
+      - platform
     createPost_request:
       properties:
         title:
@@ -30980,13 +30987,85 @@ components:
         details:
           description: Additional context about the rate limit
           type: object
+    updatePost_request_platforms_inner:
+      properties:
+        platform:
+          example: twitter
+          type: string
+        accountId:
+          type: string
+        customContent:
+          description: Platform-specific text override.
+          type: string
+        customMedia:
+          items:
+            $ref: "#/components/schemas/MediaItem"
+          type: array
+        scheduledFor:
+          description: Optional per-platform scheduled time override.
+          format: date-time
+          type: string
+        platformSpecificData:
+          additionalProperties: true
+          type: object
+      required:
+      - accountId
+      - platform
     updatePost_request:
       additionalProperties: {}
       properties:
+        title:
+          type: string
         content:
           type: string
+        mediaItems:
+          items:
+            $ref: "#/components/schemas/MediaItem"
+          type: array
+        platforms:
+          description: Target platforms and accounts for this post. Each item must
+            include platform and accountId.
+          items:
+            $ref: "#/components/schemas/updatePost_request_platforms_inner"
+          type: array
         scheduledFor:
           format: date-time
+          type: string
+        publishNow:
+          default: false
+          type: boolean
+        isDraft:
+          type: boolean
+        timezone:
+          type: string
+        visibility:
+          enum:
+          - public
+          - private
+          - unlisted
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        hashtags:
+          items:
+            type: string
+          type: array
+        mentions:
+          items:
+            type: string
+          type: array
+        crosspostingEnabled:
+          type: boolean
+        metadata:
+          additionalProperties: true
+          type: object
+        queuedFromProfile:
+          description: Profile ID to schedule via queue.
+          type: string
+        queueId:
+          description: Specific queue ID to use when scheduling via queue.
           type: string
         tiktokSettings:
           allOf:

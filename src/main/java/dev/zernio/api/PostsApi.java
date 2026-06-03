@@ -74,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-02T14:37:56.978467017Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T08:55:25.327447252Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1301,7 +1301,7 @@ public class PostsApi {
 
   /**
    * Update post
-   * Update an existing post. Only draft, scheduled, failed, and partial posts can be edited. Published, publishing, and cancelled posts cannot be modified. 
+   * Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
    * @param postId  (required)
    * @param updatePostRequest  (required)
    * @return PostUpdateResponse
@@ -1313,7 +1313,7 @@ public class PostsApi {
 
   /**
    * Update post
-   * Update an existing post. Only draft, scheduled, failed, and partial posts can be edited. Published, publishing, and cancelled posts cannot be modified. 
+   * Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
    * @param postId  (required)
    * @param updatePostRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1327,7 +1327,7 @@ public class PostsApi {
 
   /**
    * Update post
-   * Update an existing post. Only draft, scheduled, failed, and partial posts can be edited. Published, publishing, and cancelled posts cannot be modified. 
+   * Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
    * @param postId  (required)
    * @param updatePostRequest  (required)
    * @return ApiResponse&lt;PostUpdateResponse&gt;
@@ -1339,7 +1339,7 @@ public class PostsApi {
 
   /**
    * Update post
-   * Update an existing post. Only draft, scheduled, failed, and partial posts can be edited. Published, publishing, and cancelled posts cannot be modified. 
+   * Update an existing post. Draft, scheduled, failed, partial, and cancelled posts can be edited. Published posts can only have their recycling config updated. 
    * @param postId  (required)
    * @param updatePostRequest  (required)
    * @param headers Optional headers to include in the request
