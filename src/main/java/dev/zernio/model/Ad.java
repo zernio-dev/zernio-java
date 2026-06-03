@@ -72,7 +72,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:56:54.090432450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -900,7 +900,7 @@ public class Ad {
   }
 
   /**
-   * Get targeting
+   * The ad set&#39;s targeting (age, gender, geo, interests, placements, audience inclusions/exclusions). For ads created through Zernio this is the spec you supplied. For external ads (synced from Meta Ads Manager, &#x60;isExternal: true&#x60;) targeting lives at the ad set and isn&#39;t stored at ingest, so on the first &#x60;GET /v1/ads/{adId}&#x60; Zernio resolves it live from Meta and caches it on the ad; the value is then Meta&#39;s raw &#x60;targeting&#x60; shape (snake_case, e.g. &#x60;geo_locations&#x60;, &#x60;age_min&#x60;), the same object Ads Manager shows. May be absent if the ad set exposes no targeting or the lookup fails. 
    * @return targeting
    */
   @javax.annotation.Nullable

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   PlatformAnalytics.JSON_PROPERTY_PLATFORM_POST_URL,
   PlatformAnalytics.JSON_PROPERTY_ERROR_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:56:54.090432450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformAnalytics {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

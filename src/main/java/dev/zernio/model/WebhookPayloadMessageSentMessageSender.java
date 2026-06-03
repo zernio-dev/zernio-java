@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMessageSender.JSON_PROPERTY_USERNAME,
   WebhookPayloadMessageSentMessageSender.JSON_PROPERTY_PICTURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:56:54.090432450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
