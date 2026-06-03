@@ -14,6 +14,7 @@
 |**address** | **String** |  |  [optional] |
 |**category** | **String** |  |  [optional] |
 |**websiteUrl** | **String** |  |  [optional] |
+|**storeCode** | **String** |  |  [optional] |
 
 
 

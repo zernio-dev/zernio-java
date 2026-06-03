@@ -36,13 +36,18 @@ import dev.zernio.ApiClient;
  * ListGoogleBusinessLocations200Response
  */
 @JsonPropertyOrder({
-  ListGoogleBusinessLocations200Response.JSON_PROPERTY_LOCATIONS
+  ListGoogleBusinessLocations200Response.JSON_PROPERTY_LOCATIONS,
+  ListGoogleBusinessLocations200Response.JSON_PROPERTY_HAS_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleBusinessLocations200Response {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nullable
   private List<ListGoogleBusinessLocations200ResponseLocationsInner> locations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
+  @javax.annotation.Nullable
+  private Boolean hasMore;
 
   public ListGoogleBusinessLocations200Response() { 
   }
@@ -79,6 +84,30 @@ public class ListGoogleBusinessLocations200Response {
   }
 
 
+  public ListGoogleBusinessLocations200Response hasMore(@javax.annotation.Nullable Boolean hasMore) {
+    this.hasMore = hasMore;
+    return this;
+  }
+
+  /**
+   * True when more locations exist than were returned (the list is bounded). Prompt the user to narrow the result set with search. 
+   * @return hasMore
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_MORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_MORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasMore(@javax.annotation.Nullable Boolean hasMore) {
+    this.hasMore = hasMore;
+  }
+
+
   /**
    * Return true if this listGoogleBusinessLocations_200_response object is equal to o.
    */
@@ -91,12 +120,13 @@ public class ListGoogleBusinessLocations200Response {
       return false;
     }
     ListGoogleBusinessLocations200Response listGoogleBusinessLocations200Response = (ListGoogleBusinessLocations200Response) o;
-    return Objects.equals(this.locations, listGoogleBusinessLocations200Response.locations);
+    return Objects.equals(this.locations, listGoogleBusinessLocations200Response.locations) &&
+        Objects.equals(this.hasMore, listGoogleBusinessLocations200Response.hasMore);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locations);
+    return Objects.hash(locations, hasMore);
   }
 
   @Override
@@ -104,6 +134,7 @@ public class ListGoogleBusinessLocations200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListGoogleBusinessLocations200Response {\n");
     sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -159,6 +190,11 @@ public class ListGoogleBusinessLocations200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `hasMore` to the URL query string
+    if (getHasMore() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasMore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasMore()))));
     }
 
     return joiner.toString();

@@ -36,10 +36,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_PROFILE_ID,
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_LOCATION_ID,
+  SelectGoogleBusinessLocationRequest.JSON_PROPERTY_ACCOUNT_ID,
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_PENDING_DATA_TOKEN,
   SelectGoogleBusinessLocationRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectGoogleBusinessLocationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -48,6 +49,10 @@ public class SelectGoogleBusinessLocationRequest {
   public static final String JSON_PROPERTY_LOCATION_ID = "locationId";
   @javax.annotation.Nonnull
   private String locationId;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   public static final String JSON_PROPERTY_PENDING_DATA_TOKEN = "pendingDataToken";
   @javax.annotation.Nonnull
@@ -105,6 +110,30 @@ public class SelectGoogleBusinessLocationRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLocationId(@javax.annotation.Nonnull String locationId) {
     this.locationId = locationId;
+  }
+
+
+  public SelectGoogleBusinessLocationRequest accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts. 
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
   }
 
 
@@ -170,13 +199,14 @@ public class SelectGoogleBusinessLocationRequest {
     SelectGoogleBusinessLocationRequest selectGoogleBusinessLocationRequest = (SelectGoogleBusinessLocationRequest) o;
     return Objects.equals(this.profileId, selectGoogleBusinessLocationRequest.profileId) &&
         Objects.equals(this.locationId, selectGoogleBusinessLocationRequest.locationId) &&
+        Objects.equals(this.accountId, selectGoogleBusinessLocationRequest.accountId) &&
         Objects.equals(this.pendingDataToken, selectGoogleBusinessLocationRequest.pendingDataToken) &&
         Objects.equals(this.redirectUrl, selectGoogleBusinessLocationRequest.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, locationId, pendingDataToken, redirectUrl);
+    return Objects.hash(profileId, locationId, accountId, pendingDataToken, redirectUrl);
   }
 
   @Override
@@ -185,6 +215,7 @@ public class SelectGoogleBusinessLocationRequest {
     sb.append("class SelectGoogleBusinessLocationRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    locationId: ").append(toIndentedString(locationId)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    pendingDataToken: ").append(toIndentedString(pendingDataToken)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
@@ -242,6 +273,11 @@ public class SelectGoogleBusinessLocationRequest {
     // add `locationId` to the URL query string
     if (getLocationId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slocationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationId()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `pendingDataToken` to the URL query string

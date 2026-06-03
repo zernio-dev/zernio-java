@@ -5645,6 +5645,24 @@ paths:
         schema:
           type: string
         style: form
+      - description: |
+          Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |
+          Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode="LH279411". See Google's "Work with location data" guide.
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -5657,6 +5675,8 @@ paths:
                   accountName: My Business Account
                   address: "123 Main St, City, Country"
                   category: Coffee shop
+                  storeCode: CS-001
+                hasMore: false
               schema:
                 $ref: "#/components/schemas/listGoogleBusinessLocations_200_response"
           description: List of Google Business locations available for connection
@@ -5690,6 +5710,7 @@ paths:
             example:
               profileId: 507f1f77bcf86cd799439011
               locationId: "9281089117903930794"
+              accountId: accounts/113303573364907650416
               pendingDataToken: a1b2c3d4e5f6...
               redirect_url: https://yourdomain.com/integrations/callback
             schema:
@@ -9313,8 +9334,8 @@ paths:
       - application/json
   /v1/accounts/{accountId}/gmb-locations:
     get:
-      description: "Returns all Google Business Profile locations the connected account\
-        \ has access to, including the currently selected location."
+      description: |
+        Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all.
       operationId: getGmbLocations
       parameters:
       - explode: false
@@ -9324,6 +9345,24 @@ paths:
         schema:
           type: string
         style: simple
+      - description: "Free-text search on the business name, applied server-side by\
+          \ Google. Use for accounts with many locations."
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Raw Google Business Information API filter expression (advanced;\
+          \ takes precedence over search), e.g. storeCode=\"LH279411\"."
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -9367,6 +9406,7 @@ paths:
           application/json:
             example:
               selectedLocationId: "12345678901234567890"
+              accountId: accounts/123456789
             schema:
               $ref: "#/components/schemas/updateGmbLocation_request"
         required: true
@@ -32498,6 +32538,7 @@ components:
         name: name
         id: id
         category: category
+        storeCode: storeCode
       properties:
         id:
           description: Location ID
@@ -32517,8 +32558,13 @@ components:
         category:
           description: Business category
           type: string
+        storeCode:
+          description: Store code set on the location in Google Business Profile (if
+            any)
+          type: string
     listGoogleBusinessLocations_200_response:
       example:
+        hasMore: true
         locations:
         - accountId: accountId
           address: address
@@ -32526,17 +32572,23 @@ components:
           name: name
           id: id
           category: category
+          storeCode: storeCode
         - accountId: accountId
           address: address
           accountName: accountName
           name: name
           id: id
           category: category
+          storeCode: storeCode
       properties:
         locations:
           items:
             $ref: "#/components/schemas/listGoogleBusinessLocations_200_response_locations_inner"
           type: array
+        hasMore:
+          description: |
+            True when more locations exist than were returned (the list is bounded). Prompt the user to narrow the result set with search.
+          type: boolean
     selectGoogleBusinessLocation_request:
       properties:
         profileId:
@@ -32544,6 +32596,10 @@ components:
           type: string
         locationId:
           description: The Google Business location ID selected by the user
+          type: string
+        accountId:
+          description: |
+            Optional but recommended. The Google Business Account resource name ("accounts/123") that owns the selected location (returned per-location by GET /v1/connect/googlebusiness/locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts that own many locations. Omit only for small accounts.
           type: string
         pendingDataToken:
           description: Token from the OAuth callback redirect (pendingDataToken query
@@ -37083,6 +37139,7 @@ components:
         name: name
         id: id
         category: category
+        storeCode: storeCode
       properties:
         id:
           type: string
@@ -37098,9 +37155,12 @@ components:
           type: string
         websiteUrl:
           type: string
+        storeCode:
+          type: string
     getGmbLocations_200_response:
       example:
         cached: true
+        hasMore: true
         locations:
         - accountId: accountId
           address: address
@@ -37109,6 +37169,7 @@ components:
           name: name
           id: id
           category: category
+          storeCode: storeCode
         - accountId: accountId
           address: address
           accountName: accountName
@@ -37116,12 +37177,17 @@ components:
           name: name
           id: id
           category: category
+          storeCode: storeCode
         selectedLocationId: selectedLocationId
       properties:
         locations:
           items:
             $ref: "#/components/schemas/getGmbLocations_200_response_locations_inner"
           type: array
+        hasMore:
+          description: True when more locations exist than were returned (use search
+            to narrow down).
+          type: boolean
         selectedLocationId:
           type: string
         cached:
@@ -37129,6 +37195,10 @@ components:
     updateGmbLocation_request:
       properties:
         selectedLocationId:
+          type: string
+        accountId:
+          description: |
+            Optional but recommended. The Google Business Account resource name ("accounts/123") that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations.
           type: string
       required:
       - selectedLocationId

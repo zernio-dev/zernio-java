@@ -13,6 +13,7 @@
 |**accountName** | **String** | Account name |  [optional] |
 |**address** | **String** | Business address |  [optional] |
 |**category** | **String** | Business category |  [optional] |
+|**storeCode** | **String** | Store code set on the location in Google Business Profile (if any) |  [optional] |
 
 
 

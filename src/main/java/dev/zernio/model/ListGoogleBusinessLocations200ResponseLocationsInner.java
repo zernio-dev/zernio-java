@@ -38,9 +38,10 @@ import dev.zernio.ApiClient;
   ListGoogleBusinessLocations200ResponseLocationsInner.JSON_PROPERTY_ACCOUNT_ID,
   ListGoogleBusinessLocations200ResponseLocationsInner.JSON_PROPERTY_ACCOUNT_NAME,
   ListGoogleBusinessLocations200ResponseLocationsInner.JSON_PROPERTY_ADDRESS,
-  ListGoogleBusinessLocations200ResponseLocationsInner.JSON_PROPERTY_CATEGORY
+  ListGoogleBusinessLocations200ResponseLocationsInner.JSON_PROPERTY_CATEGORY,
+  ListGoogleBusinessLocations200ResponseLocationsInner.JSON_PROPERTY_STORE_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleBusinessLocations200ResponseLocationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -65,6 +66,10 @@ public class ListGoogleBusinessLocations200ResponseLocationsInner {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   @javax.annotation.Nullable
   private String category;
+
+  public static final String JSON_PROPERTY_STORE_CODE = "storeCode";
+  @javax.annotation.Nullable
+  private String storeCode;
 
   public ListGoogleBusinessLocations200ResponseLocationsInner() { 
   }
@@ -213,6 +218,30 @@ public class ListGoogleBusinessLocations200ResponseLocationsInner {
   }
 
 
+  public ListGoogleBusinessLocations200ResponseLocationsInner storeCode(@javax.annotation.Nullable String storeCode) {
+    this.storeCode = storeCode;
+    return this;
+  }
+
+  /**
+   * Store code set on the location in Google Business Profile (if any)
+   * @return storeCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STORE_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getStoreCode() {
+    return storeCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STORE_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStoreCode(@javax.annotation.Nullable String storeCode) {
+    this.storeCode = storeCode;
+  }
+
+
   /**
    * Return true if this listGoogleBusinessLocations_200_response_locations_inner object is equal to o.
    */
@@ -230,12 +259,13 @@ public class ListGoogleBusinessLocations200ResponseLocationsInner {
         Objects.equals(this.accountId, listGoogleBusinessLocations200ResponseLocationsInner.accountId) &&
         Objects.equals(this.accountName, listGoogleBusinessLocations200ResponseLocationsInner.accountName) &&
         Objects.equals(this.address, listGoogleBusinessLocations200ResponseLocationsInner.address) &&
-        Objects.equals(this.category, listGoogleBusinessLocations200ResponseLocationsInner.category);
+        Objects.equals(this.category, listGoogleBusinessLocations200ResponseLocationsInner.category) &&
+        Objects.equals(this.storeCode, listGoogleBusinessLocations200ResponseLocationsInner.storeCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, accountId, accountName, address, category);
+    return Objects.hash(id, name, accountId, accountName, address, category, storeCode);
   }
 
   @Override
@@ -248,6 +278,7 @@ public class ListGoogleBusinessLocations200ResponseLocationsInner {
     sb.append("    accountName: ").append(toIndentedString(accountName)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
+    sb.append("    storeCode: ").append(toIndentedString(storeCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -323,6 +354,11 @@ public class ListGoogleBusinessLocations200ResponseLocationsInner {
     // add `category` to the URL query string
     if (getCategory() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scategory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCategory()))));
+    }
+
+    // add `storeCode` to the URL query string
+    if (getStoreCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstoreCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStoreCode()))));
     }
 
     return joiner.toString();

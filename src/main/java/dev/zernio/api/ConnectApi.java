@@ -97,7 +97,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1308,49 +1308,57 @@ public class ConnectApi {
 
   /**
    * List GBP locations
-   * Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
    * @param accountId  (required)
+   * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
    * @return GetGmbLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getGmbLocations(accountId, null);
+  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter) throws ApiException {
+    return getGmbLocations(accountId, search, filter, null);
   }
 
   /**
    * List GBP locations
-   * Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
    * @param accountId  (required)
+   * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
    * @param headers Optional headers to include in the request
    * @return GetGmbLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetGmbLocations200Response> localVarResponse = getGmbLocationsWithHttpInfo(accountId, headers);
+  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGmbLocations200Response> localVarResponse = getGmbLocationsWithHttpInfo(accountId, search, filter, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List GBP locations
-   * Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
    * @param accountId  (required)
+   * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
    * @return ApiResponse&lt;GetGmbLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
-    return getGmbLocationsWithHttpInfo(accountId, null);
+  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter) throws ApiException {
+    return getGmbLocationsWithHttpInfo(accountId, search, filter, null);
   }
 
   /**
    * List GBP locations
-   * Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
    * @param accountId  (required)
+   * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetGmbLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGmbLocationsRequestBuilder(accountId, headers);
+  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGmbLocationsRequestBuilder(accountId, search, filter, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1397,7 +1405,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder getGmbLocationsRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getGmbLocationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGmbLocations");
@@ -1408,7 +1416,24 @@ public class ConnectApi {
     String localVarPath = "/v1/accounts/{accountId}/gmb-locations"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "search";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("search", search));
+    localVarQueryParameterBaseName = "filter";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("filter", filter));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -2690,11 +2715,13 @@ public class ConnectApi {
    * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
    * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
    * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
+   * @param search Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)
    * @return ListGoogleBusinessLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken) throws ApiException {
-    return listGoogleBusinessLocations(profileId, pendingDataToken, tempToken, null);
+  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter) throws ApiException {
+    return listGoogleBusinessLocations(profileId, pendingDataToken, tempToken, search, filter, null);
   }
 
   /**
@@ -2703,12 +2730,14 @@ public class ConnectApi {
    * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
    * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
    * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
+   * @param search Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)
    * @param headers Optional headers to include in the request
    * @return ListGoogleBusinessLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, headers);
+  public ListGoogleBusinessLocations200Response listGoogleBusinessLocations(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListGoogleBusinessLocations200Response> localVarResponse = listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, search, filter, headers);
     return localVarResponse.getData();
   }
 
@@ -2718,11 +2747,13 @@ public class ConnectApi {
    * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
    * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
    * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
+   * @param search Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)
    * @return ApiResponse&lt;ListGoogleBusinessLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken) throws ApiException {
-    return listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, null);
+  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter) throws ApiException {
+    return listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, search, filter, null);
   }
 
   /**
@@ -2731,12 +2762,14 @@ public class ConnectApi {
    * @param profileId Profile ID from your connection flow. Required for auth validation when provided. (optional)
    * @param pendingDataToken Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. (optional)
    * @param tempToken Legacy. Direct Google access token. Use pendingDataToken instead when available. (optional)
+   * @param search Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  (optional)
+   * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListGoogleBusinessLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessLocationsRequestBuilder(profileId, pendingDataToken, tempToken, headers);
+  public ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocationsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listGoogleBusinessLocationsRequestBuilder(profileId, pendingDataToken, tempToken, search, filter, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2783,7 +2816,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder listGoogleBusinessLocationsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listGoogleBusinessLocationsRequestBuilder(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String pendingDataToken, @javax.annotation.Nullable String tempToken, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2798,6 +2831,10 @@ public class ConnectApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("pendingDataToken", pendingDataToken));
     localVarQueryParameterBaseName = "tempToken";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("tempToken", tempToken));
+    localVarQueryParameterBaseName = "search";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("search", search));
+    localVarQueryParameterBaseName = "filter";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("filter", filter));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

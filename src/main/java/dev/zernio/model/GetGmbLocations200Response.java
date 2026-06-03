@@ -37,14 +37,19 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetGmbLocations200Response.JSON_PROPERTY_LOCATIONS,
+  GetGmbLocations200Response.JSON_PROPERTY_HAS_MORE,
   GetGmbLocations200Response.JSON_PROPERTY_SELECTED_LOCATION_ID,
   GetGmbLocations200Response.JSON_PROPERTY_CACHED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGmbLocations200Response {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nullable
   private List<GetGmbLocations200ResponseLocationsInner> locations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
+  @javax.annotation.Nullable
+  private Boolean hasMore;
 
   public static final String JSON_PROPERTY_SELECTED_LOCATION_ID = "selectedLocationId";
   @javax.annotation.Nullable
@@ -86,6 +91,30 @@ public class GetGmbLocations200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocations(@javax.annotation.Nullable List<GetGmbLocations200ResponseLocationsInner> locations) {
     this.locations = locations;
+  }
+
+
+  public GetGmbLocations200Response hasMore(@javax.annotation.Nullable Boolean hasMore) {
+    this.hasMore = hasMore;
+    return this;
+  }
+
+  /**
+   * True when more locations exist than were returned (use search to narrow down).
+   * @return hasMore
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_MORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasMore() {
+    return hasMore;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_MORE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasMore(@javax.annotation.Nullable Boolean hasMore) {
+    this.hasMore = hasMore;
   }
 
 
@@ -150,13 +179,14 @@ public class GetGmbLocations200Response {
     }
     GetGmbLocations200Response getGmbLocations200Response = (GetGmbLocations200Response) o;
     return Objects.equals(this.locations, getGmbLocations200Response.locations) &&
+        Objects.equals(this.hasMore, getGmbLocations200Response.hasMore) &&
         Objects.equals(this.selectedLocationId, getGmbLocations200Response.selectedLocationId) &&
         Objects.equals(this.cached, getGmbLocations200Response.cached);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locations, selectedLocationId, cached);
+    return Objects.hash(locations, hasMore, selectedLocationId, cached);
   }
 
   @Override
@@ -164,6 +194,7 @@ public class GetGmbLocations200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetGmbLocations200Response {\n");
     sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("    hasMore: ").append(toIndentedString(hasMore)).append("\n");
     sb.append("    selectedLocationId: ").append(toIndentedString(selectedLocationId)).append("\n");
     sb.append("    cached: ").append(toIndentedString(cached)).append("\n");
     sb.append("}");
@@ -221,6 +252,11 @@ public class GetGmbLocations200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `hasMore` to the URL query string
+    if (getHasMore() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasMore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasMore()))));
     }
 
     // add `selectedLocationId` to the URL query string

@@ -39,9 +39,10 @@ import dev.zernio.ApiClient;
   GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_ACCOUNT_NAME,
   GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_ADDRESS,
   GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_CATEGORY,
-  GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_WEBSITE_URL
+  GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_WEBSITE_URL,
+  GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_STORE_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGmbLocations200ResponseLocationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -70,6 +71,10 @@ public class GetGmbLocations200ResponseLocationsInner {
   public static final String JSON_PROPERTY_WEBSITE_URL = "websiteUrl";
   @javax.annotation.Nullable
   private String websiteUrl;
+
+  public static final String JSON_PROPERTY_STORE_CODE = "storeCode";
+  @javax.annotation.Nullable
+  private String storeCode;
 
   public GetGmbLocations200ResponseLocationsInner() { 
   }
@@ -242,6 +247,30 @@ public class GetGmbLocations200ResponseLocationsInner {
   }
 
 
+  public GetGmbLocations200ResponseLocationsInner storeCode(@javax.annotation.Nullable String storeCode) {
+    this.storeCode = storeCode;
+    return this;
+  }
+
+  /**
+   * Get storeCode
+   * @return storeCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STORE_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getStoreCode() {
+    return storeCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STORE_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStoreCode(@javax.annotation.Nullable String storeCode) {
+    this.storeCode = storeCode;
+  }
+
+
   /**
    * Return true if this getGmbLocations_200_response_locations_inner object is equal to o.
    */
@@ -260,12 +289,13 @@ public class GetGmbLocations200ResponseLocationsInner {
         Objects.equals(this.accountName, getGmbLocations200ResponseLocationsInner.accountName) &&
         Objects.equals(this.address, getGmbLocations200ResponseLocationsInner.address) &&
         Objects.equals(this.category, getGmbLocations200ResponseLocationsInner.category) &&
-        Objects.equals(this.websiteUrl, getGmbLocations200ResponseLocationsInner.websiteUrl);
+        Objects.equals(this.websiteUrl, getGmbLocations200ResponseLocationsInner.websiteUrl) &&
+        Objects.equals(this.storeCode, getGmbLocations200ResponseLocationsInner.storeCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, accountId, accountName, address, category, websiteUrl);
+    return Objects.hash(id, name, accountId, accountName, address, category, websiteUrl, storeCode);
   }
 
   @Override
@@ -279,6 +309,7 @@ public class GetGmbLocations200ResponseLocationsInner {
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("    websiteUrl: ").append(toIndentedString(websiteUrl)).append("\n");
+    sb.append("    storeCode: ").append(toIndentedString(storeCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -359,6 +390,11 @@ public class GetGmbLocations200ResponseLocationsInner {
     // add `websiteUrl` to the URL query string
     if (getWebsiteUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%swebsiteUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWebsiteUrl()))));
+    }
+
+    // add `storeCode` to the URL query string
+    if (getStoreCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstoreCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStoreCode()))));
     }
 
     return joiner.toString();

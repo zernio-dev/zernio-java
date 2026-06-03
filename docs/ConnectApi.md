@@ -1333,11 +1333,11 @@ ApiResponse<[**GetFacebookPages200Response**](GetFacebookPages200Response.md)>
 
 ## getGmbLocations
 
-> GetGmbLocations200Response getGmbLocations(accountId)
+> GetGmbLocations200Response getGmbLocations(accountId, search, filter)
 
 List GBP locations
 
-Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
 
 ### Example
 
@@ -1361,8 +1361,10 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String search = "search_example"; // String | Free-text search on the business name, applied server-side by Google. Use for accounts with many locations.
+        String filter = "filter_example"; // String | Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode=\"LH279411\".
         try {
-            GetGmbLocations200Response result = apiInstance.getGmbLocations(accountId);
+            GetGmbLocations200Response result = apiInstance.getGmbLocations(accountId, search, filter);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getGmbLocations");
@@ -1381,6 +1383,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **search** | **String**| Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. | [optional] |
+| **filter** | **String**| Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. | [optional] |
 
 ### Return type
 
@@ -1405,11 +1409,11 @@ public class Example {
 
 ## getGmbLocationsWithHttpInfo
 
-> ApiResponse<GetGmbLocations200Response> getGmbLocations getGmbLocationsWithHttpInfo(accountId)
+> ApiResponse<GetGmbLocations200Response> getGmbLocations getGmbLocationsWithHttpInfo(accountId, search, filter)
 
 List GBP locations
 
-Returns all Google Business Profile locations the connected account has access to, including the currently selected location.
+Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
 
 ### Example
 
@@ -1434,8 +1438,10 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String search = "search_example"; // String | Free-text search on the business name, applied server-side by Google. Use for accounts with many locations.
+        String filter = "filter_example"; // String | Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode=\"LH279411\".
         try {
-            ApiResponse<GetGmbLocations200Response> response = apiInstance.getGmbLocationsWithHttpInfo(accountId);
+            ApiResponse<GetGmbLocations200Response> response = apiInstance.getGmbLocationsWithHttpInfo(accountId, search, filter);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1456,6 +1462,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **search** | **String**| Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. | [optional] |
+| **filter** | **String**| Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. | [optional] |
 
 ### Return type
 
@@ -3009,7 +3017,7 @@ ApiResponse<[**ListFacebookPages200Response**](ListFacebookPages200Response.md)>
 
 ## listGoogleBusinessLocations
 
-> ListGoogleBusinessLocations200Response listGoogleBusinessLocations(profileId, pendingDataToken, tempToken)
+> ListGoogleBusinessLocations200Response listGoogleBusinessLocations(profileId, pendingDataToken, tempToken, search, filter)
 
 List GBP locations
 
@@ -3045,8 +3053,10 @@ public class Example {
         String profileId = "profileId_example"; // String | Profile ID from your connection flow. Required for auth validation when provided.
         String pendingDataToken = "pendingDataToken_example"; // String | Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required.
         String tempToken = "tempToken_example"; // String | Legacy. Direct Google access token. Use pendingDataToken instead when available.
+        String search = "search_example"; // String | Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list. 
+        String filter = "filter_example"; // String | Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode=\"LH279411\". See Google's \"Work with location data\" guide. 
         try {
-            ListGoogleBusinessLocations200Response result = apiInstance.listGoogleBusinessLocations(profileId, pendingDataToken, tempToken);
+            ListGoogleBusinessLocations200Response result = apiInstance.listGoogleBusinessLocations(profileId, pendingDataToken, tempToken, search, filter);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#listGoogleBusinessLocations");
@@ -3067,6 +3077,8 @@ public class Example {
 | **profileId** | **String**| Profile ID from your connection flow. Required for auth validation when provided. | [optional] |
 | **pendingDataToken** | **String**| Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. | [optional] |
 | **tempToken** | **String**| Legacy. Direct Google access token. Use pendingDataToken instead when available. | [optional] |
+| **search** | **String**| Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  | [optional] |
+| **filter** | **String**| Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  | [optional] |
 
 ### Return type
 
@@ -3092,7 +3104,7 @@ public class Example {
 
 ## listGoogleBusinessLocationsWithHttpInfo
 
-> ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocations listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken)
+> ApiResponse<ListGoogleBusinessLocations200Response> listGoogleBusinessLocations listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, search, filter)
 
 List GBP locations
 
@@ -3129,8 +3141,10 @@ public class Example {
         String profileId = "profileId_example"; // String | Profile ID from your connection flow. Required for auth validation when provided.
         String pendingDataToken = "pendingDataToken_example"; // String | Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required.
         String tempToken = "tempToken_example"; // String | Legacy. Direct Google access token. Use pendingDataToken instead when available.
+        String search = "search_example"; // String | Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list. 
+        String filter = "filter_example"; // String | Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode=\"LH279411\". See Google's \"Work with location data\" guide. 
         try {
-            ApiResponse<ListGoogleBusinessLocations200Response> response = apiInstance.listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken);
+            ApiResponse<ListGoogleBusinessLocations200Response> response = apiInstance.listGoogleBusinessLocationsWithHttpInfo(profileId, pendingDataToken, tempToken, search, filter);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3153,6 +3167,8 @@ public class Example {
 | **profileId** | **String**| Profile ID from your connection flow. Required for auth validation when provided. | [optional] |
 | **pendingDataToken** | **String**| Token from the OAuth callback redirect. Preferred over tempToken because it preserves server-side token storage. One of pendingDataToken or tempToken is required. | [optional] |
 | **tempToken** | **String**| Legacy. Direct Google access token. Use pendingDataToken instead when available. | [optional] |
+| **search** | **String**| Free-text search on the business name, applied server-side by Google. Use this for accounts that own many locations (the response is bounded, see hasMore) so the user can find a specific location without loading the full list.  | [optional] |
+| **filter** | **String**| Raw Google Business Information API filter expression (advanced; takes precedence over search). Supports fields such as title, storeCode, storefront_address.postal_code, labels and categories, e.g. storeCode&#x3D;\&quot;LH279411\&quot;. See Google&#39;s \&quot;Work with location data\&quot; guide.  | [optional] |
 
 ### Return type
 

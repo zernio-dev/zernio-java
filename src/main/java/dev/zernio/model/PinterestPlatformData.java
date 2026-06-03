@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   PinterestPlatformData.JSON_PROPERTY_COVER_IMAGE_URL,
   PinterestPlatformData.JSON_PROPERTY_COVER_IMAGE_KEY_FRAME_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:52:18.100377591Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:47:31.265591489Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PinterestPlatformData {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
