@@ -39,7 +39,9 @@ import dev.zernio.model.EstimateAdReachRequest;
 import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
+import dev.zernio.model.GetAdTrackingTags200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
+import dev.zernio.model.GetConversionsQuality200Response;
 import dev.zernio.model.GetLeadForm200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
@@ -62,6 +64,7 @@ import dev.zernio.model.SendWhatsAppConversion200Response;
 import dev.zernio.model.SendWhatsAppConversionRequest;
 import dev.zernio.model.UpdateAd200Response;
 import dev.zernio.model.UpdateAdRequest;
+import dev.zernio.model.UpdateAdTrackingTagsRequest;
 import dev.zernio.model.UpdateConversionDestinationRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -89,7 +92,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T08:55:25.327447252Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T09:38:04.965786404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2034,6 +2037,124 @@ public class AdsApi {
   }
 
   /**
+   * Read an ad&#39;s click-URL tracking tags
+   * Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+   * @param adId Ad id (hex _id, platformAdId, or effective story/media id). (required)
+   * @return GetAdTrackingTags200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdTrackingTags200Response getAdTrackingTags(@javax.annotation.Nonnull String adId) throws ApiException {
+    return getAdTrackingTags(adId, null);
+  }
+
+  /**
+   * Read an ad&#39;s click-URL tracking tags
+   * Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+   * @param adId Ad id (hex _id, platformAdId, or effective story/media id). (required)
+   * @param headers Optional headers to include in the request
+   * @return GetAdTrackingTags200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdTrackingTags200Response getAdTrackingTags(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdTrackingTags200Response> localVarResponse = getAdTrackingTagsWithHttpInfo(adId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Read an ad&#39;s click-URL tracking tags
+   * Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+   * @param adId Ad id (hex _id, platformAdId, or effective story/media id). (required)
+   * @return ApiResponse&lt;GetAdTrackingTags200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdTrackingTags200Response> getAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId) throws ApiException {
+    return getAdTrackingTagsWithHttpInfo(adId, null);
+  }
+
+  /**
+   * Read an ad&#39;s click-URL tracking tags
+   * Unified read of the platform&#39;s native click-URL tracking params. - Meta (facebook/instagram): the creative&#39;s &#x60;url_tags&#x60; (and template_url_spec). - Google (googleads): the campaign&#39;s &#x60;trackingUrlTemplate&#x60; + &#x60;finalUrlSuffix&#x60;.   Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access. - LinkedIn (linkedinads): the campaign&#39;s Dynamic UTM &#x60;dynamicValueParameters&#x60; + &#x60;customValueParameters&#x60;. Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest). 
+   * @param adId Ad id (hex _id, platformAdId, or effective story/media id). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdTrackingTags200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdTrackingTags200Response> getAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdTrackingTagsRequestBuilder(adId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdTrackingTags", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdTrackingTags200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdTrackingTags200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdTrackingTags200Response>() {});
+        
+
+        return new ApiResponse<GetAdTrackingTags200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdTrackingTagsRequestBuilder(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling getAdTrackingTags");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/tracking-tags"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Fetch a single conversion destination
    * LinkedIn-only today. Returns the full destination record for one conversion rule. The &#x60;adAccountId&#x60; query parameter is required because LinkedIn rules are scoped to a sponsored ad account. 
    * @param accountId  (required)
@@ -2329,6 +2450,148 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("endDate", endDate));
     localVarQueryParameterBaseName = "granularity";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("granularity", granularity));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Read Event Match Quality + coverage for a Meta pixel
+   * Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+   * @param accountId SocialAccount _id (must be a metaads account). (required)
+   * @param destinationId Meta pixel/dataset ID. (required)
+   * @return GetConversionsQuality200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetConversionsQuality200Response getConversionsQuality(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId) throws ApiException {
+    return getConversionsQuality(accountId, destinationId, null);
+  }
+
+  /**
+   * Read Event Match Quality + coverage for a Meta pixel
+   * Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+   * @param accountId SocialAccount _id (must be a metaads account). (required)
+   * @param destinationId Meta pixel/dataset ID. (required)
+   * @param headers Optional headers to include in the request
+   * @return GetConversionsQuality200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetConversionsQuality200Response getConversionsQuality(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetConversionsQuality200Response> localVarResponse = getConversionsQualityWithHttpInfo(accountId, destinationId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Read Event Match Quality + coverage for a Meta pixel
+   * Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+   * @param accountId SocialAccount _id (must be a metaads account). (required)
+   * @param destinationId Meta pixel/dataset ID. (required)
+   * @return ApiResponse&lt;GetConversionsQuality200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetConversionsQuality200Response> getConversionsQualityWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId) throws ApiException {
+    return getConversionsQualityWithHttpInfo(accountId, destinationId, null);
+  }
+
+  /**
+   * Read Event Match Quality + coverage for a Meta pixel
+   * Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+   * @param accountId SocialAccount _id (must be a metaads account). (required)
+   * @param destinationId Meta pixel/dataset ID. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetConversionsQuality200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetConversionsQuality200Response> getConversionsQualityWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getConversionsQualityRequestBuilder(accountId, destinationId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getConversionsQuality", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetConversionsQuality200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetConversionsQuality200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetConversionsQuality200Response>() {});
+        
+
+        return new ApiResponse<GetConversionsQuality200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getConversionsQualityRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getConversionsQuality");
+    }
+    // verify the required parameter 'destinationId' is set
+    if (destinationId == null) {
+      throw new ApiException(400, "Missing the required parameter 'destinationId' when calling getConversionsQuality");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/conversions/quality";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "destinationId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("destinationId", destinationId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -4679,6 +4942,124 @@ public class AdsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Set/update an ad&#39;s click-URL tracking tags
+   * Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+   * @param adId  (required)
+   * @param updateAdTrackingTagsRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void updateAdTrackingTags(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest) throws ApiException {
+    updateAdTrackingTags(adId, updateAdTrackingTagsRequest, null);
+  }
+
+  /**
+   * Set/update an ad&#39;s click-URL tracking tags
+   * Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+   * @param adId  (required)
+   * @param updateAdTrackingTagsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateAdTrackingTags(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, Map<String, String> headers) throws ApiException {
+    updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest, headers);
+  }
+
+  /**
+   * Set/update an ad&#39;s click-URL tracking tags
+   * Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+   * @param adId  (required)
+   * @param updateAdTrackingTagsRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest) throws ApiException {
+    return updateAdTrackingTagsWithHttpInfo(adId, updateAdTrackingTagsRequest, null);
+  }
+
+  /**
+   * Set/update an ad&#39;s click-URL tracking tags
+   * Unified update. Send only the fields for the ad&#39;s platform: - Meta: &#x60;urlTags&#x60; (array of {key,value}) + &#x60;creative&#x60; (headline, body, callToAction, linkUrl, imageUrl).   Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full   creative is required. Placement-customized / asset-feed / dark creatives may not be   rebuildable this way and return 422. - Google: &#x60;trackingUrlTemplate&#x60; and/or &#x60;finalUrlSuffix&#x60; (full template strings; account quota applies). - LinkedIn: &#x60;dynamicValueParameters&#x60; and/or &#x60;customValueParameters&#x60; (campaign-level Dynamic UTM). 
+   * @param adId  (required)
+   * @param updateAdTrackingTagsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateAdTrackingTagsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdTrackingTagsRequestBuilder(adId, updateAdTrackingTagsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdTrackingTags", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdTrackingTagsRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdTrackingTagsRequest updateAdTrackingTagsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling updateAdTrackingTags");
+    }
+    // verify the required parameter 'updateAdTrackingTagsRequest' is set
+    if (updateAdTrackingTagsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdTrackingTagsRequest' when calling updateAdTrackingTags");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/tracking-tags"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdTrackingTagsRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

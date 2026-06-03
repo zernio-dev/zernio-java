@@ -18564,6 +18564,89 @@ paths:
       - Ads
       x-accepts:
       - application/json
+  /v1/ads/{adId}/tracking-tags:
+    get:
+      description: |
+        Unified read of the platform's native click-URL tracking params.
+        - Meta (facebook/instagram): the creative's `url_tags` (and template_url_spec).
+        - Google (googleads): the campaign's `trackingUrlTemplate` + `finalUrlSuffix`.
+          Subject to the Google Ads API access-tier daily quota; bulk audits need Standard access.
+        - LinkedIn (linkedinads): the campaign's Dynamic UTM `dynamicValueParameters` + `customValueParameters`.
+        Returns 405 for platforms without a click-URL tracking surface (TikTok, X, Pinterest).
+      operationId: getAdTrackingTags
+      parameters:
+      - description: "Ad id (hex _id, platformAdId, or effective story/media id)."
+        explode: false
+        in: path
+        name: adId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdTrackingTags_200_response"
+          description: Tracking tags for the ad's platform (shape varies by platform).
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Ad not found
+        "405":
+          description: Platform has no click-URL tracking surface
+      security:
+      - bearerAuth: []
+      summary: Read an ad's click-URL tracking tags
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Unified update. Send only the fields for the ad's platform:
+        - Meta: `urlTags` (array of {key,value}) + `creative` (headline, body, callToAction, linkUrl, imageUrl).
+          Meta creatives are immutable, so this REBUILDS the creative and repoints the ad — the full
+          creative is required. Placement-customized / asset-feed / dark creatives may not be
+          rebuildable this way and return 422.
+        - Google: `trackingUrlTemplate` and/or `finalUrlSuffix` (full template strings; account quota applies).
+        - LinkedIn: `dynamicValueParameters` and/or `customValueParameters` (campaign-level Dynamic UTM).
+      operationId: updateAdTrackingTags
+      parameters:
+      - explode: false
+        in: path
+        name: adId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdTrackingTags_request"
+        required: true
+      responses:
+        "200":
+          description: Updated
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Ad not found
+        "405":
+          description: Platform has no click-URL tracking surface
+        "422":
+          description: Meta creative cannot be rebuilt (e.g. placement-customized/asset-feed/dark
+            creative)
+      security:
+      - bearerAuth: []
+      summary: Set/update an ad's click-URL tracking tags
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/{adId}/comments:
     get:
       description: |
@@ -19568,6 +19651,48 @@ paths:
       tags:
       - Ad Audiences
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/conversions/quality:
+    get:
+      description: |
+        Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a
+        pixel/dataset, live from Meta's Dataset Quality API. Web events only (a
+        Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on.
+      operationId: getConversionsQuality
+      parameters:
+      - description: SocialAccount _id (must be a metaads account).
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta pixel/dataset ID.
+        explode: true
+        in: query
+        name: destinationId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getConversionsQuality_200_response"
+          description: "Match-quality rows, one per event name."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "405":
+          description: Platform does not expose Event Match Quality (non-Meta).
+      security:
+      - bearerAuth: []
+      summary: Read Event Match Quality + coverage for a Meta pixel
+      tags:
+      - Ads
       x-accepts:
       - application/json
   /v1/ads/conversions:
@@ -49060,6 +49185,106 @@ components:
           $ref: "#/components/schemas/getAdAnalytics_200_response_ad"
         analytics:
           $ref: "#/components/schemas/getAdAnalytics_200_response_analytics"
+    getAdTrackingTags_200_response:
+      example:
+        dynamicValueParameters: "{}"
+        urlTags: urlTags
+        level: creative
+        customValueParameters: "{}"
+        templateUrlSpec: "{}"
+        finalUrlSuffix: finalUrlSuffix
+        platform: platform
+        trackingUrlTemplate: trackingUrlTemplate
+      properties:
+        platform:
+          type: string
+        level:
+          enum:
+          - creative
+          - campaign
+          type: string
+        urlTags:
+          description: "Meta: &-joined click-URL params."
+          type: string
+          nullable: true
+        templateUrlSpec:
+          description: "Meta: third-party click-tracking template (Dynamic Ads)."
+          type: object
+          nullable: true
+        trackingUrlTemplate:
+          description: Google.
+          type: string
+          nullable: true
+        finalUrlSuffix:
+          description: Google.
+          type: string
+          nullable: true
+        dynamicValueParameters:
+          description: LinkedIn.
+          type: object
+          nullable: true
+        customValueParameters:
+          description: LinkedIn.
+          type: object
+          nullable: true
+    updateAdTrackingTags_request_urlTags_inner:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - value
+    updateAdTrackingTags_request_creative:
+      description: Meta only. Required to rebuild the immutable creative when setting
+        urlTags.
+      properties:
+        headline:
+          type: string
+        body:
+          type: string
+        callToAction:
+          type: string
+        linkUrl:
+          format: uri
+          type: string
+        imageUrl:
+          format: uri
+          type: string
+        videoUrl:
+          format: uri
+          type: string
+      required:
+      - body
+      - callToAction
+      - headline
+      - imageUrl
+      - linkUrl
+    updateAdTrackingTags_request:
+      properties:
+        urlTags:
+          description: Meta only. Click-URL params appended to a freshly-rebuilt creative.
+          items:
+            $ref: "#/components/schemas/updateAdTrackingTags_request_urlTags_inner"
+          type: array
+        creative:
+          $ref: "#/components/schemas/updateAdTrackingTags_request_creative"
+        trackingUrlTemplate:
+          description: "Google only. Full tracking template (must contain {lpurl})."
+          type: string
+        finalUrlSuffix:
+          description: Google only. Parse-only key=value params.
+          type: string
+        dynamicValueParameters:
+          additionalProperties:
+            type: string
+          description: "LinkedIn only. key -> dynamic value enum (CAMPAIGN_ID, CAMPAIGN_NAME,\
+            \ CREATIVE_ID, ...)."
+        customValueParameters:
+          additionalProperties:
+            type: string
+          description: LinkedIn only. key -> static value.
     getAdComments_200_response_pagination:
       example:
         cursor: cursor
@@ -51136,6 +51361,66 @@ components:
           type: integer
         numInvalid:
           type: integer
+    getConversionsQuality_200_response_rows_inner_matchKeys_inner:
+      example:
+        identifier: identifier
+        coveragePercentage: 6.027456183070403
+      properties:
+        identifier:
+          type: string
+        coveragePercentage:
+          type: number
+    getConversionsQuality_200_response_rows_inner:
+      example:
+        eventCoveragePercentage: 1.4658129805029452
+        eventName: eventName
+        matchKeys:
+        - identifier: identifier
+          coveragePercentage: 6.027456183070403
+        - identifier: identifier
+          coveragePercentage: 6.027456183070403
+        compositeScore: 0.8008281904610115
+      properties:
+        eventName:
+          type: string
+        compositeScore:
+          description: "Composite EMQ score, 0-10."
+          type: number
+        matchKeys:
+          items:
+            $ref: "#/components/schemas/getConversionsQuality_200_response_rows_inner_matchKeys_inner"
+          type: array
+        eventCoveragePercentage:
+          description: Pixel↔CAPI coverage rate for this event.
+          type: number
+    getConversionsQuality_200_response:
+      example:
+        rows:
+        - eventCoveragePercentage: 1.4658129805029452
+          eventName: eventName
+          matchKeys:
+          - identifier: identifier
+            coveragePercentage: 6.027456183070403
+          - identifier: identifier
+            coveragePercentage: 6.027456183070403
+          compositeScore: 0.8008281904610115
+        - eventCoveragePercentage: 1.4658129805029452
+          eventName: eventName
+          matchKeys:
+          - identifier: identifier
+            coveragePercentage: 6.027456183070403
+          - identifier: identifier
+            coveragePercentage: 6.027456183070403
+          compositeScore: 0.8008281904610115
+        platform: metaads
+      properties:
+        platform:
+          example: metaads
+          type: string
+        rows:
+          items:
+            $ref: "#/components/schemas/getConversionsQuality_200_response_rows_inner"
+          type: array
     sendConversions_request_consent:
       description: |
         Batch-level user consent. Required by Google for EEA/UK
@@ -55623,6 +55908,26 @@ components:
           type: string
         country:
           description: "ISO 3166-1 alpha-2 country code, e.g. 'us'."
+          type: string
+        city:
+          description: Meta advanced matching (ct). Plaintext city; normalized + SHA-256
+            hashed server-side. Meta only.
+          type: string
+        state:
+          description: Meta advanced matching (st). 2-letter ANSI for US; hashed server-side.
+            Meta only.
+          type: string
+        zip:
+          description: Meta advanced matching (zp). US uses first 5 digits; hashed
+            server-side. Meta only.
+          type: string
+        dob:
+          description: Meta advanced matching (db). YYYYMMDD; hashed server-side.
+            Meta only.
+          type: string
+        gender:
+          description: Meta advanced matching (ge). 'f' or 'm'; hashed server-side.
+            Meta only.
           type: string
         clickIds:
           $ref: "#/components/schemas/ConversionEvent_user_clickIds"

@@ -313,6 +313,7 @@ docs/GetAdAudience200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
+docs/GetAdTrackingTags200Response.md
 docs/GetAdTree200Response.md
 docs/GetAdsTimeline200Response.md
 docs/GetAdsTimeline200ResponseRowsInner.md
@@ -343,6 +344,9 @@ docs/GetContentDecay200ResponseBucketsInner.md
 docs/GetConversionMetrics200Response.md
 docs/GetConversionMetrics200ResponseRowsInner.md
 docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md
+docs/GetConversionsQuality200Response.md
+docs/GetConversionsQuality200ResponseRowsInner.md
+docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md
 docs/GetDailyMetrics200Response.md
 docs/GetDailyMetrics200ResponseDailyDataInner.md
 docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md
@@ -935,6 +939,9 @@ docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
 docs/UpdateAdSetStatus200Response.md
+docs/UpdateAdTrackingTagsRequest.md
+docs/UpdateAdTrackingTagsRequestCreative.md
+docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
 docs/UpdateBroadcast200Response.md
 docs/UpdateBroadcast200ResponseBroadcast.md
 docs/UpdateBroadcastRequest.md
@@ -1525,6 +1532,7 @@ src/main/java/dev/zernio/model/GetAdAudience200Response.java
 src/main/java/dev/zernio/model/GetAdComments200Response.java
 src/main/java/dev/zernio/model/GetAdComments200ResponseMeta.java
 src/main/java/dev/zernio/model/GetAdComments200ResponsePagination.java
+src/main/java/dev/zernio/model/GetAdTrackingTags200Response.java
 src/main/java/dev/zernio/model/GetAdTree200Response.java
 src/main/java/dev/zernio/model/GetAdsTimeline200Response.java
 src/main/java/dev/zernio/model/GetAdsTimeline200ResponseRowsInner.java
@@ -1555,6 +1563,9 @@ src/main/java/dev/zernio/model/GetContentDecay200ResponseBucketsInner.java
 src/main/java/dev/zernio/model/GetConversionMetrics200Response.java
 src/main/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInner.java
 src/main/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInnerMetricsValue.java
+src/main/java/dev/zernio/model/GetConversionsQuality200Response.java
+src/main/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInner.java
+src/main/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.java
 src/main/java/dev/zernio/model/GetDailyMetrics200Response.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInner.java
 src/main/java/dev/zernio/model/GetDailyMetrics200ResponseDailyDataInnerMetrics.java
@@ -2125,6 +2136,9 @@ src/main/java/dev/zernio/model/UpdateAdSet200Response.java
 src/main/java/dev/zernio/model/UpdateAdSetRequest.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestBudget.java
 src/main/java/dev/zernio/model/UpdateAdSetStatus200Response.java
+src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequest.java
+src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreative.java
+src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestUrlTagsInner.java
 src/main/java/dev/zernio/model/UpdateBroadcast200Response.java
 src/main/java/dev/zernio/model/UpdateBroadcast200ResponseBroadcast.java
 src/main/java/dev/zernio/model/UpdateBroadcastRequest.java
@@ -2341,4 +2355,10 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/UpdatePostRequestPlatformsInnerTest.java
+src/test/java/dev/zernio/model/GetAdTrackingTags200ResponseTest.java
+src/test/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInnerMatchKeysInnerTest.java
+src/test/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInnerTest.java
+src/test/java/dev/zernio/model/GetConversionsQuality200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreativeTest.java
+src/test/java/dev/zernio/model/UpdateAdTrackingTagsRequestTest.java
+src/test/java/dev/zernio/model/UpdateAdTrackingTagsRequestUrlTagsInnerTest.java

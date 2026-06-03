@@ -42,9 +42,14 @@ import dev.zernio.ApiClient;
   ConversionEventUser.JSON_PROPERTY_IP_ADDRESS,
   ConversionEventUser.JSON_PROPERTY_USER_AGENT,
   ConversionEventUser.JSON_PROPERTY_COUNTRY,
+  ConversionEventUser.JSON_PROPERTY_CITY,
+  ConversionEventUser.JSON_PROPERTY_STATE,
+  ConversionEventUser.JSON_PROPERTY_ZIP,
+  ConversionEventUser.JSON_PROPERTY_DOB,
+  ConversionEventUser.JSON_PROPERTY_GENDER,
   ConversionEventUser.JSON_PROPERTY_CLICK_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T08:55:25.327447252Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T09:38:04.965786404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUser {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
@@ -77,6 +82,26 @@ public class ConversionEventUser {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
   private String country;
+
+  public static final String JSON_PROPERTY_CITY = "city";
+  @javax.annotation.Nullable
+  private String city;
+
+  public static final String JSON_PROPERTY_STATE = "state";
+  @javax.annotation.Nullable
+  private String state;
+
+  public static final String JSON_PROPERTY_ZIP = "zip";
+  @javax.annotation.Nullable
+  private String zip;
+
+  public static final String JSON_PROPERTY_DOB = "dob";
+  @javax.annotation.Nullable
+  private String dob;
+
+  public static final String JSON_PROPERTY_GENDER = "gender";
+  @javax.annotation.Nullable
+  private String gender;
 
   public static final String JSON_PROPERTY_CLICK_IDS = "clickIds";
   @javax.annotation.Nullable
@@ -277,6 +302,126 @@ public class ConversionEventUser {
   }
 
 
+  public ConversionEventUser city(@javax.annotation.Nullable String city) {
+    this.city = city;
+    return this;
+  }
+
+  /**
+   * Meta advanced matching (ct). Plaintext city; normalized + SHA-256 hashed server-side. Meta only.
+   * @return city
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCity() {
+    return city;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCity(@javax.annotation.Nullable String city) {
+    this.city = city;
+  }
+
+
+  public ConversionEventUser state(@javax.annotation.Nullable String state) {
+    this.state = state;
+    return this;
+  }
+
+  /**
+   * Meta advanced matching (st). 2-letter ANSI for US; hashed server-side. Meta only.
+   * @return state
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getState() {
+    return state;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setState(@javax.annotation.Nullable String state) {
+    this.state = state;
+  }
+
+
+  public ConversionEventUser zip(@javax.annotation.Nullable String zip) {
+    this.zip = zip;
+    return this;
+  }
+
+  /**
+   * Meta advanced matching (zp). US uses first 5 digits; hashed server-side. Meta only.
+   * @return zip
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ZIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getZip() {
+    return zip;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ZIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setZip(@javax.annotation.Nullable String zip) {
+    this.zip = zip;
+  }
+
+
+  public ConversionEventUser dob(@javax.annotation.Nullable String dob) {
+    this.dob = dob;
+    return this;
+  }
+
+  /**
+   * Meta advanced matching (db). YYYYMMDD; hashed server-side. Meta only.
+   * @return dob
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOB, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDob() {
+    return dob;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOB, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDob(@javax.annotation.Nullable String dob) {
+    this.dob = dob;
+  }
+
+
+  public ConversionEventUser gender(@javax.annotation.Nullable String gender) {
+    this.gender = gender;
+    return this;
+  }
+
+  /**
+   * Meta advanced matching (ge). &#39;f&#39; or &#39;m&#39;; hashed server-side. Meta only.
+   * @return gender
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getGender() {
+    return gender;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGender(@javax.annotation.Nullable String gender) {
+    this.gender = gender;
+  }
+
+
   public ConversionEventUser clickIds(@javax.annotation.Nullable ConversionEventUserClickIds clickIds) {
     this.clickIds = clickIds;
     return this;
@@ -321,12 +466,17 @@ public class ConversionEventUser {
         Objects.equals(this.ipAddress, conversionEventUser.ipAddress) &&
         Objects.equals(this.userAgent, conversionEventUser.userAgent) &&
         Objects.equals(this.country, conversionEventUser.country) &&
+        Objects.equals(this.city, conversionEventUser.city) &&
+        Objects.equals(this.state, conversionEventUser.state) &&
+        Objects.equals(this.zip, conversionEventUser.zip) &&
+        Objects.equals(this.dob, conversionEventUser.dob) &&
+        Objects.equals(this.gender, conversionEventUser.gender) &&
         Objects.equals(this.clickIds, conversionEventUser.clickIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, phone, firstName, lastName, externalId, ipAddress, userAgent, country, clickIds);
+    return Objects.hash(email, phone, firstName, lastName, externalId, ipAddress, userAgent, country, city, state, zip, dob, gender, clickIds);
   }
 
   @Override
@@ -341,6 +491,11 @@ public class ConversionEventUser {
     sb.append("    ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
     sb.append("    userAgent: ").append(toIndentedString(userAgent)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
+    sb.append("    dob: ").append(toIndentedString(dob)).append("\n");
+    sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
     sb.append("    clickIds: ").append(toIndentedString(clickIds)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -427,6 +582,31 @@ public class ConversionEventUser {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `city` to the URL query string
+    if (getCity() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scity%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCity()))));
+    }
+
+    // add `state` to the URL query string
+    if (getState() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getState()))));
+    }
+
+    // add `zip` to the URL query string
+    if (getZip() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%szip%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getZip()))));
+    }
+
+    // add `dob` to the URL query string
+    if (getDob() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdob%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDob()))));
+    }
+
+    // add `gender` to the URL query string
+    if (getGender() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGender()))));
     }
 
     // add `clickIds` to the URL query string
