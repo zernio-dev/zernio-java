@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestCustomLocationsInner.JSON_PROPERTY_NAME,
   CreateStandaloneAdRequestCustomLocationsInner.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T09:38:04.965786404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:35:29.551659520Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCustomLocationsInner {
   public static final String JSON_PROPERTY_LATITUDE = "latitude";
   @javax.annotation.Nonnull

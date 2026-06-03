@@ -35,14 +35,19 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   EstimateAdReachRequest.JSON_PROPERTY_ACCOUNT_ID,
+  EstimateAdReachRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   EstimateAdReachRequest.JSON_PROPERTY_SPEC,
   EstimateAdReachRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T09:38:04.965786404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T10:35:29.551659520Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EstimateAdReachRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
   private String accountId;
+
+  public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
+  @javax.annotation.Nonnull
+  private String adAccountId;
 
   public static final String JSON_PROPERTY_SPEC = "spec";
   @javax.annotation.Nonnull
@@ -61,7 +66,7 @@ public class EstimateAdReachRequest {
   }
 
   /**
-   * Social account ID on the target ad platform.
+   * Zernio social account ID on the target ad platform (the estimate runs against its platform).
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -76,6 +81,30 @@ public class EstimateAdReachRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAccountId(@javax.annotation.Nonnull String accountId) {
     this.accountId = accountId;
+  }
+
+
+  public EstimateAdReachRequest adAccountId(@javax.annotation.Nonnull String adAccountId) {
+    this.adAccountId = adAccountId;
+    return this;
+  }
+
+  /**
+   * Required. The platform ad-account ID the reach call runs against (Meta act_..., LinkedIn numeric sponsoredAccount ID, Pinterest ad-account ID, X account ID) - every backing reach API is scoped to one ad account. Get it from GET /v1/ads/accounts.
+   * @return adAccountId
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public String getAdAccountId() {
+    return adAccountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAdAccountId(@javax.annotation.Nonnull String adAccountId) {
+    this.adAccountId = adAccountId;
   }
 
 
@@ -140,13 +169,14 @@ public class EstimateAdReachRequest {
     }
     EstimateAdReachRequest estimateAdReachRequest = (EstimateAdReachRequest) o;
     return Objects.equals(this.accountId, estimateAdReachRequest.accountId) &&
+        Objects.equals(this.adAccountId, estimateAdReachRequest.adAccountId) &&
         Objects.equals(this.spec, estimateAdReachRequest.spec) &&
         Objects.equals(this.optimizationGoal, estimateAdReachRequest.optimizationGoal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, spec, optimizationGoal);
+    return Objects.hash(accountId, adAccountId, spec, optimizationGoal);
   }
 
   @Override
@@ -154,6 +184,7 @@ public class EstimateAdReachRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class EstimateAdReachRequest {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    spec: ").append(toIndentedString(spec)).append("\n");
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("}");
@@ -206,6 +237,11 @@ public class EstimateAdReachRequest {
     // add `accountId` to the URL query string
     if (getAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
+
+    // add `adAccountId` to the URL query string
+    if (getAdAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdAccountId()))));
     }
 
     // add `spec` to the URL query string

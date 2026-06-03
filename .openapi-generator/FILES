@@ -2355,10 +2355,3 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/GetAdTrackingTags200ResponseTest.java
-src/test/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInnerMatchKeysInnerTest.java
-src/test/java/dev/zernio/model/GetConversionsQuality200ResponseRowsInnerTest.java
-src/test/java/dev/zernio/model/GetConversionsQuality200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreativeTest.java
-src/test/java/dev/zernio/model/UpdateAdTrackingTagsRequestTest.java
-src/test/java/dev/zernio/model/UpdateAdTrackingTagsRequestUrlTagsInnerTest.java
