@@ -4,10 +4,14 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**checkWhatsAppNumberAvailability**](WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint |
+| [**checkWhatsAppNumberAvailabilityWithHttpInfo**](WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailabilityWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint |
 | [**getWhatsAppNumberInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfo) | **GET** /v1/whatsapp/number-info | Get number status |
 | [**getWhatsAppNumberInfoWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfoWithHttpInfo) | **GET** /v1/whatsapp/number-info | Get number status |
 | [**getWhatsAppNumberKycForm**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycForm) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec |
 | [**getWhatsAppNumberKycFormWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycFormWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec |
+| [**getWhatsAppNumberRemediation**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberRemediation) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get the declined requirements to fix |
+| [**getWhatsAppNumberRemediationWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberRemediationWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get the declined requirements to fix |
 | [**getWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number |
 | [**getWhatsAppPhoneNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumberWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number |
 | [**getWhatsAppPhoneNumbers**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers |
@@ -18,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**purchaseWhatsAppPhoneNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number |
 | [**releaseWhatsAppPhoneNumber**](WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number |
 | [**releaseWhatsAppPhoneNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumberWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number |
+| [**remediateWhatsAppNumber**](WhatsAppPhoneNumbersApi.md#remediateWhatsAppNumber) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Fix a declined number and re-submit |
+| [**remediateWhatsAppNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#remediateWhatsAppNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Fix a declined number and re-submit |
 | [**searchAvailableWhatsAppNumbers**](WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase |
 | [**searchAvailableWhatsAppNumbersWithHttpInfo**](WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase |
 | [**submitWhatsAppNumberKyc**](WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC |
@@ -25,6 +31,154 @@ All URIs are relative to *https://zernio.com/api*
 | [**uploadWhatsAppNumberKycDocument**](WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
 | [**uploadWhatsAppNumberKycDocumentWithHttpInfo**](WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocumentWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
 
+
+
+## checkWhatsAppNumberAvailability
+
+> CheckWhatsAppNumberAvailability200Response checkWhatsAppNumberAvailability(country)
+
+Check a country&#39;s availability + address constraint
+
+Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String country = "country_example"; // String | ISO-2 country code.
+        try {
+            CheckWhatsAppNumberAvailability200Response result = apiInstance.checkWhatsAppNumberAvailability(country);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#checkWhatsAppNumberAvailability");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **country** | **String**| ISO-2 country code. | |
+
+### Return type
+
+[**CheckWhatsAppNumberAvailability200Response**](CheckWhatsAppNumberAvailability200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Availability + address constraint. |  -  |
+| **400** | Country not offerable |  -  |
+| **401** | Unauthorized |  -  |
+
+## checkWhatsAppNumberAvailabilityWithHttpInfo
+
+> ApiResponse<CheckWhatsAppNumberAvailability200Response> checkWhatsAppNumberAvailability checkWhatsAppNumberAvailabilityWithHttpInfo(country)
+
+Check a country&#39;s availability + address constraint
+
+Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String country = "country_example"; // String | ISO-2 country code.
+        try {
+            ApiResponse<CheckWhatsAppNumberAvailability200Response> response = apiInstance.checkWhatsAppNumberAvailabilityWithHttpInfo(country);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#checkWhatsAppNumberAvailability");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **country** | **String**| ISO-2 country code. | |
+
+### Return type
+
+ApiResponse<[**CheckWhatsAppNumberAvailability200Response**](CheckWhatsAppNumberAvailability200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Availability + address constraint. |  -  |
+| **400** | Country not offerable |  -  |
+| **401** | Unauthorized |  -  |
 
 
 ## getWhatsAppNumberInfo
@@ -329,6 +483,156 @@ ApiResponse<[**GetWhatsAppNumberKycForm200Response**](GetWhatsAppNumberKycForm20
 | **401** | Unauthorized |  -  |
 
 
+## getWhatsAppNumberRemediation
+
+> GetWhatsAppNumberRemediation200Response getWhatsAppNumberRemediation(id)
+
+Get the declined requirements to fix
+
+For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | WhatsAppPhoneNumber id.
+        try {
+            GetWhatsAppNumberRemediation200Response result = apiInstance.getWhatsAppNumberRemediation(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#getWhatsAppNumberRemediation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| WhatsAppPhoneNumber id. | |
+
+### Return type
+
+[**GetWhatsAppNumberRemediation200Response**](GetWhatsAppNumberRemediation200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The declined requirements to fix. |  -  |
+| **400** | Number is not awaiting remediation |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+## getWhatsAppNumberRemediationWithHttpInfo
+
+> ApiResponse<GetWhatsAppNumberRemediation200Response> getWhatsAppNumberRemediation getWhatsAppNumberRemediationWithHttpInfo(id)
+
+Get the declined requirements to fix
+
+For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | WhatsAppPhoneNumber id.
+        try {
+            ApiResponse<GetWhatsAppNumberRemediation200Response> response = apiInstance.getWhatsAppNumberRemediationWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#getWhatsAppNumberRemediation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| WhatsAppPhoneNumber id. | |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppNumberRemediation200Response**](GetWhatsAppNumberRemediation200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The declined requirements to fix. |  -  |
+| **400** | Number is not awaiting remediation |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+
 ## getWhatsAppPhoneNumber
 
 > GetWhatsAppPhoneNumber200Response getWhatsAppPhoneNumber(phoneNumberId)
@@ -506,7 +810,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
-        String status = "provisioning"; // String | Filter by status (by default excludes released numbers)
+        String status = "provisioning"; // String | Filter by status (by default excludes released numbers). NOTE: `status=pending_regulatory` returns the \"provisioning\" view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with `regulatoryDeclineReason`) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. 
         String profileId = "profileId_example"; // String | Filter by profile
         try {
             GetWhatsAppPhoneNumbers200Response result = apiInstance.getWhatsAppPhoneNumbers(status, profileId);
@@ -527,7 +831,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **status** | **String**| Filter by status (by default excludes released numbers) | [optional] [enum: provisioning, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
+| **status** | **String**| Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  | [optional] [enum: provisioning, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
 | **profileId** | **String**| Filter by profile | [optional] |
 
 ### Return type
@@ -580,7 +884,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
-        String status = "provisioning"; // String | Filter by status (by default excludes released numbers)
+        String status = "provisioning"; // String | Filter by status (by default excludes released numbers). NOTE: `status=pending_regulatory` returns the \"provisioning\" view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with `regulatoryDeclineReason`) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. 
         String profileId = "profileId_example"; // String | Filter by profile
         try {
             ApiResponse<GetWhatsAppPhoneNumbers200Response> response = apiInstance.getWhatsAppPhoneNumbersWithHttpInfo(status, profileId);
@@ -603,7 +907,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **status** | **String**| Filter by status (by default excludes released numbers) | [optional] [enum: provisioning, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
+| **status** | **String**| Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  | [optional] [enum: provisioning, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
 | **profileId** | **String**| Filter by profile | [optional] |
 
 ### Return type
@@ -1071,6 +1375,160 @@ ApiResponse<[**ReleaseWhatsAppPhoneNumber200Response**](ReleaseWhatsAppPhoneNumb
 | **404** | Resource not found |  -  |
 
 
+## remediateWhatsAppNumber
+
+> RemediateWhatsAppNumber200Response remediateWhatsAppNumber(id, remediateWhatsAppNumberRequest)
+
+Fix a declined number and re-submit
+
+Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest = new RemediateWhatsAppNumberRequest(); // RemediateWhatsAppNumberRequest | 
+        try {
+            RemediateWhatsAppNumber200Response result = apiInstance.remediateWhatsAppNumber(id, remediateWhatsAppNumberRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#remediateWhatsAppNumber");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **remediateWhatsAppNumberRequest** | [**RemediateWhatsAppNumberRequest**](RemediateWhatsAppNumberRequest.md)|  | |
+
+### Return type
+
+[**RemediateWhatsAppNumber200Response**](RemediateWhatsAppNumber200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Re-submitted for approval. |  -  |
+| **400** | Number is not awaiting remediation / nothing to remediate |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+## remediateWhatsAppNumberWithHttpInfo
+
+> ApiResponse<RemediateWhatsAppNumber200Response> remediateWhatsAppNumber remediateWhatsAppNumberWithHttpInfo(id, remediateWhatsAppNumberRequest)
+
+Fix a declined number and re-submit
+
+Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | 
+        RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest = new RemediateWhatsAppNumberRequest(); // RemediateWhatsAppNumberRequest | 
+        try {
+            ApiResponse<RemediateWhatsAppNumber200Response> response = apiInstance.remediateWhatsAppNumberWithHttpInfo(id, remediateWhatsAppNumberRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#remediateWhatsAppNumber");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **remediateWhatsAppNumberRequest** | [**RemediateWhatsAppNumberRequest**](RemediateWhatsAppNumberRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RemediateWhatsAppNumber200Response**](RemediateWhatsAppNumber200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Re-submitted for approval. |  -  |
+| **400** | Number is not awaiting remediation / nothing to remediate |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+
 ## searchAvailableWhatsAppNumbers
 
 > SearchAvailableWhatsAppNumbers200Response searchAvailableWhatsAppNumbers(country, type, prefix, locality, contains, limit)
@@ -1245,7 +1703,7 @@ ApiResponse<[**SearchAvailableWhatsAppNumbers200Response**](SearchAvailableWhats
 
 Submit regulated-number KYC
 
-Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
 
 ### Example
 
@@ -1318,7 +1776,7 @@ public class Example {
 
 Submit regulated-number KYC
 
-Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
 
 ### Example
 

@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**success** | **Boolean** |  |  [optional] |
-|**workflow** | [**CancelBroadcast200ResponseBroadcast**](CancelBroadcast200ResponseBroadcast.md) |  |  [optional] |
+|**workflow** | [**RemediateWhatsAppNumber200ResponsePhoneNumber**](RemediateWhatsAppNumber200ResponsePhoneNumber.md) |  |  [optional] |
 
 
 

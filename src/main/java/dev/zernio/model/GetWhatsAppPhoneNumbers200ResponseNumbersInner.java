@@ -38,6 +38,8 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PHONE_NUMBER,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_COUNTRY,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_STATUS,
+  GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_REGISTRANT_NAME,
+  GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_TELNYX_ORDER_ID,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_MONTHLY_CENTS,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PROFILE_ID,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PROVISIONED_AT,
@@ -49,7 +51,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_REGULATORY_DECLINE_REASON,
   GetWhatsAppPhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:37:51.252783113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -113,6 +115,14 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status;
+
+  public static final String JSON_PROPERTY_REGISTRANT_NAME = "registrantName";
+  @javax.annotation.Nullable
+  private String registrantName;
+
+  public static final String JSON_PROPERTY_TELNYX_ORDER_ID = "telnyxOrderId";
+  @javax.annotation.Nullable
+  private String telnyxOrderId;
 
   public static final String JSON_PROPERTY_MONTHLY_CENTS = "monthlyCents";
   @javax.annotation.Nullable
@@ -250,6 +260,54 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public GetWhatsAppPhoneNumbers200ResponseNumbersInner registrantName(@javax.annotation.Nullable String registrantName) {
+    this.registrantName = registrantName;
+    return this;
+  }
+
+  /**
+   * For regulated numbers
+   * @return registrantName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGISTRANT_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRegistrantName() {
+    return registrantName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGISTRANT_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegistrantName(@javax.annotation.Nullable String registrantName) {
+    this.registrantName = registrantName;
+  }
+
+
+  public GetWhatsAppPhoneNumbers200ResponseNumbersInner telnyxOrderId(@javax.annotation.Nullable String telnyxOrderId) {
+    this.telnyxOrderId = telnyxOrderId;
+    return this;
+  }
+
+  /**
+   * Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review.
+   * @return telnyxOrderId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TELNYX_ORDER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTelnyxOrderId() {
+    return telnyxOrderId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TELNYX_ORDER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTelnyxOrderId(@javax.annotation.Nullable String telnyxOrderId) {
+    this.telnyxOrderId = telnyxOrderId;
   }
 
 
@@ -509,6 +567,8 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
         Objects.equals(this.phoneNumber, getWhatsAppPhoneNumbers200ResponseNumbersInner.phoneNumber) &&
         Objects.equals(this.country, getWhatsAppPhoneNumbers200ResponseNumbersInner.country) &&
         Objects.equals(this.status, getWhatsAppPhoneNumbers200ResponseNumbersInner.status) &&
+        Objects.equals(this.registrantName, getWhatsAppPhoneNumbers200ResponseNumbersInner.registrantName) &&
+        Objects.equals(this.telnyxOrderId, getWhatsAppPhoneNumbers200ResponseNumbersInner.telnyxOrderId) &&
         Objects.equals(this.monthlyCents, getWhatsAppPhoneNumbers200ResponseNumbersInner.monthlyCents) &&
         Objects.equals(this.profileId, getWhatsAppPhoneNumbers200ResponseNumbersInner.profileId) &&
         Objects.equals(this.provisionedAt, getWhatsAppPhoneNumbers200ResponseNumbersInner.provisionedAt) &&
@@ -523,7 +583,7 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, country, status, monthlyCents, profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, onfidoVerificationUrl, endUserFirstName, endUserLastName, regulatoryDeclineReason, createdAt);
+    return Objects.hash(id, phoneNumber, country, status, registrantName, telnyxOrderId, monthlyCents, profileId, provisionedAt, metaPreverifiedId, metaVerificationStatus, onfidoVerificationUrl, endUserFirstName, endUserLastName, regulatoryDeclineReason, createdAt);
   }
 
   @Override
@@ -534,6 +594,8 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    registrantName: ").append(toIndentedString(registrantName)).append("\n");
+    sb.append("    telnyxOrderId: ").append(toIndentedString(telnyxOrderId)).append("\n");
     sb.append("    monthlyCents: ").append(toIndentedString(monthlyCents)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    provisionedAt: ").append(toIndentedString(provisionedAt)).append("\n");
@@ -609,6 +671,16 @@ public class GetWhatsAppPhoneNumbers200ResponseNumbersInner {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `registrantName` to the URL query string
+    if (getRegistrantName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sregistrantName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRegistrantName()))));
+    }
+
+    // add `telnyxOrderId` to the URL query string
+    if (getTelnyxOrderId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stelnyxOrderId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTelnyxOrderId()))));
     }
 
     // add `monthlyCents` to the URL query string

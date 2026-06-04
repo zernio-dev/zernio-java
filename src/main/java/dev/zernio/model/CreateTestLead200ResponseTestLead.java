@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateTestLead200ResponseTestLead.JSON_PROPERTY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:37:51.252783113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTestLead200ResponseTestLead {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

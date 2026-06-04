@@ -89,7 +89,7 @@ docs/BulkUploadResultRateLimitedAccountsInner.md
 docs/BulkUploadResultResultsInner.md
 docs/BusinessCenter.md
 docs/CancelBroadcast200Response.md
-docs/CancelBroadcast200ResponseBroadcast.md
+docs/CheckWhatsAppNumberAvailability200Response.md
 docs/CommentAutomationsApi.md
 docs/CommentsApi.md
 docs/CompleteGoogleBusinessVerificationRequest.md
@@ -512,6 +512,7 @@ docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppNumberKycForm200Response.md
 docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberKycForm200ResponseReusable.md
+docs/GetWhatsAppNumberRemediation200Response.md
 docs/GetWhatsAppPhoneNumber200Response.md
 docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md
 docs/GetWhatsAppPhoneNumbers200Response.md
@@ -771,6 +772,11 @@ docs/RedditSearchApi.md
 docs/RejectWhatsAppGroupJoinRequestsRequest.md
 docs/ReleaseWhatsAppPhoneNumber200Response.md
 docs/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.md
+docs/RemediateWhatsAppNumber200Response.md
+docs/RemediateWhatsAppNumber200ResponsePhoneNumber.md
+docs/RemediateWhatsAppNumberRequest.md
+docs/RemediateWhatsAppNumberRequestDocumentsInner.md
+docs/RemediateWhatsAppNumberRequestDocumentsInnerOneOf.md
 docs/RemoveBookmark200Response.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveDiscordMemberRole200Response.md
@@ -1317,7 +1323,7 @@ src/main/java/dev/zernio/model/BulkUploadResultRateLimitedAccountsInner.java
 src/main/java/dev/zernio/model/BulkUploadResultResultsInner.java
 src/main/java/dev/zernio/model/BusinessCenter.java
 src/main/java/dev/zernio/model/CancelBroadcast200Response.java
-src/main/java/dev/zernio/model/CancelBroadcast200ResponseBroadcast.java
+src/main/java/dev/zernio/model/CheckWhatsAppNumberAvailability200Response.java
 src/main/java/dev/zernio/model/CompleteGoogleBusinessVerificationRequest.java
 src/main/java/dev/zernio/model/CompleteTelegramConnect200Response.java
 src/main/java/dev/zernio/model/CompleteWhatsAppPhoneSelection200Response.java
@@ -1734,6 +1740,7 @@ src/main/java/dev/zernio/model/GetWhatsAppNumberInfo200ResponseWaba.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseFieldsInner.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseReusable.java
+src/main/java/dev/zernio/model/GetWhatsAppNumberRemediation200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppPhoneNumber200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppPhoneNumber200ResponsePhoneNumber.java
 src/main/java/dev/zernio/model/GetWhatsAppPhoneNumbers200Response.java
@@ -1975,6 +1982,11 @@ src/main/java/dev/zernio/model/RedditPost.java
 src/main/java/dev/zernio/model/RejectWhatsAppGroupJoinRequestsRequest.java
 src/main/java/dev/zernio/model/ReleaseWhatsAppPhoneNumber200Response.java
 src/main/java/dev/zernio/model/ReleaseWhatsAppPhoneNumber200ResponsePhoneNumber.java
+src/main/java/dev/zernio/model/RemediateWhatsAppNumber200Response.java
+src/main/java/dev/zernio/model/RemediateWhatsAppNumber200ResponsePhoneNumber.java
+src/main/java/dev/zernio/model/RemediateWhatsAppNumberRequest.java
+src/main/java/dev/zernio/model/RemediateWhatsAppNumberRequestDocumentsInner.java
+src/main/java/dev/zernio/model/RemediateWhatsAppNumberRequestDocumentsInnerOneOf.java
 src/main/java/dev/zernio/model/RemoveBookmark200Response.java
 src/main/java/dev/zernio/model/RemoveConversionAssociations200Response.java
 src/main/java/dev/zernio/model/RemoveDiscordMemberRole200Response.java
@@ -2361,3 +2373,10 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/CheckWhatsAppNumberAvailability200ResponseTest.java
+src/test/java/dev/zernio/model/GetWhatsAppNumberRemediation200ResponseTest.java
+src/test/java/dev/zernio/model/RemediateWhatsAppNumber200ResponsePhoneNumberTest.java
+src/test/java/dev/zernio/model/RemediateWhatsAppNumber200ResponseTest.java
+src/test/java/dev/zernio/model/RemediateWhatsAppNumberRequestDocumentsInnerOneOfTest.java
+src/test/java/dev/zernio/model/RemediateWhatsAppNumberRequestDocumentsInnerTest.java
+src/test/java/dev/zernio/model/RemediateWhatsAppNumberRequestTest.java

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.CancelBroadcast200ResponseBroadcast;
+import dev.zernio.model.RemediateWhatsAppNumber200ResponsePhoneNumber;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   PauseWorkflow200Response.JSON_PROPERTY_SUCCESS,
   PauseWorkflow200Response.JSON_PROPERTY_WORKFLOW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:37:51.252783113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PauseWorkflow200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -45,7 +45,7 @@ public class PauseWorkflow200Response {
 
   public static final String JSON_PROPERTY_WORKFLOW = "workflow";
   @javax.annotation.Nullable
-  private CancelBroadcast200ResponseBroadcast workflow;
+  private RemediateWhatsAppNumber200ResponsePhoneNumber workflow;
 
   public PauseWorkflow200Response() { 
   }
@@ -74,7 +74,7 @@ public class PauseWorkflow200Response {
   }
 
 
-  public PauseWorkflow200Response workflow(@javax.annotation.Nullable CancelBroadcast200ResponseBroadcast workflow) {
+  public PauseWorkflow200Response workflow(@javax.annotation.Nullable RemediateWhatsAppNumber200ResponsePhoneNumber workflow) {
     this.workflow = workflow;
     return this;
   }
@@ -86,14 +86,14 @@ public class PauseWorkflow200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_WORKFLOW, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public CancelBroadcast200ResponseBroadcast getWorkflow() {
+  public RemediateWhatsAppNumber200ResponsePhoneNumber getWorkflow() {
     return workflow;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_WORKFLOW, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkflow(@javax.annotation.Nullable CancelBroadcast200ResponseBroadcast workflow) {
+  public void setWorkflow(@javax.annotation.Nullable RemediateWhatsAppNumber200ResponsePhoneNumber workflow) {
     this.workflow = workflow;
   }
 

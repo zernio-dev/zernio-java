@@ -18,9 +18,11 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.CheckWhatsAppNumberAvailability200Response;
 import java.io.File;
 import dev.zernio.model.GetWhatsAppNumberInfo200Response;
 import dev.zernio.model.GetWhatsAppNumberKycForm200Response;
+import dev.zernio.model.GetWhatsAppNumberRemediation200Response;
 import dev.zernio.model.GetWhatsAppPhoneNumber200Response;
 import dev.zernio.model.GetWhatsAppPhoneNumbers200Response;
 import dev.zernio.model.InlineObject;
@@ -30,6 +32,8 @@ import dev.zernio.model.PurchaseWhatsAppPhoneNumber200Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber202Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumberRequest;
 import dev.zernio.model.ReleaseWhatsAppPhoneNumber200Response;
+import dev.zernio.model.RemediateWhatsAppNumber200Response;
+import dev.zernio.model.RemediateWhatsAppNumberRequest;
 import dev.zernio.model.SearchAvailableWhatsAppNumbers200Response;
 import dev.zernio.model.SubmitWhatsAppNumberKyc200Response;
 import dev.zernio.model.SubmitWhatsAppNumberKycRequest;
@@ -66,7 +70,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:37:51.252783113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -181,6 +185,138 @@ public class WhatsAppPhoneNumbersApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Check a country&#39;s availability + address constraint
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * @param country ISO-2 country code. (required)
+   * @return CheckWhatsAppNumberAvailability200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CheckWhatsAppNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country) throws ApiException {
+    return checkWhatsAppNumberAvailability(country, null);
+  }
+
+  /**
+   * Check a country&#39;s availability + address constraint
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * @param country ISO-2 country code. (required)
+   * @param headers Optional headers to include in the request
+   * @return CheckWhatsAppNumberAvailability200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CheckWhatsAppNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
+    ApiResponse<CheckWhatsAppNumberAvailability200Response> localVarResponse = checkWhatsAppNumberAvailabilityWithHttpInfo(country, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Check a country&#39;s availability + address constraint
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * @param country ISO-2 country code. (required)
+   * @return ApiResponse&lt;CheckWhatsAppNumberAvailability200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CheckWhatsAppNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country) throws ApiException {
+    return checkWhatsAppNumberAvailabilityWithHttpInfo(country, null);
+  }
+
+  /**
+   * Check a country&#39;s availability + address constraint
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * @param country ISO-2 country code. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CheckWhatsAppNumberAvailability200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CheckWhatsAppNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = checkWhatsAppNumberAvailabilityRequestBuilder(country, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("checkWhatsAppNumberAvailability", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CheckWhatsAppNumberAvailability200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CheckWhatsAppNumberAvailability200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CheckWhatsAppNumberAvailability200Response>() {});
+        
+
+        return new ApiResponse<CheckWhatsAppNumberAvailability200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder checkWhatsAppNumberAvailabilityRequestBuilder(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'country' is set
+    if (country == null) {
+      throw new ApiException(400, "Missing the required parameter 'country' when calling checkWhatsAppNumberAvailability");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/availability";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "country";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("country", country));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**
@@ -458,6 +594,124 @@ public class WhatsAppPhoneNumbersApi {
   }
 
   /**
+   * Get the declined requirements to fix
+   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @return GetWhatsAppNumberRemediation200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppNumberRemediation200Response getWhatsAppNumberRemediation(@javax.annotation.Nonnull String id) throws ApiException {
+    return getWhatsAppNumberRemediation(id, null);
+  }
+
+  /**
+   * Get the declined requirements to fix
+   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppNumberRemediation200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppNumberRemediation200Response getWhatsAppNumberRemediation(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppNumberRemediation200Response> localVarResponse = getWhatsAppNumberRemediationWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get the declined requirements to fix
+   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @return ApiResponse&lt;GetWhatsAppNumberRemediation200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppNumberRemediation200Response> getWhatsAppNumberRemediationWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return getWhatsAppNumberRemediationWithHttpInfo(id, null);
+  }
+
+  /**
+   * Get the declined requirements to fix
+   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * @param id WhatsAppPhoneNumber id. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppNumberRemediation200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppNumberRemediation200Response> getWhatsAppNumberRemediationWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppNumberRemediationRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppNumberRemediation", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppNumberRemediation200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppNumberRemediation200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppNumberRemediation200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppNumberRemediation200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppNumberRemediationRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getWhatsAppNumberRemediation");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/{id}/remediate"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get phone number
    * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
@@ -578,7 +832,7 @@ public class WhatsAppPhoneNumbersApi {
   /**
    * List phone numbers
    * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
-   * @param status Filter by status (by default excludes released numbers) (optional)
+   * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)
    * @param profileId Filter by profile (optional)
    * @return GetWhatsAppPhoneNumbers200Response
    * @throws ApiException if fails to make API call
@@ -590,7 +844,7 @@ public class WhatsAppPhoneNumbersApi {
   /**
    * List phone numbers
    * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
-   * @param status Filter by status (by default excludes released numbers) (optional)
+   * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)
    * @param profileId Filter by profile (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppPhoneNumbers200Response
@@ -604,7 +858,7 @@ public class WhatsAppPhoneNumbersApi {
   /**
    * List phone numbers
    * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
-   * @param status Filter by status (by default excludes released numbers) (optional)
+   * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)
    * @param profileId Filter by profile (optional)
    * @return ApiResponse&lt;GetWhatsAppPhoneNumbers200Response&gt;
    * @throws ApiException if fails to make API call
@@ -616,7 +870,7 @@ public class WhatsAppPhoneNumbersApi {
   /**
    * List phone numbers
    * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
-   * @param status Filter by status (by default excludes released numbers) (optional)
+   * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate.  (optional)
    * @param profileId Filter by profile (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppPhoneNumbers200Response&gt;
@@ -1060,6 +1314,138 @@ public class WhatsAppPhoneNumbersApi {
   }
 
   /**
+   * Fix a declined number and re-submit
+   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * @param id  (required)
+   * @param remediateWhatsAppNumberRequest  (required)
+   * @return RemediateWhatsAppNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemediateWhatsAppNumber200Response remediateWhatsAppNumber(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest) throws ApiException {
+    return remediateWhatsAppNumber(id, remediateWhatsAppNumberRequest, null);
+  }
+
+  /**
+   * Fix a declined number and re-submit
+   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * @param id  (required)
+   * @param remediateWhatsAppNumberRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RemediateWhatsAppNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemediateWhatsAppNumber200Response remediateWhatsAppNumber(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemediateWhatsAppNumber200Response> localVarResponse = remediateWhatsAppNumberWithHttpInfo(id, remediateWhatsAppNumberRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Fix a declined number and re-submit
+   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * @param id  (required)
+   * @param remediateWhatsAppNumberRequest  (required)
+   * @return ApiResponse&lt;RemediateWhatsAppNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemediateWhatsAppNumber200Response> remediateWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest) throws ApiException {
+    return remediateWhatsAppNumberWithHttpInfo(id, remediateWhatsAppNumberRequest, null);
+  }
+
+  /**
+   * Fix a declined number and re-submit
+   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * @param id  (required)
+   * @param remediateWhatsAppNumberRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemediateWhatsAppNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemediateWhatsAppNumber200Response> remediateWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = remediateWhatsAppNumberRequestBuilder(id, remediateWhatsAppNumberRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("remediateWhatsAppNumber", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemediateWhatsAppNumber200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemediateWhatsAppNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemediateWhatsAppNumber200Response>() {});
+        
+
+        return new ApiResponse<RemediateWhatsAppNumber200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder remediateWhatsAppNumberRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling remediateWhatsAppNumber");
+    }
+    // verify the required parameter 'remediateWhatsAppNumberRequest' is set
+    if (remediateWhatsAppNumberRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'remediateWhatsAppNumberRequest' when calling remediateWhatsAppNumber");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/{id}/remediate"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(remediateWhatsAppNumberRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Search available numbers to purchase
    * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
    * @param country  (optional, default to US)
@@ -1219,7 +1605,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Submit regulated-number KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
    * @return SubmitWhatsAppNumberKyc200Response
    * @throws ApiException if fails to make API call
@@ -1230,7 +1616,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Submit regulated-number KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
    * @param headers Optional headers to include in the request
    * @return SubmitWhatsAppNumberKyc200Response
@@ -1243,7 +1629,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Submit regulated-number KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
    * @return ApiResponse&lt;SubmitWhatsAppNumberKyc200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1254,7 +1640,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Submit regulated-number KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
+   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SubmitWhatsAppNumberKyc200Response&gt;
