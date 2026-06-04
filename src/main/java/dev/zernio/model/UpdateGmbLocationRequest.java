@@ -34,17 +34,17 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateGmbLocationRequest.JSON_PROPERTY_SELECTED_LOCATION_ID,
-  UpdateGmbLocationRequest.JSON_PROPERTY_ACCOUNT_ID
+  UpdateGmbLocationRequest.JSON_PROPERTY_GOOGLE_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T15:33:48.108455715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T16:02:45.513873842Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGmbLocationRequest {
   public static final String JSON_PROPERTY_SELECTED_LOCATION_ID = "selectedLocationId";
   @javax.annotation.Nonnull
   private String selectedLocationId;
 
-  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  public static final String JSON_PROPERTY_GOOGLE_ACCOUNT_ID = "googleAccountId";
   @javax.annotation.Nullable
-  private String accountId;
+  private String googleAccountId;
 
   public UpdateGmbLocationRequest() { 
   }
@@ -73,27 +73,27 @@ public class UpdateGmbLocationRequest {
   }
 
 
-  public UpdateGmbLocationRequest accountId(@javax.annotation.Nullable String accountId) {
-    this.accountId = accountId;
+  public UpdateGmbLocationRequest googleAccountId(@javax.annotation.Nullable String googleAccountId) {
+    this.googleAccountId = googleAccountId;
     return this;
   }
 
   /**
-   * Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. 
-   * @return accountId
+   * Optional but recommended. The Google Business Account resource name (\&quot;accounts/123\&quot;) that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named &#x60;googleAccountId&#x60; to disambiguate from the path &#x60;accountId&#x60; (the Zernio account). The legacy field name &#x60;accountId&#x60; is still accepted for backwards compatibility. 
+   * @return googleAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonProperty(value = JSON_PROPERTY_GOOGLE_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAccountId() {
-    return accountId;
+  public String getGoogleAccountId() {
+    return googleAccountId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonProperty(value = JSON_PROPERTY_GOOGLE_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountId(@javax.annotation.Nullable String accountId) {
-    this.accountId = accountId;
+  public void setGoogleAccountId(@javax.annotation.Nullable String googleAccountId) {
+    this.googleAccountId = googleAccountId;
   }
 
 
@@ -110,12 +110,12 @@ public class UpdateGmbLocationRequest {
     }
     UpdateGmbLocationRequest updateGmbLocationRequest = (UpdateGmbLocationRequest) o;
     return Objects.equals(this.selectedLocationId, updateGmbLocationRequest.selectedLocationId) &&
-        Objects.equals(this.accountId, updateGmbLocationRequest.accountId);
+        Objects.equals(this.googleAccountId, updateGmbLocationRequest.googleAccountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(selectedLocationId, accountId);
+    return Objects.hash(selectedLocationId, googleAccountId);
   }
 
   @Override
@@ -123,7 +123,7 @@ public class UpdateGmbLocationRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateGmbLocationRequest {\n");
     sb.append("    selectedLocationId: ").append(toIndentedString(selectedLocationId)).append("\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    googleAccountId: ").append(toIndentedString(googleAccountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -176,9 +176,9 @@ public class UpdateGmbLocationRequest {
       joiner.add(String.format(java.util.Locale.ROOT, "%sselectedLocationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSelectedLocationId()))));
     }
 
-    // add `accountId` to the URL query string
-    if (getAccountId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    // add `googleAccountId` to the URL query string
+    if (getGoogleAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleAccountId()))));
     }
 
     return joiner.toString();
