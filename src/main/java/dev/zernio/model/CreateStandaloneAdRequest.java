@@ -45,7 +45,9 @@ import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -90,6 +92,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_LANGUAGES,
   CreateStandaloneAdRequest.JSON_PROPERTY_PLACEMENTS,
   CreateStandaloneAdRequest.JSON_PROPERTY_SAVED_TARGETING_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_RAW_TARGETING,
   CreateStandaloneAdRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_END_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_START_DATE,
@@ -113,7 +116,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:20:26.813578756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:37:51.252783113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -479,6 +482,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_SAVED_TARGETING_ID = "savedTargetingId";
   @javax.annotation.Nullable
   private String savedTargetingId;
+
+  public static final String JSON_PROPERTY_RAW_TARGETING = "rawTargeting";
+  @javax.annotation.Nullable
+  private Map<String, Object> rawTargeting = new HashMap<>();
 
   /**
    * Gets or Sets specialAdCategories
@@ -1700,6 +1707,38 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest rawTargeting(@javax.annotation.Nullable Map<String, Object> rawTargeting) {
+    this.rawTargeting = rawTargeting;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest putRawTargetingItem(String key, Object rawTargetingItem) {
+    if (this.rawTargeting == null) {
+      this.rawTargeting = new HashMap<>();
+    }
+    this.rawTargeting.put(key, rawTargetingItem);
+    return this;
+  }
+
+  /**
+   * Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, business places, etc.) — exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Use it to clone a campaign&#39;s targeting EXACTLY, preserving advanced fields the camelCase targeting fields can&#39;t model. Mutually exclusive with the camelCase targeting fields (countries/regions/cities/interests/ ageMin/...), &#x60;audienceId&#x60;, and &#x60;savedTargetingId&#x60; (sending both → 422). Sent as-is; Meta validates and surfaces any errors. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). 
+   * @return rawTargeting
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RAW_TARGETING, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getRawTargeting() {
+    return rawTargeting;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RAW_TARGETING, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRawTargeting(@javax.annotation.Nullable Map<String, Object> rawTargeting) {
+    this.rawTargeting = rawTargeting;
+  }
+
+
   public CreateStandaloneAdRequest specialAdCategories(@javax.annotation.Nullable List<SpecialAdCategoriesEnum> specialAdCategories) {
     this.specialAdCategories = specialAdCategories;
     return this;
@@ -2316,6 +2355,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.languages, createStandaloneAdRequest.languages) &&
         Objects.equals(this.placements, createStandaloneAdRequest.placements) &&
         Objects.equals(this.savedTargetingId, createStandaloneAdRequest.savedTargetingId) &&
+        Objects.equals(this.rawTargeting, createStandaloneAdRequest.rawTargeting) &&
         Objects.equals(this.specialAdCategories, createStandaloneAdRequest.specialAdCategories) &&
         Objects.equals(this.endDate, createStandaloneAdRequest.endDate) &&
         Objects.equals(this.startDate, createStandaloneAdRequest.startDate) &&
@@ -2342,7 +2382,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2385,6 +2425,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("    placements: ").append(toIndentedString(placements)).append("\n");
     sb.append("    savedTargetingId: ").append(toIndentedString(savedTargetingId)).append("\n");
+    sb.append("    rawTargeting: ").append(toIndentedString(rawTargeting)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
@@ -2680,6 +2721,15 @@ public class CreateStandaloneAdRequest {
     // add `savedTargetingId` to the URL query string
     if (getSavedTargetingId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssavedTargetingId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSavedTargetingId()))));
+    }
+
+    // add `rawTargeting` to the URL query string
+    if (getRawTargeting() != null) {
+      for (String _key : getRawTargeting().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%srawTargeting%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getRawTargeting().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getRawTargeting().get(_key)))));
+      }
     }
 
     // add `specialAdCategories` to the URL query string
