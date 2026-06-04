@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequest.JSON_PROPERTY_CREATIVE,
   UpdateAdRequest.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T15:33:48.108455715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequest {
   /**
    * Gets or Sets status
@@ -204,7 +204,7 @@ public class UpdateAdRequest {
   }
 
   /**
-   * Get name
+   * Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta platforms return 501.
    * @return name
    */
   @javax.annotation.Nullable

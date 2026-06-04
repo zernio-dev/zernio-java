@@ -47999,6 +47999,11 @@ components:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
           description: Campaign-level default. Ad sets inherit this unless they override.
+        name:
+          description: Rename the campaign (Meta only; other platforms return 501).
+            At least one of budget/bidStrategy/name is required.
+          maxLength: 255
+          type: string
       required:
       - platform
     updateAdCampaign_200_response:
@@ -48222,6 +48227,11 @@ components:
           enum:
           - active
           - paused
+          type: string
+        name:
+          description: Rename the ad set (Meta only; other platforms return 501).
+            At least one of budget/status/bidStrategy/name is required.
+          maxLength: 255
           type: string
         bidStrategy:
           allOf:
@@ -49298,6 +49308,9 @@ components:
         creative:
           $ref: "#/components/schemas/updateAd_request_creative"
         name:
+          description: "Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta\
+            \ platforms return 501."
+          maxLength: 255
           type: string
     updateAd_200_response:
       example:
@@ -50102,6 +50115,11 @@ components:
       description: Each creative must supply EXACTLY ONE of `imageUrl` (image creative)
         or `video` (video creative).
       properties:
+        name:
+          description: "Exact name for this ad. Falls back to `<name> #N` (N = 1-based\
+            \ position)."
+          maxLength: 255
+          type: string
         headline:
           maxLength: 255
           type: string
@@ -50618,6 +50636,17 @@ components:
         adAccountId:
           type: string
         name:
+          maxLength: 255
+          type: string
+        campaignName:
+          description: Meta only. Exact campaign name. Overrides the default `<name>
+            - Campaign`.
+          maxLength: 255
+          type: string
+        adSetName:
+          description: "Meta only. Exact ad set name. Overrides the default `<name>\
+            \ - Ad Set`. (For per-ad names on the multi-creative shape, set `name`\
+            \ on each `creatives[]` entry.)"
           maxLength: 255
           type: string
         goal:

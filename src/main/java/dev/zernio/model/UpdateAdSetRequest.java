@@ -39,11 +39,12 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequest.JSON_PROPERTY_PLATFORM,
   UpdateAdSetRequest.JSON_PROPERTY_BUDGET,
   UpdateAdSetRequest.JSON_PROPERTY_STATUS,
+  UpdateAdSetRequest.JSON_PROPERTY_NAME,
   UpdateAdSetRequest.JSON_PROPERTY_BID_STRATEGY,
   UpdateAdSetRequest.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdSetRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T15:33:48.108455715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequest {
   /**
    * Gets or Sets platform
@@ -137,6 +138,10 @@ public class UpdateAdSetRequest {
   @javax.annotation.Nullable
   private StatusEnum status;
 
+  public static final String JSON_PROPERTY_NAME = "name";
+  @javax.annotation.Nullable
+  private String name;
+
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
   private BidStrategy bidStrategy;
@@ -221,6 +226,30 @@ public class UpdateAdSetRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public UpdateAdSetRequest name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Rename the ad set (Meta only; other platforms return 501). At least one of budget/status/bidStrategy/name is required.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
   }
 
 
@@ -311,6 +340,7 @@ public class UpdateAdSetRequest {
     return Objects.equals(this.platform, updateAdSetRequest.platform) &&
         Objects.equals(this.budget, updateAdSetRequest.budget) &&
         Objects.equals(this.status, updateAdSetRequest.status) &&
+        Objects.equals(this.name, updateAdSetRequest.name) &&
         Objects.equals(this.bidStrategy, updateAdSetRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, updateAdSetRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, updateAdSetRequest.roasAverageFloor);
@@ -318,7 +348,7 @@ public class UpdateAdSetRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, budget, status, bidStrategy, bidAmount, roasAverageFloor);
+    return Objects.hash(platform, budget, status, name, bidStrategy, bidAmount, roasAverageFloor);
   }
 
   @Override
@@ -328,6 +358,7 @@ public class UpdateAdSetRequest {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
@@ -391,6 +422,11 @@ public class UpdateAdSetRequest {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `bidStrategy` to the URL query string

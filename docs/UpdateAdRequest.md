@@ -11,7 +11,7 @@
 |**budget** | [**UpdateAdRequestBudget**](UpdateAdRequestBudget.md) |  |  [optional] |
 |**targeting** | [**UpdateAdRequestTargeting**](UpdateAdRequestTargeting.md) |  |  [optional] |
 |**creative** | [**UpdateAdRequestCreative**](UpdateAdRequestCreative.md) |  |  [optional] |
-|**name** | **String** |  |  [optional] |
+|**name** | **String** | Rename the ad. Now propagated to Meta (POST /{ad-id}); non-Meta platforms return 501. |  [optional] |
 
 
 

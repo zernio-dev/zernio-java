@@ -35,6 +35,7 @@ import dev.zernio.ApiClient;
  * Each creative must supply EXACTLY ONE of &#x60;imageUrl&#x60; (image creative) or &#x60;video&#x60; (video creative).
  */
 @JsonPropertyOrder({
+  CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_NAME,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_HEADLINE,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_BODY,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_IMAGE_URL,
@@ -42,8 +43,12 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_CALL_TO_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T15:33:48.108455715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCreativesInner {
+  public static final String JSON_PROPERTY_NAME = "name";
+  @javax.annotation.Nullable
+  private String name;
+
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nonnull
   private String headline;
@@ -121,6 +126,30 @@ public class CreateStandaloneAdRequestCreativesInner {
 
   public CreateStandaloneAdRequestCreativesInner() { 
   }
+
+  public CreateStandaloneAdRequestCreativesInner name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position).
+   * @return name
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
 
   public CreateStandaloneAdRequestCreativesInner headline(@javax.annotation.Nonnull String headline) {
     this.headline = headline;
@@ -278,7 +307,8 @@ public class CreateStandaloneAdRequestCreativesInner {
       return false;
     }
     CreateStandaloneAdRequestCreativesInner createStandaloneAdRequestCreativesInner = (CreateStandaloneAdRequestCreativesInner) o;
-    return Objects.equals(this.headline, createStandaloneAdRequestCreativesInner.headline) &&
+    return Objects.equals(this.name, createStandaloneAdRequestCreativesInner.name) &&
+        Objects.equals(this.headline, createStandaloneAdRequestCreativesInner.headline) &&
         Objects.equals(this.body, createStandaloneAdRequestCreativesInner.body) &&
         Objects.equals(this.imageUrl, createStandaloneAdRequestCreativesInner.imageUrl) &&
         Objects.equals(this.video, createStandaloneAdRequestCreativesInner.video) &&
@@ -288,13 +318,14 @@ public class CreateStandaloneAdRequestCreativesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(headline, body, imageUrl, video, linkUrl, callToAction);
+    return Objects.hash(name, headline, body, imageUrl, video, linkUrl, callToAction);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStandaloneAdRequestCreativesInner {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
@@ -347,6 +378,11 @@ public class CreateStandaloneAdRequestCreativesInner {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
 
     // add `headline` to the URL query string
     if (getHeadline() != null) {

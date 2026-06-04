@@ -59,6 +59,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ACCOUNT_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_NAME,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_NAME,
+  CreateStandaloneAdRequest.JSON_PROPERTY_AD_SET_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
@@ -116,7 +118,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T15:33:48.108455715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -129,6 +131,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
   private String name;
+
+  public static final String JSON_PROPERTY_CAMPAIGN_NAME = "campaignName";
+  @javax.annotation.Nullable
+  private String campaignName;
+
+  public static final String JSON_PROPERTY_AD_SET_NAME = "adSetName";
+  @javax.annotation.Nullable
+  private String adSetName;
 
   /**
    * Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). TikTok-specific: &#x60;conversions&#x60; (website-conversion ad group) requires &#x60;promotedObject.pixelId&#x60; (your TikTok Pixel ID) and accepts an optional &#x60;promotedObject.customEventType&#x60; (a TikTok &#x60;optimization_event&#x60; code like &#x60;ON_WEB_ORDER&#x60;, &#x60;INITIATE_ORDER&#x60;, &#x60;ON_WEB_REGISTER&#x60;, &#x60;FORM&#x60;); to inherit a pixel + event from an existing ad group, pass &#x60;adSetId&#x60; instead. LinkedIn-specific: &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60;, and &#x60;video_views&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image or single video ad). &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires the &#x60;video&#x60; field. For &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.
@@ -828,6 +838,54 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
+  }
+
+
+  public CreateStandaloneAdRequest campaignName(@javax.annotation.Nullable String campaignName) {
+    this.campaignName = campaignName;
+    return this;
+  }
+
+  /**
+   * Meta only. Exact campaign name. Overrides the default &#x60;&lt;name&gt; - Campaign&#x60;.
+   * @return campaignName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCampaignName() {
+    return campaignName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignName(@javax.annotation.Nullable String campaignName) {
+    this.campaignName = campaignName;
+  }
+
+
+  public CreateStandaloneAdRequest adSetName(@javax.annotation.Nullable String adSetName) {
+    this.adSetName = adSetName;
+    return this;
+  }
+
+  /**
+   * Meta only. Exact ad set name. Overrides the default &#x60;&lt;name&gt; - Ad Set&#x60;. (For per-ad names on the multi-creative shape, set &#x60;name&#x60; on each &#x60;creatives[]&#x60; entry.)
+   * @return adSetName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdSetName() {
+    return adSetName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdSetName(@javax.annotation.Nullable String adSetName) {
+    this.adSetName = adSetName;
   }
 
 
@@ -2322,6 +2380,8 @@ public class CreateStandaloneAdRequest {
     return Objects.equals(this.accountId, createStandaloneAdRequest.accountId) &&
         Objects.equals(this.adAccountId, createStandaloneAdRequest.adAccountId) &&
         Objects.equals(this.name, createStandaloneAdRequest.name) &&
+        Objects.equals(this.campaignName, createStandaloneAdRequest.campaignName) &&
+        Objects.equals(this.adSetName, createStandaloneAdRequest.adSetName) &&
         Objects.equals(this.goal, createStandaloneAdRequest.goal) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
@@ -2382,7 +2442,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2392,6 +2452,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    campaignName: ").append(toIndentedString(campaignName)).append("\n");
+    sb.append("    adSetName: ").append(toIndentedString(adSetName)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
@@ -2508,6 +2570,16 @@ public class CreateStandaloneAdRequest {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `campaignName` to the URL query string
+    if (getCampaignName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scampaignName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignName()))));
+    }
+
+    // add `adSetName` to the URL query string
+    if (getAdSetName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadSetName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdSetName()))));
     }
 
     // add `goal` to the URL query string

@@ -37,9 +37,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM,
   UpdateAdCampaignRequest.JSON_PROPERTY_BUDGET,
-  UpdateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY
+  UpdateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
+  UpdateAdCampaignRequest.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T10:56:50.133146899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T15:33:48.108455715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
   /**
    * Gets or Sets platform
@@ -87,6 +88,10 @@ public class UpdateAdCampaignRequest {
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
   private BidStrategy bidStrategy;
+
+  public static final String JSON_PROPERTY_NAME = "name";
+  @javax.annotation.Nullable
+  private String name;
 
   public UpdateAdCampaignRequest() { 
   }
@@ -163,6 +168,30 @@ public class UpdateAdCampaignRequest {
   }
 
 
+  public UpdateAdCampaignRequest name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+
   /**
    * Return true if this updateAdCampaign_request object is equal to o.
    */
@@ -177,12 +206,13 @@ public class UpdateAdCampaignRequest {
     UpdateAdCampaignRequest updateAdCampaignRequest = (UpdateAdCampaignRequest) o;
     return Objects.equals(this.platform, updateAdCampaignRequest.platform) &&
         Objects.equals(this.budget, updateAdCampaignRequest.budget) &&
-        Objects.equals(this.bidStrategy, updateAdCampaignRequest.bidStrategy);
+        Objects.equals(this.bidStrategy, updateAdCampaignRequest.bidStrategy) &&
+        Objects.equals(this.name, updateAdCampaignRequest.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, budget, bidStrategy);
+    return Objects.hash(platform, budget, bidStrategy, name);
   }
 
   @Override
@@ -192,6 +222,7 @@ public class UpdateAdCampaignRequest {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -252,6 +283,11 @@ public class UpdateAdCampaignRequest {
     // add `bidStrategy` to the URL query string
     if (getBidStrategy() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbidStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidStrategy()))));
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     return joiner.toString();
