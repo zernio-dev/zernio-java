@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SelectLinkedInOrganization200ResponseBulkRefresh.JSON_PROPERTY_UPDATED_COUNT,
   SelectLinkedInOrganization200ResponseBulkRefresh.JSON_PROPERTY_ERRORS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-03T14:56:54.090432450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T08:14:59.566195223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectLinkedInOrganization200ResponseBulkRefresh {
   public static final String JSON_PROPERTY_UPDATED_COUNT = "updatedCount";
   @javax.annotation.Nullable
