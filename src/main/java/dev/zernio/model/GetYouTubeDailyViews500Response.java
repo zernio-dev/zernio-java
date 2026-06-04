@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetYouTubeDailyViews500Response.JSON_PROPERTY_SUCCESS,
   GetYouTubeDailyViews500Response.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T08:14:59.566195223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:20:26.813578756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYouTubeDailyViews500Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

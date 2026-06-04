@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**searchAvailableWhatsAppNumbersWithHttpInfo**](WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase |
 | [**submitWhatsAppNumberKyc**](WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC |
 | [**submitWhatsAppNumberKycWithHttpInfo**](WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKycWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC |
+| [**uploadWhatsAppNumberKycDocument**](WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
+| [**uploadWhatsAppNumberKycDocumentWithHttpInfo**](WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocumentWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
 
 
 
@@ -1243,7 +1245,7 @@ ApiResponse<[**SearchAvailableWhatsAppNumbers200Response**](SearchAvailableWhats
 
 Submit regulated-number KYC
 
-Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
 
 ### Example
 
@@ -1316,7 +1318,7 @@ public class Example {
 
 Submit regulated-number KYC
 
-Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). Idempotent per (owner, country). 
+Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;. 
 
 ### Example
 
@@ -1384,5 +1386,157 @@ ApiResponse<[**SubmitWhatsAppNumberKyc200Response**](SubmitWhatsAppNumberKyc200R
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country |  -  |
 | **409** | reuse requested but no prior approved verification exists for this country |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## uploadWhatsAppNumberKycDocument
+
+> UploadWhatsAppNumberKycDocument200Response uploadWhatsAppNumberKycDocument(xFilename, body)
+
+Upload a single regulated-number KYC document
+
+Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String xFilename = "xFilename_example"; // String | URL-encoded original filename.
+        File body = new File("/path/to/file"); // File | 
+        try {
+            UploadWhatsAppNumberKycDocument200Response result = apiInstance.uploadWhatsAppNumberKycDocument(xFilename, body);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#uploadWhatsAppNumberKycDocument");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xFilename** | **String**| URL-encoded original filename. | |
+| **body** | **File**|  | |
+
+### Return type
+
+[**UploadWhatsAppNumberKycDocument200Response**](UploadWhatsAppNumberKycDocument200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/octet-stream
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Document uploaded. |  -  |
+| **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
+| **401** | Unauthorized |  -  |
+
+## uploadWhatsAppNumberKycDocumentWithHttpInfo
+
+> ApiResponse<UploadWhatsAppNumberKycDocument200Response> uploadWhatsAppNumberKycDocument uploadWhatsAppNumberKycDocumentWithHttpInfo(xFilename, body)
+
+Upload a single regulated-number KYC document
+
+Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String xFilename = "xFilename_example"; // String | URL-encoded original filename.
+        File body = new File("/path/to/file"); // File | 
+        try {
+            ApiResponse<UploadWhatsAppNumberKycDocument200Response> response = apiInstance.uploadWhatsAppNumberKycDocumentWithHttpInfo(xFilename, body);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#uploadWhatsAppNumberKycDocument");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **xFilename** | **String**| URL-encoded original filename. | |
+| **body** | **File**|  | |
+
+### Return type
+
+ApiResponse<[**UploadWhatsAppNumberKycDocument200Response**](UploadWhatsAppNumberKycDocument200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/octet-stream
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Document uploaded. |  -  |
+| **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
 | **401** | Unauthorized |  -  |
 

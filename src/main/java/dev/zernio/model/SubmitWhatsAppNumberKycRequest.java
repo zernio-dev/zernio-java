@@ -41,6 +41,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_PROFILE_ID,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_COUNTRY,
+  SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_SUBMISSION_ID,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_END_USER_FIRST_NAME,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_END_USER_LAST_NAME,
@@ -48,7 +49,7 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_DOCUMENTS,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T08:14:59.566195223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:20:26.813578756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -57,6 +58,10 @@ public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
   private String country;
+
+  public static final String JSON_PROPERTY_SUBMISSION_ID = "submissionId";
+  @javax.annotation.Nullable
+  private String submissionId;
 
   public static final String JSON_PROPERTY_REUSE = "reuse";
   @javax.annotation.Nullable
@@ -130,6 +135,30 @@ public class SubmitWhatsAppNumberKycRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCountry(@javax.annotation.Nonnull String country) {
     this.country = country;
+  }
+
+
+  public SubmitWhatsAppNumberKycRequest submissionId(@javax.annotation.Nullable String submissionId) {
+    this.submissionId = submissionId;
+    return this;
+  }
+
+  /**
+   * Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number.
+   * @return submissionId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUBMISSION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSubmissionId() {
+    return submissionId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUBMISSION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubmissionId(@javax.annotation.Nullable String submissionId) {
+    this.submissionId = submissionId;
   }
 
 
@@ -251,7 +280,7 @@ public class SubmitWhatsAppNumberKycRequest {
   }
 
   /**
-   * Get documents
+   * One per document requirement. Each is EITHER inline base64 OR a &#x60;documentId&#x60; returned by POST /v1/whatsapp/phone-numbers/kyc/upload-document (use the upload endpoint for large files to stay under the request-size limit).
    * @return documents
    */
   @javax.annotation.Nullable
@@ -307,6 +336,7 @@ public class SubmitWhatsAppNumberKycRequest {
     SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest = (SubmitWhatsAppNumberKycRequest) o;
     return Objects.equals(this.profileId, submitWhatsAppNumberKycRequest.profileId) &&
         Objects.equals(this.country, submitWhatsAppNumberKycRequest.country) &&
+        Objects.equals(this.submissionId, submitWhatsAppNumberKycRequest.submissionId) &&
         Objects.equals(this.reuse, submitWhatsAppNumberKycRequest.reuse) &&
         Objects.equals(this.endUserFirstName, submitWhatsAppNumberKycRequest.endUserFirstName) &&
         Objects.equals(this.endUserLastName, submitWhatsAppNumberKycRequest.endUserLastName) &&
@@ -317,7 +347,7 @@ public class SubmitWhatsAppNumberKycRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, reuse, endUserFirstName, endUserLastName, values, documents, address);
+    return Objects.hash(profileId, country, submissionId, reuse, endUserFirstName, endUserLastName, values, documents, address);
   }
 
   @Override
@@ -326,6 +356,7 @@ public class SubmitWhatsAppNumberKycRequest {
     sb.append("class SubmitWhatsAppNumberKycRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    submissionId: ").append(toIndentedString(submissionId)).append("\n");
     sb.append("    reuse: ").append(toIndentedString(reuse)).append("\n");
     sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
     sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
@@ -387,6 +418,11 @@ public class SubmitWhatsAppNumberKycRequest {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `submissionId` to the URL query string
+    if (getSubmissionId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssubmissionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubmissionId()))));
     }
 
     // add `reuse` to the URL query string

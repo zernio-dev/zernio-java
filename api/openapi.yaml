@@ -13553,7 +13553,9 @@ paths:
         "404":
           description: WhatsApp phone number not found
         "422":
-          description: BIC country block
+          description: "Not eligible to enable calling: not on usage-based billing,\
+            \ or the number's messaging limit is below Meta's ~2,000-daily-recipient\
+            \ threshold (TIER_250). Warm the number up to raise the limit."
       security:
       - bearerAuth: []
       summary: Enable calling on a number
@@ -14401,7 +14403,8 @@ paths:
         number provider and are not stored by Zernio. Builds + submits a
         regulatory requirement group and claims a pending_regulatory slot; the
         number is ordered + activated once the provider approves (asynchronous).
-        Idempotent per (owner, country).
+        A customer may hold several same-country numbers in review at once; a
+        double-submit of the SAME attempt is deduped via `submissionId`.
       operationId: submitWhatsAppNumberKyc
       requestBody:
         content:
@@ -14429,6 +14432,51 @@ paths:
       tags:
       - WhatsApp Phone Numbers
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/whatsapp/phone-numbers/kyc/upload-document:
+    post:
+      description: |
+        Upload ONE document and get back its provider document id, to reference
+        from POST /v1/whatsapp/phone-numbers/kyc via `documents[].documentId`.
+        Send the RAW file bytes as the request body (not base64); put the filename
+        in the `X-Filename` header. Uploading documents one-per-request keeps each
+        request under the ~4.5MB body limit. The document streams straight to the
+        number provider and is not stored by Zernio.
+      operationId: uploadWhatsAppNumberKycDocument
+      parameters:
+      - description: URL-encoded original filename.
+        explode: false
+        in: header
+        name: X-Filename
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/uploadWhatsAppNumberKycDocument_200_response"
+          description: Document uploaded.
+        "400":
+          description: "Missing X-Filename, empty body, or file too large (over 20MB)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Upload a single regulated-number KYC document
+      tags:
+      - WhatsApp Phone Numbers
+      x-content-type: application/octet-stream
       x-accepts:
       - application/json
   /v1/whatsapp/phone-numbers/{phoneNumberId}:
@@ -42666,7 +42714,7 @@ components:
           type: array
         reusable:
           $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable"
-    submitWhatsAppNumberKyc_request_documents_inner:
+    submitWhatsAppNumberKyc_request_documents_inner_oneOf:
       properties:
         requirementId:
           type: string
@@ -42674,6 +42722,24 @@ components:
           type: string
         base64:
           type: string
+      required:
+      - base64
+      - filename
+      - requirementId
+    submitWhatsAppNumberKyc_request_documents_inner_oneOf_1:
+      properties:
+        requirementId:
+          type: string
+        documentId:
+          description: Id from POST /v1/whatsapp/phone-numbers/kyc/upload-document.
+          type: string
+      required:
+      - documentId
+      - requirementId
+    submitWhatsAppNumberKyc_request_documents_inner:
+      oneOf:
+      - $ref: "#/components/schemas/submitWhatsAppNumberKyc_request_documents_inner_oneOf"
+      - $ref: "#/components/schemas/submitWhatsAppNumberKyc_request_documents_inner_oneOf_1"
     submitWhatsAppNumberKyc_request_address:
       properties:
         requirementId:
@@ -42700,6 +42766,11 @@ components:
           type: string
         country:
           type: string
+        submissionId:
+          description: Idempotency token for this submission attempt. A retry/double-submit
+            with the same token returns the same number; omit and each call creates
+            a new number.
+          type: string
         reuse:
           description: Reuse a prior approved verification for this country (skips
             document/field collection; places the order immediately).
@@ -42716,6 +42787,10 @@ components:
             type: string
           description: requirementId → textual value
         documents:
+          description: One per document requirement. Each is EITHER inline base64
+            OR a `documentId` returned by POST /v1/whatsapp/phone-numbers/kyc/upload-document
+            (use the upload endpoint for large files to stay under the request-size
+            limit).
           items:
             $ref: "#/components/schemas/submitWhatsAppNumberKyc_request_documents_inner"
           type: array
@@ -42752,6 +42827,13 @@ components:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response_phoneNumber"
+    uploadWhatsAppNumberKycDocument_200_response:
+      example:
+        documentId: documentId
+      properties:
+        documentId:
+          description: "Reference this id in the KYC submit's documents[].documentId."
+          type: string
     getWhatsAppPhoneNumber_200_response_phoneNumber:
       example:
         metaPreverifiedId: metaPreverifiedId

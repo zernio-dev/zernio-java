@@ -24,151 +24,227 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf;
+import dev.zernio.model.SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * SubmitWhatsAppNumberKycRequestDocumentsInner
- */
-@JsonPropertyOrder({
-  SubmitWhatsAppNumberKycRequestDocumentsInner.JSON_PROPERTY_REQUIREMENT_ID,
-  SubmitWhatsAppNumberKycRequestDocumentsInner.JSON_PROPERTY_FILENAME,
-  SubmitWhatsAppNumberKycRequestDocumentsInner.JSON_PROPERTY_BASE64
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T08:14:59.566195223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class SubmitWhatsAppNumberKycRequestDocumentsInner {
-  public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
-  @javax.annotation.Nullable
-  private String requirementId;
+import dev.zernio.JSON;
 
-  public static final String JSON_PROPERTY_FILENAME = "filename";
-  @javax.annotation.Nullable
-  private String filename;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:20:26.813578756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using = SubmitWhatsAppNumberKycRequestDocumentsInner.SubmitWhatsAppNumberKycRequestDocumentsInnerDeserializer.class)
+@JsonSerialize(using = SubmitWhatsAppNumberKycRequestDocumentsInner.SubmitWhatsAppNumberKycRequestDocumentsInnerSerializer.class)
+public class SubmitWhatsAppNumberKycRequestDocumentsInner extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(SubmitWhatsAppNumberKycRequestDocumentsInner.class.getName());
 
-  public static final String JSON_PROPERTY_BASE64 = "base64";
-  @javax.annotation.Nullable
-  private String base64;
+    public static class SubmitWhatsAppNumberKycRequestDocumentsInnerSerializer extends StdSerializer<SubmitWhatsAppNumberKycRequestDocumentsInner> {
+        public SubmitWhatsAppNumberKycRequestDocumentsInnerSerializer(Class<SubmitWhatsAppNumberKycRequestDocumentsInner> t) {
+            super(t);
+        }
 
-  public SubmitWhatsAppNumberKycRequestDocumentsInner() { 
-  }
+        public SubmitWhatsAppNumberKycRequestDocumentsInnerSerializer() {
+            this(null);
+        }
 
-  public SubmitWhatsAppNumberKycRequestDocumentsInner requirementId(@javax.annotation.Nullable String requirementId) {
-    this.requirementId = requirementId;
-    return this;
-  }
-
-  /**
-   * Get requirementId
-   * @return requirementId
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REQUIREMENT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRequirementId() {
-    return requirementId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_REQUIREMENT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRequirementId(@javax.annotation.Nullable String requirementId) {
-    this.requirementId = requirementId;
-  }
-
-
-  public SubmitWhatsAppNumberKycRequestDocumentsInner filename(@javax.annotation.Nullable String filename) {
-    this.filename = filename;
-    return this;
-  }
-
-  /**
-   * Get filename
-   * @return filename
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FILENAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getFilename() {
-    return filename;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_FILENAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFilename(@javax.annotation.Nullable String filename) {
-    this.filename = filename;
-  }
-
-
-  public SubmitWhatsAppNumberKycRequestDocumentsInner base64(@javax.annotation.Nullable String base64) {
-    this.base64 = base64;
-    return this;
-  }
-
-  /**
-   * Get base64
-   * @return base64
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BASE64, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getBase64() {
-    return base64;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_BASE64, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBase64(@javax.annotation.Nullable String base64) {
-    this.base64 = base64;
-  }
-
-
-  /**
-   * Return true if this submitWhatsAppNumberKyc_request_documents_inner object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+        @Override
+        public void serialize(SubmitWhatsAppNumberKycRequestDocumentsInner value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public static class SubmitWhatsAppNumberKycRequestDocumentsInnerDeserializer extends StdDeserializer<SubmitWhatsAppNumberKycRequestDocumentsInner> {
+        public SubmitWhatsAppNumberKycRequestDocumentsInnerDeserializer() {
+            this(SubmitWhatsAppNumberKycRequestDocumentsInner.class);
+        }
+
+        public SubmitWhatsAppNumberKycRequestDocumentsInnerDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        public SubmitWhatsAppNumberKycRequestDocumentsInner deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Integer.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Long.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Float.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Double.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Boolean.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Integer.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Float.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf'", e);
+            }
+
+            // deserialize SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Integer.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Long.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Float.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Double.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Boolean.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Integer.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Float.class) || SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1'", e);
+            }
+
+            if (match == 1) {
+                SubmitWhatsAppNumberKycRequestDocumentsInner ret = new SubmitWhatsAppNumberKycRequestDocumentsInner();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for SubmitWhatsAppNumberKycRequestDocumentsInner: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public SubmitWhatsAppNumberKycRequestDocumentsInner getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "SubmitWhatsAppNumberKycRequestDocumentsInner cannot be null");
+        }
     }
-    SubmitWhatsAppNumberKycRequestDocumentsInner submitWhatsAppNumberKycRequestDocumentsInner = (SubmitWhatsAppNumberKycRequestDocumentsInner) o;
-    return Objects.equals(this.requirementId, submitWhatsAppNumberKycRequestDocumentsInner.requirementId) &&
-        Objects.equals(this.filename, submitWhatsAppNumberKycRequestDocumentsInner.filename) &&
-        Objects.equals(this.base64, submitWhatsAppNumberKycRequestDocumentsInner.base64);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(requirementId, filename, base64);
-  }
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SubmitWhatsAppNumberKycRequestDocumentsInner {\n");
-    sb.append("    requirementId: ").append(toIndentedString(requirementId)).append("\n");
-    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
-    sb.append("    base64: ").append(toIndentedString(base64)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public SubmitWhatsAppNumberKycRequestDocumentsInner() {
+        super("oneOf", Boolean.FALSE);
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SubmitWhatsAppNumberKycRequestDocumentsInner(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public SubmitWhatsAppNumberKycRequestDocumentsInner(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1 o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf", SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class);
+        schemas.put("SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1", SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class);
+        JSON.registerDescendants(SubmitWhatsAppNumberKycRequestDocumentsInner.class, Collections.unmodifiableMap(schemas));
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return SubmitWhatsAppNumberKycRequestDocumentsInner.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf, SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf, SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf, SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1
+     *
+     * @return The actual instance (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf, SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf`. If the actual instance is not `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf`
+     * @throws ClassCastException if the instance is not `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf`
+     */
+    public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf getSubmitWhatsAppNumberKycRequestDocumentsInnerOneOf() throws ClassCastException {
+        return (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1`. If the actual instance is not `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1`
+     * @throws ClassCastException if the instance is not `SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1`
+     */
+    public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1 getSubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1() throws ClassCastException {
+        return (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1)super.getActualInstance();
+    }
+
+
 
   /**
    * Convert the instance into URL query string.
@@ -202,22 +278,20 @@ public class SubmitWhatsAppNumberKycRequestDocumentsInner {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `requirementId` to the URL query string
-    if (getRequirementId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%srequirementId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequirementId()))));
+    if (getActualInstance() instanceof SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf) {
+        if (getActualInstance() != null) {
+          joiner.add(((SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf)getActualInstance()).toUrlQueryString(prefix + "one_of_0" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `filename` to the URL query string
-    if (getFilename() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sfilename%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFilename()))));
+    if (getActualInstance() instanceof SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1) {
+        if (getActualInstance() != null) {
+          joiner.add(((SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1)getActualInstance()).toUrlQueryString(prefix + "one_of_1" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `base64` to the URL query string
-    if (getBase64() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sbase64%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBase64()))));
-    }
-
-    return joiner.toString();
+    return null;
   }
+
 }
 

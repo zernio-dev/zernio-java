@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-04T08:14:59.566195223Z[Etc/UTC]
+- Build date: 2026-06-04T09:20:26.813578756Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -804,6 +804,8 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**searchAvailableWhatsAppNumbersWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase
 *WhatsAppPhoneNumbersApi* | [**submitWhatsAppNumberKyc**](docs/WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
 *WhatsAppPhoneNumbersApi* | [**submitWhatsAppNumberKycWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKycWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
+*WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocument**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
+*WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocumentWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocumentWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
 *WhatsAppSandboxApi* | [**createWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSession) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
 *WhatsAppSandboxApi* | [**createWhatsAppSandboxSessionWithHttpInfo**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSessionWithHttpInfo) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
 *WhatsAppSandboxApi* | [**deleteWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#deleteWhatsAppSandboxSession) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
@@ -1699,6 +1701,8 @@ Class | Method | HTTP request | Description
  - [SubmitWhatsAppNumberKycRequest](docs/SubmitWhatsAppNumberKycRequest.md)
  - [SubmitWhatsAppNumberKycRequestAddress](docs/SubmitWhatsAppNumberKycRequestAddress.md)
  - [SubmitWhatsAppNumberKycRequestDocumentsInner](docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md)
+ - [SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md)
+ - [SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.md)
  - [TargetingSpec](docs/TargetingSpec.md)
  - [TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
  - [TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)
@@ -1838,6 +1842,7 @@ Class | Method | HTTP request | Description
  - [UploadWhatsAppFlowJson200ResponseValidationErrorsInner](docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md)
  - [UploadWhatsAppFlowJsonRequest](docs/UploadWhatsAppFlowJsonRequest.md)
  - [UploadWhatsAppFlowJsonRequestFlowJson](docs/UploadWhatsAppFlowJsonRequestFlowJson.md)
+ - [UploadWhatsAppNumberKycDocument200Response](docs/UploadWhatsAppNumberKycDocument200Response.md)
  - [UploadWhatsAppProfilePhotoRequest](docs/UploadWhatsAppProfilePhotoRequest.md)
  - [UploadedFile](docs/UploadedFile.md)
  - [UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)

@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_FIELDS,
   GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_REUSABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T08:14:59.566195223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:20:26.813578756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable

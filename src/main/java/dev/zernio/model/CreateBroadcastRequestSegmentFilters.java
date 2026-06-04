@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateBroadcastRequestSegmentFilters.JSON_PROPERTY_TAGS,
   CreateBroadcastRequestSegmentFilters.JSON_PROPERTY_IS_SUBSCRIBED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T08:14:59.566195223Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T09:20:26.813578756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBroadcastRequestSegmentFilters {
   public static final String JSON_PROPERTY_TAGS = "tags";
   @javax.annotation.Nullable

@@ -895,6 +895,8 @@ docs/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.md
 docs/SubmitWhatsAppNumberKycRequest.md
 docs/SubmitWhatsAppNumberKycRequestAddress.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
+docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
+docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.md
 docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
 docs/TargetingSpecCustomLocationsInner.md
@@ -1036,6 +1038,7 @@ docs/UploadWhatsAppFlowJson200Response.md
 docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md
 docs/UploadWhatsAppFlowJsonRequest.md
 docs/UploadWhatsAppFlowJsonRequestFlowJson.md
+docs/UploadWhatsAppNumberKycDocument200Response.md
 docs/UploadWhatsAppProfilePhotoRequest.md
 docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
@@ -2094,6 +2097,8 @@ src/main/java/dev/zernio/model/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.jav
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequest.java
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestAddress.java
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInner.java
+src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.java
+src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.java
 src/main/java/dev/zernio/model/TargetingSpec.java
 src/main/java/dev/zernio/model/TargetingSpecCitiesInner.java
 src/main/java/dev/zernio/model/TargetingSpecCustomLocationsInner.java
@@ -2233,6 +2238,7 @@ src/main/java/dev/zernio/model/UploadWhatsAppFlowJson200Response.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJsonRequest.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJsonRequestFlowJson.java
+src/main/java/dev/zernio/model/UploadWhatsAppNumberKycDocument200Response.java
 src/main/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest.java
 src/main/java/dev/zernio/model/UploadedFile.java
 src/main/java/dev/zernio/model/UploadedOrDerivedAudience.java
@@ -2355,3 +2361,6 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1Test.java
+src/test/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOfTest.java
+src/test/java/dev/zernio/model/UploadWhatsAppNumberKycDocument200ResponseTest.java
