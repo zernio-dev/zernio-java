@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**addConversionAssociations**](AdsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination |
 | [**addConversionAssociationsWithHttpInfo**](AdsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination |
+| [**adjustConversions**](AdsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only) |
+| [**adjustConversionsWithHttpInfo**](AdsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only) |
 | [**archiveLeadForm**](AdsApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form |
 | [**archiveLeadFormWithHttpInfo**](AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form |
 | [**boostPost**](AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad |
@@ -241,6 +243,160 @@ ApiResponse<[**AddConversionAssociations200Response**](AddConversionAssociations
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support associations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## adjustConversions
+
+> AdjustConversions200Response adjustConversions(adjustConversionsRequest)
+
+Adjust already-uploaded conversions (Google only)
+
+Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        AdjustConversionsRequest adjustConversionsRequest = new AdjustConversionsRequest(); // AdjustConversionsRequest | 
+        try {
+            AdjustConversions200Response result = apiInstance.adjustConversions(adjustConversionsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#adjustConversions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adjustConversionsRequest** | [**AdjustConversionsRequest**](AdjustConversionsRequest.md)|  | |
+
+### Return type
+
+[**AdjustConversions200Response**](AdjustConversions200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Adjustments processed. Inspect &#x60;adjustmentsFailed&#x60; and &#x60;failures[]&#x60; for partial failure (Google reports per-row errors via partial failure).  |  -  |
+| **400** | Invalid body, or a malformed adjustment (missing key, missing restatementValue for RESTATEMENT, missing identifiers for ENHANCEMENT). |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | Account not found or not accessible. |  -  |
+| **405** | Conversion adjustments are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
+
+## adjustConversionsWithHttpInfo
+
+> ApiResponse<AdjustConversions200Response> adjustConversions adjustConversionsWithHttpInfo(adjustConversionsRequest)
+
+Adjust already-uploaded conversions (Google only)
+
+Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        AdjustConversionsRequest adjustConversionsRequest = new AdjustConversionsRequest(); // AdjustConversionsRequest | 
+        try {
+            ApiResponse<AdjustConversions200Response> response = apiInstance.adjustConversionsWithHttpInfo(adjustConversionsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#adjustConversions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adjustConversionsRequest** | [**AdjustConversionsRequest**](AdjustConversionsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AdjustConversions200Response**](AdjustConversions200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Adjustments processed. Inspect &#x60;adjustmentsFailed&#x60; and &#x60;failures[]&#x60; for partial failure (Google reports per-row errors via partial failure).  |  -  |
+| **400** | Invalid body, or a malformed adjustment (missing key, missing restatementValue for RESTATEMENT, missing identifiers for ENHANCEMENT). |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | Account not found or not accessible. |  -  |
+| **405** | Conversion adjustments are only available for Google Ads (the account&#39;s platform is not &#x60;googleads&#x60;). |  -  |
 
 
 ## archiveLeadForm

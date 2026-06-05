@@ -21,6 +21,8 @@ import dev.zernio.Pair;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.AddConversionAssociations200Response;
 import dev.zernio.model.AddConversionAssociationsRequest;
+import dev.zernio.model.AdjustConversions200Response;
+import dev.zernio.model.AdjustConversionsRequest;
 import dev.zernio.model.ArchiveLeadForm200Response;
 import dev.zernio.model.BoostPostRequest;
 import dev.zernio.model.CreateConversionDestination201Response;
@@ -92,7 +94,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T10:54:16.913814996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:00:11.271603110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -335,6 +337,129 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addConversionAssociationsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Adjust already-uploaded conversions (Google only)
+   * Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+   * @param adjustConversionsRequest  (required)
+   * @return AdjustConversions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AdjustConversions200Response adjustConversions(@javax.annotation.Nonnull AdjustConversionsRequest adjustConversionsRequest) throws ApiException {
+    return adjustConversions(adjustConversionsRequest, null);
+  }
+
+  /**
+   * Adjust already-uploaded conversions (Google only)
+   * Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+   * @param adjustConversionsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AdjustConversions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AdjustConversions200Response adjustConversions(@javax.annotation.Nonnull AdjustConversionsRequest adjustConversionsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AdjustConversions200Response> localVarResponse = adjustConversionsWithHttpInfo(adjustConversionsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Adjust already-uploaded conversions (Google only)
+   * Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+   * @param adjustConversionsRequest  (required)
+   * @return ApiResponse&lt;AdjustConversions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AdjustConversions200Response> adjustConversionsWithHttpInfo(@javax.annotation.Nonnull AdjustConversionsRequest adjustConversionsRequest) throws ApiException {
+    return adjustConversionsWithHttpInfo(adjustConversionsRequest, null);
+  }
+
+  /**
+   * Adjust already-uploaded conversions (Google only)
+   * Adjust conversions that were previously uploaded via &#x60;POST /v1/ads/conversions&#x60; — retract them, restate their value, or enhance them with first-party data. Requires the Ads add-on.  **Google Ads only.** Google handles adjustments through the classic Google Ads API (&#x60;ConversionAdjustmentUploadService&#x60;); the Data Manager &#x60;ingestEvents&#x60; path used for sending conversions is ingest-only. Meta and LinkedIn have no equivalent, so this endpoint returns &#x60;405&#x60; for those platforms.  Adjustment types:  - &#x60;RETRACTION&#x60; — remove the conversion entirely (refund, chargeback, cancelled order, churn). - &#x60;RESTATEMENT&#x60; — change the conversion&#39;s value (upgrade / downgrade / partial refund). Send the corrected **total** value in &#x60;restatementValue&#x60; (not a delta). - &#x60;ENHANCEMENT&#x60; — attach first-party identifiers (hashed email / phone) to an existing conversion (enhanced conversions applied after the fact).  Identifying the original conversion (per adjustment):  - &#x60;orderId&#x60; — the transaction ID you sent as &#x60;eventId&#x60; on the original conversion. Recommended, and **required** for &#x60;ENHANCEMENT&#x60;. - or &#x60;gclid&#x60; + &#x60;conversionTime&#x60; — the click ID and the original conversion&#39;s time (unix seconds). Not available for &#x60;ENHANCEMENT&#x60;.  &#x60;destinationId&#x60; is the conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; (same value you send to &#x60;POST /v1/ads/conversions&#x60;). PII in &#x60;user&#x60; is hashed with SHA-256 server-side (Gmail-specific normalization included). Send plaintext.  Times are unix seconds; we convert to Google&#39;s required &#x60;yyyy-MM-dd HH:mm:ss+00:00&#x60; format. Up to 2000 adjustments per request; partial failure is supported (inspect &#x60;adjustmentsFailed&#x60; / &#x60;failures[]&#x60;). 
+   * @param adjustConversionsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AdjustConversions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AdjustConversions200Response> adjustConversionsWithHttpInfo(@javax.annotation.Nonnull AdjustConversionsRequest adjustConversionsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = adjustConversionsRequestBuilder(adjustConversionsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("adjustConversions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AdjustConversions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AdjustConversions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AdjustConversions200Response>() {});
+        
+
+        return new ApiResponse<AdjustConversions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder adjustConversionsRequestBuilder(@javax.annotation.Nonnull AdjustConversionsRequest adjustConversionsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adjustConversionsRequest' is set
+    if (adjustConversionsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'adjustConversionsRequest' when calling adjustConversions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/conversions/adjustments";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(adjustConversionsRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

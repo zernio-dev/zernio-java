@@ -72,7 +72,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T10:54:16.913814996Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:00:11.271603110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -175,7 +175,7 @@ public class Ad {
   private AdTypeEnum adType;
 
   /**
-   * Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+   * Available goals vary by platform. Meta (Facebook/Instagram) supports all 8 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
    */
   public enum GoalEnum {
     ENGAGEMENT(String.valueOf("engagement")),
@@ -187,6 +187,8 @@ public class Ad {
     VIDEO_VIEWS(String.valueOf("video_views")),
     
     LEAD_GENERATION(String.valueOf("lead_generation")),
+    
+    LEAD_CONVERSION(String.valueOf("lead_conversion")),
     
     CONVERSIONS(String.valueOf("conversions")),
     
@@ -444,7 +446,7 @@ public class Ad {
   }
 
   /**
-   * Available goals vary by platform. Meta (Facebook/Instagram) and TikTok support all 7. LinkedIn supports all except app_promotion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
+   * Available goals vary by platform. Meta (Facebook/Instagram) supports all 8 (incl. &#x60;lead_conversion&#x60; &#x3D; website pixel lead optimization). TikTok supports the 7 non-&#x60;lead_conversion&#x60; goals. LinkedIn supports all except app_promotion / lead_conversion. Twitter/X supports engagement, traffic, awareness, video_views, app_promotion. Pinterest and Google Ads support only engagement, traffic, awareness, video_views.
    * @return goal
    */
   @javax.annotation.Nullable

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-05T10:54:16.913814996Z[Etc/UTC]
+- Build date: 2026-06-05T14:00:11.271603110Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -186,6 +186,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**updateAdSetStatusWithHttpInfo**](docs/AdCampaignsApi.md#updateAdSetStatusWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdsApi* | [**addConversionAssociations**](docs/AdsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination
 *AdsApi* | [**addConversionAssociationsWithHttpInfo**](docs/AdsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination
+*AdsApi* | [**adjustConversions**](docs/AdsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only)
+*AdsApi* | [**adjustConversionsWithHttpInfo**](docs/AdsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only)
 *AdsApi* | [**archiveLeadForm**](docs/AdsApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form
 *AdsApi* | [**archiveLeadFormWithHttpInfo**](docs/AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form
 *AdsApi* | [**boostPost**](docs/AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
@@ -904,6 +906,11 @@ Class | Method | HTTP request | Description
  - [AddUsersToAdAudienceRequest](docs/AddUsersToAdAudienceRequest.md)
  - [AddUsersToAdAudienceRequestUsersInner](docs/AddUsersToAdAudienceRequestUsersInner.md)
  - [AddWhatsAppGroupParticipantsRequest](docs/AddWhatsAppGroupParticipantsRequest.md)
+ - [AdjustConversions200Response](docs/AdjustConversions200Response.md)
+ - [AdjustConversions200ResponseFailuresInner](docs/AdjustConversions200ResponseFailuresInner.md)
+ - [AdjustConversionsRequest](docs/AdjustConversionsRequest.md)
+ - [AdjustConversionsRequestAdjustmentsInner](docs/AdjustConversionsRequestAdjustmentsInner.md)
+ - [AdjustConversionsRequestAdjustmentsInnerUser](docs/AdjustConversionsRequestAdjustmentsInnerUser.md)
  - [AnalyticsListResponse](docs/AnalyticsListResponse.md)
  - [AnalyticsListResponsePostsInner](docs/AnalyticsListResponsePostsInner.md)
  - [AnalyticsOverview](docs/AnalyticsOverview.md)
