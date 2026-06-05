@@ -171,7 +171,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -23469,6 +23469,9 @@ components:
             - post.recycled
             - post.platform.published
             - post.platform.failed
+            - post.external.created
+            - post.external.updated
+            - post.external.deleted
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
@@ -23981,6 +23984,135 @@ components:
       - event
       - id
       - review
+      - timestamp
+    ExternalPostWebhookPost:
+      description: Native (external) post data shared by all post.external.* payloads.
+      example:
+        accountId: accountId
+        deletedAt: 2000-01-23T04:56:07.000+00:00
+        mediaItems:
+        - thumbnail: thumbnail
+          type: image
+          url: url
+        - thumbnail: thumbnail
+          type: image
+          url: url
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        mediaType: mediaType
+        id: id
+        source: external
+        platform: platform
+        url: url
+        content: content
+        thumbnailUrl: thumbnailUrl
+      properties:
+        id:
+          description: Platform-native post ID (NOT a Zernio post ID).
+          type: string
+        platform:
+          description: Platform the post lives on (e.g. "googlebusiness").
+          type: string
+        accountId:
+          description: Zernio social account ID the post belongs to.
+          type: string
+        url:
+          description: "Direct URL to the post on the platform, when available."
+          type: string
+          nullable: true
+        content:
+          description: Post text. May be empty.
+          type: string
+        mediaType:
+          description: "One of image, video, gif, document, text, carousel."
+          type: string
+        mediaItems:
+          items:
+            $ref: "#/components/schemas/ExternalPostWebhookPost_mediaItems_inner"
+          type: array
+        thumbnailUrl:
+          type: string
+          nullable: true
+        publishedAt:
+          format: date-time
+          type: string
+        source:
+          description: Always "external" — distinguishes these from Zernio-originated
+            post.* events.
+          enum:
+          - external
+          type: string
+        deletedAt:
+          description: Detection time of deletion. Present on post.external.deleted;
+            null/absent otherwise.
+          format: date-time
+          type: string
+          nullable: true
+      required:
+      - accountId
+      - content
+      - id
+      - mediaItems
+      - mediaType
+      - platform
+      - publishedAt
+      - source
+      - thumbnailUrl
+      - url
+    WebhookPayloadExternalPost:
+      description: |
+        Webhook payload for post.external.created / post.external.updated /
+        post.external.deleted. Fired by Zernio's background sync when it detects a
+        natively-authored post (e.g. a Google Business Profile localPost created in
+        the Google UI), NOT a post published through Zernio. Poll-driven (~hourly),
+        not real-time. On post.external.deleted, post.deletedAt is populated.
+      example:
+        post:
+          accountId: accountId
+          deletedAt: 2000-01-23T04:56:07.000+00:00
+          mediaItems:
+          - thumbnail: thumbnail
+            type: image
+            url: url
+          - thumbnail: thumbnail
+            type: image
+            url: url
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          mediaType: mediaType
+          id: id
+          source: external
+          platform: platform
+          url: url
+          content: content
+          thumbnailUrl: thumbnailUrl
+        id: id
+        event: post.external.created
+        account:
+          id: id
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Stable webhook event ID
+          type: string
+        event:
+          enum:
+          - post.external.created
+          - post.external.updated
+          - post.external.deleted
+          type: string
+        post:
+          $ref: "#/components/schemas/ExternalPostWebhookPost"
+        account:
+          $ref: "#/components/schemas/WebhookPayloadReviewNew_account"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - post
       - timestamp
     InboxWebhookMessage:
       description: The message object included in inbox webhook payloads.
@@ -39813,6 +39945,9 @@ components:
             - post.recycled
             - post.platform.published
             - post.platform.failed
+            - post.external.created
+            - post.external.updated
+            - post.external.deleted
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
@@ -39894,6 +40029,9 @@ components:
             - post.recycled
             - post.platform.published
             - post.platform.failed
+            - post.external.created
+            - post.external.updated
+            - post.external.deleted
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
@@ -55397,6 +55535,24 @@ components:
       - id
       - platform
       - username
+    ExternalPostWebhookPost_mediaItems_inner:
+      example:
+        thumbnail: thumbnail
+        type: image
+        url: url
+      properties:
+        type:
+          enum:
+          - image
+          - video
+          type: string
+        url:
+          type: string
+        thumbnail:
+          type: string
+      required:
+      - type
+      - url
     InboxWebhookMessage_attachments_inner:
       example:
         payload: "{}"
@@ -57976,6 +58132,9 @@ x-documentation:
     - `post.recycled` - Post recycled (cloned and re-scheduled)
     - `post.platform.published` - A single platform target inside a post finished publishing successfully. Fires once per platform-account as it terminates, without waiting for other platforms on the same post. Use this for incremental UIs; use `post.published` for the post-level rollup.
     - `post.platform.failed` - A single platform target inside a post failed permanently. Temporary/retryable failures do NOT fire this event, only permanent ones, so retry loops stay quiet.
+    - `post.external.created` - A native post authored outside Zernio (e.g. a Google Business Profile localPost created in the Google UI) was detected by our sync for the first time. Poll-driven (~hourly), not real-time. Payload carries `post.source: "external"`.
+    - `post.external.updated` - A tracked native post's text or media changed on the platform. Edits are detected by comparing text/media structure and (where the platform exposes it) the platform's own edit timestamp; media-URL-only refreshes do not fire this.
+    - `post.external.deleted` - A tracked native post was detected as removed from the platform. `post.deletedAt` carries the detection time. Coverage is bounded to the most recent posts the platform listing returns.
     - `account.connected` - Social account connected
     - `account.disconnected` - Social account disconnected (token expired)
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account

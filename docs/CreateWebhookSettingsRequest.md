@@ -28,6 +28,9 @@
 | POST_RECYCLED | &quot;post.recycled&quot; |
 | POST_PLATFORM_PUBLISHED | &quot;post.platform.published&quot; |
 | POST_PLATFORM_FAILED | &quot;post.platform.failed&quot; |
+| POST_EXTERNAL_CREATED | &quot;post.external.created&quot; |
+| POST_EXTERNAL_UPDATED | &quot;post.external.updated&quot; |
+| POST_EXTERNAL_DELETED | &quot;post.external.deleted&quot; |
 | ACCOUNT_CONNECTED | &quot;account.connected&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |

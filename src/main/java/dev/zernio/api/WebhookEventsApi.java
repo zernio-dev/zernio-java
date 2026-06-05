@@ -34,6 +34,7 @@ import dev.zernio.model.WebhookPayloadCallPermissionRequest;
 import dev.zernio.model.WebhookPayloadCallReceived;
 import dev.zernio.model.WebhookPayloadComment;
 import dev.zernio.model.WebhookPayloadConversationStarted;
+import dev.zernio.model.WebhookPayloadExternalPost;
 import dev.zernio.model.WebhookPayloadLead;
 import dev.zernio.model.WebhookPayloadMessage;
 import dev.zernio.model.WebhookPayloadMessageDeleted;
@@ -79,7 +80,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T09:01:32.103754443Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T09:13:01.473282657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2252,6 +2253,333 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * External post created event
+   * Fired when Zernio&#39;s background sync detects a natively-authored post (created outside Zernio, e.g. a Google Business Profile localPost made in the Google UI) for the first time. Poll-driven (~hourly), not real-time. &#x60;post.source&#x60; is always \&quot;external\&quot;. 
+   * @param webhookPayloadExternalPost  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostExternalCreated(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost) throws ApiException {
+    onPostExternalCreated(webhookPayloadExternalPost, null);
+  }
+
+  /**
+   * External post created event
+   * Fired when Zernio&#39;s background sync detects a natively-authored post (created outside Zernio, e.g. a Google Business Profile localPost made in the Google UI) for the first time. Poll-driven (~hourly), not real-time. &#x60;post.source&#x60; is always \&quot;external\&quot;. 
+   * @param webhookPayloadExternalPost  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostExternalCreated(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    onPostExternalCreatedWithHttpInfo(webhookPayloadExternalPost, headers);
+  }
+
+  /**
+   * External post created event
+   * Fired when Zernio&#39;s background sync detects a natively-authored post (created outside Zernio, e.g. a Google Business Profile localPost made in the Google UI) for the first time. Poll-driven (~hourly), not real-time. &#x60;post.source&#x60; is always \&quot;external\&quot;. 
+   * @param webhookPayloadExternalPost  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostExternalCreatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost) throws ApiException {
+    return onPostExternalCreatedWithHttpInfo(webhookPayloadExternalPost, null);
+  }
+
+  /**
+   * External post created event
+   * Fired when Zernio&#39;s background sync detects a natively-authored post (created outside Zernio, e.g. a Google Business Profile localPost made in the Google UI) for the first time. Poll-driven (~hourly), not real-time. &#x60;post.source&#x60; is always \&quot;external\&quot;. 
+   * @param webhookPayloadExternalPost  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostExternalCreatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onPostExternalCreatedRequestBuilder(webhookPayloadExternalPost, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onPostExternalCreated", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onPostExternalCreatedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadExternalPost' is set
+    if (webhookPayloadExternalPost == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadExternalPost' when calling onPostExternalCreated");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/post.external.created";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadExternalPost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * External post deleted event
+   * Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. 
+   * @param webhookPayloadExternalPost  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostExternalDeleted(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost) throws ApiException {
+    onPostExternalDeleted(webhookPayloadExternalPost, null);
+  }
+
+  /**
+   * External post deleted event
+   * Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. 
+   * @param webhookPayloadExternalPost  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostExternalDeleted(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    onPostExternalDeletedWithHttpInfo(webhookPayloadExternalPost, headers);
+  }
+
+  /**
+   * External post deleted event
+   * Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. 
+   * @param webhookPayloadExternalPost  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostExternalDeletedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost) throws ApiException {
+    return onPostExternalDeletedWithHttpInfo(webhookPayloadExternalPost, null);
+  }
+
+  /**
+   * External post deleted event
+   * Fired when a tracked native post is detected as removed from the platform. &#x60;post.deletedAt&#x60; carries the detection time. Coverage is bounded to the most recent posts the platform listing returns. 
+   * @param webhookPayloadExternalPost  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostExternalDeletedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onPostExternalDeletedRequestBuilder(webhookPayloadExternalPost, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onPostExternalDeleted", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onPostExternalDeletedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadExternalPost' is set
+    if (webhookPayloadExternalPost == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadExternalPost' when calling onPostExternalDeleted");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/post.external.deleted";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadExternalPost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * External post updated event
+   * Fired when a tracked native post&#39;s text or media changed on the platform. Detected by comparing text/media structure and, where available, the platform&#39;s own edit timestamp; a media-URL-only refresh does not fire this. 
+   * @param webhookPayloadExternalPost  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostExternalUpdated(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost) throws ApiException {
+    onPostExternalUpdated(webhookPayloadExternalPost, null);
+  }
+
+  /**
+   * External post updated event
+   * Fired when a tracked native post&#39;s text or media changed on the platform. Detected by comparing text/media structure and, where available, the platform&#39;s own edit timestamp; a media-URL-only refresh does not fire this. 
+   * @param webhookPayloadExternalPost  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostExternalUpdated(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    onPostExternalUpdatedWithHttpInfo(webhookPayloadExternalPost, headers);
+  }
+
+  /**
+   * External post updated event
+   * Fired when a tracked native post&#39;s text or media changed on the platform. Detected by comparing text/media structure and, where available, the platform&#39;s own edit timestamp; a media-URL-only refresh does not fire this. 
+   * @param webhookPayloadExternalPost  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostExternalUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost) throws ApiException {
+    return onPostExternalUpdatedWithHttpInfo(webhookPayloadExternalPost, null);
+  }
+
+  /**
+   * External post updated event
+   * Fired when a tracked native post&#39;s text or media changed on the platform. Detected by comparing text/media structure and, where available, the platform&#39;s own edit timestamp; a media-URL-only refresh does not fire this. 
+   * @param webhookPayloadExternalPost  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostExternalUpdatedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onPostExternalUpdatedRequestBuilder(webhookPayloadExternalPost, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onPostExternalUpdated", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onPostExternalUpdatedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadExternalPost webhookPayloadExternalPost, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadExternalPost' is set
+    if (webhookPayloadExternalPost == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadExternalPost' when calling onPostExternalUpdated");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/post.external.updated";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadExternalPost);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-05T09:01:32.103754443Z[Etc/UTC]
+- Build date: 2026-06-05T09:13:01.473282657Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1131,6 +1131,8 @@ Class | Method | HTTP request | Description
  - [EstimateAdReach200Response](docs/EstimateAdReach200Response.md)
  - [EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
  - [Expired](docs/Expired.md)
+ - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
+ - [ExternalPostWebhookPostMediaItemsInner](docs/ExternalPostWebhookPostMediaItemsInner.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
  - [FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)
@@ -1953,6 +1955,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
  - [WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)
+ - [WebhookPayloadExternalPost](docs/WebhookPayloadExternalPost.md)
  - [WebhookPayloadLead](docs/WebhookPayloadLead.md)
  - [WebhookPayloadLeadAccount](docs/WebhookPayloadLeadAccount.md)
  - [WebhookPayloadLeadLead](docs/WebhookPayloadLeadLead.md)

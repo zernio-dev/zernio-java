@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AdTreeAdSetAdSetBudget.JSON_PROPERTY_AMOUNT,
   AdTreeAdSetAdSetBudget.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T09:01:32.103754443Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T09:13:01.473282657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeAdSetAdSetBudget {
   public static final String JSON_PROPERTY_AMOUNT = "amount";
   @javax.annotation.Nullable
