@@ -37,6 +37,7 @@ import dev.zernio.model.CreateStandaloneAdRequestPlacementAssets;
 import dev.zernio.model.CreateStandaloneAdRequestPlacements;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
+import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.CreateStandaloneAdRequestZipsInner;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
@@ -61,6 +62,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_AD_SET_NAME,
+  CreateStandaloneAdRequest.JSON_PROPERTY_AD_NAME,
+  CreateStandaloneAdRequest.JSON_PROPERTY_TRACKING,
   CreateStandaloneAdRequest.JSON_PROPERTY_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
@@ -118,7 +121,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T07:31:31.664177081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T09:01:32.103754443Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -139,6 +142,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_AD_SET_NAME = "adSetName";
   @javax.annotation.Nullable
   private String adSetName;
+
+  public static final String JSON_PROPERTY_AD_NAME = "adName";
+  @javax.annotation.Nullable
+  private String adName;
+
+  public static final String JSON_PROPERTY_TRACKING = "tracking";
+  @javax.annotation.Nullable
+  private CreateStandaloneAdRequestTracking tracking;
 
   /**
    * Required on legacy + multi-creative shapes. Inherited from the ad set on the attach shape. Available goals vary by platform. Meta-specific: &#x60;conversions&#x60; requires &#x60;promotedObject.pixelId&#x60; + &#x60;promotedObject.customEventType&#x60;; &#x60;app_promotion&#x60; requires &#x60;promotedObject.applicationId&#x60; + &#x60;promotedObject.objectStoreUrl&#x60;; &#x60;lead_generation&#x60; accepts an optional &#x60;promotedObject.pageId&#x60; (auto-filled from the connected Page when omitted). TikTok-specific: &#x60;conversions&#x60; (website-conversion ad group) requires &#x60;promotedObject.pixelId&#x60; (your TikTok Pixel ID) and accepts an optional &#x60;promotedObject.customEventType&#x60; (a TikTok &#x60;optimization_event&#x60; code like &#x60;ON_WEB_ORDER&#x60;, &#x60;INITIATE_ORDER&#x60;, &#x60;ON_WEB_REGISTER&#x60;, &#x60;FORM&#x60;); to inherit a pixel + event from an existing ad group, pass &#x60;adSetId&#x60; instead. LinkedIn-specific: &#x60;engagement&#x60;, &#x60;traffic&#x60;, &#x60;awareness&#x60;, and &#x60;video_views&#x60; are supported for standalone ads (creates a Direct Sponsored Content single image or single video ad). &#x60;traffic&#x60; requires &#x60;linkUrl&#x60;; &#x60;video_views&#x60; requires the &#x60;video&#x60; field. For &#x60;lead_generation&#x60; / &#x60;conversions&#x60; on LinkedIn — or to promote an existing post — use &#x60;POST /v1/ads/boost&#x60;.
@@ -886,6 +897,54 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdSetName(@javax.annotation.Nullable String adSetName) {
     this.adSetName = adSetName;
+  }
+
+
+  public CreateStandaloneAdRequest adName(@javax.annotation.Nullable String adName) {
+    this.adName = adName;
+    return this;
+  }
+
+  /**
+   * Meta only. Exact ad name (the single-creative ad object&#39;s name). Overrides the default, which is &#x60;name&#x60;. (For per-ad names on the multi-creative shape, set &#x60;name&#x60; on each &#x60;creatives[]&#x60; entry instead.)
+   * @return adName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdName() {
+    return adName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdName(@javax.annotation.Nullable String adName) {
+    this.adName = adName;
+  }
+
+
+  public CreateStandaloneAdRequest tracking(@javax.annotation.Nullable CreateStandaloneAdRequestTracking tracking) {
+    this.tracking = tracking;
+    return this;
+  }
+
+  /**
+   * Get tracking
+   * @return tracking
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateStandaloneAdRequestTracking getTracking() {
+    return tracking;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRACKING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTracking(@javax.annotation.Nullable CreateStandaloneAdRequestTracking tracking) {
+    this.tracking = tracking;
   }
 
 
@@ -2382,6 +2441,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.name, createStandaloneAdRequest.name) &&
         Objects.equals(this.campaignName, createStandaloneAdRequest.campaignName) &&
         Objects.equals(this.adSetName, createStandaloneAdRequest.adSetName) &&
+        Objects.equals(this.adName, createStandaloneAdRequest.adName) &&
+        Objects.equals(this.tracking, createStandaloneAdRequest.tracking) &&
         Objects.equals(this.goal, createStandaloneAdRequest.goal) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
@@ -2442,7 +2503,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2454,6 +2515,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    campaignName: ").append(toIndentedString(campaignName)).append("\n");
     sb.append("    adSetName: ").append(toIndentedString(adSetName)).append("\n");
+    sb.append("    adName: ").append(toIndentedString(adName)).append("\n");
+    sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
@@ -2580,6 +2643,16 @@ public class CreateStandaloneAdRequest {
     // add `adSetName` to the URL query string
     if (getAdSetName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sadSetName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdSetName()))));
+    }
+
+    // add `adName` to the URL query string
+    if (getAdName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdName()))));
+    }
+
+    // add `tracking` to the URL query string
+    if (getTracking() != null) {
+      joiner.add(getTracking().toUrlQueryString(prefix + "tracking" + suffix));
     }
 
     // add `goal` to the URL query string

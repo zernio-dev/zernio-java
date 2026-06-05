@@ -51345,6 +51345,22 @@ components:
       - budget
       - goal
       - name
+    createStandaloneAd_request_tracking:
+      description: Meta only. Attaches pixel measurement to the ad regardless of the
+        optimization goal (the "Website events" tracking row in Ads Manager). `pixelId`
+        becomes the ad's `tracking_specs` (offsite_conversion + fb_pixel); `urlTags`
+        becomes the ad's `url_tags` (click-tracking query params). Applied to every
+        ad on the legacy single-creative and multi-creative shapes.
+      properties:
+        pixelId:
+          description: Meta Pixel ID to attach for offsite-conversion measurement.
+          type: string
+        urlTags:
+          description: Click-URL params appended to the ad's destination as `url_tags`
+            (e.g. utm_source).
+          items:
+            $ref: "#/components/schemas/updateAdTrackingTags_request_urlTags_inner"
+          type: array
     createStandaloneAd_request_images:
       description: "Google Display (Responsive Display Ads) only. Google RDA requires\
         \ both a landscape (1.91:1) and a square (1:1) marketing image; sending only\
@@ -51939,6 +51955,14 @@ components:
             \ on each `creatives[]` entry.)"
           maxLength: 255
           type: string
+        adName:
+          description: "Meta only. Exact ad name (the single-creative ad object's\
+            \ name). Overrides the default, which is `name`. (For per-ad names on\
+            \ the multi-creative shape, set `name` on each `creatives[]` entry instead.)"
+          maxLength: 255
+          type: string
+        tracking:
+          $ref: "#/components/schemas/createStandaloneAd_request_tracking"
         goal:
           description: "Required on legacy + multi-creative shapes. Inherited from\
             \ the ad set on the attach shape. Available goals vary by platform. Meta-specific:\
