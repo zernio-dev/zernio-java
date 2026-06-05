@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-05T10:36:33.479576347Z[Etc/UTC]
+- Build date: 2026-06-05T10:54:16.913814996Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1131,8 +1131,8 @@ Class | Method | HTTP request | Description
  - [EstimateAdReach200Response](docs/EstimateAdReach200Response.md)
  - [EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
  - [Expired](docs/Expired.md)
+ - [ExternalPostMediaItem](docs/ExternalPostMediaItem.md)
  - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
- - [ExternalPostWebhookPostMediaItemsInner](docs/ExternalPostWebhookPostMediaItemsInner.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
  - [FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)

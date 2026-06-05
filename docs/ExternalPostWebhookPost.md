@@ -14,7 +14,7 @@ Native (external) post data shared by all post.external.* payloads.
 |**url** | **String** | Direct URL to the post on the platform, when available. |  |
 |**content** | **String** | Post text. May be empty. |  |
 |**mediaType** | **String** | One of image, video, gif, document, text, carousel. |  |
-|**mediaItems** | [**List&lt;ExternalPostWebhookPostMediaItemsInner&gt;**](ExternalPostWebhookPostMediaItemsInner.md) |  |  |
+|**mediaItems** | [**List&lt;ExternalPostMediaItem&gt;**](ExternalPostMediaItem.md) |  |  |
 |**thumbnailUrl** | **String** |  |  |
 |**publishedAt** | **OffsetDateTime** |  |  |
 |**source** | [**SourceEnum**](#SourceEnum) | Always \&quot;external\&quot; — distinguishes these from Zernio-originated post.* events. |  |
