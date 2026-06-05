@@ -37,12 +37,13 @@ import dev.zernio.ApiClient;
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_DMS_SENT,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_DMS_FAILED,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CONTACTS,
+  ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_TRACKED_SENDS,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_LINK_CLICKS,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_UNIQUE_CLICKS,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_DELIVERED,
   ListCommentAutomations200ResponseAutomationsInnerStats.JSON_PROPERTY_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T09:13:01.473282657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T10:36:33.479576347Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomations200ResponseAutomationsInnerStats {
   public static final String JSON_PROPERTY_TRIGGERED = "triggered";
   @javax.annotation.Nullable
@@ -59,6 +60,10 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
   public static final String JSON_PROPERTY_UNIQUE_CONTACTS = "uniqueContacts";
   @javax.annotation.Nullable
   private Integer uniqueContacts;
+
+  public static final String JSON_PROPERTY_TRACKED_SENDS = "trackedSends";
+  @javax.annotation.Nullable
+  private Integer trackedSends;
 
   public static final String JSON_PROPERTY_LINK_CLICKS = "linkClicks";
   @javax.annotation.Nullable
@@ -175,6 +180,30 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
   }
 
 
+  public ListCommentAutomations200ResponseAutomationsInnerStats trackedSends(@javax.annotation.Nullable Integer trackedSends) {
+    this.trackedSends = trackedSends;
+    return this;
+  }
+
+  /**
+   * DMs sent with a trackable (wrapped) link. CTR denominator: divide clicks by this, not dmsSent. Lags dmsSent for campaigns that predate click tracking.
+   * @return trackedSends
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRACKED_SENDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getTrackedSends() {
+    return trackedSends;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRACKED_SENDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTrackedSends(@javax.annotation.Nullable Integer trackedSends) {
+    this.trackedSends = trackedSends;
+  }
+
+
   public ListCommentAutomations200ResponseAutomationsInnerStats linkClicks(@javax.annotation.Nullable Integer linkClicks) {
     this.linkClicks = linkClicks;
     return this;
@@ -287,6 +316,7 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
         Objects.equals(this.dmsSent, listCommentAutomations200ResponseAutomationsInnerStats.dmsSent) &&
         Objects.equals(this.dmsFailed, listCommentAutomations200ResponseAutomationsInnerStats.dmsFailed) &&
         Objects.equals(this.uniqueContacts, listCommentAutomations200ResponseAutomationsInnerStats.uniqueContacts) &&
+        Objects.equals(this.trackedSends, listCommentAutomations200ResponseAutomationsInnerStats.trackedSends) &&
         Objects.equals(this.linkClicks, listCommentAutomations200ResponseAutomationsInnerStats.linkClicks) &&
         Objects.equals(this.uniqueClicks, listCommentAutomations200ResponseAutomationsInnerStats.uniqueClicks) &&
         Objects.equals(this.delivered, listCommentAutomations200ResponseAutomationsInnerStats.delivered) &&
@@ -295,7 +325,7 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
 
   @Override
   public int hashCode() {
-    return Objects.hash(triggered, dmsSent, dmsFailed, uniqueContacts, linkClicks, uniqueClicks, delivered, read);
+    return Objects.hash(triggered, dmsSent, dmsFailed, uniqueContacts, trackedSends, linkClicks, uniqueClicks, delivered, read);
   }
 
   @Override
@@ -306,6 +336,7 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
     sb.append("    dmsSent: ").append(toIndentedString(dmsSent)).append("\n");
     sb.append("    dmsFailed: ").append(toIndentedString(dmsFailed)).append("\n");
     sb.append("    uniqueContacts: ").append(toIndentedString(uniqueContacts)).append("\n");
+    sb.append("    trackedSends: ").append(toIndentedString(trackedSends)).append("\n");
     sb.append("    linkClicks: ").append(toIndentedString(linkClicks)).append("\n");
     sb.append("    uniqueClicks: ").append(toIndentedString(uniqueClicks)).append("\n");
     sb.append("    delivered: ").append(toIndentedString(delivered)).append("\n");
@@ -375,6 +406,11 @@ public class ListCommentAutomations200ResponseAutomationsInnerStats {
     // add `uniqueContacts` to the URL query string
     if (getUniqueContacts() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%suniqueContacts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUniqueContacts()))));
+    }
+
+    // add `trackedSends` to the URL query string
+    if (getTrackedSends() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%strackedSends%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrackedSends()))));
     }
 
     // add `linkClicks` to the URL query string
