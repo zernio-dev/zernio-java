@@ -24,10 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,133 +33,67 @@ import dev.zernio.ApiClient;
  * BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner
  */
 @JsonPropertyOrder({
-  BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_LOCATION_NAME,
-  BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_REVIEWS,
-  BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_AVERAGE_RATING,
-  BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_TOTAL_REVIEW_COUNT
+  BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_NAME,
+  BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_REVIEW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:12:53.516889582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:57:53.837772529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
-  public static final String JSON_PROPERTY_LOCATION_NAME = "locationName";
+  public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
-  private String locationName;
+  private String name;
 
-  public static final String JSON_PROPERTY_REVIEWS = "reviews";
+  public static final String JSON_PROPERTY_REVIEW = "review";
   @javax.annotation.Nullable
-  private List<Object> reviews = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_AVERAGE_RATING = "averageRating";
-  @javax.annotation.Nullable
-  private BigDecimal averageRating;
-
-  public static final String JSON_PROPERTY_TOTAL_REVIEW_COUNT = "totalReviewCount";
-  @javax.annotation.Nullable
-  private Integer totalReviewCount;
+  private Object review;
 
   public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner() { 
   }
 
-  public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner locationName(@javax.annotation.Nullable String locationName) {
-    this.locationName = locationName;
+  public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner name(@javax.annotation.Nullable String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get locationName
-   * @return locationName
+   * Full review resource name (accounts/_*_/locations/_*_/reviews/_*)
+   * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOCATION_NAME, required = false)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getLocationName() {
-    return locationName;
+  public String getName() {
+    return name;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_LOCATION_NAME, required = false)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocationName(@javax.annotation.Nullable String locationName) {
-    this.locationName = locationName;
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
   }
 
 
-  public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner reviews(@javax.annotation.Nullable List<Object> reviews) {
-    this.reviews = reviews;
-    return this;
-  }
-
-  public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner addReviewsItem(Object reviewsItem) {
-    if (this.reviews == null) {
-      this.reviews = new ArrayList<>();
-    }
-    this.reviews.add(reviewsItem);
+  public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner review(@javax.annotation.Nullable Object review) {
+    this.review = review;
     return this;
   }
 
   /**
-   * Get reviews
-   * @return reviews
+   * The review object (reviewId
+   * @return review
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REVIEWS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_REVIEW, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<Object> getReviews() {
-    return reviews;
+  public Object getReview() {
+    return review;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_REVIEWS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_REVIEW, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReviews(@javax.annotation.Nullable List<Object> reviews) {
-    this.reviews = reviews;
-  }
-
-
-  public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner averageRating(@javax.annotation.Nullable BigDecimal averageRating) {
-    this.averageRating = averageRating;
-    return this;
-  }
-
-  /**
-   * Get averageRating
-   * @return averageRating
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AVERAGE_RATING, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public BigDecimal getAverageRating() {
-    return averageRating;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_AVERAGE_RATING, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAverageRating(@javax.annotation.Nullable BigDecimal averageRating) {
-    this.averageRating = averageRating;
-  }
-
-
-  public BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner totalReviewCount(@javax.annotation.Nullable Integer totalReviewCount) {
-    this.totalReviewCount = totalReviewCount;
-    return this;
-  }
-
-  /**
-   * Get totalReviewCount
-   * @return totalReviewCount
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TOTAL_REVIEW_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getTotalReviewCount() {
-    return totalReviewCount;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_TOTAL_REVIEW_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTotalReviewCount(@javax.annotation.Nullable Integer totalReviewCount) {
-    this.totalReviewCount = totalReviewCount;
+  public void setReview(@javax.annotation.Nullable Object review) {
+    this.review = review;
   }
 
 
@@ -178,25 +109,21 @@ public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
       return false;
     }
     BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner batchGetGoogleBusinessReviews200ResponseLocationReviewsInner = (BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner) o;
-    return Objects.equals(this.locationName, batchGetGoogleBusinessReviews200ResponseLocationReviewsInner.locationName) &&
-        Objects.equals(this.reviews, batchGetGoogleBusinessReviews200ResponseLocationReviewsInner.reviews) &&
-        Objects.equals(this.averageRating, batchGetGoogleBusinessReviews200ResponseLocationReviewsInner.averageRating) &&
-        Objects.equals(this.totalReviewCount, batchGetGoogleBusinessReviews200ResponseLocationReviewsInner.totalReviewCount);
+    return Objects.equals(this.name, batchGetGoogleBusinessReviews200ResponseLocationReviewsInner.name) &&
+        Objects.equals(this.review, batchGetGoogleBusinessReviews200ResponseLocationReviewsInner.review);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locationName, reviews, averageRating, totalReviewCount);
+    return Objects.hash(name, review);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {\n");
-    sb.append("    locationName: ").append(toIndentedString(locationName)).append("\n");
-    sb.append("    reviews: ").append(toIndentedString(reviews)).append("\n");
-    sb.append("    averageRating: ").append(toIndentedString(averageRating)).append("\n");
-    sb.append("    totalReviewCount: ").append(toIndentedString(totalReviewCount)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    review: ").append(toIndentedString(review)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -244,28 +171,14 @@ public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `locationName` to the URL query string
-    if (getLocationName() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%slocationName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationName()))));
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
-    // add `reviews` to the URL query string
-    if (getReviews() != null) {
-      for (int i = 0; i < getReviews().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sreviews%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getReviews().get(i)))));
-      }
-    }
-
-    // add `averageRating` to the URL query string
-    if (getAverageRating() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%saverageRating%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAverageRating()))));
-    }
-
-    // add `totalReviewCount` to the URL query string
-    if (getTotalReviewCount() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%stotalReviewCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotalReviewCount()))));
+    // add `review` to the URL query string
+    if (getReview() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreview%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReview()))));
     }
 
     return joiner.toString();

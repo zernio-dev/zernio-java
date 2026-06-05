@@ -7,10 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**locationName** | **String** |  |  [optional] |
-|**reviews** | **List&lt;Object&gt;** |  |  [optional] |
-|**averageRating** | **BigDecimal** |  |  [optional] |
-|**totalReviewCount** | **Integer** |  |  [optional] |
+|**name** | **String** | Full review resource name (accounts/_*_/locations/_*_/reviews/_*) |  [optional] |
+|**review** | **Object** | The review object (reviewId |  [optional] |
 
 
 

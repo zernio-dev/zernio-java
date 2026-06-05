@@ -21,7 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Batch get reviews
 
-Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
 
 ### Example
 
@@ -95,7 +95,7 @@ public class Example {
 
 Batch get reviews
 
-Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
 
 ### Example
 

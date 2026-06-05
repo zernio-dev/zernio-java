@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateBroadcastRequestTemplateVariableMappingValue.JSON_PROPERTY_FIELD,
   UpdateBroadcastRequestTemplateVariableMappingValue.JSON_PROPERTY_CUSTOM_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:12:53.516889582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:57:53.837772529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateBroadcastRequestTemplateVariableMappingValue {
   /**
    * Gets or Sets field

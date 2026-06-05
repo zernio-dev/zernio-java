@@ -52,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:12:53.516889582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:57:53.837772529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -171,7 +171,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @return BatchGetGoogleBusinessReviews200Response
@@ -183,7 +183,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @param headers Optional headers to include in the request
@@ -197,7 +197,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @return ApiResponse&lt;BatchGetGoogleBusinessReviews200Response&gt;
@@ -209,7 +209,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Reviews are grouped by location in the response. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @param headers Optional headers to include in the request

@@ -7860,7 +7860,9 @@ paths:
       description: |
         Fetches reviews across multiple locations in a single request.
         More efficient than calling GET /gmb-reviews per location for multi-location businesses.
-        Reviews are grouped by location in the response.
+        Returns a flat list of individual reviews, each tagged with its review resource name.
+        Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount).
+        For those, use the single-location GET /gmb-reviews endpoint.
       operationId: batchGetGoogleBusinessReviews
       parameters:
       - explode: false
@@ -37190,41 +37192,25 @@ components:
       - locationNames
     batchGetGoogleBusinessReviews_200_response_locationReviews_inner:
       example:
-        locationName: locationName
-        reviews:
-        - "{}"
-        - "{}"
-        averageRating: 0.8008281904610115
-        totalReviewCount: 6
+        review: "{}"
+        name: name
       properties:
-        locationName:
+        name:
+          description: Full review resource name (accounts/*/locations/*/reviews/*)
           type: string
-        reviews:
-          items:
-            type: object
-          type: array
-        averageRating:
-          type: number
-        totalReviewCount:
-          type: integer
+        review:
+          description: The review object (reviewId
+          type: object
     batchGetGoogleBusinessReviews_200_response:
       example:
         accountId: accountId
         success: true
         nextPageToken: nextPageToken
         locationReviews:
-        - locationName: locationName
-          reviews:
-          - "{}"
-          - "{}"
-          averageRating: 0.8008281904610115
-          totalReviewCount: 6
-        - locationName: locationName
-          reviews:
-          - "{}"
-          - "{}"
-          averageRating: 0.8008281904610115
-          totalReviewCount: 6
+        - review: "{}"
+          name: name
+        - review: "{}"
+          name: name
       properties:
         success:
           type: boolean
