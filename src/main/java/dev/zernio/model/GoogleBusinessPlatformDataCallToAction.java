@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GoogleBusinessPlatformDataCallToAction.JSON_PROPERTY_TYPE,
   GoogleBusinessPlatformDataCallToAction.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:00:11.271603110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:12:53.516889582Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleBusinessPlatformDataCallToAction {
   /**
    * Button action type: LEARN_MORE, BOOK, ORDER, SHOP, SIGN_UP, CALL
