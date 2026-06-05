@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   Webhook.JSON_PROPERTY_FAILURE_COUNT,
   Webhook.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T17:01:37.709651087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T07:31:31.664177081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Webhook {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -123,7 +123,13 @@ public class Webhook {
     
     WHATSAPP_NUMBER_DECLINED(String.valueOf("whatsapp.number.declined")),
     
-    WHATSAPP_NUMBER_VERIFICATION_REQUIRED(String.valueOf("whatsapp.number.verification_required"));
+    WHATSAPP_NUMBER_VERIFICATION_REQUIRED(String.valueOf("whatsapp.number.verification_required")),
+    
+    WHATSAPP_NUMBER_SUSPENDED(String.valueOf("whatsapp.number.suspended")),
+    
+    WHATSAPP_NUMBER_REACTIVATED(String.valueOf("whatsapp.number.reactivated")),
+    
+    WHATSAPP_NUMBER_RELEASED(String.valueOf("whatsapp.number.released"));
 
     private String value;
 

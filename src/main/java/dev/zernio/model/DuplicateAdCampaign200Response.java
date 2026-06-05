@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   DuplicateAdCampaign200Response.JSON_PROPERTY_DISCOVERY,
   DuplicateAdCampaign200Response.JSON_PROPERTY_RAW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T17:01:37.709651087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T07:31:31.664177081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DuplicateAdCampaign200Response {
   public static final String JSON_PROPERTY_COPIED_CAMPAIGN_ID = "copiedCampaignId";
   @javax.annotation.Nullable

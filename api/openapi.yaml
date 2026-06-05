@@ -171,7 +171,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.verification_required, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -2490,6 +2490,637 @@ paths:
       - Analytics
       x-accepts:
       - application/json
+  /v1/analytics/inbox/volume:
+    get:
+      description: |
+        Daily inbox messaging volume + breakdowns. Folds the raw messaging
+        events into three projections so the client can render the volume
+        chart, KPI strip, and per-platform stacked bar from a single call.
+        Max date range is 365 days.
+      operationId: getInboxVolume
+      parameters:
+      - description: Inclusive lower bound (YYYY-MM-DD). Required.
+        explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Inclusive upper bound (YYYY-MM-DD). Defaults to today.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by single platform (facebook, instagram, twitter, etc.)."
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter by metadata.source lineage (human, workflow, sequence,\
+          \ broadcast, comment_automation, api, contact, platform)."
+        explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_200_response"
+          description: Volume breakdown
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_400_response"
+          description: Validation error
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - bearerAuth: []
+      summary: Get inbox messaging volume
+      tags:
+      - Inbox Analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/inbox/heatmap:
+    get:
+      description: |
+        Day-of-week × hour-of-day breakdown of inbox messages. Buckets are
+        sparse — only cells with at least one event are returned; clients
+        zero-fill the rest to render the full 7×24 grid. The `dow` field
+        follows ClickHouse's `toDayOfWeek` convention (1 = Monday … 7 =
+        Sunday). Max date range is 365 days.
+      operationId: getInboxHeatmap
+      parameters:
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Narrow to a single event type. "all" or omitted means no filter.
+        explode: true
+        in: query
+        name: action
+        required: false
+        schema:
+          enum:
+          - message.received
+          - message.sent
+          - message.read
+          - all
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxHeatmap_200_response"
+          description: Heatmap buckets
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_400_response"
+          description: Validation error
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - bearerAuth: []
+      summary: Get inbox day-of-week × hour-of-day heatmap
+      tags:
+      - Inbox Analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/inbox/source-breakdown:
+    get:
+      description: |
+        Breakdown of inbox messages by their lineage source (the
+        `metadata.source` field set at ingest time: human / workflow /
+        sequence / broadcast / comment_automation / api / contact /
+        platform). Each source row also carries a per-platform sub-split.
+        Max date range is 365 days.
+      operationId: getInboxSourceBreakdown
+      parameters:
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxSourceBreakdown_200_response"
+          description: Source breakdown
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_400_response"
+          description: Validation error
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - bearerAuth: []
+      summary: Get inbox source breakdown
+      tags:
+      - Inbox Analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/inbox/response-time:
+    get:
+      description: |
+        Time-to-first-response stats. Pairs each received message with the
+        next sent message in the same conversation and reports the delta
+        as both summary statistics and a fixed-bucket histogram suited
+        for the analytics page's TTR chart.
+
+        `sampleSize` reflects only conversations that received AND got a
+        reply in the window — received-but-never-answered conversations
+        are excluded. Compare against /v1/analytics/inbox/volume's
+        `summary.received` to compute reply rate.
+
+        Max date range is 365 days.
+      operationId: getInboxResponseTime
+      parameters:
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxResponseTime_200_response"
+          description: Response-time summary + histogram
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_400_response"
+          description: Validation error
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - bearerAuth: []
+      summary: Get inbox response-time stats
+      tags:
+      - Inbox Analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/inbox/top-accounts:
+    get:
+      description: |
+        Leaderboard of social accounts by inbox message volume. Decorates
+        each row with display labels from the live SocialAccount record
+        (so the UI shows username + displayName, not just an ID). Accounts
+        that no longer map to a SocialAccount surface as "(disconnected)"
+        so the row stays visible. Max date range is 365 days.
+      operationId: getInboxTopAccounts
+      parameters:
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Cap on returned rows. Lower than the posting listing's 100 because
+          each row triggers a SocialAccount Mongo lookup.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 10
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxTopAccounts_200_response"
+          description: Top accounts leaderboard
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_400_response"
+          description: Validation error
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - bearerAuth: []
+      summary: Get top accounts by inbox volume
+      tags:
+      - Inbox Analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/inbox/conversations:
+    get:
+      description: |
+        Per-conversation listing with per-row totals + first/last message
+        timestamps. The inbox analog of GET /v1/analytics (posts listing) —
+        same filter shape, same pagination, same sort/order semantics.
+        Use as the entry point for the per-conversation analytics drawer
+        at /v1/analytics/inbox/conversations/{conversationId}.
+
+        Rows are enriched with the conversation's participant info
+        (`participantName`, `participantUsername`, `participantPicture`)
+        and last-message preview by joining the Conversation document
+        scoped to the caller's team. Max date range is 365 days.
+      operationId: listInboxConversationAnalytics
+      parameters:
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: source
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          default: lastMessageAt
+          enum:
+          - lastMessageAt
+          - firstMessageAt
+          - totalMessages
+          - received
+          - sent
+          - read
+          - failed
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: order
+        required: false
+        schema:
+          default: desc
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listInboxConversationAnalytics_200_response"
+          description: Paginated conversation analytics list
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_400_response"
+          description: Validation error
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - bearerAuth: []
+      summary: List conversations with inbox analytics
+      tags:
+      - Inbox Analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/inbox/conversations/{conversationId}:
+    get:
+      description: |
+        Per-conversation inbox analytics. The inbox analog of
+        /v1/analytics/post-timeline — one conversation, daily totals,
+        source mix.
+
+        The {conversationId} path param accepts EITHER the Mongo `_id` of
+        the Conversation document OR its `platformConversationId` (the
+        same identity used by metadata.conversationId at ingest time).
+        Ownership is verified in MongoDB against the caller's team
+        before the Tinybird query fires.
+
+        Max date range is 365 days.
+      operationId: getInboxConversationAnalytics
+      parameters:
+      - description: Mongo _id or platformConversationId.
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxConversationAnalytics_200_response"
+          description: Per-conversation analytics
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxVolume_400_response"
+          description: Validation error
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getInboxConversationAnalytics_404_response"
+          description: Conversation not found or not owned by the caller's team
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Internal server error
+      security:
+      - bearerAuth: []
+      summary: Get analytics for a single conversation
+      tags:
+      - Inbox Analytics
+      x-accepts:
+      - application/json
   /v1/account-groups:
     get:
       description: |
@@ -3909,7 +4540,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/bulkUploadPosts_429_response"
+                $ref: "#/components/schemas/getInboxVolume_400_response"
           description: |
             Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).
       summary: Bulk upload from CSV
@@ -3972,7 +4603,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/bulkUploadPosts_429_response"
+                $ref: "#/components/schemas/getInboxVolume_400_response"
           description: |
             Rate limit exceeded. Possible causes: API rate limit (requests per minute), velocity limit (15 posts/hour per account), or account cooldown (temporarily rate-limited due to repeated errors).
       summary: Retry failed post
@@ -22857,6 +23488,9 @@ components:
             - whatsapp.number.activated
             - whatsapp.number.declined
             - whatsapp.number.verification_required
+            - whatsapp.number.suspended
+            - whatsapp.number.reactivated
+            - whatsapp.number.released
             type: string
           type: array
         isActive:
@@ -30962,6 +31596,665 @@ components:
         error:
           example: Invalid startMonth format. Use YYYY-MM.
           type: string
+    getInboxVolume_200_response_summary:
+      example:
+        read: 1
+        received: 0
+        failed: 5
+        sent: 6
+        uniqueConversations: 5
+      properties:
+        received:
+          type: integer
+        sent:
+          type: integer
+        read:
+          type: integer
+        failed:
+          type: integer
+        uniqueConversations:
+          type: integer
+    getInboxVolume_200_response_timeseries_inner:
+      example:
+        date: 2000-01-23
+        read: 9
+        received: 7
+        failed: 3
+        sent: 2
+      properties:
+        date:
+          format: date
+          type: string
+        sent:
+          type: integer
+        received:
+          type: integer
+        read:
+          type: integer
+        failed:
+          type: integer
+    getInboxVolume_200_response_byPlatform_inner:
+      example:
+        read: 7
+        received: 4
+        failed: 1
+        sent: 2
+        platform: platform
+      properties:
+        platform:
+          type: string
+        sent:
+          type: integer
+        received:
+          type: integer
+        read:
+          type: integer
+        failed:
+          type: integer
+    getInboxVolume_200_response:
+      example:
+        summary:
+          read: 1
+          received: 0
+          failed: 5
+          sent: 6
+          uniqueConversations: 5
+        timeseries:
+        - date: 2000-01-23
+          read: 9
+          received: 7
+          failed: 3
+          sent: 2
+        - date: 2000-01-23
+          read: 9
+          received: 7
+          failed: 3
+          sent: 2
+        success: true
+        byPlatform:
+        - read: 7
+          received: 4
+          failed: 1
+          sent: 2
+          platform: platform
+        - read: 7
+          received: 4
+          failed: 1
+          sent: 2
+          platform: platform
+        from: 2000-01-23
+        to: 2000-01-23
+      properties:
+        success:
+          type: boolean
+        from:
+          format: date
+          type: string
+        to:
+          format: date
+          type: string
+          nullable: true
+        summary:
+          $ref: "#/components/schemas/getInboxVolume_200_response_summary"
+        timeseries:
+          items:
+            $ref: "#/components/schemas/getInboxVolume_200_response_timeseries_inner"
+          type: array
+        byPlatform:
+          items:
+            $ref: "#/components/schemas/getInboxVolume_200_response_byPlatform_inner"
+          type: array
+    getInboxVolume_400_response:
+      example:
+        details: "{}"
+        error: error
+      properties:
+        error:
+          type: string
+        details:
+          type: object
+    getInboxHeatmap_200_response_buckets_inner:
+      example:
+        read: 5
+        hour: 13
+        received: 1
+        dow: 1
+        sent: 5
+      properties:
+        dow:
+          description: "1 = Monday, 7 = Sunday"
+          maximum: 7
+          minimum: 1
+          type: integer
+        hour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        received:
+          type: integer
+        sent:
+          type: integer
+        read:
+          type: integer
+    getInboxHeatmap_200_response:
+      example:
+        success: true
+        buckets:
+        - read: 5
+          hour: 13
+          received: 1
+          dow: 1
+          sent: 5
+        - read: 5
+          hour: 13
+          received: 1
+          dow: 1
+          sent: 5
+        from: 2000-01-23
+        to: 2000-01-23
+      properties:
+        success:
+          type: boolean
+        from:
+          format: date
+          type: string
+        to:
+          format: date
+          type: string
+          nullable: true
+        buckets:
+          items:
+            $ref: "#/components/schemas/getInboxHeatmap_200_response_buckets_inner"
+          type: array
+    getInboxSourceBreakdown_200_response_sources_inner_byPlatform_inner:
+      example:
+        read: 2
+        received: 5
+        sent: 5
+        platform: platform
+      properties:
+        platform:
+          type: string
+        received:
+          type: integer
+        sent:
+          type: integer
+        read:
+          type: integer
+    getInboxSourceBreakdown_200_response_sources_inner:
+      example:
+        read: 1
+        byPlatform:
+        - read: 2
+          received: 5
+          sent: 5
+          platform: platform
+        - read: 2
+          received: 5
+          sent: 5
+          platform: platform
+        received: 0
+        source: source
+        sent: 6
+      properties:
+        source:
+          type: string
+        received:
+          type: integer
+        sent:
+          type: integer
+        read:
+          type: integer
+        byPlatform:
+          items:
+            $ref: "#/components/schemas/getInboxSourceBreakdown_200_response_sources_inner_byPlatform_inner"
+          type: array
+    getInboxSourceBreakdown_200_response:
+      example:
+        sources:
+        - read: 1
+          byPlatform:
+          - read: 2
+            received: 5
+            sent: 5
+            platform: platform
+          - read: 2
+            received: 5
+            sent: 5
+            platform: platform
+          received: 0
+          source: source
+          sent: 6
+        - read: 1
+          byPlatform:
+          - read: 2
+            received: 5
+            sent: 5
+            platform: platform
+          - read: 2
+            received: 5
+            sent: 5
+            platform: platform
+          received: 0
+          source: source
+          sent: 6
+        success: true
+        from: 2000-01-23
+        to: 2000-01-23
+      properties:
+        success:
+          type: boolean
+        from:
+          format: date
+          type: string
+        to:
+          format: date
+          type: string
+          nullable: true
+        sources:
+          items:
+            $ref: "#/components/schemas/getInboxSourceBreakdown_200_response_sources_inner"
+          type: array
+    getInboxResponseTime_200_response_summary:
+      example:
+        fastestSeconds: 2
+        p90Seconds: 1
+        meanSeconds: 5
+        p99Seconds: 5
+        slowestSeconds: 7
+        sampleSize: 0
+        medianSeconds: 6
+      properties:
+        sampleSize:
+          type: integer
+        medianSeconds:
+          type: integer
+        p90Seconds:
+          type: integer
+        p99Seconds:
+          type: integer
+        meanSeconds:
+          type: integer
+        fastestSeconds:
+          type: integer
+        slowestSeconds:
+          type: integer
+    getInboxResponseTime_200_response_histogram_inner:
+      example:
+        bucket: bucket
+        lowerSeconds: 9
+        upperSeconds: 3
+        count: 2
+      properties:
+        bucket:
+          description: "Human label (0-1m, 1-5m, 5-15m, 15-60m, 1-4h, 4-24h, 1d+)"
+          type: string
+        lowerSeconds:
+          type: integer
+        upperSeconds:
+          description: null on the open-ended last bucket
+          type: integer
+          nullable: true
+        count:
+          type: integer
+    getInboxResponseTime_200_response:
+      example:
+        summary:
+          fastestSeconds: 2
+          p90Seconds: 1
+          meanSeconds: 5
+          p99Seconds: 5
+          slowestSeconds: 7
+          sampleSize: 0
+          medianSeconds: 6
+        histogram:
+        - bucket: bucket
+          lowerSeconds: 9
+          upperSeconds: 3
+          count: 2
+        - bucket: bucket
+          lowerSeconds: 9
+          upperSeconds: 3
+          count: 2
+        success: true
+        from: 2000-01-23
+        to: 2000-01-23
+      properties:
+        success:
+          type: boolean
+        from:
+          format: date
+          type: string
+        to:
+          format: date
+          type: string
+          nullable: true
+        summary:
+          $ref: "#/components/schemas/getInboxResponseTime_200_response_summary"
+        histogram:
+          items:
+            $ref: "#/components/schemas/getInboxResponseTime_200_response_histogram_inner"
+          type: array
+    getInboxTopAccounts_200_response_accounts_inner:
+      example:
+        accountId: accountId
+        total: 1
+        medianResponseSeconds: 5
+        displayName: displayName
+        repliedCount: 2
+        received: 0
+        sent: 6
+        conversations: 5
+        platform: platform
+        username: username
+      properties:
+        accountId:
+          type: string
+        platform:
+          type: string
+        displayName:
+          description: (disconnected) when the SocialAccount no longer exists
+          type: string
+        username:
+          type: string
+        received:
+          type: integer
+        sent:
+          type: integer
+        total:
+          type: integer
+        conversations:
+          type: integer
+        medianResponseSeconds:
+          type: integer
+        repliedCount:
+          description: Distinguishes 'instant replies' from 'no replies at all' so
+            a zero medianResponseSeconds with repliedCount=0 renders as '—' instead
+            of '0s'
+          type: integer
+    getInboxTopAccounts_200_response:
+      example:
+        success: true
+        from: 2000-01-23
+        to: 2000-01-23
+        accounts:
+        - accountId: accountId
+          total: 1
+          medianResponseSeconds: 5
+          displayName: displayName
+          repliedCount: 2
+          received: 0
+          sent: 6
+          conversations: 5
+          platform: platform
+          username: username
+        - accountId: accountId
+          total: 1
+          medianResponseSeconds: 5
+          displayName: displayName
+          repliedCount: 2
+          received: 0
+          sent: 6
+          conversations: 5
+          platform: platform
+          username: username
+      properties:
+        success:
+          type: boolean
+        from:
+          format: date
+          type: string
+        to:
+          format: date
+          type: string
+          nullable: true
+        accounts:
+          items:
+            $ref: "#/components/schemas/getInboxTopAccounts_200_response_accounts_inner"
+          type: array
+    listInboxConversationAnalytics_200_response_items_inner:
+      example:
+        mongoId: mongoId
+        read: 5
+        conversationId: conversationId
+        participantPicture: participantPicture
+        lastMessage: lastMessage
+        received: 6
+        failed: 5
+        participantUsername: participantUsername
+        sent: 1
+        platform: platform
+        accountId: accountId
+        firstMessageAt: 2000-01-23T04:56:07.000+00:00
+        lastMessageAt: 2000-01-23T04:56:07.000+00:00
+        totalMessages: 0
+        participantName: participantName
+      properties:
+        conversationId:
+          description: The platformConversationId (the same identity used by metadata.conversationId)
+          type: string
+        mongoId:
+          description: "The Conversation document _id, when a matching doc exists"
+          type: string
+          nullable: true
+        accountId:
+          type: string
+        platform:
+          type: string
+        participantName:
+          type: string
+          nullable: true
+        participantUsername:
+          type: string
+          nullable: true
+        participantPicture:
+          type: string
+          nullable: true
+        lastMessage:
+          description: Cached preview from the Conversation doc
+          type: string
+          nullable: true
+        totalMessages:
+          type: integer
+        received:
+          type: integer
+        sent:
+          type: integer
+        read:
+          type: integer
+        failed:
+          type: integer
+        firstMessageAt:
+          format: date-time
+          type: string
+        lastMessageAt:
+          format: date-time
+          type: string
+    listInboxConversationAnalytics_200_response_pagination:
+      example:
+        total: 9
+        limit: 7
+        totalPages: 3
+        hasMore: true
+        page: 2
+      properties:
+        page:
+          type: integer
+        limit:
+          type: integer
+        total:
+          type: integer
+        totalPages:
+          type: integer
+        hasMore:
+          type: boolean
+    listInboxConversationAnalytics_200_response:
+      example:
+        pagination:
+          total: 9
+          limit: 7
+          totalPages: 3
+          hasMore: true
+          page: 2
+        success: true
+        from: 2000-01-23
+        to: 2000-01-23
+        items:
+        - mongoId: mongoId
+          read: 5
+          conversationId: conversationId
+          participantPicture: participantPicture
+          lastMessage: lastMessage
+          received: 6
+          failed: 5
+          participantUsername: participantUsername
+          sent: 1
+          platform: platform
+          accountId: accountId
+          firstMessageAt: 2000-01-23T04:56:07.000+00:00
+          lastMessageAt: 2000-01-23T04:56:07.000+00:00
+          totalMessages: 0
+          participantName: participantName
+        - mongoId: mongoId
+          read: 5
+          conversationId: conversationId
+          participantPicture: participantPicture
+          lastMessage: lastMessage
+          received: 6
+          failed: 5
+          participantUsername: participantUsername
+          sent: 1
+          platform: platform
+          accountId: accountId
+          firstMessageAt: 2000-01-23T04:56:07.000+00:00
+          lastMessageAt: 2000-01-23T04:56:07.000+00:00
+          totalMessages: 0
+          participantName: participantName
+      properties:
+        success:
+          type: boolean
+        from:
+          format: date
+          type: string
+        to:
+          format: date
+          type: string
+          nullable: true
+        items:
+          items:
+            $ref: "#/components/schemas/listInboxConversationAnalytics_200_response_items_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listInboxConversationAnalytics_200_response_pagination"
+    getInboxConversationAnalytics_200_response_summary:
+      example:
+        firstMessageAt: 2000-01-23T04:56:07.000+00:00
+        read: 1
+        lastMessageAt: 2000-01-23T04:56:07.000+00:00
+        totalMessages: 5
+        received: 0
+        failed: 5
+        sent: 6
+      properties:
+        received:
+          type: integer
+        sent:
+          type: integer
+        read:
+          type: integer
+        failed:
+          type: integer
+        totalMessages:
+          type: integer
+        firstMessageAt:
+          format: date-time
+          type: string
+          nullable: true
+        lastMessageAt:
+          format: date-time
+          type: string
+          nullable: true
+    getInboxConversationAnalytics_200_response_bySource_inner:
+      example:
+        count: 2
+        source: source
+      properties:
+        source:
+          description: (unspecified) for legacy rows with no metadata.source
+          type: string
+        count:
+          type: integer
+    getInboxConversationAnalytics_200_response:
+      example:
+        mongoId: mongoId
+        summary:
+          firstMessageAt: 2000-01-23T04:56:07.000+00:00
+          read: 1
+          lastMessageAt: 2000-01-23T04:56:07.000+00:00
+          totalMessages: 5
+          received: 0
+          failed: 5
+          sent: 6
+        timeseries:
+        - date: 2000-01-23
+          read: 9
+          received: 7
+          failed: 3
+          sent: 2
+        - date: 2000-01-23
+          read: 9
+          received: 7
+          failed: 3
+          sent: 2
+        success: true
+        conversationId: conversationId
+        bySource:
+        - count: 2
+          source: source
+        - count: 2
+          source: source
+        from: 2000-01-23
+        to: 2000-01-23
+        platform: platform
+      properties:
+        success:
+          type: boolean
+        conversationId:
+          description: The platformConversationId
+          type: string
+        mongoId:
+          type: string
+        platform:
+          type: string
+          nullable: true
+        from:
+          format: date
+          type: string
+        to:
+          format: date
+          type: string
+          nullable: true
+        summary:
+          $ref: "#/components/schemas/getInboxConversationAnalytics_200_response_summary"
+        timeseries:
+          items:
+            $ref: "#/components/schemas/getInboxVolume_200_response_timeseries_inner"
+          type: array
+        bySource:
+          items:
+            $ref: "#/components/schemas/getInboxConversationAnalytics_200_response_bySource_inner"
+          type: array
+    getInboxConversationAnalytics_404_response:
+      example:
+        code: conversation_not_found
+        error: Conversation not found.
+      properties:
+        error:
+          example: Conversation not found.
+          type: string
+        code:
+          example: conversation_not_found
+          type: string
     listAccountGroups_200_response_groups_inner:
       example:
         createdBy: createdBy
@@ -31447,15 +32740,6 @@ components:
         file:
           format: binary
           type: string
-    bulkUploadPosts_429_response:
-      example:
-        details: "{}"
-        error: error
-      properties:
-        error:
-          type: string
-        details:
-          type: object
     unpublishPost_request:
       properties:
         platform:
@@ -38548,6 +39832,9 @@ components:
             - whatsapp.number.activated
             - whatsapp.number.declined
             - whatsapp.number.verification_required
+            - whatsapp.number.suspended
+            - whatsapp.number.reactivated
+            - whatsapp.number.released
             type: string
           minItems: 1
           type: array
@@ -38626,6 +39913,9 @@ components:
             - whatsapp.number.activated
             - whatsapp.number.declined
             - whatsapp.number.verification_required
+            - whatsapp.number.suspended
+            - whatsapp.number.reactivated
+            - whatsapp.number.released
             type: string
           minItems: 1
           type: array
@@ -53159,6 +54449,48 @@ components:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
         verificationUrl:
           type: string
+    onWhatsAppNumberSuspended_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.suspended
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+        reason:
+          type: string
+          nullable: true
+    onWhatsAppNumberReactivated_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.reactivated
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+    onWhatsAppNumberReleased_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.released
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
+        reason:
+          type: string
+          nullable: true
     WorkflowNode_position:
       description: Canvas coordinates (ignored by the executor; used by the visual
         builder).

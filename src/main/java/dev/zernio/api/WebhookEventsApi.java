@@ -20,6 +20,9 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.OnWhatsAppNumberActivatedRequest;
 import dev.zernio.model.OnWhatsAppNumberDeclinedRequest;
+import dev.zernio.model.OnWhatsAppNumberReactivatedRequest;
+import dev.zernio.model.OnWhatsAppNumberReleasedRequest;
+import dev.zernio.model.OnWhatsAppNumberSuspendedRequest;
 import dev.zernio.model.OnWhatsAppNumberVerificationRequiredRequest;
 import dev.zernio.model.WebhookPayloadAccountAdsInitialSyncCompleted;
 import dev.zernio.model.WebhookPayloadAccountConnected;
@@ -76,7 +79,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T17:01:37.709651087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T07:31:31.664177081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3666,6 +3669,333 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberDeclinedRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number reactivated event
+   * Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+   * @param onWhatsAppNumberReactivatedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberReactivated(@javax.annotation.Nonnull OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest) throws ApiException {
+    onWhatsAppNumberReactivated(onWhatsAppNumberReactivatedRequest, null);
+  }
+
+  /**
+   * WhatsApp number reactivated event
+   * Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+   * @param onWhatsAppNumberReactivatedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberReactivated(@javax.annotation.Nonnull OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberReactivatedWithHttpInfo(onWhatsAppNumberReactivatedRequest, headers);
+  }
+
+  /**
+   * WhatsApp number reactivated event
+   * Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+   * @param onWhatsAppNumberReactivatedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberReactivatedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest) throws ApiException {
+    return onWhatsAppNumberReactivatedWithHttpInfo(onWhatsAppNumberReactivatedRequest, null);
+  }
+
+  /**
+   * WhatsApp number reactivated event
+   * Fired when a suspended number is reactivated (e.g. the payment recovered) and is usable again. 
+   * @param onWhatsAppNumberReactivatedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberReactivatedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberReactivatedRequestBuilder(onWhatsAppNumberReactivatedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberReactivated", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberReactivatedRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberReactivatedRequest onWhatsAppNumberReactivatedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberReactivatedRequest' is set
+    if (onWhatsAppNumberReactivatedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberReactivatedRequest' when calling onWhatsAppNumberReactivated");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.reactivated";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberReactivatedRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number released event
+   * Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+   * @param onWhatsAppNumberReleasedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberReleased(@javax.annotation.Nonnull OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest) throws ApiException {
+    onWhatsAppNumberReleased(onWhatsAppNumberReleasedRequest, null);
+  }
+
+  /**
+   * WhatsApp number released event
+   * Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+   * @param onWhatsAppNumberReleasedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberReleased(@javax.annotation.Nonnull OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberReleasedWithHttpInfo(onWhatsAppNumberReleasedRequest, headers);
+  }
+
+  /**
+   * WhatsApp number released event
+   * Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+   * @param onWhatsAppNumberReleasedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberReleasedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest) throws ApiException {
+    return onWhatsAppNumberReleasedWithHttpInfo(onWhatsAppNumberReleasedRequest, null);
+  }
+
+  /**
+   * WhatsApp number released event
+   * Fired when a number is released and is no longer usable (by the user, a billing cleanup, or an admin). Terminal. &#x60;reason&#x60; carries the cause (e.g. &#x60;user_requested&#x60;, &#x60;cleanup_suspended&#x60;). 
+   * @param onWhatsAppNumberReleasedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberReleasedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberReleasedRequestBuilder(onWhatsAppNumberReleasedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberReleased", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberReleasedRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberReleasedRequest onWhatsAppNumberReleasedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberReleasedRequest' is set
+    if (onWhatsAppNumberReleasedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberReleasedRequest' when calling onWhatsAppNumberReleased");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.released";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberReleasedRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number suspended event
+   * Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+   * @param onWhatsAppNumberSuspendedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberSuspended(@javax.annotation.Nonnull OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest) throws ApiException {
+    onWhatsAppNumberSuspended(onWhatsAppNumberSuspendedRequest, null);
+  }
+
+  /**
+   * WhatsApp number suspended event
+   * Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+   * @param onWhatsAppNumberSuspendedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberSuspended(@javax.annotation.Nonnull OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberSuspendedWithHttpInfo(onWhatsAppNumberSuspendedRequest, headers);
+  }
+
+  /**
+   * WhatsApp number suspended event
+   * Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+   * @param onWhatsAppNumberSuspendedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberSuspendedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest) throws ApiException {
+    return onWhatsAppNumberSuspendedWithHttpInfo(onWhatsAppNumberSuspendedRequest, null);
+  }
+
+  /**
+   * WhatsApp number suspended event
+   * Fired when an active number is suspended (e.g. a failed payment). The number stops working until the issue is resolved, after which a &#x60;whatsapp.number.reactivated&#x60; event is sent. &#x60;reason&#x60; carries the cause (e.g. &#x60;payment_failed&#x60;, &#x60;subscription_ended&#x60;). 
+   * @param onWhatsAppNumberSuspendedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberSuspendedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberSuspendedRequestBuilder(onWhatsAppNumberSuspendedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberSuspended", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberSuspendedRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberSuspendedRequest onWhatsAppNumberSuspendedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberSuspendedRequest' is set
+    if (onWhatsAppNumberSuspendedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberSuspendedRequest' when calling onWhatsAppNumberSuspended");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.suspended";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberSuspendedRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

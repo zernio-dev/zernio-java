@@ -18,7 +18,6 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
-import dev.zernio.model.BulkUploadPosts429Response;
 import dev.zernio.model.BulkUploadResult;
 import dev.zernio.model.CreatePost409Response;
 import dev.zernio.model.CreatePost429Response;
@@ -26,6 +25,7 @@ import dev.zernio.model.CreatePostRequest;
 import dev.zernio.model.EditPost200Response;
 import dev.zernio.model.EditPostRequest;
 import java.io.File;
+import dev.zernio.model.GetInboxVolume400Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
@@ -74,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-04T17:01:37.709651087Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T07:31:31.664177081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
