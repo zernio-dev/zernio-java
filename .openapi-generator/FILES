@@ -1109,6 +1109,11 @@ docs/ValidateSubreddit200Response.md
 docs/ValidateSubreddit200ResponseOneOf.md
 docs/ValidateSubreddit200ResponseOneOf1.md
 docs/ValidateSubreddit200ResponseOneOfSubreddit.md
+docs/ValidateWhatsAppNumberKycAddress200Response.md
+docs/ValidateWhatsAppNumberKycAddress400Response.md
+docs/ValidateWhatsAppNumberKycAddress400ResponseDetails.md
+docs/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.md
+docs/ValidateWhatsAppNumberKycAddressRequest.md
 docs/Webhook.md
 docs/WebhookEventsApi.md
 docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
@@ -2346,6 +2351,11 @@ src/main/java/dev/zernio/model/ValidateSubreddit200Response.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOf.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOf1.java
 src/main/java/dev/zernio/model/ValidateSubreddit200ResponseOneOfSubreddit.java
+src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress200Response.java
+src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400Response.java
+src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400ResponseDetails.java
+src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.java
+src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddressRequest.java
 src/main/java/dev/zernio/model/Webhook.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompleted.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.java
@@ -2441,3 +2451,8 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress200ResponseTest.java
+src/test/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInnerTest.java
+src/test/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400ResponseDetailsTest.java
+src/test/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400ResponseTest.java
+src/test/java/dev/zernio/model/ValidateWhatsAppNumberKycAddressRequestTest.java

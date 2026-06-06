@@ -38,6 +38,9 @@ import dev.zernio.model.SearchAvailableWhatsAppNumbers200Response;
 import dev.zernio.model.SubmitWhatsAppNumberKyc200Response;
 import dev.zernio.model.SubmitWhatsAppNumberKycRequest;
 import dev.zernio.model.UploadWhatsAppNumberKycDocument200Response;
+import dev.zernio.model.ValidateWhatsAppNumberKycAddress200Response;
+import dev.zernio.model.ValidateWhatsAppNumberKycAddress400Response;
+import dev.zernio.model.ValidateWhatsAppNumberKycAddressRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -70,7 +73,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-06T00:00:54.177808840Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-06T00:02:21.650928688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1845,6 +1848,129 @@ public class WhatsAppPhoneNumbersApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(body);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Pre-validate a regulated-number KYC address (Tier 4)
+   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validateWhatsAppNumberKycAddressRequest  (required)
+   * @return ValidateWhatsAppNumberKycAddress200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ValidateWhatsAppNumberKycAddress200Response validateWhatsAppNumberKycAddress(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest) throws ApiException {
+    return validateWhatsAppNumberKycAddress(validateWhatsAppNumberKycAddressRequest, null);
+  }
+
+  /**
+   * Pre-validate a regulated-number KYC address (Tier 4)
+   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validateWhatsAppNumberKycAddressRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ValidateWhatsAppNumberKycAddress200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ValidateWhatsAppNumberKycAddress200Response validateWhatsAppNumberKycAddress(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ValidateWhatsAppNumberKycAddress200Response> localVarResponse = validateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pre-validate a regulated-number KYC address (Tier 4)
+   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validateWhatsAppNumberKycAddressRequest  (required)
+   * @return ApiResponse&lt;ValidateWhatsAppNumberKycAddress200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ValidateWhatsAppNumberKycAddress200Response> validateWhatsAppNumberKycAddressWithHttpInfo(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest) throws ApiException {
+    return validateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest, null);
+  }
+
+  /**
+   * Pre-validate a regulated-number KYC address (Tier 4)
+   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validateWhatsAppNumberKycAddressRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ValidateWhatsAppNumberKycAddress200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ValidateWhatsAppNumberKycAddress200Response> validateWhatsAppNumberKycAddressWithHttpInfo(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = validateWhatsAppNumberKycAddressRequestBuilder(validateWhatsAppNumberKycAddressRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("validateWhatsAppNumberKycAddress", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ValidateWhatsAppNumberKycAddress200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ValidateWhatsAppNumberKycAddress200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ValidateWhatsAppNumberKycAddress200Response>() {});
+        
+
+        return new ApiResponse<ValidateWhatsAppNumberKycAddress200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder validateWhatsAppNumberKycAddressRequestBuilder(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'validateWhatsAppNumberKycAddressRequest' is set
+    if (validateWhatsAppNumberKycAddressRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'validateWhatsAppNumberKycAddressRequest' when calling validateWhatsAppNumberKycAddress");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/kyc/validate-address";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(validateWhatsAppNumberKycAddressRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

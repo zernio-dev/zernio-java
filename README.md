@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-06T00:00:54.177808840Z[Etc/UTC]
+- Build date: 2026-06-06T00:02:21.650928688Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -828,6 +828,8 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**submitWhatsAppNumberKycWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKycWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
 *WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocument**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
 *WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocumentWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocumentWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
+*WhatsAppPhoneNumbersApi* | [**validateWhatsAppNumberKycAddress**](docs/WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddress) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4)
+*WhatsAppPhoneNumbersApi* | [**validateWhatsAppNumberKycAddressWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddressWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4)
 *WhatsAppSandboxApi* | [**createWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSession) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
 *WhatsAppSandboxApi* | [**createWhatsAppSandboxSessionWithHttpInfo**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSessionWithHttpInfo) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
 *WhatsAppSandboxApi* | [**deleteWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#deleteWhatsAppSandboxSession) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
@@ -1931,6 +1933,11 @@ Class | Method | HTTP request | Description
  - [ValidateSubreddit200ResponseOneOf](docs/ValidateSubreddit200ResponseOneOf.md)
  - [ValidateSubreddit200ResponseOneOf1](docs/ValidateSubreddit200ResponseOneOf1.md)
  - [ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
+ - [ValidateWhatsAppNumberKycAddress200Response](docs/ValidateWhatsAppNumberKycAddress200Response.md)
+ - [ValidateWhatsAppNumberKycAddress400Response](docs/ValidateWhatsAppNumberKycAddress400Response.md)
+ - [ValidateWhatsAppNumberKycAddress400ResponseDetails](docs/ValidateWhatsAppNumberKycAddress400ResponseDetails.md)
+ - [ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner](docs/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.md)
+ - [ValidateWhatsAppNumberKycAddressRequest](docs/ValidateWhatsAppNumberKycAddressRequest.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
  - [WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)

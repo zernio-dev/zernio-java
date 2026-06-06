@@ -30,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**submitWhatsAppNumberKycWithHttpInfo**](WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKycWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC |
 | [**uploadWhatsAppNumberKycDocument**](WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
 | [**uploadWhatsAppNumberKycDocumentWithHttpInfo**](WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocumentWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document |
+| [**validateWhatsAppNumberKycAddress**](WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddress) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4) |
+| [**validateWhatsAppNumberKycAddressWithHttpInfo**](WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddressWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4) |
 
 
 
@@ -1996,5 +1998,153 @@ ApiResponse<[**UploadWhatsAppNumberKycDocument200Response**](UploadWhatsAppNumbe
 |-------------|-------------|------------------|
 | **200** | Document uploaded. |  -  |
 | **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## validateWhatsAppNumberKycAddress
+
+> ValidateWhatsAppNumberKycAddress200Response validateWhatsAppNumberKycAddress(validateWhatsAppNumberKycAddressRequest)
+
+Pre-validate a regulated-number KYC address (Tier 4)
+
+Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest = new ValidateWhatsAppNumberKycAddressRequest(); // ValidateWhatsAppNumberKycAddressRequest | 
+        try {
+            ValidateWhatsAppNumberKycAddress200Response result = apiInstance.validateWhatsAppNumberKycAddress(validateWhatsAppNumberKycAddressRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#validateWhatsAppNumberKycAddress");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **validateWhatsAppNumberKycAddressRequest** | [**ValidateWhatsAppNumberKycAddressRequest**](ValidateWhatsAppNumberKycAddressRequest.md)|  | |
+
+### Return type
+
+[**ValidateWhatsAppNumberKycAddress200Response**](ValidateWhatsAppNumberKycAddress200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
+| **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
+| **401** | Unauthorized |  -  |
+
+## validateWhatsAppNumberKycAddressWithHttpInfo
+
+> ApiResponse<ValidateWhatsAppNumberKycAddress200Response> validateWhatsAppNumberKycAddress validateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest)
+
+Pre-validate a regulated-number KYC address (Tier 4)
+
+Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest = new ValidateWhatsAppNumberKycAddressRequest(); // ValidateWhatsAppNumberKycAddressRequest | 
+        try {
+            ApiResponse<ValidateWhatsAppNumberKycAddress200Response> response = apiInstance.validateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#validateWhatsAppNumberKycAddress");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **validateWhatsAppNumberKycAddressRequest** | [**ValidateWhatsAppNumberKycAddressRequest**](ValidateWhatsAppNumberKycAddressRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ValidateWhatsAppNumberKycAddress200Response**](ValidateWhatsAppNumberKycAddress200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
+| **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
 | **401** | Unauthorized |  -  |
 
