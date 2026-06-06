@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   RemediateWhatsAppNumberRequest.JSON_PROPERTY_DOCUMENTS,
   RemediateWhatsAppNumberRequest.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-05T14:57:53.837772529Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-06T00:00:54.177808840Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemediateWhatsAppNumberRequest {
   public static final String JSON_PROPERTY_VALUES = "values";
   @javax.annotation.Nullable

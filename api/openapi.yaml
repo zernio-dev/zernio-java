@@ -14803,7 +14803,10 @@ paths:
           still in review PLUS recently-declined (last 30 days) ones, so a
           failed registration surfaces (with `regulatoryDeclineReason`) instead
           of silently disappearing. Declined numbers can be re-submitted via
-          POST /v1/whatsapp/phone-numbers/{id}/remediate.
+          POST /v1/whatsapp/phone-numbers/{id}/remediate. `verifying` is the
+          short-lived state after the number is provisioned on our side while
+          WhatsApp confirms the activation code; the number is not billed until
+          it reaches `active`.
         explode: true
         in: query
         name: status
@@ -14811,6 +14814,7 @@ paths:
         schema:
           enum:
           - provisioning
+          - verifying
           - pending_payment
           - pending_regulatory
           - regulatory_declined
@@ -44033,6 +44037,7 @@ components:
           - pending_regulatory
           - regulatory_declined
           - provisioning
+          - verifying
           - active
           - suspended
           - releasing
@@ -44610,6 +44615,7 @@ components:
           - pending_regulatory
           - regulatory_declined
           - provisioning
+          - verifying
           - active
           - suspended
           - releasing

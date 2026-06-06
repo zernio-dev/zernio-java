@@ -34,6 +34,7 @@
 | PENDING_REGULATORY | &quot;pending_regulatory&quot; |
 | REGULATORY_DECLINED | &quot;regulatory_declined&quot; |
 | PROVISIONING | &quot;provisioning&quot; |
+| VERIFYING | &quot;verifying&quot; |
 | ACTIVE | &quot;active&quot; |
 | SUSPENDED | &quot;suspended&quot; |
 | RELEASING | &quot;releasing&quot; |
