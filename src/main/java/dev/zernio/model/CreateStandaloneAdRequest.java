@@ -122,7 +122,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T08:20:23.831805245Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T08:32:08.480732120Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1225,7 +1225,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta Lead Gen forms only (facebook/instagram). The leadgen_forms ID to attach to the ad&#39;s creative — create one via POST /v1/ads/lead-forms. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;; ignored otherwise. The ad set&#39;s promoted_object.page_id + LEAD_GENERATION optimization are derived automatically from the goal.
+   * Meta Lead Gen forms only (facebook/instagram). The leadgen_forms ID to attach to the ad&#39;s creative — create one via POST /v1/ads/lead-forms. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;; ignored otherwise. The ad set&#39;s promoted_object.page_id + LEAD_GENERATION optimization are derived automatically from the goal. NOT compatible with &#x60;placementAssets&#x60; (per-placement creative) or &#x60;dynamicCreative&#x60; (multiple assets/text): Meta does not allow an asset_feed_spec creative on instant-form lead ads, so that combination is rejected with INVALID_FIELD_VALUE. Per-placement / multi-asset creative is supported on &#x60;traffic&#x60; and &#x60;conversions&#x60; goals.
    * @return leadGenFormId
    */
   @javax.annotation.Nullable
