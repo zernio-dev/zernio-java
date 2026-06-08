@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequestTargetingInterestsInner.JSON_PROPERTY_ID,
   UpdateAdRequestTargetingInterestsInner.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T08:32:08.480732120Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T09:14:54.123092729Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargetingInterestsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

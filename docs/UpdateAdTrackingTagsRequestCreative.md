@@ -2,7 +2,7 @@
 
 # UpdateAdTrackingTagsRequestCreative
 
-Meta only. Required to rebuild the immutable creative when setting urlTags.
+Meta only. OPTIONAL — omit to preserve the existing creative verbatim (default). Provide it only to rebuild the creative explicitly, or for creatives whose object_story_spec Meta strips.
 
 ## Properties
 
