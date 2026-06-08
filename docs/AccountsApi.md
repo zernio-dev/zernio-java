@@ -795,7 +795,7 @@ ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Respons
 
 ## listAccounts
 
-> ListAccounts200Response listAccounts(profileId, platform, includeOverLimit, page, limit)
+> ListAccounts200Response listAccounts(profileId, platform, status, includeOverLimit, page, limit)
 
 List accounts
 
@@ -824,11 +824,12 @@ public class Example {
         AccountsApi apiInstance = new AccountsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter accounts by profile ID
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
+        String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
         Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
         try {
-            ListAccounts200Response result = apiInstance.listAccounts(profileId, platform, includeOverLimit, page, limit);
+            ListAccounts200Response result = apiInstance.listAccounts(profileId, platform, status, includeOverLimit, page, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#listAccounts");
@@ -848,6 +849,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter accounts by profile ID | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
+| **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional] |
 | **limit** | **Integer**| Page size. Required alongside page for pagination. | [optional] |
@@ -874,7 +876,7 @@ public class Example {
 
 ## listAccountsWithHttpInfo
 
-> ApiResponse<ListAccounts200Response> listAccounts listAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit)
+> ApiResponse<ListAccounts200Response> listAccounts listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit)
 
 List accounts
 
@@ -904,11 +906,12 @@ public class Example {
         AccountsApi apiInstance = new AccountsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter accounts by profile ID
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
+        String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
         Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
         try {
-            ApiResponse<ListAccounts200Response> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, includeOverLimit, page, limit);
+            ApiResponse<ListAccounts200Response> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -930,6 +933,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter accounts by profile ID | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
+| **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. | [optional] |
 | **limit** | **Integer**| Page size. Required alongside page for pagination. | [optional] |

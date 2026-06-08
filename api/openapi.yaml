@@ -5112,6 +5112,18 @@ paths:
         schema:
           type: string
         style: form
+      - description: |
+          Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - connected
+          - disconnected
+          type: string
+        style: form
       - description: "When true, includes accounts from over-limit profiles."
         explode: true
         in: query
