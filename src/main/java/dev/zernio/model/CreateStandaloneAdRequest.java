@@ -65,6 +65,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_AD_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_TRACKING,
   CreateStandaloneAdRequest.JSON_PROPERTY_GOAL,
+  CreateStandaloneAdRequest.JSON_PROPERTY_OPTIMIZATION_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_LEVEL,
@@ -121,7 +122,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-06T00:02:21.650928688Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T08:20:23.831805245Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -201,6 +202,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_GOAL = "goal";
   @javax.annotation.Nullable
   private GoalEnum goal;
+
+  public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
+  @javax.annotation.Nullable
+  private String optimizationGoal;
 
   public static final String JSON_PROPERTY_BUDGET_AMOUNT = "budgetAmount";
   @javax.annotation.Nullable
@@ -971,6 +976,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGoal(@javax.annotation.Nullable GoalEnum goal) {
     this.goal = goal;
+  }
+
+
+  public CreateStandaloneAdRequest optimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
+    this.optimizationGoal = optimizationGoal;
+    return this;
+  }
+
+  /**
+   * Meta only. Explicit ad-set &#x60;optimization_goal&#x60; (e.g. &#x60;LANDING_PAGE_VIEWS&#x60;, &#x60;LINK_CLICKS&#x60;, &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;OFFSITE_CONVERSIONS&#x60;, &#x60;THRUPLAY&#x60;, &#x60;LEAD_GENERATION&#x60;). Overrides the default derived from &#x60;goal&#x60; (e.g. &#x60;traffic&#x60; defaults to &#x60;LINK_CLICKS&#x60;). Forwarded verbatim to Meta, which validates compatibility with the campaign objective and rejects incompatible combinations.
+   * @return optimizationGoal
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOptimizationGoal() {
+    return optimizationGoal;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOptimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
+    this.optimizationGoal = optimizationGoal;
   }
 
 
@@ -2446,6 +2475,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.adName, createStandaloneAdRequest.adName) &&
         Objects.equals(this.tracking, createStandaloneAdRequest.tracking) &&
         Objects.equals(this.goal, createStandaloneAdRequest.goal) &&
+        Objects.equals(this.optimizationGoal, createStandaloneAdRequest.optimizationGoal) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
         Objects.equals(this.budgetLevel, createStandaloneAdRequest.budgetLevel) &&
@@ -2505,7 +2535,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2520,6 +2550,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    adName: ").append(toIndentedString(adName)).append("\n");
     sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
+    sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    budgetLevel: ").append(toIndentedString(budgetLevel)).append("\n");
@@ -2660,6 +2691,11 @@ public class CreateStandaloneAdRequest {
     // add `goal` to the URL query string
     if (getGoal() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoal()))));
+    }
+
+    // add `optimizationGoal` to the URL query string
+    if (getOptimizationGoal() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soptimizationGoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptimizationGoal()))));
     }
 
     // add `budgetAmount` to the URL query string
