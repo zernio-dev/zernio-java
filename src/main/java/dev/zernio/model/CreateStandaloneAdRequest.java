@@ -122,7 +122,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T09:14:54.123092729Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T10:11:27.163527217Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1225,7 +1225,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta Lead Gen forms only (facebook/instagram). The leadgen_forms ID to attach to the ad&#39;s creative — create one via POST /v1/ads/lead-forms. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;; ignored otherwise. The ad set&#39;s promoted_object.page_id + LEAD_GENERATION optimization are derived automatically from the goal. NOT compatible with &#x60;placementAssets&#x60; (per-placement creative) or &#x60;dynamicCreative&#x60; (multiple assets/text): Meta does not allow an asset_feed_spec creative on instant-form lead ads, so that combination is rejected with INVALID_FIELD_VALUE. Per-placement / multi-asset creative is supported on &#x60;traffic&#x60; and &#x60;conversions&#x60; goals.
+   * Meta Lead Gen forms only (facebook/instagram). The leadgen_forms ID to attach to the ad&#39;s creative — create one via POST /v1/ads/lead-forms. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;; ignored otherwise. The ad set&#39;s promoted_object.page_id + LEAD_GENERATION optimization + destination_type ON_AD are derived automatically from the goal. &#x60;placementAssets&#x60; (per-placement creative) IS supported on instant-form lead ads — the form is attached for you. NOT compatible with &#x60;dynamicCreative&#x60; (the auto-optimizing multi-asset pool), which Meta requires a dedicated Dynamic Creative ad set for; that combination is rejected with INVALID_FIELD_VALUE (use &#x60;placementAssets&#x60;, a single creative, or run &#x60;dynamicCreative&#x60; on a &#x60;traffic&#x60;/&#x60;conversions&#x60; goal).
    * @return leadGenFormId
    */
   @javax.annotation.Nullable
