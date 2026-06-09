@@ -15508,7 +15508,7 @@ paths:
         List active WhatsApp group chats for a business phone number.
         These are actual WhatsApp group conversations on the platform.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: listWhatsAppGroupChats
       parameters:
       - description: WhatsApp social account ID
@@ -15557,7 +15557,7 @@ paths:
       description: |
         Create a new WhatsApp group chat. Returns the group ID and optionally an invite link.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: createWhatsAppGroupChat
       requestBody:
         content:
@@ -15587,7 +15587,7 @@ paths:
       description: |
         Delete a WhatsApp group and remove all participants.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: deleteWhatsAppGroupChat
       parameters:
       - description: Group ID
@@ -15629,7 +15629,7 @@ paths:
         Retrieve metadata about a WhatsApp group including subject, description,
         participants, and settings.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: getWhatsAppGroupChat
       parameters:
       - description: Group ID
@@ -15670,7 +15670,7 @@ paths:
       description: |
         Update the subject, description, or join approval mode of a WhatsApp group.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: updateWhatsAppGroupChat
       parameters:
       - description: Group ID
@@ -15719,7 +15719,7 @@ paths:
       description: |
         Remove participants from a WhatsApp group.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: removeWhatsAppGroupParticipants
       parameters:
       - description: Group ID
@@ -15765,7 +15765,7 @@ paths:
       description: |
         Add participants to a WhatsApp group. Maximum 8 participants per request.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: addWhatsAppGroupParticipants
       parameters:
       - description: Group ID
@@ -15812,7 +15812,7 @@ paths:
       description: |
         Create a new invite link for a WhatsApp group. The previous link is revoked.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: createWhatsAppGroupInviteLink
       parameters:
       - description: Group ID
@@ -15852,7 +15852,7 @@ paths:
       description: |
         Reject pending join requests for a WhatsApp group.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: rejectWhatsAppGroupJoinRequests
       parameters:
       - description: Group ID
@@ -15898,7 +15898,7 @@ paths:
       description: |
         List pending join requests for a WhatsApp group (only for groups with approval_required mode).
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: listWhatsAppGroupJoinRequests
       parameters:
       - description: Group ID
@@ -15937,7 +15937,7 @@ paths:
       description: |
         Approve pending join requests for a WhatsApp group.
 
-        Not available on [Coexistence](/platforms/whatsapp#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
+        Not available on [Coexistence](/platforms/whatsapp/connection#whatsapp-business-app-coexistence) numbers. Requires a Cloud API-only number.
       operationId: approveWhatsAppGroupJoinRequests
       parameters:
       - description: Group ID
