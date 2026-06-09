@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createWebhookSettingsWithHttpInfo**](WebhooksApi.md#createWebhookSettingsWithHttpInfo) | **POST** /v1/webhooks/settings | Create webhook |
 | [**deleteWebhookSettings**](WebhooksApi.md#deleteWebhookSettings) | **DELETE** /v1/webhooks/settings | Delete webhook |
 | [**deleteWebhookSettingsWithHttpInfo**](WebhooksApi.md#deleteWebhookSettingsWithHttpInfo) | **DELETE** /v1/webhooks/settings | Delete webhook |
+| [**getWebhookLogs**](WebhooksApi.md#getWebhookLogs) | **GET** /v1/webhooks/logs | List webhook delivery logs |
+| [**getWebhookLogsWithHttpInfo**](WebhooksApi.md#getWebhookLogsWithHttpInfo) | **GET** /v1/webhooks/logs | List webhook delivery logs |
 | [**getWebhookSettings**](WebhooksApi.md#getWebhookSettings) | **GET** /v1/webhooks/settings | List webhooks |
 | [**getWebhookSettingsWithHttpInfo**](WebhooksApi.md#getWebhookSettingsWithHttpInfo) | **GET** /v1/webhooks/settings | List webhooks |
 | [**testWebhook**](WebhooksApi.md#testWebhook) | **POST** /v1/webhooks/test | Send test webhook |
@@ -310,6 +312,174 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Webhook deleted successfully |  -  |
 | **400** | Webhook ID required |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## getWebhookLogs
+
+> GetWebhookLogs200Response getWebhookLogs(limit, skip, status, event, webhookId, eventId)
+
+List webhook delivery logs
+
+Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhooksApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhooksApi apiInstance = new WebhooksApi(defaultClient);
+        Integer limit = 50; // Integer | Maximum number of logs to return
+        Integer skip = 0; // Integer | Number of logs to skip (offset-based pagination)
+        String status = "success"; // String | Filter by delivery outcome
+        String event = "event_example"; // String | Filter by event type (e.g. post.published)
+        String webhookId = "webhookId_example"; // String | Filter by webhook configuration ID
+        String eventId = "eventId_example"; // String | Filter by stable webhook event ID
+        try {
+            GetWebhookLogs200Response result = apiInstance.getWebhookLogs(limit, skip, status, event, webhookId, eventId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhooksApi#getWebhookLogs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**| Maximum number of logs to return | [optional] [default to 50] |
+| **skip** | **Integer**| Number of logs to skip (offset-based pagination) | [optional] [default to 0] |
+| **status** | **String**| Filter by delivery outcome | [optional] [enum: success, failed] |
+| **event** | **String**| Filter by event type (e.g. post.published) | [optional] |
+| **webhookId** | **String**| Filter by webhook configuration ID | [optional] |
+| **eventId** | **String**| Filter by stable webhook event ID | [optional] |
+
+### Return type
+
+[**GetWebhookLogs200Response**](GetWebhookLogs200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook logs retrieved successfully |  -  |
+| **400** | Invalid query parameter |  -  |
+| **401** | Unauthorized |  -  |
+
+## getWebhookLogsWithHttpInfo
+
+> ApiResponse<GetWebhookLogs200Response> getWebhookLogs getWebhookLogsWithHttpInfo(limit, skip, status, event, webhookId, eventId)
+
+List webhook delivery logs
+
+Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhooksApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhooksApi apiInstance = new WebhooksApi(defaultClient);
+        Integer limit = 50; // Integer | Maximum number of logs to return
+        Integer skip = 0; // Integer | Number of logs to skip (offset-based pagination)
+        String status = "success"; // String | Filter by delivery outcome
+        String event = "event_example"; // String | Filter by event type (e.g. post.published)
+        String webhookId = "webhookId_example"; // String | Filter by webhook configuration ID
+        String eventId = "eventId_example"; // String | Filter by stable webhook event ID
+        try {
+            ApiResponse<GetWebhookLogs200Response> response = apiInstance.getWebhookLogsWithHttpInfo(limit, skip, status, event, webhookId, eventId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhooksApi#getWebhookLogs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **limit** | **Integer**| Maximum number of logs to return | [optional] [default to 50] |
+| **skip** | **Integer**| Number of logs to skip (offset-based pagination) | [optional] [default to 0] |
+| **status** | **String**| Filter by delivery outcome | [optional] [enum: success, failed] |
+| **event** | **String**| Filter by event type (e.g. post.published) | [optional] |
+| **webhookId** | **String**| Filter by webhook configuration ID | [optional] |
+| **eventId** | **String**| Filter by stable webhook event ID | [optional] |
+
+### Return type
+
+ApiResponse<[**GetWebhookLogs200Response**](GetWebhookLogs200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook logs retrieved successfully |  -  |
+| **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 
 

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-09T13:01:46.049408324Z[Etc/UTC]
+- Build date: 2026-06-09T13:24:42.414017337Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -702,6 +702,8 @@ Class | Method | HTTP request | Description
 *WebhooksApi* | [**createWebhookSettingsWithHttpInfo**](docs/WebhooksApi.md#createWebhookSettingsWithHttpInfo) | **POST** /v1/webhooks/settings | Create webhook
 *WebhooksApi* | [**deleteWebhookSettings**](docs/WebhooksApi.md#deleteWebhookSettings) | **DELETE** /v1/webhooks/settings | Delete webhook
 *WebhooksApi* | [**deleteWebhookSettingsWithHttpInfo**](docs/WebhooksApi.md#deleteWebhookSettingsWithHttpInfo) | **DELETE** /v1/webhooks/settings | Delete webhook
+*WebhooksApi* | [**getWebhookLogs**](docs/WebhooksApi.md#getWebhookLogs) | **GET** /v1/webhooks/logs | List webhook delivery logs
+*WebhooksApi* | [**getWebhookLogsWithHttpInfo**](docs/WebhooksApi.md#getWebhookLogsWithHttpInfo) | **GET** /v1/webhooks/logs | List webhook delivery logs
 *WebhooksApi* | [**getWebhookSettings**](docs/WebhooksApi.md#getWebhookSettings) | **GET** /v1/webhooks/settings | List webhooks
 *WebhooksApi* | [**getWebhookSettingsWithHttpInfo**](docs/WebhooksApi.md#getWebhookSettingsWithHttpInfo) | **GET** /v1/webhooks/settings | List webhooks
 *WebhooksApi* | [**testWebhook**](docs/WebhooksApi.md#testWebhook) | **POST** /v1/webhooks/test | Send test webhook
@@ -1356,6 +1358,8 @@ Class | Method | HTTP request | Description
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
  - [GetUser200Response](docs/GetUser200Response.md)
  - [GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
+ - [GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)
+ - [GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
  - [GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
  - [GetWhatsAppBusinessProfile200Response](docs/GetWhatsAppBusinessProfile200Response.md)
  - [GetWhatsAppBusinessProfile200ResponseBusinessProfile](docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md)
@@ -1940,6 +1944,7 @@ Class | Method | HTTP request | Description
  - [ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner](docs/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.md)
  - [ValidateWhatsAppNumberKycAddressRequest](docs/ValidateWhatsAppNumberKycAddressRequest.md)
  - [Webhook](docs/Webhook.md)
+ - [WebhookLog](docs/WebhookLog.md)
  - [WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
  - [WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)
  - [WebhookPayloadAccountAdsInitialSyncCompletedSync](docs/WebhookPayloadAccountAdsInitialSyncCompletedSync.md)

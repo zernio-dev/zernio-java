@@ -506,6 +506,8 @@ docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
 docs/GetUser200Response.md
 docs/GetUser200ResponseUser.md
+docs/GetWebhookLogs200Response.md
+docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
 docs/GetWhatsAppBusinessProfile200Response.md
 docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md
@@ -1117,6 +1119,7 @@ docs/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.m
 docs/ValidateWhatsAppNumberKycAddressRequest.md
 docs/Webhook.md
 docs/WebhookEventsApi.md
+docs/WebhookLog.md
 docs/WebhookPayloadAccountAdsInitialSyncCompleted.md
 docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md
 docs/WebhookPayloadAccountAdsInitialSyncCompletedSync.md
@@ -1775,6 +1778,8 @@ src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200ResponseStats.java
 src/main/java/dev/zernio/model/GetUser200Response.java
 src/main/java/dev/zernio/model/GetUser200ResponseUser.java
+src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
+src/main/java/dev/zernio/model/GetWebhookLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/GetWebhookSettings200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBusinessProfile200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBusinessProfile200ResponseBusinessProfile.java
@@ -2359,6 +2364,7 @@ src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400ResponseDetail
 src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddress400ResponseDetailsAddressSuggestionsInner.java
 src/main/java/dev/zernio/model/ValidateWhatsAppNumberKycAddressRequest.java
 src/main/java/dev/zernio/model/Webhook.java
+src/main/java/dev/zernio/model/WebhookLog.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompleted.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompletedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountAdsInitialSyncCompletedSync.java
@@ -2453,3 +2459,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/GetWebhookLogs200ResponsePaginationTest.java

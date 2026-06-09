@@ -11599,6 +11599,95 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/webhooks/logs:
+    get:
+      description: |
+        Retrieve recorded webhook delivery attempts for the authenticated user, most recent first.
+        Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID,
+        plus offset-based pagination.
+      operationId: getWebhookLogs
+      parameters:
+      - description: Maximum number of logs to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Number of logs to skip (offset-based pagination)
+        explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          maximum: 10000
+          minimum: 0
+          type: integer
+        style: form
+      - description: Filter by delivery outcome
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - success
+          - failed
+          type: string
+        style: form
+      - description: Filter by event type (e.g. post.published)
+        explode: true
+        in: query
+        name: event
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 1
+          type: string
+        style: form
+      - description: Filter by webhook configuration ID
+        explode: true
+        in: query
+        name: webhookId
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 1
+          type: string
+        style: form
+      - description: Filter by stable webhook event ID
+        explode: true
+        in: query
+        name: eventId
+        required: false
+        schema:
+          maxLength: 200
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWebhookLogs_200_response"
+          description: Webhook logs retrieved successfully
+        "400":
+          description: Invalid query parameter
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List webhook delivery logs
+      tags:
+      - Webhooks
+      x-accepts:
+      - application/json
   /v1/webhooks/test:
     post:
       description: |
@@ -23648,6 +23737,73 @@ components:
           additionalProperties:
             type: string
           description: Custom headers included in webhook requests
+    WebhookLog:
+      description: A single webhook delivery attempt recorded by Zernio (30-day retention).
+      example:
+        attemptNumber: 6
+        eventId: eventId
+        webhookId: webhookId
+        responseBody: responseBody
+        requestPayload:
+          key: ""
+        responseTime: 1
+        errorMessage: errorMessage
+        userId: userId
+        url: https://openapi-generator.tech
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        webhookName: webhookName
+        event: event
+        status: success
+        statusCode: 0
+      properties:
+        userId:
+          description: ID of the account owner the webhook belongs to
+          type: string
+        webhookId:
+          description: ID of the webhook configuration that produced this delivery
+          type: string
+        webhookName:
+          description: Name of the webhook configuration at delivery time
+          type: string
+        eventId:
+          description: Stable webhook event ID (correlates to the delivered payload)
+          type: string
+        event:
+          description: Event type that triggered the delivery (e.g. post.published)
+          type: string
+        url:
+          description: Destination URL the webhook was delivered to
+          format: uri
+          type: string
+        status:
+          description: Delivery outcome
+          enum:
+          - success
+          - failed
+          type: string
+        statusCode:
+          description: HTTP status code returned by the destination endpoint
+          type: integer
+        requestPayload:
+          additionalProperties: true
+          description: The JSON payload sent to the destination endpoint
+          type: object
+        responseBody:
+          description: Response body returned by the destination endpoint
+          type: string
+        errorMessage:
+          description: Error message when delivery failed
+          type: string
+        attemptNumber:
+          description: Delivery attempt number (increments on retries)
+          type: integer
+        responseTime:
+          description: "Time taken by the destination endpoint to respond, in milliseconds"
+          type: integer
+        createdAt:
+          description: Timestamp the delivery was attempted
+          format: date-time
+          type: string
     WebhookPayloadPost:
       description: Webhook payload for post events
       example:
@@ -40341,6 +40497,75 @@ components:
       - events
       - name
       - url
+    getWebhookLogs_200_response_pagination:
+      example:
+        total: 5
+        pages: 7
+        limit: 5
+        hasMore: true
+        skip: 2
+      properties:
+        total:
+          description: Total number of matching logs
+          type: integer
+        limit:
+          description: Maximum number of logs returned per page
+          type: integer
+        skip:
+          description: Number of logs skipped
+          type: integer
+        pages:
+          description: Total number of pages
+          type: integer
+        hasMore:
+          description: Whether more logs are available beyond this page
+          type: boolean
+    getWebhookLogs_200_response:
+      example:
+        pagination:
+          total: 5
+          pages: 7
+          limit: 5
+          hasMore: true
+          skip: 2
+        logs:
+        - attemptNumber: 6
+          eventId: eventId
+          webhookId: webhookId
+          responseBody: responseBody
+          requestPayload:
+            key: ""
+          responseTime: 1
+          errorMessage: errorMessage
+          userId: userId
+          url: https://openapi-generator.tech
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          webhookName: webhookName
+          event: event
+          status: success
+          statusCode: 0
+        - attemptNumber: 6
+          eventId: eventId
+          webhookId: webhookId
+          responseBody: responseBody
+          requestPayload:
+            key: ""
+          responseTime: 1
+          errorMessage: errorMessage
+          userId: userId
+          url: https://openapi-generator.tech
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          webhookName: webhookName
+          event: event
+          status: success
+          statusCode: 0
+      properties:
+        logs:
+          items:
+            $ref: "#/components/schemas/WebhookLog"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/getWebhookLogs_200_response_pagination"
     testWebhook_request:
       properties:
         webhookId:

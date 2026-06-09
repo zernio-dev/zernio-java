@@ -19,6 +19,7 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.CreateWebhookSettingsRequest;
+import dev.zernio.model.GetWebhookLogs200Response;
 import dev.zernio.model.GetWebhookSettings200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.TestWebhookRequest;
@@ -58,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:01:46.049408324Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhooksApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -419,6 +420,164 @@ public class WebhooksApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List webhook delivery logs
+   * Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+   * @param limit Maximum number of logs to return (optional, default to 50)
+   * @param skip Number of logs to skip (offset-based pagination) (optional, default to 0)
+   * @param status Filter by delivery outcome (optional)
+   * @param event Filter by event type (e.g. post.published) (optional)
+   * @param webhookId Filter by webhook configuration ID (optional)
+   * @param eventId Filter by stable webhook event ID (optional)
+   * @return GetWebhookLogs200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWebhookLogs200Response getWebhookLogs(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId, @javax.annotation.Nullable String eventId) throws ApiException {
+    return getWebhookLogs(limit, skip, status, event, webhookId, eventId, null);
+  }
+
+  /**
+   * List webhook delivery logs
+   * Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+   * @param limit Maximum number of logs to return (optional, default to 50)
+   * @param skip Number of logs to skip (offset-based pagination) (optional, default to 0)
+   * @param status Filter by delivery outcome (optional)
+   * @param event Filter by event type (e.g. post.published) (optional)
+   * @param webhookId Filter by webhook configuration ID (optional)
+   * @param eventId Filter by stable webhook event ID (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetWebhookLogs200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWebhookLogs200Response getWebhookLogs(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId, @javax.annotation.Nullable String eventId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWebhookLogs200Response> localVarResponse = getWebhookLogsWithHttpInfo(limit, skip, status, event, webhookId, eventId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List webhook delivery logs
+   * Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+   * @param limit Maximum number of logs to return (optional, default to 50)
+   * @param skip Number of logs to skip (offset-based pagination) (optional, default to 0)
+   * @param status Filter by delivery outcome (optional)
+   * @param event Filter by event type (e.g. post.published) (optional)
+   * @param webhookId Filter by webhook configuration ID (optional)
+   * @param eventId Filter by stable webhook event ID (optional)
+   * @return ApiResponse&lt;GetWebhookLogs200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWebhookLogs200Response> getWebhookLogsWithHttpInfo(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId, @javax.annotation.Nullable String eventId) throws ApiException {
+    return getWebhookLogsWithHttpInfo(limit, skip, status, event, webhookId, eventId, null);
+  }
+
+  /**
+   * List webhook delivery logs
+   * Retrieve recorded webhook delivery attempts for the authenticated user, most recent first. Logs are retained for 30 days. Supports filtering by status, event type, webhook ID, and event ID, plus offset-based pagination. 
+   * @param limit Maximum number of logs to return (optional, default to 50)
+   * @param skip Number of logs to skip (offset-based pagination) (optional, default to 0)
+   * @param status Filter by delivery outcome (optional)
+   * @param event Filter by event type (e.g. post.published) (optional)
+   * @param webhookId Filter by webhook configuration ID (optional)
+   * @param eventId Filter by stable webhook event ID (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWebhookLogs200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWebhookLogs200Response> getWebhookLogsWithHttpInfo(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId, @javax.annotation.Nullable String eventId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWebhookLogsRequestBuilder(limit, skip, status, event, webhookId, eventId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWebhookLogs", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWebhookLogs200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWebhookLogs200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWebhookLogs200Response>() {});
+        
+
+        return new ApiResponse<GetWebhookLogs200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWebhookLogsRequestBuilder(@javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String status, @javax.annotation.Nullable String event, @javax.annotation.Nullable String webhookId, @javax.annotation.Nullable String eventId, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/webhooks/logs";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "skip";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
+    localVarQueryParameterBaseName = "status";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("status", status));
+    localVarQueryParameterBaseName = "event";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("event", event));
+    localVarQueryParameterBaseName = "webhookId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("webhookId", webhookId));
+    localVarQueryParameterBaseName = "eventId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("eventId", eventId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
