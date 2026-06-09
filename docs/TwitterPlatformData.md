@@ -15,6 +15,9 @@ X (Twitter) geo-restriction applies at the media level. Media in geo-restricted 
 |**poll** | [**TwitterPlatformDataPoll**](TwitterPlatformDataPoll.md) |  |  [optional] |
 |**longVideo** | **Boolean** | Enable long video uploads (over 140 seconds) using amplify_video media category. Requires the connected X account to have an active X Premium subscription. When true, videos are uploaded with the amplify_video category which supports longer durations (up to 10 minutes via API). When false or omitted, the standard tweet_video category is used (140 second limit). Note that not all Premium accounts have API long-video access, as X may require separate allowlisting. |  [optional] |
 |**geoRestriction** | [**GeoRestriction**](GeoRestriction.md) |  |  [optional] |
+|**paidPartnership** | **Boolean** | When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier. |  [optional] |
+|**madeWithAi** | **Boolean** | When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only. |  [optional] |
+|**sensitiveMedia** | [**TwitterPlatformDataSensitiveMedia**](TwitterPlatformDataSensitiveMedia.md) |  |  [optional] |
 
 
 

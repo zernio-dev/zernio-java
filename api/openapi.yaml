@@ -25415,6 +25415,8 @@ components:
       example:
         platformSpecificData:
           longVideo: false
+          paidPartnership: false
+          madeWithAi: false
           replySettings: following
           threadItems:
           - mediaItems:
@@ -25462,6 +25464,10 @@ components:
               url: https://openapi-generator.tech
             content: content
           replyToTweetId: replyToTweetId
+          sensitiveMedia:
+            adultContent: true
+            other: true
+            graphicViolence: true
           geoRestriction:
             countries:
             - US
@@ -25611,6 +25617,8 @@ components:
         platforms:
         - platformSpecificData:
             longVideo: false
+            paidPartnership: false
+            madeWithAi: false
             replySettings: following
             threadItems:
             - mediaItems:
@@ -25658,6 +25666,10 @@ components:
                 url: https://openapi-generator.tech
               content: content
             replyToTweetId: replyToTweetId
+            sensitiveMedia:
+              adultContent: true
+              other: true
+              graphicViolence: true
             geoRestriction:
               countries:
               - US
@@ -25705,6 +25717,8 @@ components:
           platformPostId: "1234567890123456789"
         - platformSpecificData:
             longVideo: false
+            paidPartnership: false
+            madeWithAi: false
             replySettings: following
             threadItems:
             - mediaItems:
@@ -25752,6 +25766,10 @@ components:
                 url: https://openapi-generator.tech
               content: content
             replyToTweetId: replyToTweetId
+            sensitiveMedia:
+              adultContent: true
+              other: true
+              graphicViolence: true
             geoRestriction:
               countries:
               - US
@@ -26024,6 +26042,8 @@ components:
         X (Twitter) geo-restriction applies at the media level. Media in geo-restricted tweets will be hidden for users outside the specified countries; the tweet text itself remains visible globally. Requires media to be attached (ignored for text-only tweets).
       example:
         longVideo: false
+        paidPartnership: false
+        madeWithAi: false
         replySettings: following
         threadItems:
         - mediaItems:
@@ -26071,6 +26091,10 @@ components:
             url: https://openapi-generator.tech
           content: content
         replyToTweetId: replyToTweetId
+        sensitiveMedia:
+          adultContent: true
+          other: true
+          graphicViolence: true
         geoRestriction:
           countries:
           - US
@@ -26132,6 +26156,20 @@ components:
           type: boolean
         geoRestriction:
           $ref: "#/components/schemas/GeoRestriction"
+        paidPartnership:
+          default: false
+          description: "When true, the post is labeled by X as a paid partnership\
+            \ / paid promotion. For threads, applies to the root tweet only. Field\
+            \ availability may depend on your X API access tier."
+          type: boolean
+        madeWithAi:
+          default: false
+          description: "When true, the post is labeled by X as containing AI-generated\
+            \ media. Per X, this label is for AI-generated media, not AI-written text.\
+            \ For threads, applies to the root tweet only."
+          type: boolean
+        sensitiveMedia:
+          $ref: "#/components/schemas/TwitterPlatformData_sensitiveMedia"
     ThreadsPlatformData:
       description: "Up to 10 images per carousel (no videos). Videos must be H.264/AAC\
         \ MP4, max 5 min. Images JPEG/PNG, max 8 MB. Use threadItems for reply chains."
@@ -26537,6 +26575,24 @@ components:
             \ /v1/accounts/{id}/reddit-flairs?subreddit=name to list flairs."
           example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
           type: string
+        flairText:
+          description: "Custom flair text, for subreddits that allow free-text flair.\
+            \ Ignored when flairId is provided (flairId wins)."
+          type: string
+        nsfw:
+          default: false
+          description: Mark the post as NSFW (Not Safe For Work / over 18).
+          type: boolean
+        spoiler:
+          default: false
+          description: Mark the post as a spoiler. The subreddit must have spoiler
+            tagging enabled for this to take effect.
+          type: boolean
+        sendreplies:
+          default: true
+          description: Whether to receive inbox replies for comments on this post.
+            Set to false to opt out.
+          type: boolean
         nativeVideo:
           default: true
           description: |
@@ -27570,6 +27626,8 @@ components:
           platforms:
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -27617,6 +27675,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -27664,6 +27726,8 @@ components:
             platformPostId: "1234567890123456789"
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -27711,6 +27775,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -27818,6 +27886,8 @@ components:
           platforms:
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -27865,6 +27935,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -27912,6 +27986,8 @@ components:
             platformPostId: "1234567890123456789"
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -27959,6 +28035,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28076,6 +28156,8 @@ components:
           platforms:
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28123,6 +28205,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28170,6 +28256,8 @@ components:
             platformPostId: "1234567890123456789"
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28217,6 +28305,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28330,6 +28422,8 @@ components:
           platforms:
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28377,6 +28471,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28424,6 +28522,8 @@ components:
             platformPostId: "1234567890123456789"
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28471,6 +28571,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28587,6 +28691,8 @@ components:
           platforms:
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28634,6 +28740,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28681,6 +28791,8 @@ components:
             platformPostId: "1234567890123456789"
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28728,6 +28840,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28850,6 +28966,8 @@ components:
           platforms:
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28897,6 +29015,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -28944,6 +29066,8 @@ components:
             platformPostId: "1234567890123456789"
           - platformSpecificData:
               longVideo: false
+              paidPartnership: false
+              madeWithAi: false
               replySettings: following
               threadItems:
               - mediaItems:
@@ -28991,6 +29115,10 @@ components:
                   url: https://openapi-generator.tech
                 content: content
               replyToTweetId: replyToTweetId
+              sensitiveMedia:
+                adultContent: true
+                other: true
+                graphicViolence: true
               geoRestriction:
                 countries:
                 - US
@@ -57141,6 +57269,24 @@ components:
       required:
       - duration_minutes
       - options
+    TwitterPlatformData_sensitiveMedia:
+      description: Marks attached media with a sensitive-content warning. Applied
+        to every media item in the post (requires media; ignored for text-only tweets).
+        At least one flag must be true for the warning to be sent.
+      example:
+        adultContent: true
+        other: true
+        graphicViolence: true
+      properties:
+        adultContent:
+          description: Content contains adult material.
+          type: boolean
+        graphicViolence:
+          description: Content depicts graphic violence.
+          type: boolean
+        other:
+          description: Content has other sensitive characteristics.
+          type: boolean
     FacebookPlatformData_carouselCards_inner:
       properties:
         link:

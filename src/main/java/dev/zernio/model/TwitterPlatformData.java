@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GeoRestriction;
 import dev.zernio.model.TwitterPlatformDataPoll;
+import dev.zernio.model.TwitterPlatformDataSensitiveMedia;
 import dev.zernio.model.TwitterPlatformDataThreadItemsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,9 +45,12 @@ import dev.zernio.ApiClient;
   TwitterPlatformData.JSON_PROPERTY_THREAD_ITEMS,
   TwitterPlatformData.JSON_PROPERTY_POLL,
   TwitterPlatformData.JSON_PROPERTY_LONG_VIDEO,
-  TwitterPlatformData.JSON_PROPERTY_GEO_RESTRICTION
+  TwitterPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
+  TwitterPlatformData.JSON_PROPERTY_PAID_PARTNERSHIP,
+  TwitterPlatformData.JSON_PROPERTY_MADE_WITH_AI,
+  TwitterPlatformData.JSON_PROPERTY_SENSITIVE_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T13:27:56.392274146Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T08:28:52.007389512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformData {
   public static final String JSON_PROPERTY_REPLY_TO_TWEET_ID = "replyToTweetId";
   @javax.annotation.Nullable
@@ -114,6 +118,18 @@ public class TwitterPlatformData {
   public static final String JSON_PROPERTY_GEO_RESTRICTION = "geoRestriction";
   @javax.annotation.Nullable
   private GeoRestriction geoRestriction;
+
+  public static final String JSON_PROPERTY_PAID_PARTNERSHIP = "paidPartnership";
+  @javax.annotation.Nullable
+  private Boolean paidPartnership = false;
+
+  public static final String JSON_PROPERTY_MADE_WITH_AI = "madeWithAi";
+  @javax.annotation.Nullable
+  private Boolean madeWithAi = false;
+
+  public static final String JSON_PROPERTY_SENSITIVE_MEDIA = "sensitiveMedia";
+  @javax.annotation.Nullable
+  private TwitterPlatformDataSensitiveMedia sensitiveMedia;
 
   public TwitterPlatformData() { 
   }
@@ -294,6 +310,78 @@ public class TwitterPlatformData {
   }
 
 
+  public TwitterPlatformData paidPartnership(@javax.annotation.Nullable Boolean paidPartnership) {
+    this.paidPartnership = paidPartnership;
+    return this;
+  }
+
+  /**
+   * When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier.
+   * @return paidPartnership
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAID_PARTNERSHIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPaidPartnership() {
+    return paidPartnership;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PAID_PARTNERSHIP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPaidPartnership(@javax.annotation.Nullable Boolean paidPartnership) {
+    this.paidPartnership = paidPartnership;
+  }
+
+
+  public TwitterPlatformData madeWithAi(@javax.annotation.Nullable Boolean madeWithAi) {
+    this.madeWithAi = madeWithAi;
+    return this;
+  }
+
+  /**
+   * When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only.
+   * @return madeWithAi
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MADE_WITH_AI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getMadeWithAi() {
+    return madeWithAi;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MADE_WITH_AI, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMadeWithAi(@javax.annotation.Nullable Boolean madeWithAi) {
+    this.madeWithAi = madeWithAi;
+  }
+
+
+  public TwitterPlatformData sensitiveMedia(@javax.annotation.Nullable TwitterPlatformDataSensitiveMedia sensitiveMedia) {
+    this.sensitiveMedia = sensitiveMedia;
+    return this;
+  }
+
+  /**
+   * Get sensitiveMedia
+   * @return sensitiveMedia
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SENSITIVE_MEDIA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TwitterPlatformDataSensitiveMedia getSensitiveMedia() {
+    return sensitiveMedia;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SENSITIVE_MEDIA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSensitiveMedia(@javax.annotation.Nullable TwitterPlatformDataSensitiveMedia sensitiveMedia) {
+    this.sensitiveMedia = sensitiveMedia;
+  }
+
+
   /**
    * Return true if this TwitterPlatformData object is equal to o.
    */
@@ -312,12 +400,15 @@ public class TwitterPlatformData {
         Objects.equals(this.threadItems, twitterPlatformData.threadItems) &&
         Objects.equals(this.poll, twitterPlatformData.poll) &&
         Objects.equals(this.longVideo, twitterPlatformData.longVideo) &&
-        Objects.equals(this.geoRestriction, twitterPlatformData.geoRestriction);
+        Objects.equals(this.geoRestriction, twitterPlatformData.geoRestriction) &&
+        Objects.equals(this.paidPartnership, twitterPlatformData.paidPartnership) &&
+        Objects.equals(this.madeWithAi, twitterPlatformData.madeWithAi) &&
+        Objects.equals(this.sensitiveMedia, twitterPlatformData.sensitiveMedia);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(replyToTweetId, quoteTweetId, replySettings, threadItems, poll, longVideo, geoRestriction);
+    return Objects.hash(replyToTweetId, quoteTweetId, replySettings, threadItems, poll, longVideo, geoRestriction, paidPartnership, madeWithAi, sensitiveMedia);
   }
 
   @Override
@@ -331,6 +422,9 @@ public class TwitterPlatformData {
     sb.append("    poll: ").append(toIndentedString(poll)).append("\n");
     sb.append("    longVideo: ").append(toIndentedString(longVideo)).append("\n");
     sb.append("    geoRestriction: ").append(toIndentedString(geoRestriction)).append("\n");
+    sb.append("    paidPartnership: ").append(toIndentedString(paidPartnership)).append("\n");
+    sb.append("    madeWithAi: ").append(toIndentedString(madeWithAi)).append("\n");
+    sb.append("    sensitiveMedia: ").append(toIndentedString(sensitiveMedia)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -416,6 +510,21 @@ public class TwitterPlatformData {
     // add `geoRestriction` to the URL query string
     if (getGeoRestriction() != null) {
       joiner.add(getGeoRestriction().toUrlQueryString(prefix + "geoRestriction" + suffix));
+    }
+
+    // add `paidPartnership` to the URL query string
+    if (getPaidPartnership() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spaidPartnership%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPaidPartnership()))));
+    }
+
+    // add `madeWithAi` to the URL query string
+    if (getMadeWithAi() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smadeWithAi%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMadeWithAi()))));
+    }
+
+    // add `sensitiveMedia` to the URL query string
+    if (getSensitiveMedia() != null) {
+      joiner.add(getSensitiveMedia().toUrlQueryString(prefix + "sensitiveMedia" + suffix));
     }
 
     return joiner.toString();

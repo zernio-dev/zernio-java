@@ -952,6 +952,7 @@ docs/TriggerWorkflowRequest.md
 docs/TwitterEngagementApi.md
 docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
+docs/TwitterPlatformDataSensitiveMedia.md
 docs/TwitterPlatformDataThreadItemsInner.md
 docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
@@ -2197,6 +2198,7 @@ src/main/java/dev/zernio/model/TriggerWorkflow200ResponseExecution.java
 src/main/java/dev/zernio/model/TriggerWorkflowRequest.java
 src/main/java/dev/zernio/model/TwitterPlatformData.java
 src/main/java/dev/zernio/model/TwitterPlatformDataPoll.java
+src/main/java/dev/zernio/model/TwitterPlatformDataSensitiveMedia.java
 src/main/java/dev/zernio/model/TwitterPlatformDataThreadItemsInner.java
 src/main/java/dev/zernio/model/UndoRetweet200Response.java
 src/main/java/dev/zernio/model/UnfollowUser200Response.java
@@ -2451,3 +2453,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/TwitterPlatformDataSensitiveMediaTest.java

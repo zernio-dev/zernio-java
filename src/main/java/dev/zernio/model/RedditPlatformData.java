@@ -39,11 +39,15 @@ import dev.zernio.ApiClient;
   RedditPlatformData.JSON_PROPERTY_URL,
   RedditPlatformData.JSON_PROPERTY_FORCE_SELF,
   RedditPlatformData.JSON_PROPERTY_FLAIR_ID,
+  RedditPlatformData.JSON_PROPERTY_FLAIR_TEXT,
+  RedditPlatformData.JSON_PROPERTY_NSFW,
+  RedditPlatformData.JSON_PROPERTY_SPOILER,
+  RedditPlatformData.JSON_PROPERTY_SENDREPLIES,
   RedditPlatformData.JSON_PROPERTY_NATIVE_VIDEO,
   RedditPlatformData.JSON_PROPERTY_VIDEOGIF,
   RedditPlatformData.JSON_PROPERTY_VIDEO_POSTER_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T13:27:56.392274146Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T08:28:52.007389512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedditPlatformData {
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
   @javax.annotation.Nullable
@@ -64,6 +68,22 @@ public class RedditPlatformData {
   public static final String JSON_PROPERTY_FLAIR_ID = "flairId";
   @javax.annotation.Nullable
   private String flairId;
+
+  public static final String JSON_PROPERTY_FLAIR_TEXT = "flairText";
+  @javax.annotation.Nullable
+  private String flairText;
+
+  public static final String JSON_PROPERTY_NSFW = "nsfw";
+  @javax.annotation.Nullable
+  private Boolean nsfw = false;
+
+  public static final String JSON_PROPERTY_SPOILER = "spoiler";
+  @javax.annotation.Nullable
+  private Boolean spoiler = false;
+
+  public static final String JSON_PROPERTY_SENDREPLIES = "sendreplies";
+  @javax.annotation.Nullable
+  private Boolean sendreplies = true;
 
   public static final String JSON_PROPERTY_NATIVE_VIDEO = "nativeVideo";
   @javax.annotation.Nullable
@@ -200,6 +220,102 @@ public class RedditPlatformData {
   }
 
 
+  public RedditPlatformData flairText(@javax.annotation.Nullable String flairText) {
+    this.flairText = flairText;
+    return this;
+  }
+
+  /**
+   * Custom flair text, for subreddits that allow free-text flair. Ignored when flairId is provided (flairId wins).
+   * @return flairText
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FLAIR_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getFlairText() {
+    return flairText;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FLAIR_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFlairText(@javax.annotation.Nullable String flairText) {
+    this.flairText = flairText;
+  }
+
+
+  public RedditPlatformData nsfw(@javax.annotation.Nullable Boolean nsfw) {
+    this.nsfw = nsfw;
+    return this;
+  }
+
+  /**
+   * Mark the post as NSFW (Not Safe For Work / over 18).
+   * @return nsfw
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NSFW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getNsfw() {
+    return nsfw;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NSFW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNsfw(@javax.annotation.Nullable Boolean nsfw) {
+    this.nsfw = nsfw;
+  }
+
+
+  public RedditPlatformData spoiler(@javax.annotation.Nullable Boolean spoiler) {
+    this.spoiler = spoiler;
+    return this;
+  }
+
+  /**
+   * Mark the post as a spoiler. The subreddit must have spoiler tagging enabled for this to take effect.
+   * @return spoiler
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPOILER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSpoiler() {
+    return spoiler;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPOILER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpoiler(@javax.annotation.Nullable Boolean spoiler) {
+    this.spoiler = spoiler;
+  }
+
+
+  public RedditPlatformData sendreplies(@javax.annotation.Nullable Boolean sendreplies) {
+    this.sendreplies = sendreplies;
+    return this;
+  }
+
+  /**
+   * Whether to receive inbox replies for comments on this post. Set to false to opt out.
+   * @return sendreplies
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SENDREPLIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSendreplies() {
+    return sendreplies;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SENDREPLIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSendreplies(@javax.annotation.Nullable Boolean sendreplies) {
+    this.sendreplies = sendreplies;
+  }
+
+
   public RedditPlatformData nativeVideo(@javax.annotation.Nullable Boolean nativeVideo) {
     this.nativeVideo = nativeVideo;
     return this;
@@ -289,6 +405,10 @@ public class RedditPlatformData {
         Objects.equals(this.url, redditPlatformData.url) &&
         Objects.equals(this.forceSelf, redditPlatformData.forceSelf) &&
         Objects.equals(this.flairId, redditPlatformData.flairId) &&
+        Objects.equals(this.flairText, redditPlatformData.flairText) &&
+        Objects.equals(this.nsfw, redditPlatformData.nsfw) &&
+        Objects.equals(this.spoiler, redditPlatformData.spoiler) &&
+        Objects.equals(this.sendreplies, redditPlatformData.sendreplies) &&
         Objects.equals(this.nativeVideo, redditPlatformData.nativeVideo) &&
         Objects.equals(this.videogif, redditPlatformData.videogif) &&
         Objects.equals(this.videoPosterUrl, redditPlatformData.videoPosterUrl);
@@ -296,7 +416,7 @@ public class RedditPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(subreddit, title, url, forceSelf, flairId, nativeVideo, videogif, videoPosterUrl);
+    return Objects.hash(subreddit, title, url, forceSelf, flairId, flairText, nsfw, spoiler, sendreplies, nativeVideo, videogif, videoPosterUrl);
   }
 
   @Override
@@ -308,6 +428,10 @@ public class RedditPlatformData {
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    forceSelf: ").append(toIndentedString(forceSelf)).append("\n");
     sb.append("    flairId: ").append(toIndentedString(flairId)).append("\n");
+    sb.append("    flairText: ").append(toIndentedString(flairText)).append("\n");
+    sb.append("    nsfw: ").append(toIndentedString(nsfw)).append("\n");
+    sb.append("    spoiler: ").append(toIndentedString(spoiler)).append("\n");
+    sb.append("    sendreplies: ").append(toIndentedString(sendreplies)).append("\n");
     sb.append("    nativeVideo: ").append(toIndentedString(nativeVideo)).append("\n");
     sb.append("    videogif: ").append(toIndentedString(videogif)).append("\n");
     sb.append("    videoPosterUrl: ").append(toIndentedString(videoPosterUrl)).append("\n");
@@ -381,6 +505,26 @@ public class RedditPlatformData {
     // add `flairId` to the URL query string
     if (getFlairId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sflairId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFlairId()))));
+    }
+
+    // add `flairText` to the URL query string
+    if (getFlairText() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sflairText%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFlairText()))));
+    }
+
+    // add `nsfw` to the URL query string
+    if (getNsfw() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snsfw%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNsfw()))));
+    }
+
+    // add `spoiler` to the URL query string
+    if (getSpoiler() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sspoiler%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSpoiler()))));
+    }
+
+    // add `sendreplies` to the URL query string
+    if (getSendreplies() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssendreplies%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSendreplies()))));
     }
 
     // add `nativeVideo` to the URL query string

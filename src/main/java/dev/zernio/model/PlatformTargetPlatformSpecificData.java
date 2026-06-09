@@ -51,6 +51,7 @@ import dev.zernio.model.TelegramPlatformData;
 import dev.zernio.model.ThreadsPlatformData;
 import dev.zernio.model.TikTokPlatformData;
 import dev.zernio.model.TwitterPlatformData;
+import dev.zernio.model.TwitterPlatformDataSensitiveMedia;
 import dev.zernio.model.TwitterPlatformDataThreadItemsInner;
 import dev.zernio.model.YouTubePlatformData;
 import java.net.URI;
@@ -84,7 +85,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-08T13:27:56.392274146Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T08:28:52.007389512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = PlatformTargetPlatformSpecificData.PlatformTargetPlatformSpecificDataDeserializer.class)
 @JsonSerialize(using = PlatformTargetPlatformSpecificData.PlatformTargetPlatformSpecificDataSerializer.class)
 public class PlatformTargetPlatformSpecificData extends AbstractOpenApiSchema {

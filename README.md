@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-08T13:27:56.392274146Z[Etc/UTC]
+- Build date: 2026-06-09T08:28:52.007389512Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1779,6 +1779,7 @@ Class | Method | HTTP request | Description
  - [TriggerWorkflowRequest](docs/TriggerWorkflowRequest.md)
  - [TwitterPlatformData](docs/TwitterPlatformData.md)
  - [TwitterPlatformDataPoll](docs/TwitterPlatformDataPoll.md)
+ - [TwitterPlatformDataSensitiveMedia](docs/TwitterPlatformDataSensitiveMedia.md)
  - [TwitterPlatformDataThreadItemsInner](docs/TwitterPlatformDataThreadItemsInner.md)
  - [UndoRetweet200Response](docs/UndoRetweet200Response.md)
  - [UnfollowUser200Response](docs/UnfollowUser200Response.md)
