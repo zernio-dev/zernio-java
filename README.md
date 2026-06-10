@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-10T14:10:21.552796462Z[Etc/UTC]
+- Build date: 2026-06-10T15:30:05.324884686Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -484,6 +484,8 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**updateDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#updateDiscordScheduledEventWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/events/{eventId} | Update a Discord scheduled event
 *DiscordApi* | [**updateDiscordSettings**](docs/DiscordApi.md#updateDiscordSettings) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
 *DiscordApi* | [**updateDiscordSettingsWithHttpInfo**](docs/DiscordApi.md#updateDiscordSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
+*GmbAttributesApi* | [**getGmbAttributeMetadata**](docs/GmbAttributesApi.md#getGmbAttributeMetadata) | **GET** /v1/accounts/{accountId}/gmb-attribute-metadata | Get attribute metadata
+*GmbAttributesApi* | [**getGmbAttributeMetadataWithHttpInfo**](docs/GmbAttributesApi.md#getGmbAttributeMetadataWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-attribute-metadata | Get attribute metadata
 *GmbAttributesApi* | [**getGoogleBusinessAttributes**](docs/GmbAttributesApi.md#getGoogleBusinessAttributes) | **GET** /v1/accounts/{accountId}/gmb-attributes | Get attributes
 *GmbAttributesApi* | [**getGoogleBusinessAttributesWithHttpInfo**](docs/GmbAttributesApi.md#getGoogleBusinessAttributesWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-attributes | Get attributes
 *GmbAttributesApi* | [**updateGoogleBusinessAttributes**](docs/GmbAttributesApi.md#updateGoogleBusinessAttributes) | **PUT** /v1/accounts/{accountId}/gmb-attributes | Update attributes
@@ -1220,6 +1222,9 @@ Class | Method | HTTP request | Description
  - [GetFollowerStats200ResponseDateRange](docs/GetFollowerStats200ResponseDateRange.md)
  - [GetFollowerStats200ResponseStatsValueInner](docs/GetFollowerStats200ResponseStatsValueInner.md)
  - [GetFollowerStats403Response](docs/GetFollowerStats403Response.md)
+ - [GetGmbAttributeMetadata200Response](docs/GetGmbAttributeMetadata200Response.md)
+ - [GetGmbAttributeMetadata200ResponseAttributeMetadataInner](docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.md)
+ - [GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner](docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.md)
  - [GetGmbLocations200Response](docs/GetGmbLocations200Response.md)
  - [GetGmbLocations200ResponseLocationsInner](docs/GetGmbLocations200ResponseLocationsInner.md)
  - [GetGoogleBusinessAttributes200Response](docs/GetGoogleBusinessAttributes200Response.md)
