@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_URL,
   CreateStandaloneAdRequestVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:05:22.491311305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestVideo {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
@@ -80,7 +80,7 @@ public class CreateStandaloneAdRequestVideo {
   }
 
   /**
-   * Public URL of a still-image thumbnail for the video. Required by Meta on every video creative (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame).
+   * Public URL of a still-image thumbnail for the video. OPTIONAL: when omitted on Meta, the poster is auto-generated from Meta&#39;s own preferred video thumbnail (the same candidates Ads Manager shows), so video ads publish without supplying one. Provide it to control the poster frame exactly (uploaded as an ad image and referenced in object_story_spec.video_data). Ignored by LinkedIn (auto-generated poster frame).
    * @return thumbnailUrl
    */
   @javax.annotation.Nullable

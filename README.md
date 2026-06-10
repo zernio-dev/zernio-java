@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-09T13:24:42.414017337Z[Etc/UTC]
+- Build date: 2026-06-10T11:05:22.491311305Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1587,6 +1587,7 @@ Class | Method | HTTP request | Description
  - [Money](docs/Money.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [OnWhatsAppNumberActionRequiredRequest](docs/OnWhatsAppNumberActionRequiredRequest.md)
  - [OnWhatsAppNumberActivatedRequest](docs/OnWhatsAppNumberActivatedRequest.md)
  - [OnWhatsAppNumberActivatedRequestNumber](docs/OnWhatsAppNumberActivatedRequestNumber.md)
  - [OnWhatsAppNumberDeclinedRequest](docs/OnWhatsAppNumberDeclinedRequest.md)

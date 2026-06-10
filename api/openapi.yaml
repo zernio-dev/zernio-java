@@ -171,7 +171,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -5786,6 +5786,7 @@ paths:
               profileIds:
               - 64f0a1b2c3d4e5f6a7b8c9d0
               - 64f0a1b2c3d4e5f6a7b8c9d1
+              role: member
             schema:
               $ref: "#/components/schemas/createInviteToken_request"
         required: true
@@ -22531,21 +22532,20 @@ components:
           - url
           - phone_number
           - otp
+          - copy_code
           - flow
           - mpm
           - catalog
           type: string
         text:
+          description: Visible button label. Required for all types except copy_code
+            (whose label is fixed by WhatsApp).
           type: string
         url:
           description: Required when type is URL
           format: uri
           type: string
-        example:
-          description: Example values for URL suffix variables
-          items:
-            type: string
-          type: array
+        example: {}
         phone_number:
           description: Required when type is phone_number
           type: string
@@ -22573,7 +22573,6 @@ components:
         navigate_screen:
           type: string
       required:
-      - text
       - type
     WhatsAppTemplateComponent:
       discriminator:
@@ -23716,6 +23715,7 @@ components:
             - whatsapp.template.status_updated
             - whatsapp.number.activated
             - whatsapp.number.declined
+            - whatsapp.number.action_required
             - whatsapp.number.verification_required
             - whatsapp.number.suspended
             - whatsapp.number.reactivated
@@ -34326,6 +34326,22 @@ components:
           items:
             type: string
           type: array
+        role:
+          default: member
+          description: "Org role granted to the invitee. Defaults to 'member'. 'viewer'\
+            \ creates a read-only member who can view everything in their profile\
+            \ scope but cannot perform any content mutation (publish, edit, delete,\
+            \ connect accounts)."
+          enum:
+          - member
+          - billing_admin
+          - viewer
+          type: string
+        readOnly:
+          deprecated: true
+          description: "Deprecated. Use role 'viewer' instead. When true, the invite\
+            \ is created with role 'viewer'. Cannot be combined with role 'billing_admin'."
+          type: boolean
       required:
       - scope
     createInviteToken_201_response:
@@ -40393,6 +40409,7 @@ components:
             - whatsapp.template.status_updated
             - whatsapp.number.activated
             - whatsapp.number.declined
+            - whatsapp.number.action_required
             - whatsapp.number.verification_required
             - whatsapp.number.suspended
             - whatsapp.number.reactivated
@@ -40477,6 +40494,7 @@ components:
             - whatsapp.template.status_updated
             - whatsapp.number.activated
             - whatsapp.number.declined
+            - whatsapp.number.action_required
             - whatsapp.number.verification_required
             - whatsapp.number.suspended
             - whatsapp.number.reactivated
@@ -52134,16 +52152,20 @@ components:
           format: uri
           type: string
         thumbnailUrl:
-          description: Public URL of a still-image thumbnail for the video. Required
-            by Meta on every video creative (uploaded as an ad image and referenced
-            in object_story_spec.video_data). Ignored by LinkedIn (auto-generated
-            poster frame).
+          description: "Public URL of a still-image thumbnail for the video. OPTIONAL:\
+            \ when omitted on Meta, the poster is auto-generated from Meta's own preferred\
+            \ video thumbnail (the same candidates Ads Manager shows), so video ads\
+            \ publish without supplying one. Provide it to control the poster frame\
+            \ exactly (uploaded as an ad image and referenced in object_story_spec.video_data).\
+            \ Ignored by LinkedIn (auto-generated poster frame)."
           format: uri
           type: string
       required:
       - url
     createStandaloneAd_request_creatives_inner_video:
-      description: Video creative for this entry. Mutually exclusive with `imageUrl`.
+      description: "Video creative for this entry. Mutually exclusive with `imageUrl`.\
+        \ thumbnailUrl is optional — when omitted, the poster is auto-generated from\
+        \ Meta's preferred video thumbnail."
       properties:
         url:
           format: uri
@@ -52152,7 +52174,6 @@ components:
           format: uri
           type: string
       required:
-      - thumbnailUrl
       - url
     createStandaloneAd_request_creatives_inner:
       description: Each creative must supply EXACTLY ONE of `imageUrl` (image creative)
@@ -52167,6 +52188,13 @@ components:
           maxLength: 255
           type: string
         body:
+          type: string
+        description:
+          description: "Link description for this ad (link_data.description; video\
+            \ creatives: video_data.link_description). Falls back to the top-level\
+            \ `description`; when both are omitted Meta scrapes the destination URL's\
+            \ OG description."
+          maxLength: 255
           type: string
         imageUrl:
           description: Image creative. Mutually exclusive with `video`.
@@ -52528,8 +52556,11 @@ components:
         each placement group on a SINGLE ad (e.g. a 9:16 on Stories/Reels and a 4:5 on Feed).
         The same thing Meta Ads Manager produces with "different creative per placement",
         mapped to the creative's `asset_feed_spec` + `asset_customization_rules`. Deterministic
-        pinning, NOT the auto-optimizing pool of `dynamicCreative` (mutually exclusive, and it
-        cannot be combined with `creatives[]` or `adSetId`). Shared copy (headline, body, link,
+        pinning, NOT the auto-optimizing pool of `dynamicCreative` (mutually exclusive). Works
+        on the legacy single shape AND the attach shape (`adSetId` + placementAssets adds one
+        placement-customized ad to an existing ad set — the way to build N per-placement ads
+        sharing one ad set: create the first normally, attach the rest). Cannot be combined
+        with `creatives[]`. Shared copy (headline, body, link,
         CTA) comes from the top-level single-creative fields since only the asset varies by
         placement. Each rule's `placements` accepts the same fields as the top-level
         `placements` object; Meta enforces co-selection rules and returns an actionable error.
@@ -52786,6 +52817,16 @@ components:
             \ is set). On LinkedIn this is the post commentary (the intro text shown\
             \ above the ad). Max: Google=90, Pinterest=500."
           type: string
+        description:
+          description: "Meta only (facebook/instagram). Link description — the secondary\
+            \ text shown below the headline (Meta's link_data.description; on video\
+            \ creatives mapped to video_data.link_description). When omitted, Meta\
+            \ auto-pulls the destination URL's OpenGraph description. Applies on legacy,\
+            \ attach, and placementAssets shapes; for multi-creative use creatives[].description\
+            \ (this field is the shared fallback). For multi-text variations use dynamicCreative.descriptions\
+            \ instead."
+          maxLength: 255
+          type: string
         callToAction:
           description: "Required on legacy + attach shapes for Meta. Honoured on TikTok\
             \ (passes through to the Spark Ad creative's `call_to_action`) and on\
@@ -52823,13 +52864,15 @@ components:
         leadGenFormId:
           description: "Meta Lead Gen forms only (facebook/instagram). The leadgen_forms\
             \ ID to attach to the ad's creative — create one via POST /v1/ads/lead-forms.\
-            \ REQUIRED when `goal` is `lead_generation`; ignored otherwise. The ad\
-            \ set's promoted_object.page_id + LEAD_GENERATION optimization + destination_type\
-            \ ON_AD are derived automatically from the goal. Both `placementAssets`\
-            \ (per-placement creative) and `dynamicCreative` (multi-text / multi-asset\
-            \ pool, e.g. multiple headlines and primary texts) ARE supported on instant-form\
-            \ lead ads — the form is attached for you, and for `dynamicCreative` the\
-            \ ad set is created as a Dynamic Creative ad set automatically (Meta requires\
+            \ REQUIRED when `goal` is `lead_generation`, and on every ATTACH (`adSetId`)\
+            \ call that targets a lead ad set (the form attaches per-ad; Meta rejects\
+            \ a formless ad in a lead ad set). Ignored otherwise. The ad set's promoted_object.page_id\
+            \ + LEAD_GENERATION optimization + destination_type ON_AD are derived\
+            \ automatically from the goal. Both `placementAssets` (per-placement creative)\
+            \ and `dynamicCreative` (multi-text / multi-asset pool, e.g. multiple\
+            \ headlines and primary texts) ARE supported on instant-form lead ads\
+            \ — the form is attached for you, and for `dynamicCreative` the ad set\
+            \ is created as a Dynamic Creative ad set automatically (Meta requires\
             \ that for any multi-text feed; there is no non-DCO multi-text path).\
             \ Send a single `imageUrls` entry plus your text variations to get Meta's\
             \ \"Multiple Text Options\" behavior on a lead ad."
@@ -52870,6 +52913,16 @@ components:
             in attach mode returns 400. To change an existing ad set's
             bid, use `PUT /v1/ads/ad-sets/{adSetId}`. Mutually exclusive
             with `creatives[]`.
+
+            The attached ad takes the full single-creative surface:
+            `headline`/`body`/`description`/`callToAction` plus either
+            `imageUrl`/`video` OR `placementAssets` (its own per-placement
+            Feed/Story assets), and `leadGenFormId` when the target is a
+            lead ad set (the parent must be ON_AD — true for ad sets
+            created via goal `lead_generation`; Meta rejects a formless ad
+            there, so pass the form on EVERY attached ad). This is the way
+            to build N full ads sharing one ad set: create the first ad
+            via the normal shape, then attach the rest one call each.
 
             Supported on Meta (facebook, instagram) and TikTok. On TikTok
             the `adSetId` is the ad group ID; the new ad inherits the
@@ -55325,6 +55378,20 @@ components:
         reason:
           type: string
           nullable: true
+    onWhatsAppNumberActionRequired_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.action_required
+        timestamp:
+          format: date-time
+          type: string
+        reason:
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
     onWhatsAppNumberVerificationRequired_request:
       properties:
         id:

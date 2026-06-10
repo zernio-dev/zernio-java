@@ -25,9 +25,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,7 +53,7 @@ import dev.zernio.ApiClient;
   WhatsAppTemplateButton.JSON_PROPERTY_FLOW_ACTION,
   WhatsAppTemplateButton.JSON_PROPERTY_NAVIGATE_SCREEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:05:22.491311305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplateButton {
   /**
    * Gets or Sets type
@@ -64,6 +66,8 @@ public class WhatsAppTemplateButton {
     PHONE_NUMBER(String.valueOf("phone_number")),
     
     OTP(String.valueOf("otp")),
+    
+    COPY_CODE(String.valueOf("copy_code")),
     
     FLOW(String.valueOf("flow")),
     
@@ -103,7 +107,7 @@ public class WhatsAppTemplateButton {
   private TypeEnum type;
 
   public static final String JSON_PROPERTY_TEXT = "text";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String text;
 
   public static final String JSON_PROPERTY_URL = "url";
@@ -111,8 +115,7 @@ public class WhatsAppTemplateButton {
   private URI url;
 
   public static final String JSON_PROPERTY_EXAMPLE = "example";
-  @javax.annotation.Nullable
-  private List<String> example = new ArrayList<>();
+  private JsonNullable<Object> example = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phone_number";
   @javax.annotation.Nullable
@@ -218,26 +221,26 @@ public class WhatsAppTemplateButton {
   }
 
 
-  public WhatsAppTemplateButton text(@javax.annotation.Nonnull String text) {
+  public WhatsAppTemplateButton text(@javax.annotation.Nullable String text) {
     this.text = text;
     return this;
   }
 
   /**
-   * Get text
+   * Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp).
    * @return text
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getText() {
     return text;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setText(@javax.annotation.Nonnull String text) {
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setText(@javax.annotation.Nullable String text) {
     this.text = text;
   }
 
@@ -266,35 +269,35 @@ public class WhatsAppTemplateButton {
   }
 
 
-  public WhatsAppTemplateButton example(@javax.annotation.Nullable List<String> example) {
-    this.example = example;
-    return this;
-  }
-
-  public WhatsAppTemplateButton addExampleItem(String exampleItem) {
-    if (this.example == null) {
-      this.example = new ArrayList<>();
-    }
-    this.example.add(exampleItem);
+  public WhatsAppTemplateButton example(@javax.annotation.Nullable Object example) {
+    this.example = JsonNullable.<Object>of(example);
     return this;
   }
 
   /**
-   * Example values for URL suffix variables
+   * Get example
    * @return example
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXAMPLE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getExample() {
-    return example;
+  @JsonIgnore
+  public Object getExample() {
+        return example.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXAMPLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExample(@javax.annotation.Nullable List<String> example) {
+
+  public JsonNullable<Object> getExample_JsonNullable() {
+    return example;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXAMPLE)
+  public void setExample_JsonNullable(JsonNullable<Object> example) {
     this.example = example;
+  }
+
+  public void setExample(@javax.annotation.Nullable Object example) {
+    this.example = JsonNullable.<Object>of(example);
   }
 
 
@@ -553,7 +556,7 @@ public class WhatsAppTemplateButton {
     return Objects.equals(this.type, whatsAppTemplateButton.type) &&
         Objects.equals(this.text, whatsAppTemplateButton.text) &&
         Objects.equals(this.url, whatsAppTemplateButton.url) &&
-        Objects.equals(this.example, whatsAppTemplateButton.example) &&
+        equalsNullable(this.example, whatsAppTemplateButton.example) &&
         Objects.equals(this.phoneNumber, whatsAppTemplateButton.phoneNumber) &&
         Objects.equals(this.otpType, whatsAppTemplateButton.otpType) &&
         Objects.equals(this.autofillText, whatsAppTemplateButton.autofillText) &&
@@ -566,9 +569,20 @@ public class WhatsAppTemplateButton {
         Objects.equals(this.navigateScreen, whatsAppTemplateButton.navigateScreen);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(type, text, url, example, phoneNumber, otpType, autofillText, packageName, signatureHash, flowId, flowName, flowJson, flowAction, navigateScreen);
+    return Objects.hash(type, text, url, hashCodeNullable(example), phoneNumber, otpType, autofillText, packageName, signatureHash, flowId, flowName, flowJson, flowAction, navigateScreen);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -653,11 +667,7 @@ public class WhatsAppTemplateButton {
 
     // add `example` to the URL query string
     if (getExample() != null) {
-      for (int i = 0; i < getExample().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sexample%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getExample().get(i)))));
-      }
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexample%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExample()))));
     }
 
     // add `phone_number` to the URL query string

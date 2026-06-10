@@ -38,12 +38,13 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_NAME,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_HEADLINE,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_BODY,
+  CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_DESCRIPTION,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_IMAGE_URL,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_VIDEO,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_CALL_TO_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:05:22.491311305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCreativesInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -56,6 +57,10 @@ public class CreateStandaloneAdRequestCreativesInner {
   public static final String JSON_PROPERTY_BODY = "body";
   @javax.annotation.Nonnull
   private String body;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  @javax.annotation.Nullable
+  private String description;
 
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable
@@ -199,6 +204,30 @@ public class CreateStandaloneAdRequestCreativesInner {
   }
 
 
+  public CreateStandaloneAdRequestCreativesInner description(@javax.annotation.Nullable String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Link description for this ad (link_data.description; video creatives: video_data.link_description). Falls back to the top-level &#x60;description&#x60;; when both are omitted Meta scrapes the destination URL&#39;s OG description.
+   * @return description
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
+  }
+
+
   public CreateStandaloneAdRequestCreativesInner imageUrl(@javax.annotation.Nullable URI imageUrl) {
     this.imageUrl = imageUrl;
     return this;
@@ -310,6 +339,7 @@ public class CreateStandaloneAdRequestCreativesInner {
     return Objects.equals(this.name, createStandaloneAdRequestCreativesInner.name) &&
         Objects.equals(this.headline, createStandaloneAdRequestCreativesInner.headline) &&
         Objects.equals(this.body, createStandaloneAdRequestCreativesInner.body) &&
+        Objects.equals(this.description, createStandaloneAdRequestCreativesInner.description) &&
         Objects.equals(this.imageUrl, createStandaloneAdRequestCreativesInner.imageUrl) &&
         Objects.equals(this.video, createStandaloneAdRequestCreativesInner.video) &&
         Objects.equals(this.linkUrl, createStandaloneAdRequestCreativesInner.linkUrl) &&
@@ -318,7 +348,7 @@ public class CreateStandaloneAdRequestCreativesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, headline, body, imageUrl, video, linkUrl, callToAction);
+    return Objects.hash(name, headline, body, description, imageUrl, video, linkUrl, callToAction);
   }
 
   @Override
@@ -328,6 +358,7 @@ public class CreateStandaloneAdRequestCreativesInner {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
@@ -392,6 +423,11 @@ public class CreateStandaloneAdRequestCreativesInner {
     // add `body` to the URL query string
     if (getBody() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBody()))));
+    }
+
+    // add `description` to the URL query string
+    if (getDescription() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `imageUrl` to the URL query string

@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.OnWhatsAppNumberActionRequiredRequest;
 import dev.zernio.model.OnWhatsAppNumberActivatedRequest;
 import dev.zernio.model.OnWhatsAppNumberDeclinedRequest;
 import dev.zernio.model.OnWhatsAppNumberReactivatedRequest;
@@ -80,7 +81,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:05:22.491311305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3779,6 +3780,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadTest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number action required event
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * @param onWhatsAppNumberActionRequiredRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberActionRequired(@javax.annotation.Nonnull OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest) throws ApiException {
+    onWhatsAppNumberActionRequired(onWhatsAppNumberActionRequiredRequest, null);
+  }
+
+  /**
+   * WhatsApp number action required event
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * @param onWhatsAppNumberActionRequiredRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberActionRequired(@javax.annotation.Nonnull OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberActionRequiredWithHttpInfo(onWhatsAppNumberActionRequiredRequest, headers);
+  }
+
+  /**
+   * WhatsApp number action required event
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * @param onWhatsAppNumberActionRequiredRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberActionRequiredWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest) throws ApiException {
+    return onWhatsAppNumberActionRequiredWithHttpInfo(onWhatsAppNumberActionRequiredRequest, null);
+  }
+
+  /**
+   * WhatsApp number action required event
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * @param onWhatsAppNumberActionRequiredRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberActionRequiredWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberActionRequiredRequestBuilder(onWhatsAppNumberActionRequiredRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberActionRequired", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberActionRequiredRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberActionRequiredRequest onWhatsAppNumberActionRequiredRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberActionRequiredRequest' is set
+    if (onWhatsAppNumberActionRequiredRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberActionRequiredRequest' when calling onWhatsAppNumberActionRequired");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.action_required";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberActionRequiredRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -50,6 +50,7 @@
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_NUMBER_ACTIVATED | &quot;whatsapp.number.activated&quot; |
 | WHATSAPP_NUMBER_DECLINED | &quot;whatsapp.number.declined&quot; |
+| WHATSAPP_NUMBER_ACTION_REQUIRED | &quot;whatsapp.number.action_required&quot; |
 | WHATSAPP_NUMBER_VERIFICATION_REQUIRED | &quot;whatsapp.number.verification_required&quot; |
 | WHATSAPP_NUMBER_SUSPENDED | &quot;whatsapp.number.suspended&quot; |
 | WHATSAPP_NUMBER_REACTIVATED | &quot;whatsapp.number.reactivated&quot; |

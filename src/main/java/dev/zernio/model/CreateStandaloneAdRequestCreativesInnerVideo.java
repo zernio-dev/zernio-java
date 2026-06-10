@@ -31,20 +31,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Video creative for this entry. Mutually exclusive with &#x60;imageUrl&#x60;.
+ * Video creative for this entry. Mutually exclusive with &#x60;imageUrl&#x60;. thumbnailUrl is optional — when omitted, the poster is auto-generated from Meta&#39;s preferred video thumbnail.
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestCreativesInnerVideo.JSON_PROPERTY_URL,
   CreateStandaloneAdRequestCreativesInnerVideo.JSON_PROPERTY_THUMBNAIL_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:05:22.491311305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCreativesInnerVideo {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
   private URI url;
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private URI thumbnailUrl;
 
   public CreateStandaloneAdRequestCreativesInnerVideo() { 
@@ -74,7 +74,7 @@ public class CreateStandaloneAdRequestCreativesInnerVideo {
   }
 
 
-  public CreateStandaloneAdRequestCreativesInnerVideo thumbnailUrl(@javax.annotation.Nonnull URI thumbnailUrl) {
+  public CreateStandaloneAdRequestCreativesInnerVideo thumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
     return this;
   }
@@ -83,17 +83,17 @@ public class CreateStandaloneAdRequestCreativesInnerVideo {
    * Get thumbnailUrl
    * @return thumbnailUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public URI getThumbnailUrl() {
     return thumbnailUrl;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setThumbnailUrl(@javax.annotation.Nonnull URI thumbnailUrl) {
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
   }
 

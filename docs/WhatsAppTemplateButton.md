@@ -8,9 +8,9 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
-|**text** | **String** |  |  |
+|**text** | **String** | Visible button label. Required for all types except copy_code (whose label is fixed by WhatsApp). |  [optional] |
 |**url** | **URI** | Required when type is URL |  [optional] |
-|**example** | **List&lt;String&gt;** | Example values for URL suffix variables |  [optional] |
+|**example** | **Object** |  |  [optional] |
 |**phoneNumber** | **String** | Required when type is phone_number |  [optional] |
 |**otpType** | [**OtpTypeEnum**](#OtpTypeEnum) | Required when type is otp |  [optional] |
 |**autofillText** | **String** |  |  [optional] |
@@ -32,6 +32,7 @@
 | URL | &quot;url&quot; |
 | PHONE_NUMBER | &quot;phone_number&quot; |
 | OTP | &quot;otp&quot; |
+| COPY_CODE | &quot;copy_code&quot; |
 | FLOW | &quot;flow&quot; |
 | MPM | &quot;mpm&quot; |
 | CATALOG | &quot;catalog&quot; |

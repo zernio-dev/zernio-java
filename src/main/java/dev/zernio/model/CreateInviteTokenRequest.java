@@ -36,9 +36,11 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CreateInviteTokenRequest.JSON_PROPERTY_SCOPE,
-  CreateInviteTokenRequest.JSON_PROPERTY_PROFILE_IDS
+  CreateInviteTokenRequest.JSON_PROPERTY_PROFILE_IDS,
+  CreateInviteTokenRequest.JSON_PROPERTY_ROLE,
+  CreateInviteTokenRequest.JSON_PROPERTY_READ_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:05:22.491311305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInviteTokenRequest {
   /**
    * &#39;all&#39; grants access to all profiles, &#39;profiles&#39; restricts to specific profiles
@@ -82,6 +84,51 @@ public class CreateInviteTokenRequest {
   public static final String JSON_PROPERTY_PROFILE_IDS = "profileIds";
   @javax.annotation.Nullable
   private List<String> profileIds = new ArrayList<>();
+
+  /**
+   * Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
+   */
+  public enum RoleEnum {
+    MEMBER(String.valueOf("member")),
+    
+    BILLING_ADMIN(String.valueOf("billing_admin")),
+    
+    VIEWER(String.valueOf("viewer"));
+
+    private String value;
+
+    RoleEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ROLE = "role";
+  @javax.annotation.Nullable
+  private RoleEnum role = RoleEnum.MEMBER;
+
+  public static final String JSON_PROPERTY_READ_ONLY = "readOnly";
+  @javax.annotation.Nullable
+  private Boolean readOnly;
 
   public CreateInviteTokenRequest() { 
   }
@@ -142,6 +189,56 @@ public class CreateInviteTokenRequest {
   }
 
 
+  public CreateInviteTokenRequest role(@javax.annotation.Nullable RoleEnum role) {
+    this.role = role;
+    return this;
+  }
+
+  /**
+   * Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
+   * @return role
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ROLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public RoleEnum getRole() {
+    return role;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ROLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRole(@javax.annotation.Nullable RoleEnum role) {
+    this.role = role;
+  }
+
+
+  public CreateInviteTokenRequest readOnly(@javax.annotation.Nullable Boolean readOnly) {
+    this.readOnly = readOnly;
+    return this;
+  }
+
+  /**
+   * Deprecated. Use role &#39;viewer&#39; instead. When true, the invite is created with role &#39;viewer&#39;. Cannot be combined with role &#39;billing_admin&#39;.
+   * @return readOnly
+   * @deprecated
+   */
+  @Deprecated
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getReadOnly() {
+    return readOnly;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReadOnly(@javax.annotation.Nullable Boolean readOnly) {
+    this.readOnly = readOnly;
+  }
+
+
   /**
    * Return true if this createInviteToken_request object is equal to o.
    */
@@ -155,12 +252,14 @@ public class CreateInviteTokenRequest {
     }
     CreateInviteTokenRequest createInviteTokenRequest = (CreateInviteTokenRequest) o;
     return Objects.equals(this.scope, createInviteTokenRequest.scope) &&
-        Objects.equals(this.profileIds, createInviteTokenRequest.profileIds);
+        Objects.equals(this.profileIds, createInviteTokenRequest.profileIds) &&
+        Objects.equals(this.role, createInviteTokenRequest.role) &&
+        Objects.equals(this.readOnly, createInviteTokenRequest.readOnly);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(scope, profileIds);
+    return Objects.hash(scope, profileIds, role, readOnly);
   }
 
   @Override
@@ -169,6 +268,8 @@ public class CreateInviteTokenRequest {
     sb.append("class CreateInviteTokenRequest {\n");
     sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
     sb.append("    profileIds: ").append(toIndentedString(profileIds)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    readOnly: ").append(toIndentedString(readOnly)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -228,6 +329,16 @@ public class CreateInviteTokenRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getProfileIds().get(i)))));
       }
+    }
+
+    // add `role` to the URL query string
+    if (getRole() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srole%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRole()))));
+    }
+
+    // add `readOnly` to the URL query string
+    if (getReadOnly() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreadOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
     }
 
     return joiner.toString();

@@ -73,6 +73,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_HEADLINE,
   CreateStandaloneAdRequest.JSON_PROPERTY_LONG_HEADLINE,
   CreateStandaloneAdRequest.JSON_PROPERTY_BODY,
+  CreateStandaloneAdRequest.JSON_PROPERTY_DESCRIPTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_CALL_TO_ACTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequest.JSON_PROPERTY_LEAD_GEN_FORM_ID,
@@ -122,7 +123,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-09T13:24:42.414017337Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:05:22.491311305Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -304,6 +305,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_BODY = "body";
   @javax.annotation.Nullable
   private String body;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  @javax.annotation.Nullable
+  private String description;
 
   /**
    * Required on legacy + attach shapes for Meta. Honoured on TikTok (passes through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;) and on LinkedIn (the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set). LinkedIn accepts: LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. Ignored by Google, Pinterest, and X/Twitter.
@@ -1171,6 +1176,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest description(@javax.annotation.Nullable String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * Meta only (facebook/instagram). Link description — the secondary text shown below the headline (Meta&#39;s link_data.description; on video creatives mapped to video_data.link_description). When omitted, Meta auto-pulls the destination URL&#39;s OpenGraph description. Applies on legacy, attach, and placementAssets shapes; for multi-creative use creatives[].description (this field is the shared fallback). For multi-text variations use dynamicCreative.descriptions instead.
+   * @return description
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
+  }
+
+
   public CreateStandaloneAdRequest callToAction(@javax.annotation.Nullable CallToActionEnum callToAction) {
     this.callToAction = callToAction;
     return this;
@@ -1225,7 +1254,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta Lead Gen forms only (facebook/instagram). The leadgen_forms ID to attach to the ad&#39;s creative — create one via POST /v1/ads/lead-forms. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;; ignored otherwise. The ad set&#39;s promoted_object.page_id + LEAD_GENERATION optimization + destination_type ON_AD are derived automatically from the goal. Both &#x60;placementAssets&#x60; (per-placement creative) and &#x60;dynamicCreative&#x60; (multi-text / multi-asset pool, e.g. multiple headlines and primary texts) ARE supported on instant-form lead ads — the form is attached for you, and for &#x60;dynamicCreative&#x60; the ad set is created as a Dynamic Creative ad set automatically (Meta requires that for any multi-text feed; there is no non-DCO multi-text path). Send a single &#x60;imageUrls&#x60; entry plus your text variations to get Meta&#39;s \&quot;Multiple Text Options\&quot; behavior on a lead ad.
+   * Meta Lead Gen forms only (facebook/instagram). The leadgen_forms ID to attach to the ad&#39;s creative — create one via POST /v1/ads/lead-forms. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;, and on every ATTACH (&#x60;adSetId&#x60;) call that targets a lead ad set (the form attaches per-ad; Meta rejects a formless ad in a lead ad set). Ignored otherwise. The ad set&#39;s promoted_object.page_id + LEAD_GENERATION optimization + destination_type ON_AD are derived automatically from the goal. Both &#x60;placementAssets&#x60; (per-placement creative) and &#x60;dynamicCreative&#x60; (multi-text / multi-asset pool, e.g. multiple headlines and primary texts) ARE supported on instant-form lead ads — the form is attached for you, and for &#x60;dynamicCreative&#x60; the ad set is created as a Dynamic Creative ad set automatically (Meta requires that for any multi-text feed; there is no non-DCO multi-text path). Send a single &#x60;imageUrls&#x60; entry plus your text variations to get Meta&#39;s \&quot;Multiple Text Options\&quot; behavior on a lead ad.
    * @return leadGenFormId
    */
   @javax.annotation.Nullable
@@ -1353,7 +1382,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta — passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  Supported on Meta (facebook, instagram) and TikTok. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. 
+   * Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta — passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD — true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram) and TikTok. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. 
    * @return adSetId
    */
   @javax.annotation.Nullable
@@ -2483,6 +2512,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.headline, createStandaloneAdRequest.headline) &&
         Objects.equals(this.longHeadline, createStandaloneAdRequest.longHeadline) &&
         Objects.equals(this.body, createStandaloneAdRequest.body) &&
+        Objects.equals(this.description, createStandaloneAdRequest.description) &&
         Objects.equals(this.callToAction, createStandaloneAdRequest.callToAction) &&
         Objects.equals(this.linkUrl, createStandaloneAdRequest.linkUrl) &&
         Objects.equals(this.leadGenFormId, createStandaloneAdRequest.leadGenFormId) &&
@@ -2535,7 +2565,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2558,6 +2588,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
     sb.append("    longHeadline: ").append(toIndentedString(longHeadline)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    leadGenFormId: ").append(toIndentedString(leadGenFormId)).append("\n");
@@ -2731,6 +2762,11 @@ public class CreateStandaloneAdRequest {
     // add `body` to the URL query string
     if (getBody() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBody()))));
+    }
+
+    // add `description` to the URL query string
+    if (getDescription() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `callToAction` to the URL query string
