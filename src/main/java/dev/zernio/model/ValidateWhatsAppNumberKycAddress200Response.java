@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ValidateWhatsAppNumberKycAddress200Response.JSON_PROPERTY_OK,
   ValidateWhatsAppNumberKycAddress200Response.JSON_PROPERTY_SKIPPED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:08:07.785462183Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:54:12.155493634Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateWhatsAppNumberKycAddress200Response {
   public static final String JSON_PROPERTY_OK = "ok";
   @javax.annotation.Nullable

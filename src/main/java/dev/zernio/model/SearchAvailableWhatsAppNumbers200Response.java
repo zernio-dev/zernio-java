@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SearchAvailableWhatsAppNumbers200Response.JSON_PROPERTY_NUMBER_TYPE,
   SearchAvailableWhatsAppNumbers200Response.JSON_PROPERTY_NUMBERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:08:07.785462183Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:54:12.155493634Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAvailableWhatsAppNumbers200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
