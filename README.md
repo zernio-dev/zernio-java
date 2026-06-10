@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-10T15:30:05.324884686Z[Etc/UTC]
+- Build date: 2026-06-10T17:03:01.970088783Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1630,7 +1630,9 @@ Class | Method | HTTP request | Description
  - [PurchaseWhatsAppPhoneNumber200ResponseOneOf](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md)
  - [PurchaseWhatsAppPhoneNumber200ResponseOneOf1](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md)
  - [PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber.md)
+ - [PurchaseWhatsAppPhoneNumber200ResponseOneOf2](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf2.md)
  - [PurchaseWhatsAppPhoneNumber202Response](docs/PurchaseWhatsAppPhoneNumber202Response.md)
+ - [PurchaseWhatsAppPhoneNumber409Response](docs/PurchaseWhatsAppPhoneNumber409Response.md)
  - [PurchaseWhatsAppPhoneNumberRequest](docs/PurchaseWhatsAppPhoneNumberRequest.md)
  - [QueueDeleteResponse](docs/QueueDeleteResponse.md)
  - [QueueNextSlotResponse](docs/QueueNextSlotResponse.md)

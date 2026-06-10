@@ -5,6 +5,7 @@
 ## oneOf schemas
 * [PurchaseWhatsAppPhoneNumber200ResponseOneOf](PurchaseWhatsAppPhoneNumber200ResponseOneOf.md)
 * [PurchaseWhatsAppPhoneNumber200ResponseOneOf1](PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md)
+* [PurchaseWhatsAppPhoneNumber200ResponseOneOf2](PurchaseWhatsAppPhoneNumber200ResponseOneOf2.md)
 
 ## Example
 ```java
@@ -12,6 +13,7 @@
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1;
+import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf2;
 
 public class Example {
     public static void main(String[] args) {
@@ -30,6 +32,13 @@ public class Example {
         examplePurchaseWhatsAppPhoneNumber200Response.setActualInstance(examplePurchaseWhatsAppPhoneNumber200ResponseOneOf1);
         // to get back the PurchaseWhatsAppPhoneNumber200ResponseOneOf1 set earlier
         PurchaseWhatsAppPhoneNumber200ResponseOneOf1 testPurchaseWhatsAppPhoneNumber200ResponseOneOf1 = (PurchaseWhatsAppPhoneNumber200ResponseOneOf1) examplePurchaseWhatsAppPhoneNumber200Response.getActualInstance();
+
+        // create a new PurchaseWhatsAppPhoneNumber200ResponseOneOf2
+        PurchaseWhatsAppPhoneNumber200ResponseOneOf2 examplePurchaseWhatsAppPhoneNumber200ResponseOneOf2 = new PurchaseWhatsAppPhoneNumber200ResponseOneOf2();
+        // set PurchaseWhatsAppPhoneNumber200Response to PurchaseWhatsAppPhoneNumber200ResponseOneOf2
+        examplePurchaseWhatsAppPhoneNumber200Response.setActualInstance(examplePurchaseWhatsAppPhoneNumber200ResponseOneOf2);
+        // to get back the PurchaseWhatsAppPhoneNumber200ResponseOneOf2 set earlier
+        PurchaseWhatsAppPhoneNumber200ResponseOneOf2 testPurchaseWhatsAppPhoneNumber200ResponseOneOf2 = (PurchaseWhatsAppPhoneNumber200ResponseOneOf2) examplePurchaseWhatsAppPhoneNumber200Response.getActualInstance();
     }
 }
 ```

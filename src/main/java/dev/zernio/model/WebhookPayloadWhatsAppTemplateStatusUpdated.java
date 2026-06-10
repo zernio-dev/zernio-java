@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadWhatsAppTemplateStatusUpdated.JSON_PROPERTY_TEMPLATE,
   WebhookPayloadWhatsAppTemplateStatusUpdated.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T15:30:05.324884686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadWhatsAppTemplateStatusUpdated {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

@@ -34,9 +34,11 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PROFILE_ID,
-  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_COUNTRY
+  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_COUNTRY,
+  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
+  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T15:30:05.324884686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchaseWhatsAppPhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -45,6 +47,14 @@ public class PurchaseWhatsAppPhoneNumberRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
   private String country = "US";
+
+  public static final String JSON_PROPERTY_PURCHASE_INTENT_ID = "purchaseIntentId";
+  @javax.annotation.Nullable
+  private String purchaseIntentId;
+
+  public static final String JSON_PROPERTY_ALLOW_MULTIPLE = "allowMultiple";
+  @javax.annotation.Nullable
+  private Boolean allowMultiple = false;
 
   public PurchaseWhatsAppPhoneNumberRequest() { 
   }
@@ -97,6 +107,54 @@ public class PurchaseWhatsAppPhoneNumberRequest {
   }
 
 
+  public PurchaseWhatsAppPhoneNumberRequest purchaseIntentId(@javax.annotation.Nullable String purchaseIntentId) {
+    this.purchaseIntentId = purchaseIntentId;
+    return this;
+  }
+
+  /**
+   * Optional idempotency key. Send the same value when retrying a purchase: if a number was already bought under this key, the API returns { status: \&quot;already_purchased\&quot;, numberId, phoneNumber } instead of provisioning a second number. Generate a fresh key for each genuinely new purchase. 
+   * @return purchaseIntentId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PURCHASE_INTENT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPurchaseIntentId() {
+    return purchaseIntentId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PURCHASE_INTENT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPurchaseIntentId(@javax.annotation.Nullable String purchaseIntentId) {
+    this.purchaseIntentId = purchaseIntentId;
+  }
+
+
+  public PurchaseWhatsAppPhoneNumberRequest allowMultiple(@javax.annotation.Nullable Boolean allowMultiple) {
+    this.allowMultiple = allowMultiple;
+    return this;
+  }
+
+  /**
+   * Any second purchase within 10 minutes of a previous one is rejected with 409 code PURCHASE_VELOCITY as duplicate protection. Pass true to confirm the additional purchase is intentional (e.g. bulk provisioning). 
+   * @return allowMultiple
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_MULTIPLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAllowMultiple() {
+    return allowMultiple;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_MULTIPLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAllowMultiple(@javax.annotation.Nullable Boolean allowMultiple) {
+    this.allowMultiple = allowMultiple;
+  }
+
+
   /**
    * Return true if this purchaseWhatsAppPhoneNumber_request object is equal to o.
    */
@@ -110,12 +168,14 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     }
     PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest = (PurchaseWhatsAppPhoneNumberRequest) o;
     return Objects.equals(this.profileId, purchaseWhatsAppPhoneNumberRequest.profileId) &&
-        Objects.equals(this.country, purchaseWhatsAppPhoneNumberRequest.country);
+        Objects.equals(this.country, purchaseWhatsAppPhoneNumberRequest.country) &&
+        Objects.equals(this.purchaseIntentId, purchaseWhatsAppPhoneNumberRequest.purchaseIntentId) &&
+        Objects.equals(this.allowMultiple, purchaseWhatsAppPhoneNumberRequest.allowMultiple);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country);
+    return Objects.hash(profileId, country, purchaseIntentId, allowMultiple);
   }
 
   @Override
@@ -124,6 +184,8 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     sb.append("class PurchaseWhatsAppPhoneNumberRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    purchaseIntentId: ").append(toIndentedString(purchaseIntentId)).append("\n");
+    sb.append("    allowMultiple: ").append(toIndentedString(allowMultiple)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +241,16 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `purchaseIntentId` to the URL query string
+    if (getPurchaseIntentId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spurchaseIntentId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPurchaseIntentId()))));
+    }
+
+    // add `allowMultiple` to the URL query string
+    if (getAllowMultiple() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallowMultiple%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllowMultiple()))));
     }
 
     return joiner.toString();

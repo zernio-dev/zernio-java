@@ -1143,6 +1143,7 @@ public class Example {
 | **400** | Plan limit reached |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
+| **409** | Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (Metronome user with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -1222,6 +1223,7 @@ ApiResponse<[**PurchaseWhatsAppPhoneNumber200Response**](PurchaseWhatsAppPhoneNu
 | **400** | Plan limit reached |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
+| **409** | Duplicate-purchase protection: another number was purchased for this user within the last 10 minutes. Retry with allowMultiple: true to confirm the additional purchase is intentional.  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (Metronome user with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |

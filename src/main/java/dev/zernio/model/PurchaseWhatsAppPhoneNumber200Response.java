@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1;
-import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber;
+import dev.zernio.model.PurchaseWhatsAppPhoneNumber200ResponseOneOf2;
 import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -56,7 +56,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T15:30:05.324884686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = PurchaseWhatsAppPhoneNumber200Response.PurchaseWhatsAppPhoneNumber200ResponseDeserializer.class)
 @JsonSerialize(using = PurchaseWhatsAppPhoneNumber200Response.PurchaseWhatsAppPhoneNumber200ResponseSerializer.class)
 public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchema {
@@ -145,6 +145,32 @@ public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchem
                 log.log(Level.FINER, "Input data does not match schema 'PurchaseWhatsAppPhoneNumber200ResponseOneOf1'", e);
             }
 
+            // deserialize PurchaseWhatsAppPhoneNumber200ResponseOneOf2
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Integer.class) || PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Long.class) || PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Float.class) || PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Double.class) || PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Boolean.class) || PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Integer.class) || PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Float.class) || PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'PurchaseWhatsAppPhoneNumber200ResponseOneOf2'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'PurchaseWhatsAppPhoneNumber200ResponseOneOf2'", e);
+            }
+
             if (match == 1) {
                 PurchaseWhatsAppPhoneNumber200Response ret = new PurchaseWhatsAppPhoneNumber200Response();
                 ret.setActualInstance(deserialized);
@@ -179,9 +205,15 @@ public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchem
         setActualInstance(o);
     }
 
+    public PurchaseWhatsAppPhoneNumber200Response(PurchaseWhatsAppPhoneNumber200ResponseOneOf2 o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     static {
         schemas.put("PurchaseWhatsAppPhoneNumber200ResponseOneOf", PurchaseWhatsAppPhoneNumber200ResponseOneOf.class);
         schemas.put("PurchaseWhatsAppPhoneNumber200ResponseOneOf1", PurchaseWhatsAppPhoneNumber200ResponseOneOf1.class);
+        schemas.put("PurchaseWhatsAppPhoneNumber200ResponseOneOf2", PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class);
         JSON.registerDescendants(PurchaseWhatsAppPhoneNumber200Response.class, Collections.unmodifiableMap(schemas));
     }
 
@@ -193,7 +225,7 @@ public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchem
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1
+     * PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1, PurchaseWhatsAppPhoneNumber200ResponseOneOf2
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -210,14 +242,19 @@ public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchem
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1");
+        if (JSON.isInstanceOf(PurchaseWhatsAppPhoneNumber200ResponseOneOf2.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1, PurchaseWhatsAppPhoneNumber200ResponseOneOf2");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1
+     * PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1, PurchaseWhatsAppPhoneNumber200ResponseOneOf2
      *
-     * @return The actual instance (PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1)
+     * @return The actual instance (PurchaseWhatsAppPhoneNumber200ResponseOneOf, PurchaseWhatsAppPhoneNumber200ResponseOneOf1, PurchaseWhatsAppPhoneNumber200ResponseOneOf2)
      */
     @Override
     public Object getActualInstance() {
@@ -244,6 +281,17 @@ public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchem
      */
     public PurchaseWhatsAppPhoneNumber200ResponseOneOf1 getPurchaseWhatsAppPhoneNumber200ResponseOneOf1() throws ClassCastException {
         return (PurchaseWhatsAppPhoneNumber200ResponseOneOf1)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `PurchaseWhatsAppPhoneNumber200ResponseOneOf2`. If the actual instance is not `PurchaseWhatsAppPhoneNumber200ResponseOneOf2`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `PurchaseWhatsAppPhoneNumber200ResponseOneOf2`
+     * @throws ClassCastException if the instance is not `PurchaseWhatsAppPhoneNumber200ResponseOneOf2`
+     */
+    public PurchaseWhatsAppPhoneNumber200ResponseOneOf2 getPurchaseWhatsAppPhoneNumber200ResponseOneOf2() throws ClassCastException {
+        return (PurchaseWhatsAppPhoneNumber200ResponseOneOf2)super.getActualInstance();
     }
 
 
@@ -289,6 +337,12 @@ public class PurchaseWhatsAppPhoneNumber200Response extends AbstractOpenApiSchem
     if (getActualInstance() instanceof PurchaseWhatsAppPhoneNumber200ResponseOneOf1) {
         if (getActualInstance() != null) {
           joiner.add(((PurchaseWhatsAppPhoneNumber200ResponseOneOf1)getActualInstance()).toUrlQueryString(prefix + "one_of_1" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof PurchaseWhatsAppPhoneNumber200ResponseOneOf2) {
+        if (getActualInstance() != null) {
+          joiner.add(((PurchaseWhatsAppPhoneNumber200ResponseOneOf2)getActualInstance()).toUrlQueryString(prefix + "one_of_2" + suffix));
         }
         return joiner.toString();
     }

@@ -30,6 +30,7 @@ import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListWhatsAppNumberCountries200Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber200Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumber202Response;
+import dev.zernio.model.PurchaseWhatsAppPhoneNumber409Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumberRequest;
 import dev.zernio.model.ReleaseWhatsAppPhoneNumber200Response;
 import dev.zernio.model.RemediateWhatsAppNumber200Response;
@@ -73,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T15:30:05.324884686Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

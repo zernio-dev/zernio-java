@@ -793,7 +793,9 @@ docs/PurchaseWhatsAppPhoneNumber200Response.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber.md
+docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf2.md
 docs/PurchaseWhatsAppPhoneNumber202Response.md
+docs/PurchaseWhatsAppPhoneNumber409Response.md
 docs/PurchaseWhatsAppPhoneNumberRequest.md
 docs/QueueApi.md
 docs/QueueDeleteResponse.md
@@ -2052,7 +2054,9 @@ src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200Response.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf1PhoneNumber.java
+src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf2.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber202Response.java
+src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber409Response.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumberRequest.java
 src/main/java/dev/zernio/model/QueueDeleteResponse.java
 src/main/java/dev/zernio/model/QueueNextSlotResponse.java
@@ -2467,6 +2471,5 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerTest.java
-src/test/java/dev/zernio/model/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInnerTest.java
-src/test/java/dev/zernio/model/GetGmbAttributeMetadata200ResponseTest.java
+src/test/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf2Test.java
+src/test/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber409ResponseTest.java
