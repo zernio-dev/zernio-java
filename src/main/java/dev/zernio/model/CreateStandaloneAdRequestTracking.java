@@ -33,13 +33,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta only. Attaches pixel measurement to the ad regardless of the optimization goal (the \&quot;Website events\&quot; tracking row in Ads Manager). &#x60;pixelId&#x60; becomes the ad&#39;s &#x60;tracking_specs&#x60; (offsite_conversion + fb_pixel); &#x60;urlTags&#x60; becomes the ad&#39;s &#x60;url_tags&#x60; (click-tracking query params). Applied to every ad on the legacy single-creative and multi-creative shapes.
+ * Meta only. Attaches pixel measurement to the ad regardless of the optimization goal (the \&quot;Website events\&quot; tracking row in Ads Manager). &#x60;pixelId&#x60; becomes the ad&#39;s &#x60;tracking_specs&#x60; (offsite_conversion + fb_pixel); &#x60;urlTags&#x60; becomes the ad&#39;s &#x60;url_tags&#x60; (click-tracking query params). Applied on the legacy single-creative shape, every ad of the multi-creative shape, and the attach shape. NOTE: tracking lives on the AD object and is not inherited from the ad set, so pass it on EVERY attach call that should carry the pixel.
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestTracking.JSON_PROPERTY_PIXEL_ID,
   CreateStandaloneAdRequestTracking.JSON_PROPERTY_URL_TAGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T11:54:12.155493634Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T14:10:21.552796462Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestTracking {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
