@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, and Flow prompts. When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;) — the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for &#x60;list&#x60;, &#x60;cta_url&#x60;, or &#x60;flow&#x60; messages.  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. 
+ * WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, Flow prompts, and location requests. When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;) — the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for &#x60;list&#x60;, &#x60;cta_url&#x60;, &#x60;flow&#x60;, or &#x60;location_request_message&#x60; messages.  For &#x60;location_request_message&#x60;, &#x60;action&#x60; may be omitted (we default it to &#x60;{ \&quot;name\&quot;: \&quot;send_location\&quot; }&#x60;). WhatsApp renders a localized \&quot;Send location\&quot; button; the user&#39;s reply arrives as a regular location message in the conversation.  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. 
  */
 @JsonPropertyOrder({
   SendInboxMessageRequestInteractive.JSON_PROPERTY_TYPE,
@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractive.JSON_PROPERTY_FOOTER,
   SendInboxMessageRequestInteractive.JSON_PROPERTY_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T10:35:18.849279680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T14:55:26.815835603Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractive {
   /**
    * Which interactive layout to render.
@@ -53,7 +53,9 @@ public class SendInboxMessageRequestInteractive {
     
     CTA_URL(String.valueOf("cta_url")),
     
-    FLOW(String.valueOf("flow"));
+    FLOW(String.valueOf("flow")),
+    
+    LOCATION_REQUEST_MESSAGE(String.valueOf("location_request_message"));
 
     private String value;
 
@@ -99,7 +101,7 @@ public class SendInboxMessageRequestInteractive {
   private SendInboxMessageRequestInteractiveFooter footer;
 
   public static final String JSON_PROPERTY_ACTION = "action";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private SendInboxMessageRequestInteractiveAction action;
 
   public SendInboxMessageRequestInteractive() { 
@@ -201,7 +203,7 @@ public class SendInboxMessageRequestInteractive {
   }
 
 
-  public SendInboxMessageRequestInteractive action(@javax.annotation.Nonnull SendInboxMessageRequestInteractiveAction action) {
+  public SendInboxMessageRequestInteractive action(@javax.annotation.Nullable SendInboxMessageRequestInteractiveAction action) {
     this.action = action;
     return this;
   }
@@ -210,17 +212,17 @@ public class SendInboxMessageRequestInteractive {
    * Get action
    * @return action
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ACTION, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public SendInboxMessageRequestInteractiveAction getAction() {
     return action;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACTION, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAction(@javax.annotation.Nonnull SendInboxMessageRequestInteractiveAction action) {
+  @JsonProperty(value = JSON_PROPERTY_ACTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAction(@javax.annotation.Nullable SendInboxMessageRequestInteractiveAction action) {
     this.action = action;
   }
 

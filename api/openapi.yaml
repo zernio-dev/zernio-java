@@ -12351,9 +12351,9 @@ paths:
         to a phone number you have no conversation with yet, use the
         create-conversation endpoint (POST /v1/inbox/conversations) instead.
 
-        WhatsApp rich interactive messages (list, CTA URL, Flow) are available via
-        the `interactive` field. Tap events are delivered through the
-        `message.received` webhook with WhatsApp-specific `metadata` fields
+        WhatsApp rich interactive messages (list, CTA URL, Flow, location request)
+        are available via the `interactive` field. Tap events are delivered through
+        the `message.received` webhook with WhatsApp-specific `metadata` fields
         (`interactiveType`, `interactiveId`, `flowResponseJson`, `flowResponseData`).
       operationId: sendInboxMessage
       parameters:
@@ -14951,6 +14951,127 @@ paths:
       summary: Get number status
       tags:
       - WhatsApp Phone Numbers
+      x-accepts:
+      - application/json
+  /v1/whatsapp/block-users:
+    delete:
+      description: |
+        Unblock one or more previously blocked WhatsApp users on this number.
+        Up to 1,000 users per request; per-user failures are reported in
+        `failed` without failing the rest of the batch.
+      operationId: unblockWhatsAppUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/unblockWhatsAppUsers_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/unblockWhatsAppUsers_200_response"
+          description: Per-user results
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Unblock users
+      tags:
+      - WhatsApp
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    get:
+      description: |
+        List the WhatsApp users blocked on this number. Cursor-paginated; pass
+        `nextCursor` back as `after` to fetch the next page. The blocklist holds
+        up to 64,000 users.
+      operationId: getWhatsAppBlockedUsers
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Page size.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from a previous response's `nextCursor`.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppBlockedUsers_200_response"
+          description: Blocked users
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: List blocked users
+      tags:
+      - WhatsApp
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Block one or more WhatsApp users on this number. Blocked users cannot
+        message your number or see that you are online, and your sends to them
+        return an error.
+
+        Meta constraints, surfaced per-user in `failed` (the request itself still
+        succeeds for the rest of the batch):
+        - Only users who messaged your business within the last 24 hours can be
+          blocked (failures outside the window report "Re-engagement required").
+        - Up to 1,000 users per request; the blocklist caps at 64,000.
+        - Other WhatsApp Business accounts cannot be blocked.
+      operationId: blockWhatsAppUsers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/blockWhatsAppUsers_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/blockWhatsAppUsers_200_response"
+          description: Per-user results
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Block users
+      tags:
+      - WhatsApp
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/whatsapp/dataset:
@@ -41823,8 +41944,8 @@ components:
             Platform-specific extras. Free-form, but commonly includes:
             `quotedMessageId` (platformMessageId this message replies to),
             `waInteractive` (a compact descriptor of WhatsApp interactive
-            content sent: buttons / list / cta_url / flow), and for inbound
-            interactive taps `interactiveType` / `interactiveId`.
+            content sent: buttons / list / cta_url / flow / location_request),
+            and for inbound interactive taps `interactiveType` / `interactiveId`.
     getInboxConversationMessages_200_response:
       example:
         sortOrderApplied: asc
@@ -42265,23 +42386,40 @@ components:
       required:
       - name
       - parameters
+    sendInboxMessage_request_interactive_action_oneOf_3:
+      description: Location request action. `type` on the parent must be `location_request_message`.
+        May be omitted entirely; it is defaulted.
+      properties:
+        name:
+          enum:
+          - send_location
+          type: string
+      required:
+      - name
     sendInboxMessage_request_interactive_action:
       oneOf:
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_1"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_2"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_3"
     sendInboxMessage_request_interactive:
       description: |
         WhatsApp-only. Rich interactive payload for list messages, CTA URL
-        buttons, and Flow prompts. When set, takes priority over `buttons`
-        and `quickReplies`. The shape mirrors Meta's Cloud API `interactive`
-        object verbatim, so any payload that works against Meta directly
-        will also work here.
+        buttons, Flow prompts, and location requests. When set, takes
+        priority over `buttons` and `quickReplies`. The shape mirrors
+        Meta's Cloud API `interactive` object verbatim, so any payload
+        that works against Meta directly will also work here.
 
         Use `buttons` / `quickReplies` for simple button replies
         (WhatsApp's `interactive.type: "button"`) — the abstraction caps at
         3 buttons and handles the auto-conversion for you. Use this field
-        only for `list`, `cta_url`, or `flow` messages.
+        only for `list`, `cta_url`, `flow`, or `location_request_message`
+        messages.
+
+        For `location_request_message`, `action` may be omitted (we default
+        it to `{ "name": "send_location" }`). WhatsApp renders a localized
+        "Send location" button; the user's reply arrives as a regular
+        location message in the conversation.
 
         Tap events come back via the `message.received` webhook with
         `metadata.interactiveType` set to `list_reply` or `nfm_reply`.
@@ -42292,6 +42430,7 @@ components:
           - list
           - cta_url
           - flow
+          - location_request_message
           type: string
         header:
           $ref: "#/components/schemas/sendInboxMessage_request_interactive_header"
@@ -42302,7 +42441,6 @@ components:
         action:
           $ref: "#/components/schemas/sendInboxMessage_request_interactive_action"
       required:
-      - action
       - body
       - type
     sendInboxMessage_request_replyMarkup_keyboard_inner_inner:
@@ -44766,6 +44904,138 @@ components:
           $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_phone"
         waba:
           $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_waba"
+    getWhatsAppBlockedUsers_200_response_blockedUsers_inner:
+      example:
+        waId: waId
+      properties:
+        waId:
+          description: WhatsApp user ID (usually the phone number without `+`).
+          type: string
+    getWhatsAppBlockedUsers_200_response:
+      example:
+        nextCursor: nextCursor
+        blockedUsers:
+        - waId: waId
+        - waId: waId
+      properties:
+        blockedUsers:
+          items:
+            $ref: "#/components/schemas/getWhatsAppBlockedUsers_200_response_blockedUsers_inner"
+          type: array
+        nextCursor:
+          description: Pass as `after` to fetch the next page. Null when there are
+            no more pages.
+          type: string
+          nullable: true
+    blockWhatsAppUsers_request:
+      properties:
+        accountId:
+          description: WhatsApp social account ID
+          type: string
+        users:
+          description: "Phone numbers (E.164, e.g. \"+16505551234\") or WhatsApp user\
+            \ IDs to block."
+          items:
+            type: string
+          maxItems: 1000
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - users
+    blockWhatsAppUsers_200_response_blocked_inner:
+      example:
+        input: input
+        waId: waId
+      properties:
+        input:
+          description: The value you sent.
+          type: string
+        waId:
+          description: Resolved WhatsApp user ID.
+          type: string
+    blockWhatsAppUsers_200_response_failed_inner:
+      example:
+        input: input
+        errors:
+        - errors
+        - errors
+      properties:
+        input:
+          type: string
+        errors:
+          items:
+            type: string
+          type: array
+    blockWhatsAppUsers_200_response:
+      example:
+        blocked:
+        - input: input
+          waId: waId
+        - input: input
+          waId: waId
+        failed:
+        - input: input
+          errors:
+          - errors
+          - errors
+        - input: input
+          errors:
+          - errors
+          - errors
+      properties:
+        blocked:
+          description: Users successfully blocked.
+          items:
+            $ref: "#/components/schemas/blockWhatsAppUsers_200_response_blocked_inner"
+          type: array
+        failed:
+          description: "Users that could not be blocked, with reasons."
+          items:
+            $ref: "#/components/schemas/blockWhatsAppUsers_200_response_failed_inner"
+          type: array
+    unblockWhatsAppUsers_request:
+      properties:
+        accountId:
+          description: WhatsApp social account ID
+          type: string
+        users:
+          description: Phone numbers (E.164) or WhatsApp user IDs to unblock.
+          items:
+            type: string
+          maxItems: 1000
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - users
+    unblockWhatsAppUsers_200_response:
+      example:
+        unblocked:
+        - input: input
+          waId: waId
+        - input: input
+          waId: waId
+        failed:
+        - input: input
+          errors:
+          - errors
+          - errors
+        - input: input
+          errors:
+          - errors
+          - errors
+      properties:
+        unblocked:
+          description: Users successfully unblocked.
+          items:
+            $ref: "#/components/schemas/blockWhatsAppUsers_200_response_blocked_inner"
+          type: array
+        failed:
+          description: "Users that could not be unblocked, with reasons."
+          items:
+            $ref: "#/components/schemas/blockWhatsAppUsers_200_response_failed_inner"
+          type: array
     getWhatsAppDataset_200_response:
       example:
         datasetId: datasetId

@@ -70,6 +70,10 @@ docs/BatchGetGoogleBusinessReviews200Response.md
 docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md
 docs/BatchGetGoogleBusinessReviewsRequest.md
 docs/BidStrategy.md
+docs/BlockWhatsAppUsers200Response.md
+docs/BlockWhatsAppUsers200ResponseBlockedInner.md
+docs/BlockWhatsAppUsers200ResponseFailedInner.md
+docs/BlockWhatsAppUsersRequest.md
 docs/BlueskyPlatformData.md
 docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
@@ -512,6 +516,8 @@ docs/GetUser200ResponseUser.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
+docs/GetWhatsAppBlockedUsers200Response.md
+docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md
 docs/GetWhatsAppBusinessProfile200Response.md
 docs/GetWhatsAppBusinessProfile200ResponseBusinessProfile.md
 docs/GetWhatsAppCall200Response.md
@@ -901,6 +907,7 @@ docs/SendInboxMessageRequestInteractiveActionOneOf1Parameters.md
 docs/SendInboxMessageRequestInteractiveActionOneOf2.md
 docs/SendInboxMessageRequestInteractiveActionOneOf2Parameters.md
 docs/SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload.md
+docs/SendInboxMessageRequestInteractiveActionOneOf3.md
 docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInner.md
 docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner.md
 docs/SendInboxMessageRequestInteractiveBody.md
@@ -967,6 +974,8 @@ docs/TwitterPlatformData.md
 docs/TwitterPlatformDataPoll.md
 docs/TwitterPlatformDataSensitiveMedia.md
 docs/TwitterPlatformDataThreadItemsInner.md
+docs/UnblockWhatsAppUsers200Response.md
+docs/UnblockWhatsAppUsersRequest.md
 docs/UndoRetweet200Response.md
 docs/UnfollowUser200Response.md
 docs/UnlikeInboxComment200Response.md
@@ -1360,6 +1369,10 @@ src/main/java/dev/zernio/model/BatchGetGoogleBusinessReviews200Response.java
 src/main/java/dev/zernio/model/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.java
 src/main/java/dev/zernio/model/BatchGetGoogleBusinessReviewsRequest.java
 src/main/java/dev/zernio/model/BidStrategy.java
+src/main/java/dev/zernio/model/BlockWhatsAppUsers200Response.java
+src/main/java/dev/zernio/model/BlockWhatsAppUsers200ResponseBlockedInner.java
+src/main/java/dev/zernio/model/BlockWhatsAppUsers200ResponseFailedInner.java
+src/main/java/dev/zernio/model/BlockWhatsAppUsersRequest.java
 src/main/java/dev/zernio/model/BlueskyPlatformData.java
 src/main/java/dev/zernio/model/BookmarkPost200Response.java
 src/main/java/dev/zernio/model/BookmarkPostRequest.java
@@ -1795,6 +1808,8 @@ src/main/java/dev/zernio/model/GetUser200ResponseUser.java
 src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/GetWebhookSettings200Response.java
+src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200Response.java
+src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.java
 src/main/java/dev/zernio/model/GetWhatsAppBusinessProfile200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBusinessProfile200ResponseBusinessProfile.java
 src/main/java/dev/zernio/model/GetWhatsAppCall200Response.java
@@ -2164,6 +2179,7 @@ src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf1Par
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf2.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf2Parameters.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload.java
+src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf3.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOfSectionsInner.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner.java
 src/main/java/dev/zernio/model/SendInboxMessageRequestInteractiveBody.java
@@ -2227,6 +2243,8 @@ src/main/java/dev/zernio/model/TwitterPlatformData.java
 src/main/java/dev/zernio/model/TwitterPlatformDataPoll.java
 src/main/java/dev/zernio/model/TwitterPlatformDataSensitiveMedia.java
 src/main/java/dev/zernio/model/TwitterPlatformDataThreadItemsInner.java
+src/main/java/dev/zernio/model/UnblockWhatsAppUsers200Response.java
+src/main/java/dev/zernio/model/UnblockWhatsAppUsersRequest.java
 src/main/java/dev/zernio/model/UndoRetweet200Response.java
 src/main/java/dev/zernio/model/UnfollowUser200Response.java
 src/main/java/dev/zernio/model/UnlikeInboxComment200Response.java
@@ -2481,7 +2499,12 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/ListAdCatalogProductSets200ResponseProductSetsInnerTest.java
-src/test/java/dev/zernio/model/ListAdCatalogProductSets200ResponseTest.java
-src/test/java/dev/zernio/model/ListAdCatalogs200ResponseCatalogsInnerTest.java
-src/test/java/dev/zernio/model/ListAdCatalogs200ResponseTest.java
+src/test/java/dev/zernio/model/BlockWhatsAppUsers200ResponseBlockedInnerTest.java
+src/test/java/dev/zernio/model/BlockWhatsAppUsers200ResponseFailedInnerTest.java
+src/test/java/dev/zernio/model/BlockWhatsAppUsers200ResponseTest.java
+src/test/java/dev/zernio/model/BlockWhatsAppUsersRequestTest.java
+src/test/java/dev/zernio/model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInnerTest.java
+src/test/java/dev/zernio/model/GetWhatsAppBlockedUsers200ResponseTest.java
+src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf3Test.java
+src/test/java/dev/zernio/model/UnblockWhatsAppUsers200ResponseTest.java
+src/test/java/dev/zernio/model/UnblockWhatsAppUsersRequestTest.java

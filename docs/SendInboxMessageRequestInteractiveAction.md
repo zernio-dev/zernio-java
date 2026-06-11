@@ -6,6 +6,7 @@
 * [SendInboxMessageRequestInteractiveActionOneOf](SendInboxMessageRequestInteractiveActionOneOf.md)
 * [SendInboxMessageRequestInteractiveActionOneOf1](SendInboxMessageRequestInteractiveActionOneOf1.md)
 * [SendInboxMessageRequestInteractiveActionOneOf2](SendInboxMessageRequestInteractiveActionOneOf2.md)
+* [SendInboxMessageRequestInteractiveActionOneOf3](SendInboxMessageRequestInteractiveActionOneOf3.md)
 
 ## Example
 ```java
@@ -14,6 +15,7 @@ import dev.zernio.model.SendInboxMessageRequestInteractiveAction;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf1;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf2;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf3;
 
 public class Example {
     public static void main(String[] args) {
@@ -39,6 +41,13 @@ public class Example {
         exampleSendInboxMessageRequestInteractiveAction.setActualInstance(exampleSendInboxMessageRequestInteractiveActionOneOf2);
         // to get back the SendInboxMessageRequestInteractiveActionOneOf2 set earlier
         SendInboxMessageRequestInteractiveActionOneOf2 testSendInboxMessageRequestInteractiveActionOneOf2 = (SendInboxMessageRequestInteractiveActionOneOf2) exampleSendInboxMessageRequestInteractiveAction.getActualInstance();
+
+        // create a new SendInboxMessageRequestInteractiveActionOneOf3
+        SendInboxMessageRequestInteractiveActionOneOf3 exampleSendInboxMessageRequestInteractiveActionOneOf3 = new SendInboxMessageRequestInteractiveActionOneOf3();
+        // set SendInboxMessageRequestInteractiveAction to SendInboxMessageRequestInteractiveActionOneOf3
+        exampleSendInboxMessageRequestInteractiveAction.setActualInstance(exampleSendInboxMessageRequestInteractiveActionOneOf3);
+        // to get back the SendInboxMessageRequestInteractiveActionOneOf3 set earlier
+        SendInboxMessageRequestInteractiveActionOneOf3 testSendInboxMessageRequestInteractiveActionOneOf3 = (SendInboxMessageRequestInteractiveActionOneOf3) exampleSendInboxMessageRequestInteractiveAction.getActualInstance();
     }
 }
 ```

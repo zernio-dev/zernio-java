@@ -20,6 +20,8 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AddWhatsAppGroupParticipantsRequest;
 import dev.zernio.model.ApproveWhatsAppGroupJoinRequestsRequest;
+import dev.zernio.model.BlockWhatsAppUsers200Response;
+import dev.zernio.model.BlockWhatsAppUsersRequest;
 import dev.zernio.model.CreateWhatsAppDataset200Response;
 import dev.zernio.model.CreateWhatsAppDatasetRequest;
 import dev.zernio.model.CreateWhatsAppGroupChat201Response;
@@ -28,6 +30,7 @@ import dev.zernio.model.CreateWhatsAppGroupInviteLink200Response;
 import dev.zernio.model.CreateWhatsAppTemplate200Response;
 import dev.zernio.model.CreateWhatsAppTemplateRequest;
 import java.io.File;
+import dev.zernio.model.GetWhatsAppBlockedUsers200Response;
 import dev.zernio.model.GetWhatsAppBusinessProfile200Response;
 import dev.zernio.model.GetWhatsAppDataset200Response;
 import dev.zernio.model.GetWhatsAppDisplayName200Response;
@@ -43,6 +46,8 @@ import dev.zernio.model.RejectWhatsAppGroupJoinRequestsRequest;
 import dev.zernio.model.RemoveWhatsAppGroupParticipantsRequest;
 import dev.zernio.model.SendWhatsAppConversion200Response;
 import dev.zernio.model.SendWhatsAppConversionRequest;
+import dev.zernio.model.UnblockWhatsAppUsers200Response;
+import dev.zernio.model.UnblockWhatsAppUsersRequest;
 import dev.zernio.model.UnpublishPost200Response;
 import dev.zernio.model.UpdateWhatsAppBusinessProfileRequest;
 import dev.zernio.model.UpdateWhatsAppDisplayName200Response;
@@ -82,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T10:35:18.849279680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T14:55:26.815835603Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -494,6 +499,129 @@ public class WhatsAppApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(approveWhatsAppGroupJoinRequestsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Block users
+   * Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+   * @param blockWhatsAppUsersRequest  (required)
+   * @return BlockWhatsAppUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public BlockWhatsAppUsers200Response blockWhatsAppUsers(@javax.annotation.Nonnull BlockWhatsAppUsersRequest blockWhatsAppUsersRequest) throws ApiException {
+    return blockWhatsAppUsers(blockWhatsAppUsersRequest, null);
+  }
+
+  /**
+   * Block users
+   * Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+   * @param blockWhatsAppUsersRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return BlockWhatsAppUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public BlockWhatsAppUsers200Response blockWhatsAppUsers(@javax.annotation.Nonnull BlockWhatsAppUsersRequest blockWhatsAppUsersRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<BlockWhatsAppUsers200Response> localVarResponse = blockWhatsAppUsersWithHttpInfo(blockWhatsAppUsersRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Block users
+   * Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+   * @param blockWhatsAppUsersRequest  (required)
+   * @return ApiResponse&lt;BlockWhatsAppUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BlockWhatsAppUsers200Response> blockWhatsAppUsersWithHttpInfo(@javax.annotation.Nonnull BlockWhatsAppUsersRequest blockWhatsAppUsersRequest) throws ApiException {
+    return blockWhatsAppUsersWithHttpInfo(blockWhatsAppUsersRequest, null);
+  }
+
+  /**
+   * Block users
+   * Block one or more WhatsApp users on this number. Blocked users cannot message your number or see that you are online, and your sends to them return an error.  Meta constraints, surfaced per-user in &#x60;failed&#x60; (the request itself still succeeds for the rest of the batch): - Only users who messaged your business within the last 24 hours can be   blocked (failures outside the window report \&quot;Re-engagement required\&quot;). - Up to 1,000 users per request; the blocklist caps at 64,000. - Other WhatsApp Business accounts cannot be blocked. 
+   * @param blockWhatsAppUsersRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;BlockWhatsAppUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<BlockWhatsAppUsers200Response> blockWhatsAppUsersWithHttpInfo(@javax.annotation.Nonnull BlockWhatsAppUsersRequest blockWhatsAppUsersRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = blockWhatsAppUsersRequestBuilder(blockWhatsAppUsersRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("blockWhatsAppUsers", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<BlockWhatsAppUsers200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        BlockWhatsAppUsers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<BlockWhatsAppUsers200Response>() {});
+        
+
+        return new ApiResponse<BlockWhatsAppUsers200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder blockWhatsAppUsersRequestBuilder(@javax.annotation.Nonnull BlockWhatsAppUsersRequest blockWhatsAppUsersRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'blockWhatsAppUsersRequest' is set
+    if (blockWhatsAppUsersRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'blockWhatsAppUsersRequest' when calling blockWhatsAppUsers");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/block-users";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(blockWhatsAppUsersRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1290,6 +1418,150 @@ public class WhatsAppApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List blocked users
+   * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Page size. (optional)
+   * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
+   * @return GetWhatsAppBlockedUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppBlockedUsers200Response getWhatsAppBlockedUsers(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return getWhatsAppBlockedUsers(accountId, limit, after, null);
+  }
+
+  /**
+   * List blocked users
+   * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Page size. (optional)
+   * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppBlockedUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppBlockedUsers200Response getWhatsAppBlockedUsers(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppBlockedUsers200Response> localVarResponse = getWhatsAppBlockedUsersWithHttpInfo(accountId, limit, after, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List blocked users
+   * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Page size. (optional)
+   * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
+   * @return ApiResponse&lt;GetWhatsAppBlockedUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppBlockedUsers200Response> getWhatsAppBlockedUsersWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return getWhatsAppBlockedUsersWithHttpInfo(accountId, limit, after, null);
+  }
+
+  /**
+   * List blocked users
+   * List the WhatsApp users blocked on this number. Cursor-paginated; pass &#x60;nextCursor&#x60; back as &#x60;after&#x60; to fetch the next page. The blocklist holds up to 64,000 users. 
+   * @param accountId WhatsApp social account ID (required)
+   * @param limit Page size. (optional)
+   * @param after Cursor from a previous response&#39;s &#x60;nextCursor&#x60;. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppBlockedUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppBlockedUsers200Response> getWhatsAppBlockedUsersWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppBlockedUsersRequestBuilder(accountId, limit, after, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppBlockedUsers", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppBlockedUsers200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppBlockedUsers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppBlockedUsers200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppBlockedUsers200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppBlockedUsersRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppBlockedUsers");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/block-users";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "after";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -2953,6 +3225,129 @@ public class WhatsAppApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendWhatsAppConversionRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Unblock users
+   * Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+   * @param unblockWhatsAppUsersRequest  (required)
+   * @return UnblockWhatsAppUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UnblockWhatsAppUsers200Response unblockWhatsAppUsers(@javax.annotation.Nonnull UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest) throws ApiException {
+    return unblockWhatsAppUsers(unblockWhatsAppUsersRequest, null);
+  }
+
+  /**
+   * Unblock users
+   * Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+   * @param unblockWhatsAppUsersRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnblockWhatsAppUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UnblockWhatsAppUsers200Response unblockWhatsAppUsers(@javax.annotation.Nonnull UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnblockWhatsAppUsers200Response> localVarResponse = unblockWhatsAppUsersWithHttpInfo(unblockWhatsAppUsersRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Unblock users
+   * Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+   * @param unblockWhatsAppUsersRequest  (required)
+   * @return ApiResponse&lt;UnblockWhatsAppUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnblockWhatsAppUsers200Response> unblockWhatsAppUsersWithHttpInfo(@javax.annotation.Nonnull UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest) throws ApiException {
+    return unblockWhatsAppUsersWithHttpInfo(unblockWhatsAppUsersRequest, null);
+  }
+
+  /**
+   * Unblock users
+   * Unblock one or more previously blocked WhatsApp users on this number. Up to 1,000 users per request; per-user failures are reported in &#x60;failed&#x60; without failing the rest of the batch. 
+   * @param unblockWhatsAppUsersRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnblockWhatsAppUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnblockWhatsAppUsers200Response> unblockWhatsAppUsersWithHttpInfo(@javax.annotation.Nonnull UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = unblockWhatsAppUsersRequestBuilder(unblockWhatsAppUsersRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("unblockWhatsAppUsers", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UnblockWhatsAppUsers200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnblockWhatsAppUsers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnblockWhatsAppUsers200Response>() {});
+        
+
+        return new ApiResponse<UnblockWhatsAppUsers200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder unblockWhatsAppUsersRequestBuilder(@javax.annotation.Nonnull UnblockWhatsAppUsersRequest unblockWhatsAppUsersRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'unblockWhatsAppUsersRequest' is set
+    if (unblockWhatsAppUsersRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'unblockWhatsAppUsersRequest' when calling unblockWhatsAppUsers");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/block-users";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(unblockWhatsAppUsersRequest);
+      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }
