@@ -28,6 +28,7 @@ import dev.zernio.model.SendInboxMessageRequestTemplateElementsInnerButtonsInner
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,12 +40,15 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_TITLE,
   SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_SUBTITLE,
   SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_IMAGE_URL,
-  SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_BUTTONS
+  SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_BUTTONS,
+  SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_NAME,
+  SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_LANGUAGE,
+  SendInboxMessageRequestTemplateElementsInner.JSON_PROPERTY_COMPONENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:36:28.491176279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestTemplateElementsInner {
   public static final String JSON_PROPERTY_TITLE = "title";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String title;
 
   public static final String JSON_PROPERTY_SUBTITLE = "subtitle";
@@ -59,29 +63,41 @@ public class SendInboxMessageRequestTemplateElementsInner {
   @javax.annotation.Nullable
   private List<SendInboxMessageRequestTemplateElementsInnerButtonsInner> buttons = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_NAME = "name";
+  @javax.annotation.Nullable
+  private String name;
+
+  public static final String JSON_PROPERTY_LANGUAGE = "language";
+  @javax.annotation.Nullable
+  private String language;
+
+  public static final String JSON_PROPERTY_COMPONENTS = "components";
+  @javax.annotation.Nullable
+  private List<Map<String, Object>> components = new ArrayList<>();
+
   public SendInboxMessageRequestTemplateElementsInner() { 
   }
 
-  public SendInboxMessageRequestTemplateElementsInner title(@javax.annotation.Nonnull String title) {
+  public SendInboxMessageRequestTemplateElementsInner title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
   /**
-   * Element title (max 80 chars)
+   * Element title (max 80 chars). Required for Instagram/Facebook generic templates.
    * @return title
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TITLE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getTitle() {
     return title;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TITLE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTitle(@javax.annotation.Nonnull String title) {
+  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
@@ -92,7 +108,7 @@ public class SendInboxMessageRequestTemplateElementsInner {
   }
 
   /**
-   * Element subtitle
+   * Element subtitle (Instagram/Facebook only)
    * @return subtitle
    */
   @javax.annotation.Nullable
@@ -116,7 +132,7 @@ public class SendInboxMessageRequestTemplateElementsInner {
   }
 
   /**
-   * Element image URL
+   * Element image URL (Instagram/Facebook only)
    * @return imageUrl
    */
   @javax.annotation.Nullable
@@ -148,7 +164,7 @@ public class SendInboxMessageRequestTemplateElementsInner {
   }
 
   /**
-   * Get buttons
+   * Element buttons (Instagram/Facebook only)
    * @return buttons
    */
   @javax.annotation.Nullable
@@ -163,6 +179,86 @@ public class SendInboxMessageRequestTemplateElementsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setButtons(@javax.annotation.Nullable List<SendInboxMessageRequestTemplateElementsInnerButtonsInner> buttons) {
     this.buttons = buttons;
+  }
+
+
+  public SendInboxMessageRequestTemplateElementsInner name(@javax.annotation.Nullable String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Name of the approved template to send.
+   * @return name
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = name;
+  }
+
+
+  public SendInboxMessageRequestTemplateElementsInner language(@javax.annotation.Nullable String language) {
+    this.language = language;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Template language code (e.g. en_US).
+   * @return language
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLanguage() {
+    return language;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguage(@javax.annotation.Nullable String language) {
+    this.language = language;
+  }
+
+
+  public SendInboxMessageRequestTemplateElementsInner components(@javax.annotation.Nullable List<Map<String, Object>> components) {
+    this.components = components;
+    return this;
+  }
+
+  public SendInboxMessageRequestTemplateElementsInner addComponentsItem(Map<String, Object> componentsItem) {
+    if (this.components == null) {
+      this.components = new ArrayList<>();
+    }
+    this.components.add(componentsItem);
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Meta Cloud API send-shape components array, forwarded to Meta verbatim.
+   * @return components
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<Map<String, Object>> getComponents() {
+    return components;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setComponents(@javax.annotation.Nullable List<Map<String, Object>> components) {
+    this.components = components;
   }
 
 
@@ -181,12 +277,15 @@ public class SendInboxMessageRequestTemplateElementsInner {
     return Objects.equals(this.title, sendInboxMessageRequestTemplateElementsInner.title) &&
         Objects.equals(this.subtitle, sendInboxMessageRequestTemplateElementsInner.subtitle) &&
         Objects.equals(this.imageUrl, sendInboxMessageRequestTemplateElementsInner.imageUrl) &&
-        Objects.equals(this.buttons, sendInboxMessageRequestTemplateElementsInner.buttons);
+        Objects.equals(this.buttons, sendInboxMessageRequestTemplateElementsInner.buttons) &&
+        Objects.equals(this.name, sendInboxMessageRequestTemplateElementsInner.name) &&
+        Objects.equals(this.language, sendInboxMessageRequestTemplateElementsInner.language) &&
+        Objects.equals(this.components, sendInboxMessageRequestTemplateElementsInner.components);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(title, subtitle, imageUrl, buttons);
+    return Objects.hash(title, subtitle, imageUrl, buttons, name, language, components);
   }
 
   @Override
@@ -197,6 +296,9 @@ public class SendInboxMessageRequestTemplateElementsInner {
     sb.append("    subtitle: ").append(toIndentedString(subtitle)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    components: ").append(toIndentedString(components)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -266,6 +368,25 @@ public class SendInboxMessageRequestTemplateElementsInner {
           joiner.add(getButtons().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbuttons%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
+      }
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `language` to the URL query string
+    if (getLanguage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLanguage()))));
+    }
+
+    // add `components` to the URL query string
+    if (getComponents() != null) {
+      for (int i = 0; i < getComponents().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scomponents%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getComponents().get(i)))));
       }
     }
 

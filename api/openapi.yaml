@@ -12093,7 +12093,9 @@ paths:
       description: |
         Initiate a new direct message conversation with a specified user. If a conversation already exists with the recipient, the message is added to the existing thread.
 
-        Supported platforms: X/Twitter, Bluesky, Reddit, and WhatsApp. Other platforms return PLATFORM_NOT_SUPPORTED. For WhatsApp, a conversation can only be started with an approved template (provide templateName, templateLanguage, and any templateParams) — freeform initial messages are not permitted by WhatsApp; a missing template returns TEMPLATE_REQUIRED.
+        Supported platforms: X/Twitter, Bluesky, Reddit, and WhatsApp. Other platforms return PLATFORM_NOT_SUPPORTED.
+
+        WhatsApp: this is the endpoint for sending an approved template message to a phone number. Provide templateName, templateLanguage, and templateParams (body variable values), with the recipient phone in participantId. A template is required because WhatsApp does not permit freeform messages to open a conversation; a missing template returns TEMPLATE_REQUIRED. Templates with media headers (image, video, document) are handled automatically: Zernio reads the approved template definition and fills the header at send time. Calling this for a number you already have a thread with simply sends the template into that thread, which also makes it the way to re-engage a contact after the 24-hour customer-service window has closed. Once the recipient replies (opening the 24h window), send freeform messages with the send-message endpoint (POST /v1/inbox/conversations/{conversationId}/messages). Template fields are accepted on the JSON body only, not on multipart requests.
 
         DM eligibility (X/Twitter): Before sending, the endpoint checks if the recipient accepts DMs from your account (via the receives_your_dm field). If not, a 422 error with code DM_NOT_ALLOWED is returned. You can skip this check with skipDmCheck: true if you have already verified eligibility.
 
@@ -12139,7 +12141,7 @@ paths:
           description: X API rate limit exceeded
       security:
       - bearerAuth: []
-      summary: Create conversation
+      summary: Create conversation (send a WhatsApp template)
       tags:
       - Messages
       x-content-type: application/json
@@ -12340,6 +12342,14 @@ paths:
         Send a message in a conversation. Supports text, attachments, quick replies,
         buttons, templates, and message tags. Attachment and interactive message
         support varies by platform.
+
+        WhatsApp template messages: to send an approved template into this
+        conversation (required when the 24-hour customer-service window is
+        closed), use the `template` field with a single element carrying the
+        template reference: `{ "elements": [{ "name": ..., "language": ..., "components": [...] }] }`.
+        See the `template` field below for the exact shape. To send a template
+        to a phone number you have no conversation with yet, use the
+        create-conversation endpoint (POST /v1/inbox/conversations) instead.
 
         WhatsApp rich interactive messages (list, CTA URL, Flow) are available via
         the `interactive` field. Tap events are delivered through the
@@ -41951,28 +41961,60 @@ components:
     sendInboxMessage_request_template_elements_inner:
       properties:
         title:
-          description: Element title (max 80 chars)
+          description: Element title (max 80 chars). Required for Instagram/Facebook
+            generic templates.
           maxLength: 80
           type: string
         subtitle:
-          description: Element subtitle
+          description: Element subtitle (Instagram/Facebook only)
           type: string
         imageUrl:
-          description: Element image URL
+          description: Element image URL (Instagram/Facebook only)
           type: string
         buttons:
+          description: Element buttons (Instagram/Facebook only)
           items:
             $ref: "#/components/schemas/sendInboxMessage_request_template_elements_inner_buttons_inner"
           maxItems: 3
           type: array
-      required:
-      - title
+        name:
+          description: WhatsApp only. Name of the approved template to send.
+          type: string
+        language:
+          description: WhatsApp only. Template language code (e.g. en_US).
+          type: string
+        components:
+          description: "WhatsApp only. Meta Cloud API send-shape components array,\
+            \ forwarded to Meta verbatim."
+          items:
+            additionalProperties: true
+            type: object
+          type: array
     sendInboxMessage_request_template:
-      description: "Generic template for carousels (Instagram/Facebook only, ignored\
-        \ on Telegram)."
+      description: |
+        Platform-dependent template payload. Ignored on Telegram.
+
+        Instagram / Facebook: a generic template (carousel). Set `type: generic`
+        and provide up to 10 `elements`, each with a `title` (required) and
+        optional `subtitle`, `imageUrl`, and `buttons`.
+
+        WhatsApp: sends an approved WhatsApp template message, the only message
+        type WhatsApp accepts when the 24-hour customer-service window is closed.
+        Provide exactly one element carrying the template reference:
+        `{ "elements": [{ "name": "order_update", "language": "en_US", "components": [...] }] }`
+        (`type` is ignored on WhatsApp). `components` is optional and is forwarded
+        unchanged as the `template.components` array of Meta's Cloud API send
+        payload; use it to fill body/header variables and button parameters, e.g.
+        `[{ "type": "body", "parameters": [{ "type": "text", "text": "John" }] }]`.
+        Templates with media headers (image, video, document) must include the
+        header component with its media link here at send time. To send a template
+        to a phone number with no existing conversation, or to have media headers
+        filled in automatically from the template definition, use the
+        create-conversation endpoint (POST /v1/inbox/conversations) instead.
       properties:
         type:
-          description: Template type
+          description: Template type. Required for Instagram/Facebook generic templates;
+            ignored on WhatsApp.
           enum:
           - generic
           type: string

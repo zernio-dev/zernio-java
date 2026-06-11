@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_AD_COMMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:36:28.491176279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseMeta {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

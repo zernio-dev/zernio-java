@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
   PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:36:28.491176279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchaseWhatsAppPhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

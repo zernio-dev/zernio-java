@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-10T17:03:01.970088783Z[Etc/UTC]
+- Build date: 2026-06-11T08:36:28.491176279Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -560,8 +560,8 @@ Class | Method | HTTP request | Description
 *MediaApi* | [**getMediaPresignedUrlWithHttpInfo**](docs/MediaApi.md#getMediaPresignedUrlWithHttpInfo) | **POST** /v1/media/presign | Get upload URL
 *MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
-*MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
-*MessagesApi* | [**createInboxConversationWithHttpInfo**](docs/MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation
+*MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation (send a WhatsApp template)
+*MessagesApi* | [**createInboxConversationWithHttpInfo**](docs/MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation (send a WhatsApp template)
 *MessagesApi* | [**deleteInboxMessage**](docs/MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**deleteInboxMessageWithHttpInfo**](docs/MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**editInboxMessage**](docs/MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message

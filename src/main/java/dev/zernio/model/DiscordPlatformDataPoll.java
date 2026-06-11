@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   DiscordPlatformDataPoll.JSON_PROPERTY_DURATION,
   DiscordPlatformDataPoll.JSON_PROPERTY_ALLOW_MULTISELECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-10T17:03:01.970088783Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:36:28.491176279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordPlatformDataPoll {
   public static final String JSON_PROPERTY_QUESTION = "question";
   @javax.annotation.Nullable
