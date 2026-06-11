@@ -20598,6 +20598,83 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/catalogs:
+    get:
+      description: "Lists the Meta product catalogs reachable from an ad account (owned\
+        \ + agency-shared catalogs of the ad account's business), for Advantage+ catalog\
+        \ ads (`goal: catalog_sales` on POST /v1/ads/create — e.g. vehicle inventory\
+        \ catalogs). Read-only; uses scopes customers already granted (no reconnect\
+        \ needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager,\
+        \ not through this API."
+      operationId: listAdCatalogs
+      parameters:
+      - description: "A facebook, instagram, or metaads social account ID"
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account ID (act_...)
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdCatalogs_200_response"
+          description: Catalogs
+      security:
+      - bearerAuth: []
+      summary: List Meta product catalogs
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/product-sets:
+    get:
+      description: "Lists a Meta product catalog's product sets — the unit a catalog\
+        \ ad promotes. Pass the chosen set as `promotedObject.productSetId` on POST\
+        \ /v1/ads/create with `goal: catalog_sales`."
+      operationId: listAdCatalogProductSets
+      parameters:
+      - description: Meta product catalog ID (from GET /v1/ads/catalogs)
+        explode: false
+        in: path
+        name: catalogId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "A facebook, instagram, or metaads social account ID"
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdCatalogProductSets_200_response"
+          description: Product sets
+      security:
+      - bearerAuth: []
+      summary: List a catalog's product sets
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
   /v1/ads/audiences:
     get:
       description: "Returns custom audiences for the given ad account. Supports Meta,\
@@ -30116,11 +30193,12 @@ components:
           type: string
         goal:
           description: "Available goals vary by platform. Meta (Facebook/Instagram)\
-            \ supports all 8 (incl. `lead_conversion` = website pixel lead optimization).\
-            \ TikTok supports the 7 non-`lead_conversion` goals. LinkedIn supports\
-            \ all except app_promotion / lead_conversion. Twitter/X supports engagement,\
-            \ traffic, awareness, video_views, app_promotion. Pinterest and Google\
-            \ Ads support only engagement, traffic, awareness, video_views."
+            \ supports all 9 (incl. `lead_conversion` = website pixel lead optimization\
+            \ and `catalog_sales` = Advantage+ catalog ads). TikTok supports the 7\
+            \ non-`lead_conversion` goals. LinkedIn supports all except app_promotion\
+            \ / lead_conversion. Twitter/X supports engagement, traffic, awareness,\
+            \ video_views, app_promotion. Pinterest and Google Ads support only engagement,\
+            \ traffic, awareness, video_views."
           enum:
           - engagement
           - traffic
@@ -30130,6 +30208,7 @@ components:
           - lead_conversion
           - conversions
           - app_promotion
+          - catalog_sales
           type: string
         isExternal:
           description: True for ads synced from platform ad managers
@@ -53097,18 +53176,26 @@ components:
             \ conversion events by objective; `lead_generation` is OUTCOME_LEADS with\
             \ instant forms (`leadGenFormId`), distinct from `lead_conversion`'s website\
             \ pixel optimization; `app_promotion` requires `promotedObject.applicationId`\
-            \ + `promotedObject.objectStoreUrl`; `lead_generation` accepts an optional\
-            \ `promotedObject.pageId` (auto-filled from the connected Page when omitted).\
-            \ TikTok-specific: `conversions` (website-conversion ad group) requires\
-            \ `promotedObject.pixelId` (your TikTok Pixel ID) and accepts an optional\
-            \ `promotedObject.customEventType` (a TikTok `optimization_event` code\
-            \ like `ON_WEB_ORDER`, `INITIATE_ORDER`, `ON_WEB_REGISTER`, `FORM`); to\
-            \ inherit a pixel + event from an existing ad group, pass `adSetId` instead.\
-            \ LinkedIn-specific: `engagement`, `traffic`, `awareness`, and `video_views`\
-            \ are supported for standalone ads (creates a Direct Sponsored Content\
-            \ single image or single video ad). `traffic` requires `linkUrl`; `video_views`\
-            \ requires the `video` field. For `lead_generation` / `conversions` on\
-            \ LinkedIn — or to promote an existing post — use `POST /v1/ads/boost`."
+            \ + `promotedObject.objectStoreUrl`; `catalog_sales` (Advantage+ catalog\
+            \ ads, e.g. vehicle inventory) requires `promotedObject.productSetId`\
+            \ + `promotedObject.pixelId` + `promotedObject.customEventType` and builds\
+            \ a catalog TEMPLATE creative from the copy fields (headline/body/description/linkUrl/callToAction,\
+            \ which may carry catalog template tags like {{product.name}} or {{vehicle.make}})\
+            \ — no imageUrl/video is sent, Meta renders the visuals per catalog item;\
+            \ discover catalogs via GET /v1/ads/catalogs and product sets via GET\
+            \ /v1/ads/catalogs/{catalogId}/product-sets; single shape only (no creatives[]/adSetId/dynamicCreative/placementAssets);\
+            \ `lead_generation` accepts an optional `promotedObject.pageId` (auto-filled\
+            \ from the connected Page when omitted). TikTok-specific: `conversions`\
+            \ (website-conversion ad group) requires `promotedObject.pixelId` (your\
+            \ TikTok Pixel ID) and accepts an optional `promotedObject.customEventType`\
+            \ (a TikTok `optimization_event` code like `ON_WEB_ORDER`, `INITIATE_ORDER`,\
+            \ `ON_WEB_REGISTER`, `FORM`); to inherit a pixel + event from an existing\
+            \ ad group, pass `adSetId` instead. LinkedIn-specific: `engagement`, `traffic`,\
+            \ `awareness`, and `video_views` are supported for standalone ads (creates\
+            \ a Direct Sponsored Content single image or single video ad). `traffic`\
+            \ requires `linkUrl`; `video_views` requires the `video` field. For `lead_generation`\
+            \ / `conversions` on LinkedIn — or to promote an existing post — use `POST\
+            \ /v1/ads/boost`."
           enum:
           - engagement
           - traffic
@@ -53118,6 +53205,7 @@ components:
           - lead_conversion
           - conversions
           - app_promotion
+          - catalog_sales
           type: string
         optimizationGoal:
           description: "Meta only. Explicit ad-set `optimization_goal` (e.g. `LANDING_PAGE_VIEWS`,\
@@ -54111,6 +54199,65 @@ components:
           nullable: true
       required:
       - available
+    listAdCatalogs_200_response_catalogs_inner:
+      example:
+        name: name
+        vertical: vertical
+        id: id
+        productCount: 0
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        vertical:
+          description: "Catalog vertical (e.g. commerce, vehicles, hotels)"
+          type: string
+          nullable: true
+        productCount:
+          type: integer
+    listAdCatalogs_200_response:
+      example:
+        catalogs:
+        - name: name
+          vertical: vertical
+          id: id
+          productCount: 0
+        - name: name
+          vertical: vertical
+          id: id
+          productCount: 0
+      properties:
+        catalogs:
+          items:
+            $ref: "#/components/schemas/listAdCatalogs_200_response_catalogs_inner"
+          type: array
+    listAdCatalogProductSets_200_response_productSets_inner:
+      example:
+        name: name
+        id: id
+        productCount: 0
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        productCount:
+          type: integer
+    listAdCatalogProductSets_200_response:
+      example:
+        productSets:
+        - name: name
+          id: id
+          productCount: 0
+        - name: name
+          id: id
+          productCount: 0
+      properties:
+        productSets:
+          items:
+            $ref: "#/components/schemas/listAdCatalogProductSets_200_response_productSets_inner"
+          type: array
     listAdAudiences_200_response_audiences_inner:
       example:
         size: 0

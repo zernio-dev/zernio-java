@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-11T08:45:59.202309461Z[Etc/UTC]
+- Build date: 2026-06-11T10:35:18.849279680Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -226,6 +226,10 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**getLeadFormWithHttpInfo**](docs/AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form
 *AdsApi* | [**listAdAccounts**](docs/AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**listAdAccountsWithHttpInfo**](docs/AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
+*AdsApi* | [**listAdCatalogProductSets**](docs/AdsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
+*AdsApi* | [**listAdCatalogProductSetsWithHttpInfo**](docs/AdsApi.md#listAdCatalogProductSetsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
+*AdsApi* | [**listAdCatalogs**](docs/AdsApi.md#listAdCatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*AdsApi* | [**listAdCatalogsWithHttpInfo**](docs/AdsApi.md#listAdCatalogsWithHttpInfo) | **GET** /v1/ads/catalogs | List Meta product catalogs
 *AdsApi* | [**listAds**](docs/AdsApi.md#listAds) | **GET** /v1/ads | List ads
 *AdsApi* | [**listAdsWithHttpInfo**](docs/AdsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
 *AdsApi* | [**listAdsBusinessCenters**](docs/AdsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
@@ -1474,6 +1478,10 @@ Class | Method | HTTP request | Description
  - [ListAdAudiences200Response](docs/ListAdAudiences200Response.md)
  - [ListAdAudiences200ResponseAudiencesInner](docs/ListAdAudiences200ResponseAudiencesInner.md)
  - [ListAdCampaigns200Response](docs/ListAdCampaigns200Response.md)
+ - [ListAdCatalogProductSets200Response](docs/ListAdCatalogProductSets200Response.md)
+ - [ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
+ - [ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
+ - [ListAdCatalogs200ResponseCatalogsInner](docs/ListAdCatalogs200ResponseCatalogsInner.md)
  - [ListAds200Response](docs/ListAds200Response.md)
  - [ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [ListApiKeys200Response](docs/ListApiKeys200Response.md)

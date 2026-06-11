@@ -632,6 +632,10 @@ docs/ListAdAccounts200ResponseAccountsInner.md
 docs/ListAdAudiences200Response.md
 docs/ListAdAudiences200ResponseAudiencesInner.md
 docs/ListAdCampaigns200Response.md
+docs/ListAdCatalogProductSets200Response.md
+docs/ListAdCatalogProductSets200ResponseProductSetsInner.md
+docs/ListAdCatalogs200Response.md
+docs/ListAdCatalogs200ResponseCatalogsInner.md
 docs/ListAds200Response.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListApiKeys200Response.md
@@ -1899,6 +1903,10 @@ src/main/java/dev/zernio/model/ListAdAccounts200ResponseAccountsInner.java
 src/main/java/dev/zernio/model/ListAdAudiences200Response.java
 src/main/java/dev/zernio/model/ListAdAudiences200ResponseAudiencesInner.java
 src/main/java/dev/zernio/model/ListAdCampaigns200Response.java
+src/main/java/dev/zernio/model/ListAdCatalogProductSets200Response.java
+src/main/java/dev/zernio/model/ListAdCatalogProductSets200ResponseProductSetsInner.java
+src/main/java/dev/zernio/model/ListAdCatalogs200Response.java
+src/main/java/dev/zernio/model/ListAdCatalogs200ResponseCatalogsInner.java
 src/main/java/dev/zernio/model/ListAds200Response.java
 src/main/java/dev/zernio/model/ListAdsBusinessCenters200Response.java
 src/main/java/dev/zernio/model/ListApiKeys200Response.java
@@ -2473,4 +2481,7 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
-src/test/java/dev/zernio/model/GetWhatsAppPhoneNumbers200ResponseConnectedInnerTest.java
+src/test/java/dev/zernio/model/ListAdCatalogProductSets200ResponseProductSetsInnerTest.java
+src/test/java/dev/zernio/model/ListAdCatalogProductSets200ResponseTest.java
+src/test/java/dev/zernio/model/ListAdCatalogs200ResponseCatalogsInnerTest.java
+src/test/java/dev/zernio/model/ListAdCatalogs200ResponseTest.java

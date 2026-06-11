@@ -48,6 +48,8 @@ import dev.zernio.model.GetLeadForm200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
+import dev.zernio.model.ListAdCatalogProductSets200Response;
+import dev.zernio.model.ListAdCatalogs200Response;
 import dev.zernio.model.ListAds200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
 import dev.zernio.model.ListConversionAssociations200Response;
@@ -94,7 +96,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:45:59.202309461Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T10:35:18.849279680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3009,6 +3011,289 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List a catalog&#39;s product sets
+   * Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+   * @param catalogId Meta product catalog ID (from GET /v1/ads/catalogs) (required)
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @return ListAdCatalogProductSets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdCatalogProductSets200Response listAdCatalogProductSets(@javax.annotation.Nonnull String catalogId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return listAdCatalogProductSets(catalogId, accountId, null);
+  }
+
+  /**
+   * List a catalog&#39;s product sets
+   * Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+   * @param catalogId Meta product catalog ID (from GET /v1/ads/catalogs) (required)
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ListAdCatalogProductSets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdCatalogProductSets200Response listAdCatalogProductSets(@javax.annotation.Nonnull String catalogId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdCatalogProductSets200Response> localVarResponse = listAdCatalogProductSetsWithHttpInfo(catalogId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List a catalog&#39;s product sets
+   * Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+   * @param catalogId Meta product catalog ID (from GET /v1/ads/catalogs) (required)
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @return ApiResponse&lt;ListAdCatalogProductSets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdCatalogProductSets200Response> listAdCatalogProductSetsWithHttpInfo(@javax.annotation.Nonnull String catalogId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return listAdCatalogProductSetsWithHttpInfo(catalogId, accountId, null);
+  }
+
+  /**
+   * List a catalog&#39;s product sets
+   * Lists a Meta product catalog&#39;s product sets — the unit a catalog ad promotes. Pass the chosen set as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+   * @param catalogId Meta product catalog ID (from GET /v1/ads/catalogs) (required)
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdCatalogProductSets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdCatalogProductSets200Response> listAdCatalogProductSetsWithHttpInfo(@javax.annotation.Nonnull String catalogId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdCatalogProductSetsRequestBuilder(catalogId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdCatalogProductSets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdCatalogProductSets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdCatalogProductSets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdCatalogProductSets200Response>() {});
+        
+
+        return new ApiResponse<ListAdCatalogProductSets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdCatalogProductSetsRequestBuilder(@javax.annotation.Nonnull String catalogId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'catalogId' is set
+    if (catalogId == null) {
+      throw new ApiException(400, "Missing the required parameter 'catalogId' when calling listAdCatalogProductSets");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdCatalogProductSets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/catalogs/{catalogId}/product-sets"
+        .replace("{catalogId}", ApiClient.urlEncode(catalogId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List Meta product catalogs
+   * Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @return ListAdCatalogs200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdCatalogs200Response listAdCatalogs(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listAdCatalogs(accountId, adAccountId, null);
+  }
+
+  /**
+   * List Meta product catalogs
+   * Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @param headers Optional headers to include in the request
+   * @return ListAdCatalogs200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdCatalogs200Response listAdCatalogs(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdCatalogs200Response> localVarResponse = listAdCatalogsWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Meta product catalogs
+   * Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @return ApiResponse&lt;ListAdCatalogs200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdCatalogs200Response> listAdCatalogsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return listAdCatalogsWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * List Meta product catalogs
+   * Lists the Meta product catalogs reachable from an ad account (owned + agency-shared catalogs of the ad account&#39;s business), for Advantage+ catalog ads (&#x60;goal: catalog_sales&#x60; on POST /v1/ads/create — e.g. vehicle inventory catalogs). Read-only; uses scopes customers already granted (no reconnect needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager, not through this API.
+   * @param accountId A facebook, instagram, or metaads social account ID (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdCatalogs200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdCatalogs200Response> listAdCatalogsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdCatalogsRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdCatalogs", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdCatalogs200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdCatalogs200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdCatalogs200Response>() {});
+        
+
+        return new ApiResponse<ListAdCatalogs200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdCatalogsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdCatalogs");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling listAdCatalogs");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/catalogs";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
