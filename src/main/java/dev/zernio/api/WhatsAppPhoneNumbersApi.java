@@ -74,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:36:28.491176279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:45:59.202309461Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -835,7 +835,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
+   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
    * @return GetWhatsAppPhoneNumbers200Response
@@ -847,7 +847,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
+   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
    * @param headers Optional headers to include in the request
@@ -861,7 +861,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
+   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
    * @return ApiResponse&lt;GetWhatsAppPhoneNumbers200Response&gt;
@@ -873,7 +873,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
+   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
    * @param headers Optional headers to include in the request

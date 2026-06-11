@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-11T08:36:28.491176279Z[Etc/UTC]
+- Build date: 2026-06-11T08:45:59.202309461Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1401,6 +1401,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppPhoneNumber200Response](docs/GetWhatsAppPhoneNumber200Response.md)
  - [GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)
  - [GetWhatsAppPhoneNumbers200Response](docs/GetWhatsAppPhoneNumbers200Response.md)
+ - [GetWhatsAppPhoneNumbers200ResponseConnectedInner](docs/GetWhatsAppPhoneNumbers200ResponseConnectedInner.md)
  - [GetWhatsAppPhoneNumbers200ResponseNumbersInner](docs/GetWhatsAppPhoneNumbers200ResponseNumbersInner.md)
  - [GetWhatsAppPhoneNumbers200ResponseSandbox](docs/GetWhatsAppPhoneNumbers200ResponseSandbox.md)
  - [GetWhatsAppPhoneNumbers200ResponseSandboxTemplate](docs/GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.md)

@@ -15038,7 +15038,9 @@ paths:
     get:
       description: |
         List all WhatsApp phone numbers purchased by the authenticated user.
-        By default, released numbers are excluded.
+        By default, released numbers are excluded. Connected (bring-your-own)
+        numbers are returned in the separate `connected` array — they are not
+        billed and have no provisioning lifecycle.
       operationId: getWhatsAppPhoneNumbers
       parameters:
       - description: |
@@ -44790,6 +44792,29 @@ components:
         createdAt:
           format: date-time
           type: string
+    getWhatsAppPhoneNumbers_200_response_connected_inner:
+      example:
+        accountId: accountId
+        phoneNumber: phoneNumber
+        connectedAt: 2000-01-23T04:56:07.000+00:00
+        displayName: displayName
+        profileId: profileId
+      properties:
+        accountId:
+          type: string
+        phoneNumber:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        profileId:
+          type: string
+          nullable: true
+        connectedAt:
+          format: date-time
+          type: string
+          nullable: true
     getWhatsAppPhoneNumbers_200_response_sandbox_template:
       example:
         name: sandbox_start
@@ -44828,6 +44853,17 @@ components:
       nullable: true
     getWhatsAppPhoneNumbers_200_response:
       example:
+        connected:
+        - accountId: accountId
+          phoneNumber: phoneNumber
+          connectedAt: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
+          profileId: profileId
+        - accountId: accountId
+          phoneNumber: phoneNumber
+          connectedAt: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
+          profileId: profileId
         numbers:
         - country: country
           endUserFirstName: endUserFirstName
@@ -44872,6 +44908,16 @@ components:
         numbers:
           items:
             $ref: "#/components/schemas/getWhatsAppPhoneNumbers_200_response_numbers_inner"
+          type: array
+        connected:
+          description: |
+            Connected (bring-your-own) WhatsApp numbers — your own WABA
+            numbers linked via Embedded Signup. Not provisioned or billed
+            by Zernio, so they are not in `numbers`; `accountId` is the
+            social-account id used by the messaging and inbox endpoints.
+            Included only on the default and `status=active` views.
+          items:
+            $ref: "#/components/schemas/getWhatsAppPhoneNumbers_200_response_connected_inner"
           type: array
         sandbox:
           $ref: "#/components/schemas/getWhatsAppPhoneNumbers_200_response_sandbox"

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetWhatsAppPhoneNumbers200ResponseConnectedInner;
 import dev.zernio.model.GetWhatsAppPhoneNumbers200ResponseNumbersInner;
 import dev.zernio.model.GetWhatsAppPhoneNumbers200ResponseSandbox;
 import java.util.ArrayList;
@@ -38,13 +39,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_NUMBERS,
+  GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_CONNECTED,
   GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_SANDBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:36:28.491176279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T08:45:59.202309461Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200Response {
   public static final String JSON_PROPERTY_NUMBERS = "numbers";
   @javax.annotation.Nullable
   private List<GetWhatsAppPhoneNumbers200ResponseNumbersInner> numbers = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CONNECTED = "connected";
+  @javax.annotation.Nullable
+  private List<GetWhatsAppPhoneNumbers200ResponseConnectedInner> connected = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SANDBOX = "sandbox";
   @javax.annotation.Nullable
@@ -85,6 +91,38 @@ public class GetWhatsAppPhoneNumbers200Response {
   }
 
 
+  public GetWhatsAppPhoneNumbers200Response connected(@javax.annotation.Nullable List<GetWhatsAppPhoneNumbers200ResponseConnectedInner> connected) {
+    this.connected = connected;
+    return this;
+  }
+
+  public GetWhatsAppPhoneNumbers200Response addConnectedItem(GetWhatsAppPhoneNumbers200ResponseConnectedInner connectedItem) {
+    if (this.connected == null) {
+      this.connected = new ArrayList<>();
+    }
+    this.connected.add(connectedItem);
+    return this;
+  }
+
+  /**
+   * Connected (bring-your-own) WhatsApp numbers — your own WABA numbers linked via Embedded Signup. Not provisioned or billed by Zernio, so they are not in &#x60;numbers&#x60;; &#x60;accountId&#x60; is the social-account id used by the messaging and inbox endpoints. Included only on the default and &#x60;status&#x3D;active&#x60; views. 
+   * @return connected
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONNECTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GetWhatsAppPhoneNumbers200ResponseConnectedInner> getConnected() {
+    return connected;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONNECTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConnected(@javax.annotation.Nullable List<GetWhatsAppPhoneNumbers200ResponseConnectedInner> connected) {
+    this.connected = connected;
+  }
+
+
   public GetWhatsAppPhoneNumbers200Response sandbox(@javax.annotation.Nullable GetWhatsAppPhoneNumbers200ResponseSandbox sandbox) {
     this.sandbox = sandbox;
     return this;
@@ -122,12 +160,13 @@ public class GetWhatsAppPhoneNumbers200Response {
     }
     GetWhatsAppPhoneNumbers200Response getWhatsAppPhoneNumbers200Response = (GetWhatsAppPhoneNumbers200Response) o;
     return Objects.equals(this.numbers, getWhatsAppPhoneNumbers200Response.numbers) &&
+        Objects.equals(this.connected, getWhatsAppPhoneNumbers200Response.connected) &&
         Objects.equals(this.sandbox, getWhatsAppPhoneNumbers200Response.sandbox);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numbers, sandbox);
+    return Objects.hash(numbers, connected, sandbox);
   }
 
   @Override
@@ -135,6 +174,7 @@ public class GetWhatsAppPhoneNumbers200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetWhatsAppPhoneNumbers200Response {\n");
     sb.append("    numbers: ").append(toIndentedString(numbers)).append("\n");
+    sb.append("    connected: ").append(toIndentedString(connected)).append("\n");
     sb.append("    sandbox: ").append(toIndentedString(sandbox)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -188,6 +228,16 @@ public class GetWhatsAppPhoneNumbers200Response {
       for (int i = 0; i < getNumbers().size(); i++) {
         if (getNumbers().get(i) != null) {
           joiner.add(getNumbers().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%snumbers%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `connected` to the URL query string
+    if (getConnected() != null) {
+      for (int i = 0; i < getConnected().size(); i++) {
+        if (getConnected().get(i) != null) {
+          joiner.add(getConnected().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sconnected%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

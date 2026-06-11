@@ -789,7 +789,7 @@ ApiResponse<[**GetWhatsAppPhoneNumber200Response**](GetWhatsAppPhoneNumber200Res
 
 List phone numbers
 
-List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
+List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
 
 ### Example
 
@@ -862,7 +862,7 @@ public class Example {
 
 List phone numbers
 
-List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. 
+List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
 
 ### Example
 
