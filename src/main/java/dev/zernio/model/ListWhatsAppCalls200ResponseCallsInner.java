@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppCalls200ResponseCallsInner.JSON_PROPERTY_RECORDING_URL,
   ListWhatsAppCalls200ResponseCallsInner.JSON_PROPERTY_BILLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:49:20.067387993Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T12:06:11.433941104Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppCalls200ResponseCallsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

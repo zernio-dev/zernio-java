@@ -35,9 +35,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_CODE,
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_TITLE,
-  WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_MESSAGE
+  WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_MESSAGE,
+  WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_EXPLANATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:49:20.067387993Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T12:06:11.433941104Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageDeliveryStatusError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
@@ -50,6 +51,10 @@ public class WebhookPayloadMessageDeliveryStatusError {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
   private String message;
+
+  public static final String JSON_PROPERTY_EXPLANATION = "explanation";
+  @javax.annotation.Nullable
+  private String explanation;
 
   public WebhookPayloadMessageDeliveryStatusError() { 
   }
@@ -126,6 +131,30 @@ public class WebhookPayloadMessageDeliveryStatusError {
   }
 
 
+  public WebhookPayloadMessageDeliveryStatusError explanation(@javax.annotation.Nullable String explanation) {
+    this.explanation = explanation;
+    return this;
+  }
+
+  /**
+   * Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. 
+   * @return explanation
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXPLANATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExplanation() {
+    return explanation;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXPLANATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExplanation(@javax.annotation.Nullable String explanation) {
+    this.explanation = explanation;
+  }
+
+
   /**
    * Return true if this WebhookPayloadMessageDeliveryStatus_error object is equal to o.
    */
@@ -140,12 +169,13 @@ public class WebhookPayloadMessageDeliveryStatusError {
     WebhookPayloadMessageDeliveryStatusError webhookPayloadMessageDeliveryStatusError = (WebhookPayloadMessageDeliveryStatusError) o;
     return Objects.equals(this.code, webhookPayloadMessageDeliveryStatusError.code) &&
         Objects.equals(this.title, webhookPayloadMessageDeliveryStatusError.title) &&
-        Objects.equals(this.message, webhookPayloadMessageDeliveryStatusError.message);
+        Objects.equals(this.message, webhookPayloadMessageDeliveryStatusError.message) &&
+        Objects.equals(this.explanation, webhookPayloadMessageDeliveryStatusError.explanation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, title, message);
+    return Objects.hash(code, title, message, explanation);
   }
 
   @Override
@@ -155,6 +185,7 @@ public class WebhookPayloadMessageDeliveryStatusError {
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    explanation: ").append(toIndentedString(explanation)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -215,6 +246,11 @@ public class WebhookPayloadMessageDeliveryStatusError {
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    }
+
+    // add `explanation` to the URL query string
+    if (getExplanation() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexplanation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExplanation()))));
     }
 
     return joiner.toString();

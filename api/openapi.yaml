@@ -25673,6 +25673,7 @@ components:
           code: 0
           title: title
           message: message
+          explanation: explanation
         conversation:
           participantId: participantId
           contactId: contactId
@@ -48422,18 +48423,19 @@ components:
           $ref: "#/components/schemas/remediateWhatsAppNumber_200_response_phoneNumber"
     listBroadcastRecipients_200_response_recipients_inner:
       example:
+        errorExplanation: errorExplanation
         contactId: contactId
         contactName: contactName
         messageId: messageId
         errorCode: 0
-        id: id
         sentAt: 2000-01-23T04:56:07.000+00:00
         error: error
         readAt: 2000-01-23T04:56:07.000+00:00
-        channelId: channelId
         platformIdentifier: platformIdentifier
-        status: pending
         deliveredAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        channelId: channelId
+        status: pending
       properties:
         id:
           type: string
@@ -48463,6 +48465,12 @@ components:
             \ for status=failed."
           type: integer
           nullable: true
+        errorExplanation:
+          description: "Plain-language translation of errorCode (e.g. for 131026,\
+            \ that the recipient has likely opted out of marketing messages). Null\
+            \ for unmapped codes; fall back to error."
+          type: string
+          nullable: true
         sentAt:
           format: date-time
           type: string
@@ -48481,30 +48489,32 @@ components:
           skip: 5
         success: true
         recipients:
-        - contactId: contactId
+        - errorExplanation: errorExplanation
+          contactId: contactId
           contactName: contactName
           messageId: messageId
           errorCode: 0
-          id: id
           sentAt: 2000-01-23T04:56:07.000+00:00
           error: error
           readAt: 2000-01-23T04:56:07.000+00:00
-          channelId: channelId
           platformIdentifier: platformIdentifier
-          status: pending
           deliveredAt: 2000-01-23T04:56:07.000+00:00
-        - contactId: contactId
+          id: id
+          channelId: channelId
+          status: pending
+        - errorExplanation: errorExplanation
+          contactId: contactId
           contactName: contactName
           messageId: messageId
           errorCode: 0
-          id: id
           sentAt: 2000-01-23T04:56:07.000+00:00
           error: error
           readAt: 2000-01-23T04:56:07.000+00:00
-          channelId: channelId
           platformIdentifier: platformIdentifier
-          status: pending
           deliveredAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          channelId: channelId
+          status: pending
       properties:
         success:
           type: boolean
@@ -58214,6 +58224,7 @@ components:
         code: 0
         title: title
         message: message
+        explanation: explanation
       properties:
         code:
           type: integer
@@ -58221,6 +58232,14 @@ components:
           type: string
         message:
           type: string
+        explanation:
+          description: |
+            Plain-language translation of `code` (e.g. for 131026, that the
+            recipient has likely opted out of marketing messages while utility
+            templates are unaffected). Null for unmapped codes; fall back to
+            title/message.
+          type: string
+          nullable: true
       nullable: true
     WebhookPayloadConversationStarted_conversation:
       example:

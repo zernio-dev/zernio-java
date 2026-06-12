@@ -16,6 +16,7 @@
 |**messageId** | **String** |  |  [optional] |
 |**error** | **String** |  |  [optional] |
 |**errorCode** | **Integer** | Meta WhatsApp error code (e.g. 131049 for antispam, 131021 for invalid phone, 131026 for re-engagement required). Only populated for status&#x3D;failed. |  [optional] |
+|**errorExplanation** | **String** | Plain-language translation of errorCode (e.g. for 131026, that the recipient has likely opted out of marketing messages). Null for unmapped codes; fall back to error. |  [optional] |
 |**sentAt** | **OffsetDateTime** |  |  [optional] |
 |**deliveredAt** | **OffsetDateTime** |  |  [optional] |
 |**readAt** | **OffsetDateTime** |  |  [optional] |

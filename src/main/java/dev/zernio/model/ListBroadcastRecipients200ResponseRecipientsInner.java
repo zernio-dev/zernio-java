@@ -43,11 +43,12 @@ import dev.zernio.ApiClient;
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_MESSAGE_ID,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR_CODE,
+  ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_ERROR_EXPLANATION,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_SENT_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_DELIVERED_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:49:20.067387993Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T12:06:11.433941104Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBroadcastRecipients200ResponseRecipientsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -125,6 +126,10 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
   @javax.annotation.Nullable
   private Integer errorCode;
+
+  public static final String JSON_PROPERTY_ERROR_EXPLANATION = "errorExplanation";
+  @javax.annotation.Nullable
+  private String errorExplanation;
 
   public static final String JSON_PROPERTY_SENT_AT = "sentAt";
   @javax.annotation.Nullable
@@ -357,6 +362,30 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
   }
 
 
+  public ListBroadcastRecipients200ResponseRecipientsInner errorExplanation(@javax.annotation.Nullable String errorExplanation) {
+    this.errorExplanation = errorExplanation;
+    return this;
+  }
+
+  /**
+   * Plain-language translation of errorCode (e.g. for 131026, that the recipient has likely opted out of marketing messages). Null for unmapped codes; fall back to error.
+   * @return errorExplanation
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ERROR_EXPLANATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getErrorExplanation() {
+    return errorExplanation;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ERROR_EXPLANATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setErrorExplanation(@javax.annotation.Nullable String errorExplanation) {
+    this.errorExplanation = errorExplanation;
+  }
+
+
   public ListBroadcastRecipients200ResponseRecipientsInner sentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
     this.sentAt = sentAt;
     return this;
@@ -450,6 +479,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
         Objects.equals(this.messageId, listBroadcastRecipients200ResponseRecipientsInner.messageId) &&
         Objects.equals(this.error, listBroadcastRecipients200ResponseRecipientsInner.error) &&
         Objects.equals(this.errorCode, listBroadcastRecipients200ResponseRecipientsInner.errorCode) &&
+        Objects.equals(this.errorExplanation, listBroadcastRecipients200ResponseRecipientsInner.errorExplanation) &&
         Objects.equals(this.sentAt, listBroadcastRecipients200ResponseRecipientsInner.sentAt) &&
         Objects.equals(this.deliveredAt, listBroadcastRecipients200ResponseRecipientsInner.deliveredAt) &&
         Objects.equals(this.readAt, listBroadcastRecipients200ResponseRecipientsInner.readAt);
@@ -457,7 +487,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, errorCode, sentAt, deliveredAt, readAt);
+    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, errorCode, errorExplanation, sentAt, deliveredAt, readAt);
   }
 
   @Override
@@ -473,6 +503,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
     sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
+    sb.append("    errorExplanation: ").append(toIndentedString(errorExplanation)).append("\n");
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    deliveredAt: ").append(toIndentedString(deliveredAt)).append("\n");
     sb.append("    readAt: ").append(toIndentedString(readAt)).append("\n");
@@ -566,6 +597,11 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
     // add `errorCode` to the URL query string
     if (getErrorCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serrorCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorCode()))));
+    }
+
+    // add `errorExplanation` to the URL query string
+    if (getErrorExplanation() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%serrorExplanation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getErrorExplanation()))));
     }
 
     // add `sentAt` to the URL query string
