@@ -39,13 +39,14 @@ import dev.zernio.ApiClient;
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_VIEWS,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_ESTIMATED_MINUTES_WATCHED,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_AVERAGE_VIEW_DURATION,
+  YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_AVERAGE_VIEW_PERCENTAGE,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_SUBSCRIBERS_GAINED,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_SUBSCRIBERS_LOST,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_LIKES,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_COMMENTS,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_SHARES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T10:59:57.354695356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponseDailyViewsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
@@ -62,6 +63,10 @@ public class YouTubeDailyViewsResponseDailyViewsInner {
   public static final String JSON_PROPERTY_AVERAGE_VIEW_DURATION = "averageViewDuration";
   @javax.annotation.Nullable
   private BigDecimal averageViewDuration;
+
+  public static final String JSON_PROPERTY_AVERAGE_VIEW_PERCENTAGE = "averageViewPercentage";
+  @javax.annotation.Nullable
+  private BigDecimal averageViewPercentage;
 
   public static final String JSON_PROPERTY_SUBSCRIBERS_GAINED = "subscribersGained";
   @javax.annotation.Nullable
@@ -179,6 +184,30 @@ public class YouTubeDailyViewsResponseDailyViewsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAverageViewDuration(@javax.annotation.Nullable BigDecimal averageViewDuration) {
     this.averageViewDuration = averageViewDuration;
+  }
+
+
+  public YouTubeDailyViewsResponseDailyViewsInner averageViewPercentage(@javax.annotation.Nullable BigDecimal averageViewPercentage) {
+    this.averageViewPercentage = averageViewPercentage;
+    return this;
+  }
+
+  /**
+   * Average percentage of the video watched per view. Can exceed 100 on Shorts (looping rewatches), so do not clamp it client-side.
+   * @return averageViewPercentage
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AVERAGE_VIEW_PERCENTAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getAverageViewPercentage() {
+    return averageViewPercentage;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AVERAGE_VIEW_PERCENTAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAverageViewPercentage(@javax.annotation.Nullable BigDecimal averageViewPercentage) {
+    this.averageViewPercentage = averageViewPercentage;
   }
 
 
@@ -318,6 +347,7 @@ public class YouTubeDailyViewsResponseDailyViewsInner {
         Objects.equals(this.views, youTubeDailyViewsResponseDailyViewsInner.views) &&
         Objects.equals(this.estimatedMinutesWatched, youTubeDailyViewsResponseDailyViewsInner.estimatedMinutesWatched) &&
         Objects.equals(this.averageViewDuration, youTubeDailyViewsResponseDailyViewsInner.averageViewDuration) &&
+        Objects.equals(this.averageViewPercentage, youTubeDailyViewsResponseDailyViewsInner.averageViewPercentage) &&
         Objects.equals(this.subscribersGained, youTubeDailyViewsResponseDailyViewsInner.subscribersGained) &&
         Objects.equals(this.subscribersLost, youTubeDailyViewsResponseDailyViewsInner.subscribersLost) &&
         Objects.equals(this.likes, youTubeDailyViewsResponseDailyViewsInner.likes) &&
@@ -327,7 +357,7 @@ public class YouTubeDailyViewsResponseDailyViewsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(date, views, estimatedMinutesWatched, averageViewDuration, subscribersGained, subscribersLost, likes, comments, shares);
+    return Objects.hash(date, views, estimatedMinutesWatched, averageViewDuration, averageViewPercentage, subscribersGained, subscribersLost, likes, comments, shares);
   }
 
   @Override
@@ -338,6 +368,7 @@ public class YouTubeDailyViewsResponseDailyViewsInner {
     sb.append("    views: ").append(toIndentedString(views)).append("\n");
     sb.append("    estimatedMinutesWatched: ").append(toIndentedString(estimatedMinutesWatched)).append("\n");
     sb.append("    averageViewDuration: ").append(toIndentedString(averageViewDuration)).append("\n");
+    sb.append("    averageViewPercentage: ").append(toIndentedString(averageViewPercentage)).append("\n");
     sb.append("    subscribersGained: ").append(toIndentedString(subscribersGained)).append("\n");
     sb.append("    subscribersLost: ").append(toIndentedString(subscribersLost)).append("\n");
     sb.append("    likes: ").append(toIndentedString(likes)).append("\n");
@@ -408,6 +439,11 @@ public class YouTubeDailyViewsResponseDailyViewsInner {
     // add `averageViewDuration` to the URL query string
     if (getAverageViewDuration() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saverageViewDuration%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAverageViewDuration()))));
+    }
+
+    // add `averageViewPercentage` to the URL query string
+    if (getAverageViewPercentage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saverageViewPercentage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAverageViewPercentage()))));
     }
 
     // add `subscribersGained` to the URL query string

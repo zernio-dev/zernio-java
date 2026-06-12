@@ -46,6 +46,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getYouTubeDailyViewsWithHttpInfo**](AnalyticsApi.md#getYouTubeDailyViewsWithHttpInfo) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
 | [**getYouTubeDemographics**](AnalyticsApi.md#getYouTubeDemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
 | [**getYouTubeDemographicsWithHttpInfo**](AnalyticsApi.md#getYouTubeDemographicsWithHttpInfo) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
+| [**getYouTubeVideoRetention**](AnalyticsApi.md#getYouTubeVideoRetention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
+| [**getYouTubeVideoRetentionWithHttpInfo**](AnalyticsApi.md#getYouTubeVideoRetentionWithHttpInfo) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
 
 
 
@@ -3565,4 +3567,174 @@ ApiResponse<[**YouTubeDemographicsResponse**](YouTubeDemographicsResponse.md)>
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
+
+
+## getYouTubeVideoRetention
+
+> YouTubeVideoRetentionResponse getYouTubeVideoRetention(videoId, accountId, startDate, endDate)
+
+Get YouTube video retention curve
+
+Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
+        String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
+        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve).
+        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency).
+        try {
+            YouTubeVideoRetentionResponse result = apiInstance.getYouTubeVideoRetention(videoId, accountId, startDate, endDate);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getYouTubeVideoRetention");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
+| **accountId** | **String**| The Zernio account ID for the YouTube account | |
+| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional] |
+| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). | [optional] |
+
+### Return type
+
+[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Audience retention curve |  -  |
+| **400** | Bad request (missing or invalid parameters) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Video not found, or it does not belong to this YouTube channel |  -  |
+| **412** | Missing YouTube Analytics scope |  -  |
+| **500** | Internal server error |  -  |
+
+## getYouTubeVideoRetentionWithHttpInfo
+
+> ApiResponse<YouTubeVideoRetentionResponse> getYouTubeVideoRetention getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate)
+
+Get YouTube video retention curve
+
+Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
+        String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
+        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve).
+        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency).
+        try {
+            ApiResponse<YouTubeVideoRetentionResponse> response = apiInstance.getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getYouTubeVideoRetention");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
+| **accountId** | **String**| The Zernio account ID for the YouTube account | |
+| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional] |
+| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). | [optional] |
+
+### Return type
+
+ApiResponse<[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Audience retention curve |  -  |
+| **400** | Bad request (missing or invalid parameters) |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | Access denied to this account |  -  |
+| **404** | Video not found, or it does not belong to this YouTube channel |  -  |
+| **412** | Missing YouTube Analytics scope |  -  |
+| **500** | Internal server error |  -  |
 

@@ -52,6 +52,7 @@ import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.GetYouTubeDailyViews403Response;
 import dev.zernio.model.GetYouTubeDailyViews500Response;
 import dev.zernio.model.GetYouTubeDemographics412Response;
+import dev.zernio.model.GetYouTubeVideoRetention404Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InstagramAccountInsightsResponse;
@@ -61,6 +62,7 @@ import java.time.OffsetDateTime;
 import dev.zernio.model.YouTubeDailyViewsResponse;
 import dev.zernio.model.YouTubeDemographicsResponse;
 import dev.zernio.model.YouTubeScopeMissingResponse;
+import dev.zernio.model.YouTubeVideoRetentionResponse;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -87,7 +89,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T10:59:57.354695356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3399,6 +3401,160 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "breakdown";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdown", breakdown));
+    localVarQueryParameterBaseName = "startDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("startDate", startDate));
+    localVarQueryParameterBaseName = "endDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("endDate", endDate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get YouTube video retention curve
+   * Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+   * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
+   * @param accountId The Zernio account ID for the YouTube account (required)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @return YouTubeVideoRetentionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public YouTubeVideoRetentionResponse getYouTubeVideoRetention(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate) throws ApiException {
+    return getYouTubeVideoRetention(videoId, accountId, startDate, endDate, null);
+  }
+
+  /**
+   * Get YouTube video retention curve
+   * Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+   * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
+   * @param accountId The Zernio account ID for the YouTube account (required)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param headers Optional headers to include in the request
+   * @return YouTubeVideoRetentionResponse
+   * @throws ApiException if fails to make API call
+   */
+  public YouTubeVideoRetentionResponse getYouTubeVideoRetention(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<YouTubeVideoRetentionResponse> localVarResponse = getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get YouTube video retention curve
+   * Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+   * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
+   * @param accountId The Zernio account ID for the YouTube account (required)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @return ApiResponse&lt;YouTubeVideoRetentionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<YouTubeVideoRetentionResponse> getYouTubeVideoRetentionWithHttpInfo(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate) throws ApiException {
+    return getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate, null);
+  }
+
+  /**
+   * Get YouTube video retention curve
+   * Returns the audience retention curve for a single YouTube video, plus the video&#39;s duration for rendering the curve on a time axis. The curve has up to 100 points (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does not support per-day retention breakdowns.  audienceWatchRatio is the absolute share of viewers watching at that point in the video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance compares against videos of similar length (0 &#x3D; worst, 0.5 &#x3D; median, 1 &#x3D; best). YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).  Requires yt-analytics.readonly scope (re-authorization may be needed). 
+   * @param videoId The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) (required)
+   * @param accountId The Zernio account ID for the YouTube account (required)
+   * @param startDate Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). (optional)
+   * @param endDate End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency). (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;YouTubeVideoRetentionResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<YouTubeVideoRetentionResponse> getYouTubeVideoRetentionWithHttpInfo(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getYouTubeVideoRetentionRequestBuilder(videoId, accountId, startDate, endDate, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getYouTubeVideoRetention", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<YouTubeVideoRetentionResponse>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        YouTubeVideoRetentionResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<YouTubeVideoRetentionResponse>() {});
+        
+
+        return new ApiResponse<YouTubeVideoRetentionResponse>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getYouTubeVideoRetentionRequestBuilder(@javax.annotation.Nonnull String videoId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable LocalDate startDate, @javax.annotation.Nullable LocalDate endDate, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'videoId' is set
+    if (videoId == null) {
+      throw new ApiException(400, "Missing the required parameter 'videoId' when calling getYouTubeVideoRetention");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getYouTubeVideoRetention");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/analytics/youtube/video-retention";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "videoId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("videoId", videoId));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "startDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("startDate", startDate));
     localVarQueryParameterBaseName = "endDate";

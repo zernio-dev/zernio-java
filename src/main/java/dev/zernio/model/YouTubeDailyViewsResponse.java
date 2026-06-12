@@ -41,13 +41,14 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   YouTubeDailyViewsResponse.JSON_PROPERTY_SUCCESS,
   YouTubeDailyViewsResponse.JSON_PROPERTY_VIDEO_ID,
+  YouTubeDailyViewsResponse.JSON_PROPERTY_DURATION_SECONDS,
   YouTubeDailyViewsResponse.JSON_PROPERTY_DATE_RANGE,
   YouTubeDailyViewsResponse.JSON_PROPERTY_TOTAL_VIEWS,
   YouTubeDailyViewsResponse.JSON_PROPERTY_DAILY_VIEWS,
   YouTubeDailyViewsResponse.JSON_PROPERTY_LAST_SYNCED_AT,
   YouTubeDailyViewsResponse.JSON_PROPERTY_SCOPE_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T10:59:57.354695356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -56,6 +57,10 @@ public class YouTubeDailyViewsResponse {
   public static final String JSON_PROPERTY_VIDEO_ID = "videoId";
   @javax.annotation.Nullable
   private String videoId;
+
+  public static final String JSON_PROPERTY_DURATION_SECONDS = "durationSeconds";
+  @javax.annotation.Nullable
+  private Integer durationSeconds;
 
   public static final String JSON_PROPERTY_DATE_RANGE = "dateRange";
   @javax.annotation.Nullable
@@ -125,6 +130,30 @@ public class YouTubeDailyViewsResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVideoId(@javax.annotation.Nullable String videoId) {
     this.videoId = videoId;
+  }
+
+
+  public YouTubeDailyViewsResponse durationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
+    this.durationSeconds = durationSeconds;
+    return this;
+  }
+
+  /**
+   * Video length in seconds (from YouTube contentDetails.duration)
+   * @return durationSeconds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DURATION_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getDurationSeconds() {
+    return durationSeconds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DURATION_SECONDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDurationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
+    this.durationSeconds = durationSeconds;
   }
 
 
@@ -270,6 +299,7 @@ public class YouTubeDailyViewsResponse {
     YouTubeDailyViewsResponse youTubeDailyViewsResponse = (YouTubeDailyViewsResponse) o;
     return Objects.equals(this.success, youTubeDailyViewsResponse.success) &&
         Objects.equals(this.videoId, youTubeDailyViewsResponse.videoId) &&
+        Objects.equals(this.durationSeconds, youTubeDailyViewsResponse.durationSeconds) &&
         Objects.equals(this.dateRange, youTubeDailyViewsResponse.dateRange) &&
         Objects.equals(this.totalViews, youTubeDailyViewsResponse.totalViews) &&
         Objects.equals(this.dailyViews, youTubeDailyViewsResponse.dailyViews) &&
@@ -279,7 +309,7 @@ public class YouTubeDailyViewsResponse {
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, videoId, dateRange, totalViews, dailyViews, lastSyncedAt, scopeStatus);
+    return Objects.hash(success, videoId, durationSeconds, dateRange, totalViews, dailyViews, lastSyncedAt, scopeStatus);
   }
 
   @Override
@@ -288,6 +318,7 @@ public class YouTubeDailyViewsResponse {
     sb.append("class YouTubeDailyViewsResponse {\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    videoId: ").append(toIndentedString(videoId)).append("\n");
+    sb.append("    durationSeconds: ").append(toIndentedString(durationSeconds)).append("\n");
     sb.append("    dateRange: ").append(toIndentedString(dateRange)).append("\n");
     sb.append("    totalViews: ").append(toIndentedString(totalViews)).append("\n");
     sb.append("    dailyViews: ").append(toIndentedString(dailyViews)).append("\n");
@@ -348,6 +379,11 @@ public class YouTubeDailyViewsResponse {
     // add `videoId` to the URL query string
     if (getVideoId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoId()))));
+    }
+
+    // add `durationSeconds` to the URL query string
+    if (getDurationSeconds() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdurationSeconds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDurationSeconds()))));
     }
 
     // add `dateRange` to the URL query string

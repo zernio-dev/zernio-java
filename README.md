@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-12T10:59:57.354695356Z[Etc/UTC]
+- Build date: 2026-06-12T11:02:13.098304821Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -304,6 +304,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getYouTubeDailyViewsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeDailyViewsWithHttpInfo) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views
 *AnalyticsApi* | [**getYouTubeDemographics**](docs/AnalyticsApi.md#getYouTubeDemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics
 *AnalyticsApi* | [**getYouTubeDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeDemographicsWithHttpInfo) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics
+*AnalyticsApi* | [**getYouTubeVideoRetention**](docs/AnalyticsApi.md#getYouTubeVideoRetention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve
+*AnalyticsApi* | [**getYouTubeVideoRetentionWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeVideoRetentionWithHttpInfo) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve
 *ApiKeysApi* | [**createApiKey**](docs/ApiKeysApi.md#createApiKey) | **POST** /v1/api-keys | Create key
 *ApiKeysApi* | [**createApiKeyWithHttpInfo**](docs/ApiKeysApi.md#createApiKeyWithHttpInfo) | **POST** /v1/api-keys | Create key
 *ApiKeysApi* | [**deleteApiKey**](docs/ApiKeysApi.md#deleteApiKey) | **DELETE** /v1/api-keys/{keyId} | Delete key
@@ -1437,6 +1439,7 @@ Class | Method | HTTP request | Description
  - [GetYouTubeDailyViews500Response](docs/GetYouTubeDailyViews500Response.md)
  - [GetYouTubeDemographics412Response](docs/GetYouTubeDemographics412Response.md)
  - [GetYouTubeDemographics412ResponseScopeStatus](docs/GetYouTubeDemographics412ResponseScopeStatus.md)
+ - [GetYouTubeVideoRetention404Response](docs/GetYouTubeVideoRetention404Response.md)
  - [GetYoutubePlaylists200Response](docs/GetYoutubePlaylists200Response.md)
  - [GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
  - [GoogleBusinessPlatformData](docs/GoogleBusinessPlatformData.md)
@@ -2074,6 +2077,8 @@ Class | Method | HTTP request | Description
  - [YouTubePlatformData](docs/YouTubePlatformData.md)
  - [YouTubeScopeMissingResponse](docs/YouTubeScopeMissingResponse.md)
  - [YouTubeScopeMissingResponseScopeStatus](docs/YouTubeScopeMissingResponseScopeStatus.md)
+ - [YouTubeVideoRetentionResponse](docs/YouTubeVideoRetentionResponse.md)
+ - [YouTubeVideoRetentionResponseRetentionCurveInner](docs/YouTubeVideoRetentionResponseRetentionCurveInner.md)
 
 
 <a id="documentation-for-authorization"></a>

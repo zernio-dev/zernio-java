@@ -1053,6 +1053,7 @@ paths:
                   value:
                     success: true
                     videoId: dQw4w9WgXcQ
+                    durationSeconds: 213
                     dateRange:
                       startDate: 2025-01-01
                       endDate: 2025-01-12
@@ -1062,6 +1063,7 @@ paths:
                       views: 1234
                       estimatedMinutesWatched: 567.5
                       averageViewDuration: 45.2
+                      averageViewPercentage: 21.2
                       subscribersGained: 10
                       subscribersLost: 2
                       likes: 89
@@ -1071,6 +1073,7 @@ paths:
                       views: 987
                       estimatedMinutesWatched: 432.1
                       averageViewDuration: 43.8
+                      averageViewPercentage: 20.6
                       subscribersGained: 8
                       subscribersLost: 1
                       likes: 67
@@ -1135,6 +1138,149 @@ paths:
                 $ref: "#/components/schemas/getYouTubeDailyViews_500_response"
           description: Internal server error
       summary: Get YouTube daily views
+      tags:
+      - Analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/youtube/video-retention:
+    get:
+      description: |
+        Returns the audience retention curve for a single YouTube video, plus the video's
+        duration for rendering the curve on a time axis. The curve has up to 100 points
+        (elapsedVideoTimeRatio 0.01-1.0) aggregated over the whole date range; YouTube does
+        not support per-day retention breakdowns.
+
+        audienceWatchRatio is the absolute share of viewers watching at that point in the
+        video and can exceed 1 (rewinds and looping, common on Shorts). relativeRetentionPerformance
+        compares against videos of similar length (0 = worst, 0.5 = median, 1 = best).
+        YouTube returns an empty curve for videos with very few views or before analytics
+        processing completes (2-3 day delay).
+
+        Requires yt-analytics.readonly scope (re-authorization may be needed).
+      operationId: getYouTubeVideoRetention
+      parameters:
+      - description: "The YouTube video ID (e.g., \"dQw4w9WgXcQ\")"
+        explode: true
+        in: query
+        name: videoId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The Zernio account ID for the YouTube account
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Start date (YYYY-MM-DD). Defaults to the video's publish date
+          (lifetime curve).
+        explode: true
+        in: query
+        name: startDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End date (YYYY-MM-DD). Defaults to 3 days ago (YouTube data latency).
+        explode: true
+        in: query
+        name: endDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                success:
+                  summary: Successful response with retention curve
+                  value:
+                    success: true
+                    accountId: 65f1a2b3c4d5e6f7a8b9c0d1
+                    videoId: zF7Gp4jnDa0
+                    title: what's your choice?
+                    publishedAt: 2026-05-20T12:00:00Z
+                    durationSeconds: 24
+                    dateRange:
+                      startDate: 2026-05-20
+                      endDate: 2026-06-09
+                    retentionCurve:
+                    - elapsedVideoTimeRatio: 0.01
+                      audienceWatchRatio: 1.6956
+                      relativeRetentionPerformance: 0.73665
+                      startedWatching: 280331
+                      stoppedWatching: 5348
+                      totalSegmentImpressions: 478466
+                    - elapsedVideoTimeRatio: 0.02
+                      audienceWatchRatio: 1.678
+                      relativeRetentionPerformance: 0.73865
+                      startedWatching: 385
+                      stoppedWatching: 11790
+                      totalSegmentImpressions: 473492
+                    scopeStatus:
+                      hasAnalyticsScope: true
+              schema:
+                $ref: "#/components/schemas/YouTubeVideoRetentionResponse"
+          description: Audience retention curve
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+          description: Bad request (missing or invalid parameters)
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAnalytics_402_response"
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_403_response"
+          description: Access denied to this account
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getYouTubeVideoRetention_404_response"
+          description: "Video not found, or it does not belong to this YouTube channel"
+        "412":
+          content:
+            application/json:
+              examples:
+                scopeMissing:
+                  summary: YouTube Analytics scope not granted
+                  value:
+                    success: false
+                    error: "To access video retention analytics, please reconnect\
+                      \ your YouTube account to grant the required permissions."
+                    code: youtube_analytics_scope_missing
+                    scopeStatus:
+                      hasAnalyticsScope: false
+                      requiresReauthorization: true
+                      reauthorizeUrl: https://accounts.google.com/o/oauth2/auth?client_id=...
+              schema:
+                $ref: "#/components/schemas/YouTubeScopeMissingResponse"
+          description: Missing YouTube Analytics scope
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getYouTubeDailyViews_500_response"
+          description: Internal server error
+      summary: Get YouTube video retention curve
       tags:
       - Analytics
       x-accepts:
@@ -23845,32 +23991,35 @@ components:
       - labels
     YouTubeDailyViewsResponse:
       example:
+        durationSeconds: 0
         dateRange:
           endDate: 2000-01-23
           startDate: 2000-01-23
         success: true
         dailyViews:
         - date: 2000-01-23
-          shares: 3
-          comments: 9
-          subscribersGained: 5
-          estimatedMinutesWatched: 1.4658129805029452
-          subscribersLost: 2
-          averageViewDuration: 5.962133916683182
-          views: 6
-          likes: 7
+          shares: 4
+          averageViewPercentage: 2.3021358869347655
+          comments: 2
+          subscribersGained: 7
+          estimatedMinutesWatched: 5.962133916683182
+          subscribersLost: 9
+          averageViewDuration: 5.637376656633329
+          views: 1
+          likes: 3
         - date: 2000-01-23
-          shares: 3
-          comments: 9
-          subscribersGained: 5
-          estimatedMinutesWatched: 1.4658129805029452
-          subscribersLost: 2
-          averageViewDuration: 5.962133916683182
-          views: 6
-          likes: 7
+          shares: 4
+          averageViewPercentage: 2.3021358869347655
+          comments: 2
+          subscribersGained: 7
+          estimatedMinutesWatched: 5.962133916683182
+          subscribersLost: 9
+          averageViewDuration: 5.637376656633329
+          views: 1
+          likes: 3
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
         videoId: videoId
-        totalViews: 0
+        totalViews: 6
         scopeStatus:
           hasAnalyticsScope: true
       properties:
@@ -23880,6 +24029,10 @@ components:
         videoId:
           description: The YouTube video ID
           type: string
+        durationSeconds:
+          description: Video length in seconds (from YouTube contentDetails.duration)
+          type: integer
+          nullable: true
         dateRange:
           $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
         totalViews:
@@ -23894,6 +24047,69 @@ components:
           format: date-time
           type: string
           nullable: true
+        scopeStatus:
+          $ref: "#/components/schemas/YouTubeDailyViewsResponse_scopeStatus"
+    YouTubeVideoRetentionResponse:
+      example:
+        accountId: accountId
+        note: note
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        durationSeconds: 0
+        dateRange:
+          endDate: 2000-01-23
+          startDate: 2000-01-23
+        success: true
+        videoId: videoId
+        retentionCurve:
+        - startedWatching: 5
+          stoppedWatching: 2
+          elapsedVideoTimeRatio: 6.027456183070403
+          totalSegmentImpressions: 7
+          relativeRetentionPerformance: 5.962133916683182
+          audienceWatchRatio: 1.4658129805029452
+        - startedWatching: 5
+          stoppedWatching: 2
+          elapsedVideoTimeRatio: 6.027456183070403
+          totalSegmentImpressions: 7
+          relativeRetentionPerformance: 5.962133916683182
+          audienceWatchRatio: 1.4658129805029452
+        title: title
+        scopeStatus:
+          hasAnalyticsScope: true
+      properties:
+        success:
+          example: true
+          type: boolean
+        accountId:
+          description: The Zernio account ID for the YouTube account
+          type: string
+        videoId:
+          description: The YouTube video ID
+          type: string
+        title:
+          description: Video title
+          type: string
+          nullable: true
+        publishedAt:
+          description: When the video was published on YouTube
+          format: date-time
+          type: string
+          nullable: true
+        durationSeconds:
+          description: Video length in seconds (from YouTube contentDetails.duration)
+          type: integer
+          nullable: true
+        dateRange:
+          $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
+        retentionCurve:
+          description: "Up to 100 points covering the video timeline, aggregated over\
+            \ the date range. Empty for videos with very few views."
+          items:
+            $ref: "#/components/schemas/YouTubeVideoRetentionResponse_retentionCurve_inner"
+          type: array
+        note:
+          description: "Present only when the curve is empty, explaining why"
+          type: string
         scopeStatus:
           $ref: "#/components/schemas/YouTubeDailyViewsResponse_scopeStatus"
     YouTubeScopeMissingResponse:
@@ -32012,6 +32228,25 @@ components:
           example: false
           type: boolean
         error:
+          type: string
+    getYouTubeVideoRetention_404_response:
+      example:
+        code: video_not_found
+        param: videoId
+        error: Video not found on this YouTube channel
+        type: not_found
+      properties:
+        error:
+          example: Video not found on this YouTube channel
+          type: string
+        type:
+          example: not_found
+          type: string
+        code:
+          example: video_not_found
+          type: string
+        param:
+          example: videoId
           type: string
     getInstagramAccountInsights_404_response:
       example:
@@ -56430,14 +56665,15 @@ components:
     YouTubeDailyViewsResponse_dailyViews_inner:
       example:
         date: 2000-01-23
-        shares: 3
-        comments: 9
-        subscribersGained: 5
-        estimatedMinutesWatched: 1.4658129805029452
-        subscribersLost: 2
-        averageViewDuration: 5.962133916683182
-        views: 6
-        likes: 7
+        shares: 4
+        averageViewPercentage: 2.3021358869347655
+        comments: 2
+        subscribersGained: 7
+        estimatedMinutesWatched: 5.962133916683182
+        subscribersLost: 9
+        averageViewDuration: 5.637376656633329
+        views: 1
+        likes: 3
       properties:
         date:
           format: date
@@ -56448,6 +56684,10 @@ components:
           type: number
         averageViewDuration:
           description: Average view duration in seconds
+          type: number
+        averageViewPercentage:
+          description: "Average percentage of the video watched per view. Can exceed\
+            \ 100 on Shorts (looping rewatches), so do not clamp it client-side."
           type: number
         subscribersGained:
           type: integer
@@ -56465,6 +56705,36 @@ components:
       properties:
         hasAnalyticsScope:
           type: boolean
+    YouTubeVideoRetentionResponse_retentionCurve_inner:
+      example:
+        startedWatching: 5
+        stoppedWatching: 2
+        elapsedVideoTimeRatio: 6.027456183070403
+        totalSegmentImpressions: 7
+        relativeRetentionPerformance: 5.962133916683182
+        audienceWatchRatio: 1.4658129805029452
+      properties:
+        elapsedVideoTimeRatio:
+          description: "Position in the video as a ratio (0.01-1.0, exclusive end\
+            \ of each interval)"
+          type: number
+        audienceWatchRatio:
+          description: "Absolute share of viewers watching at this point. Can exceed\
+            \ 1 (rewinds/looping, common on Shorts)."
+          type: number
+        relativeRetentionPerformance:
+          description: "Retention vs videos of similar length (0 = worst, 0.5 = median,\
+            \ 1 = best)"
+          type: number
+        startedWatching:
+          description: Viewers who started watching in this segment
+          type: integer
+        stoppedWatching:
+          description: Viewers who stopped watching in this segment
+          type: integer
+        totalSegmentImpressions:
+          description: "Total views of this segment, including rewatches"
+          type: integer
     YouTubeScopeMissingResponse_scopeStatus:
       example:
         hasAnalyticsScope: false
