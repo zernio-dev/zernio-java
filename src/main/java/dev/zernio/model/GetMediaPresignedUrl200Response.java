@@ -37,9 +37,9 @@ import dev.zernio.ApiClient;
   GetMediaPresignedUrl200Response.JSON_PROPERTY_UPLOAD_URL,
   GetMediaPresignedUrl200Response.JSON_PROPERTY_PUBLIC_URL,
   GetMediaPresignedUrl200Response.JSON_PROPERTY_KEY,
-  GetMediaPresignedUrl200Response.JSON_PROPERTY_TYPE
+  GetMediaPresignedUrl200Response.JSON_PROPERTY_EXPIRES_IN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T12:33:44.623511517Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T14:55:00.471084599Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetMediaPresignedUrl200Response {
   public static final String JSON_PROPERTY_UPLOAD_URL = "uploadUrl";
   @javax.annotation.Nullable
@@ -53,46 +53,9 @@ public class GetMediaPresignedUrl200Response {
   @javax.annotation.Nullable
   private String key;
 
-  /**
-   * Detected file type based on content type
-   */
-  public enum TypeEnum {
-    IMAGE(String.valueOf("image")),
-    
-    VIDEO(String.valueOf("video")),
-    
-    DOCUMENT(String.valueOf("document"));
-
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_TYPE = "type";
+  public static final String JSON_PROPERTY_EXPIRES_IN = "expiresIn";
   @javax.annotation.Nullable
-  private TypeEnum type;
+  private Integer expiresIn;
 
   public GetMediaPresignedUrl200Response() { 
   }
@@ -169,27 +132,27 @@ public class GetMediaPresignedUrl200Response {
   }
 
 
-  public GetMediaPresignedUrl200Response type(@javax.annotation.Nullable TypeEnum type) {
-    this.type = type;
+  public GetMediaPresignedUrl200Response expiresIn(@javax.annotation.Nullable Integer expiresIn) {
+    this.expiresIn = expiresIn;
     return this;
   }
 
   /**
-   * Detected file type based on content type
-   * @return type
+   * Seconds until the presigned uploadUrl expires (always 3600)
+   * @return expiresIn
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonProperty(value = JSON_PROPERTY_EXPIRES_IN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public TypeEnum getType() {
-    return type;
+  public Integer getExpiresIn() {
+    return expiresIn;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonProperty(value = JSON_PROPERTY_EXPIRES_IN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(@javax.annotation.Nullable TypeEnum type) {
-    this.type = type;
+  public void setExpiresIn(@javax.annotation.Nullable Integer expiresIn) {
+    this.expiresIn = expiresIn;
   }
 
 
@@ -208,12 +171,12 @@ public class GetMediaPresignedUrl200Response {
     return Objects.equals(this.uploadUrl, getMediaPresignedUrl200Response.uploadUrl) &&
         Objects.equals(this.publicUrl, getMediaPresignedUrl200Response.publicUrl) &&
         Objects.equals(this.key, getMediaPresignedUrl200Response.key) &&
-        Objects.equals(this.type, getMediaPresignedUrl200Response.type);
+        Objects.equals(this.expiresIn, getMediaPresignedUrl200Response.expiresIn);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uploadUrl, publicUrl, key, type);
+    return Objects.hash(uploadUrl, publicUrl, key, expiresIn);
   }
 
   @Override
@@ -223,7 +186,7 @@ public class GetMediaPresignedUrl200Response {
     sb.append("    uploadUrl: ").append(toIndentedString(uploadUrl)).append("\n");
     sb.append("    publicUrl: ").append(toIndentedString(publicUrl)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    expiresIn: ").append(toIndentedString(expiresIn)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -286,9 +249,9 @@ public class GetMediaPresignedUrl200Response {
       joiner.add(String.format(java.util.Locale.ROOT, "%skey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getKey()))));
     }
 
-    // add `type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    // add `expiresIn` to the URL query string
+    if (getExpiresIn() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexpiresIn%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExpiresIn()))));
     }
 
     return joiner.toString();

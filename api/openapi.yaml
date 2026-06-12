@@ -3464,7 +3464,7 @@ paths:
                 uploadUrl: <presigned-upload-url>
                 publicUrl: https://media.zernio.com/temp/1234567890_abc123_my-video.mp4
                 key: temp/1234567890_abc123_my-video.mp4
-                type: video
+                expiresIn: 3600
               schema:
                 $ref: "#/components/schemas/getMediaPresignedUrl_200_response"
           description: Presigned URL generated successfully
@@ -3474,7 +3474,7 @@ paths:
               examples:
                 missing_filename:
                   value:
-                    error: filename and contentType are required
+                    error: "Missing required fields: filename and contentType"
                 invalid_type:
                   value:
                     error: "Content type not allowed: text/plain"
@@ -33648,9 +33648,9 @@ components:
       - filename
     getMediaPresignedUrl_200_response:
       example:
+        expiresIn: 0
         uploadUrl: https://openapi-generator.tech
         publicUrl: https://openapi-generator.tech
-        type: image
         key: key
       properties:
         uploadUrl:
@@ -33664,13 +33664,9 @@ components:
         key:
           description: Storage key/path of the file
           type: string
-        type:
-          description: Detected file type based on content type
-          enum:
-          - image
-          - video
-          - document
-          type: string
+        expiresIn:
+          description: Seconds until the presigned uploadUrl expires (always 3600)
+          type: integer
     searchReddit_200_response:
       example:
         before: before

@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetAnalytics400Response.JSON_PROPERTY_ERROR,
   GetAnalytics400Response.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T12:33:44.623511517Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T14:55:00.471084599Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAnalytics400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
