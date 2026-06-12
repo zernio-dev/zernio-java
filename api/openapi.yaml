@@ -45871,17 +45871,38 @@ components:
           description: ISO country the value must be local to
           type: string
           nullable: true
+    getWhatsAppNumberKycForm_200_response_reusable_details_inner:
+      example:
+        label: label
+        value: value
+      properties:
+        label:
+          type: string
+        value:
+          type: string
     getWhatsAppNumberKycForm_200_response_reusable:
       description: Present when this account already has an approved verification
         for the country that can be reused (skip the form).
       example:
         available: true
+        details:
+        - label: label
+          value: value
+        - label: label
+          value: value
         fromPhoneNumber: fromPhoneNumber
       properties:
         available:
           type: boolean
         fromPhoneNumber:
           type: string
+        details:
+          description: "Human-readable summary of the verification on file (field\
+            \ labels + values, plus the address as one line). Best-effort — may be\
+            \ empty if the provider lookup fails."
+          items:
+            $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable_details_inner"
+          type: array
       nullable: true
     getWhatsAppNumberKycForm_200_response:
       example:
@@ -45902,6 +45923,11 @@ components:
           example: example
         reusable:
           available: true
+          details:
+          - label: label
+            value: value
+          - label: label
+            value: value
           fromPhoneNumber: fromPhoneNumber
       properties:
         country:

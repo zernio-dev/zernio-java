@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   EnrollContactsRequest.JSON_PROPERTY_CONTACT_IDS,
   EnrollContactsRequest.JSON_PROPERTY_CHANNEL_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T14:55:00.471084599Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T17:41:52.330698892Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnrollContactsRequest {
   public static final String JSON_PROPERTY_CONTACT_IDS = "contactIds";
   @javax.annotation.Nonnull

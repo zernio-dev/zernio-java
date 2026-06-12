@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-12T14:55:00.471084599Z[Etc/UTC]
+- Build date: 2026-06-12T17:41:52.330698892Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1418,6 +1418,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppNumberKycForm200Response](docs/GetWhatsAppNumberKycForm200Response.md)
  - [GetWhatsAppNumberKycForm200ResponseFieldsInner](docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md)
  - [GetWhatsAppNumberKycForm200ResponseReusable](docs/GetWhatsAppNumberKycForm200ResponseReusable.md)
+ - [GetWhatsAppNumberKycForm200ResponseReusableDetailsInner](docs/GetWhatsAppNumberKycForm200ResponseReusableDetailsInner.md)
  - [GetWhatsAppNumberRemediation200Response](docs/GetWhatsAppNumberRemediation200Response.md)
  - [GetWhatsAppPhoneNumber200Response](docs/GetWhatsAppPhoneNumber200Response.md)
  - [GetWhatsAppPhoneNumber200ResponsePhoneNumber](docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md)

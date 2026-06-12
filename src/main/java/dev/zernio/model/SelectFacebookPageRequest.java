@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SelectFacebookPageRequest.JSON_PROPERTY_USER_PROFILE,
   SelectFacebookPageRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T14:55:00.471084599Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T17:41:52.330698892Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectFacebookPageRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

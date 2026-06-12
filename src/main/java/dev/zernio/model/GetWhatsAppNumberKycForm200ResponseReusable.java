@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetWhatsAppNumberKycForm200ResponseReusableDetailsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -34,9 +37,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_AVAILABLE,
-  GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_FROM_PHONE_NUMBER
+  GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_FROM_PHONE_NUMBER,
+  GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T14:55:00.471084599Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T17:41:52.330698892Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200ResponseReusable {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nullable
@@ -45,6 +49,10 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
   public static final String JSON_PROPERTY_FROM_PHONE_NUMBER = "fromPhoneNumber";
   @javax.annotation.Nullable
   private String fromPhoneNumber;
+
+  public static final String JSON_PROPERTY_DETAILS = "details";
+  @javax.annotation.Nullable
+  private List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> details = new ArrayList<>();
 
   public GetWhatsAppNumberKycForm200ResponseReusable() { 
   }
@@ -97,6 +105,38 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
   }
 
 
+  public GetWhatsAppNumberKycForm200ResponseReusable details(@javax.annotation.Nullable List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> details) {
+    this.details = details;
+    return this;
+  }
+
+  public GetWhatsAppNumberKycForm200ResponseReusable addDetailsItem(GetWhatsAppNumberKycForm200ResponseReusableDetailsInner detailsItem) {
+    if (this.details == null) {
+      this.details = new ArrayList<>();
+    }
+    this.details.add(detailsItem);
+    return this;
+  }
+
+  /**
+   * Human-readable summary of the verification on file (field labels + values, plus the address as one line). Best-effort — may be empty if the provider lookup fails.
+   * @return details
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> getDetails() {
+    return details;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetails(@javax.annotation.Nullable List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> details) {
+    this.details = details;
+  }
+
+
   /**
    * Return true if this getWhatsAppNumberKycForm_200_response_reusable object is equal to o.
    */
@@ -110,12 +150,13 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
     }
     GetWhatsAppNumberKycForm200ResponseReusable getWhatsAppNumberKycForm200ResponseReusable = (GetWhatsAppNumberKycForm200ResponseReusable) o;
     return Objects.equals(this.available, getWhatsAppNumberKycForm200ResponseReusable.available) &&
-        Objects.equals(this.fromPhoneNumber, getWhatsAppNumberKycForm200ResponseReusable.fromPhoneNumber);
+        Objects.equals(this.fromPhoneNumber, getWhatsAppNumberKycForm200ResponseReusable.fromPhoneNumber) &&
+        Objects.equals(this.details, getWhatsAppNumberKycForm200ResponseReusable.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(available, fromPhoneNumber);
+    return Objects.hash(available, fromPhoneNumber, details);
   }
 
   @Override
@@ -124,6 +165,7 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
     sb.append("class GetWhatsAppNumberKycForm200ResponseReusable {\n");
     sb.append("    available: ").append(toIndentedString(available)).append("\n");
     sb.append("    fromPhoneNumber: ").append(toIndentedString(fromPhoneNumber)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +221,16 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
     // add `fromPhoneNumber` to the URL query string
     if (getFromPhoneNumber() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfromPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFromPhoneNumber()))));
+    }
+
+    // add `details` to the URL query string
+    if (getDetails() != null) {
+      for (int i = 0; i < getDetails().size(); i++) {
+        if (getDetails().get(i) != null) {
+          joiner.add(getDetails().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdetails%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

@@ -550,6 +550,7 @@ docs/GetWhatsAppNumberInfo200ResponseWaba.md
 docs/GetWhatsAppNumberKycForm200Response.md
 docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md
 docs/GetWhatsAppNumberKycForm200ResponseReusable.md
+docs/GetWhatsAppNumberKycForm200ResponseReusableDetailsInner.md
 docs/GetWhatsAppNumberRemediation200Response.md
 docs/GetWhatsAppPhoneNumber200Response.md
 docs/GetWhatsAppPhoneNumber200ResponsePhoneNumber.md
@@ -1848,6 +1849,7 @@ src/main/java/dev/zernio/model/GetWhatsAppNumberInfo200ResponseWaba.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseFieldsInner.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseReusable.java
+src/main/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseReusableDetailsInner.java
 src/main/java/dev/zernio/model/GetWhatsAppNumberRemediation200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppPhoneNumber200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppPhoneNumber200ResponsePhoneNumber.java
@@ -2511,3 +2513,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseReusableDetailsInnerTest.java
