@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SetMessengerMenuRequest.JSON_PROPERTY_PERSISTENT_MENU
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T12:06:11.433941104Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T12:33:44.623511517Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetMessengerMenuRequest {
   public static final String JSON_PROPERTY_PERSISTENT_MENU = "persistent_menu";
   @javax.annotation.Nonnull
