@@ -35,11 +35,13 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   InitiateWhatsAppCallRequest.JSON_PROPERTY_ACCOUNT_ID,
   InitiateWhatsAppCallRequest.JSON_PROPERTY_TO,
+  InitiateWhatsAppCallRequest.JSON_PROPERTY_ACTION,
+  InitiateWhatsAppCallRequest.JSON_PROPERTY_BODY_TEXT,
   InitiateWhatsAppCallRequest.JSON_PROPERTY_FORWARD_TO,
   InitiateWhatsAppCallRequest.JSON_PROPERTY_RECORD_OVERRIDE,
   InitiateWhatsAppCallRequest.JSON_PROPERTY_BIZ_OPAQUE_CALLBACK_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-11T14:55:26.815835603Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T06:18:14.743683867Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InitiateWhatsAppCallRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -48,6 +50,47 @@ public class InitiateWhatsAppCallRequest {
   public static final String JSON_PROPERTY_TO = "to";
   @javax.annotation.Nonnull
   private String to;
+
+  /**
+   * Omit to place a call. Set to send the consent prompt instead.
+   */
+  public enum ActionEnum {
+    SEND_CALL_PERMISSION_REQUEST(String.valueOf("send_call_permission_request"));
+
+    private String value;
+
+    ActionEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ActionEnum fromValue(String value) {
+      for (ActionEnum b : ActionEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ACTION = "action";
+  @javax.annotation.Nullable
+  private ActionEnum action;
+
+  public static final String JSON_PROPERTY_BODY_TEXT = "bodyText";
+  @javax.annotation.Nullable
+  private String bodyText;
 
   public static final String JSON_PROPERTY_FORWARD_TO = "forwardTo";
   @javax.annotation.Nullable
@@ -109,6 +152,54 @@ public class InitiateWhatsAppCallRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTo(@javax.annotation.Nonnull String to) {
     this.to = to;
+  }
+
+
+  public InitiateWhatsAppCallRequest action(@javax.annotation.Nullable ActionEnum action) {
+    this.action = action;
+    return this;
+  }
+
+  /**
+   * Omit to place a call. Set to send the consent prompt instead.
+   * @return action
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ActionEnum getAction() {
+    return action;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAction(@javax.annotation.Nullable ActionEnum action) {
+    this.action = action;
+  }
+
+
+  public InitiateWhatsAppCallRequest bodyText(@javax.annotation.Nullable String bodyText) {
+    this.bodyText = bodyText;
+    return this;
+  }
+
+  /**
+   * Body text shown with the consent prompt (send_call_permission_request only).
+   * @return bodyText
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BODY_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBodyText() {
+    return bodyText;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BODY_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBodyText(@javax.annotation.Nullable String bodyText) {
+    this.bodyText = bodyText;
   }
 
 
@@ -198,6 +289,8 @@ public class InitiateWhatsAppCallRequest {
     InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = (InitiateWhatsAppCallRequest) o;
     return Objects.equals(this.accountId, initiateWhatsAppCallRequest.accountId) &&
         Objects.equals(this.to, initiateWhatsAppCallRequest.to) &&
+        Objects.equals(this.action, initiateWhatsAppCallRequest.action) &&
+        Objects.equals(this.bodyText, initiateWhatsAppCallRequest.bodyText) &&
         Objects.equals(this.forwardTo, initiateWhatsAppCallRequest.forwardTo) &&
         Objects.equals(this.recordOverride, initiateWhatsAppCallRequest.recordOverride) &&
         Objects.equals(this.bizOpaqueCallbackData, initiateWhatsAppCallRequest.bizOpaqueCallbackData);
@@ -205,7 +298,7 @@ public class InitiateWhatsAppCallRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, to, forwardTo, recordOverride, bizOpaqueCallbackData);
+    return Objects.hash(accountId, to, action, bodyText, forwardTo, recordOverride, bizOpaqueCallbackData);
   }
 
   @Override
@@ -214,6 +307,8 @@ public class InitiateWhatsAppCallRequest {
     sb.append("class InitiateWhatsAppCallRequest {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
+    sb.append("    action: ").append(toIndentedString(action)).append("\n");
+    sb.append("    bodyText: ").append(toIndentedString(bodyText)).append("\n");
     sb.append("    forwardTo: ").append(toIndentedString(forwardTo)).append("\n");
     sb.append("    recordOverride: ").append(toIndentedString(recordOverride)).append("\n");
     sb.append("    bizOpaqueCallbackData: ").append(toIndentedString(bizOpaqueCallbackData)).append("\n");
@@ -272,6 +367,16 @@ public class InitiateWhatsAppCallRequest {
     // add `to` to the URL query string
     if (getTo() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sto%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTo()))));
+    }
+
+    // add `action` to the URL query string
+    if (getAction() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saction%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAction()))));
+    }
+
+    // add `bodyText` to the URL query string
+    if (getBodyText() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbodyText%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBodyText()))));
     }
 
     // add `forwardTo` to the URL query string
