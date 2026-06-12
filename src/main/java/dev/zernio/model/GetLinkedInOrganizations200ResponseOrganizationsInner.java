@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetLinkedInOrganizations200ResponseOrganizationsInner.JSON_PROPERTY_VANITY_NAME,
   GetLinkedInOrganizations200ResponseOrganizationsInner.JSON_PROPERTY_LOCALIZED_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInOrganizations200ResponseOrganizationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

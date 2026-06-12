@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, Flow prompts, and location requests. When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;) — the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for &#x60;list&#x60;, &#x60;cta_url&#x60;, &#x60;flow&#x60;, or &#x60;location_request_message&#x60; messages.  For &#x60;location_request_message&#x60;, &#x60;action&#x60; may be omitted (we default it to &#x60;{ \&quot;name\&quot;: \&quot;send_location\&quot; }&#x60;). WhatsApp renders a localized \&quot;Send location\&quot; button; the user&#39;s reply arrives as a regular location message in the conversation.  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. 
+ * WhatsApp-only. Rich interactive payload for list messages, CTA URL buttons, Flow prompts, and location requests. When set, takes priority over &#x60;buttons&#x60; and &#x60;quickReplies&#x60;. The shape mirrors Meta&#39;s Cloud API &#x60;interactive&#x60; object verbatim, so any payload that works against Meta directly will also work here.  Use &#x60;buttons&#x60; / &#x60;quickReplies&#x60; for simple button replies (WhatsApp&#39;s &#x60;interactive.type: \&quot;button\&quot;&#x60;) — the abstraction caps at 3 buttons and handles the auto-conversion for you. Use this field only for &#x60;list&#x60;, &#x60;cta_url&#x60;, &#x60;flow&#x60;, &#x60;location_request_message&#x60;, or &#x60;voice_call&#x60; messages.  For &#x60;voice_call&#x60;, the message renders WhatsApp&#39;s native call button; tapping it starts a voice call to your business number. Requires WhatsApp Business Calling to be enabled on the sending number. The optional &#x60;parameters.payload&#x60; string is echoed back on the &#x60;calls&#x60; webhook (as &#x60;cta_payload&#x60;) for attribution.  For &#x60;location_request_message&#x60;, &#x60;action&#x60; may be omitted (we default it to &#x60;{ \&quot;name\&quot;: \&quot;send_location\&quot; }&#x60;). WhatsApp renders a localized \&quot;Send location\&quot; button; the user&#39;s reply arrives as a regular location message in the conversation.  Tap events come back via the &#x60;message.received&#x60; webhook with &#x60;metadata.interactiveType&#x60; set to &#x60;list_reply&#x60; or &#x60;nfm_reply&#x60;. 
  */
 @JsonPropertyOrder({
   SendInboxMessageRequestInteractive.JSON_PROPERTY_TYPE,
@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractive.JSON_PROPERTY_FOOTER,
   SendInboxMessageRequestInteractive.JSON_PROPERTY_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractive {
   /**
    * Which interactive layout to render.
@@ -55,7 +55,9 @@ public class SendInboxMessageRequestInteractive {
     
     FLOW(String.valueOf("flow")),
     
-    LOCATION_REQUEST_MESSAGE(String.valueOf("location_request_message"));
+    LOCATION_REQUEST_MESSAGE(String.valueOf("location_request_message")),
+    
+    VOICE_CALL(String.valueOf("voice_call"));
 
     private String value;
 

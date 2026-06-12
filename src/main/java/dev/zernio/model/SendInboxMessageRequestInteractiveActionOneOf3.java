@@ -24,24 +24,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf3Parameters;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Location request action. &#x60;type&#x60; on the parent must be &#x60;location_request_message&#x60;. May be omitted entirely; it is defaulted.
+ * Flow action. &#x60;type&#x60; on the parent must be &#x60;flow&#x60;.
  */
 @JsonPropertyOrder({
-  SendInboxMessageRequestInteractiveActionOneOf3.JSON_PROPERTY_NAME
+  SendInboxMessageRequestInteractiveActionOneOf3.JSON_PROPERTY_NAME,
+  SendInboxMessageRequestInteractiveActionOneOf3.JSON_PROPERTY_PARAMETERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf3 {
   /**
    * Gets or Sets name
    */
   public enum NameEnum {
-    SEND_LOCATION(String.valueOf("send_location"));
+    FLOW(String.valueOf("flow"));
 
     private String value;
 
@@ -74,6 +76,10 @@ public class SendInboxMessageRequestInteractiveActionOneOf3 {
   @javax.annotation.Nonnull
   private NameEnum name;
 
+  public static final String JSON_PROPERTY_PARAMETERS = "parameters";
+  @javax.annotation.Nonnull
+  private SendInboxMessageRequestInteractiveActionOneOf3Parameters parameters;
+
   public SendInboxMessageRequestInteractiveActionOneOf3() { 
   }
 
@@ -101,6 +107,30 @@ public class SendInboxMessageRequestInteractiveActionOneOf3 {
   }
 
 
+  public SendInboxMessageRequestInteractiveActionOneOf3 parameters(@javax.annotation.Nonnull SendInboxMessageRequestInteractiveActionOneOf3Parameters parameters) {
+    this.parameters = parameters;
+    return this;
+  }
+
+  /**
+   * Get parameters
+   * @return parameters
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public SendInboxMessageRequestInteractiveActionOneOf3Parameters getParameters() {
+    return parameters;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setParameters(@javax.annotation.Nonnull SendInboxMessageRequestInteractiveActionOneOf3Parameters parameters) {
+    this.parameters = parameters;
+  }
+
+
   /**
    * Return true if this sendInboxMessage_request_interactive_action_oneOf_3 object is equal to o.
    */
@@ -113,12 +143,13 @@ public class SendInboxMessageRequestInteractiveActionOneOf3 {
       return false;
     }
     SendInboxMessageRequestInteractiveActionOneOf3 sendInboxMessageRequestInteractiveActionOneOf3 = (SendInboxMessageRequestInteractiveActionOneOf3) o;
-    return Objects.equals(this.name, sendInboxMessageRequestInteractiveActionOneOf3.name);
+    return Objects.equals(this.name, sendInboxMessageRequestInteractiveActionOneOf3.name) &&
+        Objects.equals(this.parameters, sendInboxMessageRequestInteractiveActionOneOf3.parameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(name, parameters);
   }
 
   @Override
@@ -126,6 +157,7 @@ public class SendInboxMessageRequestInteractiveActionOneOf3 {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendInboxMessageRequestInteractiveActionOneOf3 {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    parameters: ").append(toIndentedString(parameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -176,6 +208,11 @@ public class SendInboxMessageRequestInteractiveActionOneOf3 {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `parameters` to the URL query string
+    if (getParameters() != null) {
+      joiner.add(getParameters().toUrlQueryString(prefix + "parameters" + suffix));
     }
 
     return joiner.toString();

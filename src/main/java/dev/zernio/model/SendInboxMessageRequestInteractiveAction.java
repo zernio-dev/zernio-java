@@ -27,8 +27,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf1;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf2;
-import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf2Parameters;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf3;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf3Parameters;
+import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOf4;
 import dev.zernio.model.SendInboxMessageRequestInteractiveActionOneOfSectionsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +61,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = SendInboxMessageRequestInteractiveAction.SendInboxMessageRequestInteractiveActionDeserializer.class)
 @JsonSerialize(using = SendInboxMessageRequestInteractiveAction.SendInboxMessageRequestInteractiveActionSerializer.class)
 public class SendInboxMessageRequestInteractiveAction extends AbstractOpenApiSchema {
@@ -201,6 +202,32 @@ public class SendInboxMessageRequestInteractiveAction extends AbstractOpenApiSch
                 log.log(Level.FINER, "Input data does not match schema 'SendInboxMessageRequestInteractiveActionOneOf3'", e);
             }
 
+            // deserialize SendInboxMessageRequestInteractiveActionOneOf4
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Integer.class) || SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Long.class) || SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Float.class) || SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Double.class) || SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Boolean.class) || SendInboxMessageRequestInteractiveActionOneOf4.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Integer.class) || SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Float.class) || SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (SendInboxMessageRequestInteractiveActionOneOf4.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (SendInboxMessageRequestInteractiveActionOneOf4.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(SendInboxMessageRequestInteractiveActionOneOf4.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'SendInboxMessageRequestInteractiveActionOneOf4'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'SendInboxMessageRequestInteractiveActionOneOf4'", e);
+            }
+
             if (match == 1) {
                 SendInboxMessageRequestInteractiveAction ret = new SendInboxMessageRequestInteractiveAction();
                 ret.setActualInstance(deserialized);
@@ -245,11 +272,17 @@ public class SendInboxMessageRequestInteractiveAction extends AbstractOpenApiSch
         setActualInstance(o);
     }
 
+    public SendInboxMessageRequestInteractiveAction(SendInboxMessageRequestInteractiveActionOneOf4 o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     static {
         schemas.put("SendInboxMessageRequestInteractiveActionOneOf", SendInboxMessageRequestInteractiveActionOneOf.class);
         schemas.put("SendInboxMessageRequestInteractiveActionOneOf1", SendInboxMessageRequestInteractiveActionOneOf1.class);
         schemas.put("SendInboxMessageRequestInteractiveActionOneOf2", SendInboxMessageRequestInteractiveActionOneOf2.class);
         schemas.put("SendInboxMessageRequestInteractiveActionOneOf3", SendInboxMessageRequestInteractiveActionOneOf3.class);
+        schemas.put("SendInboxMessageRequestInteractiveActionOneOf4", SendInboxMessageRequestInteractiveActionOneOf4.class);
         JSON.registerDescendants(SendInboxMessageRequestInteractiveAction.class, Collections.unmodifiableMap(schemas));
     }
 
@@ -261,7 +294,7 @@ public class SendInboxMessageRequestInteractiveAction extends AbstractOpenApiSch
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3
+     * SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3, SendInboxMessageRequestInteractiveActionOneOf4
      *
      * It could be an instance of the 'oneOf' schemas.
      * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
@@ -288,14 +321,19 @@ public class SendInboxMessageRequestInteractiveAction extends AbstractOpenApiSch
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3");
+        if (JSON.isInstanceOf(SendInboxMessageRequestInteractiveActionOneOf4.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3, SendInboxMessageRequestInteractiveActionOneOf4");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3
+     * SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3, SendInboxMessageRequestInteractiveActionOneOf4
      *
-     * @return The actual instance (SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3)
+     * @return The actual instance (SendInboxMessageRequestInteractiveActionOneOf, SendInboxMessageRequestInteractiveActionOneOf1, SendInboxMessageRequestInteractiveActionOneOf2, SendInboxMessageRequestInteractiveActionOneOf3, SendInboxMessageRequestInteractiveActionOneOf4)
      */
     @Override
     public Object getActualInstance() {
@@ -344,6 +382,17 @@ public class SendInboxMessageRequestInteractiveAction extends AbstractOpenApiSch
      */
     public SendInboxMessageRequestInteractiveActionOneOf3 getSendInboxMessageRequestInteractiveActionOneOf3() throws ClassCastException {
         return (SendInboxMessageRequestInteractiveActionOneOf3)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `SendInboxMessageRequestInteractiveActionOneOf4`. If the actual instance is not `SendInboxMessageRequestInteractiveActionOneOf4`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `SendInboxMessageRequestInteractiveActionOneOf4`
+     * @throws ClassCastException if the instance is not `SendInboxMessageRequestInteractiveActionOneOf4`
+     */
+    public SendInboxMessageRequestInteractiveActionOneOf4 getSendInboxMessageRequestInteractiveActionOneOf4() throws ClassCastException {
+        return (SendInboxMessageRequestInteractiveActionOneOf4)super.getActualInstance();
     }
 
 
@@ -401,6 +450,12 @@ public class SendInboxMessageRequestInteractiveAction extends AbstractOpenApiSch
     if (getActualInstance() instanceof SendInboxMessageRequestInteractiveActionOneOf3) {
         if (getActualInstance() != null) {
           joiner.add(((SendInboxMessageRequestInteractiveActionOneOf3)getActualInstance()).toUrlQueryString(prefix + "one_of_3" + suffix));
+        }
+        return joiner.toString();
+    }
+    if (getActualInstance() instanceof SendInboxMessageRequestInteractiveActionOneOf4) {
+        if (getActualInstance() != null) {
+          joiner.add(((SendInboxMessageRequestInteractiveActionOneOf4)getActualInstance()).toUrlQueryString(prefix + "one_of_4" + suffix));
         }
         return joiner.toString();
     }

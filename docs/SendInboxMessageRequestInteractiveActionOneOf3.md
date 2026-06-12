@@ -2,13 +2,14 @@
 
 # SendInboxMessageRequestInteractiveActionOneOf3
 
-Location request action. `type` on the parent must be `location_request_message`. May be omitted entirely; it is defaulted.
+Flow action. `type` on the parent must be `flow`.
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**name** | [**NameEnum**](#NameEnum) |  |  |
+|**parameters** | [**SendInboxMessageRequestInteractiveActionOneOf3Parameters**](SendInboxMessageRequestInteractiveActionOneOf3Parameters.md) |  |  |
 
 
 
@@ -16,7 +17,7 @@ Location request action. `type` on the parent must be `location_request_message`
 
 | Name | Value |
 |---- | -----|
-| SEND_LOCATION | &quot;send_location&quot; |
+| FLOW | &quot;flow&quot; |
 
 
 

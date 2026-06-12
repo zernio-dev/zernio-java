@@ -38,13 +38,14 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_PHONE_NUMBER_DOC_ID,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_PHONE_NUMBER,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_CALLING_ENABLED,
+  GetWhatsAppCallingConfig200Response.JSON_PROPERTY_CALL_DEEP_LINK,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_FORWARD_TO,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_RECORDING_ENABLED,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_SIP_AUTH_USERNAME,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_SIP_AUTH_PASSWORD_CONFIGURED,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_CALL_ICON_COUNTRIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallingConfig200Response {
   public static final String JSON_PROPERTY_PHONE_NUMBER_DOC_ID = "phoneNumberDocId";
   @javax.annotation.Nullable
@@ -57,6 +58,10 @@ public class GetWhatsAppCallingConfig200Response {
   public static final String JSON_PROPERTY_CALLING_ENABLED = "callingEnabled";
   @javax.annotation.Nullable
   private Boolean callingEnabled;
+
+  public static final String JSON_PROPERTY_CALL_DEEP_LINK = "callDeepLink";
+  @javax.annotation.Nullable
+  private String callDeepLink;
 
   public static final String JSON_PROPERTY_FORWARD_TO = "forwardTo";
   @javax.annotation.Nullable
@@ -150,6 +155,30 @@ public class GetWhatsAppCallingConfig200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCallingEnabled(@javax.annotation.Nullable Boolean callingEnabled) {
     this.callingEnabled = callingEnabled;
+  }
+
+
+  public GetWhatsAppCallingConfig200Response callDeepLink(@javax.annotation.Nullable String callDeepLink) {
+    this.callDeepLink = callDeepLink;
+    return this;
+  }
+
+  /**
+   * Public calling deep link (https://wa.me/call/&lt;number&gt;). Tapping it on a phone starts a WhatsApp voice call to this number. Embed it on websites, emails, or QR codes. Null while calling is disabled; not supported by WhatsApp desktop clients.
+   * @return callDeepLink
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CALL_DEEP_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCallDeepLink() {
+    return callDeepLink;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CALL_DEEP_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCallDeepLink(@javax.annotation.Nullable String callDeepLink) {
+    this.callDeepLink = callDeepLink;
   }
 
 
@@ -296,6 +325,7 @@ public class GetWhatsAppCallingConfig200Response {
     return Objects.equals(this.phoneNumberDocId, getWhatsAppCallingConfig200Response.phoneNumberDocId) &&
         Objects.equals(this.phoneNumber, getWhatsAppCallingConfig200Response.phoneNumber) &&
         Objects.equals(this.callingEnabled, getWhatsAppCallingConfig200Response.callingEnabled) &&
+        Objects.equals(this.callDeepLink, getWhatsAppCallingConfig200Response.callDeepLink) &&
         Objects.equals(this.forwardTo, getWhatsAppCallingConfig200Response.forwardTo) &&
         Objects.equals(this.recordingEnabled, getWhatsAppCallingConfig200Response.recordingEnabled) &&
         Objects.equals(this.sipAuthUsername, getWhatsAppCallingConfig200Response.sipAuthUsername) &&
@@ -305,7 +335,7 @@ public class GetWhatsAppCallingConfig200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumberDocId, phoneNumber, callingEnabled, forwardTo, recordingEnabled, sipAuthUsername, sipAuthPasswordConfigured, callIconCountries);
+    return Objects.hash(phoneNumberDocId, phoneNumber, callingEnabled, callDeepLink, forwardTo, recordingEnabled, sipAuthUsername, sipAuthPasswordConfigured, callIconCountries);
   }
 
   @Override
@@ -315,6 +345,7 @@ public class GetWhatsAppCallingConfig200Response {
     sb.append("    phoneNumberDocId: ").append(toIndentedString(phoneNumberDocId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    callingEnabled: ").append(toIndentedString(callingEnabled)).append("\n");
+    sb.append("    callDeepLink: ").append(toIndentedString(callDeepLink)).append("\n");
     sb.append("    forwardTo: ").append(toIndentedString(forwardTo)).append("\n");
     sb.append("    recordingEnabled: ").append(toIndentedString(recordingEnabled)).append("\n");
     sb.append("    sipAuthUsername: ").append(toIndentedString(sipAuthUsername)).append("\n");
@@ -380,6 +411,11 @@ public class GetWhatsAppCallingConfig200Response {
     // add `callingEnabled` to the URL query string
     if (getCallingEnabled() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scallingEnabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallingEnabled()))));
+    }
+
+    // add `callDeepLink` to the URL query string
+    if (getCallDeepLink() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scallDeepLink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCallDeepLink()))));
     }
 
     // add `forwardTo` to the URL query string

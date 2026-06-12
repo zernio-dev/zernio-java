@@ -42628,7 +42628,36 @@ components:
       required:
       - name
       - parameters
-    sendInboxMessage_request_interactive_action_oneOf_2_parameters_flow_action_payload:
+    sendInboxMessage_request_interactive_action_oneOf_2_parameters:
+      description: All optional.
+      properties:
+        display_text:
+          description: Button label. Defaults to "Call Now".
+          maxLength: 20
+          type: string
+        ttl_minutes:
+          description: How long the button stays tappable. Defaults to 10080 (7 days).
+          maximum: 43200
+          minimum: 1
+          type: integer
+        payload:
+          description: Arbitrary string echoed back as `cta_payload` on the `calls`
+            webhook (connect/terminate) for attribution.
+          maxLength: 512
+          type: string
+    sendInboxMessage_request_interactive_action_oneOf_2:
+      description: Voice-call action. `type` on the parent must be `voice_call`. Renders
+        WhatsApp's native call button (requires Calling enabled on the sending number).
+      properties:
+        name:
+          enum:
+          - voice_call
+          type: string
+        parameters:
+          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_2_parameters"
+      required:
+      - name
+    sendInboxMessage_request_interactive_action_oneOf_3_parameters_flow_action_payload:
       description: Required when flow_action is `navigate`.
       properties:
         screen:
@@ -42637,7 +42666,7 @@ components:
         data:
           additionalProperties: {}
           description: Optional pre-filled data passed to the screen.
-    sendInboxMessage_request_interactive_action_oneOf_2_parameters:
+    sendInboxMessage_request_interactive_action_oneOf_3_parameters:
       properties:
         flow_message_version:
           description: Defaults to "3" when omitted.
@@ -42662,7 +42691,7 @@ components:
           - data_exchange
           type: string
         flow_action_payload:
-          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_2_parameters_flow_action_payload"
+          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_3_parameters_flow_action_payload"
         mode:
           description: Set to `draft` to test an unpublished Flow.
           enum:
@@ -42673,7 +42702,7 @@ components:
       - flow_cta
       - flow_id
       - flow_token
-    sendInboxMessage_request_interactive_action_oneOf_2:
+    sendInboxMessage_request_interactive_action_oneOf_3:
       description: Flow action. `type` on the parent must be `flow`.
       properties:
         name:
@@ -42681,11 +42710,11 @@ components:
           - flow
           type: string
         parameters:
-          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_2_parameters"
+          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_3_parameters"
       required:
       - name
       - parameters
-    sendInboxMessage_request_interactive_action_oneOf_3:
+    sendInboxMessage_request_interactive_action_oneOf_4:
       description: Location request action. `type` on the parent must be `location_request_message`.
         May be omitted entirely; it is defaulted.
       properties:
@@ -42701,6 +42730,7 @@ components:
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_1"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_2"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_3"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_4"
     sendInboxMessage_request_interactive:
       description: |
         WhatsApp-only. Rich interactive payload for list messages, CTA URL
@@ -42712,8 +42742,14 @@ components:
         Use `buttons` / `quickReplies` for simple button replies
         (WhatsApp's `interactive.type: "button"`) — the abstraction caps at
         3 buttons and handles the auto-conversion for you. Use this field
-        only for `list`, `cta_url`, `flow`, or `location_request_message`
-        messages.
+        only for `list`, `cta_url`, `flow`, `location_request_message`, or
+        `voice_call` messages.
+
+        For `voice_call`, the message renders WhatsApp's native call
+        button; tapping it starts a voice call to your business number.
+        Requires WhatsApp Business Calling to be enabled on the sending
+        number. The optional `parameters.payload` string is echoed back on
+        the `calls` webhook (as `cta_payload`) for attribution.
 
         For `location_request_message`, `action` may be omitted (we default
         it to `{ "name": "send_location" }`). WhatsApp renders a localized
@@ -42730,6 +42766,7 @@ components:
           - cta_url
           - flow
           - location_request_message
+          - voice_call
           type: string
         header:
           $ref: "#/components/schemas/sendInboxMessage_request_interactive_header"
@@ -44509,6 +44546,7 @@ components:
         phoneNumber: phoneNumber
         sipAuthPasswordConfigured: true
         recordingEnabled: true
+        callDeepLink: callDeepLink
         forwardTo: forwardTo
         phoneNumberDocId: phoneNumberDocId
         sipAuthUsername: sipAuthUsername
@@ -44523,6 +44561,13 @@ components:
           type: string
         callingEnabled:
           type: boolean
+        callDeepLink:
+          description: "Public calling deep link (https://wa.me/call/<number>). Tapping\
+            \ it on a phone starts a WhatsApp voice call to this number. Embed it\
+            \ on websites, emails, or QR codes. Null while calling is disabled; not\
+            \ supported by WhatsApp desktop clients."
+          type: string
+          nullable: true
         forwardTo:
           description: tel:+E164 / sip:... / wss://... destination
           type: string

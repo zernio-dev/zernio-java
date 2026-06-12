@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKyc200Response.JSON_PROPERTY_STATUS,
   SubmitWhatsAppNumberKyc200Response.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKyc200Response {
   /**
    * Gets or Sets status

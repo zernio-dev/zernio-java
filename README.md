@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-12T11:02:13.098304821Z[Etc/UTC]
+- Build date: 2026-06-12T11:31:24.062406301Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1756,8 +1756,10 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestInteractiveActionOneOf1Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf1Parameters.md)
  - [SendInboxMessageRequestInteractiveActionOneOf2](docs/SendInboxMessageRequestInteractiveActionOneOf2.md)
  - [SendInboxMessageRequestInteractiveActionOneOf2Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf2Parameters.md)
- - [SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload](docs/SendInboxMessageRequestInteractiveActionOneOf2ParametersFlowActionPayload.md)
  - [SendInboxMessageRequestInteractiveActionOneOf3](docs/SendInboxMessageRequestInteractiveActionOneOf3.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf3Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf3Parameters.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload](docs/SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf4](docs/SendInboxMessageRequestInteractiveActionOneOf4.md)
  - [SendInboxMessageRequestInteractiveActionOneOfSectionsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInner.md)
  - [SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner.md)
  - [SendInboxMessageRequestInteractiveBody](docs/SendInboxMessageRequestInteractiveBody.md)

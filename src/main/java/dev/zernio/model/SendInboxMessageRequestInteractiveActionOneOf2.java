@@ -31,19 +31,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Flow action. &#x60;type&#x60; on the parent must be &#x60;flow&#x60;.
+ * Voice-call action. &#x60;type&#x60; on the parent must be &#x60;voice_call&#x60;. Renders WhatsApp&#39;s native call button (requires Calling enabled on the sending number).
  */
 @JsonPropertyOrder({
   SendInboxMessageRequestInteractiveActionOneOf2.JSON_PROPERTY_NAME,
   SendInboxMessageRequestInteractiveActionOneOf2.JSON_PROPERTY_PARAMETERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:02:13.098304821Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf2 {
   /**
    * Gets or Sets name
    */
   public enum NameEnum {
-    FLOW(String.valueOf("flow"));
+    VOICE_CALL(String.valueOf("voice_call"));
 
     private String value;
 
@@ -77,7 +77,7 @@ public class SendInboxMessageRequestInteractiveActionOneOf2 {
   private NameEnum name;
 
   public static final String JSON_PROPERTY_PARAMETERS = "parameters";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private SendInboxMessageRequestInteractiveActionOneOf2Parameters parameters;
 
   public SendInboxMessageRequestInteractiveActionOneOf2() { 
@@ -107,7 +107,7 @@ public class SendInboxMessageRequestInteractiveActionOneOf2 {
   }
 
 
-  public SendInboxMessageRequestInteractiveActionOneOf2 parameters(@javax.annotation.Nonnull SendInboxMessageRequestInteractiveActionOneOf2Parameters parameters) {
+  public SendInboxMessageRequestInteractiveActionOneOf2 parameters(@javax.annotation.Nullable SendInboxMessageRequestInteractiveActionOneOf2Parameters parameters) {
     this.parameters = parameters;
     return this;
   }
@@ -116,17 +116,17 @@ public class SendInboxMessageRequestInteractiveActionOneOf2 {
    * Get parameters
    * @return parameters
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public SendInboxMessageRequestInteractiveActionOneOf2Parameters getParameters() {
     return parameters;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setParameters(@javax.annotation.Nonnull SendInboxMessageRequestInteractiveActionOneOf2Parameters parameters) {
+  @JsonProperty(value = JSON_PROPERTY_PARAMETERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParameters(@javax.annotation.Nullable SendInboxMessageRequestInteractiveActionOneOf2Parameters parameters) {
     this.parameters = parameters;
   }
 
