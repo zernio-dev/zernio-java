@@ -62,6 +62,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_NAME,
   AdTreeCampaign.JSON_PROPERTY_ACCOUNT_ID,
   AdTreeCampaign.JSON_PROPERTY_PROFILE_ID,
+  AdTreeCampaign.JSON_PROPERTY_ADVERTISING_CHANNEL_TYPE,
   AdTreeCampaign.JSON_PROPERTY_PLATFORM_OBJECTIVE,
   AdTreeCampaign.JSON_PROPERTY_OPTIMIZATION_GOAL,
   AdTreeCampaign.JSON_PROPERTY_BID_STRATEGY,
@@ -70,7 +71,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_PROMOTED_OBJECT,
   AdTreeCampaign.JSON_PROPERTY_AD_SETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:46:13.036237099Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -266,6 +267,10 @@ public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nullable
   private String profileId;
+
+  public static final String JSON_PROPERTY_ADVERTISING_CHANNEL_TYPE = "advertisingChannelType";
+  @javax.annotation.Nullable
+  private String advertisingChannelType;
 
   public static final String JSON_PROPERTY_PLATFORM_OBJECTIVE = "platformObjective";
   @javax.annotation.Nullable
@@ -762,6 +767,30 @@ public class AdTreeCampaign {
   }
 
 
+  public AdTreeCampaign advertisingChannelType(@javax.annotation.Nullable String advertisingChannelType) {
+    this.advertisingChannelType = advertisingChannelType;
+    return this;
+  }
+
+  /**
+   * Google-only. Raw campaign.advertising_channel_type (SEARCH, PERFORMANCE_MAX, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving surface, distinct from platformObjective (advertiser intent). Null/absent for non-Google platforms.
+   * @return advertisingChannelType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ADVERTISING_CHANNEL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAdvertisingChannelType() {
+    return advertisingChannelType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ADVERTISING_CHANNEL_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdvertisingChannelType(@javax.annotation.Nullable String advertisingChannelType) {
+    this.advertisingChannelType = advertisingChannelType;
+  }
+
+
   public AdTreeCampaign platformObjective(@javax.annotation.Nullable String platformObjective) {
     this.platformObjective = platformObjective;
     return this;
@@ -969,6 +998,7 @@ public class AdTreeCampaign {
         Objects.equals(this.platformAdAccountName, adTreeCampaign.platformAdAccountName) &&
         Objects.equals(this.accountId, adTreeCampaign.accountId) &&
         Objects.equals(this.profileId, adTreeCampaign.profileId) &&
+        Objects.equals(this.advertisingChannelType, adTreeCampaign.advertisingChannelType) &&
         Objects.equals(this.platformObjective, adTreeCampaign.platformObjective) &&
         Objects.equals(this.optimizationGoal, adTreeCampaign.optimizationGoal) &&
         Objects.equals(this.bidStrategy, adTreeCampaign.bidStrategy) &&
@@ -980,7 +1010,7 @@ public class AdTreeCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformCampaignId, platform, campaignName, status, reviewStatus, platformCampaignStatus, campaignIssuesInfo, adCount, adSetCount, budget, campaignBudget, budgetLevel, isBudgetScheduleEnabled, currency, metrics, platformAdAccountId, platformAdAccountName, accountId, profileId, platformObjective, optimizationGoal, bidStrategy, bidAmount, roasAverageFloor, promotedObject, adSets);
+    return Objects.hash(platformCampaignId, platform, campaignName, status, reviewStatus, platformCampaignStatus, campaignIssuesInfo, adCount, adSetCount, budget, campaignBudget, budgetLevel, isBudgetScheduleEnabled, currency, metrics, platformAdAccountId, platformAdAccountName, accountId, profileId, advertisingChannelType, platformObjective, optimizationGoal, bidStrategy, bidAmount, roasAverageFloor, promotedObject, adSets);
   }
 
   @Override
@@ -1006,6 +1036,7 @@ public class AdTreeCampaign {
     sb.append("    platformAdAccountName: ").append(toIndentedString(platformAdAccountName)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
+    sb.append("    advertisingChannelType: ").append(toIndentedString(advertisingChannelType)).append("\n");
     sb.append("    platformObjective: ").append(toIndentedString(platformObjective)).append("\n");
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
@@ -1157,6 +1188,11 @@ public class AdTreeCampaign {
     // add `profileId` to the URL query string
     if (getProfileId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
+    }
+
+    // add `advertisingChannelType` to the URL query string
+    if (getAdvertisingChannelType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadvertisingChannelType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdvertisingChannelType()))));
     }
 
     // add `platformObjective` to the URL query string

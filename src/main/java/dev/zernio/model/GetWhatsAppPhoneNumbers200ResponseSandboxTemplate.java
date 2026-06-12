@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.JSON_PROPERTY_NAME,
   GetWhatsAppPhoneNumbers200ResponseSandboxTemplate.JSON_PROPERTY_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:46:13.036237099Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200ResponseSandboxTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

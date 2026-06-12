@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequestTargeting.JSON_PROPERTY_INTERESTS,
   UpdateAdRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:46:13.036237099Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable

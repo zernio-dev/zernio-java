@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   TrackingTag.JSON_PROPERTY_OWNER_BUSINESS_ID,
   TrackingTag.JSON_PROPERTY_OWNER_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:31:24.062406301Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:46:13.036237099Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingTag {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
