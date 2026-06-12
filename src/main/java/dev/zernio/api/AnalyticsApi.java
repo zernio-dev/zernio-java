@@ -87,7 +87,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T09:29:56.019065558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T10:59:57.354695356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -693,11 +693,12 @@ public class AnalyticsApi {
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
+   * @param attribution How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)
    * @return GetDailyMetrics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source) throws ApiException {
-    return getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source, null);
+  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, @javax.annotation.Nullable String attribution) throws ApiException {
+    return getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source, attribution, null);
   }
 
   /**
@@ -709,12 +710,13 @@ public class AnalyticsApi {
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
+   * @param attribution How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)
    * @param headers Optional headers to include in the request
    * @return GetDailyMetrics200Response
    * @throws ApiException if fails to make API call
    */
-  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetDailyMetrics200Response> localVarResponse = getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, headers);
+  public GetDailyMetrics200Response getDailyMetrics(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, @javax.annotation.Nullable String attribution, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetDailyMetrics200Response> localVarResponse = getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, attribution, headers);
     return localVarResponse.getData();
   }
 
@@ -727,11 +729,12 @@ public class AnalyticsApi {
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
+   * @param attribution How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)
    * @return ApiResponse&lt;GetDailyMetrics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source) throws ApiException {
-    return getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, null);
+  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, @javax.annotation.Nullable String attribution) throws ApiException {
+    return getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, attribution, null);
   }
 
   /**
@@ -743,12 +746,13 @@ public class AnalyticsApi {
    * @param fromDate Inclusive start date (ISO 8601). Defaults to 180 days ago. (optional)
    * @param toDate Inclusive end date (ISO 8601). Defaults to now. (optional)
    * @param source Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. (optional, default to all)
+   * @param attribution How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  (optional, default to publish)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetDailyMetrics200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getDailyMetricsRequestBuilder(platform, profileId, accountId, fromDate, toDate, source, headers);
+  public ApiResponse<GetDailyMetrics200Response> getDailyMetricsWithHttpInfo(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, @javax.annotation.Nullable String attribution, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getDailyMetricsRequestBuilder(platform, profileId, accountId, fromDate, toDate, source, attribution, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -795,7 +799,7 @@ public class AnalyticsApi {
     }
   }
 
-  private HttpRequest.Builder getDailyMetricsRequestBuilder(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getDailyMetricsRequestBuilder(@javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable OffsetDateTime fromDate, @javax.annotation.Nullable OffsetDateTime toDate, @javax.annotation.Nullable String source, @javax.annotation.Nullable String attribution, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -816,6 +820,8 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "source";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("source", source));
+    localVarQueryParameterBaseName = "attribution";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("attribution", attribution));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

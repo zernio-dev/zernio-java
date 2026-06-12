@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetPendingOAuthData200Response.JSON_PROPERTY_SELECTION_TYPE,
   GetPendingOAuthData200Response.JSON_PROPERTY_ORGANIZATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T09:29:56.019065558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T10:59:57.354695356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPendingOAuthData200Response {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

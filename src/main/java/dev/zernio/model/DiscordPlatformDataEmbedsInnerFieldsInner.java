@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   DiscordPlatformDataEmbedsInnerFieldsInner.JSON_PROPERTY_VALUE,
   DiscordPlatformDataEmbedsInnerFieldsInner.JSON_PROPERTY_INLINE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T09:29:56.019065558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T10:59:57.354695356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordPlatformDataEmbedsInnerFieldsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetWhatsAppNumberInfo200ResponsePhoneThroughput.JSON_PROPERTY_LEVEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T09:29:56.019065558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T10:59:57.354695356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberInfo200ResponsePhoneThroughput {
   public static final String JSON_PROPERTY_LEVEL = "level";
   @javax.annotation.Nullable

@@ -569,7 +569,7 @@ ApiResponse<[**GetContentDecay200Response**](GetContentDecay200Response.md)>
 
 ## getDailyMetrics
 
-> GetDailyMetrics200Response getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source)
+> GetDailyMetrics200Response getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source, attribution)
 
 Get daily aggregated metrics
 
@@ -602,8 +602,9 @@ public class Example {
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
+        String attribution = "publish"; // String | How each post's engagement is attributed to a day. \"publish\" (default) sums each post's lifetime total on its publish date. \"received\" buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post's publish date. 
         try {
-            GetDailyMetrics200Response result = apiInstance.getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source);
+            GetDailyMetrics200Response result = apiInstance.getDailyMetrics(platform, profileId, accountId, fromDate, toDate, source, attribution);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getDailyMetrics");
@@ -627,6 +628,7 @@ public class Example {
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **attribution** | **String**| How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  | [optional] [default to publish] [enum: publish, received] |
 
 ### Return type
 
@@ -651,7 +653,7 @@ public class Example {
 
 ## getDailyMetricsWithHttpInfo
 
-> ApiResponse<GetDailyMetrics200Response> getDailyMetrics getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source)
+> ApiResponse<GetDailyMetrics200Response> getDailyMetrics getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, attribution)
 
 Get daily aggregated metrics
 
@@ -685,8 +687,9 @@ public class Example {
         OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive start date (ISO 8601). Defaults to 180 days ago.
         OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Inclusive end date (ISO 8601). Defaults to now.
         String source = "all"; // String | Filter by post origin. \"late\" for posts published via Zernio, \"external\" for posts imported from platforms.
+        String attribution = "publish"; // String | How each post's engagement is attributed to a day. \"publish\" (default) sums each post's lifetime total on its publish date. \"received\" buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post's publish date. 
         try {
-            ApiResponse<GetDailyMetrics200Response> response = apiInstance.getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source);
+            ApiResponse<GetDailyMetrics200Response> response = apiInstance.getDailyMetricsWithHttpInfo(platform, profileId, accountId, fromDate, toDate, source, attribution);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -712,6 +715,7 @@ public class Example {
 | **fromDate** | **OffsetDateTime**| Inclusive start date (ISO 8601). Defaults to 180 days ago. | [optional] |
 | **toDate** | **OffsetDateTime**| Inclusive end date (ISO 8601). Defaults to now. | [optional] |
 | **source** | **String**| Filter by post origin. \&quot;late\&quot; for posts published via Zernio, \&quot;external\&quot; for posts imported from platforms. | [optional] [default to all] [enum: all, late, external] |
+| **attribution** | **String**| How each post&#39;s engagement is attributed to a day. \&quot;publish\&quot; (default) sums each post&#39;s lifetime total on its publish date. \&quot;received\&quot; buckets the per-day increase in engagement by the day it actually arrived (engagement-over-time), so engagement on older posts appears on the day it was gained rather than the post&#39;s publish date.  | [optional] [default to publish] [enum: publish, received] |
 
 ### Return type
 
