@@ -45880,11 +45880,42 @@ components:
           type: string
         value:
           type: string
+    getWhatsAppNumberKycForm_200_response_reusable_options_inner:
+      example:
+        details:
+        - label: label
+          value: value
+        - label: label
+          value: value
+        fromPhoneNumber: fromPhoneNumber
+      properties:
+        fromPhoneNumber:
+          type: string
+        details:
+          items:
+            $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable_details_inner"
+          type: array
     getWhatsAppNumberKycForm_200_response_reusable:
       description: Present when this account already has an approved verification
-        for the country that can be reused (skip the form).
+        for the country that can be reused (skip the form). `fromPhoneNumber`/`details`
+        mirror the newest option; `options` lists ALL approved verifications (agencies
+        hold one per end client) — pass the chosen option's `fromPhoneNumber` as `reuseFrom`
+        on POST.
       example:
         available: true
+        options:
+        - details:
+          - label: label
+            value: value
+          - label: label
+            value: value
+          fromPhoneNumber: fromPhoneNumber
+        - details:
+          - label: label
+            value: value
+          - label: label
+            value: value
+          fromPhoneNumber: fromPhoneNumber
         details:
         - label: label
           value: value
@@ -45902,6 +45933,11 @@ components:
             \ empty if the provider lookup fails."
           items:
             $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable_details_inner"
+          type: array
+        options:
+          description: "One entry per distinct approved verification, newest first."
+          items:
+            $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable_options_inner"
           type: array
       nullable: true
     getWhatsAppNumberKycForm_200_response:
@@ -45923,6 +45959,19 @@ components:
           example: example
         reusable:
           available: true
+          options:
+          - details:
+            - label: label
+              value: value
+            - label: label
+              value: value
+            fromPhoneNumber: fromPhoneNumber
+          - details:
+            - label: label
+              value: value
+            - label: label
+              value: value
+            fromPhoneNumber: fromPhoneNumber
           details:
           - label: label
             value: value
@@ -46001,6 +46050,11 @@ components:
           description: Reuse a prior approved verification for this country (skips
             document/field collection; places the order immediately).
           type: boolean
+        reuseFrom:
+          description: "Which approved verification to reuse when several exist: the\
+            \ phone number it was originally approved for (GET reusable.options[].fromPhoneNumber).\
+            \ Omitted = newest. No match = 409."
+          type: string
         endUserFirstName:
           description: End user's legal first name. Required when the country has
             an action/ID-verification (Onfido) requirement.

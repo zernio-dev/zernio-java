@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetWhatsAppNumberKycForm200ResponseReusableDetailsInner;
+import dev.zernio.model.GetWhatsAppNumberKycForm200ResponseReusableOptionsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,14 +34,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Present when this account already has an approved verification for the country that can be reused (skip the form).
+ * Present when this account already has an approved verification for the country that can be reused (skip the form). &#x60;fromPhoneNumber&#x60;/&#x60;details&#x60; mirror the newest option; &#x60;options&#x60; lists ALL approved verifications (agencies hold one per end client) — pass the chosen option&#39;s &#x60;fromPhoneNumber&#x60; as &#x60;reuseFrom&#x60; on POST.
  */
 @JsonPropertyOrder({
   GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_AVAILABLE,
   GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_FROM_PHONE_NUMBER,
-  GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_DETAILS
+  GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_DETAILS,
+  GetWhatsAppNumberKycForm200ResponseReusable.JSON_PROPERTY_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T17:41:52.330698892Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200ResponseReusable {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nullable
@@ -53,6 +55,10 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
   public static final String JSON_PROPERTY_DETAILS = "details";
   @javax.annotation.Nullable
   private List<GetWhatsAppNumberKycForm200ResponseReusableDetailsInner> details = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_OPTIONS = "options";
+  @javax.annotation.Nullable
+  private List<GetWhatsAppNumberKycForm200ResponseReusableOptionsInner> options = new ArrayList<>();
 
   public GetWhatsAppNumberKycForm200ResponseReusable() { 
   }
@@ -137,6 +143,38 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
   }
 
 
+  public GetWhatsAppNumberKycForm200ResponseReusable options(@javax.annotation.Nullable List<GetWhatsAppNumberKycForm200ResponseReusableOptionsInner> options) {
+    this.options = options;
+    return this;
+  }
+
+  public GetWhatsAppNumberKycForm200ResponseReusable addOptionsItem(GetWhatsAppNumberKycForm200ResponseReusableOptionsInner optionsItem) {
+    if (this.options == null) {
+      this.options = new ArrayList<>();
+    }
+    this.options.add(optionsItem);
+    return this;
+  }
+
+  /**
+   * One entry per distinct approved verification, newest first.
+   * @return options
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GetWhatsAppNumberKycForm200ResponseReusableOptionsInner> getOptions() {
+    return options;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOptions(@javax.annotation.Nullable List<GetWhatsAppNumberKycForm200ResponseReusableOptionsInner> options) {
+    this.options = options;
+  }
+
+
   /**
    * Return true if this getWhatsAppNumberKycForm_200_response_reusable object is equal to o.
    */
@@ -151,12 +189,13 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
     GetWhatsAppNumberKycForm200ResponseReusable getWhatsAppNumberKycForm200ResponseReusable = (GetWhatsAppNumberKycForm200ResponseReusable) o;
     return Objects.equals(this.available, getWhatsAppNumberKycForm200ResponseReusable.available) &&
         Objects.equals(this.fromPhoneNumber, getWhatsAppNumberKycForm200ResponseReusable.fromPhoneNumber) &&
-        Objects.equals(this.details, getWhatsAppNumberKycForm200ResponseReusable.details);
+        Objects.equals(this.details, getWhatsAppNumberKycForm200ResponseReusable.details) &&
+        Objects.equals(this.options, getWhatsAppNumberKycForm200ResponseReusable.options);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(available, fromPhoneNumber, details);
+    return Objects.hash(available, fromPhoneNumber, details, options);
   }
 
   @Override
@@ -166,6 +205,7 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
     sb.append("    available: ").append(toIndentedString(available)).append("\n");
     sb.append("    fromPhoneNumber: ").append(toIndentedString(fromPhoneNumber)).append("\n");
     sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    options: ").append(toIndentedString(options)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -228,6 +268,16 @@ public class GetWhatsAppNumberKycForm200ResponseReusable {
       for (int i = 0; i < getDetails().size(); i++) {
         if (getDetails().get(i) != null) {
           joiner.add(getDetails().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdetails%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `options` to the URL query string
+    if (getOptions() != null) {
+      for (int i = 0; i < getOptions().size(); i++) {
+        if (getOptions().get(i) != null) {
+          joiner.add(getOptions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%soptions%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

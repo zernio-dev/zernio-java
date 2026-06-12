@@ -11,6 +11,7 @@
 |**country** | **String** |  |  |
 |**submissionId** | **String** | Idempotency token for this submission attempt. A retry/double-submit with the same token returns the same number; omit and each call creates a new number. |  [optional] |
 |**reuse** | **Boolean** | Reuse a prior approved verification for this country (skips document/field collection; places the order immediately). |  [optional] |
+|**reuseFrom** | **String** | Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409. |  [optional] |
 |**endUserFirstName** | **String** | End user&#39;s legal first name. Required when the country has an action/ID-verification (Onfido) requirement. |  [optional] |
 |**endUserLastName** | **String** | End user&#39;s legal last name. Same condition as endUserFirstName. |  [optional] |
 |**values** | **Map&lt;String, String&gt;** | requirementId → textual value |  [optional] |

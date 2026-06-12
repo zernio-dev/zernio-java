@@ -43,13 +43,14 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_COUNTRY,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_SUBMISSION_ID,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE,
+  SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE_FROM,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_END_USER_FIRST_NAME,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_END_USER_LAST_NAME,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_VALUES,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_DOCUMENTS,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T17:41:52.330698892Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -66,6 +67,10 @@ public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_REUSE = "reuse";
   @javax.annotation.Nullable
   private Boolean reuse;
+
+  public static final String JSON_PROPERTY_REUSE_FROM = "reuseFrom";
+  @javax.annotation.Nullable
+  private String reuseFrom;
 
   public static final String JSON_PROPERTY_END_USER_FIRST_NAME = "endUserFirstName";
   @javax.annotation.Nullable
@@ -183,6 +188,30 @@ public class SubmitWhatsAppNumberKycRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReuse(@javax.annotation.Nullable Boolean reuse) {
     this.reuse = reuse;
+  }
+
+
+  public SubmitWhatsAppNumberKycRequest reuseFrom(@javax.annotation.Nullable String reuseFrom) {
+    this.reuseFrom = reuseFrom;
+    return this;
+  }
+
+  /**
+   * Which approved verification to reuse when several exist: the phone number it was originally approved for (GET reusable.options[].fromPhoneNumber). Omitted &#x3D; newest. No match &#x3D; 409.
+   * @return reuseFrom
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REUSE_FROM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getReuseFrom() {
+    return reuseFrom;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REUSE_FROM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReuseFrom(@javax.annotation.Nullable String reuseFrom) {
+    this.reuseFrom = reuseFrom;
   }
 
 
@@ -338,6 +367,7 @@ public class SubmitWhatsAppNumberKycRequest {
         Objects.equals(this.country, submitWhatsAppNumberKycRequest.country) &&
         Objects.equals(this.submissionId, submitWhatsAppNumberKycRequest.submissionId) &&
         Objects.equals(this.reuse, submitWhatsAppNumberKycRequest.reuse) &&
+        Objects.equals(this.reuseFrom, submitWhatsAppNumberKycRequest.reuseFrom) &&
         Objects.equals(this.endUserFirstName, submitWhatsAppNumberKycRequest.endUserFirstName) &&
         Objects.equals(this.endUserLastName, submitWhatsAppNumberKycRequest.endUserLastName) &&
         Objects.equals(this.values, submitWhatsAppNumberKycRequest.values) &&
@@ -347,7 +377,7 @@ public class SubmitWhatsAppNumberKycRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, submissionId, reuse, endUserFirstName, endUserLastName, values, documents, address);
+    return Objects.hash(profileId, country, submissionId, reuse, reuseFrom, endUserFirstName, endUserLastName, values, documents, address);
   }
 
   @Override
@@ -358,6 +388,7 @@ public class SubmitWhatsAppNumberKycRequest {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    submissionId: ").append(toIndentedString(submissionId)).append("\n");
     sb.append("    reuse: ").append(toIndentedString(reuse)).append("\n");
+    sb.append("    reuseFrom: ").append(toIndentedString(reuseFrom)).append("\n");
     sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
     sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
@@ -428,6 +459,11 @@ public class SubmitWhatsAppNumberKycRequest {
     // add `reuse` to the URL query string
     if (getReuse() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreuse%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReuse()))));
+    }
+
+    // add `reuseFrom` to the URL query string
+    if (getReuseFrom() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreuseFrom%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReuseFrom()))));
     }
 
     // add `endUserFirstName` to the URL query string

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetYouTubeVideoRetention404Response.JSON_PROPERTY_CODE,
   GetYouTubeVideoRetention404Response.JSON_PROPERTY_PARAM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T17:41:52.330698892Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYouTubeVideoRetention404Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
