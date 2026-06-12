@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteWhatsAppGroupChatWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group |
 | [**deleteWhatsAppTemplate**](WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
 | [**deleteWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppTemplateWithHttpInfo) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
+| [**getWhatsAppBlockStatus**](WhatsAppApi.md#getWhatsAppBlockStatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked |
+| [**getWhatsAppBlockStatusWithHttpInfo**](WhatsAppApi.md#getWhatsAppBlockStatusWithHttpInfo) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked |
 | [**getWhatsAppBlockedUsers**](WhatsAppApi.md#getWhatsAppBlockedUsers) | **GET** /v1/whatsapp/block-users | List blocked users |
 | [**getWhatsAppBlockedUsersWithHttpInfo**](WhatsAppApi.md#getWhatsAppBlockedUsersWithHttpInfo) | **GET** /v1/whatsapp/block-users | List blocked users |
 | [**getWhatsAppBusinessProfile**](WhatsAppApi.md#getWhatsAppBusinessProfile) | **GET** /v1/whatsapp/business-profile | Get business profile |
@@ -1421,6 +1423,158 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **400** | accountId or template name is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getWhatsAppBlockStatus
+
+> GetWhatsAppBlockStatus200Response getWhatsAppBlockStatus(accountId, user)
+
+Check if a user is blocked
+
+Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String user = "user_example"; // String | Consumer wa_id or E.164 phone (leading + optional)
+        try {
+            GetWhatsAppBlockStatus200Response result = apiInstance.getWhatsAppBlockStatus(accountId, user);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppBlockStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **user** | **String**| Consumer wa_id or E.164 phone (leading + optional) | |
+
+### Return type
+
+[**GetWhatsAppBlockStatus200Response**](GetWhatsAppBlockStatus200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Blocked state |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## getWhatsAppBlockStatusWithHttpInfo
+
+> ApiResponse<GetWhatsAppBlockStatus200Response> getWhatsAppBlockStatus getWhatsAppBlockStatusWithHttpInfo(accountId, user)
+
+Check if a user is blocked
+
+Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String user = "user_example"; // String | Consumer wa_id or E.164 phone (leading + optional)
+        try {
+            ApiResponse<GetWhatsAppBlockStatus200Response> response = apiInstance.getWhatsAppBlockStatusWithHttpInfo(accountId, user);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppBlockStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **user** | **String**| Consumer wa_id or E.164 phone (leading + optional) | |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppBlockStatus200Response**](GetWhatsAppBlockStatus200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Blocked state |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
 
 
 ## getWhatsAppBlockedUsers

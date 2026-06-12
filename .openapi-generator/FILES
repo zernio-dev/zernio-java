@@ -516,6 +516,7 @@ docs/GetUser200ResponseUser.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
+docs/GetWhatsAppBlockStatus200Response.md
 docs/GetWhatsAppBlockedUsers200Response.md
 docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md
 docs/GetWhatsAppBusinessProfile200Response.md
@@ -1808,6 +1809,7 @@ src/main/java/dev/zernio/model/GetUser200ResponseUser.java
 src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/GetWebhookSettings200Response.java
+src/main/java/dev/zernio/model/GetWhatsAppBlockStatus200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.java
 src/main/java/dev/zernio/model/GetWhatsAppBusinessProfile200Response.java
@@ -2499,3 +2501,4 @@ src/main/java/dev/zernio/model/YouTubeDemographicsResponseDemographicsValueInner
 src/main/java/dev/zernio/model/YouTubePlatformData.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
+src/test/java/dev/zernio/model/GetWhatsAppBlockStatus200ResponseTest.java

@@ -30,6 +30,7 @@ import dev.zernio.model.CreateWhatsAppGroupInviteLink200Response;
 import dev.zernio.model.CreateWhatsAppTemplate200Response;
 import dev.zernio.model.CreateWhatsAppTemplateRequest;
 import java.io.File;
+import dev.zernio.model.GetWhatsAppBlockStatus200Response;
 import dev.zernio.model.GetWhatsAppBlockedUsers200Response;
 import dev.zernio.model.GetWhatsAppBusinessProfile200Response;
 import dev.zernio.model.GetWhatsAppDataset200Response;
@@ -87,7 +88,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T06:18:14.743683867Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T09:29:56.019065558Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1418,6 +1419,148 @@ public class WhatsAppApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Check if a user is blocked
+   * Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+   * @param accountId  (required)
+   * @param user Consumer wa_id or E.164 phone (leading + optional) (required)
+   * @return GetWhatsAppBlockStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppBlockStatus200Response getWhatsAppBlockStatus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String user) throws ApiException {
+    return getWhatsAppBlockStatus(accountId, user, null);
+  }
+
+  /**
+   * Check if a user is blocked
+   * Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+   * @param accountId  (required)
+   * @param user Consumer wa_id or E.164 phone (leading + optional) (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppBlockStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppBlockStatus200Response getWhatsAppBlockStatus(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String user, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppBlockStatus200Response> localVarResponse = getWhatsAppBlockStatusWithHttpInfo(accountId, user, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Check if a user is blocked
+   * Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+   * @param accountId  (required)
+   * @param user Consumer wa_id or E.164 phone (leading + optional) (required)
+   * @return ApiResponse&lt;GetWhatsAppBlockStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppBlockStatus200Response> getWhatsAppBlockStatusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String user) throws ApiException {
+    return getWhatsAppBlockStatusWithHttpInfo(accountId, user, null);
+  }
+
+  /**
+   * Check if a user is blocked
+   * Definitive blocked-state lookup for a single contact. Meta exposes no membership endpoint, so this reads Zernio&#39;s blocklist mirror (kept in sync by the block/unblock endpoints; the first call per account backfills the mirror from Meta&#39;s full list). Constant-time regardless of blocklist size. 
+   * @param accountId  (required)
+   * @param user Consumer wa_id or E.164 phone (leading + optional) (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppBlockStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppBlockStatus200Response> getWhatsAppBlockStatusWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String user, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppBlockStatusRequestBuilder(accountId, user, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppBlockStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppBlockStatus200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppBlockStatus200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppBlockStatus200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppBlockStatus200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppBlockStatusRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String user, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppBlockStatus");
+    }
+    // verify the required parameter 'user' is set
+    if (user == null) {
+      throw new ApiException(400, "Missing the required parameter 'user' when calling getWhatsAppBlockStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/block-users/status";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "user";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("user", user));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

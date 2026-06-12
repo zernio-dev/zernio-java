@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-12T06:18:14.743683867Z[Etc/UTC]
+- Build date: 2026-06-12T09:29:56.019065558Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -734,6 +734,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**deleteWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group
 *WhatsAppApi* | [**deleteWhatsAppTemplate**](docs/WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
 *WhatsAppApi* | [**deleteWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppTemplateWithHttpInfo) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
+*WhatsAppApi* | [**getWhatsAppBlockStatus**](docs/WhatsAppApi.md#getWhatsAppBlockStatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked
+*WhatsAppApi* | [**getWhatsAppBlockStatusWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppBlockStatusWithHttpInfo) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked
 *WhatsAppApi* | [**getWhatsAppBlockedUsers**](docs/WhatsAppApi.md#getWhatsAppBlockedUsers) | **GET** /v1/whatsapp/block-users | List blocked users
 *WhatsAppApi* | [**getWhatsAppBlockedUsersWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppBlockedUsersWithHttpInfo) | **GET** /v1/whatsapp/block-users | List blocked users
 *WhatsAppApi* | [**getWhatsAppBusinessProfile**](docs/WhatsAppApi.md#getWhatsAppBusinessProfile) | **GET** /v1/whatsapp/business-profile | Get business profile
@@ -1380,6 +1382,7 @@ Class | Method | HTTP request | Description
  - [GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)
  - [GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
  - [GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
+ - [GetWhatsAppBlockStatus200Response](docs/GetWhatsAppBlockStatus200Response.md)
  - [GetWhatsAppBlockedUsers200Response](docs/GetWhatsAppBlockedUsers200Response.md)
  - [GetWhatsAppBlockedUsers200ResponseBlockedUsersInner](docs/GetWhatsAppBlockedUsers200ResponseBlockedUsersInner.md)
  - [GetWhatsAppBusinessProfile200Response](docs/GetWhatsAppBusinessProfile200Response.md)

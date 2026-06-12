@@ -14959,6 +14959,49 @@ paths:
       - WhatsApp Phone Numbers
       x-accepts:
       - application/json
+  /v1/whatsapp/block-users/status:
+    get:
+      description: |
+        Definitive blocked-state lookup for a single contact. Meta exposes no
+        membership endpoint, so this reads Zernio's blocklist mirror (kept in
+        sync by the block/unblock endpoints; the first call per account
+        backfills the mirror from Meta's full list). Constant-time regardless
+        of blocklist size.
+      operationId: getWhatsAppBlockStatus
+      parameters:
+      - explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Consumer wa_id or E.164 phone (leading + optional)
+        explode: true
+        in: query
+        name: user
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppBlockStatus_200_response"
+          description: Blocked state
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Check if a user is blocked
+      tags:
+      - WhatsApp
+      x-accepts:
+      - application/json
   /v1/whatsapp/block-users:
     delete:
       description: |
@@ -44920,6 +44963,12 @@ components:
           $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_phone"
         waba:
           $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_waba"
+    getWhatsAppBlockStatus_200_response:
+      example:
+        blocked: true
+      properties:
+        blocked:
+          type: boolean
     getWhatsAppBlockedUsers_200_response_blockedUsers_inner:
       example:
         waId: waId
