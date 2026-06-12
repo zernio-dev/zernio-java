@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UnblockWhatsAppUsersRequest.JSON_PROPERTY_ACCOUNT_ID,
   UnblockWhatsAppUsersRequest.JSON_PROPERTY_USERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:46:13.036237099Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T11:49:20.067387993Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UnblockWhatsAppUsersRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
