@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UploadWhatsAppFlowJson200ResponseValidationErrorsInner.JSON_PROPERTY_COLUMN_START,
   UploadWhatsAppFlowJson200ResponseValidationErrorsInner.JSON_PROPERTY_COLUMN_END
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T11:45:10.882033762Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T12:45:26.503457987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadWhatsAppFlowJson200ResponseValidationErrorsInner {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
