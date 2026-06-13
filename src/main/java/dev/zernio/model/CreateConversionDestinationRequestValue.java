@@ -30,13 +30,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Static conversion value. Used when &#x60;valueType&#x3D;FIXED&#x60;. The currency should match the ad account&#39;s currency. 
+ * LinkedIn only. Static conversion value. Used when &#x60;valueType&#x3D;FIXED&#x60;. The currency should match the ad account&#39;s currency. 
  */
 @JsonPropertyOrder({
   CreateConversionDestinationRequestValue.JSON_PROPERTY_CURRENCY_CODE,
   CreateConversionDestinationRequestValue.JSON_PROPERTY_AMOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T11:45:10.882033762Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateConversionDestinationRequestValue {
   public static final String JSON_PROPERTY_CURRENCY_CODE = "currencyCode";
   @javax.annotation.Nonnull

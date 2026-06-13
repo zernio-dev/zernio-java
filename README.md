@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-12T18:03:53.000917887Z[Etc/UTC]
+- Build date: 2026-06-13T11:45:10.882033762Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -192,8 +192,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**archiveLeadFormWithHttpInfo**](docs/AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form
 *AdsApi* | [**boostPost**](docs/AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
 *AdsApi* | [**boostPostWithHttpInfo**](docs/AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad
-*AdsApi* | [**createConversionDestination**](docs/AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn)
-*AdsApi* | [**createConversionDestinationWithHttpInfo**](docs/AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn)
+*AdsApi* | [**createConversionDestination**](docs/AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads)
+*AdsApi* | [**createConversionDestinationWithHttpInfo**](docs/AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads)
 *AdsApi* | [**createCtwaAd**](docs/AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s)
 *AdsApi* | [**createCtwaAdWithHttpInfo**](docs/AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s)
 *AdsApi* | [**createLeadForm**](docs/AdsApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form
@@ -1220,6 +1220,7 @@ Class | Method | HTTP request | Description
  - [GetContactChannels200ResponseChannelsInner](docs/GetContactChannels200ResponseChannelsInner.md)
  - [GetContentDecay200Response](docs/GetContentDecay200Response.md)
  - [GetContentDecay200ResponseBucketsInner](docs/GetContentDecay200ResponseBucketsInner.md)
+ - [GetConversionDestination200Response](docs/GetConversionDestination200Response.md)
  - [GetConversionMetrics200Response](docs/GetConversionMetrics200Response.md)
  - [GetConversionMetrics200ResponseRowsInner](docs/GetConversionMetrics200ResponseRowsInner.md)
  - [GetConversionMetrics200ResponseRowsInnerMetricsValue](docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md)

@@ -42,9 +42,11 @@ import dev.zernio.ApiClient;
   CreateConversionDestinationRequest.JSON_PROPERTY_VIEW_THROUGH_ATTRIBUTION_WINDOW_SIZE,
   CreateConversionDestinationRequest.JSON_PROPERTY_VALUE_TYPE,
   CreateConversionDestinationRequest.JSON_PROPERTY_VALUE,
-  CreateConversionDestinationRequest.JSON_PROPERTY_AUTO_ASSOCIATION_TYPE
+  CreateConversionDestinationRequest.JSON_PROPERTY_AUTO_ASSOCIATION_TYPE,
+  CreateConversionDestinationRequest.JSON_PROPERTY_COUNTING_TYPE,
+  CreateConversionDestinationRequest.JSON_PROPERTY_PRIMARY_FOR_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T11:45:10.882033762Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateConversionDestinationRequest {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull
@@ -59,7 +61,7 @@ public class CreateConversionDestinationRequest {
   private String type;
 
   /**
-   * Gets or Sets attributionType
+   * LinkedIn only.
    */
   public enum AttributionTypeEnum {
     LAST_TOUCH_BY_CAMPAIGN(String.valueOf("LAST_TOUCH_BY_CAMPAIGN")),
@@ -98,7 +100,7 @@ public class CreateConversionDestinationRequest {
   private AttributionTypeEnum attributionType;
 
   /**
-   * Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types — the API rejects other combinations locally. 
+   * LinkedIn only. Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types; the API rejects other combinations locally. 
    */
   public enum PostClickAttributionWindowSizeEnum {
     NUMBER_1(Integer.valueOf(1)),
@@ -143,7 +145,7 @@ public class CreateConversionDestinationRequest {
   private PostClickAttributionWindowSizeEnum postClickAttributionWindowSize;
 
   /**
-   * Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
+   * LinkedIn only. Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
    */
   public enum ViewThroughAttributionWindowSizeEnum {
     NUMBER_1(Integer.valueOf(1)),
@@ -188,7 +190,7 @@ public class CreateConversionDestinationRequest {
   private ViewThroughAttributionWindowSizeEnum viewThroughAttributionWindowSize;
 
   /**
-   * DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
+   * LinkedIn only. DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
    */
   public enum ValueTypeEnum {
     DYNAMIC(String.valueOf("DYNAMIC")),
@@ -233,7 +235,7 @@ public class CreateConversionDestinationRequest {
   private CreateConversionDestinationRequestValue value;
 
   /**
-   * Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
+   * LinkedIn only. Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
    */
   public enum AutoAssociationTypeEnum {
     ALL_CAMPAIGNS(String.valueOf("ALL_CAMPAIGNS")),
@@ -273,6 +275,49 @@ public class CreateConversionDestinationRequest {
   @javax.annotation.Nullable
   private AutoAssociationTypeEnum autoAssociationType = AutoAssociationTypeEnum.ALL_CAMPAIGNS;
 
+  /**
+   * Google Ads only. Whether to count multiple conversions from the same click (MANY_PER_CLICK) or at most one (ONE_PER_CLICK). Defaults to MANY_PER_CLICK if omitted. 
+   */
+  public enum CountingTypeEnum {
+    MANY_PER_CLICK(String.valueOf("MANY_PER_CLICK")),
+    
+    ONE_PER_CLICK(String.valueOf("ONE_PER_CLICK"));
+
+    private String value;
+
+    CountingTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CountingTypeEnum fromValue(String value) {
+      for (CountingTypeEnum b : CountingTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_COUNTING_TYPE = "countingType";
+  @javax.annotation.Nullable
+  private CountingTypeEnum countingType;
+
+  public static final String JSON_PROPERTY_PRIMARY_FOR_GOAL = "primaryForGoal";
+  @javax.annotation.Nullable
+  private Boolean primaryForGoal;
+
   public CreateConversionDestinationRequest() { 
   }
 
@@ -282,7 +327,7 @@ public class CreateConversionDestinationRequest {
   }
 
   /**
-   * Sponsored ad account ID. Numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. 
+   * Ad account ID. For LinkedIn: numeric (e.g. \&quot;5123456\&quot;) or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. For Google: numeric customer ID (e.g. \&quot;1234567890\&quot;) or &#x60;customers/{id}&#x60; form. 
    * @return adAccountId
    */
   @javax.annotation.Nonnull
@@ -330,7 +375,7 @@ public class CreateConversionDestinationRequest {
   }
 
   /**
-   * Either a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum value (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). The API maps standard names to LinkedIn enum values automatically. 
+   * Conversion type. For LinkedIn: a unified standard event name (e.g. \&quot;Purchase\&quot;, \&quot;Lead\&quot;, \&quot;AddToCart\&quot;) or a LinkedIn rule type enum (e.g. \&quot;PURCHASE\&quot;, \&quot;QUALIFIED_LEAD\&quot;). For Google: a unified standard event name (Purchase, Subscribe, CompleteRegistration, Lead, Schedule) or a Google ConversionActionCategory enum value directly (e.g. \&quot;PURCHASE\&quot;, \&quot;SUBSCRIBE_PAID\&quot;, \&quot;SIGNUP\&quot;, \&quot;IMPORTED_LEAD\&quot;, \&quot;BOOK_APPOINTMENT\&quot;). Unknown values pass through to the platform. 
    * @return type
    */
   @javax.annotation.Nonnull
@@ -354,7 +399,7 @@ public class CreateConversionDestinationRequest {
   }
 
   /**
-   * Get attributionType
+   * LinkedIn only.
    * @return attributionType
    */
   @javax.annotation.Nullable
@@ -378,7 +423,7 @@ public class CreateConversionDestinationRequest {
   }
 
   /**
-   * Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types — the API rejects other combinations locally. 
+   * LinkedIn only. Default 30. 365 only allowed for LEAD, PURCHASE, ADD_TO_CART, QUALIFIED_LEAD, SUBMIT_APPLICATION rule types; the API rejects other combinations locally. 
    * @return postClickAttributionWindowSize
    */
   @javax.annotation.Nullable
@@ -402,7 +447,7 @@ public class CreateConversionDestinationRequest {
   }
 
   /**
-   * Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
+   * LinkedIn only. Default 7. Same 365-day-window type restriction applies as &#x60;postClickAttributionWindowSize&#x60;. 
    * @return viewThroughAttributionWindowSize
    */
   @javax.annotation.Nullable
@@ -426,7 +471,7 @@ public class CreateConversionDestinationRequest {
   }
 
   /**
-   * DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
+   * LinkedIn only. DYNAMIC (default) uses the per-event &#x60;value&#x60; from &#x60;sendConversions&#x60;. FIXED uses the rule&#39;s &#x60;value&#x60; field. NO_VALUE drops monetary value entirely. 
    * @return valueType
    */
   @javax.annotation.Nullable
@@ -474,7 +519,7 @@ public class CreateConversionDestinationRequest {
   }
 
   /**
-   * Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
+   * LinkedIn only. Controls campaign association at rule-creation time: - ALL_CAMPAIGNS: associate the rule with every active,   paused, and draft campaign in the ad account - OBJECTIVE_BASED: associate only campaigns whose   objective matches the rule&#39;s type - NONE: don&#39;t auto-associate. Manage associations via   the &#x60;/associations&#x60; endpoints below. Note: auto-association runs once at create time; new campaigns added after the rule still need explicit association. 
    * @return autoAssociationType
    */
   @javax.annotation.Nullable
@@ -489,6 +534,54 @@ public class CreateConversionDestinationRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAutoAssociationType(@javax.annotation.Nullable AutoAssociationTypeEnum autoAssociationType) {
     this.autoAssociationType = autoAssociationType;
+  }
+
+
+  public CreateConversionDestinationRequest countingType(@javax.annotation.Nullable CountingTypeEnum countingType) {
+    this.countingType = countingType;
+    return this;
+  }
+
+  /**
+   * Google Ads only. Whether to count multiple conversions from the same click (MANY_PER_CLICK) or at most one (ONE_PER_CLICK). Defaults to MANY_PER_CLICK if omitted. 
+   * @return countingType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNTING_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CountingTypeEnum getCountingType() {
+    return countingType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTING_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCountingType(@javax.annotation.Nullable CountingTypeEnum countingType) {
+    this.countingType = countingType;
+  }
+
+
+  public CreateConversionDestinationRequest primaryForGoal(@javax.annotation.Nullable Boolean primaryForGoal) {
+    this.primaryForGoal = primaryForGoal;
+    return this;
+  }
+
+  /**
+   * Google Ads only. When true, the conversion action is marked as primary and immediately influences Smart Bidding. Defaults to false (secondary, record-only) to avoid unintentionally steering the customer&#39;s campaigns on creation. 
+   * @return primaryForGoal
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRIMARY_FOR_GOAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPrimaryForGoal() {
+    return primaryForGoal;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRIMARY_FOR_GOAL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPrimaryForGoal(@javax.annotation.Nullable Boolean primaryForGoal) {
+    this.primaryForGoal = primaryForGoal;
   }
 
 
@@ -512,12 +605,14 @@ public class CreateConversionDestinationRequest {
         Objects.equals(this.viewThroughAttributionWindowSize, createConversionDestinationRequest.viewThroughAttributionWindowSize) &&
         Objects.equals(this.valueType, createConversionDestinationRequest.valueType) &&
         Objects.equals(this.value, createConversionDestinationRequest.value) &&
-        Objects.equals(this.autoAssociationType, createConversionDestinationRequest.autoAssociationType);
+        Objects.equals(this.autoAssociationType, createConversionDestinationRequest.autoAssociationType) &&
+        Objects.equals(this.countingType, createConversionDestinationRequest.countingType) &&
+        Objects.equals(this.primaryForGoal, createConversionDestinationRequest.primaryForGoal);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(adAccountId, name, type, attributionType, postClickAttributionWindowSize, viewThroughAttributionWindowSize, valueType, value, autoAssociationType);
+    return Objects.hash(adAccountId, name, type, attributionType, postClickAttributionWindowSize, viewThroughAttributionWindowSize, valueType, value, autoAssociationType, countingType, primaryForGoal);
   }
 
   @Override
@@ -533,6 +628,8 @@ public class CreateConversionDestinationRequest {
     sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("    autoAssociationType: ").append(toIndentedString(autoAssociationType)).append("\n");
+    sb.append("    countingType: ").append(toIndentedString(countingType)).append("\n");
+    sb.append("    primaryForGoal: ").append(toIndentedString(primaryForGoal)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -623,6 +720,16 @@ public class CreateConversionDestinationRequest {
     // add `autoAssociationType` to the URL query string
     if (getAutoAssociationType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sautoAssociationType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutoAssociationType()))));
+    }
+
+    // add `countingType` to the URL query string
+    if (getCountingType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scountingType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountingType()))));
+    }
+
+    // add `primaryForGoal` to the URL query string
+    if (getPrimaryForGoal() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprimaryForGoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPrimaryForGoal()))));
     }
 
     return joiner.toString();

@@ -12,8 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**archiveLeadFormWithHttpInfo**](AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form |
 | [**boostPost**](AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**boostPostWithHttpInfo**](AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad |
-| [**createConversionDestination**](AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn) |
-| [**createConversionDestinationWithHttpInfo**](AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn) |
+| [**createConversionDestination**](AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads) |
+| [**createConversionDestinationWithHttpInfo**](AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads) |
 | [**createCtwaAd**](AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s) |
 | [**createCtwaAdWithHttpInfo**](AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s) |
 | [**createLeadForm**](AdsApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form |
@@ -709,9 +709,9 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 
 > CreateConversionDestination201Response createConversionDestination(accountId, createConversionDestinationRequest)
 
-Create a conversion destination (LinkedIn)
+Create a conversion destination (LinkedIn, Google Ads)
 
-Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
 
 ### Example
 
@@ -734,7 +734,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount ID (linkedinads).
+        String accountId = "accountId_example"; // String | SocialAccount ID (linkedinads or googleads).
         CreateConversionDestinationRequest createConversionDestinationRequest = new CreateConversionDestinationRequest(); // CreateConversionDestinationRequest | 
         try {
             CreateConversionDestination201Response result = apiInstance.createConversionDestination(accountId, createConversionDestinationRequest);
@@ -755,7 +755,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount ID (linkedinads). | |
+| **accountId** | **String**| SocialAccount ID (linkedinads or googleads). | |
 | **createConversionDestinationRequest** | [**CreateConversionDestinationRequest**](CreateConversionDestinationRequest.md)|  | |
 
 ### Return type
@@ -776,20 +776,20 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Destination created |  -  |
-| **400** | Invalid body or LinkedIn validation failure. |  -  |
+| **400** | Invalid body or platform validation failure. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support destination creation. |  -  |
-| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+| **429** | Rate limit hit. Retry with backoff. |  -  |
 
 ## createConversionDestinationWithHttpInfo
 
 > ApiResponse<CreateConversionDestination201Response> createConversionDestination createConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest)
 
-Create a conversion destination (LinkedIn)
+Create a conversion destination (LinkedIn, Google Ads)
 
-Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
+Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
 
 ### Example
 
@@ -813,7 +813,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount ID (linkedinads).
+        String accountId = "accountId_example"; // String | SocialAccount ID (linkedinads or googleads).
         CreateConversionDestinationRequest createConversionDestinationRequest = new CreateConversionDestinationRequest(); // CreateConversionDestinationRequest | 
         try {
             ApiResponse<CreateConversionDestination201Response> response = apiInstance.createConversionDestinationWithHttpInfo(accountId, createConversionDestinationRequest);
@@ -836,7 +836,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount ID (linkedinads). | |
+| **accountId** | **String**| SocialAccount ID (linkedinads or googleads). | |
 | **createConversionDestinationRequest** | [**CreateConversionDestinationRequest**](CreateConversionDestinationRequest.md)|  | |
 
 ### Return type
@@ -857,12 +857,12 @@ ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestina
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Destination created |  -  |
-| **400** | Invalid body or LinkedIn validation failure. |  -  |
+| **400** | Invalid body or platform validation failure. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the connected LinkedIn account lacks the &#x60;rw_conversions&#x60; scope (reconnect required).  |  -  |
 | **404** | Account not found or not accessible. |  -  |
 | **405** | Platform does not support destination creation. |  -  |
-| **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+| **429** | Rate limit hit. Retry with backoff. |  -  |
 
 
 ## createCtwaAd
@@ -2565,7 +2565,7 @@ ApiResponse<[**GetAdTrackingTags200Response**](GetAdTrackingTags200Response.md)>
 
 ## getConversionDestination
 
-> CreateConversionDestination201Response getConversionDestination(accountId, destinationId, adAccountId)
+> GetConversionDestination200Response getConversionDestination(accountId, destinationId, adAccountId)
 
 Fetch a single conversion destination
 
@@ -2596,7 +2596,7 @@ public class Example {
         String destinationId = "destinationId_example"; // String | 
         String adAccountId = "adAccountId_example"; // String | Numeric ID or full `urn:li:sponsoredAccount:{id}` URN.
         try {
-            CreateConversionDestination201Response result = apiInstance.getConversionDestination(accountId, destinationId, adAccountId);
+            GetConversionDestination200Response result = apiInstance.getConversionDestination(accountId, destinationId, adAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#getConversionDestination");
@@ -2620,7 +2620,7 @@ public class Example {
 
 ### Return type
 
-[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)
+[**GetConversionDestination200Response**](GetConversionDestination200Response.md)
 
 
 ### Authorization
@@ -2645,7 +2645,7 @@ public class Example {
 
 ## getConversionDestinationWithHttpInfo
 
-> ApiResponse<CreateConversionDestination201Response> getConversionDestination getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId)
+> ApiResponse<GetConversionDestination200Response> getConversionDestination getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId)
 
 Fetch a single conversion destination
 
@@ -2677,7 +2677,7 @@ public class Example {
         String destinationId = "destinationId_example"; // String | 
         String adAccountId = "adAccountId_example"; // String | Numeric ID or full `urn:li:sponsoredAccount:{id}` URN.
         try {
-            ApiResponse<CreateConversionDestination201Response> response = apiInstance.getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
+            ApiResponse<GetConversionDestination200Response> response = apiInstance.getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2703,7 +2703,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)>
+ApiResponse<[**GetConversionDestination200Response**](GetConversionDestination200Response.md)>
 
 
 ### Authorization
@@ -6065,7 +6065,7 @@ ApiResponse<Void>
 
 ## updateConversionDestination
 
-> CreateConversionDestination201Response updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest)
+> GetConversionDestination200Response updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest)
 
 Update a conversion destination
 
@@ -6096,7 +6096,7 @@ public class Example {
         String destinationId = "destinationId_example"; // String | 
         UpdateConversionDestinationRequest updateConversionDestinationRequest = new UpdateConversionDestinationRequest(); // UpdateConversionDestinationRequest | 
         try {
-            CreateConversionDestination201Response result = apiInstance.updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
+            GetConversionDestination200Response result = apiInstance.updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#updateConversionDestination");
@@ -6120,7 +6120,7 @@ public class Example {
 
 ### Return type
 
-[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)
+[**GetConversionDestination200Response**](GetConversionDestination200Response.md)
 
 
 ### Authorization
@@ -6145,7 +6145,7 @@ public class Example {
 
 ## updateConversionDestinationWithHttpInfo
 
-> ApiResponse<CreateConversionDestination201Response> updateConversionDestination updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest)
+> ApiResponse<GetConversionDestination200Response> updateConversionDestination updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest)
 
 Update a conversion destination
 
@@ -6177,7 +6177,7 @@ public class Example {
         String destinationId = "destinationId_example"; // String | 
         UpdateConversionDestinationRequest updateConversionDestinationRequest = new UpdateConversionDestinationRequest(); // UpdateConversionDestinationRequest | 
         try {
-            ApiResponse<CreateConversionDestination201Response> response = apiInstance.updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
+            ApiResponse<GetConversionDestination200Response> response = apiInstance.updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6203,7 +6203,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestination201Response.md)>
+ApiResponse<[**GetConversionDestination200Response**](GetConversionDestination200Response.md)>
 
 
 ### Authorization

@@ -17,6 +17,7 @@
 | Name | Value |
 |---- | -----|
 | LINKEDINADS | &quot;linkedinads&quot; |
+| GOOGLEADS | &quot;googleads&quot; |
 
 
 

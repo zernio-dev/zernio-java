@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   InstagramDemographicsResponseDemographicsValueInner.JSON_PROPERTY_DIMENSION,
   InstagramDemographicsResponseDemographicsValueInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T11:45:10.882033762Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramDemographicsResponseDemographicsValueInner {
   public static final String JSON_PROPERTY_DIMENSION = "dimension";
   @javax.annotation.Nullable

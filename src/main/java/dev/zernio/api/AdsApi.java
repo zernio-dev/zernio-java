@@ -42,6 +42,7 @@ import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.GetAdTrackingTags200Response;
+import dev.zernio.model.GetConversionDestination200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
 import dev.zernio.model.GetConversionsQuality200Response;
 import dev.zernio.model.GetLeadForm200Response;
@@ -96,7 +97,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T11:45:10.882033762Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -742,9 +743,9 @@ public class AdsApi {
   }
 
   /**
-   * Create a conversion destination (LinkedIn)
-   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
-   * @param accountId SocialAccount ID (linkedinads). (required)
+   * Create a conversion destination (LinkedIn, Google Ads)
+   * Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+   * @param accountId SocialAccount ID (linkedinads or googleads). (required)
    * @param createConversionDestinationRequest  (required)
    * @return CreateConversionDestination201Response
    * @throws ApiException if fails to make API call
@@ -754,9 +755,9 @@ public class AdsApi {
   }
 
   /**
-   * Create a conversion destination (LinkedIn)
-   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
-   * @param accountId SocialAccount ID (linkedinads). (required)
+   * Create a conversion destination (LinkedIn, Google Ads)
+   * Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+   * @param accountId SocialAccount ID (linkedinads or googleads). (required)
    * @param createConversionDestinationRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateConversionDestination201Response
@@ -768,9 +769,9 @@ public class AdsApi {
   }
 
   /**
-   * Create a conversion destination (LinkedIn)
-   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
-   * @param accountId SocialAccount ID (linkedinads). (required)
+   * Create a conversion destination (LinkedIn, Google Ads)
+   * Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+   * @param accountId SocialAccount ID (linkedinads or googleads). (required)
    * @param createConversionDestinationRequest  (required)
    * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
    * @throws ApiException if fails to make API call
@@ -780,9 +781,9 @@ public class AdsApi {
   }
 
   /**
-   * Create a conversion destination (LinkedIn)
-   * Create a new conversion rule on the platform. LinkedIn-only today; other platforms manage destinations in their own UIs and return 405.  For LinkedIn, the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally. 
-   * @param accountId SocialAccount ID (linkedinads). (required)
+   * Create a conversion destination (LinkedIn, Google Ads)
+   * Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **WARNING: creation is NOT idempotent.** A retry creates a second destination. Deduplicate before retrying.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
+   * @param accountId SocialAccount ID (linkedinads or googleads). (required)
    * @param createConversionDestinationRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
@@ -2294,10 +2295,10 @@ public class AdsApi {
    * @param accountId  (required)
    * @param destinationId  (required)
    * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
-   * @return CreateConversionDestination201Response
+   * @return GetConversionDestination200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateConversionDestination201Response getConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+  public GetConversionDestination200Response getConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
     return getConversionDestination(accountId, destinationId, adAccountId, null);
   }
 
@@ -2308,11 +2309,11 @@ public class AdsApi {
    * @param destinationId  (required)
    * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
    * @param headers Optional headers to include in the request
-   * @return CreateConversionDestination201Response
+   * @return GetConversionDestination200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateConversionDestination201Response getConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateConversionDestination201Response> localVarResponse = getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId, headers);
+  public GetConversionDestination200Response getConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetConversionDestination200Response> localVarResponse = getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId, headers);
     return localVarResponse.getData();
   }
 
@@ -2322,10 +2323,10 @@ public class AdsApi {
    * @param accountId  (required)
    * @param destinationId  (required)
    * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
-   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @return ApiResponse&lt;GetConversionDestination200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateConversionDestination201Response> getConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+  public ApiResponse<GetConversionDestination200Response> getConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
     return getConversionDestinationWithHttpInfo(accountId, destinationId, adAccountId, null);
   }
 
@@ -2336,10 +2337,10 @@ public class AdsApi {
    * @param destinationId  (required)
    * @param adAccountId Numeric ID or full &#x60;urn:li:sponsoredAccount:{id}&#x60; URN. (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @return ApiResponse&lt;GetConversionDestination200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateConversionDestination201Response> getConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetConversionDestination200Response> getConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getConversionDestinationRequestBuilder(accountId, destinationId, adAccountId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -2355,7 +2356,7 @@ public class AdsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<CreateConversionDestination201Response>(
+          return new ApiResponse<GetConversionDestination200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -2365,10 +2366,10 @@ public class AdsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateConversionDestination201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateConversionDestination201Response>() {});
+        GetConversionDestination200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetConversionDestination200Response>() {});
         
 
-        return new ApiResponse<CreateConversionDestination201Response>(
+        return new ApiResponse<GetConversionDestination200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -5497,10 +5498,10 @@ public class AdsApi {
    * @param accountId  (required)
    * @param destinationId  (required)
    * @param updateConversionDestinationRequest  (required)
-   * @return CreateConversionDestination201Response
+   * @return GetConversionDestination200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateConversionDestination201Response updateConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest) throws ApiException {
+  public GetConversionDestination200Response updateConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest) throws ApiException {
     return updateConversionDestination(accountId, destinationId, updateConversionDestinationRequest, null);
   }
 
@@ -5511,11 +5512,11 @@ public class AdsApi {
    * @param destinationId  (required)
    * @param updateConversionDestinationRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return CreateConversionDestination201Response
+   * @return GetConversionDestination200Response
    * @throws ApiException if fails to make API call
    */
-  public CreateConversionDestination201Response updateConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateConversionDestination201Response> localVarResponse = updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest, headers);
+  public GetConversionDestination200Response updateConversionDestination(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetConversionDestination200Response> localVarResponse = updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -5525,10 +5526,10 @@ public class AdsApi {
    * @param accountId  (required)
    * @param destinationId  (required)
    * @param updateConversionDestinationRequest  (required)
-   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @return ApiResponse&lt;GetConversionDestination200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateConversionDestination201Response> updateConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest) throws ApiException {
+  public ApiResponse<GetConversionDestination200Response> updateConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest) throws ApiException {
     return updateConversionDestinationWithHttpInfo(accountId, destinationId, updateConversionDestinationRequest, null);
   }
 
@@ -5539,10 +5540,10 @@ public class AdsApi {
    * @param destinationId  (required)
    * @param updateConversionDestinationRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateConversionDestination201Response&gt;
+   * @return ApiResponse&lt;GetConversionDestination200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<CreateConversionDestination201Response> updateConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetConversionDestination200Response> updateConversionDestinationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String destinationId, @javax.annotation.Nonnull UpdateConversionDestinationRequest updateConversionDestinationRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateConversionDestinationRequestBuilder(accountId, destinationId, updateConversionDestinationRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -5558,7 +5559,7 @@ public class AdsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<CreateConversionDestination201Response>(
+          return new ApiResponse<GetConversionDestination200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -5568,10 +5569,10 @@ public class AdsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateConversionDestination201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateConversionDestination201Response>() {});
+        GetConversionDestination200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetConversionDestination200Response>() {});
         
 
-        return new ApiResponse<CreateConversionDestination201Response>(
+        return new ApiResponse<GetConversionDestination200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

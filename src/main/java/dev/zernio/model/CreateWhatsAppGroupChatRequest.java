@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateWhatsAppGroupChatRequest.JSON_PROPERTY_DESCRIPTION,
   CreateWhatsAppGroupChatRequest.JSON_PROPERTY_JOIN_APPROVAL_MODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-12T18:03:53.000917887Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T11:45:10.882033762Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppGroupChatRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

@@ -352,6 +352,7 @@ docs/GetContactChannels200Response.md
 docs/GetContactChannels200ResponseChannelsInner.md
 docs/GetContentDecay200Response.md
 docs/GetContentDecay200ResponseBucketsInner.md
+docs/GetConversionDestination200Response.md
 docs/GetConversionMetrics200Response.md
 docs/GetConversionMetrics200ResponseRowsInner.md
 docs/GetConversionMetrics200ResponseRowsInnerMetricsValue.md
@@ -1652,6 +1653,7 @@ src/main/java/dev/zernio/model/GetContactChannels200Response.java
 src/main/java/dev/zernio/model/GetContactChannels200ResponseChannelsInner.java
 src/main/java/dev/zernio/model/GetContentDecay200Response.java
 src/main/java/dev/zernio/model/GetContentDecay200ResponseBucketsInner.java
+src/main/java/dev/zernio/model/GetConversionDestination200Response.java
 src/main/java/dev/zernio/model/GetConversionMetrics200Response.java
 src/main/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInner.java
 src/main/java/dev/zernio/model/GetConversionMetrics200ResponseRowsInnerMetricsValue.java
@@ -2515,4 +2517,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetWhatsAppNumberKycForm200ResponseReusableOptionsInnerTest.java
+src/test/java/dev/zernio/model/GetConversionDestination200ResponseTest.java
