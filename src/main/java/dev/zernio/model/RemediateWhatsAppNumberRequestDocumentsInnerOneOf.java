@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RemediateWhatsAppNumberRequestDocumentsInnerOneOf.JSON_PROPERTY_REQUIREMENT_ID,
   RemediateWhatsAppNumberRequestDocumentsInnerOneOf.JSON_PROPERTY_DOCUMENT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T12:45:26.503457987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T06:56:26.025653398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemediateWhatsAppNumberRequestDocumentsInnerOneOf {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nonnull

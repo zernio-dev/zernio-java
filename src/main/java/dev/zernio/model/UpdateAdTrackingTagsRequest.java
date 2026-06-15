@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateAdTrackingTagsRequest.JSON_PROPERTY_DYNAMIC_VALUE_PARAMETERS,
   UpdateAdTrackingTagsRequest.JSON_PROPERTY_CUSTOM_VALUE_PARAMETERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-13T12:45:26.503457987Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T06:56:26.025653398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdTrackingTagsRequest {
   public static final String JSON_PROPERTY_URL_TAGS = "urlTags";
   @javax.annotation.Nullable
