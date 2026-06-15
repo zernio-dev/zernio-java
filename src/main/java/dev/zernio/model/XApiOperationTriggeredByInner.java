@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   XApiOperationTriggeredByInner.JSON_PROPERTY_METHOD,
   XApiOperationTriggeredByInner.JSON_PROPERTY_METERING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T06:56:26.025653398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiOperationTriggeredByInner {
   public static final String JSON_PROPERTY_METHOD = "method";
   @javax.annotation.Nullable

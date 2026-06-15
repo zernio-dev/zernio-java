@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendConversionsRequest.JSON_PROPERTY_TEST_CODE,
   SendConversionsRequest.JSON_PROPERTY_CONSENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T06:56:26.025653398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversionsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -74,7 +74,7 @@ public class SendConversionsRequest {
   }
 
   /**
-   * SocialAccount ID (metaads, googleads, or linkedinads).
+   * SocialAccount ID (metaads, googleads, linkedinads, or tiktokads).
    * @return accountId
    */
   @javax.annotation.Nonnull

@@ -487,7 +487,7 @@ ApiResponse<[**DuplicateAdCampaign200Response**](DuplicateAdCampaign200Response.
 
 ## getAdTree
 
-> GetAdTree200Response getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort)
+> GetAdTree200Response getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort)
 
 Get campaign tree
 
@@ -522,11 +522,12 @@ public class Example {
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
-        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
+        String campaignId = "campaignId_example"; // String | Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta's numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the `campaignId` filter on GET /v1/ads.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String sort = "newest"; // String | Campaign-level sort order. `newest` (default) / `oldest` order by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` order by aggregated spend in the requested date range; campaigns with no spend land at the end.
         try {
-            GetAdTree200Response result = apiInstance.getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort);
+            GetAdTree200Response result = apiInstance.getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#getAdTree");
@@ -552,7 +553,8 @@ public class Example {
 | **adAccountId** | **String**| Platform ad account ID | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
-| **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **campaignId** | **String**| Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. | [optional] |
+| **fromDate** | **LocalDate**| Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 | **sort** | **String**| Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. | [optional] [default to newest] [enum: newest, oldest, spend_desc, spend_asc] |
 
@@ -579,7 +581,7 @@ public class Example {
 
 ## getAdTreeWithHttpInfo
 
-> ApiResponse<GetAdTree200Response> getAdTree getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort)
+> ApiResponse<GetAdTree200Response> getAdTree getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort)
 
 Get campaign tree
 
@@ -615,11 +617,12 @@ public class Example {
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String accountId = "accountId_example"; // String | Social account ID
         String profileId = "profileId_example"; // String | Profile ID
-        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago.
+        String campaignId = "campaignId_example"; // String | Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta's numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the `campaignId` filter on GET /v1/ads.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String sort = "newest"; // String | Campaign-level sort order. `newest` (default) / `oldest` order by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` order by aggregated spend in the requested date range; campaigns with no spend land at the end.
         try {
-            ApiResponse<GetAdTree200Response> response = apiInstance.getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort);
+            ApiResponse<GetAdTree200Response> response = apiInstance.getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -647,7 +650,8 @@ public class Example {
 | **adAccountId** | **String**| Platform ad account ID | [optional] |
 | **accountId** | **String**| Social account ID | [optional] |
 | **profileId** | **String**| Profile ID | [optional] |
-| **fromDate** | **LocalDate**| Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
+| **campaignId** | **String**| Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. | [optional] |
+| **fromDate** | **LocalDate**| Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 | **sort** | **String**| Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. | [optional] [default to newest] [enum: newest, oldest, spend_desc, spend_asc] |
 

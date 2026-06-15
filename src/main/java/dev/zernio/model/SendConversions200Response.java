@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendConversions200Response.JSON_PROPERTY_FAILURES,
   SendConversions200Response.JSON_PROPERTY_TRACE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T06:56:26.025653398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversions200Response {
   /**
    * Gets or Sets platform
@@ -52,7 +52,9 @@ public class SendConversions200Response {
     
     GOOGLEADS(String.valueOf("googleads")),
     
-    LINKEDINADS(String.valueOf("linkedinads"));
+    LINKEDINADS(String.valueOf("linkedinads")),
+    
+    TIKTOKADS(String.valueOf("tiktokads"));
 
     private String value;
 

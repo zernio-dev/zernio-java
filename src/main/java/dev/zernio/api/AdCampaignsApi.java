@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T06:56:26.025653398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -578,14 +578,15 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort) throws ApiException {
-    return getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort, null);
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort) throws ApiException {
+    return getAdTree(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, null);
   }
 
   /**
@@ -599,15 +600,16 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param headers Optional headers to include in the request
    * @return GetAdTree200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort, headers);
+  public GetAdTree200Response getAdTree(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdTree200Response> localVarResponse = getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, headers);
     return localVarResponse.getData();
   }
 
@@ -622,14 +624,15 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort) throws ApiException {
-    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort, null);
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort) throws ApiException {
+    return getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, null);
   }
 
   /**
@@ -643,15 +646,16 @@ public class AdCampaignsApi {
    * @param adAccountId Platform ad account ID (optional)
    * @param accountId Social account ID (optional)
    * @param profileId Profile ID (optional)
-   * @param fromDate Start of metrics date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param campaignId Restrict the tree to a single campaign by its platform campaign id (the id the platform assigns, e.g. Meta&#39;s numeric campaign id). Filters the campaign set itself, so it works regardless of account size and pagination — pass this when you already hold a campaign id instead of paging the tree to find it. Mirrors the &#x60;campaignId&#x60; filter on GET /v1/ads. (optional)
+   * @param fromDate Start of the METRICS date range (YYYY-MM-DD). Affects only the spend/impression numbers overlaid on each node, NOT which campaigns are returned. Defaults to 90 days ago. (optional)
    * @param toDate End of metrics date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
    * @param sort Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. (optional, default to newest)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdTree200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, fromDate, toDate, sort, headers);
+  public ApiResponse<GetAdTree200Response> getAdTreeWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdTreeRequestBuilder(page, limit, source, platform, status, adAccountId, accountId, profileId, campaignId, fromDate, toDate, sort, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -698,7 +702,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdTreeRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String platform, @javax.annotation.Nullable AdStatus status, @javax.annotation.Nullable String adAccountId, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String campaignId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String sort, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -723,6 +727,8 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "profileId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "campaignId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("campaignId", campaignId));
     localVarQueryParameterBaseName = "fromDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";
