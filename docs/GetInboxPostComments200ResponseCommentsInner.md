@@ -18,8 +18,8 @@
 |**replies** | **List&lt;Object&gt;** |  |  [optional] |
 |**canReply** | **Boolean** |  |  [optional] |
 |**canDelete** | **Boolean** |  |  [optional] |
-|**canHide** | **Boolean** | Whether this comment can be hidden (Facebook |  [optional] |
-|**canLike** | **Boolean** | Whether this comment can be liked (Facebook |  [optional] |
+|**canHide** | **Boolean** | Whether this comment can be hidden (Facebook, Instagram, Threads) |  [optional] |
+|**canLike** | **Boolean** | Whether this comment can be liked (Facebook, Twitter/X, Bluesky, Reddit) |  [optional] |
 |**isHidden** | **Boolean** | Whether the comment is currently hidden |  [optional] |
 |**isLiked** | **Boolean** | Whether the current user has liked this comment |  [optional] |
 |**likeUri** | **String** | Bluesky like URI for unliking |  [optional] |

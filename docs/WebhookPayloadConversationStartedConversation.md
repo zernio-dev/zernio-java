@@ -10,7 +10,7 @@
 |**id** | **String** | Internal conversation ID |  |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
 |**platformConversationId** | **String** |  |  |
-|**participantId** | **String** | Contact&#39;s platform identifier (IGSID |  [optional] |
+|**participantId** | **String** | Contact&#39;s platform identifier (IGSID, PSID, wa_id, etc.) |  [optional] |
 |**participantName** | **String** |  |  |
 |**participantUsername** | **String** | Contact&#39;s handle when the platform exposes one |  [optional] |
 |**participantPicture** | **String** |  |  [optional] |

@@ -62,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCallingApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -737,7 +737,7 @@ public class WhatsAppCallingApi {
    * Check call permission for a consumer
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
-   * @param to Consumer wa_id (E.164 (required)
+   * @param to Consumer wa_id (E.164, leading + optional) (required)
    * @return GetWhatsAppCallPermissions200Response
    * @throws ApiException if fails to make API call
    */
@@ -749,7 +749,7 @@ public class WhatsAppCallingApi {
    * Check call permission for a consumer
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
-   * @param to Consumer wa_id (E.164 (required)
+   * @param to Consumer wa_id (E.164, leading + optional) (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppCallPermissions200Response
    * @throws ApiException if fails to make API call
@@ -763,7 +763,7 @@ public class WhatsAppCallingApi {
    * Check call permission for a consumer
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
-   * @param to Consumer wa_id (E.164 (required)
+   * @param to Consumer wa_id (E.164, leading + optional) (required)
    * @return ApiResponse&lt;GetWhatsAppCallPermissions200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -775,7 +775,7 @@ public class WhatsAppCallingApi {
    * Check call permission for a consumer
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
-   * @param to Consumer wa_id (E.164 (required)
+   * @param to Consumer wa_id (E.164, leading + optional) (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppCallPermissions200Response&gt;
    * @throws ApiException if fails to make API call

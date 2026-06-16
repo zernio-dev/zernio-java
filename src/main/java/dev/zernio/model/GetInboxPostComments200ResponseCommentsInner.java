@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_URI,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -421,7 +421,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
   }
 
   /**
-   * Whether this comment can be hidden (Facebook
+   * Whether this comment can be hidden (Facebook, Instagram, Threads)
    * @return canHide
    */
   @javax.annotation.Nullable
@@ -445,7 +445,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
   }
 
   /**
-   * Whether this comment can be liked (Facebook
+   * Whether this comment can be liked (Facebook, Twitter/X, Bluesky, Reddit)
    * @return canLike
    */
   @javax.annotation.Nullable

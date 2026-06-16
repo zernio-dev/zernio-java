@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppHeaderComponentExample.JSON_PROPERTY_HEADER_TEXT,
   WhatsAppHeaderComponentExample.JSON_PROPERTY_HEADER_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppHeaderComponentExample {
   public static final String JSON_PROPERTY_HEADER_TEXT = "header_text";
   @javax.annotation.Nullable

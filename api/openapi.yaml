@@ -5894,7 +5894,8 @@ paths:
                 $ref: "#/components/schemas/createApiKey_201_response"
           description: Created
         "400":
-          description: Invalid request (missing name
+          description: "Invalid request (missing name, invalid scope/permission, or\
+            \ missing profileIds when scope is 'profiles')"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Create key
@@ -9239,7 +9240,7 @@ paths:
                 $ref: "#/components/schemas/initiateTelegramConnect_200_response"
           description: Telegram channel connected successfully
         "400":
-          description: Chat ID required
+          description: "Chat ID required, bot not admin, or cannot access chat"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -10595,7 +10596,8 @@ paths:
                 $ref: "#/components/schemas/updateDiscordSettings_200_response"
           description: Settings updated
         "400":
-          description: Invalid request (no changes
+          description: "Invalid request (no changes, invalid channel type, or bot\
+            \ cannot access channel)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -10757,7 +10759,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: Discord account not found
+          description: "Discord account not found, not accessible, or not bound to\
+            \ this guild."
         "502":
           description: Discord rejected the request (bot lacks View Channels permission
             in the guild).
@@ -11362,7 +11365,8 @@ paths:
         "404":
           description: Event or Discord account not found.
         "502":
-          description: Discord rejected the update (invalid status transition
+          description: "Discord rejected the update (invalid status transition, bot\
+            \ permissions, etc.)."
       summary: Update a Discord scheduled event
       tags:
       - Discord
@@ -14296,7 +14300,8 @@ paths:
           description: "Template created (pre-approved for library templates, pending\
             \ review for custom)"
         "400":
-          description: Validation error (invalid name format
+          description: "Validation error (invalid name format, missing fields, invalid\
+            \ category)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -14622,7 +14627,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Consumer wa_id (E.164
+      - description: "Consumer wa_id (E.164, leading + optional)"
         explode: true
         in: query
         name: to
@@ -14758,7 +14763,8 @@ paths:
         "409":
           description: No active call permission — send a permission request first.
         "422":
-          description: Calling not enabled
+          description: "Calling not enabled, BIC country blocked, or missing Meta\
+            \ SIP credentials"
         "502":
           description: Telnyx-side originate failed; the Call doc has been marked
             failed.
@@ -14969,7 +14975,7 @@ paths:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Business profile updated successfully
         "400":
-          description: Validation error (field too long
+          description: "Validation error (field too long, too many websites, etc.)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -15003,7 +15009,7 @@ paths:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Profile picture updated successfully
         "400":
-          description: Invalid file type
+          description: "Invalid file type, file too large, or missing parameters"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -15072,7 +15078,7 @@ paths:
                 $ref: "#/components/schemas/updateWhatsAppDisplayName_200_response"
           description: Display name change submitted for review
         "400":
-          description: Invalid display name (too short
+          description: "Invalid display name (too short, too long, or missing)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -15456,7 +15462,7 @@ paths:
           description: |
             Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).
         "400":
-          description: Plan limit reached
+          description: "Plan limit reached, profileId required, or country not available"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -15701,7 +15707,7 @@ paths:
                 $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response"
           description: KYC submitted (or already submitted); number pending review.
         "400":
-          description: Validation error (e.g. address not in-country
+          description: "Validation error (e.g. address not in-country, file too large)"
         "409":
           description: reuse requested but no prior approved verification exists for
             this country
@@ -18023,7 +18029,8 @@ paths:
                 $ref: "#/components/schemas/createWorkflow_200_response"
           description: Workflow created
         "400":
-          description: Invalid graph (duplicate node ids
+          description: "Invalid graph (duplicate node ids, edges referencing missing\
+            \ nodes, or a WhatsApp-only node on another platform)"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Create workflow
@@ -18108,7 +18115,8 @@ paths:
                 $ref: "#/components/schemas/updateWorkflow_200_response"
           description: Workflow updated
         "400":
-          description: Invalid graph
+          description: "Invalid graph, or a graph edit attempted while the workflow\
+            \ is active"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -18263,7 +18271,8 @@ paths:
                 $ref: "#/components/schemas/triggerWorkflow_200_response"
           description: Run started
         "400":
-          description: Missing target
+          description: "Missing target, invalid graph, or `to` used on a non-WhatsApp\
+            \ workflow"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -18432,7 +18441,8 @@ paths:
                 $ref: "#/components/schemas/restoreWorkflowVersion_200_response"
           description: Workflow restored to the named version
         "400":
-          description: Workflow is not draft/paused
+          description: "Workflow is not draft/paused, or the named version's graph\
+            \ is invalid for the current platform"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23049,7 +23059,8 @@ components:
         subreddit:
           type: string
         url:
-          description: Post URL (may be a gallery URL
+          description: "Post URL (may be a gallery URL, external link, or self-post\
+            \ URL)"
           type: string
         permalink:
           description: Full permalink to the Reddit post
@@ -31919,7 +31930,7 @@ components:
         name:
           type: string
         businessId:
-          description: Business Manager id that owns the ad account
+          description: "Business Manager id that owns the ad account, when reported."
           type: string
       required:
       - id
@@ -35173,7 +35184,7 @@ components:
           example: true
           type: boolean
         identityId:
-          description: The TikTok-assigned identity_id
+          description: "The TikTok-assigned identity_id, cached on the account."
           type: string
         displayName:
           type: string
@@ -35590,8 +35601,8 @@ components:
         hasVoiceOfMerchant: true
       properties:
         hasVoiceOfMerchant:
-          description: True when the listing is verified and published (eligible to
-            surface reviews
+          description: "True when the listing is verified and published (eligible\
+            \ to surface reviews, edits, etc.)."
           type: boolean
         hasBusinessAuthority:
           description: True when the authenticated user has owner/manager authority
@@ -38365,7 +38376,8 @@ components:
           description: Full review resource name (accounts/*/locations/*/reviews/*)
           type: string
         review:
-          description: The review object (reviewId
+          description: "The review object (reviewId, starRating, comment, reviewer,\
+            \ createTime, updateTime, reviewReply)"
           type: object
     batchGetGoogleBusinessReviews_200_response:
       example:
@@ -42118,7 +42130,8 @@ components:
         emoji:
           type: string
         fromMe:
-          description: true if the connected account reacted
+          description: "true if the connected account reacted, false if the contact\
+            \ did."
           type: boolean
         reactedAt:
           format: date-time
@@ -42844,7 +42857,7 @@ components:
           description: Button text
           type: string
         callbackData:
-          description: Callback data (inline_keyboard only
+          description: "Callback data (inline_keyboard only, max 64 bytes)"
           maxLength: 64
           type: string
         url:
@@ -43503,10 +43516,11 @@ components:
         canDelete:
           type: boolean
         canHide:
-          description: Whether this comment can be hidden (Facebook
+          description: "Whether this comment can be hidden (Facebook, Instagram, Threads)"
           type: boolean
         canLike:
-          description: Whether this comment can be liked (Facebook
+          description: "Whether this comment can be liked (Facebook, Twitter/X, Bluesky,\
+            \ Reddit)"
           type: boolean
         isHidden:
           description: Whether the comment is currently hidden
@@ -43569,16 +43583,17 @@ components:
           description: Body text for self-posts (empty for link posts)
           type: string
         author:
-          description: Reddit username
+          description: "Reddit username, without the u/ prefix"
           type: string
         subreddit:
-          description: Subreddit name
+          description: "Subreddit name, without the r/ prefix"
           type: string
         permalink:
           description: Absolute URL to the post on reddit.com
           type: string
         url:
-          description: For link posts
+          description: "For link posts, the external URL; for self-posts, the Reddit\
+            \ permalink"
           type: string
         score:
           description: Net upvotes (upvotes minus downvotes)
@@ -44657,7 +44672,7 @@ components:
         sipAuthUsername:
           type: string
         sipAuthPassword:
-          description: Stored encrypted
+          description: "Stored encrypted, never returned by any endpoint."
           type: string
         recordingEnabled:
           default: false
@@ -44883,7 +44898,7 @@ components:
         accountId:
           type: string
         to:
-          description: Consumer wa_id (E.164
+          description: "Consumer wa_id (E.164, leading + optional)"
           type: string
         action:
           description: Omit to place a call. Set to send the consent prompt instead.
@@ -45521,7 +45536,8 @@ components:
           - released
           type: string
         registrantName:
-          description: For regulated numbers
+          description: "For regulated numbers, who it's registered for (company or\
+            \ person) — set from the submitted KYC."
           type: string
           nullable: true
         telnyxOrderId:
@@ -46172,7 +46188,8 @@ components:
           description: City / town.
           type: string
         administrative_area:
-          description: State / province / region. When omitted
+          description: "State / province / region. When omitted, the pre-check is\
+            \ skipped (the final submit still validates)."
           type: string
         postal_code:
           type: string
@@ -49203,7 +49220,7 @@ components:
             workflows)
           type: string
         text:
-          description: Simulated inbound text
+          description: "Simulated inbound text, seeded as the run's lastMessage variable"
           type: string
     triggerWorkflow_200_response_execution:
       example:
@@ -49393,7 +49410,8 @@ components:
           type: string
           nullable: true
         restoredFromVersion:
-          description: When non-null
+          description: "When non-null, this snapshot was created by restoring that\
+            \ version"
           type: integer
           nullable: true
         createdAt:
@@ -58438,7 +58456,7 @@ components:
         platformConversationId:
           type: string
         participantId:
-          description: Contact's platform identifier (IGSID
+          description: "Contact's platform identifier (IGSID, PSID, wa_id, etc.)"
           type: string
         participantName:
           type: string
@@ -59155,7 +59173,7 @@ components:
     DiscordPlatformData_embeds_inner_footer:
       properties:
         text:
-          description: Footer text (max 2
+          description: "Footer text (max 2,048 chars)"
           type: string
         icon_url:
           type: string
@@ -59174,7 +59192,7 @@ components:
           description: Field name (max 256 chars)
           type: string
         value:
-          description: Field value (max 1
+          description: "Field value (max 1,024 chars)"
           type: string
         inline:
           description: Display fields side-by-side
@@ -59302,7 +59320,7 @@ components:
           description: Total media posts (Instagram)
           type: number
         videoCount:
-          description: Total videos (YouTube
+          description: "Total videos (YouTube, TikTok)"
           type: number
         tweetCount:
           description: Total tweets (X/Twitter)

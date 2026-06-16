@@ -12,10 +12,10 @@
 |**fullname** | **String** | Fullname with type prefix (e.g. \&quot;t3_1tjtj26\&quot;) |  [optional] |
 |**title** | **String** |  |  [optional] |
 |**selftext** | **String** | Body text for self-posts (empty for link posts) |  [optional] |
-|**author** | **String** | Reddit username |  [optional] |
-|**subreddit** | **String** | Subreddit name |  [optional] |
+|**author** | **String** | Reddit username, without the u/ prefix |  [optional] |
+|**subreddit** | **String** | Subreddit name, without the r/ prefix |  [optional] |
 |**permalink** | **String** | Absolute URL to the post on reddit.com |  [optional] |
-|**url** | **String** | For link posts |  [optional] |
+|**url** | **String** | For link posts, the external URL; for self-posts, the Reddit permalink |  [optional] |
 |**score** | **Integer** | Net upvotes (upvotes minus downvotes) |  [optional] |
 |**numComments** | **Integer** |  |  [optional] |
 |**createdUtc** | **Integer** | Unix timestamp in seconds |  [optional] |

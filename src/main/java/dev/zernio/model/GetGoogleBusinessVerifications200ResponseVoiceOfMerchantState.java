@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.JSON_PROPERTY_HAS_BUSINESS_AUTHORITY,
   GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.JSON_PROPERTY_VERIFY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState {
   public static final String JSON_PROPERTY_HAS_VOICE_OF_MERCHANT = "hasVoiceOfMerchant";
   @javax.annotation.Nullable
@@ -61,7 +61,7 @@ public class GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState {
   }
 
   /**
-   * True when the listing is verified and published (eligible to surface reviews
+   * True when the listing is verified and published (eligible to surface reviews, edits, etc.).
    * @return hasVoiceOfMerchant
    */
   @javax.annotation.Nullable

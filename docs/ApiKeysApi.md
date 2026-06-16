@@ -82,7 +82,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Created |  -  |
-| **400** | Invalid request (missing name |  -  |
+| **400** | Invalid request (missing name, invalid scope/permission, or missing profileIds when scope is &#39;profiles&#39;) |  -  |
 | **401** | Unauthorized |  -  |
 
 ## createApiKeyWithHttpInfo
@@ -157,7 +157,7 @@ ApiResponse<[**CreateApiKey201Response**](CreateApiKey201Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Created |  -  |
-| **400** | Invalid request (missing name |  -  |
+| **400** | Invalid request (missing name, invalid scope/permission, or missing profileIds when scope is &#39;profiles&#39;) |  -  |
 | **401** | Unauthorized |  -  |
 
 

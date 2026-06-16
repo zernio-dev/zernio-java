@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.JSON_PROPERTY_FROM_ME,
   GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.JSON_PROPERTY_REACTED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerReactionsInner {
   public static final String JSON_PROPERTY_EMOJI = "emoji";
   @javax.annotation.Nullable
@@ -85,7 +85,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerReactionsInner 
   }
 
   /**
-   * true if the connected account reacted
+   * true if the connected account reacted, false if the contact did.
    * @return fromMe
    */
   @javax.annotation.Nullable

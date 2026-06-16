@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponsePost.JSON_PROPERTY_FLAIR_TEXT,
   GetInboxPostComments200ResponsePost.JSON_PROPERTY_IS_GALLERY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponsePost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -216,7 +216,7 @@ public class GetInboxPostComments200ResponsePost {
   }
 
   /**
-   * Reddit username
+   * Reddit username, without the u/ prefix
    * @return author
    */
   @javax.annotation.Nullable
@@ -240,7 +240,7 @@ public class GetInboxPostComments200ResponsePost {
   }
 
   /**
-   * Subreddit name
+   * Subreddit name, without the r/ prefix
    * @return subreddit
    */
   @javax.annotation.Nullable
@@ -288,7 +288,7 @@ public class GetInboxPostComments200ResponsePost {
   }
 
   /**
-   * For link posts
+   * For link posts, the external URL; for self-posts, the Reddit permalink
    * @return url
    */
   @javax.annotation.Nullable

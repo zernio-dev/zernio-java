@@ -1038,7 +1038,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template created (pre-approved for library templates, pending review for custom) |  -  |
-| **400** | Validation error (invalid name format |  -  |
+| **400** | Validation error (invalid name format, missing fields, invalid category) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 
@@ -1114,7 +1114,7 @@ ApiResponse<[**CreateWhatsAppTemplate200Response**](CreateWhatsAppTemplate200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Template created (pre-approved for library templates, pending review for custom) |  -  |
-| **400** | Validation error (invalid name format |  -  |
+| **400** | Validation error (invalid name format, missing fields, invalid category) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 
@@ -3768,7 +3768,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Business profile updated successfully |  -  |
-| **400** | Validation error (field too long |  -  |
+| **400** | Validation error (field too long, too many websites, etc.) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 
@@ -3844,7 +3844,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Business profile updated successfully |  -  |
-| **400** | Validation error (field too long |  -  |
+| **400** | Validation error (field too long, too many websites, etc.) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 
@@ -3918,7 +3918,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Display name change submitted for review |  -  |
-| **400** | Invalid display name (too short |  -  |
+| **400** | Invalid display name (too short, too long, or missing) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 
@@ -3994,7 +3994,7 @@ ApiResponse<[**UpdateWhatsAppDisplayName200Response**](UpdateWhatsAppDisplayName
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Display name change submitted for review |  -  |
-| **400** | Invalid display name (too short |  -  |
+| **400** | Invalid display name (too short, too long, or missing) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 
@@ -4380,7 +4380,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Profile picture updated successfully |  -  |
-| **400** | Invalid file type |  -  |
+| **400** | Invalid file type, file too large, or missing parameters |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 
@@ -4458,7 +4458,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Profile picture updated successfully |  -  |
-| **400** | Invalid file type |  -  |
+| **400** | Invalid file type, file too large, or missing parameters |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
 

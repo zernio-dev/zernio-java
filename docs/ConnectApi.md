@@ -2764,7 +2764,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Telegram channel connected successfully |  -  |
-| **400** | Chat ID required |  -  |
+| **400** | Chat ID required, bot not admin, or cannot access chat |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | No access to this profile |  -  |
 | **404** | Profile not found |  -  |
@@ -2842,7 +2842,7 @@ ApiResponse<[**InitiateTelegramConnect200Response**](InitiateTelegramConnect200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Telegram channel connected successfully |  -  |
-| **400** | Chat ID required |  -  |
+| **400** | Chat ID required, bot not admin, or cannot access chat |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | No access to this profile |  -  |
 | **404** | Profile not found |  -  |

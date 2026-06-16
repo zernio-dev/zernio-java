@@ -665,7 +665,7 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         String accountId = "accountId_example"; // String | 
-        String to = "to_example"; // String | Consumer wa_id (E.164
+        String to = "to_example"; // String | Consumer wa_id (E.164, leading + optional)
         try {
             GetWhatsAppCallPermissions200Response result = apiInstance.getWhatsAppCallPermissions(accountId, to);
             System.out.println(result);
@@ -686,7 +686,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
-| **to** | **String**| Consumer wa_id (E.164 | |
+| **to** | **String**| Consumer wa_id (E.164, leading + optional) | |
 
 ### Return type
 
@@ -740,7 +740,7 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         String accountId = "accountId_example"; // String | 
-        String to = "to_example"; // String | Consumer wa_id (E.164
+        String to = "to_example"; // String | Consumer wa_id (E.164, leading + optional)
         try {
             ApiResponse<GetWhatsAppCallPermissions200Response> response = apiInstance.getWhatsAppCallPermissionsWithHttpInfo(accountId, to);
             System.out.println("Status code: " + response.getStatusCode());
@@ -763,7 +763,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
-| **to** | **String**| Consumer wa_id (E.164 | |
+| **to** | **String**| Consumer wa_id (E.164, leading + optional) | |
 
 ### Return type
 
@@ -1006,7 +1006,7 @@ public class Example {
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | No active call permission — send a permission request first. |  -  |
-| **422** | Calling not enabled |  -  |
+| **422** | Calling not enabled, BIC country blocked, or missing Meta SIP credentials |  -  |
 | **502** | Telnyx-side originate failed; the Call doc has been marked failed. |  -  |
 
 ## initiateWhatsAppCallWithHttpInfo
@@ -1083,7 +1083,7 @@ ApiResponse<[**InitiateWhatsAppCall200Response**](InitiateWhatsAppCall200Respons
 | **200** | Call originated; lifecycle continues asynchronously via webhooks. |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | No active call permission — send a permission request first. |  -  |
-| **422** | Calling not enabled |  -  |
+| **422** | Calling not enabled, BIC country blocked, or missing Meta SIP credentials |  -  |
 | **502** | Telnyx-side originate failed; the Call doc has been marked failed. |  -  |
 
 

@@ -1204,7 +1204,7 @@ public class Example {
 | **200** | List of guild roles. |  -  |
 | **400** | Invalid accountId or guildId format. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **502** | Discord rejected the request (bot lacks View Channels permission in the guild). |  -  |
 
 ## listDiscordGuildRolesWithHttpInfo
@@ -1283,7 +1283,7 @@ ApiResponse<[**ListDiscordGuildRoles200Response**](ListDiscordGuildRoles200Respo
 | **200** | List of guild roles. |  -  |
 | **400** | Invalid accountId or guildId format. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Discord account not found |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **502** | Discord rejected the request (bot lacks View Channels permission in the guild). |  -  |
 
 
@@ -2315,7 +2315,7 @@ public class Example {
 | **400** | Validation error, OR no updatable fields beyond accountId provided. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Event or Discord account not found. |  -  |
-| **502** | Discord rejected the update (invalid status transition |  -  |
+| **502** | Discord rejected the update (invalid status transition, bot permissions, etc.). |  -  |
 
 ## updateDiscordScheduledEventWithHttpInfo
 
@@ -2396,7 +2396,7 @@ ApiResponse<[**CreateDiscordScheduledEvent200Response**](CreateDiscordScheduledE
 | **400** | Validation error, OR no updatable fields beyond accountId provided. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Event or Discord account not found. |  -  |
-| **502** | Discord rejected the update (invalid status transition |  -  |
+| **502** | Discord rejected the update (invalid status transition, bot permissions, etc.). |  -  |
 
 
 ## updateDiscordSettings
@@ -2470,7 +2470,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Settings updated |  -  |
-| **400** | Invalid request (no changes |  -  |
+| **400** | Invalid request (no changes, invalid channel type, or bot cannot access channel) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found |  -  |
 
@@ -2548,7 +2548,7 @@ ApiResponse<[**UpdateDiscordSettings200Response**](UpdateDiscordSettings200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Settings updated |  -  |
-| **400** | Invalid request (no changes |  -  |
+| **400** | Invalid request (no changes, invalid channel type, or bot cannot access channel) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found |  -  |
 

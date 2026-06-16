@@ -11,7 +11,7 @@
 |**phoneNumber** | **String** |  |  [optional] |
 |**country** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
-|**registrantName** | **String** | For regulated numbers |  [optional] |
+|**registrantName** | **String** | For regulated numbers, who it&#39;s registered for (company or person) — set from the submitted KYC. |  [optional] |
 |**telnyxOrderId** | **String** | Present once the number order has been placed (i.e. the requirement group was approved). Absent while still in identity review. |  [optional] |
 |**monthlyCents** | **Integer** | Per-country monthly price in cents ($2..$25). |  [optional] |
 |**profileId** | **Object** |  |  [optional] |

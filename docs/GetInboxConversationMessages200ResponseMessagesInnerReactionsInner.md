@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**emoji** | **String** |  |  [optional] |
-|**fromMe** | **Boolean** | true if the connected account reacted |  [optional] |
+|**fromMe** | **Boolean** | true if the connected account reacted, false if the contact did. |  [optional] |
 |**reactedAt** | **OffsetDateTime** |  |  [optional] |
 
 

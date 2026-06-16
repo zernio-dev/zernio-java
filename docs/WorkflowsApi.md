@@ -254,7 +254,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow created |  -  |
-| **400** | Invalid graph (duplicate node ids |  -  |
+| **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, or a WhatsApp-only node on another platform) |  -  |
 | **401** | Unauthorized |  -  |
 
 ## createWorkflowWithHttpInfo
@@ -329,7 +329,7 @@ ApiResponse<[**CreateWorkflow200Response**](CreateWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow created |  -  |
-| **400** | Invalid graph (duplicate node ids |  -  |
+| **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, or a WhatsApp-only node on another platform) |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -1764,7 +1764,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
-| **400** | Workflow is not draft/paused |  -  |
+| **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1842,7 +1842,7 @@ ApiResponse<[**RestoreWorkflowVersion200Response**](RestoreWorkflowVersion200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
-| **400** | Workflow is not draft/paused |  -  |
+| **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1918,7 +1918,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Run started |  -  |
-| **400** | Missing target |  -  |
+| **400** | Missing target, invalid graph, or &#x60;to&#x60; used on a non-WhatsApp workflow |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1996,7 +1996,7 @@ ApiResponse<[**TriggerWorkflow200Response**](TriggerWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Run started |  -  |
-| **400** | Missing target |  -  |
+| **400** | Missing target, invalid graph, or &#x60;to&#x60; used on a non-WhatsApp workflow |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2072,7 +2072,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
-| **400** | Invalid graph |  -  |
+| **400** | Invalid graph, or a graph edit attempted while the workflow is active |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2150,7 +2150,7 @@ ApiResponse<[**UpdateWorkflow200Response**](UpdateWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
-| **400** | Invalid graph |  -  |
+| **400** | Invalid graph, or a graph edit attempted while the workflow is active |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

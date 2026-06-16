@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** |  |  |
-|**to** | **String** | Consumer wa_id (E.164 |  |
+|**to** | **String** | Consumer wa_id (E.164, leading + optional) |  |
 |**action** | [**ActionEnum**](#ActionEnum) | Omit to place a call. Set to send the consent prompt instead. |  [optional] |
 |**bodyText** | **String** | Body text shown with the consent prompt (send_call_permission_request only). |  [optional] |
 |**forwardTo** | **String** | Per-call destination override. Same accepted shape as the number&#39;s stored forwardTo (tel:+E164, sip:..., wss://...).  |  [optional] |

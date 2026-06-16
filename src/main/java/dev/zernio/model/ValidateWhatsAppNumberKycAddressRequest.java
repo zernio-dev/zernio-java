@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ValidateWhatsAppNumberKycAddressRequest.JSON_PROPERTY_ADMINISTRATIVE_AREA,
   ValidateWhatsAppNumberKycAddressRequest.JSON_PROPERTY_POSTAL_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateWhatsAppNumberKycAddressRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
@@ -142,7 +142,7 @@ public class ValidateWhatsAppNumberKycAddressRequest {
   }
 
   /**
-   * State / province / region. When omitted
+   * State / province / region. When omitted, the pre-check is skipped (the final submit still validates).
    * @return administrativeArea
    */
   @javax.annotation.Nullable

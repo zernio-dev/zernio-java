@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_TOTAL_COST_U_S_D,
   ListWhatsAppCalls200ResponseCallsInnerBilling.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppCalls200ResponseCallsInnerBilling {
   public static final String JSON_PROPERTY_META_COST_U_S_D = "metaCostUSD";
   @javax.annotation.Nullable

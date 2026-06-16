@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_NAME,
   BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_REVIEW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-15T08:07:08.486783826Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -79,7 +79,7 @@ public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
   }
 
   /**
-   * The review object (reviewId
+   * The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply)
    * @return review
    */
   @javax.annotation.Nullable
