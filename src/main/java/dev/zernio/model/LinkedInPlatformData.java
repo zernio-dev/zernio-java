@@ -38,9 +38,10 @@ import dev.zernio.ApiClient;
   LinkedInPlatformData.JSON_PROPERTY_ORGANIZATION_URN,
   LinkedInPlatformData.JSON_PROPERTY_FIRST_COMMENT,
   LinkedInPlatformData.JSON_PROPERTY_DISABLE_LINK_PREVIEW,
+  LinkedInPlatformData.JSON_PROPERTY_RESHARE_URL,
   LinkedInPlatformData.JSON_PROPERTY_GEO_RESTRICTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T14:22:13.266235552Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInPlatformData {
   public static final String JSON_PROPERTY_DOCUMENT_TITLE = "documentTitle";
   @javax.annotation.Nullable
@@ -57,6 +58,10 @@ public class LinkedInPlatformData {
   public static final String JSON_PROPERTY_DISABLE_LINK_PREVIEW = "disableLinkPreview";
   @javax.annotation.Nullable
   private Boolean disableLinkPreview;
+
+  public static final String JSON_PROPERTY_RESHARE_URL = "reshareUrl";
+  @javax.annotation.Nullable
+  private String reshareUrl;
 
   public static final String JSON_PROPERTY_GEO_RESTRICTION = "geoRestriction";
   @javax.annotation.Nullable
@@ -161,6 +166,30 @@ public class LinkedInPlatformData {
   }
 
 
+  public LinkedInPlatformData reshareUrl(@javax.annotation.Nullable String reshareUrl) {
+    this.reshareUrl = reshareUrl;
+    return this;
+  }
+
+  /**
+   * LinkedIn post link to repost (use the post&#39;s \&quot;Copy link to post\&quot; action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost URN. The published post becomes a quote-reshare: your content is shown as the commentary and the original post is embedded underneath (LinkedIn&#39;s \&quot;repost with your thoughts\&quot;). Mutually exclusive with media. Works on personal profiles and organization pages.
+   * @return reshareUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RESHARE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getReshareUrl() {
+    return reshareUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RESHARE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReshareUrl(@javax.annotation.Nullable String reshareUrl) {
+    this.reshareUrl = reshareUrl;
+  }
+
+
   public LinkedInPlatformData geoRestriction(@javax.annotation.Nullable GeoRestriction geoRestriction) {
     this.geoRestriction = geoRestriction;
     return this;
@@ -201,12 +230,13 @@ public class LinkedInPlatformData {
         Objects.equals(this.organizationUrn, linkedInPlatformData.organizationUrn) &&
         Objects.equals(this.firstComment, linkedInPlatformData.firstComment) &&
         Objects.equals(this.disableLinkPreview, linkedInPlatformData.disableLinkPreview) &&
+        Objects.equals(this.reshareUrl, linkedInPlatformData.reshareUrl) &&
         Objects.equals(this.geoRestriction, linkedInPlatformData.geoRestriction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentTitle, organizationUrn, firstComment, disableLinkPreview, geoRestriction);
+    return Objects.hash(documentTitle, organizationUrn, firstComment, disableLinkPreview, reshareUrl, geoRestriction);
   }
 
   @Override
@@ -217,6 +247,7 @@ public class LinkedInPlatformData {
     sb.append("    organizationUrn: ").append(toIndentedString(organizationUrn)).append("\n");
     sb.append("    firstComment: ").append(toIndentedString(firstComment)).append("\n");
     sb.append("    disableLinkPreview: ").append(toIndentedString(disableLinkPreview)).append("\n");
+    sb.append("    reshareUrl: ").append(toIndentedString(reshareUrl)).append("\n");
     sb.append("    geoRestriction: ").append(toIndentedString(geoRestriction)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -283,6 +314,11 @@ public class LinkedInPlatformData {
     // add `disableLinkPreview` to the URL query string
     if (getDisableLinkPreview() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdisableLinkPreview%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisableLinkPreview()))));
+    }
+
+    // add `reshareUrl` to the URL query string
+    if (getReshareUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreshareUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReshareUrl()))));
     }
 
     // add `geoRestriction` to the URL query string

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CheckWhatsAppNumberAvailability200Response.JSON_PROPERTY_ADDRESS_CONSTRAINT,
   CheckWhatsAppNumberAvailability200Response.JSON_PROPERTY_AREAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T14:22:13.266235552Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckWhatsAppNumberAvailability200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable

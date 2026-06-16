@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallFailedCall.JSON_PROPERTY_FAILED_AT,
   WebhookPayloadCallFailedCall.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T13:56:18.400754237Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T14:22:13.266235552Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallFailedCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
