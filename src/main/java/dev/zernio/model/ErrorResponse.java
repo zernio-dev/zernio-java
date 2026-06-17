@@ -32,17 +32,87 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * ErrorResponse
+ * Canonical error envelope. &#x60;error&#x60; is the human-readable message; &#x60;type&#x60;, &#x60;code&#x60;, &#x60;param&#x60;, &#x60;platform&#x60;, and &#x60;platformError&#x60; are top-level siblings for programmatic handling. For upstream platform failures (&#x60;type: platform_error&#x60;), &#x60;platformError&#x60; carries the provider&#39;s raw payload verbatim (for Meta: &#x60;error_subcode&#x60;, &#x60;error_user_title&#x60;, &#x60;error_user_msg&#x60;). 
  */
 @JsonPropertyOrder({
   ErrorResponse.JSON_PROPERTY_ERROR,
+  ErrorResponse.JSON_PROPERTY_TYPE,
+  ErrorResponse.JSON_PROPERTY_CODE,
+  ErrorResponse.JSON_PROPERTY_PARAM,
+  ErrorResponse.JSON_PROPERTY_PLATFORM,
+  ErrorResponse.JSON_PROPERTY_PLATFORM_ERROR,
   ErrorResponse.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-16T14:22:13.266235552Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-17T08:14:27.516546851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ErrorResponse {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
+
+  /**
+   * Error class for programmatic handling.
+   */
+  public enum TypeEnum {
+    INVALID_REQUEST_ERROR(String.valueOf("invalid_request_error")),
+    
+    AUTHENTICATION_ERROR(String.valueOf("authentication_error")),
+    
+    PERMISSION_ERROR(String.valueOf("permission_error")),
+    
+    NOT_FOUND(String.valueOf("not_found")),
+    
+    RATE_LIMIT_ERROR(String.valueOf("rate_limit_error")),
+    
+    PLATFORM_ERROR(String.valueOf("platform_error")),
+    
+    API_ERROR(String.valueOf("api_error"));
+
+    private String value;
+
+    TypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  @javax.annotation.Nullable
+  private TypeEnum type;
+
+  public static final String JSON_PROPERTY_CODE = "code";
+  @javax.annotation.Nullable
+  private String code;
+
+  public static final String JSON_PROPERTY_PARAM = "param";
+  @javax.annotation.Nullable
+  private String param;
+
+  public static final String JSON_PROPERTY_PLATFORM = "platform";
+  @javax.annotation.Nullable
+  private String platform;
+
+  public static final String JSON_PROPERTY_PLATFORM_ERROR = "platformError";
+  @javax.annotation.Nullable
+  private Map<String, Object> platformError = new HashMap<>();
 
   public static final String JSON_PROPERTY_DETAILS = "details";
   @javax.annotation.Nullable
@@ -57,7 +127,7 @@ public class ErrorResponse {
   }
 
   /**
-   * Get error
+   * Human-readable error message.
    * @return error
    */
   @javax.annotation.Nullable
@@ -75,6 +145,134 @@ public class ErrorResponse {
   }
 
 
+  public ErrorResponse type(@javax.annotation.Nullable TypeEnum type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Error class for programmatic handling.
+   * @return type
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TypeEnum getType() {
+    return type;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(@javax.annotation.Nullable TypeEnum type) {
+    this.type = type;
+  }
+
+
+  public ErrorResponse code(@javax.annotation.Nullable String code) {
+    this.code = code;
+    return this;
+  }
+
+  /**
+   * Stable machine-readable error code.
+   * @return code
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCode() {
+    return code;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCode(@javax.annotation.Nullable String code) {
+    this.code = code;
+  }
+
+
+  public ErrorResponse param(@javax.annotation.Nullable String param) {
+    this.param = param;
+    return this;
+  }
+
+  /**
+   * The request field that caused the error, when applicable.
+   * @return param
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARAM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getParam() {
+    return param;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PARAM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setParam(@javax.annotation.Nullable String param) {
+    this.param = param;
+  }
+
+
+  public ErrorResponse platform(@javax.annotation.Nullable String platform) {
+    this.platform = platform;
+    return this;
+  }
+
+  /**
+   * Upstream platform (e.g. meta, google, tiktok) — present when type is platform_error.
+   * @return platform
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlatform() {
+    return platform;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatform(@javax.annotation.Nullable String platform) {
+    this.platform = platform;
+  }
+
+
+  public ErrorResponse platformError(@javax.annotation.Nullable Map<String, Object> platformError) {
+    this.platformError = platformError;
+    return this;
+  }
+
+  public ErrorResponse putPlatformErrorItem(String key, Object platformErrorItem) {
+    if (this.platformError == null) {
+      this.platformError = new HashMap<>();
+    }
+    this.platformError.put(key, platformErrorItem);
+    return this;
+  }
+
+  /**
+   * Raw error payload from the upstream platform, passed through verbatim so integrators can read provider-specific codes. For Meta this includes error_subcode, error_user_title, and error_user_msg. 
+   * @return platformError
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_ERROR, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getPlatformError() {
+    return platformError;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_ERROR, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformError(@javax.annotation.Nullable Map<String, Object> platformError) {
+    this.platformError = platformError;
+  }
+
+
   public ErrorResponse details(@javax.annotation.Nullable Map<String, Object> details) {
     this.details = details;
     return this;
@@ -89,7 +287,7 @@ public class ErrorResponse {
   }
 
   /**
-   * Get details
+   * Additional structured context (e.g. field-level validation errors).
    * @return details
    */
   @javax.annotation.Nullable
@@ -120,12 +318,17 @@ public class ErrorResponse {
     }
     ErrorResponse errorResponse = (ErrorResponse) o;
     return Objects.equals(this.error, errorResponse.error) &&
+        Objects.equals(this.type, errorResponse.type) &&
+        Objects.equals(this.code, errorResponse.code) &&
+        Objects.equals(this.param, errorResponse.param) &&
+        Objects.equals(this.platform, errorResponse.platform) &&
+        Objects.equals(this.platformError, errorResponse.platformError) &&
         Objects.equals(this.details, errorResponse.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(error, details);
+    return Objects.hash(error, type, code, param, platform, platformError, details);
   }
 
   @Override
@@ -133,6 +336,11 @@ public class ErrorResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorResponse {\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    param: ").append(toIndentedString(param)).append("\n");
+    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    platformError: ").append(toIndentedString(platformError)).append("\n");
     sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -184,6 +392,35 @@ public class ErrorResponse {
     // add `error` to the URL query string
     if (getError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
+    }
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `code` to the URL query string
+    if (getCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCode()))));
+    }
+
+    // add `param` to the URL query string
+    if (getParam() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sparam%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getParam()))));
+    }
+
+    // add `platform` to the URL query string
+    if (getPlatform() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
+    // add `platformError` to the URL query string
+    if (getPlatformError() != null) {
+      for (String _key : getPlatformError().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%splatformError%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getPlatformError().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getPlatformError().get(_key)))));
+      }
     }
 
     // add `details` to the URL query string

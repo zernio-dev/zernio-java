@@ -23095,15 +23095,58 @@ components:
             type: string
           type: array
     ErrorResponse:
+      description: |
+        Canonical error envelope. `error` is the human-readable message; `type`,
+        `code`, `param`, `platform`, and `platformError` are top-level siblings
+        for programmatic handling. For upstream platform failures (`type:
+        platform_error`), `platformError` carries the provider's raw payload
+        verbatim (for Meta: `error_subcode`, `error_user_title`, `error_user_msg`).
       example:
+        code: code
+        param: param
+        platformError:
+          key: ""
         details:
           key: ""
         error: error
+        type: invalid_request_error
+        platform: platform
       properties:
         error:
+          description: Human-readable error message.
           type: string
+        type:
+          description: Error class for programmatic handling.
+          enum:
+          - invalid_request_error
+          - authentication_error
+          - permission_error
+          - not_found
+          - rate_limit_error
+          - platform_error
+          - api_error
+          type: string
+        code:
+          description: Stable machine-readable error code.
+          type: string
+        param:
+          description: "The request field that caused the error, when applicable."
+          type: string
+        platform:
+          description: "Upstream platform (e.g. meta, google, tiktok) — present when\
+            \ type is platform_error."
+          type: string
+        platformError:
+          additionalProperties: true
+          description: |
+            Raw error payload from the upstream platform, passed through verbatim so
+            integrators can read provider-specific codes. For Meta this includes
+            error_subcode, error_user_title, and error_user_msg.
+          type: object
         details:
           additionalProperties: true
+          description: Additional structured context (e.g. field-level validation
+            errors).
           type: object
     DmButton:
       description: |
@@ -33880,8 +33923,7 @@ components:
           default: true
           type: boolean
         metadata:
-          additionalProperties: true
-          type: object
+          additionalProperties: {}
         tiktokSettings:
           allOf:
           - $ref: "#/components/schemas/TikTokPlatformData"
