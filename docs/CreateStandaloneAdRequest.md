@@ -18,6 +18,7 @@
 |**optimizationGoal** | **String** | Meta only. Explicit ad-set &#x60;optimization_goal&#x60; (e.g. &#x60;LANDING_PAGE_VIEWS&#x60;, &#x60;LINK_CLICKS&#x60;, &#x60;REACH&#x60;, &#x60;IMPRESSIONS&#x60;, &#x60;OFFSITE_CONVERSIONS&#x60;, &#x60;THRUPLAY&#x60;, &#x60;LEAD_GENERATION&#x60;). Overrides the default derived from &#x60;goal&#x60; (e.g. &#x60;traffic&#x60; defaults to &#x60;LINK_CLICKS&#x60;). Forwarded verbatim to Meta, which validates compatibility with the campaign objective and rejects incompatible combinations. |  [optional] |
 |**budgetAmount** | **BigDecimal** | Required on legacy + multi-creative shapes. Inherited on attach. |  [optional] |
 |**budgetType** | [**BudgetTypeEnum**](#BudgetTypeEnum) | Required on legacy + multi-creative shapes. Inherited on attach. |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. |  [optional] |
 |**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) | Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget.  |  [optional] |
 |**currency** | **String** |  |  [optional] |
 |**headline** | **String** | Required for Meta, Google, Pinterest, and LinkedIn on legacy + attach shapes (skip for multi-creative — use &#x60;creatives[].headline&#x60;). Ignored for TikTok and X/Twitter. Max: Meta&#x3D;255, Google&#x3D;30, Pinterest&#x3D;100, LinkedIn&#x3D;400. On LinkedIn this is the ad&#39;s headline (the bold text on the creative); for traffic ads it&#39;s the link card title. |  [optional] |
@@ -32,6 +33,8 @@
 |**video** | [**CreateStandaloneAdRequestVideo**](CreateStandaloneAdRequestVideo.md) |  |  [optional] |
 |**creatives** | [**List&lt;CreateStandaloneAdRequestCreativesInner&gt;**](CreateStandaloneAdRequestCreativesInner.md) | Meta-only. When present, switches to the multi-creative shape: creates 1 campaign + 1 ad set + N ads (one per entry here). Top-level &#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;linkUrl&#x60; / &#x60;callToAction&#x60; are ignored in this mode. Mutually exclusive with &#x60;adSetId&#x60;.  |  [optional] |
 |**adSetId** | **String** | Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta — passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD — true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram) and TikTok. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting.  |  [optional] |
+|**existingCampaignId** | **String** | Meta only. Add the new ad set under this EXISTING campaign instead of creating a new one (multi-ad-set audience testing). The new ad set&#39;s budget is matched to the campaign&#39;s mode automatically: for a CBO campaign (campaign-level budget) omit &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60; — the campaign owns the budget; for an ABO campaign pass them (they go on the new ad set). On failure only the new ad set is cleaned up; the existing campaign is left untouched and is never (re)activated. Mutually exclusive with &#x60;adSetId&#x60; and &#x60;creatives[]&#x60;.  |  [optional] |
+|**existingCreativeId** | **String** | Meta only. Reuse an EXISTING ad creative by id instead of building a new one from the copy/media fields (which are then ignored). Combine with &#x60;existingCampaignId&#x60; to build a multi-ad-set campaign that shares one creative. Mutually exclusive with &#x60;creatives[]&#x60;, &#x60;dynamicCreative&#x60;, and &#x60;placementAssets&#x60;. The creative id used is returned as &#x60;creativeId&#x60; on the create response.  |  [optional] |
 |**businessName** | **String** | Google Display only |  [optional] |
 |**boardId** | **String** | Pinterest only. Board ID (auto-creates if not provided). |  [optional] |
 |**organizationId** | **String** | LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad — accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform. |  [optional] |
@@ -97,6 +100,15 @@
 |---- | -----|
 | DAILY | &quot;daily&quot; |
 | LIFETIME | &quot;lifetime&quot; |
+
+
+
+## Enum: StatusEnum
+
+| Name | Value |
+|---- | -----|
+| ACTIVE | &quot;ACTIVE&quot; |
+| PAUSED | &quot;PAUSED&quot; |
 
 
 

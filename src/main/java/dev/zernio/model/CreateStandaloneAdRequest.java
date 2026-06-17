@@ -68,6 +68,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_OPTIMIZATION_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_STATUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_LEVEL,
   CreateStandaloneAdRequest.JSON_PROPERTY_CURRENCY,
   CreateStandaloneAdRequest.JSON_PROPERTY_HEADLINE,
@@ -82,6 +83,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_VIDEO,
   CreateStandaloneAdRequest.JSON_PROPERTY_CREATIVES,
   CreateStandaloneAdRequest.JSON_PROPERTY_AD_SET_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_EXISTING_CAMPAIGN_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_EXISTING_CREATIVE_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUSINESS_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_BOARD_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_ORGANIZATION_ID,
@@ -123,7 +126,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-17T08:14:27.516546851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-17T09:23:35.813063871Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -252,6 +255,45 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_BUDGET_TYPE = "budgetType";
   @javax.annotation.Nullable
   private BudgetTypeEnum budgetType;
+
+  /**
+   * Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
+   */
+  public enum StatusEnum {
+    ACTIVE(String.valueOf("ACTIVE")),
+    
+    PAUSED(String.valueOf("PAUSED"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  @javax.annotation.Nullable
+  private StatusEnum status;
 
   /**
    * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
@@ -410,6 +452,14 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_AD_SET_ID = "adSetId";
   @javax.annotation.Nullable
   private String adSetId;
+
+  public static final String JSON_PROPERTY_EXISTING_CAMPAIGN_ID = "existingCampaignId";
+  @javax.annotation.Nullable
+  private String existingCampaignId;
+
+  public static final String JSON_PROPERTY_EXISTING_CREATIVE_ID = "existingCreativeId";
+  @javax.annotation.Nullable
+  private String existingCreativeId;
 
   public static final String JSON_PROPERTY_BUSINESS_NAME = "businessName";
   @javax.annotation.Nullable
@@ -1058,6 +1108,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest status(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
+   * @return status
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = status;
+  }
+
+
   public CreateStandaloneAdRequest budgetLevel(@javax.annotation.Nullable BudgetLevelEnum budgetLevel) {
     this.budgetLevel = budgetLevel;
     return this;
@@ -1399,6 +1473,54 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAdSetId(@javax.annotation.Nullable String adSetId) {
     this.adSetId = adSetId;
+  }
+
+
+  public CreateStandaloneAdRequest existingCampaignId(@javax.annotation.Nullable String existingCampaignId) {
+    this.existingCampaignId = existingCampaignId;
+    return this;
+  }
+
+  /**
+   * Meta only. Add the new ad set under this EXISTING campaign instead of creating a new one (multi-ad-set audience testing). The new ad set&#39;s budget is matched to the campaign&#39;s mode automatically: for a CBO campaign (campaign-level budget) omit &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60; — the campaign owns the budget; for an ABO campaign pass them (they go on the new ad set). On failure only the new ad set is cleaned up; the existing campaign is left untouched and is never (re)activated. Mutually exclusive with &#x60;adSetId&#x60; and &#x60;creatives[]&#x60;. 
+   * @return existingCampaignId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_CAMPAIGN_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExistingCampaignId() {
+    return existingCampaignId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_CAMPAIGN_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExistingCampaignId(@javax.annotation.Nullable String existingCampaignId) {
+    this.existingCampaignId = existingCampaignId;
+  }
+
+
+  public CreateStandaloneAdRequest existingCreativeId(@javax.annotation.Nullable String existingCreativeId) {
+    this.existingCreativeId = existingCreativeId;
+    return this;
+  }
+
+  /**
+   * Meta only. Reuse an EXISTING ad creative by id instead of building a new one from the copy/media fields (which are then ignored). Combine with &#x60;existingCampaignId&#x60; to build a multi-ad-set campaign that shares one creative. Mutually exclusive with &#x60;creatives[]&#x60;, &#x60;dynamicCreative&#x60;, and &#x60;placementAssets&#x60;. The creative id used is returned as &#x60;creativeId&#x60; on the create response. 
+   * @return existingCreativeId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_CREATIVE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getExistingCreativeId() {
+    return existingCreativeId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXISTING_CREATIVE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExistingCreativeId(@javax.annotation.Nullable String existingCreativeId) {
+    this.existingCreativeId = existingCreativeId;
   }
 
 
@@ -2509,6 +2631,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.optimizationGoal, createStandaloneAdRequest.optimizationGoal) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
+        Objects.equals(this.status, createStandaloneAdRequest.status) &&
         Objects.equals(this.budgetLevel, createStandaloneAdRequest.budgetLevel) &&
         Objects.equals(this.currency, createStandaloneAdRequest.currency) &&
         Objects.equals(this.headline, createStandaloneAdRequest.headline) &&
@@ -2523,6 +2646,8 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.video, createStandaloneAdRequest.video) &&
         Objects.equals(this.creatives, createStandaloneAdRequest.creatives) &&
         Objects.equals(this.adSetId, createStandaloneAdRequest.adSetId) &&
+        Objects.equals(this.existingCampaignId, createStandaloneAdRequest.existingCampaignId) &&
+        Objects.equals(this.existingCreativeId, createStandaloneAdRequest.existingCreativeId) &&
         Objects.equals(this.businessName, createStandaloneAdRequest.businessName) &&
         Objects.equals(this.boardId, createStandaloneAdRequest.boardId) &&
         Objects.equals(this.organizationId, createStandaloneAdRequest.organizationId) &&
@@ -2567,7 +2692,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2585,6 +2710,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    budgetLevel: ").append(toIndentedString(budgetLevel)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
@@ -2599,6 +2725,8 @@ public class CreateStandaloneAdRequest {
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
     sb.append("    creatives: ").append(toIndentedString(creatives)).append("\n");
     sb.append("    adSetId: ").append(toIndentedString(adSetId)).append("\n");
+    sb.append("    existingCampaignId: ").append(toIndentedString(existingCampaignId)).append("\n");
+    sb.append("    existingCreativeId: ").append(toIndentedString(existingCreativeId)).append("\n");
     sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
     sb.append("    boardId: ").append(toIndentedString(boardId)).append("\n");
     sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
@@ -2741,6 +2869,11 @@ public class CreateStandaloneAdRequest {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbudgetType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBudgetType()))));
     }
 
+    // add `status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
     // add `budgetLevel` to the URL query string
     if (getBudgetLevel() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbudgetLevel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBudgetLevel()))));
@@ -2814,6 +2947,16 @@ public class CreateStandaloneAdRequest {
     // add `adSetId` to the URL query string
     if (getAdSetId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sadSetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdSetId()))));
+    }
+
+    // add `existingCampaignId` to the URL query string
+    if (getExistingCampaignId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexistingCampaignId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExistingCampaignId()))));
+    }
+
+    // add `existingCreativeId` to the URL query string
+    if (getExistingCreativeId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexistingCreativeId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExistingCreativeId()))));
     }
 
     // add `businessName` to the URL query string
