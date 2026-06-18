@@ -127,7 +127,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-18T15:12:52.215106356Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-18T15:28:24.721668424Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -2086,7 +2086,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, business places, etc.) — exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Use it to clone a campaign&#39;s targeting EXACTLY, preserving advanced fields the camelCase targeting fields can&#39;t model. Mutually exclusive with the camelCase targeting fields (countries/regions/cities/interests/ ageMin/.../placements), &#x60;audienceId&#x60;, and &#x60;savedTargetingId&#x60; (sending both → 422). Sent as-is; Meta validates and surfaces any errors. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). To set manual placements alongside rawTargeting, include Meta&#39;s placement fields directly inside this object: &#x60;publisher_platforms&#x60;, &#x60;facebook_positions&#x60;, &#x60;instagram_positions&#x60;, etc. 
+   * Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, business places, etc.) — exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Use it to clone a campaign&#39;s targeting EXACTLY, preserving advanced fields the camelCase targeting fields can&#39;t model. Mutually exclusive with the camelCase targeting fields (countries/regions/cities/interests/ ageMin/...), &#x60;audienceId&#x60;, and &#x60;savedTargetingId&#x60; (sending both → 422). Sent as-is; Meta validates and surfaces any errors. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). Can be combined with the top-level &#x60;placements&#x60; field — when both are present, placements are converted to Meta&#39;s snake_case and merged into this object before it is sent to Meta. 
    * @return rawTargeting
    */
   @javax.annotation.Nullable
