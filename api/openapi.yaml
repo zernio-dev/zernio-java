@@ -41676,6 +41676,8 @@ components:
     listInboxConversations_200_response_data_inner:
       example:
         updatedTime: 2000-01-23T04:56:07.000+00:00
+        metadata:
+          key: metadata
         participantPicture: participantPicture
         lastMessage: lastMessage
         unreadCount: 0
@@ -41739,6 +41741,25 @@ components:
           nullable: true
         instagramProfile:
           $ref: "#/components/schemas/listInboxConversations_200_response_data_inner_instagramProfile"
+        metadata:
+          additionalProperties:
+            type: string
+          description: |
+            Ad-click attribution captured on the first inbound message of the
+            conversation. Only present when the conversation originated from a
+            click-to-message ad. Absent on organic conversations.
+
+            Two sources populate this field:
+              - WhatsApp CTWA (Click-to-WhatsApp): `ctwa_clid`, `ctwa_source_id`,
+                `ctwa_source_url`, `ctwa_headline`, `ctwa_source_type`, `ctwa_captured_at`.
+              - Facebook Messenger CTM / Instagram CTD: `meta_ad_id`, `meta_ad_title`,
+                `meta_ad_source`, `meta_ad_type`, `meta_ad_ref`, `meta_ad_captured_at`,
+                `meta_ad_photo_url`, `meta_ad_video_url`, `meta_ad_post_id`,
+                `meta_ad_product_id`, `meta_ad_flow_id`.
+
+            Note: `meta_ad_photo_url` and `meta_ad_video_url` are Facebook CDN URLs
+            that may expire. Use `meta_ad_id` for a permanent reference to the ad.
+          nullable: true
     listInboxConversations_200_response_pagination:
       example:
         nextCursor: nextCursor
@@ -41812,6 +41833,8 @@ components:
           hasMore: true
         data:
         - updatedTime: 2000-01-23T04:56:07.000+00:00
+          metadata:
+            key: metadata
           participantPicture: participantPicture
           lastMessage: lastMessage
           unreadCount: 0
@@ -41831,6 +41854,8 @@ components:
           participantName: participantName
           status: active
         - updatedTime: 2000-01-23T04:56:07.000+00:00
+          metadata:
+            key: metadata
           participantPicture: participantPicture
           lastMessage: lastMessage
           unreadCount: 0
@@ -42009,6 +42034,8 @@ components:
     getInboxConversation_200_response_data:
       example:
         updatedTime: 2000-01-23T04:56:07.000+00:00
+        metadata:
+          key: metadata
         lastMessage: lastMessage
         platform: platform
         instagramProfile:
@@ -42071,10 +42098,32 @@ components:
           type: array
         instagramProfile:
           $ref: "#/components/schemas/listInboxConversations_200_response_data_inner_instagramProfile"
+        metadata:
+          additionalProperties:
+            type: string
+          description: |
+            Ad-click attribution captured on the first inbound message of the
+            conversation. Only present when the conversation originated from a
+            click-to-message ad. Absent on organic conversations.
+
+            Two sources populate this field:
+              - WhatsApp CTWA (Click-to-WhatsApp): `ctwa_clid`, `ctwa_source_id`,
+                `ctwa_source_url`, `ctwa_headline`, `ctwa_source_type`, `ctwa_captured_at`.
+              - Facebook Messenger CTM / Instagram CTD: `meta_ad_id`, `meta_ad_title`,
+                `meta_ad_source`, `meta_ad_type`, `meta_ad_ref`, `meta_ad_captured_at`,
+                `meta_ad_photo_url`, `meta_ad_video_url`, `meta_ad_post_id`,
+                `meta_ad_product_id`, `meta_ad_flow_id`.
+
+            Note: `meta_ad_photo_url` and `meta_ad_video_url` are Facebook CDN URLs
+            that may expire. Use `meta_ad_id` for a permanent reference to the ad
+            (e.g. to link to Meta Ads Manager).
+          nullable: true
     getInboxConversation_200_response:
       example:
         data:
           updatedTime: 2000-01-23T04:56:07.000+00:00
+          metadata:
+            key: metadata
           lastMessage: lastMessage
           platform: platform
           instagramProfile:
