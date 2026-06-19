@@ -51,12 +51,13 @@ import dev.zernio.ApiClient;
   AnalyticsListResponsePostsInner.JSON_PROPERTY_PLATFORM,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_PLATFORM_POST_URL,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_IS_EXTERNAL,
+  AnalyticsListResponsePostsInner.JSON_PROPERTY_IS_AD,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_PROFILE_ID,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_THUMBNAIL_URL,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_TYPE,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T07:39:16.556997376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T09:29:04.991381256Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsListResponsePostsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -101,6 +102,10 @@ public class AnalyticsListResponsePostsInner {
   public static final String JSON_PROPERTY_IS_EXTERNAL = "isExternal";
   @javax.annotation.Nullable
   private Boolean isExternal;
+
+  public static final String JSON_PROPERTY_IS_AD = "isAd";
+  @javax.annotation.Nullable
+  private Boolean isAd;
 
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nullable
@@ -436,6 +441,30 @@ public class AnalyticsListResponsePostsInner {
   }
 
 
+  public AnalyticsListResponsePostsInner isAd(@javax.annotation.Nullable Boolean isAd) {
+    this.isAd = isAd;
+    return this;
+  }
+
+  /**
+   * True when the post is an ad creative. False for organic posts or platforms where the signal is unavailable. For now is only available for LinkedIn posts.
+   * @return isAd
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_AD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsAd() {
+    return isAd;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_AD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsAd(@javax.annotation.Nullable Boolean isAd) {
+    this.isAd = isAd;
+  }
+
+
   public AnalyticsListResponsePostsInner profileId(@javax.annotation.Nullable String profileId) {
     this.profileId = profileId;
     return this;
@@ -563,6 +592,7 @@ public class AnalyticsListResponsePostsInner {
         Objects.equals(this.platform, analyticsListResponsePostsInner.platform) &&
         Objects.equals(this.platformPostUrl, analyticsListResponsePostsInner.platformPostUrl) &&
         Objects.equals(this.isExternal, analyticsListResponsePostsInner.isExternal) &&
+        Objects.equals(this.isAd, analyticsListResponsePostsInner.isAd) &&
         Objects.equals(this.profileId, analyticsListResponsePostsInner.profileId) &&
         Objects.equals(this.thumbnailUrl, analyticsListResponsePostsInner.thumbnailUrl) &&
         Objects.equals(this.mediaType, analyticsListResponsePostsInner.mediaType) &&
@@ -571,7 +601,7 @@ public class AnalyticsListResponsePostsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, latePostId, content, scheduledFor, publishedAt, status, analytics, platforms, platform, platformPostUrl, isExternal, profileId, thumbnailUrl, mediaType, mediaItems);
+    return Objects.hash(id, latePostId, content, scheduledFor, publishedAt, status, analytics, platforms, platform, platformPostUrl, isExternal, isAd, profileId, thumbnailUrl, mediaType, mediaItems);
   }
 
   @Override
@@ -589,6 +619,7 @@ public class AnalyticsListResponsePostsInner {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    platformPostUrl: ").append(toIndentedString(platformPostUrl)).append("\n");
     sb.append("    isExternal: ").append(toIndentedString(isExternal)).append("\n");
+    sb.append("    isAd: ").append(toIndentedString(isAd)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
@@ -698,6 +729,11 @@ public class AnalyticsListResponsePostsInner {
     // add `isExternal` to the URL query string
     if (getIsExternal() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisExternal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExternal()))));
+    }
+
+    // add `isAd` to the URL query string
+    if (getIsAd() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisAd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAd()))));
     }
 
     // add `profileId` to the URL query string

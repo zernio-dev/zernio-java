@@ -59745,6 +59745,11 @@ components:
           type: string
         isExternal:
           type: boolean
+        isAd:
+          description: True when the post is an ad creative. False for organic posts
+            or platforms where the signal is unavailable. For now is only available
+            for LinkedIn posts.
+          type: boolean
         profileId:
           type: string
           nullable: true

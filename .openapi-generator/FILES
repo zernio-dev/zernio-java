@@ -2523,6 +2523,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/SmsApiTest.java
-src/test/java/dev/zernio/model/SendSms200ResponseTest.java
-src/test/java/dev/zernio/model/SendSmsRequestTest.java

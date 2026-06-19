@@ -18,6 +18,7 @@
 |**platform** | **String** |  |  [optional] |
 |**platformPostUrl** | **URI** |  |  [optional] |
 |**isExternal** | **Boolean** |  |  [optional] |
+|**isAd** | **Boolean** | True when the post is an ad creative. False for organic posts or platforms where the signal is unavailable. For now is only available for LinkedIn posts. |  [optional] |
 |**profileId** | **String** |  |  [optional] |
 |**thumbnailUrl** | **URI** |  |  [optional] |
 |**mediaType** | [**MediaTypeEnum**](#MediaTypeEnum) |  |  [optional] |
