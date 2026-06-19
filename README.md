@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-19T10:47:16.868345851Z[Etc/UTC]
+- Build date: 2026-06-19T13:35:42.013862809Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1332,6 +1332,9 @@ Class | Method | HTTP request | Description
  - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
  - [GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
  - [GetLeadForm200Response](docs/GetLeadForm200Response.md)
+ - [GetLeadForm200ResponseForm](docs/GetLeadForm200ResponseForm.md)
+ - [GetLeadForm200ResponseFormQuestionsInner](docs/GetLeadForm200ResponseFormQuestionsInner.md)
+ - [GetLeadForm200ResponseFormThankYouPage](docs/GetLeadForm200ResponseFormThankYouPage.md)
  - [GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)

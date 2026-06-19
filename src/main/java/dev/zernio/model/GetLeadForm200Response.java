@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetLeadForm200ResponseForm;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -36,7 +37,7 @@ import dev.zernio.ApiClient;
   GetLeadForm200Response.JSON_PROPERTY_STATUS,
   GetLeadForm200Response.JSON_PROPERTY_FORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T10:47:16.868345851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T13:35:42.013862809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLeadForm200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -44,7 +45,7 @@ public class GetLeadForm200Response {
 
   public static final String JSON_PROPERTY_FORM = "form";
   @javax.annotation.Nullable
-  private Object form;
+  private GetLeadForm200ResponseForm form;
 
   public GetLeadForm200Response() { 
   }
@@ -73,7 +74,7 @@ public class GetLeadForm200Response {
   }
 
 
-  public GetLeadForm200Response form(@javax.annotation.Nullable Object form) {
+  public GetLeadForm200Response form(@javax.annotation.Nullable GetLeadForm200ResponseForm form) {
     this.form = form;
     return this;
   }
@@ -85,14 +86,14 @@ public class GetLeadForm200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_FORM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getForm() {
+  public GetLeadForm200ResponseForm getForm() {
     return form;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_FORM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setForm(@javax.annotation.Nullable Object form) {
+  public void setForm(@javax.annotation.Nullable GetLeadForm200ResponseForm form) {
     this.form = form;
   }
 
@@ -178,7 +179,7 @@ public class GetLeadForm200Response {
 
     // add `form` to the URL query string
     if (getForm() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForm()))));
+      joiner.add(getForm().toUrlQueryString(prefix + "form" + suffix));
     }
 
     return joiner.toString();

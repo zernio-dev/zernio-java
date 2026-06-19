@@ -462,6 +462,9 @@ docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
 docs/GetInstagramStoryInsights200ResponseDataMetrics.md
 docs/GetLeadForm200Response.md
+docs/GetLeadForm200ResponseForm.md
+docs/GetLeadForm200ResponseFormQuestionsInner.md
+docs/GetLeadForm200ResponseFormThankYouPage.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
 docs/GetLinkedInAggregateAnalytics402Response.md
@@ -1767,6 +1770,9 @@ src/main/java/dev/zernio/model/GetInstagramStoryInsights200Response.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseData.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseDataMetrics.java
 src/main/java/dev/zernio/model/GetLeadForm200Response.java
+src/main/java/dev/zernio/model/GetLeadForm200ResponseForm.java
+src/main/java/dev/zernio/model/GetLeadForm200ResponseFormQuestionsInner.java
+src/main/java/dev/zernio/model/GetLeadForm200ResponseFormThankYouPage.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics200Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics400Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics402Response.java
@@ -2523,3 +2529,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetLeadForm200ResponseFormQuestionsInnerTest.java
+src/test/java/dev/zernio/model/GetLeadForm200ResponseFormTest.java
+src/test/java/dev/zernio/model/GetLeadForm200ResponseFormThankYouPageTest.java

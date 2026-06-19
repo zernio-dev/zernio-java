@@ -97,7 +97,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T10:47:16.868345851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T13:35:42.013862809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4836,7 +4836,7 @@ public class AdsApi {
    * @param accountId Social account ID (a connected account on the target ad platform). (required)
    * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
    * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
-   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)
    * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
    * @return SearchAdTargeting200Response
@@ -4852,7 +4852,7 @@ public class AdsApi {
    * @param accountId Social account ID (a connected account on the target ad platform). (required)
    * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
    * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
-   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)
    * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
    * @param headers Optional headers to include in the request
@@ -4870,7 +4870,7 @@ public class AdsApi {
    * @param accountId Social account ID (a connected account on the target ad platform). (required)
    * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
    * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
-   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)
    * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
    * @return ApiResponse&lt;SearchAdTargeting200Response&gt;
@@ -4886,7 +4886,7 @@ public class AdsApi {
    * @param accountId Social account ID (a connected account on the target ad platform). (required)
    * @param q Search query. For geo, the locality name only (no region/country suffix). (required)
    * @param dimension What to search. &#x60;geo&#x60; resolves locations (scope further with &#x60;geoType&#x60;), &#x60;interest&#x60;/&#x60;behavior&#x60; resolve audience entities, &#x60;income&#x60; resolves income-tier options. Defaults to &#x60;interest&#x60; for backward compatibility with the deprecated /v1/ads/interests alias. (optional, default to interest)
-   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. Defaults to &#x60;city&#x60;. (optional, default to city)
+   * @param geoType Only used when &#x60;dimension&#x3D;geo&#x60;. The kind of location to resolve. &#x60;place&#x60; resolves named points of interest (businesses, landmarks) by proximity. &#x60;neighborhood&#x60; resolves named neighbourhood areas. Defaults to &#x60;city&#x60;. (optional, default to city)
    * @param countryCode ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search. (optional)
    * @param limit Maximum results to return. (optional, default to 25)
    * @param headers Optional headers to include in the request

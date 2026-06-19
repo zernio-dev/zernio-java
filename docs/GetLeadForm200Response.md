@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**status** | **String** |  |  [optional] |
-|**form** | **Object** |  |  [optional] |
+|**form** | [**GetLeadForm200ResponseForm**](GetLeadForm200ResponseForm.md) |  |  [optional] |
 
 
 

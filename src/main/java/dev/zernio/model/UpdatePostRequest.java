@@ -67,7 +67,7 @@ import dev.zernio.ApiClient;
   UpdatePostRequest.JSON_PROPERTY_FACEBOOK_SETTINGS,
   UpdatePostRequest.JSON_PROPERTY_RECYCLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T10:47:16.868345851Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T13:35:42.013862809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

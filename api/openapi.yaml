@@ -20880,8 +20880,9 @@ paths:
           - income
           type: string
         style: form
-      - description: Only used when `dimension=geo`. The kind of location to resolve.
-          Defaults to `city`.
+      - description: "Only used when `dimension=geo`. The kind of location to resolve.\
+          \ `place` resolves named points of interest (businesses, landmarks) by proximity.\
+          \ `neighborhood` resolves named neighbourhood areas. Defaults to `city`."
         explode: true
         in: query
         name: geoType
@@ -20892,8 +20893,12 @@ paths:
           - country
           - region
           - city
+          - subcity
+          - neighborhood
+          - place
           - zip
-          - metro
+          - metro_area
+          - geo_market
           type: string
         style: form
       - description: ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search.
@@ -54867,6 +54872,9 @@ components:
         pagination:
           $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
     createLeadForm_request_questions_inner_options_inner:
+      example:
+        value: value
+        key: key
       properties:
         key:
           type: string
@@ -54946,15 +54954,170 @@ components:
           type: string
         form:
           $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+    getLeadForm_200_response_form_questions_inner:
+      example:
+        inline_context: inline_context
+        options:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        label: label
+        type: type
+        key: key
+      properties:
+        key:
+          type: string
+        label:
+          type: string
+        type:
+          description: "EMAIL, PHONE, FULL_NAME, FIRST_NAME, LAST_NAME, CUSTOM, …"
+          type: string
+        options:
+          items:
+            $ref: "#/components/schemas/createLeadForm_request_questions_inner_options_inner"
+          type: array
+        inline_context:
+          type: string
+    getLeadForm_200_response_form_thank_you_page:
+      example:
+        website_url: https://openapi-generator.tech
+        button_type: VIEW_WEBSITE
+        button_text: button_text
+        title: title
+        body: body
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+        button_text:
+          type: string
+        button_type:
+          example: VIEW_WEBSITE
+          type: string
+        website_url:
+          format: uri
+          type: string
+      nullable: true
+    getLeadForm_200_response_form:
+      description: Full form config — sufficient to duplicate the form via POST /v1/ads/lead-forms.
+      example:
+        privacy_policy_url: https://openapi-generator.tech
+        created_time: 2000-01-23T04:56:07.000+00:00
+        follow_up_action_url: https://openapi-generator.tech
+        name: name
+        questions:
+        - inline_context: inline_context
+          options:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          label: label
+          type: type
+          key: key
+        - inline_context: inline_context
+          options:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          label: label
+          type: type
+          key: key
+        thank_you_page:
+          website_url: https://openapi-generator.tech
+          button_type: VIEW_WEBSITE
+          button_text: button_text
+          title: title
+          body: body
+        id: id
+        context_card: "{}"
+        locale: EN_US
+        status: ACTIVE
+        leads_count: 0
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          description: ARCHIVED forms can't receive new leads.
+          enum:
+          - ACTIVE
+          - ARCHIVED
+          type: string
+        locale:
+          example: EN_US
+          type: string
+        created_time:
+          format: date-time
+          type: string
+        leads_count:
+          type: integer
+        privacy_policy_url:
+          format: uri
+          type: string
+        follow_up_action_url:
+          format: uri
+          type: string
+          nullable: true
+        questions:
+          items:
+            $ref: "#/components/schemas/getLeadForm_200_response_form_questions_inner"
+          type: array
+        thank_you_page:
+          $ref: "#/components/schemas/getLeadForm_200_response_form_thank_you_page"
+        context_card:
+          description: "Intro card shown before the form questions (title, content,\
+            \ button label)."
+          type: object
+          nullable: true
     getLeadForm_200_response:
       example:
-        form: "{}"
-        status: status
+        form:
+          privacy_policy_url: https://openapi-generator.tech
+          created_time: 2000-01-23T04:56:07.000+00:00
+          follow_up_action_url: https://openapi-generator.tech
+          name: name
+          questions:
+          - inline_context: inline_context
+            options:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            label: label
+            type: type
+            key: key
+          - inline_context: inline_context
+            options:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            label: label
+            type: type
+            key: key
+          thank_you_page:
+            website_url: https://openapi-generator.tech
+            button_type: VIEW_WEBSITE
+            button_text: button_text
+            title: title
+            body: body
+          id: id
+          context_card: "{}"
+          locale: EN_US
+          status: ACTIVE
+          leads_count: 0
+        status: success
       properties:
         status:
+          example: success
           type: string
         form:
-          type: object
+          $ref: "#/components/schemas/getLeadForm_200_response_form"
     archiveLeadForm_200_response:
       example:
         formId: formId
