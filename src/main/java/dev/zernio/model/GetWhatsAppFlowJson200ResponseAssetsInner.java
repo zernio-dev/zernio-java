@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppFlowJson200ResponseAssetsInner.JSON_PROPERTY_ASSET_TYPE,
   GetWhatsAppFlowJson200ResponseAssetsInner.JSON_PROPERTY_DOWNLOAD_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-18T15:28:24.721668424Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T07:39:16.556997376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppFlowJson200ResponseAssetsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

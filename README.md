@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-18T15:28:24.721668424Z[Etc/UTC]
+- Build date: 2026-06-19T07:39:16.556997376Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -662,6 +662,8 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**unenrollContactWithHttpInfo**](docs/SequencesApi.md#unenrollContactWithHttpInfo) | **DELETE** /v1/sequences/{sequenceId}/enroll/{contactId} | Unenroll contact
 *SequencesApi* | [**updateSequence**](docs/SequencesApi.md#updateSequence) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *SequencesApi* | [**updateSequenceWithHttpInfo**](docs/SequencesApi.md#updateSequenceWithHttpInfo) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
+*SmsApi* | [**sendSms**](docs/SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS or MMS
+*SmsApi* | [**sendSmsWithHttpInfo**](docs/SmsApi.md#sendSmsWithHttpInfo) | **POST** /v1/sms/messages | Send an SMS or MMS
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share a tracking tag with an ad account
 *TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share a tracking tag with an ad account
 *TrackingTagsApi* | [**createTrackingTag**](docs/TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag (Meta Pixel)
@@ -1783,6 +1785,8 @@ Class | Method | HTTP request | Description
  - [SendPrivateReplyToCommentRequestButtonsInnerOneOf1](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.md)
  - [SendPrivateReplyToCommentRequestButtonsInnerOneOf2](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.md)
  - [SendPrivateReplyToCommentRequestQuickRepliesInner](docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md)
+ - [SendSms200Response](docs/SendSms200Response.md)
+ - [SendSmsRequest](docs/SendSmsRequest.md)
  - [SendTypingIndicatorRequest](docs/SendTypingIndicatorRequest.md)
  - [SendWhatsAppConversion200Response](docs/SendWhatsAppConversion200Response.md)
  - [SendWhatsAppConversionRequest](docs/SendWhatsAppConversionRequest.md)

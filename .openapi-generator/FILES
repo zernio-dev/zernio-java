@@ -935,6 +935,8 @@ docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.md
 docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md
+docs/SendSms200Response.md
+docs/SendSmsRequest.md
 docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppConversion200Response.md
 docs/SendWhatsAppConversionRequest.md
@@ -950,6 +952,7 @@ docs/SetMessengerMenuRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
 docs/SharedAdAccount.md
+docs/SmsApi.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
@@ -1306,6 +1309,7 @@ src/main/java/dev/zernio/api/QueueApi.java
 src/main/java/dev/zernio/api/RedditSearchApi.java
 src/main/java/dev/zernio/api/ReviewsApi.java
 src/main/java/dev/zernio/api/SequencesApi.java
+src/main/java/dev/zernio/api/SmsApi.java
 src/main/java/dev/zernio/api/TrackingTagsApi.java
 src/main/java/dev/zernio/api/TwitterEngagementApi.java
 src/main/java/dev/zernio/api/UsageApi.java
@@ -2216,6 +2220,8 @@ src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestQuickRepliesInner.java
+src/main/java/dev/zernio/model/SendSms200Response.java
+src/main/java/dev/zernio/model/SendSmsRequest.java
 src/main/java/dev/zernio/model/SendTypingIndicatorRequest.java
 src/main/java/dev/zernio/model/SendWhatsAppConversion200Response.java
 src/main/java/dev/zernio/model/SendWhatsAppConversionRequest.java
@@ -2517,3 +2523,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/SmsApiTest.java
+src/test/java/dev/zernio/model/SendSms200ResponseTest.java
+src/test/java/dev/zernio/model/SendSmsRequestTest.java

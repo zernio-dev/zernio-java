@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageEditedEditHistoryInner.JSON_PROPERTY_ATTACHMENTS,
   WebhookPayloadMessageEditedEditHistoryInner.JSON_PROPERTY_EDITED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-18T15:28:24.721668424Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T07:39:16.556997376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageEditedEditHistoryInner {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull

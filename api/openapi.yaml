@@ -211,6 +211,34 @@ tags:
     bot replies, and webhook payloads end-to-end with zero number-purchase overhead.
   name: WhatsApp Sandbox
 paths:
+  /v1/sms/messages:
+    post:
+      description: |
+        Send a text (SMS) or media (MMS) message from one of your SMS-enabled numbers.
+
+        Provide `text`, `mediaUrls`, or both. Supply an `Idempotency-Key` header to make retries safe (a repeated key replays the original result instead of sending again). US numbers must have an approved carrier registration before they can deliver.
+      operationId: sendSms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sendSms_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendSms_200_response"
+          description: Message accepted for delivery.
+      security:
+      - bearerAuth: []
+      summary: Send an SMS or MMS
+      tags:
+      - SMS
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/tools/validate/post-length:
     post:
       description: |
@@ -31985,6 +32013,42 @@ components:
           type: string
       required:
       - id
+    sendSms_request:
+      properties:
+        from:
+          description: One of your SMS-enabled numbers (E.164).
+          example: "+14155550192"
+          type: string
+        to:
+          description: Recipient number (E.164).
+          example: "+14155550123"
+          type: string
+        text:
+          example: Your verification code is 123456.
+          type: string
+        mediaUrls:
+          description: "Publicly reachable media URLs for MMS (max 10, total < 1MB)."
+          items:
+            format: uri
+            type: string
+          type: array
+      required:
+      - from
+      - to
+    sendSms_200_response:
+      example:
+        conversationId: conversationId
+        id: id
+        status: sent
+      properties:
+        id:
+          description: Telnyx message id
+          type: string
+        conversationId:
+          type: string
+        status:
+          example: sent
+          type: string
     validatePostLength_request:
       properties:
         text:
