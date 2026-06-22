@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_CONNECTED,
   GetWhatsAppPhoneNumbers200Response.JSON_PROPERTY_SANDBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T13:35:42.013862809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T09:33:43.285089589Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200Response {
   public static final String JSON_PROPERTY_NUMBERS = "numbers";
   @javax.annotation.Nullable

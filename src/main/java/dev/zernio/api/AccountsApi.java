@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-19T13:35:42.013862809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T09:33:43.285089589Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1001,7 +1001,7 @@ public class AccountsApi {
 
   /**
    * Move account to a different profile
-   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)
    * @return MoveAccountToProfile200Response
@@ -1013,7 +1013,7 @@ public class AccountsApi {
 
   /**
    * Move account to a different profile
-   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1027,7 +1027,7 @@ public class AccountsApi {
 
   /**
    * Move account to a different profile
-   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)
    * @return ApiResponse&lt;MoveAccountToProfile200Response&gt;
@@ -1039,7 +1039,7 @@ public class AccountsApi {
 
   /**
    * Move account to a different profile
-   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
+   * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  A profile can hold only one account per platform. Moving an account into a profile that already has an account of the same platform returns 409 (&#x60;profile_platform_conflict&#x60;).  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)
    * @param headers Optional headers to include in the request
