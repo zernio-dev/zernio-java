@@ -33,7 +33,9 @@ import java.math.BigDecimal;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -55,6 +57,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_BID_STRATEGY,
   BoostPostRequest.JSON_PROPERTY_BID_AMOUNT,
   BoostPostRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  BoostPostRequest.JSON_PROPERTY_RAW_TARGETING,
   BoostPostRequest.JSON_PROPERTY_TRACKING,
   BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   BoostPostRequest.JSON_PROPERTY_LINK_URL,
@@ -63,7 +66,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T11:26:10.192415189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -161,6 +164,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_RAW_TARGETING = "rawTargeting";
+  @javax.annotation.Nullable
+  private Map<String, Object> rawTargeting = new HashMap<>();
 
   public static final String JSON_PROPERTY_TRACKING = "tracking";
   @javax.annotation.Nullable
@@ -544,6 +551,38 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest rawTargeting(@javax.annotation.Nullable Map<String, Object> rawTargeting) {
+    this.rawTargeting = rawTargeting;
+    return this;
+  }
+
+  public BoostPostRequest putRawTargetingItem(String key, Object rawTargetingItem) {
+    if (this.rawTargeting == null) {
+      this.rawTargeting = new HashMap<>();
+    }
+    this.rawTargeting.put(key, rawTargetingItem);
+    return this;
+  }
+
+  /**
+   * Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case: &#x60;geo_locations&#x60;, &#x60;custom_audiences&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, etc.). Use it to target specific custom or lookalike audiences, or to clone a campaign&#39;s targeting exactly. Mutually exclusive with &#x60;targeting&#x60; (sending both → 422). Sent as-is; Meta validates and surfaces any errors. 
+   * @return rawTargeting
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RAW_TARGETING, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getRawTargeting() {
+    return rawTargeting;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RAW_TARGETING, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRawTargeting(@javax.annotation.Nullable Map<String, Object> rawTargeting) {
+    this.rawTargeting = rawTargeting;
+  }
+
+
   public BoostPostRequest tracking(@javax.annotation.Nullable BoostPostRequestTracking tracking) {
     this.tracking = tracking;
     return this;
@@ -745,6 +784,7 @@ public class BoostPostRequest {
         Objects.equals(this.bidStrategy, boostPostRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, boostPostRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, boostPostRequest.roasAverageFloor) &&
+        Objects.equals(this.rawTargeting, boostPostRequest.rawTargeting) &&
         Objects.equals(this.tracking, boostPostRequest.tracking) &&
         Objects.equals(this.specialAdCategories, boostPostRequest.specialAdCategories) &&
         Objects.equals(this.linkUrl, boostPostRequest.linkUrl) &&
@@ -756,7 +796,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, bidStrategy, bidAmount, roasAverageFloor, tracking, specialAdCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, bidStrategy, bidAmount, roasAverageFloor, rawTargeting, tracking, specialAdCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -776,6 +816,7 @@ public class BoostPostRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    rawTargeting: ").append(toIndentedString(rawTargeting)).append("\n");
     sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
@@ -893,6 +934,15 @@ public class BoostPostRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `rawTargeting` to the URL query string
+    if (getRawTargeting() != null) {
+      for (String _key : getRawTargeting().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%srawTargeting%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getRawTargeting().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getRawTargeting().get(_key)))));
+      }
     }
 
     // add `tracking` to the URL query string

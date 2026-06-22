@@ -2535,6 +2535,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateLeadFormRequestContextCardTest.java
-src/test/java/dev/zernio/model/CreateStandaloneAdRequestExcludedLocationsTest.java
-src/test/java/dev/zernio/model/CreateStandaloneAdRequestPlacesInnerTest.java
