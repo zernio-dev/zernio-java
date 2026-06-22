@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateLeadFormRequestContextCard;
 import dev.zernio.model.CreateLeadFormRequestQuestionsInner;
 import java.net.URI;
 import java.util.ArrayList;
@@ -49,9 +50,14 @@ import dev.zernio.ApiClient;
   CreateLeadFormRequest.JSON_PROPERTY_THANK_YOU_BUTTON_TEXT,
   CreateLeadFormRequest.JSON_PROPERTY_THANK_YOU_BUTTON_TYPE,
   CreateLeadFormRequest.JSON_PROPERTY_THANK_YOU_WEBSITE_URL,
-  CreateLeadFormRequest.JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY
+  CreateLeadFormRequest.JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY,
+  CreateLeadFormRequest.JSON_PROPERTY_FORM_TYPE,
+  CreateLeadFormRequest.JSON_PROPERTY_BLOCK_DISPLAY_FOR_NON_TARGETED_VIEWER,
+  CreateLeadFormRequest.JSON_PROPERTY_ALLOW_ORGANIC_LEAD_GEN,
+  CreateLeadFormRequest.JSON_PROPERTY_QUESTION_PAGE_CUSTOM_HEADLINE,
+  CreateLeadFormRequest.JSON_PROPERTY_CONTEXT_CARD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T09:33:43.285089589Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T11:26:10.192415189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateLeadFormRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -104,6 +110,63 @@ public class CreateLeadFormRequest {
   public static final String JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY = "isOptimizedForQuality";
   @javax.annotation.Nullable
   private Boolean isOptimizedForQuality;
+
+  /**
+   * Form type. MORE_VOLUME &#x3D; optimized for lead quantity (default). HIGHER_INTENT &#x3D; adds a review/confirmation step before submit. RICH_CREATIVE &#x3D; includes context card and custom headline to educate users before they submit. Supersedes isOptimizedForQuality.
+   */
+  public enum FormTypeEnum {
+    MORE_VOLUME(String.valueOf("MORE_VOLUME")),
+    
+    HIGHER_INTENT(String.valueOf("HIGHER_INTENT")),
+    
+    RICH_CREATIVE(String.valueOf("RICH_CREATIVE"));
+
+    private String value;
+
+    FormTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static FormTypeEnum fromValue(String value) {
+      for (FormTypeEnum b : FormTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_FORM_TYPE = "formType";
+  @javax.annotation.Nullable
+  private FormTypeEnum formType;
+
+  public static final String JSON_PROPERTY_BLOCK_DISPLAY_FOR_NON_TARGETED_VIEWER = "blockDisplayForNonTargetedViewer";
+  @javax.annotation.Nullable
+  private Boolean blockDisplayForNonTargetedViewer;
+
+  public static final String JSON_PROPERTY_ALLOW_ORGANIC_LEAD_GEN = "allowOrganicLeadGen";
+  @javax.annotation.Nullable
+  private Boolean allowOrganicLeadGen;
+
+  public static final String JSON_PROPERTY_QUESTION_PAGE_CUSTOM_HEADLINE = "questionPageCustomHeadline";
+  @javax.annotation.Nullable
+  private String questionPageCustomHeadline;
+
+  public static final String JSON_PROPERTY_CONTEXT_CARD = "contextCard";
+  @javax.annotation.Nullable
+  private CreateLeadFormRequestContextCard contextCard;
 
   public CreateLeadFormRequest() { 
   }
@@ -410,7 +473,7 @@ public class CreateLeadFormRequest {
   }
 
   /**
-   * Get isOptimizedForQuality
+   * Legacy form type toggle. Prefer formType instead. false &#x3D; More Volume, true &#x3D; Higher Intent.
    * @return isOptimizedForQuality
    */
   @javax.annotation.Nullable
@@ -425,6 +488,126 @@ public class CreateLeadFormRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsOptimizedForQuality(@javax.annotation.Nullable Boolean isOptimizedForQuality) {
     this.isOptimizedForQuality = isOptimizedForQuality;
+  }
+
+
+  public CreateLeadFormRequest formType(@javax.annotation.Nullable FormTypeEnum formType) {
+    this.formType = formType;
+    return this;
+  }
+
+  /**
+   * Form type. MORE_VOLUME &#x3D; optimized for lead quantity (default). HIGHER_INTENT &#x3D; adds a review/confirmation step before submit. RICH_CREATIVE &#x3D; includes context card and custom headline to educate users before they submit. Supersedes isOptimizedForQuality.
+   * @return formType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FORM_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public FormTypeEnum getFormType() {
+    return formType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FORM_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFormType(@javax.annotation.Nullable FormTypeEnum formType) {
+    this.formType = formType;
+  }
+
+
+  public CreateLeadFormRequest blockDisplayForNonTargetedViewer(@javax.annotation.Nullable Boolean blockDisplayForNonTargetedViewer) {
+    this.blockDisplayForNonTargetedViewer = blockDisplayForNonTargetedViewer;
+    return this;
+  }
+
+  /**
+   * Sharing setting. true &#x3D; Restricted (only people targeted by the ad can open the form link). false &#x3D; Open (shareable link, default).
+   * @return blockDisplayForNonTargetedViewer
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BLOCK_DISPLAY_FOR_NON_TARGETED_VIEWER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getBlockDisplayForNonTargetedViewer() {
+    return blockDisplayForNonTargetedViewer;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BLOCK_DISPLAY_FOR_NON_TARGETED_VIEWER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBlockDisplayForNonTargetedViewer(@javax.annotation.Nullable Boolean blockDisplayForNonTargetedViewer) {
+    this.blockDisplayForNonTargetedViewer = blockDisplayForNonTargetedViewer;
+  }
+
+
+  public CreateLeadFormRequest allowOrganicLeadGen(@javax.annotation.Nullable Boolean allowOrganicLeadGen) {
+    this.allowOrganicLeadGen = allowOrganicLeadGen;
+    return this;
+  }
+
+  /**
+   * Flexible form delivery. true &#x3D; the form can surface organically on the Page (not just as a paid ad). Defaults to false.
+   * @return allowOrganicLeadGen
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_ORGANIC_LEAD_GEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAllowOrganicLeadGen() {
+    return allowOrganicLeadGen;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_ORGANIC_LEAD_GEN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAllowOrganicLeadGen(@javax.annotation.Nullable Boolean allowOrganicLeadGen) {
+    this.allowOrganicLeadGen = allowOrganicLeadGen;
+  }
+
+
+  public CreateLeadFormRequest questionPageCustomHeadline(@javax.annotation.Nullable String questionPageCustomHeadline) {
+    this.questionPageCustomHeadline = questionPageCustomHeadline;
+    return this;
+  }
+
+  /**
+   * Custom subheadline shown above the form fields on the questions page (the contact-information section description). Defaults to Meta&#39;s generic copy when omitted.
+   * @return questionPageCustomHeadline
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUESTION_PAGE_CUSTOM_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQuestionPageCustomHeadline() {
+    return questionPageCustomHeadline;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUESTION_PAGE_CUSTOM_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuestionPageCustomHeadline(@javax.annotation.Nullable String questionPageCustomHeadline) {
+    this.questionPageCustomHeadline = questionPageCustomHeadline;
+  }
+
+
+  public CreateLeadFormRequest contextCard(@javax.annotation.Nullable CreateLeadFormRequestContextCard contextCard) {
+    this.contextCard = contextCard;
+    return this;
+  }
+
+  /**
+   * Get contextCard
+   * @return contextCard
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTEXT_CARD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateLeadFormRequestContextCard getContextCard() {
+    return contextCard;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTEXT_CARD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContextCard(@javax.annotation.Nullable CreateLeadFormRequestContextCard contextCard) {
+    this.contextCard = contextCard;
   }
 
 
@@ -452,12 +635,17 @@ public class CreateLeadFormRequest {
         Objects.equals(this.thankYouButtonText, createLeadFormRequest.thankYouButtonText) &&
         Objects.equals(this.thankYouButtonType, createLeadFormRequest.thankYouButtonType) &&
         Objects.equals(this.thankYouWebsiteUrl, createLeadFormRequest.thankYouWebsiteUrl) &&
-        Objects.equals(this.isOptimizedForQuality, createLeadFormRequest.isOptimizedForQuality);
+        Objects.equals(this.isOptimizedForQuality, createLeadFormRequest.isOptimizedForQuality) &&
+        Objects.equals(this.formType, createLeadFormRequest.formType) &&
+        Objects.equals(this.blockDisplayForNonTargetedViewer, createLeadFormRequest.blockDisplayForNonTargetedViewer) &&
+        Objects.equals(this.allowOrganicLeadGen, createLeadFormRequest.allowOrganicLeadGen) &&
+        Objects.equals(this.questionPageCustomHeadline, createLeadFormRequest.questionPageCustomHeadline) &&
+        Objects.equals(this.contextCard, createLeadFormRequest.contextCard);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, name, questions, privacyPolicyUrl, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, thankYouWebsiteUrl, isOptimizedForQuality);
+    return Objects.hash(accountId, name, questions, privacyPolicyUrl, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, thankYouWebsiteUrl, isOptimizedForQuality, formType, blockDisplayForNonTargetedViewer, allowOrganicLeadGen, questionPageCustomHeadline, contextCard);
   }
 
   @Override
@@ -477,6 +665,11 @@ public class CreateLeadFormRequest {
     sb.append("    thankYouButtonType: ").append(toIndentedString(thankYouButtonType)).append("\n");
     sb.append("    thankYouWebsiteUrl: ").append(toIndentedString(thankYouWebsiteUrl)).append("\n");
     sb.append("    isOptimizedForQuality: ").append(toIndentedString(isOptimizedForQuality)).append("\n");
+    sb.append("    formType: ").append(toIndentedString(formType)).append("\n");
+    sb.append("    blockDisplayForNonTargetedViewer: ").append(toIndentedString(blockDisplayForNonTargetedViewer)).append("\n");
+    sb.append("    allowOrganicLeadGen: ").append(toIndentedString(allowOrganicLeadGen)).append("\n");
+    sb.append("    questionPageCustomHeadline: ").append(toIndentedString(questionPageCustomHeadline)).append("\n");
+    sb.append("    contextCard: ").append(toIndentedString(contextCard)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -592,6 +785,31 @@ public class CreateLeadFormRequest {
     // add `isOptimizedForQuality` to the URL query string
     if (getIsOptimizedForQuality() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisOptimizedForQuality%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsOptimizedForQuality()))));
+    }
+
+    // add `formType` to the URL query string
+    if (getFormType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sformType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFormType()))));
+    }
+
+    // add `blockDisplayForNonTargetedViewer` to the URL query string
+    if (getBlockDisplayForNonTargetedViewer() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sblockDisplayForNonTargetedViewer%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBlockDisplayForNonTargetedViewer()))));
+    }
+
+    // add `allowOrganicLeadGen` to the URL query string
+    if (getAllowOrganicLeadGen() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallowOrganicLeadGen%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllowOrganicLeadGen()))));
+    }
+
+    // add `questionPageCustomHeadline` to the URL query string
+    if (getQuestionPageCustomHeadline() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squestionPageCustomHeadline%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQuestionPageCustomHeadline()))));
+    }
+
+    // add `contextCard` to the URL query string
+    if (getContextCard() != null) {
+      joiner.add(getContextCard().toUrlQueryString(prefix + "contextCard" + suffix));
     }
 
     return joiner.toString();

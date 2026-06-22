@@ -39,9 +39,11 @@ import dev.zernio.ApiClient;
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_NAME,
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_TYPE,
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_PATH,
-  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_AUDIENCE_SIZE
+  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_AUDIENCE_SIZE,
+  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_LATITUDE,
+  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_LONGITUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T09:33:43.285089589Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T11:26:10.192415189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAdTargeting200ResponseResultsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -62,6 +64,14 @@ public class SearchAdTargeting200ResponseResultsInner {
   public static final String JSON_PROPERTY_AUDIENCE_SIZE = "audienceSize";
   @javax.annotation.Nullable
   private Integer audienceSize;
+
+  public static final String JSON_PROPERTY_LATITUDE = "latitude";
+  @javax.annotation.Nullable
+  private Float latitude;
+
+  public static final String JSON_PROPERTY_LONGITUDE = "longitude";
+  @javax.annotation.Nullable
+  private Float longitude;
 
   public SearchAdTargeting200ResponseResultsInner() { 
   }
@@ -194,6 +204,54 @@ public class SearchAdTargeting200ResponseResultsInner {
   }
 
 
+  public SearchAdTargeting200ResponseResultsInner latitude(@javax.annotation.Nullable Float latitude) {
+    this.latitude = latitude;
+    return this;
+  }
+
+  /**
+   * Centre latitude of the location. Populated on Meta geo results (city, neighborhood, place, etc.). Useful for map views.
+   * @return latitude
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LATITUDE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Float getLatitude() {
+    return latitude;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LATITUDE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLatitude(@javax.annotation.Nullable Float latitude) {
+    this.latitude = latitude;
+  }
+
+
+  public SearchAdTargeting200ResponseResultsInner longitude(@javax.annotation.Nullable Float longitude) {
+    this.longitude = longitude;
+    return this;
+  }
+
+  /**
+   * Centre longitude of the location.
+   * @return longitude
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LONGITUDE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Float getLongitude() {
+    return longitude;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LONGITUDE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLongitude(@javax.annotation.Nullable Float longitude) {
+    this.longitude = longitude;
+  }
+
+
   /**
    * Return true if this searchAdTargeting_200_response_results_inner object is equal to o.
    */
@@ -210,12 +268,14 @@ public class SearchAdTargeting200ResponseResultsInner {
         Objects.equals(this.name, searchAdTargeting200ResponseResultsInner.name) &&
         Objects.equals(this.type, searchAdTargeting200ResponseResultsInner.type) &&
         Objects.equals(this.path, searchAdTargeting200ResponseResultsInner.path) &&
-        Objects.equals(this.audienceSize, searchAdTargeting200ResponseResultsInner.audienceSize);
+        Objects.equals(this.audienceSize, searchAdTargeting200ResponseResultsInner.audienceSize) &&
+        Objects.equals(this.latitude, searchAdTargeting200ResponseResultsInner.latitude) &&
+        Objects.equals(this.longitude, searchAdTargeting200ResponseResultsInner.longitude);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, type, path, audienceSize);
+    return Objects.hash(id, name, type, path, audienceSize, latitude, longitude);
   }
 
   @Override
@@ -227,6 +287,8 @@ public class SearchAdTargeting200ResponseResultsInner {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    audienceSize: ").append(toIndentedString(audienceSize)).append("\n");
+    sb.append("    latitude: ").append(toIndentedString(latitude)).append("\n");
+    sb.append("    longitude: ").append(toIndentedString(longitude)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -301,6 +363,16 @@ public class SearchAdTargeting200ResponseResultsInner {
     // add `audienceSize` to the URL query string
     if (getAudienceSize() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saudienceSize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAudienceSize()))));
+    }
+
+    // add `latitude` to the URL query string
+    if (getLatitude() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slatitude%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLatitude()))));
+    }
+
+    // add `longitude` to the URL query string
+    if (getLongitude() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slongitude%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLongitude()))));
     }
 
     return joiner.toString();

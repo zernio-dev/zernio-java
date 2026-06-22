@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-22T09:33:43.285089589Z[Etc/UTC]
+- Build date: 2026-06-22T11:26:10.192415189Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1053,6 +1053,7 @@ Class | Method | HTTP request | Description
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
  - [CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
+ - [CreateLeadFormRequestContextCard](docs/CreateLeadFormRequestContextCard.md)
  - [CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
  - [CreateLeadFormRequestQuestionsInnerOptionsInner](docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
@@ -1082,11 +1083,13 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestCreativesInnerVideo](docs/CreateStandaloneAdRequestCreativesInnerVideo.md)
  - [CreateStandaloneAdRequestCustomLocationsInner](docs/CreateStandaloneAdRequestCustomLocationsInner.md)
  - [CreateStandaloneAdRequestDynamicCreative](docs/CreateStandaloneAdRequestDynamicCreative.md)
+ - [CreateStandaloneAdRequestExcludedLocations](docs/CreateStandaloneAdRequestExcludedLocations.md)
  - [CreateStandaloneAdRequestImages](docs/CreateStandaloneAdRequestImages.md)
  - [CreateStandaloneAdRequestPlacementAssets](docs/CreateStandaloneAdRequestPlacementAssets.md)
  - [CreateStandaloneAdRequestPlacementAssetsRulesInner](docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md)
  - [CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements](docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md)
  - [CreateStandaloneAdRequestPlacements](docs/CreateStandaloneAdRequestPlacements.md)
+ - [CreateStandaloneAdRequestPlacesInner](docs/CreateStandaloneAdRequestPlacesInner.md)
  - [CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)

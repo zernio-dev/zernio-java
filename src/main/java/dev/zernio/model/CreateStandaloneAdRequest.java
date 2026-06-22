@@ -32,9 +32,11 @@ import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestDynamicCreative;
+import dev.zernio.model.CreateStandaloneAdRequestExcludedLocations;
 import dev.zernio.model.CreateStandaloneAdRequestImages;
 import dev.zernio.model.CreateStandaloneAdRequestPlacementAssets;
 import dev.zernio.model.CreateStandaloneAdRequestPlacements;
+import dev.zernio.model.CreateStandaloneAdRequestPlacesInner;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
@@ -98,6 +100,9 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ZIPS,
   CreateStandaloneAdRequest.JSON_PROPERTY_METROS,
   CreateStandaloneAdRequest.JSON_PROPERTY_CUSTOM_LOCATIONS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_PLACES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_NEIGHBORHOODS,
+  CreateStandaloneAdRequest.JSON_PROPERTY_EXCLUDED_LOCATIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_BEHAVIORS,
   CreateStandaloneAdRequest.JSON_PROPERTY_INCOME_TIER,
   CreateStandaloneAdRequest.JSON_PROPERTY_LANGUAGES,
@@ -127,7 +132,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T09:33:43.285089589Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T11:26:10.192415189Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -548,6 +553,18 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
   @javax.annotation.Nullable
   private List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_PLACES = "places";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestPlacesInner> places = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_NEIGHBORHOODS = "neighborhoods";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestPlacesInner> neighborhoods = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_EXCLUDED_LOCATIONS = "excludedLocations";
+  @javax.annotation.Nullable
+  private CreateStandaloneAdRequestExcludedLocations excludedLocations;
 
   public static final String JSON_PROPERTY_BEHAVIORS = "behaviors";
   @javax.annotation.Nullable
@@ -1936,6 +1953,94 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest places(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> places) {
+    this.places = places;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addPlacesItem(CreateStandaloneAdRequestPlacesInner placesItem) {
+    if (this.places == null) {
+      this.places = new ArrayList<>();
+    }
+    this.places.add(placesItem);
+    return this;
+  }
+
+  /**
+   * Named points of interest (businesses, landmarks). Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;place. Maps to geo_locations.places.
+   * @return places
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLACES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestPlacesInner> getPlaces() {
+    return places;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLACES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlaces(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> places) {
+    this.places = places;
+  }
+
+
+  public CreateStandaloneAdRequest neighborhoods(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> neighborhoods) {
+    this.neighborhoods = neighborhoods;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addNeighborhoodsItem(CreateStandaloneAdRequestPlacesInner neighborhoodsItem) {
+    if (this.neighborhoods == null) {
+      this.neighborhoods = new ArrayList<>();
+    }
+    this.neighborhoods.add(neighborhoodsItem);
+    return this;
+  }
+
+  /**
+   * Named neighbourhood areas. Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;neighborhood. Maps to geo_locations.neighborhoods.
+   * @return neighborhoods
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NEIGHBORHOODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestPlacesInner> getNeighborhoods() {
+    return neighborhoods;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NEIGHBORHOODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNeighborhoods(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> neighborhoods) {
+    this.neighborhoods = neighborhoods;
+  }
+
+
+  public CreateStandaloneAdRequest excludedLocations(@javax.annotation.Nullable CreateStandaloneAdRequestExcludedLocations excludedLocations) {
+    this.excludedLocations = excludedLocations;
+    return this;
+  }
+
+  /**
+   * Get excludedLocations
+   * @return excludedLocations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateStandaloneAdRequestExcludedLocations getExcludedLocations() {
+    return excludedLocations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExcludedLocations(@javax.annotation.Nullable CreateStandaloneAdRequestExcludedLocations excludedLocations) {
+    this.excludedLocations = excludedLocations;
+  }
+
+
   public CreateStandaloneAdRequest behaviors(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> behaviors) {
     this.behaviors = behaviors;
     return this;
@@ -2725,6 +2830,9 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.zips, createStandaloneAdRequest.zips) &&
         Objects.equals(this.metros, createStandaloneAdRequest.metros) &&
         Objects.equals(this.customLocations, createStandaloneAdRequest.customLocations) &&
+        Objects.equals(this.places, createStandaloneAdRequest.places) &&
+        Objects.equals(this.neighborhoods, createStandaloneAdRequest.neighborhoods) &&
+        Objects.equals(this.excludedLocations, createStandaloneAdRequest.excludedLocations) &&
         Objects.equals(this.behaviors, createStandaloneAdRequest.behaviors) &&
         Objects.equals(this.incomeTier, createStandaloneAdRequest.incomeTier) &&
         Objects.equals(this.languages, createStandaloneAdRequest.languages) &&
@@ -2757,7 +2865,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, places, neighborhoods, excludedLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2805,6 +2913,9 @@ public class CreateStandaloneAdRequest {
     sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
     sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
     sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
+    sb.append("    places: ").append(toIndentedString(places)).append("\n");
+    sb.append("    neighborhoods: ").append(toIndentedString(neighborhoods)).append("\n");
+    sb.append("    excludedLocations: ").append(toIndentedString(excludedLocations)).append("\n");
     sb.append("    behaviors: ").append(toIndentedString(behaviors)).append("\n");
     sb.append("    incomeTier: ").append(toIndentedString(incomeTier)).append("\n");
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
@@ -3122,6 +3233,31 @@ public class CreateStandaloneAdRequest {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `places` to the URL query string
+    if (getPlaces() != null) {
+      for (int i = 0; i < getPlaces().size(); i++) {
+        if (getPlaces().get(i) != null) {
+          joiner.add(getPlaces().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%splaces%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `neighborhoods` to the URL query string
+    if (getNeighborhoods() != null) {
+      for (int i = 0; i < getNeighborhoods().size(); i++) {
+        if (getNeighborhoods().get(i) != null) {
+          joiner.add(getNeighborhoods().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sneighborhoods%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `excludedLocations` to the URL query string
+    if (getExcludedLocations() != null) {
+      joiner.add(getExcludedLocations().toUrlQueryString(prefix + "excludedLocations" + suffix));
     }
 
     // add `behaviors` to the URL query string

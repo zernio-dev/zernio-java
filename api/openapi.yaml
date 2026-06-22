@@ -20888,8 +20888,10 @@ paths:
           type: string
         style: form
       - description: "Only used when `dimension=geo`. The kind of location to resolve.\
-          \ `place` resolves named points of interest (businesses, landmarks) by proximity.\
-          \ `neighborhood` resolves named neighbourhood areas. Defaults to `city`."
+          \ `place` resolves named points of interest (businesses, landmarks). `neighborhood`\
+          \ resolves named neighbourhood areas. Use `all` to search every geo type\
+          \ in a single relevance-ranked call — mirrors Meta's own unified search\
+          \ box. Defaults to `city`."
         explode: true
         in: query
         name: geoType
@@ -20897,6 +20899,7 @@ paths:
         schema:
           default: city
           enum:
+          - all
           - country
           - region
           - city
@@ -53690,6 +53693,33 @@ components:
       - latitude
       - longitude
       - radius
+    createStandaloneAd_request_places_inner:
+      properties:
+        key:
+          type: string
+      required:
+      - key
+    createStandaloneAd_request_excludedLocations:
+      description: "Geo exclusions. Meta only. Maps to excluded_geo_locations. Supports\
+        \ countries, regions, cities, and zips."
+      properties:
+        countries:
+          description: ISO-3166 alpha-2 country codes to exclude.
+          items:
+            type: string
+          type: array
+        regions:
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
+          type: array
+        cities:
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
+          type: array
+        zips:
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
+          type: array
     createStandaloneAd_request_behaviors_inner:
       properties:
         id:
@@ -54474,6 +54504,21 @@ components:
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_customLocations_inner"
           type: array
+        places:
+          description: "Named points of interest (businesses, landmarks). Meta only.\
+            \ `key` from /v1/ads/targeting/search?dimension=geo&geoType=place. Maps\
+            \ to geo_locations.places."
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
+          type: array
+        neighborhoods:
+          description: Named neighbourhood areas. Meta only. `key` from /v1/ads/targeting/search?dimension=geo&geoType=neighborhood.
+            Maps to geo_locations.neighborhoods.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
+          type: array
+        excludedLocations:
+          $ref: "#/components/schemas/createStandaloneAd_request_excludedLocations"
         behaviors:
           description: Behaviour entities from /v1/ads/targeting/search?dimension=behavior.
             Supported on Meta and TikTok. Each must include id.
@@ -54906,6 +54951,31 @@ components:
           type: string
       required:
       - type
+    createLeadForm_request_contextCard:
+      description: Intro card shown before the questions page. Omit to skip the intro
+        screen.
+      properties:
+        title:
+          description: Headline / title of the intro card.
+          type: string
+        content:
+          description: Body text lines shown on the intro card.
+          items:
+            type: string
+          type: array
+        style:
+          description: Visual layout of the intro card.
+          enum:
+          - LIST_STYLE
+          - PARAGRAPH_STYLE
+          type: string
+        buttonText:
+          description: CTA button label on the intro card.
+          type: string
+        coverPhoto:
+          description: Image hash of the cover photo (obtain from the Meta Ad Images
+            API). Omit to show no image.
+          type: string
     createLeadForm_request:
       properties:
         accountId:
@@ -54943,7 +55013,34 @@ components:
           format: uri
           type: string
         isOptimizedForQuality:
+          description: "Legacy form type toggle. Prefer formType instead. false =\
+            \ More Volume, true = Higher Intent."
           type: boolean
+        formType:
+          description: Form type. MORE_VOLUME = optimized for lead quantity (default).
+            HIGHER_INTENT = adds a review/confirmation step before submit. RICH_CREATIVE
+            = includes context card and custom headline to educate users before they
+            submit. Supersedes isOptimizedForQuality.
+          enum:
+          - MORE_VOLUME
+          - HIGHER_INTENT
+          - RICH_CREATIVE
+          type: string
+        blockDisplayForNonTargetedViewer:
+          description: "Sharing setting. true = Restricted (only people targeted by\
+            \ the ad can open the form link). false = Open (shareable link, default)."
+          type: boolean
+        allowOrganicLeadGen:
+          description: Flexible form delivery. true = the form can surface organically
+            on the Page (not just as a paid ad). Defaults to false.
+          type: boolean
+        questionPageCustomHeadline:
+          description: Custom subheadline shown above the form fields on the questions
+            page (the contact-information section description). Defaults to Meta's
+            generic copy when omitted.
+          type: string
+        contextCard:
+          $ref: "#/components/schemas/createLeadForm_request_contextCard"
       required:
       - accountId
       - name
@@ -55273,9 +55370,11 @@ components:
         - path
         - path
         audienceSize: 0
+        latitude: 6.0274563
         name: name
         id: id
         type: type
+        longitude: 1.4658129
       properties:
         id:
           description: The platform's opaque id. Use as a geo `key` (regions/cities/zips/metros)
@@ -55299,6 +55398,17 @@ components:
             \ platform returns it."
           type: integer
           nullable: true
+        latitude:
+          description: "Centre latitude of the location. Populated on Meta geo results\
+            \ (city, neighborhood, place, etc.). Useful for map views."
+          format: float
+          type: number
+          nullable: true
+        longitude:
+          description: Centre longitude of the location.
+          format: float
+          type: number
+          nullable: true
       required:
       - id
       - name
@@ -55310,16 +55420,20 @@ components:
           - path
           - path
           audienceSize: 0
+          latitude: 6.0274563
           name: name
           id: id
           type: type
+          longitude: 1.4658129
         - path:
           - path
           - path
           audienceSize: 0
+          latitude: 6.0274563
           name: name
           id: id
           type: type
+          longitude: 1.4658129
       properties:
         results:
           items:
