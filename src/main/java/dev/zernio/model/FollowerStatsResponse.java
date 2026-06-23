@@ -25,10 +25,13 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AccountWithFollowerStats;
-import dev.zernio.model.GetFollowerStats200ResponseDateRange;
+import dev.zernio.model.FollowerStatsResponseDateRange;
+import dev.zernio.model.FollowerStatsResponseStatsValueInner;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,59 +41,27 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   FollowerStatsResponse.JSON_PROPERTY_ACCOUNTS,
+  FollowerStatsResponse.JSON_PROPERTY_STATS,
   FollowerStatsResponse.JSON_PROPERTY_DATE_RANGE,
-  FollowerStatsResponse.JSON_PROPERTY_AGGREGATION
+  FollowerStatsResponse.JSON_PROPERTY_GRANULARITY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FollowerStatsResponse {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
   @javax.annotation.Nullable
   private List<AccountWithFollowerStats> accounts = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_STATS = "stats";
+  @javax.annotation.Nullable
+  private Map<String, List<FollowerStatsResponseStatsValueInner>> stats = new HashMap<>();
+
   public static final String JSON_PROPERTY_DATE_RANGE = "dateRange";
   @javax.annotation.Nullable
-  private GetFollowerStats200ResponseDateRange dateRange;
+  private FollowerStatsResponseDateRange dateRange;
 
-  /**
-   * Gets or Sets aggregation
-   */
-  public enum AggregationEnum {
-    DAILY(String.valueOf("daily")),
-    
-    WEEKLY(String.valueOf("weekly")),
-    
-    MONTHLY(String.valueOf("monthly"));
-
-    private String value;
-
-    AggregationEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AggregationEnum fromValue(String value) {
-      for (AggregationEnum b : AggregationEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_AGGREGATION = "aggregation";
+  public static final String JSON_PROPERTY_GRANULARITY = "granularity";
   @javax.annotation.Nullable
-  private AggregationEnum aggregation;
+  private String granularity;
 
   public FollowerStatsResponse() { 
   }
@@ -127,7 +98,39 @@ public class FollowerStatsResponse {
   }
 
 
-  public FollowerStatsResponse dateRange(@javax.annotation.Nullable GetFollowerStats200ResponseDateRange dateRange) {
+  public FollowerStatsResponse stats(@javax.annotation.Nullable Map<String, List<FollowerStatsResponseStatsValueInner>> stats) {
+    this.stats = stats;
+    return this;
+  }
+
+  public FollowerStatsResponse putStatsItem(String key, List<FollowerStatsResponseStatsValueInner> statsItem) {
+    if (this.stats == null) {
+      this.stats = new HashMap<>();
+    }
+    this.stats.put(key, statsItem);
+    return this;
+  }
+
+  /**
+   * Get stats
+   * @return stats
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, List<FollowerStatsResponseStatsValueInner>> getStats() {
+    return stats;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStats(@javax.annotation.Nullable Map<String, List<FollowerStatsResponseStatsValueInner>> stats) {
+    this.stats = stats;
+  }
+
+
+  public FollowerStatsResponse dateRange(@javax.annotation.Nullable FollowerStatsResponseDateRange dateRange) {
     this.dateRange = dateRange;
     return this;
   }
@@ -139,39 +142,39 @@ public class FollowerStatsResponse {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_DATE_RANGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetFollowerStats200ResponseDateRange getDateRange() {
+  public FollowerStatsResponseDateRange getDateRange() {
     return dateRange;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_DATE_RANGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDateRange(@javax.annotation.Nullable GetFollowerStats200ResponseDateRange dateRange) {
+  public void setDateRange(@javax.annotation.Nullable FollowerStatsResponseDateRange dateRange) {
     this.dateRange = dateRange;
   }
 
 
-  public FollowerStatsResponse aggregation(@javax.annotation.Nullable AggregationEnum aggregation) {
-    this.aggregation = aggregation;
+  public FollowerStatsResponse granularity(@javax.annotation.Nullable String granularity) {
+    this.granularity = granularity;
     return this;
   }
 
   /**
-   * Get aggregation
-   * @return aggregation
+   * Get granularity
+   * @return granularity
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AGGREGATION, required = false)
+  @JsonProperty(value = JSON_PROPERTY_GRANULARITY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AggregationEnum getAggregation() {
-    return aggregation;
+  public String getGranularity() {
+    return granularity;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_AGGREGATION, required = false)
+  @JsonProperty(value = JSON_PROPERTY_GRANULARITY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAggregation(@javax.annotation.Nullable AggregationEnum aggregation) {
-    this.aggregation = aggregation;
+  public void setGranularity(@javax.annotation.Nullable String granularity) {
+    this.granularity = granularity;
   }
 
 
@@ -188,13 +191,14 @@ public class FollowerStatsResponse {
     }
     FollowerStatsResponse followerStatsResponse = (FollowerStatsResponse) o;
     return Objects.equals(this.accounts, followerStatsResponse.accounts) &&
+        Objects.equals(this.stats, followerStatsResponse.stats) &&
         Objects.equals(this.dateRange, followerStatsResponse.dateRange) &&
-        Objects.equals(this.aggregation, followerStatsResponse.aggregation);
+        Objects.equals(this.granularity, followerStatsResponse.granularity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accounts, dateRange, aggregation);
+    return Objects.hash(accounts, stats, dateRange, granularity);
   }
 
   @Override
@@ -202,8 +206,9 @@ public class FollowerStatsResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class FollowerStatsResponse {\n");
     sb.append("    accounts: ").append(toIndentedString(accounts)).append("\n");
+    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("    dateRange: ").append(toIndentedString(dateRange)).append("\n");
-    sb.append("    aggregation: ").append(toIndentedString(aggregation)).append("\n");
+    sb.append("    granularity: ").append(toIndentedString(granularity)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -261,14 +266,23 @@ public class FollowerStatsResponse {
       }
     }
 
+    // add `stats` to the URL query string
+    if (getStats() != null) {
+      for (String _key : getStats().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sstats%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getStats().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getStats().get(_key)))));
+      }
+    }
+
     // add `dateRange` to the URL query string
     if (getDateRange() != null) {
       joiner.add(getDateRange().toUrlQueryString(prefix + "dateRange" + suffix));
     }
 
-    // add `aggregation` to the URL query string
-    if (getAggregation() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%saggregation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAggregation()))));
+    // add `granularity` to the URL query string
+    if (getGranularity() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgranularity%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGranularity()))));
     }
 
     return joiner.toString();

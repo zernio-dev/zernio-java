@@ -9,6 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**success** | **Boolean** |  |  [optional] |
 |**deleted** | **Boolean** |  |  [optional] |
+|**deletedCount** | **Integer** |  |  [optional] |
+|**message** | **String** |  |  [optional] |
 
 
 

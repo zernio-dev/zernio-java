@@ -4,14 +4,14 @@
 
 ## oneOf schemas
 * [ListQueueSlots200ResponseOneOf](ListQueueSlots200ResponseOneOf.md)
-* [ListQueueSlots200ResponseOneOf1](ListQueueSlots200ResponseOneOf1.md)
+* [QueueSlotsResponse](QueueSlotsResponse.md)
 
 ## Example
 ```java
 // Import classes:
 import dev.zernio.model.ListQueueSlots200Response;
 import dev.zernio.model.ListQueueSlots200ResponseOneOf;
-import dev.zernio.model.ListQueueSlots200ResponseOneOf1;
+import dev.zernio.model.QueueSlotsResponse;
 
 public class Example {
     public static void main(String[] args) {
@@ -24,12 +24,12 @@ public class Example {
         // to get back the ListQueueSlots200ResponseOneOf set earlier
         ListQueueSlots200ResponseOneOf testListQueueSlots200ResponseOneOf = (ListQueueSlots200ResponseOneOf) exampleListQueueSlots200Response.getActualInstance();
 
-        // create a new ListQueueSlots200ResponseOneOf1
-        ListQueueSlots200ResponseOneOf1 exampleListQueueSlots200ResponseOneOf1 = new ListQueueSlots200ResponseOneOf1();
-        // set ListQueueSlots200Response to ListQueueSlots200ResponseOneOf1
-        exampleListQueueSlots200Response.setActualInstance(exampleListQueueSlots200ResponseOneOf1);
-        // to get back the ListQueueSlots200ResponseOneOf1 set earlier
-        ListQueueSlots200ResponseOneOf1 testListQueueSlots200ResponseOneOf1 = (ListQueueSlots200ResponseOneOf1) exampleListQueueSlots200Response.getActualInstance();
+        // create a new QueueSlotsResponse
+        QueueSlotsResponse exampleQueueSlotsResponse = new QueueSlotsResponse();
+        // set ListQueueSlots200Response to QueueSlotsResponse
+        exampleListQueueSlots200Response.setActualInstance(exampleQueueSlotsResponse);
+        // to get back the QueueSlotsResponse set earlier
+        QueueSlotsResponse testQueueSlotsResponse = (QueueSlotsResponse) exampleListQueueSlots200Response.getActualInstance();
     }
 }
 ```

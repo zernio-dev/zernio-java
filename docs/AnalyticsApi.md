@@ -911,7 +911,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 ## getFollowerStats
 
-> GetFollowerStats200Response getFollowerStats(accountIds, profileId, fromDate, toDate, granularity)
+> FollowerStatsResponse getFollowerStats(accountIds, profileId, fromDate, toDate, granularity)
 
 Get follower stats
 
@@ -944,7 +944,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
         try {
-            GetFollowerStats200Response result = apiInstance.getFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
+            FollowerStatsResponse result = apiInstance.getFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getFollowerStats");
@@ -970,7 +970,7 @@ public class Example {
 
 ### Return type
 
-[**GetFollowerStats200Response**](GetFollowerStats200Response.md)
+[**FollowerStatsResponse**](FollowerStatsResponse.md)
 
 
 ### Authorization
@@ -991,7 +991,7 @@ public class Example {
 
 ## getFollowerStatsWithHttpInfo
 
-> ApiResponse<GetFollowerStats200Response> getFollowerStats getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity)
+> ApiResponse<FollowerStatsResponse> getFollowerStats getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity)
 
 Get follower stats
 
@@ -1025,7 +1025,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
         try {
-            ApiResponse<GetFollowerStats200Response> response = apiInstance.getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
+            ApiResponse<FollowerStatsResponse> response = apiInstance.getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1053,7 +1053,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetFollowerStats200Response**](GetFollowerStats200Response.md)>
+ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 
 
 ### Authorization

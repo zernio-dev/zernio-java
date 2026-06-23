@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.Pagination;
 import dev.zernio.model.SocialAccount;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,22 +38,27 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   AccountsListResponse.JSON_PROPERTY_ACCOUNTS,
-  AccountsListResponse.JSON_PROPERTY_HAS_ANALYTICS_ACCESS
+  AccountsListResponse.JSON_PROPERTY_HAS_ANALYTICS_ACCESS,
+  AccountsListResponse.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsListResponse {
   public static final String JSON_PROPERTY_ACCOUNTS = "accounts";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<SocialAccount> accounts = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HAS_ANALYTICS_ACCESS = "hasAnalyticsAccess";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private Boolean hasAnalyticsAccess;
+
+  public static final String JSON_PROPERTY_PAGINATION = "pagination";
+  @javax.annotation.Nullable
+  private Pagination pagination;
 
   public AccountsListResponse() { 
   }
 
-  public AccountsListResponse accounts(@javax.annotation.Nullable List<SocialAccount> accounts) {
+  public AccountsListResponse accounts(@javax.annotation.Nonnull List<SocialAccount> accounts) {
     this.accounts = accounts;
     return this;
   }
@@ -69,22 +75,22 @@ public class AccountsListResponse {
    * Get accounts
    * @return accounts
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<SocialAccount> getAccounts() {
     return accounts;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccounts(@javax.annotation.Nullable List<SocialAccount> accounts) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNTS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccounts(@javax.annotation.Nonnull List<SocialAccount> accounts) {
     this.accounts = accounts;
   }
 
 
-  public AccountsListResponse hasAnalyticsAccess(@javax.annotation.Nullable Boolean hasAnalyticsAccess) {
+  public AccountsListResponse hasAnalyticsAccess(@javax.annotation.Nonnull Boolean hasAnalyticsAccess) {
     this.hasAnalyticsAccess = hasAnalyticsAccess;
     return this;
   }
@@ -93,18 +99,42 @@ public class AccountsListResponse {
    * Whether user has analytics add-on access
    * @return hasAnalyticsAccess
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getHasAnalyticsAccess() {
     return hasAnalyticsAccess;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHasAnalyticsAccess(@javax.annotation.Nullable Boolean hasAnalyticsAccess) {
+  @JsonProperty(value = JSON_PROPERTY_HAS_ANALYTICS_ACCESS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setHasAnalyticsAccess(@javax.annotation.Nonnull Boolean hasAnalyticsAccess) {
     this.hasAnalyticsAccess = hasAnalyticsAccess;
+  }
+
+
+  public AccountsListResponse pagination(@javax.annotation.Nullable Pagination pagination) {
+    this.pagination = pagination;
+    return this;
+  }
+
+  /**
+   * Only present when page/limit params are provided
+   * @return pagination
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Pagination getPagination() {
+    return pagination;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPagination(@javax.annotation.Nullable Pagination pagination) {
+    this.pagination = pagination;
   }
 
 
@@ -121,12 +151,13 @@ public class AccountsListResponse {
     }
     AccountsListResponse accountsListResponse = (AccountsListResponse) o;
     return Objects.equals(this.accounts, accountsListResponse.accounts) &&
-        Objects.equals(this.hasAnalyticsAccess, accountsListResponse.hasAnalyticsAccess);
+        Objects.equals(this.hasAnalyticsAccess, accountsListResponse.hasAnalyticsAccess) &&
+        Objects.equals(this.pagination, accountsListResponse.pagination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accounts, hasAnalyticsAccess);
+    return Objects.hash(accounts, hasAnalyticsAccess, pagination);
   }
 
   @Override
@@ -135,6 +166,7 @@ public class AccountsListResponse {
     sb.append("class AccountsListResponse {\n");
     sb.append("    accounts: ").append(toIndentedString(accounts)).append("\n");
     sb.append("    hasAnalyticsAccess: ").append(toIndentedString(hasAnalyticsAccess)).append("\n");
+    sb.append("    pagination: ").append(toIndentedString(pagination)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -195,6 +227,11 @@ public class AccountsListResponse {
     // add `hasAnalyticsAccess` to the URL query string
     if (getHasAnalyticsAccess() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shasAnalyticsAccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasAnalyticsAccess()))));
+    }
+
+    // add `pagination` to the URL query string
+    if (getPagination() != null) {
+      joiner.add(getPagination().toUrlQueryString(prefix + "pagination" + suffix));
     }
 
     return joiner.toString();

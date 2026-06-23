@@ -475,7 +475,7 @@ ApiResponse<[**GetAllAccountsHealth200Response**](GetAllAccountsHealth200Respons
 
 ## getFollowerStats
 
-> GetFollowerStats200Response getFollowerStats(accountIds, profileId, fromDate, toDate, granularity)
+> FollowerStatsResponse getFollowerStats(accountIds, profileId, fromDate, toDate, granularity)
 
 Get follower stats
 
@@ -508,7 +508,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
         try {
-            GetFollowerStats200Response result = apiInstance.getFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
+            FollowerStatsResponse result = apiInstance.getFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#getFollowerStats");
@@ -534,7 +534,7 @@ public class Example {
 
 ### Return type
 
-[**GetFollowerStats200Response**](GetFollowerStats200Response.md)
+[**FollowerStatsResponse**](FollowerStatsResponse.md)
 
 
 ### Authorization
@@ -555,7 +555,7 @@ public class Example {
 
 ## getFollowerStatsWithHttpInfo
 
-> ApiResponse<GetFollowerStats200Response> getFollowerStats getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity)
+> ApiResponse<FollowerStatsResponse> getFollowerStats getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity)
 
 Get follower stats
 
@@ -589,7 +589,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
         try {
-            ApiResponse<GetFollowerStats200Response> response = apiInstance.getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
+            ApiResponse<FollowerStatsResponse> response = apiInstance.getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -617,7 +617,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetFollowerStats200Response**](GetFollowerStats200Response.md)>
+ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 
 
 ### Authorization
@@ -795,7 +795,7 @@ ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Respons
 
 ## listAccounts
 
-> ListAccounts200Response listAccounts(profileId, platform, status, includeOverLimit, page, limit)
+> AccountsListResponse listAccounts(profileId, platform, status, includeOverLimit, page, limit)
 
 List accounts
 
@@ -829,7 +829,7 @@ public class Example {
         Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
         Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
         try {
-            ListAccounts200Response result = apiInstance.listAccounts(profileId, platform, status, includeOverLimit, page, limit);
+            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, includeOverLimit, page, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#listAccounts");
@@ -856,7 +856,7 @@ public class Example {
 
 ### Return type
 
-[**ListAccounts200Response**](ListAccounts200Response.md)
+[**AccountsListResponse**](AccountsListResponse.md)
 
 
 ### Authorization
@@ -876,7 +876,7 @@ public class Example {
 
 ## listAccountsWithHttpInfo
 
-> ApiResponse<ListAccounts200Response> listAccounts listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit)
+> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit)
 
 List accounts
 
@@ -911,7 +911,7 @@ public class Example {
         Integer page = 56; // Integer | Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts.
         Integer limit = 56; // Integer | Page size. Required alongside page for pagination.
         try {
-            ApiResponse<ListAccounts200Response> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
+            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -940,7 +940,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**ListAccounts200Response**](ListAccounts200Response.md)>
+ApiResponse<[**AccountsListResponse**](AccountsListResponse.md)>
 
 
 ### Authorization

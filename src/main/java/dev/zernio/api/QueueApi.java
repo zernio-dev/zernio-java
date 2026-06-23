@@ -20,12 +20,12 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.CreateQueueSlot201Response;
 import dev.zernio.model.CreateQueueSlotRequest;
-import dev.zernio.model.DeleteQueueSlot200Response;
-import dev.zernio.model.GetNextQueueSlot200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListQueueSlots200Response;
-import dev.zernio.model.PreviewQueue200Response;
-import dev.zernio.model.UpdateQueueSlot200Response;
+import dev.zernio.model.QueueDeleteResponse;
+import dev.zernio.model.QueueNextSlotResponse;
+import dev.zernio.model.QueuePreviewResponse;
+import dev.zernio.model.QueueUpdateResponse;
 import dev.zernio.model.UpdateQueueSlotRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -304,10 +304,10 @@ public class QueueApi {
    * Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
    * @param profileId  (required)
    * @param queueId Queue ID to delete (required)
-   * @return DeleteQueueSlot200Response
+   * @return QueueDeleteResponse
    * @throws ApiException if fails to make API call
    */
-  public DeleteQueueSlot200Response deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId) throws ApiException {
+  public QueueDeleteResponse deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId) throws ApiException {
     return deleteQueueSlot(profileId, queueId, null);
   }
 
@@ -317,11 +317,11 @@ public class QueueApi {
    * @param profileId  (required)
    * @param queueId Queue ID to delete (required)
    * @param headers Optional headers to include in the request
-   * @return DeleteQueueSlot200Response
+   * @return QueueDeleteResponse
    * @throws ApiException if fails to make API call
    */
-  public DeleteQueueSlot200Response deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteQueueSlot200Response> localVarResponse = deleteQueueSlotWithHttpInfo(profileId, queueId, headers);
+  public QueueDeleteResponse deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId, Map<String, String> headers) throws ApiException {
+    ApiResponse<QueueDeleteResponse> localVarResponse = deleteQueueSlotWithHttpInfo(profileId, queueId, headers);
     return localVarResponse.getData();
   }
 
@@ -330,10 +330,10 @@ public class QueueApi {
    * Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
    * @param profileId  (required)
    * @param queueId Queue ID to delete (required)
-   * @return ApiResponse&lt;DeleteQueueSlot200Response&gt;
+   * @return ApiResponse&lt;QueueDeleteResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteQueueSlot200Response> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId) throws ApiException {
+  public ApiResponse<QueueDeleteResponse> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId) throws ApiException {
     return deleteQueueSlotWithHttpInfo(profileId, queueId, null);
   }
 
@@ -343,10 +343,10 @@ public class QueueApi {
    * @param profileId  (required)
    * @param queueId Queue ID to delete (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;DeleteQueueSlot200Response&gt;
+   * @return ApiResponse&lt;QueueDeleteResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteQueueSlot200Response> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<QueueDeleteResponse> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = deleteQueueSlotRequestBuilder(profileId, queueId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -362,7 +362,7 @@ public class QueueApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<DeleteQueueSlot200Response>(
+          return new ApiResponse<QueueDeleteResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -372,10 +372,10 @@ public class QueueApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        DeleteQueueSlot200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteQueueSlot200Response>() {});
+        QueueDeleteResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<QueueDeleteResponse>() {});
         
 
-        return new ApiResponse<DeleteQueueSlot200Response>(
+        return new ApiResponse<QueueDeleteResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -446,10 +446,10 @@ public class QueueApi {
    * Returns the next available queue slot for preview purposes. To create a queue post, use POST /v1/posts with queuedFromProfile instead of scheduledFor.
    * @param profileId  (required)
    * @param queueId Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)
-   * @return GetNextQueueSlot200Response
+   * @return QueueNextSlotResponse
    * @throws ApiException if fails to make API call
    */
-  public GetNextQueueSlot200Response getNextQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId) throws ApiException {
+  public QueueNextSlotResponse getNextQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId) throws ApiException {
     return getNextQueueSlot(profileId, queueId, null);
   }
 
@@ -459,11 +459,11 @@ public class QueueApi {
    * @param profileId  (required)
    * @param queueId Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)
    * @param headers Optional headers to include in the request
-   * @return GetNextQueueSlot200Response
+   * @return QueueNextSlotResponse
    * @throws ApiException if fails to make API call
    */
-  public GetNextQueueSlot200Response getNextQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetNextQueueSlot200Response> localVarResponse = getNextQueueSlotWithHttpInfo(profileId, queueId, headers);
+  public QueueNextSlotResponse getNextQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, Map<String, String> headers) throws ApiException {
+    ApiResponse<QueueNextSlotResponse> localVarResponse = getNextQueueSlotWithHttpInfo(profileId, queueId, headers);
     return localVarResponse.getData();
   }
 
@@ -472,10 +472,10 @@ public class QueueApi {
    * Returns the next available queue slot for preview purposes. To create a queue post, use POST /v1/posts with queuedFromProfile instead of scheduledFor.
    * @param profileId  (required)
    * @param queueId Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)
-   * @return ApiResponse&lt;GetNextQueueSlot200Response&gt;
+   * @return ApiResponse&lt;QueueNextSlotResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetNextQueueSlot200Response> getNextQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId) throws ApiException {
+  public ApiResponse<QueueNextSlotResponse> getNextQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId) throws ApiException {
     return getNextQueueSlotWithHttpInfo(profileId, queueId, null);
   }
 
@@ -485,10 +485,10 @@ public class QueueApi {
    * @param profileId  (required)
    * @param queueId Specific queue ID (optional, defaults to profile&#39;s default queue) (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetNextQueueSlot200Response&gt;
+   * @return ApiResponse&lt;QueueNextSlotResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetNextQueueSlot200Response> getNextQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<QueueNextSlotResponse> getNextQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getNextQueueSlotRequestBuilder(profileId, queueId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -504,7 +504,7 @@ public class QueueApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetNextQueueSlot200Response>(
+          return new ApiResponse<QueueNextSlotResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -514,10 +514,10 @@ public class QueueApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetNextQueueSlot200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetNextQueueSlot200Response>() {});
+        QueueNextSlotResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<QueueNextSlotResponse>() {});
         
 
-        return new ApiResponse<GetNextQueueSlot200Response>(
+        return new ApiResponse<QueueNextSlotResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -729,10 +729,10 @@ public class QueueApi {
    * @param profileId  (required)
    * @param queueId Filter by specific queue ID. Omit to use the default queue. (optional)
    * @param count  (optional, default to 20)
-   * @return PreviewQueue200Response
+   * @return QueuePreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public PreviewQueue200Response previewQueue(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count) throws ApiException {
+  public QueuePreviewResponse previewQueue(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count) throws ApiException {
     return previewQueue(profileId, queueId, count, null);
   }
 
@@ -743,11 +743,11 @@ public class QueueApi {
    * @param queueId Filter by specific queue ID. Omit to use the default queue. (optional)
    * @param count  (optional, default to 20)
    * @param headers Optional headers to include in the request
-   * @return PreviewQueue200Response
+   * @return QueuePreviewResponse
    * @throws ApiException if fails to make API call
    */
-  public PreviewQueue200Response previewQueue(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count, Map<String, String> headers) throws ApiException {
-    ApiResponse<PreviewQueue200Response> localVarResponse = previewQueueWithHttpInfo(profileId, queueId, count, headers);
+  public QueuePreviewResponse previewQueue(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count, Map<String, String> headers) throws ApiException {
+    ApiResponse<QueuePreviewResponse> localVarResponse = previewQueueWithHttpInfo(profileId, queueId, count, headers);
     return localVarResponse.getData();
   }
 
@@ -757,10 +757,10 @@ public class QueueApi {
    * @param profileId  (required)
    * @param queueId Filter by specific queue ID. Omit to use the default queue. (optional)
    * @param count  (optional, default to 20)
-   * @return ApiResponse&lt;PreviewQueue200Response&gt;
+   * @return ApiResponse&lt;QueuePreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PreviewQueue200Response> previewQueueWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count) throws ApiException {
+  public ApiResponse<QueuePreviewResponse> previewQueueWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count) throws ApiException {
     return previewQueueWithHttpInfo(profileId, queueId, count, null);
   }
 
@@ -771,10 +771,10 @@ public class QueueApi {
    * @param queueId Filter by specific queue ID. Omit to use the default queue. (optional)
    * @param count  (optional, default to 20)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;PreviewQueue200Response&gt;
+   * @return ApiResponse&lt;QueuePreviewResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PreviewQueue200Response> previewQueueWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count, Map<String, String> headers) throws ApiException {
+  public ApiResponse<QueuePreviewResponse> previewQueueWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, @javax.annotation.Nullable Integer count, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = previewQueueRequestBuilder(profileId, queueId, count, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -790,7 +790,7 @@ public class QueueApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<PreviewQueue200Response>(
+          return new ApiResponse<QueuePreviewResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -800,10 +800,10 @@ public class QueueApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        PreviewQueue200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PreviewQueue200Response>() {});
+        QueuePreviewResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<QueuePreviewResponse>() {});
         
 
-        return new ApiResponse<PreviewQueue200Response>(
+        return new ApiResponse<QueuePreviewResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -871,10 +871,10 @@ public class QueueApi {
    * Update schedule
    * Create a new queue or update an existing one. Without queueId, creates/updates the default queue. With queueId, updates a specific queue. With setAsDefault&#x3D;true, makes this queue the default for the profile. 
    * @param updateQueueSlotRequest  (required)
-   * @return UpdateQueueSlot200Response
+   * @return QueueUpdateResponse
    * @throws ApiException if fails to make API call
    */
-  public UpdateQueueSlot200Response updateQueueSlot(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest) throws ApiException {
+  public QueueUpdateResponse updateQueueSlot(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest) throws ApiException {
     return updateQueueSlot(updateQueueSlotRequest, null);
   }
 
@@ -883,11 +883,11 @@ public class QueueApi {
    * Create a new queue or update an existing one. Without queueId, creates/updates the default queue. With queueId, updates a specific queue. With setAsDefault&#x3D;true, makes this queue the default for the profile. 
    * @param updateQueueSlotRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateQueueSlot200Response
+   * @return QueueUpdateResponse
    * @throws ApiException if fails to make API call
    */
-  public UpdateQueueSlot200Response updateQueueSlot(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateQueueSlot200Response> localVarResponse = updateQueueSlotWithHttpInfo(updateQueueSlotRequest, headers);
+  public QueueUpdateResponse updateQueueSlot(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<QueueUpdateResponse> localVarResponse = updateQueueSlotWithHttpInfo(updateQueueSlotRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -895,10 +895,10 @@ public class QueueApi {
    * Update schedule
    * Create a new queue or update an existing one. Without queueId, creates/updates the default queue. With queueId, updates a specific queue. With setAsDefault&#x3D;true, makes this queue the default for the profile. 
    * @param updateQueueSlotRequest  (required)
-   * @return ApiResponse&lt;UpdateQueueSlot200Response&gt;
+   * @return ApiResponse&lt;QueueUpdateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateQueueSlot200Response> updateQueueSlotWithHttpInfo(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest) throws ApiException {
+  public ApiResponse<QueueUpdateResponse> updateQueueSlotWithHttpInfo(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest) throws ApiException {
     return updateQueueSlotWithHttpInfo(updateQueueSlotRequest, null);
   }
 
@@ -907,10 +907,10 @@ public class QueueApi {
    * Create a new queue or update an existing one. Without queueId, creates/updates the default queue. With queueId, updates a specific queue. With setAsDefault&#x3D;true, makes this queue the default for the profile. 
    * @param updateQueueSlotRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateQueueSlot200Response&gt;
+   * @return ApiResponse&lt;QueueUpdateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateQueueSlot200Response> updateQueueSlotWithHttpInfo(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<QueueUpdateResponse> updateQueueSlotWithHttpInfo(@javax.annotation.Nonnull UpdateQueueSlotRequest updateQueueSlotRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateQueueSlotRequestBuilder(updateQueueSlotRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -926,7 +926,7 @@ public class QueueApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateQueueSlot200Response>(
+          return new ApiResponse<QueueUpdateResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -936,10 +936,10 @@ public class QueueApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateQueueSlot200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateQueueSlot200Response>() {});
+        QueueUpdateResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<QueueUpdateResponse>() {});
         
 
-        return new ApiResponse<UpdateQueueSlot200Response>(
+        return new ApiResponse<QueueUpdateResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

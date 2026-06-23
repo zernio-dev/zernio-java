@@ -171,7 +171,7 @@ ApiResponse<[**ProfileCreateResponse**](ProfileCreateResponse.md)>
 
 ## deleteProfile
 
-> DeleteAccountGroup200Response deleteProfile(profileId)
+> ProfileDeleteResponse deleteProfile(profileId)
 
 Delete profile
 
@@ -200,7 +200,7 @@ public class Example {
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         String profileId = "profileId_example"; // String | 
         try {
-            DeleteAccountGroup200Response result = apiInstance.deleteProfile(profileId);
+            ProfileDeleteResponse result = apiInstance.deleteProfile(profileId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ProfilesApi#deleteProfile");
@@ -222,7 +222,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)
+[**ProfileDeleteResponse**](ProfileDeleteResponse.md)
 
 
 ### Authorization
@@ -245,7 +245,7 @@ public class Example {
 
 ## deleteProfileWithHttpInfo
 
-> ApiResponse<DeleteAccountGroup200Response> deleteProfile deleteProfileWithHttpInfo(profileId)
+> ApiResponse<ProfileDeleteResponse> deleteProfile deleteProfileWithHttpInfo(profileId)
 
 Delete profile
 
@@ -275,7 +275,7 @@ public class Example {
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         String profileId = "profileId_example"; // String | 
         try {
-            ApiResponse<DeleteAccountGroup200Response> response = apiInstance.deleteProfileWithHttpInfo(profileId);
+            ApiResponse<ProfileDeleteResponse> response = apiInstance.deleteProfileWithHttpInfo(profileId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -299,7 +299,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md)>
+ApiResponse<[**ProfileDeleteResponse**](ProfileDeleteResponse.md)>
 
 
 ### Authorization
@@ -323,7 +323,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 
 ## getProfile
 
-> GetProfile200Response getProfile(profileId)
+> ProfileGetResponse getProfile(profileId)
 
 Get profile
 
@@ -352,7 +352,7 @@ public class Example {
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         String profileId = "profileId_example"; // String | 
         try {
-            GetProfile200Response result = apiInstance.getProfile(profileId);
+            ProfileGetResponse result = apiInstance.getProfile(profileId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ProfilesApi#getProfile");
@@ -374,7 +374,7 @@ public class Example {
 
 ### Return type
 
-[**GetProfile200Response**](GetProfile200Response.md)
+[**ProfileGetResponse**](ProfileGetResponse.md)
 
 
 ### Authorization
@@ -395,7 +395,7 @@ public class Example {
 
 ## getProfileWithHttpInfo
 
-> ApiResponse<GetProfile200Response> getProfile getProfileWithHttpInfo(profileId)
+> ApiResponse<ProfileGetResponse> getProfile getProfileWithHttpInfo(profileId)
 
 Get profile
 
@@ -425,7 +425,7 @@ public class Example {
         ProfilesApi apiInstance = new ProfilesApi(defaultClient);
         String profileId = "profileId_example"; // String | 
         try {
-            ApiResponse<GetProfile200Response> response = apiInstance.getProfileWithHttpInfo(profileId);
+            ApiResponse<ProfileGetResponse> response = apiInstance.getProfileWithHttpInfo(profileId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -449,7 +449,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetProfile200Response**](GetProfile200Response.md)>
+ApiResponse<[**ProfileGetResponse**](ProfileGetResponse.md)>
 
 
 ### Authorization
@@ -617,7 +617,7 @@ ApiResponse<[**ProfilesListResponse**](ProfilesListResponse.md)>
 
 ## updateProfile
 
-> UpdateProfile200Response updateProfile(profileId, updateProfileRequest)
+> ProfileUpdateResponse updateProfile(profileId, updateProfileRequest)
 
 Update profile
 
@@ -647,7 +647,7 @@ public class Example {
         String profileId = "profileId_example"; // String | 
         UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest(); // UpdateProfileRequest | 
         try {
-            UpdateProfile200Response result = apiInstance.updateProfile(profileId, updateProfileRequest);
+            ProfileUpdateResponse result = apiInstance.updateProfile(profileId, updateProfileRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ProfilesApi#updateProfile");
@@ -670,7 +670,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateProfile200Response**](UpdateProfile200Response.md)
+[**ProfileUpdateResponse**](ProfileUpdateResponse.md)
 
 
 ### Authorization
@@ -691,7 +691,7 @@ public class Example {
 
 ## updateProfileWithHttpInfo
 
-> ApiResponse<UpdateProfile200Response> updateProfile updateProfileWithHttpInfo(profileId, updateProfileRequest)
+> ApiResponse<ProfileUpdateResponse> updateProfile updateProfileWithHttpInfo(profileId, updateProfileRequest)
 
 Update profile
 
@@ -722,7 +722,7 @@ public class Example {
         String profileId = "profileId_example"; // String | 
         UpdateProfileRequest updateProfileRequest = new UpdateProfileRequest(); // UpdateProfileRequest | 
         try {
-            ApiResponse<UpdateProfile200Response> response = apiInstance.updateProfileWithHttpInfo(profileId, updateProfileRequest);
+            ApiResponse<ProfileUpdateResponse> response = apiInstance.updateProfileWithHttpInfo(profileId, updateProfileRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -747,7 +747,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateProfile200Response**](UpdateProfile200Response.md)>
+ApiResponse<[**ProfileUpdateResponse**](ProfileUpdateResponse.md)>
 
 
 ### Authorization

@@ -40,9 +40,11 @@ import dev.zernio.ApiClient;
   QueueUpdateResponse.JSON_PROPERTY_SUCCESS,
   QueueUpdateResponse.JSON_PROPERTY_SCHEDULE,
   QueueUpdateResponse.JSON_PROPERTY_NEXT_SLOTS,
-  QueueUpdateResponse.JSON_PROPERTY_RESHUFFLED_COUNT
+  QueueUpdateResponse.JSON_PROPERTY_RESHUFFLED_COUNT,
+  QueueUpdateResponse.JSON_PROPERTY_SKIPPED_DAILY_LIMIT,
+  QueueUpdateResponse.JSON_PROPERTY_IS_NEW_QUEUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueUpdateResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -59,6 +61,14 @@ public class QueueUpdateResponse {
   public static final String JSON_PROPERTY_RESHUFFLED_COUNT = "reshuffledCount";
   @javax.annotation.Nullable
   private Integer reshuffledCount;
+
+  public static final String JSON_PROPERTY_SKIPPED_DAILY_LIMIT = "skippedDailyLimit";
+  @javax.annotation.Nullable
+  private Integer skippedDailyLimit;
+
+  public static final String JSON_PROPERTY_IS_NEW_QUEUE = "isNewQueue";
+  @javax.annotation.Nullable
+  private Boolean isNewQueue;
 
   public QueueUpdateResponse() { 
   }
@@ -167,6 +177,54 @@ public class QueueUpdateResponse {
   }
 
 
+  public QueueUpdateResponse skippedDailyLimit(@javax.annotation.Nullable Integer skippedDailyLimit) {
+    this.skippedDailyLimit = skippedDailyLimit;
+    return this;
+  }
+
+  /**
+   * Get skippedDailyLimit
+   * @return skippedDailyLimit
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SKIPPED_DAILY_LIMIT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getSkippedDailyLimit() {
+    return skippedDailyLimit;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SKIPPED_DAILY_LIMIT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSkippedDailyLimit(@javax.annotation.Nullable Integer skippedDailyLimit) {
+    this.skippedDailyLimit = skippedDailyLimit;
+  }
+
+
+  public QueueUpdateResponse isNewQueue(@javax.annotation.Nullable Boolean isNewQueue) {
+    this.isNewQueue = isNewQueue;
+    return this;
+  }
+
+  /**
+   * Get isNewQueue
+   * @return isNewQueue
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_NEW_QUEUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsNewQueue() {
+    return isNewQueue;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_NEW_QUEUE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsNewQueue(@javax.annotation.Nullable Boolean isNewQueue) {
+    this.isNewQueue = isNewQueue;
+  }
+
+
   /**
    * Return true if this QueueUpdateResponse object is equal to o.
    */
@@ -182,12 +240,14 @@ public class QueueUpdateResponse {
     return Objects.equals(this.success, queueUpdateResponse.success) &&
         Objects.equals(this.schedule, queueUpdateResponse.schedule) &&
         Objects.equals(this.nextSlots, queueUpdateResponse.nextSlots) &&
-        Objects.equals(this.reshuffledCount, queueUpdateResponse.reshuffledCount);
+        Objects.equals(this.reshuffledCount, queueUpdateResponse.reshuffledCount) &&
+        Objects.equals(this.skippedDailyLimit, queueUpdateResponse.skippedDailyLimit) &&
+        Objects.equals(this.isNewQueue, queueUpdateResponse.isNewQueue);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, schedule, nextSlots, reshuffledCount);
+    return Objects.hash(success, schedule, nextSlots, reshuffledCount, skippedDailyLimit, isNewQueue);
   }
 
   @Override
@@ -198,6 +258,8 @@ public class QueueUpdateResponse {
     sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
     sb.append("    nextSlots: ").append(toIndentedString(nextSlots)).append("\n");
     sb.append("    reshuffledCount: ").append(toIndentedString(reshuffledCount)).append("\n");
+    sb.append("    skippedDailyLimit: ").append(toIndentedString(skippedDailyLimit)).append("\n");
+    sb.append("    isNewQueue: ").append(toIndentedString(isNewQueue)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -269,6 +331,16 @@ public class QueueUpdateResponse {
     // add `reshuffledCount` to the URL query string
     if (getReshuffledCount() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreshuffledCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReshuffledCount()))));
+    }
+
+    // add `skippedDailyLimit` to the URL query string
+    if (getSkippedDailyLimit() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sskippedDailyLimit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSkippedDailyLimit()))));
+    }
+
+    // add `isNewQueue` to the URL query string
+    if (getIsNewQueue() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisNewQueue%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsNewQueue()))));
     }
 
     return joiner.toString();

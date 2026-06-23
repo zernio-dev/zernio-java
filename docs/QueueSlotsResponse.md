@@ -2,6 +2,7 @@
 
 # QueueSlotsResponse
 
+Single queue response (default behavior)
 
 ## Properties
 

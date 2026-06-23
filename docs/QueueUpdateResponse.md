@@ -11,6 +11,8 @@
 |**schedule** | [**QueueSchedule**](QueueSchedule.md) |  |  [optional] |
 |**nextSlots** | **List&lt;OffsetDateTime&gt;** |  |  [optional] |
 |**reshuffledCount** | **Integer** |  |  [optional] |
+|**skippedDailyLimit** | **Integer** |  |  [optional] |
+|**isNewQueue** | **Boolean** |  |  [optional] |
 
 
 

@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.QueueSchedule;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,107 +33,78 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Single queue response (default behavior)
+ * All queues response (when all&#x3D;true)
  */
 @JsonPropertyOrder({
-  ListQueueSlots200ResponseOneOf.JSON_PROPERTY_EXISTS,
-  ListQueueSlots200ResponseOneOf.JSON_PROPERTY_SCHEDULE,
-  ListQueueSlots200ResponseOneOf.JSON_PROPERTY_NEXT_SLOTS
+  ListQueueSlots200ResponseOneOf.JSON_PROPERTY_QUEUES,
+  ListQueueSlots200ResponseOneOf.JSON_PROPERTY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListQueueSlots200ResponseOneOf {
-  public static final String JSON_PROPERTY_EXISTS = "exists";
+  public static final String JSON_PROPERTY_QUEUES = "queues";
   @javax.annotation.Nullable
-  private Boolean exists;
+  private List<QueueSchedule> queues = new ArrayList<>();
 
-  public static final String JSON_PROPERTY_SCHEDULE = "schedule";
+  public static final String JSON_PROPERTY_COUNT = "count";
   @javax.annotation.Nullable
-  private QueueSchedule schedule;
-
-  public static final String JSON_PROPERTY_NEXT_SLOTS = "nextSlots";
-  @javax.annotation.Nullable
-  private List<OffsetDateTime> nextSlots = new ArrayList<>();
+  private Integer count;
 
   public ListQueueSlots200ResponseOneOf() { 
   }
 
-  public ListQueueSlots200ResponseOneOf exists(@javax.annotation.Nullable Boolean exists) {
-    this.exists = exists;
+  public ListQueueSlots200ResponseOneOf queues(@javax.annotation.Nullable List<QueueSchedule> queues) {
+    this.queues = queues;
     return this;
   }
 
-  /**
-   * Get exists
-   * @return exists
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXISTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getExists() {
-    return exists;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_EXISTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExists(@javax.annotation.Nullable Boolean exists) {
-    this.exists = exists;
-  }
-
-
-  public ListQueueSlots200ResponseOneOf schedule(@javax.annotation.Nullable QueueSchedule schedule) {
-    this.schedule = schedule;
-    return this;
-  }
-
-  /**
-   * Get schedule
-   * @return schedule
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SCHEDULE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public QueueSchedule getSchedule() {
-    return schedule;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_SCHEDULE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSchedule(@javax.annotation.Nullable QueueSchedule schedule) {
-    this.schedule = schedule;
-  }
-
-
-  public ListQueueSlots200ResponseOneOf nextSlots(@javax.annotation.Nullable List<OffsetDateTime> nextSlots) {
-    this.nextSlots = nextSlots;
-    return this;
-  }
-
-  public ListQueueSlots200ResponseOneOf addNextSlotsItem(OffsetDateTime nextSlotsItem) {
-    if (this.nextSlots == null) {
-      this.nextSlots = new ArrayList<>();
+  public ListQueueSlots200ResponseOneOf addQueuesItem(QueueSchedule queuesItem) {
+    if (this.queues == null) {
+      this.queues = new ArrayList<>();
     }
-    this.nextSlots.add(nextSlotsItem);
+    this.queues.add(queuesItem);
     return this;
   }
 
   /**
-   * Get nextSlots
-   * @return nextSlots
+   * Get queues
+   * @return queues
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_SLOTS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_QUEUES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<OffsetDateTime> getNextSlots() {
-    return nextSlots;
+  public List<QueueSchedule> getQueues() {
+    return queues;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_NEXT_SLOTS, required = false)
+  @JsonProperty(value = JSON_PROPERTY_QUEUES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextSlots(@javax.annotation.Nullable List<OffsetDateTime> nextSlots) {
-    this.nextSlots = nextSlots;
+  public void setQueues(@javax.annotation.Nullable List<QueueSchedule> queues) {
+    this.queues = queues;
+  }
+
+
+  public ListQueueSlots200ResponseOneOf count(@javax.annotation.Nullable Integer count) {
+    this.count = count;
+    return this;
+  }
+
+  /**
+   * Get count
+   * @return count
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getCount() {
+    return count;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCount(@javax.annotation.Nullable Integer count) {
+    this.count = count;
   }
 
 
@@ -150,23 +120,21 @@ public class ListQueueSlots200ResponseOneOf {
       return false;
     }
     ListQueueSlots200ResponseOneOf listQueueSlots200ResponseOneOf = (ListQueueSlots200ResponseOneOf) o;
-    return Objects.equals(this.exists, listQueueSlots200ResponseOneOf.exists) &&
-        Objects.equals(this.schedule, listQueueSlots200ResponseOneOf.schedule) &&
-        Objects.equals(this.nextSlots, listQueueSlots200ResponseOneOf.nextSlots);
+    return Objects.equals(this.queues, listQueueSlots200ResponseOneOf.queues) &&
+        Objects.equals(this.count, listQueueSlots200ResponseOneOf.count);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(exists, schedule, nextSlots);
+    return Objects.hash(queues, count);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListQueueSlots200ResponseOneOf {\n");
-    sb.append("    exists: ").append(toIndentedString(exists)).append("\n");
-    sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
-    sb.append("    nextSlots: ").append(toIndentedString(nextSlots)).append("\n");
+    sb.append("    queues: ").append(toIndentedString(queues)).append("\n");
+    sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -214,25 +182,19 @@ public class ListQueueSlots200ResponseOneOf {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `exists` to the URL query string
-    if (getExists() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sexists%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExists()))));
-    }
-
-    // add `schedule` to the URL query string
-    if (getSchedule() != null) {
-      joiner.add(getSchedule().toUrlQueryString(prefix + "schedule" + suffix));
-    }
-
-    // add `nextSlots` to the URL query string
-    if (getNextSlots() != null) {
-      for (int i = 0; i < getNextSlots().size(); i++) {
-        if (getNextSlots().get(i) != null) {
-          joiner.add(String.format(java.util.Locale.ROOT, "%snextSlots%s%s=%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-              ApiClient.urlEncode(ApiClient.valueToString(getNextSlots().get(i)))));
+    // add `queues` to the URL query string
+    if (getQueues() != null) {
+      for (int i = 0; i < getQueues().size(); i++) {
+        if (getQueues().get(i) != null) {
+          joiner.add(getQueues().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%squeues%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `count` to the URL query string
+    if (getCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCount()))));
     }
 
     return joiner.toString();

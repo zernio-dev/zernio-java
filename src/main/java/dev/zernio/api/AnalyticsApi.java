@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AnalyticsSinglePostResponse;
 import dev.zernio.model.ErrorResponse;
+import dev.zernio.model.FollowerStatsResponse;
 import dev.zernio.model.GetAnalytics200Response;
 import dev.zernio.model.GetAnalytics400Response;
 import dev.zernio.model.GetAnalytics402Response;
@@ -27,7 +28,6 @@ import dev.zernio.model.GetBestTimeToPost200Response;
 import dev.zernio.model.GetBestTimeToPost403Response;
 import dev.zernio.model.GetContentDecay200Response;
 import dev.zernio.model.GetDailyMetrics200Response;
-import dev.zernio.model.GetFollowerStats200Response;
 import dev.zernio.model.GetFollowerStats403Response;
 import dev.zernio.model.GetGoogleBusinessPerformance200Response;
 import dev.zernio.model.GetGoogleBusinessPerformance400Response;
@@ -89,7 +89,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1014,10 +1014,10 @@ public class AnalyticsApi {
    * @param fromDate Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
-   * @return GetFollowerStats200Response
+   * @return FollowerStatsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetFollowerStats200Response getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
+  public FollowerStatsResponse getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
     return getFollowerStats(accountIds, profileId, fromDate, toDate, granularity, null);
   }
 
@@ -1030,11 +1030,11 @@ public class AnalyticsApi {
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
    * @param headers Optional headers to include in the request
-   * @return GetFollowerStats200Response
+   * @return FollowerStatsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetFollowerStats200Response getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetFollowerStats200Response> localVarResponse = getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, headers);
+  public FollowerStatsResponse getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<FollowerStatsResponse> localVarResponse = getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, headers);
     return localVarResponse.getData();
   }
 
@@ -1046,10 +1046,10 @@ public class AnalyticsApi {
    * @param fromDate Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
-   * @return ApiResponse&lt;GetFollowerStats200Response&gt;
+   * @return ApiResponse&lt;FollowerStatsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetFollowerStats200Response> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
+  public ApiResponse<FollowerStatsResponse> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
     return getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, null);
   }
 
@@ -1062,10 +1062,10 @@ public class AnalyticsApi {
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetFollowerStats200Response&gt;
+   * @return ApiResponse&lt;FollowerStatsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetFollowerStats200Response> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+  public ApiResponse<FollowerStatsResponse> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getFollowerStatsRequestBuilder(accountIds, profileId, fromDate, toDate, granularity, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1081,7 +1081,7 @@ public class AnalyticsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetFollowerStats200Response>(
+          return new ApiResponse<FollowerStatsResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1091,10 +1091,10 @@ public class AnalyticsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetFollowerStats200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetFollowerStats200Response>() {});
+        FollowerStatsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<FollowerStatsResponse>() {});
         
 
-        return new ApiResponse<GetFollowerStats200Response>(
+        return new ApiResponse<FollowerStatsResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

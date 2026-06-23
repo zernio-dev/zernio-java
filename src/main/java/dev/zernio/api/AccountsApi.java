@@ -18,16 +18,16 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AccountsListResponse;
 import dev.zernio.model.DeleteAccountGroup200Response;
+import dev.zernio.model.FollowerStatsResponse;
 import dev.zernio.model.GetAccountHealth200Response;
 import dev.zernio.model.GetAllAccountsHealth200Response;
-import dev.zernio.model.GetFollowerStats200Response;
 import dev.zernio.model.GetFollowerStats403Response;
 import dev.zernio.model.GetTikTokCreatorInfo200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
-import dev.zernio.model.ListAccounts200Response;
 import java.time.LocalDate;
 import dev.zernio.model.MoveAccountToProfile200Response;
 import dev.zernio.model.MoveAccountToProfileRequest;
@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -560,10 +560,10 @@ public class AccountsApi {
    * @param fromDate Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
-   * @return GetFollowerStats200Response
+   * @return FollowerStatsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetFollowerStats200Response getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
+  public FollowerStatsResponse getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
     return getFollowerStats(accountIds, profileId, fromDate, toDate, granularity, null);
   }
 
@@ -576,11 +576,11 @@ public class AccountsApi {
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
    * @param headers Optional headers to include in the request
-   * @return GetFollowerStats200Response
+   * @return FollowerStatsResponse
    * @throws ApiException if fails to make API call
    */
-  public GetFollowerStats200Response getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetFollowerStats200Response> localVarResponse = getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, headers);
+  public FollowerStatsResponse getFollowerStats(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<FollowerStatsResponse> localVarResponse = getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, headers);
     return localVarResponse.getData();
   }
 
@@ -592,10 +592,10 @@ public class AccountsApi {
    * @param fromDate Start date in YYYY-MM-DD format (defaults to 30 days ago) (optional)
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
-   * @return ApiResponse&lt;GetFollowerStats200Response&gt;
+   * @return ApiResponse&lt;FollowerStatsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetFollowerStats200Response> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
+  public ApiResponse<FollowerStatsResponse> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity) throws ApiException {
     return getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, null);
   }
 
@@ -608,10 +608,10 @@ public class AccountsApi {
    * @param toDate End date in YYYY-MM-DD format (defaults to today) (optional)
    * @param granularity Data aggregation level (optional, default to daily)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetFollowerStats200Response&gt;
+   * @return ApiResponse&lt;FollowerStatsResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetFollowerStats200Response> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
+  public ApiResponse<FollowerStatsResponse> getFollowerStatsWithHttpInfo(@javax.annotation.Nullable String accountIds, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String granularity, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getFollowerStatsRequestBuilder(accountIds, profileId, fromDate, toDate, granularity, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -627,7 +627,7 @@ public class AccountsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetFollowerStats200Response>(
+          return new ApiResponse<FollowerStatsResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -637,10 +637,10 @@ public class AccountsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetFollowerStats200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetFollowerStats200Response>() {});
+        FollowerStatsResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<FollowerStatsResponse>() {});
         
 
-        return new ApiResponse<GetFollowerStats200Response>(
+        return new ApiResponse<FollowerStatsResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -850,10 +850,10 @@ public class AccountsApi {
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
    * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
    * @param limit Page size. Required alongside page for pagination. (optional)
-   * @return ListAccounts200Response
+   * @return AccountsListResponse
    * @throws ApiException if fails to make API call
    */
-  public ListAccounts200Response listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit) throws ApiException {
+  public AccountsListResponse listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit) throws ApiException {
     return listAccounts(profileId, platform, status, includeOverLimit, page, limit, null);
   }
 
@@ -867,11 +867,11 @@ public class AccountsApi {
    * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
    * @param limit Page size. Required alongside page for pagination. (optional)
    * @param headers Optional headers to include in the request
-   * @return ListAccounts200Response
+   * @return AccountsListResponse
    * @throws ApiException if fails to make API call
    */
-  public ListAccounts200Response listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListAccounts200Response> localVarResponse = listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, headers);
+  public AccountsListResponse listAccounts(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<AccountsListResponse> localVarResponse = listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -884,10 +884,10 @@ public class AccountsApi {
    * @param includeOverLimit When true, includes accounts from over-limit profiles. (optional, default to false)
    * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
    * @param limit Page size. Required alongside page for pagination. (optional)
-   * @return ApiResponse&lt;ListAccounts200Response&gt;
+   * @return ApiResponse&lt;AccountsListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAccounts200Response> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit) throws ApiException {
+  public ApiResponse<AccountsListResponse> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit) throws ApiException {
     return listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, null);
   }
 
@@ -901,10 +901,10 @@ public class AccountsApi {
    * @param page Page number (1-based). When provided with limit, enables server-side pagination. Omit for all accounts. (optional)
    * @param limit Page size. Required alongside page for pagination. (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ListAccounts200Response&gt;
+   * @return ApiResponse&lt;AccountsListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListAccounts200Response> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+  public ApiResponse<AccountsListResponse> listAccountsWithHttpInfo(@javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String status, @javax.annotation.Nullable Boolean includeOverLimit, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listAccountsRequestBuilder(profileId, platform, status, includeOverLimit, page, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -920,7 +920,7 @@ public class AccountsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<ListAccounts200Response>(
+          return new ApiResponse<AccountsListResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -930,10 +930,10 @@ public class AccountsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        ListAccounts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAccounts200Response>() {});
+        AccountsListResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AccountsListResponse>() {});
         
 
-        return new ApiResponse<ListAccounts200Response>(
+        return new ApiResponse<AccountsListResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

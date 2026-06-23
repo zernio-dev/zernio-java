@@ -10,6 +10,8 @@
 |**profileId** | **String** |  |  [optional] |
 |**nextSlot** | **OffsetDateTime** |  |  [optional] |
 |**timezone** | **String** |  |  [optional] |
+|**queueId** | **String** | Queue ID this slot belongs to |  [optional] |
+|**queueName** | **String** | Queue name |  [optional] |
 
 
 

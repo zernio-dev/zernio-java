@@ -171,7 +171,7 @@ ApiResponse<[**CreateQueueSlot201Response**](CreateQueueSlot201Response.md)>
 
 ## deleteQueueSlot
 
-> DeleteQueueSlot200Response deleteQueueSlot(profileId, queueId)
+> QueueDeleteResponse deleteQueueSlot(profileId, queueId)
 
 Delete schedule
 
@@ -201,7 +201,7 @@ public class Example {
         String profileId = "profileId_example"; // String | 
         String queueId = "queueId_example"; // String | Queue ID to delete
         try {
-            DeleteQueueSlot200Response result = apiInstance.deleteQueueSlot(profileId, queueId);
+            QueueDeleteResponse result = apiInstance.deleteQueueSlot(profileId, queueId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueueApi#deleteQueueSlot");
@@ -224,7 +224,7 @@ public class Example {
 
 ### Return type
 
-[**DeleteQueueSlot200Response**](DeleteQueueSlot200Response.md)
+[**QueueDeleteResponse**](QueueDeleteResponse.md)
 
 
 ### Authorization
@@ -245,7 +245,7 @@ public class Example {
 
 ## deleteQueueSlotWithHttpInfo
 
-> ApiResponse<DeleteQueueSlot200Response> deleteQueueSlot deleteQueueSlotWithHttpInfo(profileId, queueId)
+> ApiResponse<QueueDeleteResponse> deleteQueueSlot deleteQueueSlotWithHttpInfo(profileId, queueId)
 
 Delete schedule
 
@@ -276,7 +276,7 @@ public class Example {
         String profileId = "profileId_example"; // String | 
         String queueId = "queueId_example"; // String | Queue ID to delete
         try {
-            ApiResponse<DeleteQueueSlot200Response> response = apiInstance.deleteQueueSlotWithHttpInfo(profileId, queueId);
+            ApiResponse<QueueDeleteResponse> response = apiInstance.deleteQueueSlotWithHttpInfo(profileId, queueId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -301,7 +301,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**DeleteQueueSlot200Response**](DeleteQueueSlot200Response.md)>
+ApiResponse<[**QueueDeleteResponse**](QueueDeleteResponse.md)>
 
 
 ### Authorization
@@ -323,7 +323,7 @@ ApiResponse<[**DeleteQueueSlot200Response**](DeleteQueueSlot200Response.md)>
 
 ## getNextQueueSlot
 
-> GetNextQueueSlot200Response getNextQueueSlot(profileId, queueId)
+> QueueNextSlotResponse getNextQueueSlot(profileId, queueId)
 
 Get next available slot
 
@@ -353,7 +353,7 @@ public class Example {
         String profileId = "profileId_example"; // String | 
         String queueId = "queueId_example"; // String | Specific queue ID (optional, defaults to profile's default queue)
         try {
-            GetNextQueueSlot200Response result = apiInstance.getNextQueueSlot(profileId, queueId);
+            QueueNextSlotResponse result = apiInstance.getNextQueueSlot(profileId, queueId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueueApi#getNextQueueSlot");
@@ -376,7 +376,7 @@ public class Example {
 
 ### Return type
 
-[**GetNextQueueSlot200Response**](GetNextQueueSlot200Response.md)
+[**QueueNextSlotResponse**](QueueNextSlotResponse.md)
 
 
 ### Authorization
@@ -398,7 +398,7 @@ public class Example {
 
 ## getNextQueueSlotWithHttpInfo
 
-> ApiResponse<GetNextQueueSlot200Response> getNextQueueSlot getNextQueueSlotWithHttpInfo(profileId, queueId)
+> ApiResponse<QueueNextSlotResponse> getNextQueueSlot getNextQueueSlotWithHttpInfo(profileId, queueId)
 
 Get next available slot
 
@@ -429,7 +429,7 @@ public class Example {
         String profileId = "profileId_example"; // String | 
         String queueId = "queueId_example"; // String | Specific queue ID (optional, defaults to profile's default queue)
         try {
-            ApiResponse<GetNextQueueSlot200Response> response = apiInstance.getNextQueueSlotWithHttpInfo(profileId, queueId);
+            ApiResponse<QueueNextSlotResponse> response = apiInstance.getNextQueueSlotWithHttpInfo(profileId, queueId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -454,7 +454,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetNextQueueSlot200Response**](GetNextQueueSlot200Response.md)>
+ApiResponse<[**QueueNextSlotResponse**](QueueNextSlotResponse.md)>
 
 
 ### Authorization
@@ -635,7 +635,7 @@ ApiResponse<[**ListQueueSlots200Response**](ListQueueSlots200Response.md)>
 
 ## previewQueue
 
-> PreviewQueue200Response previewQueue(profileId, queueId, count)
+> QueuePreviewResponse previewQueue(profileId, queueId, count)
 
 Preview upcoming slots
 
@@ -666,7 +666,7 @@ public class Example {
         String queueId = "queueId_example"; // String | Filter by specific queue ID. Omit to use the default queue.
         Integer count = 20; // Integer | 
         try {
-            PreviewQueue200Response result = apiInstance.previewQueue(profileId, queueId, count);
+            QueuePreviewResponse result = apiInstance.previewQueue(profileId, queueId, count);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueueApi#previewQueue");
@@ -690,7 +690,7 @@ public class Example {
 
 ### Return type
 
-[**PreviewQueue200Response**](PreviewQueue200Response.md)
+[**QueuePreviewResponse**](QueuePreviewResponse.md)
 
 
 ### Authorization
@@ -712,7 +712,7 @@ public class Example {
 
 ## previewQueueWithHttpInfo
 
-> ApiResponse<PreviewQueue200Response> previewQueue previewQueueWithHttpInfo(profileId, queueId, count)
+> ApiResponse<QueuePreviewResponse> previewQueue previewQueueWithHttpInfo(profileId, queueId, count)
 
 Preview upcoming slots
 
@@ -744,7 +744,7 @@ public class Example {
         String queueId = "queueId_example"; // String | Filter by specific queue ID. Omit to use the default queue.
         Integer count = 20; // Integer | 
         try {
-            ApiResponse<PreviewQueue200Response> response = apiInstance.previewQueueWithHttpInfo(profileId, queueId, count);
+            ApiResponse<QueuePreviewResponse> response = apiInstance.previewQueueWithHttpInfo(profileId, queueId, count);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -770,7 +770,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**PreviewQueue200Response**](PreviewQueue200Response.md)>
+ApiResponse<[**QueuePreviewResponse**](QueuePreviewResponse.md)>
 
 
 ### Authorization
@@ -793,7 +793,7 @@ ApiResponse<[**PreviewQueue200Response**](PreviewQueue200Response.md)>
 
 ## updateQueueSlot
 
-> UpdateQueueSlot200Response updateQueueSlot(updateQueueSlotRequest)
+> QueueUpdateResponse updateQueueSlot(updateQueueSlotRequest)
 
 Update schedule
 
@@ -822,7 +822,7 @@ public class Example {
         QueueApi apiInstance = new QueueApi(defaultClient);
         UpdateQueueSlotRequest updateQueueSlotRequest = new UpdateQueueSlotRequest(); // UpdateQueueSlotRequest | 
         try {
-            UpdateQueueSlot200Response result = apiInstance.updateQueueSlot(updateQueueSlotRequest);
+            QueueUpdateResponse result = apiInstance.updateQueueSlot(updateQueueSlotRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling QueueApi#updateQueueSlot");
@@ -844,7 +844,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateQueueSlot200Response**](UpdateQueueSlot200Response.md)
+[**QueueUpdateResponse**](QueueUpdateResponse.md)
 
 
 ### Authorization
@@ -866,7 +866,7 @@ public class Example {
 
 ## updateQueueSlotWithHttpInfo
 
-> ApiResponse<UpdateQueueSlot200Response> updateQueueSlot updateQueueSlotWithHttpInfo(updateQueueSlotRequest)
+> ApiResponse<QueueUpdateResponse> updateQueueSlot updateQueueSlotWithHttpInfo(updateQueueSlotRequest)
 
 Update schedule
 
@@ -896,7 +896,7 @@ public class Example {
         QueueApi apiInstance = new QueueApi(defaultClient);
         UpdateQueueSlotRequest updateQueueSlotRequest = new UpdateQueueSlotRequest(); // UpdateQueueSlotRequest | 
         try {
-            ApiResponse<UpdateQueueSlot200Response> response = apiInstance.updateQueueSlotWithHttpInfo(updateQueueSlotRequest);
+            ApiResponse<QueueUpdateResponse> response = apiInstance.updateQueueSlotWithHttpInfo(updateQueueSlotRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -920,7 +920,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateQueueSlot200Response**](UpdateQueueSlot200Response.md)>
+ApiResponse<[**QueueUpdateResponse**](QueueUpdateResponse.md)>
 
 
 ### Authorization

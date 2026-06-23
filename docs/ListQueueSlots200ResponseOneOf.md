@@ -2,15 +2,14 @@
 
 # ListQueueSlots200ResponseOneOf
 
-Single queue response (default behavior)
+All queues response (when all=true)
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**exists** | **Boolean** |  |  [optional] |
-|**schedule** | [**QueueSchedule**](QueueSchedule.md) |  |  [optional] |
-|**nextSlots** | **List&lt;OffsetDateTime&gt;** |  |  [optional] |
+|**queues** | [**List&lt;QueueSchedule&gt;**](QueueSchedule.md) |  |  [optional] |
+|**count** | **Integer** |  |  [optional] |
 
 
 

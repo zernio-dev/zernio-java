@@ -19,14 +19,14 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.CreateProfileRequest;
-import dev.zernio.model.DeleteAccountGroup200Response;
-import dev.zernio.model.GetProfile200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ProfileCreateResponse;
+import dev.zernio.model.ProfileDeleteResponse;
+import dev.zernio.model.ProfileGetResponse;
+import dev.zernio.model.ProfileUpdateResponse;
 import dev.zernio.model.ProfilesListResponse;
-import dev.zernio.model.UpdateProfile200Response;
 import dev.zernio.model.UpdateProfileRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -60,7 +60,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfilesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -304,10 +304,10 @@ public class ProfilesApi {
    * Delete profile
    * Permanently deletes a profile by ID.
    * @param profileId  (required)
-   * @return DeleteAccountGroup200Response
+   * @return ProfileDeleteResponse
    * @throws ApiException if fails to make API call
    */
-  public DeleteAccountGroup200Response deleteProfile(@javax.annotation.Nonnull String profileId) throws ApiException {
+  public ProfileDeleteResponse deleteProfile(@javax.annotation.Nonnull String profileId) throws ApiException {
     return deleteProfile(profileId, null);
   }
 
@@ -316,11 +316,11 @@ public class ProfilesApi {
    * Permanently deletes a profile by ID.
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
-   * @return DeleteAccountGroup200Response
+   * @return ProfileDeleteResponse
    * @throws ApiException if fails to make API call
    */
-  public DeleteAccountGroup200Response deleteProfile(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
-    ApiResponse<DeleteAccountGroup200Response> localVarResponse = deleteProfileWithHttpInfo(profileId, headers);
+  public ProfileDeleteResponse deleteProfile(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ProfileDeleteResponse> localVarResponse = deleteProfileWithHttpInfo(profileId, headers);
     return localVarResponse.getData();
   }
 
@@ -328,10 +328,10 @@ public class ProfilesApi {
    * Delete profile
    * Permanently deletes a profile by ID.
    * @param profileId  (required)
-   * @return ApiResponse&lt;DeleteAccountGroup200Response&gt;
+   * @return ApiResponse&lt;ProfileDeleteResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteAccountGroup200Response> deleteProfileWithHttpInfo(@javax.annotation.Nonnull String profileId) throws ApiException {
+  public ApiResponse<ProfileDeleteResponse> deleteProfileWithHttpInfo(@javax.annotation.Nonnull String profileId) throws ApiException {
     return deleteProfileWithHttpInfo(profileId, null);
   }
 
@@ -340,10 +340,10 @@ public class ProfilesApi {
    * Permanently deletes a profile by ID.
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;DeleteAccountGroup200Response&gt;
+   * @return ApiResponse&lt;ProfileDeleteResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<DeleteAccountGroup200Response> deleteProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ProfileDeleteResponse> deleteProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = deleteProfileRequestBuilder(profileId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -359,7 +359,7 @@ public class ProfilesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<DeleteAccountGroup200Response>(
+          return new ApiResponse<ProfileDeleteResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -369,10 +369,10 @@ public class ProfilesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        DeleteAccountGroup200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeleteAccountGroup200Response>() {});
+        ProfileDeleteResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ProfileDeleteResponse>() {});
         
 
-        return new ApiResponse<DeleteAccountGroup200Response>(
+        return new ApiResponse<ProfileDeleteResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -422,10 +422,10 @@ public class ProfilesApi {
    * Get profile
    * Returns a single profile by ID, including its name, color, and default status.
    * @param profileId  (required)
-   * @return GetProfile200Response
+   * @return ProfileGetResponse
    * @throws ApiException if fails to make API call
    */
-  public GetProfile200Response getProfile(@javax.annotation.Nonnull String profileId) throws ApiException {
+  public ProfileGetResponse getProfile(@javax.annotation.Nonnull String profileId) throws ApiException {
     return getProfile(profileId, null);
   }
 
@@ -434,11 +434,11 @@ public class ProfilesApi {
    * Returns a single profile by ID, including its name, color, and default status.
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
-   * @return GetProfile200Response
+   * @return ProfileGetResponse
    * @throws ApiException if fails to make API call
    */
-  public GetProfile200Response getProfile(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetProfile200Response> localVarResponse = getProfileWithHttpInfo(profileId, headers);
+  public ProfileGetResponse getProfile(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ProfileGetResponse> localVarResponse = getProfileWithHttpInfo(profileId, headers);
     return localVarResponse.getData();
   }
 
@@ -446,10 +446,10 @@ public class ProfilesApi {
    * Get profile
    * Returns a single profile by ID, including its name, color, and default status.
    * @param profileId  (required)
-   * @return ApiResponse&lt;GetProfile200Response&gt;
+   * @return ApiResponse&lt;ProfileGetResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetProfile200Response> getProfileWithHttpInfo(@javax.annotation.Nonnull String profileId) throws ApiException {
+  public ApiResponse<ProfileGetResponse> getProfileWithHttpInfo(@javax.annotation.Nonnull String profileId) throws ApiException {
     return getProfileWithHttpInfo(profileId, null);
   }
 
@@ -458,10 +458,10 @@ public class ProfilesApi {
    * Returns a single profile by ID, including its name, color, and default status.
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetProfile200Response&gt;
+   * @return ApiResponse&lt;ProfileGetResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetProfile200Response> getProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ProfileGetResponse> getProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getProfileRequestBuilder(profileId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -477,7 +477,7 @@ public class ProfilesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetProfile200Response>(
+          return new ApiResponse<ProfileGetResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -487,10 +487,10 @@ public class ProfilesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetProfile200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetProfile200Response>() {});
+        ProfileGetResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ProfileGetResponse>() {});
         
 
-        return new ApiResponse<GetProfile200Response>(
+        return new ApiResponse<ProfileGetResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -669,10 +669,10 @@ public class ProfilesApi {
    * Updates a profile&#39;s name, description, color, or default status.
    * @param profileId  (required)
    * @param updateProfileRequest  (required)
-   * @return UpdateProfile200Response
+   * @return ProfileUpdateResponse
    * @throws ApiException if fails to make API call
    */
-  public UpdateProfile200Response updateProfile(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest) throws ApiException {
+  public ProfileUpdateResponse updateProfile(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest) throws ApiException {
     return updateProfile(profileId, updateProfileRequest, null);
   }
 
@@ -682,11 +682,11 @@ public class ProfilesApi {
    * @param profileId  (required)
    * @param updateProfileRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return UpdateProfile200Response
+   * @return ProfileUpdateResponse
    * @throws ApiException if fails to make API call
    */
-  public UpdateProfile200Response updateProfile(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateProfile200Response> localVarResponse = updateProfileWithHttpInfo(profileId, updateProfileRequest, headers);
+  public ProfileUpdateResponse updateProfile(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ProfileUpdateResponse> localVarResponse = updateProfileWithHttpInfo(profileId, updateProfileRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -695,10 +695,10 @@ public class ProfilesApi {
    * Updates a profile&#39;s name, description, color, or default status.
    * @param profileId  (required)
    * @param updateProfileRequest  (required)
-   * @return ApiResponse&lt;UpdateProfile200Response&gt;
+   * @return ApiResponse&lt;ProfileUpdateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateProfile200Response> updateProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest) throws ApiException {
+  public ApiResponse<ProfileUpdateResponse> updateProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest) throws ApiException {
     return updateProfileWithHttpInfo(profileId, updateProfileRequest, null);
   }
 
@@ -708,10 +708,10 @@ public class ProfilesApi {
    * @param profileId  (required)
    * @param updateProfileRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UpdateProfile200Response&gt;
+   * @return ApiResponse&lt;ProfileUpdateResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateProfile200Response> updateProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<ProfileUpdateResponse> updateProfileWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull UpdateProfileRequest updateProfileRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateProfileRequestBuilder(profileId, updateProfileRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -727,7 +727,7 @@ public class ProfilesApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UpdateProfile200Response>(
+          return new ApiResponse<ProfileUpdateResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -737,10 +737,10 @@ public class ProfilesApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UpdateProfile200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateProfile200Response>() {});
+        ProfileUpdateResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ProfileUpdateResponse>() {});
         
 
-        return new ApiResponse<UpdateProfile200Response>(
+        return new ApiResponse<ProfileUpdateResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

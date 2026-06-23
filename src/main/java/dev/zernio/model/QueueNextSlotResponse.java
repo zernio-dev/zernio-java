@@ -36,9 +36,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   QueueNextSlotResponse.JSON_PROPERTY_PROFILE_ID,
   QueueNextSlotResponse.JSON_PROPERTY_NEXT_SLOT,
-  QueueNextSlotResponse.JSON_PROPERTY_TIMEZONE
+  QueueNextSlotResponse.JSON_PROPERTY_TIMEZONE,
+  QueueNextSlotResponse.JSON_PROPERTY_QUEUE_ID,
+  QueueNextSlotResponse.JSON_PROPERTY_QUEUE_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueNextSlotResponse {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nullable
@@ -51,6 +53,14 @@ public class QueueNextSlotResponse {
   public static final String JSON_PROPERTY_TIMEZONE = "timezone";
   @javax.annotation.Nullable
   private String timezone;
+
+  public static final String JSON_PROPERTY_QUEUE_ID = "queueId";
+  @javax.annotation.Nullable
+  private String queueId;
+
+  public static final String JSON_PROPERTY_QUEUE_NAME = "queueName";
+  @javax.annotation.Nullable
+  private String queueName;
 
   public QueueNextSlotResponse() { 
   }
@@ -127,6 +137,54 @@ public class QueueNextSlotResponse {
   }
 
 
+  public QueueNextSlotResponse queueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
+    return this;
+  }
+
+  /**
+   * Queue ID this slot belongs to
+   * @return queueId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQueueId() {
+    return queueId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
+  }
+
+
+  public QueueNextSlotResponse queueName(@javax.annotation.Nullable String queueName) {
+    this.queueName = queueName;
+    return this;
+  }
+
+  /**
+   * Queue name
+   * @return queueName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQueueName() {
+    return queueName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueueName(@javax.annotation.Nullable String queueName) {
+    this.queueName = queueName;
+  }
+
+
   /**
    * Return true if this QueueNextSlotResponse object is equal to o.
    */
@@ -141,12 +199,14 @@ public class QueueNextSlotResponse {
     QueueNextSlotResponse queueNextSlotResponse = (QueueNextSlotResponse) o;
     return Objects.equals(this.profileId, queueNextSlotResponse.profileId) &&
         Objects.equals(this.nextSlot, queueNextSlotResponse.nextSlot) &&
-        Objects.equals(this.timezone, queueNextSlotResponse.timezone);
+        Objects.equals(this.timezone, queueNextSlotResponse.timezone) &&
+        Objects.equals(this.queueId, queueNextSlotResponse.queueId) &&
+        Objects.equals(this.queueName, queueNextSlotResponse.queueName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, nextSlot, timezone);
+    return Objects.hash(profileId, nextSlot, timezone, queueId, queueName);
   }
 
   @Override
@@ -156,6 +216,8 @@ public class QueueNextSlotResponse {
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    nextSlot: ").append(toIndentedString(nextSlot)).append("\n");
     sb.append("    timezone: ").append(toIndentedString(timezone)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
+    sb.append("    queueName: ").append(toIndentedString(queueName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -216,6 +278,16 @@ public class QueueNextSlotResponse {
     // add `timezone` to the URL query string
     if (getTimezone() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stimezone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimezone()))));
+    }
+
+    // add `queueId` to the URL query string
+    if (getQueueId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeueId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueueId()))));
+    }
+
+    // add `queueName` to the URL query string
+    if (getQueueName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeueName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueueName()))));
     }
 
     return joiner.toString();

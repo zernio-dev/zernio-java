@@ -34,9 +34,11 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   QueueDeleteResponse.JSON_PROPERTY_SUCCESS,
-  QueueDeleteResponse.JSON_PROPERTY_DELETED
+  QueueDeleteResponse.JSON_PROPERTY_DELETED,
+  QueueDeleteResponse.JSON_PROPERTY_DELETED_COUNT,
+  QueueDeleteResponse.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueDeleteResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -45,6 +47,14 @@ public class QueueDeleteResponse {
   public static final String JSON_PROPERTY_DELETED = "deleted";
   @javax.annotation.Nullable
   private Boolean deleted;
+
+  public static final String JSON_PROPERTY_DELETED_COUNT = "deletedCount";
+  @javax.annotation.Nullable
+  private Integer deletedCount;
+
+  public static final String JSON_PROPERTY_MESSAGE = "message";
+  @javax.annotation.Nullable
+  private String message;
 
   public QueueDeleteResponse() { 
   }
@@ -97,6 +107,54 @@ public class QueueDeleteResponse {
   }
 
 
+  public QueueDeleteResponse deletedCount(@javax.annotation.Nullable Integer deletedCount) {
+    this.deletedCount = deletedCount;
+    return this;
+  }
+
+  /**
+   * Get deletedCount
+   * @return deletedCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DELETED_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getDeletedCount() {
+    return deletedCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DELETED_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeletedCount(@javax.annotation.Nullable Integer deletedCount) {
+    this.deletedCount = deletedCount;
+  }
+
+
+  public QueueDeleteResponse message(@javax.annotation.Nullable String message) {
+    this.message = message;
+    return this;
+  }
+
+  /**
+   * Get message
+   * @return message
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMessage() {
+    return message;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessage(@javax.annotation.Nullable String message) {
+    this.message = message;
+  }
+
+
   /**
    * Return true if this QueueDeleteResponse object is equal to o.
    */
@@ -110,12 +168,14 @@ public class QueueDeleteResponse {
     }
     QueueDeleteResponse queueDeleteResponse = (QueueDeleteResponse) o;
     return Objects.equals(this.success, queueDeleteResponse.success) &&
-        Objects.equals(this.deleted, queueDeleteResponse.deleted);
+        Objects.equals(this.deleted, queueDeleteResponse.deleted) &&
+        Objects.equals(this.deletedCount, queueDeleteResponse.deletedCount) &&
+        Objects.equals(this.message, queueDeleteResponse.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, deleted);
+    return Objects.hash(success, deleted, deletedCount, message);
   }
 
   @Override
@@ -124,6 +184,8 @@ public class QueueDeleteResponse {
     sb.append("class QueueDeleteResponse {\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+    sb.append("    deletedCount: ").append(toIndentedString(deletedCount)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +241,16 @@ public class QueueDeleteResponse {
     // add `deleted` to the URL query string
     if (getDeleted() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdeleted%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeleted()))));
+    }
+
+    // add `deletedCount` to the URL query string
+    if (getDeletedCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdeletedCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeletedCount()))));
+    }
+
+    // add `message` to the URL query string
+    if (getMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
     }
 
     return joiner.toString();

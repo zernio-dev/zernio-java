@@ -37,14 +37,24 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   QueuePreviewResponse.JSON_PROPERTY_PROFILE_ID,
+  QueuePreviewResponse.JSON_PROPERTY_QUEUE_ID,
+  QueuePreviewResponse.JSON_PROPERTY_QUEUE_NAME,
   QueuePreviewResponse.JSON_PROPERTY_COUNT,
   QueuePreviewResponse.JSON_PROPERTY_SLOTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueuePreviewResponse {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nullable
   private String profileId;
+
+  public static final String JSON_PROPERTY_QUEUE_ID = "queueId";
+  @javax.annotation.Nullable
+  private String queueId;
+
+  public static final String JSON_PROPERTY_QUEUE_NAME = "queueName";
+  @javax.annotation.Nullable
+  private String queueName;
 
   public static final String JSON_PROPERTY_COUNT = "count";
   @javax.annotation.Nullable
@@ -78,6 +88,54 @@ public class QueuePreviewResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProfileId(@javax.annotation.Nullable String profileId) {
     this.profileId = profileId;
+  }
+
+
+  public QueuePreviewResponse queueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
+    return this;
+  }
+
+  /**
+   * Get queueId
+   * @return queueId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQueueId() {
+    return queueId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueueId(@javax.annotation.Nullable String queueId) {
+    this.queueId = queueId;
+  }
+
+
+  public QueuePreviewResponse queueName(@javax.annotation.Nullable String queueName) {
+    this.queueName = queueName;
+    return this;
+  }
+
+  /**
+   * Get queueName
+   * @return queueName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getQueueName() {
+    return queueName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUEUE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQueueName(@javax.annotation.Nullable String queueName) {
+    this.queueName = queueName;
   }
 
 
@@ -150,13 +208,15 @@ public class QueuePreviewResponse {
     }
     QueuePreviewResponse queuePreviewResponse = (QueuePreviewResponse) o;
     return Objects.equals(this.profileId, queuePreviewResponse.profileId) &&
+        Objects.equals(this.queueId, queuePreviewResponse.queueId) &&
+        Objects.equals(this.queueName, queuePreviewResponse.queueName) &&
         Objects.equals(this.count, queuePreviewResponse.count) &&
         Objects.equals(this.slots, queuePreviewResponse.slots);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, count, slots);
+    return Objects.hash(profileId, queueId, queueName, count, slots);
   }
 
   @Override
@@ -164,6 +224,8 @@ public class QueuePreviewResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class QueuePreviewResponse {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
+    sb.append("    queueId: ").append(toIndentedString(queueId)).append("\n");
+    sb.append("    queueName: ").append(toIndentedString(queueName)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("    slots: ").append(toIndentedString(slots)).append("\n");
     sb.append("}");
@@ -216,6 +278,16 @@ public class QueuePreviewResponse {
     // add `profileId` to the URL query string
     if (getProfileId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
+    }
+
+    // add `queueId` to the URL query string
+    if (getQueueId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeueId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueueId()))));
+    }
+
+    // add `queueName` to the URL query string
+    if (getQueueName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squeueName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQueueName()))));
     }
 
     // add `count` to the URL query string

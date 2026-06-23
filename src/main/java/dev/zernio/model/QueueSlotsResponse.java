@@ -34,14 +34,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * QueueSlotsResponse
+ * Single queue response (default behavior)
  */
 @JsonPropertyOrder({
   QueueSlotsResponse.JSON_PROPERTY_EXISTS,
   QueueSlotsResponse.JSON_PROPERTY_SCHEDULE,
   QueueSlotsResponse.JSON_PROPERTY_NEXT_SLOTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueSlotsResponse {
   public static final String JSON_PROPERTY_EXISTS = "exists";
   @javax.annotation.Nullable

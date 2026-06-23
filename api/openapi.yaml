@@ -5196,7 +5196,7 @@ paths:
               example:
                 message: Profile deleted successfully
               schema:
-                $ref: "#/components/schemas/deleteAccountGroup_200_response"
+                $ref: "#/components/schemas/ProfileDeleteResponse"
           description: Deleted
         "400":
           description: Has connected accounts
@@ -5237,7 +5237,7 @@ paths:
                   isDefault: false
                   createdAt: 2024-11-01T10:00:00Z
               schema:
-                $ref: "#/components/schemas/getProfile_200_response"
+                $ref: "#/components/schemas/ProfileGetResponse"
           description: Profile
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -5284,7 +5284,7 @@ paths:
                   isDefault: true
                   createdAt: 2024-11-01T10:00:00Z
               schema:
-                $ref: "#/components/schemas/updateProfile_200_response"
+                $ref: "#/components/schemas/ProfileUpdateResponse"
           description: Updated
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -5381,7 +5381,7 @@ paths:
                       isActive: true
                     hasAnalyticsAccess: false
               schema:
-                $ref: "#/components/schemas/listAccounts_200_response"
+                $ref: "#/components/schemas/AccountsListResponse"
           description: Accounts (with optional pagination)
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -5471,7 +5471,7 @@ paths:
                       to: 2024-01-31T23:59:59.999Z
                     granularity: daily
               schema:
-                $ref: "#/components/schemas/getFollowerStats_200_response"
+                $ref: "#/components/schemas/FollowerStatsResponse"
           description: Follower stats
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -11450,7 +11450,7 @@ paths:
                 success: true
                 deleted: true
               schema:
-                $ref: "#/components/schemas/deleteQueueSlot_200_response"
+                $ref: "#/components/schemas/QueueDeleteResponse"
           description: Queue schedule deleted
         "400":
           description: Missing profileId or queueId
@@ -11644,7 +11644,7 @@ paths:
                 - 2024-11-06T09:00:00-05:00
                 reshuffledCount: 0
               schema:
-                $ref: "#/components/schemas/updateQueueSlot_200_response"
+                $ref: "#/components/schemas/QueueUpdateResponse"
           description: Queue schedule updated
         "400":
           description: Invalid request
@@ -11708,7 +11708,7 @@ paths:
                 - 2024-11-18T09:00:00-05:00
                 - 2024-11-18T14:00:00-05:00
               schema:
-                $ref: "#/components/schemas/previewQueue_200_response"
+                $ref: "#/components/schemas/QueuePreviewResponse"
           description: Queue slots preview
         "400":
           description: Invalid parameters
@@ -11754,7 +11754,7 @@ paths:
                 queueId: 64f0a1b2c3d4e5f6a7b8c9d1
                 queueName: Morning Posts
               schema:
-                $ref: "#/components/schemas/getNextQueueSlot_200_response"
+                $ref: "#/components/schemas/QueueNextSlotResponse"
           description: Next available slot
         "400":
           description: Invalid parameters or inactive queue
@@ -30274,6 +30274,366 @@ components:
           type: string
         profile:
           $ref: "#/components/schemas/Profile"
+    ProfileGetResponse:
+      example:
+        profile:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isDefault: true
+          color: color
+          name: name
+          description: description
+          _id: _id
+          userId: userId
+          isOverLimit: true
+      properties:
+        profile:
+          $ref: "#/components/schemas/Profile"
+    ProfileUpdateResponse:
+      example:
+        profile:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          isDefault: true
+          color: color
+          name: name
+          description: description
+          _id: _id
+          userId: userId
+          isOverLimit: true
+        message: message
+      properties:
+        message:
+          type: string
+        profile:
+          $ref: "#/components/schemas/Profile"
+    ProfileDeleteResponse:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+    AccountsListResponse:
+      example:
+        hasAnalyticsAccess: true
+        pagination: ""
+        accounts:
+        - profileUrl: profileUrl
+          metadata: "{}"
+          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
+          isActive: true
+          platform: tiktok
+          enabled: true
+          parentAccountId: parentAccountId
+          profilePicture: profilePicture
+          profileId: SocialAccount_profileId
+          _id: _id
+          followersCount: 0.8008281904610115
+          username: username
+        - profileUrl: profileUrl
+          metadata: "{}"
+          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
+          isActive: true
+          platform: tiktok
+          enabled: true
+          parentAccountId: parentAccountId
+          profilePicture: profilePicture
+          profileId: SocialAccount_profileId
+          _id: _id
+          followersCount: 0.8008281904610115
+          username: username
+      properties:
+        accounts:
+          items:
+            $ref: "#/components/schemas/SocialAccount"
+          type: array
+        hasAnalyticsAccess:
+          description: Whether user has analytics add-on access
+          type: boolean
+        pagination:
+          allOf:
+          - $ref: "#/components/schemas/Pagination"
+          description: Only present when page/limit params are provided
+      required:
+      - accounts
+      - hasAnalyticsAccess
+    FollowerStatsResponse:
+      example:
+        stats:
+          key:
+          - date: 2000-01-23
+            followers: 7.457744773683766
+          - date: 2000-01-23
+            followers: 7.457744773683766
+        dateRange:
+          from: 2000-01-23T04:56:07.000+00:00
+          to: 2000-01-23T04:56:07.000+00:00
+        granularity: granularity
+        accounts:
+        - profileUrl: profileUrl
+          metadata: "{}"
+          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
+          isActive: true
+          platform: tiktok
+          enabled: true
+          parentAccountId: parentAccountId
+          profilePicture: profilePicture
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          currentFollowers: 6.027456183070403
+          profileId: SocialAccount_profileId
+          accountStats:
+            videoCount: 9.301444243932576
+            pinCount: 4.145608029883936
+            likesCount: 1.2315135367772556
+            monthlyViews: 1.0246457001441578
+            boardCount: 6.84685269835264
+            postsCount: 2.027123023002322
+            tweetCount: 3.616076749251911
+            mediaCount: 7.061401241503109
+            totalViews: 7.386281948385884
+            followingCount: 2.3021358869347655
+            listedCount: 1.4894159098541704
+          dataPoints: 5.637376656633329
+          growth: 1.4658129805029452
+          _id: _id
+          followersCount: 0.8008281904610115
+          growthPercentage: 5.962133916683182
+          username: username
+        - profileUrl: profileUrl
+          metadata: "{}"
+          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
+          displayName: displayName
+          isActive: true
+          platform: tiktok
+          enabled: true
+          parentAccountId: parentAccountId
+          profilePicture: profilePicture
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          currentFollowers: 6.027456183070403
+          profileId: SocialAccount_profileId
+          accountStats:
+            videoCount: 9.301444243932576
+            pinCount: 4.145608029883936
+            likesCount: 1.2315135367772556
+            monthlyViews: 1.0246457001441578
+            boardCount: 6.84685269835264
+            postsCount: 2.027123023002322
+            tweetCount: 3.616076749251911
+            mediaCount: 7.061401241503109
+            totalViews: 7.386281948385884
+            followingCount: 2.3021358869347655
+            listedCount: 1.4894159098541704
+          dataPoints: 5.637376656633329
+          growth: 1.4658129805029452
+          _id: _id
+          followersCount: 0.8008281904610115
+          growthPercentage: 5.962133916683182
+          username: username
+      properties:
+        accounts:
+          items:
+            $ref: "#/components/schemas/AccountWithFollowerStats"
+          type: array
+        stats:
+          additionalProperties:
+            items:
+              $ref: "#/components/schemas/FollowerStatsResponse_stats_value_inner"
+        dateRange:
+          $ref: "#/components/schemas/FollowerStatsResponse_dateRange"
+        granularity:
+          type: string
+    UploadedFile:
+      properties:
+        type:
+          enum:
+          - image
+          - video
+          - document
+          type: string
+        url:
+          format: uri
+          type: string
+        filename:
+          type: string
+        size:
+          type: integer
+        mimeType:
+          type: string
+    MediaUploadResponse:
+      properties:
+        files:
+          items:
+            $ref: "#/components/schemas/UploadedFile"
+          type: array
+    UploadTokenResponse:
+      properties:
+        token:
+          type: string
+        uploadUrl:
+          format: uri
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
+        status:
+          enum:
+          - pending
+          - completed
+          - expired
+          type: string
+    UploadTokenStatusResponse:
+      properties:
+        token:
+          type: string
+        status:
+          enum:
+          - pending
+          - completed
+          - expired
+          type: string
+        files:
+          items:
+            $ref: "#/components/schemas/UploadedFile"
+          type: array
+        createdAt:
+          format: date-time
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
+        completedAt:
+          format: date-time
+          type: string
+    QueueSlotsResponse:
+      description: Single queue response (default behavior)
+      example:
+        schedule:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          slots:
+          - dayOfWeek: 0
+            time: time
+          - dayOfWeek: 0
+            time: time
+          isDefault: true
+          profileId: profileId
+          timezone: timezone
+          name: name
+          active: true
+          _id: _id
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        nextSlots:
+        - 2000-01-23T04:56:07.000+00:00
+        - 2000-01-23T04:56:07.000+00:00
+        exists: true
+      properties:
+        exists:
+          type: boolean
+        schedule:
+          $ref: "#/components/schemas/QueueSchedule"
+        nextSlots:
+          items:
+            format: date-time
+            type: string
+          type: array
+    QueueUpdateResponse:
+      example:
+        isNewQueue: true
+        schedule:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          slots:
+          - dayOfWeek: 0
+            time: time
+          - dayOfWeek: 0
+            time: time
+          isDefault: true
+          profileId: profileId
+          timezone: timezone
+          name: name
+          active: true
+          _id: _id
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        skippedDailyLimit: 6
+        nextSlots:
+        - 2000-01-23T04:56:07.000+00:00
+        - 2000-01-23T04:56:07.000+00:00
+        success: true
+        reshuffledCount: 0
+      properties:
+        success:
+          type: boolean
+        schedule:
+          $ref: "#/components/schemas/QueueSchedule"
+        nextSlots:
+          items:
+            format: date-time
+            type: string
+          type: array
+        reshuffledCount:
+          type: integer
+        skippedDailyLimit:
+          type: integer
+        isNewQueue:
+          type: boolean
+    QueueDeleteResponse:
+      example:
+        deleted: true
+        success: true
+        deletedCount: 0
+        message: message
+      properties:
+        success:
+          type: boolean
+        deleted:
+          type: boolean
+        deletedCount:
+          type: integer
+        message:
+          type: string
+    QueuePreviewResponse:
+      example:
+        queueId: queueId
+        slots:
+        - 2000-01-23T04:56:07.000+00:00
+        - 2000-01-23T04:56:07.000+00:00
+        queueName: queueName
+        profileId: profileId
+        count: 0
+      properties:
+        profileId:
+          type: string
+        queueId:
+          type: string
+        queueName:
+          type: string
+        count:
+          type: integer
+        slots:
+          items:
+            format: date-time
+            type: string
+          type: array
+    QueueNextSlotResponse:
+      example:
+        queueId: queueId
+        queueName: queueName
+        profileId: profileId
+        timezone: timezone
+        nextSlot: 2000-01-23T04:56:07.000+00:00
+      properties:
+        profileId:
+          type: string
+        nextSlot:
+          format: date-time
+          type: string
+        timezone:
+          type: string
+        queueId:
+          description: Queue ID this slot belongs to
+          type: string
+        queueName:
+          description: Queue name
+          type: string
     User:
       properties:
         _id:
@@ -30287,6 +30647,16 @@ components:
         createdAt:
           format: date-time
           type: string
+    UsersListResponse:
+      properties:
+        users:
+          items:
+            $ref: "#/components/schemas/User"
+          type: array
+    UserGetResponse:
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
     AdMetrics:
       example:
         ctr: 9.301444243932576
@@ -34276,20 +34646,6 @@ components:
           type: string
       required:
       - name
-    getProfile_200_response:
-      example:
-        profile:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          isDefault: true
-          color: color
-          name: name
-          description: description
-          _id: _id
-          userId: userId
-          isOverLimit: true
-      properties:
-        profile:
-          $ref: "#/components/schemas/Profile"
     updateProfile_request:
       properties:
         name:
@@ -34300,176 +34656,6 @@ components:
           type: string
         isDefault:
           type: boolean
-    updateProfile_200_response:
-      example:
-        profile:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          isDefault: true
-          color: color
-          name: name
-          description: description
-          _id: _id
-          userId: userId
-          isOverLimit: true
-        message: message
-      properties:
-        message:
-          type: string
-        profile:
-          $ref: "#/components/schemas/Profile"
-    listAccounts_200_response:
-      example:
-        hasAnalyticsAccess: true
-        pagination: ""
-        accounts:
-        - profileUrl: profileUrl
-          metadata: "{}"
-          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
-          displayName: displayName
-          isActive: true
-          platform: tiktok
-          enabled: true
-          parentAccountId: parentAccountId
-          profilePicture: profilePicture
-          profileId: SocialAccount_profileId
-          _id: _id
-          followersCount: 0.8008281904610115
-          username: username
-        - profileUrl: profileUrl
-          metadata: "{}"
-          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
-          displayName: displayName
-          isActive: true
-          platform: tiktok
-          enabled: true
-          parentAccountId: parentAccountId
-          profilePicture: profilePicture
-          profileId: SocialAccount_profileId
-          _id: _id
-          followersCount: 0.8008281904610115
-          username: username
-      properties:
-        accounts:
-          items:
-            $ref: "#/components/schemas/SocialAccount"
-          type: array
-        hasAnalyticsAccess:
-          description: Whether user has analytics add-on access
-          type: boolean
-        pagination:
-          allOf:
-          - $ref: "#/components/schemas/Pagination"
-          description: Only present when page/limit params are provided
-      required:
-      - accounts
-      - hasAnalyticsAccess
-    getFollowerStats_200_response_stats_value_inner:
-      example:
-        date: 2000-01-23
-        followers: 7.457744773683766
-      properties:
-        date:
-          format: date
-          type: string
-        followers:
-          type: number
-    getFollowerStats_200_response_dateRange:
-      example:
-        from: 2000-01-23T04:56:07.000+00:00
-        to: 2000-01-23T04:56:07.000+00:00
-      properties:
-        from:
-          format: date-time
-          type: string
-        to:
-          format: date-time
-          type: string
-    getFollowerStats_200_response:
-      example:
-        stats:
-          key:
-          - date: 2000-01-23
-            followers: 7.457744773683766
-          - date: 2000-01-23
-            followers: 7.457744773683766
-        dateRange:
-          from: 2000-01-23T04:56:07.000+00:00
-          to: 2000-01-23T04:56:07.000+00:00
-        granularity: granularity
-        accounts:
-        - profileUrl: profileUrl
-          metadata: "{}"
-          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
-          displayName: displayName
-          isActive: true
-          platform: tiktok
-          enabled: true
-          parentAccountId: parentAccountId
-          profilePicture: profilePicture
-          lastUpdated: 2000-01-23T04:56:07.000+00:00
-          currentFollowers: 6.027456183070403
-          profileId: SocialAccount_profileId
-          accountStats:
-            videoCount: 9.301444243932576
-            pinCount: 4.145608029883936
-            likesCount: 1.2315135367772556
-            monthlyViews: 1.0246457001441578
-            boardCount: 6.84685269835264
-            postsCount: 2.027123023002322
-            tweetCount: 3.616076749251911
-            mediaCount: 7.061401241503109
-            totalViews: 7.386281948385884
-            followingCount: 2.3021358869347655
-            listedCount: 1.4894159098541704
-          dataPoints: 5.637376656633329
-          growth: 1.4658129805029452
-          _id: _id
-          followersCount: 0.8008281904610115
-          growthPercentage: 5.962133916683182
-          username: username
-        - profileUrl: profileUrl
-          metadata: "{}"
-          followersLastUpdated: 2000-01-23T04:56:07.000+00:00
-          displayName: displayName
-          isActive: true
-          platform: tiktok
-          enabled: true
-          parentAccountId: parentAccountId
-          profilePicture: profilePicture
-          lastUpdated: 2000-01-23T04:56:07.000+00:00
-          currentFollowers: 6.027456183070403
-          profileId: SocialAccount_profileId
-          accountStats:
-            videoCount: 9.301444243932576
-            pinCount: 4.145608029883936
-            likesCount: 1.2315135367772556
-            monthlyViews: 1.0246457001441578
-            boardCount: 6.84685269835264
-            postsCount: 2.027123023002322
-            tweetCount: 3.616076749251911
-            mediaCount: 7.061401241503109
-            totalViews: 7.386281948385884
-            followingCount: 2.3021358869347655
-            listedCount: 1.4894159098541704
-          dataPoints: 5.637376656633329
-          growth: 1.4658129805029452
-          _id: _id
-          followersCount: 0.8008281904610115
-          growthPercentage: 5.962133916683182
-          username: username
-      properties:
-        accounts:
-          items:
-            $ref: "#/components/schemas/AccountWithFollowerStats"
-          type: array
-        stats:
-          additionalProperties:
-            items:
-              $ref: "#/components/schemas/getFollowerStats_200_response_stats_value_inner"
-        dateRange:
-          $ref: "#/components/schemas/getFollowerStats_200_response_dateRange"
-        granularity:
-          type: string
     getFollowerStats_403_response:
       example:
         error: Analytics add-on required
@@ -40922,37 +41108,6 @@ components:
       required:
       - accountId
     listQueueSlots_200_response_oneOf:
-      description: Single queue response (default behavior)
-      example:
-        schedule:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          slots:
-          - dayOfWeek: 0
-            time: time
-          - dayOfWeek: 0
-            time: time
-          isDefault: true
-          profileId: profileId
-          timezone: timezone
-          name: name
-          active: true
-          _id: _id
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        nextSlots:
-        - 2000-01-23T04:56:07.000+00:00
-        - 2000-01-23T04:56:07.000+00:00
-        exists: true
-      properties:
-        exists:
-          type: boolean
-        schedule:
-          $ref: "#/components/schemas/QueueSchedule"
-        nextSlots:
-          items:
-            format: date-time
-            type: string
-          type: array
-    listQueueSlots_200_response_oneOf_1:
       description: All queues response (when all=true)
       properties:
         queues:
@@ -40963,8 +41118,8 @@ components:
           type: integer
     listQueueSlots_200_response:
       oneOf:
+      - $ref: "#/components/schemas/QueueSlotsResponse"
       - $ref: "#/components/schemas/listQueueSlots_200_response_oneOf"
-      - $ref: "#/components/schemas/listQueueSlots_200_response_oneOf_1"
     updateQueueSlot_request:
       properties:
         profileId:
@@ -40995,39 +41150,6 @@ components:
       - profileId
       - slots
       - timezone
-    updateQueueSlot_200_response:
-      example:
-        schedule:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          slots:
-          - dayOfWeek: 0
-            time: time
-          - dayOfWeek: 0
-            time: time
-          isDefault: true
-          profileId: profileId
-          timezone: timezone
-          name: name
-          active: true
-          _id: _id
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-        nextSlots:
-        - 2000-01-23T04:56:07.000+00:00
-        - 2000-01-23T04:56:07.000+00:00
-        success: true
-        reshuffledCount: 0
-      properties:
-        success:
-          type: boolean
-        schedule:
-          $ref: "#/components/schemas/QueueSchedule"
-        nextSlots:
-          items:
-            format: date-time
-            type: string
-          type: array
-        reshuffledCount:
-          type: integer
     createQueueSlot_request:
       properties:
         profileId:
@@ -41081,53 +41203,6 @@ components:
             format: date-time
             type: string
           type: array
-    deleteQueueSlot_200_response:
-      example:
-        deleted: true
-        success: true
-      properties:
-        success:
-          type: boolean
-        deleted:
-          type: boolean
-    previewQueue_200_response:
-      example:
-        slots:
-        - 2000-01-23T04:56:07.000+00:00
-        - 2000-01-23T04:56:07.000+00:00
-        profileId: profileId
-        count: 0
-      properties:
-        profileId:
-          type: string
-        count:
-          type: integer
-        slots:
-          items:
-            format: date-time
-            type: string
-          type: array
-    getNextQueueSlot_200_response:
-      example:
-        queueId: queueId
-        queueName: queueName
-        profileId: profileId
-        timezone: timezone
-        nextSlot: 2000-01-23T04:56:07.000+00:00
-      properties:
-        profileId:
-          type: string
-        nextSlot:
-          format: date-time
-          type: string
-        timezone:
-          type: string
-        queueId:
-          description: Queue ID this slot belongs to
-          type: string
-        queueName:
-          description: Queue name
-          type: string
     getWebhookSettings_200_response:
       example:
         webhooks:
@@ -59769,6 +59844,27 @@ components:
           items:
             $ref: "#/components/schemas/LinkedInAggregateAnalyticsDailyResponse_analytics_impressions_inner"
           type: array
+    FollowerStatsResponse_stats_value_inner:
+      example:
+        date: 2000-01-23
+        followers: 7.457744773683766
+      properties:
+        date:
+          format: date
+          type: string
+        followers:
+          type: number
+    FollowerStatsResponse_dateRange:
+      example:
+        from: 2000-01-23T04:56:07.000+00:00
+        to: 2000-01-23T04:56:07.000+00:00
+      properties:
+        from:
+          format: date-time
+          type: string
+        to:
+          format: date-time
+          type: string
     TargetingSpec_cities_inner:
       properties:
         key:
