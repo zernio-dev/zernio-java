@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListWorkflowExecutions200Response.JSON_PROPERTY_EXECUTIONS,
   ListWorkflowExecutions200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T14:04:34.613055530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T17:00:39.324528299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWorkflowExecutions200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

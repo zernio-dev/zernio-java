@@ -47,9 +47,10 @@ import dev.zernio.ApiClient;
   InstagramPlatformData.JSON_PROPERTY_AUDIO_NAME,
   InstagramPlatformData.JSON_PROPERTY_THUMB_OFFSET,
   InstagramPlatformData.JSON_PROPERTY_INSTAGRAM_THUMBNAIL,
-  InstagramPlatformData.JSON_PROPERTY_REEL_COVER
+  InstagramPlatformData.JSON_PROPERTY_REEL_COVER,
+  InstagramPlatformData.JSON_PROPERTY_IS_AI_GENERATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T14:04:34.613055530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T17:00:39.324528299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramPlatformData {
   /**
    * Set to &#39;story&#39; to publish as a Story. Default posts become Reels or feed depending on media.
@@ -123,6 +124,10 @@ public class InstagramPlatformData {
   public static final String JSON_PROPERTY_REEL_COVER = "reelCover";
   @javax.annotation.Nullable
   private URI reelCover;
+
+  public static final String JSON_PROPERTY_IS_AI_GENERATED = "isAiGenerated";
+  @javax.annotation.Nullable
+  private Boolean isAiGenerated = false;
 
   public InstagramPlatformData() { 
   }
@@ -384,6 +389,30 @@ public class InstagramPlatformData {
   }
 
 
+  public InstagramPlatformData isAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+    return this;
+  }
+
+  /**
+   * When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels.
+   * @return isAiGenerated
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsAiGenerated() {
+    return isAiGenerated;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_AI_GENERATED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsAiGenerated(@javax.annotation.Nullable Boolean isAiGenerated) {
+    this.isAiGenerated = isAiGenerated;
+  }
+
+
   /**
    * Return true if this InstagramPlatformData object is equal to o.
    */
@@ -405,12 +434,13 @@ public class InstagramPlatformData {
         Objects.equals(this.audioName, instagramPlatformData.audioName) &&
         Objects.equals(this.thumbOffset, instagramPlatformData.thumbOffset) &&
         Objects.equals(this.instagramThumbnail, instagramPlatformData.instagramThumbnail) &&
-        Objects.equals(this.reelCover, instagramPlatformData.reelCover);
+        Objects.equals(this.reelCover, instagramPlatformData.reelCover) &&
+        Objects.equals(this.isAiGenerated, instagramPlatformData.isAiGenerated);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, thumbOffset, instagramThumbnail, reelCover);
+    return Objects.hash(contentType, shareToFeed, collaborators, firstComment, trialParams, userTags, audioName, thumbOffset, instagramThumbnail, reelCover, isAiGenerated);
   }
 
   @Override
@@ -427,6 +457,7 @@ public class InstagramPlatformData {
     sb.append("    thumbOffset: ").append(toIndentedString(thumbOffset)).append("\n");
     sb.append("    instagramThumbnail: ").append(toIndentedString(instagramThumbnail)).append("\n");
     sb.append("    reelCover: ").append(toIndentedString(reelCover)).append("\n");
+    sb.append("    isAiGenerated: ").append(toIndentedString(isAiGenerated)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -531,6 +562,11 @@ public class InstagramPlatformData {
     // add `reelCover` to the URL query string
     if (getReelCover() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreelCover%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReelCover()))));
+    }
+
+    // add `isAiGenerated` to the URL query string
+    if (getIsAiGenerated() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisAiGenerated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAiGenerated()))));
     }
 
     return joiner.toString();

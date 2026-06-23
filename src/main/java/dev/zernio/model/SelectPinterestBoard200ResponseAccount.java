@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SelectPinterestBoard200ResponseAccount.JSON_PROPERTY_IS_ACTIVE,
   SelectPinterestBoard200ResponseAccount.JSON_PROPERTY_DEFAULT_BOARD_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T14:04:34.613055530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T17:00:39.324528299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectPinterestBoard200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

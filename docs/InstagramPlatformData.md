@@ -18,6 +18,7 @@ Feed aspect ratio 0.8-1.91, carousels up to 10 items, stories require media (no 
 |**thumbOffset** | **Integer** | Millisecond offset from video start for the Reel cover frame. Ignored when instagramThumbnail or reelCover is provided. Defaults to 0. |  [optional] |
 |**instagramThumbnail** | **URI** | Custom cover image URL for Instagram Reels (JPG or PNG, publicly accessible). Overrides thumbOffset when provided. Also accepted as reelCover (alias). |  [optional] |
 |**reelCover** | **URI** | Alias for instagramThumbnail. If both are provided, instagramThumbnail takes priority. |  [optional] |
+|**isAiGenerated** | **Boolean** | When true, the post is labeled by Instagram as containing AI-generated media. Per Meta, this self-disclosure label is for AI-generated media, not AI-written captions. Applies to feed posts, Reels, Stories, and carousels. |  [optional] |
 
 
 

@@ -27314,6 +27314,13 @@ components:
             \ takes priority."
           format: uri
           type: string
+        isAiGenerated:
+          default: false
+          description: "When true, the post is labeled by Instagram as containing\
+            \ AI-generated media. Per Meta, this self-disclosure label is for AI-generated\
+            \ media, not AI-written captions. Applies to feed posts, Reels, Stories,\
+            \ and carousels."
+          type: boolean
     LinkedInPlatformData:
       description: |
         Up to 20 images, no multi-video. Single PDF supported (max 100MB). Link previews auto-generated when no media attached. Use organizationUrn for multi-org posting. Geo-restriction only works for organization pages (not personal profiles) and requires the targeted audience to exceed 300 followers.
