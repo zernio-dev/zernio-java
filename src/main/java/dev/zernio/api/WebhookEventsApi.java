@@ -21,6 +21,7 @@ import dev.zernio.Pair;
 import dev.zernio.model.OnWhatsAppNumberActionRequiredRequest;
 import dev.zernio.model.OnWhatsAppNumberActivatedRequest;
 import dev.zernio.model.OnWhatsAppNumberDeclinedRequest;
+import dev.zernio.model.OnWhatsAppNumberKycSubmittedRequest;
 import dev.zernio.model.OnWhatsAppNumberReactivatedRequest;
 import dev.zernio.model.OnWhatsAppNumberReleasedRequest;
 import dev.zernio.model.OnWhatsAppNumberSuspendedRequest;
@@ -81,7 +82,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:24:31.394727296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4107,6 +4108,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberDeclinedRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp number KYC submitted event
+   * Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+   * @param onWhatsAppNumberKycSubmittedRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberKycSubmitted(@javax.annotation.Nonnull OnWhatsAppNumberKycSubmittedRequest onWhatsAppNumberKycSubmittedRequest) throws ApiException {
+    onWhatsAppNumberKycSubmitted(onWhatsAppNumberKycSubmittedRequest, null);
+  }
+
+  /**
+   * WhatsApp number KYC submitted event
+   * Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+   * @param onWhatsAppNumberKycSubmittedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppNumberKycSubmitted(@javax.annotation.Nonnull OnWhatsAppNumberKycSubmittedRequest onWhatsAppNumberKycSubmittedRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppNumberKycSubmittedWithHttpInfo(onWhatsAppNumberKycSubmittedRequest, headers);
+  }
+
+  /**
+   * WhatsApp number KYC submitted event
+   * Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+   * @param onWhatsAppNumberKycSubmittedRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberKycSubmittedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberKycSubmittedRequest onWhatsAppNumberKycSubmittedRequest) throws ApiException {
+    return onWhatsAppNumberKycSubmittedWithHttpInfo(onWhatsAppNumberKycSubmittedRequest, null);
+  }
+
+  /**
+   * WhatsApp number KYC submitted event
+   * Fired when an end customer completes a hosted KYC share link (POST /v1/whatsapp/phone-numbers/kyc/share). The number enters review (pending_regulatory) under your account; &#x60;whatsapp.number.activated&#x60; or &#x60;whatsapp.number.declined&#x60; follows once the provider rules on it. 
+   * @param onWhatsAppNumberKycSubmittedRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppNumberKycSubmittedWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppNumberKycSubmittedRequest onWhatsAppNumberKycSubmittedRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppNumberKycSubmittedRequestBuilder(onWhatsAppNumberKycSubmittedRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppNumberKycSubmitted", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppNumberKycSubmittedRequestBuilder(@javax.annotation.Nonnull OnWhatsAppNumberKycSubmittedRequest onWhatsAppNumberKycSubmittedRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppNumberKycSubmittedRequest' is set
+    if (onWhatsAppNumberKycSubmittedRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppNumberKycSubmittedRequest' when calling onWhatsAppNumberKycSubmitted");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.number.kyc_submitted";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppNumberKycSubmittedRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

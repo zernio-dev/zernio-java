@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   TwitterPlatformDataSensitiveMedia.JSON_PROPERTY_GRAPHIC_VIOLENCE,
   TwitterPlatformDataSensitiveMedia.JSON_PROPERTY_OTHER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:24:31.394727296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformDataSensitiveMedia {
   public static final String JSON_PROPERTY_ADULT_CONTENT = "adultContent";
   @javax.annotation.Nullable

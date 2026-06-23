@@ -233,6 +233,9 @@ docs/CreateWhatsAppGroupChat201Response.md
 docs/CreateWhatsAppGroupChat201ResponseGroup.md
 docs/CreateWhatsAppGroupChatRequest.md
 docs/CreateWhatsAppGroupInviteLink200Response.md
+docs/CreateWhatsAppNumberKycLink200Response.md
+docs/CreateWhatsAppNumberKycLinkRequest.md
+docs/CreateWhatsAppNumberKycLinkRequestBranding.md
 docs/CreateWhatsAppSandboxSession200Response.md
 docs/CreateWhatsAppSandboxSessionRequest.md
 docs/CreateWhatsAppTemplate200Response.md
@@ -768,6 +771,7 @@ docs/OnWhatsAppNumberActivatedRequest.md
 docs/OnWhatsAppNumberActivatedRequestNumber.md
 docs/OnWhatsAppNumberDeclinedRequest.md
 docs/OnWhatsAppNumberDeclinedRequestNumber.md
+docs/OnWhatsAppNumberKycSubmittedRequest.md
 docs/OnWhatsAppNumberReactivatedRequest.md
 docs/OnWhatsAppNumberReleasedRequest.md
 docs/OnWhatsAppNumberSuspendedRequest.md
@@ -1517,6 +1521,9 @@ src/main/java/dev/zernio/model/CreateWhatsAppGroupChat201Response.java
 src/main/java/dev/zernio/model/CreateWhatsAppGroupChat201ResponseGroup.java
 src/main/java/dev/zernio/model/CreateWhatsAppGroupChatRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppGroupInviteLink200Response.java
+src/main/java/dev/zernio/model/CreateWhatsAppNumberKycLink200Response.java
+src/main/java/dev/zernio/model/CreateWhatsAppNumberKycLinkRequest.java
+src/main/java/dev/zernio/model/CreateWhatsAppNumberKycLinkRequestBranding.java
 src/main/java/dev/zernio/model/CreateWhatsAppSandboxSession200Response.java
 src/main/java/dev/zernio/model/CreateWhatsAppSandboxSessionRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppTemplate200Response.java
@@ -2035,6 +2042,7 @@ src/main/java/dev/zernio/model/OnWhatsAppNumberActivatedRequest.java
 src/main/java/dev/zernio/model/OnWhatsAppNumberActivatedRequestNumber.java
 src/main/java/dev/zernio/model/OnWhatsAppNumberDeclinedRequest.java
 src/main/java/dev/zernio/model/OnWhatsAppNumberDeclinedRequestNumber.java
+src/main/java/dev/zernio/model/OnWhatsAppNumberKycSubmittedRequest.java
 src/main/java/dev/zernio/model/OnWhatsAppNumberReactivatedRequest.java
 src/main/java/dev/zernio/model/OnWhatsAppNumberReleasedRequest.java
 src/main/java/dev/zernio/model/OnWhatsAppNumberSuspendedRequest.java
@@ -2479,4 +2487,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookPayloadCommentCommentAttachmentTest.java
+src/test/java/dev/zernio/model/CreateWhatsAppNumberKycLink200ResponseTest.java
+src/test/java/dev/zernio/model/CreateWhatsAppNumberKycLinkRequestBrandingTest.java
+src/test/java/dev/zernio/model/CreateWhatsAppNumberKycLinkRequestTest.java
+src/test/java/dev/zernio/model/OnWhatsAppNumberKycSubmittedRequestTest.java

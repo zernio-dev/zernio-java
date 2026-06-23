@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   UpdateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   UpdateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:24:31.394727296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -134,7 +134,9 @@ public class UpdateWebhookSettingsRequest {
     
     WHATSAPP_NUMBER_REACTIVATED(String.valueOf("whatsapp.number.reactivated")),
     
-    WHATSAPP_NUMBER_RELEASED(String.valueOf("whatsapp.number.released"));
+    WHATSAPP_NUMBER_RELEASED(String.valueOf("whatsapp.number.released")),
+    
+    WHATSAPP_NUMBER_KYC_SUBMITTED(String.valueOf("whatsapp.number.kyc_submitted"));
 
     private String value;
 

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-23T08:02:24.434963038Z[Etc/UTC]
+- Build date: 2026-06-23T09:24:31.394727296Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -822,6 +822,8 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**uploadWhatsAppFlowJsonWithHttpInfo**](docs/WhatsAppFlowsApi.md#uploadWhatsAppFlowJsonWithHttpInfo) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
 *WhatsAppPhoneNumbersApi* | [**checkWhatsAppNumberAvailability**](docs/WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint
 *WhatsAppPhoneNumbersApi* | [**checkWhatsAppNumberAvailabilityWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailabilityWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint
+*WhatsAppPhoneNumbersApi* | [**createWhatsAppNumberKycLink**](docs/WhatsAppPhoneNumbersApi.md#createWhatsAppNumberKycLink) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link
+*WhatsAppPhoneNumbersApi* | [**createWhatsAppNumberKycLinkWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#createWhatsAppNumberKycLinkWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfo) | **GET** /v1/whatsapp/number-info | Get number status
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberInfoWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfoWithHttpInfo) | **GET** /v1/whatsapp/number-info | Get number status
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberKycForm**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycForm) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec
@@ -1103,6 +1105,9 @@ Class | Method | HTTP request | Description
  - [CreateWhatsAppGroupChat201ResponseGroup](docs/CreateWhatsAppGroupChat201ResponseGroup.md)
  - [CreateWhatsAppGroupChatRequest](docs/CreateWhatsAppGroupChatRequest.md)
  - [CreateWhatsAppGroupInviteLink200Response](docs/CreateWhatsAppGroupInviteLink200Response.md)
+ - [CreateWhatsAppNumberKycLink200Response](docs/CreateWhatsAppNumberKycLink200Response.md)
+ - [CreateWhatsAppNumberKycLinkRequest](docs/CreateWhatsAppNumberKycLinkRequest.md)
+ - [CreateWhatsAppNumberKycLinkRequestBranding](docs/CreateWhatsAppNumberKycLinkRequestBranding.md)
  - [CreateWhatsAppSandboxSession200Response](docs/CreateWhatsAppSandboxSession200Response.md)
  - [CreateWhatsAppSandboxSessionRequest](docs/CreateWhatsAppSandboxSessionRequest.md)
  - [CreateWhatsAppTemplate200Response](docs/CreateWhatsAppTemplate200Response.md)
@@ -1621,6 +1626,7 @@ Class | Method | HTTP request | Description
  - [OnWhatsAppNumberActivatedRequestNumber](docs/OnWhatsAppNumberActivatedRequestNumber.md)
  - [OnWhatsAppNumberDeclinedRequest](docs/OnWhatsAppNumberDeclinedRequest.md)
  - [OnWhatsAppNumberDeclinedRequestNumber](docs/OnWhatsAppNumberDeclinedRequestNumber.md)
+ - [OnWhatsAppNumberKycSubmittedRequest](docs/OnWhatsAppNumberKycSubmittedRequest.md)
  - [OnWhatsAppNumberReactivatedRequest](docs/OnWhatsAppNumberReactivatedRequest.md)
  - [OnWhatsAppNumberReleasedRequest](docs/OnWhatsAppNumberReleasedRequest.md)
  - [OnWhatsAppNumberSuspendedRequest](docs/OnWhatsAppNumberSuspendedRequest.md)

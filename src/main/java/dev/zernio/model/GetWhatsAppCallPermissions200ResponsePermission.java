@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallPermissions200ResponsePermission.JSON_PROPERTY_STATUS,
   GetWhatsAppCallPermissions200ResponsePermission.JSON_PROPERTY_EXPIRATION_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:24:31.394727296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallPermissions200ResponsePermission {
   /**
    * Gets or Sets status

@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**checkWhatsAppNumberAvailability**](WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint |
 | [**checkWhatsAppNumberAvailabilityWithHttpInfo**](WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailabilityWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint |
+| [**createWhatsAppNumberKycLink**](WhatsAppPhoneNumbersApi.md#createWhatsAppNumberKycLink) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link |
+| [**createWhatsAppNumberKycLinkWithHttpInfo**](WhatsAppPhoneNumbersApi.md#createWhatsAppNumberKycLinkWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link |
 | [**getWhatsAppNumberInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfo) | **GET** /v1/whatsapp/number-info | Get number status |
 | [**getWhatsAppNumberInfoWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfoWithHttpInfo) | **GET** /v1/whatsapp/number-info | Get number status |
 | [**getWhatsAppNumberKycForm**](WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycForm) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec |
@@ -180,6 +182,154 @@ ApiResponse<[**CheckWhatsAppNumberAvailability200Response**](CheckWhatsAppNumber
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
 | **400** | Country not offerable |  -  |
+| **401** | Unauthorized |  -  |
+
+
+## createWhatsAppNumberKycLink
+
+> CreateWhatsAppNumberKycLink200Response createWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest)
+
+Create a hosted KYC link
+
+Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest = new CreateWhatsAppNumberKycLinkRequest(); // CreateWhatsAppNumberKycLinkRequest | 
+        try {
+            CreateWhatsAppNumberKycLink200Response result = apiInstance.createWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#createWhatsAppNumberKycLink");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createWhatsAppNumberKycLinkRequest** | [**CreateWhatsAppNumberKycLinkRequest**](CreateWhatsAppNumberKycLinkRequest.md)|  | |
+
+### Return type
+
+[**CreateWhatsAppNumberKycLink200Response**](CreateWhatsAppNumberKycLink200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Hosted KYC link created. |  -  |
+| **400** | Country does not require KYC (not a regulated country). |  -  |
+| **401** | Unauthorized |  -  |
+
+## createWhatsAppNumberKycLinkWithHttpInfo
+
+> ApiResponse<CreateWhatsAppNumberKycLink200Response> createWhatsAppNumberKycLink createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest)
+
+Create a hosted KYC link
+
+Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest = new CreateWhatsAppNumberKycLinkRequest(); // CreateWhatsAppNumberKycLinkRequest | 
+        try {
+            ApiResponse<CreateWhatsAppNumberKycLink200Response> response = apiInstance.createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#createWhatsAppNumberKycLink");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createWhatsAppNumberKycLinkRequest** | [**CreateWhatsAppNumberKycLinkRequest**](CreateWhatsAppNumberKycLinkRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateWhatsAppNumberKycLink200Response**](CreateWhatsAppNumberKycLink200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Hosted KYC link created. |  -  |
+| **400** | Country does not require KYC (not a regulated country). |  -  |
 | **401** | Unauthorized |  -  |
 
 

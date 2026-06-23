@@ -19,6 +19,8 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.CheckWhatsAppNumberAvailability200Response;
+import dev.zernio.model.CreateWhatsAppNumberKycLink200Response;
+import dev.zernio.model.CreateWhatsAppNumberKycLinkRequest;
 import java.io.File;
 import dev.zernio.model.GetWhatsAppNumberInfo200Response;
 import dev.zernio.model.GetWhatsAppNumberKycForm200Response;
@@ -74,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:24:31.394727296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -312,6 +314,129 @@ public class WhatsAppPhoneNumbersApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a hosted KYC link
+   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createWhatsAppNumberKycLinkRequest  (required)
+   * @return CreateWhatsAppNumberKycLink200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateWhatsAppNumberKycLink200Response createWhatsAppNumberKycLink(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest) throws ApiException {
+    return createWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest, null);
+  }
+
+  /**
+   * Create a hosted KYC link
+   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createWhatsAppNumberKycLinkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateWhatsAppNumberKycLink200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateWhatsAppNumberKycLink200Response createWhatsAppNumberKycLink(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateWhatsAppNumberKycLink200Response> localVarResponse = createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a hosted KYC link
+   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createWhatsAppNumberKycLinkRequest  (required)
+   * @return ApiResponse&lt;CreateWhatsAppNumberKycLink200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateWhatsAppNumberKycLink200Response> createWhatsAppNumberKycLinkWithHttpInfo(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest) throws ApiException {
+    return createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest, null);
+  }
+
+  /**
+   * Create a hosted KYC link
+   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createWhatsAppNumberKycLinkRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateWhatsAppNumberKycLink200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateWhatsAppNumberKycLink200Response> createWhatsAppNumberKycLinkWithHttpInfo(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWhatsAppNumberKycLinkRequestBuilder(createWhatsAppNumberKycLinkRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createWhatsAppNumberKycLink", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateWhatsAppNumberKycLink200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateWhatsAppNumberKycLink200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateWhatsAppNumberKycLink200Response>() {});
+        
+
+        return new ApiResponse<CreateWhatsAppNumberKycLink200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createWhatsAppNumberKycLinkRequestBuilder(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createWhatsAppNumberKycLinkRequest' is set
+    if (createWhatsAppNumberKycLinkRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createWhatsAppNumberKycLinkRequest' when calling createWhatsAppNumberKycLink");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/phone-numbers/kyc/share";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWhatsAppNumberKycLinkRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

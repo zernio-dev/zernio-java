@@ -210,7 +210,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -15861,6 +15861,47 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/phone-numbers/kyc/share:
+    post:
+      description: |
+        Create a single-use, 7-day hosted KYC link that your end customer
+        completes WITHOUT a Zernio login — useful when the person who holds the
+        ID and address is not your team. They fill the regulated verification on
+        a Zernio-hosted page; the number provisions under YOUR account once they
+        submit. Only regulated (KYC) countries are valid: a country that does not
+        require KYC returns 400.
+
+        White-label the page with `branding` (your company name, logo, brand
+        color). Supply `redirect_url` to send the end customer back to your own
+        site after a successful submit (completion params are appended — see
+        below). Listen for the `whatsapp.number.kyc_submitted` webhook to react
+        when the form is completed.
+      operationId: createWhatsAppNumberKycLink
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createWhatsAppNumberKycLink_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createWhatsAppNumberKycLink_200_response"
+          description: Hosted KYC link created.
+        "400":
+          description: Country does not require KYC (not a regulated country).
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Create a hosted KYC link
+      tags:
+      - WhatsApp Phone Numbers
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/whatsapp/phone-numbers/{id}/remediate:
     get:
       description: |
@@ -24539,6 +24580,7 @@ components:
             - whatsapp.number.suspended
             - whatsapp.number.reactivated
             - whatsapp.number.released
+            - whatsapp.number.kyc_submitted
             type: string
           type: array
         isActive:
@@ -41175,6 +41217,7 @@ components:
             - whatsapp.number.suspended
             - whatsapp.number.reactivated
             - whatsapp.number.released
+            - whatsapp.number.kyc_submitted
             type: string
           minItems: 1
           type: array
@@ -41260,6 +41303,7 @@ components:
             - whatsapp.number.suspended
             - whatsapp.number.reactivated
             - whatsapp.number.released
+            - whatsapp.number.kyc_submitted
             type: string
           minItems: 1
           type: array
@@ -46195,6 +46239,57 @@ components:
           type: string
         details:
           $ref: "#/components/schemas/validateWhatsAppNumberKycAddress_400_response_details"
+    createWhatsAppNumberKycLink_request_branding:
+      description: Optional white-label of the hosted page the end customer sees.
+      properties:
+        companyName:
+          description: Your company name
+          maxLength: 60
+          type: string
+        logoUrl:
+          description: Logo shown above the form.
+          format: uri
+          type: string
+        brandColor:
+          description: Hex color (e.g. "#1a73e8") applied to the primary action.
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+    createWhatsAppNumberKycLink_request:
+      properties:
+        profileId:
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code (must be a regulated/KYC country).
+          maxLength: 2
+          minLength: 2
+          type: string
+        branding:
+          $ref: "#/components/schemas/createWhatsAppNumberKycLink_request_branding"
+        redirect_url:
+          description: |
+            Where to send the end customer's browser after a successful
+            submit. On completion Zernio appends `kyc=submitted` and
+            `country=<ISO-2>` as query params. When omitted, the hosted
+            page shows a built-in confirmation screen instead.
+          format: uri
+          type: string
+      required:
+      - country
+      - profileId
+    createWhatsAppNumberKycLink_200_response:
+      example:
+        url: url
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+        token: token
+      properties:
+        url:
+          description: The hosted link to send your end customer.
+          type: string
+        token:
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
     getWhatsAppNumberRemediation_200_response:
       example:
         country: country
@@ -56724,6 +56819,18 @@ components:
         reason:
           nullable: true
           type: string
+    onWhatsAppNumberKycSubmitted_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.number.kyc_submitted
+        timestamp:
+          format: date-time
+          type: string
+        number:
+          $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
     WorkflowNode_position:
       description: Canvas coordinates (ignored by the executor; used by the visual
         builder).
