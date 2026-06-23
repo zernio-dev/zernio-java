@@ -42,6 +42,7 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_PROFILE_ID,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_COUNTRY,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_SUBMISSION_ID,
+  SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_QUANTITY,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_REUSE_FROM,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_END_USER_FIRST_NAME,
@@ -50,7 +51,7 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_DOCUMENTS,
   SubmitWhatsAppNumberKycRequest.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:34:00.842433440Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -63,6 +64,10 @@ public class SubmitWhatsAppNumberKycRequest {
   public static final String JSON_PROPERTY_SUBMISSION_ID = "submissionId";
   @javax.annotation.Nullable
   private String submissionId;
+
+  public static final String JSON_PROPERTY_QUANTITY = "quantity";
+  @javax.annotation.Nullable
+  private Integer quantity = 1;
 
   public static final String JSON_PROPERTY_REUSE = "reuse";
   @javax.annotation.Nullable
@@ -164,6 +169,32 @@ public class SubmitWhatsAppNumberKycRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubmissionId(@javax.annotation.Nullable String submissionId) {
     this.submissionId = submissionId;
+  }
+
+
+  public SubmitWhatsAppNumberKycRequest quantity(@javax.annotation.Nullable Integer quantity) {
+    this.quantity = quantity;
+    return this;
+  }
+
+  /**
+   * Provision several same-country numbers from one submission (1-5). The single verification covers all of them; each number is billed only when it activates. Numbers that fail to order are skipped (best-effort).
+   * minimum: 1
+   * maximum: 5
+   * @return quantity
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUANTITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getQuantity() {
+    return quantity;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUANTITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuantity(@javax.annotation.Nullable Integer quantity) {
+    this.quantity = quantity;
   }
 
 
@@ -366,6 +397,7 @@ public class SubmitWhatsAppNumberKycRequest {
     return Objects.equals(this.profileId, submitWhatsAppNumberKycRequest.profileId) &&
         Objects.equals(this.country, submitWhatsAppNumberKycRequest.country) &&
         Objects.equals(this.submissionId, submitWhatsAppNumberKycRequest.submissionId) &&
+        Objects.equals(this.quantity, submitWhatsAppNumberKycRequest.quantity) &&
         Objects.equals(this.reuse, submitWhatsAppNumberKycRequest.reuse) &&
         Objects.equals(this.reuseFrom, submitWhatsAppNumberKycRequest.reuseFrom) &&
         Objects.equals(this.endUserFirstName, submitWhatsAppNumberKycRequest.endUserFirstName) &&
@@ -377,7 +409,7 @@ public class SubmitWhatsAppNumberKycRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, submissionId, reuse, reuseFrom, endUserFirstName, endUserLastName, values, documents, address);
+    return Objects.hash(profileId, country, submissionId, quantity, reuse, reuseFrom, endUserFirstName, endUserLastName, values, documents, address);
   }
 
   @Override
@@ -387,6 +419,7 @@ public class SubmitWhatsAppNumberKycRequest {
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    submissionId: ").append(toIndentedString(submissionId)).append("\n");
+    sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    reuse: ").append(toIndentedString(reuse)).append("\n");
     sb.append("    reuseFrom: ").append(toIndentedString(reuseFrom)).append("\n");
     sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
@@ -454,6 +487,11 @@ public class SubmitWhatsAppNumberKycRequest {
     // add `submissionId` to the URL query string
     if (getSubmissionId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssubmissionId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSubmissionId()))));
+    }
+
+    // add `quantity` to the URL query string
+    if (getQuantity() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%squantity%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQuantity()))));
     }
 
     // add `reuse` to the URL query string

@@ -24,8 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SubmitWhatsAppNumberKyc200ResponseNumbersInner;
 import dev.zernio.model.SubmitWhatsAppNumberKyc200ResponsePhoneNumber;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,9 +38,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SubmitWhatsAppNumberKyc200Response.JSON_PROPERTY_STATUS,
-  SubmitWhatsAppNumberKyc200Response.JSON_PROPERTY_PHONE_NUMBER
+  SubmitWhatsAppNumberKyc200Response.JSON_PROPERTY_PHONE_NUMBER,
+  SubmitWhatsAppNumberKyc200Response.JSON_PROPERTY_NUMBERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:34:00.842433440Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKyc200Response {
   /**
    * Gets or Sets status
@@ -83,6 +87,10 @@ public class SubmitWhatsAppNumberKyc200Response {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
   private SubmitWhatsAppNumberKyc200ResponsePhoneNumber phoneNumber;
+
+  public static final String JSON_PROPERTY_NUMBERS = "numbers";
+  @javax.annotation.Nullable
+  private List<SubmitWhatsAppNumberKyc200ResponseNumbersInner> numbers = new ArrayList<>();
 
   public SubmitWhatsAppNumberKyc200Response() { 
   }
@@ -135,6 +143,38 @@ public class SubmitWhatsAppNumberKyc200Response {
   }
 
 
+  public SubmitWhatsAppNumberKyc200Response numbers(@javax.annotation.Nullable List<SubmitWhatsAppNumberKyc200ResponseNumbersInner> numbers) {
+    this.numbers = numbers;
+    return this;
+  }
+
+  public SubmitWhatsAppNumberKyc200Response addNumbersItem(SubmitWhatsAppNumberKyc200ResponseNumbersInner numbersItem) {
+    if (this.numbers == null) {
+      this.numbers = new ArrayList<>();
+    }
+    this.numbers.add(numbersItem);
+    return this;
+  }
+
+  /**
+   * Every number provisioned from this submission. Length equals the requested &#x60;quantity&#x60; on full success (fewer if some orders failed; best-effort). The first element mirrors &#x60;phoneNumber&#x60;.
+   * @return numbers
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NUMBERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<SubmitWhatsAppNumberKyc200ResponseNumbersInner> getNumbers() {
+    return numbers;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NUMBERS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNumbers(@javax.annotation.Nullable List<SubmitWhatsAppNumberKyc200ResponseNumbersInner> numbers) {
+    this.numbers = numbers;
+  }
+
+
   /**
    * Return true if this submitWhatsAppNumberKyc_200_response object is equal to o.
    */
@@ -148,12 +188,13 @@ public class SubmitWhatsAppNumberKyc200Response {
     }
     SubmitWhatsAppNumberKyc200Response submitWhatsAppNumberKyc200Response = (SubmitWhatsAppNumberKyc200Response) o;
     return Objects.equals(this.status, submitWhatsAppNumberKyc200Response.status) &&
-        Objects.equals(this.phoneNumber, submitWhatsAppNumberKyc200Response.phoneNumber);
+        Objects.equals(this.phoneNumber, submitWhatsAppNumberKyc200Response.phoneNumber) &&
+        Objects.equals(this.numbers, submitWhatsAppNumberKyc200Response.numbers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, phoneNumber);
+    return Objects.hash(status, phoneNumber, numbers);
   }
 
   @Override
@@ -162,6 +203,7 @@ public class SubmitWhatsAppNumberKyc200Response {
     sb.append("class SubmitWhatsAppNumberKyc200Response {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    numbers: ").append(toIndentedString(numbers)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -217,6 +259,16 @@ public class SubmitWhatsAppNumberKyc200Response {
     // add `phoneNumber` to the URL query string
     if (getPhoneNumber() != null) {
       joiner.add(getPhoneNumber().toUrlQueryString(prefix + "phoneNumber" + suffix));
+    }
+
+    // add `numbers` to the URL query string
+    if (getNumbers() != null) {
+      for (int i = 0; i < getNumbers().size(); i++) {
+        if (getNumbers().get(i) != null) {
+          joiner.add(getNumbers().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%snumbers%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

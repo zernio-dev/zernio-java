@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**phoneNumber** | [**SubmitWhatsAppNumberKyc200ResponsePhoneNumber**](SubmitWhatsAppNumberKyc200ResponsePhoneNumber.md) |  |  [optional] |
+|**numbers** | [**List&lt;SubmitWhatsAppNumberKyc200ResponseNumbersInner&gt;**](SubmitWhatsAppNumberKyc200ResponseNumbersInner.md) | Every number provisioned from this submission. Length equals the requested &#x60;quantity&#x60; on full success (fewer if some orders failed; best-effort). The first element mirrors &#x60;phoneNumber&#x60;. |  [optional] |
 
 
 

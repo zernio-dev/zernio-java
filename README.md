@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-23T09:34:00.842433440Z[Etc/UTC]
+- Build date: 2026-06-23T11:24:54.198830969Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1795,6 +1795,7 @@ Class | Method | HTTP request | Description
  - [StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
  - [StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
  - [SubmitWhatsAppNumberKyc200Response](docs/SubmitWhatsAppNumberKyc200Response.md)
+ - [SubmitWhatsAppNumberKyc200ResponseNumbersInner](docs/SubmitWhatsAppNumberKyc200ResponseNumbersInner.md)
  - [SubmitWhatsAppNumberKyc200ResponsePhoneNumber](docs/SubmitWhatsAppNumberKyc200ResponsePhoneNumber.md)
  - [SubmitWhatsAppNumberKycRequest](docs/SubmitWhatsAppNumberKycRequest.md)
  - [SubmitWhatsAppNumberKycRequestAddress](docs/SubmitWhatsAppNumberKycRequestAddress.md)

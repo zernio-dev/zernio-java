@@ -46079,6 +46079,14 @@ components:
             with the same token returns the same number; omit and each call creates
             a new number.
           type: string
+        quantity:
+          default: 1
+          description: Provision several same-country numbers from one submission
+            (1-5). The single verification covers all of them; each number is billed
+            only when it activates. Numbers that fail to order are skipped (best-effort).
+          maximum: 5
+          minimum: 1
+          type: integer
         reuse:
           description: Reuse a prior approved verification for this country (skips
             document/field collection; places the order immediately).
@@ -46113,6 +46121,8 @@ components:
       - country
       - profileId
     submitWhatsAppNumberKyc_200_response_phoneNumber:
+      description: "The first/primary number, kept at the top level for backward compatibility.\
+        \ See `numbers` for the full set when `quantity` > 1."
       example:
         country: country
         id: id
@@ -46124,10 +46134,34 @@ components:
           type: string
         country:
           type: string
+    submitWhatsAppNumberKyc_200_response_numbers_inner:
+      example:
+        country: country
+        phoneNumber: phoneNumber
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        phoneNumber:
+          type: string
+        country:
+          type: string
     submitWhatsAppNumberKyc_200_response:
       example:
         phoneNumber:
           country: country
+          id: id
+          status: status
+        numbers:
+        - country: country
+          phoneNumber: phoneNumber
+          id: id
+          status: status
+        - country: country
+          phoneNumber: phoneNumber
           id: id
           status: status
         status: kyc_submitted
@@ -46140,6 +46174,13 @@ components:
           type: string
         phoneNumber:
           $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response_phoneNumber"
+        numbers:
+          description: Every number provisioned from this submission. Length equals
+            the requested `quantity` on full success (fewer if some orders failed;
+            best-effort). The first element mirrors `phoneNumber`.
+          items:
+            $ref: "#/components/schemas/submitWhatsAppNumberKyc_200_response_numbers_inner"
+          type: array
     uploadWhatsAppNumberKycDocument_200_response:
       example:
         documentId: documentId

@@ -30,14 +30,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * SubmitWhatsAppNumberKyc200ResponsePhoneNumber
+ * The first/primary number, kept at the top level for backward compatibility. See &#x60;numbers&#x60; for the full set when &#x60;quantity&#x60; &gt; 1.
  */
 @JsonPropertyOrder({
   SubmitWhatsAppNumberKyc200ResponsePhoneNumber.JSON_PROPERTY_ID,
   SubmitWhatsAppNumberKyc200ResponsePhoneNumber.JSON_PROPERTY_STATUS,
   SubmitWhatsAppNumberKyc200ResponsePhoneNumber.JSON_PROPERTY_COUNTRY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:34:00.842433440Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T11:24:54.198830969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKyc200ResponsePhoneNumber {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
