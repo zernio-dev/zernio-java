@@ -32,6 +32,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,21 +55,19 @@ import dev.zernio.ApiClient;
   AnalyticsListResponsePostsInner.JSON_PROPERTY_PLATFORM,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_PLATFORM_POST_URL,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_IS_EXTERNAL,
-  AnalyticsListResponsePostsInner.JSON_PROPERTY_IS_AD,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_PROFILE_ID,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_THUMBNAIL_URL,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_TYPE,
   AnalyticsListResponsePostsInner.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsListResponsePostsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
   private String id;
 
   public static final String JSON_PROPERTY_LATE_POST_ID = "latePostId";
-  @javax.annotation.Nullable
-  private String latePostId;
+  private JsonNullable<String> latePostId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CONTENT = "content";
   @javax.annotation.Nullable
@@ -103,13 +105,8 @@ public class AnalyticsListResponsePostsInner {
   @javax.annotation.Nullable
   private Boolean isExternal;
 
-  public static final String JSON_PROPERTY_IS_AD = "isAd";
-  @javax.annotation.Nullable
-  private Boolean isAd;
-
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
-  @javax.annotation.Nullable
-  private String profileId;
+  private JsonNullable<String> profileId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
@@ -194,7 +191,7 @@ public class AnalyticsListResponsePostsInner {
 
 
   public AnalyticsListResponsePostsInner latePostId(@javax.annotation.Nullable String latePostId) {
-    this.latePostId = latePostId;
+    this.latePostId = JsonNullable.<String>of(latePostId);
     return this;
   }
 
@@ -203,17 +200,25 @@ public class AnalyticsListResponsePostsInner {
    * @return latePostId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LATE_POST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLatePostId() {
-    return latePostId;
+        return latePostId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LATE_POST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLatePostId(@javax.annotation.Nullable String latePostId) {
+
+  public JsonNullable<String> getLatePostId_JsonNullable() {
+    return latePostId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LATE_POST_ID)
+  public void setLatePostId_JsonNullable(JsonNullable<String> latePostId) {
     this.latePostId = latePostId;
+  }
+
+  public void setLatePostId(@javax.annotation.Nullable String latePostId) {
+    this.latePostId = JsonNullable.<String>of(latePostId);
   }
 
 
@@ -441,32 +446,8 @@ public class AnalyticsListResponsePostsInner {
   }
 
 
-  public AnalyticsListResponsePostsInner isAd(@javax.annotation.Nullable Boolean isAd) {
-    this.isAd = isAd;
-    return this;
-  }
-
-  /**
-   * True when the post is an ad creative. False for organic posts or platforms where the signal is unavailable. For now is only available for LinkedIn posts.
-   * @return isAd
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_AD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getIsAd() {
-    return isAd;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_IS_AD, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsAd(@javax.annotation.Nullable Boolean isAd) {
-    this.isAd = isAd;
-  }
-
-
   public AnalyticsListResponsePostsInner profileId(@javax.annotation.Nullable String profileId) {
-    this.profileId = profileId;
+    this.profileId = JsonNullable.<String>of(profileId);
     return this;
   }
 
@@ -475,17 +456,25 @@ public class AnalyticsListResponsePostsInner {
    * @return profileId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getProfileId() {
-    return profileId;
+        return profileId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfileId(@javax.annotation.Nullable String profileId) {
+
+  public JsonNullable<String> getProfileId_JsonNullable() {
+    return profileId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROFILE_ID)
+  public void setProfileId_JsonNullable(JsonNullable<String> profileId) {
     this.profileId = profileId;
+  }
+
+  public void setProfileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = JsonNullable.<String>of(profileId);
   }
 
 
@@ -582,7 +571,7 @@ public class AnalyticsListResponsePostsInner {
     }
     AnalyticsListResponsePostsInner analyticsListResponsePostsInner = (AnalyticsListResponsePostsInner) o;
     return Objects.equals(this.id, analyticsListResponsePostsInner.id) &&
-        Objects.equals(this.latePostId, analyticsListResponsePostsInner.latePostId) &&
+        equalsNullable(this.latePostId, analyticsListResponsePostsInner.latePostId) &&
         Objects.equals(this.content, analyticsListResponsePostsInner.content) &&
         Objects.equals(this.scheduledFor, analyticsListResponsePostsInner.scheduledFor) &&
         Objects.equals(this.publishedAt, analyticsListResponsePostsInner.publishedAt) &&
@@ -592,16 +581,26 @@ public class AnalyticsListResponsePostsInner {
         Objects.equals(this.platform, analyticsListResponsePostsInner.platform) &&
         Objects.equals(this.platformPostUrl, analyticsListResponsePostsInner.platformPostUrl) &&
         Objects.equals(this.isExternal, analyticsListResponsePostsInner.isExternal) &&
-        Objects.equals(this.isAd, analyticsListResponsePostsInner.isAd) &&
-        Objects.equals(this.profileId, analyticsListResponsePostsInner.profileId) &&
+        equalsNullable(this.profileId, analyticsListResponsePostsInner.profileId) &&
         Objects.equals(this.thumbnailUrl, analyticsListResponsePostsInner.thumbnailUrl) &&
         Objects.equals(this.mediaType, analyticsListResponsePostsInner.mediaType) &&
         Objects.equals(this.mediaItems, analyticsListResponsePostsInner.mediaItems);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, latePostId, content, scheduledFor, publishedAt, status, analytics, platforms, platform, platformPostUrl, isExternal, isAd, profileId, thumbnailUrl, mediaType, mediaItems);
+    return Objects.hash(id, hashCodeNullable(latePostId), content, scheduledFor, publishedAt, status, analytics, platforms, platform, platformPostUrl, isExternal, hashCodeNullable(profileId), thumbnailUrl, mediaType, mediaItems);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -619,7 +618,6 @@ public class AnalyticsListResponsePostsInner {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    platformPostUrl: ").append(toIndentedString(platformPostUrl)).append("\n");
     sb.append("    isExternal: ").append(toIndentedString(isExternal)).append("\n");
-    sb.append("    isAd: ").append(toIndentedString(isAd)).append("\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
@@ -729,11 +727,6 @@ public class AnalyticsListResponsePostsInner {
     // add `isExternal` to the URL query string
     if (getIsExternal() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisExternal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExternal()))));
-    }
-
-    // add `isAd` to the URL query string
-    if (getIsAd() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sisAd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAd()))));
     }
 
     // add `profileId` to the URL query string

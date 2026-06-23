@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,7 +49,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_SIP_AUTH_PASSWORD_CONFIGURED,
   GetWhatsAppCallingConfig200Response.JSON_PROPERTY_CALL_ICON_COUNTRIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallingConfig200Response {
   public static final String JSON_PROPERTY_PHONE_NUMBER_DOC_ID = "phoneNumberDocId";
   @javax.annotation.Nullable
@@ -60,28 +64,24 @@ public class GetWhatsAppCallingConfig200Response {
   private Boolean callingEnabled;
 
   public static final String JSON_PROPERTY_CALL_DEEP_LINK = "callDeepLink";
-  @javax.annotation.Nullable
-  private String callDeepLink;
+  private JsonNullable<String> callDeepLink = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_FORWARD_TO = "forwardTo";
-  @javax.annotation.Nullable
-  private String forwardTo;
+  private JsonNullable<String> forwardTo = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RECORDING_ENABLED = "recordingEnabled";
   @javax.annotation.Nullable
   private Boolean recordingEnabled;
 
   public static final String JSON_PROPERTY_SIP_AUTH_USERNAME = "sipAuthUsername";
-  @javax.annotation.Nullable
-  private String sipAuthUsername;
+  private JsonNullable<String> sipAuthUsername = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SIP_AUTH_PASSWORD_CONFIGURED = "sipAuthPasswordConfigured";
   @javax.annotation.Nullable
   private Boolean sipAuthPasswordConfigured;
 
   public static final String JSON_PROPERTY_CALL_ICON_COUNTRIES = "callIconCountries";
-  @javax.annotation.Nullable
-  private List<String> callIconCountries = new ArrayList<>();
+  private JsonNullable<List<String>> callIconCountries = JsonNullable.<List<String>>undefined();
 
   public GetWhatsAppCallingConfig200Response() { 
   }
@@ -159,7 +159,7 @@ public class GetWhatsAppCallingConfig200Response {
 
 
   public GetWhatsAppCallingConfig200Response callDeepLink(@javax.annotation.Nullable String callDeepLink) {
-    this.callDeepLink = callDeepLink;
+    this.callDeepLink = JsonNullable.<String>of(callDeepLink);
     return this;
   }
 
@@ -168,22 +168,30 @@ public class GetWhatsAppCallingConfig200Response {
    * @return callDeepLink
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CALL_DEEP_LINK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCallDeepLink() {
-    return callDeepLink;
+        return callDeepLink.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CALL_DEEP_LINK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCallDeepLink(@javax.annotation.Nullable String callDeepLink) {
+
+  public JsonNullable<String> getCallDeepLink_JsonNullable() {
+    return callDeepLink;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CALL_DEEP_LINK)
+  public void setCallDeepLink_JsonNullable(JsonNullable<String> callDeepLink) {
     this.callDeepLink = callDeepLink;
+  }
+
+  public void setCallDeepLink(@javax.annotation.Nullable String callDeepLink) {
+    this.callDeepLink = JsonNullable.<String>of(callDeepLink);
   }
 
 
   public GetWhatsAppCallingConfig200Response forwardTo(@javax.annotation.Nullable String forwardTo) {
-    this.forwardTo = forwardTo;
+    this.forwardTo = JsonNullable.<String>of(forwardTo);
     return this;
   }
 
@@ -192,17 +200,25 @@ public class GetWhatsAppCallingConfig200Response {
    * @return forwardTo
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FORWARD_TO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getForwardTo() {
-    return forwardTo;
+        return forwardTo.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FORWARD_TO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setForwardTo(@javax.annotation.Nullable String forwardTo) {
+
+  public JsonNullable<String> getForwardTo_JsonNullable() {
+    return forwardTo;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FORWARD_TO)
+  public void setForwardTo_JsonNullable(JsonNullable<String> forwardTo) {
     this.forwardTo = forwardTo;
+  }
+
+  public void setForwardTo(@javax.annotation.Nullable String forwardTo) {
+    this.forwardTo = JsonNullable.<String>of(forwardTo);
   }
 
 
@@ -231,7 +247,7 @@ public class GetWhatsAppCallingConfig200Response {
 
 
   public GetWhatsAppCallingConfig200Response sipAuthUsername(@javax.annotation.Nullable String sipAuthUsername) {
-    this.sipAuthUsername = sipAuthUsername;
+    this.sipAuthUsername = JsonNullable.<String>of(sipAuthUsername);
     return this;
   }
 
@@ -240,17 +256,25 @@ public class GetWhatsAppCallingConfig200Response {
    * @return sipAuthUsername
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SIP_AUTH_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSipAuthUsername() {
-    return sipAuthUsername;
+        return sipAuthUsername.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SIP_AUTH_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSipAuthUsername(@javax.annotation.Nullable String sipAuthUsername) {
+
+  public JsonNullable<String> getSipAuthUsername_JsonNullable() {
+    return sipAuthUsername;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SIP_AUTH_USERNAME)
+  public void setSipAuthUsername_JsonNullable(JsonNullable<String> sipAuthUsername) {
     this.sipAuthUsername = sipAuthUsername;
+  }
+
+  public void setSipAuthUsername(@javax.annotation.Nullable String sipAuthUsername) {
+    this.sipAuthUsername = JsonNullable.<String>of(sipAuthUsername);
   }
 
 
@@ -279,15 +303,19 @@ public class GetWhatsAppCallingConfig200Response {
 
 
   public GetWhatsAppCallingConfig200Response callIconCountries(@javax.annotation.Nullable List<String> callIconCountries) {
-    this.callIconCountries = callIconCountries;
+    this.callIconCountries = JsonNullable.<List<String>>of(callIconCountries);
     return this;
   }
 
   public GetWhatsAppCallingConfig200Response addCallIconCountriesItem(String callIconCountriesItem) {
-    if (this.callIconCountries == null) {
-      this.callIconCountries = new ArrayList<>();
+    if (this.callIconCountries == null || !this.callIconCountries.isPresent()) {
+      this.callIconCountries = JsonNullable.<List<String>>of(new ArrayList<>());
     }
-    this.callIconCountries.add(callIconCountriesItem);
+    try {
+      this.callIconCountries.get().add(callIconCountriesItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -296,17 +324,25 @@ public class GetWhatsAppCallingConfig200Response {
    * @return callIconCountries
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CALL_ICON_COUNTRIES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public List<String> getCallIconCountries() {
-    return callIconCountries;
+        return callIconCountries.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CALL_ICON_COUNTRIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCallIconCountries(@javax.annotation.Nullable List<String> callIconCountries) {
+
+  public JsonNullable<List<String>> getCallIconCountries_JsonNullable() {
+    return callIconCountries;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CALL_ICON_COUNTRIES)
+  public void setCallIconCountries_JsonNullable(JsonNullable<List<String>> callIconCountries) {
     this.callIconCountries = callIconCountries;
+  }
+
+  public void setCallIconCountries(@javax.annotation.Nullable List<String> callIconCountries) {
+    this.callIconCountries = JsonNullable.<List<String>>of(callIconCountries);
   }
 
 
@@ -325,17 +361,28 @@ public class GetWhatsAppCallingConfig200Response {
     return Objects.equals(this.phoneNumberDocId, getWhatsAppCallingConfig200Response.phoneNumberDocId) &&
         Objects.equals(this.phoneNumber, getWhatsAppCallingConfig200Response.phoneNumber) &&
         Objects.equals(this.callingEnabled, getWhatsAppCallingConfig200Response.callingEnabled) &&
-        Objects.equals(this.callDeepLink, getWhatsAppCallingConfig200Response.callDeepLink) &&
-        Objects.equals(this.forwardTo, getWhatsAppCallingConfig200Response.forwardTo) &&
+        equalsNullable(this.callDeepLink, getWhatsAppCallingConfig200Response.callDeepLink) &&
+        equalsNullable(this.forwardTo, getWhatsAppCallingConfig200Response.forwardTo) &&
         Objects.equals(this.recordingEnabled, getWhatsAppCallingConfig200Response.recordingEnabled) &&
-        Objects.equals(this.sipAuthUsername, getWhatsAppCallingConfig200Response.sipAuthUsername) &&
+        equalsNullable(this.sipAuthUsername, getWhatsAppCallingConfig200Response.sipAuthUsername) &&
         Objects.equals(this.sipAuthPasswordConfigured, getWhatsAppCallingConfig200Response.sipAuthPasswordConfigured) &&
-        Objects.equals(this.callIconCountries, getWhatsAppCallingConfig200Response.callIconCountries);
+        equalsNullable(this.callIconCountries, getWhatsAppCallingConfig200Response.callIconCountries);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumberDocId, phoneNumber, callingEnabled, callDeepLink, forwardTo, recordingEnabled, sipAuthUsername, sipAuthPasswordConfigured, callIconCountries);
+    return Objects.hash(phoneNumberDocId, phoneNumber, callingEnabled, hashCodeNullable(callDeepLink), hashCodeNullable(forwardTo), recordingEnabled, hashCodeNullable(sipAuthUsername), sipAuthPasswordConfigured, hashCodeNullable(callIconCountries));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

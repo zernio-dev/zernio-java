@@ -30,6 +30,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -52,7 +56,7 @@ import dev.zernio.ApiClient;
   GetWorkflowVersion200ResponseVersion.JSON_PROPERTY_RESTORED_FROM_VERSION,
   GetWorkflowVersion200ResponseVersion.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWorkflowVersion200ResponseVersion {
   public static final String JSON_PROPERTY_VERSION = "version";
   @javax.annotation.Nullable
@@ -63,12 +67,10 @@ public class GetWorkflowVersion200ResponseVersion {
   private String name;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENTRY_NODE_ID = "entryNodeId";
-  @javax.annotation.Nullable
-  private String entryNodeId;
+  private JsonNullable<String> entryNodeId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NODES = "nodes";
   @javax.annotation.Nullable
@@ -91,16 +93,13 @@ public class GetWorkflowVersion200ResponseVersion {
   private String profileId;
 
   public static final String JSON_PROPERTY_CREATED_BY = "createdBy";
-  @javax.annotation.Nullable
-  private String createdBy;
+  private JsonNullable<String> createdBy = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_BY_EMAIL = "createdByEmail";
-  @javax.annotation.Nullable
-  private String createdByEmail;
+  private JsonNullable<String> createdByEmail = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RESTORED_FROM_VERSION = "restoredFromVersion";
-  @javax.annotation.Nullable
-  private Integer restoredFromVersion;
+  private JsonNullable<Integer> restoredFromVersion = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -158,7 +157,7 @@ public class GetWorkflowVersion200ResponseVersion {
 
 
   public GetWorkflowVersion200ResponseVersion description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -167,22 +166,30 @@ public class GetWorkflowVersion200ResponseVersion {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
   public GetWorkflowVersion200ResponseVersion entryNodeId(@javax.annotation.Nullable String entryNodeId) {
-    this.entryNodeId = entryNodeId;
+    this.entryNodeId = JsonNullable.<String>of(entryNodeId);
     return this;
   }
 
@@ -191,17 +198,25 @@ public class GetWorkflowVersion200ResponseVersion {
    * @return entryNodeId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENTRY_NODE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEntryNodeId() {
-    return entryNodeId;
+        return entryNodeId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENTRY_NODE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntryNodeId(@javax.annotation.Nullable String entryNodeId) {
+
+  public JsonNullable<String> getEntryNodeId_JsonNullable() {
+    return entryNodeId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENTRY_NODE_ID)
+  public void setEntryNodeId_JsonNullable(JsonNullable<String> entryNodeId) {
     this.entryNodeId = entryNodeId;
+  }
+
+  public void setEntryNodeId(@javax.annotation.Nullable String entryNodeId) {
+    this.entryNodeId = JsonNullable.<String>of(entryNodeId);
   }
 
 
@@ -342,7 +357,7 @@ public class GetWorkflowVersion200ResponseVersion {
 
 
   public GetWorkflowVersion200ResponseVersion createdBy(@javax.annotation.Nullable String createdBy) {
-    this.createdBy = createdBy;
+    this.createdBy = JsonNullable.<String>of(createdBy);
     return this;
   }
 
@@ -351,22 +366,30 @@ public class GetWorkflowVersion200ResponseVersion {
    * @return createdBy
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_BY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCreatedBy() {
-    return createdBy;
+        return createdBy.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATED_BY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedBy(@javax.annotation.Nullable String createdBy) {
+
+  public JsonNullable<String> getCreatedBy_JsonNullable() {
+    return createdBy;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_BY)
+  public void setCreatedBy_JsonNullable(JsonNullable<String> createdBy) {
     this.createdBy = createdBy;
+  }
+
+  public void setCreatedBy(@javax.annotation.Nullable String createdBy) {
+    this.createdBy = JsonNullable.<String>of(createdBy);
   }
 
 
   public GetWorkflowVersion200ResponseVersion createdByEmail(@javax.annotation.Nullable String createdByEmail) {
-    this.createdByEmail = createdByEmail;
+    this.createdByEmail = JsonNullable.<String>of(createdByEmail);
     return this;
   }
 
@@ -375,22 +398,30 @@ public class GetWorkflowVersion200ResponseVersion {
    * @return createdByEmail
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_BY_EMAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCreatedByEmail() {
-    return createdByEmail;
+        return createdByEmail.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATED_BY_EMAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedByEmail(@javax.annotation.Nullable String createdByEmail) {
+
+  public JsonNullable<String> getCreatedByEmail_JsonNullable() {
+    return createdByEmail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_BY_EMAIL)
+  public void setCreatedByEmail_JsonNullable(JsonNullable<String> createdByEmail) {
     this.createdByEmail = createdByEmail;
+  }
+
+  public void setCreatedByEmail(@javax.annotation.Nullable String createdByEmail) {
+    this.createdByEmail = JsonNullable.<String>of(createdByEmail);
   }
 
 
   public GetWorkflowVersion200ResponseVersion restoredFromVersion(@javax.annotation.Nullable Integer restoredFromVersion) {
-    this.restoredFromVersion = restoredFromVersion;
+    this.restoredFromVersion = JsonNullable.<Integer>of(restoredFromVersion);
     return this;
   }
 
@@ -399,17 +430,25 @@ public class GetWorkflowVersion200ResponseVersion {
    * @return restoredFromVersion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESTORED_FROM_VERSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getRestoredFromVersion() {
-    return restoredFromVersion;
+        return restoredFromVersion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESTORED_FROM_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestoredFromVersion(@javax.annotation.Nullable Integer restoredFromVersion) {
+
+  public JsonNullable<Integer> getRestoredFromVersion_JsonNullable() {
+    return restoredFromVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESTORED_FROM_VERSION)
+  public void setRestoredFromVersion_JsonNullable(JsonNullable<Integer> restoredFromVersion) {
     this.restoredFromVersion = restoredFromVersion;
+  }
+
+  public void setRestoredFromVersion(@javax.annotation.Nullable Integer restoredFromVersion) {
+    this.restoredFromVersion = JsonNullable.<Integer>of(restoredFromVersion);
   }
 
 
@@ -451,22 +490,33 @@ public class GetWorkflowVersion200ResponseVersion {
     GetWorkflowVersion200ResponseVersion getWorkflowVersion200ResponseVersion = (GetWorkflowVersion200ResponseVersion) o;
     return Objects.equals(this.version, getWorkflowVersion200ResponseVersion.version) &&
         Objects.equals(this.name, getWorkflowVersion200ResponseVersion.name) &&
-        Objects.equals(this.description, getWorkflowVersion200ResponseVersion.description) &&
-        Objects.equals(this.entryNodeId, getWorkflowVersion200ResponseVersion.entryNodeId) &&
+        equalsNullable(this.description, getWorkflowVersion200ResponseVersion.description) &&
+        equalsNullable(this.entryNodeId, getWorkflowVersion200ResponseVersion.entryNodeId) &&
         Objects.equals(this.nodes, getWorkflowVersion200ResponseVersion.nodes) &&
         Objects.equals(this.edges, getWorkflowVersion200ResponseVersion.edges) &&
         Objects.equals(this.platform, getWorkflowVersion200ResponseVersion.platform) &&
         Objects.equals(this.accountId, getWorkflowVersion200ResponseVersion.accountId) &&
         Objects.equals(this.profileId, getWorkflowVersion200ResponseVersion.profileId) &&
-        Objects.equals(this.createdBy, getWorkflowVersion200ResponseVersion.createdBy) &&
-        Objects.equals(this.createdByEmail, getWorkflowVersion200ResponseVersion.createdByEmail) &&
-        Objects.equals(this.restoredFromVersion, getWorkflowVersion200ResponseVersion.restoredFromVersion) &&
+        equalsNullable(this.createdBy, getWorkflowVersion200ResponseVersion.createdBy) &&
+        equalsNullable(this.createdByEmail, getWorkflowVersion200ResponseVersion.createdByEmail) &&
+        equalsNullable(this.restoredFromVersion, getWorkflowVersion200ResponseVersion.restoredFromVersion) &&
         Objects.equals(this.createdAt, getWorkflowVersion200ResponseVersion.createdAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(version, name, description, entryNodeId, nodes, edges, platform, accountId, profileId, createdBy, createdByEmail, restoredFromVersion, createdAt);
+    return Objects.hash(version, name, hashCodeNullable(description), hashCodeNullable(entryNodeId), nodes, edges, platform, accountId, profileId, hashCodeNullable(createdBy), hashCodeNullable(createdByEmail), hashCodeNullable(restoredFromVersion), createdAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

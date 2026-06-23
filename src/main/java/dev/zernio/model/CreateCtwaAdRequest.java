@@ -26,11 +26,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateCtwaAdRequestCitiesInner;
 import dev.zernio.model.CreateCtwaAdRequestCreativesInner;
-import dev.zernio.model.CreateCtwaAdRequestCustomLocationsInner;
 import dev.zernio.model.CreateCtwaAdRequestRegionsInner;
 import dev.zernio.model.CreateCtwaAdRequestVideo;
 import dev.zernio.model.CreateCtwaAdRequestZipsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
+import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.time.OffsetDateTime;
@@ -75,7 +75,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -182,7 +182,7 @@ public class CreateCtwaAdRequest {
 
   public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
   @javax.annotation.Nullable
-  private List<CreateCtwaAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
+  private List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -549,7 +549,6 @@ public class CreateCtwaAdRequest {
 
   /**
    * Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. 
-   * minimum: 0
    * @return budgetAmount
    */
   @javax.annotation.Nonnull
@@ -799,12 +798,12 @@ public class CreateCtwaAdRequest {
   }
 
 
-  public CreateCtwaAdRequest customLocations(@javax.annotation.Nullable List<CreateCtwaAdRequestCustomLocationsInner> customLocations) {
+  public CreateCtwaAdRequest customLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
     this.customLocations = customLocations;
     return this;
   }
 
-  public CreateCtwaAdRequest addCustomLocationsItem(CreateCtwaAdRequestCustomLocationsInner customLocationsItem) {
+  public CreateCtwaAdRequest addCustomLocationsItem(CreateStandaloneAdRequestCustomLocationsInner customLocationsItem) {
     if (this.customLocations == null) {
       this.customLocations = new ArrayList<>();
     }
@@ -819,14 +818,14 @@ public class CreateCtwaAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateCtwaAdRequestCustomLocationsInner> getCustomLocations() {
+  public List<CreateStandaloneAdRequestCustomLocationsInner> getCustomLocations() {
     return customLocations;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomLocations(@javax.annotation.Nullable List<CreateCtwaAdRequestCustomLocationsInner> customLocations) {
+  public void setCustomLocations(@javax.annotation.Nullable List<CreateStandaloneAdRequestCustomLocationsInner> customLocations) {
     this.customLocations = customLocations;
   }
 
@@ -1018,7 +1017,6 @@ public class CreateCtwaAdRequest {
 
   /**
    * Whole currency units (e.g. &#x60;5&#x60; &#x3D; $5.00 on a USD account). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_BID_CAP&#x60; or &#x60;COST_CAP&#x60;; rejected otherwise. 
-   * minimum: 0
    * @return bidAmount
    */
   @javax.annotation.Nullable
@@ -1043,7 +1041,6 @@ public class CreateCtwaAdRequest {
 
   /**
    * Decimal ROAS multiplier (e.g. &#x60;2.0&#x60; &#x3D; 2.0× ROAS floor). Required when &#x60;bidStrategy&#x60; is &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;; rejected otherwise. Meta enforces its own upper bound server-side. 
-   * minimum: 0
    * @return roasAverageFloor
    */
   @javax.annotation.Nullable

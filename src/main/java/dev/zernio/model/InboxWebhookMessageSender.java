@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.InboxWebhookMessageSenderInstagramProfile;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,7 +49,7 @@ import dev.zernio.ApiClient;
   InboxWebhookMessageSender.JSON_PROPERTY_WHATSAPP_USERNAME,
   InboxWebhookMessageSender.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookMessageSender {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -68,8 +72,7 @@ public class InboxWebhookMessageSender {
   private String picture;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  @javax.annotation.Nullable
-  private String phoneNumber;
+  private JsonNullable<String> phoneNumber = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BUSINESS_SCOPED_USER_ID = "businessScopedUserId";
   @javax.annotation.Nullable
@@ -211,7 +214,7 @@ public class InboxWebhookMessageSender {
 
 
   public InboxWebhookMessageSender phoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
     return this;
   }
 
@@ -220,17 +223,25 @@ public class InboxWebhookMessageSender {
    * @return phoneNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPhoneNumber() {
-    return phoneNumber;
+        return phoneNumber.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+
+  public JsonNullable<String> getPhoneNumber_JsonNullable() {
+    return phoneNumber;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  public void setPhoneNumber_JsonNullable(JsonNullable<String> phoneNumber) {
     this.phoneNumber = phoneNumber;
+  }
+
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
   }
 
 
@@ -347,16 +358,27 @@ public class InboxWebhookMessageSender {
         Objects.equals(this.name, inboxWebhookMessageSender.name) &&
         Objects.equals(this.username, inboxWebhookMessageSender.username) &&
         Objects.equals(this.picture, inboxWebhookMessageSender.picture) &&
-        Objects.equals(this.phoneNumber, inboxWebhookMessageSender.phoneNumber) &&
+        equalsNullable(this.phoneNumber, inboxWebhookMessageSender.phoneNumber) &&
         Objects.equals(this.businessScopedUserId, inboxWebhookMessageSender.businessScopedUserId) &&
         Objects.equals(this.parentBusinessScopedUserId, inboxWebhookMessageSender.parentBusinessScopedUserId) &&
         Objects.equals(this.whatsappUsername, inboxWebhookMessageSender.whatsappUsername) &&
         Objects.equals(this.instagramProfile, inboxWebhookMessageSender.instagramProfile);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, contactId, name, username, picture, phoneNumber, businessScopedUserId, parentBusinessScopedUserId, whatsappUsername, instagramProfile);
+    return Objects.hash(id, contactId, name, username, picture, hashCodeNullable(phoneNumber), businessScopedUserId, parentBusinessScopedUserId, whatsappUsername, instagramProfile);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

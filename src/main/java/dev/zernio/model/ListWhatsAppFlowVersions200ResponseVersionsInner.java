@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,7 +44,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppFlowVersions200ResponseVersionsInner.JSON_PROPERTY_STATUS,
   ListWhatsAppFlowVersions200ResponseVersionsInner.JSON_PROPERTY_MISSING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppFlowVersions200ResponseVersionsInner {
   public static final String JSON_PROPERTY_FLOW_ID = "flowId";
   @javax.annotation.Nullable
@@ -51,16 +55,13 @@ public class ListWhatsAppFlowVersions200ResponseVersionsInner {
   private Integer version;
 
   public static final String JSON_PROPERTY_PARENT_FLOW_ID = "parentFlowId";
-  @javax.annotation.Nullable
-  private String parentFlowId;
+  private JsonNullable<String> parentFlowId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
-  @javax.annotation.Nullable
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  @javax.annotation.Nullable
-  private String status;
+  private JsonNullable<String> status = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MISSING = "missing";
   @javax.annotation.Nullable
@@ -118,7 +119,7 @@ public class ListWhatsAppFlowVersions200ResponseVersionsInner {
 
 
   public ListWhatsAppFlowVersions200ResponseVersionsInner parentFlowId(@javax.annotation.Nullable String parentFlowId) {
-    this.parentFlowId = parentFlowId;
+    this.parentFlowId = JsonNullable.<String>of(parentFlowId);
     return this;
   }
 
@@ -127,22 +128,30 @@ public class ListWhatsAppFlowVersions200ResponseVersionsInner {
    * @return parentFlowId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARENT_FLOW_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParentFlowId() {
-    return parentFlowId;
+        return parentFlowId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARENT_FLOW_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParentFlowId(@javax.annotation.Nullable String parentFlowId) {
+
+  public JsonNullable<String> getParentFlowId_JsonNullable() {
+    return parentFlowId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARENT_FLOW_ID)
+  public void setParentFlowId_JsonNullable(JsonNullable<String> parentFlowId) {
     this.parentFlowId = parentFlowId;
+  }
+
+  public void setParentFlowId(@javax.annotation.Nullable String parentFlowId) {
+    this.parentFlowId = JsonNullable.<String>of(parentFlowId);
   }
 
 
   public ListWhatsAppFlowVersions200ResponseVersionsInner name(@javax.annotation.Nullable String name) {
-    this.name = name;
+    this.name = JsonNullable.<String>of(name);
     return this;
   }
 
@@ -151,22 +160,30 @@ public class ListWhatsAppFlowVersions200ResponseVersionsInner {
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public ListWhatsAppFlowVersions200ResponseVersionsInner status(@javax.annotation.Nullable String status) {
-    this.status = status;
+    this.status = JsonNullable.<String>of(status);
     return this;
   }
 
@@ -175,17 +192,25 @@ public class ListWhatsAppFlowVersions200ResponseVersionsInner {
    * @return status
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getStatus() {
-    return status;
+        return status.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable String status) {
+
+  public JsonNullable<String> getStatus_JsonNullable() {
+    return status;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  public void setStatus_JsonNullable(JsonNullable<String> status) {
     this.status = status;
+  }
+
+  public void setStatus(@javax.annotation.Nullable String status) {
+    this.status = JsonNullable.<String>of(status);
   }
 
 
@@ -227,15 +252,26 @@ public class ListWhatsAppFlowVersions200ResponseVersionsInner {
     ListWhatsAppFlowVersions200ResponseVersionsInner listWhatsAppFlowVersions200ResponseVersionsInner = (ListWhatsAppFlowVersions200ResponseVersionsInner) o;
     return Objects.equals(this.flowId, listWhatsAppFlowVersions200ResponseVersionsInner.flowId) &&
         Objects.equals(this.version, listWhatsAppFlowVersions200ResponseVersionsInner.version) &&
-        Objects.equals(this.parentFlowId, listWhatsAppFlowVersions200ResponseVersionsInner.parentFlowId) &&
-        Objects.equals(this.name, listWhatsAppFlowVersions200ResponseVersionsInner.name) &&
-        Objects.equals(this.status, listWhatsAppFlowVersions200ResponseVersionsInner.status) &&
+        equalsNullable(this.parentFlowId, listWhatsAppFlowVersions200ResponseVersionsInner.parentFlowId) &&
+        equalsNullable(this.name, listWhatsAppFlowVersions200ResponseVersionsInner.name) &&
+        equalsNullable(this.status, listWhatsAppFlowVersions200ResponseVersionsInner.status) &&
         Objects.equals(this.missing, listWhatsAppFlowVersions200ResponseVersionsInner.missing);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(flowId, version, parentFlowId, name, status, missing);
+    return Objects.hash(flowId, version, hashCodeNullable(parentFlowId), hashCodeNullable(name), hashCodeNullable(status), missing);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

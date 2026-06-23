@@ -28,6 +28,10 @@ import dev.zernio.model.WhatsAppSandboxSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,15 +43,14 @@ import dev.zernio.ApiClient;
   ListWhatsAppSandboxSessions200Response.JSON_PROPERTY_SESSIONS,
   ListWhatsAppSandboxSessions200Response.JSON_PROPERTY_SANDBOX_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppSandboxSessions200Response {
   public static final String JSON_PROPERTY_SESSIONS = "sessions";
   @javax.annotation.Nullable
   private List<WhatsAppSandboxSession> sessions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SANDBOX_NUMBER = "sandboxNumber";
-  @javax.annotation.Nullable
-  private String sandboxNumber;
+  private JsonNullable<String> sandboxNumber = JsonNullable.<String>undefined();
 
   public ListWhatsAppSandboxSessions200Response() { 
   }
@@ -85,7 +88,7 @@ public class ListWhatsAppSandboxSessions200Response {
 
 
   public ListWhatsAppSandboxSessions200Response sandboxNumber(@javax.annotation.Nullable String sandboxNumber) {
-    this.sandboxNumber = sandboxNumber;
+    this.sandboxNumber = JsonNullable.<String>of(sandboxNumber);
     return this;
   }
 
@@ -94,17 +97,25 @@ public class ListWhatsAppSandboxSessions200Response {
    * @return sandboxNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SANDBOX_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSandboxNumber() {
-    return sandboxNumber;
+        return sandboxNumber.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SANDBOX_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSandboxNumber(@javax.annotation.Nullable String sandboxNumber) {
+
+  public JsonNullable<String> getSandboxNumber_JsonNullable() {
+    return sandboxNumber;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SANDBOX_NUMBER)
+  public void setSandboxNumber_JsonNullable(JsonNullable<String> sandboxNumber) {
     this.sandboxNumber = sandboxNumber;
+  }
+
+  public void setSandboxNumber(@javax.annotation.Nullable String sandboxNumber) {
+    this.sandboxNumber = JsonNullable.<String>of(sandboxNumber);
   }
 
 
@@ -121,12 +132,23 @@ public class ListWhatsAppSandboxSessions200Response {
     }
     ListWhatsAppSandboxSessions200Response listWhatsAppSandboxSessions200Response = (ListWhatsAppSandboxSessions200Response) o;
     return Objects.equals(this.sessions, listWhatsAppSandboxSessions200Response.sessions) &&
-        Objects.equals(this.sandboxNumber, listWhatsAppSandboxSessions200Response.sandboxNumber);
+        equalsNullable(this.sandboxNumber, listWhatsAppSandboxSessions200Response.sandboxNumber);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sessions, sandboxNumber);
+    return Objects.hash(sessions, hashCodeNullable(sandboxNumber));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

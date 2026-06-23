@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,7 +42,7 @@ import dev.zernio.ApiClient;
   ListAdCatalogs200ResponseCatalogsInner.JSON_PROPERTY_VERTICAL,
   ListAdCatalogs200ResponseCatalogsInner.JSON_PROPERTY_PRODUCT_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdCatalogs200ResponseCatalogsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -49,8 +53,7 @@ public class ListAdCatalogs200ResponseCatalogsInner {
   private String name;
 
   public static final String JSON_PROPERTY_VERTICAL = "vertical";
-  @javax.annotation.Nullable
-  private String vertical;
+  private JsonNullable<String> vertical = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PRODUCT_COUNT = "productCount";
   @javax.annotation.Nullable
@@ -108,7 +111,7 @@ public class ListAdCatalogs200ResponseCatalogsInner {
 
 
   public ListAdCatalogs200ResponseCatalogsInner vertical(@javax.annotation.Nullable String vertical) {
-    this.vertical = vertical;
+    this.vertical = JsonNullable.<String>of(vertical);
     return this;
   }
 
@@ -117,17 +120,25 @@ public class ListAdCatalogs200ResponseCatalogsInner {
    * @return vertical
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VERTICAL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getVertical() {
-    return vertical;
+        return vertical.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VERTICAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVertical(@javax.annotation.Nullable String vertical) {
+
+  public JsonNullable<String> getVertical_JsonNullable() {
+    return vertical;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VERTICAL)
+  public void setVertical_JsonNullable(JsonNullable<String> vertical) {
     this.vertical = vertical;
+  }
+
+  public void setVertical(@javax.annotation.Nullable String vertical) {
+    this.vertical = JsonNullable.<String>of(vertical);
   }
 
 
@@ -169,13 +180,24 @@ public class ListAdCatalogs200ResponseCatalogsInner {
     ListAdCatalogs200ResponseCatalogsInner listAdCatalogs200ResponseCatalogsInner = (ListAdCatalogs200ResponseCatalogsInner) o;
     return Objects.equals(this.id, listAdCatalogs200ResponseCatalogsInner.id) &&
         Objects.equals(this.name, listAdCatalogs200ResponseCatalogsInner.name) &&
-        Objects.equals(this.vertical, listAdCatalogs200ResponseCatalogsInner.vertical) &&
+        equalsNullable(this.vertical, listAdCatalogs200ResponseCatalogsInner.vertical) &&
         Objects.equals(this.productCount, listAdCatalogs200ResponseCatalogsInner.productCount);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, vertical, productCount);
+    return Objects.hash(id, name, hashCodeNullable(vertical), productCount);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

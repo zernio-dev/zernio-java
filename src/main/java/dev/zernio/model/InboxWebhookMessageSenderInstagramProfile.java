@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,29 +42,25 @@ import dev.zernio.ApiClient;
   InboxWebhookMessageSenderInstagramProfile.JSON_PROPERTY_FOLLOWER_COUNT,
   InboxWebhookMessageSenderInstagramProfile.JSON_PROPERTY_IS_VERIFIED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookMessageSenderInstagramProfile {
   public static final String JSON_PROPERTY_IS_FOLLOWER = "isFollower";
-  @javax.annotation.Nullable
-  private Boolean isFollower;
+  private JsonNullable<Boolean> isFollower = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_IS_FOLLOWING = "isFollowing";
-  @javax.annotation.Nullable
-  private Boolean isFollowing;
+  private JsonNullable<Boolean> isFollowing = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_FOLLOWER_COUNT = "followerCount";
-  @javax.annotation.Nullable
-  private Integer followerCount;
+  private JsonNullable<Integer> followerCount = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_IS_VERIFIED = "isVerified";
-  @javax.annotation.Nullable
-  private Boolean isVerified;
+  private JsonNullable<Boolean> isVerified = JsonNullable.<Boolean>undefined();
 
   public InboxWebhookMessageSenderInstagramProfile() { 
   }
 
   public InboxWebhookMessageSenderInstagramProfile isFollower(@javax.annotation.Nullable Boolean isFollower) {
-    this.isFollower = isFollower;
+    this.isFollower = JsonNullable.<Boolean>of(isFollower);
     return this;
   }
 
@@ -69,22 +69,30 @@ public class InboxWebhookMessageSenderInstagramProfile {
    * @return isFollower
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getIsFollower() {
-    return isFollower;
+        return isFollower.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsFollower(@javax.annotation.Nullable Boolean isFollower) {
+
+  public JsonNullable<Boolean> getIsFollower_JsonNullable() {
+    return isFollower;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_FOLLOWER)
+  public void setIsFollower_JsonNullable(JsonNullable<Boolean> isFollower) {
     this.isFollower = isFollower;
+  }
+
+  public void setIsFollower(@javax.annotation.Nullable Boolean isFollower) {
+    this.isFollower = JsonNullable.<Boolean>of(isFollower);
   }
 
 
   public InboxWebhookMessageSenderInstagramProfile isFollowing(@javax.annotation.Nullable Boolean isFollowing) {
-    this.isFollowing = isFollowing;
+    this.isFollowing = JsonNullable.<Boolean>of(isFollowing);
     return this;
   }
 
@@ -93,22 +101,30 @@ public class InboxWebhookMessageSenderInstagramProfile {
    * @return isFollowing
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWING, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getIsFollowing() {
-    return isFollowing;
+        return isFollowing.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsFollowing(@javax.annotation.Nullable Boolean isFollowing) {
+
+  public JsonNullable<Boolean> getIsFollowing_JsonNullable() {
+    return isFollowing;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_FOLLOWING)
+  public void setIsFollowing_JsonNullable(JsonNullable<Boolean> isFollowing) {
     this.isFollowing = isFollowing;
+  }
+
+  public void setIsFollowing(@javax.annotation.Nullable Boolean isFollowing) {
+    this.isFollowing = JsonNullable.<Boolean>of(isFollowing);
   }
 
 
   public InboxWebhookMessageSenderInstagramProfile followerCount(@javax.annotation.Nullable Integer followerCount) {
-    this.followerCount = followerCount;
+    this.followerCount = JsonNullable.<Integer>of(followerCount);
     return this;
   }
 
@@ -117,22 +133,30 @@ public class InboxWebhookMessageSenderInstagramProfile {
    * @return followerCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FOLLOWER_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getFollowerCount() {
-    return followerCount;
+        return followerCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FOLLOWER_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFollowerCount(@javax.annotation.Nullable Integer followerCount) {
+
+  public JsonNullable<Integer> getFollowerCount_JsonNullable() {
+    return followerCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FOLLOWER_COUNT)
+  public void setFollowerCount_JsonNullable(JsonNullable<Integer> followerCount) {
     this.followerCount = followerCount;
+  }
+
+  public void setFollowerCount(@javax.annotation.Nullable Integer followerCount) {
+    this.followerCount = JsonNullable.<Integer>of(followerCount);
   }
 
 
   public InboxWebhookMessageSenderInstagramProfile isVerified(@javax.annotation.Nullable Boolean isVerified) {
-    this.isVerified = isVerified;
+    this.isVerified = JsonNullable.<Boolean>of(isVerified);
     return this;
   }
 
@@ -141,17 +165,25 @@ public class InboxWebhookMessageSenderInstagramProfile {
    * @return isVerified
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_VERIFIED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getIsVerified() {
-    return isVerified;
+        return isVerified.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IS_VERIFIED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsVerified(@javax.annotation.Nullable Boolean isVerified) {
+
+  public JsonNullable<Boolean> getIsVerified_JsonNullable() {
+    return isVerified;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_VERIFIED)
+  public void setIsVerified_JsonNullable(JsonNullable<Boolean> isVerified) {
     this.isVerified = isVerified;
+  }
+
+  public void setIsVerified(@javax.annotation.Nullable Boolean isVerified) {
+    this.isVerified = JsonNullable.<Boolean>of(isVerified);
   }
 
 
@@ -167,15 +199,26 @@ public class InboxWebhookMessageSenderInstagramProfile {
       return false;
     }
     InboxWebhookMessageSenderInstagramProfile inboxWebhookMessageSenderInstagramProfile = (InboxWebhookMessageSenderInstagramProfile) o;
-    return Objects.equals(this.isFollower, inboxWebhookMessageSenderInstagramProfile.isFollower) &&
-        Objects.equals(this.isFollowing, inboxWebhookMessageSenderInstagramProfile.isFollowing) &&
-        Objects.equals(this.followerCount, inboxWebhookMessageSenderInstagramProfile.followerCount) &&
-        Objects.equals(this.isVerified, inboxWebhookMessageSenderInstagramProfile.isVerified);
+    return equalsNullable(this.isFollower, inboxWebhookMessageSenderInstagramProfile.isFollower) &&
+        equalsNullable(this.isFollowing, inboxWebhookMessageSenderInstagramProfile.isFollowing) &&
+        equalsNullable(this.followerCount, inboxWebhookMessageSenderInstagramProfile.followerCount) &&
+        equalsNullable(this.isVerified, inboxWebhookMessageSenderInstagramProfile.isVerified);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(isFollower, isFollowing, followerCount, isVerified);
+    return Objects.hash(hashCodeNullable(isFollower), hashCodeNullable(isFollowing), hashCodeNullable(followerCount), hashCodeNullable(isVerified));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

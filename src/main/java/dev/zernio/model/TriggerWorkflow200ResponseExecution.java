@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   TriggerWorkflow200ResponseExecution.JSON_PROPERTY_VARIABLES,
   TriggerWorkflow200ResponseExecution.JSON_PROPERTY_CONVERSATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TriggerWorkflow200ResponseExecution {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -57,8 +61,7 @@ public class TriggerWorkflow200ResponseExecution {
   private String currentNodeId;
 
   public static final String JSON_PROPERTY_WAITING_FOR = "waitingFor";
-  @javax.annotation.Nullable
-  private Object waitingFor;
+  private JsonNullable<Object> waitingFor = JsonNullable.<Object>undefined();
 
   public static final String JSON_PROPERTY_VARIABLES = "variables";
   @javax.annotation.Nullable
@@ -144,7 +147,7 @@ public class TriggerWorkflow200ResponseExecution {
 
 
   public TriggerWorkflow200ResponseExecution waitingFor(@javax.annotation.Nullable Object waitingFor) {
-    this.waitingFor = waitingFor;
+    this.waitingFor = JsonNullable.<Object>of(waitingFor);
     return this;
   }
 
@@ -153,17 +156,25 @@ public class TriggerWorkflow200ResponseExecution {
    * @return waitingFor
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WAITING_FOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Object getWaitingFor() {
-    return waitingFor;
+        return waitingFor.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WAITING_FOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWaitingFor(@javax.annotation.Nullable Object waitingFor) {
+
+  public JsonNullable<Object> getWaitingFor_JsonNullable() {
+    return waitingFor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WAITING_FOR)
+  public void setWaitingFor_JsonNullable(JsonNullable<Object> waitingFor) {
     this.waitingFor = waitingFor;
+  }
+
+  public void setWaitingFor(@javax.annotation.Nullable Object waitingFor) {
+    this.waitingFor = JsonNullable.<Object>of(waitingFor);
   }
 
 
@@ -238,14 +249,25 @@ public class TriggerWorkflow200ResponseExecution {
     return Objects.equals(this.id, triggerWorkflow200ResponseExecution.id) &&
         Objects.equals(this.status, triggerWorkflow200ResponseExecution.status) &&
         Objects.equals(this.currentNodeId, triggerWorkflow200ResponseExecution.currentNodeId) &&
-        Objects.equals(this.waitingFor, triggerWorkflow200ResponseExecution.waitingFor) &&
+        equalsNullable(this.waitingFor, triggerWorkflow200ResponseExecution.waitingFor) &&
         Objects.equals(this.variables, triggerWorkflow200ResponseExecution.variables) &&
         Objects.equals(this.conversationId, triggerWorkflow200ResponseExecution.conversationId);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, currentNodeId, waitingFor, variables, conversationId);
+    return Objects.hash(id, status, currentNodeId, hashCodeNullable(waitingFor), variables, conversationId);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

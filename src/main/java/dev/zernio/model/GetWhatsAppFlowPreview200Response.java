@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,21 +40,19 @@ import dev.zernio.ApiClient;
   GetWhatsAppFlowPreview200Response.JSON_PROPERTY_PREVIEW_URL,
   GetWhatsAppFlowPreview200Response.JSON_PROPERTY_EXPIRES_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppFlowPreview200Response {
   public static final String JSON_PROPERTY_PREVIEW_URL = "preview_url";
-  @javax.annotation.Nullable
-  private String previewUrl;
+  private JsonNullable<String> previewUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXPIRES_AT = "expires_at";
-  @javax.annotation.Nullable
-  private String expiresAt;
+  private JsonNullable<String> expiresAt = JsonNullable.<String>undefined();
 
   public GetWhatsAppFlowPreview200Response() { 
   }
 
   public GetWhatsAppFlowPreview200Response previewUrl(@javax.annotation.Nullable String previewUrl) {
-    this.previewUrl = previewUrl;
+    this.previewUrl = JsonNullable.<String>of(previewUrl);
     return this;
   }
 
@@ -59,22 +61,30 @@ public class GetWhatsAppFlowPreview200Response {
    * @return previewUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PREVIEW_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPreviewUrl() {
-    return previewUrl;
+        return previewUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PREVIEW_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPreviewUrl(@javax.annotation.Nullable String previewUrl) {
+
+  public JsonNullable<String> getPreviewUrl_JsonNullable() {
+    return previewUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PREVIEW_URL)
+  public void setPreviewUrl_JsonNullable(JsonNullable<String> previewUrl) {
     this.previewUrl = previewUrl;
+  }
+
+  public void setPreviewUrl(@javax.annotation.Nullable String previewUrl) {
+    this.previewUrl = JsonNullable.<String>of(previewUrl);
   }
 
 
   public GetWhatsAppFlowPreview200Response expiresAt(@javax.annotation.Nullable String expiresAt) {
-    this.expiresAt = expiresAt;
+    this.expiresAt = JsonNullable.<String>of(expiresAt);
     return this;
   }
 
@@ -83,17 +93,25 @@ public class GetWhatsAppFlowPreview200Response {
    * @return expiresAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPIRES_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExpiresAt() {
-    return expiresAt;
+        return expiresAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPIRES_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpiresAt(@javax.annotation.Nullable String expiresAt) {
+
+  public JsonNullable<String> getExpiresAt_JsonNullable() {
+    return expiresAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPIRES_AT)
+  public void setExpiresAt_JsonNullable(JsonNullable<String> expiresAt) {
     this.expiresAt = expiresAt;
+  }
+
+  public void setExpiresAt(@javax.annotation.Nullable String expiresAt) {
+    this.expiresAt = JsonNullable.<String>of(expiresAt);
   }
 
 
@@ -109,13 +127,24 @@ public class GetWhatsAppFlowPreview200Response {
       return false;
     }
     GetWhatsAppFlowPreview200Response getWhatsAppFlowPreview200Response = (GetWhatsAppFlowPreview200Response) o;
-    return Objects.equals(this.previewUrl, getWhatsAppFlowPreview200Response.previewUrl) &&
-        Objects.equals(this.expiresAt, getWhatsAppFlowPreview200Response.expiresAt);
+    return equalsNullable(this.previewUrl, getWhatsAppFlowPreview200Response.previewUrl) &&
+        equalsNullable(this.expiresAt, getWhatsAppFlowPreview200Response.expiresAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(previewUrl, expiresAt);
+    return Objects.hash(hashCodeNullable(previewUrl), hashCodeNullable(expiresAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

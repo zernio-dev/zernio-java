@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   InitiateWhatsAppCall200Response.JSON_PROPERTY_FORWARD_TO,
   InitiateWhatsAppCall200Response.JSON_PROPERTY_RECORDING_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InitiateWhatsAppCall200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -135,8 +139,7 @@ public class InitiateWhatsAppCall200Response {
   private String to;
 
   public static final String JSON_PROPERTY_FORWARD_TO = "forwardTo";
-  @javax.annotation.Nullable
-  private String forwardTo;
+  private JsonNullable<String> forwardTo = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RECORDING_ENABLED = "recordingEnabled";
   @javax.annotation.Nullable
@@ -290,7 +293,7 @@ public class InitiateWhatsAppCall200Response {
 
 
   public InitiateWhatsAppCall200Response forwardTo(@javax.annotation.Nullable String forwardTo) {
-    this.forwardTo = forwardTo;
+    this.forwardTo = JsonNullable.<String>of(forwardTo);
     return this;
   }
 
@@ -299,17 +302,25 @@ public class InitiateWhatsAppCall200Response {
    * @return forwardTo
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FORWARD_TO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getForwardTo() {
-    return forwardTo;
+        return forwardTo.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FORWARD_TO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setForwardTo(@javax.annotation.Nullable String forwardTo) {
+
+  public JsonNullable<String> getForwardTo_JsonNullable() {
+    return forwardTo;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FORWARD_TO)
+  public void setForwardTo_JsonNullable(JsonNullable<String> forwardTo) {
     this.forwardTo = forwardTo;
+  }
+
+  public void setForwardTo(@javax.annotation.Nullable String forwardTo) {
+    this.forwardTo = JsonNullable.<String>of(forwardTo);
   }
 
 
@@ -355,13 +366,24 @@ public class InitiateWhatsAppCall200Response {
         Objects.equals(this.status, initiateWhatsAppCall200Response.status) &&
         Objects.equals(this.direction, initiateWhatsAppCall200Response.direction) &&
         Objects.equals(this.to, initiateWhatsAppCall200Response.to) &&
-        Objects.equals(this.forwardTo, initiateWhatsAppCall200Response.forwardTo) &&
+        equalsNullable(this.forwardTo, initiateWhatsAppCall200Response.forwardTo) &&
         Objects.equals(this.recordingEnabled, initiateWhatsAppCall200Response.recordingEnabled);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, callId, telnyxCallControlId, status, direction, to, forwardTo, recordingEnabled);
+    return Objects.hash(success, callId, telnyxCallControlId, status, direction, to, hashCodeNullable(forwardTo), recordingEnabled);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

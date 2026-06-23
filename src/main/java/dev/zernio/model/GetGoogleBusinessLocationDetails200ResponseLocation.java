@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,23 +43,19 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponseLocation.JSON_PROPERTY_MAPS_URI,
   GetGoogleBusinessLocationDetails200ResponseLocation.JSON_PROPERTY_IS_VERIFIED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponseLocation {
   public static final String JSON_PROPERTY_NAME = "name";
-  @javax.annotation.Nullable
-  private String name;
+  private JsonNullable<String> name = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PLACE_ID = "placeId";
-  @javax.annotation.Nullable
-  private String placeId;
+  private JsonNullable<String> placeId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REVIEW_URL = "reviewUrl";
-  @javax.annotation.Nullable
-  private String reviewUrl;
+  private JsonNullable<String> reviewUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MAPS_URI = "mapsUri";
-  @javax.annotation.Nullable
-  private String mapsUri;
+  private JsonNullable<String> mapsUri = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_VERIFIED = "isVerified";
   @javax.annotation.Nullable
@@ -65,7 +65,7 @@ public class GetGoogleBusinessLocationDetails200ResponseLocation {
   }
 
   public GetGoogleBusinessLocationDetails200ResponseLocation name(@javax.annotation.Nullable String name) {
-    this.name = name;
+    this.name = JsonNullable.<String>of(name);
     return this;
   }
 
@@ -74,22 +74,30 @@ public class GetGoogleBusinessLocationDetails200ResponseLocation {
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getName() {
-    return name;
+        return name.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
+
+  public JsonNullable<String> getName_JsonNullable() {
+    return name;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NAME)
+  public void setName_JsonNullable(JsonNullable<String> name) {
     this.name = name;
+  }
+
+  public void setName(@javax.annotation.Nullable String name) {
+    this.name = JsonNullable.<String>of(name);
   }
 
 
   public GetGoogleBusinessLocationDetails200ResponseLocation placeId(@javax.annotation.Nullable String placeId) {
-    this.placeId = placeId;
+    this.placeId = JsonNullable.<String>of(placeId);
     return this;
   }
 
@@ -98,22 +106,30 @@ public class GetGoogleBusinessLocationDetails200ResponseLocation {
    * @return placeId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLACE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPlaceId() {
-    return placeId;
+        return placeId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLACE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlaceId(@javax.annotation.Nullable String placeId) {
+
+  public JsonNullable<String> getPlaceId_JsonNullable() {
+    return placeId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLACE_ID)
+  public void setPlaceId_JsonNullable(JsonNullable<String> placeId) {
     this.placeId = placeId;
+  }
+
+  public void setPlaceId(@javax.annotation.Nullable String placeId) {
+    this.placeId = JsonNullable.<String>of(placeId);
   }
 
 
   public GetGoogleBusinessLocationDetails200ResponseLocation reviewUrl(@javax.annotation.Nullable String reviewUrl) {
-    this.reviewUrl = reviewUrl;
+    this.reviewUrl = JsonNullable.<String>of(reviewUrl);
     return this;
   }
 
@@ -122,22 +138,30 @@ public class GetGoogleBusinessLocationDetails200ResponseLocation {
    * @return reviewUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REVIEW_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getReviewUrl() {
-    return reviewUrl;
+        return reviewUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REVIEW_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReviewUrl(@javax.annotation.Nullable String reviewUrl) {
+
+  public JsonNullable<String> getReviewUrl_JsonNullable() {
+    return reviewUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REVIEW_URL)
+  public void setReviewUrl_JsonNullable(JsonNullable<String> reviewUrl) {
     this.reviewUrl = reviewUrl;
+  }
+
+  public void setReviewUrl(@javax.annotation.Nullable String reviewUrl) {
+    this.reviewUrl = JsonNullable.<String>of(reviewUrl);
   }
 
 
   public GetGoogleBusinessLocationDetails200ResponseLocation mapsUri(@javax.annotation.Nullable String mapsUri) {
-    this.mapsUri = mapsUri;
+    this.mapsUri = JsonNullable.<String>of(mapsUri);
     return this;
   }
 
@@ -146,17 +170,25 @@ public class GetGoogleBusinessLocationDetails200ResponseLocation {
    * @return mapsUri
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MAPS_URI, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMapsUri() {
-    return mapsUri;
+        return mapsUri.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MAPS_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMapsUri(@javax.annotation.Nullable String mapsUri) {
+
+  public JsonNullable<String> getMapsUri_JsonNullable() {
+    return mapsUri;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MAPS_URI)
+  public void setMapsUri_JsonNullable(JsonNullable<String> mapsUri) {
     this.mapsUri = mapsUri;
+  }
+
+  public void setMapsUri(@javax.annotation.Nullable String mapsUri) {
+    this.mapsUri = JsonNullable.<String>of(mapsUri);
   }
 
 
@@ -196,16 +228,27 @@ public class GetGoogleBusinessLocationDetails200ResponseLocation {
       return false;
     }
     GetGoogleBusinessLocationDetails200ResponseLocation getGoogleBusinessLocationDetails200ResponseLocation = (GetGoogleBusinessLocationDetails200ResponseLocation) o;
-    return Objects.equals(this.name, getGoogleBusinessLocationDetails200ResponseLocation.name) &&
-        Objects.equals(this.placeId, getGoogleBusinessLocationDetails200ResponseLocation.placeId) &&
-        Objects.equals(this.reviewUrl, getGoogleBusinessLocationDetails200ResponseLocation.reviewUrl) &&
-        Objects.equals(this.mapsUri, getGoogleBusinessLocationDetails200ResponseLocation.mapsUri) &&
+    return equalsNullable(this.name, getGoogleBusinessLocationDetails200ResponseLocation.name) &&
+        equalsNullable(this.placeId, getGoogleBusinessLocationDetails200ResponseLocation.placeId) &&
+        equalsNullable(this.reviewUrl, getGoogleBusinessLocationDetails200ResponseLocation.reviewUrl) &&
+        equalsNullable(this.mapsUri, getGoogleBusinessLocationDetails200ResponseLocation.mapsUri) &&
         Objects.equals(this.isVerified, getGoogleBusinessLocationDetails200ResponseLocation.isVerified);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, placeId, reviewUrl, mapsUri, isVerified);
+    return Objects.hash(hashCodeNullable(name), hashCodeNullable(placeId), hashCodeNullable(reviewUrl), hashCodeNullable(mapsUri), isVerified);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

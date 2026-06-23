@@ -29,6 +29,10 @@ import dev.zernio.model.UsageStatsSpend;
 import dev.zernio.model.UsageStatsUsage;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,7 +54,7 @@ import dev.zernio.ApiClient;
   UsageStats.JSON_PROPERTY_USAGE,
   UsageStats.JSON_PROPERTY_SPEND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStats {
   /**
    * Which billing system the account is on. Shape of &#x60;usage&#x60;/&#x60;spend&#x60; differs.
@@ -147,8 +151,7 @@ public class UsageStats {
   private Boolean hasAccess;
 
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
-  @javax.annotation.Nullable
-  private String customerId;
+  private JsonNullable<String> customerId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_INVITED_USER = "isInvitedUser";
   @javax.annotation.Nullable
@@ -318,7 +321,7 @@ public class UsageStats {
 
 
   public UsageStats customerId(@javax.annotation.Nullable String customerId) {
-    this.customerId = customerId;
+    this.customerId = JsonNullable.<String>of(customerId);
     return this;
   }
 
@@ -327,17 +330,25 @@ public class UsageStats {
    * @return customerId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCustomerId() {
-    return customerId;
+        return customerId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CUSTOMER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomerId(@javax.annotation.Nullable String customerId) {
+
+  public JsonNullable<String> getCustomerId_JsonNullable() {
+    return customerId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CUSTOMER_ID)
+  public void setCustomerId_JsonNullable(JsonNullable<String> customerId) {
     this.customerId = customerId;
+  }
+
+  public void setCustomerId(@javax.annotation.Nullable String customerId) {
+    this.customerId = JsonNullable.<String>of(customerId);
   }
 
 
@@ -479,7 +490,7 @@ public class UsageStats {
         Objects.equals(this.signupDate, usageStats.signupDate) &&
         Objects.equals(this.billingAnchorDay, usageStats.billingAnchorDay) &&
         Objects.equals(this.hasAccess, usageStats.hasAccess) &&
-        Objects.equals(this.customerId, usageStats.customerId) &&
+        equalsNullable(this.customerId, usageStats.customerId) &&
         Objects.equals(this.isInvitedUser, usageStats.isInvitedUser) &&
         Objects.equals(this.autoUpgradeEnabled, usageStats.autoUpgradeEnabled) &&
         Objects.equals(this.limits, usageStats.limits) &&
@@ -487,9 +498,20 @@ public class UsageStats {
         Objects.equals(this.spend, usageStats.spend);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(billingSystem, planName, billingPeriod, signupDate, billingAnchorDay, hasAccess, customerId, isInvitedUser, autoUpgradeEnabled, limits, usage, spend);
+    return Objects.hash(billingSystem, planName, billingPeriod, signupDate, billingAnchorDay, hasAccess, hashCodeNullable(customerId), isInvitedUser, autoUpgradeEnabled, limits, usage, spend);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

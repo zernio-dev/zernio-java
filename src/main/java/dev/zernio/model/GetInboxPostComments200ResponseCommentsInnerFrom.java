@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,7 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_IS_OWNER,
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_VERIFIED_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInnerFrom {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -55,8 +59,7 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
   private String username;
 
   public static final String JSON_PROPERTY_PICTURE = "picture";
-  @javax.annotation.Nullable
-  private String picture;
+  private JsonNullable<String> picture = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_OWNER = "isOwner";
   @javax.annotation.Nullable
@@ -97,13 +100,12 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_VERIFIED_TYPE = "verifiedType";
-  @javax.annotation.Nullable
-  private VerifiedTypeEnum verifiedType;
+  private JsonNullable<VerifiedTypeEnum> verifiedType = JsonNullable.<VerifiedTypeEnum>undefined();
 
   public GetInboxPostComments200ResponseCommentsInnerFrom() { 
   }
@@ -181,7 +183,7 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
 
 
   public GetInboxPostComments200ResponseCommentsInnerFrom picture(@javax.annotation.Nullable String picture) {
-    this.picture = picture;
+    this.picture = JsonNullable.<String>of(picture);
     return this;
   }
 
@@ -190,17 +192,25 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
    * @return picture
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPicture() {
-    return picture;
+        return picture.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPicture(@javax.annotation.Nullable String picture) {
+
+  public JsonNullable<String> getPicture_JsonNullable() {
+    return picture;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PICTURE)
+  public void setPicture_JsonNullable(JsonNullable<String> picture) {
     this.picture = picture;
+  }
+
+  public void setPicture(@javax.annotation.Nullable String picture) {
+    this.picture = JsonNullable.<String>of(picture);
   }
 
 
@@ -229,7 +239,7 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
 
 
   public GetInboxPostComments200ResponseCommentsInnerFrom verifiedType(@javax.annotation.Nullable VerifiedTypeEnum verifiedType) {
-    this.verifiedType = verifiedType;
+    this.verifiedType = JsonNullable.<VerifiedTypeEnum>of(verifiedType);
     return this;
   }
 
@@ -238,17 +248,25 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
    * @return verifiedType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VERIFIED_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public VerifiedTypeEnum getVerifiedType() {
-    return verifiedType;
+        return verifiedType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VERIFIED_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVerifiedType(@javax.annotation.Nullable VerifiedTypeEnum verifiedType) {
+
+  public JsonNullable<VerifiedTypeEnum> getVerifiedType_JsonNullable() {
+    return verifiedType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VERIFIED_TYPE)
+  public void setVerifiedType_JsonNullable(JsonNullable<VerifiedTypeEnum> verifiedType) {
     this.verifiedType = verifiedType;
+  }
+
+  public void setVerifiedType(@javax.annotation.Nullable VerifiedTypeEnum verifiedType) {
+    this.verifiedType = JsonNullable.<VerifiedTypeEnum>of(verifiedType);
   }
 
 
@@ -267,14 +285,25 @@ public class GetInboxPostComments200ResponseCommentsInnerFrom {
     return Objects.equals(this.id, getInboxPostComments200ResponseCommentsInnerFrom.id) &&
         Objects.equals(this.name, getInboxPostComments200ResponseCommentsInnerFrom.name) &&
         Objects.equals(this.username, getInboxPostComments200ResponseCommentsInnerFrom.username) &&
-        Objects.equals(this.picture, getInboxPostComments200ResponseCommentsInnerFrom.picture) &&
+        equalsNullable(this.picture, getInboxPostComments200ResponseCommentsInnerFrom.picture) &&
         Objects.equals(this.isOwner, getInboxPostComments200ResponseCommentsInnerFrom.isOwner) &&
-        Objects.equals(this.verifiedType, getInboxPostComments200ResponseCommentsInnerFrom.verifiedType);
+        equalsNullable(this.verifiedType, getInboxPostComments200ResponseCommentsInnerFrom.verifiedType);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, username, picture, isOwner, verifiedType);
+    return Objects.hash(id, name, username, hashCodeNullable(picture), isOwner, hashCodeNullable(verifiedType));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

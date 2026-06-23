@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,7 +50,7 @@ import dev.zernio.ApiClient;
   TrackingTag.JSON_PROPERTY_OWNER_BUSINESS_ID,
   TrackingTag.JSON_PROPERTY_OWNER_AD_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingTag {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -178,8 +182,7 @@ public class TrackingTag {
   private String code;
 
   public static final String JSON_PROPERTY_LAST_FIRED_TIME = "lastFiredTime";
-  @javax.annotation.Nullable
-  private Integer lastFiredTime;
+  private JsonNullable<Integer> lastFiredTime = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_IS_UNAVAILABLE = "isUnavailable";
   @javax.annotation.Nullable
@@ -194,8 +197,7 @@ public class TrackingTag {
   private Integer creationTime;
 
   public static final String JSON_PROPERTY_OWNER_BUSINESS_ID = "ownerBusinessId";
-  @javax.annotation.Nullable
-  private String ownerBusinessId;
+  private JsonNullable<String> ownerBusinessId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OWNER_AD_ACCOUNT_ID = "ownerAdAccountId";
   @javax.annotation.Nullable
@@ -349,7 +351,7 @@ public class TrackingTag {
 
 
   public TrackingTag lastFiredTime(@javax.annotation.Nullable Integer lastFiredTime) {
-    this.lastFiredTime = lastFiredTime;
+    this.lastFiredTime = JsonNullable.<Integer>of(lastFiredTime);
     return this;
   }
 
@@ -358,17 +360,25 @@ public class TrackingTag {
    * @return lastFiredTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_FIRED_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getLastFiredTime() {
-    return lastFiredTime;
+        return lastFiredTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_FIRED_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastFiredTime(@javax.annotation.Nullable Integer lastFiredTime) {
+
+  public JsonNullable<Integer> getLastFiredTime_JsonNullable() {
+    return lastFiredTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_FIRED_TIME)
+  public void setLastFiredTime_JsonNullable(JsonNullable<Integer> lastFiredTime) {
     this.lastFiredTime = lastFiredTime;
+  }
+
+  public void setLastFiredTime(@javax.annotation.Nullable Integer lastFiredTime) {
+    this.lastFiredTime = JsonNullable.<Integer>of(lastFiredTime);
   }
 
 
@@ -445,7 +455,7 @@ public class TrackingTag {
 
 
   public TrackingTag ownerBusinessId(@javax.annotation.Nullable String ownerBusinessId) {
-    this.ownerBusinessId = ownerBusinessId;
+    this.ownerBusinessId = JsonNullable.<String>of(ownerBusinessId);
     return this;
   }
 
@@ -454,17 +464,25 @@ public class TrackingTag {
    * @return ownerBusinessId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OWNER_BUSINESS_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOwnerBusinessId() {
-    return ownerBusinessId;
+        return ownerBusinessId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OWNER_BUSINESS_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOwnerBusinessId(@javax.annotation.Nullable String ownerBusinessId) {
+
+  public JsonNullable<String> getOwnerBusinessId_JsonNullable() {
+    return ownerBusinessId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OWNER_BUSINESS_ID)
+  public void setOwnerBusinessId_JsonNullable(JsonNullable<String> ownerBusinessId) {
     this.ownerBusinessId = ownerBusinessId;
+  }
+
+  public void setOwnerBusinessId(@javax.annotation.Nullable String ownerBusinessId) {
+    this.ownerBusinessId = JsonNullable.<String>of(ownerBusinessId);
   }
 
 
@@ -510,17 +528,28 @@ public class TrackingTag {
         Objects.equals(this.kind, trackingTag.kind) &&
         Objects.equals(this.status, trackingTag.status) &&
         Objects.equals(this.code, trackingTag.code) &&
-        Objects.equals(this.lastFiredTime, trackingTag.lastFiredTime) &&
+        equalsNullable(this.lastFiredTime, trackingTag.lastFiredTime) &&
         Objects.equals(this.isUnavailable, trackingTag.isUnavailable) &&
         Objects.equals(this.installed, trackingTag.installed) &&
         Objects.equals(this.creationTime, trackingTag.creationTime) &&
-        Objects.equals(this.ownerBusinessId, trackingTag.ownerBusinessId) &&
+        equalsNullable(this.ownerBusinessId, trackingTag.ownerBusinessId) &&
         Objects.equals(this.ownerAdAccountId, trackingTag.ownerAdAccountId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, kind, status, code, lastFiredTime, isUnavailable, installed, creationTime, ownerBusinessId, ownerAdAccountId);
+    return Objects.hash(id, name, platform, kind, status, code, hashCodeNullable(lastFiredTime), isUnavailable, installed, creationTime, hashCodeNullable(ownerBusinessId), ownerAdAccountId);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

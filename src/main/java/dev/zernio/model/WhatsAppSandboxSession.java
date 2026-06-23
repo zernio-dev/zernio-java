@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,7 +45,7 @@ import dev.zernio.ApiClient;
   WhatsAppSandboxSession.JSON_PROPERTY_ACTIVATED_AT,
   WhatsAppSandboxSession.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppSandboxSession {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -95,12 +99,10 @@ public class WhatsAppSandboxSession {
   private OffsetDateTime expiresAt;
 
   public static final String JSON_PROPERTY_ACTIVATED_AT = "activatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime activatedAt;
+  private JsonNullable<OffsetDateTime> activatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime createdAt;
+  private JsonNullable<OffsetDateTime> createdAt = JsonNullable.<OffsetDateTime>undefined();
 
   public WhatsAppSandboxSession() { 
   }
@@ -202,7 +204,7 @@ public class WhatsAppSandboxSession {
 
 
   public WhatsAppSandboxSession activatedAt(@javax.annotation.Nullable OffsetDateTime activatedAt) {
-    this.activatedAt = activatedAt;
+    this.activatedAt = JsonNullable.<OffsetDateTime>of(activatedAt);
     return this;
   }
 
@@ -211,22 +213,30 @@ public class WhatsAppSandboxSession {
    * @return activatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACTIVATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getActivatedAt() {
-    return activatedAt;
+        return activatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACTIVATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActivatedAt(@javax.annotation.Nullable OffsetDateTime activatedAt) {
+
+  public JsonNullable<OffsetDateTime> getActivatedAt_JsonNullable() {
+    return activatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACTIVATED_AT)
+  public void setActivatedAt_JsonNullable(JsonNullable<OffsetDateTime> activatedAt) {
     this.activatedAt = activatedAt;
+  }
+
+  public void setActivatedAt(@javax.annotation.Nullable OffsetDateTime activatedAt) {
+    this.activatedAt = JsonNullable.<OffsetDateTime>of(activatedAt);
   }
 
 
   public WhatsAppSandboxSession createdAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
-    this.createdAt = createdAt;
+    this.createdAt = JsonNullable.<OffsetDateTime>of(createdAt);
     return this;
   }
 
@@ -235,17 +245,25 @@ public class WhatsAppSandboxSession {
    * @return createdAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCreatedAt() {
-    return createdAt;
+        return createdAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
+
+  public JsonNullable<OffsetDateTime> getCreatedAt_JsonNullable() {
+    return createdAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  public void setCreatedAt_JsonNullable(JsonNullable<OffsetDateTime> createdAt) {
     this.createdAt = createdAt;
+  }
+
+  public void setCreatedAt(@javax.annotation.Nullable OffsetDateTime createdAt) {
+    this.createdAt = JsonNullable.<OffsetDateTime>of(createdAt);
   }
 
 
@@ -265,13 +283,24 @@ public class WhatsAppSandboxSession {
         Objects.equals(this.phoneE164, whatsAppSandboxSession.phoneE164) &&
         Objects.equals(this.status, whatsAppSandboxSession.status) &&
         Objects.equals(this.expiresAt, whatsAppSandboxSession.expiresAt) &&
-        Objects.equals(this.activatedAt, whatsAppSandboxSession.activatedAt) &&
-        Objects.equals(this.createdAt, whatsAppSandboxSession.createdAt);
+        equalsNullable(this.activatedAt, whatsAppSandboxSession.activatedAt) &&
+        equalsNullable(this.createdAt, whatsAppSandboxSession.createdAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneE164, status, expiresAt, activatedAt, createdAt);
+    return Objects.hash(id, phoneE164, status, expiresAt, hashCodeNullable(activatedAt), hashCodeNullable(createdAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

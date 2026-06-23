@@ -29,6 +29,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,7 +54,7 @@ import dev.zernio.ApiClient;
   ListLeads200ResponseLeadsInner.JSON_PROPERTY_FIELDS,
   ListLeads200ResponseLeadsInner.JSON_PROPERTY_FIELD_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLeads200ResponseLeadsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -65,32 +69,27 @@ public class ListLeads200ResponseLeadsInner {
   private String formId;
 
   public static final String JSON_PROPERTY_FORM_NAME = "formName";
-  @javax.annotation.Nullable
-  private String formName;
+  private JsonNullable<String> formName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
   private String accountId;
 
   public static final String JSON_PROPERTY_AD_ID = "adId";
-  @javax.annotation.Nullable
-  private String adId;
+  private JsonNullable<String> adId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ADSET_ID = "adsetId";
-  @javax.annotation.Nullable
-  private String adsetId;
+  private JsonNullable<String> adsetId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
-  @javax.annotation.Nullable
-  private String campaignId;
+  private JsonNullable<String> campaignId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_ORGANIC = "isOrganic";
   @javax.annotation.Nullable
   private Boolean isOrganic;
 
   public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
-  @javax.annotation.Nullable
-  private String createdTime;
+  private JsonNullable<String> createdTime = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_FIELDS = "fields";
   @javax.annotation.Nullable
@@ -176,7 +175,7 @@ public class ListLeads200ResponseLeadsInner {
 
 
   public ListLeads200ResponseLeadsInner formName(@javax.annotation.Nullable String formName) {
-    this.formName = formName;
+    this.formName = JsonNullable.<String>of(formName);
     return this;
   }
 
@@ -185,17 +184,25 @@ public class ListLeads200ResponseLeadsInner {
    * @return formName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FORM_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFormName() {
-    return formName;
+        return formName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FORM_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFormName(@javax.annotation.Nullable String formName) {
+
+  public JsonNullable<String> getFormName_JsonNullable() {
+    return formName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FORM_NAME)
+  public void setFormName_JsonNullable(JsonNullable<String> formName) {
     this.formName = formName;
+  }
+
+  public void setFormName(@javax.annotation.Nullable String formName) {
+    this.formName = JsonNullable.<String>of(formName);
   }
 
 
@@ -224,7 +231,7 @@ public class ListLeads200ResponseLeadsInner {
 
 
   public ListLeads200ResponseLeadsInner adId(@javax.annotation.Nullable String adId) {
-    this.adId = adId;
+    this.adId = JsonNullable.<String>of(adId);
     return this;
   }
 
@@ -233,22 +240,30 @@ public class ListLeads200ResponseLeadsInner {
    * @return adId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAdId() {
-    return adId;
+        return adId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdId(@javax.annotation.Nullable String adId) {
+
+  public JsonNullable<String> getAdId_JsonNullable() {
+    return adId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AD_ID)
+  public void setAdId_JsonNullable(JsonNullable<String> adId) {
     this.adId = adId;
+  }
+
+  public void setAdId(@javax.annotation.Nullable String adId) {
+    this.adId = JsonNullable.<String>of(adId);
   }
 
 
   public ListLeads200ResponseLeadsInner adsetId(@javax.annotation.Nullable String adsetId) {
-    this.adsetId = adsetId;
+    this.adsetId = JsonNullable.<String>of(adsetId);
     return this;
   }
 
@@ -257,22 +272,30 @@ public class ListLeads200ResponseLeadsInner {
    * @return adsetId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ADSET_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAdsetId() {
-    return adsetId;
+        return adsetId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ADSET_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdsetId(@javax.annotation.Nullable String adsetId) {
+
+  public JsonNullable<String> getAdsetId_JsonNullable() {
+    return adsetId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ADSET_ID)
+  public void setAdsetId_JsonNullable(JsonNullable<String> adsetId) {
     this.adsetId = adsetId;
+  }
+
+  public void setAdsetId(@javax.annotation.Nullable String adsetId) {
+    this.adsetId = JsonNullable.<String>of(adsetId);
   }
 
 
   public ListLeads200ResponseLeadsInner campaignId(@javax.annotation.Nullable String campaignId) {
-    this.campaignId = campaignId;
+    this.campaignId = JsonNullable.<String>of(campaignId);
     return this;
   }
 
@@ -281,17 +304,25 @@ public class ListLeads200ResponseLeadsInner {
    * @return campaignId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCampaignId() {
-    return campaignId;
+        return campaignId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCampaignId(@javax.annotation.Nullable String campaignId) {
+
+  public JsonNullable<String> getCampaignId_JsonNullable() {
+    return campaignId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CAMPAIGN_ID)
+  public void setCampaignId_JsonNullable(JsonNullable<String> campaignId) {
     this.campaignId = campaignId;
+  }
+
+  public void setCampaignId(@javax.annotation.Nullable String campaignId) {
+    this.campaignId = JsonNullable.<String>of(campaignId);
   }
 
 
@@ -320,7 +351,7 @@ public class ListLeads200ResponseLeadsInner {
 
 
   public ListLeads200ResponseLeadsInner createdTime(@javax.annotation.Nullable String createdTime) {
-    this.createdTime = createdTime;
+    this.createdTime = JsonNullable.<String>of(createdTime);
     return this;
   }
 
@@ -329,17 +360,25 @@ public class ListLeads200ResponseLeadsInner {
    * @return createdTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCreatedTime() {
-    return createdTime;
+        return createdTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedTime(@javax.annotation.Nullable String createdTime) {
+
+  public JsonNullable<String> getCreatedTime_JsonNullable() {
+    return createdTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  public void setCreatedTime_JsonNullable(JsonNullable<String> createdTime) {
     this.createdTime = createdTime;
+  }
+
+  public void setCreatedTime(@javax.annotation.Nullable String createdTime) {
+    this.createdTime = JsonNullable.<String>of(createdTime);
   }
 
 
@@ -422,20 +461,31 @@ public class ListLeads200ResponseLeadsInner {
     return Objects.equals(this.id, listLeads200ResponseLeadsInner.id) &&
         Objects.equals(this.leadgenId, listLeads200ResponseLeadsInner.leadgenId) &&
         Objects.equals(this.formId, listLeads200ResponseLeadsInner.formId) &&
-        Objects.equals(this.formName, listLeads200ResponseLeadsInner.formName) &&
+        equalsNullable(this.formName, listLeads200ResponseLeadsInner.formName) &&
         Objects.equals(this.accountId, listLeads200ResponseLeadsInner.accountId) &&
-        Objects.equals(this.adId, listLeads200ResponseLeadsInner.adId) &&
-        Objects.equals(this.adsetId, listLeads200ResponseLeadsInner.adsetId) &&
-        Objects.equals(this.campaignId, listLeads200ResponseLeadsInner.campaignId) &&
+        equalsNullable(this.adId, listLeads200ResponseLeadsInner.adId) &&
+        equalsNullable(this.adsetId, listLeads200ResponseLeadsInner.adsetId) &&
+        equalsNullable(this.campaignId, listLeads200ResponseLeadsInner.campaignId) &&
         Objects.equals(this.isOrganic, listLeads200ResponseLeadsInner.isOrganic) &&
-        Objects.equals(this.createdTime, listLeads200ResponseLeadsInner.createdTime) &&
+        equalsNullable(this.createdTime, listLeads200ResponseLeadsInner.createdTime) &&
         Objects.equals(this.fields, listLeads200ResponseLeadsInner.fields) &&
         Objects.equals(this.fieldData, listLeads200ResponseLeadsInner.fieldData);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, leadgenId, formId, formName, accountId, adId, adsetId, campaignId, isOrganic, createdTime, fields, fieldData);
+    return Objects.hash(id, leadgenId, formId, hashCodeNullable(formName), accountId, hashCodeNullable(adId), hashCodeNullable(adsetId), hashCodeNullable(campaignId), isOrganic, hashCodeNullable(createdTime), fields, fieldData);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

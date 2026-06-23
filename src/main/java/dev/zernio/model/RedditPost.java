@@ -29,6 +29,10 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,7 +58,7 @@ import dev.zernio.ApiClient;
   RedditPost.JSON_PROPERTY_IS_GALLERY,
   RedditPost.JSON_PROPERTY_GALLERY_IMAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedditPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -109,8 +113,7 @@ public class RedditPost {
   private Boolean stickied;
 
   public static final String JSON_PROPERTY_FLAIR_TEXT = "flairText";
-  @javax.annotation.Nullable
-  private String flairText;
+  private JsonNullable<String> flairText = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_GALLERY = "isGallery";
   @javax.annotation.Nullable
@@ -436,7 +439,7 @@ public class RedditPost {
 
 
   public RedditPost flairText(@javax.annotation.Nullable String flairText) {
-    this.flairText = flairText;
+    this.flairText = JsonNullable.<String>of(flairText);
     return this;
   }
 
@@ -445,17 +448,25 @@ public class RedditPost {
    * @return flairText
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FLAIR_TEXT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFlairText() {
-    return flairText;
+        return flairText.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FLAIR_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFlairText(@javax.annotation.Nullable String flairText) {
+
+  public JsonNullable<String> getFlairText_JsonNullable() {
+    return flairText;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FLAIR_TEXT)
+  public void setFlairText_JsonNullable(JsonNullable<String> flairText) {
     this.flairText = flairText;
+  }
+
+  public void setFlairText(@javax.annotation.Nullable String flairText) {
+    this.flairText = JsonNullable.<String>of(flairText);
   }
 
 
@@ -540,14 +551,25 @@ public class RedditPost {
         Objects.equals(this.numComments, redditPost.numComments) &&
         Objects.equals(this.over18, redditPost.over18) &&
         Objects.equals(this.stickied, redditPost.stickied) &&
-        Objects.equals(this.flairText, redditPost.flairText) &&
+        equalsNullable(this.flairText, redditPost.flairText) &&
         Objects.equals(this.isGallery, redditPost.isGallery) &&
         Objects.equals(this.galleryImages, redditPost.galleryImages);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, fullname, title, author, subreddit, url, permalink, selftext, createdUtc, score, numComments, over18, stickied, flairText, isGallery, galleryImages);
+    return Objects.hash(id, fullname, title, author, subreddit, url, permalink, selftext, createdUtc, score, numComments, over18, stickied, hashCodeNullable(flairText), isGallery, galleryImages);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

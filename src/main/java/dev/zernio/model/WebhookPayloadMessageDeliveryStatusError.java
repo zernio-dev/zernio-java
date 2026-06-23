@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_MESSAGE,
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_EXPLANATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageDeliveryStatusError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
@@ -53,8 +57,7 @@ public class WebhookPayloadMessageDeliveryStatusError {
   private String message;
 
   public static final String JSON_PROPERTY_EXPLANATION = "explanation";
-  @javax.annotation.Nullable
-  private String explanation;
+  private JsonNullable<String> explanation = JsonNullable.<String>undefined();
 
   public WebhookPayloadMessageDeliveryStatusError() { 
   }
@@ -132,7 +135,7 @@ public class WebhookPayloadMessageDeliveryStatusError {
 
 
   public WebhookPayloadMessageDeliveryStatusError explanation(@javax.annotation.Nullable String explanation) {
-    this.explanation = explanation;
+    this.explanation = JsonNullable.<String>of(explanation);
     return this;
   }
 
@@ -141,17 +144,25 @@ public class WebhookPayloadMessageDeliveryStatusError {
    * @return explanation
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPLANATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExplanation() {
-    return explanation;
+        return explanation.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPLANATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExplanation(@javax.annotation.Nullable String explanation) {
+
+  public JsonNullable<String> getExplanation_JsonNullable() {
+    return explanation;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPLANATION)
+  public void setExplanation_JsonNullable(JsonNullable<String> explanation) {
     this.explanation = explanation;
+  }
+
+  public void setExplanation(@javax.annotation.Nullable String explanation) {
+    this.explanation = JsonNullable.<String>of(explanation);
   }
 
 
@@ -170,12 +181,23 @@ public class WebhookPayloadMessageDeliveryStatusError {
     return Objects.equals(this.code, webhookPayloadMessageDeliveryStatusError.code) &&
         Objects.equals(this.title, webhookPayloadMessageDeliveryStatusError.title) &&
         Objects.equals(this.message, webhookPayloadMessageDeliveryStatusError.message) &&
-        Objects.equals(this.explanation, webhookPayloadMessageDeliveryStatusError.explanation);
+        equalsNullable(this.explanation, webhookPayloadMessageDeliveryStatusError.explanation);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, title, message, explanation);
+    return Objects.hash(code, title, message, hashCodeNullable(explanation));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

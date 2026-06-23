@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,7 +44,7 @@ import dev.zernio.ApiClient;
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_STATUS,
   GetAdAnalytics200ResponseAd.JSON_PROPERTY_CURRENCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAnalytics200ResponseAd {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -98,8 +102,7 @@ public class GetAdAnalytics200ResponseAd {
   private String status;
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
-  @javax.annotation.Nullable
-  private String currency;
+  private JsonNullable<String> currency = JsonNullable.<String>undefined();
 
   public GetAdAnalytics200ResponseAd() { 
   }
@@ -225,7 +228,7 @@ public class GetAdAnalytics200ResponseAd {
 
 
   public GetAdAnalytics200ResponseAd currency(@javax.annotation.Nullable String currency) {
-    this.currency = currency;
+    this.currency = JsonNullable.<String>of(currency);
     return this;
   }
 
@@ -234,17 +237,25 @@ public class GetAdAnalytics200ResponseAd {
    * @return currency
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCurrency() {
-    return currency;
+        return currency.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrency(@javax.annotation.Nullable String currency) {
+
+  public JsonNullable<String> getCurrency_JsonNullable() {
+    return currency;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  public void setCurrency_JsonNullable(JsonNullable<String> currency) {
     this.currency = currency;
+  }
+
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = JsonNullable.<String>of(currency);
   }
 
 
@@ -265,12 +276,23 @@ public class GetAdAnalytics200ResponseAd {
         Objects.equals(this.platform, getAdAnalytics200ResponseAd.platform) &&
         Objects.equals(this.trigger, getAdAnalytics200ResponseAd.trigger) &&
         Objects.equals(this.status, getAdAnalytics200ResponseAd.status) &&
-        Objects.equals(this.currency, getAdAnalytics200ResponseAd.currency);
+        equalsNullable(this.currency, getAdAnalytics200ResponseAd.currency);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, trigger, status, currency);
+    return Objects.hash(id, name, platform, trigger, status, hashCodeNullable(currency));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,7 +42,7 @@ import dev.zernio.ApiClient;
   GetInboxResponseTime200ResponseHistogramInner.JSON_PROPERTY_UPPER_SECONDS,
   GetInboxResponseTime200ResponseHistogramInner.JSON_PROPERTY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxResponseTime200ResponseHistogramInner {
   public static final String JSON_PROPERTY_BUCKET = "bucket";
   @javax.annotation.Nullable
@@ -49,8 +53,7 @@ public class GetInboxResponseTime200ResponseHistogramInner {
   private Integer lowerSeconds;
 
   public static final String JSON_PROPERTY_UPPER_SECONDS = "upperSeconds";
-  @javax.annotation.Nullable
-  private Integer upperSeconds;
+  private JsonNullable<Integer> upperSeconds = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_COUNT = "count";
   @javax.annotation.Nullable
@@ -108,7 +111,7 @@ public class GetInboxResponseTime200ResponseHistogramInner {
 
 
   public GetInboxResponseTime200ResponseHistogramInner upperSeconds(@javax.annotation.Nullable Integer upperSeconds) {
-    this.upperSeconds = upperSeconds;
+    this.upperSeconds = JsonNullable.<Integer>of(upperSeconds);
     return this;
   }
 
@@ -117,17 +120,25 @@ public class GetInboxResponseTime200ResponseHistogramInner {
    * @return upperSeconds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_UPPER_SECONDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getUpperSeconds() {
-    return upperSeconds;
+        return upperSeconds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_UPPER_SECONDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpperSeconds(@javax.annotation.Nullable Integer upperSeconds) {
+
+  public JsonNullable<Integer> getUpperSeconds_JsonNullable() {
+    return upperSeconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_UPPER_SECONDS)
+  public void setUpperSeconds_JsonNullable(JsonNullable<Integer> upperSeconds) {
     this.upperSeconds = upperSeconds;
+  }
+
+  public void setUpperSeconds(@javax.annotation.Nullable Integer upperSeconds) {
+    this.upperSeconds = JsonNullable.<Integer>of(upperSeconds);
   }
 
 
@@ -169,13 +180,24 @@ public class GetInboxResponseTime200ResponseHistogramInner {
     GetInboxResponseTime200ResponseHistogramInner getInboxResponseTime200ResponseHistogramInner = (GetInboxResponseTime200ResponseHistogramInner) o;
     return Objects.equals(this.bucket, getInboxResponseTime200ResponseHistogramInner.bucket) &&
         Objects.equals(this.lowerSeconds, getInboxResponseTime200ResponseHistogramInner.lowerSeconds) &&
-        Objects.equals(this.upperSeconds, getInboxResponseTime200ResponseHistogramInner.upperSeconds) &&
+        equalsNullable(this.upperSeconds, getInboxResponseTime200ResponseHistogramInner.upperSeconds) &&
         Objects.equals(this.count, getInboxResponseTime200ResponseHistogramInner.count);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bucket, lowerSeconds, upperSeconds, count);
+    return Objects.hash(bucket, lowerSeconds, hashCodeNullable(upperSeconds), count);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,15 +40,14 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponsePagination.JSON_PROPERTY_HAS_MORE,
   GetInboxPostComments200ResponsePagination.JSON_PROPERTY_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponsePagination {
   public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable
   private Boolean hasMore;
 
   public static final String JSON_PROPERTY_CURSOR = "cursor";
-  @javax.annotation.Nullable
-  private String cursor;
+  private JsonNullable<String> cursor = JsonNullable.<String>undefined();
 
   public GetInboxPostComments200ResponsePagination() { 
   }
@@ -74,7 +77,7 @@ public class GetInboxPostComments200ResponsePagination {
 
 
   public GetInboxPostComments200ResponsePagination cursor(@javax.annotation.Nullable String cursor) {
-    this.cursor = cursor;
+    this.cursor = JsonNullable.<String>of(cursor);
     return this;
   }
 
@@ -83,17 +86,25 @@ public class GetInboxPostComments200ResponsePagination {
    * @return cursor
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CURSOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCursor() {
-    return cursor;
+        return cursor.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CURSOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCursor(@javax.annotation.Nullable String cursor) {
+
+  public JsonNullable<String> getCursor_JsonNullable() {
+    return cursor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURSOR)
+  public void setCursor_JsonNullable(JsonNullable<String> cursor) {
     this.cursor = cursor;
+  }
+
+  public void setCursor(@javax.annotation.Nullable String cursor) {
+    this.cursor = JsonNullable.<String>of(cursor);
   }
 
 
@@ -110,12 +121,23 @@ public class GetInboxPostComments200ResponsePagination {
     }
     GetInboxPostComments200ResponsePagination getInboxPostComments200ResponsePagination = (GetInboxPostComments200ResponsePagination) o;
     return Objects.equals(this.hasMore, getInboxPostComments200ResponsePagination.hasMore) &&
-        Objects.equals(this.cursor, getInboxPostComments200ResponsePagination.cursor);
+        equalsNullable(this.cursor, getInboxPostComments200ResponsePagination.cursor);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hasMore, cursor);
+    return Objects.hash(hasMore, hashCodeNullable(cursor));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -29,6 +29,10 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,7 +50,7 @@ import dev.zernio.ApiClient;
   ValidateMedia200Response.JSON_PROPERTY_TYPE,
   ValidateMedia200Response.JSON_PROPERTY_PLATFORM_LIMITS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateMedia200Response {
   public static final String JSON_PROPERTY_VALID = "valid";
   @javax.annotation.Nullable
@@ -65,8 +69,7 @@ public class ValidateMedia200Response {
   private String contentType;
 
   public static final String JSON_PROPERTY_SIZE = "size";
-  @javax.annotation.Nullable
-  private Integer size;
+  private JsonNullable<Integer> size = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_SIZE_FORMATTED = "sizeFormatted";
   @javax.annotation.Nullable
@@ -217,7 +220,7 @@ public class ValidateMedia200Response {
 
 
   public ValidateMedia200Response size(@javax.annotation.Nullable Integer size) {
-    this.size = size;
+    this.size = JsonNullable.<Integer>of(size);
     return this;
   }
 
@@ -226,17 +229,25 @@ public class ValidateMedia200Response {
    * @return size
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SIZE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getSize() {
-    return size;
+        return size.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(@javax.annotation.Nullable Integer size) {
+
+  public JsonNullable<Integer> getSize_JsonNullable() {
+    return size;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  public void setSize_JsonNullable(JsonNullable<Integer> size) {
     this.size = size;
+  }
+
+  public void setSize(@javax.annotation.Nullable Integer size) {
+    this.size = JsonNullable.<Integer>of(size);
   }
 
 
@@ -336,15 +347,26 @@ public class ValidateMedia200Response {
         Objects.equals(this.url, validateMedia200Response.url) &&
         Objects.equals(this.error, validateMedia200Response.error) &&
         Objects.equals(this.contentType, validateMedia200Response.contentType) &&
-        Objects.equals(this.size, validateMedia200Response.size) &&
+        equalsNullable(this.size, validateMedia200Response.size) &&
         Objects.equals(this.sizeFormatted, validateMedia200Response.sizeFormatted) &&
         Objects.equals(this.type, validateMedia200Response.type) &&
         Objects.equals(this.platformLimits, validateMedia200Response.platformLimits);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(valid, url, error, contentType, size, sizeFormatted, type, platformLimits);
+    return Objects.hash(valid, url, error, contentType, hashCodeNullable(size), sizeFormatted, type, platformLimits);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

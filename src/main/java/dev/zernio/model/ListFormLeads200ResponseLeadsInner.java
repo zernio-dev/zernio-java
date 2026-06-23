@@ -29,6 +29,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,19 +48,17 @@ import dev.zernio.ApiClient;
   ListFormLeads200ResponseLeadsInner.JSON_PROPERTY_FIELDS,
   ListFormLeads200ResponseLeadsInner.JSON_PROPERTY_FIELD_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListFormLeads200ResponseLeadsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
   private String id;
 
   public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
-  @javax.annotation.Nullable
-  private String createdTime;
+  private JsonNullable<String> createdTime = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_AD_ID = "adId";
-  @javax.annotation.Nullable
-  private String adId;
+  private JsonNullable<String> adId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_FORM_ID = "formId";
   @javax.annotation.Nullable
@@ -98,7 +100,7 @@ public class ListFormLeads200ResponseLeadsInner {
 
 
   public ListFormLeads200ResponseLeadsInner createdTime(@javax.annotation.Nullable String createdTime) {
-    this.createdTime = createdTime;
+    this.createdTime = JsonNullable.<String>of(createdTime);
     return this;
   }
 
@@ -107,22 +109,30 @@ public class ListFormLeads200ResponseLeadsInner {
    * @return createdTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCreatedTime() {
-    return createdTime;
+        return createdTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATED_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedTime(@javax.annotation.Nullable String createdTime) {
+
+  public JsonNullable<String> getCreatedTime_JsonNullable() {
+    return createdTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_TIME)
+  public void setCreatedTime_JsonNullable(JsonNullable<String> createdTime) {
     this.createdTime = createdTime;
+  }
+
+  public void setCreatedTime(@javax.annotation.Nullable String createdTime) {
+    this.createdTime = JsonNullable.<String>of(createdTime);
   }
 
 
   public ListFormLeads200ResponseLeadsInner adId(@javax.annotation.Nullable String adId) {
-    this.adId = adId;
+    this.adId = JsonNullable.<String>of(adId);
     return this;
   }
 
@@ -131,17 +141,25 @@ public class ListFormLeads200ResponseLeadsInner {
    * @return adId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAdId() {
-    return adId;
+        return adId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AD_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdId(@javax.annotation.Nullable String adId) {
+
+  public JsonNullable<String> getAdId_JsonNullable() {
+    return adId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AD_ID)
+  public void setAdId_JsonNullable(JsonNullable<String> adId) {
     this.adId = adId;
+  }
+
+  public void setAdId(@javax.annotation.Nullable String adId) {
+    this.adId = JsonNullable.<String>of(adId);
   }
 
 
@@ -246,16 +264,27 @@ public class ListFormLeads200ResponseLeadsInner {
     }
     ListFormLeads200ResponseLeadsInner listFormLeads200ResponseLeadsInner = (ListFormLeads200ResponseLeadsInner) o;
     return Objects.equals(this.id, listFormLeads200ResponseLeadsInner.id) &&
-        Objects.equals(this.createdTime, listFormLeads200ResponseLeadsInner.createdTime) &&
-        Objects.equals(this.adId, listFormLeads200ResponseLeadsInner.adId) &&
+        equalsNullable(this.createdTime, listFormLeads200ResponseLeadsInner.createdTime) &&
+        equalsNullable(this.adId, listFormLeads200ResponseLeadsInner.adId) &&
         Objects.equals(this.formId, listFormLeads200ResponseLeadsInner.formId) &&
         Objects.equals(this.fields, listFormLeads200ResponseLeadsInner.fields) &&
         Objects.equals(this.fieldData, listFormLeads200ResponseLeadsInner.fieldData);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, createdTime, adId, formId, fields, fieldData);
+    return Objects.hash(id, hashCodeNullable(createdTime), hashCodeNullable(adId), formId, fields, fieldData);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

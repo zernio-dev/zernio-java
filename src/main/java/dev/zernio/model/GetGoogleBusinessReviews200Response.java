@@ -29,6 +29,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,7 +49,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessReviews200Response.JSON_PROPERTY_TOTAL_REVIEW_COUNT,
   GetGoogleBusinessReviews200Response.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessReviews200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -72,8 +76,7 @@ public class GetGoogleBusinessReviews200Response {
   private Integer totalReviewCount;
 
   public static final String JSON_PROPERTY_NEXT_PAGE_TOKEN = "nextPageToken";
-  @javax.annotation.Nullable
-  private String nextPageToken;
+  private JsonNullable<String> nextPageToken = JsonNullable.<String>undefined();
 
   public GetGoogleBusinessReviews200Response() { 
   }
@@ -231,7 +234,7 @@ public class GetGoogleBusinessReviews200Response {
 
 
   public GetGoogleBusinessReviews200Response nextPageToken(@javax.annotation.Nullable String nextPageToken) {
-    this.nextPageToken = nextPageToken;
+    this.nextPageToken = JsonNullable.<String>of(nextPageToken);
     return this;
   }
 
@@ -240,17 +243,25 @@ public class GetGoogleBusinessReviews200Response {
    * @return nextPageToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_PAGE_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNextPageToken() {
-    return nextPageToken;
+        return nextPageToken.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_PAGE_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
+
+  public JsonNullable<String> getNextPageToken_JsonNullable() {
+    return nextPageToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_PAGE_TOKEN)
+  public void setNextPageToken_JsonNullable(JsonNullable<String> nextPageToken) {
     this.nextPageToken = nextPageToken;
+  }
+
+  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
+    this.nextPageToken = JsonNullable.<String>of(nextPageToken);
   }
 
 
@@ -272,12 +283,23 @@ public class GetGoogleBusinessReviews200Response {
         Objects.equals(this.reviews, getGoogleBusinessReviews200Response.reviews) &&
         Objects.equals(this.averageRating, getGoogleBusinessReviews200Response.averageRating) &&
         Objects.equals(this.totalReviewCount, getGoogleBusinessReviews200Response.totalReviewCount) &&
-        Objects.equals(this.nextPageToken, getGoogleBusinessReviews200Response.nextPageToken);
+        equalsNullable(this.nextPageToken, getGoogleBusinessReviews200Response.nextPageToken);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, accountId, locationId, reviews, averageRating, totalReviewCount, nextPageToken);
+    return Objects.hash(success, accountId, locationId, reviews, averageRating, totalReviewCount, hashCodeNullable(nextPageToken));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

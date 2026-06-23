@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.LinkedInAggregateAnalyticsTotalResponseAnalytics;
-import dev.zernio.model.LinkedInAggregateAnalyticsTotalResponseDateRange;
+import dev.zernio.model.YouTubeDailyViewsResponseDateRange;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   LinkedInAggregateAnalyticsTotalResponse.JSON_PROPERTY_NOTE,
   LinkedInAggregateAnalyticsTotalResponse.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAggregateAnalyticsTotalResponse {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -103,7 +103,7 @@ public class LinkedInAggregateAnalyticsTotalResponse {
 
   public static final String JSON_PROPERTY_DATE_RANGE = "dateRange";
   @javax.annotation.Nullable
-  private LinkedInAggregateAnalyticsTotalResponseDateRange dateRange;
+  private YouTubeDailyViewsResponseDateRange dateRange;
 
   public static final String JSON_PROPERTY_ANALYTICS = "analytics";
   @javax.annotation.Nullable
@@ -240,7 +240,7 @@ public class LinkedInAggregateAnalyticsTotalResponse {
   }
 
 
-  public LinkedInAggregateAnalyticsTotalResponse dateRange(@javax.annotation.Nullable LinkedInAggregateAnalyticsTotalResponseDateRange dateRange) {
+  public LinkedInAggregateAnalyticsTotalResponse dateRange(@javax.annotation.Nullable YouTubeDailyViewsResponseDateRange dateRange) {
     this.dateRange = dateRange;
     return this;
   }
@@ -252,14 +252,14 @@ public class LinkedInAggregateAnalyticsTotalResponse {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_DATE_RANGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinkedInAggregateAnalyticsTotalResponseDateRange getDateRange() {
+  public YouTubeDailyViewsResponseDateRange getDateRange() {
     return dateRange;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_DATE_RANGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDateRange(@javax.annotation.Nullable LinkedInAggregateAnalyticsTotalResponseDateRange dateRange) {
+  public void setDateRange(@javax.annotation.Nullable YouTubeDailyViewsResponseDateRange dateRange) {
     this.dateRange = dateRange;
   }
 

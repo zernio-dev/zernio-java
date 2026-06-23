@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,7 +48,7 @@ import dev.zernio.ApiClient;
   GetContact200ResponseChannelsInner.JSON_PROPERTY_LAST_ACTIVE_AT,
   GetContact200ResponseChannelsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetContact200ResponseChannelsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -75,8 +79,7 @@ public class GetContact200ResponseChannelsInner {
   private String conversationId;
 
   public static final String JSON_PROPERTY_LAST_ACTIVE_AT = "lastActiveAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastActiveAt;
+  private JsonNullable<OffsetDateTime> lastActiveAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -254,7 +257,7 @@ public class GetContact200ResponseChannelsInner {
 
 
   public GetContact200ResponseChannelsInner lastActiveAt(@javax.annotation.Nullable OffsetDateTime lastActiveAt) {
-    this.lastActiveAt = lastActiveAt;
+    this.lastActiveAt = JsonNullable.<OffsetDateTime>of(lastActiveAt);
     return this;
   }
 
@@ -263,17 +266,25 @@ public class GetContact200ResponseChannelsInner {
    * @return lastActiveAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_ACTIVE_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastActiveAt() {
-    return lastActiveAt;
+        return lastActiveAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_ACTIVE_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastActiveAt(@javax.annotation.Nullable OffsetDateTime lastActiveAt) {
+
+  public JsonNullable<OffsetDateTime> getLastActiveAt_JsonNullable() {
+    return lastActiveAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_ACTIVE_AT)
+  public void setLastActiveAt_JsonNullable(JsonNullable<OffsetDateTime> lastActiveAt) {
     this.lastActiveAt = lastActiveAt;
+  }
+
+  public void setLastActiveAt(@javax.annotation.Nullable OffsetDateTime lastActiveAt) {
+    this.lastActiveAt = JsonNullable.<OffsetDateTime>of(lastActiveAt);
   }
 
 
@@ -320,13 +331,24 @@ public class GetContact200ResponseChannelsInner {
         Objects.equals(this.displayIdentifier, getContact200ResponseChannelsInner.displayIdentifier) &&
         Objects.equals(this.isSubscribed, getContact200ResponseChannelsInner.isSubscribed) &&
         Objects.equals(this.conversationId, getContact200ResponseChannelsInner.conversationId) &&
-        Objects.equals(this.lastActiveAt, getContact200ResponseChannelsInner.lastActiveAt) &&
+        equalsNullable(this.lastActiveAt, getContact200ResponseChannelsInner.lastActiveAt) &&
         Objects.equals(this.createdAt, getContact200ResponseChannelsInner.createdAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, platform, platformIdentifier, displayIdentifier, isSubscribed, conversationId, lastActiveAt, createdAt);
+    return Objects.hash(id, accountId, platform, platformIdentifier, displayIdentifier, isSubscribed, conversationId, hashCodeNullable(lastActiveAt), createdAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

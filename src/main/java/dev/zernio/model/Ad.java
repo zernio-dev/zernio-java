@@ -34,6 +34,10 @@ import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -72,7 +76,7 @@ import dev.zernio.ApiClient;
   Ad.JSON_PROPERTY_CREATED_AT,
   Ad.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Ad {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -236,8 +240,7 @@ public class Ad {
   private AdBudget budget;
 
   public static final String JSON_PROPERTY_METRICS = "metrics";
-  @javax.annotation.Nullable
-  private AdMetrics metrics;
+  private JsonNullable<AdMetrics> metrics = JsonNullable.<AdMetrics>undefined();
 
   public static final String JSON_PROPERTY_PLATFORM_AD_ID = "platformAdId";
   @javax.annotation.Nullable
@@ -264,32 +267,25 @@ public class Ad {
   private String adSetName;
 
   public static final String JSON_PROPERTY_PLATFORM_OBJECTIVE = "platformObjective";
-  @javax.annotation.Nullable
-  private String platformObjective;
+  private JsonNullable<String> platformObjective = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
-  @javax.annotation.Nullable
-  private String optimizationGoal;
+  private JsonNullable<String> optimizationGoal = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PLATFORM_AD_ACCOUNT_NAME = "platformAdAccountName";
-  @javax.annotation.Nullable
-  private String platformAdAccountName;
+  private JsonNullable<String> platformAdAccountName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PLATFORM_CREATED_AT = "platformCreatedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime platformCreatedAt;
+  private JsonNullable<OffsetDateTime> platformCreatedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
-  @javax.annotation.Nullable
-  private BidStrategy bidStrategy;
+  private JsonNullable<BidStrategy> bidStrategy = JsonNullable.<BidStrategy>undefined();
 
   public static final String JSON_PROPERTY_BID_AMOUNT = "bidAmount";
-  @javax.annotation.Nullable
-  private BigDecimal bidAmount;
+  private JsonNullable<BigDecimal> bidAmount = JsonNullable.<BigDecimal>undefined();
 
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
-  @javax.annotation.Nullable
-  private BigDecimal roasAverageFloor;
+  private JsonNullable<BigDecimal> roasAverageFloor = JsonNullable.<BigDecimal>undefined();
 
   public static final String JSON_PROPERTY_PROMOTED_OBJECT = "promotedObject";
   @javax.annotation.Nullable
@@ -515,7 +511,7 @@ public class Ad {
 
 
   public Ad metrics(@javax.annotation.Nullable AdMetrics metrics) {
-    this.metrics = metrics;
+    this.metrics = JsonNullable.<AdMetrics>of(metrics);
     return this;
   }
 
@@ -524,17 +520,25 @@ public class Ad {
    * @return metrics
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_METRICS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public AdMetrics getMetrics() {
-    return metrics;
+        return metrics.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_METRICS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetrics(@javax.annotation.Nullable AdMetrics metrics) {
+
+  public JsonNullable<AdMetrics> getMetrics_JsonNullable() {
+    return metrics;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_METRICS)
+  public void setMetrics_JsonNullable(JsonNullable<AdMetrics> metrics) {
     this.metrics = metrics;
+  }
+
+  public void setMetrics(@javax.annotation.Nullable AdMetrics metrics) {
+    this.metrics = JsonNullable.<AdMetrics>of(metrics);
   }
 
 
@@ -683,7 +687,7 @@ public class Ad {
 
 
   public Ad platformObjective(@javax.annotation.Nullable String platformObjective) {
-    this.platformObjective = platformObjective;
+    this.platformObjective = JsonNullable.<String>of(platformObjective);
     return this;
   }
 
@@ -692,22 +696,30 @@ public class Ad {
    * @return platformObjective
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_OBJECTIVE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPlatformObjective() {
-    return platformObjective;
+        return platformObjective.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_OBJECTIVE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformObjective(@javax.annotation.Nullable String platformObjective) {
+
+  public JsonNullable<String> getPlatformObjective_JsonNullable() {
+    return platformObjective;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLATFORM_OBJECTIVE)
+  public void setPlatformObjective_JsonNullable(JsonNullable<String> platformObjective) {
     this.platformObjective = platformObjective;
+  }
+
+  public void setPlatformObjective(@javax.annotation.Nullable String platformObjective) {
+    this.platformObjective = JsonNullable.<String>of(platformObjective);
   }
 
 
   public Ad optimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
-    this.optimizationGoal = optimizationGoal;
+    this.optimizationGoal = JsonNullable.<String>of(optimizationGoal);
     return this;
   }
 
@@ -716,22 +728,30 @@ public class Ad {
    * @return optimizationGoal
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOptimizationGoal() {
-    return optimizationGoal;
+        return optimizationGoal.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OPTIMIZATION_GOAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
+
+  public JsonNullable<String> getOptimizationGoal_JsonNullable() {
+    return optimizationGoal;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OPTIMIZATION_GOAL)
+  public void setOptimizationGoal_JsonNullable(JsonNullable<String> optimizationGoal) {
     this.optimizationGoal = optimizationGoal;
+  }
+
+  public void setOptimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
+    this.optimizationGoal = JsonNullable.<String>of(optimizationGoal);
   }
 
 
   public Ad platformAdAccountName(@javax.annotation.Nullable String platformAdAccountName) {
-    this.platformAdAccountName = platformAdAccountName;
+    this.platformAdAccountName = JsonNullable.<String>of(platformAdAccountName);
     return this;
   }
 
@@ -740,22 +760,30 @@ public class Ad {
    * @return platformAdAccountName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_AD_ACCOUNT_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPlatformAdAccountName() {
-    return platformAdAccountName;
+        return platformAdAccountName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_AD_ACCOUNT_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformAdAccountName(@javax.annotation.Nullable String platformAdAccountName) {
+
+  public JsonNullable<String> getPlatformAdAccountName_JsonNullable() {
+    return platformAdAccountName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLATFORM_AD_ACCOUNT_NAME)
+  public void setPlatformAdAccountName_JsonNullable(JsonNullable<String> platformAdAccountName) {
     this.platformAdAccountName = platformAdAccountName;
+  }
+
+  public void setPlatformAdAccountName(@javax.annotation.Nullable String platformAdAccountName) {
+    this.platformAdAccountName = JsonNullable.<String>of(platformAdAccountName);
   }
 
 
   public Ad platformCreatedAt(@javax.annotation.Nullable OffsetDateTime platformCreatedAt) {
-    this.platformCreatedAt = platformCreatedAt;
+    this.platformCreatedAt = JsonNullable.<OffsetDateTime>of(platformCreatedAt);
     return this;
   }
 
@@ -764,46 +792,62 @@ public class Ad {
    * @return platformCreatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_CREATED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPlatformCreatedAt() {
-    return platformCreatedAt;
+        return platformCreatedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_CREATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformCreatedAt(@javax.annotation.Nullable OffsetDateTime platformCreatedAt) {
+
+  public JsonNullable<OffsetDateTime> getPlatformCreatedAt_JsonNullable() {
+    return platformCreatedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLATFORM_CREATED_AT)
+  public void setPlatformCreatedAt_JsonNullable(JsonNullable<OffsetDateTime> platformCreatedAt) {
     this.platformCreatedAt = platformCreatedAt;
+  }
+
+  public void setPlatformCreatedAt(@javax.annotation.Nullable OffsetDateTime platformCreatedAt) {
+    this.platformCreatedAt = JsonNullable.<OffsetDateTime>of(platformCreatedAt);
   }
 
 
   public Ad bidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
-    this.bidStrategy = bidStrategy;
+    this.bidStrategy = JsonNullable.<BidStrategy>of(bidStrategy);
     return this;
   }
 
   /**
-   * Ad-set bid strategy (overrides campaign level on Meta). Populated for Meta and TikTok. TikTok&#39;s native &#x60;bid_type&#x60; is normalized to the cross-platform Meta enum: &#x60;BID_TYPE_NO_BID&#x60; -&gt; &#x60;LOWEST_COST_WITHOUT_CAP&#x60;, &#x60;BID_TYPE_CUSTOM&#x60; -&gt; &#x60;LOWEST_COST_WITH_BID_CAP&#x60;, deep_bid_type&#x3D;MIN_ROAS or roas_bid&gt;0 -&gt; &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;, &#x60;BID_TYPE_MAX_CONVERSION&#x60; -&gt; &#x60;LOWEST_COST_WITHOUT_CAP&#x60;. 
+   * Get bidStrategy
    * @return bidStrategy
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BidStrategy getBidStrategy() {
-    return bidStrategy;
+        return bidStrategy.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BID_STRATEGY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
+
+  public JsonNullable<BidStrategy> getBidStrategy_JsonNullable() {
+    return bidStrategy;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BID_STRATEGY)
+  public void setBidStrategy_JsonNullable(JsonNullable<BidStrategy> bidStrategy) {
     this.bidStrategy = bidStrategy;
+  }
+
+  public void setBidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
+    this.bidStrategy = JsonNullable.<BidStrategy>of(bidStrategy);
   }
 
 
   public Ad bidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
-    this.bidAmount = bidAmount;
+    this.bidAmount = JsonNullable.<BigDecimal>of(bidAmount);
     return this;
   }
 
@@ -812,22 +856,30 @@ public class Ad {
    * @return bidAmount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BigDecimal getBidAmount() {
-    return bidAmount;
+        return bidAmount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+
+  public JsonNullable<BigDecimal> getBidAmount_JsonNullable() {
+    return bidAmount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BID_AMOUNT)
+  public void setBidAmount_JsonNullable(JsonNullable<BigDecimal> bidAmount) {
     this.bidAmount = bidAmount;
+  }
+
+  public void setBidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = JsonNullable.<BigDecimal>of(bidAmount);
   }
 
 
   public Ad roasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
-    this.roasAverageFloor = roasAverageFloor;
+    this.roasAverageFloor = JsonNullable.<BigDecimal>of(roasAverageFloor);
     return this;
   }
 
@@ -836,17 +888,25 @@ public class Ad {
    * @return roasAverageFloor
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BigDecimal getRoasAverageFloor() {
-    return roasAverageFloor;
+        return roasAverageFloor.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+
+  public JsonNullable<BigDecimal> getRoasAverageFloor_JsonNullable() {
+    return roasAverageFloor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ROAS_AVERAGE_FLOOR)
+  public void setRoasAverageFloor_JsonNullable(JsonNullable<BigDecimal> roasAverageFloor) {
     this.roasAverageFloor = roasAverageFloor;
+  }
+
+  public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = JsonNullable.<BigDecimal>of(roasAverageFloor);
   }
 
 
@@ -1038,20 +1098,20 @@ public class Ad {
         Objects.equals(this.goal, ad.goal) &&
         Objects.equals(this.isExternal, ad.isExternal) &&
         Objects.equals(this.budget, ad.budget) &&
-        Objects.equals(this.metrics, ad.metrics) &&
+        equalsNullable(this.metrics, ad.metrics) &&
         Objects.equals(this.platformAdId, ad.platformAdId) &&
         Objects.equals(this.platformAdAccountId, ad.platformAdAccountId) &&
         Objects.equals(this.platformCampaignId, ad.platformCampaignId) &&
         Objects.equals(this.platformAdSetId, ad.platformAdSetId) &&
         Objects.equals(this.campaignName, ad.campaignName) &&
         Objects.equals(this.adSetName, ad.adSetName) &&
-        Objects.equals(this.platformObjective, ad.platformObjective) &&
-        Objects.equals(this.optimizationGoal, ad.optimizationGoal) &&
-        Objects.equals(this.platformAdAccountName, ad.platformAdAccountName) &&
-        Objects.equals(this.platformCreatedAt, ad.platformCreatedAt) &&
-        Objects.equals(this.bidStrategy, ad.bidStrategy) &&
-        Objects.equals(this.bidAmount, ad.bidAmount) &&
-        Objects.equals(this.roasAverageFloor, ad.roasAverageFloor) &&
+        equalsNullable(this.platformObjective, ad.platformObjective) &&
+        equalsNullable(this.optimizationGoal, ad.optimizationGoal) &&
+        equalsNullable(this.platformAdAccountName, ad.platformAdAccountName) &&
+        equalsNullable(this.platformCreatedAt, ad.platformCreatedAt) &&
+        equalsNullable(this.bidStrategy, ad.bidStrategy) &&
+        equalsNullable(this.bidAmount, ad.bidAmount) &&
+        equalsNullable(this.roasAverageFloor, ad.roasAverageFloor) &&
         Objects.equals(this.promotedObject, ad.promotedObject) &&
         Objects.equals(this.creative, ad.creative) &&
         Objects.equals(this.targeting, ad.targeting) &&
@@ -1061,9 +1121,20 @@ public class Ad {
         Objects.equals(this.updatedAt, ad.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, status, adType, goal, isExternal, budget, metrics, platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, platformObjective, optimizationGoal, platformAdAccountName, platformCreatedAt, bidStrategy, bidAmount, roasAverageFloor, promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
+    return Objects.hash(id, name, platform, status, adType, goal, isExternal, budget, hashCodeNullable(metrics), platformAdId, platformAdAccountId, platformCampaignId, platformAdSetId, campaignName, adSetName, hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(platformAdAccountName), hashCodeNullable(platformCreatedAt), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, creative, targeting, schedule, rejectionReason, createdAt, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -28,6 +28,10 @@ import dev.zernio.model.SocialAccountProfileId;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,7 +54,7 @@ import dev.zernio.ApiClient;
   SocialAccount.JSON_PROPERTY_ENABLED,
   SocialAccount.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SocialAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -146,8 +150,7 @@ public class SocialAccount {
   private String displayName;
 
   public static final String JSON_PROPERTY_PROFILE_PICTURE = "profilePicture";
-  @javax.annotation.Nullable
-  private String profilePicture;
+  private JsonNullable<String> profilePicture = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PROFILE_URL = "profileUrl";
   @javax.annotation.Nullable
@@ -166,8 +169,7 @@ public class SocialAccount {
   private OffsetDateTime followersLastUpdated;
 
   public static final String JSON_PROPERTY_PARENT_ACCOUNT_ID = "parentAccountId";
-  @javax.annotation.Nullable
-  private String parentAccountId;
+  private JsonNullable<String> parentAccountId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
@@ -301,7 +303,7 @@ public class SocialAccount {
 
 
   public SocialAccount profilePicture(@javax.annotation.Nullable String profilePicture) {
-    this.profilePicture = profilePicture;
+    this.profilePicture = JsonNullable.<String>of(profilePicture);
     return this;
   }
 
@@ -310,17 +312,25 @@ public class SocialAccount {
    * @return profilePicture
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_PICTURE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getProfilePicture() {
-    return profilePicture;
+        return profilePicture.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROFILE_PICTURE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfilePicture(@javax.annotation.Nullable String profilePicture) {
+
+  public JsonNullable<String> getProfilePicture_JsonNullable() {
+    return profilePicture;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROFILE_PICTURE)
+  public void setProfilePicture_JsonNullable(JsonNullable<String> profilePicture) {
     this.profilePicture = profilePicture;
+  }
+
+  public void setProfilePicture(@javax.annotation.Nullable String profilePicture) {
+    this.profilePicture = JsonNullable.<String>of(profilePicture);
   }
 
 
@@ -421,7 +431,7 @@ public class SocialAccount {
 
 
   public SocialAccount parentAccountId(@javax.annotation.Nullable String parentAccountId) {
-    this.parentAccountId = parentAccountId;
+    this.parentAccountId = JsonNullable.<String>of(parentAccountId);
     return this;
   }
 
@@ -430,17 +440,25 @@ public class SocialAccount {
    * @return parentAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARENT_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParentAccountId() {
-    return parentAccountId;
+        return parentAccountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARENT_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParentAccountId(@javax.annotation.Nullable String parentAccountId) {
+
+  public JsonNullable<String> getParentAccountId_JsonNullable() {
+    return parentAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARENT_ACCOUNT_ID)
+  public void setParentAccountId_JsonNullable(JsonNullable<String> parentAccountId) {
     this.parentAccountId = parentAccountId;
+  }
+
+  public void setParentAccountId(@javax.annotation.Nullable String parentAccountId) {
+    this.parentAccountId = JsonNullable.<String>of(parentAccountId);
   }
 
 
@@ -509,19 +527,30 @@ public class SocialAccount {
         Objects.equals(this.profileId, socialAccount.profileId) &&
         Objects.equals(this.username, socialAccount.username) &&
         Objects.equals(this.displayName, socialAccount.displayName) &&
-        Objects.equals(this.profilePicture, socialAccount.profilePicture) &&
+        equalsNullable(this.profilePicture, socialAccount.profilePicture) &&
         Objects.equals(this.profileUrl, socialAccount.profileUrl) &&
         Objects.equals(this.isActive, socialAccount.isActive) &&
         Objects.equals(this.followersCount, socialAccount.followersCount) &&
         Objects.equals(this.followersLastUpdated, socialAccount.followersLastUpdated) &&
-        Objects.equals(this.parentAccountId, socialAccount.parentAccountId) &&
+        equalsNullable(this.parentAccountId, socialAccount.parentAccountId) &&
         Objects.equals(this.enabled, socialAccount.enabled) &&
         Objects.equals(this.metadata, socialAccount.metadata);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, profileId, username, displayName, profilePicture, profileUrl, isActive, followersCount, followersLastUpdated, parentAccountId, enabled, metadata);
+    return Objects.hash(id, platform, profileId, username, displayName, hashCodeNullable(profilePicture), profileUrl, isActive, followersCount, followersLastUpdated, hashCodeNullable(parentAccountId), enabled, metadata);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

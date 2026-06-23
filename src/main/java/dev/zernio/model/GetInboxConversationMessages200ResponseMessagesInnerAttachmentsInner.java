@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,7 +43,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_FILENAME,
   GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.JSON_PROPERTY_PREVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -97,12 +101,10 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
   private String url;
 
   public static final String JSON_PROPERTY_FILENAME = "filename";
-  @javax.annotation.Nullable
-  private String filename;
+  private JsonNullable<String> filename = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PREVIEW_URL = "previewUrl";
-  @javax.annotation.Nullable
-  private String previewUrl;
+  private JsonNullable<String> previewUrl = JsonNullable.<String>undefined();
 
   public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner() { 
   }
@@ -180,7 +182,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
 
 
   public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner filename(@javax.annotation.Nullable String filename) {
-    this.filename = filename;
+    this.filename = JsonNullable.<String>of(filename);
     return this;
   }
 
@@ -189,22 +191,30 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
    * @return filename
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FILENAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFilename() {
-    return filename;
+        return filename.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FILENAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFilename(@javax.annotation.Nullable String filename) {
+
+  public JsonNullable<String> getFilename_JsonNullable() {
+    return filename;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FILENAME)
+  public void setFilename_JsonNullable(JsonNullable<String> filename) {
     this.filename = filename;
+  }
+
+  public void setFilename(@javax.annotation.Nullable String filename) {
+    this.filename = JsonNullable.<String>of(filename);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner previewUrl(@javax.annotation.Nullable String previewUrl) {
-    this.previewUrl = previewUrl;
+    this.previewUrl = JsonNullable.<String>of(previewUrl);
     return this;
   }
 
@@ -213,17 +223,25 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
    * @return previewUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PREVIEW_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPreviewUrl() {
-    return previewUrl;
+        return previewUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PREVIEW_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPreviewUrl(@javax.annotation.Nullable String previewUrl) {
+
+  public JsonNullable<String> getPreviewUrl_JsonNullable() {
+    return previewUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PREVIEW_URL)
+  public void setPreviewUrl_JsonNullable(JsonNullable<String> previewUrl) {
     this.previewUrl = previewUrl;
+  }
+
+  public void setPreviewUrl(@javax.annotation.Nullable String previewUrl) {
+    this.previewUrl = JsonNullable.<String>of(previewUrl);
   }
 
 
@@ -242,13 +260,24 @@ public class GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInne
     return Objects.equals(this.id, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.id) &&
         Objects.equals(this.type, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.type) &&
         Objects.equals(this.url, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.url) &&
-        Objects.equals(this.filename, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.filename) &&
-        Objects.equals(this.previewUrl, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.previewUrl);
+        equalsNullable(this.filename, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.filename) &&
+        equalsNullable(this.previewUrl, getInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.previewUrl);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, url, filename, previewUrl);
+    return Objects.hash(id, type, url, hashCodeNullable(filename), hashCodeNullable(previewUrl));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

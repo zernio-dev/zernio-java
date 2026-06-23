@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,7 +43,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversation201ResponseData.JSON_PROPERTY_PARTICIPANT_NAME,
   CreateInboxConversation201ResponseData.JSON_PROPERTY_PARTICIPANT_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversation201ResponseData {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable
@@ -54,12 +58,10 @@ public class CreateInboxConversation201ResponseData {
   private String participantId;
 
   public static final String JSON_PROPERTY_PARTICIPANT_NAME = "participantName";
-  @javax.annotation.Nullable
-  private String participantName;
+  private JsonNullable<String> participantName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PARTICIPANT_USERNAME = "participantUsername";
-  @javax.annotation.Nullable
-  private String participantUsername;
+  private JsonNullable<String> participantUsername = JsonNullable.<String>undefined();
 
   public CreateInboxConversation201ResponseData() { 
   }
@@ -137,7 +139,7 @@ public class CreateInboxConversation201ResponseData {
 
 
   public CreateInboxConversation201ResponseData participantName(@javax.annotation.Nullable String participantName) {
-    this.participantName = participantName;
+    this.participantName = JsonNullable.<String>of(participantName);
     return this;
   }
 
@@ -146,22 +148,30 @@ public class CreateInboxConversation201ResponseData {
    * @return participantName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParticipantName() {
-    return participantName;
+        return participantName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParticipantName(@javax.annotation.Nullable String participantName) {
+
+  public JsonNullable<String> getParticipantName_JsonNullable() {
+    return participantName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARTICIPANT_NAME)
+  public void setParticipantName_JsonNullable(JsonNullable<String> participantName) {
     this.participantName = participantName;
+  }
+
+  public void setParticipantName(@javax.annotation.Nullable String participantName) {
+    this.participantName = JsonNullable.<String>of(participantName);
   }
 
 
   public CreateInboxConversation201ResponseData participantUsername(@javax.annotation.Nullable String participantUsername) {
-    this.participantUsername = participantUsername;
+    this.participantUsername = JsonNullable.<String>of(participantUsername);
     return this;
   }
 
@@ -170,17 +180,25 @@ public class CreateInboxConversation201ResponseData {
    * @return participantUsername
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParticipantUsername() {
-    return participantUsername;
+        return participantUsername.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParticipantUsername(@javax.annotation.Nullable String participantUsername) {
+
+  public JsonNullable<String> getParticipantUsername_JsonNullable() {
+    return participantUsername;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARTICIPANT_USERNAME)
+  public void setParticipantUsername_JsonNullable(JsonNullable<String> participantUsername) {
     this.participantUsername = participantUsername;
+  }
+
+  public void setParticipantUsername(@javax.annotation.Nullable String participantUsername) {
+    this.participantUsername = JsonNullable.<String>of(participantUsername);
   }
 
 
@@ -199,13 +217,24 @@ public class CreateInboxConversation201ResponseData {
     return Objects.equals(this.messageId, createInboxConversation201ResponseData.messageId) &&
         Objects.equals(this.conversationId, createInboxConversation201ResponseData.conversationId) &&
         Objects.equals(this.participantId, createInboxConversation201ResponseData.participantId) &&
-        Objects.equals(this.participantName, createInboxConversation201ResponseData.participantName) &&
-        Objects.equals(this.participantUsername, createInboxConversation201ResponseData.participantUsername);
+        equalsNullable(this.participantName, createInboxConversation201ResponseData.participantName) &&
+        equalsNullable(this.participantUsername, createInboxConversation201ResponseData.participantUsername);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messageId, conversationId, participantId, participantName, participantUsername);
+    return Objects.hash(messageId, conversationId, participantId, hashCodeNullable(participantName), hashCodeNullable(participantUsername));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

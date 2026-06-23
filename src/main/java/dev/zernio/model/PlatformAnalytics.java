@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.PostAnalytics;
 import java.net.URI;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,7 +49,7 @@ import dev.zernio.ApiClient;
   PlatformAnalytics.JSON_PROPERTY_PLATFORM_POST_URL,
   PlatformAnalytics.JSON_PROPERTY_ERROR_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformAnalytics {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -91,20 +95,17 @@ public class PlatformAnalytics {
   private StatusEnum status;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
-  @javax.annotation.Nullable
-  private String platformPostId;
+  private JsonNullable<String> platformPostId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
   private String accountId;
 
   public static final String JSON_PROPERTY_ACCOUNT_USERNAME = "accountUsername";
-  @javax.annotation.Nullable
-  private String accountUsername;
+  private JsonNullable<String> accountUsername = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ANALYTICS = "analytics";
-  @javax.annotation.Nullable
-  private PostAnalytics analytics;
+  private JsonNullable<PostAnalytics> analytics = JsonNullable.<PostAnalytics>undefined();
 
   /**
    * Sync state of analytics for this platform
@@ -148,12 +149,10 @@ public class PlatformAnalytics {
   private SyncStatusEnum syncStatus;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_URL = "platformPostUrl";
-  @javax.annotation.Nullable
-  private URI platformPostUrl;
+  private JsonNullable<URI> platformPostUrl = JsonNullable.<URI>undefined();
 
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
-  @javax.annotation.Nullable
-  private String errorMessage;
+  private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
   public PlatformAnalytics() { 
   }
@@ -207,7 +206,7 @@ public class PlatformAnalytics {
 
 
   public PlatformAnalytics platformPostId(@javax.annotation.Nullable String platformPostId) {
-    this.platformPostId = platformPostId;
+    this.platformPostId = JsonNullable.<String>of(platformPostId);
     return this;
   }
 
@@ -216,17 +215,25 @@ public class PlatformAnalytics {
    * @return platformPostId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPlatformPostId() {
-    return platformPostId;
+        return platformPostId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformPostId(@javax.annotation.Nullable String platformPostId) {
+
+  public JsonNullable<String> getPlatformPostId_JsonNullable() {
+    return platformPostId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLATFORM_POST_ID)
+  public void setPlatformPostId_JsonNullable(JsonNullable<String> platformPostId) {
     this.platformPostId = platformPostId;
+  }
+
+  public void setPlatformPostId(@javax.annotation.Nullable String platformPostId) {
+    this.platformPostId = JsonNullable.<String>of(platformPostId);
   }
 
 
@@ -255,7 +262,7 @@ public class PlatformAnalytics {
 
 
   public PlatformAnalytics accountUsername(@javax.annotation.Nullable String accountUsername) {
-    this.accountUsername = accountUsername;
+    this.accountUsername = JsonNullable.<String>of(accountUsername);
     return this;
   }
 
@@ -264,22 +271,30 @@ public class PlatformAnalytics {
    * @return accountUsername
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAccountUsername() {
-    return accountUsername;
+        return accountUsername.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACCOUNT_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountUsername(@javax.annotation.Nullable String accountUsername) {
+
+  public JsonNullable<String> getAccountUsername_JsonNullable() {
+    return accountUsername;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACCOUNT_USERNAME)
+  public void setAccountUsername_JsonNullable(JsonNullable<String> accountUsername) {
     this.accountUsername = accountUsername;
+  }
+
+  public void setAccountUsername(@javax.annotation.Nullable String accountUsername) {
+    this.accountUsername = JsonNullable.<String>of(accountUsername);
   }
 
 
   public PlatformAnalytics analytics(@javax.annotation.Nullable PostAnalytics analytics) {
-    this.analytics = analytics;
+    this.analytics = JsonNullable.<PostAnalytics>of(analytics);
     return this;
   }
 
@@ -288,17 +303,25 @@ public class PlatformAnalytics {
    * @return analytics
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ANALYTICS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public PostAnalytics getAnalytics() {
-    return analytics;
+        return analytics.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ANALYTICS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnalytics(@javax.annotation.Nullable PostAnalytics analytics) {
+
+  public JsonNullable<PostAnalytics> getAnalytics_JsonNullable() {
+    return analytics;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ANALYTICS)
+  public void setAnalytics_JsonNullable(JsonNullable<PostAnalytics> analytics) {
     this.analytics = analytics;
+  }
+
+  public void setAnalytics(@javax.annotation.Nullable PostAnalytics analytics) {
+    this.analytics = JsonNullable.<PostAnalytics>of(analytics);
   }
 
 
@@ -327,7 +350,7 @@ public class PlatformAnalytics {
 
 
   public PlatformAnalytics platformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
-    this.platformPostUrl = platformPostUrl;
+    this.platformPostUrl = JsonNullable.<URI>of(platformPostUrl);
     return this;
   }
 
@@ -336,22 +359,30 @@ public class PlatformAnalytics {
    * @return platformPostUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public URI getPlatformPostUrl() {
-    return platformPostUrl;
+        return platformPostUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
+
+  public JsonNullable<URI> getPlatformPostUrl_JsonNullable() {
+    return platformPostUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLATFORM_POST_URL)
+  public void setPlatformPostUrl_JsonNullable(JsonNullable<URI> platformPostUrl) {
     this.platformPostUrl = platformPostUrl;
+  }
+
+  public void setPlatformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
+    this.platformPostUrl = JsonNullable.<URI>of(platformPostUrl);
   }
 
 
   public PlatformAnalytics errorMessage(@javax.annotation.Nullable String errorMessage) {
-    this.errorMessage = errorMessage;
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
     return this;
   }
 
@@ -360,17 +391,25 @@ public class PlatformAnalytics {
    * @return errorMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getErrorMessage() {
-    return errorMessage;
+        return errorMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+
+  public JsonNullable<String> getErrorMessage_JsonNullable() {
+    return errorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  public void setErrorMessage_JsonNullable(JsonNullable<String> errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
   }
 
 
@@ -388,18 +427,29 @@ public class PlatformAnalytics {
     PlatformAnalytics platformAnalytics = (PlatformAnalytics) o;
     return Objects.equals(this.platform, platformAnalytics.platform) &&
         Objects.equals(this.status, platformAnalytics.status) &&
-        Objects.equals(this.platformPostId, platformAnalytics.platformPostId) &&
+        equalsNullable(this.platformPostId, platformAnalytics.platformPostId) &&
         Objects.equals(this.accountId, platformAnalytics.accountId) &&
-        Objects.equals(this.accountUsername, platformAnalytics.accountUsername) &&
-        Objects.equals(this.analytics, platformAnalytics.analytics) &&
+        equalsNullable(this.accountUsername, platformAnalytics.accountUsername) &&
+        equalsNullable(this.analytics, platformAnalytics.analytics) &&
         Objects.equals(this.syncStatus, platformAnalytics.syncStatus) &&
-        Objects.equals(this.platformPostUrl, platformAnalytics.platformPostUrl) &&
-        Objects.equals(this.errorMessage, platformAnalytics.errorMessage);
+        equalsNullable(this.platformPostUrl, platformAnalytics.platformPostUrl) &&
+        equalsNullable(this.errorMessage, platformAnalytics.errorMessage);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, status, platformPostId, accountId, accountUsername, analytics, syncStatus, platformPostUrl, errorMessage);
+    return Objects.hash(platform, status, hashCodeNullable(platformPostId), accountId, hashCodeNullable(accountUsername), hashCodeNullable(analytics), syncStatus, hashCodeNullable(platformPostUrl), hashCodeNullable(errorMessage));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

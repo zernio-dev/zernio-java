@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SavedTargetingAudience.JSON_PROPERTY_DESCRIPTION,
   SavedTargetingAudience.JSON_PROPERTY_SPEC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SavedTargetingAudience {
   /**
    * Gets or Sets type
@@ -92,7 +92,7 @@ public class SavedTargetingAudience {
   private String description;
 
   public static final String JSON_PROPERTY_SPEC = "spec";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private TargetingSpec spec;
 
   public SavedTargetingAudience() { 
@@ -194,7 +194,7 @@ public class SavedTargetingAudience {
   }
 
 
-  public SavedTargetingAudience spec(@javax.annotation.Nonnull TargetingSpec spec) {
+  public SavedTargetingAudience spec(@javax.annotation.Nullable TargetingSpec spec) {
     this.spec = spec;
     return this;
   }
@@ -203,17 +203,17 @@ public class SavedTargetingAudience {
    * The targeting spec to store.
    * @return spec
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_SPEC, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TargetingSpec getSpec() {
     return spec;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SPEC, required = true)
+  @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSpec(@javax.annotation.Nonnull TargetingSpec spec) {
+  public void setSpec(@javax.annotation.Nullable TargetingSpec spec) {
     this.spec = spec;
   }
 

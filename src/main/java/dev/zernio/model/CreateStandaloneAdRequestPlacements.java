@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Meta only. Manual ad placements. Omit for automatic placements (Meta&#39;s default, recommended for most cases — Meta optimises delivery across all eligible surfaces). When set, restricts delivery to the chosen surfaces, mapped onto the ad set&#39;s &#x60;targeting.{publisher_platforms, facebook_positions, instagram_positions, messenger_positions, audience_network_positions, threads_positions, whatsapp_positions, device_platforms}&#x60;. Enum membership is validated here; Meta additionally enforces co-selection rules (e.g. some positions require their parent publisher platform) and returns an actionable error which we surface. Non-Meta platforms reject this field. Can be combined with &#x60;rawTargeting&#x60; — when both are set, the placement spec is converted to Meta&#39;s snake_case and merged into the raw targeting object before it is sent to Meta. 
+ * Meta only. Manual ad placements. Omit for automatic placements (Meta&#39;s default, recommended for most cases — Meta optimises delivery across all eligible surfaces). When set, restricts delivery to the chosen surfaces, mapped onto the ad set&#39;s &#x60;targeting.{publisher_platforms, facebook_positions, instagram_positions, messenger_positions, audience_network_positions, threads_positions, whatsapp_positions, device_platforms}&#x60;. Enum membership is validated here; Meta additionally enforces co-selection rules (e.g. some positions require their parent publisher platform) and returns an actionable error which we surface. Non-Meta platforms reject this field. 
  */
 @JsonPropertyOrder({
   CreateStandaloneAdRequestPlacements.JSON_PROPERTY_PUBLISHER_PLATFORMS,
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPlacements.JSON_PROPERTY_WHATSAPP_POSITIONS,
   CreateStandaloneAdRequestPlacements.JSON_PROPERTY_DEVICE_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPlacements {
   /**
    * Gets or Sets publisherPlatforms

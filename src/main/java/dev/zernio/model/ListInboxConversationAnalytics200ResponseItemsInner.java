@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,15 +54,14 @@ import dev.zernio.ApiClient;
   ListInboxConversationAnalytics200ResponseItemsInner.JSON_PROPERTY_FIRST_MESSAGE_AT,
   ListInboxConversationAnalytics200ResponseItemsInner.JSON_PROPERTY_LAST_MESSAGE_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversationAnalytics200ResponseItemsInner {
   public static final String JSON_PROPERTY_CONVERSATION_ID = "conversationId";
   @javax.annotation.Nullable
   private String conversationId;
 
   public static final String JSON_PROPERTY_MONGO_ID = "mongoId";
-  @javax.annotation.Nullable
-  private String mongoId;
+  private JsonNullable<String> mongoId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -69,20 +72,16 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
   private String platform;
 
   public static final String JSON_PROPERTY_PARTICIPANT_NAME = "participantName";
-  @javax.annotation.Nullable
-  private String participantName;
+  private JsonNullable<String> participantName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PARTICIPANT_USERNAME = "participantUsername";
-  @javax.annotation.Nullable
-  private String participantUsername;
+  private JsonNullable<String> participantUsername = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PARTICIPANT_PICTURE = "participantPicture";
-  @javax.annotation.Nullable
-  private String participantPicture;
+  private JsonNullable<String> participantPicture = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LAST_MESSAGE = "lastMessage";
-  @javax.annotation.Nullable
-  private String lastMessage;
+  private JsonNullable<String> lastMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TOTAL_MESSAGES = "totalMessages";
   @javax.annotation.Nullable
@@ -140,7 +139,7 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
 
 
   public ListInboxConversationAnalytics200ResponseItemsInner mongoId(@javax.annotation.Nullable String mongoId) {
-    this.mongoId = mongoId;
+    this.mongoId = JsonNullable.<String>of(mongoId);
     return this;
   }
 
@@ -149,17 +148,25 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
    * @return mongoId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MONGO_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMongoId() {
-    return mongoId;
+        return mongoId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MONGO_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMongoId(@javax.annotation.Nullable String mongoId) {
+
+  public JsonNullable<String> getMongoId_JsonNullable() {
+    return mongoId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MONGO_ID)
+  public void setMongoId_JsonNullable(JsonNullable<String> mongoId) {
     this.mongoId = mongoId;
+  }
+
+  public void setMongoId(@javax.annotation.Nullable String mongoId) {
+    this.mongoId = JsonNullable.<String>of(mongoId);
   }
 
 
@@ -212,7 +219,7 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
 
 
   public ListInboxConversationAnalytics200ResponseItemsInner participantName(@javax.annotation.Nullable String participantName) {
-    this.participantName = participantName;
+    this.participantName = JsonNullable.<String>of(participantName);
     return this;
   }
 
@@ -221,22 +228,30 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
    * @return participantName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParticipantName() {
-    return participantName;
+        return participantName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParticipantName(@javax.annotation.Nullable String participantName) {
+
+  public JsonNullable<String> getParticipantName_JsonNullable() {
+    return participantName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARTICIPANT_NAME)
+  public void setParticipantName_JsonNullable(JsonNullable<String> participantName) {
     this.participantName = participantName;
+  }
+
+  public void setParticipantName(@javax.annotation.Nullable String participantName) {
+    this.participantName = JsonNullable.<String>of(participantName);
   }
 
 
   public ListInboxConversationAnalytics200ResponseItemsInner participantUsername(@javax.annotation.Nullable String participantUsername) {
-    this.participantUsername = participantUsername;
+    this.participantUsername = JsonNullable.<String>of(participantUsername);
     return this;
   }
 
@@ -245,22 +260,30 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
    * @return participantUsername
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParticipantUsername() {
-    return participantUsername;
+        return participantUsername.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParticipantUsername(@javax.annotation.Nullable String participantUsername) {
+
+  public JsonNullable<String> getParticipantUsername_JsonNullable() {
+    return participantUsername;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARTICIPANT_USERNAME)
+  public void setParticipantUsername_JsonNullable(JsonNullable<String> participantUsername) {
     this.participantUsername = participantUsername;
+  }
+
+  public void setParticipantUsername(@javax.annotation.Nullable String participantUsername) {
+    this.participantUsername = JsonNullable.<String>of(participantUsername);
   }
 
 
   public ListInboxConversationAnalytics200ResponseItemsInner participantPicture(@javax.annotation.Nullable String participantPicture) {
-    this.participantPicture = participantPicture;
+    this.participantPicture = JsonNullable.<String>of(participantPicture);
     return this;
   }
 
@@ -269,22 +292,30 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
    * @return participantPicture
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_PICTURE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParticipantPicture() {
-    return participantPicture;
+        return participantPicture.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_PICTURE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParticipantPicture(@javax.annotation.Nullable String participantPicture) {
+
+  public JsonNullable<String> getParticipantPicture_JsonNullable() {
+    return participantPicture;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARTICIPANT_PICTURE)
+  public void setParticipantPicture_JsonNullable(JsonNullable<String> participantPicture) {
     this.participantPicture = participantPicture;
+  }
+
+  public void setParticipantPicture(@javax.annotation.Nullable String participantPicture) {
+    this.participantPicture = JsonNullable.<String>of(participantPicture);
   }
 
 
   public ListInboxConversationAnalytics200ResponseItemsInner lastMessage(@javax.annotation.Nullable String lastMessage) {
-    this.lastMessage = lastMessage;
+    this.lastMessage = JsonNullable.<String>of(lastMessage);
     return this;
   }
 
@@ -293,17 +324,25 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
    * @return lastMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLastMessage() {
-    return lastMessage;
+        return lastMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastMessage(@javax.annotation.Nullable String lastMessage) {
+
+  public JsonNullable<String> getLastMessage_JsonNullable() {
+    return lastMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MESSAGE)
+  public void setLastMessage_JsonNullable(JsonNullable<String> lastMessage) {
     this.lastMessage = lastMessage;
+  }
+
+  public void setLastMessage(@javax.annotation.Nullable String lastMessage) {
+    this.lastMessage = JsonNullable.<String>of(lastMessage);
   }
 
 
@@ -488,13 +527,13 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
     }
     ListInboxConversationAnalytics200ResponseItemsInner listInboxConversationAnalytics200ResponseItemsInner = (ListInboxConversationAnalytics200ResponseItemsInner) o;
     return Objects.equals(this.conversationId, listInboxConversationAnalytics200ResponseItemsInner.conversationId) &&
-        Objects.equals(this.mongoId, listInboxConversationAnalytics200ResponseItemsInner.mongoId) &&
+        equalsNullable(this.mongoId, listInboxConversationAnalytics200ResponseItemsInner.mongoId) &&
         Objects.equals(this.accountId, listInboxConversationAnalytics200ResponseItemsInner.accountId) &&
         Objects.equals(this.platform, listInboxConversationAnalytics200ResponseItemsInner.platform) &&
-        Objects.equals(this.participantName, listInboxConversationAnalytics200ResponseItemsInner.participantName) &&
-        Objects.equals(this.participantUsername, listInboxConversationAnalytics200ResponseItemsInner.participantUsername) &&
-        Objects.equals(this.participantPicture, listInboxConversationAnalytics200ResponseItemsInner.participantPicture) &&
-        Objects.equals(this.lastMessage, listInboxConversationAnalytics200ResponseItemsInner.lastMessage) &&
+        equalsNullable(this.participantName, listInboxConversationAnalytics200ResponseItemsInner.participantName) &&
+        equalsNullable(this.participantUsername, listInboxConversationAnalytics200ResponseItemsInner.participantUsername) &&
+        equalsNullable(this.participantPicture, listInboxConversationAnalytics200ResponseItemsInner.participantPicture) &&
+        equalsNullable(this.lastMessage, listInboxConversationAnalytics200ResponseItemsInner.lastMessage) &&
         Objects.equals(this.totalMessages, listInboxConversationAnalytics200ResponseItemsInner.totalMessages) &&
         Objects.equals(this.received, listInboxConversationAnalytics200ResponseItemsInner.received) &&
         Objects.equals(this.sent, listInboxConversationAnalytics200ResponseItemsInner.sent) &&
@@ -504,9 +543,20 @@ public class ListInboxConversationAnalytics200ResponseItemsInner {
         Objects.equals(this.lastMessageAt, listInboxConversationAnalytics200ResponseItemsInner.lastMessageAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(conversationId, mongoId, accountId, platform, participantName, participantUsername, participantPicture, lastMessage, totalMessages, received, sent, read, failed, firstMessageAt, lastMessageAt);
+    return Objects.hash(conversationId, hashCodeNullable(mongoId), accountId, platform, hashCodeNullable(participantName), hashCodeNullable(participantUsername), hashCodeNullable(participantPicture), hashCodeNullable(lastMessage), totalMessages, received, sent, read, failed, firstMessageAt, lastMessageAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,17 +39,16 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetWhatsAppDataset200Response.JSON_PROPERTY_DATASET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppDataset200Response {
   public static final String JSON_PROPERTY_DATASET_ID = "datasetId";
-  @javax.annotation.Nullable
-  private String datasetId;
+  private JsonNullable<String> datasetId = JsonNullable.<String>undefined();
 
   public GetWhatsAppDataset200Response() { 
   }
 
   public GetWhatsAppDataset200Response datasetId(@javax.annotation.Nullable String datasetId) {
-    this.datasetId = datasetId;
+    this.datasetId = JsonNullable.<String>of(datasetId);
     return this;
   }
 
@@ -54,17 +57,25 @@ public class GetWhatsAppDataset200Response {
    * @return datasetId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DATASET_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDatasetId() {
-    return datasetId;
+        return datasetId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DATASET_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDatasetId(@javax.annotation.Nullable String datasetId) {
+
+  public JsonNullable<String> getDatasetId_JsonNullable() {
+    return datasetId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DATASET_ID)
+  public void setDatasetId_JsonNullable(JsonNullable<String> datasetId) {
     this.datasetId = datasetId;
+  }
+
+  public void setDatasetId(@javax.annotation.Nullable String datasetId) {
+    this.datasetId = JsonNullable.<String>of(datasetId);
   }
 
 
@@ -80,12 +91,23 @@ public class GetWhatsAppDataset200Response {
       return false;
     }
     GetWhatsAppDataset200Response getWhatsAppDataset200Response = (GetWhatsAppDataset200Response) o;
-    return Objects.equals(this.datasetId, getWhatsAppDataset200Response.datasetId);
+    return equalsNullable(this.datasetId, getWhatsAppDataset200Response.datasetId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(datasetId);
+    return Objects.hash(hashCodeNullable(datasetId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

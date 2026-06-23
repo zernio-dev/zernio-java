@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -43,15 +47,14 @@ import dev.zernio.ApiClient;
   ListDiscordGuildMembers200ResponseDataInner.JSON_PROPERTY_JOINED_AT,
   ListDiscordGuildMembers200ResponseDataInner.JSON_PROPERTY_PREMIUM_SINCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListDiscordGuildMembers200ResponseDataInner {
   public static final String JSON_PROPERTY_USER = "user";
   @javax.annotation.Nullable
   private ListDiscordGuildMembers200ResponseDataInnerUser user;
 
   public static final String JSON_PROPERTY_NICK = "nick";
-  @javax.annotation.Nullable
-  private String nick;
+  private JsonNullable<String> nick = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ROLES = "roles";
   @javax.annotation.Nullable
@@ -62,8 +65,7 @@ public class ListDiscordGuildMembers200ResponseDataInner {
   private OffsetDateTime joinedAt;
 
   public static final String JSON_PROPERTY_PREMIUM_SINCE = "premium_since";
-  @javax.annotation.Nullable
-  private OffsetDateTime premiumSince;
+  private JsonNullable<OffsetDateTime> premiumSince = JsonNullable.<OffsetDateTime>undefined();
 
   public ListDiscordGuildMembers200ResponseDataInner() { 
   }
@@ -93,7 +95,7 @@ public class ListDiscordGuildMembers200ResponseDataInner {
 
 
   public ListDiscordGuildMembers200ResponseDataInner nick(@javax.annotation.Nullable String nick) {
-    this.nick = nick;
+    this.nick = JsonNullable.<String>of(nick);
     return this;
   }
 
@@ -102,17 +104,25 @@ public class ListDiscordGuildMembers200ResponseDataInner {
    * @return nick
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NICK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNick() {
-    return nick;
+        return nick.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NICK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNick(@javax.annotation.Nullable String nick) {
+
+  public JsonNullable<String> getNick_JsonNullable() {
+    return nick;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NICK)
+  public void setNick_JsonNullable(JsonNullable<String> nick) {
     this.nick = nick;
+  }
+
+  public void setNick(@javax.annotation.Nullable String nick) {
+    this.nick = JsonNullable.<String>of(nick);
   }
 
 
@@ -173,7 +183,7 @@ public class ListDiscordGuildMembers200ResponseDataInner {
 
 
   public ListDiscordGuildMembers200ResponseDataInner premiumSince(@javax.annotation.Nullable OffsetDateTime premiumSince) {
-    this.premiumSince = premiumSince;
+    this.premiumSince = JsonNullable.<OffsetDateTime>of(premiumSince);
     return this;
   }
 
@@ -182,17 +192,25 @@ public class ListDiscordGuildMembers200ResponseDataInner {
    * @return premiumSince
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PREMIUM_SINCE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPremiumSince() {
-    return premiumSince;
+        return premiumSince.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PREMIUM_SINCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPremiumSince(@javax.annotation.Nullable OffsetDateTime premiumSince) {
+
+  public JsonNullable<OffsetDateTime> getPremiumSince_JsonNullable() {
+    return premiumSince;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PREMIUM_SINCE)
+  public void setPremiumSince_JsonNullable(JsonNullable<OffsetDateTime> premiumSince) {
     this.premiumSince = premiumSince;
+  }
+
+  public void setPremiumSince(@javax.annotation.Nullable OffsetDateTime premiumSince) {
+    this.premiumSince = JsonNullable.<OffsetDateTime>of(premiumSince);
   }
 
 
@@ -209,15 +227,26 @@ public class ListDiscordGuildMembers200ResponseDataInner {
     }
     ListDiscordGuildMembers200ResponseDataInner listDiscordGuildMembers200ResponseDataInner = (ListDiscordGuildMembers200ResponseDataInner) o;
     return Objects.equals(this.user, listDiscordGuildMembers200ResponseDataInner.user) &&
-        Objects.equals(this.nick, listDiscordGuildMembers200ResponseDataInner.nick) &&
+        equalsNullable(this.nick, listDiscordGuildMembers200ResponseDataInner.nick) &&
         Objects.equals(this.roles, listDiscordGuildMembers200ResponseDataInner.roles) &&
         Objects.equals(this.joinedAt, listDiscordGuildMembers200ResponseDataInner.joinedAt) &&
-        Objects.equals(this.premiumSince, listDiscordGuildMembers200ResponseDataInner.premiumSince);
+        equalsNullable(this.premiumSince, listDiscordGuildMembers200ResponseDataInner.premiumSince);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(user, nick, roles, joinedAt, premiumSince);
+    return Objects.hash(user, hashCodeNullable(nick), roles, joinedAt, hashCodeNullable(premiumSince));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

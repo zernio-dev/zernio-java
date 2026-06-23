@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -49,7 +53,7 @@ import dev.zernio.ApiClient;
   ExternalPostWebhookPost.JSON_PROPERTY_SOURCE,
   ExternalPostWebhookPost.JSON_PROPERTY_DELETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostWebhookPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -64,7 +68,7 @@ public class ExternalPostWebhookPost {
   private String accountId;
 
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String url;
 
   public static final String JSON_PROPERTY_CONTENT = "content";
@@ -80,7 +84,7 @@ public class ExternalPostWebhookPost {
   private List<ExternalPostMediaItem> mediaItems = new ArrayList<>();
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String thumbnailUrl;
 
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
@@ -125,8 +129,7 @@ public class ExternalPostWebhookPost {
   private SourceEnum source;
 
   public static final String JSON_PROPERTY_DELETED_AT = "deletedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime deletedAt;
+  private JsonNullable<OffsetDateTime> deletedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public ExternalPostWebhookPost() { 
   }
@@ -203,7 +206,7 @@ public class ExternalPostWebhookPost {
   }
 
 
-  public ExternalPostWebhookPost url(@javax.annotation.Nonnull String url) {
+  public ExternalPostWebhookPost url(@javax.annotation.Nullable String url) {
     this.url = url;
     return this;
   }
@@ -212,17 +215,17 @@ public class ExternalPostWebhookPost {
    * Direct URL to the post on the platform, when available.
    * @return url
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUrl() {
     return url;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUrl(@javax.annotation.Nonnull String url) {
+  public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
   }
 
@@ -307,7 +310,7 @@ public class ExternalPostWebhookPost {
   }
 
 
-  public ExternalPostWebhookPost thumbnailUrl(@javax.annotation.Nonnull String thumbnailUrl) {
+  public ExternalPostWebhookPost thumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
     return this;
   }
@@ -316,17 +319,17 @@ public class ExternalPostWebhookPost {
    * Get thumbnailUrl
    * @return thumbnailUrl
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getThumbnailUrl() {
     return thumbnailUrl;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = true)
+  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setThumbnailUrl(@javax.annotation.Nonnull String thumbnailUrl) {
+  public void setThumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
   }
 
@@ -380,7 +383,7 @@ public class ExternalPostWebhookPost {
 
 
   public ExternalPostWebhookPost deletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
-    this.deletedAt = deletedAt;
+    this.deletedAt = JsonNullable.<OffsetDateTime>of(deletedAt);
     return this;
   }
 
@@ -389,17 +392,25 @@ public class ExternalPostWebhookPost {
    * @return deletedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DELETED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getDeletedAt() {
-    return deletedAt;
+        return deletedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DELETED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
+
+  public JsonNullable<OffsetDateTime> getDeletedAt_JsonNullable() {
+    return deletedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELETED_AT)
+  public void setDeletedAt_JsonNullable(JsonNullable<OffsetDateTime> deletedAt) {
     this.deletedAt = deletedAt;
+  }
+
+  public void setDeletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
+    this.deletedAt = JsonNullable.<OffsetDateTime>of(deletedAt);
   }
 
 
@@ -425,12 +436,23 @@ public class ExternalPostWebhookPost {
         Objects.equals(this.thumbnailUrl, externalPostWebhookPost.thumbnailUrl) &&
         Objects.equals(this.publishedAt, externalPostWebhookPost.publishedAt) &&
         Objects.equals(this.source, externalPostWebhookPost.source) &&
-        Objects.equals(this.deletedAt, externalPostWebhookPost.deletedAt);
+        equalsNullable(this.deletedAt, externalPostWebhookPost.deletedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, url, content, mediaType, mediaItems, thumbnailUrl, publishedAt, source, deletedAt);
+    return Objects.hash(id, platform, accountId, url, content, mediaType, mediaItems, thumbnailUrl, publishedAt, source, hashCodeNullable(deletedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

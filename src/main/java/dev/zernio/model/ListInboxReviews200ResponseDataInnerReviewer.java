@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,25 +41,23 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInnerReviewer.JSON_PROPERTY_NAME,
   ListInboxReviews200ResponseDataInnerReviewer.JSON_PROPERTY_PROFILE_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInnerReviewer {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
   private String name;
 
   public static final String JSON_PROPERTY_PROFILE_IMAGE = "profileImage";
-  @javax.annotation.Nullable
-  private String profileImage;
+  private JsonNullable<String> profileImage = JsonNullable.<String>undefined();
 
   public ListInboxReviews200ResponseDataInnerReviewer() { 
   }
 
   public ListInboxReviews200ResponseDataInnerReviewer id(@javax.annotation.Nullable String id) {
-    this.id = id;
+    this.id = JsonNullable.<String>of(id);
     return this;
   }
 
@@ -64,17 +66,25 @@ public class ListInboxReviews200ResponseDataInnerReviewer {
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
@@ -103,7 +113,7 @@ public class ListInboxReviews200ResponseDataInnerReviewer {
 
 
   public ListInboxReviews200ResponseDataInnerReviewer profileImage(@javax.annotation.Nullable String profileImage) {
-    this.profileImage = profileImage;
+    this.profileImage = JsonNullable.<String>of(profileImage);
     return this;
   }
 
@@ -112,17 +122,25 @@ public class ListInboxReviews200ResponseDataInnerReviewer {
    * @return profileImage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_IMAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getProfileImage() {
-    return profileImage;
+        return profileImage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROFILE_IMAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfileImage(@javax.annotation.Nullable String profileImage) {
+
+  public JsonNullable<String> getProfileImage_JsonNullable() {
+    return profileImage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROFILE_IMAGE)
+  public void setProfileImage_JsonNullable(JsonNullable<String> profileImage) {
     this.profileImage = profileImage;
+  }
+
+  public void setProfileImage(@javax.annotation.Nullable String profileImage) {
+    this.profileImage = JsonNullable.<String>of(profileImage);
   }
 
 
@@ -138,14 +156,25 @@ public class ListInboxReviews200ResponseDataInnerReviewer {
       return false;
     }
     ListInboxReviews200ResponseDataInnerReviewer listInboxReviews200ResponseDataInnerReviewer = (ListInboxReviews200ResponseDataInnerReviewer) o;
-    return Objects.equals(this.id, listInboxReviews200ResponseDataInnerReviewer.id) &&
+    return equalsNullable(this.id, listInboxReviews200ResponseDataInnerReviewer.id) &&
         Objects.equals(this.name, listInboxReviews200ResponseDataInnerReviewer.name) &&
-        Objects.equals(this.profileImage, listInboxReviews200ResponseDataInnerReviewer.profileImage);
+        equalsNullable(this.profileImage, listInboxReviews200ResponseDataInnerReviewer.profileImage);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, profileImage);
+    return Objects.hash(hashCodeNullable(id), name, hashCodeNullable(profileImage));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

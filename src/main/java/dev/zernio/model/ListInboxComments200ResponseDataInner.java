@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,7 +54,7 @@ import dev.zernio.ApiClient;
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_AD_ID,
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_PLACEMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxComments200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -73,12 +77,10 @@ public class ListInboxComments200ResponseDataInner {
   private String content;
 
   public static final String JSON_PROPERTY_PICTURE = "picture";
-  @javax.annotation.Nullable
-  private String picture;
+  private JsonNullable<String> picture = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PERMALINK = "permalink";
-  @javax.annotation.Nullable
-  private String permalink;
+  private JsonNullable<String> permalink = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_TIME = "createdTime";
   @javax.annotation.Nullable
@@ -93,12 +95,10 @@ public class ListInboxComments200ResponseDataInner {
   private Integer likeCount;
 
   public static final String JSON_PROPERTY_CID = "cid";
-  @javax.annotation.Nullable
-  private String cid;
+  private JsonNullable<String> cid = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
-  @javax.annotation.Nullable
-  private String subreddit;
+  private JsonNullable<String> subreddit = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_AD = "isAd";
   @javax.annotation.Nullable
@@ -271,7 +271,7 @@ public class ListInboxComments200ResponseDataInner {
 
 
   public ListInboxComments200ResponseDataInner picture(@javax.annotation.Nullable String picture) {
-    this.picture = picture;
+    this.picture = JsonNullable.<String>of(picture);
     return this;
   }
 
@@ -280,22 +280,30 @@ public class ListInboxComments200ResponseDataInner {
    * @return picture
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPicture() {
-    return picture;
+        return picture.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPicture(@javax.annotation.Nullable String picture) {
+
+  public JsonNullable<String> getPicture_JsonNullable() {
+    return picture;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PICTURE)
+  public void setPicture_JsonNullable(JsonNullable<String> picture) {
     this.picture = picture;
+  }
+
+  public void setPicture(@javax.annotation.Nullable String picture) {
+    this.picture = JsonNullable.<String>of(picture);
   }
 
 
   public ListInboxComments200ResponseDataInner permalink(@javax.annotation.Nullable String permalink) {
-    this.permalink = permalink;
+    this.permalink = JsonNullable.<String>of(permalink);
     return this;
   }
 
@@ -304,17 +312,25 @@ public class ListInboxComments200ResponseDataInner {
    * @return permalink
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPermalink() {
-    return permalink;
+        return permalink.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPermalink(@javax.annotation.Nullable String permalink) {
+
+  public JsonNullable<String> getPermalink_JsonNullable() {
+    return permalink;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PERMALINK)
+  public void setPermalink_JsonNullable(JsonNullable<String> permalink) {
     this.permalink = permalink;
+  }
+
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
+    this.permalink = JsonNullable.<String>of(permalink);
   }
 
 
@@ -391,7 +407,7 @@ public class ListInboxComments200ResponseDataInner {
 
 
   public ListInboxComments200ResponseDataInner cid(@javax.annotation.Nullable String cid) {
-    this.cid = cid;
+    this.cid = JsonNullable.<String>of(cid);
     return this;
   }
 
@@ -400,22 +416,30 @@ public class ListInboxComments200ResponseDataInner {
    * @return cid
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCid() {
-    return cid;
+        return cid.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCid(@javax.annotation.Nullable String cid) {
+
+  public JsonNullable<String> getCid_JsonNullable() {
+    return cid;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CID)
+  public void setCid_JsonNullable(JsonNullable<String> cid) {
     this.cid = cid;
+  }
+
+  public void setCid(@javax.annotation.Nullable String cid) {
+    this.cid = JsonNullable.<String>of(cid);
   }
 
 
   public ListInboxComments200ResponseDataInner subreddit(@javax.annotation.Nullable String subreddit) {
-    this.subreddit = subreddit;
+    this.subreddit = JsonNullable.<String>of(subreddit);
     return this;
   }
 
@@ -424,17 +448,25 @@ public class ListInboxComments200ResponseDataInner {
    * @return subreddit
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBREDDIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubreddit() {
-    return subreddit;
+        return subreddit.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBREDDIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubreddit(@javax.annotation.Nullable String subreddit) {
+
+  public JsonNullable<String> getSubreddit_JsonNullable() {
+    return subreddit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBREDDIT)
+  public void setSubreddit_JsonNullable(JsonNullable<String> subreddit) {
     this.subreddit = subreddit;
+  }
+
+  public void setSubreddit(@javax.annotation.Nullable String subreddit) {
+    this.subreddit = JsonNullable.<String>of(subreddit);
   }
 
 
@@ -527,21 +559,32 @@ public class ListInboxComments200ResponseDataInner {
         Objects.equals(this.accountId, listInboxComments200ResponseDataInner.accountId) &&
         Objects.equals(this.accountUsername, listInboxComments200ResponseDataInner.accountUsername) &&
         Objects.equals(this.content, listInboxComments200ResponseDataInner.content) &&
-        Objects.equals(this.picture, listInboxComments200ResponseDataInner.picture) &&
-        Objects.equals(this.permalink, listInboxComments200ResponseDataInner.permalink) &&
+        equalsNullable(this.picture, listInboxComments200ResponseDataInner.picture) &&
+        equalsNullable(this.permalink, listInboxComments200ResponseDataInner.permalink) &&
         Objects.equals(this.createdTime, listInboxComments200ResponseDataInner.createdTime) &&
         Objects.equals(this.commentCount, listInboxComments200ResponseDataInner.commentCount) &&
         Objects.equals(this.likeCount, listInboxComments200ResponseDataInner.likeCount) &&
-        Objects.equals(this.cid, listInboxComments200ResponseDataInner.cid) &&
-        Objects.equals(this.subreddit, listInboxComments200ResponseDataInner.subreddit) &&
+        equalsNullable(this.cid, listInboxComments200ResponseDataInner.cid) &&
+        equalsNullable(this.subreddit, listInboxComments200ResponseDataInner.subreddit) &&
         Objects.equals(this.isAd, listInboxComments200ResponseDataInner.isAd) &&
         Objects.equals(this.adId, listInboxComments200ResponseDataInner.adId) &&
         Objects.equals(this.placement, listInboxComments200ResponseDataInner.placement);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, content, picture, permalink, createdTime, commentCount, likeCount, cid, subreddit, isAd, adId, placement);
+    return Objects.hash(id, platform, accountId, accountUsername, content, hashCodeNullable(picture), hashCodeNullable(permalink), createdTime, commentCount, likeCount, hashCodeNullable(cid), hashCodeNullable(subreddit), isAd, adId, placement);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

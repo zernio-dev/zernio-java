@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,7 +50,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_REGULATORY_DECLINE_REASON,
   GetWhatsAppPhoneNumber200ResponsePhoneNumber.JSON_PROPERTY_PROVISIONED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -122,20 +126,16 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
   private String metaVerificationStatus;
 
   public static final String JSON_PROPERTY_ONFIDO_VERIFICATION_URL = "onfidoVerificationUrl";
-  @javax.annotation.Nullable
-  private String onfidoVerificationUrl;
+  private JsonNullable<String> onfidoVerificationUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_END_USER_FIRST_NAME = "endUserFirstName";
-  @javax.annotation.Nullable
-  private String endUserFirstName;
+  private JsonNullable<String> endUserFirstName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_END_USER_LAST_NAME = "endUserLastName";
-  @javax.annotation.Nullable
-  private String endUserLastName;
+  private JsonNullable<String> endUserLastName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REGULATORY_DECLINE_REASON = "regulatoryDeclineReason";
-  @javax.annotation.Nullable
-  private String regulatoryDeclineReason;
+  private JsonNullable<String> regulatoryDeclineReason = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PROVISIONED_AT = "provisionedAt";
   @javax.annotation.Nullable
@@ -289,7 +289,7 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
 
 
   public GetWhatsAppPhoneNumber200ResponsePhoneNumber onfidoVerificationUrl(@javax.annotation.Nullable String onfidoVerificationUrl) {
-    this.onfidoVerificationUrl = onfidoVerificationUrl;
+    this.onfidoVerificationUrl = JsonNullable.<String>of(onfidoVerificationUrl);
     return this;
   }
 
@@ -298,22 +298,30 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
    * @return onfidoVerificationUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ONFIDO_VERIFICATION_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOnfidoVerificationUrl() {
-    return onfidoVerificationUrl;
+        return onfidoVerificationUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ONFIDO_VERIFICATION_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOnfidoVerificationUrl(@javax.annotation.Nullable String onfidoVerificationUrl) {
+
+  public JsonNullable<String> getOnfidoVerificationUrl_JsonNullable() {
+    return onfidoVerificationUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ONFIDO_VERIFICATION_URL)
+  public void setOnfidoVerificationUrl_JsonNullable(JsonNullable<String> onfidoVerificationUrl) {
     this.onfidoVerificationUrl = onfidoVerificationUrl;
+  }
+
+  public void setOnfidoVerificationUrl(@javax.annotation.Nullable String onfidoVerificationUrl) {
+    this.onfidoVerificationUrl = JsonNullable.<String>of(onfidoVerificationUrl);
   }
 
 
   public GetWhatsAppPhoneNumber200ResponsePhoneNumber endUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
-    this.endUserFirstName = endUserFirstName;
+    this.endUserFirstName = JsonNullable.<String>of(endUserFirstName);
     return this;
   }
 
@@ -322,22 +330,30 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
    * @return endUserFirstName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_END_USER_FIRST_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEndUserFirstName() {
-    return endUserFirstName;
+        return endUserFirstName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_END_USER_FIRST_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
+
+  public JsonNullable<String> getEndUserFirstName_JsonNullable() {
+    return endUserFirstName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_END_USER_FIRST_NAME)
+  public void setEndUserFirstName_JsonNullable(JsonNullable<String> endUserFirstName) {
     this.endUserFirstName = endUserFirstName;
+  }
+
+  public void setEndUserFirstName(@javax.annotation.Nullable String endUserFirstName) {
+    this.endUserFirstName = JsonNullable.<String>of(endUserFirstName);
   }
 
 
   public GetWhatsAppPhoneNumber200ResponsePhoneNumber endUserLastName(@javax.annotation.Nullable String endUserLastName) {
-    this.endUserLastName = endUserLastName;
+    this.endUserLastName = JsonNullable.<String>of(endUserLastName);
     return this;
   }
 
@@ -346,22 +362,30 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
    * @return endUserLastName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_END_USER_LAST_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEndUserLastName() {
-    return endUserLastName;
+        return endUserLastName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_END_USER_LAST_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndUserLastName(@javax.annotation.Nullable String endUserLastName) {
+
+  public JsonNullable<String> getEndUserLastName_JsonNullable() {
+    return endUserLastName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_END_USER_LAST_NAME)
+  public void setEndUserLastName_JsonNullable(JsonNullable<String> endUserLastName) {
     this.endUserLastName = endUserLastName;
+  }
+
+  public void setEndUserLastName(@javax.annotation.Nullable String endUserLastName) {
+    this.endUserLastName = JsonNullable.<String>of(endUserLastName);
   }
 
 
   public GetWhatsAppPhoneNumber200ResponsePhoneNumber regulatoryDeclineReason(@javax.annotation.Nullable String regulatoryDeclineReason) {
-    this.regulatoryDeclineReason = regulatoryDeclineReason;
+    this.regulatoryDeclineReason = JsonNullable.<String>of(regulatoryDeclineReason);
     return this;
   }
 
@@ -370,17 +394,25 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
    * @return regulatoryDeclineReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REGULATORY_DECLINE_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRegulatoryDeclineReason() {
-    return regulatoryDeclineReason;
+        return regulatoryDeclineReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REGULATORY_DECLINE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegulatoryDeclineReason(@javax.annotation.Nullable String regulatoryDeclineReason) {
+
+  public JsonNullable<String> getRegulatoryDeclineReason_JsonNullable() {
+    return regulatoryDeclineReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REGULATORY_DECLINE_REASON)
+  public void setRegulatoryDeclineReason_JsonNullable(JsonNullable<String> regulatoryDeclineReason) {
     this.regulatoryDeclineReason = regulatoryDeclineReason;
+  }
+
+  public void setRegulatoryDeclineReason(@javax.annotation.Nullable String regulatoryDeclineReason) {
+    this.regulatoryDeclineReason = JsonNullable.<String>of(regulatoryDeclineReason);
   }
 
 
@@ -426,16 +458,27 @@ public class GetWhatsAppPhoneNumber200ResponsePhoneNumber {
         Objects.equals(this.country, getWhatsAppPhoneNumber200ResponsePhoneNumber.country) &&
         Objects.equals(this.metaPreverifiedId, getWhatsAppPhoneNumber200ResponsePhoneNumber.metaPreverifiedId) &&
         Objects.equals(this.metaVerificationStatus, getWhatsAppPhoneNumber200ResponsePhoneNumber.metaVerificationStatus) &&
-        Objects.equals(this.onfidoVerificationUrl, getWhatsAppPhoneNumber200ResponsePhoneNumber.onfidoVerificationUrl) &&
-        Objects.equals(this.endUserFirstName, getWhatsAppPhoneNumber200ResponsePhoneNumber.endUserFirstName) &&
-        Objects.equals(this.endUserLastName, getWhatsAppPhoneNumber200ResponsePhoneNumber.endUserLastName) &&
-        Objects.equals(this.regulatoryDeclineReason, getWhatsAppPhoneNumber200ResponsePhoneNumber.regulatoryDeclineReason) &&
+        equalsNullable(this.onfidoVerificationUrl, getWhatsAppPhoneNumber200ResponsePhoneNumber.onfidoVerificationUrl) &&
+        equalsNullable(this.endUserFirstName, getWhatsAppPhoneNumber200ResponsePhoneNumber.endUserFirstName) &&
+        equalsNullable(this.endUserLastName, getWhatsAppPhoneNumber200ResponsePhoneNumber.endUserLastName) &&
+        equalsNullable(this.regulatoryDeclineReason, getWhatsAppPhoneNumber200ResponsePhoneNumber.regulatoryDeclineReason) &&
         Objects.equals(this.provisionedAt, getWhatsAppPhoneNumber200ResponsePhoneNumber.provisionedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, phoneNumber, status, country, metaPreverifiedId, metaVerificationStatus, onfidoVerificationUrl, endUserFirstName, endUserLastName, regulatoryDeclineReason, provisionedAt);
+    return Objects.hash(id, phoneNumber, status, country, metaPreverifiedId, metaVerificationStatus, hashCodeNullable(onfidoVerificationUrl), hashCodeNullable(endUserFirstName), hashCodeNullable(endUserLastName), hashCodeNullable(regulatoryDeclineReason), provisionedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

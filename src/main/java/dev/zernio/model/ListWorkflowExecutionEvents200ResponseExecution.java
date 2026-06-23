@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,7 +43,7 @@ import dev.zernio.ApiClient;
   ListWorkflowExecutionEvents200ResponseExecution.JSON_PROPERTY_STARTED_AT,
   ListWorkflowExecutionEvents200ResponseExecution.JSON_PROPERTY_COMPLETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWorkflowExecutionEvents200ResponseExecution {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -91,12 +95,10 @@ public class ListWorkflowExecutionEvents200ResponseExecution {
   private StatusEnum status;
 
   public static final String JSON_PROPERTY_STARTED_AT = "startedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime startedAt;
+  private JsonNullable<OffsetDateTime> startedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_COMPLETED_AT = "completedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime completedAt;
+  private JsonNullable<OffsetDateTime> completedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public ListWorkflowExecutionEvents200ResponseExecution() { 
   }
@@ -150,7 +152,7 @@ public class ListWorkflowExecutionEvents200ResponseExecution {
 
 
   public ListWorkflowExecutionEvents200ResponseExecution startedAt(@javax.annotation.Nullable OffsetDateTime startedAt) {
-    this.startedAt = startedAt;
+    this.startedAt = JsonNullable.<OffsetDateTime>of(startedAt);
     return this;
   }
 
@@ -159,22 +161,30 @@ public class ListWorkflowExecutionEvents200ResponseExecution {
    * @return startedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STARTED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getStartedAt() {
-    return startedAt;
+        return startedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STARTED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartedAt(@javax.annotation.Nullable OffsetDateTime startedAt) {
+
+  public JsonNullable<OffsetDateTime> getStartedAt_JsonNullable() {
+    return startedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  public void setStartedAt_JsonNullable(JsonNullable<OffsetDateTime> startedAt) {
     this.startedAt = startedAt;
+  }
+
+  public void setStartedAt(@javax.annotation.Nullable OffsetDateTime startedAt) {
+    this.startedAt = JsonNullable.<OffsetDateTime>of(startedAt);
   }
 
 
   public ListWorkflowExecutionEvents200ResponseExecution completedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
-    this.completedAt = completedAt;
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
     return this;
   }
 
@@ -183,17 +193,25 @@ public class ListWorkflowExecutionEvents200ResponseExecution {
    * @return completedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCompletedAt() {
-    return completedAt;
+        return completedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+
+  public JsonNullable<OffsetDateTime> getCompletedAt_JsonNullable() {
+    return completedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COMPLETED_AT)
+  public void setCompletedAt_JsonNullable(JsonNullable<OffsetDateTime> completedAt) {
     this.completedAt = completedAt;
+  }
+
+  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
   }
 
 
@@ -211,13 +229,24 @@ public class ListWorkflowExecutionEvents200ResponseExecution {
     ListWorkflowExecutionEvents200ResponseExecution listWorkflowExecutionEvents200ResponseExecution = (ListWorkflowExecutionEvents200ResponseExecution) o;
     return Objects.equals(this.id, listWorkflowExecutionEvents200ResponseExecution.id) &&
         Objects.equals(this.status, listWorkflowExecutionEvents200ResponseExecution.status) &&
-        Objects.equals(this.startedAt, listWorkflowExecutionEvents200ResponseExecution.startedAt) &&
-        Objects.equals(this.completedAt, listWorkflowExecutionEvents200ResponseExecution.completedAt);
+        equalsNullable(this.startedAt, listWorkflowExecutionEvents200ResponseExecution.startedAt) &&
+        equalsNullable(this.completedAt, listWorkflowExecutionEvents200ResponseExecution.completedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, startedAt, completedAt);
+    return Objects.hash(id, status, hashCodeNullable(startedAt), hashCodeNullable(completedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

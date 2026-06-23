@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,15 +40,14 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponsePagination.JSON_PROPERTY_HAS_MORE,
   ListInboxConversations200ResponsePagination.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponsePagination {
   public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable
   private Boolean hasMore;
 
   public static final String JSON_PROPERTY_NEXT_CURSOR = "nextCursor";
-  @javax.annotation.Nullable
-  private String nextCursor;
+  private JsonNullable<String> nextCursor = JsonNullable.<String>undefined();
 
   public ListInboxConversations200ResponsePagination() { 
   }
@@ -74,7 +77,7 @@ public class ListInboxConversations200ResponsePagination {
 
 
   public ListInboxConversations200ResponsePagination nextCursor(@javax.annotation.Nullable String nextCursor) {
-    this.nextCursor = nextCursor;
+    this.nextCursor = JsonNullable.<String>of(nextCursor);
     return this;
   }
 
@@ -83,17 +86,25 @@ public class ListInboxConversations200ResponsePagination {
    * @return nextCursor
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_CURSOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNextCursor() {
-    return nextCursor;
+        return nextCursor.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_CURSOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextCursor(@javax.annotation.Nullable String nextCursor) {
+
+  public JsonNullable<String> getNextCursor_JsonNullable() {
+    return nextCursor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_CURSOR)
+  public void setNextCursor_JsonNullable(JsonNullable<String> nextCursor) {
     this.nextCursor = nextCursor;
+  }
+
+  public void setNextCursor(@javax.annotation.Nullable String nextCursor) {
+    this.nextCursor = JsonNullable.<String>of(nextCursor);
   }
 
 
@@ -110,12 +121,23 @@ public class ListInboxConversations200ResponsePagination {
     }
     ListInboxConversations200ResponsePagination listInboxConversations200ResponsePagination = (ListInboxConversations200ResponsePagination) o;
     return Objects.equals(this.hasMore, listInboxConversations200ResponsePagination.hasMore) &&
-        Objects.equals(this.nextCursor, listInboxConversations200ResponsePagination.nextCursor);
+        equalsNullable(this.nextCursor, listInboxConversations200ResponsePagination.nextCursor);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hasMore, nextCursor);
+    return Objects.hash(hasMore, hashCodeNullable(nextCursor));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

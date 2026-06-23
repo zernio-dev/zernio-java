@@ -32,6 +32,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -57,15 +61,14 @@ import dev.zernio.ApiClient;
   AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_TYPE,
   AnalyticsSinglePostResponse.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponse {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
   private String postId;
 
   public static final String JSON_PROPERTY_LATE_POST_ID = "latePostId";
-  @javax.annotation.Nullable
-  private String latePostId;
+  private JsonNullable<String> latePostId = JsonNullable.<String>undefined();
 
   /**
    * Overall post status. \&quot;partial\&quot; when some platforms published and others failed.
@@ -117,8 +120,7 @@ public class AnalyticsSinglePostResponse {
   private OffsetDateTime scheduledFor;
 
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime publishedAt;
+  private JsonNullable<OffsetDateTime> publishedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_ANALYTICS = "analytics";
   @javax.annotation.Nullable
@@ -133,8 +135,7 @@ public class AnalyticsSinglePostResponse {
   private String platform;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_URL = "platformPostUrl";
-  @javax.annotation.Nullable
-  private URI platformPostUrl;
+  private JsonNullable<URI> platformPostUrl = JsonNullable.<URI>undefined();
 
   public static final String JSON_PROPERTY_IS_EXTERNAL = "isExternal";
   @javax.annotation.Nullable
@@ -184,12 +185,10 @@ public class AnalyticsSinglePostResponse {
   private SyncStatusEnum syncStatus;
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
-  @javax.annotation.Nullable
-  private String message;
+  private JsonNullable<String> message = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
-  @javax.annotation.Nullable
-  private URI thumbnailUrl;
+  private JsonNullable<URI> thumbnailUrl = JsonNullable.<URI>undefined();
 
   /**
    * Gets or Sets mediaType
@@ -226,13 +225,12 @@ public class AnalyticsSinglePostResponse {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
-  @javax.annotation.Nullable
-  private MediaTypeEnum mediaType;
+  private JsonNullable<MediaTypeEnum> mediaType = JsonNullable.<MediaTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_MEDIA_ITEMS = "mediaItems";
   @javax.annotation.Nullable
@@ -266,7 +264,7 @@ public class AnalyticsSinglePostResponse {
 
 
   public AnalyticsSinglePostResponse latePostId(@javax.annotation.Nullable String latePostId) {
-    this.latePostId = latePostId;
+    this.latePostId = JsonNullable.<String>of(latePostId);
     return this;
   }
 
@@ -275,17 +273,25 @@ public class AnalyticsSinglePostResponse {
    * @return latePostId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LATE_POST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLatePostId() {
-    return latePostId;
+        return latePostId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LATE_POST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLatePostId(@javax.annotation.Nullable String latePostId) {
+
+  public JsonNullable<String> getLatePostId_JsonNullable() {
+    return latePostId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LATE_POST_ID)
+  public void setLatePostId_JsonNullable(JsonNullable<String> latePostId) {
     this.latePostId = latePostId;
+  }
+
+  public void setLatePostId(@javax.annotation.Nullable String latePostId) {
+    this.latePostId = JsonNullable.<String>of(latePostId);
   }
 
 
@@ -362,7 +368,7 @@ public class AnalyticsSinglePostResponse {
 
 
   public AnalyticsSinglePostResponse publishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
-    this.publishedAt = publishedAt;
+    this.publishedAt = JsonNullable.<OffsetDateTime>of(publishedAt);
     return this;
   }
 
@@ -371,17 +377,25 @@ public class AnalyticsSinglePostResponse {
    * @return publishedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PUBLISHED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPublishedAt() {
-    return publishedAt;
+        return publishedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PUBLISHED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
+
+  public JsonNullable<OffsetDateTime> getPublishedAt_JsonNullable() {
+    return publishedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PUBLISHED_AT)
+  public void setPublishedAt_JsonNullable(JsonNullable<OffsetDateTime> publishedAt) {
     this.publishedAt = publishedAt;
+  }
+
+  public void setPublishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
+    this.publishedAt = JsonNullable.<OffsetDateTime>of(publishedAt);
   }
 
 
@@ -466,7 +480,7 @@ public class AnalyticsSinglePostResponse {
 
 
   public AnalyticsSinglePostResponse platformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
-    this.platformPostUrl = platformPostUrl;
+    this.platformPostUrl = JsonNullable.<URI>of(platformPostUrl);
     return this;
   }
 
@@ -475,17 +489,25 @@ public class AnalyticsSinglePostResponse {
    * @return platformPostUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public URI getPlatformPostUrl() {
-    return platformPostUrl;
+        return platformPostUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PLATFORM_POST_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
+
+  public JsonNullable<URI> getPlatformPostUrl_JsonNullable() {
+    return platformPostUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PLATFORM_POST_URL)
+  public void setPlatformPostUrl_JsonNullable(JsonNullable<URI> platformPostUrl) {
     this.platformPostUrl = platformPostUrl;
+  }
+
+  public void setPlatformPostUrl(@javax.annotation.Nullable URI platformPostUrl) {
+    this.platformPostUrl = JsonNullable.<URI>of(platformPostUrl);
   }
 
 
@@ -538,7 +560,7 @@ public class AnalyticsSinglePostResponse {
 
 
   public AnalyticsSinglePostResponse message(@javax.annotation.Nullable String message) {
-    this.message = message;
+    this.message = JsonNullable.<String>of(message);
     return this;
   }
 
@@ -547,22 +569,30 @@ public class AnalyticsSinglePostResponse {
    * @return message
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMessage() {
-    return message;
+        return message.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(@javax.annotation.Nullable String message) {
+
+  public JsonNullable<String> getMessage_JsonNullable() {
+    return message;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  public void setMessage_JsonNullable(JsonNullable<String> message) {
     this.message = message;
+  }
+
+  public void setMessage(@javax.annotation.Nullable String message) {
+    this.message = JsonNullable.<String>of(message);
   }
 
 
   public AnalyticsSinglePostResponse thumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
-    this.thumbnailUrl = thumbnailUrl;
+    this.thumbnailUrl = JsonNullable.<URI>of(thumbnailUrl);
     return this;
   }
 
@@ -571,22 +601,30 @@ public class AnalyticsSinglePostResponse {
    * @return thumbnailUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public URI getThumbnailUrl() {
-    return thumbnailUrl;
+        return thumbnailUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
+
+  public JsonNullable<URI> getThumbnailUrl_JsonNullable() {
+    return thumbnailUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL_URL)
+  public void setThumbnailUrl_JsonNullable(JsonNullable<URI> thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
+  }
+
+  public void setThumbnailUrl(@javax.annotation.Nullable URI thumbnailUrl) {
+    this.thumbnailUrl = JsonNullable.<URI>of(thumbnailUrl);
   }
 
 
   public AnalyticsSinglePostResponse mediaType(@javax.annotation.Nullable MediaTypeEnum mediaType) {
-    this.mediaType = mediaType;
+    this.mediaType = JsonNullable.<MediaTypeEnum>of(mediaType);
     return this;
   }
 
@@ -595,17 +633,25 @@ public class AnalyticsSinglePostResponse {
    * @return mediaType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public MediaTypeEnum getMediaType() {
-    return mediaType;
+        return mediaType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaType(@javax.annotation.Nullable MediaTypeEnum mediaType) {
+
+  public JsonNullable<MediaTypeEnum> getMediaType_JsonNullable() {
+    return mediaType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
+  public void setMediaType_JsonNullable(JsonNullable<MediaTypeEnum> mediaType) {
     this.mediaType = mediaType;
+  }
+
+  public void setMediaType(@javax.annotation.Nullable MediaTypeEnum mediaType) {
+    this.mediaType = JsonNullable.<MediaTypeEnum>of(mediaType);
   }
 
 
@@ -654,26 +700,37 @@ public class AnalyticsSinglePostResponse {
     }
     AnalyticsSinglePostResponse analyticsSinglePostResponse = (AnalyticsSinglePostResponse) o;
     return Objects.equals(this.postId, analyticsSinglePostResponse.postId) &&
-        Objects.equals(this.latePostId, analyticsSinglePostResponse.latePostId) &&
+        equalsNullable(this.latePostId, analyticsSinglePostResponse.latePostId) &&
         Objects.equals(this.status, analyticsSinglePostResponse.status) &&
         Objects.equals(this.content, analyticsSinglePostResponse.content) &&
         Objects.equals(this.scheduledFor, analyticsSinglePostResponse.scheduledFor) &&
-        Objects.equals(this.publishedAt, analyticsSinglePostResponse.publishedAt) &&
+        equalsNullable(this.publishedAt, analyticsSinglePostResponse.publishedAt) &&
         Objects.equals(this.analytics, analyticsSinglePostResponse.analytics) &&
         Objects.equals(this.platformAnalytics, analyticsSinglePostResponse.platformAnalytics) &&
         Objects.equals(this.platform, analyticsSinglePostResponse.platform) &&
-        Objects.equals(this.platformPostUrl, analyticsSinglePostResponse.platformPostUrl) &&
+        equalsNullable(this.platformPostUrl, analyticsSinglePostResponse.platformPostUrl) &&
         Objects.equals(this.isExternal, analyticsSinglePostResponse.isExternal) &&
         Objects.equals(this.syncStatus, analyticsSinglePostResponse.syncStatus) &&
-        Objects.equals(this.message, analyticsSinglePostResponse.message) &&
-        Objects.equals(this.thumbnailUrl, analyticsSinglePostResponse.thumbnailUrl) &&
-        Objects.equals(this.mediaType, analyticsSinglePostResponse.mediaType) &&
+        equalsNullable(this.message, analyticsSinglePostResponse.message) &&
+        equalsNullable(this.thumbnailUrl, analyticsSinglePostResponse.thumbnailUrl) &&
+        equalsNullable(this.mediaType, analyticsSinglePostResponse.mediaType) &&
         Objects.equals(this.mediaItems, analyticsSinglePostResponse.mediaItems);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, latePostId, status, content, scheduledFor, publishedAt, analytics, platformAnalytics, platform, platformPostUrl, isExternal, syncStatus, message, thumbnailUrl, mediaType, mediaItems);
+    return Objects.hash(postId, hashCodeNullable(latePostId), status, content, scheduledFor, hashCodeNullable(publishedAt), analytics, platformAnalytics, platform, hashCodeNullable(platformPostUrl), isExternal, syncStatus, hashCodeNullable(message), hashCodeNullable(thumbnailUrl), hashCodeNullable(mediaType), mediaItems);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

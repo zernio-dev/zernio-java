@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -58,7 +62,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_URI,
   GetInboxPostComments200ResponseCommentsInner.JSON_PROPERTY_ROOT_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -89,8 +93,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
   private String platform;
 
   public static final String JSON_PROPERTY_URL = "url";
-  @javax.annotation.Nullable
-  private String url;
+  private JsonNullable<String> url = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REPLIES = "replies";
   @javax.annotation.Nullable
@@ -121,24 +124,19 @@ public class GetInboxPostComments200ResponseCommentsInner {
   private Boolean isLiked;
 
   public static final String JSON_PROPERTY_LIKE_URI = "likeUri";
-  @javax.annotation.Nullable
-  private String likeUri;
+  private JsonNullable<String> likeUri = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CID = "cid";
-  @javax.annotation.Nullable
-  private String cid;
+  private JsonNullable<String> cid = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PARENT_ID = "parentId";
-  @javax.annotation.Nullable
-  private String parentId;
+  private JsonNullable<String> parentId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ROOT_URI = "rootUri";
-  @javax.annotation.Nullable
-  private String rootUri;
+  private JsonNullable<String> rootUri = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ROOT_CID = "rootCid";
-  @javax.annotation.Nullable
-  private String rootCid;
+  private JsonNullable<String> rootCid = JsonNullable.<String>undefined();
 
   public GetInboxPostComments200ResponseCommentsInner() { 
   }
@@ -312,7 +310,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
 
 
   public GetInboxPostComments200ResponseCommentsInner url(@javax.annotation.Nullable String url) {
-    this.url = url;
+    this.url = JsonNullable.<String>of(url);
     return this;
   }
 
@@ -321,17 +319,25 @@ public class GetInboxPostComments200ResponseCommentsInner {
    * @return url
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUrl() {
-    return url;
+        return url.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrl(@javax.annotation.Nullable String url) {
+
+  public JsonNullable<String> getUrl_JsonNullable() {
+    return url;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_URL)
+  public void setUrl_JsonNullable(JsonNullable<String> url) {
     this.url = url;
+  }
+
+  public void setUrl(@javax.annotation.Nullable String url) {
+    this.url = JsonNullable.<String>of(url);
   }
 
 
@@ -512,7 +518,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
 
 
   public GetInboxPostComments200ResponseCommentsInner likeUri(@javax.annotation.Nullable String likeUri) {
-    this.likeUri = likeUri;
+    this.likeUri = JsonNullable.<String>of(likeUri);
     return this;
   }
 
@@ -521,22 +527,30 @@ public class GetInboxPostComments200ResponseCommentsInner {
    * @return likeUri
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LIKE_URI, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLikeUri() {
-    return likeUri;
+        return likeUri.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LIKE_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLikeUri(@javax.annotation.Nullable String likeUri) {
+
+  public JsonNullable<String> getLikeUri_JsonNullable() {
+    return likeUri;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LIKE_URI)
+  public void setLikeUri_JsonNullable(JsonNullable<String> likeUri) {
     this.likeUri = likeUri;
+  }
+
+  public void setLikeUri(@javax.annotation.Nullable String likeUri) {
+    this.likeUri = JsonNullable.<String>of(likeUri);
   }
 
 
   public GetInboxPostComments200ResponseCommentsInner cid(@javax.annotation.Nullable String cid) {
-    this.cid = cid;
+    this.cid = JsonNullable.<String>of(cid);
     return this;
   }
 
@@ -545,22 +559,30 @@ public class GetInboxPostComments200ResponseCommentsInner {
    * @return cid
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCid() {
-    return cid;
+        return cid.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCid(@javax.annotation.Nullable String cid) {
+
+  public JsonNullable<String> getCid_JsonNullable() {
+    return cid;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CID)
+  public void setCid_JsonNullable(JsonNullable<String> cid) {
     this.cid = cid;
+  }
+
+  public void setCid(@javax.annotation.Nullable String cid) {
+    this.cid = JsonNullable.<String>of(cid);
   }
 
 
   public GetInboxPostComments200ResponseCommentsInner parentId(@javax.annotation.Nullable String parentId) {
-    this.parentId = parentId;
+    this.parentId = JsonNullable.<String>of(parentId);
     return this;
   }
 
@@ -569,22 +591,30 @@ public class GetInboxPostComments200ResponseCommentsInner {
    * @return parentId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARENT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getParentId() {
-    return parentId;
+        return parentId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARENT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParentId(@javax.annotation.Nullable String parentId) {
+
+  public JsonNullable<String> getParentId_JsonNullable() {
+    return parentId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  public void setParentId_JsonNullable(JsonNullable<String> parentId) {
     this.parentId = parentId;
+  }
+
+  public void setParentId(@javax.annotation.Nullable String parentId) {
+    this.parentId = JsonNullable.<String>of(parentId);
   }
 
 
   public GetInboxPostComments200ResponseCommentsInner rootUri(@javax.annotation.Nullable String rootUri) {
-    this.rootUri = rootUri;
+    this.rootUri = JsonNullable.<String>of(rootUri);
     return this;
   }
 
@@ -593,22 +623,30 @@ public class GetInboxPostComments200ResponseCommentsInner {
    * @return rootUri
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ROOT_URI, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRootUri() {
-    return rootUri;
+        return rootUri.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ROOT_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRootUri(@javax.annotation.Nullable String rootUri) {
+
+  public JsonNullable<String> getRootUri_JsonNullable() {
+    return rootUri;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ROOT_URI)
+  public void setRootUri_JsonNullable(JsonNullable<String> rootUri) {
     this.rootUri = rootUri;
+  }
+
+  public void setRootUri(@javax.annotation.Nullable String rootUri) {
+    this.rootUri = JsonNullable.<String>of(rootUri);
   }
 
 
   public GetInboxPostComments200ResponseCommentsInner rootCid(@javax.annotation.Nullable String rootCid) {
-    this.rootCid = rootCid;
+    this.rootCid = JsonNullable.<String>of(rootCid);
     return this;
   }
 
@@ -617,17 +655,25 @@ public class GetInboxPostComments200ResponseCommentsInner {
    * @return rootCid
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ROOT_CID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRootCid() {
-    return rootCid;
+        return rootCid.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ROOT_CID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRootCid(@javax.annotation.Nullable String rootCid) {
+
+  public JsonNullable<String> getRootCid_JsonNullable() {
+    return rootCid;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ROOT_CID)
+  public void setRootCid_JsonNullable(JsonNullable<String> rootCid) {
     this.rootCid = rootCid;
+  }
+
+  public void setRootCid(@javax.annotation.Nullable String rootCid) {
+    this.rootCid = JsonNullable.<String>of(rootCid);
   }
 
 
@@ -650,7 +696,7 @@ public class GetInboxPostComments200ResponseCommentsInner {
         Objects.equals(this.likeCount, getInboxPostComments200ResponseCommentsInner.likeCount) &&
         Objects.equals(this.replyCount, getInboxPostComments200ResponseCommentsInner.replyCount) &&
         Objects.equals(this.platform, getInboxPostComments200ResponseCommentsInner.platform) &&
-        Objects.equals(this.url, getInboxPostComments200ResponseCommentsInner.url) &&
+        equalsNullable(this.url, getInboxPostComments200ResponseCommentsInner.url) &&
         Objects.equals(this.replies, getInboxPostComments200ResponseCommentsInner.replies) &&
         Objects.equals(this.canReply, getInboxPostComments200ResponseCommentsInner.canReply) &&
         Objects.equals(this.canDelete, getInboxPostComments200ResponseCommentsInner.canDelete) &&
@@ -658,16 +704,27 @@ public class GetInboxPostComments200ResponseCommentsInner {
         Objects.equals(this.canLike, getInboxPostComments200ResponseCommentsInner.canLike) &&
         Objects.equals(this.isHidden, getInboxPostComments200ResponseCommentsInner.isHidden) &&
         Objects.equals(this.isLiked, getInboxPostComments200ResponseCommentsInner.isLiked) &&
-        Objects.equals(this.likeUri, getInboxPostComments200ResponseCommentsInner.likeUri) &&
-        Objects.equals(this.cid, getInboxPostComments200ResponseCommentsInner.cid) &&
-        Objects.equals(this.parentId, getInboxPostComments200ResponseCommentsInner.parentId) &&
-        Objects.equals(this.rootUri, getInboxPostComments200ResponseCommentsInner.rootUri) &&
-        Objects.equals(this.rootCid, getInboxPostComments200ResponseCommentsInner.rootCid);
+        equalsNullable(this.likeUri, getInboxPostComments200ResponseCommentsInner.likeUri) &&
+        equalsNullable(this.cid, getInboxPostComments200ResponseCommentsInner.cid) &&
+        equalsNullable(this.parentId, getInboxPostComments200ResponseCommentsInner.parentId) &&
+        equalsNullable(this.rootUri, getInboxPostComments200ResponseCommentsInner.rootUri) &&
+        equalsNullable(this.rootCid, getInboxPostComments200ResponseCommentsInner.rootCid);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, message, createdTime, from, likeCount, replyCount, platform, url, replies, canReply, canDelete, canHide, canLike, isHidden, isLiked, likeUri, cid, parentId, rootUri, rootCid);
+    return Objects.hash(id, message, createdTime, from, likeCount, replyCount, platform, hashCodeNullable(url), replies, canReply, canDelete, canHide, canLike, isHidden, isLiked, hashCodeNullable(likeUri), hashCodeNullable(cid), hashCodeNullable(parentId), hashCodeNullable(rootUri), hashCodeNullable(rootCid));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

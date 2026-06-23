@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationAnalytics200ResponseSummary.JSON_PROPERTY_FIRST_MESSAGE_AT,
   GetInboxConversationAnalytics200ResponseSummary.JSON_PROPERTY_LAST_MESSAGE_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationAnalytics200ResponseSummary {
   public static final String JSON_PROPERTY_RECEIVED = "received";
   @javax.annotation.Nullable
@@ -65,12 +69,10 @@ public class GetInboxConversationAnalytics200ResponseSummary {
   private Integer totalMessages;
 
   public static final String JSON_PROPERTY_FIRST_MESSAGE_AT = "firstMessageAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime firstMessageAt;
+  private JsonNullable<OffsetDateTime> firstMessageAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_LAST_MESSAGE_AT = "lastMessageAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastMessageAt;
+  private JsonNullable<OffsetDateTime> lastMessageAt = JsonNullable.<OffsetDateTime>undefined();
 
   public GetInboxConversationAnalytics200ResponseSummary() { 
   }
@@ -196,7 +198,7 @@ public class GetInboxConversationAnalytics200ResponseSummary {
 
 
   public GetInboxConversationAnalytics200ResponseSummary firstMessageAt(@javax.annotation.Nullable OffsetDateTime firstMessageAt) {
-    this.firstMessageAt = firstMessageAt;
+    this.firstMessageAt = JsonNullable.<OffsetDateTime>of(firstMessageAt);
     return this;
   }
 
@@ -205,22 +207,30 @@ public class GetInboxConversationAnalytics200ResponseSummary {
    * @return firstMessageAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FIRST_MESSAGE_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getFirstMessageAt() {
-    return firstMessageAt;
+        return firstMessageAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FIRST_MESSAGE_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFirstMessageAt(@javax.annotation.Nullable OffsetDateTime firstMessageAt) {
+
+  public JsonNullable<OffsetDateTime> getFirstMessageAt_JsonNullable() {
+    return firstMessageAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FIRST_MESSAGE_AT)
+  public void setFirstMessageAt_JsonNullable(JsonNullable<OffsetDateTime> firstMessageAt) {
     this.firstMessageAt = firstMessageAt;
+  }
+
+  public void setFirstMessageAt(@javax.annotation.Nullable OffsetDateTime firstMessageAt) {
+    this.firstMessageAt = JsonNullable.<OffsetDateTime>of(firstMessageAt);
   }
 
 
   public GetInboxConversationAnalytics200ResponseSummary lastMessageAt(@javax.annotation.Nullable OffsetDateTime lastMessageAt) {
-    this.lastMessageAt = lastMessageAt;
+    this.lastMessageAt = JsonNullable.<OffsetDateTime>of(lastMessageAt);
     return this;
   }
 
@@ -229,17 +239,25 @@ public class GetInboxConversationAnalytics200ResponseSummary {
    * @return lastMessageAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastMessageAt() {
-    return lastMessageAt;
+        return lastMessageAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastMessageAt(@javax.annotation.Nullable OffsetDateTime lastMessageAt) {
+
+  public JsonNullable<OffsetDateTime> getLastMessageAt_JsonNullable() {
+    return lastMessageAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MESSAGE_AT)
+  public void setLastMessageAt_JsonNullable(JsonNullable<OffsetDateTime> lastMessageAt) {
     this.lastMessageAt = lastMessageAt;
+  }
+
+  public void setLastMessageAt(@javax.annotation.Nullable OffsetDateTime lastMessageAt) {
+    this.lastMessageAt = JsonNullable.<OffsetDateTime>of(lastMessageAt);
   }
 
 
@@ -260,13 +278,24 @@ public class GetInboxConversationAnalytics200ResponseSummary {
         Objects.equals(this.read, getInboxConversationAnalytics200ResponseSummary.read) &&
         Objects.equals(this.failed, getInboxConversationAnalytics200ResponseSummary.failed) &&
         Objects.equals(this.totalMessages, getInboxConversationAnalytics200ResponseSummary.totalMessages) &&
-        Objects.equals(this.firstMessageAt, getInboxConversationAnalytics200ResponseSummary.firstMessageAt) &&
-        Objects.equals(this.lastMessageAt, getInboxConversationAnalytics200ResponseSummary.lastMessageAt);
+        equalsNullable(this.firstMessageAt, getInboxConversationAnalytics200ResponseSummary.firstMessageAt) &&
+        equalsNullable(this.lastMessageAt, getInboxConversationAnalytics200ResponseSummary.lastMessageAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(received, sent, read, failed, totalMessages, firstMessageAt, lastMessageAt);
+    return Objects.hash(received, sent, read, failed, totalMessages, hashCodeNullable(firstMessageAt), hashCodeNullable(lastMessageAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

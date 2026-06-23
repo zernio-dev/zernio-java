@@ -37,10 +37,10 @@ import dev.zernio.ApiClient;
   ReviewWebhookReviewReviewer.JSON_PROPERTY_NAME,
   ReviewWebhookReviewReviewer.JSON_PROPERTY_PROFILE_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewWebhookReviewReviewer {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String id;
 
   public static final String JSON_PROPERTY_NAME = "name";
@@ -48,13 +48,13 @@ public class ReviewWebhookReviewReviewer {
   private String name;
 
   public static final String JSON_PROPERTY_PROFILE_IMAGE = "profileImage";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String profileImage;
 
   public ReviewWebhookReviewReviewer() { 
   }
 
-  public ReviewWebhookReviewReviewer id(@javax.annotation.Nonnull String id) {
+  public ReviewWebhookReviewReviewer id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
@@ -63,17 +63,17 @@ public class ReviewWebhookReviewReviewer {
    * Platform reviewer ID. Null when the platform does not expose it (common on Google Business anonymous reviews).
    * @return id
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(@javax.annotation.Nonnull String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
@@ -102,7 +102,7 @@ public class ReviewWebhookReviewReviewer {
   }
 
 
-  public ReviewWebhookReviewReviewer profileImage(@javax.annotation.Nonnull String profileImage) {
+  public ReviewWebhookReviewReviewer profileImage(@javax.annotation.Nullable String profileImage) {
     this.profileImage = profileImage;
     return this;
   }
@@ -111,17 +111,17 @@ public class ReviewWebhookReviewReviewer {
    * Get profileImage
    * @return profileImage
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_IMAGE, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_IMAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getProfileImage() {
     return profileImage;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_IMAGE, required = true)
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_IMAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setProfileImage(@javax.annotation.Nonnull String profileImage) {
+  public void setProfileImage(@javax.annotation.Nullable String profileImage) {
     this.profileImage = profileImage;
   }
 

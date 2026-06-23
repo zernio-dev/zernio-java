@@ -30,6 +30,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,7 +48,7 @@ import dev.zernio.ApiClient;
   GetInboxResponseTime200Response.JSON_PROPERTY_SUMMARY,
   GetInboxResponseTime200Response.JSON_PROPERTY_HISTOGRAM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxResponseTime200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -55,8 +59,7 @@ public class GetInboxResponseTime200Response {
   private LocalDate from;
 
   public static final String JSON_PROPERTY_TO = "to";
-  @javax.annotation.Nullable
-  private LocalDate to;
+  private JsonNullable<LocalDate> to = JsonNullable.<LocalDate>undefined();
 
   public static final String JSON_PROPERTY_SUMMARY = "summary";
   @javax.annotation.Nullable
@@ -118,7 +121,7 @@ public class GetInboxResponseTime200Response {
 
 
   public GetInboxResponseTime200Response to(@javax.annotation.Nullable LocalDate to) {
-    this.to = to;
+    this.to = JsonNullable.<LocalDate>of(to);
     return this;
   }
 
@@ -127,17 +130,25 @@ public class GetInboxResponseTime200Response {
    * @return to
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public LocalDate getTo() {
-    return to;
+        return to.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTo(@javax.annotation.Nullable LocalDate to) {
+
+  public JsonNullable<LocalDate> getTo_JsonNullable() {
+    return to;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TO)
+  public void setTo_JsonNullable(JsonNullable<LocalDate> to) {
     this.to = to;
+  }
+
+  public void setTo(@javax.annotation.Nullable LocalDate to) {
+    this.to = JsonNullable.<LocalDate>of(to);
   }
 
 
@@ -211,14 +222,25 @@ public class GetInboxResponseTime200Response {
     GetInboxResponseTime200Response getInboxResponseTime200Response = (GetInboxResponseTime200Response) o;
     return Objects.equals(this.success, getInboxResponseTime200Response.success) &&
         Objects.equals(this.from, getInboxResponseTime200Response.from) &&
-        Objects.equals(this.to, getInboxResponseTime200Response.to) &&
+        equalsNullable(this.to, getInboxResponseTime200Response.to) &&
         Objects.equals(this.summary, getInboxResponseTime200Response.summary) &&
         Objects.equals(this.histogram, getInboxResponseTime200Response.histogram);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(success, from, to, summary, histogram);
+    return Objects.hash(success, from, hashCodeNullable(to), summary, histogram);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

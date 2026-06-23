@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,27 +44,23 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_PROFILE_ID,
   GetWhatsAppPhoneNumbers200ResponseConnectedInner.JSON_PROPERTY_CONNECTED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200ResponseConnectedInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
   private String accountId;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  @javax.annotation.Nullable
-  private String phoneNumber;
+  private JsonNullable<String> phoneNumber = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
-  @javax.annotation.Nullable
-  private String displayName;
+  private JsonNullable<String> displayName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
-  @javax.annotation.Nullable
-  private String profileId;
+  private JsonNullable<String> profileId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CONNECTED_AT = "connectedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime connectedAt;
+  private JsonNullable<OffsetDateTime> connectedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public GetWhatsAppPhoneNumbers200ResponseConnectedInner() { 
   }
@@ -90,7 +90,7 @@ public class GetWhatsAppPhoneNumbers200ResponseConnectedInner {
 
 
   public GetWhatsAppPhoneNumbers200ResponseConnectedInner phoneNumber(@javax.annotation.Nullable String phoneNumber) {
-    this.phoneNumber = phoneNumber;
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
     return this;
   }
 
@@ -99,22 +99,30 @@ public class GetWhatsAppPhoneNumbers200ResponseConnectedInner {
    * @return phoneNumber
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPhoneNumber() {
-    return phoneNumber;
+        return phoneNumber.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+
+  public JsonNullable<String> getPhoneNumber_JsonNullable() {
+    return phoneNumber;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  public void setPhoneNumber_JsonNullable(JsonNullable<String> phoneNumber) {
     this.phoneNumber = phoneNumber;
+  }
+
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = JsonNullable.<String>of(phoneNumber);
   }
 
 
   public GetWhatsAppPhoneNumbers200ResponseConnectedInner displayName(@javax.annotation.Nullable String displayName) {
-    this.displayName = displayName;
+    this.displayName = JsonNullable.<String>of(displayName);
     return this;
   }
 
@@ -123,22 +131,30 @@ public class GetWhatsAppPhoneNumbers200ResponseConnectedInner {
    * @return displayName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DISPLAY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDisplayName() {
-    return displayName;
+        return displayName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DISPLAY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisplayName(@javax.annotation.Nullable String displayName) {
+
+  public JsonNullable<String> getDisplayName_JsonNullable() {
+    return displayName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DISPLAY_NAME)
+  public void setDisplayName_JsonNullable(JsonNullable<String> displayName) {
     this.displayName = displayName;
+  }
+
+  public void setDisplayName(@javax.annotation.Nullable String displayName) {
+    this.displayName = JsonNullable.<String>of(displayName);
   }
 
 
   public GetWhatsAppPhoneNumbers200ResponseConnectedInner profileId(@javax.annotation.Nullable String profileId) {
-    this.profileId = profileId;
+    this.profileId = JsonNullable.<String>of(profileId);
     return this;
   }
 
@@ -147,22 +163,30 @@ public class GetWhatsAppPhoneNumbers200ResponseConnectedInner {
    * @return profileId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getProfileId() {
-    return profileId;
+        return profileId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfileId(@javax.annotation.Nullable String profileId) {
+
+  public JsonNullable<String> getProfileId_JsonNullable() {
+    return profileId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROFILE_ID)
+  public void setProfileId_JsonNullable(JsonNullable<String> profileId) {
     this.profileId = profileId;
+  }
+
+  public void setProfileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = JsonNullable.<String>of(profileId);
   }
 
 
   public GetWhatsAppPhoneNumbers200ResponseConnectedInner connectedAt(@javax.annotation.Nullable OffsetDateTime connectedAt) {
-    this.connectedAt = connectedAt;
+    this.connectedAt = JsonNullable.<OffsetDateTime>of(connectedAt);
     return this;
   }
 
@@ -171,17 +195,25 @@ public class GetWhatsAppPhoneNumbers200ResponseConnectedInner {
    * @return connectedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONNECTED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getConnectedAt() {
-    return connectedAt;
+        return connectedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONNECTED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConnectedAt(@javax.annotation.Nullable OffsetDateTime connectedAt) {
+
+  public JsonNullable<OffsetDateTime> getConnectedAt_JsonNullable() {
+    return connectedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONNECTED_AT)
+  public void setConnectedAt_JsonNullable(JsonNullable<OffsetDateTime> connectedAt) {
     this.connectedAt = connectedAt;
+  }
+
+  public void setConnectedAt(@javax.annotation.Nullable OffsetDateTime connectedAt) {
+    this.connectedAt = JsonNullable.<OffsetDateTime>of(connectedAt);
   }
 
 
@@ -198,15 +230,26 @@ public class GetWhatsAppPhoneNumbers200ResponseConnectedInner {
     }
     GetWhatsAppPhoneNumbers200ResponseConnectedInner getWhatsAppPhoneNumbers200ResponseConnectedInner = (GetWhatsAppPhoneNumbers200ResponseConnectedInner) o;
     return Objects.equals(this.accountId, getWhatsAppPhoneNumbers200ResponseConnectedInner.accountId) &&
-        Objects.equals(this.phoneNumber, getWhatsAppPhoneNumbers200ResponseConnectedInner.phoneNumber) &&
-        Objects.equals(this.displayName, getWhatsAppPhoneNumbers200ResponseConnectedInner.displayName) &&
-        Objects.equals(this.profileId, getWhatsAppPhoneNumbers200ResponseConnectedInner.profileId) &&
-        Objects.equals(this.connectedAt, getWhatsAppPhoneNumbers200ResponseConnectedInner.connectedAt);
+        equalsNullable(this.phoneNumber, getWhatsAppPhoneNumbers200ResponseConnectedInner.phoneNumber) &&
+        equalsNullable(this.displayName, getWhatsAppPhoneNumbers200ResponseConnectedInner.displayName) &&
+        equalsNullable(this.profileId, getWhatsAppPhoneNumbers200ResponseConnectedInner.profileId) &&
+        equalsNullable(this.connectedAt, getWhatsAppPhoneNumbers200ResponseConnectedInner.connectedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, phoneNumber, displayName, profileId, connectedAt);
+    return Objects.hash(accountId, hashCodeNullable(phoneNumber), hashCodeNullable(displayName), hashCodeNullable(profileId), hashCodeNullable(connectedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

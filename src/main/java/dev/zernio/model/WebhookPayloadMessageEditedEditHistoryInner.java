@@ -41,10 +41,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageEditedEditHistoryInner.JSON_PROPERTY_ATTACHMENTS,
   WebhookPayloadMessageEditedEditHistoryInner.JSON_PROPERTY_EDITED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageEditedEditHistoryInner {
   public static final String JSON_PROPERTY_TEXT = "text";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String text;
 
   public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
@@ -58,7 +58,7 @@ public class WebhookPayloadMessageEditedEditHistoryInner {
   public WebhookPayloadMessageEditedEditHistoryInner() { 
   }
 
-  public WebhookPayloadMessageEditedEditHistoryInner text(@javax.annotation.Nonnull String text) {
+  public WebhookPayloadMessageEditedEditHistoryInner text(@javax.annotation.Nullable String text) {
     this.text = text;
     return this;
   }
@@ -67,17 +67,17 @@ public class WebhookPayloadMessageEditedEditHistoryInner {
    * Get text
    * @return text
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getText() {
     return text;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setText(@javax.annotation.Nonnull String text) {
+  public void setText(@javax.annotation.Nullable String text) {
     this.text = text;
   }
 

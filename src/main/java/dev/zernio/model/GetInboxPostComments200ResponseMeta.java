@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetInboxPostComments200ResponseMetaAdComments;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_AD_COMMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseMeta {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -57,8 +61,7 @@ public class GetInboxPostComments200ResponseMeta {
   private String accountId;
 
   public static final String JSON_PROPERTY_SUBREDDIT = "subreddit";
-  @javax.annotation.Nullable
-  private String subreddit;
+  private JsonNullable<String> subreddit = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LAST_UPDATED = "lastUpdated";
   @javax.annotation.Nullable
@@ -144,7 +147,7 @@ public class GetInboxPostComments200ResponseMeta {
 
 
   public GetInboxPostComments200ResponseMeta subreddit(@javax.annotation.Nullable String subreddit) {
-    this.subreddit = subreddit;
+    this.subreddit = JsonNullable.<String>of(subreddit);
     return this;
   }
 
@@ -153,17 +156,25 @@ public class GetInboxPostComments200ResponseMeta {
    * @return subreddit
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBREDDIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubreddit() {
-    return subreddit;
+        return subreddit.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBREDDIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubreddit(@javax.annotation.Nullable String subreddit) {
+
+  public JsonNullable<String> getSubreddit_JsonNullable() {
+    return subreddit;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBREDDIT)
+  public void setSubreddit_JsonNullable(JsonNullable<String> subreddit) {
     this.subreddit = subreddit;
+  }
+
+  public void setSubreddit(@javax.annotation.Nullable String subreddit) {
+    this.subreddit = JsonNullable.<String>of(subreddit);
   }
 
 
@@ -230,14 +241,25 @@ public class GetInboxPostComments200ResponseMeta {
     return Objects.equals(this.platform, getInboxPostComments200ResponseMeta.platform) &&
         Objects.equals(this.postId, getInboxPostComments200ResponseMeta.postId) &&
         Objects.equals(this.accountId, getInboxPostComments200ResponseMeta.accountId) &&
-        Objects.equals(this.subreddit, getInboxPostComments200ResponseMeta.subreddit) &&
+        equalsNullable(this.subreddit, getInboxPostComments200ResponseMeta.subreddit) &&
         Objects.equals(this.lastUpdated, getInboxPostComments200ResponseMeta.lastUpdated) &&
         Objects.equals(this.adComments, getInboxPostComments200ResponseMeta.adComments);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(platform, postId, accountId, subreddit, lastUpdated, adComments);
+    return Objects.hash(platform, postId, accountId, hashCodeNullable(subreddit), lastUpdated, adComments);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

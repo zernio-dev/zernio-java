@@ -31,6 +31,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,7 +54,7 @@ import dev.zernio.ApiClient;
   YouTubeVideoRetentionResponse.JSON_PROPERTY_NOTE,
   YouTubeVideoRetentionResponse.JSON_PROPERTY_SCOPE_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeVideoRetentionResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -65,16 +69,13 @@ public class YouTubeVideoRetentionResponse {
   private String videoId;
 
   public static final String JSON_PROPERTY_TITLE = "title";
-  @javax.annotation.Nullable
-  private String title;
+  private JsonNullable<String> title = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime publishedAt;
+  private JsonNullable<OffsetDateTime> publishedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_DURATION_SECONDS = "durationSeconds";
-  @javax.annotation.Nullable
-  private Integer durationSeconds;
+  private JsonNullable<Integer> durationSeconds = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_DATE_RANGE = "dateRange";
   @javax.annotation.Nullable
@@ -168,7 +169,7 @@ public class YouTubeVideoRetentionResponse {
 
 
   public YouTubeVideoRetentionResponse title(@javax.annotation.Nullable String title) {
-    this.title = title;
+    this.title = JsonNullable.<String>of(title);
     return this;
   }
 
@@ -177,22 +178,30 @@ public class YouTubeVideoRetentionResponse {
    * @return title
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTitle() {
-    return title;
+        return title.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTitle(@javax.annotation.Nullable String title) {
+
+  public JsonNullable<String> getTitle_JsonNullable() {
+    return title;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  public void setTitle_JsonNullable(JsonNullable<String> title) {
     this.title = title;
+  }
+
+  public void setTitle(@javax.annotation.Nullable String title) {
+    this.title = JsonNullable.<String>of(title);
   }
 
 
   public YouTubeVideoRetentionResponse publishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
-    this.publishedAt = publishedAt;
+    this.publishedAt = JsonNullable.<OffsetDateTime>of(publishedAt);
     return this;
   }
 
@@ -201,22 +210,30 @@ public class YouTubeVideoRetentionResponse {
    * @return publishedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PUBLISHED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getPublishedAt() {
-    return publishedAt;
+        return publishedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PUBLISHED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
+
+  public JsonNullable<OffsetDateTime> getPublishedAt_JsonNullable() {
+    return publishedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PUBLISHED_AT)
+  public void setPublishedAt_JsonNullable(JsonNullable<OffsetDateTime> publishedAt) {
     this.publishedAt = publishedAt;
+  }
+
+  public void setPublishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
+    this.publishedAt = JsonNullable.<OffsetDateTime>of(publishedAt);
   }
 
 
   public YouTubeVideoRetentionResponse durationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
-    this.durationSeconds = durationSeconds;
+    this.durationSeconds = JsonNullable.<Integer>of(durationSeconds);
     return this;
   }
 
@@ -225,17 +242,25 @@ public class YouTubeVideoRetentionResponse {
    * @return durationSeconds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DURATION_SECONDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getDurationSeconds() {
-    return durationSeconds;
+        return durationSeconds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DURATION_SECONDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDurationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
+
+  public JsonNullable<Integer> getDurationSeconds_JsonNullable() {
+    return durationSeconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DURATION_SECONDS)
+  public void setDurationSeconds_JsonNullable(JsonNullable<Integer> durationSeconds) {
     this.durationSeconds = durationSeconds;
+  }
+
+  public void setDurationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
+    this.durationSeconds = JsonNullable.<Integer>of(durationSeconds);
   }
 
 
@@ -358,18 +383,29 @@ public class YouTubeVideoRetentionResponse {
     return Objects.equals(this.success, youTubeVideoRetentionResponse.success) &&
         Objects.equals(this.accountId, youTubeVideoRetentionResponse.accountId) &&
         Objects.equals(this.videoId, youTubeVideoRetentionResponse.videoId) &&
-        Objects.equals(this.title, youTubeVideoRetentionResponse.title) &&
-        Objects.equals(this.publishedAt, youTubeVideoRetentionResponse.publishedAt) &&
-        Objects.equals(this.durationSeconds, youTubeVideoRetentionResponse.durationSeconds) &&
+        equalsNullable(this.title, youTubeVideoRetentionResponse.title) &&
+        equalsNullable(this.publishedAt, youTubeVideoRetentionResponse.publishedAt) &&
+        equalsNullable(this.durationSeconds, youTubeVideoRetentionResponse.durationSeconds) &&
         Objects.equals(this.dateRange, youTubeVideoRetentionResponse.dateRange) &&
         Objects.equals(this.retentionCurve, youTubeVideoRetentionResponse.retentionCurve) &&
         Objects.equals(this.note, youTubeVideoRetentionResponse.note) &&
         Objects.equals(this.scopeStatus, youTubeVideoRetentionResponse.scopeStatus);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(success, accountId, videoId, title, publishedAt, durationSeconds, dateRange, retentionCurve, note, scopeStatus);
+    return Objects.hash(success, accountId, videoId, hashCodeNullable(title), hashCodeNullable(publishedAt), hashCodeNullable(durationSeconds), dateRange, retentionCurve, note, scopeStatus);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

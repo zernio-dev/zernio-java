@@ -28,6 +28,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,7 +58,7 @@ import dev.zernio.ApiClient;
   GetContact200ResponseContact.JSON_PROPERTY_CREATED_AT,
   GetContact200ResponseContact.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetContact200ResponseContact {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -97,12 +101,10 @@ public class GetContact200ResponseContact {
   private Integer messagesReceivedCount;
 
   public static final String JSON_PROPERTY_LAST_MESSAGE_SENT_AT = "lastMessageSentAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastMessageSentAt;
+  private JsonNullable<OffsetDateTime> lastMessageSentAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT = "lastMessageReceivedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastMessageReceivedAt;
+  private JsonNullable<OffsetDateTime> lastMessageReceivedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CUSTOM_FIELDS = "customFields";
   @javax.annotation.Nullable
@@ -376,7 +378,7 @@ public class GetContact200ResponseContact {
 
 
   public GetContact200ResponseContact lastMessageSentAt(@javax.annotation.Nullable OffsetDateTime lastMessageSentAt) {
-    this.lastMessageSentAt = lastMessageSentAt;
+    this.lastMessageSentAt = JsonNullable.<OffsetDateTime>of(lastMessageSentAt);
     return this;
   }
 
@@ -385,22 +387,30 @@ public class GetContact200ResponseContact {
    * @return lastMessageSentAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_SENT_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastMessageSentAt() {
-    return lastMessageSentAt;
+        return lastMessageSentAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_SENT_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastMessageSentAt(@javax.annotation.Nullable OffsetDateTime lastMessageSentAt) {
+
+  public JsonNullable<OffsetDateTime> getLastMessageSentAt_JsonNullable() {
+    return lastMessageSentAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MESSAGE_SENT_AT)
+  public void setLastMessageSentAt_JsonNullable(JsonNullable<OffsetDateTime> lastMessageSentAt) {
     this.lastMessageSentAt = lastMessageSentAt;
+  }
+
+  public void setLastMessageSentAt(@javax.annotation.Nullable OffsetDateTime lastMessageSentAt) {
+    this.lastMessageSentAt = JsonNullable.<OffsetDateTime>of(lastMessageSentAt);
   }
 
 
   public GetContact200ResponseContact lastMessageReceivedAt(@javax.annotation.Nullable OffsetDateTime lastMessageReceivedAt) {
-    this.lastMessageReceivedAt = lastMessageReceivedAt;
+    this.lastMessageReceivedAt = JsonNullable.<OffsetDateTime>of(lastMessageReceivedAt);
     return this;
   }
 
@@ -409,17 +419,25 @@ public class GetContact200ResponseContact {
    * @return lastMessageReceivedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastMessageReceivedAt() {
-    return lastMessageReceivedAt;
+        return lastMessageReceivedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastMessageReceivedAt(@javax.annotation.Nullable OffsetDateTime lastMessageReceivedAt) {
+
+  public JsonNullable<OffsetDateTime> getLastMessageReceivedAt_JsonNullable() {
+    return lastMessageReceivedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MESSAGE_RECEIVED_AT)
+  public void setLastMessageReceivedAt_JsonNullable(JsonNullable<OffsetDateTime> lastMessageReceivedAt) {
     this.lastMessageReceivedAt = lastMessageReceivedAt;
+  }
+
+  public void setLastMessageReceivedAt(@javax.annotation.Nullable OffsetDateTime lastMessageReceivedAt) {
+    this.lastMessageReceivedAt = JsonNullable.<OffsetDateTime>of(lastMessageReceivedAt);
   }
 
 
@@ -573,8 +591,8 @@ public class GetContact200ResponseContact {
         Objects.equals(this.isBlocked, getContact200ResponseContact.isBlocked) &&
         Objects.equals(this.messagesSentCount, getContact200ResponseContact.messagesSentCount) &&
         Objects.equals(this.messagesReceivedCount, getContact200ResponseContact.messagesReceivedCount) &&
-        Objects.equals(this.lastMessageSentAt, getContact200ResponseContact.lastMessageSentAt) &&
-        Objects.equals(this.lastMessageReceivedAt, getContact200ResponseContact.lastMessageReceivedAt) &&
+        equalsNullable(this.lastMessageSentAt, getContact200ResponseContact.lastMessageSentAt) &&
+        equalsNullable(this.lastMessageReceivedAt, getContact200ResponseContact.lastMessageReceivedAt) &&
         Objects.equals(this.customFields, getContact200ResponseContact.customFields) &&
         Objects.equals(this.notes, getContact200ResponseContact.notes) &&
         Objects.equals(this.conversationIds, getContact200ResponseContact.conversationIds) &&
@@ -582,9 +600,20 @@ public class GetContact200ResponseContact {
         Objects.equals(this.updatedAt, getContact200ResponseContact.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, email, company, avatarUrl, tags, isSubscribed, isBlocked, messagesSentCount, messagesReceivedCount, lastMessageSentAt, lastMessageReceivedAt, customFields, notes, conversationIds, createdAt, updatedAt);
+    return Objects.hash(id, name, email, company, avatarUrl, tags, isSubscribed, isBlocked, messagesSentCount, messagesReceivedCount, hashCodeNullable(lastMessageSentAt), hashCodeNullable(lastMessageReceivedAt), customFields, notes, conversationIds, createdAt, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

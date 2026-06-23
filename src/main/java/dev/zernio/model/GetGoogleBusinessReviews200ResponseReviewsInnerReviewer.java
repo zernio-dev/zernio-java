@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,15 +41,14 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.JSON_PROPERTY_PROFILE_PHOTO_URL,
   GetGoogleBusinessReviews200ResponseReviewsInnerReviewer.JSON_PROPERTY_IS_ANONYMOUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessReviews200ResponseReviewsInnerReviewer {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable
   private String displayName;
 
   public static final String JSON_PROPERTY_PROFILE_PHOTO_URL = "profilePhotoUrl";
-  @javax.annotation.Nullable
-  private String profilePhotoUrl;
+  private JsonNullable<String> profilePhotoUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_ANONYMOUS = "isAnonymous";
   @javax.annotation.Nullable
@@ -79,7 +82,7 @@ public class GetGoogleBusinessReviews200ResponseReviewsInnerReviewer {
 
 
   public GetGoogleBusinessReviews200ResponseReviewsInnerReviewer profilePhotoUrl(@javax.annotation.Nullable String profilePhotoUrl) {
-    this.profilePhotoUrl = profilePhotoUrl;
+    this.profilePhotoUrl = JsonNullable.<String>of(profilePhotoUrl);
     return this;
   }
 
@@ -88,17 +91,25 @@ public class GetGoogleBusinessReviews200ResponseReviewsInnerReviewer {
    * @return profilePhotoUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_PHOTO_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getProfilePhotoUrl() {
-    return profilePhotoUrl;
+        return profilePhotoUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROFILE_PHOTO_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProfilePhotoUrl(@javax.annotation.Nullable String profilePhotoUrl) {
+
+  public JsonNullable<String> getProfilePhotoUrl_JsonNullable() {
+    return profilePhotoUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROFILE_PHOTO_URL)
+  public void setProfilePhotoUrl_JsonNullable(JsonNullable<String> profilePhotoUrl) {
     this.profilePhotoUrl = profilePhotoUrl;
+  }
+
+  public void setProfilePhotoUrl(@javax.annotation.Nullable String profilePhotoUrl) {
+    this.profilePhotoUrl = JsonNullable.<String>of(profilePhotoUrl);
   }
 
 
@@ -139,13 +150,24 @@ public class GetGoogleBusinessReviews200ResponseReviewsInnerReviewer {
     }
     GetGoogleBusinessReviews200ResponseReviewsInnerReviewer getGoogleBusinessReviews200ResponseReviewsInnerReviewer = (GetGoogleBusinessReviews200ResponseReviewsInnerReviewer) o;
     return Objects.equals(this.displayName, getGoogleBusinessReviews200ResponseReviewsInnerReviewer.displayName) &&
-        Objects.equals(this.profilePhotoUrl, getGoogleBusinessReviews200ResponseReviewsInnerReviewer.profilePhotoUrl) &&
+        equalsNullable(this.profilePhotoUrl, getGoogleBusinessReviews200ResponseReviewsInnerReviewer.profilePhotoUrl) &&
         Objects.equals(this.isAnonymous, getGoogleBusinessReviews200ResponseReviewsInnerReviewer.isAnonymous);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(displayName, profilePhotoUrl, isAnonymous);
+    return Objects.hash(displayName, hashCodeNullable(profilePhotoUrl), isAnonymous);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

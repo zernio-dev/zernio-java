@@ -34,6 +34,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -70,7 +74,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_REACTIONS,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -97,8 +101,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   private String senderId;
 
   public static final String JSON_PROPERTY_SENDER_NAME = "senderName";
-  @javax.annotation.Nullable
-  private String senderName;
+  private JsonNullable<String> senderName = JsonNullable.<String>undefined();
 
   /**
    * X/Twitter verified badge type. Only present for Twitter/X messages.
@@ -135,13 +138,12 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_SENDER_VERIFIED_TYPE = "senderVerifiedType";
-  @javax.annotation.Nullable
-  private SenderVerifiedTypeEnum senderVerifiedType;
+  private JsonNullable<SenderVerifiedTypeEnum> senderVerifiedType = JsonNullable.<SenderVerifiedTypeEnum>undefined();
 
   /**
    * Gets or Sets direction
@@ -191,24 +193,20 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   private List<GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner> attachments = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SUBJECT = "subject";
-  @javax.annotation.Nullable
-  private String subject;
+  private JsonNullable<String> subject = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_STORY_REPLY = "storyReply";
-  @javax.annotation.Nullable
-  private Boolean storyReply;
+  private JsonNullable<Boolean> storyReply = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_IS_STORY_MENTION = "isStoryMention";
-  @javax.annotation.Nullable
-  private Boolean isStoryMention;
+  private JsonNullable<Boolean> isStoryMention = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_IS_EDITED = "isEdited";
   @javax.annotation.Nullable
   private Boolean isEdited;
 
   public static final String JSON_PROPERTY_EDITED_AT = "editedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime editedAt;
+  private JsonNullable<OffsetDateTime> editedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_EDIT_COUNT = "editCount";
   @javax.annotation.Nullable
@@ -223,8 +221,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   private Boolean isDeleted;
 
   public static final String JSON_PROPERTY_DELETED_AT = "deletedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime deletedAt;
+  private JsonNullable<OffsetDateTime> deletedAt = JsonNullable.<OffsetDateTime>undefined();
 
   /**
    * Lifecycle status for outgoing messages. Not all platforms emit every state (see webhook support matrix).
@@ -263,25 +260,21 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_DELIVERY_STATUS = "deliveryStatus";
-  @javax.annotation.Nullable
-  private DeliveryStatusEnum deliveryStatus;
+  private JsonNullable<DeliveryStatusEnum> deliveryStatus = JsonNullable.<DeliveryStatusEnum>undefined();
 
   public static final String JSON_PROPERTY_DELIVERED_AT = "deliveredAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime deliveredAt;
+  private JsonNullable<OffsetDateTime> deliveredAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_READ_AT = "readAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime readAt;
+  private JsonNullable<OffsetDateTime> readAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_SENT_AT = "sentAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime sentAt;
+  private JsonNullable<OffsetDateTime> sentAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_DELIVERY_ERROR = "deliveryError";
   @javax.annotation.Nullable
@@ -443,7 +436,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
 
 
   public GetInboxConversationMessages200ResponseMessagesInner senderName(@javax.annotation.Nullable String senderName) {
-    this.senderName = senderName;
+    this.senderName = JsonNullable.<String>of(senderName);
     return this;
   }
 
@@ -452,22 +445,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return senderName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SENDER_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSenderName() {
-    return senderName;
+        return senderName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SENDER_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSenderName(@javax.annotation.Nullable String senderName) {
+
+  public JsonNullable<String> getSenderName_JsonNullable() {
+    return senderName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENDER_NAME)
+  public void setSenderName_JsonNullable(JsonNullable<String> senderName) {
     this.senderName = senderName;
+  }
+
+  public void setSenderName(@javax.annotation.Nullable String senderName) {
+    this.senderName = JsonNullable.<String>of(senderName);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInner senderVerifiedType(@javax.annotation.Nullable SenderVerifiedTypeEnum senderVerifiedType) {
-    this.senderVerifiedType = senderVerifiedType;
+    this.senderVerifiedType = JsonNullable.<SenderVerifiedTypeEnum>of(senderVerifiedType);
     return this;
   }
 
@@ -476,17 +477,25 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return senderVerifiedType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SENDER_VERIFIED_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public SenderVerifiedTypeEnum getSenderVerifiedType() {
-    return senderVerifiedType;
+        return senderVerifiedType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SENDER_VERIFIED_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSenderVerifiedType(@javax.annotation.Nullable SenderVerifiedTypeEnum senderVerifiedType) {
+
+  public JsonNullable<SenderVerifiedTypeEnum> getSenderVerifiedType_JsonNullable() {
+    return senderVerifiedType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENDER_VERIFIED_TYPE)
+  public void setSenderVerifiedType_JsonNullable(JsonNullable<SenderVerifiedTypeEnum> senderVerifiedType) {
     this.senderVerifiedType = senderVerifiedType;
+  }
+
+  public void setSenderVerifiedType(@javax.annotation.Nullable SenderVerifiedTypeEnum senderVerifiedType) {
+    this.senderVerifiedType = JsonNullable.<SenderVerifiedTypeEnum>of(senderVerifiedType);
   }
 
 
@@ -571,7 +580,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
 
 
   public GetInboxConversationMessages200ResponseMessagesInner subject(@javax.annotation.Nullable String subject) {
-    this.subject = subject;
+    this.subject = JsonNullable.<String>of(subject);
     return this;
   }
 
@@ -580,22 +589,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return subject
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUBJECT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSubject() {
-    return subject;
+        return subject.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUBJECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubject(@javax.annotation.Nullable String subject) {
+
+  public JsonNullable<String> getSubject_JsonNullable() {
+    return subject;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUBJECT)
+  public void setSubject_JsonNullable(JsonNullable<String> subject) {
     this.subject = subject;
+  }
+
+  public void setSubject(@javax.annotation.Nullable String subject) {
+    this.subject = JsonNullable.<String>of(subject);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInner storyReply(@javax.annotation.Nullable Boolean storyReply) {
-    this.storyReply = storyReply;
+    this.storyReply = JsonNullable.<Boolean>of(storyReply);
     return this;
   }
 
@@ -604,22 +621,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return storyReply
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STORY_REPLY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getStoryReply() {
-    return storyReply;
+        return storyReply.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STORY_REPLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStoryReply(@javax.annotation.Nullable Boolean storyReply) {
+
+  public JsonNullable<Boolean> getStoryReply_JsonNullable() {
+    return storyReply;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STORY_REPLY)
+  public void setStoryReply_JsonNullable(JsonNullable<Boolean> storyReply) {
     this.storyReply = storyReply;
+  }
+
+  public void setStoryReply(@javax.annotation.Nullable Boolean storyReply) {
+    this.storyReply = JsonNullable.<Boolean>of(storyReply);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInner isStoryMention(@javax.annotation.Nullable Boolean isStoryMention) {
-    this.isStoryMention = isStoryMention;
+    this.isStoryMention = JsonNullable.<Boolean>of(isStoryMention);
     return this;
   }
 
@@ -628,17 +653,25 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return isStoryMention
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_STORY_MENTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getIsStoryMention() {
-    return isStoryMention;
+        return isStoryMention.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IS_STORY_MENTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsStoryMention(@javax.annotation.Nullable Boolean isStoryMention) {
+
+  public JsonNullable<Boolean> getIsStoryMention_JsonNullable() {
+    return isStoryMention;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_STORY_MENTION)
+  public void setIsStoryMention_JsonNullable(JsonNullable<Boolean> isStoryMention) {
     this.isStoryMention = isStoryMention;
+  }
+
+  public void setIsStoryMention(@javax.annotation.Nullable Boolean isStoryMention) {
+    this.isStoryMention = JsonNullable.<Boolean>of(isStoryMention);
   }
 
 
@@ -667,7 +700,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
 
 
   public GetInboxConversationMessages200ResponseMessagesInner editedAt(@javax.annotation.Nullable OffsetDateTime editedAt) {
-    this.editedAt = editedAt;
+    this.editedAt = JsonNullable.<OffsetDateTime>of(editedAt);
     return this;
   }
 
@@ -676,17 +709,25 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return editedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EDITED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getEditedAt() {
-    return editedAt;
+        return editedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EDITED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEditedAt(@javax.annotation.Nullable OffsetDateTime editedAt) {
+
+  public JsonNullable<OffsetDateTime> getEditedAt_JsonNullable() {
+    return editedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EDITED_AT)
+  public void setEditedAt_JsonNullable(JsonNullable<OffsetDateTime> editedAt) {
     this.editedAt = editedAt;
+  }
+
+  public void setEditedAt(@javax.annotation.Nullable OffsetDateTime editedAt) {
+    this.editedAt = JsonNullable.<OffsetDateTime>of(editedAt);
   }
 
 
@@ -771,7 +812,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
 
 
   public GetInboxConversationMessages200ResponseMessagesInner deletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
-    this.deletedAt = deletedAt;
+    this.deletedAt = JsonNullable.<OffsetDateTime>of(deletedAt);
     return this;
   }
 
@@ -780,22 +821,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return deletedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DELETED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getDeletedAt() {
-    return deletedAt;
+        return deletedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DELETED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
+
+  public JsonNullable<OffsetDateTime> getDeletedAt_JsonNullable() {
+    return deletedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELETED_AT)
+  public void setDeletedAt_JsonNullable(JsonNullable<OffsetDateTime> deletedAt) {
     this.deletedAt = deletedAt;
+  }
+
+  public void setDeletedAt(@javax.annotation.Nullable OffsetDateTime deletedAt) {
+    this.deletedAt = JsonNullable.<OffsetDateTime>of(deletedAt);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInner deliveryStatus(@javax.annotation.Nullable DeliveryStatusEnum deliveryStatus) {
-    this.deliveryStatus = deliveryStatus;
+    this.deliveryStatus = JsonNullable.<DeliveryStatusEnum>of(deliveryStatus);
     return this;
   }
 
@@ -804,22 +853,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return deliveryStatus
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DELIVERY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public DeliveryStatusEnum getDeliveryStatus() {
-    return deliveryStatus;
+        return deliveryStatus.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DELIVERY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeliveryStatus(@javax.annotation.Nullable DeliveryStatusEnum deliveryStatus) {
+
+  public JsonNullable<DeliveryStatusEnum> getDeliveryStatus_JsonNullable() {
+    return deliveryStatus;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELIVERY_STATUS)
+  public void setDeliveryStatus_JsonNullable(JsonNullable<DeliveryStatusEnum> deliveryStatus) {
     this.deliveryStatus = deliveryStatus;
+  }
+
+  public void setDeliveryStatus(@javax.annotation.Nullable DeliveryStatusEnum deliveryStatus) {
+    this.deliveryStatus = JsonNullable.<DeliveryStatusEnum>of(deliveryStatus);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInner deliveredAt(@javax.annotation.Nullable OffsetDateTime deliveredAt) {
-    this.deliveredAt = deliveredAt;
+    this.deliveredAt = JsonNullable.<OffsetDateTime>of(deliveredAt);
     return this;
   }
 
@@ -828,22 +885,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return deliveredAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DELIVERED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getDeliveredAt() {
-    return deliveredAt;
+        return deliveredAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DELIVERED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeliveredAt(@javax.annotation.Nullable OffsetDateTime deliveredAt) {
+
+  public JsonNullable<OffsetDateTime> getDeliveredAt_JsonNullable() {
+    return deliveredAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DELIVERED_AT)
+  public void setDeliveredAt_JsonNullable(JsonNullable<OffsetDateTime> deliveredAt) {
     this.deliveredAt = deliveredAt;
+  }
+
+  public void setDeliveredAt(@javax.annotation.Nullable OffsetDateTime deliveredAt) {
+    this.deliveredAt = JsonNullable.<OffsetDateTime>of(deliveredAt);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInner readAt(@javax.annotation.Nullable OffsetDateTime readAt) {
-    this.readAt = readAt;
+    this.readAt = JsonNullable.<OffsetDateTime>of(readAt);
     return this;
   }
 
@@ -852,22 +917,30 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return readAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_READ_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getReadAt() {
-    return readAt;
+        return readAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_READ_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadAt(@javax.annotation.Nullable OffsetDateTime readAt) {
+
+  public JsonNullable<OffsetDateTime> getReadAt_JsonNullable() {
+    return readAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_READ_AT)
+  public void setReadAt_JsonNullable(JsonNullable<OffsetDateTime> readAt) {
     this.readAt = readAt;
+  }
+
+  public void setReadAt(@javax.annotation.Nullable OffsetDateTime readAt) {
+    this.readAt = JsonNullable.<OffsetDateTime>of(readAt);
   }
 
 
   public GetInboxConversationMessages200ResponseMessagesInner sentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
-    this.sentAt = sentAt;
+    this.sentAt = JsonNullable.<OffsetDateTime>of(sentAt);
     return this;
   }
 
@@ -876,17 +949,25 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
    * @return sentAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SENT_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getSentAt() {
-    return sentAt;
+        return sentAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SENT_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
+
+  public JsonNullable<OffsetDateTime> getSentAt_JsonNullable() {
+    return sentAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENT_AT)
+  public void setSentAt_JsonNullable(JsonNullable<OffsetDateTime> sentAt) {
     this.sentAt = sentAt;
+  }
+
+  public void setSentAt(@javax.annotation.Nullable OffsetDateTime sentAt) {
+    this.sentAt = JsonNullable.<OffsetDateTime>of(sentAt);
   }
 
 
@@ -996,32 +1077,43 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
         Objects.equals(this.platform, getInboxConversationMessages200ResponseMessagesInner.platform) &&
         Objects.equals(this.message, getInboxConversationMessages200ResponseMessagesInner.message) &&
         Objects.equals(this.senderId, getInboxConversationMessages200ResponseMessagesInner.senderId) &&
-        Objects.equals(this.senderName, getInboxConversationMessages200ResponseMessagesInner.senderName) &&
-        Objects.equals(this.senderVerifiedType, getInboxConversationMessages200ResponseMessagesInner.senderVerifiedType) &&
+        equalsNullable(this.senderName, getInboxConversationMessages200ResponseMessagesInner.senderName) &&
+        equalsNullable(this.senderVerifiedType, getInboxConversationMessages200ResponseMessagesInner.senderVerifiedType) &&
         Objects.equals(this.direction, getInboxConversationMessages200ResponseMessagesInner.direction) &&
         Objects.equals(this.createdAt, getInboxConversationMessages200ResponseMessagesInner.createdAt) &&
         Objects.equals(this.attachments, getInboxConversationMessages200ResponseMessagesInner.attachments) &&
-        Objects.equals(this.subject, getInboxConversationMessages200ResponseMessagesInner.subject) &&
-        Objects.equals(this.storyReply, getInboxConversationMessages200ResponseMessagesInner.storyReply) &&
-        Objects.equals(this.isStoryMention, getInboxConversationMessages200ResponseMessagesInner.isStoryMention) &&
+        equalsNullable(this.subject, getInboxConversationMessages200ResponseMessagesInner.subject) &&
+        equalsNullable(this.storyReply, getInboxConversationMessages200ResponseMessagesInner.storyReply) &&
+        equalsNullable(this.isStoryMention, getInboxConversationMessages200ResponseMessagesInner.isStoryMention) &&
         Objects.equals(this.isEdited, getInboxConversationMessages200ResponseMessagesInner.isEdited) &&
-        Objects.equals(this.editedAt, getInboxConversationMessages200ResponseMessagesInner.editedAt) &&
+        equalsNullable(this.editedAt, getInboxConversationMessages200ResponseMessagesInner.editedAt) &&
         Objects.equals(this.editCount, getInboxConversationMessages200ResponseMessagesInner.editCount) &&
         Objects.equals(this.editHistory, getInboxConversationMessages200ResponseMessagesInner.editHistory) &&
         Objects.equals(this.isDeleted, getInboxConversationMessages200ResponseMessagesInner.isDeleted) &&
-        Objects.equals(this.deletedAt, getInboxConversationMessages200ResponseMessagesInner.deletedAt) &&
-        Objects.equals(this.deliveryStatus, getInboxConversationMessages200ResponseMessagesInner.deliveryStatus) &&
-        Objects.equals(this.deliveredAt, getInboxConversationMessages200ResponseMessagesInner.deliveredAt) &&
-        Objects.equals(this.readAt, getInboxConversationMessages200ResponseMessagesInner.readAt) &&
-        Objects.equals(this.sentAt, getInboxConversationMessages200ResponseMessagesInner.sentAt) &&
+        equalsNullable(this.deletedAt, getInboxConversationMessages200ResponseMessagesInner.deletedAt) &&
+        equalsNullable(this.deliveryStatus, getInboxConversationMessages200ResponseMessagesInner.deliveryStatus) &&
+        equalsNullable(this.deliveredAt, getInboxConversationMessages200ResponseMessagesInner.deliveredAt) &&
+        equalsNullable(this.readAt, getInboxConversationMessages200ResponseMessagesInner.readAt) &&
+        equalsNullable(this.sentAt, getInboxConversationMessages200ResponseMessagesInner.sentAt) &&
         Objects.equals(this.deliveryError, getInboxConversationMessages200ResponseMessagesInner.deliveryError) &&
         Objects.equals(this.reactions, getInboxConversationMessages200ResponseMessagesInner.reactions) &&
         Objects.equals(this.metadata, getInboxConversationMessages200ResponseMessagesInner.metadata);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, conversationId, accountId, platform, message, senderId, senderName, senderVerifiedType, direction, createdAt, attachments, subject, storyReply, isStoryMention, isEdited, editedAt, editCount, editHistory, isDeleted, deletedAt, deliveryStatus, deliveredAt, readAt, sentAt, deliveryError, reactions, metadata);
+    return Objects.hash(id, conversationId, accountId, platform, message, senderId, hashCodeNullable(senderName), hashCodeNullable(senderVerifiedType), direction, createdAt, attachments, hashCodeNullable(subject), hashCodeNullable(storyReply), hashCodeNullable(isStoryMention), isEdited, hashCodeNullable(editedAt), editCount, editHistory, isDeleted, hashCodeNullable(deletedAt), hashCodeNullable(deliveryStatus), hashCodeNullable(deliveredAt), hashCodeNullable(readAt), hashCodeNullable(sentAt), deliveryError, reactions, metadata);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,7 +41,7 @@ import dev.zernio.ApiClient;
   BusinessCenter.JSON_PROPERTY_NAME,
   BusinessCenter.JSON_PROPERTY_ADVERTISER_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessCenter {
   public static final String JSON_PROPERTY_BC_ID = "bcId";
   @javax.annotation.Nullable
@@ -48,8 +52,7 @@ public class BusinessCenter {
   private String name;
 
   public static final String JSON_PROPERTY_ADVERTISER_COUNT = "advertiserCount";
-  @javax.annotation.Nullable
-  private Integer advertiserCount;
+  private JsonNullable<Integer> advertiserCount = JsonNullable.<Integer>undefined();
 
   public BusinessCenter() { 
   }
@@ -103,7 +106,7 @@ public class BusinessCenter {
 
 
   public BusinessCenter advertiserCount(@javax.annotation.Nullable Integer advertiserCount) {
-    this.advertiserCount = advertiserCount;
+    this.advertiserCount = JsonNullable.<Integer>of(advertiserCount);
     return this;
   }
 
@@ -112,17 +115,25 @@ public class BusinessCenter {
    * @return advertiserCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ADVERTISER_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getAdvertiserCount() {
-    return advertiserCount;
+        return advertiserCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ADVERTISER_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdvertiserCount(@javax.annotation.Nullable Integer advertiserCount) {
+
+  public JsonNullable<Integer> getAdvertiserCount_JsonNullable() {
+    return advertiserCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ADVERTISER_COUNT)
+  public void setAdvertiserCount_JsonNullable(JsonNullable<Integer> advertiserCount) {
     this.advertiserCount = advertiserCount;
+  }
+
+  public void setAdvertiserCount(@javax.annotation.Nullable Integer advertiserCount) {
+    this.advertiserCount = JsonNullable.<Integer>of(advertiserCount);
   }
 
 
@@ -140,12 +151,23 @@ public class BusinessCenter {
     BusinessCenter businessCenter = (BusinessCenter) o;
     return Objects.equals(this.bcId, businessCenter.bcId) &&
         Objects.equals(this.name, businessCenter.name) &&
-        Objects.equals(this.advertiserCount, businessCenter.advertiserCount);
+        equalsNullable(this.advertiserCount, businessCenter.advertiserCount);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bcId, name, advertiserCount);
+    return Objects.hash(bcId, name, hashCodeNullable(advertiserCount));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

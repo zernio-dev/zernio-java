@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_NAME,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_PICTURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentCommentAuthor {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -53,8 +57,7 @@ public class WebhookPayloadCommentCommentAuthor {
   private String name;
 
   public static final String JSON_PROPERTY_PICTURE = "picture";
-  @javax.annotation.Nullable
-  private String picture;
+  private JsonNullable<String> picture = JsonNullable.<String>undefined();
 
   public WebhookPayloadCommentCommentAuthor() { 
   }
@@ -132,7 +135,7 @@ public class WebhookPayloadCommentCommentAuthor {
 
 
   public WebhookPayloadCommentCommentAuthor picture(@javax.annotation.Nullable String picture) {
-    this.picture = picture;
+    this.picture = JsonNullable.<String>of(picture);
     return this;
   }
 
@@ -141,17 +144,25 @@ public class WebhookPayloadCommentCommentAuthor {
    * @return picture
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPicture() {
-    return picture;
+        return picture.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PICTURE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPicture(@javax.annotation.Nullable String picture) {
+
+  public JsonNullable<String> getPicture_JsonNullable() {
+    return picture;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PICTURE)
+  public void setPicture_JsonNullable(JsonNullable<String> picture) {
     this.picture = picture;
+  }
+
+  public void setPicture(@javax.annotation.Nullable String picture) {
+    this.picture = JsonNullable.<String>of(picture);
   }
 
 
@@ -170,12 +181,23 @@ public class WebhookPayloadCommentCommentAuthor {
     return Objects.equals(this.id, webhookPayloadCommentCommentAuthor.id) &&
         Objects.equals(this.username, webhookPayloadCommentCommentAuthor.username) &&
         Objects.equals(this.name, webhookPayloadCommentCommentAuthor.name) &&
-        Objects.equals(this.picture, webhookPayloadCommentCommentAuthor.picture);
+        equalsNullable(this.picture, webhookPayloadCommentCommentAuthor.picture);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, name, picture);
+    return Objects.hash(id, username, name, hashCodeNullable(picture));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

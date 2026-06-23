@@ -28,6 +28,10 @@ import dev.zernio.model.AdBudget;
 import dev.zernio.model.BidStrategy;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,7 +49,7 @@ import dev.zernio.ApiClient;
   UpdateAdSet200Response.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdSet200Response.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSet200Response {
   public static final String JSON_PROPERTY_BUDGET = "budget";
   @javax.annotation.Nullable
@@ -140,12 +144,10 @@ public class UpdateAdSet200Response {
   private BidStrategy bidStrategy;
 
   public static final String JSON_PROPERTY_BID_AMOUNT = "bidAmount";
-  @javax.annotation.Nullable
-  private BigDecimal bidAmount;
+  private JsonNullable<BigDecimal> bidAmount = JsonNullable.<BigDecimal>undefined();
 
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
-  @javax.annotation.Nullable
-  private BigDecimal roasAverageFloor;
+  private JsonNullable<BigDecimal> roasAverageFloor = JsonNullable.<BigDecimal>undefined();
 
   public UpdateAdSet200Response() { 
   }
@@ -295,7 +297,7 @@ public class UpdateAdSet200Response {
 
 
   public UpdateAdSet200Response bidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
-    this.bidAmount = bidAmount;
+    this.bidAmount = JsonNullable.<BigDecimal>of(bidAmount);
     return this;
   }
 
@@ -304,22 +306,30 @@ public class UpdateAdSet200Response {
    * @return bidAmount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BigDecimal getBidAmount() {
-    return bidAmount;
+        return bidAmount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BID_AMOUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+
+  public JsonNullable<BigDecimal> getBidAmount_JsonNullable() {
+    return bidAmount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BID_AMOUNT)
+  public void setBidAmount_JsonNullable(JsonNullable<BigDecimal> bidAmount) {
     this.bidAmount = bidAmount;
+  }
+
+  public void setBidAmount(@javax.annotation.Nullable BigDecimal bidAmount) {
+    this.bidAmount = JsonNullable.<BigDecimal>of(bidAmount);
   }
 
 
   public UpdateAdSet200Response roasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
-    this.roasAverageFloor = roasAverageFloor;
+    this.roasAverageFloor = JsonNullable.<BigDecimal>of(roasAverageFloor);
     return this;
   }
 
@@ -328,17 +338,25 @@ public class UpdateAdSet200Response {
    * @return roasAverageFloor
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BigDecimal getRoasAverageFloor() {
-    return roasAverageFloor;
+        return roasAverageFloor.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ROAS_AVERAGE_FLOOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+
+  public JsonNullable<BigDecimal> getRoasAverageFloor_JsonNullable() {
+    return roasAverageFloor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ROAS_AVERAGE_FLOOR)
+  public void setRoasAverageFloor_JsonNullable(JsonNullable<BigDecimal> roasAverageFloor) {
     this.roasAverageFloor = roasAverageFloor;
+  }
+
+  public void setRoasAverageFloor(@javax.annotation.Nullable BigDecimal roasAverageFloor) {
+    this.roasAverageFloor = JsonNullable.<BigDecimal>of(roasAverageFloor);
   }
 
 
@@ -360,13 +378,24 @@ public class UpdateAdSet200Response {
         Objects.equals(this.statusUpdated, updateAdSet200Response.statusUpdated) &&
         Objects.equals(this.statusSkipped, updateAdSet200Response.statusSkipped) &&
         Objects.equals(this.bidStrategy, updateAdSet200Response.bidStrategy) &&
-        Objects.equals(this.bidAmount, updateAdSet200Response.bidAmount) &&
-        Objects.equals(this.roasAverageFloor, updateAdSet200Response.roasAverageFloor);
+        equalsNullable(this.bidAmount, updateAdSet200Response.bidAmount) &&
+        equalsNullable(this.roasAverageFloor, updateAdSet200Response.roasAverageFloor);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(budget, budgetLevel, status, statusUpdated, statusSkipped, bidStrategy, bidAmount, roasAverageFloor);
+    return Objects.hash(budget, budgetLevel, status, statusUpdated, statusSkipped, bidStrategy, hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

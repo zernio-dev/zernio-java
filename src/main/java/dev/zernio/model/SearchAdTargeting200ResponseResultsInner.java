@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,11 +43,9 @@ import dev.zernio.ApiClient;
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_NAME,
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_TYPE,
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_PATH,
-  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_AUDIENCE_SIZE,
-  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_LATITUDE,
-  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_LONGITUDE
+  SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_AUDIENCE_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAdTargeting200ResponseResultsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -62,16 +64,7 @@ public class SearchAdTargeting200ResponseResultsInner {
   private List<String> path = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AUDIENCE_SIZE = "audienceSize";
-  @javax.annotation.Nullable
-  private Integer audienceSize;
-
-  public static final String JSON_PROPERTY_LATITUDE = "latitude";
-  @javax.annotation.Nullable
-  private Float latitude;
-
-  public static final String JSON_PROPERTY_LONGITUDE = "longitude";
-  @javax.annotation.Nullable
-  private Float longitude;
+  private JsonNullable<Integer> audienceSize = JsonNullable.<Integer>undefined();
 
   public SearchAdTargeting200ResponseResultsInner() { 
   }
@@ -181,7 +174,7 @@ public class SearchAdTargeting200ResponseResultsInner {
 
 
   public SearchAdTargeting200ResponseResultsInner audienceSize(@javax.annotation.Nullable Integer audienceSize) {
-    this.audienceSize = audienceSize;
+    this.audienceSize = JsonNullable.<Integer>of(audienceSize);
     return this;
   }
 
@@ -190,65 +183,25 @@ public class SearchAdTargeting200ResponseResultsInner {
    * @return audienceSize
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AUDIENCE_SIZE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getAudienceSize() {
-    return audienceSize;
+        return audienceSize.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AUDIENCE_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAudienceSize(@javax.annotation.Nullable Integer audienceSize) {
+
+  public JsonNullable<Integer> getAudienceSize_JsonNullable() {
+    return audienceSize;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUDIENCE_SIZE)
+  public void setAudienceSize_JsonNullable(JsonNullable<Integer> audienceSize) {
     this.audienceSize = audienceSize;
   }
 
-
-  public SearchAdTargeting200ResponseResultsInner latitude(@javax.annotation.Nullable Float latitude) {
-    this.latitude = latitude;
-    return this;
-  }
-
-  /**
-   * Centre latitude of the location. Populated on Meta geo results (city, neighborhood, place, etc.). Useful for map views.
-   * @return latitude
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LATITUDE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Float getLatitude() {
-    return latitude;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_LATITUDE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLatitude(@javax.annotation.Nullable Float latitude) {
-    this.latitude = latitude;
-  }
-
-
-  public SearchAdTargeting200ResponseResultsInner longitude(@javax.annotation.Nullable Float longitude) {
-    this.longitude = longitude;
-    return this;
-  }
-
-  /**
-   * Centre longitude of the location.
-   * @return longitude
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LONGITUDE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Float getLongitude() {
-    return longitude;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_LONGITUDE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLongitude(@javax.annotation.Nullable Float longitude) {
-    this.longitude = longitude;
+  public void setAudienceSize(@javax.annotation.Nullable Integer audienceSize) {
+    this.audienceSize = JsonNullable.<Integer>of(audienceSize);
   }
 
 
@@ -268,14 +221,23 @@ public class SearchAdTargeting200ResponseResultsInner {
         Objects.equals(this.name, searchAdTargeting200ResponseResultsInner.name) &&
         Objects.equals(this.type, searchAdTargeting200ResponseResultsInner.type) &&
         Objects.equals(this.path, searchAdTargeting200ResponseResultsInner.path) &&
-        Objects.equals(this.audienceSize, searchAdTargeting200ResponseResultsInner.audienceSize) &&
-        Objects.equals(this.latitude, searchAdTargeting200ResponseResultsInner.latitude) &&
-        Objects.equals(this.longitude, searchAdTargeting200ResponseResultsInner.longitude);
+        equalsNullable(this.audienceSize, searchAdTargeting200ResponseResultsInner.audienceSize);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, type, path, audienceSize, latitude, longitude);
+    return Objects.hash(id, name, type, path, hashCodeNullable(audienceSize));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -287,8 +249,6 @@ public class SearchAdTargeting200ResponseResultsInner {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    audienceSize: ").append(toIndentedString(audienceSize)).append("\n");
-    sb.append("    latitude: ").append(toIndentedString(latitude)).append("\n");
-    sb.append("    longitude: ").append(toIndentedString(longitude)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -363,16 +323,6 @@ public class SearchAdTargeting200ResponseResultsInner {
     // add `audienceSize` to the URL query string
     if (getAudienceSize() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saudienceSize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAudienceSize()))));
-    }
-
-    // add `latitude` to the URL query string
-    if (getLatitude() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%slatitude%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLatitude()))));
-    }
-
-    // add `longitude` to the URL query string
-    if (getLongitude() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%slongitude%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLongitude()))));
     }
 
     return joiner.toString();

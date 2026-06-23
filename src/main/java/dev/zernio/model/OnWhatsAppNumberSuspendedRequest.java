@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.OnWhatsAppNumberDeclinedRequestNumber;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,7 +45,7 @@ import dev.zernio.ApiClient;
   OnWhatsAppNumberSuspendedRequest.JSON_PROPERTY_NUMBER,
   OnWhatsAppNumberSuspendedRequest.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppNumberSuspendedRequest {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -93,8 +97,7 @@ public class OnWhatsAppNumberSuspendedRequest {
   private OnWhatsAppNumberDeclinedRequestNumber number;
 
   public static final String JSON_PROPERTY_REASON = "reason";
-  @javax.annotation.Nullable
-  private String reason;
+  private JsonNullable<String> reason = JsonNullable.<String>undefined();
 
   public OnWhatsAppNumberSuspendedRequest() { 
   }
@@ -196,7 +199,7 @@ public class OnWhatsAppNumberSuspendedRequest {
 
 
   public OnWhatsAppNumberSuspendedRequest reason(@javax.annotation.Nullable String reason) {
-    this.reason = reason;
+    this.reason = JsonNullable.<String>of(reason);
     return this;
   }
 
@@ -205,17 +208,25 @@ public class OnWhatsAppNumberSuspendedRequest {
    * @return reason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getReason() {
-    return reason;
+        return reason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReason(@javax.annotation.Nullable String reason) {
+
+  public JsonNullable<String> getReason_JsonNullable() {
+    return reason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REASON)
+  public void setReason_JsonNullable(JsonNullable<String> reason) {
     this.reason = reason;
+  }
+
+  public void setReason(@javax.annotation.Nullable String reason) {
+    this.reason = JsonNullable.<String>of(reason);
   }
 
 
@@ -235,12 +246,23 @@ public class OnWhatsAppNumberSuspendedRequest {
         Objects.equals(this.event, onWhatsAppNumberSuspendedRequest.event) &&
         Objects.equals(this.timestamp, onWhatsAppNumberSuspendedRequest.timestamp) &&
         Objects.equals(this.number, onWhatsAppNumberSuspendedRequest.number) &&
-        Objects.equals(this.reason, onWhatsAppNumberSuspendedRequest.reason);
+        equalsNullable(this.reason, onWhatsAppNumberSuspendedRequest.reason);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, event, timestamp, number, reason);
+    return Objects.hash(id, event, timestamp, number, hashCodeNullable(reason));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AnalyticsOverviewDataStaleness;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,7 +45,7 @@ import dev.zernio.ApiClient;
   AnalyticsOverview.JSON_PROPERTY_LAST_SYNC,
   AnalyticsOverview.JSON_PROPERTY_DATA_STALENESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsOverview {
   public static final String JSON_PROPERTY_TOTAL_POSTS = "totalPosts";
   @javax.annotation.Nullable
@@ -56,8 +60,7 @@ public class AnalyticsOverview {
   private Integer scheduledPosts;
 
   public static final String JSON_PROPERTY_LAST_SYNC = "lastSync";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastSync;
+  private JsonNullable<OffsetDateTime> lastSync = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_DATA_STALENESS = "dataStaleness";
   @javax.annotation.Nullable
@@ -139,7 +142,7 @@ public class AnalyticsOverview {
 
 
   public AnalyticsOverview lastSync(@javax.annotation.Nullable OffsetDateTime lastSync) {
-    this.lastSync = lastSync;
+    this.lastSync = JsonNullable.<OffsetDateTime>of(lastSync);
     return this;
   }
 
@@ -148,17 +151,25 @@ public class AnalyticsOverview {
    * @return lastSync
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_SYNC, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastSync() {
-    return lastSync;
+        return lastSync.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_SYNC, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastSync(@javax.annotation.Nullable OffsetDateTime lastSync) {
+
+  public JsonNullable<OffsetDateTime> getLastSync_JsonNullable() {
+    return lastSync;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_SYNC)
+  public void setLastSync_JsonNullable(JsonNullable<OffsetDateTime> lastSync) {
     this.lastSync = lastSync;
+  }
+
+  public void setLastSync(@javax.annotation.Nullable OffsetDateTime lastSync) {
+    this.lastSync = JsonNullable.<OffsetDateTime>of(lastSync);
   }
 
 
@@ -201,13 +212,24 @@ public class AnalyticsOverview {
     return Objects.equals(this.totalPosts, analyticsOverview.totalPosts) &&
         Objects.equals(this.publishedPosts, analyticsOverview.publishedPosts) &&
         Objects.equals(this.scheduledPosts, analyticsOverview.scheduledPosts) &&
-        Objects.equals(this.lastSync, analyticsOverview.lastSync) &&
+        equalsNullable(this.lastSync, analyticsOverview.lastSync) &&
         Objects.equals(this.dataStaleness, analyticsOverview.dataStaleness);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalPosts, publishedPosts, scheduledPosts, lastSync, dataStaleness);
+    return Objects.hash(totalPosts, publishedPosts, scheduledPosts, hashCodeNullable(lastSync), dataStaleness);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

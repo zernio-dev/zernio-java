@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.TargetingSpec;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,11 +48,10 @@ import dev.zernio.ApiClient;
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_SIZE,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAudiences200ResponseAudiencesInner {
   public static final String JSON_PROPERTY_ID = "id";
-  @javax.annotation.Nullable
-  private String id;
+  private JsonNullable<String> id = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PLATFORM_AUDIENCE_ID = "platformAudienceId";
   @javax.annotation.Nullable
@@ -106,8 +109,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
   private TypeEnum type;
 
   public static final String JSON_PROPERTY_SPEC = "spec";
-  @javax.annotation.Nullable
-  private TargetingSpec spec;
+  private JsonNullable<TargetingSpec> spec = JsonNullable.<TargetingSpec>undefined();
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -125,7 +127,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
   }
 
   public ListAdAudiences200ResponseAudiencesInner id(@javax.annotation.Nullable String id) {
-    this.id = id;
+    this.id = JsonNullable.<String>of(id);
     return this;
   }
 
@@ -134,17 +136,25 @@ public class ListAdAudiences200ResponseAudiencesInner {
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getId() {
-    return id;
+        return id.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(@javax.annotation.Nullable String id) {
+
+  public JsonNullable<String> getId_JsonNullable() {
+    return id;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ID)
+  public void setId_JsonNullable(JsonNullable<String> id) {
     this.id = id;
+  }
+
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = JsonNullable.<String>of(id);
   }
 
 
@@ -245,26 +255,34 @@ public class ListAdAudiences200ResponseAudiencesInner {
 
 
   public ListAdAudiences200ResponseAudiencesInner spec(@javax.annotation.Nullable TargetingSpec spec) {
-    this.spec = spec;
+    this.spec = JsonNullable.<TargetingSpec>of(spec);
     return this;
   }
 
   /**
-   * Present (and the only meaningful payload) when &#x60;type&#x60; is &#x60;saved_targeting&#x60;. Null for uploaded/derived audience types.
+   * Get spec
    * @return spec
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public TargetingSpec getSpec() {
-    return spec;
+        return spec.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSpec(@javax.annotation.Nullable TargetingSpec spec) {
+
+  public JsonNullable<TargetingSpec> getSpec_JsonNullable() {
+    return spec;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SPEC)
+  public void setSpec_JsonNullable(JsonNullable<TargetingSpec> spec) {
     this.spec = spec;
+  }
+
+  public void setSpec(@javax.annotation.Nullable TargetingSpec spec) {
+    this.spec = JsonNullable.<TargetingSpec>of(spec);
   }
 
 
@@ -352,20 +370,31 @@ public class ListAdAudiences200ResponseAudiencesInner {
       return false;
     }
     ListAdAudiences200ResponseAudiencesInner listAdAudiences200ResponseAudiencesInner = (ListAdAudiences200ResponseAudiencesInner) o;
-    return Objects.equals(this.id, listAdAudiences200ResponseAudiencesInner.id) &&
+    return equalsNullable(this.id, listAdAudiences200ResponseAudiencesInner.id) &&
         Objects.equals(this.platformAudienceId, listAdAudiences200ResponseAudiencesInner.platformAudienceId) &&
         Objects.equals(this.name, listAdAudiences200ResponseAudiencesInner.name) &&
         Objects.equals(this.description, listAdAudiences200ResponseAudiencesInner.description) &&
         Objects.equals(this.type, listAdAudiences200ResponseAudiencesInner.type) &&
-        Objects.equals(this.spec, listAdAudiences200ResponseAudiencesInner.spec) &&
+        equalsNullable(this.spec, listAdAudiences200ResponseAudiencesInner.spec) &&
         Objects.equals(this.platform, listAdAudiences200ResponseAudiencesInner.platform) &&
         Objects.equals(this.size, listAdAudiences200ResponseAudiencesInner.size) &&
         Objects.equals(this.status, listAdAudiences200ResponseAudiencesInner.status);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformAudienceId, name, description, type, spec, platform, size, status);
+    return Objects.hash(hashCodeNullable(id), platformAudienceId, name, description, type, hashCodeNullable(spec), platform, size, status);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

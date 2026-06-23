@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetWhatsAppPhoneNumbers200ResponseSandboxTemplate;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,15 +43,14 @@ import dev.zernio.ApiClient;
   GetWhatsAppPhoneNumbers200ResponseSandbox.JSON_PROPERTY_TEMPLATE,
   GetWhatsAppPhoneNumbers200ResponseSandbox.JSON_PROPERTY_IS_SANDBOX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppPhoneNumbers200ResponseSandbox {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
   private String phoneNumber;
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
-  @javax.annotation.Nullable
-  private String accountId;
+  private JsonNullable<String> accountId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TEMPLATE = "template";
   @javax.annotation.Nullable
@@ -85,7 +88,7 @@ public class GetWhatsAppPhoneNumbers200ResponseSandbox {
 
 
   public GetWhatsAppPhoneNumbers200ResponseSandbox accountId(@javax.annotation.Nullable String accountId) {
-    this.accountId = accountId;
+    this.accountId = JsonNullable.<String>of(accountId);
     return this;
   }
 
@@ -94,17 +97,25 @@ public class GetWhatsAppPhoneNumbers200ResponseSandbox {
    * @return accountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAccountId() {
-    return accountId;
+        return accountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountId(@javax.annotation.Nullable String accountId) {
+
+  public JsonNullable<String> getAccountId_JsonNullable() {
+    return accountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACCOUNT_ID)
+  public void setAccountId_JsonNullable(JsonNullable<String> accountId) {
     this.accountId = accountId;
+  }
+
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = JsonNullable.<String>of(accountId);
   }
 
 
@@ -169,14 +180,25 @@ public class GetWhatsAppPhoneNumbers200ResponseSandbox {
     }
     GetWhatsAppPhoneNumbers200ResponseSandbox getWhatsAppPhoneNumbers200ResponseSandbox = (GetWhatsAppPhoneNumbers200ResponseSandbox) o;
     return Objects.equals(this.phoneNumber, getWhatsAppPhoneNumbers200ResponseSandbox.phoneNumber) &&
-        Objects.equals(this.accountId, getWhatsAppPhoneNumbers200ResponseSandbox.accountId) &&
+        equalsNullable(this.accountId, getWhatsAppPhoneNumbers200ResponseSandbox.accountId) &&
         Objects.equals(this.template, getWhatsAppPhoneNumbers200ResponseSandbox.template) &&
         Objects.equals(this.isSandbox, getWhatsAppPhoneNumbers200ResponseSandbox.isSandbox);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, accountId, template, isSandbox);
+    return Objects.hash(phoneNumber, hashCodeNullable(accountId), template, isSandbox);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

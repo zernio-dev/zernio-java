@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,15 +41,14 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseSummary.JSON_PROPERTY_TOTAL_REVIEWS,
   ListInboxReviews200ResponseSummary.JSON_PROPERTY_AVERAGE_RATING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseSummary {
   public static final String JSON_PROPERTY_TOTAL_REVIEWS = "totalReviews";
   @javax.annotation.Nullable
   private Integer totalReviews;
 
   public static final String JSON_PROPERTY_AVERAGE_RATING = "averageRating";
-  @javax.annotation.Nullable
-  private BigDecimal averageRating;
+  private JsonNullable<BigDecimal> averageRating = JsonNullable.<BigDecimal>undefined();
 
   public ListInboxReviews200ResponseSummary() { 
   }
@@ -75,7 +78,7 @@ public class ListInboxReviews200ResponseSummary {
 
 
   public ListInboxReviews200ResponseSummary averageRating(@javax.annotation.Nullable BigDecimal averageRating) {
-    this.averageRating = averageRating;
+    this.averageRating = JsonNullable.<BigDecimal>of(averageRating);
     return this;
   }
 
@@ -84,17 +87,25 @@ public class ListInboxReviews200ResponseSummary {
    * @return averageRating
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AVERAGE_RATING, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public BigDecimal getAverageRating() {
-    return averageRating;
+        return averageRating.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AVERAGE_RATING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAverageRating(@javax.annotation.Nullable BigDecimal averageRating) {
+
+  public JsonNullable<BigDecimal> getAverageRating_JsonNullable() {
+    return averageRating;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AVERAGE_RATING)
+  public void setAverageRating_JsonNullable(JsonNullable<BigDecimal> averageRating) {
     this.averageRating = averageRating;
+  }
+
+  public void setAverageRating(@javax.annotation.Nullable BigDecimal averageRating) {
+    this.averageRating = JsonNullable.<BigDecimal>of(averageRating);
   }
 
 
@@ -111,12 +122,23 @@ public class ListInboxReviews200ResponseSummary {
     }
     ListInboxReviews200ResponseSummary listInboxReviews200ResponseSummary = (ListInboxReviews200ResponseSummary) o;
     return Objects.equals(this.totalReviews, listInboxReviews200ResponseSummary.totalReviews) &&
-        Objects.equals(this.averageRating, listInboxReviews200ResponseSummary.averageRating);
+        equalsNullable(this.averageRating, listInboxReviews200ResponseSummary.averageRating);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(totalReviews, averageRating);
+    return Objects.hash(totalReviews, hashCodeNullable(averageRating));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

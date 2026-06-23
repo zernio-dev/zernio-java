@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppConversions200ResponseEventsInner.JSON_PROPERTY_TRACE_ID,
   ListWhatsAppConversions200ResponseEventsInner.JSON_PROPERTY_DURATION_MS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppConversions200ResponseEventsInner {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nullable
@@ -53,24 +57,19 @@ public class ListWhatsAppConversions200ResponseEventsInner {
   private String eventName;
 
   public static final String JSON_PROPERTY_CONVERSATION_ID = "conversationId";
-  @javax.annotation.Nullable
-  private String conversationId;
+  private JsonNullable<String> conversationId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EVENTS_RECEIVED = "eventsReceived";
-  @javax.annotation.Nullable
-  private Integer eventsReceived;
+  private JsonNullable<Integer> eventsReceived = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_EVENTS_FAILED = "eventsFailed";
-  @javax.annotation.Nullable
-  private Integer eventsFailed;
+  private JsonNullable<Integer> eventsFailed = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_TRACE_ID = "traceId";
-  @javax.annotation.Nullable
-  private String traceId;
+  private JsonNullable<String> traceId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DURATION_MS = "durationMs";
-  @javax.annotation.Nullable
-  private Integer durationMs;
+  private JsonNullable<Integer> durationMs = JsonNullable.<Integer>undefined();
 
   public ListWhatsAppConversions200ResponseEventsInner() { 
   }
@@ -124,7 +123,7 @@ public class ListWhatsAppConversions200ResponseEventsInner {
 
 
   public ListWhatsAppConversions200ResponseEventsInner conversationId(@javax.annotation.Nullable String conversationId) {
-    this.conversationId = conversationId;
+    this.conversationId = JsonNullable.<String>of(conversationId);
     return this;
   }
 
@@ -133,22 +132,30 @@ public class ListWhatsAppConversions200ResponseEventsInner {
    * @return conversationId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getConversationId() {
-    return conversationId;
+        return conversationId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConversationId(@javax.annotation.Nullable String conversationId) {
+
+  public JsonNullable<String> getConversationId_JsonNullable() {
+    return conversationId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONVERSATION_ID)
+  public void setConversationId_JsonNullable(JsonNullable<String> conversationId) {
     this.conversationId = conversationId;
+  }
+
+  public void setConversationId(@javax.annotation.Nullable String conversationId) {
+    this.conversationId = JsonNullable.<String>of(conversationId);
   }
 
 
   public ListWhatsAppConversions200ResponseEventsInner eventsReceived(@javax.annotation.Nullable Integer eventsReceived) {
-    this.eventsReceived = eventsReceived;
+    this.eventsReceived = JsonNullable.<Integer>of(eventsReceived);
     return this;
   }
 
@@ -157,22 +164,30 @@ public class ListWhatsAppConversions200ResponseEventsInner {
    * @return eventsReceived
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EVENTS_RECEIVED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getEventsReceived() {
-    return eventsReceived;
+        return eventsReceived.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EVENTS_RECEIVED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEventsReceived(@javax.annotation.Nullable Integer eventsReceived) {
+
+  public JsonNullable<Integer> getEventsReceived_JsonNullable() {
+    return eventsReceived;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EVENTS_RECEIVED)
+  public void setEventsReceived_JsonNullable(JsonNullable<Integer> eventsReceived) {
     this.eventsReceived = eventsReceived;
+  }
+
+  public void setEventsReceived(@javax.annotation.Nullable Integer eventsReceived) {
+    this.eventsReceived = JsonNullable.<Integer>of(eventsReceived);
   }
 
 
   public ListWhatsAppConversions200ResponseEventsInner eventsFailed(@javax.annotation.Nullable Integer eventsFailed) {
-    this.eventsFailed = eventsFailed;
+    this.eventsFailed = JsonNullable.<Integer>of(eventsFailed);
     return this;
   }
 
@@ -181,22 +196,30 @@ public class ListWhatsAppConversions200ResponseEventsInner {
    * @return eventsFailed
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EVENTS_FAILED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getEventsFailed() {
-    return eventsFailed;
+        return eventsFailed.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EVENTS_FAILED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEventsFailed(@javax.annotation.Nullable Integer eventsFailed) {
+
+  public JsonNullable<Integer> getEventsFailed_JsonNullable() {
+    return eventsFailed;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EVENTS_FAILED)
+  public void setEventsFailed_JsonNullable(JsonNullable<Integer> eventsFailed) {
     this.eventsFailed = eventsFailed;
+  }
+
+  public void setEventsFailed(@javax.annotation.Nullable Integer eventsFailed) {
+    this.eventsFailed = JsonNullable.<Integer>of(eventsFailed);
   }
 
 
   public ListWhatsAppConversions200ResponseEventsInner traceId(@javax.annotation.Nullable String traceId) {
-    this.traceId = traceId;
+    this.traceId = JsonNullable.<String>of(traceId);
     return this;
   }
 
@@ -205,22 +228,30 @@ public class ListWhatsAppConversions200ResponseEventsInner {
    * @return traceId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TRACE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTraceId() {
-    return traceId;
+        return traceId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TRACE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTraceId(@javax.annotation.Nullable String traceId) {
+
+  public JsonNullable<String> getTraceId_JsonNullable() {
+    return traceId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TRACE_ID)
+  public void setTraceId_JsonNullable(JsonNullable<String> traceId) {
     this.traceId = traceId;
+  }
+
+  public void setTraceId(@javax.annotation.Nullable String traceId) {
+    this.traceId = JsonNullable.<String>of(traceId);
   }
 
 
   public ListWhatsAppConversions200ResponseEventsInner durationMs(@javax.annotation.Nullable Integer durationMs) {
-    this.durationMs = durationMs;
+    this.durationMs = JsonNullable.<Integer>of(durationMs);
     return this;
   }
 
@@ -229,17 +260,25 @@ public class ListWhatsAppConversions200ResponseEventsInner {
    * @return durationMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DURATION_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getDurationMs() {
-    return durationMs;
+        return durationMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DURATION_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDurationMs(@javax.annotation.Nullable Integer durationMs) {
+
+  public JsonNullable<Integer> getDurationMs_JsonNullable() {
+    return durationMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DURATION_MS)
+  public void setDurationMs_JsonNullable(JsonNullable<Integer> durationMs) {
     this.durationMs = durationMs;
+  }
+
+  public void setDurationMs(@javax.annotation.Nullable Integer durationMs) {
+    this.durationMs = JsonNullable.<Integer>of(durationMs);
   }
 
 
@@ -257,16 +296,27 @@ public class ListWhatsAppConversions200ResponseEventsInner {
     ListWhatsAppConversions200ResponseEventsInner listWhatsAppConversions200ResponseEventsInner = (ListWhatsAppConversions200ResponseEventsInner) o;
     return Objects.equals(this.timestamp, listWhatsAppConversions200ResponseEventsInner.timestamp) &&
         Objects.equals(this.eventName, listWhatsAppConversions200ResponseEventsInner.eventName) &&
-        Objects.equals(this.conversationId, listWhatsAppConversions200ResponseEventsInner.conversationId) &&
-        Objects.equals(this.eventsReceived, listWhatsAppConversions200ResponseEventsInner.eventsReceived) &&
-        Objects.equals(this.eventsFailed, listWhatsAppConversions200ResponseEventsInner.eventsFailed) &&
-        Objects.equals(this.traceId, listWhatsAppConversions200ResponseEventsInner.traceId) &&
-        Objects.equals(this.durationMs, listWhatsAppConversions200ResponseEventsInner.durationMs);
+        equalsNullable(this.conversationId, listWhatsAppConversions200ResponseEventsInner.conversationId) &&
+        equalsNullable(this.eventsReceived, listWhatsAppConversions200ResponseEventsInner.eventsReceived) &&
+        equalsNullable(this.eventsFailed, listWhatsAppConversions200ResponseEventsInner.eventsFailed) &&
+        equalsNullable(this.traceId, listWhatsAppConversions200ResponseEventsInner.traceId) &&
+        equalsNullable(this.durationMs, listWhatsAppConversions200ResponseEventsInner.durationMs);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(timestamp, eventName, conversationId, eventsReceived, eventsFailed, traceId, durationMs);
+    return Objects.hash(timestamp, eventName, hashCodeNullable(conversationId), hashCodeNullable(eventsReceived), hashCodeNullable(eventsFailed), hashCodeNullable(traceId), hashCodeNullable(durationMs));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

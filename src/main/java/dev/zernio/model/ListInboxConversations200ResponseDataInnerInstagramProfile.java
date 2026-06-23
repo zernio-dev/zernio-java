@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,33 +44,28 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInnerInstagramProfile.JSON_PROPERTY_IS_VERIFIED,
   ListInboxConversations200ResponseDataInnerInstagramProfile.JSON_PROPERTY_FETCHED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseDataInnerInstagramProfile {
   public static final String JSON_PROPERTY_IS_FOLLOWER = "isFollower";
-  @javax.annotation.Nullable
-  private Boolean isFollower;
+  private JsonNullable<Boolean> isFollower = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_IS_FOLLOWING = "isFollowing";
-  @javax.annotation.Nullable
-  private Boolean isFollowing;
+  private JsonNullable<Boolean> isFollowing = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_FOLLOWER_COUNT = "followerCount";
-  @javax.annotation.Nullable
-  private Integer followerCount;
+  private JsonNullable<Integer> followerCount = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_IS_VERIFIED = "isVerified";
-  @javax.annotation.Nullable
-  private Boolean isVerified;
+  private JsonNullable<Boolean> isVerified = JsonNullable.<Boolean>undefined();
 
   public static final String JSON_PROPERTY_FETCHED_AT = "fetchedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime fetchedAt;
+  private JsonNullable<OffsetDateTime> fetchedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public ListInboxConversations200ResponseDataInnerInstagramProfile() { 
   }
 
   public ListInboxConversations200ResponseDataInnerInstagramProfile isFollower(@javax.annotation.Nullable Boolean isFollower) {
-    this.isFollower = isFollower;
+    this.isFollower = JsonNullable.<Boolean>of(isFollower);
     return this;
   }
 
@@ -75,22 +74,30 @@ public class ListInboxConversations200ResponseDataInnerInstagramProfile {
    * @return isFollower
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getIsFollower() {
-    return isFollower;
+        return isFollower.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsFollower(@javax.annotation.Nullable Boolean isFollower) {
+
+  public JsonNullable<Boolean> getIsFollower_JsonNullable() {
+    return isFollower;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_FOLLOWER)
+  public void setIsFollower_JsonNullable(JsonNullable<Boolean> isFollower) {
     this.isFollower = isFollower;
+  }
+
+  public void setIsFollower(@javax.annotation.Nullable Boolean isFollower) {
+    this.isFollower = JsonNullable.<Boolean>of(isFollower);
   }
 
 
   public ListInboxConversations200ResponseDataInnerInstagramProfile isFollowing(@javax.annotation.Nullable Boolean isFollowing) {
-    this.isFollowing = isFollowing;
+    this.isFollowing = JsonNullable.<Boolean>of(isFollowing);
     return this;
   }
 
@@ -99,22 +106,30 @@ public class ListInboxConversations200ResponseDataInnerInstagramProfile {
    * @return isFollowing
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWING, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getIsFollowing() {
-    return isFollowing;
+        return isFollowing.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IS_FOLLOWING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsFollowing(@javax.annotation.Nullable Boolean isFollowing) {
+
+  public JsonNullable<Boolean> getIsFollowing_JsonNullable() {
+    return isFollowing;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_FOLLOWING)
+  public void setIsFollowing_JsonNullable(JsonNullable<Boolean> isFollowing) {
     this.isFollowing = isFollowing;
+  }
+
+  public void setIsFollowing(@javax.annotation.Nullable Boolean isFollowing) {
+    this.isFollowing = JsonNullable.<Boolean>of(isFollowing);
   }
 
 
   public ListInboxConversations200ResponseDataInnerInstagramProfile followerCount(@javax.annotation.Nullable Integer followerCount) {
-    this.followerCount = followerCount;
+    this.followerCount = JsonNullable.<Integer>of(followerCount);
     return this;
   }
 
@@ -123,22 +138,30 @@ public class ListInboxConversations200ResponseDataInnerInstagramProfile {
    * @return followerCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FOLLOWER_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getFollowerCount() {
-    return followerCount;
+        return followerCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FOLLOWER_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFollowerCount(@javax.annotation.Nullable Integer followerCount) {
+
+  public JsonNullable<Integer> getFollowerCount_JsonNullable() {
+    return followerCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FOLLOWER_COUNT)
+  public void setFollowerCount_JsonNullable(JsonNullable<Integer> followerCount) {
     this.followerCount = followerCount;
+  }
+
+  public void setFollowerCount(@javax.annotation.Nullable Integer followerCount) {
+    this.followerCount = JsonNullable.<Integer>of(followerCount);
   }
 
 
   public ListInboxConversations200ResponseDataInnerInstagramProfile isVerified(@javax.annotation.Nullable Boolean isVerified) {
-    this.isVerified = isVerified;
+    this.isVerified = JsonNullable.<Boolean>of(isVerified);
     return this;
   }
 
@@ -147,22 +170,30 @@ public class ListInboxConversations200ResponseDataInnerInstagramProfile {
    * @return isVerified
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IS_VERIFIED, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getIsVerified() {
-    return isVerified;
+        return isVerified.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IS_VERIFIED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsVerified(@javax.annotation.Nullable Boolean isVerified) {
+
+  public JsonNullable<Boolean> getIsVerified_JsonNullable() {
+    return isVerified;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IS_VERIFIED)
+  public void setIsVerified_JsonNullable(JsonNullable<Boolean> isVerified) {
     this.isVerified = isVerified;
+  }
+
+  public void setIsVerified(@javax.annotation.Nullable Boolean isVerified) {
+    this.isVerified = JsonNullable.<Boolean>of(isVerified);
   }
 
 
   public ListInboxConversations200ResponseDataInnerInstagramProfile fetchedAt(@javax.annotation.Nullable OffsetDateTime fetchedAt) {
-    this.fetchedAt = fetchedAt;
+    this.fetchedAt = JsonNullable.<OffsetDateTime>of(fetchedAt);
     return this;
   }
 
@@ -171,17 +202,25 @@ public class ListInboxConversations200ResponseDataInnerInstagramProfile {
    * @return fetchedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FETCHED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getFetchedAt() {
-    return fetchedAt;
+        return fetchedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FETCHED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFetchedAt(@javax.annotation.Nullable OffsetDateTime fetchedAt) {
+
+  public JsonNullable<OffsetDateTime> getFetchedAt_JsonNullable() {
+    return fetchedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FETCHED_AT)
+  public void setFetchedAt_JsonNullable(JsonNullable<OffsetDateTime> fetchedAt) {
     this.fetchedAt = fetchedAt;
+  }
+
+  public void setFetchedAt(@javax.annotation.Nullable OffsetDateTime fetchedAt) {
+    this.fetchedAt = JsonNullable.<OffsetDateTime>of(fetchedAt);
   }
 
 
@@ -197,16 +236,27 @@ public class ListInboxConversations200ResponseDataInnerInstagramProfile {
       return false;
     }
     ListInboxConversations200ResponseDataInnerInstagramProfile listInboxConversations200ResponseDataInnerInstagramProfile = (ListInboxConversations200ResponseDataInnerInstagramProfile) o;
-    return Objects.equals(this.isFollower, listInboxConversations200ResponseDataInnerInstagramProfile.isFollower) &&
-        Objects.equals(this.isFollowing, listInboxConversations200ResponseDataInnerInstagramProfile.isFollowing) &&
-        Objects.equals(this.followerCount, listInboxConversations200ResponseDataInnerInstagramProfile.followerCount) &&
-        Objects.equals(this.isVerified, listInboxConversations200ResponseDataInnerInstagramProfile.isVerified) &&
-        Objects.equals(this.fetchedAt, listInboxConversations200ResponseDataInnerInstagramProfile.fetchedAt);
+    return equalsNullable(this.isFollower, listInboxConversations200ResponseDataInnerInstagramProfile.isFollower) &&
+        equalsNullable(this.isFollowing, listInboxConversations200ResponseDataInnerInstagramProfile.isFollowing) &&
+        equalsNullable(this.followerCount, listInboxConversations200ResponseDataInnerInstagramProfile.followerCount) &&
+        equalsNullable(this.isVerified, listInboxConversations200ResponseDataInnerInstagramProfile.isVerified) &&
+        equalsNullable(this.fetchedAt, listInboxConversations200ResponseDataInnerInstagramProfile.fetchedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(isFollower, isFollowing, followerCount, isVerified, fetchedAt);
+    return Objects.hash(hashCodeNullable(isFollower), hashCodeNullable(isFollowing), hashCodeNullable(followerCount), hashCodeNullable(isVerified), hashCodeNullable(fetchedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

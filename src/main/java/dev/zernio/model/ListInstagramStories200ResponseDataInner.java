@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,35 +46,29 @@ import dev.zernio.ApiClient;
   ListInstagramStories200ResponseDataInner.JSON_PROPERTY_THUMBNAIL_URL,
   ListInstagramStories200ResponseDataInner.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInstagramStories200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
-  @javax.annotation.Nullable
-  private String mediaType;
+  private JsonNullable<String> mediaType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MEDIA_PRODUCT_TYPE = "mediaProductType";
-  @javax.annotation.Nullable
-  private String mediaProductType;
+  private JsonNullable<String> mediaProductType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MEDIA_URL = "mediaUrl";
-  @javax.annotation.Nullable
-  private String mediaUrl;
+  private JsonNullable<String> mediaUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PERMALINK = "permalink";
-  @javax.annotation.Nullable
-  private String permalink;
+  private JsonNullable<String> permalink = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
-  @javax.annotation.Nullable
-  private String thumbnailUrl;
+  private JsonNullable<String> thumbnailUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
-  @javax.annotation.Nullable
-  private OffsetDateTime timestamp;
+  private JsonNullable<OffsetDateTime> timestamp = JsonNullable.<OffsetDateTime>undefined();
 
   public ListInstagramStories200ResponseDataInner() { 
   }
@@ -100,7 +98,7 @@ public class ListInstagramStories200ResponseDataInner {
 
 
   public ListInstagramStories200ResponseDataInner mediaType(@javax.annotation.Nullable String mediaType) {
-    this.mediaType = mediaType;
+    this.mediaType = JsonNullable.<String>of(mediaType);
     return this;
   }
 
@@ -109,22 +107,30 @@ public class ListInstagramStories200ResponseDataInner {
    * @return mediaType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMediaType() {
-    return mediaType;
+        return mediaType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MEDIA_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaType(@javax.annotation.Nullable String mediaType) {
+
+  public JsonNullable<String> getMediaType_JsonNullable() {
+    return mediaType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
+  public void setMediaType_JsonNullable(JsonNullable<String> mediaType) {
     this.mediaType = mediaType;
+  }
+
+  public void setMediaType(@javax.annotation.Nullable String mediaType) {
+    this.mediaType = JsonNullable.<String>of(mediaType);
   }
 
 
   public ListInstagramStories200ResponseDataInner mediaProductType(@javax.annotation.Nullable String mediaProductType) {
-    this.mediaProductType = mediaProductType;
+    this.mediaProductType = JsonNullable.<String>of(mediaProductType);
     return this;
   }
 
@@ -133,22 +139,30 @@ public class ListInstagramStories200ResponseDataInner {
    * @return mediaProductType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEDIA_PRODUCT_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMediaProductType() {
-    return mediaProductType;
+        return mediaProductType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MEDIA_PRODUCT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaProductType(@javax.annotation.Nullable String mediaProductType) {
+
+  public JsonNullable<String> getMediaProductType_JsonNullable() {
+    return mediaProductType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MEDIA_PRODUCT_TYPE)
+  public void setMediaProductType_JsonNullable(JsonNullable<String> mediaProductType) {
     this.mediaProductType = mediaProductType;
+  }
+
+  public void setMediaProductType(@javax.annotation.Nullable String mediaProductType) {
+    this.mediaProductType = JsonNullable.<String>of(mediaProductType);
   }
 
 
   public ListInstagramStories200ResponseDataInner mediaUrl(@javax.annotation.Nullable String mediaUrl) {
-    this.mediaUrl = mediaUrl;
+    this.mediaUrl = JsonNullable.<String>of(mediaUrl);
     return this;
   }
 
@@ -157,22 +171,30 @@ public class ListInstagramStories200ResponseDataInner {
    * @return mediaUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_MEDIA_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMediaUrl() {
-    return mediaUrl;
+        return mediaUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_MEDIA_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaUrl(@javax.annotation.Nullable String mediaUrl) {
+
+  public JsonNullable<String> getMediaUrl_JsonNullable() {
+    return mediaUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MEDIA_URL)
+  public void setMediaUrl_JsonNullable(JsonNullable<String> mediaUrl) {
     this.mediaUrl = mediaUrl;
+  }
+
+  public void setMediaUrl(@javax.annotation.Nullable String mediaUrl) {
+    this.mediaUrl = JsonNullable.<String>of(mediaUrl);
   }
 
 
   public ListInstagramStories200ResponseDataInner permalink(@javax.annotation.Nullable String permalink) {
-    this.permalink = permalink;
+    this.permalink = JsonNullable.<String>of(permalink);
     return this;
   }
 
@@ -181,22 +203,30 @@ public class ListInstagramStories200ResponseDataInner {
    * @return permalink
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPermalink() {
-    return permalink;
+        return permalink.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPermalink(@javax.annotation.Nullable String permalink) {
+
+  public JsonNullable<String> getPermalink_JsonNullable() {
+    return permalink;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PERMALINK)
+  public void setPermalink_JsonNullable(JsonNullable<String> permalink) {
     this.permalink = permalink;
+  }
+
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
+    this.permalink = JsonNullable.<String>of(permalink);
   }
 
 
   public ListInstagramStories200ResponseDataInner thumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
-    this.thumbnailUrl = thumbnailUrl;
+    this.thumbnailUrl = JsonNullable.<String>of(thumbnailUrl);
     return this;
   }
 
@@ -205,22 +235,30 @@ public class ListInstagramStories200ResponseDataInner {
    * @return thumbnailUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getThumbnailUrl() {
-    return thumbnailUrl;
+        return thumbnailUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_THUMBNAIL_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
+
+  public JsonNullable<String> getThumbnailUrl_JsonNullable() {
+    return thumbnailUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_THUMBNAIL_URL)
+  public void setThumbnailUrl_JsonNullable(JsonNullable<String> thumbnailUrl) {
     this.thumbnailUrl = thumbnailUrl;
+  }
+
+  public void setThumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
+    this.thumbnailUrl = JsonNullable.<String>of(thumbnailUrl);
   }
 
 
   public ListInstagramStories200ResponseDataInner timestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
-    this.timestamp = timestamp;
+    this.timestamp = JsonNullable.<OffsetDateTime>of(timestamp);
     return this;
   }
 
@@ -229,17 +267,25 @@ public class ListInstagramStories200ResponseDataInner {
    * @return timestamp
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getTimestamp() {
-    return timestamp;
+        return timestamp.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+
+  public JsonNullable<OffsetDateTime> getTimestamp_JsonNullable() {
+    return timestamp;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  public void setTimestamp_JsonNullable(JsonNullable<OffsetDateTime> timestamp) {
     this.timestamp = timestamp;
+  }
+
+  public void setTimestamp(@javax.annotation.Nullable OffsetDateTime timestamp) {
+    this.timestamp = JsonNullable.<OffsetDateTime>of(timestamp);
   }
 
 
@@ -256,17 +302,28 @@ public class ListInstagramStories200ResponseDataInner {
     }
     ListInstagramStories200ResponseDataInner listInstagramStories200ResponseDataInner = (ListInstagramStories200ResponseDataInner) o;
     return Objects.equals(this.id, listInstagramStories200ResponseDataInner.id) &&
-        Objects.equals(this.mediaType, listInstagramStories200ResponseDataInner.mediaType) &&
-        Objects.equals(this.mediaProductType, listInstagramStories200ResponseDataInner.mediaProductType) &&
-        Objects.equals(this.mediaUrl, listInstagramStories200ResponseDataInner.mediaUrl) &&
-        Objects.equals(this.permalink, listInstagramStories200ResponseDataInner.permalink) &&
-        Objects.equals(this.thumbnailUrl, listInstagramStories200ResponseDataInner.thumbnailUrl) &&
-        Objects.equals(this.timestamp, listInstagramStories200ResponseDataInner.timestamp);
+        equalsNullable(this.mediaType, listInstagramStories200ResponseDataInner.mediaType) &&
+        equalsNullable(this.mediaProductType, listInstagramStories200ResponseDataInner.mediaProductType) &&
+        equalsNullable(this.mediaUrl, listInstagramStories200ResponseDataInner.mediaUrl) &&
+        equalsNullable(this.permalink, listInstagramStories200ResponseDataInner.permalink) &&
+        equalsNullable(this.thumbnailUrl, listInstagramStories200ResponseDataInner.thumbnailUrl) &&
+        equalsNullable(this.timestamp, listInstagramStories200ResponseDataInner.timestamp);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, mediaType, mediaProductType, mediaUrl, permalink, thumbnailUrl, timestamp);
+    return Objects.hash(id, hashCodeNullable(mediaType), hashCodeNullable(mediaProductType), hashCodeNullable(mediaUrl), hashCodeNullable(permalink), hashCodeNullable(thumbnailUrl), hashCodeNullable(timestamp));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

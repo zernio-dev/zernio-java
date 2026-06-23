@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,7 +41,7 @@ import dev.zernio.ApiClient;
   ReplyToInboxPost200ResponseData.JSON_PROPERTY_IS_REPLY,
   ReplyToInboxPost200ResponseData.JSON_PROPERTY_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToInboxPost200ResponseData {
   public static final String JSON_PROPERTY_COMMENT_ID = "commentId";
   @javax.annotation.Nullable
@@ -48,8 +52,7 @@ public class ReplyToInboxPost200ResponseData {
   private Boolean isReply;
 
   public static final String JSON_PROPERTY_CID = "cid";
-  @javax.annotation.Nullable
-  private String cid;
+  private JsonNullable<String> cid = JsonNullable.<String>undefined();
 
   public ReplyToInboxPost200ResponseData() { 
   }
@@ -103,7 +106,7 @@ public class ReplyToInboxPost200ResponseData {
 
 
   public ReplyToInboxPost200ResponseData cid(@javax.annotation.Nullable String cid) {
-    this.cid = cid;
+    this.cid = JsonNullable.<String>of(cid);
     return this;
   }
 
@@ -112,17 +115,25 @@ public class ReplyToInboxPost200ResponseData {
    * @return cid
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCid() {
-    return cid;
+        return cid.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCid(@javax.annotation.Nullable String cid) {
+
+  public JsonNullable<String> getCid_JsonNullable() {
+    return cid;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CID)
+  public void setCid_JsonNullable(JsonNullable<String> cid) {
     this.cid = cid;
+  }
+
+  public void setCid(@javax.annotation.Nullable String cid) {
+    this.cid = JsonNullable.<String>of(cid);
   }
 
 
@@ -140,12 +151,23 @@ public class ReplyToInboxPost200ResponseData {
     ReplyToInboxPost200ResponseData replyToInboxPost200ResponseData = (ReplyToInboxPost200ResponseData) o;
     return Objects.equals(this.commentId, replyToInboxPost200ResponseData.commentId) &&
         Objects.equals(this.isReply, replyToInboxPost200ResponseData.isReply) &&
-        Objects.equals(this.cid, replyToInboxPost200ResponseData.cid);
+        equalsNullable(this.cid, replyToInboxPost200ResponseData.cid);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(commentId, isReply, cid);
+    return Objects.hash(commentId, isReply, hashCodeNullable(cid));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

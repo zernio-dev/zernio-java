@@ -47,14 +47,14 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentComment.JSON_PROPERTY_PARENT_COMMENT_ID,
   WebhookPayloadCommentComment.JSON_PROPERTY_AD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentComment {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
   private String id;
 
   public static final String JSON_PROPERTY_POST_ID = "postId";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String postId;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
@@ -127,7 +127,7 @@ public class WebhookPayloadCommentComment {
   private Boolean isReply;
 
   public static final String JSON_PROPERTY_PARENT_COMMENT_ID = "parentCommentId";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String parentCommentId;
 
   public static final String JSON_PROPERTY_AD = "ad";
@@ -161,7 +161,7 @@ public class WebhookPayloadCommentComment {
   }
 
 
-  public WebhookPayloadCommentComment postId(@javax.annotation.Nonnull String postId) {
+  public WebhookPayloadCommentComment postId(@javax.annotation.Nullable String postId) {
     this.postId = postId;
     return this;
   }
@@ -170,17 +170,17 @@ public class WebhookPayloadCommentComment {
    * Internal post ID (null for posts not published through Zernio)
    * @return postId
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_POST_ID, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_POST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPostId() {
     return postId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_POST_ID, required = true)
+  @JsonProperty(value = JSON_PROPERTY_POST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPostId(@javax.annotation.Nonnull String postId) {
+  public void setPostId(@javax.annotation.Nullable String postId) {
     this.postId = postId;
   }
 
@@ -329,7 +329,7 @@ public class WebhookPayloadCommentComment {
   }
 
 
-  public WebhookPayloadCommentComment parentCommentId(@javax.annotation.Nonnull String parentCommentId) {
+  public WebhookPayloadCommentComment parentCommentId(@javax.annotation.Nullable String parentCommentId) {
     this.parentCommentId = parentCommentId;
     return this;
   }
@@ -338,17 +338,17 @@ public class WebhookPayloadCommentComment {
    * Parent comment ID if this is a reply
    * @return parentCommentId
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PARENT_COMMENT_ID, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PARENT_COMMENT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getParentCommentId() {
     return parentCommentId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PARENT_COMMENT_ID, required = true)
+  @JsonProperty(value = JSON_PROPERTY_PARENT_COMMENT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setParentCommentId(@javax.annotation.Nonnull String parentCommentId) {
+  public void setParentCommentId(@javax.annotation.Nullable String parentCommentId) {
     this.parentCommentId = parentCommentId;
   }
 

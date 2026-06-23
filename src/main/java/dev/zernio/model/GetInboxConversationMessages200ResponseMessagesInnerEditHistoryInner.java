@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,11 +45,10 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.JSON_PROPERTY_ATTACHMENTS,
   GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.JSON_PROPERTY_EDITED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner {
   public static final String JSON_PROPERTY_TEXT = "text";
-  @javax.annotation.Nullable
-  private String text;
+  private JsonNullable<String> text = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
   @javax.annotation.Nullable
@@ -59,7 +62,7 @@ public class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInne
   }
 
   public GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner text(@javax.annotation.Nullable String text) {
-    this.text = text;
+    this.text = JsonNullable.<String>of(text);
     return this;
   }
 
@@ -68,17 +71,25 @@ public class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInne
    * @return text
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getText() {
-    return text;
+        return text.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setText(@javax.annotation.Nullable String text) {
+
+  public JsonNullable<String> getText_JsonNullable() {
+    return text;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEXT)
+  public void setText_JsonNullable(JsonNullable<String> text) {
     this.text = text;
+  }
+
+  public void setText(@javax.annotation.Nullable String text) {
+    this.text = JsonNullable.<String>of(text);
   }
 
 
@@ -150,14 +161,25 @@ public class GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInne
       return false;
     }
     GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner getInboxConversationMessages200ResponseMessagesInnerEditHistoryInner = (GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner) o;
-    return Objects.equals(this.text, getInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.text) &&
+    return equalsNullable(this.text, getInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.text) &&
         Objects.equals(this.attachments, getInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.attachments) &&
         Objects.equals(this.editedAt, getInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.editedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(text, attachments, editedAt);
+    return Objects.hash(hashCodeNullable(text), attachments, editedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

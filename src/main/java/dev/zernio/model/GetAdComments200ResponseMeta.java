@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,7 +50,7 @@ import dev.zernio.ApiClient;
   GetAdComments200ResponseMeta.JSON_PROPERTY_ACCOUNT_ID,
   GetAdComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdComments200ResponseMeta {
   /**
    * Which side these comments are on (same as &#x60;placement&#x60;).
@@ -139,8 +143,7 @@ public class GetAdComments200ResponseMeta {
   private String effectiveStoryId;
 
   public static final String JSON_PROPERTY_FACEBOOK_ACCOUNT_ID = "facebookAccountId";
-  @javax.annotation.Nullable
-  private String facebookAccountId;
+  private JsonNullable<String> facebookAccountId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTAGRAM_USER_ID = "instagramUserId";
   @javax.annotation.Nullable
@@ -286,7 +289,7 @@ public class GetAdComments200ResponseMeta {
 
 
   public GetAdComments200ResponseMeta facebookAccountId(@javax.annotation.Nullable String facebookAccountId) {
-    this.facebookAccountId = facebookAccountId;
+    this.facebookAccountId = JsonNullable.<String>of(facebookAccountId);
     return this;
   }
 
@@ -295,17 +298,25 @@ public class GetAdComments200ResponseMeta {
    * @return facebookAccountId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FACEBOOK_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFacebookAccountId() {
-    return facebookAccountId;
+        return facebookAccountId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FACEBOOK_ACCOUNT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFacebookAccountId(@javax.annotation.Nullable String facebookAccountId) {
+
+  public JsonNullable<String> getFacebookAccountId_JsonNullable() {
+    return facebookAccountId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FACEBOOK_ACCOUNT_ID)
+  public void setFacebookAccountId_JsonNullable(JsonNullable<String> facebookAccountId) {
     this.facebookAccountId = facebookAccountId;
+  }
+
+  public void setFacebookAccountId(@javax.annotation.Nullable String facebookAccountId) {
+    this.facebookAccountId = JsonNullable.<String>of(facebookAccountId);
   }
 
 
@@ -446,7 +457,7 @@ public class GetAdComments200ResponseMeta {
         Objects.equals(this.adId, getAdComments200ResponseMeta.adId) &&
         Objects.equals(this.platformAdId, getAdComments200ResponseMeta.platformAdId) &&
         Objects.equals(this.effectiveStoryId, getAdComments200ResponseMeta.effectiveStoryId) &&
-        Objects.equals(this.facebookAccountId, getAdComments200ResponseMeta.facebookAccountId) &&
+        equalsNullable(this.facebookAccountId, getAdComments200ResponseMeta.facebookAccountId) &&
         Objects.equals(this.instagramUserId, getAdComments200ResponseMeta.instagramUserId) &&
         Objects.equals(this.instagramPermalink, getAdComments200ResponseMeta.instagramPermalink) &&
         Objects.equals(this.instagramAccountId, getAdComments200ResponseMeta.instagramAccountId) &&
@@ -454,9 +465,20 @@ public class GetAdComments200ResponseMeta {
         Objects.equals(this.lastUpdated, getAdComments200ResponseMeta.lastUpdated);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(platform, placement, adId, platformAdId, effectiveStoryId, facebookAccountId, instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
+    return Objects.hash(platform, placement, adId, platformAdId, effectiveStoryId, hashCodeNullable(facebookAccountId), instagramUserId, instagramPermalink, instagramAccountId, accountId, lastUpdated);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

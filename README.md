@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-22T15:43:09.116576752Z[Etc/UTC]
+- Build date: 2026-06-23T07:55:56.286858491Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -662,8 +662,6 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**unenrollContactWithHttpInfo**](docs/SequencesApi.md#unenrollContactWithHttpInfo) | **DELETE** /v1/sequences/{sequenceId}/enroll/{contactId} | Unenroll contact
 *SequencesApi* | [**updateSequence**](docs/SequencesApi.md#updateSequence) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *SequencesApi* | [**updateSequenceWithHttpInfo**](docs/SequencesApi.md#updateSequenceWithHttpInfo) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
-*SmsApi* | [**sendSms**](docs/SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS or MMS
-*SmsApi* | [**sendSmsWithHttpInfo**](docs/SmsApi.md#sendSmsWithHttpInfo) | **POST** /v1/sms/messages | Send an SMS or MMS
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share a tracking tag with an ad account
 *TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share a tracking tag with an ad account
 *TrackingTagsApi* | [**createTrackingTag**](docs/TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag (Meta Pixel)
@@ -890,10 +888,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
- - [AccountGetResponse](docs/AccountGetResponse.md)
  - [AccountWithFollowerStats](docs/AccountWithFollowerStats.md)
  - [AccountWithFollowerStatsAllOfAccountStats](docs/AccountWithFollowerStatsAllOfAccountStats.md)
- - [AccountsListResponse](docs/AccountsListResponse.md)
  - [ActivateSequence200Response](docs/ActivateSequence200Response.md)
  - [ActivateWorkflow200Response](docs/ActivateWorkflow200Response.md)
  - [ActivateWorkflow200ResponseWorkflow](docs/ActivateWorkflow200ResponseWorkflow.md)
@@ -1027,7 +1023,6 @@ Class | Method | HTTP request | Description
  - [CreateCtwaAdRequestCitiesInner](docs/CreateCtwaAdRequestCitiesInner.md)
  - [CreateCtwaAdRequestCreativesInner](docs/CreateCtwaAdRequestCreativesInner.md)
  - [CreateCtwaAdRequestCreativesInnerVideo](docs/CreateCtwaAdRequestCreativesInnerVideo.md)
- - [CreateCtwaAdRequestCustomLocationsInner](docs/CreateCtwaAdRequestCustomLocationsInner.md)
  - [CreateCtwaAdRequestRegionsInner](docs/CreateCtwaAdRequestRegionsInner.md)
  - [CreateCtwaAdRequestVideo](docs/CreateCtwaAdRequestVideo.md)
  - [CreateCtwaAdRequestZipsInner](docs/CreateCtwaAdRequestZipsInner.md)
@@ -1053,7 +1048,6 @@ Class | Method | HTTP request | Description
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
  - [CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
- - [CreateLeadFormRequestContextCard](docs/CreateLeadFormRequestContextCard.md)
  - [CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
  - [CreateLeadFormRequestQuestionsInnerOptionsInner](docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
@@ -1083,13 +1077,11 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestCreativesInnerVideo](docs/CreateStandaloneAdRequestCreativesInnerVideo.md)
  - [CreateStandaloneAdRequestCustomLocationsInner](docs/CreateStandaloneAdRequestCustomLocationsInner.md)
  - [CreateStandaloneAdRequestDynamicCreative](docs/CreateStandaloneAdRequestDynamicCreative.md)
- - [CreateStandaloneAdRequestExcludedLocations](docs/CreateStandaloneAdRequestExcludedLocations.md)
  - [CreateStandaloneAdRequestImages](docs/CreateStandaloneAdRequestImages.md)
  - [CreateStandaloneAdRequestPlacementAssets](docs/CreateStandaloneAdRequestPlacementAssets.md)
  - [CreateStandaloneAdRequestPlacementAssetsRulesInner](docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md)
  - [CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements](docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md)
  - [CreateStandaloneAdRequestPlacements](docs/CreateStandaloneAdRequestPlacements.md)
- - [CreateStandaloneAdRequestPlacesInner](docs/CreateStandaloneAdRequestPlacesInner.md)
  - [CreateStandaloneAdRequestPromotedObject](docs/CreateStandaloneAdRequestPromotedObject.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)
@@ -1176,7 +1168,6 @@ Class | Method | HTTP request | Description
  - [FetchGoogleBusinessVerificationOptionsRequest](docs/FetchGoogleBusinessVerificationOptionsRequest.md)
  - [FollowUser200Response](docs/FollowUser200Response.md)
  - [FollowUserRequest](docs/FollowUserRequest.md)
- - [FollowerStatsResponse](docs/FollowerStatsResponse.md)
  - [FoodMenu](docs/FoodMenu.md)
  - [FoodMenuItem](docs/FoodMenuItem.md)
  - [FoodMenuItemAttributes](docs/FoodMenuItemAttributes.md)
@@ -1335,9 +1326,6 @@ Class | Method | HTTP request | Description
  - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
  - [GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
  - [GetLeadForm200Response](docs/GetLeadForm200Response.md)
- - [GetLeadForm200ResponseForm](docs/GetLeadForm200ResponseForm.md)
- - [GetLeadForm200ResponseFormQuestionsInner](docs/GetLeadForm200ResponseFormQuestionsInner.md)
- - [GetLeadForm200ResponseFormThankYouPage](docs/GetLeadForm200ResponseFormThankYouPage.md)
  - [GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
@@ -1497,7 +1485,6 @@ Class | Method | HTTP request | Description
  - [LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner](docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md)
  - [LinkedInAggregateAnalyticsTotalResponse](docs/LinkedInAggregateAnalyticsTotalResponse.md)
  - [LinkedInAggregateAnalyticsTotalResponseAnalytics](docs/LinkedInAggregateAnalyticsTotalResponseAnalytics.md)
- - [LinkedInAggregateAnalyticsTotalResponseDateRange](docs/LinkedInAggregateAnalyticsTotalResponseDateRange.md)
  - [LinkedInPlatformData](docs/LinkedInPlatformData.md)
  - [ListAccountGroups200Response](docs/ListAccountGroups200Response.md)
  - [ListAccountGroups200ResponseGroupsInner](docs/ListAccountGroups200ResponseGroupsInner.md)
@@ -1626,7 +1613,6 @@ Class | Method | HTTP request | Description
  - [ListWorkflows200ResponseWorkflowsInner](docs/ListWorkflows200ResponseWorkflowsInner.md)
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
  - [MediaItem](docs/MediaItem.md)
- - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [Money](docs/Money.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
@@ -1660,9 +1646,6 @@ Class | Method | HTTP request | Description
  - [PreviewQueue200Response](docs/PreviewQueue200Response.md)
  - [Profile](docs/Profile.md)
  - [ProfileCreateResponse](docs/ProfileCreateResponse.md)
- - [ProfileDeleteResponse](docs/ProfileDeleteResponse.md)
- - [ProfileGetResponse](docs/ProfileGetResponse.md)
- - [ProfileUpdateResponse](docs/ProfileUpdateResponse.md)
  - [ProfilesListResponse](docs/ProfilesListResponse.md)
  - [PurchaseWhatsAppPhoneNumber200Response](docs/PurchaseWhatsAppPhoneNumber200Response.md)
  - [PurchaseWhatsAppPhoneNumber200ResponseOneOf](docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md)
@@ -1672,13 +1655,8 @@ Class | Method | HTTP request | Description
  - [PurchaseWhatsAppPhoneNumber202Response](docs/PurchaseWhatsAppPhoneNumber202Response.md)
  - [PurchaseWhatsAppPhoneNumber409Response](docs/PurchaseWhatsAppPhoneNumber409Response.md)
  - [PurchaseWhatsAppPhoneNumberRequest](docs/PurchaseWhatsAppPhoneNumberRequest.md)
- - [QueueDeleteResponse](docs/QueueDeleteResponse.md)
- - [QueueNextSlotResponse](docs/QueueNextSlotResponse.md)
- - [QueuePreviewResponse](docs/QueuePreviewResponse.md)
  - [QueueSchedule](docs/QueueSchedule.md)
  - [QueueSlot](docs/QueueSlot.md)
- - [QueueSlotsResponse](docs/QueueSlotsResponse.md)
- - [QueueUpdateResponse](docs/QueueUpdateResponse.md)
  - [RecyclingConfig](docs/RecyclingConfig.md)
  - [RecyclingState](docs/RecyclingState.md)
  - [RedditPlatformData](docs/RedditPlatformData.md)
@@ -1701,7 +1679,6 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxPost200ResponseData](docs/ReplyToInboxPost200ResponseData.md)
  - [ReplyToInboxPostRequest](docs/ReplyToInboxPostRequest.md)
  - [ReplyToInboxReview200Response](docs/ReplyToInboxReview200Response.md)
- - [ReplyToInboxReview200ResponseReply](docs/ReplyToInboxReview200ResponseReply.md)
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
@@ -1791,8 +1768,6 @@ Class | Method | HTTP request | Description
  - [SendPrivateReplyToCommentRequestButtonsInnerOneOf1](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.md)
  - [SendPrivateReplyToCommentRequestButtonsInnerOneOf2](docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.md)
  - [SendPrivateReplyToCommentRequestQuickRepliesInner](docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md)
- - [SendSms200Response](docs/SendSms200Response.md)
- - [SendSmsRequest](docs/SendSmsRequest.md)
  - [SendTypingIndicatorRequest](docs/SendTypingIndicatorRequest.md)
  - [SendWhatsAppConversion200Response](docs/SendWhatsAppConversion200Response.md)
  - [SendWhatsAppConversionRequest](docs/SendWhatsAppConversionRequest.md)
@@ -1956,15 +1931,12 @@ Class | Method | HTTP request | Description
  - [UpdateYoutubeDefaultPlaylistRequest](docs/UpdateYoutubeDefaultPlaylistRequest.md)
  - [UploadMediaDirect200Response](docs/UploadMediaDirect200Response.md)
  - [UploadMediaDirectRequest](docs/UploadMediaDirectRequest.md)
- - [UploadTokenResponse](docs/UploadTokenResponse.md)
- - [UploadTokenStatusResponse](docs/UploadTokenStatusResponse.md)
  - [UploadWhatsAppFlowJson200Response](docs/UploadWhatsAppFlowJson200Response.md)
  - [UploadWhatsAppFlowJson200ResponseValidationErrorsInner](docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md)
  - [UploadWhatsAppFlowJsonRequest](docs/UploadWhatsAppFlowJsonRequest.md)
  - [UploadWhatsAppFlowJsonRequestFlowJson](docs/UploadWhatsAppFlowJsonRequestFlowJson.md)
  - [UploadWhatsAppNumberKycDocument200Response](docs/UploadWhatsAppNumberKycDocument200Response.md)
  - [UploadWhatsAppProfilePhotoRequest](docs/UploadWhatsAppProfilePhotoRequest.md)
- - [UploadedFile](docs/UploadedFile.md)
  - [UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)
  - [UsageStats](docs/UsageStats.md)
  - [UsageStatsLimits](docs/UsageStatsLimits.md)
@@ -1972,8 +1944,6 @@ Class | Method | HTTP request | Description
  - [UsageStatsUsage](docs/UsageStatsUsage.md)
  - [UsageStatsUsageXApiCalls](docs/UsageStatsUsageXApiCalls.md)
  - [User](docs/User.md)
- - [UserGetResponse](docs/UserGetResponse.md)
- - [UsersListResponse](docs/UsersListResponse.md)
  - [ValidateMedia200Response](docs/ValidateMedia200Response.md)
  - [ValidateMedia200ResponsePlatformLimitsValue](docs/ValidateMedia200ResponsePlatformLimitsValue.md)
  - [ValidateMediaRequest](docs/ValidateMediaRequest.md)

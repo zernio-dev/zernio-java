@@ -84,6 +84,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Media validation result |  -  |
+| **401** | Unauthorized |  -  |
 
 ## validateMediaWithHttpInfo
 
@@ -157,6 +158,7 @@ ApiResponse<[**ValidateMedia200Response**](ValidateMedia200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Media validation result |  -  |
+| **401** | Unauthorized |  -  |
 
 
 ## validatePost
@@ -228,6 +230,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Validation result |  -  |
+| **401** | Unauthorized |  -  |
 
 ## validatePostWithHttpInfo
 
@@ -301,6 +304,7 @@ ApiResponse<[**ValidatePost200Response**](ValidatePost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Validation result |  -  |
+| **401** | Unauthorized |  -  |
 
 
 ## validatePostLength
@@ -372,6 +376,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Character counts per platform |  -  |
+| **401** | Unauthorized |  -  |
 
 ## validatePostLengthWithHttpInfo
 
@@ -445,6 +450,7 @@ ApiResponse<[**ValidatePostLength200Response**](ValidatePostLength200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Character counts per platform |  -  |
+| **401** | Unauthorized |  -  |
 
 
 ## validateSubreddit
@@ -518,6 +524,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Subreddit lookup result |  -  |
+| **401** | Unauthorized |  -  |
 
 ## validateSubredditWithHttpInfo
 
@@ -593,4 +600,5 @@ ApiResponse<[**ValidateSubreddit200Response**](ValidateSubreddit200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Subreddit lookup result |  -  |
+| **401** | Unauthorized |  -  |
 

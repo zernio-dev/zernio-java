@@ -28,6 +28,10 @@ import dev.zernio.model.RedditPost;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,19 +44,17 @@ import dev.zernio.ApiClient;
   SearchReddit200Response.JSON_PROPERTY_AFTER,
   SearchReddit200Response.JSON_PROPERTY_BEFORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchReddit200Response {
   public static final String JSON_PROPERTY_ITEMS = "items";
   @javax.annotation.Nullable
   private List<RedditPost> items = new ArrayList<>();
 
   public static final String JSON_PROPERTY_AFTER = "after";
-  @javax.annotation.Nullable
-  private String after;
+  private JsonNullable<String> after = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_BEFORE = "before";
-  @javax.annotation.Nullable
-  private String before;
+  private JsonNullable<String> before = JsonNullable.<String>undefined();
 
   public SearchReddit200Response() { 
   }
@@ -90,7 +92,7 @@ public class SearchReddit200Response {
 
 
   public SearchReddit200Response after(@javax.annotation.Nullable String after) {
-    this.after = after;
+    this.after = JsonNullable.<String>of(after);
     return this;
   }
 
@@ -99,22 +101,30 @@ public class SearchReddit200Response {
    * @return after
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AFTER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAfter() {
-    return after;
+        return after.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AFTER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAfter(@javax.annotation.Nullable String after) {
+
+  public JsonNullable<String> getAfter_JsonNullable() {
+    return after;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AFTER)
+  public void setAfter_JsonNullable(JsonNullable<String> after) {
     this.after = after;
+  }
+
+  public void setAfter(@javax.annotation.Nullable String after) {
+    this.after = JsonNullable.<String>of(after);
   }
 
 
   public SearchReddit200Response before(@javax.annotation.Nullable String before) {
-    this.before = before;
+    this.before = JsonNullable.<String>of(before);
     return this;
   }
 
@@ -123,17 +133,25 @@ public class SearchReddit200Response {
    * @return before
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_BEFORE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getBefore() {
-    return before;
+        return before.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_BEFORE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBefore(@javax.annotation.Nullable String before) {
+
+  public JsonNullable<String> getBefore_JsonNullable() {
+    return before;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_BEFORE)
+  public void setBefore_JsonNullable(JsonNullable<String> before) {
     this.before = before;
+  }
+
+  public void setBefore(@javax.annotation.Nullable String before) {
+    this.before = JsonNullable.<String>of(before);
   }
 
 
@@ -150,13 +168,24 @@ public class SearchReddit200Response {
     }
     SearchReddit200Response searchReddit200Response = (SearchReddit200Response) o;
     return Objects.equals(this.items, searchReddit200Response.items) &&
-        Objects.equals(this.after, searchReddit200Response.after) &&
-        Objects.equals(this.before, searchReddit200Response.before);
+        equalsNullable(this.after, searchReddit200Response.after) &&
+        equalsNullable(this.before, searchReddit200Response.before);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, after, before);
+    return Objects.hash(items, hashCodeNullable(after), hashCodeNullable(before));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

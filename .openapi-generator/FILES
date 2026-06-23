@@ -5,13 +5,11 @@ README.md
 api/openapi.yaml
 build.gradle
 build.sbt
-docs/AccountGetResponse.md
 docs/AccountGroupsApi.md
 docs/AccountSettingsApi.md
 docs/AccountWithFollowerStats.md
 docs/AccountWithFollowerStatsAllOfAccountStats.md
 docs/AccountsApi.md
-docs/AccountsListResponse.md
 docs/ActivateSequence200Response.md
 docs/ActivateWorkflow200Response.md
 docs/ActivateWorkflow200ResponseWorkflow.md
@@ -155,7 +153,6 @@ docs/CreateCtwaAdRequest.md
 docs/CreateCtwaAdRequestCitiesInner.md
 docs/CreateCtwaAdRequestCreativesInner.md
 docs/CreateCtwaAdRequestCreativesInnerVideo.md
-docs/CreateCtwaAdRequestCustomLocationsInner.md
 docs/CreateCtwaAdRequestRegionsInner.md
 docs/CreateCtwaAdRequestVideo.md
 docs/CreateCtwaAdRequestZipsInner.md
@@ -181,7 +178,6 @@ docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
 docs/CreateLeadFormRequest.md
-docs/CreateLeadFormRequestContextCard.md
 docs/CreateLeadFormRequestQuestionsInner.md
 docs/CreateLeadFormRequestQuestionsInnerOptionsInner.md
 docs/CreatePost409Response.md
@@ -211,13 +207,11 @@ docs/CreateStandaloneAdRequestCreativesInner.md
 docs/CreateStandaloneAdRequestCreativesInnerVideo.md
 docs/CreateStandaloneAdRequestCustomLocationsInner.md
 docs/CreateStandaloneAdRequestDynamicCreative.md
-docs/CreateStandaloneAdRequestExcludedLocations.md
 docs/CreateStandaloneAdRequestImages.md
 docs/CreateStandaloneAdRequestPlacementAssets.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md
 docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md
 docs/CreateStandaloneAdRequestPlacements.md
-docs/CreateStandaloneAdRequestPlacesInner.md
 docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
@@ -306,7 +300,6 @@ docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
 docs/FetchGoogleBusinessVerificationOptionsRequest.md
 docs/FollowUser200Response.md
 docs/FollowUserRequest.md
-docs/FollowerStatsResponse.md
 docs/FoodMenu.md
 docs/FoodMenuItem.md
 docs/FoodMenuItemAttributes.md
@@ -465,9 +458,6 @@ docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
 docs/GetInstagramStoryInsights200ResponseDataMetrics.md
 docs/GetLeadForm200Response.md
-docs/GetLeadForm200ResponseForm.md
-docs/GetLeadForm200ResponseFormQuestionsInner.md
-docs/GetLeadForm200ResponseFormThankYouPage.md
 docs/GetLinkedInAggregateAnalytics200Response.md
 docs/GetLinkedInAggregateAnalytics400Response.md
 docs/GetLinkedInAggregateAnalytics402Response.md
@@ -638,7 +628,6 @@ docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md
 docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md
 docs/LinkedInAggregateAnalyticsTotalResponse.md
 docs/LinkedInAggregateAnalyticsTotalResponseAnalytics.md
-docs/LinkedInAggregateAnalyticsTotalResponseDateRange.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
 docs/ListAccountGroups200Response.md
@@ -770,7 +759,6 @@ docs/LogsApi.md
 docs/MarkConversationRead200Response.md
 docs/MediaApi.md
 docs/MediaItem.md
-docs/MediaUploadResponse.md
 docs/MessagesApi.md
 docs/Money.md
 docs/MoveAccountToProfile200Response.md
@@ -806,9 +794,6 @@ docs/PostsListResponse.md
 docs/PreviewQueue200Response.md
 docs/Profile.md
 docs/ProfileCreateResponse.md
-docs/ProfileDeleteResponse.md
-docs/ProfileGetResponse.md
-docs/ProfileUpdateResponse.md
 docs/ProfilesApi.md
 docs/ProfilesListResponse.md
 docs/PurchaseWhatsAppPhoneNumber200Response.md
@@ -820,13 +805,8 @@ docs/PurchaseWhatsAppPhoneNumber202Response.md
 docs/PurchaseWhatsAppPhoneNumber409Response.md
 docs/PurchaseWhatsAppPhoneNumberRequest.md
 docs/QueueApi.md
-docs/QueueDeleteResponse.md
-docs/QueueNextSlotResponse.md
-docs/QueuePreviewResponse.md
 docs/QueueSchedule.md
 docs/QueueSlot.md
-docs/QueueSlotsResponse.md
-docs/QueueUpdateResponse.md
 docs/RecyclingConfig.md
 docs/RecyclingState.md
 docs/RedditPlatformData.md
@@ -850,7 +830,6 @@ docs/ReplyToInboxPost200Response.md
 docs/ReplyToInboxPost200ResponseData.md
 docs/ReplyToInboxPostRequest.md
 docs/ReplyToInboxReview200Response.md
-docs/ReplyToInboxReview200ResponseReply.md
 docs/ReplyToInboxReviewRequest.md
 docs/RestoreWorkflowVersion200Response.md
 docs/RestoreWorkflowVersion200ResponseWorkflow.md
@@ -941,8 +920,6 @@ docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.md
 docs/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.md
 docs/SendPrivateReplyToCommentRequestQuickRepliesInner.md
-docs/SendSms200Response.md
-docs/SendSmsRequest.md
 docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppConversion200Response.md
 docs/SendWhatsAppConversionRequest.md
@@ -958,7 +935,6 @@ docs/SetMessengerMenuRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
 docs/SharedAdAccount.md
-docs/SmsApi.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
 docs/SocialAccountProfileId.md
@@ -1110,15 +1086,12 @@ docs/UpdateYoutubeDefaultPlaylist200Response.md
 docs/UpdateYoutubeDefaultPlaylistRequest.md
 docs/UploadMediaDirect200Response.md
 docs/UploadMediaDirectRequest.md
-docs/UploadTokenResponse.md
-docs/UploadTokenStatusResponse.md
 docs/UploadWhatsAppFlowJson200Response.md
 docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md
 docs/UploadWhatsAppFlowJsonRequest.md
 docs/UploadWhatsAppFlowJsonRequestFlowJson.md
 docs/UploadWhatsAppNumberKycDocument200Response.md
 docs/UploadWhatsAppProfilePhotoRequest.md
-docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
 docs/UsageApi.md
 docs/UsageStats.md
@@ -1127,9 +1100,7 @@ docs/UsageStatsSpend.md
 docs/UsageStatsUsage.md
 docs/UsageStatsUsageXApiCalls.md
 docs/User.md
-docs/UserGetResponse.md
 docs/UsersApi.md
-docs/UsersListResponse.md
 docs/ValidateApi.md
 docs/ValidateMedia200Response.md
 docs/ValidateMedia200ResponsePlatformLimitsValue.md
@@ -1315,7 +1286,6 @@ src/main/java/dev/zernio/api/QueueApi.java
 src/main/java/dev/zernio/api/RedditSearchApi.java
 src/main/java/dev/zernio/api/ReviewsApi.java
 src/main/java/dev/zernio/api/SequencesApi.java
-src/main/java/dev/zernio/api/SmsApi.java
 src/main/java/dev/zernio/api/TrackingTagsApi.java
 src/main/java/dev/zernio/api/TwitterEngagementApi.java
 src/main/java/dev/zernio/api/UsageApi.java
@@ -1331,10 +1301,8 @@ src/main/java/dev/zernio/api/WhatsAppSandboxApi.java
 src/main/java/dev/zernio/api/WhatsAppTemplatesApi.java
 src/main/java/dev/zernio/api/WorkflowsApi.java
 src/main/java/dev/zernio/model/AbstractOpenApiSchema.java
-src/main/java/dev/zernio/model/AccountGetResponse.java
 src/main/java/dev/zernio/model/AccountWithFollowerStats.java
 src/main/java/dev/zernio/model/AccountWithFollowerStatsAllOfAccountStats.java
-src/main/java/dev/zernio/model/AccountsListResponse.java
 src/main/java/dev/zernio/model/ActivateSequence200Response.java
 src/main/java/dev/zernio/model/ActivateWorkflow200Response.java
 src/main/java/dev/zernio/model/ActivateWorkflow200ResponseWorkflow.java
@@ -1468,7 +1436,6 @@ src/main/java/dev/zernio/model/CreateCtwaAdRequest.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCitiesInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCreativesInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCreativesInnerVideo.java
-src/main/java/dev/zernio/model/CreateCtwaAdRequestCustomLocationsInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestVideo.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestZipsInner.java
@@ -1494,7 +1461,6 @@ src/main/java/dev/zernio/model/CreateInviteToken201Response.java
 src/main/java/dev/zernio/model/CreateInviteTokenRequest.java
 src/main/java/dev/zernio/model/CreateLeadForm200Response.java
 src/main/java/dev/zernio/model/CreateLeadFormRequest.java
-src/main/java/dev/zernio/model/CreateLeadFormRequestContextCard.java
 src/main/java/dev/zernio/model/CreateLeadFormRequestQuestionsInner.java
 src/main/java/dev/zernio/model/CreateLeadFormRequestQuestionsInnerOptionsInner.java
 src/main/java/dev/zernio/model/CreatePost409Response.java
@@ -1524,13 +1490,11 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestCreativesInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCreativesInnerVideo.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCustomLocationsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestDynamicCreative.java
-src/main/java/dev/zernio/model/CreateStandaloneAdRequestExcludedLocations.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestImages.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssets.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacements.java
-src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlacesInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTracking.java
@@ -1617,7 +1581,6 @@ src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200Response
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequest.java
 src/main/java/dev/zernio/model/FollowUser200Response.java
 src/main/java/dev/zernio/model/FollowUserRequest.java
-src/main/java/dev/zernio/model/FollowerStatsResponse.java
 src/main/java/dev/zernio/model/FoodMenu.java
 src/main/java/dev/zernio/model/FoodMenuItem.java
 src/main/java/dev/zernio/model/FoodMenuItemAttributes.java
@@ -1776,9 +1739,6 @@ src/main/java/dev/zernio/model/GetInstagramStoryInsights200Response.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseData.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseDataMetrics.java
 src/main/java/dev/zernio/model/GetLeadForm200Response.java
-src/main/java/dev/zernio/model/GetLeadForm200ResponseForm.java
-src/main/java/dev/zernio/model/GetLeadForm200ResponseFormQuestionsInner.java
-src/main/java/dev/zernio/model/GetLeadForm200ResponseFormThankYouPage.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics200Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics400Response.java
 src/main/java/dev/zernio/model/GetLinkedInAggregateAnalytics402Response.java
@@ -1938,7 +1898,6 @@ src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsDailyResponseAnalytics.
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.java
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsTotalResponse.java
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsTotalResponseAnalytics.java
-src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsTotalResponseDateRange.java
 src/main/java/dev/zernio/model/LinkedInPlatformData.java
 src/main/java/dev/zernio/model/ListAccountGroups200Response.java
 src/main/java/dev/zernio/model/ListAccountGroups200ResponseGroupsInner.java
@@ -2067,7 +2026,6 @@ src/main/java/dev/zernio/model/ListWorkflows200Response.java
 src/main/java/dev/zernio/model/ListWorkflows200ResponseWorkflowsInner.java
 src/main/java/dev/zernio/model/MarkConversationRead200Response.java
 src/main/java/dev/zernio/model/MediaItem.java
-src/main/java/dev/zernio/model/MediaUploadResponse.java
 src/main/java/dev/zernio/model/Money.java
 src/main/java/dev/zernio/model/MoveAccountToProfile200Response.java
 src/main/java/dev/zernio/model/MoveAccountToProfileRequest.java
@@ -2101,9 +2059,6 @@ src/main/java/dev/zernio/model/PostsListResponse.java
 src/main/java/dev/zernio/model/PreviewQueue200Response.java
 src/main/java/dev/zernio/model/Profile.java
 src/main/java/dev/zernio/model/ProfileCreateResponse.java
-src/main/java/dev/zernio/model/ProfileDeleteResponse.java
-src/main/java/dev/zernio/model/ProfileGetResponse.java
-src/main/java/dev/zernio/model/ProfileUpdateResponse.java
 src/main/java/dev/zernio/model/ProfilesListResponse.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200Response.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.java
@@ -2113,13 +2068,8 @@ src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf2.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber202Response.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber409Response.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumberRequest.java
-src/main/java/dev/zernio/model/QueueDeleteResponse.java
-src/main/java/dev/zernio/model/QueueNextSlotResponse.java
-src/main/java/dev/zernio/model/QueuePreviewResponse.java
 src/main/java/dev/zernio/model/QueueSchedule.java
 src/main/java/dev/zernio/model/QueueSlot.java
-src/main/java/dev/zernio/model/QueueSlotsResponse.java
-src/main/java/dev/zernio/model/QueueUpdateResponse.java
 src/main/java/dev/zernio/model/RecyclingConfig.java
 src/main/java/dev/zernio/model/RecyclingState.java
 src/main/java/dev/zernio/model/RedditPlatformData.java
@@ -2142,7 +2092,6 @@ src/main/java/dev/zernio/model/ReplyToInboxPost200Response.java
 src/main/java/dev/zernio/model/ReplyToInboxPost200ResponseData.java
 src/main/java/dev/zernio/model/ReplyToInboxPostRequest.java
 src/main/java/dev/zernio/model/ReplyToInboxReview200Response.java
-src/main/java/dev/zernio/model/ReplyToInboxReview200ResponseReply.java
 src/main/java/dev/zernio/model/ReplyToInboxReviewRequest.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200Response.java
 src/main/java/dev/zernio/model/RestoreWorkflowVersion200ResponseWorkflow.java
@@ -2232,8 +2181,6 @@ src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf1.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestButtonsInnerOneOf2.java
 src/main/java/dev/zernio/model/SendPrivateReplyToCommentRequestQuickRepliesInner.java
-src/main/java/dev/zernio/model/SendSms200Response.java
-src/main/java/dev/zernio/model/SendSmsRequest.java
 src/main/java/dev/zernio/model/SendTypingIndicatorRequest.java
 src/main/java/dev/zernio/model/SendWhatsAppConversion200Response.java
 src/main/java/dev/zernio/model/SendWhatsAppConversionRequest.java
@@ -2397,15 +2344,12 @@ src/main/java/dev/zernio/model/UpdateYoutubeDefaultPlaylist200Response.java
 src/main/java/dev/zernio/model/UpdateYoutubeDefaultPlaylistRequest.java
 src/main/java/dev/zernio/model/UploadMediaDirect200Response.java
 src/main/java/dev/zernio/model/UploadMediaDirectRequest.java
-src/main/java/dev/zernio/model/UploadTokenResponse.java
-src/main/java/dev/zernio/model/UploadTokenStatusResponse.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJson200Response.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJsonRequest.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJsonRequestFlowJson.java
 src/main/java/dev/zernio/model/UploadWhatsAppNumberKycDocument200Response.java
 src/main/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest.java
-src/main/java/dev/zernio/model/UploadedFile.java
 src/main/java/dev/zernio/model/UploadedOrDerivedAudience.java
 src/main/java/dev/zernio/model/UsageStats.java
 src/main/java/dev/zernio/model/UsageStatsLimits.java
@@ -2413,8 +2357,6 @@ src/main/java/dev/zernio/model/UsageStatsSpend.java
 src/main/java/dev/zernio/model/UsageStatsUsage.java
 src/main/java/dev/zernio/model/UsageStatsUsageXApiCalls.java
 src/main/java/dev/zernio/model/User.java
-src/main/java/dev/zernio/model/UserGetResponse.java
-src/main/java/dev/zernio/model/UsersListResponse.java
 src/main/java/dev/zernio/model/ValidateMedia200Response.java
 src/main/java/dev/zernio/model/ValidateMedia200ResponsePlatformLimitsValue.java
 src/main/java/dev/zernio/model/ValidateMediaRequest.java

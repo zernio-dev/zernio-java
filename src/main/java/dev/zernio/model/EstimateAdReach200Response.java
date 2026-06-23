@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,31 +44,26 @@ import dev.zernio.ApiClient;
   EstimateAdReach200Response.JSON_PROPERTY_CURRENCY,
   EstimateAdReach200Response.JSON_PROPERTY_ESTIMATE_READY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EstimateAdReach200Response {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nonnull
   private Boolean available;
 
   public static final String JSON_PROPERTY_LOWER = "lower";
-  @javax.annotation.Nullable
-  private Integer lower;
+  private JsonNullable<Integer> lower = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_UPPER = "upper";
-  @javax.annotation.Nullable
-  private Integer upper;
+  private JsonNullable<Integer> upper = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_DAILY = "daily";
-  @javax.annotation.Nullable
-  private Integer daily;
+  private JsonNullable<Integer> daily = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_CURRENCY = "currency";
-  @javax.annotation.Nullable
-  private String currency;
+  private JsonNullable<String> currency = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ESTIMATE_READY = "estimateReady";
-  @javax.annotation.Nullable
-  private Boolean estimateReady;
+  private JsonNullable<Boolean> estimateReady = JsonNullable.<Boolean>undefined();
 
   public EstimateAdReach200Response() { 
   }
@@ -94,7 +93,7 @@ public class EstimateAdReach200Response {
 
 
   public EstimateAdReach200Response lower(@javax.annotation.Nullable Integer lower) {
-    this.lower = lower;
+    this.lower = JsonNullable.<Integer>of(lower);
     return this;
   }
 
@@ -103,22 +102,30 @@ public class EstimateAdReach200Response {
    * @return lower
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOWER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getLower() {
-    return lower;
+        return lower.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LOWER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLower(@javax.annotation.Nullable Integer lower) {
+
+  public JsonNullable<Integer> getLower_JsonNullable() {
+    return lower;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOWER)
+  public void setLower_JsonNullable(JsonNullable<Integer> lower) {
     this.lower = lower;
+  }
+
+  public void setLower(@javax.annotation.Nullable Integer lower) {
+    this.lower = JsonNullable.<Integer>of(lower);
   }
 
 
   public EstimateAdReach200Response upper(@javax.annotation.Nullable Integer upper) {
-    this.upper = upper;
+    this.upper = JsonNullable.<Integer>of(upper);
     return this;
   }
 
@@ -127,22 +134,30 @@ public class EstimateAdReach200Response {
    * @return upper
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_UPPER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getUpper() {
-    return upper;
+        return upper.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_UPPER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpper(@javax.annotation.Nullable Integer upper) {
+
+  public JsonNullable<Integer> getUpper_JsonNullable() {
+    return upper;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_UPPER)
+  public void setUpper_JsonNullable(JsonNullable<Integer> upper) {
     this.upper = upper;
+  }
+
+  public void setUpper(@javax.annotation.Nullable Integer upper) {
+    this.upper = JsonNullable.<Integer>of(upper);
   }
 
 
   public EstimateAdReach200Response daily(@javax.annotation.Nullable Integer daily) {
-    this.daily = daily;
+    this.daily = JsonNullable.<Integer>of(daily);
     return this;
   }
 
@@ -151,22 +166,30 @@ public class EstimateAdReach200Response {
    * @return daily
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getDaily() {
-    return daily;
+        return daily.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDaily(@javax.annotation.Nullable Integer daily) {
+
+  public JsonNullable<Integer> getDaily_JsonNullable() {
+    return daily;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DAILY)
+  public void setDaily_JsonNullable(JsonNullable<Integer> daily) {
     this.daily = daily;
+  }
+
+  public void setDaily(@javax.annotation.Nullable Integer daily) {
+    this.daily = JsonNullable.<Integer>of(daily);
   }
 
 
   public EstimateAdReach200Response currency(@javax.annotation.Nullable String currency) {
-    this.currency = currency;
+    this.currency = JsonNullable.<String>of(currency);
     return this;
   }
 
@@ -175,22 +198,30 @@ public class EstimateAdReach200Response {
    * @return currency
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCurrency() {
-    return currency;
+        return currency.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CURRENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCurrency(@javax.annotation.Nullable String currency) {
+
+  public JsonNullable<String> getCurrency_JsonNullable() {
+    return currency;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CURRENCY)
+  public void setCurrency_JsonNullable(JsonNullable<String> currency) {
     this.currency = currency;
+  }
+
+  public void setCurrency(@javax.annotation.Nullable String currency) {
+    this.currency = JsonNullable.<String>of(currency);
   }
 
 
   public EstimateAdReach200Response estimateReady(@javax.annotation.Nullable Boolean estimateReady) {
-    this.estimateReady = estimateReady;
+    this.estimateReady = JsonNullable.<Boolean>of(estimateReady);
     return this;
   }
 
@@ -199,17 +230,25 @@ public class EstimateAdReach200Response {
    * @return estimateReady
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ESTIMATE_READY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Boolean getEstimateReady() {
-    return estimateReady;
+        return estimateReady.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ESTIMATE_READY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEstimateReady(@javax.annotation.Nullable Boolean estimateReady) {
+
+  public JsonNullable<Boolean> getEstimateReady_JsonNullable() {
+    return estimateReady;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ESTIMATE_READY)
+  public void setEstimateReady_JsonNullable(JsonNullable<Boolean> estimateReady) {
     this.estimateReady = estimateReady;
+  }
+
+  public void setEstimateReady(@javax.annotation.Nullable Boolean estimateReady) {
+    this.estimateReady = JsonNullable.<Boolean>of(estimateReady);
   }
 
 
@@ -226,16 +265,27 @@ public class EstimateAdReach200Response {
     }
     EstimateAdReach200Response estimateAdReach200Response = (EstimateAdReach200Response) o;
     return Objects.equals(this.available, estimateAdReach200Response.available) &&
-        Objects.equals(this.lower, estimateAdReach200Response.lower) &&
-        Objects.equals(this.upper, estimateAdReach200Response.upper) &&
-        Objects.equals(this.daily, estimateAdReach200Response.daily) &&
-        Objects.equals(this.currency, estimateAdReach200Response.currency) &&
-        Objects.equals(this.estimateReady, estimateAdReach200Response.estimateReady);
+        equalsNullable(this.lower, estimateAdReach200Response.lower) &&
+        equalsNullable(this.upper, estimateAdReach200Response.upper) &&
+        equalsNullable(this.daily, estimateAdReach200Response.daily) &&
+        equalsNullable(this.currency, estimateAdReach200Response.currency) &&
+        equalsNullable(this.estimateReady, estimateAdReach200Response.estimateReady);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(available, lower, upper, daily, currency, estimateReady);
+    return Objects.hash(available, hashCodeNullable(lower), hashCodeNullable(upper), hashCodeNullable(daily), hashCodeNullable(currency), hashCodeNullable(estimateReady));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

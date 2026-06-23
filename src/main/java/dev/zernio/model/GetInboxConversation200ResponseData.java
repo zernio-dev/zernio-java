@@ -29,9 +29,11 @@ import dev.zernio.model.UpdateFacebookPage200ResponseSelectedPage;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -52,10 +54,9 @@ import dev.zernio.ApiClient;
   GetInboxConversation200ResponseData.JSON_PROPERTY_LAST_MESSAGE_AT,
   GetInboxConversation200ResponseData.JSON_PROPERTY_UPDATED_TIME,
   GetInboxConversation200ResponseData.JSON_PROPERTY_PARTICIPANTS,
-  GetInboxConversation200ResponseData.JSON_PROPERTY_INSTAGRAM_PROFILE,
-  GetInboxConversation200ResponseData.JSON_PROPERTY_METADATA
+  GetInboxConversation200ResponseData.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversation200ResponseData {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -155,13 +156,12 @@ public class GetInboxConversation200ResponseData {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE = "participantVerifiedType";
-  @javax.annotation.Nullable
-  private ParticipantVerifiedTypeEnum participantVerifiedType;
+  private JsonNullable<ParticipantVerifiedTypeEnum> participantVerifiedType = JsonNullable.<ParticipantVerifiedTypeEnum>undefined();
 
   public static final String JSON_PROPERTY_LAST_MESSAGE = "lastMessage";
   @javax.annotation.Nullable
@@ -182,10 +182,6 @@ public class GetInboxConversation200ResponseData {
   public static final String JSON_PROPERTY_INSTAGRAM_PROFILE = "instagramProfile";
   @javax.annotation.Nullable
   private ListInboxConversations200ResponseDataInnerInstagramProfile instagramProfile;
-
-  public static final String JSON_PROPERTY_METADATA = "metadata";
-  @javax.annotation.Nullable
-  private Map<String, String> metadata = new HashMap<>();
 
   public GetInboxConversation200ResponseData() { 
   }
@@ -359,7 +355,7 @@ public class GetInboxConversation200ResponseData {
 
 
   public GetInboxConversation200ResponseData participantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
-    this.participantVerifiedType = participantVerifiedType;
+    this.participantVerifiedType = JsonNullable.<ParticipantVerifiedTypeEnum>of(participantVerifiedType);
     return this;
   }
 
@@ -368,17 +364,25 @@ public class GetInboxConversation200ResponseData {
    * @return participantVerifiedType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public ParticipantVerifiedTypeEnum getParticipantVerifiedType() {
-    return participantVerifiedType;
+        return participantVerifiedType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParticipantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
+
+  public JsonNullable<ParticipantVerifiedTypeEnum> getParticipantVerifiedType_JsonNullable() {
+    return participantVerifiedType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PARTICIPANT_VERIFIED_TYPE)
+  public void setParticipantVerifiedType_JsonNullable(JsonNullable<ParticipantVerifiedTypeEnum> participantVerifiedType) {
     this.participantVerifiedType = participantVerifiedType;
+  }
+
+  public void setParticipantVerifiedType(@javax.annotation.Nullable ParticipantVerifiedTypeEnum participantVerifiedType) {
+    this.participantVerifiedType = JsonNullable.<ParticipantVerifiedTypeEnum>of(participantVerifiedType);
   }
 
 
@@ -510,38 +514,6 @@ public class GetInboxConversation200ResponseData {
   }
 
 
-  public GetInboxConversation200ResponseData metadata(@javax.annotation.Nullable Map<String, String> metadata) {
-    this.metadata = metadata;
-    return this;
-  }
-
-  public GetInboxConversation200ResponseData putMetadataItem(String key, String metadataItem) {
-    if (this.metadata == null) {
-      this.metadata = new HashMap<>();
-    }
-    this.metadata.put(key, metadataItem);
-    return this;
-  }
-
-  /**
-   * Ad-click attribution captured on the first inbound message of the conversation. Only present when the conversation originated from a click-to-message ad. Absent on organic conversations.  Two sources populate this field:   - WhatsApp CTWA (Click-to-WhatsApp): &#x60;ctwa_clid&#x60;, &#x60;ctwa_source_id&#x60;,     &#x60;ctwa_source_url&#x60;, &#x60;ctwa_headline&#x60;, &#x60;ctwa_source_type&#x60;, &#x60;ctwa_captured_at&#x60;.   - Facebook Messenger CTM / Instagram CTD: &#x60;meta_ad_id&#x60;, &#x60;meta_ad_title&#x60;,     &#x60;meta_ad_source&#x60;, &#x60;meta_ad_type&#x60;, &#x60;meta_ad_ref&#x60;, &#x60;meta_ad_captured_at&#x60;,     &#x60;meta_ad_photo_url&#x60;, &#x60;meta_ad_video_url&#x60;, &#x60;meta_ad_post_id&#x60;,     &#x60;meta_ad_product_id&#x60;, &#x60;meta_ad_flow_id&#x60;.  Note: &#x60;meta_ad_photo_url&#x60; and &#x60;meta_ad_video_url&#x60; are Facebook CDN URLs that may expire. Use &#x60;meta_ad_id&#x60; for a permanent reference to the ad (e.g. to link to Meta Ads Manager). 
-   * @return metadata
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getMetadata() {
-    return metadata;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(@javax.annotation.Nullable Map<String, String> metadata) {
-    this.metadata = metadata;
-  }
-
-
   /**
    * Return true if this getInboxConversation_200_response_data object is equal to o.
    */
@@ -561,18 +533,28 @@ public class GetInboxConversation200ResponseData {
         Objects.equals(this.status, getInboxConversation200ResponseData.status) &&
         Objects.equals(this.participantName, getInboxConversation200ResponseData.participantName) &&
         Objects.equals(this.participantId, getInboxConversation200ResponseData.participantId) &&
-        Objects.equals(this.participantVerifiedType, getInboxConversation200ResponseData.participantVerifiedType) &&
+        equalsNullable(this.participantVerifiedType, getInboxConversation200ResponseData.participantVerifiedType) &&
         Objects.equals(this.lastMessage, getInboxConversation200ResponseData.lastMessage) &&
         Objects.equals(this.lastMessageAt, getInboxConversation200ResponseData.lastMessageAt) &&
         Objects.equals(this.updatedTime, getInboxConversation200ResponseData.updatedTime) &&
         Objects.equals(this.participants, getInboxConversation200ResponseData.participants) &&
-        Objects.equals(this.instagramProfile, getInboxConversation200ResponseData.instagramProfile) &&
-        Objects.equals(this.metadata, getInboxConversation200ResponseData.metadata);
+        Objects.equals(this.instagramProfile, getInboxConversation200ResponseData.instagramProfile);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, accountUsername, platform, status, participantName, participantId, participantVerifiedType, lastMessage, lastMessageAt, updatedTime, participants, instagramProfile, metadata);
+    return Objects.hash(id, accountId, accountUsername, platform, status, participantName, participantId, hashCodeNullable(participantVerifiedType), lastMessage, lastMessageAt, updatedTime, participants, instagramProfile);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -592,7 +574,6 @@ public class GetInboxConversation200ResponseData {
     sb.append("    updatedTime: ").append(toIndentedString(updatedTime)).append("\n");
     sb.append("    participants: ").append(toIndentedString(participants)).append("\n");
     sb.append("    instagramProfile: ").append(toIndentedString(instagramProfile)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -708,15 +689,6 @@ public class GetInboxConversation200ResponseData {
     // add `instagramProfile` to the URL query string
     if (getInstagramProfile() != null) {
       joiner.add(getInstagramProfile().toUrlQueryString(prefix + "instagramProfile" + suffix));
-    }
-
-    // add `metadata` to the URL query string
-    if (getMetadata() != null) {
-      for (String _key : getMetadata().keySet()) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
-            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
-      }
     }
 
     return joiner.toString();

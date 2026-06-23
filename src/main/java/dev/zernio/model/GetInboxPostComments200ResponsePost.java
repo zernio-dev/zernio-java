@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -49,7 +53,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponsePost.JSON_PROPERTY_FLAIR_TEXT,
   GetInboxPostComments200ResponsePost.JSON_PROPERTY_IS_GALLERY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponsePost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -104,8 +108,7 @@ public class GetInboxPostComments200ResponsePost {
   private Boolean stickied;
 
   public static final String JSON_PROPERTY_FLAIR_TEXT = "flairText";
-  @javax.annotation.Nullable
-  private String flairText;
+  private JsonNullable<String> flairText = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_IS_GALLERY = "isGallery";
   @javax.annotation.Nullable
@@ -427,7 +430,7 @@ public class GetInboxPostComments200ResponsePost {
 
 
   public GetInboxPostComments200ResponsePost flairText(@javax.annotation.Nullable String flairText) {
-    this.flairText = flairText;
+    this.flairText = JsonNullable.<String>of(flairText);
     return this;
   }
 
@@ -436,17 +439,25 @@ public class GetInboxPostComments200ResponsePost {
    * @return flairText
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FLAIR_TEXT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFlairText() {
-    return flairText;
+        return flairText.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FLAIR_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFlairText(@javax.annotation.Nullable String flairText) {
+
+  public JsonNullable<String> getFlairText_JsonNullable() {
+    return flairText;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FLAIR_TEXT)
+  public void setFlairText_JsonNullable(JsonNullable<String> flairText) {
     this.flairText = flairText;
+  }
+
+  public void setFlairText(@javax.annotation.Nullable String flairText) {
+    this.flairText = JsonNullable.<String>of(flairText);
   }
 
 
@@ -499,13 +510,24 @@ public class GetInboxPostComments200ResponsePost {
         Objects.equals(this.createdUtc, getInboxPostComments200ResponsePost.createdUtc) &&
         Objects.equals(this.over18, getInboxPostComments200ResponsePost.over18) &&
         Objects.equals(this.stickied, getInboxPostComments200ResponsePost.stickied) &&
-        Objects.equals(this.flairText, getInboxPostComments200ResponsePost.flairText) &&
+        equalsNullable(this.flairText, getInboxPostComments200ResponsePost.flairText) &&
         Objects.equals(this.isGallery, getInboxPostComments200ResponsePost.isGallery);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, fullname, title, selftext, author, subreddit, permalink, url, score, numComments, createdUtc, over18, stickied, flairText, isGallery);
+    return Objects.hash(id, fullname, title, selftext, author, subreddit, permalink, url, score, numComments, createdUtc, over18, stickied, hashCodeNullable(flairText), isGallery);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

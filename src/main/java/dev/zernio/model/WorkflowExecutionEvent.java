@@ -28,6 +28,10 @@ import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,7 +50,7 @@ import dev.zernio.ApiClient;
   WorkflowExecutionEvent.JSON_PROPERTY_META,
   WorkflowExecutionEvent.JSON_PROPERTY_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowExecutionEvent {
   /**
    * Gets or Sets action
@@ -134,37 +138,30 @@ public class WorkflowExecutionEvent {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  @javax.annotation.Nullable
-  private StatusEnum status;
+  private JsonNullable<StatusEnum> status = JsonNullable.<StatusEnum>undefined();
 
   public static final String JSON_PROPERTY_NODE_ID = "nodeId";
-  @javax.annotation.Nullable
-  private String nodeId;
+  private JsonNullable<String> nodeId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NODE_TYPE = "nodeType";
-  @javax.annotation.Nullable
-  private String nodeType;
+  private JsonNullable<String> nodeType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SOURCE_HANDLE = "sourceHandle";
-  @javax.annotation.Nullable
-  private String sourceHandle;
+  private JsonNullable<String> sourceHandle = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DURATION_MS = "durationMs";
-  @javax.annotation.Nullable
-  private Integer durationMs;
+  private JsonNullable<Integer> durationMs = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
-  @javax.annotation.Nullable
-  private String errorMessage;
+  private JsonNullable<String> errorMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_META = "meta";
-  @javax.annotation.Nullable
-  private Map<String, Object> meta = new HashMap<>();
+  private JsonNullable<Map<String, Object>> meta = JsonNullable.<Map<String, Object>>undefined();
 
   public static final String JSON_PROPERTY_AT = "at";
   @javax.annotation.Nullable
@@ -198,7 +195,7 @@ public class WorkflowExecutionEvent {
 
 
   public WorkflowExecutionEvent status(@javax.annotation.Nullable StatusEnum status) {
-    this.status = status;
+    this.status = JsonNullable.<StatusEnum>of(status);
     return this;
   }
 
@@ -207,22 +204,30 @@ public class WorkflowExecutionEvent {
    * @return status
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public StatusEnum getStatus() {
-    return status;
+        return status.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+
+  public JsonNullable<StatusEnum> getStatus_JsonNullable() {
+    return status;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  public void setStatus_JsonNullable(JsonNullable<StatusEnum> status) {
     this.status = status;
+  }
+
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
+    this.status = JsonNullable.<StatusEnum>of(status);
   }
 
 
   public WorkflowExecutionEvent nodeId(@javax.annotation.Nullable String nodeId) {
-    this.nodeId = nodeId;
+    this.nodeId = JsonNullable.<String>of(nodeId);
     return this;
   }
 
@@ -231,22 +236,30 @@ public class WorkflowExecutionEvent {
    * @return nodeId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NODE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNodeId() {
-    return nodeId;
+        return nodeId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NODE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNodeId(@javax.annotation.Nullable String nodeId) {
+
+  public JsonNullable<String> getNodeId_JsonNullable() {
+    return nodeId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NODE_ID)
+  public void setNodeId_JsonNullable(JsonNullable<String> nodeId) {
     this.nodeId = nodeId;
+  }
+
+  public void setNodeId(@javax.annotation.Nullable String nodeId) {
+    this.nodeId = JsonNullable.<String>of(nodeId);
   }
 
 
   public WorkflowExecutionEvent nodeType(@javax.annotation.Nullable String nodeType) {
-    this.nodeType = nodeType;
+    this.nodeType = JsonNullable.<String>of(nodeType);
     return this;
   }
 
@@ -255,22 +268,30 @@ public class WorkflowExecutionEvent {
    * @return nodeType
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NODE_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNodeType() {
-    return nodeType;
+        return nodeType.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NODE_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNodeType(@javax.annotation.Nullable String nodeType) {
+
+  public JsonNullable<String> getNodeType_JsonNullable() {
+    return nodeType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NODE_TYPE)
+  public void setNodeType_JsonNullable(JsonNullable<String> nodeType) {
     this.nodeType = nodeType;
+  }
+
+  public void setNodeType(@javax.annotation.Nullable String nodeType) {
+    this.nodeType = JsonNullable.<String>of(nodeType);
   }
 
 
   public WorkflowExecutionEvent sourceHandle(@javax.annotation.Nullable String sourceHandle) {
-    this.sourceHandle = sourceHandle;
+    this.sourceHandle = JsonNullable.<String>of(sourceHandle);
     return this;
   }
 
@@ -279,22 +300,30 @@ public class WorkflowExecutionEvent {
    * @return sourceHandle
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_HANDLE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSourceHandle() {
-    return sourceHandle;
+        return sourceHandle.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SOURCE_HANDLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceHandle(@javax.annotation.Nullable String sourceHandle) {
+
+  public JsonNullable<String> getSourceHandle_JsonNullable() {
+    return sourceHandle;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SOURCE_HANDLE)
+  public void setSourceHandle_JsonNullable(JsonNullable<String> sourceHandle) {
     this.sourceHandle = sourceHandle;
+  }
+
+  public void setSourceHandle(@javax.annotation.Nullable String sourceHandle) {
+    this.sourceHandle = JsonNullable.<String>of(sourceHandle);
   }
 
 
   public WorkflowExecutionEvent durationMs(@javax.annotation.Nullable Integer durationMs) {
-    this.durationMs = durationMs;
+    this.durationMs = JsonNullable.<Integer>of(durationMs);
     return this;
   }
 
@@ -303,22 +332,30 @@ public class WorkflowExecutionEvent {
    * @return durationMs
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DURATION_MS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getDurationMs() {
-    return durationMs;
+        return durationMs.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DURATION_MS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDurationMs(@javax.annotation.Nullable Integer durationMs) {
+
+  public JsonNullable<Integer> getDurationMs_JsonNullable() {
+    return durationMs;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DURATION_MS)
+  public void setDurationMs_JsonNullable(JsonNullable<Integer> durationMs) {
     this.durationMs = durationMs;
+  }
+
+  public void setDurationMs(@javax.annotation.Nullable Integer durationMs) {
+    this.durationMs = JsonNullable.<Integer>of(durationMs);
   }
 
 
   public WorkflowExecutionEvent errorMessage(@javax.annotation.Nullable String errorMessage) {
-    this.errorMessage = errorMessage;
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
     return this;
   }
 
@@ -327,30 +364,42 @@ public class WorkflowExecutionEvent {
    * @return errorMessage
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getErrorMessage() {
-    return errorMessage;
+        return errorMessage.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+
+  public JsonNullable<String> getErrorMessage_JsonNullable() {
+    return errorMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_MESSAGE)
+  public void setErrorMessage_JsonNullable(JsonNullable<String> errorMessage) {
     this.errorMessage = errorMessage;
+  }
+
+  public void setErrorMessage(@javax.annotation.Nullable String errorMessage) {
+    this.errorMessage = JsonNullable.<String>of(errorMessage);
   }
 
 
   public WorkflowExecutionEvent meta(@javax.annotation.Nullable Map<String, Object> meta) {
-    this.meta = meta;
+    this.meta = JsonNullable.<Map<String, Object>>of(meta);
     return this;
   }
 
   public WorkflowExecutionEvent putMetaItem(String key, Object metaItem) {
-    if (this.meta == null) {
-      this.meta = new HashMap<>();
+    if (this.meta == null || !this.meta.isPresent()) {
+      this.meta = JsonNullable.<Map<String, Object>>of(new HashMap<>());
     }
-    this.meta.put(key, metaItem);
+    try {
+      this.meta.get().put(key, metaItem);
+    } catch (java.util.NoSuchElementException e) {
+      // this can never happen, as we make sure above that the value is present
+    }
     return this;
   }
 
@@ -359,17 +408,25 @@ public class WorkflowExecutionEvent {
    * @return meta
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_META, required = false)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Map<String, Object> getMeta() {
-    return meta;
+        return meta.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_META, required = false)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMeta(@javax.annotation.Nullable Map<String, Object> meta) {
+
+  public JsonNullable<Map<String, Object>> getMeta_JsonNullable() {
+    return meta;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_META)
+  public void setMeta_JsonNullable(JsonNullable<Map<String, Object>> meta) {
     this.meta = meta;
+  }
+
+  public void setMeta(@javax.annotation.Nullable Map<String, Object> meta) {
+    this.meta = JsonNullable.<Map<String, Object>>of(meta);
   }
 
 
@@ -410,19 +467,30 @@ public class WorkflowExecutionEvent {
     }
     WorkflowExecutionEvent workflowExecutionEvent = (WorkflowExecutionEvent) o;
     return Objects.equals(this.action, workflowExecutionEvent.action) &&
-        Objects.equals(this.status, workflowExecutionEvent.status) &&
-        Objects.equals(this.nodeId, workflowExecutionEvent.nodeId) &&
-        Objects.equals(this.nodeType, workflowExecutionEvent.nodeType) &&
-        Objects.equals(this.sourceHandle, workflowExecutionEvent.sourceHandle) &&
-        Objects.equals(this.durationMs, workflowExecutionEvent.durationMs) &&
-        Objects.equals(this.errorMessage, workflowExecutionEvent.errorMessage) &&
-        Objects.equals(this.meta, workflowExecutionEvent.meta) &&
+        equalsNullable(this.status, workflowExecutionEvent.status) &&
+        equalsNullable(this.nodeId, workflowExecutionEvent.nodeId) &&
+        equalsNullable(this.nodeType, workflowExecutionEvent.nodeType) &&
+        equalsNullable(this.sourceHandle, workflowExecutionEvent.sourceHandle) &&
+        equalsNullable(this.durationMs, workflowExecutionEvent.durationMs) &&
+        equalsNullable(this.errorMessage, workflowExecutionEvent.errorMessage) &&
+        equalsNullable(this.meta, workflowExecutionEvent.meta) &&
         Objects.equals(this.at, workflowExecutionEvent.at);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(action, status, nodeId, nodeType, sourceHandle, durationMs, errorMessage, meta, at);
+    return Objects.hash(action, hashCodeNullable(status), hashCodeNullable(nodeId), hashCodeNullable(nodeType), hashCodeNullable(sourceHandle), hashCodeNullable(durationMs), hashCodeNullable(errorMessage), hashCodeNullable(meta), at);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

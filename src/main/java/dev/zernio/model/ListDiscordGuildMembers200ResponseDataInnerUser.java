@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,7 +43,7 @@ import dev.zernio.ApiClient;
   ListDiscordGuildMembers200ResponseDataInnerUser.JSON_PROPERTY_AVATAR,
   ListDiscordGuildMembers200ResponseDataInnerUser.JSON_PROPERTY_GLOBAL_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListDiscordGuildMembers200ResponseDataInnerUser {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -54,12 +58,10 @@ public class ListDiscordGuildMembers200ResponseDataInnerUser {
   private String discriminator;
 
   public static final String JSON_PROPERTY_AVATAR = "avatar";
-  @javax.annotation.Nullable
-  private String avatar;
+  private JsonNullable<String> avatar = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_GLOBAL_NAME = "global_name";
-  @javax.annotation.Nullable
-  private String globalName;
+  private JsonNullable<String> globalName = JsonNullable.<String>undefined();
 
   public ListDiscordGuildMembers200ResponseDataInnerUser() { 
   }
@@ -137,7 +139,7 @@ public class ListDiscordGuildMembers200ResponseDataInnerUser {
 
 
   public ListDiscordGuildMembers200ResponseDataInnerUser avatar(@javax.annotation.Nullable String avatar) {
-    this.avatar = avatar;
+    this.avatar = JsonNullable.<String>of(avatar);
     return this;
   }
 
@@ -146,22 +148,30 @@ public class ListDiscordGuildMembers200ResponseDataInnerUser {
    * @return avatar
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AVATAR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAvatar() {
-    return avatar;
+        return avatar.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AVATAR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvatar(@javax.annotation.Nullable String avatar) {
+
+  public JsonNullable<String> getAvatar_JsonNullable() {
+    return avatar;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AVATAR)
+  public void setAvatar_JsonNullable(JsonNullable<String> avatar) {
     this.avatar = avatar;
+  }
+
+  public void setAvatar(@javax.annotation.Nullable String avatar) {
+    this.avatar = JsonNullable.<String>of(avatar);
   }
 
 
   public ListDiscordGuildMembers200ResponseDataInnerUser globalName(@javax.annotation.Nullable String globalName) {
-    this.globalName = globalName;
+    this.globalName = JsonNullable.<String>of(globalName);
     return this;
   }
 
@@ -170,17 +180,25 @@ public class ListDiscordGuildMembers200ResponseDataInnerUser {
    * @return globalName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_GLOBAL_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getGlobalName() {
-    return globalName;
+        return globalName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_GLOBAL_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGlobalName(@javax.annotation.Nullable String globalName) {
+
+  public JsonNullable<String> getGlobalName_JsonNullable() {
+    return globalName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_GLOBAL_NAME)
+  public void setGlobalName_JsonNullable(JsonNullable<String> globalName) {
     this.globalName = globalName;
+  }
+
+  public void setGlobalName(@javax.annotation.Nullable String globalName) {
+    this.globalName = JsonNullable.<String>of(globalName);
   }
 
 
@@ -199,13 +217,24 @@ public class ListDiscordGuildMembers200ResponseDataInnerUser {
     return Objects.equals(this.id, listDiscordGuildMembers200ResponseDataInnerUser.id) &&
         Objects.equals(this.username, listDiscordGuildMembers200ResponseDataInnerUser.username) &&
         Objects.equals(this.discriminator, listDiscordGuildMembers200ResponseDataInnerUser.discriminator) &&
-        Objects.equals(this.avatar, listDiscordGuildMembers200ResponseDataInnerUser.avatar) &&
-        Objects.equals(this.globalName, listDiscordGuildMembers200ResponseDataInnerUser.globalName);
+        equalsNullable(this.avatar, listDiscordGuildMembers200ResponseDataInnerUser.avatar) &&
+        equalsNullable(this.globalName, listDiscordGuildMembers200ResponseDataInnerUser.globalName);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, discriminator, avatar, globalName);
+    return Objects.hash(id, username, discriminator, hashCodeNullable(avatar), hashCodeNullable(globalName));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

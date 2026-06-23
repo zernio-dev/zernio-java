@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -43,7 +47,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppFlowResponses200ResponseResponsesInner.JSON_PROPERTY_DATA,
   ListWhatsAppFlowResponses200ResponseResponsesInner.JSON_PROPERTY_RAW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppFlowResponses200ResponseResponsesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -54,28 +58,23 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
   private OffsetDateTime receivedAt;
 
   public static final String JSON_PROPERTY_FROM = "from";
-  @javax.annotation.Nullable
-  private String from;
+  private JsonNullable<String> from = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SENDER_NAME = "senderName";
-  @javax.annotation.Nullable
-  private String senderName;
+  private JsonNullable<String> senderName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CONVERSATION_ID = "conversationId";
-  @javax.annotation.Nullable
-  private String conversationId;
+  private JsonNullable<String> conversationId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_FLOW_TOKEN = "flowToken";
-  @javax.annotation.Nullable
-  private String flowToken;
+  private JsonNullable<String> flowToken = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable
   private Object data;
 
   public static final String JSON_PROPERTY_RAW = "raw";
-  @javax.annotation.Nullable
-  private String raw;
+  private JsonNullable<String> raw = JsonNullable.<String>undefined();
 
   public ListWhatsAppFlowResponses200ResponseResponsesInner() { 
   }
@@ -129,7 +128,7 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
 
 
   public ListWhatsAppFlowResponses200ResponseResponsesInner from(@javax.annotation.Nullable String from) {
-    this.from = from;
+    this.from = JsonNullable.<String>of(from);
     return this;
   }
 
@@ -138,22 +137,30 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
    * @return from
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FROM, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFrom() {
-    return from;
+        return from.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FROM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFrom(@javax.annotation.Nullable String from) {
+
+  public JsonNullable<String> getFrom_JsonNullable() {
+    return from;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FROM)
+  public void setFrom_JsonNullable(JsonNullable<String> from) {
     this.from = from;
+  }
+
+  public void setFrom(@javax.annotation.Nullable String from) {
+    this.from = JsonNullable.<String>of(from);
   }
 
 
   public ListWhatsAppFlowResponses200ResponseResponsesInner senderName(@javax.annotation.Nullable String senderName) {
-    this.senderName = senderName;
+    this.senderName = JsonNullable.<String>of(senderName);
     return this;
   }
 
@@ -162,22 +169,30 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
    * @return senderName
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SENDER_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSenderName() {
-    return senderName;
+        return senderName.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SENDER_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSenderName(@javax.annotation.Nullable String senderName) {
+
+  public JsonNullable<String> getSenderName_JsonNullable() {
+    return senderName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SENDER_NAME)
+  public void setSenderName_JsonNullable(JsonNullable<String> senderName) {
     this.senderName = senderName;
+  }
+
+  public void setSenderName(@javax.annotation.Nullable String senderName) {
+    this.senderName = JsonNullable.<String>of(senderName);
   }
 
 
   public ListWhatsAppFlowResponses200ResponseResponsesInner conversationId(@javax.annotation.Nullable String conversationId) {
-    this.conversationId = conversationId;
+    this.conversationId = JsonNullable.<String>of(conversationId);
     return this;
   }
 
@@ -186,22 +201,30 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
    * @return conversationId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getConversationId() {
-    return conversationId;
+        return conversationId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CONVERSATION_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConversationId(@javax.annotation.Nullable String conversationId) {
+
+  public JsonNullable<String> getConversationId_JsonNullable() {
+    return conversationId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CONVERSATION_ID)
+  public void setConversationId_JsonNullable(JsonNullable<String> conversationId) {
     this.conversationId = conversationId;
+  }
+
+  public void setConversationId(@javax.annotation.Nullable String conversationId) {
+    this.conversationId = JsonNullable.<String>of(conversationId);
   }
 
 
   public ListWhatsAppFlowResponses200ResponseResponsesInner flowToken(@javax.annotation.Nullable String flowToken) {
-    this.flowToken = flowToken;
+    this.flowToken = JsonNullable.<String>of(flowToken);
     return this;
   }
 
@@ -210,17 +233,25 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
    * @return flowToken
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FLOW_TOKEN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFlowToken() {
-    return flowToken;
+        return flowToken.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FLOW_TOKEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFlowToken(@javax.annotation.Nullable String flowToken) {
+
+  public JsonNullable<String> getFlowToken_JsonNullable() {
+    return flowToken;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FLOW_TOKEN)
+  public void setFlowToken_JsonNullable(JsonNullable<String> flowToken) {
     this.flowToken = flowToken;
+  }
+
+  public void setFlowToken(@javax.annotation.Nullable String flowToken) {
+    this.flowToken = JsonNullable.<String>of(flowToken);
   }
 
 
@@ -249,7 +280,7 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
 
 
   public ListWhatsAppFlowResponses200ResponseResponsesInner raw(@javax.annotation.Nullable String raw) {
-    this.raw = raw;
+    this.raw = JsonNullable.<String>of(raw);
     return this;
   }
 
@@ -258,17 +289,25 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
    * @return raw
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RAW, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getRaw() {
-    return raw;
+        return raw.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RAW, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRaw(@javax.annotation.Nullable String raw) {
+
+  public JsonNullable<String> getRaw_JsonNullable() {
+    return raw;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RAW)
+  public void setRaw_JsonNullable(JsonNullable<String> raw) {
     this.raw = raw;
+  }
+
+  public void setRaw(@javax.annotation.Nullable String raw) {
+    this.raw = JsonNullable.<String>of(raw);
   }
 
 
@@ -286,17 +325,28 @@ public class ListWhatsAppFlowResponses200ResponseResponsesInner {
     ListWhatsAppFlowResponses200ResponseResponsesInner listWhatsAppFlowResponses200ResponseResponsesInner = (ListWhatsAppFlowResponses200ResponseResponsesInner) o;
     return Objects.equals(this.id, listWhatsAppFlowResponses200ResponseResponsesInner.id) &&
         Objects.equals(this.receivedAt, listWhatsAppFlowResponses200ResponseResponsesInner.receivedAt) &&
-        Objects.equals(this.from, listWhatsAppFlowResponses200ResponseResponsesInner.from) &&
-        Objects.equals(this.senderName, listWhatsAppFlowResponses200ResponseResponsesInner.senderName) &&
-        Objects.equals(this.conversationId, listWhatsAppFlowResponses200ResponseResponsesInner.conversationId) &&
-        Objects.equals(this.flowToken, listWhatsAppFlowResponses200ResponseResponsesInner.flowToken) &&
+        equalsNullable(this.from, listWhatsAppFlowResponses200ResponseResponsesInner.from) &&
+        equalsNullable(this.senderName, listWhatsAppFlowResponses200ResponseResponsesInner.senderName) &&
+        equalsNullable(this.conversationId, listWhatsAppFlowResponses200ResponseResponsesInner.conversationId) &&
+        equalsNullable(this.flowToken, listWhatsAppFlowResponses200ResponseResponsesInner.flowToken) &&
         Objects.equals(this.data, listWhatsAppFlowResponses200ResponseResponsesInner.data) &&
-        Objects.equals(this.raw, listWhatsAppFlowResponses200ResponseResponsesInner.raw);
+        equalsNullable(this.raw, listWhatsAppFlowResponses200ResponseResponsesInner.raw);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, receivedAt, from, senderName, conversationId, flowToken, data, raw);
+    return Objects.hash(id, receivedAt, hashCodeNullable(from), hashCodeNullable(senderName), hashCodeNullable(conversationId), hashCodeNullable(flowToken), data, hashCodeNullable(raw));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

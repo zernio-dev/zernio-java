@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,7 +44,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_EXAMPLE,
   GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_LOCAL_TO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nullable
@@ -96,16 +100,13 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
   private KindEnum kind;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EXAMPLE = "example";
-  @javax.annotation.Nullable
-  private String example;
+  private JsonNullable<String> example = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LOCAL_TO = "localTo";
-  @javax.annotation.Nullable
-  private String localTo;
+  private JsonNullable<String> localTo = JsonNullable.<String>undefined();
 
   public GetWhatsAppNumberKycForm200ResponseFieldsInner() { 
   }
@@ -183,7 +184,7 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
 
 
   public GetWhatsAppNumberKycForm200ResponseFieldsInner description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -192,22 +193,30 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
   public GetWhatsAppNumberKycForm200ResponseFieldsInner example(@javax.annotation.Nullable String example) {
-    this.example = example;
+    this.example = JsonNullable.<String>of(example);
     return this;
   }
 
@@ -216,22 +225,30 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
    * @return example
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXAMPLE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getExample() {
-    return example;
+        return example.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXAMPLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExample(@javax.annotation.Nullable String example) {
+
+  public JsonNullable<String> getExample_JsonNullable() {
+    return example;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXAMPLE)
+  public void setExample_JsonNullable(JsonNullable<String> example) {
     this.example = example;
+  }
+
+  public void setExample(@javax.annotation.Nullable String example) {
+    this.example = JsonNullable.<String>of(example);
   }
 
 
   public GetWhatsAppNumberKycForm200ResponseFieldsInner localTo(@javax.annotation.Nullable String localTo) {
-    this.localTo = localTo;
+    this.localTo = JsonNullable.<String>of(localTo);
     return this;
   }
 
@@ -240,17 +257,25 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
    * @return localTo
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LOCAL_TO, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLocalTo() {
-    return localTo;
+        return localTo.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LOCAL_TO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocalTo(@javax.annotation.Nullable String localTo) {
+
+  public JsonNullable<String> getLocalTo_JsonNullable() {
+    return localTo;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOCAL_TO)
+  public void setLocalTo_JsonNullable(JsonNullable<String> localTo) {
     this.localTo = localTo;
+  }
+
+  public void setLocalTo(@javax.annotation.Nullable String localTo) {
+    this.localTo = JsonNullable.<String>of(localTo);
   }
 
 
@@ -269,14 +294,25 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
     return Objects.equals(this.requirementId, getWhatsAppNumberKycForm200ResponseFieldsInner.requirementId) &&
         Objects.equals(this.label, getWhatsAppNumberKycForm200ResponseFieldsInner.label) &&
         Objects.equals(this.kind, getWhatsAppNumberKycForm200ResponseFieldsInner.kind) &&
-        Objects.equals(this.description, getWhatsAppNumberKycForm200ResponseFieldsInner.description) &&
-        Objects.equals(this.example, getWhatsAppNumberKycForm200ResponseFieldsInner.example) &&
-        Objects.equals(this.localTo, getWhatsAppNumberKycForm200ResponseFieldsInner.localTo);
+        equalsNullable(this.description, getWhatsAppNumberKycForm200ResponseFieldsInner.description) &&
+        equalsNullable(this.example, getWhatsAppNumberKycForm200ResponseFieldsInner.example) &&
+        equalsNullable(this.localTo, getWhatsAppNumberKycForm200ResponseFieldsInner.localTo);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requirementId, label, kind, description, example, localTo);
+    return Objects.hash(requirementId, label, kind, hashCodeNullable(description), hashCodeNullable(example), hashCodeNullable(localTo));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.LinkedInAggregateAnalyticsDailyResponse;
 import dev.zernio.model.LinkedInAggregateAnalyticsDailyResponseAnalytics;
 import dev.zernio.model.LinkedInAggregateAnalyticsTotalResponse;
-import dev.zernio.model.LinkedInAggregateAnalyticsTotalResponseDateRange;
+import dev.zernio.model.YouTubeDailyViewsResponseDateRange;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,7 +59,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = GetLinkedInAggregateAnalytics200Response.GetLinkedInAggregateAnalytics200ResponseDeserializer.class)
 @JsonSerialize(using = GetLinkedInAggregateAnalytics200Response.GetLinkedInAggregateAnalytics200ResponseSerializer.class)
 public class GetLinkedInAggregateAnalytics200Response extends AbstractOpenApiSchema {

@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,7 +44,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberRemediation200Response.JSON_PROPERTY_DECLINE_REASON,
   GetWhatsAppNumberRemediation200Response.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberRemediation200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
@@ -51,8 +55,7 @@ public class GetWhatsAppNumberRemediation200Response {
   private String numberType;
 
   public static final String JSON_PROPERTY_DECLINE_REASON = "declineReason";
-  @javax.annotation.Nullable
-  private String declineReason;
+  private JsonNullable<String> declineReason = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_FIELDS = "fields";
   @javax.annotation.Nullable
@@ -110,7 +113,7 @@ public class GetWhatsAppNumberRemediation200Response {
 
 
   public GetWhatsAppNumberRemediation200Response declineReason(@javax.annotation.Nullable String declineReason) {
-    this.declineReason = declineReason;
+    this.declineReason = JsonNullable.<String>of(declineReason);
     return this;
   }
 
@@ -119,17 +122,25 @@ public class GetWhatsAppNumberRemediation200Response {
    * @return declineReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DECLINE_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDeclineReason() {
-    return declineReason;
+        return declineReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DECLINE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeclineReason(@javax.annotation.Nullable String declineReason) {
+
+  public JsonNullable<String> getDeclineReason_JsonNullable() {
+    return declineReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DECLINE_REASON)
+  public void setDeclineReason_JsonNullable(JsonNullable<String> declineReason) {
     this.declineReason = declineReason;
+  }
+
+  public void setDeclineReason(@javax.annotation.Nullable String declineReason) {
+    this.declineReason = JsonNullable.<String>of(declineReason);
   }
 
 
@@ -179,13 +190,24 @@ public class GetWhatsAppNumberRemediation200Response {
     GetWhatsAppNumberRemediation200Response getWhatsAppNumberRemediation200Response = (GetWhatsAppNumberRemediation200Response) o;
     return Objects.equals(this.country, getWhatsAppNumberRemediation200Response.country) &&
         Objects.equals(this.numberType, getWhatsAppNumberRemediation200Response.numberType) &&
-        Objects.equals(this.declineReason, getWhatsAppNumberRemediation200Response.declineReason) &&
+        equalsNullable(this.declineReason, getWhatsAppNumberRemediation200Response.declineReason) &&
         Objects.equals(this.fields, getWhatsAppNumberRemediation200Response.fields);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, numberType, declineReason, fields);
+    return Objects.hash(country, numberType, hashCodeNullable(declineReason), fields);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

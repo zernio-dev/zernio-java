@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   ListWorkflowVersions200ResponseVersionsInner.JSON_PROPERTY_RESTORED_FROM_VERSION,
   ListWorkflowVersions200ResponseVersionsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWorkflowVersions200ResponseVersionsInner {
   public static final String JSON_PROPERTY_VERSION = "version";
   @javax.annotation.Nullable
@@ -53,20 +57,16 @@ public class ListWorkflowVersions200ResponseVersionsInner {
   private String name;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_BY = "createdBy";
-  @javax.annotation.Nullable
-  private String createdBy;
+  private JsonNullable<String> createdBy = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_BY_EMAIL = "createdByEmail";
-  @javax.annotation.Nullable
-  private String createdByEmail;
+  private JsonNullable<String> createdByEmail = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RESTORED_FROM_VERSION = "restoredFromVersion";
-  @javax.annotation.Nullable
-  private Integer restoredFromVersion;
+  private JsonNullable<Integer> restoredFromVersion = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -124,7 +124,7 @@ public class ListWorkflowVersions200ResponseVersionsInner {
 
 
   public ListWorkflowVersions200ResponseVersionsInner description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -133,22 +133,30 @@ public class ListWorkflowVersions200ResponseVersionsInner {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
   public ListWorkflowVersions200ResponseVersionsInner createdBy(@javax.annotation.Nullable String createdBy) {
-    this.createdBy = createdBy;
+    this.createdBy = JsonNullable.<String>of(createdBy);
     return this;
   }
 
@@ -157,22 +165,30 @@ public class ListWorkflowVersions200ResponseVersionsInner {
    * @return createdBy
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_BY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCreatedBy() {
-    return createdBy;
+        return createdBy.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATED_BY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedBy(@javax.annotation.Nullable String createdBy) {
+
+  public JsonNullable<String> getCreatedBy_JsonNullable() {
+    return createdBy;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_BY)
+  public void setCreatedBy_JsonNullable(JsonNullable<String> createdBy) {
     this.createdBy = createdBy;
+  }
+
+  public void setCreatedBy(@javax.annotation.Nullable String createdBy) {
+    this.createdBy = JsonNullable.<String>of(createdBy);
   }
 
 
   public ListWorkflowVersions200ResponseVersionsInner createdByEmail(@javax.annotation.Nullable String createdByEmail) {
-    this.createdByEmail = createdByEmail;
+    this.createdByEmail = JsonNullable.<String>of(createdByEmail);
     return this;
   }
 
@@ -181,22 +197,30 @@ public class ListWorkflowVersions200ResponseVersionsInner {
    * @return createdByEmail
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATED_BY_EMAIL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCreatedByEmail() {
-    return createdByEmail;
+        return createdByEmail.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATED_BY_EMAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedByEmail(@javax.annotation.Nullable String createdByEmail) {
+
+  public JsonNullable<String> getCreatedByEmail_JsonNullable() {
+    return createdByEmail;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATED_BY_EMAIL)
+  public void setCreatedByEmail_JsonNullable(JsonNullable<String> createdByEmail) {
     this.createdByEmail = createdByEmail;
+  }
+
+  public void setCreatedByEmail(@javax.annotation.Nullable String createdByEmail) {
+    this.createdByEmail = JsonNullable.<String>of(createdByEmail);
   }
 
 
   public ListWorkflowVersions200ResponseVersionsInner restoredFromVersion(@javax.annotation.Nullable Integer restoredFromVersion) {
-    this.restoredFromVersion = restoredFromVersion;
+    this.restoredFromVersion = JsonNullable.<Integer>of(restoredFromVersion);
     return this;
   }
 
@@ -205,17 +229,25 @@ public class ListWorkflowVersions200ResponseVersionsInner {
    * @return restoredFromVersion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESTORED_FROM_VERSION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getRestoredFromVersion() {
-    return restoredFromVersion;
+        return restoredFromVersion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESTORED_FROM_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestoredFromVersion(@javax.annotation.Nullable Integer restoredFromVersion) {
+
+  public JsonNullable<Integer> getRestoredFromVersion_JsonNullable() {
+    return restoredFromVersion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESTORED_FROM_VERSION)
+  public void setRestoredFromVersion_JsonNullable(JsonNullable<Integer> restoredFromVersion) {
     this.restoredFromVersion = restoredFromVersion;
+  }
+
+  public void setRestoredFromVersion(@javax.annotation.Nullable Integer restoredFromVersion) {
+    this.restoredFromVersion = JsonNullable.<Integer>of(restoredFromVersion);
   }
 
 
@@ -257,16 +289,27 @@ public class ListWorkflowVersions200ResponseVersionsInner {
     ListWorkflowVersions200ResponseVersionsInner listWorkflowVersions200ResponseVersionsInner = (ListWorkflowVersions200ResponseVersionsInner) o;
     return Objects.equals(this.version, listWorkflowVersions200ResponseVersionsInner.version) &&
         Objects.equals(this.name, listWorkflowVersions200ResponseVersionsInner.name) &&
-        Objects.equals(this.description, listWorkflowVersions200ResponseVersionsInner.description) &&
-        Objects.equals(this.createdBy, listWorkflowVersions200ResponseVersionsInner.createdBy) &&
-        Objects.equals(this.createdByEmail, listWorkflowVersions200ResponseVersionsInner.createdByEmail) &&
-        Objects.equals(this.restoredFromVersion, listWorkflowVersions200ResponseVersionsInner.restoredFromVersion) &&
+        equalsNullable(this.description, listWorkflowVersions200ResponseVersionsInner.description) &&
+        equalsNullable(this.createdBy, listWorkflowVersions200ResponseVersionsInner.createdBy) &&
+        equalsNullable(this.createdByEmail, listWorkflowVersions200ResponseVersionsInner.createdByEmail) &&
+        equalsNullable(this.restoredFromVersion, listWorkflowVersions200ResponseVersionsInner.restoredFromVersion) &&
         Objects.equals(this.createdAt, listWorkflowVersions200ResponseVersionsInner.createdAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(version, name, description, createdBy, createdByEmail, restoredFromVersion, createdAt);
+    return Objects.hash(version, name, hashCodeNullable(description), hashCodeNullable(createdBy), hashCodeNullable(createdByEmail), hashCodeNullable(restoredFromVersion), createdAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

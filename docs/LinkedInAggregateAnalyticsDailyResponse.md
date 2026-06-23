@@ -13,7 +13,7 @@ Response for DAILY aggregation (time series breakdown)
 |**accountType** | **String** |  |  [optional] |
 |**username** | **String** |  |  [optional] |
 |**aggregation** | [**AggregationEnum**](#AggregationEnum) |  |  [optional] |
-|**dateRange** | [**LinkedInAggregateAnalyticsTotalResponseDateRange**](LinkedInAggregateAnalyticsTotalResponseDateRange.md) |  |  [optional] |
+|**dateRange** | [**YouTubeDailyViewsResponseDateRange**](YouTubeDailyViewsResponseDateRange.md) |  |  [optional] |
 |**analytics** | [**LinkedInAggregateAnalyticsDailyResponseAnalytics**](LinkedInAggregateAnalyticsDailyResponseAnalytics.md) |  |  [optional] |
 |**skippedMetrics** | **List&lt;String&gt;** | Metrics that were skipped due to API limitations |  [optional] |
 |**note** | **String** |  |  [optional] |

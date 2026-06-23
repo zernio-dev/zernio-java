@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   RestoreWorkflowVersion200ResponseWorkflow.JSON_PROPERTY_NODE_COUNT,
   RestoreWorkflowVersion200ResponseWorkflow.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RestoreWorkflowVersion200ResponseWorkflow {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -61,8 +65,7 @@ public class RestoreWorkflowVersion200ResponseWorkflow {
   private String status;
 
   public static final String JSON_PROPERTY_ENTRY_NODE_ID = "entryNodeId";
-  @javax.annotation.Nullable
-  private String entryNodeId;
+  private JsonNullable<String> entryNodeId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NODE_COUNT = "nodeCount";
   @javax.annotation.Nullable
@@ -172,7 +175,7 @@ public class RestoreWorkflowVersion200ResponseWorkflow {
 
 
   public RestoreWorkflowVersion200ResponseWorkflow entryNodeId(@javax.annotation.Nullable String entryNodeId) {
-    this.entryNodeId = entryNodeId;
+    this.entryNodeId = JsonNullable.<String>of(entryNodeId);
     return this;
   }
 
@@ -181,17 +184,25 @@ public class RestoreWorkflowVersion200ResponseWorkflow {
    * @return entryNodeId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENTRY_NODE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEntryNodeId() {
-    return entryNodeId;
+        return entryNodeId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENTRY_NODE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntryNodeId(@javax.annotation.Nullable String entryNodeId) {
+
+  public JsonNullable<String> getEntryNodeId_JsonNullable() {
+    return entryNodeId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENTRY_NODE_ID)
+  public void setEntryNodeId_JsonNullable(JsonNullable<String> entryNodeId) {
     this.entryNodeId = entryNodeId;
+  }
+
+  public void setEntryNodeId(@javax.annotation.Nullable String entryNodeId) {
+    this.entryNodeId = JsonNullable.<String>of(entryNodeId);
   }
 
 
@@ -259,14 +270,25 @@ public class RestoreWorkflowVersion200ResponseWorkflow {
         Objects.equals(this.name, restoreWorkflowVersion200ResponseWorkflow.name) &&
         Objects.equals(this.description, restoreWorkflowVersion200ResponseWorkflow.description) &&
         Objects.equals(this.status, restoreWorkflowVersion200ResponseWorkflow.status) &&
-        Objects.equals(this.entryNodeId, restoreWorkflowVersion200ResponseWorkflow.entryNodeId) &&
+        equalsNullable(this.entryNodeId, restoreWorkflowVersion200ResponseWorkflow.entryNodeId) &&
         Objects.equals(this.nodeCount, restoreWorkflowVersion200ResponseWorkflow.nodeCount) &&
         Objects.equals(this.updatedAt, restoreWorkflowVersion200ResponseWorkflow.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, status, entryNodeId, nodeCount, updatedAt);
+    return Objects.hash(id, name, description, status, hashCodeNullable(entryNodeId), nodeCount, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

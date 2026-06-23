@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,7 +42,7 @@ import dev.zernio.ApiClient;
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_CENTS,
   UsageStatsSpend.JSON_PROPERTY_X_SPEND_LIMIT_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageStatsSpend {
   public static final String JSON_PROPERTY_CURRENT_PERIOD_CENTS = "currentPeriodCents";
   @javax.annotation.Nullable
@@ -53,8 +57,7 @@ public class UsageStatsSpend {
   private Integer xSpendCents;
 
   public static final String JSON_PROPERTY_X_SPEND_LIMIT_CENTS = "xSpendLimitCents";
-  @javax.annotation.Nullable
-  private Integer xSpendLimitCents;
+  private JsonNullable<Integer> xSpendLimitCents = JsonNullable.<Integer>undefined();
 
   public UsageStatsSpend() { 
   }
@@ -132,7 +135,7 @@ public class UsageStatsSpend {
 
 
   public UsageStatsSpend xSpendLimitCents(@javax.annotation.Nullable Integer xSpendLimitCents) {
-    this.xSpendLimitCents = xSpendLimitCents;
+    this.xSpendLimitCents = JsonNullable.<Integer>of(xSpendLimitCents);
     return this;
   }
 
@@ -141,17 +144,25 @@ public class UsageStatsSpend {
    * @return xSpendLimitCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_X_SPEND_LIMIT_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getxSpendLimitCents() {
-    return xSpendLimitCents;
+        return xSpendLimitCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_X_SPEND_LIMIT_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setxSpendLimitCents(@javax.annotation.Nullable Integer xSpendLimitCents) {
+
+  public JsonNullable<Integer> getxSpendLimitCents_JsonNullable() {
+    return xSpendLimitCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_X_SPEND_LIMIT_CENTS)
+  public void setxSpendLimitCents_JsonNullable(JsonNullable<Integer> xSpendLimitCents) {
     this.xSpendLimitCents = xSpendLimitCents;
+  }
+
+  public void setxSpendLimitCents(@javax.annotation.Nullable Integer xSpendLimitCents) {
+    this.xSpendLimitCents = JsonNullable.<Integer>of(xSpendLimitCents);
   }
 
 
@@ -170,12 +181,23 @@ public class UsageStatsSpend {
     return Objects.equals(this.currentPeriodCents, usageStatsSpend.currentPeriodCents) &&
         Objects.equals(this.creditsRemainingCents, usageStatsSpend.creditsRemainingCents) &&
         Objects.equals(this.xSpendCents, usageStatsSpend.xSpendCents) &&
-        Objects.equals(this.xSpendLimitCents, usageStatsSpend.xSpendLimitCents);
+        equalsNullable(this.xSpendLimitCents, usageStatsSpend.xSpendLimitCents);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currentPeriodCents, creditsRemainingCents, xSpendCents, xSpendLimitCents);
+    return Objects.hash(currentPeriodCents, creditsRemainingCents, xSpendCents, hashCodeNullable(xSpendLimitCents));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

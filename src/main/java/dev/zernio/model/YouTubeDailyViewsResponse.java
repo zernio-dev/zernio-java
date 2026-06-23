@@ -31,6 +31,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -48,7 +52,7 @@ import dev.zernio.ApiClient;
   YouTubeDailyViewsResponse.JSON_PROPERTY_LAST_SYNCED_AT,
   YouTubeDailyViewsResponse.JSON_PROPERTY_SCOPE_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -59,8 +63,7 @@ public class YouTubeDailyViewsResponse {
   private String videoId;
 
   public static final String JSON_PROPERTY_DURATION_SECONDS = "durationSeconds";
-  @javax.annotation.Nullable
-  private Integer durationSeconds;
+  private JsonNullable<Integer> durationSeconds = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_DATE_RANGE = "dateRange";
   @javax.annotation.Nullable
@@ -75,8 +78,7 @@ public class YouTubeDailyViewsResponse {
   private List<YouTubeDailyViewsResponseDailyViewsInner> dailyViews = new ArrayList<>();
 
   public static final String JSON_PROPERTY_LAST_SYNCED_AT = "lastSyncedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime lastSyncedAt;
+  private JsonNullable<OffsetDateTime> lastSyncedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_SCOPE_STATUS = "scopeStatus";
   @javax.annotation.Nullable
@@ -134,7 +136,7 @@ public class YouTubeDailyViewsResponse {
 
 
   public YouTubeDailyViewsResponse durationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
-    this.durationSeconds = durationSeconds;
+    this.durationSeconds = JsonNullable.<Integer>of(durationSeconds);
     return this;
   }
 
@@ -143,17 +145,25 @@ public class YouTubeDailyViewsResponse {
    * @return durationSeconds
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DURATION_SECONDS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getDurationSeconds() {
-    return durationSeconds;
+        return durationSeconds.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DURATION_SECONDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDurationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
+
+  public JsonNullable<Integer> getDurationSeconds_JsonNullable() {
+    return durationSeconds;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DURATION_SECONDS)
+  public void setDurationSeconds_JsonNullable(JsonNullable<Integer> durationSeconds) {
     this.durationSeconds = durationSeconds;
+  }
+
+  public void setDurationSeconds(@javax.annotation.Nullable Integer durationSeconds) {
+    this.durationSeconds = JsonNullable.<Integer>of(durationSeconds);
   }
 
 
@@ -238,7 +248,7 @@ public class YouTubeDailyViewsResponse {
 
 
   public YouTubeDailyViewsResponse lastSyncedAt(@javax.annotation.Nullable OffsetDateTime lastSyncedAt) {
-    this.lastSyncedAt = lastSyncedAt;
+    this.lastSyncedAt = JsonNullable.<OffsetDateTime>of(lastSyncedAt);
     return this;
   }
 
@@ -247,17 +257,25 @@ public class YouTubeDailyViewsResponse {
    * @return lastSyncedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_SYNCED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getLastSyncedAt() {
-    return lastSyncedAt;
+        return lastSyncedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_SYNCED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastSyncedAt(@javax.annotation.Nullable OffsetDateTime lastSyncedAt) {
+
+  public JsonNullable<OffsetDateTime> getLastSyncedAt_JsonNullable() {
+    return lastSyncedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_SYNCED_AT)
+  public void setLastSyncedAt_JsonNullable(JsonNullable<OffsetDateTime> lastSyncedAt) {
     this.lastSyncedAt = lastSyncedAt;
+  }
+
+  public void setLastSyncedAt(@javax.annotation.Nullable OffsetDateTime lastSyncedAt) {
+    this.lastSyncedAt = JsonNullable.<OffsetDateTime>of(lastSyncedAt);
   }
 
 
@@ -299,17 +317,28 @@ public class YouTubeDailyViewsResponse {
     YouTubeDailyViewsResponse youTubeDailyViewsResponse = (YouTubeDailyViewsResponse) o;
     return Objects.equals(this.success, youTubeDailyViewsResponse.success) &&
         Objects.equals(this.videoId, youTubeDailyViewsResponse.videoId) &&
-        Objects.equals(this.durationSeconds, youTubeDailyViewsResponse.durationSeconds) &&
+        equalsNullable(this.durationSeconds, youTubeDailyViewsResponse.durationSeconds) &&
         Objects.equals(this.dateRange, youTubeDailyViewsResponse.dateRange) &&
         Objects.equals(this.totalViews, youTubeDailyViewsResponse.totalViews) &&
         Objects.equals(this.dailyViews, youTubeDailyViewsResponse.dailyViews) &&
-        Objects.equals(this.lastSyncedAt, youTubeDailyViewsResponse.lastSyncedAt) &&
+        equalsNullable(this.lastSyncedAt, youTubeDailyViewsResponse.lastSyncedAt) &&
         Objects.equals(this.scopeStatus, youTubeDailyViewsResponse.scopeStatus);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, videoId, durationSeconds, dateRange, totalViews, dailyViews, lastSyncedAt, scopeStatus);
+    return Objects.hash(success, videoId, hashCodeNullable(durationSeconds), dateRange, totalViews, dailyViews, hashCodeNullable(lastSyncedAt), scopeStatus);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

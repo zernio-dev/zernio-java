@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.WebhookPayloadCallEndedCallBilling;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -50,15 +54,14 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallEndedCall.JSON_PROPERTY_RECORDING_EXPIRES_AT,
   WebhookPayloadCallEndedCall.JSON_PROPERTY_BILLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallEndedCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
   private String id;
 
   public static final String JSON_PROPERTY_META_CALL_ID = "metaCallId";
-  @javax.annotation.Nullable
-  private String metaCallId;
+  private JsonNullable<String> metaCallId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -210,7 +213,7 @@ public class WebhookPayloadCallEndedCall {
 
 
   public WebhookPayloadCallEndedCall metaCallId(@javax.annotation.Nullable String metaCallId) {
-    this.metaCallId = metaCallId;
+    this.metaCallId = JsonNullable.<String>of(metaCallId);
     return this;
   }
 
@@ -219,17 +222,25 @@ public class WebhookPayloadCallEndedCall {
    * @return metaCallId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_META_CALL_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getMetaCallId() {
-    return metaCallId;
+        return metaCallId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_META_CALL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetaCallId(@javax.annotation.Nullable String metaCallId) {
+
+  public JsonNullable<String> getMetaCallId_JsonNullable() {
+    return metaCallId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_META_CALL_ID)
+  public void setMetaCallId_JsonNullable(JsonNullable<String> metaCallId) {
     this.metaCallId = metaCallId;
+  }
+
+  public void setMetaCallId(@javax.annotation.Nullable String metaCallId) {
+    this.metaCallId = JsonNullable.<String>of(metaCallId);
   }
 
 
@@ -534,7 +545,7 @@ public class WebhookPayloadCallEndedCall {
     }
     WebhookPayloadCallEndedCall webhookPayloadCallEndedCall = (WebhookPayloadCallEndedCall) o;
     return Objects.equals(this.id, webhookPayloadCallEndedCall.id) &&
-        Objects.equals(this.metaCallId, webhookPayloadCallEndedCall.metaCallId) &&
+        equalsNullable(this.metaCallId, webhookPayloadCallEndedCall.metaCallId) &&
         Objects.equals(this.accountId, webhookPayloadCallEndedCall.accountId) &&
         Objects.equals(this.phoneNumberId, webhookPayloadCallEndedCall.phoneNumberId) &&
         Objects.equals(this.direction, webhookPayloadCallEndedCall.direction) &&
@@ -549,9 +560,20 @@ public class WebhookPayloadCallEndedCall {
         Objects.equals(this.billing, webhookPayloadCallEndedCall.billing);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, metaCallId, accountId, phoneNumberId, direction, from, to, startedAt, endedAt, durationSeconds, endReason, recordingUrl, recordingExpiresAt, billing);
+    return Objects.hash(id, hashCodeNullable(metaCallId), accountId, phoneNumberId, direction, from, to, startedAt, endedAt, durationSeconds, endReason, recordingUrl, recordingExpiresAt, billing);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

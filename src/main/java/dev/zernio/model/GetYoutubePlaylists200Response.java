@@ -28,6 +28,10 @@ import dev.zernio.model.GetYoutubePlaylists200ResponsePlaylistsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,15 +43,14 @@ import dev.zernio.ApiClient;
   GetYoutubePlaylists200Response.JSON_PROPERTY_PLAYLISTS,
   GetYoutubePlaylists200Response.JSON_PROPERTY_DEFAULT_PLAYLIST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYoutubePlaylists200Response {
   public static final String JSON_PROPERTY_PLAYLISTS = "playlists";
   @javax.annotation.Nullable
   private List<GetYoutubePlaylists200ResponsePlaylistsInner> playlists = new ArrayList<>();
 
   public static final String JSON_PROPERTY_DEFAULT_PLAYLIST_ID = "defaultPlaylistId";
-  @javax.annotation.Nullable
-  private String defaultPlaylistId;
+  private JsonNullable<String> defaultPlaylistId = JsonNullable.<String>undefined();
 
   public GetYoutubePlaylists200Response() { 
   }
@@ -85,7 +88,7 @@ public class GetYoutubePlaylists200Response {
 
 
   public GetYoutubePlaylists200Response defaultPlaylistId(@javax.annotation.Nullable String defaultPlaylistId) {
-    this.defaultPlaylistId = defaultPlaylistId;
+    this.defaultPlaylistId = JsonNullable.<String>of(defaultPlaylistId);
     return this;
   }
 
@@ -94,17 +97,25 @@ public class GetYoutubePlaylists200Response {
    * @return defaultPlaylistId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DEFAULT_PLAYLIST_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDefaultPlaylistId() {
-    return defaultPlaylistId;
+        return defaultPlaylistId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DEFAULT_PLAYLIST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDefaultPlaylistId(@javax.annotation.Nullable String defaultPlaylistId) {
+
+  public JsonNullable<String> getDefaultPlaylistId_JsonNullable() {
+    return defaultPlaylistId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DEFAULT_PLAYLIST_ID)
+  public void setDefaultPlaylistId_JsonNullable(JsonNullable<String> defaultPlaylistId) {
     this.defaultPlaylistId = defaultPlaylistId;
+  }
+
+  public void setDefaultPlaylistId(@javax.annotation.Nullable String defaultPlaylistId) {
+    this.defaultPlaylistId = JsonNullable.<String>of(defaultPlaylistId);
   }
 
 
@@ -121,12 +132,23 @@ public class GetYoutubePlaylists200Response {
     }
     GetYoutubePlaylists200Response getYoutubePlaylists200Response = (GetYoutubePlaylists200Response) o;
     return Objects.equals(this.playlists, getYoutubePlaylists200Response.playlists) &&
-        Objects.equals(this.defaultPlaylistId, getYoutubePlaylists200Response.defaultPlaylistId);
+        equalsNullable(this.defaultPlaylistId, getYoutubePlaylists200Response.defaultPlaylistId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(playlists, defaultPlaylistId);
+    return Objects.hash(playlists, hashCodeNullable(defaultPlaylistId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

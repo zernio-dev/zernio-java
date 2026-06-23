@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,7 +42,7 @@ import dev.zernio.ApiClient;
   WorkflowEdge.JSON_PROPERTY_TARGET,
   WorkflowEdge.JSON_PROPERTY_SOURCE_HANDLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowEdge {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -53,8 +57,7 @@ public class WorkflowEdge {
   private String target;
 
   public static final String JSON_PROPERTY_SOURCE_HANDLE = "sourceHandle";
-  @javax.annotation.Nullable
-  private String sourceHandle;
+  private JsonNullable<String> sourceHandle = JsonNullable.<String>undefined();
 
   public WorkflowEdge() { 
   }
@@ -132,7 +135,7 @@ public class WorkflowEdge {
 
 
   public WorkflowEdge sourceHandle(@javax.annotation.Nullable String sourceHandle) {
-    this.sourceHandle = sourceHandle;
+    this.sourceHandle = JsonNullable.<String>of(sourceHandle);
     return this;
   }
 
@@ -141,17 +144,25 @@ public class WorkflowEdge {
    * @return sourceHandle
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SOURCE_HANDLE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSourceHandle() {
-    return sourceHandle;
+        return sourceHandle.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SOURCE_HANDLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceHandle(@javax.annotation.Nullable String sourceHandle) {
+
+  public JsonNullable<String> getSourceHandle_JsonNullable() {
+    return sourceHandle;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SOURCE_HANDLE)
+  public void setSourceHandle_JsonNullable(JsonNullable<String> sourceHandle) {
     this.sourceHandle = sourceHandle;
+  }
+
+  public void setSourceHandle(@javax.annotation.Nullable String sourceHandle) {
+    this.sourceHandle = JsonNullable.<String>of(sourceHandle);
   }
 
 
@@ -170,12 +181,23 @@ public class WorkflowEdge {
     return Objects.equals(this.id, workflowEdge.id) &&
         Objects.equals(this.source, workflowEdge.source) &&
         Objects.equals(this.target, workflowEdge.target) &&
-        Objects.equals(this.sourceHandle, workflowEdge.sourceHandle);
+        equalsNullable(this.sourceHandle, workflowEdge.sourceHandle);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, source, target, sourceHandle);
+    return Objects.hash(id, source, target, hashCodeNullable(sourceHandle));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

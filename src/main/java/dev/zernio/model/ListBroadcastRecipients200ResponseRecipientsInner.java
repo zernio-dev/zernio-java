@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -48,7 +52,7 @@ import dev.zernio.ApiClient;
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_DELIVERED_AT,
   ListBroadcastRecipients200ResponseRecipientsInner.JSON_PROPERTY_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBroadcastRecipients200ResponseRecipientsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -124,12 +128,10 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
   private String error;
 
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
-  @javax.annotation.Nullable
-  private Integer errorCode;
+  private JsonNullable<Integer> errorCode = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_ERROR_EXPLANATION = "errorExplanation";
-  @javax.annotation.Nullable
-  private String errorExplanation;
+  private JsonNullable<String> errorExplanation = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SENT_AT = "sentAt";
   @javax.annotation.Nullable
@@ -339,7 +341,7 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
 
 
   public ListBroadcastRecipients200ResponseRecipientsInner errorCode(@javax.annotation.Nullable Integer errorCode) {
-    this.errorCode = errorCode;
+    this.errorCode = JsonNullable.<Integer>of(errorCode);
     return this;
   }
 
@@ -348,22 +350,30 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
    * @return errorCode
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getErrorCode() {
-    return errorCode;
+        return errorCode.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorCode(@javax.annotation.Nullable Integer errorCode) {
+
+  public JsonNullable<Integer> getErrorCode_JsonNullable() {
+    return errorCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_CODE)
+  public void setErrorCode_JsonNullable(JsonNullable<Integer> errorCode) {
     this.errorCode = errorCode;
+  }
+
+  public void setErrorCode(@javax.annotation.Nullable Integer errorCode) {
+    this.errorCode = JsonNullable.<Integer>of(errorCode);
   }
 
 
   public ListBroadcastRecipients200ResponseRecipientsInner errorExplanation(@javax.annotation.Nullable String errorExplanation) {
-    this.errorExplanation = errorExplanation;
+    this.errorExplanation = JsonNullable.<String>of(errorExplanation);
     return this;
   }
 
@@ -372,17 +382,25 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
    * @return errorExplanation
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR_EXPLANATION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getErrorExplanation() {
-    return errorExplanation;
+        return errorExplanation.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ERROR_EXPLANATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrorExplanation(@javax.annotation.Nullable String errorExplanation) {
+
+  public JsonNullable<String> getErrorExplanation_JsonNullable() {
+    return errorExplanation;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ERROR_EXPLANATION)
+  public void setErrorExplanation_JsonNullable(JsonNullable<String> errorExplanation) {
     this.errorExplanation = errorExplanation;
+  }
+
+  public void setErrorExplanation(@javax.annotation.Nullable String errorExplanation) {
+    this.errorExplanation = JsonNullable.<String>of(errorExplanation);
   }
 
 
@@ -478,16 +496,27 @@ public class ListBroadcastRecipients200ResponseRecipientsInner {
         Objects.equals(this.status, listBroadcastRecipients200ResponseRecipientsInner.status) &&
         Objects.equals(this.messageId, listBroadcastRecipients200ResponseRecipientsInner.messageId) &&
         Objects.equals(this.error, listBroadcastRecipients200ResponseRecipientsInner.error) &&
-        Objects.equals(this.errorCode, listBroadcastRecipients200ResponseRecipientsInner.errorCode) &&
-        Objects.equals(this.errorExplanation, listBroadcastRecipients200ResponseRecipientsInner.errorExplanation) &&
+        equalsNullable(this.errorCode, listBroadcastRecipients200ResponseRecipientsInner.errorCode) &&
+        equalsNullable(this.errorExplanation, listBroadcastRecipients200ResponseRecipientsInner.errorExplanation) &&
         Objects.equals(this.sentAt, listBroadcastRecipients200ResponseRecipientsInner.sentAt) &&
         Objects.equals(this.deliveredAt, listBroadcastRecipients200ResponseRecipientsInner.deliveredAt) &&
         Objects.equals(this.readAt, listBroadcastRecipients200ResponseRecipientsInner.readAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, errorCode, errorExplanation, sentAt, deliveredAt, readAt);
+    return Objects.hash(id, contactId, channelId, platformIdentifier, contactName, status, messageId, error, hashCodeNullable(errorCode), hashCodeNullable(errorExplanation), sentAt, deliveredAt, readAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

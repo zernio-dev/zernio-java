@@ -32,11 +32,9 @@ import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestDynamicCreative;
-import dev.zernio.model.CreateStandaloneAdRequestExcludedLocations;
 import dev.zernio.model.CreateStandaloneAdRequestImages;
 import dev.zernio.model.CreateStandaloneAdRequestPlacementAssets;
 import dev.zernio.model.CreateStandaloneAdRequestPlacements;
-import dev.zernio.model.CreateStandaloneAdRequestPlacesInner;
 import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
@@ -71,7 +69,6 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_STATUS,
-  CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_STATUS,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_LEVEL,
   CreateStandaloneAdRequest.JSON_PROPERTY_CURRENCY,
   CreateStandaloneAdRequest.JSON_PROPERTY_HEADLINE,
@@ -100,9 +97,6 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ZIPS,
   CreateStandaloneAdRequest.JSON_PROPERTY_METROS,
   CreateStandaloneAdRequest.JSON_PROPERTY_CUSTOM_LOCATIONS,
-  CreateStandaloneAdRequest.JSON_PROPERTY_PLACES,
-  CreateStandaloneAdRequest.JSON_PROPERTY_NEIGHBORHOODS,
-  CreateStandaloneAdRequest.JSON_PROPERTY_EXCLUDED_LOCATIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_BEHAVIORS,
   CreateStandaloneAdRequest.JSON_PROPERTY_INCOME_TIER,
   CreateStandaloneAdRequest.JSON_PROPERTY_LANGUAGES,
@@ -132,7 +126,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -263,7 +257,7 @@ public class CreateStandaloneAdRequest {
   private BudgetTypeEnum budgetType;
 
   /**
-   * Meta only. Desired publish state of the ad (and, on the legacy/multi-ad-set shapes, the ad set too). Omitted or &#x60;ACTIVE&#x60; publishes live immediately (default). &#x60;PAUSED&#x60; creates the objects paused and skips activation — useful to stage ads before they spend. On the attach shape (&#x60;adSetId&#x60;), only the new ad is affected; the existing ad set and campaign are already live and are not touched. 
+   * Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
    */
   public enum StatusEnum {
     ACTIVE(String.valueOf("ACTIVE")),
@@ -300,45 +294,6 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status;
-
-  /**
-   * Meta only. Independent publish state for the CAMPAIGN when the create makes both a new campaign and a new ad set (legacy shape). When omitted, the campaign follows &#x60;status&#x60;. Use this to stage a paused campaign with an active ad set (&#x60;status: ACTIVE, campaignStatus: PAUSED&#x60;) — the ad set will start delivering as soon as the campaign is activated later. Ignored when &#x60;existingCampaignId&#x60; is set (the campaign is already live and its status is not changed). 
-   */
-  public enum CampaignStatusEnum {
-    ACTIVE(String.valueOf("ACTIVE")),
-    
-    PAUSED(String.valueOf("PAUSED"));
-
-    private String value;
-
-    CampaignStatusEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CampaignStatusEnum fromValue(String value) {
-      for (CampaignStatusEnum b : CampaignStatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_CAMPAIGN_STATUS = "campaignStatus";
-  @javax.annotation.Nullable
-  private CampaignStatusEnum campaignStatus;
 
   /**
    * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour — omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
@@ -553,18 +508,6 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
   @javax.annotation.Nullable
   private List<CreateStandaloneAdRequestCustomLocationsInner> customLocations = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PLACES = "places";
-  @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestPlacesInner> places = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_NEIGHBORHOODS = "neighborhoods";
-  @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestPlacesInner> neighborhoods = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXCLUDED_LOCATIONS = "excludedLocations";
-  @javax.annotation.Nullable
-  private CreateStandaloneAdRequestExcludedLocations excludedLocations;
 
   public static final String JSON_PROPERTY_BEHAVIORS = "behaviors";
   @javax.annotation.Nullable
@@ -1171,7 +1114,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Desired publish state of the ad (and, on the legacy/multi-ad-set shapes, the ad set too). Omitted or &#x60;ACTIVE&#x60; publishes live immediately (default). &#x60;PAUSED&#x60; creates the objects paused and skips activation — useful to stage ads before they spend. On the attach shape (&#x60;adSetId&#x60;), only the new ad is affected; the existing ad set and campaign are already live and are not touched. 
+   * Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
    * @return status
    */
   @javax.annotation.Nullable
@@ -1186,30 +1129,6 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
-  }
-
-
-  public CreateStandaloneAdRequest campaignStatus(@javax.annotation.Nullable CampaignStatusEnum campaignStatus) {
-    this.campaignStatus = campaignStatus;
-    return this;
-  }
-
-  /**
-   * Meta only. Independent publish state for the CAMPAIGN when the create makes both a new campaign and a new ad set (legacy shape). When omitted, the campaign follows &#x60;status&#x60;. Use this to stage a paused campaign with an active ad set (&#x60;status: ACTIVE, campaignStatus: PAUSED&#x60;) — the ad set will start delivering as soon as the campaign is activated later. Ignored when &#x60;existingCampaignId&#x60; is set (the campaign is already live and its status is not changed). 
-   * @return campaignStatus
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public CampaignStatusEnum getCampaignStatus() {
-    return campaignStatus;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCampaignStatus(@javax.annotation.Nullable CampaignStatusEnum campaignStatus) {
-    this.campaignStatus = campaignStatus;
   }
 
 
@@ -1587,7 +1506,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Reuse an EXISTING ad creative by id instead of building a new one from the copy/media fields (which are then ignored). Works on both shapes: - Legacy/multi-ad-set (&#x60;existingCampaignId&#x60;): combine with   &#x60;existingCampaignId&#x60; to build a multi-ad-set campaign that   shares one creative across audiences. - Attach (&#x60;adSetId&#x60;): combine with &#x60;adSetId&#x60; to add a second   (or Nth) ad to an existing ad set reusing the same creative —   no &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;imageUrl&#x60; required on the body. Mutually exclusive with &#x60;creatives[]&#x60;, &#x60;dynamicCreative&#x60;, and &#x60;placementAssets&#x60;. The creative id is returned as &#x60;creativeId&#x60; on the create response. 
+   * Meta only. Reuse an EXISTING ad creative by id instead of building a new one from the copy/media fields (which are then ignored). Combine with &#x60;existingCampaignId&#x60; to build a multi-ad-set campaign that shares one creative. Mutually exclusive with &#x60;creatives[]&#x60;, &#x60;dynamicCreative&#x60;, and &#x60;placementAssets&#x60;. The creative id used is returned as &#x60;creativeId&#x60; on the create response. 
    * @return existingCreativeId
    */
   @javax.annotation.Nullable
@@ -1953,94 +1872,6 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest places(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> places) {
-    this.places = places;
-    return this;
-  }
-
-  public CreateStandaloneAdRequest addPlacesItem(CreateStandaloneAdRequestPlacesInner placesItem) {
-    if (this.places == null) {
-      this.places = new ArrayList<>();
-    }
-    this.places.add(placesItem);
-    return this;
-  }
-
-  /**
-   * Named points of interest (businesses, landmarks). Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;place. Maps to geo_locations.places.
-   * @return places
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PLACES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestPlacesInner> getPlaces() {
-    return places;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PLACES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlaces(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> places) {
-    this.places = places;
-  }
-
-
-  public CreateStandaloneAdRequest neighborhoods(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> neighborhoods) {
-    this.neighborhoods = neighborhoods;
-    return this;
-  }
-
-  public CreateStandaloneAdRequest addNeighborhoodsItem(CreateStandaloneAdRequestPlacesInner neighborhoodsItem) {
-    if (this.neighborhoods == null) {
-      this.neighborhoods = new ArrayList<>();
-    }
-    this.neighborhoods.add(neighborhoodsItem);
-    return this;
-  }
-
-  /**
-   * Named neighbourhood areas. Meta only. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;neighborhood. Maps to geo_locations.neighborhoods.
-   * @return neighborhoods
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEIGHBORHOODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestPlacesInner> getNeighborhoods() {
-    return neighborhoods;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_NEIGHBORHOODS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNeighborhoods(@javax.annotation.Nullable List<CreateStandaloneAdRequestPlacesInner> neighborhoods) {
-    this.neighborhoods = neighborhoods;
-  }
-
-
-  public CreateStandaloneAdRequest excludedLocations(@javax.annotation.Nullable CreateStandaloneAdRequestExcludedLocations excludedLocations) {
-    this.excludedLocations = excludedLocations;
-    return this;
-  }
-
-  /**
-   * Get excludedLocations
-   * @return excludedLocations
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public CreateStandaloneAdRequestExcludedLocations getExcludedLocations() {
-    return excludedLocations;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExcludedLocations(@javax.annotation.Nullable CreateStandaloneAdRequestExcludedLocations excludedLocations) {
-    this.excludedLocations = excludedLocations;
-  }
-
-
   public CreateStandaloneAdRequest behaviors(@javax.annotation.Nullable List<CreateStandaloneAdRequestBehaviorsInner> behaviors) {
     this.behaviors = behaviors;
     return this;
@@ -2191,7 +2022,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, business places, etc.) — exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Use it to clone a campaign&#39;s targeting EXACTLY, preserving advanced fields the camelCase targeting fields can&#39;t model. Mutually exclusive with the camelCase targeting fields (countries/regions/cities/interests/ ageMin/...), &#x60;audienceId&#x60;, and &#x60;savedTargetingId&#x60; (sending both → 422). Sent as-is; Meta validates and surfaces any errors. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). Can be combined with the top-level &#x60;placements&#x60; field — when both are present, placements are converted to Meta&#39;s snake_case and merged into this object before it is sent to Meta. 
+   * Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case: &#x60;geo_locations&#x60;, &#x60;age_min&#x60;, &#x60;excluded_custom_audiences&#x60;, &#x60;flexible_spec&#x60;, &#x60;targeting_automation&#x60;, business places, etc.) — exactly the shape &#x60;GET /v1/ads/{adId}&#x60; returns for external ads. Use it to clone a campaign&#39;s targeting EXACTLY, preserving advanced fields the camelCase targeting fields can&#39;t model. Mutually exclusive with the camelCase targeting fields (countries/regions/cities/interests/ ageMin/...), &#x60;audienceId&#x60;, and &#x60;savedTargetingId&#x60; (sending both → 422). Sent as-is; Meta validates and surfaces any errors. If cloning an EU campaign, also pass &#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; (those are separate fields, not part of targeting). 
    * @return rawTargeting
    */
   @javax.annotation.Nullable
@@ -2801,7 +2632,6 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
         Objects.equals(this.status, createStandaloneAdRequest.status) &&
-        Objects.equals(this.campaignStatus, createStandaloneAdRequest.campaignStatus) &&
         Objects.equals(this.budgetLevel, createStandaloneAdRequest.budgetLevel) &&
         Objects.equals(this.currency, createStandaloneAdRequest.currency) &&
         Objects.equals(this.headline, createStandaloneAdRequest.headline) &&
@@ -2830,9 +2660,6 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.zips, createStandaloneAdRequest.zips) &&
         Objects.equals(this.metros, createStandaloneAdRequest.metros) &&
         Objects.equals(this.customLocations, createStandaloneAdRequest.customLocations) &&
-        Objects.equals(this.places, createStandaloneAdRequest.places) &&
-        Objects.equals(this.neighborhoods, createStandaloneAdRequest.neighborhoods) &&
-        Objects.equals(this.excludedLocations, createStandaloneAdRequest.excludedLocations) &&
         Objects.equals(this.behaviors, createStandaloneAdRequest.behaviors) &&
         Objects.equals(this.incomeTier, createStandaloneAdRequest.incomeTier) &&
         Objects.equals(this.languages, createStandaloneAdRequest.languages) &&
@@ -2865,7 +2692,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, places, neighborhoods, excludedLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2884,7 +2711,6 @@ public class CreateStandaloneAdRequest {
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    campaignStatus: ").append(toIndentedString(campaignStatus)).append("\n");
     sb.append("    budgetLevel: ").append(toIndentedString(budgetLevel)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
@@ -2913,9 +2739,6 @@ public class CreateStandaloneAdRequest {
     sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
     sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
     sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
-    sb.append("    places: ").append(toIndentedString(places)).append("\n");
-    sb.append("    neighborhoods: ").append(toIndentedString(neighborhoods)).append("\n");
-    sb.append("    excludedLocations: ").append(toIndentedString(excludedLocations)).append("\n");
     sb.append("    behaviors: ").append(toIndentedString(behaviors)).append("\n");
     sb.append("    incomeTier: ").append(toIndentedString(incomeTier)).append("\n");
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
@@ -3049,11 +2872,6 @@ public class CreateStandaloneAdRequest {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
-    }
-
-    // add `campaignStatus` to the URL query string
-    if (getCampaignStatus() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scampaignStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignStatus()))));
     }
 
     // add `budgetLevel` to the URL query string
@@ -3233,31 +3051,6 @@ public class CreateStandaloneAdRequest {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
-    }
-
-    // add `places` to the URL query string
-    if (getPlaces() != null) {
-      for (int i = 0; i < getPlaces().size(); i++) {
-        if (getPlaces().get(i) != null) {
-          joiner.add(getPlaces().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%splaces%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
-        }
-      }
-    }
-
-    // add `neighborhoods` to the URL query string
-    if (getNeighborhoods() != null) {
-      for (int i = 0; i < getNeighborhoods().size(); i++) {
-        if (getNeighborhoods().get(i) != null) {
-          joiner.add(getNeighborhoods().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sneighborhoods%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
-        }
-      }
-    }
-
-    // add `excludedLocations` to the URL query string
-    if (getExcludedLocations() != null) {
-      joiner.add(getExcludedLocations().toUrlQueryString(prefix + "excludedLocations" + suffix));
     }
 
     // add `behaviors` to the URL query string

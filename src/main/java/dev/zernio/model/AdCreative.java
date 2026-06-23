@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -54,7 +58,7 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
@@ -65,36 +69,29 @@ public class AdCreative {
   private String imageUrl;
 
   public static final String JSON_PROPERTY_VIDEO_ID = "videoId";
-  @javax.annotation.Nullable
-  private String videoId;
+  private JsonNullable<String> videoId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_VIDEO_URL = "videoUrl";
-  @javax.annotation.Nullable
-  private String videoUrl;
+  private JsonNullable<String> videoUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OBJECT_TYPE = "objectType";
   @javax.annotation.Nullable
   private String objectType;
 
   public static final String JSON_PROPERTY_OBJECT_STORY_ID = "objectStoryId";
-  @javax.annotation.Nullable
-  private String objectStoryId;
+  private JsonNullable<String> objectStoryId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID = "effectiveObjectStoryId";
-  @javax.annotation.Nullable
-  private String effectiveObjectStoryId;
+  private JsonNullable<String> effectiveObjectStoryId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID = "effectiveInstagramMediaId";
-  @javax.annotation.Nullable
-  private String effectiveInstagramMediaId;
+  private JsonNullable<String> effectiveInstagramMediaId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTAGRAM_USER_ID = "instagramUserId";
-  @javax.annotation.Nullable
-  private String instagramUserId;
+  private JsonNullable<String> instagramUserId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_INSTAGRAM_PERMALINK_URL = "instagramPermalinkUrl";
-  @javax.annotation.Nullable
-  private String instagramPermalinkUrl;
+  private JsonNullable<String> instagramPermalinkUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_MEDIA_URLS = "mediaUrls";
   @javax.annotation.Nullable
@@ -180,7 +177,7 @@ public class AdCreative {
 
 
   public AdCreative videoId(@javax.annotation.Nullable String videoId) {
-    this.videoId = videoId;
+    this.videoId = JsonNullable.<String>of(videoId);
     return this;
   }
 
@@ -189,22 +186,30 @@ public class AdCreative {
    * @return videoId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VIDEO_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getVideoId() {
-    return videoId;
+        return videoId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VIDEO_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVideoId(@javax.annotation.Nullable String videoId) {
+
+  public JsonNullable<String> getVideoId_JsonNullable() {
+    return videoId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VIDEO_ID)
+  public void setVideoId_JsonNullable(JsonNullable<String> videoId) {
     this.videoId = videoId;
+  }
+
+  public void setVideoId(@javax.annotation.Nullable String videoId) {
+    this.videoId = JsonNullable.<String>of(videoId);
   }
 
 
   public AdCreative videoUrl(@javax.annotation.Nullable String videoUrl) {
-    this.videoUrl = videoUrl;
+    this.videoUrl = JsonNullable.<String>of(videoUrl);
     return this;
   }
 
@@ -213,17 +218,25 @@ public class AdCreative {
    * @return videoUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_VIDEO_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getVideoUrl() {
-    return videoUrl;
+        return videoUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_VIDEO_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVideoUrl(@javax.annotation.Nullable String videoUrl) {
+
+  public JsonNullable<String> getVideoUrl_JsonNullable() {
+    return videoUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_VIDEO_URL)
+  public void setVideoUrl_JsonNullable(JsonNullable<String> videoUrl) {
     this.videoUrl = videoUrl;
+  }
+
+  public void setVideoUrl(@javax.annotation.Nullable String videoUrl) {
+    this.videoUrl = JsonNullable.<String>of(videoUrl);
   }
 
 
@@ -252,7 +265,7 @@ public class AdCreative {
 
 
   public AdCreative objectStoryId(@javax.annotation.Nullable String objectStoryId) {
-    this.objectStoryId = objectStoryId;
+    this.objectStoryId = JsonNullable.<String>of(objectStoryId);
     return this;
   }
 
@@ -261,22 +274,30 @@ public class AdCreative {
    * @return objectStoryId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getObjectStoryId() {
-    return objectStoryId;
+        return objectStoryId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OBJECT_STORY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObjectStoryId(@javax.annotation.Nullable String objectStoryId) {
+
+  public JsonNullable<String> getObjectStoryId_JsonNullable() {
+    return objectStoryId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OBJECT_STORY_ID)
+  public void setObjectStoryId_JsonNullable(JsonNullable<String> objectStoryId) {
     this.objectStoryId = objectStoryId;
+  }
+
+  public void setObjectStoryId(@javax.annotation.Nullable String objectStoryId) {
+    this.objectStoryId = JsonNullable.<String>of(objectStoryId);
   }
 
 
   public AdCreative effectiveObjectStoryId(@javax.annotation.Nullable String effectiveObjectStoryId) {
-    this.effectiveObjectStoryId = effectiveObjectStoryId;
+    this.effectiveObjectStoryId = JsonNullable.<String>of(effectiveObjectStoryId);
     return this;
   }
 
@@ -285,22 +306,30 @@ public class AdCreative {
    * @return effectiveObjectStoryId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEffectiveObjectStoryId() {
-    return effectiveObjectStoryId;
+        return effectiveObjectStoryId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEffectiveObjectStoryId(@javax.annotation.Nullable String effectiveObjectStoryId) {
+
+  public JsonNullable<String> getEffectiveObjectStoryId_JsonNullable() {
+    return effectiveObjectStoryId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EFFECTIVE_OBJECT_STORY_ID)
+  public void setEffectiveObjectStoryId_JsonNullable(JsonNullable<String> effectiveObjectStoryId) {
     this.effectiveObjectStoryId = effectiveObjectStoryId;
+  }
+
+  public void setEffectiveObjectStoryId(@javax.annotation.Nullable String effectiveObjectStoryId) {
+    this.effectiveObjectStoryId = JsonNullable.<String>of(effectiveObjectStoryId);
   }
 
 
   public AdCreative effectiveInstagramMediaId(@javax.annotation.Nullable String effectiveInstagramMediaId) {
-    this.effectiveInstagramMediaId = effectiveInstagramMediaId;
+    this.effectiveInstagramMediaId = JsonNullable.<String>of(effectiveInstagramMediaId);
     return this;
   }
 
@@ -309,22 +338,30 @@ public class AdCreative {
    * @return effectiveInstagramMediaId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEffectiveInstagramMediaId() {
-    return effectiveInstagramMediaId;
+        return effectiveInstagramMediaId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEffectiveInstagramMediaId(@javax.annotation.Nullable String effectiveInstagramMediaId) {
+
+  public JsonNullable<String> getEffectiveInstagramMediaId_JsonNullable() {
+    return effectiveInstagramMediaId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EFFECTIVE_INSTAGRAM_MEDIA_ID)
+  public void setEffectiveInstagramMediaId_JsonNullable(JsonNullable<String> effectiveInstagramMediaId) {
     this.effectiveInstagramMediaId = effectiveInstagramMediaId;
+  }
+
+  public void setEffectiveInstagramMediaId(@javax.annotation.Nullable String effectiveInstagramMediaId) {
+    this.effectiveInstagramMediaId = JsonNullable.<String>of(effectiveInstagramMediaId);
   }
 
 
   public AdCreative instagramUserId(@javax.annotation.Nullable String instagramUserId) {
-    this.instagramUserId = instagramUserId;
+    this.instagramUserId = JsonNullable.<String>of(instagramUserId);
     return this;
   }
 
@@ -333,22 +370,30 @@ public class AdCreative {
    * @return instagramUserId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_USER_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInstagramUserId() {
-    return instagramUserId;
+        return instagramUserId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstagramUserId(@javax.annotation.Nullable String instagramUserId) {
+
+  public JsonNullable<String> getInstagramUserId_JsonNullable() {
+    return instagramUserId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTAGRAM_USER_ID)
+  public void setInstagramUserId_JsonNullable(JsonNullable<String> instagramUserId) {
     this.instagramUserId = instagramUserId;
+  }
+
+  public void setInstagramUserId(@javax.annotation.Nullable String instagramUserId) {
+    this.instagramUserId = JsonNullable.<String>of(instagramUserId);
   }
 
 
   public AdCreative instagramPermalinkUrl(@javax.annotation.Nullable String instagramPermalinkUrl) {
-    this.instagramPermalinkUrl = instagramPermalinkUrl;
+    this.instagramPermalinkUrl = JsonNullable.<String>of(instagramPermalinkUrl);
     return this;
   }
 
@@ -357,17 +402,25 @@ public class AdCreative {
    * @return instagramPermalinkUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PERMALINK_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getInstagramPermalinkUrl() {
-    return instagramPermalinkUrl;
+        return instagramPermalinkUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_INSTAGRAM_PERMALINK_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInstagramPermalinkUrl(@javax.annotation.Nullable String instagramPermalinkUrl) {
+
+  public JsonNullable<String> getInstagramPermalinkUrl_JsonNullable() {
+    return instagramPermalinkUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_INSTAGRAM_PERMALINK_URL)
+  public void setInstagramPermalinkUrl_JsonNullable(JsonNullable<String> instagramPermalinkUrl) {
     this.instagramPermalinkUrl = instagramPermalinkUrl;
+  }
+
+  public void setInstagramPermalinkUrl(@javax.annotation.Nullable String instagramPermalinkUrl) {
+    this.instagramPermalinkUrl = JsonNullable.<String>of(instagramPermalinkUrl);
   }
 
 
@@ -585,14 +638,14 @@ public class AdCreative {
     AdCreative adCreative = (AdCreative) o;
     return Objects.equals(this.thumbnailUrl, adCreative.thumbnailUrl) &&
         Objects.equals(this.imageUrl, adCreative.imageUrl) &&
-        Objects.equals(this.videoId, adCreative.videoId) &&
-        Objects.equals(this.videoUrl, adCreative.videoUrl) &&
+        equalsNullable(this.videoId, adCreative.videoId) &&
+        equalsNullable(this.videoUrl, adCreative.videoUrl) &&
         Objects.equals(this.objectType, adCreative.objectType) &&
-        Objects.equals(this.objectStoryId, adCreative.objectStoryId) &&
-        Objects.equals(this.effectiveObjectStoryId, adCreative.effectiveObjectStoryId) &&
-        Objects.equals(this.effectiveInstagramMediaId, adCreative.effectiveInstagramMediaId) &&
-        Objects.equals(this.instagramUserId, adCreative.instagramUserId) &&
-        Objects.equals(this.instagramPermalinkUrl, adCreative.instagramPermalinkUrl) &&
+        equalsNullable(this.objectStoryId, adCreative.objectStoryId) &&
+        equalsNullable(this.effectiveObjectStoryId, adCreative.effectiveObjectStoryId) &&
+        equalsNullable(this.effectiveInstagramMediaId, adCreative.effectiveInstagramMediaId) &&
+        equalsNullable(this.instagramUserId, adCreative.instagramUserId) &&
+        equalsNullable(this.instagramPermalinkUrl, adCreative.instagramPermalinkUrl) &&
         Objects.equals(this.mediaUrls, adCreative.mediaUrls) &&
         Objects.equals(this.body, adCreative.body) &&
         Objects.equals(this.googleHeadline, adCreative.googleHeadline) &&
@@ -603,9 +656,20 @@ public class AdCreative {
         Objects.equals(this.pinterestDescription, adCreative.pinterestDescription);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(thumbnailUrl, imageUrl, videoId, videoUrl, objectType, objectStoryId, effectiveObjectStoryId, effectiveInstagramMediaId, instagramUserId, instagramPermalinkUrl, mediaUrls, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(thumbnailUrl, imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, body, googleHeadline, googleDescription, linkUrl, pinterestImageUrl, pinterestTitle, pinterestDescription);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

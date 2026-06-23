@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   InboxWebhookMessage.JSON_PROPERTY_SENT_AT,
   InboxWebhookMessage.JSON_PROPERTY_IS_READ
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookMessage {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -146,7 +146,7 @@ public class InboxWebhookMessage {
   private DirectionEnum direction;
 
   public static final String JSON_PROPERTY_TEXT = "text";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String text;
 
   public static final String JSON_PROPERTY_ATTACHMENTS = "attachments";
@@ -288,7 +288,7 @@ public class InboxWebhookMessage {
   }
 
 
-  public InboxWebhookMessage text(@javax.annotation.Nonnull String text) {
+  public InboxWebhookMessage text(@javax.annotation.Nullable String text) {
     this.text = text;
     return this;
   }
@@ -297,17 +297,17 @@ public class InboxWebhookMessage {
    * Message text content (retained on deleted messages for API consumers; Zernio dashboard UI hides this)
    * @return text
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getText() {
     return text;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_TEXT, required = true)
+  @JsonProperty(value = JSON_PROPERTY_TEXT, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setText(@javax.annotation.Nonnull String text) {
+  public void setText(@javax.annotation.Nullable String text) {
     this.text = text;
   }
 

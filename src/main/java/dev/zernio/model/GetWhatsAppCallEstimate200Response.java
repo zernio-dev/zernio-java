@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetWhatsAppCallEstimate200ResponseBreakdown;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,11 +43,10 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallEstimate200Response.JSON_PROPERTY_PER_MINUTE_USD,
   GetWhatsAppCallEstimate200Response.JSON_PROPERTY_BREAKDOWN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallEstimate200Response {
   public static final String JSON_PROPERTY_DESTINATION_COUNTRY = "destinationCountry";
-  @javax.annotation.Nullable
-  private String destinationCountry;
+  private JsonNullable<String> destinationCountry = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PER_MINUTE_USD = "perMinuteUsd";
   @javax.annotation.Nullable
@@ -57,7 +60,7 @@ public class GetWhatsAppCallEstimate200Response {
   }
 
   public GetWhatsAppCallEstimate200Response destinationCountry(@javax.annotation.Nullable String destinationCountry) {
-    this.destinationCountry = destinationCountry;
+    this.destinationCountry = JsonNullable.<String>of(destinationCountry);
     return this;
   }
 
@@ -66,17 +69,25 @@ public class GetWhatsAppCallEstimate200Response {
    * @return destinationCountry
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESTINATION_COUNTRY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDestinationCountry() {
-    return destinationCountry;
+        return destinationCountry.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESTINATION_COUNTRY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestinationCountry(@javax.annotation.Nullable String destinationCountry) {
+
+  public JsonNullable<String> getDestinationCountry_JsonNullable() {
+    return destinationCountry;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESTINATION_COUNTRY)
+  public void setDestinationCountry_JsonNullable(JsonNullable<String> destinationCountry) {
     this.destinationCountry = destinationCountry;
+  }
+
+  public void setDestinationCountry(@javax.annotation.Nullable String destinationCountry) {
+    this.destinationCountry = JsonNullable.<String>of(destinationCountry);
   }
 
 
@@ -140,14 +151,25 @@ public class GetWhatsAppCallEstimate200Response {
       return false;
     }
     GetWhatsAppCallEstimate200Response getWhatsAppCallEstimate200Response = (GetWhatsAppCallEstimate200Response) o;
-    return Objects.equals(this.destinationCountry, getWhatsAppCallEstimate200Response.destinationCountry) &&
+    return equalsNullable(this.destinationCountry, getWhatsAppCallEstimate200Response.destinationCountry) &&
         Objects.equals(this.perMinuteUsd, getWhatsAppCallEstimate200Response.perMinuteUsd) &&
         Objects.equals(this.breakdown, getWhatsAppCallEstimate200Response.breakdown);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(destinationCountry, perMinuteUsd, breakdown);
+    return Objects.hash(hashCodeNullable(destinationCountry), perMinuteUsd, breakdown);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

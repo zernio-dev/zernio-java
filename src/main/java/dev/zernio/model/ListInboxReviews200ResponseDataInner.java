@@ -28,6 +28,10 @@ import dev.zernio.model.ListInboxReviews200ResponseDataInnerReply;
 import dev.zernio.model.ListInboxReviews200ResponseDataInnerReviewer;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -48,7 +52,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REPLY,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -91,8 +95,7 @@ public class ListInboxReviews200ResponseDataInner {
   private ListInboxReviews200ResponseDataInnerReply reply;
 
   public static final String JSON_PROPERTY_REVIEW_URL = "reviewUrl";
-  @javax.annotation.Nullable
-  private String reviewUrl;
+  private JsonNullable<String> reviewUrl = JsonNullable.<String>undefined();
 
   public ListInboxReviews200ResponseDataInner() { 
   }
@@ -338,7 +341,7 @@ public class ListInboxReviews200ResponseDataInner {
 
 
   public ListInboxReviews200ResponseDataInner reviewUrl(@javax.annotation.Nullable String reviewUrl) {
-    this.reviewUrl = reviewUrl;
+    this.reviewUrl = JsonNullable.<String>of(reviewUrl);
     return this;
   }
 
@@ -347,17 +350,25 @@ public class ListInboxReviews200ResponseDataInner {
    * @return reviewUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REVIEW_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getReviewUrl() {
-    return reviewUrl;
+        return reviewUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_REVIEW_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReviewUrl(@javax.annotation.Nullable String reviewUrl) {
+
+  public JsonNullable<String> getReviewUrl_JsonNullable() {
+    return reviewUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_REVIEW_URL)
+  public void setReviewUrl_JsonNullable(JsonNullable<String> reviewUrl) {
     this.reviewUrl = reviewUrl;
+  }
+
+  public void setReviewUrl(@javax.annotation.Nullable String reviewUrl) {
+    this.reviewUrl = JsonNullable.<String>of(reviewUrl);
   }
 
 
@@ -383,12 +394,23 @@ public class ListInboxReviews200ResponseDataInner {
         Objects.equals(this.created, listInboxReviews200ResponseDataInner.created) &&
         Objects.equals(this.hasReply, listInboxReviews200ResponseDataInner.hasReply) &&
         Objects.equals(this.reply, listInboxReviews200ResponseDataInner.reply) &&
-        Objects.equals(this.reviewUrl, listInboxReviews200ResponseDataInner.reviewUrl);
+        equalsNullable(this.reviewUrl, listInboxReviews200ResponseDataInner.reviewUrl);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, reviewer, rating, text, created, hasReply, reply, reviewUrl);
+    return Objects.hash(id, platform, accountId, accountUsername, reviewer, rating, text, created, hasReply, reply, hashCodeNullable(reviewUrl));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

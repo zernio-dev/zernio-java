@@ -28,6 +28,10 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,7 +48,7 @@ import dev.zernio.ApiClient;
   RecyclingConfig.JSON_PROPERTY_EXPIRE_DATE,
   RecyclingConfig.JSON_PROPERTY_CONTENT_VARIATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RecyclingConfig {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
@@ -98,12 +102,10 @@ public class RecyclingConfig {
   private OffsetDateTime startDate;
 
   public static final String JSON_PROPERTY_EXPIRE_COUNT = "expireCount";
-  @javax.annotation.Nullable
-  private Integer expireCount;
+  private JsonNullable<Integer> expireCount = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_EXPIRE_DATE = "expireDate";
-  @javax.annotation.Nullable
-  private OffsetDateTime expireDate;
+  private JsonNullable<OffsetDateTime> expireDate = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CONTENT_VARIATIONS = "contentVariations";
   @javax.annotation.Nullable
@@ -210,7 +212,7 @@ public class RecyclingConfig {
 
 
   public RecyclingConfig expireCount(@javax.annotation.Nullable Integer expireCount) {
-    this.expireCount = expireCount;
+    this.expireCount = JsonNullable.<Integer>of(expireCount);
     return this;
   }
 
@@ -220,22 +222,30 @@ public class RecyclingConfig {
    * @return expireCount
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPIRE_COUNT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getExpireCount() {
-    return expireCount;
+        return expireCount.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPIRE_COUNT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpireCount(@javax.annotation.Nullable Integer expireCount) {
+
+  public JsonNullable<Integer> getExpireCount_JsonNullable() {
+    return expireCount;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPIRE_COUNT)
+  public void setExpireCount_JsonNullable(JsonNullable<Integer> expireCount) {
     this.expireCount = expireCount;
+  }
+
+  public void setExpireCount(@javax.annotation.Nullable Integer expireCount) {
+    this.expireCount = JsonNullable.<Integer>of(expireCount);
   }
 
 
   public RecyclingConfig expireDate(@javax.annotation.Nullable OffsetDateTime expireDate) {
-    this.expireDate = expireDate;
+    this.expireDate = JsonNullable.<OffsetDateTime>of(expireDate);
     return this;
   }
 
@@ -244,17 +254,25 @@ public class RecyclingConfig {
    * @return expireDate
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_EXPIRE_DATE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getExpireDate() {
-    return expireDate;
+        return expireDate.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_EXPIRE_DATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpireDate(@javax.annotation.Nullable OffsetDateTime expireDate) {
+
+  public JsonNullable<OffsetDateTime> getExpireDate_JsonNullable() {
+    return expireDate;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXPIRE_DATE)
+  public void setExpireDate_JsonNullable(JsonNullable<OffsetDateTime> expireDate) {
     this.expireDate = expireDate;
+  }
+
+  public void setExpireDate(@javax.annotation.Nullable OffsetDateTime expireDate) {
+    this.expireDate = JsonNullable.<OffsetDateTime>of(expireDate);
   }
 
 
@@ -306,14 +324,25 @@ public class RecyclingConfig {
         Objects.equals(this.gap, recyclingConfig.gap) &&
         Objects.equals(this.gapFreq, recyclingConfig.gapFreq) &&
         Objects.equals(this.startDate, recyclingConfig.startDate) &&
-        Objects.equals(this.expireCount, recyclingConfig.expireCount) &&
-        Objects.equals(this.expireDate, recyclingConfig.expireDate) &&
+        equalsNullable(this.expireCount, recyclingConfig.expireCount) &&
+        equalsNullable(this.expireDate, recyclingConfig.expireDate) &&
         Objects.equals(this.contentVariations, recyclingConfig.contentVariations);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(enabled, gap, gapFreq, startDate, expireCount, expireDate, contentVariations);
+    return Objects.hash(enabled, gap, gapFreq, startDate, hashCodeNullable(expireCount), hashCodeNullable(expireDate), contentVariations);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

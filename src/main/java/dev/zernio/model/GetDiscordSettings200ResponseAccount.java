@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,7 +49,7 @@ import dev.zernio.ApiClient;
   GetDiscordSettings200ResponseAccount.JSON_PROPERTY_WEBHOOK_USERNAME,
   GetDiscordSettings200ResponseAccount.JSON_PROPERTY_WEBHOOK_AVATAR_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetDiscordSettings200ResponseAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -84,12 +88,10 @@ public class GetDiscordSettings200ResponseAccount {
   private String guildId;
 
   public static final String JSON_PROPERTY_WEBHOOK_USERNAME = "webhookUsername";
-  @javax.annotation.Nullable
-  private String webhookUsername;
+  private JsonNullable<String> webhookUsername = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_WEBHOOK_AVATAR_URL = "webhookAvatarUrl";
-  @javax.annotation.Nullable
-  private String webhookAvatarUrl;
+  private JsonNullable<String> webhookAvatarUrl = JsonNullable.<String>undefined();
 
   public GetDiscordSettings200ResponseAccount() { 
   }
@@ -311,7 +313,7 @@ public class GetDiscordSettings200ResponseAccount {
 
 
   public GetDiscordSettings200ResponseAccount webhookUsername(@javax.annotation.Nullable String webhookUsername) {
-    this.webhookUsername = webhookUsername;
+    this.webhookUsername = JsonNullable.<String>of(webhookUsername);
     return this;
   }
 
@@ -320,22 +322,30 @@ public class GetDiscordSettings200ResponseAccount {
    * @return webhookUsername
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEBHOOK_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWebhookUsername() {
-    return webhookUsername;
+        return webhookUsername.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEBHOOK_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebhookUsername(@javax.annotation.Nullable String webhookUsername) {
+
+  public JsonNullable<String> getWebhookUsername_JsonNullable() {
+    return webhookUsername;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEBHOOK_USERNAME)
+  public void setWebhookUsername_JsonNullable(JsonNullable<String> webhookUsername) {
     this.webhookUsername = webhookUsername;
+  }
+
+  public void setWebhookUsername(@javax.annotation.Nullable String webhookUsername) {
+    this.webhookUsername = JsonNullable.<String>of(webhookUsername);
   }
 
 
   public GetDiscordSettings200ResponseAccount webhookAvatarUrl(@javax.annotation.Nullable String webhookAvatarUrl) {
-    this.webhookAvatarUrl = webhookAvatarUrl;
+    this.webhookAvatarUrl = JsonNullable.<String>of(webhookAvatarUrl);
     return this;
   }
 
@@ -344,17 +354,25 @@ public class GetDiscordSettings200ResponseAccount {
    * @return webhookAvatarUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEBHOOK_AVATAR_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getWebhookAvatarUrl() {
-    return webhookAvatarUrl;
+        return webhookAvatarUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_WEBHOOK_AVATAR_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebhookAvatarUrl(@javax.annotation.Nullable String webhookAvatarUrl) {
+
+  public JsonNullable<String> getWebhookAvatarUrl_JsonNullable() {
+    return webhookAvatarUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_WEBHOOK_AVATAR_URL)
+  public void setWebhookAvatarUrl_JsonNullable(JsonNullable<String> webhookAvatarUrl) {
     this.webhookAvatarUrl = webhookAvatarUrl;
+  }
+
+  public void setWebhookAvatarUrl(@javax.annotation.Nullable String webhookAvatarUrl) {
+    this.webhookAvatarUrl = JsonNullable.<String>of(webhookAvatarUrl);
   }
 
 
@@ -379,13 +397,24 @@ public class GetDiscordSettings200ResponseAccount {
         Objects.equals(this.channelName, getDiscordSettings200ResponseAccount.channelName) &&
         Objects.equals(this.channelType, getDiscordSettings200ResponseAccount.channelType) &&
         Objects.equals(this.guildId, getDiscordSettings200ResponseAccount.guildId) &&
-        Objects.equals(this.webhookUsername, getDiscordSettings200ResponseAccount.webhookUsername) &&
-        Objects.equals(this.webhookAvatarUrl, getDiscordSettings200ResponseAccount.webhookAvatarUrl);
+        equalsNullable(this.webhookUsername, getDiscordSettings200ResponseAccount.webhookUsername) &&
+        equalsNullable(this.webhookAvatarUrl, getDiscordSettings200ResponseAccount.webhookAvatarUrl);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, username, displayName, profilePicture, channelId, channelName, channelType, guildId, webhookUsername, webhookAvatarUrl);
+    return Objects.hash(id, platform, username, displayName, profilePicture, channelId, channelName, channelType, guildId, hashCodeNullable(webhookUsername), hashCodeNullable(webhookAvatarUrl));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

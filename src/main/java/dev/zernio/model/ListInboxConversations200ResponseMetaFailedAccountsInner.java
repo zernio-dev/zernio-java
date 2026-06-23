@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,15 +44,14 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseMetaFailedAccountsInner.JSON_PROPERTY_CODE,
   ListInboxConversations200ResponseMetaFailedAccountsInner.JSON_PROPERTY_RETRY_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseMetaFailedAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
   private String accountId;
 
   public static final String JSON_PROPERTY_ACCOUNT_USERNAME = "accountUsername";
-  @javax.annotation.Nullable
-  private String accountUsername;
+  private JsonNullable<String> accountUsername = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -59,12 +62,10 @@ public class ListInboxConversations200ResponseMetaFailedAccountsInner {
   private String error;
 
   public static final String JSON_PROPERTY_CODE = "code";
-  @javax.annotation.Nullable
-  private String code;
+  private JsonNullable<String> code = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RETRY_AFTER = "retryAfter";
-  @javax.annotation.Nullable
-  private Integer retryAfter;
+  private JsonNullable<Integer> retryAfter = JsonNullable.<Integer>undefined();
 
   public ListInboxConversations200ResponseMetaFailedAccountsInner() { 
   }
@@ -94,7 +95,7 @@ public class ListInboxConversations200ResponseMetaFailedAccountsInner {
 
 
   public ListInboxConversations200ResponseMetaFailedAccountsInner accountUsername(@javax.annotation.Nullable String accountUsername) {
-    this.accountUsername = accountUsername;
+    this.accountUsername = JsonNullable.<String>of(accountUsername);
     return this;
   }
 
@@ -103,17 +104,25 @@ public class ListInboxConversations200ResponseMetaFailedAccountsInner {
    * @return accountUsername
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAccountUsername() {
-    return accountUsername;
+        return accountUsername.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ACCOUNT_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountUsername(@javax.annotation.Nullable String accountUsername) {
+
+  public JsonNullable<String> getAccountUsername_JsonNullable() {
+    return accountUsername;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ACCOUNT_USERNAME)
+  public void setAccountUsername_JsonNullable(JsonNullable<String> accountUsername) {
     this.accountUsername = accountUsername;
+  }
+
+  public void setAccountUsername(@javax.annotation.Nullable String accountUsername) {
+    this.accountUsername = JsonNullable.<String>of(accountUsername);
   }
 
 
@@ -166,7 +175,7 @@ public class ListInboxConversations200ResponseMetaFailedAccountsInner {
 
 
   public ListInboxConversations200ResponseMetaFailedAccountsInner code(@javax.annotation.Nullable String code) {
-    this.code = code;
+    this.code = JsonNullable.<String>of(code);
     return this;
   }
 
@@ -175,22 +184,30 @@ public class ListInboxConversations200ResponseMetaFailedAccountsInner {
    * @return code
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCode() {
-    return code;
+        return code.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCode(@javax.annotation.Nullable String code) {
+
+  public JsonNullable<String> getCode_JsonNullable() {
+    return code;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CODE)
+  public void setCode_JsonNullable(JsonNullable<String> code) {
     this.code = code;
+  }
+
+  public void setCode(@javax.annotation.Nullable String code) {
+    this.code = JsonNullable.<String>of(code);
   }
 
 
   public ListInboxConversations200ResponseMetaFailedAccountsInner retryAfter(@javax.annotation.Nullable Integer retryAfter) {
-    this.retryAfter = retryAfter;
+    this.retryAfter = JsonNullable.<Integer>of(retryAfter);
     return this;
   }
 
@@ -199,17 +216,25 @@ public class ListInboxConversations200ResponseMetaFailedAccountsInner {
    * @return retryAfter
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RETRY_AFTER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getRetryAfter() {
-    return retryAfter;
+        return retryAfter.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RETRY_AFTER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRetryAfter(@javax.annotation.Nullable Integer retryAfter) {
+
+  public JsonNullable<Integer> getRetryAfter_JsonNullable() {
+    return retryAfter;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RETRY_AFTER)
+  public void setRetryAfter_JsonNullable(JsonNullable<Integer> retryAfter) {
     this.retryAfter = retryAfter;
+  }
+
+  public void setRetryAfter(@javax.annotation.Nullable Integer retryAfter) {
+    this.retryAfter = JsonNullable.<Integer>of(retryAfter);
   }
 
 
@@ -226,16 +251,27 @@ public class ListInboxConversations200ResponseMetaFailedAccountsInner {
     }
     ListInboxConversations200ResponseMetaFailedAccountsInner listInboxConversations200ResponseMetaFailedAccountsInner = (ListInboxConversations200ResponseMetaFailedAccountsInner) o;
     return Objects.equals(this.accountId, listInboxConversations200ResponseMetaFailedAccountsInner.accountId) &&
-        Objects.equals(this.accountUsername, listInboxConversations200ResponseMetaFailedAccountsInner.accountUsername) &&
+        equalsNullable(this.accountUsername, listInboxConversations200ResponseMetaFailedAccountsInner.accountUsername) &&
         Objects.equals(this.platform, listInboxConversations200ResponseMetaFailedAccountsInner.platform) &&
         Objects.equals(this.error, listInboxConversations200ResponseMetaFailedAccountsInner.error) &&
-        Objects.equals(this.code, listInboxConversations200ResponseMetaFailedAccountsInner.code) &&
-        Objects.equals(this.retryAfter, listInboxConversations200ResponseMetaFailedAccountsInner.retryAfter);
+        equalsNullable(this.code, listInboxConversations200ResponseMetaFailedAccountsInner.code) &&
+        equalsNullable(this.retryAfter, listInboxConversations200ResponseMetaFailedAccountsInner.retryAfter);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, accountUsername, platform, error, code, retryAfter);
+    return Objects.hash(accountId, hashCodeNullable(accountUsername), platform, error, hashCodeNullable(code), hashCodeNullable(retryAfter));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

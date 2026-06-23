@@ -29,6 +29,10 @@ import dev.zernio.model.WorkflowNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,7 +48,7 @@ import dev.zernio.ApiClient;
   UpdateWorkflowRequest.JSON_PROPERTY_ENTRY_NODE_ID,
   UpdateWorkflowRequest.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateWorkflowRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -63,8 +67,7 @@ public class UpdateWorkflowRequest {
   private List<WorkflowEdge> edges = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ENTRY_NODE_ID = "entryNodeId";
-  @javax.annotation.Nullable
-  private String entryNodeId;
+  private JsonNullable<String> entryNodeId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -186,7 +189,7 @@ public class UpdateWorkflowRequest {
 
 
   public UpdateWorkflowRequest entryNodeId(@javax.annotation.Nullable String entryNodeId) {
-    this.entryNodeId = entryNodeId;
+    this.entryNodeId = JsonNullable.<String>of(entryNodeId);
     return this;
   }
 
@@ -195,17 +198,25 @@ public class UpdateWorkflowRequest {
    * @return entryNodeId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENTRY_NODE_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEntryNodeId() {
-    return entryNodeId;
+        return entryNodeId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENTRY_NODE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntryNodeId(@javax.annotation.Nullable String entryNodeId) {
+
+  public JsonNullable<String> getEntryNodeId_JsonNullable() {
+    return entryNodeId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENTRY_NODE_ID)
+  public void setEntryNodeId_JsonNullable(JsonNullable<String> entryNodeId) {
     this.entryNodeId = entryNodeId;
+  }
+
+  public void setEntryNodeId(@javax.annotation.Nullable String entryNodeId) {
+    this.entryNodeId = JsonNullable.<String>of(entryNodeId);
   }
 
 
@@ -249,13 +260,24 @@ public class UpdateWorkflowRequest {
         Objects.equals(this.description, updateWorkflowRequest.description) &&
         Objects.equals(this.nodes, updateWorkflowRequest.nodes) &&
         Objects.equals(this.edges, updateWorkflowRequest.edges) &&
-        Objects.equals(this.entryNodeId, updateWorkflowRequest.entryNodeId) &&
+        equalsNullable(this.entryNodeId, updateWorkflowRequest.entryNodeId) &&
         Objects.equals(this.accountId, updateWorkflowRequest.accountId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, nodes, edges, entryNodeId, accountId);
+    return Objects.hash(name, description, nodes, edges, hashCodeNullable(entryNodeId), accountId);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

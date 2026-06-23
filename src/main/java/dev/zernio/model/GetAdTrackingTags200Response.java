@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   GetAdTrackingTags200Response.JSON_PROPERTY_DYNAMIC_VALUE_PARAMETERS,
   GetAdTrackingTags200Response.JSON_PROPERTY_CUSTOM_VALUE_PARAMETERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdTrackingTags200Response {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -88,28 +92,22 @@ public class GetAdTrackingTags200Response {
   private LevelEnum level;
 
   public static final String JSON_PROPERTY_URL_TAGS = "urlTags";
-  @javax.annotation.Nullable
-  private String urlTags;
+  private JsonNullable<String> urlTags = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_TEMPLATE_URL_SPEC = "templateUrlSpec";
-  @javax.annotation.Nullable
-  private Object templateUrlSpec;
+  private JsonNullable<Object> templateUrlSpec = JsonNullable.<Object>undefined();
 
   public static final String JSON_PROPERTY_TRACKING_URL_TEMPLATE = "trackingUrlTemplate";
-  @javax.annotation.Nullable
-  private String trackingUrlTemplate;
+  private JsonNullable<String> trackingUrlTemplate = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_FINAL_URL_SUFFIX = "finalUrlSuffix";
-  @javax.annotation.Nullable
-  private String finalUrlSuffix;
+  private JsonNullable<String> finalUrlSuffix = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DYNAMIC_VALUE_PARAMETERS = "dynamicValueParameters";
-  @javax.annotation.Nullable
-  private Object dynamicValueParameters;
+  private JsonNullable<Object> dynamicValueParameters = JsonNullable.<Object>undefined();
 
   public static final String JSON_PROPERTY_CUSTOM_VALUE_PARAMETERS = "customValueParameters";
-  @javax.annotation.Nullable
-  private Object customValueParameters;
+  private JsonNullable<Object> customValueParameters = JsonNullable.<Object>undefined();
 
   public GetAdTrackingTags200Response() { 
   }
@@ -163,7 +161,7 @@ public class GetAdTrackingTags200Response {
 
 
   public GetAdTrackingTags200Response urlTags(@javax.annotation.Nullable String urlTags) {
-    this.urlTags = urlTags;
+    this.urlTags = JsonNullable.<String>of(urlTags);
     return this;
   }
 
@@ -172,22 +170,30 @@ public class GetAdTrackingTags200Response {
    * @return urlTags
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_URL_TAGS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUrlTags() {
-    return urlTags;
+        return urlTags.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_URL_TAGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrlTags(@javax.annotation.Nullable String urlTags) {
+
+  public JsonNullable<String> getUrlTags_JsonNullable() {
+    return urlTags;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_URL_TAGS)
+  public void setUrlTags_JsonNullable(JsonNullable<String> urlTags) {
     this.urlTags = urlTags;
+  }
+
+  public void setUrlTags(@javax.annotation.Nullable String urlTags) {
+    this.urlTags = JsonNullable.<String>of(urlTags);
   }
 
 
   public GetAdTrackingTags200Response templateUrlSpec(@javax.annotation.Nullable Object templateUrlSpec) {
-    this.templateUrlSpec = templateUrlSpec;
+    this.templateUrlSpec = JsonNullable.<Object>of(templateUrlSpec);
     return this;
   }
 
@@ -196,22 +202,30 @@ public class GetAdTrackingTags200Response {
    * @return templateUrlSpec
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_URL_SPEC, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Object getTemplateUrlSpec() {
-    return templateUrlSpec;
+        return templateUrlSpec.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TEMPLATE_URL_SPEC, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTemplateUrlSpec(@javax.annotation.Nullable Object templateUrlSpec) {
+
+  public JsonNullable<Object> getTemplateUrlSpec_JsonNullable() {
+    return templateUrlSpec;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TEMPLATE_URL_SPEC)
+  public void setTemplateUrlSpec_JsonNullable(JsonNullable<Object> templateUrlSpec) {
     this.templateUrlSpec = templateUrlSpec;
+  }
+
+  public void setTemplateUrlSpec(@javax.annotation.Nullable Object templateUrlSpec) {
+    this.templateUrlSpec = JsonNullable.<Object>of(templateUrlSpec);
   }
 
 
   public GetAdTrackingTags200Response trackingUrlTemplate(@javax.annotation.Nullable String trackingUrlTemplate) {
-    this.trackingUrlTemplate = trackingUrlTemplate;
+    this.trackingUrlTemplate = JsonNullable.<String>of(trackingUrlTemplate);
     return this;
   }
 
@@ -220,22 +234,30 @@ public class GetAdTrackingTags200Response {
    * @return trackingUrlTemplate
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TRACKING_URL_TEMPLATE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getTrackingUrlTemplate() {
-    return trackingUrlTemplate;
+        return trackingUrlTemplate.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TRACKING_URL_TEMPLATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTrackingUrlTemplate(@javax.annotation.Nullable String trackingUrlTemplate) {
+
+  public JsonNullable<String> getTrackingUrlTemplate_JsonNullable() {
+    return trackingUrlTemplate;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TRACKING_URL_TEMPLATE)
+  public void setTrackingUrlTemplate_JsonNullable(JsonNullable<String> trackingUrlTemplate) {
     this.trackingUrlTemplate = trackingUrlTemplate;
+  }
+
+  public void setTrackingUrlTemplate(@javax.annotation.Nullable String trackingUrlTemplate) {
+    this.trackingUrlTemplate = JsonNullable.<String>of(trackingUrlTemplate);
   }
 
 
   public GetAdTrackingTags200Response finalUrlSuffix(@javax.annotation.Nullable String finalUrlSuffix) {
-    this.finalUrlSuffix = finalUrlSuffix;
+    this.finalUrlSuffix = JsonNullable.<String>of(finalUrlSuffix);
     return this;
   }
 
@@ -244,22 +266,30 @@ public class GetAdTrackingTags200Response {
    * @return finalUrlSuffix
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FINAL_URL_SUFFIX, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getFinalUrlSuffix() {
-    return finalUrlSuffix;
+        return finalUrlSuffix.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FINAL_URL_SUFFIX, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFinalUrlSuffix(@javax.annotation.Nullable String finalUrlSuffix) {
+
+  public JsonNullable<String> getFinalUrlSuffix_JsonNullable() {
+    return finalUrlSuffix;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FINAL_URL_SUFFIX)
+  public void setFinalUrlSuffix_JsonNullable(JsonNullable<String> finalUrlSuffix) {
     this.finalUrlSuffix = finalUrlSuffix;
+  }
+
+  public void setFinalUrlSuffix(@javax.annotation.Nullable String finalUrlSuffix) {
+    this.finalUrlSuffix = JsonNullable.<String>of(finalUrlSuffix);
   }
 
 
   public GetAdTrackingTags200Response dynamicValueParameters(@javax.annotation.Nullable Object dynamicValueParameters) {
-    this.dynamicValueParameters = dynamicValueParameters;
+    this.dynamicValueParameters = JsonNullable.<Object>of(dynamicValueParameters);
     return this;
   }
 
@@ -268,22 +298,30 @@ public class GetAdTrackingTags200Response {
    * @return dynamicValueParameters
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DYNAMIC_VALUE_PARAMETERS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Object getDynamicValueParameters() {
-    return dynamicValueParameters;
+        return dynamicValueParameters.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DYNAMIC_VALUE_PARAMETERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDynamicValueParameters(@javax.annotation.Nullable Object dynamicValueParameters) {
+
+  public JsonNullable<Object> getDynamicValueParameters_JsonNullable() {
+    return dynamicValueParameters;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DYNAMIC_VALUE_PARAMETERS)
+  public void setDynamicValueParameters_JsonNullable(JsonNullable<Object> dynamicValueParameters) {
     this.dynamicValueParameters = dynamicValueParameters;
+  }
+
+  public void setDynamicValueParameters(@javax.annotation.Nullable Object dynamicValueParameters) {
+    this.dynamicValueParameters = JsonNullable.<Object>of(dynamicValueParameters);
   }
 
 
   public GetAdTrackingTags200Response customValueParameters(@javax.annotation.Nullable Object customValueParameters) {
-    this.customValueParameters = customValueParameters;
+    this.customValueParameters = JsonNullable.<Object>of(customValueParameters);
     return this;
   }
 
@@ -292,17 +330,25 @@ public class GetAdTrackingTags200Response {
    * @return customValueParameters
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CUSTOM_VALUE_PARAMETERS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Object getCustomValueParameters() {
-    return customValueParameters;
+        return customValueParameters.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CUSTOM_VALUE_PARAMETERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomValueParameters(@javax.annotation.Nullable Object customValueParameters) {
+
+  public JsonNullable<Object> getCustomValueParameters_JsonNullable() {
+    return customValueParameters;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CUSTOM_VALUE_PARAMETERS)
+  public void setCustomValueParameters_JsonNullable(JsonNullable<Object> customValueParameters) {
     this.customValueParameters = customValueParameters;
+  }
+
+  public void setCustomValueParameters(@javax.annotation.Nullable Object customValueParameters) {
+    this.customValueParameters = JsonNullable.<Object>of(customValueParameters);
   }
 
 
@@ -320,17 +366,28 @@ public class GetAdTrackingTags200Response {
     GetAdTrackingTags200Response getAdTrackingTags200Response = (GetAdTrackingTags200Response) o;
     return Objects.equals(this.platform, getAdTrackingTags200Response.platform) &&
         Objects.equals(this.level, getAdTrackingTags200Response.level) &&
-        Objects.equals(this.urlTags, getAdTrackingTags200Response.urlTags) &&
-        Objects.equals(this.templateUrlSpec, getAdTrackingTags200Response.templateUrlSpec) &&
-        Objects.equals(this.trackingUrlTemplate, getAdTrackingTags200Response.trackingUrlTemplate) &&
-        Objects.equals(this.finalUrlSuffix, getAdTrackingTags200Response.finalUrlSuffix) &&
-        Objects.equals(this.dynamicValueParameters, getAdTrackingTags200Response.dynamicValueParameters) &&
-        Objects.equals(this.customValueParameters, getAdTrackingTags200Response.customValueParameters);
+        equalsNullable(this.urlTags, getAdTrackingTags200Response.urlTags) &&
+        equalsNullable(this.templateUrlSpec, getAdTrackingTags200Response.templateUrlSpec) &&
+        equalsNullable(this.trackingUrlTemplate, getAdTrackingTags200Response.trackingUrlTemplate) &&
+        equalsNullable(this.finalUrlSuffix, getAdTrackingTags200Response.finalUrlSuffix) &&
+        equalsNullable(this.dynamicValueParameters, getAdTrackingTags200Response.dynamicValueParameters) &&
+        equalsNullable(this.customValueParameters, getAdTrackingTags200Response.customValueParameters);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, level, urlTags, templateUrlSpec, trackingUrlTemplate, finalUrlSuffix, dynamicValueParameters, customValueParameters);
+    return Objects.hash(platform, level, hashCodeNullable(urlTags), hashCodeNullable(templateUrlSpec), hashCodeNullable(trackingUrlTemplate), hashCodeNullable(finalUrlSuffix), hashCodeNullable(dynamicValueParameters), hashCodeNullable(customValueParameters));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

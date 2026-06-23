@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.DiscordScheduledEventEntityMetadata;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,7 +55,7 @@ import dev.zernio.ApiClient;
   DiscordScheduledEvent.JSON_PROPERTY_USER_COUNT,
   DiscordScheduledEvent.JSON_PROPERTY_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordScheduledEvent {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -62,28 +66,24 @@ public class DiscordScheduledEvent {
   private String guildId;
 
   public static final String JSON_PROPERTY_CHANNEL_ID = "channel_id";
-  @javax.annotation.Nullable
-  private String channelId;
+  private JsonNullable<String> channelId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATOR_ID = "creator_id";
-  @javax.annotation.Nullable
-  private String creatorId;
+  private JsonNullable<String> creatorId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
   private String name;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  @javax.annotation.Nullable
-  private String description;
+  private JsonNullable<String> description = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_SCHEDULED_START_TIME = "scheduled_start_time";
   @javax.annotation.Nullable
   private OffsetDateTime scheduledStartTime;
 
   public static final String JSON_PROPERTY_SCHEDULED_END_TIME = "scheduled_end_time";
-  @javax.annotation.Nullable
-  private OffsetDateTime scheduledEndTime;
+  private JsonNullable<OffsetDateTime> scheduledEndTime = JsonNullable.<OffsetDateTime>undefined();
 
   /**
    * Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.
@@ -207,8 +207,7 @@ public class DiscordScheduledEvent {
   private EntityTypeEnum entityType;
 
   public static final String JSON_PROPERTY_ENTITY_ID = "entity_id";
-  @javax.annotation.Nullable
-  private String entityId;
+  private JsonNullable<String> entityId = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ENTITY_METADATA = "entity_metadata";
   @javax.annotation.Nullable
@@ -219,8 +218,7 @@ public class DiscordScheduledEvent {
   private Integer userCount;
 
   public static final String JSON_PROPERTY_IMAGE = "image";
-  @javax.annotation.Nullable
-  private String image;
+  private JsonNullable<String> image = JsonNullable.<String>undefined();
 
   public DiscordScheduledEvent() { 
   }
@@ -274,7 +272,7 @@ public class DiscordScheduledEvent {
 
 
   public DiscordScheduledEvent channelId(@javax.annotation.Nullable String channelId) {
-    this.channelId = channelId;
+    this.channelId = JsonNullable.<String>of(channelId);
     return this;
   }
 
@@ -283,22 +281,30 @@ public class DiscordScheduledEvent {
    * @return channelId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CHANNEL_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getChannelId() {
-    return channelId;
+        return channelId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CHANNEL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChannelId(@javax.annotation.Nullable String channelId) {
+
+  public JsonNullable<String> getChannelId_JsonNullable() {
+    return channelId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CHANNEL_ID)
+  public void setChannelId_JsonNullable(JsonNullable<String> channelId) {
     this.channelId = channelId;
+  }
+
+  public void setChannelId(@javax.annotation.Nullable String channelId) {
+    this.channelId = JsonNullable.<String>of(channelId);
   }
 
 
   public DiscordScheduledEvent creatorId(@javax.annotation.Nullable String creatorId) {
-    this.creatorId = creatorId;
+    this.creatorId = JsonNullable.<String>of(creatorId);
     return this;
   }
 
@@ -307,17 +313,25 @@ public class DiscordScheduledEvent {
    * @return creatorId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CREATOR_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getCreatorId() {
-    return creatorId;
+        return creatorId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_CREATOR_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatorId(@javax.annotation.Nullable String creatorId) {
+
+  public JsonNullable<String> getCreatorId_JsonNullable() {
+    return creatorId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CREATOR_ID)
+  public void setCreatorId_JsonNullable(JsonNullable<String> creatorId) {
     this.creatorId = creatorId;
+  }
+
+  public void setCreatorId(@javax.annotation.Nullable String creatorId) {
+    this.creatorId = JsonNullable.<String>of(creatorId);
   }
 
 
@@ -346,7 +360,7 @@ public class DiscordScheduledEvent {
 
 
   public DiscordScheduledEvent description(@javax.annotation.Nullable String description) {
-    this.description = description;
+    this.description = JsonNullable.<String>of(description);
     return this;
   }
 
@@ -355,17 +369,25 @@ public class DiscordScheduledEvent {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDescription() {
-    return description;
+        return description.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(@javax.annotation.Nullable String description) {
+
+  public JsonNullable<String> getDescription_JsonNullable() {
+    return description;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  public void setDescription_JsonNullable(JsonNullable<String> description) {
     this.description = description;
+  }
+
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = JsonNullable.<String>of(description);
   }
 
 
@@ -394,7 +416,7 @@ public class DiscordScheduledEvent {
 
 
   public DiscordScheduledEvent scheduledEndTime(@javax.annotation.Nullable OffsetDateTime scheduledEndTime) {
-    this.scheduledEndTime = scheduledEndTime;
+    this.scheduledEndTime = JsonNullable.<OffsetDateTime>of(scheduledEndTime);
     return this;
   }
 
@@ -403,17 +425,25 @@ public class DiscordScheduledEvent {
    * @return scheduledEndTime
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SCHEDULED_END_TIME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getScheduledEndTime() {
-    return scheduledEndTime;
+        return scheduledEndTime.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SCHEDULED_END_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setScheduledEndTime(@javax.annotation.Nullable OffsetDateTime scheduledEndTime) {
+
+  public JsonNullable<OffsetDateTime> getScheduledEndTime_JsonNullable() {
+    return scheduledEndTime;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SCHEDULED_END_TIME)
+  public void setScheduledEndTime_JsonNullable(JsonNullable<OffsetDateTime> scheduledEndTime) {
     this.scheduledEndTime = scheduledEndTime;
+  }
+
+  public void setScheduledEndTime(@javax.annotation.Nullable OffsetDateTime scheduledEndTime) {
+    this.scheduledEndTime = JsonNullable.<OffsetDateTime>of(scheduledEndTime);
   }
 
 
@@ -490,7 +520,7 @@ public class DiscordScheduledEvent {
 
 
   public DiscordScheduledEvent entityId(@javax.annotation.Nullable String entityId) {
-    this.entityId = entityId;
+    this.entityId = JsonNullable.<String>of(entityId);
     return this;
   }
 
@@ -499,17 +529,25 @@ public class DiscordScheduledEvent {
    * @return entityId
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ENTITY_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getEntityId() {
-    return entityId;
+        return entityId.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_ENTITY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntityId(@javax.annotation.Nullable String entityId) {
+
+  public JsonNullable<String> getEntityId_JsonNullable() {
+    return entityId;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_ENTITY_ID)
+  public void setEntityId_JsonNullable(JsonNullable<String> entityId) {
     this.entityId = entityId;
+  }
+
+  public void setEntityId(@javax.annotation.Nullable String entityId) {
+    this.entityId = JsonNullable.<String>of(entityId);
   }
 
 
@@ -562,7 +600,7 @@ public class DiscordScheduledEvent {
 
 
   public DiscordScheduledEvent image(@javax.annotation.Nullable String image) {
-    this.image = image;
+    this.image = JsonNullable.<String>of(image);
     return this;
   }
 
@@ -571,17 +609,25 @@ public class DiscordScheduledEvent {
    * @return image
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IMAGE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getImage() {
-    return image;
+        return image.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_IMAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImage(@javax.annotation.Nullable String image) {
+
+  public JsonNullable<String> getImage_JsonNullable() {
+    return image;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  public void setImage_JsonNullable(JsonNullable<String> image) {
     this.image = image;
+  }
+
+  public void setImage(@javax.annotation.Nullable String image) {
+    this.image = JsonNullable.<String>of(image);
   }
 
 
@@ -599,24 +645,35 @@ public class DiscordScheduledEvent {
     DiscordScheduledEvent discordScheduledEvent = (DiscordScheduledEvent) o;
     return Objects.equals(this.id, discordScheduledEvent.id) &&
         Objects.equals(this.guildId, discordScheduledEvent.guildId) &&
-        Objects.equals(this.channelId, discordScheduledEvent.channelId) &&
-        Objects.equals(this.creatorId, discordScheduledEvent.creatorId) &&
+        equalsNullable(this.channelId, discordScheduledEvent.channelId) &&
+        equalsNullable(this.creatorId, discordScheduledEvent.creatorId) &&
         Objects.equals(this.name, discordScheduledEvent.name) &&
-        Objects.equals(this.description, discordScheduledEvent.description) &&
+        equalsNullable(this.description, discordScheduledEvent.description) &&
         Objects.equals(this.scheduledStartTime, discordScheduledEvent.scheduledStartTime) &&
-        Objects.equals(this.scheduledEndTime, discordScheduledEvent.scheduledEndTime) &&
+        equalsNullable(this.scheduledEndTime, discordScheduledEvent.scheduledEndTime) &&
         Objects.equals(this.privacyLevel, discordScheduledEvent.privacyLevel) &&
         Objects.equals(this.status, discordScheduledEvent.status) &&
         Objects.equals(this.entityType, discordScheduledEvent.entityType) &&
-        Objects.equals(this.entityId, discordScheduledEvent.entityId) &&
+        equalsNullable(this.entityId, discordScheduledEvent.entityId) &&
         Objects.equals(this.entityMetadata, discordScheduledEvent.entityMetadata) &&
         Objects.equals(this.userCount, discordScheduledEvent.userCount) &&
-        Objects.equals(this.image, discordScheduledEvent.image);
+        equalsNullable(this.image, discordScheduledEvent.image);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, guildId, channelId, creatorId, name, description, scheduledStartTime, scheduledEndTime, privacyLevel, status, entityType, entityId, entityMetadata, userCount, image);
+    return Objects.hash(id, guildId, hashCodeNullable(channelId), hashCodeNullable(creatorId), name, hashCodeNullable(description), scheduledStartTime, hashCodeNullable(scheduledEndTime), privacyLevel, status, entityType, hashCodeNullable(entityId), entityMetadata, userCount, hashCodeNullable(image));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

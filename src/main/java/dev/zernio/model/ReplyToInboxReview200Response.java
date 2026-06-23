@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.ReplyToInboxReview200ResponseReply;
+import dev.zernio.model.ListInboxReviews200ResponseDataInnerReply;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ReplyToInboxReview200Response.JSON_PROPERTY_REPLY,
   ReplyToInboxReview200Response.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToInboxReview200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -46,7 +46,7 @@ public class ReplyToInboxReview200Response {
 
   public static final String JSON_PROPERTY_REPLY = "reply";
   @javax.annotation.Nullable
-  private ReplyToInboxReview200ResponseReply reply;
+  private ListInboxReviews200ResponseDataInnerReply reply;
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -79,7 +79,7 @@ public class ReplyToInboxReview200Response {
   }
 
 
-  public ReplyToInboxReview200Response reply(@javax.annotation.Nullable ReplyToInboxReview200ResponseReply reply) {
+  public ReplyToInboxReview200Response reply(@javax.annotation.Nullable ListInboxReviews200ResponseDataInnerReply reply) {
     this.reply = reply;
     return this;
   }
@@ -91,14 +91,14 @@ public class ReplyToInboxReview200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_REPLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public ReplyToInboxReview200ResponseReply getReply() {
+  public ListInboxReviews200ResponseDataInnerReply getReply() {
     return reply;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_REPLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReply(@javax.annotation.Nullable ReplyToInboxReview200ResponseReply reply) {
+  public void setReply(@javax.annotation.Nullable ListInboxReviews200ResponseDataInnerReply reply) {
     this.reply = reply;
   }
 

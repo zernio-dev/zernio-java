@@ -13,7 +13,7 @@ Response for TOTAL aggregation (lifetime totals)
 |**accountType** | **String** |  |  [optional] |
 |**username** | **String** |  |  [optional] |
 |**aggregation** | [**AggregationEnum**](#AggregationEnum) |  |  [optional] |
-|**dateRange** | [**LinkedInAggregateAnalyticsTotalResponseDateRange**](LinkedInAggregateAnalyticsTotalResponseDateRange.md) |  |  [optional] |
+|**dateRange** | [**YouTubeDailyViewsResponseDateRange**](YouTubeDailyViewsResponseDateRange.md) |  |  [optional] |
 |**analytics** | [**LinkedInAggregateAnalyticsTotalResponseAnalytics**](LinkedInAggregateAnalyticsTotalResponseAnalytics.md) |  |  [optional] |
 |**note** | **String** |  |  [optional] |
 |**lastUpdated** | **OffsetDateTime** |  |  [optional] |

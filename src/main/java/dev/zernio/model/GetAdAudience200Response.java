@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,15 +40,14 @@ import dev.zernio.ApiClient;
   GetAdAudience200Response.JSON_PROPERTY_AUDIENCE,
   GetAdAudience200Response.JSON_PROPERTY_META_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAudience200Response {
   public static final String JSON_PROPERTY_AUDIENCE = "audience";
   @javax.annotation.Nullable
   private Object audience;
 
   public static final String JSON_PROPERTY_META_DATA = "metaData";
-  @javax.annotation.Nullable
-  private Object metaData;
+  private JsonNullable<Object> metaData = JsonNullable.<Object>undefined();
 
   public GetAdAudience200Response() { 
   }
@@ -74,7 +77,7 @@ public class GetAdAudience200Response {
 
 
   public GetAdAudience200Response metaData(@javax.annotation.Nullable Object metaData) {
-    this.metaData = metaData;
+    this.metaData = JsonNullable.<Object>of(metaData);
     return this;
   }
 
@@ -83,17 +86,25 @@ public class GetAdAudience200Response {
    * @return metaData
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_META_DATA, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Object getMetaData() {
-    return metaData;
+        return metaData.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_META_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetaData(@javax.annotation.Nullable Object metaData) {
+
+  public JsonNullable<Object> getMetaData_JsonNullable() {
+    return metaData;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_META_DATA)
+  public void setMetaData_JsonNullable(JsonNullable<Object> metaData) {
     this.metaData = metaData;
+  }
+
+  public void setMetaData(@javax.annotation.Nullable Object metaData) {
+    this.metaData = JsonNullable.<Object>of(metaData);
   }
 
 
@@ -110,12 +121,23 @@ public class GetAdAudience200Response {
     }
     GetAdAudience200Response getAdAudience200Response = (GetAdAudience200Response) o;
     return Objects.equals(this.audience, getAdAudience200Response.audience) &&
-        Objects.equals(this.metaData, getAdAudience200Response.metaData);
+        equalsNullable(this.metaData, getAdAudience200Response.metaData);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(audience, metaData);
+    return Objects.hash(audience, hashCodeNullable(metaData));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -29,6 +29,10 @@ import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -51,7 +55,7 @@ import dev.zernio.ApiClient;
   ListWorkflowExecutions200ResponseExecutionsInner.JSON_PROPERTY_UPDATED_AT,
   ListWorkflowExecutions200ResponseExecutionsInner.JSON_PROPERTY_COMPLETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWorkflowExecutions200ResponseExecutionsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -127,12 +131,10 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
   private Integer stepCount;
 
   public static final String JSON_PROPERTY_LAST_ERROR = "lastError";
-  @javax.annotation.Nullable
-  private String lastError;
+  private JsonNullable<String> lastError = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_RESUME_AT = "resumeAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime resumeAt;
+  private JsonNullable<OffsetDateTime> resumeAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nullable
@@ -143,8 +145,7 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
   private OffsetDateTime updatedAt;
 
   public static final String JSON_PROPERTY_COMPLETED_AT = "completedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime completedAt;
+  private JsonNullable<OffsetDateTime> completedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public ListWorkflowExecutions200ResponseExecutionsInner() { 
   }
@@ -350,7 +351,7 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
 
 
   public ListWorkflowExecutions200ResponseExecutionsInner lastError(@javax.annotation.Nullable String lastError) {
-    this.lastError = lastError;
+    this.lastError = JsonNullable.<String>of(lastError);
     return this;
   }
 
@@ -359,22 +360,30 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
    * @return lastError
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LAST_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getLastError() {
-    return lastError;
+        return lastError.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_LAST_ERROR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastError(@javax.annotation.Nullable String lastError) {
+
+  public JsonNullable<String> getLastError_JsonNullable() {
+    return lastError;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_ERROR)
+  public void setLastError_JsonNullable(JsonNullable<String> lastError) {
     this.lastError = lastError;
+  }
+
+  public void setLastError(@javax.annotation.Nullable String lastError) {
+    this.lastError = JsonNullable.<String>of(lastError);
   }
 
 
   public ListWorkflowExecutions200ResponseExecutionsInner resumeAt(@javax.annotation.Nullable OffsetDateTime resumeAt) {
-    this.resumeAt = resumeAt;
+    this.resumeAt = JsonNullable.<OffsetDateTime>of(resumeAt);
     return this;
   }
 
@@ -383,17 +392,25 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
    * @return resumeAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_RESUME_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getResumeAt() {
-    return resumeAt;
+        return resumeAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_RESUME_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResumeAt(@javax.annotation.Nullable OffsetDateTime resumeAt) {
+
+  public JsonNullable<OffsetDateTime> getResumeAt_JsonNullable() {
+    return resumeAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_RESUME_AT)
+  public void setResumeAt_JsonNullable(JsonNullable<OffsetDateTime> resumeAt) {
     this.resumeAt = resumeAt;
+  }
+
+  public void setResumeAt(@javax.annotation.Nullable OffsetDateTime resumeAt) {
+    this.resumeAt = JsonNullable.<OffsetDateTime>of(resumeAt);
   }
 
 
@@ -446,7 +463,7 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
 
 
   public ListWorkflowExecutions200ResponseExecutionsInner completedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
-    this.completedAt = completedAt;
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
     return this;
   }
 
@@ -455,17 +472,25 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
    * @return completedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getCompletedAt() {
-    return completedAt;
+        return completedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_COMPLETED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+
+  public JsonNullable<OffsetDateTime> getCompletedAt_JsonNullable() {
+    return completedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_COMPLETED_AT)
+  public void setCompletedAt_JsonNullable(JsonNullable<OffsetDateTime> completedAt) {
     this.completedAt = completedAt;
+  }
+
+  public void setCompletedAt(@javax.annotation.Nullable OffsetDateTime completedAt) {
+    this.completedAt = JsonNullable.<OffsetDateTime>of(completedAt);
   }
 
 
@@ -489,16 +514,27 @@ public class ListWorkflowExecutions200ResponseExecutionsInner {
         Objects.equals(this.platformIdentifier, listWorkflowExecutions200ResponseExecutionsInner.platformIdentifier) &&
         Objects.equals(this.conversationId, listWorkflowExecutions200ResponseExecutionsInner.conversationId) &&
         Objects.equals(this.stepCount, listWorkflowExecutions200ResponseExecutionsInner.stepCount) &&
-        Objects.equals(this.lastError, listWorkflowExecutions200ResponseExecutionsInner.lastError) &&
-        Objects.equals(this.resumeAt, listWorkflowExecutions200ResponseExecutionsInner.resumeAt) &&
+        equalsNullable(this.lastError, listWorkflowExecutions200ResponseExecutionsInner.lastError) &&
+        equalsNullable(this.resumeAt, listWorkflowExecutions200ResponseExecutionsInner.resumeAt) &&
         Objects.equals(this.createdAt, listWorkflowExecutions200ResponseExecutionsInner.createdAt) &&
         Objects.equals(this.updatedAt, listWorkflowExecutions200ResponseExecutionsInner.updatedAt) &&
-        Objects.equals(this.completedAt, listWorkflowExecutions200ResponseExecutionsInner.completedAt);
+        equalsNullable(this.completedAt, listWorkflowExecutions200ResponseExecutionsInner.completedAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, status, currentNodeId, waitingFor, variables, platformIdentifier, conversationId, stepCount, lastError, resumeAt, createdAt, updatedAt, completedAt);
+    return Objects.hash(id, status, currentNodeId, waitingFor, variables, platformIdentifier, conversationId, stepCount, hashCodeNullable(lastError), hashCodeNullable(resumeAt), createdAt, updatedAt, hashCodeNullable(completedAt));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

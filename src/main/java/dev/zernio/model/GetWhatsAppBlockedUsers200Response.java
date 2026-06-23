@@ -28,6 +28,10 @@ import dev.zernio.model.GetWhatsAppBlockedUsers200ResponseBlockedUsersInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,15 +43,14 @@ import dev.zernio.ApiClient;
   GetWhatsAppBlockedUsers200Response.JSON_PROPERTY_BLOCKED_USERS,
   GetWhatsAppBlockedUsers200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppBlockedUsers200Response {
   public static final String JSON_PROPERTY_BLOCKED_USERS = "blockedUsers";
   @javax.annotation.Nullable
   private List<GetWhatsAppBlockedUsers200ResponseBlockedUsersInner> blockedUsers = new ArrayList<>();
 
   public static final String JSON_PROPERTY_NEXT_CURSOR = "nextCursor";
-  @javax.annotation.Nullable
-  private String nextCursor;
+  private JsonNullable<String> nextCursor = JsonNullable.<String>undefined();
 
   public GetWhatsAppBlockedUsers200Response() { 
   }
@@ -85,7 +88,7 @@ public class GetWhatsAppBlockedUsers200Response {
 
 
   public GetWhatsAppBlockedUsers200Response nextCursor(@javax.annotation.Nullable String nextCursor) {
-    this.nextCursor = nextCursor;
+    this.nextCursor = JsonNullable.<String>of(nextCursor);
     return this;
   }
 
@@ -94,17 +97,25 @@ public class GetWhatsAppBlockedUsers200Response {
    * @return nextCursor
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NEXT_CURSOR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getNextCursor() {
-    return nextCursor;
+        return nextCursor.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_NEXT_CURSOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNextCursor(@javax.annotation.Nullable String nextCursor) {
+
+  public JsonNullable<String> getNextCursor_JsonNullable() {
+    return nextCursor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_CURSOR)
+  public void setNextCursor_JsonNullable(JsonNullable<String> nextCursor) {
     this.nextCursor = nextCursor;
+  }
+
+  public void setNextCursor(@javax.annotation.Nullable String nextCursor) {
+    this.nextCursor = JsonNullable.<String>of(nextCursor);
   }
 
 
@@ -121,12 +132,23 @@ public class GetWhatsAppBlockedUsers200Response {
     }
     GetWhatsAppBlockedUsers200Response getWhatsAppBlockedUsers200Response = (GetWhatsAppBlockedUsers200Response) o;
     return Objects.equals(this.blockedUsers, getWhatsAppBlockedUsers200Response.blockedUsers) &&
-        Objects.equals(this.nextCursor, getWhatsAppBlockedUsers200Response.nextCursor);
+        equalsNullable(this.nextCursor, getWhatsAppBlockedUsers200Response.nextCursor);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(blockedUsers, nextCursor);
+    return Objects.hash(blockedUsers, hashCodeNullable(nextCursor));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

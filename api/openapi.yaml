@@ -55,37 +55,76 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Posts
-- name: Users
-- name: Usage
-- name: Profiles
-- name: Accounts
-- name: Account Groups
-- name: API Keys
-- name: Invites
-- name: Connect
-- name: Media
-- name: Reddit Search
-- name: Facebook
-- name: GMB Reviews
-- name: GMB Food Menus
-- name: GMB Location Details
-- name: GMB Media
-- name: GMB Attributes
-- name: GMB Place Actions
+- description: |
+    Create, schedule, list, update, and delete posts across all connected social accounts.
+  name: Posts
+- description: |
+    Read the authenticated user and team members.
+  name: Users
+- description: |
+    API usage and quota stats for the current billing period.
+  name: Usage
+- description: |
+    Manage profiles (named groups of social accounts).
+  name: Profiles
+- description: |
+    Manage connected social media accounts: list, fetch, update, disconnect, and read account health.
+  name: Accounts
+- description: |
+    Manage account groups (collections of accounts used for cross-posting and organization).
+  name: Account Groups
+- description: |
+    Create, list, and revoke API keys used to authenticate requests.
+  name: API Keys
+- description: |
+    Generate invite tokens for adding members to a team.
+  name: Invites
+- description: |
+    OAuth and credential flows for connecting social accounts, plus per-platform selection
+    steps (Facebook pages, Pinterest boards, LinkedIn organizations, GMB locations, etc.).
+  name: Connect
+- description: |
+    Upload and presign media (images, videos, documents) for use in posts.
+  name: Media
+- description: |
+    Search Reddit posts and browse subreddit feeds.
+  name: Reddit Search
+- description: |
+    Google Business Profile reviews: list reviews and reply to them.
+  name: GMB Reviews
+- description: |
+    Read and update Google Business Profile food menus.
+  name: GMB Food Menus
+- description: |
+    Read and update Google Business Profile location details.
+  name: GMB Location Details
+- description: |
+    Manage Google Business Profile media (photos and videos): list, upload, and delete.
+  name: GMB Media
+- description: |
+    Read and update Google Business Profile attributes.
+  name: GMB Attributes
+- description: |
+    Manage Google Business Profile place action links (booking, ordering, reservations, etc.).
+  name: GMB Place Actions
 - description: |
     Discord-specific endpoints for managing webhook identity (display name and avatar), switching channels, and listing guild channels.
   name: Discord
-- name: LinkedIn Mentions
-- name: Pinterest
-- name: TikTok
+- description: |
+    Resolve LinkedIn organization and person mentions for use in posts.
+  name: LinkedIn Mentions
 - description: |
     Instagram-specific read endpoints: list a connected account's Stories and fetch
     per-Story insights. All endpoints require an accountId parameter identifying the
     Instagram-connected social account.
   name: Instagram
-- name: Queue
-- name: Analytics
+- description: |
+    Manage posting-queue time slots and preview the upcoming queue.
+  name: Queue
+- description: |
+    Post and account analytics across platforms (insights, demographics, follower history,
+    best time to post, content decay, and aggregated metrics).
+  name: Analytics
 - description: |
     Check and manage inbox feature access.
   name: Inbox Access
@@ -211,34 +250,6 @@ tags:
     bot replies, and webhook payloads end-to-end with zero number-purchase overhead.
   name: WhatsApp Sandbox
 paths:
-  /v1/sms/messages:
-    post:
-      description: |
-        Send a text (SMS) or media (MMS) message from one of your SMS-enabled numbers.
-
-        Provide `text`, `mediaUrls`, or both. Supply an `Idempotency-Key` header to make retries safe (a repeated key replays the original result instead of sending again). US numbers must have an approved carrier registration before they can deliver.
-      operationId: sendSms
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/sendSms_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/sendSms_200_response"
-          description: Message accepted for delivery.
-      security:
-      - bearerAuth: []
-      summary: Send an SMS or MMS
-      tags:
-      - SMS
-      x-content-type: application/json
-      x-accepts:
-      - application/json
   /v1/tools/validate/post-length:
     post:
       description: |
@@ -261,6 +272,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/validatePostLength_200_response"
           description: Character counts per platform
+        "401":
+          $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
       summary: Validate character count
@@ -291,6 +304,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/validatePost_200_response"
           description: Validation result
+        "401":
+          $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
       summary: Validate post content
@@ -321,6 +336,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/validateMedia_200_response"
           description: Media validation result
+        "401":
+          $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
       summary: Validate media URL
@@ -362,6 +379,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/validateSubreddit_200_response"
           description: Subreddit lookup result
+        "401":
+          $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
       summary: Check subreddit existence
@@ -5504,10 +5523,6 @@ paths:
         Moves a connected social account to a different profile owned by the same
         user. The target profile must belong to the same user as the account.
 
-        A profile can hold only one account per platform. Moving an account into a
-        profile that already has an account of the same platform returns 409
-        (`profile_platform_conflict`).
-
         For API keys restricted to specific profiles, BOTH the source account's
         current profile AND the target profile must be in the key's allowed set.
         Calls with a target profile outside the key's scope return 403.
@@ -5547,9 +5562,6 @@ paths:
             profile
         "404":
           description: Account or target profile not found
-        "409":
-          description: The target profile already has an account of the same platform
-            (profile_platform_conflict)
       summary: Move account to a different profile
       tags:
       - Accounts
@@ -20887,11 +20899,8 @@ paths:
           - income
           type: string
         style: form
-      - description: "Only used when `dimension=geo`. The kind of location to resolve.\
-          \ `place` resolves named points of interest (businesses, landmarks). `neighborhood`\
-          \ resolves named neighbourhood areas. Use `all` to search every geo type\
-          \ in a single relevance-ranked call — mirrors Meta's own unified search\
-          \ box. Defaults to `city`."
+      - description: Only used when `dimension=geo`. The kind of location to resolve.
+          Defaults to `city`.
         explode: true
         in: query
         name: geoType
@@ -20899,16 +20908,11 @@ paths:
         schema:
           default: city
           enum:
-          - all
           - country
           - region
           - city
-          - subcity
-          - neighborhood
-          - place
           - zip
-          - metro_area
-          - geo_market
+          - metro
           type: string
         style: form
       - description: ISO 3166-1 alpha-2 country code (e.g. NL) to scope a geo search.
@@ -21032,6 +21036,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/listAdCatalogs_200_response"
           description: Catalogs
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: List Meta product catalogs
@@ -21069,6 +21078,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/listAdCatalogProductSets_200_response"
           description: Product sets
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
       security:
       - bearerAuth: []
       summary: List a catalog's product sets
@@ -22213,16 +22227,9 @@ paths:
 
         Supports two mutually-exclusive shapes:
 
-        - **Single-creative**: supply top-level `headline`, `body`, and one of
-          `imageUrl` / `video`. Creates 1 campaign + 1 ad set + 1 ad.
+        - **Single-creative**: supply top-level `headline`, `body`, and one of `imageUrl` / `video`. Creates 1 campaign + 1 ad set + 1 ad.
 
-        - **Multi-creative**: supply a `creatives[]` array with N entries
-          (each carrying its own headline, body, and image/video). Creates
-          1 campaign + 1 ad set + N ads sharing budget and targeting so Meta
-          A/Bs the creatives inside a single auction instead of fragmenting
-          budget across N parallel campaigns. Recommended when launching
-          multiple creative variants for the same campaign.
-
+        - **Multi-creative**: supply a `creatives[]` array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.
 
         Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
       operationId: createCtwaAd
@@ -22789,6 +22796,43 @@ components:
     PaymentRequired:
       content:
         application/json:
+          examples:
+            freeTierExceeded:
+              summary: Free tier exceeded (no card on file)
+              value:
+                error: Add a payment method to connect more than 2 accounts.
+                code: PAYMENT_REQUIRED
+                reason: free_tier_exceeded
+                documentation_url: https://docs.zernio.com/billing/payment-method-required
+                dashboard_url: https://zernio.com/dashboard?tab=billing
+                details:
+                  free_tier_account_limit: 2
+                  current_account_count: 3
+                  has_payment_method: false
+            twitterPassthrough:
+              summary: Connecting first X account without a card
+              value:
+                error: X (Twitter) requires a payment method due to API pass-through
+                  costs. Add a payment method to connect an X account.
+                code: PAYMENT_REQUIRED
+                reason: twitter_passthrough
+                documentation_url: https://docs.zernio.com/billing/payment-method-required
+                dashboard_url: https://zernio.com/dashboard?tab=billing
+                details:
+                  has_payment_method: false
+            enterpriseRequired:
+              summary: "Team has hit the public 2,000-account ceiling"
+              value:
+                error: "You have 2000 connected accounts. Beyond 2,000 requires an\
+                  \ enterprise contract. Please contact sales to enable larger usage."
+                code: PAYMENT_REQUIRED
+                reason: enterprise_required
+                documentation_url: https://docs.zernio.com/billing/payment-method-required
+                dashboard_url: https://zernio.com/enterprise
+                details:
+                  public_account_limit: 2000
+                  effective_account_limit: 2000
+                  current_account_count: 2000
           schema:
             $ref: "#/components/schemas/inline_object_2"
       description: |
@@ -22928,8 +22972,8 @@ components:
               - **start_call** — `'success'` | `'permission_required'` | `'failed'`
               - **a_b_split** — `'a'` | `'b'`
               - **enroll_sequence** — `'success'` | `'error'`
-          type: string
           nullable: true
+          type: string
       required:
       - id
       - source
@@ -22966,29 +23010,29 @@ components:
           - success
           - failed
           - pending
-          type: string
           nullable: true
+          type: string
         nodeId:
           description: Present on `node_*` events
-          type: string
           nullable: true
+          type: string
         nodeType:
           description: Present on `node_*` events
-          type: string
           nullable: true
+          type: string
         sourceHandle:
           description: The edge handle the executor followed out of this node (see
             `WorkflowEdge.sourceHandle`)
-          type: string
           nullable: true
+          type: string
         durationMs:
           description: Node run time; present on `node_completed` and `node_failed`
-          type: integer
           nullable: true
+          type: integer
         errorMessage:
           description: Failure detail; present on `node_failed` and `execution_exited`
-          type: string
           nullable: true
+          type: string
         meta:
           additionalProperties: true
           description: |
@@ -22998,8 +23042,8 @@ components:
               `ai` → `{ model, provider, inputTokens, outputTokens, responsePreview }`,
               `condition` → `{ matchedHandle, rulesEvaluated }`,
               `a_b_split` → `{ percentage, chosen }`.
-          type: object
           nullable: true
+          type: object
         at:
           description: Event timestamp (UTC)
           format: date-time
@@ -23125,8 +23169,8 @@ components:
           type: boolean
         flairText:
           description: Link flair text if set
-          type: string
           nullable: true
+          type: string
         isGallery:
           description: Whether the post is a gallery with multiple images
           type: boolean
@@ -23401,12 +23445,12 @@ components:
         activatedAt:
           description: "When the session transitioned `pending → active`, or null."
           format: date-time
-          type: string
           nullable: true
+          type: string
         createdAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
       required:
       - expiresAt
       - id
@@ -24177,8 +24221,8 @@ components:
           type: string
         durationSeconds:
           description: Video length in seconds (from YouTube contentDetails.duration)
-          type: integer
           nullable: true
+          type: integer
         dateRange:
           $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
         totalViews:
@@ -24191,8 +24235,8 @@ components:
         lastSyncedAt:
           description: When the data was last synced from YouTube
           format: date-time
-          type: string
           nullable: true
+          type: string
         scopeStatus:
           $ref: "#/components/schemas/YouTubeDailyViewsResponse_scopeStatus"
     YouTubeVideoRetentionResponse:
@@ -24234,17 +24278,17 @@ components:
           type: string
         title:
           description: Video title
-          type: string
           nullable: true
+          type: string
         publishedAt:
           description: When the video was published on YouTube
           format: date-time
-          type: string
           nullable: true
+          type: string
         durationSeconds:
           description: Video length in seconds (from YouTube contentDetails.duration)
-          type: integer
           nullable: true
+          type: integer
         dateRange:
           $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
         retentionCurve:
@@ -25085,8 +25129,8 @@ components:
           type: string
         url:
           description: "Direct URL to the post on the platform, when available."
-          type: string
           nullable: true
+          type: string
         content:
           description: Post text. May be empty.
           type: string
@@ -25098,8 +25142,8 @@ components:
             $ref: "#/components/schemas/ExternalPostMediaItem"
           type: array
         thumbnailUrl:
-          type: string
           nullable: true
+          type: string
         publishedAt:
           format: date-time
           type: string
@@ -25113,8 +25157,8 @@ components:
           description: Detection time of deletion. Present on post.external.deleted;
             null/absent otherwise.
           format: date-time
-          type: string
           nullable: true
+          type: string
       required:
       - accountId
       - content
@@ -25240,8 +25284,8 @@ components:
         text:
           description: Message text content (retained on deleted messages for API
             consumers; Zernio dashboard UI hides this)
-          type: string
           nullable: true
+          type: string
         attachments:
           items:
             $ref: "#/components/schemas/InboxWebhookMessage_attachments_inner"
@@ -26893,14 +26937,14 @@ components:
             null on update to clear this limit.
           example: 5
           minimum: 1
-          type: integer
           nullable: true
+          type: integer
         expireDate:
           description: "Stop recycling after this date, regardless of count. Send\
             \ null on update to clear this limit."
           format: date-time
-          type: string
           nullable: true
+          type: string
         contentVariations:
           description: |
             Array of content variations for recycled copies. On each recycle, the next
@@ -27636,24 +27680,24 @@ components:
           type: string
         channel_id:
           description: Voice/stage channel ID; null for external events.
-          type: string
           nullable: true
+          type: string
         creator_id:
-          type: string
           nullable: true
+          type: string
         name:
           type: string
         description:
-          type: string
           nullable: true
+          type: string
         scheduled_start_time:
           format: date-time
           type: string
         scheduled_end_time:
           description: Required for external events; optional for voice/stage.
           format: date-time
-          type: string
           nullable: true
+          type: string
         privacy_level:
           description: Always 2 (GUILD_ONLY) — Discord deprecated PUBLIC events.
           enum:
@@ -27675,8 +27719,8 @@ components:
           - 3
           type: integer
         entity_id:
-          type: string
           nullable: true
+          type: string
         entity_metadata:
           $ref: "#/components/schemas/DiscordScheduledEvent_entity_metadata"
         user_count:
@@ -27685,8 +27729,8 @@ components:
           type: integer
         image:
           description: Cover image hash; build URL via cdn.discordapp.com.
-          type: string
           nullable: true
+          type: string
     QueueSlot:
       example:
         dayOfWeek: 0
@@ -27842,8 +27886,8 @@ components:
         profilePicture:
           description: URL to the account's profile picture on the platform. May be
             null if the platform does not provide one.
-          type: string
           nullable: true
+          type: string
         profileUrl:
           description: Full profile URL for the connected account on its platform.
           type: string
@@ -27862,8 +27906,8 @@ components:
             Reference to the parent posting SocialAccount. Set for ads accounts that share
             or derive from a posting account's OAuth token. null for standalone ads (Google Ads)
             and all posting accounts.
-          type: string
           nullable: true
+          type: string
         enabled:
           description: |
             Whether the user explicitly activated this account. false means the account was
@@ -28060,8 +28104,8 @@ components:
           type: boolean
         customerId:
           description: "Stripe customer ID, when present."
-          type: string
           nullable: true
+          type: string
         isInvitedUser:
           description: True if this is a team member; limits/usage reflect the account
             owner.
@@ -28270,13 +28314,13 @@ components:
         platformPostId:
           description: "The native post ID on the platform (e.g. Instagram media ID,\
             \ tweet ID)"
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         accountUsername:
-          type: string
           nullable: true
+          type: string
         analytics:
           allOf:
           - $ref: "#/components/schemas/PostAnalytics"
@@ -28290,12 +28334,12 @@ components:
           type: string
         platformPostUrl:
           format: uri
-          type: string
           nullable: true
+          type: string
         errorMessage:
           description: Error details when status is failed
-          type: string
           nullable: true
+          type: string
     AnalyticsOverview:
       properties:
         totalPosts:
@@ -28306,8 +28350,8 @@ components:
           type: integer
         lastSync:
           format: date-time
-          type: string
           nullable: true
+          type: string
         dataStaleness:
           $ref: "#/components/schemas/AnalyticsOverview_dataStaleness"
     AnalyticsSinglePostResponse:
@@ -28369,8 +28413,8 @@ components:
           type: string
         latePostId:
           description: Original Zernio post ID if scheduled via Zernio
-          type: string
           nullable: true
+          type: string
         status:
           description: Overall post status. "partial" when some platforms published
             and others failed.
@@ -28386,8 +28430,8 @@ components:
           type: string
         publishedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         analytics:
           $ref: "#/components/schemas/PostAnalytics"
         platformAnalytics:
@@ -28398,8 +28442,8 @@ components:
           type: string
         platformPostUrl:
           format: uri
-          type: string
           nullable: true
+          type: string
         isExternal:
           type: boolean
         syncStatus:
@@ -28413,20 +28457,20 @@ components:
         message:
           description: "Human-readable status message for pending, partial, or failed\
             \ states"
-          type: string
           nullable: true
+          type: string
         thumbnailUrl:
           format: uri
-          type: string
           nullable: true
+          type: string
         mediaType:
           enum:
           - image
           - video
           - carousel
           - text
-          type: string
           nullable: true
+          type: string
         mediaItems:
           description: All media items for this post. Carousel posts contain one entry
             per slide.
@@ -28490,7 +28534,7 @@ components:
           - TOTAL
           type: string
         dateRange:
-          $ref: "#/components/schemas/LinkedInAggregateAnalyticsTotalResponse_dateRange"
+          $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
         analytics:
           $ref: "#/components/schemas/LinkedInAggregateAnalyticsTotalResponse_analytics"
         note:
@@ -28516,7 +28560,7 @@ components:
           - DAILY
           type: string
         dateRange:
-          $ref: "#/components/schemas/LinkedInAggregateAnalyticsTotalResponse_dateRange"
+          $ref: "#/components/schemas/YouTubeDailyViewsResponse_dateRange"
         analytics:
           $ref: "#/components/schemas/LinkedInAggregateAnalyticsDailyResponse_analytics"
         skippedMetrics:
@@ -30167,10 +30211,6 @@ components:
           items:
             $ref: "#/components/schemas/Profile"
           type: array
-    ProfileGetResponse:
-      properties:
-        profile:
-          $ref: "#/components/schemas/Profile"
     ProfileCreateResponse:
       example:
         profile:
@@ -30188,168 +30228,6 @@ components:
           type: string
         profile:
           $ref: "#/components/schemas/Profile"
-    ProfileUpdateResponse:
-      example:
-        profile:
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          isDefault: true
-          color: color
-          name: name
-          description: description
-          _id: _id
-          userId: userId
-          isOverLimit: true
-        message: message
-      properties:
-        message:
-          type: string
-        profile:
-          $ref: "#/components/schemas/Profile"
-    ProfileDeleteResponse:
-      example:
-        message: message
-      properties:
-        message:
-          type: string
-    AccountsListResponse:
-      properties:
-        accounts:
-          items:
-            $ref: "#/components/schemas/SocialAccount"
-          type: array
-        hasAnalyticsAccess:
-          description: Whether user has analytics add-on access
-          type: boolean
-    AccountGetResponse:
-      properties:
-        account:
-          $ref: "#/components/schemas/SocialAccount"
-    FollowerStatsResponse:
-      properties:
-        accounts:
-          items:
-            $ref: "#/components/schemas/AccountWithFollowerStats"
-          type: array
-        dateRange:
-          $ref: "#/components/schemas/getFollowerStats_200_response_dateRange"
-        aggregation:
-          enum:
-          - daily
-          - weekly
-          - monthly
-          type: string
-    UploadedFile:
-      properties:
-        type:
-          enum:
-          - image
-          - video
-          - document
-          type: string
-        url:
-          format: uri
-          type: string
-        filename:
-          type: string
-        size:
-          type: integer
-        mimeType:
-          type: string
-    MediaUploadResponse:
-      properties:
-        files:
-          items:
-            $ref: "#/components/schemas/UploadedFile"
-          type: array
-    UploadTokenResponse:
-      properties:
-        token:
-          type: string
-        uploadUrl:
-          format: uri
-          type: string
-        expiresAt:
-          format: date-time
-          type: string
-        status:
-          enum:
-          - pending
-          - completed
-          - expired
-          type: string
-    UploadTokenStatusResponse:
-      properties:
-        token:
-          type: string
-        status:
-          enum:
-          - pending
-          - completed
-          - expired
-          type: string
-        files:
-          items:
-            $ref: "#/components/schemas/UploadedFile"
-          type: array
-        createdAt:
-          format: date-time
-          type: string
-        expiresAt:
-          format: date-time
-          type: string
-        completedAt:
-          format: date-time
-          type: string
-    QueueSlotsResponse:
-      properties:
-        exists:
-          type: boolean
-        schedule:
-          $ref: "#/components/schemas/QueueSchedule"
-        nextSlots:
-          items:
-            format: date-time
-            type: string
-          type: array
-    QueueUpdateResponse:
-      properties:
-        success:
-          type: boolean
-        schedule:
-          $ref: "#/components/schemas/QueueSchedule"
-        nextSlots:
-          items:
-            format: date-time
-            type: string
-          type: array
-        reshuffledCount:
-          type: integer
-    QueueDeleteResponse:
-      properties:
-        success:
-          type: boolean
-        deleted:
-          type: boolean
-    QueuePreviewResponse:
-      properties:
-        profileId:
-          type: string
-        count:
-          type: integer
-        slots:
-          items:
-            format: date-time
-            type: string
-          type: array
-    QueueNextSlotResponse:
-      properties:
-        profileId:
-          type: string
-        nextSlot:
-          format: date-time
-          type: string
-        timezone:
-          type: string
     User:
       properties:
         _id:
@@ -30363,16 +30241,6 @@ components:
         createdAt:
           format: date-time
           type: string
-    UsersListResponse:
-      properties:
-        users:
-          items:
-            $ref: "#/components/schemas/User"
-          type: array
-    UserGetResponse:
-      properties:
-        user:
-          $ref: "#/components/schemas/User"
     AdMetrics:
       example:
         ctr: 9.301444243932576
@@ -30501,8 +30369,8 @@ components:
             agency apps without full BC asset read scope) — distinct from `0`,
             which would imply the BC genuinely has no advertisers.
           example: 23
-          type: integer
           nullable: true
+          type: integer
     BidStrategy:
       description: |
         Meta bid strategy. Same enum applies at campaign and ad-set level; ad-set value (when set)
@@ -30667,7 +30535,7 @@ components:
           type: array
     Ad:
       example:
-        bidStrategy: LOWEST_COST_WITHOUT_CAP
+        bidStrategy: ""
         adSetName: adSetName
         platformCampaignId: platformCampaignId
         optimizationGoal: OFFSITE_CONVERSIONS
@@ -30791,14 +30659,14 @@ components:
           description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
             \ OUTCOME_TRAFFIC). Only present for Meta ads."
           example: OUTCOME_SALES
-          type: string
           nullable: true
+          type: string
         optimizationGoal:
           description: "Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE,\
             \ LEAD_GENERATION, LINK_CLICKS). Only present for Meta ads."
           example: OFFSITE_CONVERSIONS
-          type: string
           nullable: true
+          type: string
         platformAdAccountName:
           description: |
             Human-readable advertiser/account name (Meta `AdAccount.name`, TikTok
@@ -30806,8 +30674,8 @@ components:
             sync so platform-side renames propagate within one cycle. `null` when the
             platform doesn't return a name or the sync hasn't run yet.
           example: Zernio - previously Late
-          type: string
           nullable: true
+          type: string
         platformCreatedAt:
           description: |
             Platform-reported creation timestamp (Meta `created_time`, TikTok `create_time`).
@@ -30816,18 +30684,11 @@ components:
             `null` for legacy ads synced before this field was added; aggregations fall back
             to `createdAt` in that case.
           format: date-time
-          type: string
           nullable: true
+          type: string
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
-          description: |
-            Ad-set bid strategy (overrides campaign level on Meta). Populated for Meta and
-            TikTok. TikTok's native `bid_type` is normalized to the cross-platform Meta enum:
-            `BID_TYPE_NO_BID` -> `LOWEST_COST_WITHOUT_CAP`, `BID_TYPE_CUSTOM` ->
-            `LOWEST_COST_WITH_BID_CAP`, deep_bid_type=MIN_ROAS or roas_bid>0 ->
-            `LOWEST_COST_WITH_MIN_ROAS`, `BID_TYPE_MAX_CONVERSION` -> `LOWEST_COST_WITHOUT_CAP`.
-          example: LOWEST_COST_WITHOUT_CAP
           nullable: true
         bidAmount:
           description: |
@@ -30841,8 +30702,8 @@ components:
 
             Source: facebook-business-sdk-codegen api_specs/specs/AdSet.json (`bid_amount`).
           example: 5
-          type: number
           nullable: true
+          type: number
         roasAverageFloor:
           description: |
             Minimum ROAS as a decimal multiplier (2.0 = 2.0x ROAS). Populated when bidStrategy
@@ -30854,8 +30715,8 @@ components:
 
             Source: facebook-business-sdk-codegen api_specs/specs/AdCampaignBidConstraint.json.
           example: 2.0
-          type: number
           nullable: true
+          type: number
         promotedObject:
           $ref: "#/components/schemas/Ad_promotedObject"
         creative:
@@ -30894,7 +30755,7 @@ components:
           custom_event_type: custom_event_type
           pixel_id: pixel_id
         ads:
-        - bidStrategy: LOWEST_COST_WITHOUT_CAP
+        - bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
           optimizationGoal: OFFSITE_CONVERSIONS
@@ -30952,7 +30813,7 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
-        - bidStrategy: LOWEST_COST_WITHOUT_CAP
+        - bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
           optimizationGoal: OFFSITE_CONVERSIONS
@@ -31059,24 +30920,22 @@ components:
         optimizationGoal:
           description: "Meta ad set optimization goal (e.g. OFFSITE_CONVERSIONS, VALUE,\
             \ LEAD_GENERATION)"
-          type: string
           nullable: true
+          type: string
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
-          description: Bid strategy for this ad set (overrides campaign level when
-            set)
           nullable: true
         bidAmount:
           description: Bid cap in whole currency units. Populated when bidStrategy
             is LOWEST_COST_WITH_BID_CAP or COST_CAP.
-          type: number
           nullable: true
+          type: number
         roasAverageFloor:
           description: Minimum ROAS as a decimal multiplier (2.0 = 2.0x). Populated
             when bidStrategy is LOWEST_COST_WITH_MIN_ROAS.
-          type: number
           nullable: true
+          type: number
         promotedObject:
           $ref: "#/components/schemas/AdTreeAdSet_promotedObject"
         ads:
@@ -31130,7 +30989,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           ads:
-          - bidStrategy: LOWEST_COST_WITHOUT_CAP
+          - bidStrategy: ""
             adSetName: adSetName
             platformCampaignId: platformCampaignId
             optimizationGoal: OFFSITE_CONVERSIONS
@@ -31188,7 +31047,7 @@ components:
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
             status: active
-          - bidStrategy: LOWEST_COST_WITHOUT_CAP
+          - bidStrategy: ""
             adSetName: adSetName
             platformCampaignId: platformCampaignId
             optimizationGoal: OFFSITE_CONVERSIONS
@@ -31286,7 +31145,7 @@ components:
             custom_event_type: custom_event_type
             pixel_id: pixel_id
           ads:
-          - bidStrategy: LOWEST_COST_WITHOUT_CAP
+          - bidStrategy: ""
             adSetName: adSetName
             platformCampaignId: platformCampaignId
             optimizationGoal: OFFSITE_CONVERSIONS
@@ -31344,7 +31203,7 @@ components:
             campaignName: campaignName
             platformAdAccountId: platformAdAccountId
             status: active
-          - bidStrategy: LOWEST_COST_WITHOUT_CAP
+          - bidStrategy: ""
             adSetName: adSetName
             platformCampaignId: platformCampaignId
             optimizationGoal: OFFSITE_CONVERSIONS
@@ -31491,22 +31350,22 @@ components:
           - approved
           - rejected
           - with_issues
-          type: string
           nullable: true
+          type: string
         platformCampaignStatus:
           description: "Raw platform-level campaign status (Meta `effective_status`:\
             \ ACTIVE, PAUSED, DELETED, ARCHIVED, IN_PROCESS, WITH_ISSUES). Distinct\
             \ from per-ad `platformStatus`."
-          type: string
           nullable: true
+          type: string
         campaignIssuesInfo:
           description: "Platform-reported campaign issues (Meta `issues_info[]`).\
             \ Populated only when the platform has delivery issues to report; contains\
             \ the specific error codes and messages."
           items:
             type: object
-          type: array
           nullable: true
+          type: array
         adCount:
           description: Total ads across all ad sets
           type: integer
@@ -31523,8 +31382,8 @@ components:
           enum:
           - campaign
           - adset
-          type: string
           nullable: true
+          type: string
         isBudgetScheduleEnabled:
           default: false
           description: Meta-only. Mirrors Campaign.is_budget_schedule_enabled — true
@@ -31534,8 +31393,8 @@ components:
         currency:
           description: "ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget\
             \ amounts in this campaign node. Budgets are NOT normalized to USD."
-          type: string
           nullable: true
+          type: string
         metrics:
           $ref: "#/components/schemas/AdMetrics"
         platformAdAccountId:
@@ -31543,8 +31402,8 @@ components:
         platformAdAccountName:
           description: Human-readable advertiser/account name from the platform. Refreshed
             on every sync.
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         profileId:
@@ -31554,35 +31413,33 @@ components:
             \ PERFORMANCE_MAX, VIDEO, DEMAND_GEN, DISPLAY, SHOPPING, ...). Serving\
             \ surface, distinct from platformObjective (advertiser intent). Null/absent\
             \ for non-Google platforms."
-          type: string
           nullable: true
+          type: string
         platformObjective:
           description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
             \ OUTCOME_TRAFFIC)"
-          type: string
           nullable: true
+          type: string
         optimizationGoal:
           description: "Meta optimization goal shared across ad sets, or comma-separated\
             \ values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)"
-          type: string
           nullable: true
+          type: string
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
-          description: Campaign-level bid strategy. Ad sets inherit this unless they
-            override.
           nullable: true
         bidAmount:
           description: Representative bid cap for the campaign — bubbled up from the
             top-spending ad set's `bid_amount` (whole currency units). Populated when
             the ad-set bidStrategy is LOWEST_COST_WITH_BID_CAP or COST_CAP.
-          type: number
           nullable: true
+          type: number
         roasAverageFloor:
           description: Representative ROAS floor for the campaign — bubbled up from
             the top-spending ad set. Decimal multiplier (2.0 = 2.0x).
-          type: number
           nullable: true
+          type: number
         promotedObject:
           $ref: "#/components/schemas/AdTreeCampaign_promotedObject"
         adSets:
@@ -31675,18 +31532,18 @@ components:
           - approved
           - rejected
           - with_issues
-          type: string
           nullable: true
+          type: string
         platformCampaignStatus:
           description: Raw platform-level campaign status (Meta `effective_status`).
-          type: string
           nullable: true
+          type: string
         campaignIssuesInfo:
           description: "Platform-reported campaign issues (Meta `issues_info[]`)."
           items:
             type: object
-          type: array
           nullable: true
+          type: array
         adCount:
           type: integer
         budget:
@@ -31698,8 +31555,8 @@ components:
           enum:
           - campaign
           - adset
-          type: string
           nullable: true
+          type: string
         isBudgetScheduleEnabled:
           default: false
           description: Meta-only. Mirrors Campaign.is_budget_schedule_enabled.
@@ -31707,8 +31564,8 @@ components:
         currency:
           description: ISO 4217 currency code for all budget amounts. Budgets are
             NOT normalized to USD.
-          type: string
           nullable: true
+          type: string
         metrics:
           $ref: "#/components/schemas/AdMetrics"
         platformAdAccountId:
@@ -31716,43 +31573,41 @@ components:
         platformAdAccountName:
           description: Human-readable advertiser/account name from the platform. Refreshed
             on every sync.
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         profileId:
           type: string
         advertisingChannelType:
           description: Google-only. Raw campaign.advertising_channel_type. See AdTreeCampaign.advertisingChannelType.
-          type: string
           nullable: true
+          type: string
         platformObjective:
           description: "Raw Meta campaign objective (e.g. OUTCOME_SALES, OUTCOME_LEADS,\
             \ OUTCOME_TRAFFIC)"
-          type: string
           nullable: true
+          type: string
         optimizationGoal:
           description: "Meta optimization goal shared across ad sets, or comma-separated\
             \ values when ad sets differ (e.g. OFFSITE_CONVERSIONS, VALUE, LEAD_GENERATION)"
-          type: string
           nullable: true
+          type: string
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
-          description: Campaign-level bid strategy. Ad sets inherit this unless they
-            override.
           nullable: true
         bidAmount:
           description: Representative bid cap from the top-spending ad set (whole
             currency units). Populated when bidStrategy is LOWEST_COST_WITH_BID_CAP
             or COST_CAP.
-          type: number
           nullable: true
+          type: number
         roasAverageFloor:
           description: Representative ROAS floor from the top-spending ad set. Decimal
             multiplier (2.0 = 2.0x).
-          type: number
           nullable: true
+          type: number
         promotedObject:
           $ref: "#/components/schemas/AdTreeCampaign_promotedObject"
         earliestAd:
@@ -31982,8 +31837,8 @@ components:
           description: |
             Unix seconds of the last event the tag received, or `null` if it
             never fired. The practical "is it installed and working" signal.
-          type: integer
           nullable: true
+          type: integer
         isUnavailable:
           description: Whether the tag is in a broken/unavailable state (Meta `is_unavailable`).
           type: boolean
@@ -31999,8 +31854,8 @@ components:
             Business Manager id that owns the tag, or `null` when the tag lives
             on a personal (non-BM) ad account — such tags can't be shared with
             other ad accounts.
-          type: string
           nullable: true
+          type: string
         ownerAdAccountId:
           description: "Ad account id (`act_...`) that owns the tag, when reported."
           type: string
@@ -32028,42 +31883,6 @@ components:
           type: string
       required:
       - id
-    sendSms_request:
-      properties:
-        from:
-          description: One of your SMS-enabled numbers (E.164).
-          example: "+14155550192"
-          type: string
-        to:
-          description: Recipient number (E.164).
-          example: "+14155550123"
-          type: string
-        text:
-          example: Your verification code is 123456.
-          type: string
-        mediaUrls:
-          description: "Publicly reachable media URLs for MMS (max 10, total < 1MB)."
-          items:
-            format: uri
-            type: string
-          type: array
-      required:
-      - from
-      - to
-    sendSms_200_response:
-      example:
-        conversationId: conversationId
-        id: id
-        status: sent
-      properties:
-        id:
-          description: Telnyx message id
-          type: string
-        conversationId:
-          type: string
-        status:
-          example: sent
-          type: string
     validatePostLength_request:
       properties:
         text:
@@ -32290,8 +32109,8 @@ components:
           type: string
         size:
           description: File size in bytes
-          type: integer
           nullable: true
+          type: integer
         sizeFormatted:
           example: 245 KB
           type: string
@@ -33121,8 +32940,8 @@ components:
           type: string
         to:
           format: date
-          type: string
           nullable: true
+          type: string
         summary:
           $ref: "#/components/schemas/getInboxVolume_200_response_summary"
         timeseries:
@@ -33189,8 +33008,8 @@ components:
           type: string
         to:
           format: date
-          type: string
           nullable: true
+          type: string
         buckets:
           items:
             $ref: "#/components/schemas/getInboxHeatmap_200_response_buckets_inner"
@@ -33278,8 +33097,8 @@ components:
           type: string
         to:
           format: date
-          type: string
           nullable: true
+          type: string
         sources:
           items:
             $ref: "#/components/schemas/getInboxSourceBreakdown_200_response_sources_inner"
@@ -33322,8 +33141,8 @@ components:
           type: integer
         upperSeconds:
           description: null on the open-ended last bucket
-          type: integer
           nullable: true
+          type: integer
         count:
           type: integer
     getInboxResponseTime_200_response:
@@ -33356,8 +33175,8 @@ components:
           type: string
         to:
           format: date
-          type: string
           nullable: true
+          type: string
         summary:
           $ref: "#/components/schemas/getInboxResponseTime_200_response_summary"
         histogram:
@@ -33435,8 +33254,8 @@ components:
           type: string
         to:
           format: date
-          type: string
           nullable: true
+          type: string
         accounts:
           items:
             $ref: "#/components/schemas/getInboxTopAccounts_200_response_accounts_inner"
@@ -33464,25 +33283,25 @@ components:
           type: string
         mongoId:
           description: "The Conversation document _id, when a matching doc exists"
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         platform:
           type: string
         participantName:
-          type: string
           nullable: true
+          type: string
         participantUsername:
-          type: string
           nullable: true
+          type: string
         participantPicture:
-          type: string
           nullable: true
+          type: string
         lastMessage:
           description: Cached preview from the Conversation doc
-          type: string
           nullable: true
+          type: string
         totalMessages:
           type: integer
         received:
@@ -33567,8 +33386,8 @@ components:
           type: string
         to:
           format: date
-          type: string
           nullable: true
+          type: string
         items:
           items:
             $ref: "#/components/schemas/listInboxConversationAnalytics_200_response_items_inner"
@@ -33597,12 +33416,12 @@ components:
           type: integer
         firstMessageAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         lastMessageAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
     getInboxConversationAnalytics_200_response_bySource_inner:
       example:
         count: 2
@@ -33654,15 +33473,15 @@ components:
         mongoId:
           type: string
         platform:
-          type: string
           nullable: true
+          type: string
         from:
           format: date
           type: string
         to:
           format: date
-          type: string
           nullable: true
+          type: string
         summary:
           $ref: "#/components/schemas/getInboxConversationAnalytics_200_response_summary"
         timeseries:
@@ -33900,11 +33719,11 @@ components:
             $ref: "#/components/schemas/RedditPost"
           type: array
         after:
-          type: string
           nullable: true
+          type: string
         before:
-          type: string
           nullable: true
+          type: string
     createPost_request_platforms_inner_platformSpecificData:
       oneOf:
       - $ref: "#/components/schemas/TwitterPlatformData"
@@ -35589,8 +35408,8 @@ components:
         displayName:
           type: string
         profilePhotoUrl:
-          type: string
           nullable: true
+          type: string
         isAnonymous:
           type: boolean
     getGoogleBusinessReviews_200_response_reviews_inner_reviewReply:
@@ -35604,7 +35423,6 @@ components:
         updateTime:
           format: date-time
           type: string
-      nullable: true
     getGoogleBusinessReviews_200_response_reviews_inner:
       example:
         reviewReply:
@@ -35711,8 +35529,8 @@ components:
           type: integer
         nextPageToken:
           description: Token for next page
-          type: string
           nullable: true
+          type: string
     getGoogleBusinessVerifications_200_response_voiceOfMerchantState_verify:
       description: Present when verification is the path to Voice of Merchant.
       example:
@@ -37380,25 +37198,24 @@ components:
       properties:
         name:
           description: Business name as set in GBP
-          type: string
           nullable: true
+          type: string
         placeId:
           description: Google Maps Place ID for this location
-          type: string
           nullable: true
+          type: string
         reviewUrl:
           description: Public "write a review" URL Google generates for this place
-          type: string
           nullable: true
+          type: string
         mapsUri:
           description: Public Google Maps URL for this location
-          type: string
           nullable: true
+          type: string
         isVerified:
           description: True when the location has Voice of Merchant (verified + live
             on Google)
           type: boolean
-      nullable: true
     getGoogleBusinessLocationDetails_200_response_regularHours_periods_inner:
       example:
         openDay: MONDAY
@@ -39855,31 +39672,31 @@ components:
           type: string
         mediaType:
           description: IMAGE / VIDEO / CAROUSEL_ALBUM
-          type: string
           nullable: true
+          type: string
         mediaProductType:
           description: Always 'STORY' for this endpoint.
-          type: string
           nullable: true
+          type: string
         mediaUrl:
           description: Direct media URL. Null if Meta flagged the story for copyright.
             URL expires when the story expires.
-          type: string
           nullable: true
+          type: string
         permalink:
           description: Public Instagram permalink to the story (only viewable while
             live).
-          type: string
           nullable: true
+          type: string
         thumbnailUrl:
           description: Thumbnail URL for video stories.
-          type: string
           nullable: true
+          type: string
         timestamp:
           description: When the story was posted.
           format: date-time
-          type: string
           nullable: true
+          type: string
       required:
       - id
     listInstagramStories_200_response:
@@ -40109,8 +39926,8 @@ components:
             $ref: "#/components/schemas/getYoutubePlaylists_200_response_playlists_inner"
           type: array
         defaultPlaylistId:
-          type: string
           nullable: true
+          type: string
     updateYoutubeDefaultPlaylist_request:
       properties:
         defaultPlaylistId:
@@ -40336,12 +40153,12 @@ components:
           type: string
         webhookUsername:
           description: Custom webhook display name (null = default "Zernio")
-          type: string
           nullable: true
+          type: string
         webhookAvatarUrl:
           description: Custom webhook avatar URL (null = default bot avatar)
-          type: string
           nullable: true
+          type: string
     getDiscordSettings_200_response:
       example:
         account:
@@ -40405,11 +40222,11 @@ components:
         guildId:
           type: string
         webhookUsername:
-          type: string
           nullable: true
+          type: string
         webhookAvatarUrl:
-          type: string
           nullable: true
+          type: string
     updateDiscordSettings_200_response:
       example:
         message: Discord settings updated
@@ -40643,12 +40460,12 @@ components:
         discriminator:
           type: string
         avatar:
-          type: string
           nullable: true
+          type: string
         global_name:
           description: User's display name (post-2023 Discord rebrand)
-          type: string
           nullable: true
+          type: string
     listDiscordGuildMembers_200_response_data_inner:
       example:
         nick: nick
@@ -40668,8 +40485,8 @@ components:
           $ref: "#/components/schemas/listDiscordGuildMembers_200_response_data_inner_user"
         nick:
           description: Guild-specific nickname
-          type: string
           nullable: true
+          type: string
         roles:
           description: Snowflake IDs of roles assigned to this member
           items:
@@ -40681,8 +40498,8 @@ components:
         premium_since:
           description: When the user started boosting the server
           format: date-time
-          type: string
           nullable: true
+          type: string
     listDiscordGuildMembers_200_response_pagination:
       example:
         nextCursor: nextCursor
@@ -40691,8 +40508,8 @@ components:
         nextCursor:
           description: Pass as `after` on the next call. Null when there are no more
             pages.
-          type: string
           nullable: true
+          type: string
         hasMore:
           type: boolean
     listDiscordGuildMembers_200_response:
@@ -41668,31 +41485,28 @@ components:
       properties:
         isFollower:
           description: Whether the participant follows your Instagram business account
-          type: boolean
           nullable: true
+          type: boolean
         isFollowing:
           description: Whether your Instagram business account follows the participant
-          type: boolean
           nullable: true
+          type: boolean
         followerCount:
           description: The participant's follower count on Instagram
-          type: integer
           nullable: true
+          type: integer
         isVerified:
           description: Whether the participant is a verified Instagram user
-          type: boolean
           nullable: true
+          type: boolean
         fetchedAt:
           description: When this profile data was last fetched from Instagram
           format: date-time
-          type: string
           nullable: true
-      nullable: true
+          type: string
     listInboxConversations_200_response_data_inner:
       example:
         updatedTime: 2000-01-23T04:56:07.000+00:00
-        metadata:
-          key: metadata
         participantPicture: participantPicture
         lastMessage: lastMessage
         unreadCount: 0
@@ -41725,8 +41539,8 @@ components:
         participantName:
           type: string
         participantPicture:
-          type: string
           nullable: true
+          type: string
         participantVerifiedType:
           description: X/Twitter verified badge type. Only present for Twitter/X conversations.
           enum:
@@ -41734,8 +41548,8 @@ components:
           - government
           - business
           - none
-          type: string
           nullable: true
+          type: string
         lastMessage:
           type: string
         updatedTime:
@@ -41748,33 +41562,14 @@ components:
           type: string
         unreadCount:
           description: Number of unread messages
-          type: integer
           nullable: true
+          type: integer
         url:
           description: Direct link to open the conversation on the platform (if available)
-          type: string
           nullable: true
+          type: string
         instagramProfile:
           $ref: "#/components/schemas/listInboxConversations_200_response_data_inner_instagramProfile"
-        metadata:
-          additionalProperties:
-            type: string
-          description: |
-            Ad-click attribution captured on the first inbound message of the
-            conversation. Only present when the conversation originated from a
-            click-to-message ad. Absent on organic conversations.
-
-            Two sources populate this field:
-              - WhatsApp CTWA (Click-to-WhatsApp): `ctwa_clid`, `ctwa_source_id`,
-                `ctwa_source_url`, `ctwa_headline`, `ctwa_source_type`, `ctwa_captured_at`.
-              - Facebook Messenger CTM / Instagram CTD: `meta_ad_id`, `meta_ad_title`,
-                `meta_ad_source`, `meta_ad_type`, `meta_ad_ref`, `meta_ad_captured_at`,
-                `meta_ad_photo_url`, `meta_ad_video_url`, `meta_ad_post_id`,
-                `meta_ad_product_id`, `meta_ad_flow_id`.
-
-            Note: `meta_ad_photo_url` and `meta_ad_video_url` are Facebook CDN URLs
-            that may expire. Use `meta_ad_id` for a permanent reference to the ad.
-          nullable: true
     listInboxConversations_200_response_pagination:
       example:
         nextCursor: nextCursor
@@ -41783,8 +41578,8 @@ components:
         hasMore:
           type: boolean
         nextCursor:
-          type: string
           nullable: true
+          type: string
     listInboxConversations_200_response_meta_failedAccounts_inner:
       example:
         accountId: accountId
@@ -41797,20 +41592,20 @@ components:
         accountId:
           type: string
         accountUsername:
-          type: string
           nullable: true
+          type: string
         platform:
           type: string
         error:
           type: string
         code:
           description: Error code if available
-          type: string
           nullable: true
+          type: string
         retryAfter:
           description: Seconds to wait before retry (rate limits)
-          type: integer
           nullable: true
+          type: integer
     listInboxConversations_200_response_meta:
       example:
         lastUpdated: 2000-01-23T04:56:07.000+00:00
@@ -41848,8 +41643,6 @@ components:
           hasMore: true
         data:
         - updatedTime: 2000-01-23T04:56:07.000+00:00
-          metadata:
-            key: metadata
           participantPicture: participantPicture
           lastMessage: lastMessage
           unreadCount: 0
@@ -41869,8 +41662,6 @@ components:
           participantName: participantName
           status: active
         - updatedTime: 2000-01-23T04:56:07.000+00:00
-          metadata:
-            key: metadata
           participantPicture: participantPicture
           lastMessage: lastMessage
           unreadCount: 0
@@ -42003,12 +41794,12 @@ components:
           type: string
         participantName:
           description: Display name of the recipient
-          type: string
           nullable: true
+          type: string
         participantUsername:
           description: Twitter username of the recipient
-          type: string
           nullable: true
+          type: string
     createInboxConversation_201_response:
       example:
         data:
@@ -42049,8 +41840,6 @@ components:
     getInboxConversation_200_response_data:
       example:
         updatedTime: 2000-01-23T04:56:07.000+00:00
-        metadata:
-          key: metadata
         lastMessage: lastMessage
         platform: platform
         instagramProfile:
@@ -42097,8 +41886,8 @@ components:
           - government
           - business
           - none
-          type: string
           nullable: true
+          type: string
         lastMessage:
           type: string
         lastMessageAt:
@@ -42113,32 +41902,10 @@ components:
           type: array
         instagramProfile:
           $ref: "#/components/schemas/listInboxConversations_200_response_data_inner_instagramProfile"
-        metadata:
-          additionalProperties:
-            type: string
-          description: |
-            Ad-click attribution captured on the first inbound message of the
-            conversation. Only present when the conversation originated from a
-            click-to-message ad. Absent on organic conversations.
-
-            Two sources populate this field:
-              - WhatsApp CTWA (Click-to-WhatsApp): `ctwa_clid`, `ctwa_source_id`,
-                `ctwa_source_url`, `ctwa_headline`, `ctwa_source_type`, `ctwa_captured_at`.
-              - Facebook Messenger CTM / Instagram CTD: `meta_ad_id`, `meta_ad_title`,
-                `meta_ad_source`, `meta_ad_type`, `meta_ad_ref`, `meta_ad_captured_at`,
-                `meta_ad_photo_url`, `meta_ad_video_url`, `meta_ad_post_id`,
-                `meta_ad_product_id`, `meta_ad_flow_id`.
-
-            Note: `meta_ad_photo_url` and `meta_ad_video_url` are Facebook CDN URLs
-            that may expire. Use `meta_ad_id` for a permanent reference to the ad
-            (e.g. to link to Meta Ads Manager).
-          nullable: true
     getInboxConversation_200_response:
       example:
         data:
           updatedTime: 2000-01-23T04:56:07.000+00:00
-          metadata:
-            key: metadata
           lastMessage: lastMessage
           platform: platform
           instagramProfile:
@@ -42222,8 +41989,8 @@ components:
           type: boolean
         nextCursor:
           description: Opaque cursor to fetch the next page. `null` on the last page.
-          type: string
           nullable: true
+          type: string
     getInboxConversationMessages_200_response_messages_inner_attachments_inner:
       example:
         filename: filename
@@ -42246,11 +42013,11 @@ components:
         url:
           type: string
         filename:
-          type: string
           nullable: true
+          type: string
         previewUrl:
-          type: string
           nullable: true
+          type: string
     getInboxConversationMessages_200_response_messages_inner_editHistory_inner_attachments_inner:
       example:
         payload: "{}"
@@ -42276,8 +42043,8 @@ components:
         text: text
       properties:
         text:
-          type: string
           nullable: true
+          type: string
         attachments:
           items:
             $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_editHistory_inner_attachments_inner"
@@ -42298,7 +42065,6 @@ components:
           type: string
         message:
           type: string
-      nullable: true
     getInboxConversationMessages_200_response_messages_inner_reactions_inner:
       example:
         emoji: emoji
@@ -42395,8 +42161,8 @@ components:
         senderId:
           type: string
         senderName:
-          type: string
           nullable: true
+          type: string
         senderVerifiedType:
           description: X/Twitter verified badge type. Only present for Twitter/X messages.
           enum:
@@ -42404,8 +42170,8 @@ components:
           - government
           - business
           - none
-          type: string
           nullable: true
+          type: string
         direction:
           enum:
           - incoming
@@ -42420,24 +42186,24 @@ components:
           type: array
         subject:
           description: Reddit message subject
-          type: string
           nullable: true
+          type: string
         storyReply:
           description: Instagram story reply
-          type: boolean
           nullable: true
+          type: boolean
         isStoryMention:
           description: Instagram story mention
-          type: boolean
           nullable: true
+          type: boolean
         isEdited:
           description: True if the sender has edited this message at least once.
           type: boolean
         editedAt:
           description: When the most recent edit happened.
           format: date-time
-          type: string
           nullable: true
+          type: string
         editCount:
           description: Total number of edits applied.
           type: integer
@@ -42452,8 +42218,8 @@ components:
           type: boolean
         deletedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         deliveryStatus:
           description: Lifecycle status for outgoing messages. Not all platforms emit
             every state (see webhook support matrix).
@@ -42463,22 +42229,22 @@ components:
           - read
           - failed
           - deleted
-          type: string
           nullable: true
+          type: string
         deliveredAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         readAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         sentAt:
           description: Original send time for outgoing messages (used for Messenger
             watermark queries).
           format: date-time
-          type: string
           nullable: true
+          type: string
         deliveryError:
           $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_deliveryError"
         reactions:
@@ -43257,17 +43023,17 @@ components:
           type: string
         conversationId:
           description: Twitter conversation ID
-          type: string
           nullable: true
+          type: string
         sentAt:
           description: Bluesky sent timestamp
           format: date-time
-          type: string
           nullable: true
+          type: string
         message:
           description: Success message (Reddit only)
-          type: string
           nullable: true
+          type: string
     sendInboxMessage_200_response:
       example:
         data:
@@ -43508,11 +43274,11 @@ components:
         content:
           type: string
         picture:
-          type: string
           nullable: true
+          type: string
         permalink:
-          type: string
           nullable: true
+          type: string
         createdTime:
           format: date-time
           type: string
@@ -43522,12 +43288,12 @@ components:
           type: integer
         cid:
           description: Bluesky content identifier
-          type: string
           nullable: true
+          type: string
         subreddit:
           description: Reddit subreddit name
-          type: string
           nullable: true
+          type: string
         isAd:
           description: "True when this row is an ad (boosted/dark post). `platform`\
             \ is then the placement (facebook = the Page dark post / instagram = the\
@@ -43621,8 +43387,8 @@ components:
         username:
           type: string
         picture:
-          type: string
           nullable: true
+          type: string
         isOwner:
           type: boolean
         verifiedType:
@@ -43632,8 +43398,8 @@ components:
           - government
           - business
           - none
-          type: string
           nullable: true
+          type: string
     getInboxPostComments_200_response_comments_inner:
       example:
         canReply: true
@@ -43683,8 +43449,8 @@ components:
           type: string
         url:
           description: Direct link to the comment on the platform (if available)
-          type: string
           nullable: true
+          type: string
         replies:
           items:
             type: object
@@ -43708,24 +43474,24 @@ components:
           type: boolean
         likeUri:
           description: Bluesky like URI for unliking
-          type: string
           nullable: true
+          type: string
         cid:
           description: Bluesky content identifier
-          type: string
           nullable: true
+          type: string
         parentId:
           description: Parent comment ID for nested replies
-          type: string
           nullable: true
+          type: string
         rootUri:
           description: Bluesky root post URI
-          type: string
           nullable: true
+          type: string
         rootCid:
           description: Bluesky root post CID
-          type: string
           nullable: true
+          type: string
     getInboxPostComments_200_response_post:
       description: |
         (Reddit only) Metadata for the target post, returned alongside the comments in Reddit's
@@ -43787,12 +43553,11 @@ components:
           type: boolean
         flairText:
           description: Link flair text if any
-          type: string
           nullable: true
+          type: string
         isGallery:
           description: True if the post is a Reddit gallery (multiple images)
           type: boolean
-      nullable: true
     getInboxPostComments_200_response_pagination:
       example:
         cursor: cursor
@@ -43801,8 +43566,8 @@ components:
         hasMore:
           type: boolean
         cursor:
-          type: string
           nullable: true
+          type: string
     getInboxPostComments_200_response_meta_adComments:
       description: (Facebook/Instagram only) Present when this post has no organic
         comments but is a boosted post — the engagement lives on the ad. Use the ad-comments
@@ -43817,7 +43582,6 @@ components:
         adCommentsUrl:
           description: "Path to fetch the ad's comments (GET /v1/ads/{adId}/comments)"
           type: string
-      nullable: true
     getInboxPostComments_200_response_meta:
       example:
         accountId: accountId
@@ -43837,8 +43601,8 @@ components:
           type: string
         subreddit:
           description: (Reddit only) Subreddit name
-          type: string
           nullable: true
+          type: string
         lastUpdated:
           format: date-time
           type: string
@@ -43978,8 +43742,8 @@ components:
           type: boolean
         cid:
           description: Bluesky CID
-          type: string
           nullable: true
+          type: string
     replyToInboxPost_200_response:
       example:
         data:
@@ -44347,13 +44111,13 @@ components:
         profileImage: profileImage
       properties:
         id:
-          type: string
           nullable: true
+          type: string
         name:
           type: string
         profileImage:
-          type: string
           nullable: true
+          type: string
     listInboxReviews_200_response_data_inner_reply:
       example:
         created: 2000-01-23T04:56:07.000+00:00
@@ -44367,7 +44131,6 @@ components:
         created:
           format: date-time
           type: string
-      nullable: true
     listInboxReviews_200_response_data_inner:
       example:
         accountId: accountId
@@ -44410,8 +44173,8 @@ components:
         reply:
           $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reply"
         reviewUrl:
-          type: string
           nullable: true
+          type: string
     listInboxReviews_200_response_summary:
       example:
         totalReviews: 6
@@ -44420,8 +44183,8 @@ components:
         totalReviews:
           type: integer
         averageRating:
-          type: number
           nullable: true
+          type: number
     listInboxReviews_200_response:
       example:
         summary:
@@ -44505,19 +44268,6 @@ components:
       required:
       - accountId
       - message
-    replyToInboxReview_200_response_reply:
-      example:
-        created: 2000-01-23T04:56:07.000+00:00
-        id: id
-        text: text
-      properties:
-        id:
-          type: string
-        text:
-          type: string
-        created:
-          format: date-time
-          type: string
     replyToInboxReview_200_response:
       example:
         reply:
@@ -44530,7 +44280,7 @@ components:
         status:
           type: string
         reply:
-          $ref: "#/components/schemas/replyToInboxReview_200_response_reply"
+          $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reply"
         platform:
           type: string
     deleteInboxReviewReply_request:
@@ -44818,17 +44568,17 @@ components:
             \ it on a phone starts a WhatsApp voice call to this number. Embed it\
             \ on websites, emails, or QR codes. Null while calling is disabled; not\
             \ supported by WhatsApp desktop clients."
-          type: string
           nullable: true
+          type: string
         forwardTo:
           description: tel:+E164 / sip:... / wss://... destination
-          type: string
           nullable: true
+          type: string
         recordingEnabled:
           type: boolean
         sipAuthUsername:
-          type: string
           nullable: true
+          type: string
         sipAuthPasswordConfigured:
           description: True when a SIP digest password is stored. The plaintext is
             never returned.
@@ -44838,8 +44588,8 @@ components:
             maxLength: 2
             minLength: 2
             type: string
-          type: array
           nullable: true
+          type: array
     enableWhatsAppCalling_request:
       properties:
         accountId:
@@ -44886,11 +44636,11 @@ components:
         forwardTo:
           type: string
         sipAuthUsername:
-          type: string
           nullable: true
+          type: string
         sipAuthPassword:
-          type: string
           nullable: true
+          type: string
         recordingEnabled:
           type: boolean
         callIconCountries:
@@ -44898,8 +44648,8 @@ components:
             maxLength: 2
             minLength: 2
             type: string
-          type: array
           nullable: true
+          type: array
       required:
       - accountId
     getWhatsAppCallPermissions_200_response_permission:
@@ -45135,8 +44885,8 @@ components:
         to:
           type: string
         forwardTo:
-          type: string
           nullable: true
+          type: string
         recordingEnabled:
           type: boolean
     getWhatsAppCall_200_response:
@@ -45185,8 +44935,8 @@ components:
         destinationCountry: destinationCountry
       properties:
         destinationCountry:
-          type: string
           nullable: true
+          type: string
         perMinuteUsd:
           type: number
         breakdown:
@@ -45232,7 +44982,6 @@ components:
           items:
             $ref: "#/components/schemas/getWhatsAppLibraryTemplate_200_response_template_buttons_inner"
           type: array
-      nullable: true
     getWhatsAppLibraryTemplate_200_response:
       example:
         template:
@@ -45485,7 +45234,6 @@ components:
           type: string
         health_status:
           type: object
-      nullable: true
     getWhatsAppNumberInfo_200_response:
       example:
         phone:
@@ -45537,8 +45285,8 @@ components:
         nextCursor:
           description: Pass as `after` to fetch the next page. Null when there are
             no more pages.
-          type: string
           nullable: true
+          type: string
     blockWhatsAppUsers_request:
       properties:
         accountId:
@@ -45655,8 +45403,8 @@ components:
         datasetId:
           description: "Meta dataset ID linked to the WABA, or null if not provisioned\
             \ yet"
-          type: string
           nullable: true
+          type: string
     createWhatsAppDataset_request:
       properties:
         accountId:
@@ -45716,13 +45464,13 @@ components:
         registrantName:
           description: "For regulated numbers, who it's registered for (company or\
             \ person) — set from the submitted KYC."
-          type: string
           nullable: true
+          type: string
         telnyxOrderId:
           description: Present once the number order has been placed (i.e. the requirement
             group was approved). Absent while still in identity review.
-          type: string
           nullable: true
+          type: string
         monthlyCents:
           description: Per-country monthly price in cents ($2..$25).
           type: integer
@@ -45739,18 +45487,18 @@ components:
           description: For regulated (Tier 3/4) numbers with an Onfido ID-verification
             step — the link to forward to the end user. Set once the order is placed;
             null otherwise. Poll this field after submitting KYC.
-          type: string
           nullable: true
+          type: string
         endUserFirstName:
-          type: string
           nullable: true
+          type: string
         endUserLastName:
-          type: string
           nullable: true
+          type: string
         regulatoryDeclineReason:
           description: Reviewer rejection reason when status is regulatory_declined.
-          type: string
           nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -45765,18 +45513,18 @@ components:
         accountId:
           type: string
         phoneNumber:
-          type: string
           nullable: true
+          type: string
         displayName:
-          type: string
           nullable: true
+          type: string
         profileId:
-          type: string
           nullable: true
+          type: string
         connectedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
     getWhatsAppPhoneNumbers_200_response_sandbox_template:
       example:
         name: sandbox_start
@@ -45806,13 +45554,12 @@ components:
           example: "+12029087457"
           type: string
         accountId:
-          type: string
           nullable: true
+          type: string
         template:
           $ref: "#/components/schemas/getWhatsAppPhoneNumbers_200_response_sandbox_template"
         isSandbox:
           type: boolean
-      nullable: true
     getWhatsAppPhoneNumbers_200_response:
       example:
         connected:
@@ -46100,16 +45847,16 @@ components:
           type: string
         description:
           description: Plain-English explanation of what to provide.
-          type: string
           nullable: true
+          type: string
         example:
           description: Concrete example value.
-          type: string
           nullable: true
+          type: string
         localTo:
           description: ISO country the value must be local to
-          type: string
           nullable: true
+          type: string
     getWhatsAppNumberKycForm_200_response_reusable_details_inner:
       example:
         label: label
@@ -46178,7 +45925,6 @@ components:
           items:
             $ref: "#/components/schemas/getWhatsAppNumberKycForm_200_response_reusable_options_inner"
           type: array
-      nullable: true
     getWhatsAppNumberKycForm_200_response:
       example:
         country: country
@@ -46459,8 +46205,8 @@ components:
         numberType:
           type: string
         declineReason:
-          type: string
           nullable: true
+          type: string
         fields:
           description: Same field shape as GET /v1/whatsapp/phone-numbers/kyc.
           items:
@@ -46551,18 +46297,18 @@ components:
         onfidoVerificationUrl:
           description: For a regulated number with an Onfido ID step — the link to
             forward to the end user. Appears once the order is placed; null otherwise.
-          type: string
           nullable: true
+          type: string
         endUserFirstName:
-          type: string
           nullable: true
+          type: string
         endUserLastName:
-          type: string
           nullable: true
+          type: string
         regulatoryDeclineReason:
           description: Reviewer rejection reason when status is regulatory_declined.
-          type: string
           nullable: true
+          type: string
         provisionedAt:
           format: date-time
           type: string
@@ -46637,8 +46383,8 @@ components:
         sandboxNumber:
           description: The shared sandbox phone number in E.164 form.
           example: "+12029087457"
-          type: string
           nullable: true
+          type: string
     createWhatsAppSandboxSession_request:
       properties:
         phone:
@@ -47258,11 +47004,11 @@ components:
         preview_url: preview_url
       properties:
         preview_url:
-          type: string
           nullable: true
+          type: string
         expires_at:
-          type: string
           nullable: true
+          type: string
     listWhatsAppFlowVersions_200_response_versions_inner:
       example:
         parentFlowId: parentFlowId
@@ -47277,14 +47023,14 @@ components:
         version:
           type: integer
         parentFlowId:
-          type: string
           nullable: true
+          type: string
         name:
-          type: string
           nullable: true
+          type: string
         status:
-          type: string
           nullable: true
+          type: string
         missing:
           description: True when Meta no longer has this flow
           type: boolean
@@ -47401,24 +47147,24 @@ components:
           type: string
         from:
           description: Sender wa_id / phone
-          type: string
           nullable: true
+          type: string
         senderName:
-          type: string
           nullable: true
+          type: string
         conversationId:
-          type: string
           nullable: true
+          type: string
         flowToken:
-          type: string
           nullable: true
+          type: string
         data:
           description: Submitted field values (flow_token removed)
           type: object
         raw:
           description: Raw response_json string
-          type: string
           nullable: true
+          type: string
     listWhatsAppFlowResponses_200_response:
       example:
         responses:
@@ -47766,14 +47512,14 @@ components:
           description: "Timestamp of the most recent outgoing message, or null if\
             \ none."
           format: date-time
-          type: string
           nullable: true
+          type: string
         lastMessageReceivedAt:
           description: "Timestamp of the most recent incoming message, or null if\
             \ none."
           format: date-time
-          type: string
           nullable: true
+          type: string
         customFields:
           type: object
         notes:
@@ -47818,8 +47564,8 @@ components:
           description: "Most recent message (either direction) in this channel's conversation,\
             \ or null if none."
           format: date-time
-          type: string
           nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -48783,14 +48529,14 @@ components:
           description: "Meta WhatsApp error code (e.g. 131049 for antispam, 131021\
             \ for invalid phone, 131026 for re-engagement required). Only populated\
             \ for status=failed."
-          type: integer
           nullable: true
+          type: integer
         errorExplanation:
           description: "Plain-language translation of errorCode (e.g. for 131026,\
             \ that the recipient has likely opted out of marketing messages). Null\
             \ for unmapped codes; fall back to error."
-          type: string
           nullable: true
+          type: string
         sentAt:
           format: date-time
           type: string
@@ -49183,8 +48929,8 @@ components:
             $ref: "#/components/schemas/WorkflowEdge"
           type: array
         entryNodeId:
-          type: string
           nullable: true
+          type: string
         accountId:
           description: |
             Reassign the workflow to a different `SocialAccount`. `platform` and `profileId` are derived server-side from the new account (the client never sends them directly). The account must belong to the caller's workspace and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform.
@@ -49277,7 +49023,6 @@ components:
           type: string
         nodeId:
           type: string
-      nullable: true
     listWorkflowExecutions_200_response_executions_inner:
       example:
         variables:
@@ -49321,12 +49066,12 @@ components:
         stepCount:
           type: integer
         lastError:
-          type: string
           nullable: true
+          type: string
         resumeAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         createdAt:
           format: date-time
           type: string
@@ -49335,8 +49080,8 @@ components:
           type: string
         completedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
     listWorkflowExecutions_200_response:
       example:
         executions:
@@ -49417,14 +49162,13 @@ components:
         currentNodeId:
           type: string
         waitingFor:
-          type: object
           nullable: true
+          type: object
         variables:
           additionalProperties: true
           type: object
         conversationId:
           type: string
-      nullable: true
     triggerWorkflow_200_response:
       example:
         execution:
@@ -49460,12 +49204,12 @@ components:
           type: string
         startedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         completedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
     listWorkflowExecutionEvents_200_response:
       example:
         execution:
@@ -49535,8 +49279,8 @@ components:
         profileId:
           type: string
         entryNodeId:
-          type: string
           nullable: true
+          type: string
         nodeCount:
           type: integer
         createdAt:
@@ -49577,21 +49321,21 @@ components:
         name:
           type: string
         description:
-          type: string
           nullable: true
+          type: string
         createdBy:
           description: User id that authored this version
-          type: string
           nullable: true
+          type: string
         createdByEmail:
           description: Denormalized email so the history UI can render without a join
-          type: string
           nullable: true
+          type: string
         restoredFromVersion:
           description: "When non-null, this snapshot was created by restoring that\
             \ version"
-          type: integer
           nullable: true
+          type: integer
         createdAt:
           format: date-time
           type: string
@@ -49664,11 +49408,11 @@ components:
         name:
           type: string
         description:
-          type: string
           nullable: true
+          type: string
         entryNodeId:
-          type: string
           nullable: true
+          type: string
         nodes:
           items:
             $ref: "#/components/schemas/WorkflowNode"
@@ -49684,14 +49428,14 @@ components:
         profileId:
           type: string
         createdBy:
-          type: string
           nullable: true
+          type: string
         createdByEmail:
+          nullable: true
           type: string
-          nullable: true
         restoredFromVersion:
-          type: integer
           nullable: true
+          type: integer
         createdAt:
           format: date-time
           type: string
@@ -49758,8 +49502,8 @@ components:
         status:
           type: string
         entryNodeId:
-          type: string
           nullable: true
+          type: string
         nodeCount:
           type: integer
         updatedAt:
@@ -51128,7 +50872,7 @@ components:
     listAds_200_response:
       example:
         ads:
-        - bidStrategy: LOWEST_COST_WITHOUT_CAP
+        - bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
           optimizationGoal: OFFSITE_CONVERSIONS
@@ -51186,7 +50930,7 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: active
-        - bidStrategy: LOWEST_COST_WITHOUT_CAP
+        - bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
           optimizationGoal: OFFSITE_CONVERSIONS
@@ -51738,11 +51482,11 @@ components:
         bidStrategy:
           $ref: "#/components/schemas/BidStrategy"
         bidAmount:
-          type: number
           nullable: true
+          type: number
         roasAverageFloor:
-          type: number
           nullable: true
+          type: number
     updateAdSetStatus_200_response:
       example:
         updated: 0
@@ -51800,7 +51544,7 @@ components:
               custom_event_type: custom_event_type
               pixel_id: pixel_id
             ads:
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -51858,7 +51602,7 @@ components:
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -51956,7 +51700,7 @@ components:
               custom_event_type: custom_event_type
               pixel_id: pixel_id
             ads:
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -52014,7 +51758,7 @@ components:
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -52168,7 +51912,7 @@ components:
               custom_event_type: custom_event_type
               pixel_id: pixel_id
             ads:
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -52226,7 +51970,7 @@ components:
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -52324,7 +52068,7 @@ components:
               custom_event_type: custom_event_type
               pixel_id: pixel_id
             ads:
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -52382,7 +52126,7 @@ components:
               campaignName: campaignName
               platformAdAccountId: platformAdAccountId
               status: active
-            - bidStrategy: LOWEST_COST_WITHOUT_CAP
+            - bidStrategy: ""
               adSetName: adSetName
               platformCampaignId: platformCampaignId
               optimizationGoal: OFFSITE_CONVERSIONS
@@ -52612,7 +52356,7 @@ components:
     getAd_200_response:
       example:
         ad:
-          bidStrategy: LOWEST_COST_WITHOUT_CAP
+          bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
           optimizationGoal: OFFSITE_CONVERSIONS
@@ -52769,7 +52513,7 @@ components:
     updateAd_200_response:
       example:
         ad:
-          bidStrategy: LOWEST_COST_WITHOUT_CAP
+          bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
           optimizationGoal: OFFSITE_CONVERSIONS
@@ -52859,8 +52603,8 @@ components:
           description: "ISO 4217 code of the ad account that owns this ad (e.g. USD,\
             \ THB, INR). All money values in `summary` and `daily` are in this currency.\
             \ Null only on legacy ads synced before currency was persisted."
-          type: string
           nullable: true
+          type: string
     getAdAnalytics_200_response_analytics_daily_inner:
       allOf:
       - $ref: "#/components/schemas/AdMetrics"
@@ -53074,28 +52818,28 @@ components:
           type: string
         urlTags:
           description: "Meta: &-joined click-URL params."
-          type: string
           nullable: true
+          type: string
         templateUrlSpec:
           description: "Meta: third-party click-tracking template (Dynamic Ads)."
-          type: object
           nullable: true
+          type: object
         trackingUrlTemplate:
           description: Google.
-          type: string
           nullable: true
+          type: string
         finalUrlSuffix:
           description: Google.
-          type: string
           nullable: true
+          type: string
         dynamicValueParameters:
           description: LinkedIn.
-          type: object
           nullable: true
+          type: object
         customValueParameters:
           description: LinkedIn.
-          type: object
           nullable: true
+          type: object
     updateAdTrackingTags_request_urlTags_inner:
       properties:
         key:
@@ -53207,8 +52951,8 @@ components:
             comments were read through — pass it as `accountId` (with `effectiveStoryId`
             as the postId) to /v1/inbox/comments to reply/hide/delete. Null when no
             connected Page was used (then moderation isn't possible).
-          type: string
           nullable: true
+          type: string
         instagramUserId:
           description: Instagram-only. The Instagram-scoped business ID that owns
             the boosted media (creative.instagram_user_id).
@@ -53451,14 +53195,6 @@ components:
             `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`. Sent to Meta as
             `bid_constraints.roas_average_floor` × 10000 (Meta uses fixed-point integers).
           type: number
-        rawTargeting:
-          additionalProperties: {}
-          description: |
-            Meta only. A raw Meta-native targeting spec passed to the ad set VERBATIM (snake_case:
-            `geo_locations`, `custom_audiences`, `excluded_custom_audiences`, `flexible_spec`,
-            `targeting_automation`, etc.). Use it to target specific custom or lookalike audiences,
-            or to clone a campaign's targeting exactly. Mutually exclusive with `targeting` (sending
-            both → 422). Sent as-is; Meta validates and surfaces any errors.
         tracking:
           $ref: "#/components/schemas/boostPost_request_tracking"
         specialAdCategories:
@@ -53701,33 +53437,6 @@ components:
       - latitude
       - longitude
       - radius
-    createStandaloneAd_request_places_inner:
-      properties:
-        key:
-          type: string
-      required:
-      - key
-    createStandaloneAd_request_excludedLocations:
-      description: "Geo exclusions. Meta only. Maps to excluded_geo_locations. Supports\
-        \ countries, regions, cities, and zips."
-      properties:
-        countries:
-          description: ISO-3166 alpha-2 country codes to exclude.
-          items:
-            type: string
-          type: array
-        regions:
-          items:
-            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
-          type: array
-        cities:
-          items:
-            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
-          type: array
-        zips:
-          items:
-            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
-          type: array
     createStandaloneAd_request_behaviors_inner:
       properties:
         id:
@@ -53747,9 +53456,6 @@ components:
         additionally enforces co-selection rules (e.g. some positions require their parent
         publisher platform) and returns an actionable error which we surface. Non-Meta
         platforms reject this field.
-        Can be combined with `rawTargeting` — when both are set, the placement spec is
-        converted to Meta's snake_case and merged into the raw targeting object before
-        it is sent to Meta.
       properties:
         publisherPlatforms:
           description: Top-level platforms to deliver on. A position field below is
@@ -54246,22 +53952,9 @@ components:
           - lifetime
           type: string
         status:
-          description: |
-            Meta only. Desired publish state of the ad (and, on the legacy/multi-ad-set shapes, the ad set too).
-            Omitted or `ACTIVE` publishes live immediately (default). `PAUSED` creates the objects paused and skips
-            activation — useful to stage ads before they spend. On the attach shape (`adSetId`), only the new ad is
-            affected; the existing ad set and campaign are already live and are not touched.
-          enum:
-          - ACTIVE
-          - PAUSED
-          type: string
-        campaignStatus:
-          description: |
-            Meta only. Independent publish state for the CAMPAIGN when the create makes both a new campaign and a
-            new ad set (legacy shape). When omitted, the campaign follows `status`. Use this to stage a paused
-            campaign with an active ad set (`status: ACTIVE, campaignStatus: PAUSED`) — the ad set will start
-            delivering as soon as the campaign is activated later. Ignored when `existingCampaignId` is set (the
-            campaign is already live and its status is not changed).
+          description: "Meta only. Publish state of the created ad set + ad. Omitted\
+            \ or ACTIVE publishes live (default, back-compat); PAUSED creates them\
+            \ paused and skips activation, so you can review before they spend."
           enum:
           - ACTIVE
           - PAUSED
@@ -54429,16 +54122,11 @@ components:
           description: |
             Meta only. Reuse an EXISTING ad creative by id instead of
             building a new one from the copy/media fields (which are then
-            ignored). Works on both shapes:
-            - Legacy/multi-ad-set (`existingCampaignId`): combine with
-              `existingCampaignId` to build a multi-ad-set campaign that
-              shares one creative across audiences.
-            - Attach (`adSetId`): combine with `adSetId` to add a second
-              (or Nth) ad to an existing ad set reusing the same creative —
-              no `headline`/`body`/`imageUrl` required on the body.
-            Mutually exclusive with `creatives[]`, `dynamicCreative`, and
-            `placementAssets`. The creative id is returned as `creativeId`
-            on the create response.
+            ignored). Combine with `existingCampaignId` to build a
+            multi-ad-set campaign that shares one creative. Mutually
+            exclusive with `creatives[]`, `dynamicCreative`, and
+            `placementAssets`. The creative id used is returned as
+            `creativeId` on the create response.
           type: string
         businessName:
           description: Google Display only
@@ -54512,21 +54200,6 @@ components:
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_customLocations_inner"
           type: array
-        places:
-          description: "Named points of interest (businesses, landmarks). Meta only.\
-            \ `key` from /v1/ads/targeting/search?dimension=geo&geoType=place. Maps\
-            \ to geo_locations.places."
-          items:
-            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
-          type: array
-        neighborhoods:
-          description: Named neighbourhood areas. Meta only. `key` from /v1/ads/targeting/search?dimension=geo&geoType=neighborhood.
-            Maps to geo_locations.neighborhoods.
-          items:
-            $ref: "#/components/schemas/createStandaloneAd_request_places_inner"
-          type: array
-        excludedLocations:
-          $ref: "#/components/schemas/createStandaloneAd_request_excludedLocations"
         behaviors:
           description: Behaviour entities from /v1/ads/targeting/search?dimension=behavior.
             Supported on Meta and TikTok. Each must include id.
@@ -54568,8 +54241,6 @@ components:
             ageMin/...), `audienceId`, and `savedTargetingId` (sending both → 422). Sent as-is; Meta validates and
             surfaces any errors. If cloning an EU campaign, also pass `dsaBeneficiary` / `dsaPayor` (those are
             separate fields, not part of targeting).
-            Can be combined with the top-level `placements` field — when both are present, placements are
-            converted to Meta's snake_case and merged into this object before it is sent to Meta.
         specialAdCategories:
           description: |
             Meta only. Declares the ad's special category, required for housing, employment, credit, or
@@ -54728,7 +54399,7 @@ components:
       description: Legacy + attach shapes — one ad returned.
       example:
         ad:
-          bidStrategy: LOWEST_COST_WITHOUT_CAP
+          bidStrategy: ""
           adSetName: adSetName
           platformCampaignId: platformCampaignId
           optimizationGoal: OFFSITE_CONVERSIONS
@@ -54837,25 +54508,25 @@ components:
         formId:
           type: string
         formName:
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         adId:
-          type: string
           nullable: true
+          type: string
         adsetId:
-          type: string
           nullable: true
+          type: string
         campaignId:
-          type: string
           nullable: true
+          type: string
         isOrganic:
           type: boolean
         createdTime:
           description: ISO 8601.
-          type: string
           nullable: true
+          type: string
         fields:
           additionalProperties:
             type: string
@@ -54932,9 +54603,6 @@ components:
         pagination:
           $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
     createLeadForm_request_questions_inner_options_inner:
-      example:
-        value: value
-        key: key
       properties:
         key:
           type: string
@@ -54959,31 +54627,6 @@ components:
           type: string
       required:
       - type
-    createLeadForm_request_contextCard:
-      description: Intro card shown before the questions page. Omit to skip the intro
-        screen.
-      properties:
-        title:
-          description: Headline / title of the intro card.
-          type: string
-        content:
-          description: Body text lines shown on the intro card.
-          items:
-            type: string
-          type: array
-        style:
-          description: Visual layout of the intro card.
-          enum:
-          - LIST_STYLE
-          - PARAGRAPH_STYLE
-          type: string
-        buttonText:
-          description: CTA button label on the intro card.
-          type: string
-        coverPhoto:
-          description: Image hash of the cover photo (obtain from the Meta Ad Images
-            API). Omit to show no image.
-          type: string
     createLeadForm_request:
       properties:
         accountId:
@@ -55021,34 +54664,7 @@ components:
           format: uri
           type: string
         isOptimizedForQuality:
-          description: "Legacy form type toggle. Prefer formType instead. false =\
-            \ More Volume, true = Higher Intent."
           type: boolean
-        formType:
-          description: Form type. MORE_VOLUME = optimized for lead quantity (default).
-            HIGHER_INTENT = adds a review/confirmation step before submit. RICH_CREATIVE
-            = includes context card and custom headline to educate users before they
-            submit. Supersedes isOptimizedForQuality.
-          enum:
-          - MORE_VOLUME
-          - HIGHER_INTENT
-          - RICH_CREATIVE
-          type: string
-        blockDisplayForNonTargetedViewer:
-          description: "Sharing setting. true = Restricted (only people targeted by\
-            \ the ad can open the form link). false = Open (shareable link, default)."
-          type: boolean
-        allowOrganicLeadGen:
-          description: Flexible form delivery. true = the form can surface organically
-            on the Page (not just as a paid ad). Defaults to false.
-          type: boolean
-        questionPageCustomHeadline:
-          description: Custom subheadline shown above the form fields on the questions
-            page (the contact-information section description). Defaults to Meta's
-            generic copy when omitted.
-          type: string
-        contextCard:
-          $ref: "#/components/schemas/createLeadForm_request_contextCard"
       required:
       - accountId
       - name
@@ -55066,170 +54682,15 @@ components:
           type: string
         form:
           $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
-    getLeadForm_200_response_form_questions_inner:
-      example:
-        inline_context: inline_context
-        options:
-        - value: value
-          key: key
-        - value: value
-          key: key
-        label: label
-        type: type
-        key: key
-      properties:
-        key:
-          type: string
-        label:
-          type: string
-        type:
-          description: "EMAIL, PHONE, FULL_NAME, FIRST_NAME, LAST_NAME, CUSTOM, …"
-          type: string
-        options:
-          items:
-            $ref: "#/components/schemas/createLeadForm_request_questions_inner_options_inner"
-          type: array
-        inline_context:
-          type: string
-    getLeadForm_200_response_form_thank_you_page:
-      example:
-        website_url: https://openapi-generator.tech
-        button_type: VIEW_WEBSITE
-        button_text: button_text
-        title: title
-        body: body
-      properties:
-        title:
-          type: string
-        body:
-          type: string
-        button_text:
-          type: string
-        button_type:
-          example: VIEW_WEBSITE
-          type: string
-        website_url:
-          format: uri
-          type: string
-      nullable: true
-    getLeadForm_200_response_form:
-      description: Full form config — sufficient to duplicate the form via POST /v1/ads/lead-forms.
-      example:
-        privacy_policy_url: https://openapi-generator.tech
-        created_time: 2000-01-23T04:56:07.000+00:00
-        follow_up_action_url: https://openapi-generator.tech
-        name: name
-        questions:
-        - inline_context: inline_context
-          options:
-          - value: value
-            key: key
-          - value: value
-            key: key
-          label: label
-          type: type
-          key: key
-        - inline_context: inline_context
-          options:
-          - value: value
-            key: key
-          - value: value
-            key: key
-          label: label
-          type: type
-          key: key
-        thank_you_page:
-          website_url: https://openapi-generator.tech
-          button_type: VIEW_WEBSITE
-          button_text: button_text
-          title: title
-          body: body
-        id: id
-        context_card: "{}"
-        locale: EN_US
-        status: ACTIVE
-        leads_count: 0
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        status:
-          description: ARCHIVED forms can't receive new leads.
-          enum:
-          - ACTIVE
-          - ARCHIVED
-          type: string
-        locale:
-          example: EN_US
-          type: string
-        created_time:
-          format: date-time
-          type: string
-        leads_count:
-          type: integer
-        privacy_policy_url:
-          format: uri
-          type: string
-        follow_up_action_url:
-          format: uri
-          type: string
-          nullable: true
-        questions:
-          items:
-            $ref: "#/components/schemas/getLeadForm_200_response_form_questions_inner"
-          type: array
-        thank_you_page:
-          $ref: "#/components/schemas/getLeadForm_200_response_form_thank_you_page"
-        context_card:
-          description: "Intro card shown before the form questions (title, content,\
-            \ button label)."
-          type: object
-          nullable: true
     getLeadForm_200_response:
       example:
-        form:
-          privacy_policy_url: https://openapi-generator.tech
-          created_time: 2000-01-23T04:56:07.000+00:00
-          follow_up_action_url: https://openapi-generator.tech
-          name: name
-          questions:
-          - inline_context: inline_context
-            options:
-            - value: value
-              key: key
-            - value: value
-              key: key
-            label: label
-            type: type
-            key: key
-          - inline_context: inline_context
-            options:
-            - value: value
-              key: key
-            - value: value
-              key: key
-            label: label
-            type: type
-            key: key
-          thank_you_page:
-            website_url: https://openapi-generator.tech
-            button_type: VIEW_WEBSITE
-            button_text: button_text
-            title: title
-            body: body
-          id: id
-          context_card: "{}"
-          locale: EN_US
-          status: ACTIVE
-          leads_count: 0
-        status: success
+        form: "{}"
+        status: status
       properties:
         status:
-          example: success
           type: string
         form:
-          $ref: "#/components/schemas/getLeadForm_200_response_form"
+          type: object
     archiveLeadForm_200_response:
       example:
         formId: formId
@@ -55257,11 +54718,11 @@ components:
         id:
           type: string
         createdTime:
-          type: string
           nullable: true
+          type: string
         adId:
-          type: string
           nullable: true
+          type: string
         formId:
           type: string
         fields:
@@ -55378,11 +54839,9 @@ components:
         - path
         - path
         audienceSize: 0
-        latitude: 6.0274563
         name: name
         id: id
         type: type
-        longitude: 1.4658129
       properties:
         id:
           description: The platform's opaque id. Use as a geo `key` (regions/cities/zips/metros)
@@ -55404,19 +54863,8 @@ components:
         audienceSize:
           description: "Optional estimated reachable users for this option, when the\
             \ platform returns it."
+          nullable: true
           type: integer
-          nullable: true
-        latitude:
-          description: "Centre latitude of the location. Populated on Meta geo results\
-            \ (city, neighborhood, place, etc.). Useful for map views."
-          format: float
-          type: number
-          nullable: true
-        longitude:
-          description: Centre longitude of the location.
-          format: float
-          type: number
-          nullable: true
       required:
       - id
       - name
@@ -55428,20 +54876,16 @@ components:
           - path
           - path
           audienceSize: 0
-          latitude: 6.0274563
           name: name
           id: id
           type: type
-          longitude: 1.4658129
         - path:
           - path
           - path
           audienceSize: 0
-          latitude: 6.0274563
           name: name
           id: id
           type: type
-          longitude: 1.4658129
       properties:
         results:
           items:
@@ -55489,27 +54933,27 @@ components:
         lower:
           description: Lower bound of the estimated reachable audience. Present only
             when available.
-          type: integer
           nullable: true
+          type: integer
         upper:
           description: Upper bound of the estimated reachable audience. Present only
             when available.
-          type: integer
           nullable: true
+          type: integer
         daily:
           description: "Optional estimated daily reach/results at the given budget,\
             \ when the platform returns it."
-          type: integer
           nullable: true
+          type: integer
         currency:
           description: "Currency of any monetary fields in the estimate, when applicable."
-          type: string
           nullable: true
+          type: string
         estimateReady:
           description: Meta only. False when Meta is still computing the estimate
             (the audience is too new); retry shortly.
-          type: boolean
           nullable: true
+          type: boolean
       required:
       - available
     listAdCatalogs_200_response_catalogs_inner:
@@ -55525,8 +54969,8 @@ components:
           type: string
         vertical:
           description: "Catalog vertical (e.g. commerce, vehicles, hotels)"
-          type: string
           nullable: true
+          type: string
         productCount:
           type: integer
     listAdCatalogs_200_response:
@@ -55584,8 +55028,8 @@ components:
         status: status
       properties:
         id:
-          type: string
           nullable: true
+          type: string
         platformAudienceId:
           type: string
         name:
@@ -55602,8 +55046,6 @@ components:
         spec:
           allOf:
           - $ref: "#/components/schemas/TargetingSpec"
-          description: Present (and the only meaningful payload) when `type` is `saved_targeting`.
-            Null for uploaded/derived audience types.
           nullable: true
         platform:
           type: string
@@ -55710,7 +55152,9 @@ components:
           type: string
         spec:
           allOf:
-          - $ref: "#/components/schemas/TargetingSpec"
+          - allOf:
+            - $ref: "#/components/schemas/TargetingSpec"
+            nullable: true
           description: The targeting spec to store.
       required:
       - accountId
@@ -55740,8 +55184,8 @@ components:
           type: object
         metaData:
           description: Fresh data from Meta API
-          type: object
           nullable: true
+          type: object
     addUsersToAdAudience_request_users_inner:
       description: Each user must have at least email or phone
       properties:
@@ -56487,23 +55931,23 @@ components:
             \ ViewContent."
           type: string
         conversationId:
-          type: string
           nullable: true
+          type: string
         eventsReceived:
           description: Number of events Meta accepted on this send (usually 1).
-          type: integer
           nullable: true
+          type: integer
         eventsFailed:
           description: Number of events Meta rejected (usually 0).
-          type: integer
           nullable: true
+          type: integer
         traceId:
           description: Meta fbtrace_id for cross-referencing in Events Manager.
+          nullable: true
           type: string
-          nullable: true
         durationMs:
-          type: integer
           nullable: true
+          type: integer
     listWhatsAppConversions_200_response:
       example:
         events:
@@ -56721,7 +56165,6 @@ components:
           minLength: 1
           type: string
         radius:
-          minimum: 0
           type: number
         distance_unit:
           enum:
@@ -56746,33 +56189,6 @@ components:
           type: string
       required:
       - key
-    createCtwaAd_request_customLocations_inner:
-      properties:
-        latitude:
-          maximum: 90
-          minimum: -90
-          type: number
-        longitude:
-          maximum: 180
-          minimum: -180
-          type: number
-        radius:
-          minimum: 0
-          type: number
-        distanceUnit:
-          enum:
-          - mile
-          - kilometer
-          type: string
-        name:
-          type: string
-        address:
-          type: string
-      required:
-      - distanceUnit
-      - latitude
-      - longitude
-      - radius
     createCtwaAd_request:
       description: |
         In addition to the `required` list, the request must use
@@ -56841,7 +56257,6 @@ components:
           description: |
             Budget amount in the ad account's currency major units
             (e.g. dollars for USD, not cents). Must be > 0.
-          minimum: 0
           type: number
         budgetType:
           enum:
@@ -56908,7 +56323,7 @@ components:
             Use for targeting a radius around a specific lat/long when
             no Meta city/region key fits. `distanceUnit` is required.
           items:
-            $ref: "#/components/schemas/createCtwaAd_request_customLocations_inner"
+            $ref: "#/components/schemas/createStandaloneAd_request_customLocations_inner"
           type: array
         ageMin:
           maximum: 65
@@ -56965,7 +56380,6 @@ components:
             Whole currency units (e.g. `5` = $5.00 on a USD account).
             Required when `bidStrategy` is `LOWEST_COST_WITH_BID_CAP`
             or `COST_CAP`; rejected otherwise.
-          minimum: 0
           type: number
         roasAverageFloor:
           description: |
@@ -56973,7 +56387,6 @@ components:
             Required when `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`;
             rejected otherwise. Meta enforces its own upper bound
             server-side.
-          minimum: 0
           type: number
         dsaBeneficiary:
           description: |
@@ -57235,8 +56648,8 @@ components:
         number:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
         reason:
-          type: string
           nullable: true
+          type: string
     onWhatsAppNumberActionRequired_request:
       properties:
         id:
@@ -57278,8 +56691,8 @@ components:
         number:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
         reason:
-          type: string
           nullable: true
+          type: string
     onWhatsAppNumberReactivated_request:
       properties:
         id:
@@ -57305,8 +56718,8 @@ components:
         number:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
         reason:
-          type: string
           nullable: true
+          type: string
     WorkflowNode_position:
       description: Canvas coordinates (ignored by the executor; used by the visual
         builder).
@@ -57976,8 +57389,8 @@ components:
         name:
           type: string
         picture:
-          type: string
           nullable: true
+          type: string
       required:
       - id
     WebhookPayloadComment_comment_ad:
@@ -58028,8 +57441,8 @@ components:
           type: string
         postId:
           description: Internal post ID (null for posts not published through Zernio)
-          type: string
           nullable: true
+          type: string
         platformPostId:
           description: Platform's post ID
           type: string
@@ -58056,8 +57469,8 @@ components:
           type: boolean
         parentCommentId:
           description: Parent comment ID if this is a reply
-          type: string
           nullable: true
+          type: string
         ad:
           $ref: "#/components/schemas/WebhookPayloadComment_comment_ad"
       required:
@@ -58077,8 +57490,8 @@ components:
       properties:
         id:
           description: Internal post ID (null for posts not published through Zernio)
-          type: string
           nullable: true
+          type: string
         platformPostId:
           description: Platform's post ID
           type: string
@@ -58127,18 +57540,18 @@ components:
           type: string
         formName:
           description: Human-readable form name (best-effort; may be null)
-          type: string
           nullable: true
+          type: string
         adId:
           description: Meta ad ID that drove the lead (null for organic/test leads)
-          type: string
           nullable: true
+          type: string
         adsetId:
-          type: string
           nullable: true
+          type: string
         campaignId:
-          type: string
           nullable: true
+          type: string
         fields:
           additionalProperties:
             type: string
@@ -58183,13 +57596,13 @@ components:
         id:
           description: Platform reviewer ID. Null when the platform does not expose
             it (common on Google Business anonymous reviews).
-          type: string
           nullable: true
+          type: string
         name:
           type: string
         profileImage:
-          type: string
           nullable: true
+          type: string
       required:
       - id
       - name
@@ -58251,17 +57664,17 @@ components:
         followerCount: 0
       properties:
         isFollower:
-          type: boolean
           nullable: true
+          type: boolean
         isFollowing:
-          type: boolean
           nullable: true
+          type: boolean
         followerCount:
+          nullable: true
           type: integer
-          nullable: true
         isVerified:
-          type: boolean
           nullable: true
+          type: boolean
     InboxWebhookMessage_sender:
       example:
         phoneNumber: phoneNumber
@@ -58308,8 +57721,8 @@ components:
             who adopt a username can message businesses without exposing a phone
             number — this field is omitted for them. Match by `businessScopedUserId`
             instead. See `docs/whatsapp-bsuid-migration.md`.
-          type: string
           nullable: true
+          type: string
         businessScopedUserId:
           description: |
             WhatsApp only. Business-scoped user ID (BSUID) — Meta's canonical
@@ -58357,8 +57770,8 @@ components:
         phoneNumber:
           description: "WhatsApp only. Sender's phone number in E.164 format (with\
             \ leading `+`), when available."
-          type: string
           nullable: true
+          type: string
       required:
       - id
     WebhookPayloadReaction_reaction:
@@ -58416,20 +57829,20 @@ components:
       properties:
         isFollower:
           description: Whether the sender follows your Instagram business account
-          type: boolean
           nullable: true
+          type: boolean
         isFollowing:
           description: Whether your Instagram business account follows the sender
-          type: boolean
           nullable: true
+          type: boolean
         followerCount:
           description: The sender's follower count on Instagram
-          type: integer
           nullable: true
+          type: integer
         isVerified:
           description: Whether the sender is a verified Instagram user
-          type: boolean
           nullable: true
+          type: boolean
     WebhookPayloadMessage_message_sender:
       example:
         phoneNumber: phoneNumber
@@ -58472,8 +57885,8 @@ components:
             exposing a phone number — this field is omitted for them.
             Match by `businessScopedUserId` instead. See
             `docs/whatsapp-bsuid-migration.md`.
-          type: string
           nullable: true
+          type: string
         businessScopedUserId:
           description: |
             WhatsApp only. Business-scoped user ID (BSUID) — Meta's canonical
@@ -58554,8 +57967,8 @@ components:
           type: string
         text:
           description: Message text content
-          type: string
           nullable: true
+          type: string
         attachments:
           items:
             $ref: "#/components/schemas/InboxWebhookMessage_attachments_inner"
@@ -58701,7 +58114,6 @@ components:
           type: string
         ads_context_data:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral_ads_context_data"
-      nullable: true
     WebhookPayloadMessage_metadata:
       description: "Interactive message metadata (present when message is a quick\
         \ reply tap, postback button tap, or inline keyboard callback)"
@@ -58799,7 +58211,6 @@ components:
           type: boolean
         referral:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral"
-      nullable: true
     WebhookPayloadMessageSent_message_sender:
       example:
         contactId: contactId
@@ -58868,8 +58279,8 @@ components:
           type: string
         text:
           description: Message text content
-          type: string
           nullable: true
+          type: string
         attachments:
           items:
             $ref: "#/components/schemas/InboxWebhookMessage_attachments_inner"
@@ -58905,8 +58316,8 @@ components:
         text: text
       properties:
         text:
-          type: string
           nullable: true
+          type: string
         attachments:
           items:
             $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_editHistory_inner_attachments_inner"
@@ -58938,9 +58349,8 @@ components:
             recipient has likely opted out of marketing messages while utility
             templates are unaffected). Null for unmapped codes; fall back to
             title/message.
-          type: string
           nullable: true
-      nullable: true
+          type: string
     WebhookPayloadConversationStarted_conversation:
       example:
         participantId: participantId
@@ -59017,8 +58427,8 @@ components:
           type: string
         metaCallId:
           description: Meta wacid.* call id when known
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         phoneNumberId:
@@ -59095,8 +58505,8 @@ components:
         id:
           type: string
         metaCallId:
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         phoneNumberId:
@@ -59158,8 +58568,8 @@ components:
         id:
           type: string
         metaCallId:
-          type: string
           nullable: true
+          type: string
         accountId:
           type: string
         phoneNumberId:
@@ -59804,7 +59214,6 @@ components:
         location:
           description: External event location string.
           type: string
-      nullable: true
     SocialAccount_profileId:
       oneOf:
       - type: string
@@ -59983,8 +59392,8 @@ components:
             Monthly X spend cap set by the account owner, or null if no cap.
             When current X spend hits this cap, analytics and inbox sync are
             auto-paused for X accounts. Publishing is never blocked by this cap.
-          type: integer
           nullable: true
+          type: integer
     XApiPricing_tiers_inner:
       example:
         operationCount: 13
@@ -60061,8 +59470,8 @@ components:
           type: string
         latePostId:
           description: Original Zernio post ID if scheduled via Zernio
-          type: string
           nullable: true
+          type: string
         content:
           type: string
         scheduledFor:
@@ -60086,14 +59495,9 @@ components:
           type: string
         isExternal:
           type: boolean
-        isAd:
-          description: True when the post is an ad creative. False for organic posts
-            or platforms where the signal is unavailable. For now is only available
-            for LinkedIn posts.
-          type: boolean
         profileId:
-          type: string
           nullable: true
+          type: string
         thumbnailUrl:
           format: uri
           type: string
@@ -60112,18 +59516,6 @@ components:
           items:
             $ref: "#/components/schemas/AnalyticsSinglePostResponse_mediaItems_inner"
           type: array
-    LinkedInAggregateAnalyticsTotalResponse_dateRange:
-      example:
-        endDate: 2000-01-23
-        startDate: 2000-01-23
-      properties:
-        startDate:
-          format: date
-          type: string
-        endDate:
-          format: date
-          type: string
-      nullable: true
     LinkedInAggregateAnalyticsTotalResponse_analytics:
       example:
         shares: 5
@@ -60273,7 +59665,6 @@ components:
           - daily
           - lifetime
           type: string
-      nullable: true
     Ad_promotedObject:
       description: Meta promoted object containing conversion event details. Structure
         varies by objective. Only present for Meta ads.
@@ -60301,7 +59692,6 @@ components:
         product_set_id:
           description: Product catalog set ID
           type: string
-      nullable: true
     Ad_creative:
       description: Platform-specific creative data. Fields vary by platform.
       example:
@@ -60336,13 +59726,13 @@ components:
           description: "Meta video ID for VIDEO-type ads. Null for non-video ads.\
             \ Callers that need an embeddable MP4 can call GET /{videoId}?fields=source\
             \ with the page access token."
-          type: string
           nullable: true
+          type: string
         videoUrl:
           description: "Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v={videoId}).\
             \ Null for non-video ads."
-          type: string
           nullable: true
+          type: string
         objectType:
           description: "Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL,\
             \ POST_DELETED). Use this to render state-aware previews — when Meta moderation\
@@ -60352,32 +59742,32 @@ components:
           description: Meta creative `object_story_id` (the SHARE reference). Frequently
             absent — Meta omits it for SHARE creatives. Use effectiveObjectStoryId
             instead.
-          type: string
           nullable: true
+          type: string
         effectiveObjectStoryId:
           description: "Meta `effective_object_story_id` — `{pageId}_{postId}` of\
             \ the Facebook post the ad's engagement (comments) lives on. Pass to GET\
             \ /v1/ads?effectiveObjectStoryId= to map a Business-Manager-visible post\
             \ back to this ad; GET /v1/ads/{adId}/comments resolves comments against\
             \ it."
-          type: string
           nullable: true
+          type: string
         effectiveInstagramMediaId:
           description: Meta `effective_instagram_media_id` — the Instagram media ID
             of the boosted post the ad's engagement lives on. Pass to GET /v1/ads?effectiveInstagramMediaId=
             to map a Business-Manager-visible IG post back to this ad.
-          type: string
           nullable: true
+          type: string
         instagramUserId:
           description: Meta `instagram_user_id` — the Instagram-scoped business ID
             that owns the boosted media.
-          type: string
           nullable: true
+          type: string
         instagramPermalinkUrl:
           description: Meta `instagram_permalink_url` — public Instagram post URL
             of the boosted media.
-          type: string
           nullable: true
+          type: string
         mediaUrls:
           description: "All media URLs for this ad (carousel images, multiple assets).\
             \ Populated for Meta (carousel child_attachments), Google Ads (responsive\
@@ -60403,7 +59793,6 @@ components:
           type: string
         pinterestDescription:
           type: string
-      nullable: true
     Ad_schedule:
       example:
         endDate: 2000-01-23T04:56:07.000+00:00
@@ -60415,7 +59804,6 @@ components:
         endDate:
           format: date-time
           type: string
-      nullable: true
     AdTreeAdSet_budget:
       description: Effective budget at this level (back-compat). For CBO campaigns
         this mirrors the parent campaign's budget; for ABO this is the ad-set-specific
@@ -60431,7 +59819,6 @@ components:
           - daily
           - lifetime
           type: string
-      nullable: true
     AdTreeAdSet_adSetBudget:
       description: Ad-set-level budget (ABO). Null for CBO campaigns where the budget
         is set on the campaign.
@@ -60446,7 +59833,6 @@ components:
           - daily
           - lifetime
           type: string
-      nullable: true
     AdTreeAdSet_promotedObject:
       description: Meta promoted object for this ad set (conversion event details)
       example:
@@ -60460,7 +59846,6 @@ components:
           type: string
         page_id:
           type: string
-      nullable: true
     AdTreeCampaign_budget:
       description: "Effective budget (back-compat). For CBO this mirrors `campaignBudget`,\
         \ for ABO this mirrors the child ad-set budget. Use `budgetLevel` to disambiguate."
@@ -60475,7 +59860,6 @@ components:
           - daily
           - lifetime
           type: string
-      nullable: true
     AdTreeCampaign_campaignBudget:
       description: Campaign-level budget (Campaign Budget Optimization / CBO). Populated
         only when the platform set the budget at the campaign level. For ABO campaigns
@@ -60491,7 +59875,6 @@ components:
           - daily
           - lifetime
           type: string
-      nullable: true
     AdTreeCampaign_promotedObject:
       description: Meta promoted object at campaign level (conversion event details)
       example:
@@ -60505,7 +59888,6 @@ components:
           type: string
         page_id:
           type: string
-      nullable: true
     AdCampaign_budget:
       description: Effective budget (back-compat). Use `budgetLevel` to disambiguate
         CBO vs ABO.
@@ -60520,7 +59902,6 @@ components:
           - daily
           - lifetime
           type: string
-      nullable: true
     AdCampaign_campaignBudget:
       description: Campaign-level budget (CBO). Null for ABO campaigns.
       example:
@@ -60534,7 +59915,6 @@ components:
           - daily
           - lifetime
           type: string
-      nullable: true
     ConversionEvent_user_clickIds:
       description: Platform click identifiers captured from the originating ad click.
       properties:
