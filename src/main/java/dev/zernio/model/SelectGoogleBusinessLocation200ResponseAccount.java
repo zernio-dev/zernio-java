@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SelectGoogleBusinessLocation200ResponseAccount.JSON_PROPERTY_SELECTED_LOCATION_NAME,
   SelectGoogleBusinessLocation200ResponseAccount.JSON_PROPERTY_SELECTED_LOCATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T14:04:34.613055530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectGoogleBusinessLocation200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

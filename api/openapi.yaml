@@ -48344,7 +48344,9 @@ components:
         language:
           type: string
         components:
-          items: {}
+          items:
+            additionalProperties: true
+            type: object
           type: array
         variableMapping:
           additionalProperties:

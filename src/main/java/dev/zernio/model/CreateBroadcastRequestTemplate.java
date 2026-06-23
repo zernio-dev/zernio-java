@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CreateBroadcastRequestTemplate.JSON_PROPERTY_COMPONENTS,
   CreateBroadcastRequestTemplate.JSON_PROPERTY_VARIABLE_MAPPING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T14:04:34.613055530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBroadcastRequestTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -55,7 +55,7 @@ public class CreateBroadcastRequestTemplate {
 
   public static final String JSON_PROPERTY_COMPONENTS = "components";
   @javax.annotation.Nullable
-  private List<Object> components = new ArrayList<>();
+  private List<Map<String, Object>> components = new ArrayList<>();
 
   public static final String JSON_PROPERTY_VARIABLE_MAPPING = "variableMapping";
   @javax.annotation.Nullable
@@ -112,12 +112,12 @@ public class CreateBroadcastRequestTemplate {
   }
 
 
-  public CreateBroadcastRequestTemplate components(@javax.annotation.Nullable List<Object> components) {
+  public CreateBroadcastRequestTemplate components(@javax.annotation.Nullable List<Map<String, Object>> components) {
     this.components = components;
     return this;
   }
 
-  public CreateBroadcastRequestTemplate addComponentsItem(Object componentsItem) {
+  public CreateBroadcastRequestTemplate addComponentsItem(Map<String, Object> componentsItem) {
     if (this.components == null) {
       this.components = new ArrayList<>();
     }
@@ -132,14 +132,14 @@ public class CreateBroadcastRequestTemplate {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<Object> getComponents() {
+  public List<Map<String, Object>> getComponents() {
     return components;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_COMPONENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setComponents(@javax.annotation.Nullable List<Object> components) {
+  public void setComponents(@javax.annotation.Nullable List<Map<String, Object>> components) {
     this.components = components;
   }
 

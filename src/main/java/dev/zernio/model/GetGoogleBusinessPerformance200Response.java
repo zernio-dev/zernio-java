@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessPerformance200Response.JSON_PROPERTY_METRICS,
   GetGoogleBusinessPerformance200Response.JSON_PROPERTY_DATA_DELAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T14:04:34.613055530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessPerformance200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

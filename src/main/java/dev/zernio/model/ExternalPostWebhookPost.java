@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   ExternalPostWebhookPost.JSON_PROPERTY_SOURCE,
   ExternalPostWebhookPost.JSON_PROPERTY_DELETED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T13:33:47.489774731Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T14:04:34.613055530Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostWebhookPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
