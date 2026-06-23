@@ -46243,7 +46243,7 @@ components:
       description: Optional white-label of the hosted page the end customer sees.
       properties:
         companyName:
-          description: Your company name
+          description: "Your company name, shown on the hosted page."
           maxLength: 60
           type: string
         logoUrl:
@@ -46251,7 +46251,7 @@ components:
           format: uri
           type: string
         brandColor:
-          description: Hex color (e.g. "#1a73e8") applied to the primary action.
+          description: "Hex color (e.g. #1a73e8) used as a brand accent on the page."
           pattern: "^#[0-9a-fA-F]{6}$"
           type: string
     createWhatsAppNumberKycLink_request:

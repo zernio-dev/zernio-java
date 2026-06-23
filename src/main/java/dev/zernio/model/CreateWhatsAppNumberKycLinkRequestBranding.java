@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateWhatsAppNumberKycLinkRequestBranding.JSON_PROPERTY_LOGO_URL,
   CreateWhatsAppNumberKycLinkRequestBranding.JSON_PROPERTY_BRAND_COLOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:24:31.394727296Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T09:34:00.842433440Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppNumberKycLinkRequestBranding {
   public static final String JSON_PROPERTY_COMPANY_NAME = "companyName";
   @javax.annotation.Nullable
@@ -61,7 +61,7 @@ public class CreateWhatsAppNumberKycLinkRequestBranding {
   }
 
   /**
-   * Your company name
+   * Your company name, shown on the hosted page.
    * @return companyName
    */
   @javax.annotation.Nullable
@@ -109,7 +109,7 @@ public class CreateWhatsAppNumberKycLinkRequestBranding {
   }
 
   /**
-   * Hex color (e.g. \&quot;#1a73e8\&quot;) applied to the primary action.
+   * Hex color (e.g. #1a73e8) used as a brand accent on the page.
    * @return brandColor
    */
   @javax.annotation.Nullable
