@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.WebhookPayloadCommentCommentAd;
+import dev.zernio.model.WebhookPayloadCommentCommentAttachment;
 import dev.zernio.model.WebhookPayloadCommentCommentAuthor;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -45,9 +46,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentComment.JSON_PROPERTY_CREATED_AT,
   WebhookPayloadCommentComment.JSON_PROPERTY_IS_REPLY,
   WebhookPayloadCommentComment.JSON_PROPERTY_PARENT_COMMENT_ID,
-  WebhookPayloadCommentComment.JSON_PROPERTY_AD
+  WebhookPayloadCommentComment.JSON_PROPERTY_AD,
+  WebhookPayloadCommentComment.JSON_PROPERTY_ATTACHMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentComment {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -133,6 +135,10 @@ public class WebhookPayloadCommentComment {
   public static final String JSON_PROPERTY_AD = "ad";
   @javax.annotation.Nullable
   private WebhookPayloadCommentCommentAd ad;
+
+  public static final String JSON_PROPERTY_ATTACHMENT = "attachment";
+  @javax.annotation.Nullable
+  private WebhookPayloadCommentCommentAttachment attachment;
 
   public WebhookPayloadCommentComment() { 
   }
@@ -377,6 +383,30 @@ public class WebhookPayloadCommentComment {
   }
 
 
+  public WebhookPayloadCommentComment attachment(@javax.annotation.Nullable WebhookPayloadCommentCommentAttachment attachment) {
+    this.attachment = attachment;
+    return this;
+  }
+
+  /**
+   * Get attachment
+   * @return attachment
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadCommentCommentAttachment getAttachment() {
+    return attachment;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAttachment(@javax.annotation.Nullable WebhookPayloadCommentCommentAttachment attachment) {
+    this.attachment = attachment;
+  }
+
+
   /**
    * Return true if this WebhookPayloadComment_comment object is equal to o.
    */
@@ -398,12 +428,13 @@ public class WebhookPayloadCommentComment {
         Objects.equals(this.createdAt, webhookPayloadCommentComment.createdAt) &&
         Objects.equals(this.isReply, webhookPayloadCommentComment.isReply) &&
         Objects.equals(this.parentCommentId, webhookPayloadCommentComment.parentCommentId) &&
-        Objects.equals(this.ad, webhookPayloadCommentComment.ad);
+        Objects.equals(this.ad, webhookPayloadCommentComment.ad) &&
+        Objects.equals(this.attachment, webhookPayloadCommentComment.attachment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, postId, platformPostId, platform, text, author, createdAt, isReply, parentCommentId, ad);
+    return Objects.hash(id, postId, platformPostId, platform, text, author, createdAt, isReply, parentCommentId, ad, attachment);
   }
 
   @Override
@@ -420,6 +451,7 @@ public class WebhookPayloadCommentComment {
     sb.append("    isReply: ").append(toIndentedString(isReply)).append("\n");
     sb.append("    parentCommentId: ").append(toIndentedString(parentCommentId)).append("\n");
     sb.append("    ad: ").append(toIndentedString(ad)).append("\n");
+    sb.append("    attachment: ").append(toIndentedString(attachment)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -515,6 +547,11 @@ public class WebhookPayloadCommentComment {
     // add `ad` to the URL query string
     if (getAd() != null) {
       joiner.add(getAd().toUrlQueryString(prefix + "ad" + suffix));
+    }
+
+    // add `attachment` to the URL query string
+    if (getAttachment() != null) {
+      joiner.add(getAttachment().toUrlQueryString(prefix + "attachment" + suffix));
     }
 
     return joiner.toString();

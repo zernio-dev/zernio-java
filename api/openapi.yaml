@@ -24862,6 +24862,10 @@ components:
             id: id
             title: title
             promotionStatus: promotionStatus
+          attachment:
+            imageUrl: imageUrl
+            type: type
+            url: url
           author:
             name: name
             id: id
@@ -57416,6 +57420,28 @@ components:
             "active" (organic post currently boosted), "ineligible" (dark
             post or ad creative, not promotable because it already is an ad).
           type: string
+    WebhookPayloadComment_comment_attachment:
+      description: |
+        Facebook only. Present on graphic-only comments (sticker, GIF, photo) that
+        carry no text. URLs are ephemeral and may expire for Meta platforms (oe= expiry),
+        so fetch promptly. Instagram comments do not support attachments.
+      example:
+        imageUrl: imageUrl
+        type: type
+        url: url
+      properties:
+        type:
+          description: "Attachment type: sticker, animated_image_share, or photo."
+          type: string
+        imageUrl:
+          description: Rendered image/preview URL (from attachment.media.image.src).
+          type: string
+        url:
+          description: Source URL (from attachment.url). For GIFs this is an l.facebook.com
+            redirect.
+          type: string
+      required:
+      - type
     WebhookPayloadComment_comment:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -57423,6 +57449,10 @@ components:
           id: id
           title: title
           promotionStatus: promotionStatus
+        attachment:
+          imageUrl: imageUrl
+          type: type
+          url: url
         author:
           name: name
           id: id
@@ -57473,6 +57503,8 @@ components:
           type: string
         ad:
           $ref: "#/components/schemas/WebhookPayloadComment_comment_ad"
+        attachment:
+          $ref: "#/components/schemas/WebhookPayloadComment_comment_attachment"
       required:
       - author
       - createdAt

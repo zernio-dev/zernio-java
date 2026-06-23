@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendConversions200Response.JSON_PROPERTY_FAILURES,
   SendConversions200Response.JSON_PROPERTY_TRACE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversions200Response {
   /**
    * Gets or Sets platform

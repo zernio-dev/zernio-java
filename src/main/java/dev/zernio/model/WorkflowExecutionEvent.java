@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   WorkflowExecutionEvent.JSON_PROPERTY_META,
   WorkflowExecutionEvent.JSON_PROPERTY_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T07:55:56.286858491Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T08:02:24.434963038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowExecutionEvent {
   /**
    * Gets or Sets action

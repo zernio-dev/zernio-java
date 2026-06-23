@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-23T07:55:56.286858491Z[Etc/UTC]
+- Build date: 2026-06-23T08:02:24.434963038Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1994,6 +1994,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)
  - [WebhookPayloadCommentCommentAd](docs/WebhookPayloadCommentCommentAd.md)
+ - [WebhookPayloadCommentCommentAttachment](docs/WebhookPayloadCommentCommentAttachment.md)
  - [WebhookPayloadCommentCommentAuthor](docs/WebhookPayloadCommentCommentAuthor.md)
  - [WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
