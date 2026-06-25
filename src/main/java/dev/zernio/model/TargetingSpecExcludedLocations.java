@@ -25,6 +25,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateStandaloneAdRequestZipsInner;
+import dev.zernio.model.TargetingSpecCustomLocationsInner;
+import dev.zernio.model.TargetingSpecExcludedLocationsCitiesInner;
+import dev.zernio.model.TargetingSpecExcludedLocationsPlacesInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -33,15 +36,18 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Geo to exclude from the audience. A subset of the inclusion geo shape.
+ * Geo to exclude from the audience. Mirrors the inclusion geo shape: excluded cities can carry a radius catchment and excluded custom (lat/lng) pins are supported, both on Meta (excluded_geo_locations).
  */
 @JsonPropertyOrder({
   TargetingSpecExcludedLocations.JSON_PROPERTY_COUNTRIES,
   TargetingSpecExcludedLocations.JSON_PROPERTY_REGIONS,
   TargetingSpecExcludedLocations.JSON_PROPERTY_CITIES,
-  TargetingSpecExcludedLocations.JSON_PROPERTY_ZIPS
+  TargetingSpecExcludedLocations.JSON_PROPERTY_ZIPS,
+  TargetingSpecExcludedLocations.JSON_PROPERTY_PLACES,
+  TargetingSpecExcludedLocations.JSON_PROPERTY_NEIGHBORHOODS,
+  TargetingSpecExcludedLocations.JSON_PROPERTY_CUSTOM_LOCATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T11:21:14.040904062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T15:10:25.043118488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecExcludedLocations {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -53,11 +59,23 @@ public class TargetingSpecExcludedLocations {
 
   public static final String JSON_PROPERTY_CITIES = "cities";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> cities = new ArrayList<>();
+  private List<TargetingSpecExcludedLocationsCitiesInner> cities = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ZIPS = "zips";
   @javax.annotation.Nullable
   private List<CreateStandaloneAdRequestZipsInner> zips = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_PLACES = "places";
+  @javax.annotation.Nullable
+  private List<TargetingSpecExcludedLocationsPlacesInner> places = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_NEIGHBORHOODS = "neighborhoods";
+  @javax.annotation.Nullable
+  private List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
+  @javax.annotation.Nullable
+  private List<TargetingSpecCustomLocationsInner> customLocations = new ArrayList<>();
 
   public TargetingSpecExcludedLocations() { 
   }
@@ -126,12 +144,12 @@ public class TargetingSpecExcludedLocations {
   }
 
 
-  public TargetingSpecExcludedLocations cities(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> cities) {
+  public TargetingSpecExcludedLocations cities(@javax.annotation.Nullable List<TargetingSpecExcludedLocationsCitiesInner> cities) {
     this.cities = cities;
     return this;
   }
 
-  public TargetingSpecExcludedLocations addCitiesItem(CreateStandaloneAdRequestZipsInner citiesItem) {
+  public TargetingSpecExcludedLocations addCitiesItem(TargetingSpecExcludedLocationsCitiesInner citiesItem) {
     if (this.cities == null) {
       this.cities = new ArrayList<>();
     }
@@ -140,20 +158,20 @@ public class TargetingSpecExcludedLocations {
   }
 
   /**
-   * Get cities
+   * Cities to exclude. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; exclude a catchment around the city (both must be set together or both omitted); Meta honours the radius on excluded cities.
    * @return cities
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getCities() {
+  public List<TargetingSpecExcludedLocationsCitiesInner> getCities() {
     return cities;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCities(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> cities) {
+  public void setCities(@javax.annotation.Nullable List<TargetingSpecExcludedLocationsCitiesInner> cities) {
     this.cities = cities;
   }
 
@@ -190,6 +208,102 @@ public class TargetingSpecExcludedLocations {
   }
 
 
+  public TargetingSpecExcludedLocations places(@javax.annotation.Nullable List<TargetingSpecExcludedLocationsPlacesInner> places) {
+    this.places = places;
+    return this;
+  }
+
+  public TargetingSpecExcludedLocations addPlacesItem(TargetingSpecExcludedLocationsPlacesInner placesItem) {
+    if (this.places == null) {
+      this.places = new ArrayList<>();
+    }
+    this.places.add(placesItem);
+    return this;
+  }
+
+  /**
+   * Named points of interest to exclude. &#x60;key&#x60; from /v1/ads/targeting/search.
+   * @return places
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLACES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<TargetingSpecExcludedLocationsPlacesInner> getPlaces() {
+    return places;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLACES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlaces(@javax.annotation.Nullable List<TargetingSpecExcludedLocationsPlacesInner> places) {
+    this.places = places;
+  }
+
+
+  public TargetingSpecExcludedLocations neighborhoods(@javax.annotation.Nullable List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods) {
+    this.neighborhoods = neighborhoods;
+    return this;
+  }
+
+  public TargetingSpecExcludedLocations addNeighborhoodsItem(TargetingSpecExcludedLocationsPlacesInner neighborhoodsItem) {
+    if (this.neighborhoods == null) {
+      this.neighborhoods = new ArrayList<>();
+    }
+    this.neighborhoods.add(neighborhoodsItem);
+    return this;
+  }
+
+  /**
+   * Named neighbourhood areas to exclude. &#x60;key&#x60; from /v1/ads/targeting/search.
+   * @return neighborhoods
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NEIGHBORHOODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<TargetingSpecExcludedLocationsPlacesInner> getNeighborhoods() {
+    return neighborhoods;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NEIGHBORHOODS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNeighborhoods(@javax.annotation.Nullable List<TargetingSpecExcludedLocationsPlacesInner> neighborhoods) {
+    this.neighborhoods = neighborhoods;
+  }
+
+
+  public TargetingSpecExcludedLocations customLocations(@javax.annotation.Nullable List<TargetingSpecCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
+    return this;
+  }
+
+  public TargetingSpecExcludedLocations addCustomLocationsItem(TargetingSpecCustomLocationsInner customLocationsItem) {
+    if (this.customLocations == null) {
+      this.customLocations = new ArrayList<>();
+    }
+    this.customLocations.add(customLocationsItem);
+    return this;
+  }
+
+  /**
+   * Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations). Mirrors the inclusion customLocations shape.
+   * @return customLocations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<TargetingSpecCustomLocationsInner> getCustomLocations() {
+    return customLocations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomLocations(@javax.annotation.Nullable List<TargetingSpecCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
+  }
+
+
   /**
    * Return true if this TargetingSpec_excludedLocations object is equal to o.
    */
@@ -205,12 +319,15 @@ public class TargetingSpecExcludedLocations {
     return Objects.equals(this.countries, targetingSpecExcludedLocations.countries) &&
         Objects.equals(this.regions, targetingSpecExcludedLocations.regions) &&
         Objects.equals(this.cities, targetingSpecExcludedLocations.cities) &&
-        Objects.equals(this.zips, targetingSpecExcludedLocations.zips);
+        Objects.equals(this.zips, targetingSpecExcludedLocations.zips) &&
+        Objects.equals(this.places, targetingSpecExcludedLocations.places) &&
+        Objects.equals(this.neighborhoods, targetingSpecExcludedLocations.neighborhoods) &&
+        Objects.equals(this.customLocations, targetingSpecExcludedLocations.customLocations);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(countries, regions, cities, zips);
+    return Objects.hash(countries, regions, cities, zips, places, neighborhoods, customLocations);
   }
 
   @Override
@@ -221,6 +338,9 @@ public class TargetingSpecExcludedLocations {
     sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
     sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
     sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
+    sb.append("    places: ").append(toIndentedString(places)).append("\n");
+    sb.append("    neighborhoods: ").append(toIndentedString(neighborhoods)).append("\n");
+    sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -302,6 +422,36 @@ public class TargetingSpecExcludedLocations {
       for (int i = 0; i < getZips().size(); i++) {
         if (getZips().get(i) != null) {
           joiner.add(getZips().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%szips%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `places` to the URL query string
+    if (getPlaces() != null) {
+      for (int i = 0; i < getPlaces().size(); i++) {
+        if (getPlaces().get(i) != null) {
+          joiner.add(getPlaces().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%splaces%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `neighborhoods` to the URL query string
+    if (getNeighborhoods() != null) {
+      for (int i = 0; i < getNeighborhoods().size(); i++) {
+        if (getNeighborhoods().get(i) != null) {
+          joiner.add(getNeighborhoods().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sneighborhoods%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `customLocations` to the URL query string
+    if (getCustomLocations() != null) {
+      for (int i = 0; i < getCustomLocations().size(); i++) {
+        if (getCustomLocations().get(i) != null) {
+          joiner.add(getCustomLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomLocations%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

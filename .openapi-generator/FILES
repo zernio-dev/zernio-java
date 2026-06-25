@@ -961,6 +961,8 @@ docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
 docs/TargetingSpecCustomLocationsInner.md
 docs/TargetingSpecExcludedLocations.md
+docs/TargetingSpecExcludedLocationsCitiesInner.md
+docs/TargetingSpecExcludedLocationsPlacesInner.md
 docs/TelegramPlatformData.md
 docs/TestWebhookRequest.md
 docs/ThreadsPlatformData.md
@@ -2234,6 +2236,8 @@ src/main/java/dev/zernio/model/TargetingSpec.java
 src/main/java/dev/zernio/model/TargetingSpecCitiesInner.java
 src/main/java/dev/zernio/model/TargetingSpecCustomLocationsInner.java
 src/main/java/dev/zernio/model/TargetingSpecExcludedLocations.java
+src/main/java/dev/zernio/model/TargetingSpecExcludedLocationsCitiesInner.java
+src/main/java/dev/zernio/model/TargetingSpecExcludedLocationsPlacesInner.java
 src/main/java/dev/zernio/model/TelegramPlatformData.java
 src/main/java/dev/zernio/model/TestWebhookRequest.java
 src/main/java/dev/zernio/model/ThreadsPlatformData.java
@@ -2503,3 +2507,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/TargetingSpecExcludedLocationsCitiesInnerTest.java
+src/test/java/dev/zernio/model/TargetingSpecExcludedLocationsPlacesInnerTest.java

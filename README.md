@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-25T11:21:14.040904062Z[Etc/UTC]
+- Build date: 2026-06-25T15:10:25.043118488Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1810,6 +1810,8 @@ Class | Method | HTTP request | Description
  - [TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
  - [TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)
  - [TargetingSpecExcludedLocations](docs/TargetingSpecExcludedLocations.md)
+ - [TargetingSpecExcludedLocationsCitiesInner](docs/TargetingSpecExcludedLocationsCitiesInner.md)
+ - [TargetingSpecExcludedLocationsPlacesInner](docs/TargetingSpecExcludedLocationsPlacesInner.md)
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)

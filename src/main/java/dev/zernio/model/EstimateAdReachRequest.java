@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   EstimateAdReachRequest.JSON_PROPERTY_SPEC,
   EstimateAdReachRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T11:21:14.040904062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T15:10:25.043118488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EstimateAdReachRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

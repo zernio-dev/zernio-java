@@ -30854,9 +30854,10 @@ components:
             $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
           type: array
         cities:
-          description: City targeting. Optional `radius` + `distanceUnit` extend beyond
-            the city limits; both must be set together or both omitted. `radius` is
-            only honoured on platforms whose capability map allows city radius (Meta).
+          description: City targeting. Optional `radius` + `distance_unit` extend
+            beyond the city limits; both must be set together or both omitted. `radius`
+            is only honoured on platforms whose capability map allows city radius
+            (Meta).
           items:
             $ref: "#/components/schemas/TargetingSpec_cities_inner"
           type: array
@@ -59881,9 +59882,9 @@ components:
         name:
           type: string
         radius:
-          description: Radius around the city. Requires distanceUnit.
+          description: Radius around the city. Requires distance_unit.
           type: number
-        distanceUnit:
+        distance_unit:
           description: Required if radius is set.
           enum:
           - mile
@@ -59912,15 +59913,39 @@ components:
         name:
           type: string
         address:
+          description: "Optional label, sent to Meta as `address_string`. latitude/longitude\
+            \ take precedence for the pin location."
           type: string
       required:
       - distanceUnit
       - latitude
       - longitude
       - radius
+    TargetingSpec_excludedLocations_cities_inner:
+      properties:
+        key:
+          type: string
+        radius:
+          description: Radius around the excluded city. Requires distance_unit.
+          type: number
+        distance_unit:
+          description: Required if radius is set.
+          enum:
+          - mile
+          - kilometer
+          type: string
+      required:
+      - key
+    TargetingSpec_excludedLocations_places_inner:
+      properties:
+        key:
+          type: string
+      required:
+      - key
     TargetingSpec_excludedLocations:
-      description: Geo to exclude from the audience. A subset of the inclusion geo
-        shape.
+      description: "Geo to exclude from the audience. Mirrors the inclusion geo shape:\
+        \ excluded cities can carry a radius catchment and excluded custom (lat/lng)\
+        \ pins are supported, both on Meta (excluded_geo_locations)."
       properties:
         countries:
           items:
@@ -59931,12 +59956,31 @@ components:
             $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
           type: array
         cities:
+          description: Cities to exclude. Optional `radius` + `distance_unit` exclude
+            a catchment around the city (both must be set together or both omitted);
+            Meta honours the radius on excluded cities.
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/TargetingSpec_excludedLocations_cities_inner"
           type: array
         zips:
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+          type: array
+        places:
+          description: Named points of interest to exclude. `key` from /v1/ads/targeting/search.
+          items:
+            $ref: "#/components/schemas/TargetingSpec_excludedLocations_places_inner"
+          type: array
+        neighborhoods:
+          description: Named neighbourhood areas to exclude. `key` from /v1/ads/targeting/search.
+          items:
+            $ref: "#/components/schemas/TargetingSpec_excludedLocations_places_inner"
+          type: array
+        customLocations:
+          description: Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations).
+            Mirrors the inclusion customLocations shape.
+          items:
+            $ref: "#/components/schemas/TargetingSpec_customLocations_inner"
           type: array
     Ad_budget:
       example:

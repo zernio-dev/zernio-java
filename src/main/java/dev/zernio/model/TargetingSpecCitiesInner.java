@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   TargetingSpecCitiesInner.JSON_PROPERTY_RADIUS,
   TargetingSpecCitiesInner.JSON_PROPERTY_DISTANCE_UNIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T11:21:14.040904062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T15:10:25.043118488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecCitiesInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull
@@ -88,7 +88,7 @@ public class TargetingSpecCitiesInner {
     }
   }
 
-  public static final String JSON_PROPERTY_DISTANCE_UNIT = "distanceUnit";
+  public static final String JSON_PROPERTY_DISTANCE_UNIT = "distance_unit";
   @javax.annotation.Nullable
   private DistanceUnitEnum distanceUnit;
 
@@ -149,7 +149,7 @@ public class TargetingSpecCitiesInner {
   }
 
   /**
-   * Radius around the city. Requires distanceUnit.
+   * Radius around the city. Requires distance_unit.
    * @return radius
    */
   @javax.annotation.Nullable
@@ -284,9 +284,9 @@ public class TargetingSpecCitiesInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sradius%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRadius()))));
     }
 
-    // add `distanceUnit` to the URL query string
+    // add `distance_unit` to the URL query string
     if (getDistanceUnit() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdistanceUnit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDistanceUnit()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdistance_unit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDistanceUnit()))));
     }
 
     return joiner.toString();

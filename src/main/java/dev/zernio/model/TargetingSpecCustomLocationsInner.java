@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   TargetingSpecCustomLocationsInner.JSON_PROPERTY_NAME,
   TargetingSpecCustomLocationsInner.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T11:21:14.040904062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T15:10:25.043118488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecCustomLocationsInner {
   public static final String JSON_PROPERTY_LATITUDE = "latitude";
   @javax.annotation.Nonnull
@@ -235,7 +235,7 @@ public class TargetingSpecCustomLocationsInner {
   }
 
   /**
-   * Get address
+   * Optional label, sent to Meta as &#x60;address_string&#x60;. latitude/longitude take precedence for the pin location.
    * @return address
    */
   @javax.annotation.Nullable

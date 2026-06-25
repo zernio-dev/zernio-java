@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**key** | **String** |  |  |
 |**name** | **String** |  |  [optional] |
-|**radius** | **BigDecimal** | Radius around the city. Requires distanceUnit. |  [optional] |
+|**radius** | **BigDecimal** | Radius around the city. Requires distance_unit. |  [optional] |
 |**distanceUnit** | [**DistanceUnitEnum**](#DistanceUnitEnum) | Required if radius is set. |  [optional] |
 
 
