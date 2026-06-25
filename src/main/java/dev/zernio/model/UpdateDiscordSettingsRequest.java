@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateDiscordSettingsRequest.JSON_PROPERTY_WEBHOOK_AVATAR_URL,
   UpdateDiscordSettingsRequest.JSON_PROPERTY_CHANNEL_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-23T17:00:39.324528299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T11:21:14.040904062Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateDiscordSettingsRequest {
   public static final String JSON_PROPERTY_WEBHOOK_USERNAME = "webhookUsername";
   @javax.annotation.Nullable
