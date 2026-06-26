@@ -22,6 +22,8 @@ import dev.zernio.model.AccountsListResponse;
 import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.FollowerStatsResponse;
 import dev.zernio.model.GetAccountHealth200Response;
+import dev.zernio.model.GetAccountPosts200Response;
+import dev.zernio.model.GetAccountPosts401Response;
 import dev.zernio.model.GetAllAccountsHealth200Response;
 import dev.zernio.model.GetFollowerStats403Response;
 import dev.zernio.model.GetTikTokCreatorInfo200Response;
@@ -59,7 +61,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T15:10:25.043118488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-26T15:39:46.998053528Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -397,6 +399,143 @@ public class AccountsApi {
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List posts for an account
+   * Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+   * @param accountId  (required)
+   * @param excludeUnlisted YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)
+   * @return GetAccountPosts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAccountPosts200Response getAccountPosts(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean excludeUnlisted) throws ApiException {
+    return getAccountPosts(accountId, excludeUnlisted, null);
+  }
+
+  /**
+   * List posts for an account
+   * Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+   * @param accountId  (required)
+   * @param excludeUnlisted YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAccountPosts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAccountPosts200Response getAccountPosts(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean excludeUnlisted, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAccountPosts200Response> localVarResponse = getAccountPostsWithHttpInfo(accountId, excludeUnlisted, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List posts for an account
+   * Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+   * @param accountId  (required)
+   * @param excludeUnlisted YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)
+   * @return ApiResponse&lt;GetAccountPosts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAccountPosts200Response> getAccountPostsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean excludeUnlisted) throws ApiException {
+    return getAccountPostsWithHttpInfo(accountId, excludeUnlisted, null);
+  }
+
+  /**
+   * List posts for an account
+   * Returns recent posts from a connected social account by calling the platform API directly. Supports Facebook, Instagram, X/Twitter, Bluesky, Threads, YouTube, LinkedIn, Reddit, TikTok, and Pinterest.  For YouTube accounts, the &#x60;excludeUnlisted&#x60; parameter can be used to filter out unlisted and private videos, which is useful when the account contains internal content not meant for social monitoring. 
+   * @param accountId  (required)
+   * @param excludeUnlisted YouTube only. When &#x60;true&#x60;, excludes unlisted and private videos from the response. Has no effect on other platforms. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAccountPosts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAccountPosts200Response> getAccountPostsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean excludeUnlisted, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAccountPostsRequestBuilder(accountId, excludeUnlisted, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAccountPosts", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAccountPosts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAccountPosts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAccountPosts200Response>() {});
+        
+
+        return new ApiResponse<GetAccountPosts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAccountPostsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Boolean excludeUnlisted, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAccountPosts");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/posts"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "excludeUnlisted";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("excludeUnlisted", excludeUnlisted));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

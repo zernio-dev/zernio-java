@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   YouTubeVideoRetentionResponse.JSON_PROPERTY_NOTE,
   YouTubeVideoRetentionResponse.JSON_PROPERTY_SCOPE_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T15:10:25.043118488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-26T15:39:46.998053528Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeVideoRetentionResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

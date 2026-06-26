@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMessageSenderInstagramProfile.JSON_PROPERTY_FOLLOWER_COUNT,
   WebhookPayloadMessageMessageSenderInstagramProfile.JSON_PROPERTY_IS_VERIFIED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-25T15:10:25.043118488Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-26T15:39:46.998053528Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMessageSenderInstagramProfile {
   public static final String JSON_PROPERTY_IS_FOLLOWER = "isFollower";
   private JsonNullable<Boolean> isFollower = JsonNullable.<Boolean>undefined();

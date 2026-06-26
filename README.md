@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-25T15:10:25.043118488Z[Etc/UTC]
+- Build date: 2026-06-26T15:39:46.998053528Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -142,6 +142,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**deleteAccountWithHttpInfo**](docs/AccountsApi.md#deleteAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId} | Disconnect account
 *AccountsApi* | [**getAccountHealth**](docs/AccountsApi.md#getAccountHealth) | **GET** /v1/accounts/{accountId}/health | Check account health
 *AccountsApi* | [**getAccountHealthWithHttpInfo**](docs/AccountsApi.md#getAccountHealthWithHttpInfo) | **GET** /v1/accounts/{accountId}/health | Check account health
+*AccountsApi* | [**getAccountPosts**](docs/AccountsApi.md#getAccountPosts) | **GET** /v1/accounts/{accountId}/posts | List posts for an account
+*AccountsApi* | [**getAccountPostsWithHttpInfo**](docs/AccountsApi.md#getAccountPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/posts | List posts for an account
 *AccountsApi* | [**getAllAccountsHealth**](docs/AccountsApi.md#getAllAccountsHealth) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**getAllAccountsHealthWithHttpInfo**](docs/AccountsApi.md#getAllAccountsHealthWithHttpInfo) | **GET** /v1/accounts/health | Check accounts health
 *AccountsApi* | [**getFollowerStats**](docs/AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
@@ -1187,6 +1189,9 @@ Class | Method | HTTP request | Description
  - [GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
  - [GetAccountHealth200ResponsePermissionsPostingInner](docs/GetAccountHealth200ResponsePermissionsPostingInner.md)
  - [GetAccountHealth200ResponseTokenStatus](docs/GetAccountHealth200ResponseTokenStatus.md)
+ - [GetAccountPosts200Response](docs/GetAccountPosts200Response.md)
+ - [GetAccountPosts200ResponsePostsInner](docs/GetAccountPosts200ResponsePostsInner.md)
+ - [GetAccountPosts401Response](docs/GetAccountPosts401Response.md)
  - [GetAd200Response](docs/GetAd200Response.md)
  - [GetAdAnalytics200Response](docs/GetAdAnalytics200Response.md)
  - [GetAdAnalytics200ResponseAd](docs/GetAdAnalytics200ResponseAd.md)
