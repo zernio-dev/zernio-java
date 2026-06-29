@@ -10,10 +10,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**enableWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#enableWhatsAppCallingWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
 | [**getWhatsAppCall**](WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
 | [**getWhatsAppCallWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
-| [**getWhatsAppCallEstimate**](WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination |
-| [**getWhatsAppCallEstimateWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination |
-| [**getWhatsAppCallPermissions**](WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer |
-| [**getWhatsAppCallPermissionsWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer |
+| [**getWhatsAppCallEstimate**](WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
+| [**getWhatsAppCallEstimateWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
+| [**getWhatsAppCallPermissions**](WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission |
+| [**getWhatsAppCallPermissionsWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission |
 | [**getWhatsAppCallingConfig**](WhatsAppCallingApi.md#getWhatsAppCallingConfig) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**getWhatsAppCallingConfigWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallingConfigWithHttpInfo) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**initiateWhatsAppCall**](WhatsAppCallingApi.md#initiateWhatsAppCall) | **POST** /v1/whatsapp/calls | Initiate outbound call |
@@ -481,7 +481,7 @@ ApiResponse<[**GetWhatsAppCall200Response**](GetWhatsAppCall200Response.md)>
 
 > GetWhatsAppCallEstimate200Response getWhatsAppCallEstimate(accountId, to, minutes, recording)
 
-Estimate per-minute cost for a destination
+Estimate per-minute cost
 
 Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
 
@@ -558,7 +558,7 @@ public class Example {
 
 > ApiResponse<GetWhatsAppCallEstimate200Response> getWhatsAppCallEstimate getWhatsAppCallEstimateWithHttpInfo(accountId, to, minutes, recording)
 
-Estimate per-minute cost for a destination
+Estimate per-minute cost
 
 Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
 
@@ -639,7 +639,7 @@ ApiResponse<[**GetWhatsAppCallEstimate200Response**](GetWhatsAppCallEstimate200R
 
 > GetWhatsAppCallPermissions200Response getWhatsAppCallPermissions(accountId, to)
 
-Check call permission for a consumer
+Check call permission
 
 Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
 
@@ -713,7 +713,7 @@ public class Example {
 
 > ApiResponse<GetWhatsAppCallPermissions200Response> getWhatsAppCallPermissions getWhatsAppCallPermissionsWithHttpInfo(accountId, to)
 
-Check call permission for a consumer
+Check call permission
 
 Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
 

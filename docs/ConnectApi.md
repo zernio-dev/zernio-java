@@ -6,10 +6,10 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**completeTelegramConnect**](ConnectApi.md#completeTelegramConnect) | **PATCH** /v1/connect/telegram | Check Telegram status |
 | [**completeTelegramConnectWithHttpInfo**](ConnectApi.md#completeTelegramConnectWithHttpInfo) | **PATCH** /v1/connect/telegram | Check Telegram status |
-| [**completeWhatsAppPhoneSelection**](ConnectApi.md#completeWhatsAppPhoneSelection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete WhatsApp phone number selection |
-| [**completeWhatsAppPhoneSelectionWithHttpInfo**](ConnectApi.md#completeWhatsAppPhoneSelectionWithHttpInfo) | **POST** /v1/connect/whatsapp/select-phone-number | Complete WhatsApp phone number selection |
-| [**configureTikTokAdsBrandIdentity**](ConnectApi.md#configureTikTokAdsBrandIdentity) | **PATCH** /v1/connect/tiktok-ads | Configure TikTok Ads Brand Identity |
-| [**configureTikTokAdsBrandIdentityWithHttpInfo**](ConnectApi.md#configureTikTokAdsBrandIdentityWithHttpInfo) | **PATCH** /v1/connect/tiktok-ads | Configure TikTok Ads Brand Identity |
+| [**completeWhatsAppPhoneSelection**](ConnectApi.md#completeWhatsAppPhoneSelection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection |
+| [**completeWhatsAppPhoneSelectionWithHttpInfo**](ConnectApi.md#completeWhatsAppPhoneSelectionWithHttpInfo) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection |
+| [**configureTikTokAdsBrandIdentity**](ConnectApi.md#configureTikTokAdsBrandIdentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity |
+| [**configureTikTokAdsBrandIdentityWithHttpInfo**](ConnectApi.md#configureTikTokAdsBrandIdentityWithHttpInfo) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity |
 | [**connectAds**](ConnectApi.md#connectAds) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform |
 | [**connectAdsWithHttpInfo**](ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform |
 | [**connectBlueskyCredentials**](ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
@@ -50,8 +50,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listPinterestBoardsForSelectionWithHttpInfo**](ConnectApi.md#listPinterestBoardsForSelectionWithHttpInfo) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards |
 | [**listSnapchatProfiles**](ConnectApi.md#listSnapchatProfiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
 | [**listSnapchatProfilesWithHttpInfo**](ConnectApi.md#listSnapchatProfilesWithHttpInfo) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
-| [**listWhatsAppPhoneNumbers**](ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List WhatsApp phone numbers for selection |
-| [**listWhatsAppPhoneNumbersWithHttpInfo**](ConnectApi.md#listWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/connect/whatsapp/select-phone-number | List WhatsApp phone numbers for selection |
+| [**listWhatsAppPhoneNumbers**](ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
+| [**listWhatsAppPhoneNumbersWithHttpInfo**](ConnectApi.md#listWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
 | [**selectFacebookPage**](ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectFacebookPageWithHttpInfo**](ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectGoogleBusinessLocation**](ConnectApi.md#selectGoogleBusinessLocation) | **POST** /v1/connect/googlebusiness/select-location | Select GBP location |
@@ -231,7 +231,7 @@ ApiResponse<[**CompleteTelegramConnect200Response**](CompleteTelegramConnect200R
 
 > CompleteWhatsAppPhoneSelection200Response completeWhatsAppPhoneSelection(completeWhatsAppPhoneSelectionRequest, xConnectToken)
 
-Complete WhatsApp phone number selection
+Complete number selection
 
 Bind a specific WhatsApp phone number to the Zernio profile after the user picks one from &#x60;listWhatsAppPhoneNumbers&#x60;. Exchanges the short-lived OAuth token for a long-lived token, subscribes the WABA to webhooks, and creates the SocialAccount. 
 
@@ -308,7 +308,7 @@ public class Example {
 
 > ApiResponse<CompleteWhatsAppPhoneSelection200Response> completeWhatsAppPhoneSelection completeWhatsAppPhoneSelectionWithHttpInfo(completeWhatsAppPhoneSelectionRequest, xConnectToken)
 
-Complete WhatsApp phone number selection
+Complete number selection
 
 Bind a specific WhatsApp phone number to the Zernio profile after the user picks one from &#x60;listWhatsAppPhoneNumbers&#x60;. Exchanges the short-lived OAuth token for a long-lived token, subscribes the WABA to webhooks, and creates the SocialAccount. 
 
@@ -389,7 +389,7 @@ ApiResponse<[**CompleteWhatsAppPhoneSelection200Response**](CompleteWhatsAppPhon
 
 > ConfigureTikTokAdsBrandIdentity200Response configureTikTokAdsBrandIdentity(configureTikTokAdsBrandIdentityRequest)
 
-Configure TikTok Ads Brand Identity
+Set TikTok brand identity
 
 Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
 
@@ -463,7 +463,7 @@ public class Example {
 
 > ApiResponse<ConfigureTikTokAdsBrandIdentity200Response> configureTikTokAdsBrandIdentity configureTikTokAdsBrandIdentityWithHttpInfo(configureTikTokAdsBrandIdentityRequest)
 
-Configure TikTok Ads Brand Identity
+Set TikTok brand identity
 
 Set or update the Brand Identity (display name + avatar) for a &#x60;tiktokads&#x60; SocialAccount. TikTok requires every ad to carry an &#x60;identity_id + identity_type&#x60; pair. The Brand Identity is the CUSTOMIZED_USER alternative to attributing ads to a real @username (TT_USER). This route uploads the supplied image to TikTok, creates the identity via &#x60;/v2/identity/create/&#x60;, and caches the resulting &#x60;identity_id&#x60; on the account so subsequent &#x60;POST /v1/ads/create&#x60; calls can opt into it via &#x60;identityType: &#39;CUSTOMIZED_USER&#39;&#x60;.  Configurable on every &#x60;tiktokads&#x60; account, including linked-mode ones (those with a posting account on the same profile). Configuration is idempotent and harmless when posting is also connected: the default ad-create path still prefers TT_USER, and CUSTOMIZED_USER is only used per-ad when the caller explicitly opts in.  TikTok identities are immutable post-creation. Re-saving creates a new identity on TikTok and swaps the cached id; the old identity stays orphaned on TikTok&#39;s side (harmless, no billing impact).  Alternative: pass &#x60;brandIdentity&#x60; directly on &#x60;POST /v1/ads/create&#x60; to configure on first ad creation in a single round-trip. 
 
@@ -3669,7 +3669,7 @@ ApiResponse<[**ListSnapchatProfiles200Response**](ListSnapchatProfiles200Respons
 
 > ListWhatsAppPhoneNumbers200Response listWhatsAppPhoneNumbers(profileId, tempToken, xConnectToken)
 
-List WhatsApp phone numbers for selection
+List numbers for selection
 
 Fetch the WhatsApp phone numbers available across the user&#39;s WhatsApp Business Accounts (WABAs) after a headless OAuth flow.  WhatsApp OAuth grants access at the WABA level. When a connected WABA has 2 or more phone numbers, you must call this endpoint to list them and then &#x60;POST /v1/connect/whatsapp/select-phone-number&#x60; to bind one to the Zernio profile. Single-phone WABAs auto-complete during the OAuth callback and never reach this endpoint.  Use the &#x60;profileId&#x60; and &#x60;tempToken&#x60; returned in the headless redirect (&#x60;step&#x3D;select_phone_number&#x60;).  Alternative: if you already know &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; (e.g. from Meta Business Suite), use &#x60;connectWhatsAppCredentials&#x60; instead, which skips this two-step flow. 
 
@@ -3746,7 +3746,7 @@ public class Example {
 
 > ApiResponse<ListWhatsAppPhoneNumbers200Response> listWhatsAppPhoneNumbers listWhatsAppPhoneNumbersWithHttpInfo(profileId, tempToken, xConnectToken)
 
-List WhatsApp phone numbers for selection
+List numbers for selection
 
 Fetch the WhatsApp phone numbers available across the user&#39;s WhatsApp Business Accounts (WABAs) after a headless OAuth flow.  WhatsApp OAuth grants access at the WABA level. When a connected WABA has 2 or more phone numbers, you must call this endpoint to list them and then &#x60;POST /v1/connect/whatsapp/select-phone-number&#x60; to bind one to the Zernio profile. Single-phone WABAs auto-complete during the OAuth callback and never reach this endpoint.  Use the &#x60;profileId&#x60; and &#x60;tempToken&#x60; returned in the headless redirect (&#x60;step&#x3D;select_phone_number&#x60;).  Alternative: if you already know &#x60;wabaId&#x60; and &#x60;phoneNumberId&#x60; (e.g. from Meta Business Suite), use &#x60;connectWhatsAppCredentials&#x60; instead, which skips this two-step flow. 
 

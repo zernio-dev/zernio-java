@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-29T07:04:30.304572761Z[Etc/UTC]
+- Build date: 2026-06-29T15:27:43.713122525Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -150,8 +150,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getTikTokCreatorInfoWithHttpInfo**](docs/AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**listAccounts**](docs/AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**listAccountsWithHttpInfo**](docs/AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts
-*AccountsApi* | [**moveAccountToProfile**](docs/AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile
-*AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile
+*AccountsApi* | [**moveAccountToProfile**](docs/AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
+*AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
 *AdAudiencesApi* | [**addUsersToAdAudience**](docs/AdAudiencesApi.md#addUsersToAdAudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
@@ -172,40 +172,40 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**duplicateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdTreeWithHttpInfo**](docs/AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree
-*AdCampaignsApi* | [**getAdsTimeline**](docs/AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account
-*AdCampaignsApi* | [**getAdsTimelineWithHttpInfo**](docs/AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account
+*AdCampaignsApi* | [**getAdsTimeline**](docs/AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics
+*AdCampaignsApi* | [**getAdsTimelineWithHttpInfo**](docs/AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily account metrics
 *AdCampaignsApi* | [**listAdCampaigns**](docs/AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdCampaignsWithHttpInfo**](docs/AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns
-*AdCampaignsApi* | [**updateAdCampaign**](docs/AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign (budget and/or bid strategy)
-*AdCampaignsApi* | [**updateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#updateAdCampaignWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign (budget and/or bid strategy)
+*AdCampaignsApi* | [**updateAdCampaign**](docs/AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign
+*AdCampaignsApi* | [**updateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#updateAdCampaignWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign
 *AdCampaignsApi* | [**updateAdCampaignStatus**](docs/AdCampaignsApi.md#updateAdCampaignStatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
 *AdCampaignsApi* | [**updateAdCampaignStatusWithHttpInfo**](docs/AdCampaignsApi.md#updateAdCampaignStatusWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign
-*AdCampaignsApi* | [**updateAdSet**](docs/AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set (budget, status, and/or bid strategy)
-*AdCampaignsApi* | [**updateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set (budget, status, and/or bid strategy)
+*AdCampaignsApi* | [**updateAdSet**](docs/AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
+*AdCampaignsApi* | [**updateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set
 *AdCampaignsApi* | [**updateAdSetStatus**](docs/AdCampaignsApi.md#updateAdSetStatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
 *AdCampaignsApi* | [**updateAdSetStatusWithHttpInfo**](docs/AdCampaignsApi.md#updateAdSetStatusWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set
-*AdsApi* | [**addConversionAssociations**](docs/AdsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination
-*AdsApi* | [**addConversionAssociationsWithHttpInfo**](docs/AdsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns with a conversion destination
-*AdsApi* | [**adjustConversions**](docs/AdsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only)
-*AdsApi* | [**adjustConversionsWithHttpInfo**](docs/AdsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust already-uploaded conversions (Google only)
-*AdsApi* | [**archiveLeadForm**](docs/AdsApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form
-*AdsApi* | [**archiveLeadFormWithHttpInfo**](docs/AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a Lead Gen form
+*AdsApi* | [**addConversionAssociations**](docs/AdsApi.md#addConversionAssociations) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
+*AdsApi* | [**addConversionAssociationsWithHttpInfo**](docs/AdsApi.md#addConversionAssociationsWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Associate campaigns
+*AdsApi* | [**adjustConversions**](docs/AdsApi.md#adjustConversions) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
+*AdsApi* | [**adjustConversionsWithHttpInfo**](docs/AdsApi.md#adjustConversionsWithHttpInfo) | **POST** /v1/ads/conversions/adjustments | Adjust uploaded conversions
+*AdsApi* | [**archiveLeadForm**](docs/AdsApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
+*AdsApi* | [**archiveLeadFormWithHttpInfo**](docs/AdsApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *AdsApi* | [**boostPost**](docs/AdsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad
 *AdsApi* | [**boostPostWithHttpInfo**](docs/AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad
-*AdsApi* | [**createConversionDestination**](docs/AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads)
-*AdsApi* | [**createConversionDestinationWithHttpInfo**](docs/AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination (LinkedIn, Google Ads)
-*AdsApi* | [**createCtwaAd**](docs/AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s)
-*AdsApi* | [**createCtwaAdWithHttpInfo**](docs/AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad(s)
-*AdsApi* | [**createLeadForm**](docs/AdsApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form
-*AdsApi* | [**createLeadFormWithHttpInfo**](docs/AdsApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a Lead Gen (Instant) form
+*AdsApi* | [**createConversionDestination**](docs/AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
+*AdsApi* | [**createConversionDestinationWithHttpInfo**](docs/AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
+*AdsApi* | [**createCtwaAd**](docs/AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad
+*AdsApi* | [**createCtwaAdWithHttpInfo**](docs/AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad
+*AdsApi* | [**createLeadForm**](docs/AdsApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form
+*AdsApi* | [**createLeadFormWithHttpInfo**](docs/AdsApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form
 *AdsApi* | [**createStandaloneAd**](docs/AdsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad
 *AdsApi* | [**createStandaloneAdWithHttpInfo**](docs/AdsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad
-*AdsApi* | [**createTestLead**](docs/AdsApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a synthetic test lead
-*AdsApi* | [**createTestLeadWithHttpInfo**](docs/AdsApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a synthetic test lead
+*AdsApi* | [**createTestLead**](docs/AdsApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
+*AdsApi* | [**createTestLeadWithHttpInfo**](docs/AdsApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
 *AdsApi* | [**deleteAd**](docs/AdsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad
 *AdsApi* | [**deleteAdWithHttpInfo**](docs/AdsApi.md#deleteAdWithHttpInfo) | **DELETE** /v1/ads/{adId} | Cancel an ad
-*AdsApi* | [**deleteConversionDestination**](docs/AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination
-*AdsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Soft-delete a conversion destination
+*AdsApi* | [**deleteConversionDestination**](docs/AdsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
+*AdsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *AdsApi* | [**estimateAdReach**](docs/AdsApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdsApi* | [**estimateAdReachWithHttpInfo**](docs/AdsApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdsApi* | [**getAd**](docs/AdsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details
@@ -214,16 +214,16 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**getAdAnalyticsWithHttpInfo**](docs/AdsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics
 *AdsApi* | [**getAdComments**](docs/AdsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**getAdCommentsWithHttpInfo**](docs/AdsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad
-*AdsApi* | [**getAdTrackingTags**](docs/AdsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Read an ad&#39;s click-URL tracking tags
-*AdsApi* | [**getAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Read an ad&#39;s click-URL tracking tags
-*AdsApi* | [**getConversionDestination**](docs/AdsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination
-*AdsApi* | [**getConversionDestinationWithHttpInfo**](docs/AdsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Fetch a single conversion destination
-*AdsApi* | [**getConversionMetrics**](docs/AdsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination
-*AdsApi* | [**getConversionMetricsWithHttpInfo**](docs/AdsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Fetch attribution metrics for a conversion destination
-*AdsApi* | [**getConversionsQuality**](docs/AdsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Read Event Match Quality + coverage for a Meta pixel
-*AdsApi* | [**getConversionsQualityWithHttpInfo**](docs/AdsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Read Event Match Quality + coverage for a Meta pixel
-*AdsApi* | [**getLeadForm**](docs/AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form
-*AdsApi* | [**getLeadFormWithHttpInfo**](docs/AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a single Lead Gen form
+*AdsApi* | [**getAdTrackingTags**](docs/AdsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
+*AdsApi* | [**getAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
+*AdsApi* | [**getConversionDestination**](docs/AdsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
+*AdsApi* | [**getConversionDestinationWithHttpInfo**](docs/AdsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
+*AdsApi* | [**getConversionMetrics**](docs/AdsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
+*AdsApi* | [**getConversionMetricsWithHttpInfo**](docs/AdsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
+*AdsApi* | [**getConversionsQuality**](docs/AdsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
+*AdsApi* | [**getConversionsQualityWithHttpInfo**](docs/AdsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
+*AdsApi* | [**getLeadForm**](docs/AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
+*AdsApi* | [**getLeadFormWithHttpInfo**](docs/AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
 *AdsApi* | [**listAdAccounts**](docs/AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**listAdAccountsWithHttpInfo**](docs/AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**listAdCatalogProductSets**](docs/AdsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
@@ -234,32 +234,32 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**listAdsWithHttpInfo**](docs/AdsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
 *AdsApi* | [**listAdsBusinessCenters**](docs/AdsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdsApi* | [**listAdsBusinessCentersWithHttpInfo**](docs/AdsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers
-*AdsApi* | [**listConversionAssociations**](docs/AdsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination
-*AdsApi* | [**listConversionAssociationsWithHttpInfo**](docs/AdsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List campaigns associated with a conversion destination
-*AdsApi* | [**listConversionDestinations**](docs/AdsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API
-*AdsApi* | [**listConversionDestinationsWithHttpInfo**](docs/AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List destinations for the Conversions API
+*AdsApi* | [**listConversionAssociations**](docs/AdsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
+*AdsApi* | [**listConversionAssociationsWithHttpInfo**](docs/AdsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns
+*AdsApi* | [**listConversionDestinations**](docs/AdsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
+*AdsApi* | [**listConversionDestinationsWithHttpInfo**](docs/AdsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
 *AdsApi* | [**listFormLeads**](docs/AdsApi.md#listFormLeads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
 *AdsApi* | [**listFormLeadsWithHttpInfo**](docs/AdsApi.md#listFormLeadsWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
-*AdsApi* | [**listLeadForms**](docs/AdsApi.md#listLeadForms) | **GET** /v1/ads/lead-forms | List Lead Gen (Instant) forms
-*AdsApi* | [**listLeadFormsWithHttpInfo**](docs/AdsApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List Lead Gen (Instant) forms
-*AdsApi* | [**listLeads**](docs/AdsApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads (cross-form CRM view)
-*AdsApi* | [**listLeadsWithHttpInfo**](docs/AdsApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads (cross-form CRM view)
-*AdsApi* | [**listWhatsAppConversions**](docs/AdsApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
-*AdsApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/AdsApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
-*AdsApi* | [**removeConversionAssociations**](docs/AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
-*AdsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove campaign↔conversion associations
-*AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests (deprecated)
-*AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests (deprecated)
+*AdsApi* | [**listLeadForms**](docs/AdsApi.md#listLeadForms) | **GET** /v1/ads/lead-forms | List lead forms
+*AdsApi* | [**listLeadFormsWithHttpInfo**](docs/AdsApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List lead forms
+*AdsApi* | [**listLeads**](docs/AdsApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads
+*AdsApi* | [**listLeadsWithHttpInfo**](docs/AdsApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads
+*AdsApi* | [**listWhatsAppConversions**](docs/AdsApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events
+*AdsApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/AdsApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events
+*AdsApi* | [**removeConversionAssociations**](docs/AdsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
+*AdsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/AdsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
+*AdsApi* | [**searchAdInterests**](docs/AdsApi.md#searchAdInterests) | **GET** /v1/ads/interests | Search targeting interests
+*AdsApi* | [**searchAdInterestsWithHttpInfo**](docs/AdsApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
 *AdsApi* | [**searchAdTargeting**](docs/AdsApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options
 *AdsApi* | [**searchAdTargetingWithHttpInfo**](docs/AdsApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options
-*AdsApi* | [**sendConversions**](docs/AdsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
-*AdsApi* | [**sendConversionsWithHttpInfo**](docs/AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events to an ad platform
+*AdsApi* | [**sendConversions**](docs/AdsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events
+*AdsApi* | [**sendConversionsWithHttpInfo**](docs/AdsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
 *AdsApi* | [**sendWhatsAppConversion**](docs/AdsApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *AdsApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *AdsApi* | [**updateAd**](docs/AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
 *AdsApi* | [**updateAdWithHttpInfo**](docs/AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
-*AdsApi* | [**updateAdTrackingTags**](docs/AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set/update an ad&#39;s click-URL tracking tags
-*AdsApi* | [**updateAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set/update an ad&#39;s click-URL tracking tags
+*AdsApi* | [**updateAdTrackingTags**](docs/AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
+*AdsApi* | [**updateAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *AdsApi* | [**updateConversionDestination**](docs/AdsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *AdsApi* | [**updateConversionDestinationWithHttpInfo**](docs/AdsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *AnalyticsApi* | [**getAnalytics**](docs/AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics
@@ -286,8 +286,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getInstagramFollowerHistoryWithHttpInfo**](docs/AnalyticsApi.md#getInstagramFollowerHistoryWithHttpInfo) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history
 *AnalyticsApi* | [**getLinkedInAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInAggregateAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
 *AnalyticsApi* | [**getLinkedInAggregateAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
-*AnalyticsApi* | [**getLinkedInOrgAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInOrgAggregateAnalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn organization page aggregate analytics
-*AnalyticsApi* | [**getLinkedInOrgAggregateAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInOrgAggregateAnalyticsWithHttpInfo) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn organization page aggregate analytics
+*AnalyticsApi* | [**getLinkedInOrgAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInOrgAggregateAnalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics
+*AnalyticsApi* | [**getLinkedInOrgAggregateAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInOrgAggregateAnalyticsWithHttpInfo) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics
 *AnalyticsApi* | [**getLinkedInPostAnalytics**](docs/AnalyticsApi.md#getLinkedInPostAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats
 *AnalyticsApi* | [**getLinkedInPostAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInPostAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats
 *AnalyticsApi* | [**getLinkedInPostReactions**](docs/AnalyticsApi.md#getLinkedInPostReactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions
@@ -298,8 +298,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getPostingFrequencyWithHttpInfo**](docs/AnalyticsApi.md#getPostingFrequencyWithHttpInfo) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement
 *AnalyticsApi* | [**getTikTokAccountInsights**](docs/AnalyticsApi.md#getTikTokAccountInsights) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights
 *AnalyticsApi* | [**getTikTokAccountInsightsWithHttpInfo**](docs/AnalyticsApi.md#getTikTokAccountInsightsWithHttpInfo) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights
-*AnalyticsApi* | [**getYouTubeChannelInsights**](docs/AnalyticsApi.md#getYouTubeChannelInsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel-level insights
-*AnalyticsApi* | [**getYouTubeChannelInsightsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeChannelInsightsWithHttpInfo) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel-level insights
+*AnalyticsApi* | [**getYouTubeChannelInsights**](docs/AnalyticsApi.md#getYouTubeChannelInsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights
+*AnalyticsApi* | [**getYouTubeChannelInsightsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeChannelInsightsWithHttpInfo) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights
 *AnalyticsApi* | [**getYouTubeDailyViews**](docs/AnalyticsApi.md#getYouTubeDailyViews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views
 *AnalyticsApi* | [**getYouTubeDailyViewsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeDailyViewsWithHttpInfo) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views
 *AnalyticsApi* | [**getYouTubeDemographics**](docs/AnalyticsApi.md#getYouTubeDemographics) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics
@@ -364,10 +364,10 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**unlikeInboxCommentWithHttpInfo**](docs/CommentsApi.md#unlikeInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *ConnectApi* | [**completeTelegramConnect**](docs/ConnectApi.md#completeTelegramConnect) | **PATCH** /v1/connect/telegram | Check Telegram status
 *ConnectApi* | [**completeTelegramConnectWithHttpInfo**](docs/ConnectApi.md#completeTelegramConnectWithHttpInfo) | **PATCH** /v1/connect/telegram | Check Telegram status
-*ConnectApi* | [**completeWhatsAppPhoneSelection**](docs/ConnectApi.md#completeWhatsAppPhoneSelection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete WhatsApp phone number selection
-*ConnectApi* | [**completeWhatsAppPhoneSelectionWithHttpInfo**](docs/ConnectApi.md#completeWhatsAppPhoneSelectionWithHttpInfo) | **POST** /v1/connect/whatsapp/select-phone-number | Complete WhatsApp phone number selection
-*ConnectApi* | [**configureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configureTikTokAdsBrandIdentity) | **PATCH** /v1/connect/tiktok-ads | Configure TikTok Ads Brand Identity
-*ConnectApi* | [**configureTikTokAdsBrandIdentityWithHttpInfo**](docs/ConnectApi.md#configureTikTokAdsBrandIdentityWithHttpInfo) | **PATCH** /v1/connect/tiktok-ads | Configure TikTok Ads Brand Identity
+*ConnectApi* | [**completeWhatsAppPhoneSelection**](docs/ConnectApi.md#completeWhatsAppPhoneSelection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection
+*ConnectApi* | [**completeWhatsAppPhoneSelectionWithHttpInfo**](docs/ConnectApi.md#completeWhatsAppPhoneSelectionWithHttpInfo) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection
+*ConnectApi* | [**configureTikTokAdsBrandIdentity**](docs/ConnectApi.md#configureTikTokAdsBrandIdentity) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
+*ConnectApi* | [**configureTikTokAdsBrandIdentityWithHttpInfo**](docs/ConnectApi.md#configureTikTokAdsBrandIdentityWithHttpInfo) | **PATCH** /v1/connect/tiktok-ads | Set TikTok brand identity
 *ConnectApi* | [**connectAds**](docs/ConnectApi.md#connectAds) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectAdsWithHttpInfo**](docs/ConnectApi.md#connectAdsWithHttpInfo) | **GET** /v1/connect/{platform}/ads | Connect ads for a platform
 *ConnectApi* | [**connectBlueskyCredentials**](docs/ConnectApi.md#connectBlueskyCredentials) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
@@ -408,8 +408,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**listPinterestBoardsForSelectionWithHttpInfo**](docs/ConnectApi.md#listPinterestBoardsForSelectionWithHttpInfo) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
 *ConnectApi* | [**listSnapchatProfiles**](docs/ConnectApi.md#listSnapchatProfiles) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
 *ConnectApi* | [**listSnapchatProfilesWithHttpInfo**](docs/ConnectApi.md#listSnapchatProfilesWithHttpInfo) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles
-*ConnectApi* | [**listWhatsAppPhoneNumbers**](docs/ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List WhatsApp phone numbers for selection
-*ConnectApi* | [**listWhatsAppPhoneNumbersWithHttpInfo**](docs/ConnectApi.md#listWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/connect/whatsapp/select-phone-number | List WhatsApp phone numbers for selection
+*ConnectApi* | [**listWhatsAppPhoneNumbers**](docs/ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
+*ConnectApi* | [**listWhatsAppPhoneNumbersWithHttpInfo**](docs/ConnectApi.md#listWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection
 *ConnectApi* | [**selectFacebookPage**](docs/ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectFacebookPageWithHttpInfo**](docs/ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectGoogleBusinessLocation**](docs/ConnectApi.md#selectGoogleBusinessLocation) | **POST** /v1/connect/googlebusiness/select-location | Select GBP location
@@ -474,8 +474,8 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**listDiscordGuildMembersWithHttpInfo**](docs/DiscordApi.md#listDiscordGuildMembersWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/members | List Discord guild members
 *DiscordApi* | [**listDiscordGuildRoles**](docs/DiscordApi.md#listDiscordGuildRoles) | **GET** /v1/discord/guilds/{guildId}/roles | List Discord guild roles
 *DiscordApi* | [**listDiscordGuildRolesWithHttpInfo**](docs/DiscordApi.md#listDiscordGuildRolesWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/roles | List Discord guild roles
-*DiscordApi* | [**listDiscordPinnedMessages**](docs/DiscordApi.md#listDiscordPinnedMessages) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages in a Discord channel
-*DiscordApi* | [**listDiscordPinnedMessagesWithHttpInfo**](docs/DiscordApi.md#listDiscordPinnedMessagesWithHttpInfo) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages in a Discord channel
+*DiscordApi* | [**listDiscordPinnedMessages**](docs/DiscordApi.md#listDiscordPinnedMessages) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages
+*DiscordApi* | [**listDiscordPinnedMessagesWithHttpInfo**](docs/DiscordApi.md#listDiscordPinnedMessagesWithHttpInfo) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages
 *DiscordApi* | [**listDiscordScheduledEvents**](docs/DiscordApi.md#listDiscordScheduledEvents) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events
 *DiscordApi* | [**listDiscordScheduledEventsWithHttpInfo**](docs/DiscordApi.md#listDiscordScheduledEventsWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events
 *DiscordApi* | [**pinDiscordMessage**](docs/DiscordApi.md#pinDiscordMessage) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message
@@ -538,10 +538,10 @@ Class | Method | HTTP request | Description
 *GmbVerificationsApi* | [**getGoogleBusinessVerificationsWithHttpInfo**](docs/GmbVerificationsApi.md#getGoogleBusinessVerificationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-verifications | Get verification state
 *GmbVerificationsApi* | [**startGoogleBusinessVerification**](docs/GmbVerificationsApi.md#startGoogleBusinessVerification) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
 *GmbVerificationsApi* | [**startGoogleBusinessVerificationWithHttpInfo**](docs/GmbVerificationsApi.md#startGoogleBusinessVerificationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
-*InboxAnalyticsApi* | [**getInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#getInboxConversationAnalytics) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get analytics for a single conversation
-*InboxAnalyticsApi* | [**getInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get analytics for a single conversation
-*InboxAnalyticsApi* | [**getInboxHeatmap**](docs/InboxAnalyticsApi.md#getInboxHeatmap) | **GET** /v1/analytics/inbox/heatmap | Get inbox day-of-week × hour-of-day heatmap
-*InboxAnalyticsApi* | [**getInboxHeatmapWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxHeatmapWithHttpInfo) | **GET** /v1/analytics/inbox/heatmap | Get inbox day-of-week × hour-of-day heatmap
+*InboxAnalyticsApi* | [**getInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#getInboxConversationAnalytics) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get conversation analytics
+*InboxAnalyticsApi* | [**getInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations/{conversationId} | Get conversation analytics
+*InboxAnalyticsApi* | [**getInboxHeatmap**](docs/InboxAnalyticsApi.md#getInboxHeatmap) | **GET** /v1/analytics/inbox/heatmap | Get day × hour heatmap
+*InboxAnalyticsApi* | [**getInboxHeatmapWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxHeatmapWithHttpInfo) | **GET** /v1/analytics/inbox/heatmap | Get day × hour heatmap
 *InboxAnalyticsApi* | [**getInboxResponseTime**](docs/InboxAnalyticsApi.md#getInboxResponseTime) | **GET** /v1/analytics/inbox/response-time | Get inbox response-time stats
 *InboxAnalyticsApi* | [**getInboxResponseTimeWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxResponseTimeWithHttpInfo) | **GET** /v1/analytics/inbox/response-time | Get inbox response-time stats
 *InboxAnalyticsApi* | [**getInboxSourceBreakdown**](docs/InboxAnalyticsApi.md#getInboxSourceBreakdown) | **GET** /v1/analytics/inbox/source-breakdown | Get inbox source breakdown
@@ -550,8 +550,8 @@ Class | Method | HTTP request | Description
 *InboxAnalyticsApi* | [**getInboxTopAccountsWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxTopAccountsWithHttpInfo) | **GET** /v1/analytics/inbox/top-accounts | Get top accounts by inbox volume
 *InboxAnalyticsApi* | [**getInboxVolume**](docs/InboxAnalyticsApi.md#getInboxVolume) | **GET** /v1/analytics/inbox/volume | Get inbox messaging volume
 *InboxAnalyticsApi* | [**getInboxVolumeWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxVolumeWithHttpInfo) | **GET** /v1/analytics/inbox/volume | Get inbox messaging volume
-*InboxAnalyticsApi* | [**listInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#listInboxConversationAnalytics) | **GET** /v1/analytics/inbox/conversations | List conversations with inbox analytics
-*InboxAnalyticsApi* | [**listInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#listInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations | List conversations with inbox analytics
+*InboxAnalyticsApi* | [**listInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#listInboxConversationAnalytics) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
+*InboxAnalyticsApi* | [**listInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#listInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
 *InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**getInstagramStoryInsightsWithHttpInfo**](docs/InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**listInstagramStories**](docs/InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
@@ -566,8 +566,8 @@ Class | Method | HTTP request | Description
 *MediaApi* | [**getMediaPresignedUrlWithHttpInfo**](docs/MediaApi.md#getMediaPresignedUrlWithHttpInfo) | **POST** /v1/media/presign | Get upload URL
 *MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
-*MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation (send a WhatsApp template)
-*MessagesApi* | [**createInboxConversationWithHttpInfo**](docs/MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation (send a WhatsApp template)
+*MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
+*MessagesApi* | [**createInboxConversationWithHttpInfo**](docs/MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation
 *MessagesApi* | [**deleteInboxMessage**](docs/MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**deleteInboxMessageWithHttpInfo**](docs/MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**editInboxMessage**](docs/MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
@@ -662,22 +662,22 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**unenrollContactWithHttpInfo**](docs/SequencesApi.md#unenrollContactWithHttpInfo) | **DELETE** /v1/sequences/{sequenceId}/enroll/{contactId} | Unenroll contact
 *SequencesApi* | [**updateSequence**](docs/SequencesApi.md#updateSequence) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *SequencesApi* | [**updateSequenceWithHttpInfo**](docs/SequencesApi.md#updateSequenceWithHttpInfo) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
-*TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share a tracking tag with an ad account
-*TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share a tracking tag with an ad account
-*TrackingTagsApi* | [**createTrackingTag**](docs/TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag (Meta Pixel)
-*TrackingTagsApi* | [**createTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#createTrackingTagWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag (Meta Pixel)
-*TrackingTagsApi* | [**getTrackingTag**](docs/TrackingTagsApi.md#getTrackingTag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Fetch a single tracking tag (Meta Pixel)
-*TrackingTagsApi* | [**getTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Fetch a single tracking tag (Meta Pixel)
-*TrackingTagsApi* | [**getTrackingTagStats**](docs/TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Aggregated event stats for a tracking tag (Meta Pixel)
-*TrackingTagsApi* | [**getTrackingTagStatsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Aggregated event stats for a tracking tag (Meta Pixel)
-*TrackingTagsApi* | [**listTrackingTagSharedAccounts**](docs/TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List ad accounts a tracking tag is shared with
-*TrackingTagsApi* | [**listTrackingTagSharedAccountsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List ad accounts a tracking tag is shared with
-*TrackingTagsApi* | [**listTrackingTags**](docs/TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags (Meta Pixels)
-*TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags (Meta Pixels)
-*TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing a tracking tag with an ad account
-*TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing a tracking tag with an ad account
-*TrackingTagsApi* | [**updateTrackingTag**](docs/TrackingTagsApi.md#updateTrackingTag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag (Meta Pixel)
-*TrackingTagsApi* | [**updateTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#updateTrackingTagWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag (Meta Pixel)
+*TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
+*TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
+*TrackingTagsApi* | [**createTrackingTag**](docs/TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
+*TrackingTagsApi* | [**createTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#createTrackingTagWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
+*TrackingTagsApi* | [**getTrackingTag**](docs/TrackingTagsApi.md#getTrackingTag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
+*TrackingTagsApi* | [**getTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
+*TrackingTagsApi* | [**getTrackingTagStats**](docs/TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
+*TrackingTagsApi* | [**getTrackingTagStatsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
+*TrackingTagsApi* | [**listTrackingTagSharedAccounts**](docs/TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
+*TrackingTagsApi* | [**listTrackingTagSharedAccountsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
+*TrackingTagsApi* | [**listTrackingTags**](docs/TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
+*TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
+*TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
+*TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
+*TrackingTagsApi* | [**updateTrackingTag**](docs/TrackingTagsApi.md#updateTrackingTag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
+*TrackingTagsApi* | [**updateTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#updateTrackingTagWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
 *TwitterEngagementApi* | [**bookmarkPost**](docs/TwitterEngagementApi.md#bookmarkPost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**bookmarkPostWithHttpInfo**](docs/TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**followUser**](docs/TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user
@@ -724,8 +724,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**approveWhatsAppGroupJoinRequestsWithHttpInfo**](docs/WhatsAppApi.md#approveWhatsAppGroupJoinRequestsWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId}/join-requests | Approve join requests
 *WhatsAppApi* | [**blockWhatsAppUsers**](docs/WhatsAppApi.md#blockWhatsAppUsers) | **POST** /v1/whatsapp/block-users | Block users
 *WhatsAppApi* | [**blockWhatsAppUsersWithHttpInfo**](docs/WhatsAppApi.md#blockWhatsAppUsersWithHttpInfo) | **POST** /v1/whatsapp/block-users | Block users
-*WhatsAppApi* | [**createWhatsAppDataset**](docs/WhatsAppApi.md#createWhatsAppDataset) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset
-*WhatsAppApi* | [**createWhatsAppDatasetWithHttpInfo**](docs/WhatsAppApi.md#createWhatsAppDatasetWithHttpInfo) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset
+*WhatsAppApi* | [**createWhatsAppDataset**](docs/WhatsAppApi.md#createWhatsAppDataset) | **POST** /v1/whatsapp/dataset | Provision CTWA dataset
+*WhatsAppApi* | [**createWhatsAppDatasetWithHttpInfo**](docs/WhatsAppApi.md#createWhatsAppDatasetWithHttpInfo) | **POST** /v1/whatsapp/dataset | Provision CTWA dataset
 *WhatsAppApi* | [**createWhatsAppGroupChat**](docs/WhatsAppApi.md#createWhatsAppGroupChat) | **POST** /v1/whatsapp/wa-groups | Create group
 *WhatsAppApi* | [**createWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#createWhatsAppGroupChatWithHttpInfo) | **POST** /v1/whatsapp/wa-groups | Create group
 *WhatsAppApi* | [**createWhatsAppGroupInviteLink**](docs/WhatsAppApi.md#createWhatsAppGroupInviteLink) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link
@@ -752,8 +752,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template
 *WhatsAppApi* | [**getWhatsAppTemplates**](docs/WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates
 *WhatsAppApi* | [**getWhatsAppTemplatesWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplatesWithHttpInfo) | **GET** /v1/whatsapp/templates | List templates
-*WhatsAppApi* | [**listWhatsAppConversions**](docs/WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
-*WhatsAppApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events
+*WhatsAppApi* | [**listWhatsAppConversions**](docs/WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events
+*WhatsAppApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events
 *WhatsAppApi* | [**listWhatsAppGroupChats**](docs/WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups
 *WhatsAppApi* | [**listWhatsAppGroupChatsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppGroupChatsWithHttpInfo) | **GET** /v1/whatsapp/wa-groups | List active groups
 *WhatsAppApi* | [**listWhatsAppGroupJoinRequests**](docs/WhatsAppApi.md#listWhatsAppGroupJoinRequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests
@@ -782,10 +782,10 @@ Class | Method | HTTP request | Description
 *WhatsAppCallingApi* | [**enableWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#enableWhatsAppCallingWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number
 *WhatsAppCallingApi* | [**getWhatsAppCall**](docs/WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call
 *WhatsAppCallingApi* | [**getWhatsAppCallWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId} | Get a single call
-*WhatsAppCallingApi* | [**getWhatsAppCallEstimate**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination
-*WhatsAppCallingApi* | [**getWhatsAppCallEstimateWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost for a destination
-*WhatsAppCallingApi* | [**getWhatsAppCallPermissions**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer
-*WhatsAppCallingApi* | [**getWhatsAppCallPermissionsWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission for a consumer
+*WhatsAppCallingApi* | [**getWhatsAppCallEstimate**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost
+*WhatsAppCallingApi* | [**getWhatsAppCallEstimateWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost
+*WhatsAppCallingApi* | [**getWhatsAppCallPermissions**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission
+*WhatsAppCallingApi* | [**getWhatsAppCallPermissionsWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission
 *WhatsAppCallingApi* | [**getWhatsAppCallingConfig**](docs/WhatsAppCallingApi.md#getWhatsAppCallingConfig) | **GET** /v1/whatsapp/calling | Get calling config for an account
 *WhatsAppCallingApi* | [**getWhatsAppCallingConfigWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallingConfigWithHttpInfo) | **GET** /v1/whatsapp/calling | Get calling config for an account
 *WhatsAppCallingApi* | [**initiateWhatsAppCall**](docs/WhatsAppCallingApi.md#initiateWhatsAppCall) | **POST** /v1/whatsapp/calls | Initiate outbound call
@@ -820,16 +820,16 @@ Class | Method | HTTP request | Description
 *WhatsAppFlowsApi* | [**updateWhatsAppFlowWithHttpInfo**](docs/WhatsAppFlowsApi.md#updateWhatsAppFlowWithHttpInfo) | **PATCH** /v1/whatsapp/flows/{flowId} | Update flow
 *WhatsAppFlowsApi* | [**uploadWhatsAppFlowJson**](docs/WhatsAppFlowsApi.md#uploadWhatsAppFlowJson) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
 *WhatsAppFlowsApi* | [**uploadWhatsAppFlowJsonWithHttpInfo**](docs/WhatsAppFlowsApi.md#uploadWhatsAppFlowJsonWithHttpInfo) | **PUT** /v1/whatsapp/flows/{flowId}/json | Upload flow JSON
-*WhatsAppPhoneNumbersApi* | [**checkWhatsAppNumberAvailability**](docs/WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint
-*WhatsAppPhoneNumbersApi* | [**checkWhatsAppNumberAvailabilityWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailabilityWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/availability | Check a country&#39;s availability + address constraint
+*WhatsAppPhoneNumbersApi* | [**checkWhatsAppNumberAvailability**](docs/WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailability) | **GET** /v1/whatsapp/phone-numbers/availability | Check country availability
+*WhatsAppPhoneNumbersApi* | [**checkWhatsAppNumberAvailabilityWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#checkWhatsAppNumberAvailabilityWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/availability | Check country availability
 *WhatsAppPhoneNumbersApi* | [**createWhatsAppNumberKycLink**](docs/WhatsAppPhoneNumbersApi.md#createWhatsAppNumberKycLink) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link
 *WhatsAppPhoneNumbersApi* | [**createWhatsAppNumberKycLinkWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#createWhatsAppNumberKycLinkWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/share | Create a hosted KYC link
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfo) | **GET** /v1/whatsapp/number-info | Get number status
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberInfoWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberInfoWithHttpInfo) | **GET** /v1/whatsapp/number-info | Get number status
-*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberKycForm**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycForm) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec
-*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberKycFormWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycFormWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/kyc | Get regulated-number KYC form spec
-*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberRemediation**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberRemediation) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get the declined requirements to fix
-*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberRemediationWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberRemediationWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get the declined requirements to fix
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberKycForm**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycForm) | **GET** /v1/whatsapp/phone-numbers/kyc | Get KYC form spec
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberKycFormWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberKycFormWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/kyc | Get KYC form spec
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberRemediation**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberRemediation) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get declined requirements
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppNumberRemediationWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppNumberRemediationWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{id}/remediate | Get declined requirements
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumber) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumberWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
@@ -840,18 +840,18 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**purchaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#purchaseWhatsAppPhoneNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/purchase | Purchase phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumber**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumber) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
 *WhatsAppPhoneNumbersApi* | [**releaseWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#releaseWhatsAppPhoneNumberWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{phoneNumberId} | Release phone number
-*WhatsAppPhoneNumbersApi* | [**remediateWhatsAppNumber**](docs/WhatsAppPhoneNumbersApi.md#remediateWhatsAppNumber) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Fix a declined number and re-submit
-*WhatsAppPhoneNumbersApi* | [**remediateWhatsAppNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#remediateWhatsAppNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Fix a declined number and re-submit
-*WhatsAppPhoneNumbersApi* | [**searchAvailableWhatsAppNumbers**](docs/WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase
-*WhatsAppPhoneNumbersApi* | [**searchAvailableWhatsAppNumbersWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers to purchase
-*WhatsAppPhoneNumbersApi* | [**submitWhatsAppNumberKyc**](docs/WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
-*WhatsAppPhoneNumbersApi* | [**submitWhatsAppNumberKycWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKycWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit regulated-number KYC
-*WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocument**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
-*WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocumentWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocumentWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a single regulated-number KYC document
-*WhatsAppPhoneNumbersApi* | [**validateWhatsAppNumberKycAddress**](docs/WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddress) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4)
-*WhatsAppPhoneNumbersApi* | [**validateWhatsAppNumberKycAddressWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddressWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate a regulated-number KYC address (Tier 4)
-*WhatsAppSandboxApi* | [**createWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSession) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
-*WhatsAppSandboxApi* | [**createWhatsAppSandboxSessionWithHttpInfo**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSessionWithHttpInfo) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation for a phone
+*WhatsAppPhoneNumbersApi* | [**remediateWhatsAppNumber**](docs/WhatsAppPhoneNumbersApi.md#remediateWhatsAppNumber) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Resubmit a declined number
+*WhatsAppPhoneNumbersApi* | [**remediateWhatsAppNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#remediateWhatsAppNumberWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/remediate | Resubmit a declined number
+*WhatsAppPhoneNumbersApi* | [**searchAvailableWhatsAppNumbers**](docs/WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbers) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers
+*WhatsAppPhoneNumbersApi* | [**searchAvailableWhatsAppNumbersWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#searchAvailableWhatsAppNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/available | Search available numbers
+*WhatsAppPhoneNumbersApi* | [**submitWhatsAppNumberKyc**](docs/WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKyc) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit KYC
+*WhatsAppPhoneNumbersApi* | [**submitWhatsAppNumberKycWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#submitWhatsAppNumberKycWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc | Submit KYC
+*WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocument**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocument) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a KYC document
+*WhatsAppPhoneNumbersApi* | [**uploadWhatsAppNumberKycDocumentWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#uploadWhatsAppNumberKycDocumentWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/upload-document | Upload a KYC document
+*WhatsAppPhoneNumbersApi* | [**validateWhatsAppNumberKycAddress**](docs/WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddress) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate KYC address
+*WhatsAppPhoneNumbersApi* | [**validateWhatsAppNumberKycAddressWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#validateWhatsAppNumberKycAddressWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/kyc/validate-address | Pre-validate KYC address
+*WhatsAppSandboxApi* | [**createWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSession) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation
+*WhatsAppSandboxApi* | [**createWhatsAppSandboxSessionWithHttpInfo**](docs/WhatsAppSandboxApi.md#createWhatsAppSandboxSessionWithHttpInfo) | **POST** /v1/whatsapp/sandbox/sessions | Start a sandbox activation
 *WhatsAppSandboxApi* | [**deleteWhatsAppSandboxSession**](docs/WhatsAppSandboxApi.md#deleteWhatsAppSandboxSession) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
 *WhatsAppSandboxApi* | [**deleteWhatsAppSandboxSessionWithHttpInfo**](docs/WhatsAppSandboxApi.md#deleteWhatsAppSandboxSessionWithHttpInfo) | **DELETE** /v1/whatsapp/sandbox/sessions/{sessionId} | Revoke a sandbox session
 *WhatsAppSandboxApi* | [**listWhatsAppSandboxSessions**](docs/WhatsAppSandboxApi.md#listWhatsAppSandboxSessions) | **GET** /v1/whatsapp/sandbox/sessions | List your sandbox sessions
@@ -880,8 +880,8 @@ Class | Method | HTTP request | Description
 *WorkflowsApi* | [**listWorkflowsWithHttpInfo**](docs/WorkflowsApi.md#listWorkflowsWithHttpInfo) | **GET** /v1/workflows | List workflows
 *WorkflowsApi* | [**pauseWorkflow**](docs/WorkflowsApi.md#pauseWorkflow) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow
 *WorkflowsApi* | [**pauseWorkflowWithHttpInfo**](docs/WorkflowsApi.md#pauseWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow
-*WorkflowsApi* | [**restoreWorkflowVersion**](docs/WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a previous workflow version
-*WorkflowsApi* | [**restoreWorkflowVersionWithHttpInfo**](docs/WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a previous workflow version
+*WorkflowsApi* | [**restoreWorkflowVersion**](docs/WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version
+*WorkflowsApi* | [**restoreWorkflowVersionWithHttpInfo**](docs/WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version
 *WorkflowsApi* | [**triggerWorkflow**](docs/WorkflowsApi.md#triggerWorkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run
 *WorkflowsApi* | [**triggerWorkflowWithHttpInfo**](docs/WorkflowsApi.md#triggerWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run
 *WorkflowsApi* | [**updateWorkflow**](docs/WorkflowsApi.md#updateWorkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow

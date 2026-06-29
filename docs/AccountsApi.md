@@ -16,8 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTikTokCreatorInfoWithHttpInfo**](AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**listAccounts**](AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts |
 | [**listAccountsWithHttpInfo**](AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts |
-| [**moveAccountToProfile**](AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile |
-| [**moveAccountToProfileWithHttpInfo**](AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to a different profile |
+| [**moveAccountToProfile**](AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
+| [**moveAccountToProfileWithHttpInfo**](AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateAccountWithHttpInfo**](AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account |
 
@@ -963,7 +963,7 @@ ApiResponse<[**AccountsListResponse**](AccountsListResponse.md)>
 
 > MoveAccountToProfile200Response moveAccountToProfile(accountId, moveAccountToProfileRequest)
 
-Move account to a different profile
+Move account to another profile
 
 Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
 
@@ -1039,7 +1039,7 @@ public class Example {
 
 > ApiResponse<MoveAccountToProfile200Response> moveAccountToProfile moveAccountToProfileWithHttpInfo(accountId, moveAccountToProfileRequest)
 
-Move account to a different profile
+Move account to another profile
 
 Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
 

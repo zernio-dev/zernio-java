@@ -62,7 +62,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T07:04:30.304572761Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCallingApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -580,7 +580,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Estimate per-minute cost for a destination
+   * Estimate per-minute cost
    * Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
    * @param accountId  (required)
    * @param to  (required)
@@ -594,7 +594,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Estimate per-minute cost for a destination
+   * Estimate per-minute cost
    * Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
    * @param accountId  (required)
    * @param to  (required)
@@ -610,7 +610,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Estimate per-minute cost for a destination
+   * Estimate per-minute cost
    * Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
    * @param accountId  (required)
    * @param to  (required)
@@ -624,7 +624,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Estimate per-minute cost for a destination
+   * Estimate per-minute cost
    * Returns a zero-markup estimated cost for an outbound call to the given destination, broken down by Meta + Telnyx + recording line items. Costs are pass-through, no margin applied. 
    * @param accountId  (required)
    * @param to  (required)
@@ -734,7 +734,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Check call permission for a consumer
+   * Check call permission
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
    * @param to Consumer wa_id (E.164, leading + optional) (required)
@@ -746,7 +746,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Check call permission for a consumer
+   * Check call permission
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
    * @param to Consumer wa_id (E.164, leading + optional) (required)
@@ -760,7 +760,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Check call permission for a consumer
+   * Check call permission
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
    * @param to Consumer wa_id (E.164, leading + optional) (required)
@@ -772,7 +772,7 @@ public class WhatsAppCallingApi {
   }
 
   /**
-   * Check call permission for a consumer
+   * Check call permission
    * Returns the permission state and the list of available actions for a given consumer wa_id (e.g. &#x60;start_call&#x60;, &#x60;send_call_permission_request&#x60;). Use this before placing a call to decide whether to prompt for consent first. 
    * @param accountId  (required)
    * @param to Consumer wa_id (E.164, leading + optional) (required)

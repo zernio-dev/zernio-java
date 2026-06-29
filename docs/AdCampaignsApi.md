@@ -12,16 +12,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**duplicateAdCampaignWithHttpInfo**](AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**getAdTree**](AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree |
 | [**getAdTreeWithHttpInfo**](AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree |
-| [**getAdsTimeline**](AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account |
-| [**getAdsTimelineWithHttpInfo**](AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily aggregate ad metrics for an account |
+| [**getAdsTimeline**](AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics |
+| [**getAdsTimelineWithHttpInfo**](AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily account metrics |
 | [**listAdCampaigns**](AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdCampaignsWithHttpInfo**](AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns |
-| [**updateAdCampaign**](AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign (budget and/or bid strategy) |
-| [**updateAdCampaignWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign (budget and/or bid strategy) |
+| [**updateAdCampaign**](AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
+| [**updateAdCampaignWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
 | [**updateAdCampaignStatus**](AdCampaignsApi.md#updateAdCampaignStatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
 | [**updateAdCampaignStatusWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignStatusWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
-| [**updateAdSet**](AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set (budget, status, and/or bid strategy) |
-| [**updateAdSetWithHttpInfo**](AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set (budget, status, and/or bid strategy) |
+| [**updateAdSet**](AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
+| [**updateAdSetWithHttpInfo**](AdCampaignsApi.md#updateAdSetWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
 | [**updateAdSetStatus**](AdCampaignsApi.md#updateAdSetStatus) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set |
 | [**updateAdSetStatusWithHttpInfo**](AdCampaignsApi.md#updateAdSetStatusWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set |
 
@@ -681,7 +681,7 @@ ApiResponse<[**GetAdTree200Response**](GetAdTree200Response.md)>
 
 > GetAdsTimeline200Response getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform)
 
-Get daily aggregate ad metrics for an account
+Get daily account metrics
 
 Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
 
@@ -761,7 +761,7 @@ public class Example {
 
 > ApiResponse<GetAdsTimeline200Response> getAdsTimeline getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform)
 
-Get daily aggregate ad metrics for an account
+Get daily account metrics
 
 Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
 
@@ -1029,7 +1029,7 @@ ApiResponse<[**ListAdCampaigns200Response**](ListAdCampaigns200Response.md)>
 
 > UpdateAdCampaign200Response updateAdCampaign(campaignId, updateAdCampaignRequest)
 
-Update a campaign (budget and/or bid strategy)
+Update a campaign
 
 Campaign-level edits. At least one of &#x60;budget&#x60; or &#x60;bidStrategy&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.  Meta-only for now. Other platforms return 501 Not Implemented. 
 
@@ -1106,7 +1106,7 @@ public class Example {
 
 > ApiResponse<UpdateAdCampaign200Response> updateAdCampaign updateAdCampaignWithHttpInfo(campaignId, updateAdCampaignRequest)
 
-Update a campaign (budget and/or bid strategy)
+Update a campaign
 
 Campaign-level edits. At least one of &#x60;budget&#x60; or &#x60;bidStrategy&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.  Meta-only for now. Other platforms return 501 Not Implemented. 
 
@@ -1341,7 +1341,7 @@ ApiResponse<[**UpdateAdCampaignStatus200Response**](UpdateAdCampaignStatus200Res
 
 > UpdateAdSet200Response updateAdSet(adSetId, updateAdSetRequest)
 
-Update an ad set (budget, status, and/or bid strategy)
+Update an ad set
 
 Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, and bid-strategy edits. At least one of &#x60;budget&#x60;, &#x60;status&#x60;, or &#x60;bidStrategy&#x60; is required.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS).  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
 
@@ -1418,7 +1418,7 @@ public class Example {
 
 > ApiResponse<UpdateAdSet200Response> updateAdSet updateAdSetWithHttpInfo(adSetId, updateAdSetRequest)
 
-Update an ad set (budget, status, and/or bid strategy)
+Update an ad set
 
 Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, and bid-strategy edits. At least one of &#x60;budget&#x60;, &#x60;status&#x60;, or &#x60;bidStrategy&#x60; is required.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS).  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
 

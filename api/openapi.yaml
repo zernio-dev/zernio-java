@@ -803,7 +803,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/YouTubeScopeMissingResponse"
           description: Missing YouTube Analytics scope
-      summary: Get YouTube channel-level insights
+      summary: Get YouTube channel insights
       tags:
       - Analytics
       x-accepts:
@@ -935,7 +935,7 @@ paths:
         "412":
           description: Missing LinkedIn organization analytics scopes (r_organization_social
             + r_organization_followers + r_organization_admin)
-      summary: Get LinkedIn organization page aggregate analytics
+      summary: Get LinkedIn org analytics
       tags:
       - Analytics
       x-accepts:
@@ -2874,7 +2874,7 @@ paths:
           description: Internal server error
       security:
       - bearerAuth: []
-      summary: Get inbox day-of-week × hour-of-day heatmap
+      summary: Get day × hour heatmap
       tags:
       - Inbox Analytics
       x-accepts:
@@ -3250,7 +3250,7 @@ paths:
           description: Internal server error
       security:
       - bearerAuth: []
-      summary: List conversations with inbox analytics
+      summary: List conversation analytics
       tags:
       - Inbox Analytics
       x-accepts:
@@ -3324,7 +3324,7 @@ paths:
           description: Internal server error
       security:
       - bearerAuth: []
-      summary: Get analytics for a single conversation
+      summary: Get conversation analytics
       tags:
       - Inbox Analytics
       x-accepts:
@@ -5578,7 +5578,7 @@ paths:
             profile
         "404":
           description: Account or target profile not found
-      summary: Move account to a different profile
+      summary: Move account to another profile
       tags:
       - Accounts
       x-content-type: application/json
@@ -6362,7 +6362,7 @@ paths:
           description: Failed to create the TikTok identity (TikTok API error)
       security:
       - bearerAuth: []
-      summary: Configure TikTok Ads Brand Identity
+      summary: Set TikTok brand identity
       tags:
       - Connect
       x-content-type: application/json
@@ -9090,7 +9090,7 @@ paths:
             \ or insufficient permissions)"
       security:
       - bearerAuth: []
-      summary: List WhatsApp phone numbers for selection
+      summary: List numbers for selection
       tags:
       - Connect
       x-accepts:
@@ -9160,7 +9160,7 @@ paths:
           description: Failed to bind phone number
       security:
       - bearerAuth: []
-      summary: Complete WhatsApp phone number selection
+      summary: Complete number selection
       tags:
       - Connect
       x-content-type: application/json
@@ -11064,7 +11064,7 @@ paths:
           description: Discord account not found or not accessible.
         "502":
           description: Bot lacks access to the channel.
-      summary: List pinned messages in a Discord channel
+      summary: List pinned messages
       tags:
       - Discord
       x-accepts:
@@ -12373,7 +12373,7 @@ paths:
           description: X API rate limit exceeded
       security:
       - bearerAuth: []
-      summary: Create conversation (send a WhatsApp template)
+      summary: Create conversation
       tags:
       - Messages
       x-content-type: application/json
@@ -14711,7 +14711,7 @@ paths:
           description: WhatsApp account not found
       security:
       - bearerAuth: []
-      summary: Check call permission for a consumer
+      summary: Check call permission
       tags:
       - WhatsApp Calling
       x-accepts:
@@ -14924,7 +14924,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Estimate per-minute cost for a destination
+      summary: Estimate per-minute cost
       tags:
       - WhatsApp Calling
       x-accepts:
@@ -15432,7 +15432,7 @@ paths:
           description: Upstream Meta failure during provisioning
       security:
       - bearerAuth: []
-      summary: Provision CTWA conversions dataset
+      summary: Provision CTWA dataset
       tags:
       - WhatsApp
       x-content-type: application/json
@@ -15651,7 +15651,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Search available numbers to purchase
+      summary: Search available numbers
       tags:
       - WhatsApp Phone Numbers
       x-accepts:
@@ -15691,7 +15691,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Check a country's availability + address constraint
+      summary: Check country availability
       tags:
       - WhatsApp Phone Numbers
       x-accepts:
@@ -15731,7 +15731,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Get regulated-number KYC form spec
+      summary: Get KYC form spec
       tags:
       - WhatsApp Phone Numbers
       x-accepts:
@@ -15778,7 +15778,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Submit regulated-number KYC
+      summary: Submit KYC
       tags:
       - WhatsApp Phone Numbers
       x-content-type: application/json
@@ -15823,7 +15823,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Upload a single regulated-number KYC document
+      summary: Upload a KYC document
       tags:
       - WhatsApp Phone Numbers
       x-content-type: application/octet-stream
@@ -15871,7 +15871,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Pre-validate a regulated-number KYC address (Tier 4)
+      summary: Pre-validate KYC address
       tags:
       - WhatsApp Phone Numbers
       x-content-type: application/json
@@ -15951,7 +15951,7 @@ paths:
           description: Number not found
       security:
       - bearerAuth: []
-      summary: Get the declined requirements to fix
+      summary: Get declined requirements
       tags:
       - WhatsApp Phone Numbers
       x-accepts:
@@ -15993,7 +15993,7 @@ paths:
           description: Number not found
       security:
       - bearerAuth: []
-      summary: Fix a declined number and re-submit
+      summary: Resubmit a declined number
       tags:
       - WhatsApp Phone Numbers
       x-content-type: application/json
@@ -16142,7 +16142,7 @@ paths:
           description: Inbox addon required
       security:
       - bearerAuth: []
-      summary: Start a sandbox activation for a phone
+      summary: Start a sandbox activation
       tags:
       - WhatsApp Sandbox
       x-content-type: application/json
@@ -18551,7 +18551,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
-      summary: Restore a previous workflow version
+      summary: Restore a workflow version
       tags:
       - Workflows
       x-accepts:
@@ -19556,7 +19556,7 @@ paths:
           description: Operation not supported on this platform
       security:
       - bearerAuth: []
-      summary: Update a campaign (budget and/or bid strategy)
+      summary: Update a campaign
       tags:
       - Ad Campaigns
       x-content-type: application/json
@@ -19705,7 +19705,7 @@ paths:
           description: bidStrategy not supported on the platform (Meta + TikTok only)
       security:
       - bearerAuth: []
-      summary: "Update an ad set (budget, status, and/or bid strategy)"
+      summary: Update an ad set
       tags:
       - Ad Campaigns
       x-content-type: application/json
@@ -19998,7 +19998,7 @@ paths:
             by default on usage-based plans.
       security:
       - bearerAuth: []
-      summary: Get daily aggregate ad metrics for an account
+      summary: Get daily account metrics
       tags:
       - Ad Campaigns
       x-accepts:
@@ -20223,7 +20223,7 @@ paths:
           description: Platform has no click-URL tracking surface
       security:
       - bearerAuth: []
-      summary: Read an ad's click-URL tracking tags
+      summary: Get ad tracking tags
       tags:
       - Ads
       x-accepts:
@@ -20269,7 +20269,7 @@ paths:
             creative)
       security:
       - bearerAuth: []
-      summary: Set/update an ad's click-URL tracking tags
+      summary: Set ad tracking tags
       tags:
       - Ads
       x-content-type: application/json
@@ -20623,7 +20623,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Ads add-on required.
-      summary: List submitted leads (cross-form CRM view)
+      summary: List submitted leads
       tags:
       - Ads
       x-accepts:
@@ -20670,7 +20670,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Ads add-on required.
-      summary: List Lead Gen (Instant) forms
+      summary: List lead forms
       tags:
       - Ads
       x-accepts:
@@ -20696,7 +20696,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: Ads add-on required.
-      summary: Create a Lead Gen (Instant) form
+      summary: Create a lead form
       tags:
       - Ads
       x-content-type: application/json
@@ -20730,7 +20730,7 @@ paths:
           description: Archived.
         "401":
           $ref: "#/components/responses/Unauthorized"
-      summary: Archive a Lead Gen form
+      summary: Archive a lead form
       tags:
       - Ads
       x-accepts:
@@ -20761,7 +20761,7 @@ paths:
           description: Form metadata.
         "401":
           $ref: "#/components/responses/Unauthorized"
-      summary: Get a single Lead Gen form
+      summary: Get a lead form
       tags:
       - Ads
       x-accepts:
@@ -20853,7 +20853,7 @@ paths:
           description: Test lead created.
         "401":
           $ref: "#/components/responses/Unauthorized"
-      summary: Create a synthetic test lead
+      summary: Create a test lead
       tags:
       - Ads
       x-content-type: application/json
@@ -20899,7 +20899,7 @@ paths:
             by default on usage-based plans.
       security:
       - bearerAuth: []
-      summary: Search targeting interests (deprecated)
+      summary: Search targeting interests
       tags:
       - Ads
       x-accepts:
@@ -21409,7 +21409,7 @@ paths:
           description: Platform does not expose Event Match Quality (non-Meta).
       security:
       - bearerAuth: []
-      summary: Read Event Match Quality + coverage for a Meta pixel
+      summary: Get Event Match Quality
       tags:
       - Ads
       x-accepts:
@@ -21497,7 +21497,7 @@ paths:
             rate-limit semantics surfaced via platform-specific 4xx responses.
       security:
       - bearerAuth: []
-      summary: Send conversion events to an ad platform
+      summary: Send conversion events
       tags:
       - Ads
       x-content-type: application/json
@@ -21565,7 +21565,7 @@ paths:
             account's platform is not `googleads`).
       security:
       - bearerAuth: []
-      summary: Adjust already-uploaded conversions (Google only)
+      summary: Adjust uploaded conversions
       tags:
       - Ads
       x-content-type: application/json
@@ -21619,7 +21619,7 @@ paths:
           description: LinkedIn rate limit hit. Retry with backoff.
       security:
       - bearerAuth: []
-      summary: List destinations for the Conversions API
+      summary: List conversion destinations
       tags:
       - Ads
       x-accepts:
@@ -21703,7 +21703,7 @@ paths:
           description: Rate limit hit. Retry with backoff.
       security:
       - bearerAuth: []
-      summary: "Create a conversion destination (LinkedIn, Google Ads)"
+      summary: Create a conversion destination
       tags:
       - Ads
       x-content-type: application/json
@@ -21761,7 +21761,7 @@ paths:
           description: LinkedIn rate limit hit. Retry with backoff.
       security:
       - bearerAuth: []
-      summary: Soft-delete a conversion destination
+      summary: Delete a conversion destination
       tags:
       - Ads
       x-accepts:
@@ -21816,7 +21816,7 @@ paths:
           description: LinkedIn rate limit hit. Retry with backoff.
       security:
       - bearerAuth: []
-      summary: Fetch a single conversion destination
+      summary: Get a conversion destination
       tags:
       - Ads
       x-accepts:
@@ -21943,7 +21943,7 @@ paths:
           description: LinkedIn rate limit hit. Retry with backoff.
       security:
       - bearerAuth: []
-      summary: Remove campaign↔conversion associations
+      summary: Remove associated campaigns
       tags:
       - Ads
       x-accepts:
@@ -21998,7 +21998,7 @@ paths:
           description: LinkedIn rate limit hit. Retry with backoff.
       security:
       - bearerAuth: []
-      summary: List campaigns associated with a conversion destination
+      summary: List associated campaigns
       tags:
       - Ads
       x-accepts:
@@ -22055,7 +22055,7 @@ paths:
           description: LinkedIn rate limit hit. Retry with backoff.
       security:
       - bearerAuth: []
-      summary: Associate campaigns with a conversion destination
+      summary: Associate campaigns
       tags:
       - Ads
       x-content-type: application/json
@@ -22150,7 +22150,7 @@ paths:
           description: LinkedIn analytics rate limit hit.
       security:
       - bearerAuth: []
-      summary: Fetch attribution metrics for a conversion destination
+      summary: Get attribution metrics
       tags:
       - Ads
       x-accepts:
@@ -22203,7 +22203,7 @@ paths:
           description: WhatsApp account not found
       security:
       - bearerAuth: []
-      summary: List recent WhatsApp conversion events
+      summary: List conversion events
       tags:
       - WhatsApp
       - Ads
@@ -22332,7 +22332,7 @@ paths:
             missing). Inspect `platformError` for the upstream Meta payload.
       security:
       - bearerAuth: []
-      summary: Create Click-to-WhatsApp ad(s)
+      summary: Create Click-to-WhatsApp ad
       tags:
       - Ads
       x-content-type: application/json
@@ -22391,7 +22391,7 @@ paths:
           description: Platform does not support listing tracking tags.
       security:
       - bearerAuth: []
-      summary: List tracking tags (Meta Pixels)
+      summary: List tracking tags
       tags:
       - Tracking Tags
       x-accepts:
@@ -22449,7 +22449,7 @@ paths:
           description: Platform does not support creating tracking tags.
       security:
       - bearerAuth: []
-      summary: Create a tracking tag (Meta Pixel)
+      summary: Create a tracking tag
       tags:
       - Tracking Tags
       x-content-type: application/json
@@ -22497,7 +22497,7 @@ paths:
           description: Platform does not support fetching a tracking tag.
       security:
       - bearerAuth: []
-      summary: Fetch a single tracking tag (Meta Pixel)
+      summary: Get a tracking tag
       tags:
       - Tracking Tags
       x-accepts:
@@ -22558,7 +22558,7 @@ paths:
           description: Platform does not support updating tracking tags.
       security:
       - bearerAuth: []
-      summary: Update a tracking tag (Meta Pixel)
+      summary: Update a tracking tag
       tags:
       - Tracking Tags
       x-content-type: application/json
@@ -22614,7 +22614,7 @@ paths:
           description: Platform does not support shared accounts.
       security:
       - bearerAuth: []
-      summary: Stop sharing a tracking tag with an ad account
+      summary: Stop sharing with an account
       tags:
       - Tracking Tags
       x-accepts:
@@ -22657,7 +22657,7 @@ paths:
           description: Platform does not support shared accounts.
       security:
       - bearerAuth: []
-      summary: List ad accounts a tracking tag is shared with
+      summary: List accounts it is shared with
       tags:
       - Tracking Tags
       x-accepts:
@@ -22714,7 +22714,7 @@ paths:
           description: Platform does not support shared accounts.
       security:
       - bearerAuth: []
-      summary: Share a tracking tag with an ad account
+      summary: Share with an ad account
       tags:
       - Tracking Tags
       x-content-type: application/json
@@ -22807,7 +22807,7 @@ paths:
           description: Platform does not support tracking-tag stats.
       security:
       - bearerAuth: []
-      summary: Aggregated event stats for a tracking tag (Meta Pixel)
+      summary: Get aggregated event stats
       tags:
       - Tracking Tags
       x-accepts:

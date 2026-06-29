@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T07:04:30.304572761Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1302,7 +1302,7 @@ public class DiscordApi {
   }
 
   /**
-   * List pinned messages in a Discord channel
+   * List pinned messages
    * Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
    * @param channelId Discord channel snowflake. (required)
    * @param accountId SocialAccount _id of any Discord account in the same guild. (required)
@@ -1314,7 +1314,7 @@ public class DiscordApi {
   }
 
   /**
-   * List pinned messages in a Discord channel
+   * List pinned messages
    * Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
    * @param channelId Discord channel snowflake. (required)
    * @param accountId SocialAccount _id of any Discord account in the same guild. (required)
@@ -1328,7 +1328,7 @@ public class DiscordApi {
   }
 
   /**
-   * List pinned messages in a Discord channel
+   * List pinned messages
    * Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
    * @param channelId Discord channel snowflake. (required)
    * @param accountId SocialAccount _id of any Discord account in the same guild. (required)
@@ -1340,7 +1340,7 @@ public class DiscordApi {
   }
 
   /**
-   * List pinned messages in a Discord channel
+   * List pinned messages
    * Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
    * @param channelId Discord channel snowflake. (required)
    * @param accountId SocialAccount _id of any Discord account in the same guild. (required)

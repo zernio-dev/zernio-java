@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T07:04:30.304572761Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1000,7 +1000,7 @@ public class AccountsApi {
   }
 
   /**
-   * Move account to a different profile
+   * Move account to another profile
    * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)
@@ -1012,7 +1012,7 @@ public class AccountsApi {
   }
 
   /**
-   * Move account to a different profile
+   * Move account to another profile
    * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)
@@ -1026,7 +1026,7 @@ public class AccountsApi {
   }
 
   /**
-   * Move account to a different profile
+   * Move account to another profile
    * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)
@@ -1038,7 +1038,7 @@ public class AccountsApi {
   }
 
   /**
-   * Move account to a different profile
+   * Move account to another profile
    * Moves a connected social account to a different profile owned by the same user. The target profile must belong to the same user as the account.  For API keys restricted to specific profiles, BOTH the source account&#39;s current profile AND the target profile must be in the key&#39;s allowed set. Calls with a target profile outside the key&#39;s scope return 403. 
    * @param accountId  (required)
    * @param moveAccountToProfileRequest  (required)

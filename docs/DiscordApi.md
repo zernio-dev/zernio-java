@@ -20,8 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listDiscordGuildMembersWithHttpInfo**](DiscordApi.md#listDiscordGuildMembersWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/members | List Discord guild members |
 | [**listDiscordGuildRoles**](DiscordApi.md#listDiscordGuildRoles) | **GET** /v1/discord/guilds/{guildId}/roles | List Discord guild roles |
 | [**listDiscordGuildRolesWithHttpInfo**](DiscordApi.md#listDiscordGuildRolesWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/roles | List Discord guild roles |
-| [**listDiscordPinnedMessages**](DiscordApi.md#listDiscordPinnedMessages) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages in a Discord channel |
-| [**listDiscordPinnedMessagesWithHttpInfo**](DiscordApi.md#listDiscordPinnedMessagesWithHttpInfo) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages in a Discord channel |
+| [**listDiscordPinnedMessages**](DiscordApi.md#listDiscordPinnedMessages) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages |
+| [**listDiscordPinnedMessagesWithHttpInfo**](DiscordApi.md#listDiscordPinnedMessagesWithHttpInfo) | **GET** /v1/discord/channels/{channelId}/pins | List pinned messages |
 | [**listDiscordScheduledEvents**](DiscordApi.md#listDiscordScheduledEvents) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events |
 | [**listDiscordScheduledEventsWithHttpInfo**](DiscordApi.md#listDiscordScheduledEventsWithHttpInfo) | **GET** /v1/discord/guilds/{guildId}/events | List Discord scheduled events |
 | [**pinDiscordMessage**](DiscordApi.md#pinDiscordMessage) | **PUT** /v1/discord/channels/{channelId}/pins/{messageId} | Pin a Discord message |
@@ -1291,7 +1291,7 @@ ApiResponse<[**ListDiscordGuildRoles200Response**](ListDiscordGuildRoles200Respo
 
 > ListDiscordPinnedMessages200Response listDiscordPinnedMessages(channelId, accountId)
 
-List pinned messages in a Discord channel
+List pinned messages
 
 Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
 
@@ -1367,7 +1367,7 @@ public class Example {
 
 > ApiResponse<ListDiscordPinnedMessages200Response> listDiscordPinnedMessages listDiscordPinnedMessagesWithHttpInfo(channelId, accountId)
 
-List pinned messages in a Discord channel
+List pinned messages
 
 Returns the channel&#39;s pinned messages, sorted most-recently-pinned first. Discord caps a channel at 50 pinned messages and returns the full list unpaginated.  Bot needs READ_MESSAGE_HISTORY in the channel (granted by default BOT_PERMISSIONS). 
 

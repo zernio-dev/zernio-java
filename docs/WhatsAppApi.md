@@ -10,8 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**approveWhatsAppGroupJoinRequestsWithHttpInfo**](WhatsAppApi.md#approveWhatsAppGroupJoinRequestsWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId}/join-requests | Approve join requests |
 | [**blockWhatsAppUsers**](WhatsAppApi.md#blockWhatsAppUsers) | **POST** /v1/whatsapp/block-users | Block users |
 | [**blockWhatsAppUsersWithHttpInfo**](WhatsAppApi.md#blockWhatsAppUsersWithHttpInfo) | **POST** /v1/whatsapp/block-users | Block users |
-| [**createWhatsAppDataset**](WhatsAppApi.md#createWhatsAppDataset) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset |
-| [**createWhatsAppDatasetWithHttpInfo**](WhatsAppApi.md#createWhatsAppDatasetWithHttpInfo) | **POST** /v1/whatsapp/dataset | Provision CTWA conversions dataset |
+| [**createWhatsAppDataset**](WhatsAppApi.md#createWhatsAppDataset) | **POST** /v1/whatsapp/dataset | Provision CTWA dataset |
+| [**createWhatsAppDatasetWithHttpInfo**](WhatsAppApi.md#createWhatsAppDatasetWithHttpInfo) | **POST** /v1/whatsapp/dataset | Provision CTWA dataset |
 | [**createWhatsAppGroupChat**](WhatsAppApi.md#createWhatsAppGroupChat) | **POST** /v1/whatsapp/wa-groups | Create group |
 | [**createWhatsAppGroupChatWithHttpInfo**](WhatsAppApi.md#createWhatsAppGroupChatWithHttpInfo) | **POST** /v1/whatsapp/wa-groups | Create group |
 | [**createWhatsAppGroupInviteLink**](WhatsAppApi.md#createWhatsAppGroupInviteLink) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link |
@@ -38,8 +38,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template |
 | [**getWhatsAppTemplates**](WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates |
 | [**getWhatsAppTemplatesWithHttpInfo**](WhatsAppApi.md#getWhatsAppTemplatesWithHttpInfo) | **GET** /v1/whatsapp/templates | List templates |
-| [**listWhatsAppConversions**](WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events |
-| [**listWhatsAppConversionsWithHttpInfo**](WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List recent WhatsApp conversion events |
+| [**listWhatsAppConversions**](WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events |
+| [**listWhatsAppConversionsWithHttpInfo**](WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**listWhatsAppGroupChats**](WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups |
 | [**listWhatsAppGroupChatsWithHttpInfo**](WhatsAppApi.md#listWhatsAppGroupChatsWithHttpInfo) | **GET** /v1/whatsapp/wa-groups | List active groups |
 | [**listWhatsAppGroupJoinRequests**](WhatsAppApi.md#listWhatsAppGroupJoinRequests) | **GET** /v1/whatsapp/wa-groups/{groupId}/join-requests | List join requests |
@@ -525,7 +525,7 @@ ApiResponse<[**BlockWhatsAppUsers200Response**](BlockWhatsAppUsers200Response.md
 
 > CreateWhatsAppDataset200Response createWhatsAppDataset(createWhatsAppDatasetRequest)
 
-Provision CTWA conversions dataset
+Provision CTWA dataset
 
 Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
 
@@ -599,7 +599,7 @@ public class Example {
 
 > ApiResponse<CreateWhatsAppDataset200Response> createWhatsAppDataset createWhatsAppDatasetWithHttpInfo(createWhatsAppDatasetRequest)
 
-Provision CTWA conversions dataset
+Provision CTWA dataset
 
 Creates (or fetches, if one already exists) the Meta dataset that Click-to-WhatsApp ad events are reported against via the Conversions API, and persists its ID on the account as &#x60;metadata.metaCapiDatasetId&#x60;.  The call is GET-first idempotent — a WABA can only own one CTWA dataset, so a second call after a successful provision is a safe no-op that returns the same ID with &#x60;created: false&#x60;.  Requires the connected WhatsApp account&#39;s token to carry the &#x60;whatsapp_business_manage_events&#x60; permission. If the permission is missing the endpoint returns 422 with a message asking the user to reconnect the account. 
 
@@ -2639,7 +2639,7 @@ ApiResponse<[**GetWhatsAppTemplates200Response**](GetWhatsAppTemplates200Respons
 
 > ListWhatsAppConversions200Response listWhatsAppConversions(accountId, limit)
 
-List recent WhatsApp conversion events
+List conversion events
 
 Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
 
@@ -2713,7 +2713,7 @@ public class Example {
 
 > ApiResponse<ListWhatsAppConversions200Response> listWhatsAppConversions listWhatsAppConversionsWithHttpInfo(accountId, limit)
 
-List recent WhatsApp conversion events
+List conversion events
 
 Returns the most recent conversion events sent through &#x60;POST /v1/whatsapp/conversions&#x60; for the given WhatsApp account. Sourced from delivery logs (Axiom &#x60;late&#x60; dataset), so the visible window is bounded by log retention (about 30 days). Useful for rendering a \&quot;recent activity\&quot; panel on the conversions setup tab without standing up a parallel persistence layer.  Per-event payload mirrors the structured log we write on every successful send: &#x60;eventName&#x60;, &#x60;conversationId&#x60;, &#x60;eventsReceived&#x60;, &#x60;eventsFailed&#x60;, &#x60;traceId&#x60;, &#x60;durationMs&#x60;, and the wall-clock &#x60;timestamp&#x60;. 
 

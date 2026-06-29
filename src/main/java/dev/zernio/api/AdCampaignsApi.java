@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T07:04:30.304572761Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -762,7 +762,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Get daily aggregate ad metrics for an account
+   * Get daily account metrics
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
    * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
@@ -777,7 +777,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Get daily aggregate ad metrics for an account
+   * Get daily account metrics
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
    * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
@@ -794,7 +794,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Get daily aggregate ad metrics for an account
+   * Get daily account metrics
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
    * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
@@ -809,7 +809,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Get daily aggregate ad metrics for an account
+   * Get daily account metrics
    * Returns daily aggregate metrics across all ads in a SocialAccount as a single time series — one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa) — same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the 90-day cache window trigger an on-demand backfill from the platform before returning. 
    * @param accountId Social account ID. Sibling-expanded to its linked posting↔ads pair. (required)
    * @param adAccountId Optional platform-native ad account ID (e.g. Meta &#x60;act_…&#x60;, TikTok advertiser ID). Use when the connection wraps multiple platform ad accounts and the chart should show one only. Note: rows ingested before 2026-05-13 don&#39;t carry this column; the recurring 7-day re-sync repopulates them naturally. (optional)
@@ -1100,7 +1100,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a campaign (budget and/or bid strategy)
+   * Update a campaign
    * Campaign-level edits. At least one of &#x60;budget&#x60; or &#x60;bidStrategy&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
@@ -1112,7 +1112,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a campaign (budget and/or bid strategy)
+   * Update a campaign
    * Campaign-level edits. At least one of &#x60;budget&#x60; or &#x60;bidStrategy&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
@@ -1126,7 +1126,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a campaign (budget and/or bid strategy)
+   * Update a campaign
    * Campaign-level edits. At least one of &#x60;budget&#x60; or &#x60;bidStrategy&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
@@ -1138,7 +1138,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a campaign (budget and/or bid strategy)
+   * Update a campaign
    * Campaign-level edits. At least one of &#x60;budget&#x60; or &#x60;bidStrategy&#x60; is required.  - &#x60;budget&#x60; updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns   (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint   will return 409 with code BUDGET_LEVEL_MISMATCH. - &#x60;bidStrategy&#x60; sets the campaign-level default bid strategy. Per Meta&#39;s spec, &#x60;bid_amount&#x60; and   &#x60;bid_constraints&#x60; do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.  Meta-only for now. Other platforms return 501 Not Implemented. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
@@ -1364,7 +1364,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update an ad set (budget, status, and/or bid strategy)
+   * Update an ad set
    * Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, and bid-strategy edits. At least one of &#x60;budget&#x60;, &#x60;status&#x60;, or &#x60;bidStrategy&#x60; is required.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS).  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
    * @param adSetId Platform ad set ID (required)
    * @param updateAdSetRequest  (required)
@@ -1376,7 +1376,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update an ad set (budget, status, and/or bid strategy)
+   * Update an ad set
    * Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, and bid-strategy edits. At least one of &#x60;budget&#x60;, &#x60;status&#x60;, or &#x60;bidStrategy&#x60; is required.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS).  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
    * @param adSetId Platform ad set ID (required)
    * @param updateAdSetRequest  (required)
@@ -1390,7 +1390,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update an ad set (budget, status, and/or bid strategy)
+   * Update an ad set
    * Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, and bid-strategy edits. At least one of &#x60;budget&#x60;, &#x60;status&#x60;, or &#x60;bidStrategy&#x60; is required.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS).  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
    * @param adSetId Platform ad set ID (required)
    * @param updateAdSetRequest  (required)
@@ -1402,7 +1402,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update an ad set (budget, status, and/or bid strategy)
+   * Update an ad set
    * Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped pause/resume, and bid-strategy edits. At least one of &#x60;budget&#x60;, &#x60;status&#x60;, or &#x60;bidStrategy&#x60; is required.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS).  When updating &#x60;budget&#x60; on an ABO campaign: if the parent campaign is CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to PUT /v1/ads/campaigns/{campaignId} instead. 
    * @param adSetId Platform ad set ID (required)
    * @param updateAdSetRequest  (required)

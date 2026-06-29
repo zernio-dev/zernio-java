@@ -26,8 +26,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listWorkflowsWithHttpInfo**](WorkflowsApi.md#listWorkflowsWithHttpInfo) | **GET** /v1/workflows | List workflows |
 | [**pauseWorkflow**](WorkflowsApi.md#pauseWorkflow) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow |
 | [**pauseWorkflowWithHttpInfo**](WorkflowsApi.md#pauseWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow |
-| [**restoreWorkflowVersion**](WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a previous workflow version |
-| [**restoreWorkflowVersionWithHttpInfo**](WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a previous workflow version |
+| [**restoreWorkflowVersion**](WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
+| [**restoreWorkflowVersionWithHttpInfo**](WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
 | [**triggerWorkflow**](WorkflowsApi.md#triggerWorkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
 | [**triggerWorkflowWithHttpInfo**](WorkflowsApi.md#triggerWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
 | [**updateWorkflow**](WorkflowsApi.md#updateWorkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow |
@@ -1697,7 +1697,7 @@ ApiResponse<[**PauseWorkflow200Response**](PauseWorkflow200Response.md)>
 
 > RestoreWorkflowVersion200Response restoreWorkflowVersion(workflowId, version)
 
-Restore a previous workflow version
+Restore a workflow version
 
 Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
 
@@ -1772,7 +1772,7 @@ public class Example {
 
 > ApiResponse<RestoreWorkflowVersion200Response> restoreWorkflowVersion restoreWorkflowVersionWithHttpInfo(workflowId, version)
 
-Restore a previous workflow version
+Restore a workflow version
 
 Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
 

@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T07:04:30.304572761Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WorkflowsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1552,7 +1552,7 @@ public class WorkflowsApi {
   }
 
   /**
-   * Restore a previous workflow version
+   * Restore a workflow version
    * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
    * @param workflowId  (required)
    * @param version  (required)
@@ -1564,7 +1564,7 @@ public class WorkflowsApi {
   }
 
   /**
-   * Restore a previous workflow version
+   * Restore a workflow version
    * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
    * @param workflowId  (required)
    * @param version  (required)
@@ -1578,7 +1578,7 @@ public class WorkflowsApi {
   }
 
   /**
-   * Restore a previous workflow version
+   * Restore a workflow version
    * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
    * @param workflowId  (required)
    * @param version  (required)
@@ -1590,7 +1590,7 @@ public class WorkflowsApi {
   }
 
   /**
-   * Restore a previous workflow version
+   * Restore a workflow version
    * Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
    * @param workflowId  (required)
    * @param version  (required)
