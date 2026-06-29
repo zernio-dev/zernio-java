@@ -50,11 +50,13 @@ import dev.zernio.ApiClient;
   PlatformTarget.JSON_PROPERTY_PLATFORM_POST_ID,
   PlatformTarget.JSON_PROPERTY_PLATFORM_POST_URL,
   PlatformTarget.JSON_PROPERTY_PUBLISHED_AT,
+  PlatformTarget.JSON_PROPERTY_IS_TRIAL_REEL,
+  PlatformTarget.JSON_PROPERTY_TRIAL_GRADUATION_STRATEGY,
   PlatformTarget.JSON_PROPERTY_ERROR_MESSAGE,
   PlatformTarget.JSON_PROPERTY_ERROR_CATEGORY,
   PlatformTarget.JSON_PROPERTY_ERROR_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T16:06:08.960184583Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformTarget {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -95,6 +97,49 @@ public class PlatformTarget {
   public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
   @javax.annotation.Nullable
   private OffsetDateTime publishedAt;
+
+  public static final String JSON_PROPERTY_IS_TRIAL_REEL = "isTrialReel";
+  @javax.annotation.Nullable
+  private Boolean isTrialReel;
+
+  /**
+   * Graduation strategy the trial reel was launched with. Present only when isTrialReel is true.
+   */
+  public enum TrialGraduationStrategyEnum {
+    MANUAL(String.valueOf("MANUAL")),
+    
+    SS_PERFORMANCE(String.valueOf("SS_PERFORMANCE"));
+
+    private String value;
+
+    TrialGraduationStrategyEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TrialGraduationStrategyEnum fromValue(String value) {
+      for (TrialGraduationStrategyEnum b : TrialGraduationStrategyEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TRIAL_GRADUATION_STRATEGY = "trialGraduationStrategy";
+  @javax.annotation.Nullable
+  private TrialGraduationStrategyEnum trialGraduationStrategy;
 
   public static final String JSON_PROPERTY_ERROR_MESSAGE = "errorMessage";
   @javax.annotation.Nullable
@@ -443,6 +488,54 @@ public class PlatformTarget {
   }
 
 
+  public PlatformTarget isTrialReel(@javax.annotation.Nullable Boolean isTrialReel) {
+    this.isTrialReel = isTrialReel;
+    return this;
+  }
+
+  /**
+   * Present and true only when this Instagram reel was launched as a Trial through Zernio (created with platformSpecificData.trialParams). Use it to segment trial reels in analytics. Note: Instagram&#39;s Graph API exposes no readable trial field, so this reflects creation-time intent only. It indicates the reel STARTED as a trial, not whether or when it graduated.
+   * @return isTrialReel
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_TRIAL_REEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsTrialReel() {
+    return isTrialReel;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_TRIAL_REEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsTrialReel(@javax.annotation.Nullable Boolean isTrialReel) {
+    this.isTrialReel = isTrialReel;
+  }
+
+
+  public PlatformTarget trialGraduationStrategy(@javax.annotation.Nullable TrialGraduationStrategyEnum trialGraduationStrategy) {
+    this.trialGraduationStrategy = trialGraduationStrategy;
+    return this;
+  }
+
+  /**
+   * Graduation strategy the trial reel was launched with. Present only when isTrialReel is true.
+   * @return trialGraduationStrategy
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRIAL_GRADUATION_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TrialGraduationStrategyEnum getTrialGraduationStrategy() {
+    return trialGraduationStrategy;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRIAL_GRADUATION_STRATEGY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTrialGraduationStrategy(@javax.annotation.Nullable TrialGraduationStrategyEnum trialGraduationStrategy) {
+    this.trialGraduationStrategy = trialGraduationStrategy;
+  }
+
+
   public PlatformTarget errorMessage(@javax.annotation.Nullable String errorMessage) {
     this.errorMessage = errorMessage;
     return this;
@@ -537,6 +630,8 @@ public class PlatformTarget {
         Objects.equals(this.platformPostId, platformTarget.platformPostId) &&
         Objects.equals(this.platformPostUrl, platformTarget.platformPostUrl) &&
         Objects.equals(this.publishedAt, platformTarget.publishedAt) &&
+        Objects.equals(this.isTrialReel, platformTarget.isTrialReel) &&
+        Objects.equals(this.trialGraduationStrategy, platformTarget.trialGraduationStrategy) &&
         Objects.equals(this.errorMessage, platformTarget.errorMessage) &&
         Objects.equals(this.errorCategory, platformTarget.errorCategory) &&
         Objects.equals(this.errorSource, platformTarget.errorSource);
@@ -544,7 +639,7 @@ public class PlatformTarget {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, accountId, customContent, customMedia, scheduledFor, platformSpecificData, status, platformPostId, platformPostUrl, publishedAt, errorMessage, errorCategory, errorSource);
+    return Objects.hash(platform, accountId, customContent, customMedia, scheduledFor, platformSpecificData, status, platformPostId, platformPostUrl, publishedAt, isTrialReel, trialGraduationStrategy, errorMessage, errorCategory, errorSource);
   }
 
   @Override
@@ -561,6 +656,8 @@ public class PlatformTarget {
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    platformPostUrl: ").append(toIndentedString(platformPostUrl)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
+    sb.append("    isTrialReel: ").append(toIndentedString(isTrialReel)).append("\n");
+    sb.append("    trialGraduationStrategy: ").append(toIndentedString(trialGraduationStrategy)).append("\n");
     sb.append("    errorMessage: ").append(toIndentedString(errorMessage)).append("\n");
     sb.append("    errorCategory: ").append(toIndentedString(errorCategory)).append("\n");
     sb.append("    errorSource: ").append(toIndentedString(errorSource)).append("\n");
@@ -664,6 +761,16 @@ public class PlatformTarget {
     // add `publishedAt` to the URL query string
     if (getPublishedAt() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spublishedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublishedAt()))));
+    }
+
+    // add `isTrialReel` to the URL query string
+    if (getIsTrialReel() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisTrialReel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsTrialReel()))));
+    }
+
+    // add `trialGraduationStrategy` to the URL query string
+    if (getTrialGraduationStrategy() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%strialGraduationStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrialGraduationStrategy()))));
     }
 
     // add `errorMessage` to the URL query string

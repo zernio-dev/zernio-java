@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GoogleBusinessPlatformDataOffer.JSON_PROPERTY_TERMS_CONDITIONS,
   GoogleBusinessPlatformDataOffer.JSON_PROPERTY_COUPON_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T16:06:08.960184583Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleBusinessPlatformDataOffer {
   /**
    * Type of offer

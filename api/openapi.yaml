@@ -26525,6 +26525,8 @@ components:
         platform: twitter
         accountId: PlatformTarget_accountId
         customContent: customContent
+        trialGraduationStrategy: MANUAL
+        isTrialReel: true
         errorCategory: auth_expired
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -26595,6 +26597,21 @@ components:
         publishedAt:
           description: Timestamp when the post was published to this platform
           format: date-time
+          type: string
+        isTrialReel:
+          description: "Present and true only when this Instagram reel was launched\
+            \ as a Trial through Zernio (created with platformSpecificData.trialParams).\
+            \ Use it to segment trial reels in analytics. Note: Instagram's Graph\
+            \ API exposes no readable trial field, so this reflects creation-time\
+            \ intent only. It indicates the reel STARTED as a trial, not whether or\
+            \ when it graduated."
+          type: boolean
+        trialGraduationStrategy:
+          description: Graduation strategy the trial reel was launched with. Present
+            only when isTrialReel is true.
+          enum:
+          - MANUAL
+          - SS_PERFORMANCE
           type: string
         errorMessage:
           description: Human-readable error message when status is failed. Contains
@@ -26727,6 +26744,8 @@ components:
           platform: twitter
           accountId: PlatformTarget_accountId
           customContent: customContent
+          trialGraduationStrategy: MANUAL
+          isTrialReel: true
           errorCategory: auth_expired
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -26827,6 +26846,8 @@ components:
           platform: twitter
           accountId: PlatformTarget_accountId
           customContent: customContent
+          trialGraduationStrategy: MANUAL
+          isTrialReel: true
           errorCategory: auth_expired
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -28751,6 +28772,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -28851,6 +28874,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29011,6 +29036,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29111,6 +29138,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29281,6 +29310,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29381,6 +29412,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29547,6 +29580,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29647,6 +29682,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29816,6 +29853,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -29916,6 +29955,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -30091,6 +30132,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
@@ -30191,6 +30234,8 @@ components:
             platform: twitter
             accountId: PlatformTarget_accountId
             customContent: customContent
+            trialGraduationStrategy: MANUAL
+            isTrialReel: true
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789

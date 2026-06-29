@@ -5,7 +5,7 @@
     <artifactId>zernio-sdk</artifactId>
     <packaging>jar</packaging>
     <name>zernio-sdk</name>
-    <version>0.0.406</version>
+    <version>0.0.407</version>
     <url>https://github.com/zernio-dev/zernio-java</url>
     <description>Official Zernio API Java SDK - schedule and publish social media posts across 14+ platforms.</description>
     <scm>

@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CreateWorkflowRequest.JSON_PROPERTY_EDGES,
   CreateWorkflowRequest.JSON_PROPERTY_ENTRY_NODE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T15:27:43.713122525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T16:06:08.960184583Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWorkflowRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
