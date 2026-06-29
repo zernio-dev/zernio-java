@@ -74,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-26T16:08:45.051932287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T07:04:30.304572761Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -860,6 +860,7 @@ public class PostsApi {
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Page size (optional, default to 10)
+   * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
@@ -873,8 +874,8 @@ public class PostsApi {
    * @return PostsListResponse
    * @throws ApiException if fails to make API call
    */
-  public PostsListResponse listPosts(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId) throws ApiException {
-    return listPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, null);
+  public PostsListResponse listPosts(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId) throws ApiException {
+    return listPosts(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, null);
   }
 
   /**
@@ -882,6 +883,7 @@ public class PostsApi {
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Page size (optional, default to 10)
+   * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
@@ -896,8 +898,8 @@ public class PostsApi {
    * @return PostsListResponse
    * @throws ApiException if fails to make API call
    */
-  public PostsListResponse listPosts(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<PostsListResponse> localVarResponse = listPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, headers);
+  public PostsListResponse listPosts(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<PostsListResponse> localVarResponse = listPostsWithHttpInfo(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, headers);
     return localVarResponse.getData();
   }
 
@@ -906,6 +908,7 @@ public class PostsApi {
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Page size (optional, default to 10)
+   * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
@@ -919,8 +922,8 @@ public class PostsApi {
    * @return ApiResponse&lt;PostsListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PostsListResponse> listPostsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId) throws ApiException {
-    return listPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, null);
+  public ApiResponse<PostsListResponse> listPostsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId) throws ApiException {
+    return listPostsWithHttpInfo(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, null);
   }
 
   /**
@@ -928,6 +931,7 @@ public class PostsApi {
    * Returns a paginated list of posts. Published posts include platformPostUrl with the public URL on each platform.
    * @param page Page number (1-based) (optional, default to 1)
    * @param limit Page size (optional, default to 10)
+   * @param source Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). (optional, default to zernio)
    * @param status  (optional)
    * @param platform  (optional)
    * @param profileId  (optional)
@@ -942,8 +946,8 @@ public class PostsApi {
    * @return ApiResponse&lt;PostsListResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<PostsListResponse> listPostsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listPostsRequestBuilder(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, headers);
+  public ApiResponse<PostsListResponse> listPostsWithHttpInfo(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listPostsRequestBuilder(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -990,7 +994,7 @@ public class PostsApi {
     }
   }
 
-  private HttpRequest.Builder listPostsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listPostsRequestBuilder(@javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String source, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String createdBy, @javax.annotation.Nullable LocalDate dateFrom, @javax.annotation.Nullable LocalDate dateTo, @javax.annotation.Nullable Boolean includeHidden, @javax.annotation.Nullable String search, @javax.annotation.Nullable String sortBy, @javax.annotation.Nullable String accountId, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1003,6 +1007,8 @@ public class PostsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "source";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("source", source));
     localVarQueryParameterBaseName = "status";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("status", status));
     localVarQueryParameterBaseName = "platform";

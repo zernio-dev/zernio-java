@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_THUMBNAIL_URL,
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_PLACEMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-26T16:08:45.051932287Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T07:04:30.304572761Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable

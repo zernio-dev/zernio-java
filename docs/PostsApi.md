@@ -803,7 +803,7 @@ ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
 
 ## listPosts
 
-> PostsListResponse listPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId)
+> PostsListResponse listPosts(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId)
 
 List posts
 
@@ -832,6 +832,7 @@ public class Example {
         PostsApi apiInstance = new PostsApi(defaultClient);
         Integer page = 1; // Integer | Page number (1-based)
         Integer limit = 10; // Integer | Page size
+        String source = "zernio"; // String | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account).
         String status = "draft"; // String | 
         String platform = "twitter"; // String | 
         String profileId = "profileId_example"; // String | 
@@ -843,7 +844,7 @@ public class Example {
         String sortBy = "scheduled-desc"; // String | Sort order for results.
         String accountId = "accountId_example"; // String | Filter posts to those published via a specific social account (24-char hex ObjectId).
         try {
-            PostsListResponse result = apiInstance.listPosts(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+            PostsListResponse result = apiInstance.listPosts(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PostsApi#listPosts");
@@ -863,6 +864,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**| Page size | [optional] [default to 10] |
+| **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
 | **status** | **String**|  | [optional] [enum: draft, scheduled, published, failed] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**|  | [optional] |
@@ -896,7 +898,7 @@ public class Example {
 
 ## listPostsWithHttpInfo
 
-> ApiResponse<PostsListResponse> listPosts listPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId)
+> ApiResponse<PostsListResponse> listPosts listPostsWithHttpInfo(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId)
 
 List posts
 
@@ -926,6 +928,7 @@ public class Example {
         PostsApi apiInstance = new PostsApi(defaultClient);
         Integer page = 1; // Integer | Page number (1-based)
         Integer limit = 10; // Integer | Page size
+        String source = "zernio"; // String | Which collection to read. `zernio` (default) returns posts authored through Zernio. `external` returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with `accountId` and paginate via `page`/`limit` to walk the full synced history (we keep up to the last ~12 months per account).
         String status = "draft"; // String | 
         String platform = "twitter"; // String | 
         String profileId = "profileId_example"; // String | 
@@ -937,7 +940,7 @@ public class Example {
         String sortBy = "scheduled-desc"; // String | Sort order for results.
         String accountId = "accountId_example"; // String | Filter posts to those published via a specific social account (24-char hex ObjectId).
         try {
-            ApiResponse<PostsListResponse> response = apiInstance.listPostsWithHttpInfo(page, limit, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+            ApiResponse<PostsListResponse> response = apiInstance.listPostsWithHttpInfo(page, limit, source, status, platform, profileId, createdBy, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -959,6 +962,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **page** | **Integer**| Page number (1-based) | [optional] [default to 1] |
 | **limit** | **Integer**| Page size | [optional] [default to 10] |
+| **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
 | **status** | **String**|  | [optional] [enum: draft, scheduled, published, failed] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**|  | [optional] |
