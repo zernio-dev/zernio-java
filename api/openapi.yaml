@@ -15233,6 +15233,161 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/whatsapp/business-profile/username:
+    delete:
+      description: |
+        Release the currently claimed WhatsApp Business username from the account.
+        After deletion the username becomes available for other accounts to claim.
+      operationId: deleteWhatsappBusinessUsername
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 507f1f77bcf86cd799439011
+            schema:
+              $ref: "#/components/schemas/deleteWhatsappBusinessUsername_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Username deleted successfully
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Delete business username
+      tags:
+      - WhatsApp
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    get:
+      description: |
+        Fetch the current WhatsApp Business username and its approval status.
+        Username status can be `approved` (active), `reserved` (pending activation), or `none` (no username set).
+      operationId: getWhatsappBusinessUsername
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsappBusinessUsername_200_response"
+          description: Business username retrieved successfully
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Get business username
+      tags:
+      - WhatsApp
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Claim or transfer a WhatsApp Business username for the account.
+
+        Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter,
+        no leading or trailing periods, no consecutive periods, no `www` prefix, no domain TLD suffix (e.g. `.com`).
+
+        If the desired username is currently held by another account, pass `transferAction: "force_transfer"` to
+        request a transfer. On failure the API returns a standard error envelope with one of these codes:
+        `whatsapp_username_unavailable` (already taken and transfer not requested),
+        `whatsapp_username_ineligible` (account not eligible to claim a username), or
+        `whatsapp_username_transfer_required` (username is held elsewhere; retry with `force_transfer`).
+      operationId: setWhatsappBusinessUsername
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 507f1f77bcf86cd799439011
+              username: mybusiness
+              transferAction: none
+            schema:
+              $ref: "#/components/schemas/setWhatsappBusinessUsername_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                username: mybusiness
+                status: approved
+              schema:
+                $ref: "#/components/schemas/setWhatsappBusinessUsername_200_response"
+          description: Username claimed successfully
+        "400":
+          description: Validation error or username unavailable (see error code in
+            response)
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Set business username
+      tags:
+      - WhatsApp
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/whatsapp/business-profile/username/suggestions:
+    get:
+      description: |
+        Retrieve a list of available WhatsApp Business username suggestions based on the account's
+        business profile name. Use these to help users discover valid, unclaimed usernames.
+      operationId: getWhatsappBusinessUsernameSuggestions
+      parameters:
+      - description: WhatsApp social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                suggestions:
+                - mybusiness
+                - mybusiness_official
+                - mybiz
+              schema:
+                $ref: "#/components/schemas/getWhatsappBusinessUsernameSuggestions_200_response"
+          description: Username suggestions retrieved successfully
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: WhatsApp account not found
+      security:
+      - bearerAuth: []
+      summary: Get username suggestions
+      tags:
+      - WhatsApp
+      x-accepts:
+      - application/json
   /v1/whatsapp/number-info:
     get:
       description: |
@@ -15491,7 +15646,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/createWhatsAppDataset_request"
+              $ref: "#/components/schemas/deleteWhatsappBusinessUsername_request"
         required: true
       responses:
         "200":
@@ -17176,7 +17331,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/createWhatsAppDataset_request"
+              $ref: "#/components/schemas/deleteWhatsappBusinessUsername_request"
         required: true
       responses:
         "200":
@@ -17218,7 +17373,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/createWhatsAppDataset_request"
+              $ref: "#/components/schemas/deleteWhatsappBusinessUsername_request"
         required: true
       responses:
         "200":
@@ -45885,6 +46040,84 @@ components:
           type: string
         displayName:
           $ref: "#/components/schemas/updateWhatsAppDisplayName_200_response_displayName"
+    getWhatsappBusinessUsername_200_response:
+      example:
+        success: true
+        username: username
+        status: approved
+      properties:
+        success:
+          type: boolean
+        username:
+          description: "The current username, or null if none is set"
+          type: string
+          nullable: true
+        status:
+          description: Approval state of the username
+          enum:
+          - approved
+          - reserved
+          - none
+          type: string
+    setWhatsappBusinessUsername_request:
+      properties:
+        accountId:
+          description: WhatsApp social account ID
+          type: string
+        username:
+          description: |
+            Desired username. Letters, digits, period, and underscore only. Must contain at least one letter. No leading, trailing, or consecutive periods. No www prefix. No domain TLD suffix.
+          maxLength: 35
+          minLength: 3
+          type: string
+        transferAction:
+          default: none
+          description: Pass `force_transfer` to request a transfer if the username
+            is held by another account
+          enum:
+          - none
+          - force_transfer
+          type: string
+      required:
+      - accountId
+      - username
+    setWhatsappBusinessUsername_200_response:
+      example:
+        success: true
+        username: username
+        status: approved
+      properties:
+        success:
+          type: boolean
+        username:
+          type: string
+        status:
+          enum:
+          - approved
+          - reserved
+          - none
+          type: string
+    deleteWhatsappBusinessUsername_request:
+      properties:
+        accountId:
+          description: WhatsApp social account ID
+          type: string
+      required:
+      - accountId
+    getWhatsappBusinessUsernameSuggestions_200_response:
+      example:
+        success: true
+        suggestions:
+        - suggestions
+        - suggestions
+      properties:
+        success:
+          type: boolean
+        suggestions:
+          description: List of available username suggestions
+          items:
+            type: string
+          type: array
     getWhatsAppNumberInfo_200_response_phone_throughput:
       example:
         level: level
@@ -46122,13 +46355,6 @@ components:
             \ yet"
           nullable: true
           type: string
-    createWhatsAppDataset_request:
-      properties:
-        accountId:
-          description: WhatsApp social account ID
-          type: string
-      required:
-      - accountId
     createWhatsAppDataset_200_response:
       example:
         created: true

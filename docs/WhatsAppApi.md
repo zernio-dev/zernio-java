@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteWhatsAppGroupChatWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group |
 | [**deleteWhatsAppTemplate**](WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
 | [**deleteWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppTemplateWithHttpInfo) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
+| [**deleteWhatsappBusinessUsername**](WhatsAppApi.md#deleteWhatsappBusinessUsername) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username |
+| [**deleteWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#deleteWhatsappBusinessUsernameWithHttpInfo) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username |
 | [**getWhatsAppBlockStatus**](WhatsAppApi.md#getWhatsAppBlockStatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked |
 | [**getWhatsAppBlockStatusWithHttpInfo**](WhatsAppApi.md#getWhatsAppBlockStatusWithHttpInfo) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked |
 | [**getWhatsAppBlockedUsers**](WhatsAppApi.md#getWhatsAppBlockedUsers) | **GET** /v1/whatsapp/block-users | List blocked users |
@@ -38,6 +40,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template |
 | [**getWhatsAppTemplates**](WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates |
 | [**getWhatsAppTemplatesWithHttpInfo**](WhatsAppApi.md#getWhatsAppTemplatesWithHttpInfo) | **GET** /v1/whatsapp/templates | List templates |
+| [**getWhatsappBusinessUsername**](WhatsAppApi.md#getWhatsappBusinessUsername) | **GET** /v1/whatsapp/business-profile/username | Get business username |
+| [**getWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#getWhatsappBusinessUsernameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username | Get business username |
+| [**getWhatsappBusinessUsernameSuggestions**](WhatsAppApi.md#getWhatsappBusinessUsernameSuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
+| [**getWhatsappBusinessUsernameSuggestionsWithHttpInfo**](WhatsAppApi.md#getWhatsappBusinessUsernameSuggestionsWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
 | [**listWhatsAppConversions**](WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**listWhatsAppConversionsWithHttpInfo**](WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**listWhatsAppGroupChats**](WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups |
@@ -50,6 +56,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**removeWhatsAppGroupParticipantsWithHttpInfo**](WhatsAppApi.md#removeWhatsAppGroupParticipantsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants |
 | [**sendWhatsAppConversion**](WhatsAppApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**sendWhatsAppConversionWithHttpInfo**](WhatsAppApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
+| [**setWhatsappBusinessUsername**](WhatsAppApi.md#setWhatsappBusinessUsername) | **POST** /v1/whatsapp/business-profile/username | Set business username |
+| [**setWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#setWhatsappBusinessUsernameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/username | Set business username |
 | [**unblockWhatsAppUsers**](WhatsAppApi.md#unblockWhatsAppUsers) | **DELETE** /v1/whatsapp/block-users | Unblock users |
 | [**unblockWhatsAppUsersWithHttpInfo**](WhatsAppApi.md#unblockWhatsAppUsersWithHttpInfo) | **DELETE** /v1/whatsapp/block-users | Unblock users |
 | [**updateWhatsAppBusinessProfile**](WhatsAppApi.md#updateWhatsAppBusinessProfile) | **POST** /v1/whatsapp/business-profile | Update business profile |
@@ -523,7 +531,7 @@ ApiResponse<[**BlockWhatsAppUsers200Response**](BlockWhatsAppUsers200Response.md
 
 ## createWhatsAppDataset
 
-> CreateWhatsAppDataset200Response createWhatsAppDataset(createWhatsAppDatasetRequest)
+> CreateWhatsAppDataset200Response createWhatsAppDataset(deleteWhatsappBusinessUsernameRequest)
 
 Provision CTWA dataset
 
@@ -550,9 +558,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
+        DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest = new DeleteWhatsappBusinessUsernameRequest(); // DeleteWhatsappBusinessUsernameRequest | 
         try {
-            CreateWhatsAppDataset200Response result = apiInstance.createWhatsAppDataset(createWhatsAppDatasetRequest);
+            CreateWhatsAppDataset200Response result = apiInstance.createWhatsAppDataset(deleteWhatsappBusinessUsernameRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppApi#createWhatsAppDataset");
@@ -570,7 +578,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md)|  | |
+| **deleteWhatsappBusinessUsernameRequest** | [**DeleteWhatsappBusinessUsernameRequest**](DeleteWhatsappBusinessUsernameRequest.md)|  | |
 
 ### Return type
 
@@ -597,7 +605,7 @@ public class Example {
 
 ## createWhatsAppDatasetWithHttpInfo
 
-> ApiResponse<CreateWhatsAppDataset200Response> createWhatsAppDataset createWhatsAppDatasetWithHttpInfo(createWhatsAppDatasetRequest)
+> ApiResponse<CreateWhatsAppDataset200Response> createWhatsAppDataset createWhatsAppDatasetWithHttpInfo(deleteWhatsappBusinessUsernameRequest)
 
 Provision CTWA dataset
 
@@ -625,9 +633,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
-        CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest = new CreateWhatsAppDatasetRequest(); // CreateWhatsAppDatasetRequest | 
+        DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest = new DeleteWhatsappBusinessUsernameRequest(); // DeleteWhatsappBusinessUsernameRequest | 
         try {
-            ApiResponse<CreateWhatsAppDataset200Response> response = apiInstance.createWhatsAppDatasetWithHttpInfo(createWhatsAppDatasetRequest);
+            ApiResponse<CreateWhatsAppDataset200Response> response = apiInstance.createWhatsAppDatasetWithHttpInfo(deleteWhatsappBusinessUsernameRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -647,7 +655,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createWhatsAppDatasetRequest** | [**CreateWhatsAppDatasetRequest**](CreateWhatsAppDatasetRequest.md)|  | |
+| **deleteWhatsappBusinessUsernameRequest** | [**DeleteWhatsappBusinessUsernameRequest**](DeleteWhatsappBusinessUsernameRequest.md)|  | |
 
 ### Return type
 
@@ -1423,6 +1431,154 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **400** | accountId or template name is required |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+
+
+## deleteWhatsappBusinessUsername
+
+> UpdateYoutubeDefaultPlaylist200Response deleteWhatsappBusinessUsername(deleteWhatsappBusinessUsernameRequest)
+
+Delete business username
+
+Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest = new DeleteWhatsappBusinessUsernameRequest(); // DeleteWhatsappBusinessUsernameRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteWhatsappBusinessUsername(deleteWhatsappBusinessUsernameRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#deleteWhatsappBusinessUsername");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **deleteWhatsappBusinessUsernameRequest** | [**DeleteWhatsappBusinessUsernameRequest**](DeleteWhatsappBusinessUsernameRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Username deleted successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## deleteWhatsappBusinessUsernameWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWhatsappBusinessUsername deleteWhatsappBusinessUsernameWithHttpInfo(deleteWhatsappBusinessUsernameRequest)
+
+Delete business username
+
+Release the currently claimed WhatsApp Business username from the account. After deletion the username becomes available for other accounts to claim. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest = new DeleteWhatsappBusinessUsernameRequest(); // DeleteWhatsappBusinessUsernameRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteWhatsappBusinessUsernameWithHttpInfo(deleteWhatsappBusinessUsernameRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#deleteWhatsappBusinessUsername");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **deleteWhatsappBusinessUsernameRequest** | [**DeleteWhatsappBusinessUsernameRequest**](DeleteWhatsappBusinessUsernameRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Username deleted successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
 
 
 ## getWhatsAppBlockStatus
@@ -2635,6 +2791,302 @@ ApiResponse<[**GetWhatsAppTemplates200Response**](GetWhatsAppTemplates200Respons
 | **404** | WhatsApp account not found |  -  |
 
 
+## getWhatsappBusinessUsername
+
+> GetWhatsappBusinessUsername200Response getWhatsappBusinessUsername(accountId)
+
+Get business username
+
+Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            GetWhatsappBusinessUsername200Response result = apiInstance.getWhatsappBusinessUsername(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsappBusinessUsername");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+[**GetWhatsappBusinessUsername200Response**](GetWhatsappBusinessUsername200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Business username retrieved successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## getWhatsappBusinessUsernameWithHttpInfo
+
+> ApiResponse<GetWhatsappBusinessUsername200Response> getWhatsappBusinessUsername getWhatsappBusinessUsernameWithHttpInfo(accountId)
+
+Get business username
+
+Fetch the current WhatsApp Business username and its approval status. Username status can be &#x60;approved&#x60; (active), &#x60;reserved&#x60; (pending activation), or &#x60;none&#x60; (no username set). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            ApiResponse<GetWhatsappBusinessUsername200Response> response = apiInstance.getWhatsappBusinessUsernameWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsappBusinessUsername");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+ApiResponse<[**GetWhatsappBusinessUsername200Response**](GetWhatsappBusinessUsername200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Business username retrieved successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+
+## getWhatsappBusinessUsernameSuggestions
+
+> GetWhatsappBusinessUsernameSuggestions200Response getWhatsappBusinessUsernameSuggestions(accountId)
+
+Get username suggestions
+
+Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            GetWhatsappBusinessUsernameSuggestions200Response result = apiInstance.getWhatsappBusinessUsernameSuggestions(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsappBusinessUsernameSuggestions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+[**GetWhatsappBusinessUsernameSuggestions200Response**](GetWhatsappBusinessUsernameSuggestions200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Username suggestions retrieved successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## getWhatsappBusinessUsernameSuggestionsWithHttpInfo
+
+> ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> getWhatsappBusinessUsernameSuggestions getWhatsappBusinessUsernameSuggestionsWithHttpInfo(accountId)
+
+Get username suggestions
+
+Retrieve a list of available WhatsApp Business username suggestions based on the account&#39;s business profile name. Use these to help users discover valid, unclaimed usernames. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp social account ID
+        try {
+            ApiResponse<GetWhatsappBusinessUsernameSuggestions200Response> response = apiInstance.getWhatsappBusinessUsernameSuggestionsWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsappBusinessUsernameSuggestions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp social account ID | |
+
+### Return type
+
+ApiResponse<[**GetWhatsappBusinessUsernameSuggestions200Response**](GetWhatsappBusinessUsernameSuggestions200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Username suggestions retrieved successfully |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+
 ## listWhatsAppConversions
 
 > ListWhatsAppConversions200Response listWhatsAppConversions(accountId, limit)
@@ -3549,6 +4001,156 @@ ApiResponse<[**SendWhatsAppConversion200Response**](SendWhatsAppConversion200Res
 | **401** | Unauthorized |  -  |
 | **404** | Conversation not found. |  -  |
 | **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |
+
+
+## setWhatsappBusinessUsername
+
+> SetWhatsappBusinessUsername200Response setWhatsappBusinessUsername(setWhatsappBusinessUsernameRequest)
+
+Set business username
+
+Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest = new SetWhatsappBusinessUsernameRequest(); // SetWhatsappBusinessUsernameRequest | 
+        try {
+            SetWhatsappBusinessUsername200Response result = apiInstance.setWhatsappBusinessUsername(setWhatsappBusinessUsernameRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#setWhatsappBusinessUsername");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setWhatsappBusinessUsernameRequest** | [**SetWhatsappBusinessUsernameRequest**](SetWhatsappBusinessUsernameRequest.md)|  | |
+
+### Return type
+
+[**SetWhatsappBusinessUsername200Response**](SetWhatsappBusinessUsername200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Username claimed successfully |  -  |
+| **400** | Validation error or username unavailable (see error code in response) |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
+
+## setWhatsappBusinessUsernameWithHttpInfo
+
+> ApiResponse<SetWhatsappBusinessUsername200Response> setWhatsappBusinessUsername setWhatsappBusinessUsernameWithHttpInfo(setWhatsappBusinessUsernameRequest)
+
+Set business username
+
+Claim or transfer a WhatsApp Business username for the account.  Username rules: 3-35 characters, letters/digits/period/underscore only, must contain at least one letter, no leading or trailing periods, no consecutive periods, no &#x60;www&#x60; prefix, no domain TLD suffix (e.g. &#x60;.com&#x60;).  If the desired username is currently held by another account, pass &#x60;transferAction: \&quot;force_transfer\&quot;&#x60; to request a transfer. On failure the API returns a standard error envelope with one of these codes: &#x60;whatsapp_username_unavailable&#x60; (already taken and transfer not requested), &#x60;whatsapp_username_ineligible&#x60; (account not eligible to claim a username), or &#x60;whatsapp_username_transfer_required&#x60; (username is held elsewhere; retry with &#x60;force_transfer&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        SetWhatsappBusinessUsernameRequest setWhatsappBusinessUsernameRequest = new SetWhatsappBusinessUsernameRequest(); // SetWhatsappBusinessUsernameRequest | 
+        try {
+            ApiResponse<SetWhatsappBusinessUsername200Response> response = apiInstance.setWhatsappBusinessUsernameWithHttpInfo(setWhatsappBusinessUsernameRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#setWhatsappBusinessUsername");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setWhatsappBusinessUsernameRequest** | [**SetWhatsappBusinessUsernameRequest**](SetWhatsappBusinessUsernameRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SetWhatsappBusinessUsername200Response**](SetWhatsappBusinessUsername200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Username claimed successfully |  -  |
+| **400** | Validation error or username unavailable (see error code in response) |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp account not found |  -  |
 
 
 ## unblockWhatsAppUsers

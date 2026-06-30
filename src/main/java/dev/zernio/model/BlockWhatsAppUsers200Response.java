@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   BlockWhatsAppUsers200Response.JSON_PROPERTY_BLOCKED,
   BlockWhatsAppUsers200Response.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T10:06:34.573277954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T16:59:16.164838227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BlockWhatsAppUsers200Response {
   public static final String JSON_PROPERTY_BLOCKED = "blocked";
   @javax.annotation.Nullable

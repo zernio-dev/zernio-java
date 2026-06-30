@@ -227,7 +227,6 @@ docs/CreateTrackingTag201Response.md
 docs/CreateTrackingTagRequest.md
 docs/CreateWebhookSettingsRequest.md
 docs/CreateWhatsAppDataset200Response.md
-docs/CreateWhatsAppDatasetRequest.md
 docs/CreateWhatsAppFlow200Response.md
 docs/CreateWhatsAppFlow200ResponseFlow.md
 docs/CreateWhatsAppFlowRequest.md
@@ -261,6 +260,7 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
+docs/DeleteWhatsappBusinessUsernameRequest.md
 docs/DiscordApi.md
 docs/DiscordPlatformData.md
 docs/DiscordPlatformDataEmbedsInner.md
@@ -565,6 +565,8 @@ docs/GetWhatsAppTemplate200Response.md
 docs/GetWhatsAppTemplate200ResponseTemplate.md
 docs/GetWhatsAppTemplates200Response.md
 docs/GetWhatsAppTemplates200ResponseTemplatesInner.md
+docs/GetWhatsappBusinessUsername200Response.md
+docs/GetWhatsappBusinessUsernameSuggestions200Response.md
 docs/GetWorkflow200Response.md
 docs/GetWorkflow200ResponseWorkflow.md
 docs/GetWorkflowVersion200Response.md
@@ -950,6 +952,8 @@ docs/SetInstagramIceBreakersRequestIceBreakersInner.md
 docs/SetMessengerMenuRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SetWhatsappBusinessUsername200Response.md
+docs/SetWhatsappBusinessUsernameRequest.md
 docs/SharedAdAccount.md
 docs/SnapchatPlatformData.md
 docs/SocialAccount.md
@@ -1534,7 +1538,6 @@ src/main/java/dev/zernio/model/CreateTrackingTag201Response.java
 src/main/java/dev/zernio/model/CreateTrackingTagRequest.java
 src/main/java/dev/zernio/model/CreateWebhookSettingsRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppDataset200Response.java
-src/main/java/dev/zernio/model/CreateWhatsAppDatasetRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppFlow200Response.java
 src/main/java/dev/zernio/model/CreateWhatsAppFlow200ResponseFlow.java
 src/main/java/dev/zernio/model/CreateWhatsAppFlowRequest.java
@@ -1567,6 +1570,7 @@ src/main/java/dev/zernio/model/DeleteGoogleBusinessReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxComment200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
+src/main/java/dev/zernio/model/DeleteWhatsappBusinessUsernameRequest.java
 src/main/java/dev/zernio/model/DiscordPlatformData.java
 src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInner.java
 src/main/java/dev/zernio/model/DiscordPlatformDataEmbedsInnerAuthor.java
@@ -1870,6 +1874,8 @@ src/main/java/dev/zernio/model/GetWhatsAppTemplate200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplate200ResponseTemplate.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplates200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplates200ResponseTemplatesInner.java
+src/main/java/dev/zernio/model/GetWhatsappBusinessUsername200Response.java
+src/main/java/dev/zernio/model/GetWhatsappBusinessUsernameSuggestions200Response.java
 src/main/java/dev/zernio/model/GetWorkflow200Response.java
 src/main/java/dev/zernio/model/GetWorkflow200ResponseWorkflow.java
 src/main/java/dev/zernio/model/GetWorkflowVersion200Response.java
@@ -2233,6 +2239,8 @@ src/main/java/dev/zernio/model/SetInstagramIceBreakersRequestIceBreakersInner.ja
 src/main/java/dev/zernio/model/SetMessengerMenuRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequestCommandsInner.java
+src/main/java/dev/zernio/model/SetWhatsappBusinessUsername200Response.java
+src/main/java/dev/zernio/model/SetWhatsappBusinessUsernameRequest.java
 src/main/java/dev/zernio/model/SharedAdAccount.java
 src/main/java/dev/zernio/model/SnapchatPlatformData.java
 src/main/java/dev/zernio/model/SocialAccount.java
@@ -2523,8 +2531,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/MentionsApiTest.java
-src/test/java/dev/zernio/model/ListInboxMentions200ResponseDataInnerTest.java
-src/test/java/dev/zernio/model/ListInboxMentions200ResponseMetaTest.java
-src/test/java/dev/zernio/model/ListInboxMentions200ResponsePaginationTest.java
-src/test/java/dev/zernio/model/ListInboxMentions200ResponseTest.java
+src/test/java/dev/zernio/model/DeleteWhatsappBusinessUsernameRequestTest.java
+src/test/java/dev/zernio/model/GetWhatsappBusinessUsername200ResponseTest.java
+src/test/java/dev/zernio/model/GetWhatsappBusinessUsernameSuggestions200ResponseTest.java
+src/test/java/dev/zernio/model/SetWhatsappBusinessUsername200ResponseTest.java
+src/test/java/dev/zernio/model/SetWhatsappBusinessUsernameRequestTest.java

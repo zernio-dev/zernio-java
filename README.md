@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-30T10:06:34.573277954Z[Etc/UTC]
+- Build date: 2026-06-30T16:59:16.164838227Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -740,6 +740,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**deleteWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group
 *WhatsAppApi* | [**deleteWhatsAppTemplate**](docs/WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
 *WhatsAppApi* | [**deleteWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppTemplateWithHttpInfo) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
+*WhatsAppApi* | [**deleteWhatsappBusinessUsername**](docs/WhatsAppApi.md#deleteWhatsappBusinessUsername) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username
+*WhatsAppApi* | [**deleteWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsappBusinessUsernameWithHttpInfo) | **DELETE** /v1/whatsapp/business-profile/username | Delete business username
 *WhatsAppApi* | [**getWhatsAppBlockStatus**](docs/WhatsAppApi.md#getWhatsAppBlockStatus) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked
 *WhatsAppApi* | [**getWhatsAppBlockStatusWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppBlockStatusWithHttpInfo) | **GET** /v1/whatsapp/block-users/status | Check if a user is blocked
 *WhatsAppApi* | [**getWhatsAppBlockedUsers**](docs/WhatsAppApi.md#getWhatsAppBlockedUsers) | **GET** /v1/whatsapp/block-users | List blocked users
@@ -756,6 +758,10 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplateWithHttpInfo) | **GET** /v1/whatsapp/templates/{templateName} | Get template
 *WhatsAppApi* | [**getWhatsAppTemplates**](docs/WhatsAppApi.md#getWhatsAppTemplates) | **GET** /v1/whatsapp/templates | List templates
 *WhatsAppApi* | [**getWhatsAppTemplatesWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppTemplatesWithHttpInfo) | **GET** /v1/whatsapp/templates | List templates
+*WhatsAppApi* | [**getWhatsappBusinessUsername**](docs/WhatsAppApi.md#getWhatsappBusinessUsername) | **GET** /v1/whatsapp/business-profile/username | Get business username
+*WhatsAppApi* | [**getWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username | Get business username
+*WhatsAppApi* | [**getWhatsappBusinessUsernameSuggestions**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameSuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions
+*WhatsAppApi* | [**getWhatsappBusinessUsernameSuggestionsWithHttpInfo**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameSuggestionsWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions
 *WhatsAppApi* | [**listWhatsAppConversions**](docs/WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events
 *WhatsAppApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events
 *WhatsAppApi* | [**listWhatsAppGroupChats**](docs/WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups
@@ -768,6 +774,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**removeWhatsAppGroupParticipantsWithHttpInfo**](docs/WhatsAppApi.md#removeWhatsAppGroupParticipantsWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId}/participants | Remove participants
 *WhatsAppApi* | [**sendWhatsAppConversion**](docs/WhatsAppApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *WhatsAppApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/WhatsAppApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
+*WhatsAppApi* | [**setWhatsappBusinessUsername**](docs/WhatsAppApi.md#setWhatsappBusinessUsername) | **POST** /v1/whatsapp/business-profile/username | Set business username
+*WhatsAppApi* | [**setWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#setWhatsappBusinessUsernameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/username | Set business username
 *WhatsAppApi* | [**unblockWhatsAppUsers**](docs/WhatsAppApi.md#unblockWhatsAppUsers) | **DELETE** /v1/whatsapp/block-users | Unblock users
 *WhatsAppApi* | [**unblockWhatsAppUsersWithHttpInfo**](docs/WhatsAppApi.md#unblockWhatsAppUsersWithHttpInfo) | **DELETE** /v1/whatsapp/block-users | Unblock users
 *WhatsAppApi* | [**updateWhatsAppBusinessProfile**](docs/WhatsAppApi.md#updateWhatsAppBusinessProfile) | **POST** /v1/whatsapp/business-profile | Update business profile
@@ -1103,7 +1111,6 @@ Class | Method | HTTP request | Description
  - [CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
  - [CreateWebhookSettingsRequest](docs/CreateWebhookSettingsRequest.md)
  - [CreateWhatsAppDataset200Response](docs/CreateWhatsAppDataset200Response.md)
- - [CreateWhatsAppDatasetRequest](docs/CreateWhatsAppDatasetRequest.md)
  - [CreateWhatsAppFlow200Response](docs/CreateWhatsAppFlow200Response.md)
  - [CreateWhatsAppFlow200ResponseFlow](docs/CreateWhatsAppFlow200ResponseFlow.md)
  - [CreateWhatsAppFlowRequest](docs/CreateWhatsAppFlowRequest.md)
@@ -1136,6 +1143,7 @@ Class | Method | HTTP request | Description
  - [DeleteInboxComment200Response](docs/DeleteInboxComment200Response.md)
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
+ - [DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
  - [DiscordPlatformData](docs/DiscordPlatformData.md)
  - [DiscordPlatformDataEmbedsInner](docs/DiscordPlatformDataEmbedsInner.md)
  - [DiscordPlatformDataEmbedsInnerAuthor](docs/DiscordPlatformDataEmbedsInnerAuthor.md)
@@ -1439,6 +1447,8 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppTemplate200ResponseTemplate](docs/GetWhatsAppTemplate200ResponseTemplate.md)
  - [GetWhatsAppTemplates200Response](docs/GetWhatsAppTemplates200Response.md)
  - [GetWhatsAppTemplates200ResponseTemplatesInner](docs/GetWhatsAppTemplates200ResponseTemplatesInner.md)
+ - [GetWhatsappBusinessUsername200Response](docs/GetWhatsappBusinessUsername200Response.md)
+ - [GetWhatsappBusinessUsernameSuggestions200Response](docs/GetWhatsappBusinessUsernameSuggestions200Response.md)
  - [GetWorkflow200Response](docs/GetWorkflow200Response.md)
  - [GetWorkflow200ResponseWorkflow](docs/GetWorkflow200ResponseWorkflow.md)
  - [GetWorkflowVersion200Response](docs/GetWorkflowVersion200Response.md)
@@ -1802,6 +1812,8 @@ Class | Method | HTTP request | Description
  - [SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
  - [SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
+ - [SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)
+ - [SetWhatsappBusinessUsernameRequest](docs/SetWhatsappBusinessUsernameRequest.md)
  - [SharedAdAccount](docs/SharedAdAccount.md)
  - [SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [SocialAccount](docs/SocialAccount.md)

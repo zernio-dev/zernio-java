@@ -18,9 +18,9 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
-import dev.zernio.model.CreateWhatsAppDatasetRequest;
 import dev.zernio.model.CreateWhatsAppFlow200Response;
 import dev.zernio.model.CreateWhatsAppFlowRequest;
+import dev.zernio.model.DeleteWhatsappBusinessUsernameRequest;
 import dev.zernio.model.GetWhatsAppFlow200Response;
 import dev.zernio.model.GetWhatsAppFlowJson200Response;
 import dev.zernio.model.GetWhatsAppFlowPreview200Response;
@@ -66,7 +66,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T10:06:34.573277954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T16:59:16.164838227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppFlowsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -451,25 +451,25 @@ public class WhatsAppFlowsApi {
    * Deprecate flow
    * Deprecate a PUBLISHED flow. This is irreversible. Deprecated flows cannot be sent or opened, but existing active sessions may continue until they complete. 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response deprecateWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest) throws ApiException {
-    return deprecateWhatsAppFlow(flowId, createWhatsAppDatasetRequest, null);
+  public UpdateYoutubeDefaultPlaylist200Response deprecateWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest) throws ApiException {
+    return deprecateWhatsAppFlow(flowId, deleteWhatsappBusinessUsernameRequest, null);
   }
 
   /**
    * Deprecate flow
    * Deprecate a PUBLISHED flow. This is irreversible. Deprecated flows cannot be sent or opened, but existing active sessions may continue until they complete. 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response deprecateWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deprecateWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest, headers);
+  public UpdateYoutubeDefaultPlaylist200Response deprecateWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deprecateWhatsAppFlowWithHttpInfo(flowId, deleteWhatsappBusinessUsernameRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -477,25 +477,25 @@ public class WhatsAppFlowsApi {
    * Deprecate flow
    * Deprecate a PUBLISHED flow. This is irreversible. Deprecated flows cannot be sent or opened, but existing active sessions may continue until they complete. 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deprecateWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest) throws ApiException {
-    return deprecateWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest, null);
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deprecateWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest) throws ApiException {
+    return deprecateWhatsAppFlowWithHttpInfo(flowId, deleteWhatsappBusinessUsernameRequest, null);
   }
 
   /**
    * Deprecate flow
    * Deprecate a PUBLISHED flow. This is irreversible. Deprecated flows cannot be sent or opened, but existing active sessions may continue until they complete. 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deprecateWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deprecateWhatsAppFlowRequestBuilder(flowId, createWhatsAppDatasetRequest, headers);
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deprecateWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deprecateWhatsAppFlowRequestBuilder(flowId, deleteWhatsappBusinessUsernameRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -542,14 +542,14 @@ public class WhatsAppFlowsApi {
     }
   }
 
-  private HttpRequest.Builder deprecateWhatsAppFlowRequestBuilder(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deprecateWhatsAppFlowRequestBuilder(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'flowId' is set
     if (flowId == null) {
       throw new ApiException(400, "Missing the required parameter 'flowId' when calling deprecateWhatsAppFlow");
     }
-    // verify the required parameter 'createWhatsAppDatasetRequest' is set
-    if (createWhatsAppDatasetRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createWhatsAppDatasetRequest' when calling deprecateWhatsAppFlow");
+    // verify the required parameter 'deleteWhatsappBusinessUsernameRequest' is set
+    if (deleteWhatsappBusinessUsernameRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'deleteWhatsappBusinessUsernameRequest' when calling deprecateWhatsAppFlow");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -563,7 +563,7 @@ public class WhatsAppFlowsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWhatsAppDatasetRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(deleteWhatsappBusinessUsernameRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1435,25 +1435,25 @@ public class WhatsAppFlowsApi {
    * Publish flow
    * Publish a DRAFT flow. This is irreversible. Once published, the flow and its JSON become immutable and the flow can be sent to users. To update a published flow, create a new flow (optionally cloning this one via cloneFlowId). 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response publishWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest) throws ApiException {
-    return publishWhatsAppFlow(flowId, createWhatsAppDatasetRequest, null);
+  public UpdateYoutubeDefaultPlaylist200Response publishWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest) throws ApiException {
+    return publishWhatsAppFlow(flowId, deleteWhatsappBusinessUsernameRequest, null);
   }
 
   /**
    * Publish flow
    * Publish a DRAFT flow. This is irreversible. Once published, the flow and its JSON become immutable and the flow can be sent to users. To update a published flow, create a new flow (optionally cloning this one via cloneFlowId). 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateYoutubeDefaultPlaylist200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateYoutubeDefaultPlaylist200Response publishWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = publishWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest, headers);
+  public UpdateYoutubeDefaultPlaylist200Response publishWhatsAppFlow(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = publishWhatsAppFlowWithHttpInfo(flowId, deleteWhatsappBusinessUsernameRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1461,25 +1461,25 @@ public class WhatsAppFlowsApi {
    * Publish flow
    * Publish a DRAFT flow. This is irreversible. Once published, the flow and its JSON become immutable and the flow can be sent to users. To update a published flow, create a new flow (optionally cloning this one via cloneFlowId). 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> publishWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest) throws ApiException {
-    return publishWhatsAppFlowWithHttpInfo(flowId, createWhatsAppDatasetRequest, null);
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> publishWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest) throws ApiException {
+    return publishWhatsAppFlowWithHttpInfo(flowId, deleteWhatsappBusinessUsernameRequest, null);
   }
 
   /**
    * Publish flow
    * Publish a DRAFT flow. This is irreversible. Once published, the flow and its JSON become immutable and the flow can be sent to users. To update a published flow, create a new flow (optionally cloning this one via cloneFlowId). 
    * @param flowId Flow ID (required)
-   * @param createWhatsAppDatasetRequest  (required)
+   * @param deleteWhatsappBusinessUsernameRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> publishWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = publishWhatsAppFlowRequestBuilder(flowId, createWhatsAppDatasetRequest, headers);
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> publishWhatsAppFlowWithHttpInfo(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = publishWhatsAppFlowRequestBuilder(flowId, deleteWhatsappBusinessUsernameRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1526,14 +1526,14 @@ public class WhatsAppFlowsApi {
     }
   }
 
-  private HttpRequest.Builder publishWhatsAppFlowRequestBuilder(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull CreateWhatsAppDatasetRequest createWhatsAppDatasetRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder publishWhatsAppFlowRequestBuilder(@javax.annotation.Nonnull String flowId, @javax.annotation.Nonnull DeleteWhatsappBusinessUsernameRequest deleteWhatsappBusinessUsernameRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'flowId' is set
     if (flowId == null) {
       throw new ApiException(400, "Missing the required parameter 'flowId' when calling publishWhatsAppFlow");
     }
-    // verify the required parameter 'createWhatsAppDatasetRequest' is set
-    if (createWhatsAppDatasetRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createWhatsAppDatasetRequest' when calling publishWhatsAppFlow");
+    // verify the required parameter 'deleteWhatsappBusinessUsernameRequest' is set
+    if (deleteWhatsappBusinessUsernameRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'deleteWhatsappBusinessUsernameRequest' when calling publishWhatsAppFlow");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -1547,7 +1547,7 @@ public class WhatsAppFlowsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWhatsAppDatasetRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(deleteWhatsappBusinessUsernameRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

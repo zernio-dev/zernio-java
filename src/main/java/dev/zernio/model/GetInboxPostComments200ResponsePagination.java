@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponsePagination.JSON_PROPERTY_HAS_MORE,
   GetInboxPostComments200ResponsePagination.JSON_PROPERTY_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T10:06:34.573277954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T16:59:16.164838227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponsePagination {
   public static final String JSON_PROPERTY_HAS_MORE = "hasMore";
   @javax.annotation.Nullable
