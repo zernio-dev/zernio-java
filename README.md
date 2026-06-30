@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-29T16:06:08.960184583Z[Etc/UTC]
+- Build date: 2026-06-30T09:12:38.731846077Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -216,6 +216,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**getAdCommentsWithHttpInfo**](docs/AdsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdsApi* | [**getAdTrackingTags**](docs/AdsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
 *AdsApi* | [**getAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
+*AdsApi* | [**getCampaignAnalytics**](docs/AdsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
+*AdsApi* | [**getCampaignAnalyticsWithHttpInfo**](docs/AdsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdsApi* | [**getConversionDestination**](docs/AdsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *AdsApi* | [**getConversionDestinationWithHttpInfo**](docs/AdsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *AdsApi* | [**getConversionMetrics**](docs/AdsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
@@ -902,6 +904,7 @@ Class | Method | HTTP request | Description
  - [AdCampaignBudget](docs/AdCampaignBudget.md)
  - [AdCampaignCampaignBudget](docs/AdCampaignCampaignBudget.md)
  - [AdCreative](docs/AdCreative.md)
+ - [AdDailyMetrics](docs/AdDailyMetrics.md)
  - [AdMetrics](docs/AdMetrics.md)
  - [AdPromotedObject](docs/AdPromotedObject.md)
  - [AdSchedule](docs/AdSchedule.md)
@@ -1190,8 +1193,6 @@ Class | Method | HTTP request | Description
  - [GetAd200Response](docs/GetAd200Response.md)
  - [GetAdAnalytics200Response](docs/GetAdAnalytics200Response.md)
  - [GetAdAnalytics200ResponseAd](docs/GetAdAnalytics200ResponseAd.md)
- - [GetAdAnalytics200ResponseAnalytics](docs/GetAdAnalytics200ResponseAnalytics.md)
- - [GetAdAnalytics200ResponseAnalyticsDailyInner](docs/GetAdAnalytics200ResponseAnalyticsDailyInner.md)
  - [GetAdAudience200Response](docs/GetAdAudience200Response.md)
  - [GetAdComments200Response](docs/GetAdComments200Response.md)
  - [GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
@@ -1213,6 +1214,10 @@ Class | Method | HTTP request | Description
  - [GetBroadcast200ResponseBroadcast](docs/GetBroadcast200ResponseBroadcast.md)
  - [GetBroadcast200ResponseBroadcastMessage](docs/GetBroadcast200ResponseBroadcastMessage.md)
  - [GetBroadcast200ResponseBroadcastTemplate](docs/GetBroadcast200ResponseBroadcastTemplate.md)
+ - [GetCampaignAnalytics200Response](docs/GetCampaignAnalytics200Response.md)
+ - [GetCampaignAnalytics200ResponseAnalytics](docs/GetCampaignAnalytics200ResponseAnalytics.md)
+ - [GetCampaignAnalytics200ResponseAnalyticsDailyInner](docs/GetCampaignAnalytics200ResponseAnalyticsDailyInner.md)
+ - [GetCampaignAnalytics200ResponseCampaign](docs/GetCampaignAnalytics200ResponseCampaign.md)
  - [GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
  - [GetCommentAutomation200ResponseAutomation](docs/GetCommentAutomation200ResponseAutomation.md)
  - [GetCommentAutomation200ResponseLogsInner](docs/GetCommentAutomation200ResponseLogsInner.md)

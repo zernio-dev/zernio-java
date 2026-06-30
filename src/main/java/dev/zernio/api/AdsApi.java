@@ -42,6 +42,7 @@ import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.GetAdTrackingTags200Response;
+import dev.zernio.model.GetCampaignAnalytics200Response;
 import dev.zernio.model.GetConversionDestination200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
 import dev.zernio.model.GetConversionsQuality200Response;
@@ -97,7 +98,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T16:06:08.960184583Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T09:12:38.731846077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2274,6 +2275,161 @@ public class AdsApi {
         .replace("{adId}", ApiClient.urlEncode(adId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get campaign analytics
+   * Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * @param campaignId Platform campaign id (platformCampaignId). (required)
+   * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @return GetCampaignAnalytics200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignAnalytics200Response getCampaignAnalytics(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+    return getCampaignAnalytics(campaignId, platform, fromDate, toDate, breakdowns, null);
+  }
+
+  /**
+   * Get campaign analytics
+   * Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * @param campaignId Platform campaign id (platformCampaignId). (required)
+   * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetCampaignAnalytics200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignAnalytics200Response getCampaignAnalytics(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetCampaignAnalytics200Response> localVarResponse = getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get campaign analytics
+   * Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * @param campaignId Platform campaign id (platformCampaignId). (required)
+   * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignAnalytics200Response> getCampaignAnalyticsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns) throws ApiException {
+    return getCampaignAnalyticsWithHttpInfo(campaignId, platform, fromDate, toDate, breakdowns, null);
+  }
+
+  /**
+   * Get campaign analytics
+   * Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+   * @param campaignId Platform campaign id (platformCampaignId). (required)
+   * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
+   * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
+   * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignAnalytics200Response> getCampaignAnalyticsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCampaignAnalyticsRequestBuilder(campaignId, platform, fromDate, toDate, breakdowns, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getCampaignAnalytics", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetCampaignAnalytics200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetCampaignAnalytics200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetCampaignAnalytics200Response>() {});
+        
+
+        return new ApiResponse<GetCampaignAnalytics200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCampaignAnalyticsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String breakdowns, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling getCampaignAnalytics");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/analytics"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+    localVarQueryParameterBaseName = "breakdowns";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdowns", breakdowns));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.AdDailyMetrics;
 import dev.zernio.model.AdMetrics;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.AdTreeAdSet;
@@ -73,9 +74,10 @@ import dev.zernio.ApiClient;
   AdTreeCampaign.JSON_PROPERTY_BID_AMOUNT,
   AdTreeCampaign.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   AdTreeCampaign.JSON_PROPERTY_PROMOTED_OBJECT,
-  AdTreeCampaign.JSON_PROPERTY_AD_SETS
+  AdTreeCampaign.JSON_PROPERTY_AD_SETS,
+  AdTreeCampaign.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T16:06:08.960184583Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T09:12:38.731846077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaign {
   public static final String JSON_PROPERTY_PLATFORM_CAMPAIGN_ID = "platformCampaignId";
   @javax.annotation.Nullable
@@ -291,6 +293,10 @@ public class AdTreeCampaign {
   public static final String JSON_PROPERTY_AD_SETS = "adSets";
   @javax.annotation.Nullable
   private List<AdTreeAdSet> adSets = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DAILY = "daily";
+  @javax.annotation.Nullable
+  private List<AdDailyMetrics> daily = new ArrayList<>();
 
   public AdTreeCampaign() { 
   }
@@ -1059,6 +1065,38 @@ public class AdTreeCampaign {
   }
 
 
+  public AdTreeCampaign daily(@javax.annotation.Nullable List<AdDailyMetrics> daily) {
+    this.daily = daily;
+    return this;
+  }
+
+  public AdTreeCampaign addDailyItem(AdDailyMetrics dailyItem) {
+    if (this.daily == null) {
+      this.daily = new ArrayList<>();
+    }
+    this.daily.add(dailyItem);
+    return this;
+  }
+
+  /**
+   * Per-day metric series for this campaign. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; (any &#x60;dailyLevel&#x60;). This is the per-campaign daily trend — summing its additive fields reproduces the campaign &#x60;metrics&#x60; total.
+   * @return daily
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<AdDailyMetrics> getDaily() {
+    return daily;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDaily(@javax.annotation.Nullable List<AdDailyMetrics> daily) {
+    this.daily = daily;
+  }
+
+
   /**
    * Return true if this AdTreeCampaign object is equal to o.
    */
@@ -1097,7 +1135,8 @@ public class AdTreeCampaign {
         equalsNullable(this.bidAmount, adTreeCampaign.bidAmount) &&
         equalsNullable(this.roasAverageFloor, adTreeCampaign.roasAverageFloor) &&
         Objects.equals(this.promotedObject, adTreeCampaign.promotedObject) &&
-        Objects.equals(this.adSets, adTreeCampaign.adSets);
+        Objects.equals(this.adSets, adTreeCampaign.adSets) &&
+        Objects.equals(this.daily, adTreeCampaign.daily);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -1106,7 +1145,7 @@ public class AdTreeCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformCampaignId, platform, campaignName, status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, adSetCount, budget, campaignBudget, hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, adSets);
+    return Objects.hash(platformCampaignId, platform, campaignName, status, hashCodeNullable(reviewStatus), hashCodeNullable(platformCampaignStatus), hashCodeNullable(campaignIssuesInfo), adCount, adSetCount, budget, campaignBudget, hashCodeNullable(budgetLevel), isBudgetScheduleEnabled, hashCodeNullable(currency), metrics, platformAdAccountId, hashCodeNullable(platformAdAccountName), accountId, profileId, hashCodeNullable(advertisingChannelType), hashCodeNullable(platformObjective), hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, adSets, daily);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1147,6 +1186,7 @@ public class AdTreeCampaign {
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
     sb.append("    adSets: ").append(toIndentedString(adSets)).append("\n");
+    sb.append("    daily: ").append(toIndentedString(daily)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1333,6 +1373,16 @@ public class AdTreeCampaign {
       for (int i = 0; i < getAdSets().size(); i++) {
         if (getAdSets().get(i) != null) {
           joiner.add(getAdSets().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sadSets%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `daily` to the URL query string
+    if (getDaily() != null) {
+      for (int i = 0; i < getDaily().size(); i++) {
+        if (getDaily().get(i) != null) {
+          joiner.add(getDaily().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdaily%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

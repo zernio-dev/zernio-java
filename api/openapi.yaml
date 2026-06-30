@@ -19764,6 +19764,11 @@ paths:
         and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set
         ID are grouped into synthetic "Ungrouped" buckets.
         If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.
+
+        Pass `timeIncrement=1` to also get a daily breakdown: each node gains a `daily[]` array of
+        per-day metrics (same fields as the aggregated `metrics`) in the same call. Use `dailyLevel`
+        (`campaign` default, or `adset` / `ad`) to choose which levels carry the series. This replaces
+        calling the tree once per day for per-campaign daily trends.
       operationId: getAdTree
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -19888,6 +19893,40 @@ paths:
           - oldest
           - spend_desc
           - spend_asc
+          type: string
+        style: form
+      - description: "Set to `1` to also return a daily breakdown. Mirrors Meta Insights'\
+          \ `time_increment=1`: each node gains a `daily[]` array of per-day metrics\
+          \ (same fields as the aggregated `metrics`) alongside the range total, so\
+          \ you get per-entity daily trends in ONE call instead of calling the tree\
+          \ once per day. Only `1` (daily) is supported. The daily series covers the\
+          \ same date range and uses the same source data as `metrics`. See `dailyLevel`\
+          \ to control which levels carry it."
+        explode: true
+        in: query
+        name: timeIncrement
+        required: false
+        schema:
+          enum:
+          - 1
+          type: integer
+        style: form
+      - description: "Which tree levels get the `daily[]` series when `timeIncrement=1`.\
+          \ `campaign` (default) attaches it on campaign nodes only — the common per-campaign-trend\
+          \ case, and the smallest payload. `adset` adds it on ad sets too; `ad` adds\
+          \ it on every ad in `ads[]` as well (heaviest — a long range × up to 100\
+          \ ads per ad set). Scope with `campaignId` to keep `ad`-level responses\
+          \ small. Ignored when `timeIncrement` is unset."
+        explode: true
+        in: query
+        name: dailyLevel
+        required: false
+        schema:
+          default: campaign
+          enum:
+          - campaign
+          - adset
+          - ad
           type: string
         style: form
       responses:
@@ -20122,6 +20161,85 @@ paths:
       tags:
       - Ads
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/{campaignId}/analytics:
+    get:
+      description: |
+        Returns performance analytics for a whole campaign in one call: summary metrics, a daily
+        timeline over the requested date range (summed across the campaign's ads), and optional
+        demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call
+        per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc.
+        without summing thousands of per-ad reads. `campaignId` is the platform campaign id; pass
+        `platform` when a campaign id could be ambiguous across platforms. If no date range is provided,
+        defaults to the last 90 days. Date range is capped at 730 days max.
+      operationId: getCampaignAnalytics
+      parameters:
+      - description: Platform campaign id (platformCampaignId).
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Disambiguate when the campaign id exists across platforms (e.g.\
+          \ facebook, instagram)."
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Start of date range (YYYY-MM-DD). Defaults to 90 days ago.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End of date range (YYYY-MM-DD). Defaults to today. Max 730-day
+          range.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "Comma-separated breakdown dimensions (Meta only): age, gender,\
+          \ country, publisher_platform, device_platform, region, platform_position,\
+          \ impression_device, video_asset, image_asset, body_asset, title_asset."
+        explode: true
+        in: query
+        name: breakdowns
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignAnalytics_200_response"
+          description: Campaign analytics
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get campaign analytics
+      tags:
+      - Ads
       x-accepts:
       - application/json
   /v1/ads/{adId}/analytics:
@@ -30818,6 +30936,42 @@ components:
           description: "Present on individual ads only, not on campaign aggregations"
           format: date-time
           type: string
+    AdDailyMetrics:
+      allOf:
+      - $ref: "#/components/schemas/AdMetrics"
+      - properties:
+          date:
+            description: Calendar day (YYYY-MM-DD) these metrics apply to.
+            format: date
+            type: string
+      description: |
+        One day of metrics. Same fields as `AdMetrics` plus the `date` they
+        apply to. Returned inside a node's `daily[]` when `GET /v1/ads/tree` is
+        called with `timeIncrement=1`. Rate metrics (ctr/cpc/cpm/costPerConversion/
+        roas) are recomputed per day from that day's sums, so summing the additive
+        fields across a node's `daily[]` reproduces its aggregated `metrics` total.
+      example:
+        ctr: 6.84685269835264
+        purchaseValue: 9.369310271410669
+        date: 2000-01-23
+        cpm: 1.1730742509559433
+        conversions: 5
+        engagement: 4
+        reach: 1
+        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+        impressions: 1
+        actionValues:
+          offsite_conversion.fb_pixel_purchase: 2456.78
+          offsite_conversion.fb_pixel_add_to_cart: 980.5
+        spend: 7.386281948385884
+        cpc: 7.457744773683766
+        clicks: 1
+        roas: 6.683562403749608
+        costPerConversion: 9.965781217890562
+        actions:
+          link_click: 160
+          post_engagement: 300
+          offsite_conversion.fb_pixel_purchase: 42
     AdStatus:
       enum:
       - active
@@ -31359,6 +31513,49 @@ components:
         adSetBudget:
           amount: 3.616076749251911
           type: daily
+        daily:
+        - ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          date: 2000-01-23
+          cpm: 1.1730742509559433
+          conversions: 5
+          engagement: 4
+          reach: 1
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 1
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          spend: 7.386281948385884
+          cpc: 7.457744773683766
+          clicks: 1
+          roas: 6.683562403749608
+          costPerConversion: 9.965781217890562
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
+        - ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          date: 2000-01-23
+          cpm: 1.1730742509559433
+          conversions: 5
+          engagement: 4
+          reach: 1
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 1
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          spend: 7.386281948385884
+          cpc: 7.457744773683766
+          clicks: 1
+          roas: 6.683562403749608
+          costPerConversion: 9.965781217890562
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         platformAdSetId: platformAdSetId
         metrics:
           ctr: 9.301444243932576
@@ -31427,9 +31624,17 @@ components:
           description: "Individual ads within this ad set (capped at 100). Returns\
             \ a subset of Ad fields from the aggregation (core fields like _id, name,\
             \ platform, status, budget, metrics, creative, goal are included; targeting\
-            \ and schedule may be absent)."
+            \ and schedule may be absent). When `timeIncrement=1&dailyLevel=ad`, each\
+            \ entry also carries a `daily[]` array of `AdDailyMetrics`."
           items:
             $ref: "#/components/schemas/Ad"
+          type: array
+        daily:
+          description: Per-day metric series for this ad set. Present only when `GET
+            /v1/ads/tree` is called with `timeIncrement=1` and `dailyLevel` is `adset`
+            or `ad`.
+          items:
+            $ref: "#/components/schemas/AdDailyMetrics"
           type: array
     AdTreeCampaign:
       description: Campaign with nested ad sets and rolled-up metrics
@@ -31460,6 +31665,49 @@ components:
           amount: 5.962133916683182
           type: daily
         profileId: profileId
+        daily:
+        - ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          date: 2000-01-23
+          cpm: 1.1730742509559433
+          conversions: 5
+          engagement: 4
+          reach: 1
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 1
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          spend: 7.386281948385884
+          cpc: 7.457744773683766
+          clicks: 1
+          roas: 6.683562403749608
+          costPerConversion: 9.965781217890562
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
+        - ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          date: 2000-01-23
+          cpm: 1.1730742509559433
+          conversions: 5
+          engagement: 4
+          reach: 1
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          impressions: 1
+          actionValues:
+            offsite_conversion.fb_pixel_purchase: 2456.78
+            offsite_conversion.fb_pixel_add_to_cart: 980.5
+          spend: 7.386281948385884
+          cpc: 7.457744773683766
+          clicks: 1
+          roas: 6.683562403749608
+          costPerConversion: 9.965781217890562
+          actions:
+            link_click: 160
+            post_engagement: 300
+            offsite_conversion.fb_pixel_purchase: 42
         platformObjective: platformObjective
         reviewStatus: in_review
         adSets:
@@ -31593,6 +31841,49 @@ components:
           adSetBudget:
             amount: 3.616076749251911
             type: daily
+          daily:
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
           metrics:
             ctr: 9.301444243932576
@@ -31749,6 +32040,49 @@ components:
           adSetBudget:
             amount: 3.616076749251911
             type: daily
+          daily:
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           platformAdSetId: platformAdSetId
           metrics:
             ctr: 9.301444243932576
@@ -31930,6 +32264,14 @@ components:
         adSets:
           items:
             $ref: "#/components/schemas/AdTreeAdSet"
+          type: array
+        daily:
+          description: Per-day metric series for this campaign. Present only when
+            `GET /v1/ads/tree` is called with `timeIncrement=1` (any `dailyLevel`).
+            This is the per-campaign daily trend — summing its additive fields reproduces
+            the campaign `metrics` total.
+          items:
+            $ref: "#/components/schemas/AdDailyMetrics"
           type: array
     AdCampaign:
       example:
@@ -51816,6 +52158,49 @@ components:
             amount: 5.962133916683182
             type: daily
           profileId: profileId
+          daily:
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           platformObjective: platformObjective
           reviewStatus: in_review
           adSets:
@@ -51949,6 +52334,49 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            daily:
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
               ctr: 9.301444243932576
@@ -52105,6 +52533,49 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            daily:
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
               ctr: 9.301444243932576
@@ -52184,6 +52655,49 @@ components:
             amount: 5.962133916683182
             type: daily
           profileId: profileId
+          daily:
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            date: 2000-01-23
+            cpm: 1.1730742509559433
+            conversions: 5
+            engagement: 4
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 1
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 7.386281948385884
+            cpc: 7.457744773683766
+            clicks: 1
+            roas: 6.683562403749608
+            costPerConversion: 9.965781217890562
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
           platformObjective: platformObjective
           reviewStatus: in_review
           adSets:
@@ -52317,6 +52831,49 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            daily:
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
               ctr: 9.301444243932576
@@ -52473,6 +53030,49 @@ components:
             adSetBudget:
               amount: 3.616076749251911
               type: daily
+            daily:
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
+            - ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              date: 2000-01-23
+              cpm: 1.1730742509559433
+              conversions: 5
+              engagement: 4
+              reach: 1
+              lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              impressions: 1
+              actionValues:
+                offsite_conversion.fb_pixel_purchase: 2456.78
+                offsite_conversion.fb_pixel_add_to_cart: 980.5
+              spend: 7.386281948385884
+              cpc: 7.457744773683766
+              clicks: 1
+              roas: 6.683562403749608
+              costPerConversion: 9.965781217890562
+              actions:
+                link_click: 160
+                post_engagement: 300
+                offsite_conversion.fb_pixel_purchase: 42
             platformAdSetId: platformAdSetId
             metrics:
               ctr: 9.301444243932576
@@ -52863,35 +53463,31 @@ components:
           $ref: "#/components/schemas/Ad"
         message:
           type: string
-    getAdAnalytics_200_response_ad:
+    getCampaignAnalytics_200_response_campaign:
       example:
         name: name
         currency: currency
         id: id
-        trigger: comment
         platform: platform
         status: status
       properties:
         id:
           type: string
         name:
+          nullable: true
           type: string
         platform:
           type: string
-        trigger:
-          enum:
-          - comment
-          - story_reply
-          type: string
         status:
-          type: string
-        currency:
-          description: "ISO 4217 code of the ad account that owns this ad (e.g. USD,\
-            \ THB, INR). All money values in `summary` and `daily` are in this currency.\
-            \ Null only on legacy ads synced before currency was persisted."
+          description: Effective campaign status (ACTIVE when any child ad is active).
           nullable: true
           type: string
-    getAdAnalytics_200_response_analytics_daily_inner:
+        currency:
+          description: "ISO 4217 code of the ad account (e.g. USD, THB). All money\
+            \ values in `summary` and `daily` are in this currency."
+          nullable: true
+          type: string
+    getCampaignAnalytics_200_response_analytics_daily_inner:
       allOf:
       - $ref: "#/components/schemas/AdMetrics"
       - properties:
@@ -52920,7 +53516,7 @@ components:
           link_click: 160
           post_engagement: 300
           offsite_conversion.fb_pixel_purchase: 42
-    getAdAnalytics_200_response_analytics:
+    getCampaignAnalytics_200_response_analytics:
       example:
         summary:
           ctr: 9.301444243932576
@@ -52995,12 +53591,122 @@ components:
           $ref: "#/components/schemas/AdMetrics"
         daily:
           items:
-            $ref: "#/components/schemas/getAdAnalytics_200_response_analytics_daily_inner"
+            $ref: "#/components/schemas/getCampaignAnalytics_200_response_analytics_daily_inner"
           type: array
         breakdowns:
           additionalProperties:
             items:
               type: object
+    getCampaignAnalytics_200_response:
+      example:
+        analytics:
+          summary:
+            ctr: 9.301444243932576
+            purchaseValue: 1.0246457001441578
+            cpm: 2.027123023002322
+            conversions: 7
+            engagement: 4
+            reach: 2
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 5
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 5.962133916683182
+            cpc: 3.616076749251911
+            clicks: 7
+            roas: 1.4894159098541704
+            costPerConversion: 1.2315135367772556
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          daily:
+          - ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            date: 2000-01-23
+            cpm: 7.061401241503109
+            conversions: 3
+            engagement: 9
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 6
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 0.8008281904610115
+            cpc: 2.3021358869347655
+            clicks: 5
+            roas: 7.386281948385884
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          - ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            date: 2000-01-23
+            cpm: 7.061401241503109
+            conversions: 3
+            engagement: 9
+            reach: 1
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            impressions: 6
+            actionValues:
+              offsite_conversion.fb_pixel_purchase: 2456.78
+              offsite_conversion.fb_pixel_add_to_cart: 980.5
+            spend: 0.8008281904610115
+            cpc: 2.3021358869347655
+            clicks: 5
+            roas: 7.386281948385884
+            costPerConversion: 2.027123023002322
+            actions:
+              link_click: 160
+              post_engagement: 300
+              offsite_conversion.fb_pixel_purchase: 42
+          breakdowns:
+            key:
+            - "{}"
+            - "{}"
+        campaign:
+          name: name
+          currency: currency
+          id: id
+          platform: platform
+          status: status
+      properties:
+        campaign:
+          $ref: "#/components/schemas/getCampaignAnalytics_200_response_campaign"
+        analytics:
+          $ref: "#/components/schemas/getCampaignAnalytics_200_response_analytics"
+    getAdAnalytics_200_response_ad:
+      example:
+        name: name
+        currency: currency
+        id: id
+        trigger: comment
+        platform: platform
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        platform:
+          type: string
+        trigger:
+          enum:
+          - comment
+          - story_reply
+          type: string
+        status:
+          type: string
+        currency:
+          description: "ISO 4217 code of the ad account that owns this ad (e.g. USD,\
+            \ THB, INR). All money values in `summary` and `daily` are in this currency.\
+            \ Null only on legacy ads synced before currency was persisted."
+          nullable: true
+          type: string
     getAdAnalytics_200_response:
       example:
         analytics:
@@ -53083,7 +53789,7 @@ components:
         ad:
           $ref: "#/components/schemas/getAdAnalytics_200_response_ad"
         analytics:
-          $ref: "#/components/schemas/getAdAnalytics_200_response_analytics"
+          $ref: "#/components/schemas/getCampaignAnalytics_200_response_analytics"
     getAdTrackingTags_200_response:
       example:
         dynamicValueParameters: "{}"

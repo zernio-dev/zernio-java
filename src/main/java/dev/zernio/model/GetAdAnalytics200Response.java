@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetAdAnalytics200ResponseAd;
-import dev.zernio.model.GetAdAnalytics200ResponseAnalytics;
+import dev.zernio.model.GetCampaignAnalytics200ResponseAnalytics;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetAdAnalytics200Response.JSON_PROPERTY_AD,
   GetAdAnalytics200Response.JSON_PROPERTY_ANALYTICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T16:06:08.960184583Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T09:12:38.731846077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAnalytics200Response {
   public static final String JSON_PROPERTY_AD = "ad";
   @javax.annotation.Nullable
@@ -46,7 +46,7 @@ public class GetAdAnalytics200Response {
 
   public static final String JSON_PROPERTY_ANALYTICS = "analytics";
   @javax.annotation.Nullable
-  private GetAdAnalytics200ResponseAnalytics analytics;
+  private GetCampaignAnalytics200ResponseAnalytics analytics;
 
   public GetAdAnalytics200Response() { 
   }
@@ -75,7 +75,7 @@ public class GetAdAnalytics200Response {
   }
 
 
-  public GetAdAnalytics200Response analytics(@javax.annotation.Nullable GetAdAnalytics200ResponseAnalytics analytics) {
+  public GetAdAnalytics200Response analytics(@javax.annotation.Nullable GetCampaignAnalytics200ResponseAnalytics analytics) {
     this.analytics = analytics;
     return this;
   }
@@ -87,14 +87,14 @@ public class GetAdAnalytics200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ANALYTICS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetAdAnalytics200ResponseAnalytics getAnalytics() {
+  public GetCampaignAnalytics200ResponseAnalytics getAnalytics() {
     return analytics;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ANALYTICS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnalytics(@javax.annotation.Nullable GetAdAnalytics200ResponseAnalytics analytics) {
+  public void setAnalytics(@javax.annotation.Nullable GetCampaignAnalytics200ResponseAnalytics analytics) {
     this.analytics = analytics;
   }
 

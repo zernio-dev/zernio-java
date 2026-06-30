@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.Ad;
+import dev.zernio.model.AdDailyMetrics;
 import dev.zernio.model.AdMetrics;
 import dev.zernio.model.AdStatus;
 import dev.zernio.model.AdTreeAdSetAdSetBudget;
@@ -59,9 +60,10 @@ import dev.zernio.ApiClient;
   AdTreeAdSet.JSON_PROPERTY_BID_AMOUNT,
   AdTreeAdSet.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   AdTreeAdSet.JSON_PROPERTY_PROMOTED_OBJECT,
-  AdTreeAdSet.JSON_PROPERTY_ADS
+  AdTreeAdSet.JSON_PROPERTY_ADS,
+  AdTreeAdSet.JSON_PROPERTY_DAILY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-29T16:06:08.960184583Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T09:12:38.731846077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeAdSet {
   public static final String JSON_PROPERTY_PLATFORM_AD_SET_ID = "platformAdSetId";
   @javax.annotation.Nullable
@@ -110,6 +112,10 @@ public class AdTreeAdSet {
   public static final String JSON_PROPERTY_ADS = "ads";
   @javax.annotation.Nullable
   private List<Ad> ads = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DAILY = "daily";
+  @javax.annotation.Nullable
+  private List<AdDailyMetrics> daily = new ArrayList<>();
 
   public AdTreeAdSet() { 
   }
@@ -448,7 +454,7 @@ public class AdTreeAdSet {
   }
 
   /**
-   * Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent).
+   * Individual ads within this ad set (capped at 100). Returns a subset of Ad fields from the aggregation (core fields like _id, name, platform, status, budget, metrics, creative, goal are included; targeting and schedule may be absent). When &#x60;timeIncrement&#x3D;1&amp;dailyLevel&#x3D;ad&#x60;, each entry also carries a &#x60;daily[]&#x60; array of &#x60;AdDailyMetrics&#x60;.
    * @return ads
    */
   @javax.annotation.Nullable
@@ -463,6 +469,38 @@ public class AdTreeAdSet {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAds(@javax.annotation.Nullable List<Ad> ads) {
     this.ads = ads;
+  }
+
+
+  public AdTreeAdSet daily(@javax.annotation.Nullable List<AdDailyMetrics> daily) {
+    this.daily = daily;
+    return this;
+  }
+
+  public AdTreeAdSet addDailyItem(AdDailyMetrics dailyItem) {
+    if (this.daily == null) {
+      this.daily = new ArrayList<>();
+    }
+    this.daily.add(dailyItem);
+    return this;
+  }
+
+  /**
+   * Per-day metric series for this ad set. Present only when &#x60;GET /v1/ads/tree&#x60; is called with &#x60;timeIncrement&#x3D;1&#x60; and &#x60;dailyLevel&#x60; is &#x60;adset&#x60; or &#x60;ad&#x60;.
+   * @return daily
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<AdDailyMetrics> getDaily() {
+    return daily;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDaily(@javax.annotation.Nullable List<AdDailyMetrics> daily) {
+    this.daily = daily;
   }
 
 
@@ -490,7 +528,8 @@ public class AdTreeAdSet {
         equalsNullable(this.bidAmount, adTreeAdSet.bidAmount) &&
         equalsNullable(this.roasAverageFloor, adTreeAdSet.roasAverageFloor) &&
         Objects.equals(this.promotedObject, adTreeAdSet.promotedObject) &&
-        Objects.equals(this.ads, adTreeAdSet.ads);
+        Objects.equals(this.ads, adTreeAdSet.ads) &&
+        Objects.equals(this.daily, adTreeAdSet.daily);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -499,7 +538,7 @@ public class AdTreeAdSet {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformAdSetId, adSetName, status, adCount, budget, adSetBudget, metrics, hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, ads);
+    return Objects.hash(platformAdSetId, adSetName, status, adCount, budget, adSetBudget, metrics, hashCodeNullable(optimizationGoal), hashCodeNullable(bidStrategy), hashCodeNullable(bidAmount), hashCodeNullable(roasAverageFloor), promotedObject, ads, daily);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -526,6 +565,7 @@ public class AdTreeAdSet {
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
     sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
     sb.append("    ads: ").append(toIndentedString(ads)).append("\n");
+    sb.append("    daily: ").append(toIndentedString(daily)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -638,6 +678,16 @@ public class AdTreeAdSet {
       for (int i = 0; i < getAds().size(); i++) {
         if (getAds().get(i) != null) {
           joiner.add(getAds().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sads%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `daily` to the URL query string
+    if (getDaily() != null) {
+      for (int i = 0; i < getDaily().size(); i++) {
+        if (getDaily().get(i) != null) {
+          joiner.add(getDaily().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdaily%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

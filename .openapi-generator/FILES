@@ -22,6 +22,7 @@ docs/AdCampaignBudget.md
 docs/AdCampaignCampaignBudget.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
+docs/AdDailyMetrics.md
 docs/AdMetrics.md
 docs/AdPromotedObject.md
 docs/AdSchedule.md
@@ -320,8 +321,6 @@ docs/GetAccountHealth200ResponseTokenStatus.md
 docs/GetAd200Response.md
 docs/GetAdAnalytics200Response.md
 docs/GetAdAnalytics200ResponseAd.md
-docs/GetAdAnalytics200ResponseAnalytics.md
-docs/GetAdAnalytics200ResponseAnalyticsDailyInner.md
 docs/GetAdAudience200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
@@ -343,6 +342,10 @@ docs/GetBroadcast200Response.md
 docs/GetBroadcast200ResponseBroadcast.md
 docs/GetBroadcast200ResponseBroadcastMessage.md
 docs/GetBroadcast200ResponseBroadcastTemplate.md
+docs/GetCampaignAnalytics200Response.md
+docs/GetCampaignAnalytics200ResponseAnalytics.md
+docs/GetCampaignAnalytics200ResponseAnalyticsDailyInner.md
+docs/GetCampaignAnalytics200ResponseCampaign.md
 docs/GetCommentAutomation200Response.md
 docs/GetCommentAutomation200ResponseAutomation.md
 docs/GetCommentAutomation200ResponseLogsInner.md
@@ -1328,6 +1331,7 @@ src/main/java/dev/zernio/model/AdCampaign.java
 src/main/java/dev/zernio/model/AdCampaignBudget.java
 src/main/java/dev/zernio/model/AdCampaignCampaignBudget.java
 src/main/java/dev/zernio/model/AdCreative.java
+src/main/java/dev/zernio/model/AdDailyMetrics.java
 src/main/java/dev/zernio/model/AdMetrics.java
 src/main/java/dev/zernio/model/AdPromotedObject.java
 src/main/java/dev/zernio/model/AdSchedule.java
@@ -1616,8 +1620,6 @@ src/main/java/dev/zernio/model/GetAccountHealth200ResponseTokenStatus.java
 src/main/java/dev/zernio/model/GetAd200Response.java
 src/main/java/dev/zernio/model/GetAdAnalytics200Response.java
 src/main/java/dev/zernio/model/GetAdAnalytics200ResponseAd.java
-src/main/java/dev/zernio/model/GetAdAnalytics200ResponseAnalytics.java
-src/main/java/dev/zernio/model/GetAdAnalytics200ResponseAnalyticsDailyInner.java
 src/main/java/dev/zernio/model/GetAdAudience200Response.java
 src/main/java/dev/zernio/model/GetAdComments200Response.java
 src/main/java/dev/zernio/model/GetAdComments200ResponseMeta.java
@@ -1639,6 +1641,10 @@ src/main/java/dev/zernio/model/GetBroadcast200Response.java
 src/main/java/dev/zernio/model/GetBroadcast200ResponseBroadcast.java
 src/main/java/dev/zernio/model/GetBroadcast200ResponseBroadcastMessage.java
 src/main/java/dev/zernio/model/GetBroadcast200ResponseBroadcastTemplate.java
+src/main/java/dev/zernio/model/GetCampaignAnalytics200Response.java
+src/main/java/dev/zernio/model/GetCampaignAnalytics200ResponseAnalytics.java
+src/main/java/dev/zernio/model/GetCampaignAnalytics200ResponseAnalyticsDailyInner.java
+src/main/java/dev/zernio/model/GetCampaignAnalytics200ResponseCampaign.java
 src/main/java/dev/zernio/model/GetCommentAutomation200Response.java
 src/main/java/dev/zernio/model/GetCommentAutomation200ResponseAutomation.java
 src/main/java/dev/zernio/model/GetCommentAutomation200ResponseLogsInner.java
@@ -2507,3 +2513,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdDailyMetricsTest.java
+src/test/java/dev/zernio/model/GetCampaignAnalytics200ResponseAnalyticsDailyInnerTest.java
+src/test/java/dev/zernio/model/GetCampaignAnalytics200ResponseAnalyticsTest.java
+src/test/java/dev/zernio/model/GetCampaignAnalytics200ResponseCampaignTest.java
+src/test/java/dev/zernio/model/GetCampaignAnalytics200ResponseTest.java
