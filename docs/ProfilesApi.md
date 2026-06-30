@@ -175,7 +175,7 @@ ApiResponse<[**ProfileCreateResponse**](ProfileCreateResponse.md)>
 
 Delete profile
 
-Permanently deletes a profile by ID.
+Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
 
 ### Example
 
@@ -238,7 +238,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
-| **400** | Has connected accounts |  -  |
+| **400** | Profile has active connected accounts; disconnect them first |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
@@ -249,7 +249,7 @@ public class Example {
 
 Delete profile
 
-Permanently deletes a profile by ID.
+Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
 
 ### Example
 
@@ -315,7 +315,7 @@ ApiResponse<[**ProfileDeleteResponse**](ProfileDeleteResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
-| **400** | Has connected accounts |  -  |
+| **400** | Profile has active connected accounts; disconnect them first |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |

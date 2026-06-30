@@ -2531,8 +2531,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/DeleteWhatsappBusinessUsernameRequestTest.java
-src/test/java/dev/zernio/model/GetWhatsappBusinessUsername200ResponseTest.java
-src/test/java/dev/zernio/model/GetWhatsappBusinessUsernameSuggestions200ResponseTest.java
-src/test/java/dev/zernio/model/SetWhatsappBusinessUsername200ResponseTest.java
-src/test/java/dev/zernio/model/SetWhatsappBusinessUsernameRequestTest.java

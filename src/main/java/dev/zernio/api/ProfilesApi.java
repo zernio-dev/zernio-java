@@ -60,7 +60,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T16:59:16.164838227Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T20:06:01.026312306Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ProfilesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -302,7 +302,7 @@ public class ProfilesApi {
 
   /**
    * Delete profile
-   * Permanently deletes a profile by ID.
+   * Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
    * @param profileId  (required)
    * @return ProfileDeleteResponse
    * @throws ApiException if fails to make API call
@@ -313,7 +313,7 @@ public class ProfilesApi {
 
   /**
    * Delete profile
-   * Permanently deletes a profile by ID.
+   * Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
    * @return ProfileDeleteResponse
@@ -326,7 +326,7 @@ public class ProfilesApi {
 
   /**
    * Delete profile
-   * Permanently deletes a profile by ID.
+   * Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
    * @param profileId  (required)
    * @return ApiResponse&lt;ProfileDeleteResponse&gt;
    * @throws ApiException if fails to make API call
@@ -337,7 +337,7 @@ public class ProfilesApi {
 
   /**
    * Delete profile
-   * Permanently deletes a profile by ID.
+   * Permanently deletes a profile. Active connected accounts block deletion (returns 400) - disconnect them first. Any remaining disconnected accounts and provisioned WhatsApp numbers are moved to another of your profiles (a new one is created only if needed), never deleted.
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ProfileDeleteResponse&gt;
