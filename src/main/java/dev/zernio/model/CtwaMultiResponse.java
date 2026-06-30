@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CtwaMultiResponse.JSON_PROPERTY_PLATFORM_AD_SET_ID,
   CtwaMultiResponse.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T09:12:38.731846077Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T10:06:34.573277954Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaMultiResponse {
   /**
    * Gets or Sets adType

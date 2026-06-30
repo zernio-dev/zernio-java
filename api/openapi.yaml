@@ -145,6 +145,11 @@ tags:
     Requires Inbox addon.
   name: Reviews
 - description: |
+    Unified inbox API for managing mentions across connected accounts.
+    Currently supports LinkedIn organization mentions.
+    Requires Inbox addon.
+  name: Mentions
+- description: |
     X/Twitter-specific engagement endpoints for retweeting, bookmarking, and following.
     Rate limits: 50 requests per 15-min window per user. Retweets share the 300/3hr creation limit with tweet creation.
   name: Twitter Engagement
@@ -14070,6 +14075,80 @@ paths:
       tags:
       - Twitter Engagement
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/mentions:
+    get:
+      description: |
+        Returns mentions of your connected organization accounts, delivered via platform webhooks.
+        Currently supports LinkedIn organization mentions.
+
+        Requires Inbox addon.
+      operationId: listInboxMentions
+      parameters:
+      - description: Filter by social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by profile ID
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Sort order by publishedAt
+        explode: true
+        in: query
+        name: sortOrder
+        required: false
+        schema:
+          default: desc
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor for pagination (ID of the last item from the previous
+          page)
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listInboxMentions_200_response"
+          description: Paginated list of mentions
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+      security:
+      - bearerAuth: []
+      summary: List mentions
+      tags:
+      - Mentions
       x-accepts:
       - application/json
   /v1/inbox/reviews:
@@ -44638,6 +44717,110 @@ components:
         platform:
           example: twitter
           type: string
+    listInboxMentions_200_response_data_inner:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        authorUrn: authorUrn
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        accountUsername: accountUsername
+        id: id
+        permalink: permalink
+        platform: linkedin
+        content: content
+        organizationalEntity: organizationalEntity
+      properties:
+        id:
+          description: Mention document ID
+          type: string
+        platform:
+          enum:
+          - linkedin
+          type: string
+        accountId:
+          type: string
+        accountUsername:
+          type: string
+        content:
+          description: Text of the post that mentioned you
+          type: string
+        permalink:
+          description: URL to the source post on LinkedIn
+          type: string
+          nullable: true
+        authorUrn:
+          description: LinkedIn URN of the person who mentioned you
+          type: string
+          nullable: true
+        organizationalEntity:
+          description: URN of the organization that was mentioned
+          type: string
+        publishedAt:
+          format: date-time
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    listInboxMentions_200_response_pagination:
+      example:
+        cursor: cursor
+        hasMore: true
+      properties:
+        hasMore:
+          type: boolean
+        cursor:
+          type: string
+          nullable: true
+    listInboxMentions_200_response_meta:
+      example:
+        total: 0
+        sortOrder: asc
+      properties:
+        total:
+          type: integer
+        sortOrder:
+          enum:
+          - asc
+          - desc
+          type: string
+    listInboxMentions_200_response:
+      example:
+        pagination:
+          cursor: cursor
+          hasMore: true
+        data:
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          authorUrn: authorUrn
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          accountUsername: accountUsername
+          id: id
+          permalink: permalink
+          platform: linkedin
+          content: content
+          organizationalEntity: organizationalEntity
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          authorUrn: authorUrn
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          accountUsername: accountUsername
+          id: id
+          permalink: permalink
+          platform: linkedin
+          content: content
+          organizationalEntity: organizationalEntity
+        meta:
+          total: 0
+          sortOrder: asc
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/listInboxMentions_200_response_data_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listInboxMentions_200_response_pagination"
+        meta:
+          $ref: "#/components/schemas/listInboxMentions_200_response_meta"
     listInboxReviews_200_response_data_inner_reviewer:
       example:
         name: name

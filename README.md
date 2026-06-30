@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-30T09:12:38.731846077Z[Etc/UTC]
+- Build date: 2026-06-30T10:06:34.573277954Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -566,6 +566,8 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**listLogsWithHttpInfo**](docs/LogsApi.md#listLogsWithHttpInfo) | **GET** /v1/logs | List activity logs
 *MediaApi* | [**getMediaPresignedUrl**](docs/MediaApi.md#getMediaPresignedUrl) | **POST** /v1/media/presign | Get upload URL
 *MediaApi* | [**getMediaPresignedUrlWithHttpInfo**](docs/MediaApi.md#getMediaPresignedUrlWithHttpInfo) | **POST** /v1/media/presign | Get upload URL
+*MentionsApi* | [**listInboxMentions**](docs/MentionsApi.md#listInboxMentions) | **GET** /v1/inbox/mentions | List mentions
+*MentionsApi* | [**listInboxMentionsWithHttpInfo**](docs/MentionsApi.md#listInboxMentionsWithHttpInfo) | **GET** /v1/inbox/mentions | List mentions
 *MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
@@ -1557,6 +1559,10 @@ Class | Method | HTTP request | Description
  - [ListInboxConversations200ResponseMeta](docs/ListInboxConversations200ResponseMeta.md)
  - [ListInboxConversations200ResponseMetaFailedAccountsInner](docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [ListInboxConversations200ResponsePagination](docs/ListInboxConversations200ResponsePagination.md)
+ - [ListInboxMentions200Response](docs/ListInboxMentions200Response.md)
+ - [ListInboxMentions200ResponseDataInner](docs/ListInboxMentions200ResponseDataInner.md)
+ - [ListInboxMentions200ResponseMeta](docs/ListInboxMentions200ResponseMeta.md)
+ - [ListInboxMentions200ResponsePagination](docs/ListInboxMentions200ResponsePagination.md)
  - [ListInboxReviews200Response](docs/ListInboxReviews200Response.md)
  - [ListInboxReviews200ResponseDataInner](docs/ListInboxReviews200ResponseDataInner.md)
  - [ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
