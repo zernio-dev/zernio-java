@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-06-30T20:06:01.026312306Z[Etc/UTC]
+- Build date: 2026-07-01T10:43:23.811672501Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -608,6 +608,8 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**listPostsWithHttpInfo**](docs/PostsApi.md#listPostsWithHttpInfo) | **GET** /v1/posts | List posts
 *PostsApi* | [**retryPost**](docs/PostsApi.md#retryPost) | **POST** /v1/posts/{postId}/retry | Retry failed post
 *PostsApi* | [**retryPostWithHttpInfo**](docs/PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post
+*PostsApi* | [**syncExternalPosts**](docs/PostsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync or verify an external post on demand
+*PostsApi* | [**syncExternalPostsWithHttpInfo**](docs/PostsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync or verify an external post on demand
 *PostsApi* | [**unpublishPost**](docs/PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**unpublishPostWithHttpInfo**](docs/PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**updatePost**](docs/PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post
@@ -1178,6 +1180,8 @@ Class | Method | HTTP request | Description
  - [EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
  - [Expired](docs/Expired.md)
  - [ExternalPostMediaItem](docs/ExternalPostMediaItem.md)
+ - [ExternalPostSummary](docs/ExternalPostSummary.md)
+ - [ExternalPostSummaryAnalytics](docs/ExternalPostSummaryAnalytics.md)
  - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPlatformDataCarouselCardsInner](docs/FacebookPlatformDataCarouselCardsInner.md)
@@ -1829,6 +1833,9 @@ Class | Method | HTTP request | Description
  - [SubmitWhatsAppNumberKycRequestDocumentsInner](docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md)
  - [SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md)
  - [SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.md)
+ - [SyncExternalPosts200Response](docs/SyncExternalPosts200Response.md)
+ - [SyncExternalPosts200ResponseSynced](docs/SyncExternalPosts200ResponseSynced.md)
+ - [SyncExternalPostsRequest](docs/SyncExternalPostsRequest.md)
  - [TargetingSpec](docs/TargetingSpec.md)
  - [TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
  - [TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)

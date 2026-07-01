@@ -24,6 +24,7 @@ import dev.zernio.model.CreatePost429Response;
 import dev.zernio.model.CreatePostRequest;
 import dev.zernio.model.EditPost200Response;
 import dev.zernio.model.EditPostRequest;
+import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetInboxVolume400Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
@@ -36,6 +37,8 @@ import dev.zernio.model.PostGetResponse;
 import dev.zernio.model.PostRetryResponse;
 import dev.zernio.model.PostUpdateResponse;
 import dev.zernio.model.PostsListResponse;
+import dev.zernio.model.SyncExternalPosts200Response;
+import dev.zernio.model.SyncExternalPostsRequest;
 import java.util.UUID;
 import dev.zernio.model.UnpublishPost200Response;
 import dev.zernio.model.UnpublishPostRequest;
@@ -74,7 +77,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-30T20:06:01.026312306Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T10:43:23.811672501Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1162,6 +1165,129 @@ public class PostsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Sync or verify an external post on demand
+   * Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts; LinkedIn personal accounts are not supported).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, and &#x60;vm.tiktok.com&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+   * @param syncExternalPostsRequest  (required)
+   * @return SyncExternalPosts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SyncExternalPosts200Response syncExternalPosts(@javax.annotation.Nonnull SyncExternalPostsRequest syncExternalPostsRequest) throws ApiException {
+    return syncExternalPosts(syncExternalPostsRequest, null);
+  }
+
+  /**
+   * Sync or verify an external post on demand
+   * Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts; LinkedIn personal accounts are not supported).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, and &#x60;vm.tiktok.com&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+   * @param syncExternalPostsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return SyncExternalPosts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SyncExternalPosts200Response syncExternalPosts(@javax.annotation.Nonnull SyncExternalPostsRequest syncExternalPostsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<SyncExternalPosts200Response> localVarResponse = syncExternalPostsWithHttpInfo(syncExternalPostsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Sync or verify an external post on demand
+   * Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts; LinkedIn personal accounts are not supported).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, and &#x60;vm.tiktok.com&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+   * @param syncExternalPostsRequest  (required)
+   * @return ApiResponse&lt;SyncExternalPosts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SyncExternalPosts200Response> syncExternalPostsWithHttpInfo(@javax.annotation.Nonnull SyncExternalPostsRequest syncExternalPostsRequest) throws ApiException {
+    return syncExternalPostsWithHttpInfo(syncExternalPostsRequest, null);
+  }
+
+  /**
+   * Sync or verify an external post on demand
+   * Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts; LinkedIn personal accounts are not supported).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, and &#x60;vm.tiktok.com&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+   * @param syncExternalPostsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SyncExternalPosts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SyncExternalPosts200Response> syncExternalPostsWithHttpInfo(@javax.annotation.Nonnull SyncExternalPostsRequest syncExternalPostsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = syncExternalPostsRequestBuilder(syncExternalPostsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("syncExternalPosts", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SyncExternalPosts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SyncExternalPosts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SyncExternalPosts200Response>() {});
+        
+
+        return new ApiResponse<SyncExternalPosts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder syncExternalPostsRequestBuilder(@javax.annotation.Nonnull SyncExternalPostsRequest syncExternalPostsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'syncExternalPostsRequest' is set
+    if (syncExternalPostsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'syncExternalPostsRequest' when calling syncExternalPosts");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/posts/sync-external";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(syncExternalPostsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

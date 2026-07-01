@@ -296,6 +296,8 @@ docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
 docs/Expired.md
 docs/ExternalPostMediaItem.md
+docs/ExternalPostSummary.md
+docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
 docs/FacebookPlatformData.md
 docs/FacebookPlatformDataCarouselCardsInner.md
@@ -969,6 +971,9 @@ docs/SubmitWhatsAppNumberKycRequestAddress.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.md
+docs/SyncExternalPosts200Response.md
+docs/SyncExternalPosts200ResponseSynced.md
+docs/SyncExternalPostsRequest.md
 docs/TargetingSpec.md
 docs/TargetingSpecCitiesInner.md
 docs/TargetingSpecCustomLocationsInner.md
@@ -1605,6 +1610,8 @@ src/main/java/dev/zernio/model/EstimateAdReach200Response.java
 src/main/java/dev/zernio/model/EstimateAdReachRequest.java
 src/main/java/dev/zernio/model/Expired.java
 src/main/java/dev/zernio/model/ExternalPostMediaItem.java
+src/main/java/dev/zernio/model/ExternalPostSummary.java
+src/main/java/dev/zernio/model/ExternalPostSummaryAnalytics.java
 src/main/java/dev/zernio/model/ExternalPostWebhookPost.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
 src/main/java/dev/zernio/model/FacebookPlatformDataCarouselCardsInner.java
@@ -2256,6 +2263,9 @@ src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestAddress.java
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInner.java
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.java
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf1.java
+src/main/java/dev/zernio/model/SyncExternalPosts200Response.java
+src/main/java/dev/zernio/model/SyncExternalPosts200ResponseSynced.java
+src/main/java/dev/zernio/model/SyncExternalPostsRequest.java
 src/main/java/dev/zernio/model/TargetingSpec.java
 src/main/java/dev/zernio/model/TargetingSpecCitiesInner.java
 src/main/java/dev/zernio/model/TargetingSpecCustomLocationsInner.java
@@ -2531,3 +2541,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ExternalPostSummaryAnalyticsTest.java
+src/test/java/dev/zernio/model/ExternalPostSummaryTest.java
+src/test/java/dev/zernio/model/SyncExternalPosts200ResponseSyncedTest.java
+src/test/java/dev/zernio/model/SyncExternalPosts200ResponseTest.java
+src/test/java/dev/zernio/model/SyncExternalPostsRequestTest.java
