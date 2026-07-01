@@ -4532,7 +4532,7 @@ paths:
           description: Account not found (or not owned by the authenticated user)
       summary: Sync an external post
       tags:
-      - Posts
+      - Analytics
       x-content-type: application/json
       x-accepts:
       - application/json

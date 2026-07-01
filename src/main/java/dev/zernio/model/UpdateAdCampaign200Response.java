@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateAdCampaign200Response.JSON_PROPERTY_BUDGET_LEVEL,
   UpdateAdCampaign200Response.JSON_PROPERTY_BID_STRATEGY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T10:56:11.748706167Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T11:19:58.949001875Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaign200Response {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable

@@ -48,6 +48,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getYouTubeDemographicsWithHttpInfo**](AnalyticsApi.md#getYouTubeDemographicsWithHttpInfo) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
 | [**getYouTubeVideoRetention**](AnalyticsApi.md#getYouTubeVideoRetention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
 | [**getYouTubeVideoRetentionWithHttpInfo**](AnalyticsApi.md#getYouTubeVideoRetentionWithHttpInfo) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
+| [**syncExternalPosts**](AnalyticsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post |
+| [**syncExternalPostsWithHttpInfo**](AnalyticsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post |
 
 
 
@@ -3737,4 +3739,152 @@ ApiResponse<[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md
 | **404** | Video not found, or it does not belong to this YouTube channel |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
 | **500** | Internal server error |  -  |
+
+
+## syncExternalPosts
+
+> SyncExternalPosts200Response syncExternalPosts(syncExternalPostsRequest)
+
+Sync an external post
+
+Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts; LinkedIn personal accounts are not supported).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, and &#x60;vm.tiktok.com&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        SyncExternalPostsRequest syncExternalPostsRequest = new SyncExternalPostsRequest(); // SyncExternalPostsRequest | 
+        try {
+            SyncExternalPosts200Response result = apiInstance.syncExternalPosts(syncExternalPostsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#syncExternalPosts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **syncExternalPostsRequest** | [**SyncExternalPostsRequest**](SyncExternalPostsRequest.md)|  | |
+
+### Return type
+
+[**SyncExternalPosts200Response**](SyncExternalPosts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sync result. When &#x60;url&#x60; or &#x60;postId&#x60; is provided, returns the matched post (or &#x60;found: false&#x60;). When neither is provided, returns the account&#39;s freshly-synced recent posts.  |  -  |
+| **400** | Invalid request (e.g. &#x60;accountId&#x60; missing or malformed) |  -  |
+| **404** | Account not found (or not owned by the authenticated user) |  -  |
+
+## syncExternalPostsWithHttpInfo
+
+> ApiResponse<SyncExternalPosts200Response> syncExternalPosts syncExternalPostsWithHttpInfo(syncExternalPostsRequest)
+
+Sync an external post
+
+Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a just-published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was just synced, the live fetch is skipped.  &#x60;accountId&#x60; is required — a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business, and LinkedIn organization accounts; LinkedIn personal accounts are not supported).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, and &#x60;vm.tiktok.com&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        SyncExternalPostsRequest syncExternalPostsRequest = new SyncExternalPostsRequest(); // SyncExternalPostsRequest | 
+        try {
+            ApiResponse<SyncExternalPosts200Response> response = apiInstance.syncExternalPostsWithHttpInfo(syncExternalPostsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#syncExternalPosts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **syncExternalPostsRequest** | [**SyncExternalPostsRequest**](SyncExternalPostsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SyncExternalPosts200Response**](SyncExternalPosts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sync result. When &#x60;url&#x60; or &#x60;postId&#x60; is provided, returns the matched post (or &#x60;found: false&#x60;). When neither is provided, returns the account&#39;s freshly-synced recent posts.  |  -  |
+| **400** | Invalid request (e.g. &#x60;accountId&#x60; missing or malformed) |  -  |
+| **404** | Account not found (or not owned by the authenticated user) |  -  |
 

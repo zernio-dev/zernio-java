@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-01T10:56:11.748706167Z[Etc/UTC]
+- Build date: 2026-07-01T11:19:58.949001875Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -308,6 +308,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getYouTubeDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeDemographicsWithHttpInfo) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics
 *AnalyticsApi* | [**getYouTubeVideoRetention**](docs/AnalyticsApi.md#getYouTubeVideoRetention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve
 *AnalyticsApi* | [**getYouTubeVideoRetentionWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeVideoRetentionWithHttpInfo) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve
+*AnalyticsApi* | [**syncExternalPosts**](docs/AnalyticsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post
+*AnalyticsApi* | [**syncExternalPostsWithHttpInfo**](docs/AnalyticsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post
 *ApiKeysApi* | [**createApiKey**](docs/ApiKeysApi.md#createApiKey) | **POST** /v1/api-keys | Create key
 *ApiKeysApi* | [**createApiKeyWithHttpInfo**](docs/ApiKeysApi.md#createApiKeyWithHttpInfo) | **POST** /v1/api-keys | Create key
 *ApiKeysApi* | [**deleteApiKey**](docs/ApiKeysApi.md#deleteApiKey) | **DELETE** /v1/api-keys/{keyId} | Delete key
@@ -608,8 +610,6 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**listPostsWithHttpInfo**](docs/PostsApi.md#listPostsWithHttpInfo) | **GET** /v1/posts | List posts
 *PostsApi* | [**retryPost**](docs/PostsApi.md#retryPost) | **POST** /v1/posts/{postId}/retry | Retry failed post
 *PostsApi* | [**retryPostWithHttpInfo**](docs/PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post
-*PostsApi* | [**syncExternalPosts**](docs/PostsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post
-*PostsApi* | [**syncExternalPostsWithHttpInfo**](docs/PostsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post
 *PostsApi* | [**unpublishPost**](docs/PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**unpublishPostWithHttpInfo**](docs/PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**updatePost**](docs/PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post
