@@ -4530,7 +4530,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Account not found (or not owned by the authenticated user)
-      summary: Sync or verify an external post on demand
+      summary: Sync an external post
       tags:
       - Posts
       x-content-type: application/json

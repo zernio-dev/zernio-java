@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-01T10:43:23.811672501Z[Etc/UTC]
+- Build date: 2026-07-01T10:56:11.748706167Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -608,8 +608,8 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**listPostsWithHttpInfo**](docs/PostsApi.md#listPostsWithHttpInfo) | **GET** /v1/posts | List posts
 *PostsApi* | [**retryPost**](docs/PostsApi.md#retryPost) | **POST** /v1/posts/{postId}/retry | Retry failed post
 *PostsApi* | [**retryPostWithHttpInfo**](docs/PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post
-*PostsApi* | [**syncExternalPosts**](docs/PostsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync or verify an external post on demand
-*PostsApi* | [**syncExternalPostsWithHttpInfo**](docs/PostsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync or verify an external post on demand
+*PostsApi* | [**syncExternalPosts**](docs/PostsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post
+*PostsApi* | [**syncExternalPostsWithHttpInfo**](docs/PostsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post
 *PostsApi* | [**unpublishPost**](docs/PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**unpublishPostWithHttpInfo**](docs/PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**updatePost**](docs/PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post
