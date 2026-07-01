@@ -12162,7 +12162,9 @@ paths:
         Filter by type, platform, status, and time range. Logs are retained for 90 days.
       operationId: listLogs
       parameters:
-      - description: Log category to query
+      - description: |
+          Log category to query. Use `all` for the unified view across every category,
+          or `api_request` for your API request logs (method, path, status, latency).
         explode: true
         in: query
         name: type
@@ -12170,10 +12172,13 @@ paths:
         schema:
           default: publishing
           enum:
+          - all
           - publishing
           - connections
           - webhooks
           - messaging
+          - workflow_event
+          - api_request
           type: string
         style: form
       - description: Filter by status
@@ -12262,6 +12267,74 @@ paths:
           default: 0
           minimum: 0
           type: integer
+        style: form
+      - description: Filter by connected account ID
+        explode: true
+        in: query
+        name: account_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Filter webhook logs by event (e.g. post.published, message.received)"
+        explode: true
+        in: query
+        name: event
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Correlation ID — returns every log spawned by a single API request
+        explode: true
+        in: query
+        name: request_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Precise start instant (ISO 8601); narrows within the day range
+        explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Precise end instant (ISO 8601)
+        explode: true
+        in: query
+        name: to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: Filter by exact HTTP status code (api_request logs)
+        explode: true
+        in: query
+        name: status_code
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: Filter by the API key that made the request (api_request logs)
+        explode: true
+        in: query
+        name: api_key_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Include message.read / message.delivered events (hidden by default
+          for messaging logs)
+        explode: true
+        in: query
+        name: include_read_receipts
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "200":
@@ -42343,17 +42416,23 @@ components:
         error_message: error_message
         metadata: metadata
         status_code: 0
+        method: method
         response_body: response_body
         created_at: 2000-01-23T04:56:07.000+00:00
+        ip_address: ip_address
         type: type
         platform: platform
+        api_key_id: api_key_id
         duration_ms: 6
+        path: path
         endpoint: endpoint
         account_id: account_id
         request_body: request_body
         user_id: user_id
         action: action
         error_code: error_code
+        request_id: request_id
+        user_agent: user_agent
         status: success
       properties:
         type:
@@ -42399,6 +42478,25 @@ components:
         metadata:
           description: Additional context as JSON string
           type: string
+        request_id:
+          description: Correlation ID linking every log from one API request (api_request
+            logs)
+          type: string
+        api_key_id:
+          description: The API key that made the request (api_request logs)
+          type: string
+        method:
+          description: HTTP method (api_request logs)
+          type: string
+        path:
+          description: Request path (api_request logs)
+          type: string
+        ip_address:
+          description: Client IP address (api_request logs)
+          type: string
+        user_agent:
+          description: Client user-agent (api_request logs)
+          type: string
     listLogs_200_response_pagination:
       example:
         total: 1
@@ -42429,32 +42527,44 @@ components:
         - error_message: error_message
           metadata: metadata
           status_code: 0
+          method: method
           response_body: response_body
           created_at: 2000-01-23T04:56:07.000+00:00
+          ip_address: ip_address
           type: type
           platform: platform
+          api_key_id: api_key_id
           duration_ms: 6
+          path: path
           endpoint: endpoint
           account_id: account_id
           request_body: request_body
           user_id: user_id
           action: action
           error_code: error_code
+          request_id: request_id
+          user_agent: user_agent
           status: success
         - error_message: error_message
           metadata: metadata
           status_code: 0
+          method: method
           response_body: response_body
           created_at: 2000-01-23T04:56:07.000+00:00
+          ip_address: ip_address
           type: type
           platform: platform
+          api_key_id: api_key_id
           duration_ms: 6
+          path: path
           endpoint: endpoint
           account_id: account_id
           request_body: request_body
           user_id: user_id
           action: action
           error_code: error_code
+          request_id: request_id
+          user_agent: user_agent
           status: success
       properties:
         logs:

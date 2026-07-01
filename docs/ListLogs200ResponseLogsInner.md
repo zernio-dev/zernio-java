@@ -22,6 +22,12 @@
 |**responseBody** | **String** | Response JSON (truncated to 10KB) |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**metadata** | **String** | Additional context as JSON string |  [optional] |
+|**requestId** | **String** | Correlation ID linking every log from one API request (api_request logs) |  [optional] |
+|**apiKeyId** | **String** | The API key that made the request (api_request logs) |  [optional] |
+|**method** | **String** | HTTP method (api_request logs) |  [optional] |
+|**path** | **String** | Request path (api_request logs) |  [optional] |
+|**ipAddress** | **String** | Client IP address (api_request logs) |  [optional] |
+|**userAgent** | **String** | Client user-agent (api_request logs) |  [optional] |
 
 
 

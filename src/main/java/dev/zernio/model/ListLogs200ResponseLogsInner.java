@@ -48,9 +48,15 @@ import dev.zernio.ApiClient;
   ListLogs200ResponseLogsInner.JSON_PROPERTY_REQUEST_BODY,
   ListLogs200ResponseLogsInner.JSON_PROPERTY_RESPONSE_BODY,
   ListLogs200ResponseLogsInner.JSON_PROPERTY_CREATED_AT,
-  ListLogs200ResponseLogsInner.JSON_PROPERTY_METADATA
+  ListLogs200ResponseLogsInner.JSON_PROPERTY_METADATA,
+  ListLogs200ResponseLogsInner.JSON_PROPERTY_REQUEST_ID,
+  ListLogs200ResponseLogsInner.JSON_PROPERTY_API_KEY_ID,
+  ListLogs200ResponseLogsInner.JSON_PROPERTY_METHOD,
+  ListLogs200ResponseLogsInner.JSON_PROPERTY_PATH,
+  ListLogs200ResponseLogsInner.JSON_PROPERTY_IP_ADDRESS,
+  ListLogs200ResponseLogsInner.JSON_PROPERTY_USER_AGENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T11:57:16.660487211Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T12:18:11.082974733Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLogs200ResponseLogsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nullable
@@ -150,6 +156,30 @@ public class ListLogs200ResponseLogsInner {
   public static final String JSON_PROPERTY_METADATA = "metadata";
   @javax.annotation.Nullable
   private String metadata;
+
+  public static final String JSON_PROPERTY_REQUEST_ID = "request_id";
+  @javax.annotation.Nullable
+  private String requestId;
+
+  public static final String JSON_PROPERTY_API_KEY_ID = "api_key_id";
+  @javax.annotation.Nullable
+  private String apiKeyId;
+
+  public static final String JSON_PROPERTY_METHOD = "method";
+  @javax.annotation.Nullable
+  private String method;
+
+  public static final String JSON_PROPERTY_PATH = "path";
+  @javax.annotation.Nullable
+  private String path;
+
+  public static final String JSON_PROPERTY_IP_ADDRESS = "ip_address";
+  @javax.annotation.Nullable
+  private String ipAddress;
+
+  public static final String JSON_PROPERTY_USER_AGENT = "user_agent";
+  @javax.annotation.Nullable
+  private String userAgent;
 
   public ListLogs200ResponseLogsInner() { 
   }
@@ -514,6 +544,150 @@ public class ListLogs200ResponseLogsInner {
   }
 
 
+  public ListLogs200ResponseLogsInner requestId(@javax.annotation.Nullable String requestId) {
+    this.requestId = requestId;
+    return this;
+  }
+
+  /**
+   * Correlation ID linking every log from one API request (api_request logs)
+   * @return requestId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REQUEST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRequestId() {
+    return requestId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REQUEST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRequestId(@javax.annotation.Nullable String requestId) {
+    this.requestId = requestId;
+  }
+
+
+  public ListLogs200ResponseLogsInner apiKeyId(@javax.annotation.Nullable String apiKeyId) {
+    this.apiKeyId = apiKeyId;
+    return this;
+  }
+
+  /**
+   * The API key that made the request (api_request logs)
+   * @return apiKeyId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_API_KEY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getApiKeyId() {
+    return apiKeyId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_API_KEY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setApiKeyId(@javax.annotation.Nullable String apiKeyId) {
+    this.apiKeyId = apiKeyId;
+  }
+
+
+  public ListLogs200ResponseLogsInner method(@javax.annotation.Nullable String method) {
+    this.method = method;
+    return this;
+  }
+
+  /**
+   * HTTP method (api_request logs)
+   * @return method
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METHOD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMethod() {
+    return method;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METHOD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMethod(@javax.annotation.Nullable String method) {
+    this.method = method;
+  }
+
+
+  public ListLogs200ResponseLogsInner path(@javax.annotation.Nullable String path) {
+    this.path = path;
+    return this;
+  }
+
+  /**
+   * Request path (api_request logs)
+   * @return path
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPath() {
+    return path;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PATH, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPath(@javax.annotation.Nullable String path) {
+    this.path = path;
+  }
+
+
+  public ListLogs200ResponseLogsInner ipAddress(@javax.annotation.Nullable String ipAddress) {
+    this.ipAddress = ipAddress;
+    return this;
+  }
+
+  /**
+   * Client IP address (api_request logs)
+   * @return ipAddress
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IP_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getIpAddress() {
+    return ipAddress;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IP_ADDRESS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIpAddress(@javax.annotation.Nullable String ipAddress) {
+    this.ipAddress = ipAddress;
+  }
+
+
+  public ListLogs200ResponseLogsInner userAgent(@javax.annotation.Nullable String userAgent) {
+    this.userAgent = userAgent;
+    return this;
+  }
+
+  /**
+   * Client user-agent (api_request logs)
+   * @return userAgent
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getUserAgent() {
+    return userAgent;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USER_AGENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUserAgent(@javax.annotation.Nullable String userAgent) {
+    this.userAgent = userAgent;
+  }
+
+
   /**
    * Return true if this listLogs_200_response_logs_inner object is equal to o.
    */
@@ -540,12 +714,18 @@ public class ListLogs200ResponseLogsInner {
         Objects.equals(this.requestBody, listLogs200ResponseLogsInner.requestBody) &&
         Objects.equals(this.responseBody, listLogs200ResponseLogsInner.responseBody) &&
         Objects.equals(this.createdAt, listLogs200ResponseLogsInner.createdAt) &&
-        Objects.equals(this.metadata, listLogs200ResponseLogsInner.metadata);
+        Objects.equals(this.metadata, listLogs200ResponseLogsInner.metadata) &&
+        Objects.equals(this.requestId, listLogs200ResponseLogsInner.requestId) &&
+        Objects.equals(this.apiKeyId, listLogs200ResponseLogsInner.apiKeyId) &&
+        Objects.equals(this.method, listLogs200ResponseLogsInner.method) &&
+        Objects.equals(this.path, listLogs200ResponseLogsInner.path) &&
+        Objects.equals(this.ipAddress, listLogs200ResponseLogsInner.ipAddress) &&
+        Objects.equals(this.userAgent, listLogs200ResponseLogsInner.userAgent);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, action, userId, platform, accountId, status, statusCode, errorMessage, errorCode, durationMs, endpoint, requestBody, responseBody, createdAt, metadata);
+    return Objects.hash(type, action, userId, platform, accountId, status, statusCode, errorMessage, errorCode, durationMs, endpoint, requestBody, responseBody, createdAt, metadata, requestId, apiKeyId, method, path, ipAddress, userAgent);
   }
 
   @Override
@@ -567,6 +747,12 @@ public class ListLogs200ResponseLogsInner {
     sb.append("    responseBody: ").append(toIndentedString(responseBody)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    requestId: ").append(toIndentedString(requestId)).append("\n");
+    sb.append("    apiKeyId: ").append(toIndentedString(apiKeyId)).append("\n");
+    sb.append("    method: ").append(toIndentedString(method)).append("\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
+    sb.append("    userAgent: ").append(toIndentedString(userAgent)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -687,6 +873,36 @@ public class ListLogs200ResponseLogsInner {
     // add `metadata` to the URL query string
     if (getMetadata() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMetadata()))));
+    }
+
+    // add `request_id` to the URL query string
+    if (getRequestId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%srequest_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequestId()))));
+    }
+
+    // add `api_key_id` to the URL query string
+    if (getApiKeyId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sapi_key_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getApiKeyId()))));
+    }
+
+    // add `method` to the URL query string
+    if (getMethod() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smethod%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMethod()))));
+    }
+
+    // add `path` to the URL query string
+    if (getPath() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPath()))));
+    }
+
+    // add `ip_address` to the URL query string
+    if (getIpAddress() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sip_address%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIpAddress()))));
+    }
+
+    // add `user_agent` to the URL query string
+    if (getUserAgent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suser_agent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserAgent()))));
     }
 
     return joiner.toString();

@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListLogs200Response;
+import java.time.OffsetDateTime;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,7 +47,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T11:57:16.660487211Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T12:18:11.082974733Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LogsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -166,7 +167,7 @@ public class LogsApi {
   /**
    * List activity logs
    * Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
-   * @param type Log category to query (optional, default to publishing)
+   * @param type Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)
    * @param status Filter by status (optional)
    * @param platform Filter by platform (optional)
    * @param action Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)
@@ -174,17 +175,25 @@ public class LogsApi {
    * @param days Number of days to look back (max 90) (optional, default to 90)
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
+   * @param accountId Filter by connected account ID (optional)
+   * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
+   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
+   * @param to Precise end instant (ISO 8601) (optional)
+   * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)
+   * @param apiKeyId Filter by the API key that made the request (api_request logs) (optional)
+   * @param includeReadReceipts Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)
    * @return ListLogs200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLogs200Response listLogs(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    return listLogs(type, status, platform, action, search, days, limit, skip, null);
+  public ListLogs200Response listLogs(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String event, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable OffsetDateTime from, @javax.annotation.Nullable OffsetDateTime to, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String apiKeyId, @javax.annotation.Nullable Boolean includeReadReceipts) throws ApiException {
+    return listLogs(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts, null);
   }
 
   /**
    * List activity logs
    * Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
-   * @param type Log category to query (optional, default to publishing)
+   * @param type Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)
    * @param status Filter by status (optional)
    * @param platform Filter by platform (optional)
    * @param action Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)
@@ -192,19 +201,27 @@ public class LogsApi {
    * @param days Number of days to look back (max 90) (optional, default to 90)
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
+   * @param accountId Filter by connected account ID (optional)
+   * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
+   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
+   * @param to Precise end instant (ISO 8601) (optional)
+   * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)
+   * @param apiKeyId Filter by the API key that made the request (api_request logs) (optional)
+   * @param includeReadReceipts Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)
    * @param headers Optional headers to include in the request
    * @return ListLogs200Response
    * @throws ApiException if fails to make API call
    */
-  public ListLogs200Response listLogs(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListLogs200Response> localVarResponse = listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, headers);
+  public ListLogs200Response listLogs(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String event, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable OffsetDateTime from, @javax.annotation.Nullable OffsetDateTime to, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String apiKeyId, @javax.annotation.Nullable Boolean includeReadReceipts, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListLogs200Response> localVarResponse = listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List activity logs
    * Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
-   * @param type Log category to query (optional, default to publishing)
+   * @param type Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)
    * @param status Filter by status (optional)
    * @param platform Filter by platform (optional)
    * @param action Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)
@@ -212,17 +229,25 @@ public class LogsApi {
    * @param days Number of days to look back (max 90) (optional, default to 90)
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
+   * @param accountId Filter by connected account ID (optional)
+   * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
+   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
+   * @param to Precise end instant (ISO 8601) (optional)
+   * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)
+   * @param apiKeyId Filter by the API key that made the request (api_request logs) (optional)
+   * @param includeReadReceipts Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)
    * @return ApiResponse&lt;ListLogs200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLogs200Response> listLogsWithHttpInfo(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip) throws ApiException {
-    return listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, null);
+  public ApiResponse<ListLogs200Response> listLogsWithHttpInfo(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String event, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable OffsetDateTime from, @javax.annotation.Nullable OffsetDateTime to, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String apiKeyId, @javax.annotation.Nullable Boolean includeReadReceipts) throws ApiException {
+    return listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts, null);
   }
 
   /**
    * List activity logs
    * Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
-   * @param type Log category to query (optional, default to publishing)
+   * @param type Log category to query. Use &#x60;all&#x60; for the unified view across every category, or &#x60;api_request&#x60; for your API request logs (method, path, status, latency).  (optional, default to publishing)
    * @param status Filter by status (optional)
    * @param platform Filter by platform (optional)
    * @param action Filter by action (e.g., post.published, message.sent, account.connected, webhook.delivered) (optional)
@@ -230,12 +255,20 @@ public class LogsApi {
    * @param days Number of days to look back (max 90) (optional, default to 90)
    * @param limit Maximum number of logs to return (max 100) (optional, default to 50)
    * @param skip Number of logs to skip (for pagination) (optional, default to 0)
+   * @param accountId Filter by connected account ID (optional)
+   * @param event Filter webhook logs by event (e.g. post.published, message.received) (optional)
+   * @param requestId Correlation ID — returns every log spawned by a single API request (optional)
+   * @param from Precise start instant (ISO 8601); narrows within the day range (optional)
+   * @param to Precise end instant (ISO 8601) (optional)
+   * @param statusCode Filter by exact HTTP status code (api_request logs) (optional)
+   * @param apiKeyId Filter by the API key that made the request (api_request logs) (optional)
+   * @param includeReadReceipts Include message.read / message.delivered events (hidden by default for messaging logs) (optional, default to false)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListLogs200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListLogs200Response> listLogsWithHttpInfo(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listLogsRequestBuilder(type, status, platform, action, search, days, limit, skip, headers);
+  public ApiResponse<ListLogs200Response> listLogsWithHttpInfo(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String event, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable OffsetDateTime from, @javax.annotation.Nullable OffsetDateTime to, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String apiKeyId, @javax.annotation.Nullable Boolean includeReadReceipts, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listLogsRequestBuilder(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -282,7 +315,7 @@ public class LogsApi {
     }
   }
 
-  private HttpRequest.Builder listLogsRequestBuilder(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listLogsRequestBuilder(@javax.annotation.Nullable String type, @javax.annotation.Nullable String status, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String action, @javax.annotation.Nullable String search, @javax.annotation.Nullable Integer days, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer skip, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable String event, @javax.annotation.Nullable String requestId, @javax.annotation.Nullable OffsetDateTime from, @javax.annotation.Nullable OffsetDateTime to, @javax.annotation.Nullable Integer statusCode, @javax.annotation.Nullable String apiKeyId, @javax.annotation.Nullable Boolean includeReadReceipts, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -307,6 +340,22 @@ public class LogsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "skip";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("skip", skip));
+    localVarQueryParameterBaseName = "account_id";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("account_id", accountId));
+    localVarQueryParameterBaseName = "event";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("event", event));
+    localVarQueryParameterBaseName = "request_id";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("request_id", requestId));
+    localVarQueryParameterBaseName = "from";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("from", from));
+    localVarQueryParameterBaseName = "to";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("to", to));
+    localVarQueryParameterBaseName = "status_code";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("status_code", statusCode));
+    localVarQueryParameterBaseName = "api_key_id";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("api_key_id", apiKeyId));
+    localVarQueryParameterBaseName = "include_read_receipts";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("include_read_receipts", includeReadReceipts));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
