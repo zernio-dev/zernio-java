@@ -46,6 +46,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_MESSAGE,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_URL,
   SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_TYPE,
+  SendInboxMessageRequest.JSON_PROPERTY_ATTACHMENT_NAME,
   SendInboxMessageRequest.JSON_PROPERTY_VOICE_NOTE,
   SendInboxMessageRequest.JSON_PROPERTY_QUICK_REPLIES,
   SendInboxMessageRequest.JSON_PROPERTY_BUTTONS,
@@ -58,7 +59,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_LOCATION,
   SendInboxMessageRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T11:19:58.949001875Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T11:57:16.660487211Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -114,6 +115,10 @@ public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ATTACHMENT_TYPE = "attachmentType";
   @javax.annotation.Nullable
   private AttachmentTypeEnum attachmentType;
+
+  public static final String JSON_PROPERTY_ATTACHMENT_NAME = "attachmentName";
+  @javax.annotation.Nullable
+  private String attachmentName;
 
   public static final String JSON_PROPERTY_VOICE_NOTE = "voiceNote";
   @javax.annotation.Nullable
@@ -331,6 +336,30 @@ public class SendInboxMessageRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachmentType(@javax.annotation.Nullable AttachmentTypeEnum attachmentType) {
     this.attachmentType = attachmentType;
+  }
+
+
+  public SendInboxMessageRequest attachmentName(@javax.annotation.Nullable String attachmentName) {
+    this.attachmentName = attachmentName;
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Display name for a document sent via attachmentUrl with attachmentType: file (e.g. \&quot;Report.pdf\&quot;). Maps to the recipient&#39;s file name; without it WhatsApp derives the name from the URL and shows \&quot;Untitled\&quot;. Ignored for image/video/audio and for binary uploads (which use the uploaded file&#39;s name).
+   * @return attachmentName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENT_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAttachmentName() {
+    return attachmentName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENT_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAttachmentName(@javax.annotation.Nullable String attachmentName) {
+    this.attachmentName = attachmentName;
   }
 
 
@@ -638,6 +667,7 @@ public class SendInboxMessageRequest {
         Objects.equals(this.message, sendInboxMessageRequest.message) &&
         Objects.equals(this.attachmentUrl, sendInboxMessageRequest.attachmentUrl) &&
         Objects.equals(this.attachmentType, sendInboxMessageRequest.attachmentType) &&
+        Objects.equals(this.attachmentName, sendInboxMessageRequest.attachmentName) &&
         Objects.equals(this.voiceNote, sendInboxMessageRequest.voiceNote) &&
         Objects.equals(this.quickReplies, sendInboxMessageRequest.quickReplies) &&
         Objects.equals(this.buttons, sendInboxMessageRequest.buttons) &&
@@ -653,7 +683,7 @@ public class SendInboxMessageRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, attachmentUrl, attachmentType, voiceNote, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
+    return Objects.hash(accountId, message, attachmentUrl, attachmentType, attachmentName, voiceNote, quickReplies, buttons, template, interactive, replyMarkup, messagingType, messageTag, replyTo, location, contacts);
   }
 
   @Override
@@ -664,6 +694,7 @@ public class SendInboxMessageRequest {
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    attachmentUrl: ").append(toIndentedString(attachmentUrl)).append("\n");
     sb.append("    attachmentType: ").append(toIndentedString(attachmentType)).append("\n");
+    sb.append("    attachmentName: ").append(toIndentedString(attachmentName)).append("\n");
     sb.append("    voiceNote: ").append(toIndentedString(voiceNote)).append("\n");
     sb.append("    quickReplies: ").append(toIndentedString(quickReplies)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
@@ -740,6 +771,11 @@ public class SendInboxMessageRequest {
     // add `attachmentType` to the URL query string
     if (getAttachmentType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sattachmentType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttachmentType()))));
+    }
+
+    // add `attachmentName` to the URL query string
+    if (getAttachmentName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sattachmentName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttachmentName()))));
     }
 
     // add `voiceNote` to the URL query string
