@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_SIZE,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-01T12:18:11.082974733Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-02T10:25:44.163722212Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAudiences200ResponseAudiencesInner {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();
