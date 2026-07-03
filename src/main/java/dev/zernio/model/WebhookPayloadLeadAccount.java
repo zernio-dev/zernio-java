@@ -34,13 +34,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadLeadAccount.JSON_PROPERTY_ID,
+  WebhookPayloadLeadAccount.JSON_PROPERTY_ACCOUNT_ID,
   WebhookPayloadLeadAccount.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:43:40.040866269Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:58:04.769435788Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadLeadAccount {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
   private String id;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   /**
    * Gets or Sets platform
@@ -106,6 +111,30 @@ public class WebhookPayloadLeadAccount {
   }
 
 
+  public WebhookPayloadLeadAccount accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Social account ID (same as id); canonical field for account filtering.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+  }
+
+
   public WebhookPayloadLeadAccount platform(@javax.annotation.Nonnull PlatformEnum platform) {
     this.platform = platform;
     return this;
@@ -143,12 +172,13 @@ public class WebhookPayloadLeadAccount {
     }
     WebhookPayloadLeadAccount webhookPayloadLeadAccount = (WebhookPayloadLeadAccount) o;
     return Objects.equals(this.id, webhookPayloadLeadAccount.id) &&
+        Objects.equals(this.accountId, webhookPayloadLeadAccount.accountId) &&
         Objects.equals(this.platform, webhookPayloadLeadAccount.platform);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform);
+    return Objects.hash(id, accountId, platform);
   }
 
   @Override
@@ -156,6 +186,7 @@ public class WebhookPayloadLeadAccount {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadLeadAccount {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -207,6 +238,11 @@ public class WebhookPayloadLeadAccount {
     // add `id` to the URL query string
     if (getId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `platform` to the URL query string

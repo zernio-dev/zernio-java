@@ -25484,6 +25484,7 @@ components:
         id: id
         event: comment.received
         account:
+          accountId: accountId
           id: id
           platform: platform
           username: username
@@ -25531,6 +25532,7 @@ components:
           leadgenId: leadgenId
           adsetId: adsetId
         account:
+          accountId: accountId
           id: id
           platform: facebook
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -25630,6 +25632,7 @@ components:
         id: id
         event: review.new
         account:
+          accountId: accountId
           id: id
           platform: platform
           username: username
@@ -25679,6 +25682,7 @@ components:
         id: id
         event: review.updated
         account:
+          accountId: accountId
           id: id
           platform: platform
           username: username
@@ -25806,6 +25810,7 @@ components:
         id: id
         event: post.external.created
         account:
+          accountId: accountId
           id: id
           platform: platform
           username: username
@@ -25960,6 +25965,7 @@ components:
     InboxWebhookAccount:
       description: The account context included in inbox webhook payloads.
       example:
+        accountId: accountId
         displayName: displayName
         id: id
         platform: platform
@@ -25967,6 +25973,11 @@ components:
       properties:
         id:
           description: Social account ID
+          type: string
+        accountId:
+          description: Social account ID (same value as id). Canonical field so consumers
+            can filter every webhook event on one field (e.g. route staging vs production
+            by account). id is kept for backward compatibility.
           type: string
         platform:
           type: string
@@ -26006,6 +26017,7 @@ components:
           participantUsername: participantUsername
           status: active
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26118,6 +26130,7 @@ components:
           participantUsername: participantUsername
           status: active
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26187,6 +26200,7 @@ components:
           participantUsername: participantUsername
           status: active
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26288,6 +26302,7 @@ components:
           participantUsername: participantUsername
           status: active
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26388,6 +26403,7 @@ components:
           participantUsername: participantUsername
           status: active
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26481,6 +26497,7 @@ components:
           participantUsername: participantUsername
           status: active
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26539,6 +26556,7 @@ components:
           platform: instagram
           status: active
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26591,6 +26609,7 @@ components:
         id: id
         event: call.received
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26645,6 +26664,7 @@ components:
         id: id
         event: call.ended
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26690,6 +26710,7 @@ components:
         id: id
         event: call.failed
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -26730,6 +26751,7 @@ components:
         id: id
         event: call.permission_request
         account:
+          accountId: accountId
           displayName: displayName
           id: id
           platform: platform
@@ -59385,12 +59407,17 @@ components:
       - platformPostId
     WebhookPayloadComment_account:
       example:
+        accountId: accountId
         id: id
         platform: platform
         username: username
       properties:
         id:
           description: Social account ID
+          type: string
+        accountId:
+          description: Social account ID (same as id); canonical field for account
+            filtering.
           type: string
         platform:
           type: string
@@ -59459,11 +59486,16 @@ components:
       - leadgenId
     WebhookPayloadLead_account:
       example:
+        accountId: accountId
         id: id
         platform: facebook
       properties:
         id:
           description: Social account ID (the facebook account owning the Page)
+          type: string
+        accountId:
+          description: Social account ID (same as id); canonical field for account
+            filtering.
           type: string
         platform:
           enum:
@@ -59508,11 +59540,16 @@ components:
       - text
     WebhookPayloadReviewNew_account:
       example:
+        accountId: accountId
         id: id
         platform: platform
         username: username
       properties:
         id:
+          type: string
+        accountId:
+          description: Social account ID (same as id); canonical field for account
+            filtering.
           type: string
         platform:
           type: string

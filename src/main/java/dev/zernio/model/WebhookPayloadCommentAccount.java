@@ -34,14 +34,19 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadCommentAccount.JSON_PROPERTY_ID,
+  WebhookPayloadCommentAccount.JSON_PROPERTY_ACCOUNT_ID,
   WebhookPayloadCommentAccount.JSON_PROPERTY_PLATFORM,
   WebhookPayloadCommentAccount.JSON_PROPERTY_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:43:40.040866269Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:58:04.769435788Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentAccount {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
   private String id;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull
@@ -75,6 +80,30 @@ public class WebhookPayloadCommentAccount {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
+  }
+
+
+  public WebhookPayloadCommentAccount accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Social account ID (same as id); canonical field for account filtering.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
   }
 
 
@@ -139,13 +168,14 @@ public class WebhookPayloadCommentAccount {
     }
     WebhookPayloadCommentAccount webhookPayloadCommentAccount = (WebhookPayloadCommentAccount) o;
     return Objects.equals(this.id, webhookPayloadCommentAccount.id) &&
+        Objects.equals(this.accountId, webhookPayloadCommentAccount.accountId) &&
         Objects.equals(this.platform, webhookPayloadCommentAccount.platform) &&
         Objects.equals(this.username, webhookPayloadCommentAccount.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, username);
+    return Objects.hash(id, accountId, platform, username);
   }
 
   @Override
@@ -153,6 +183,7 @@ public class WebhookPayloadCommentAccount {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadCommentAccount {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("}");
@@ -205,6 +236,11 @@ public class WebhookPayloadCommentAccount {
     // add `id` to the URL query string
     if (getId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `platform` to the URL query string
