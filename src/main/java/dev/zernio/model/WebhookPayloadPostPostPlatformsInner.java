@@ -35,11 +35,12 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_PLATFORM,
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_STATUS,
+  WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_ACCOUNT_ID,
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_PLATFORM_POST_ID,
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_PUBLISHED_URL,
   WebhookPayloadPostPostPlatformsInner.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:29:15.904733285Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:43:40.040866269Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPostPlatformsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull
@@ -48,6 +49,10 @@ public class WebhookPayloadPostPostPlatformsInner {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nonnull
   private String status;
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   public static final String JSON_PROPERTY_PLATFORM_POST_ID = "platformPostId";
   @javax.annotation.Nullable
@@ -109,6 +114,30 @@ public class WebhookPayloadPostPostPlatformsInner {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStatus(@javax.annotation.Nonnull String status) {
     this.status = status;
+  }
+
+
+  public WebhookPayloadPostPostPlatformsInner accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * SocialAccount id this platform target published through. Use it to route events by connected account (e.g. separate staging vs production endpoints). A post can span multiple accounts.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
   }
 
 
@@ -198,6 +227,7 @@ public class WebhookPayloadPostPostPlatformsInner {
     WebhookPayloadPostPostPlatformsInner webhookPayloadPostPostPlatformsInner = (WebhookPayloadPostPostPlatformsInner) o;
     return Objects.equals(this.platform, webhookPayloadPostPostPlatformsInner.platform) &&
         Objects.equals(this.status, webhookPayloadPostPostPlatformsInner.status) &&
+        Objects.equals(this.accountId, webhookPayloadPostPostPlatformsInner.accountId) &&
         Objects.equals(this.platformPostId, webhookPayloadPostPostPlatformsInner.platformPostId) &&
         Objects.equals(this.publishedUrl, webhookPayloadPostPostPlatformsInner.publishedUrl) &&
         Objects.equals(this.error, webhookPayloadPostPostPlatformsInner.error);
@@ -205,7 +235,7 @@ public class WebhookPayloadPostPostPlatformsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, status, platformPostId, publishedUrl, error);
+    return Objects.hash(platform, status, accountId, platformPostId, publishedUrl, error);
   }
 
   @Override
@@ -214,6 +244,7 @@ public class WebhookPayloadPostPostPlatformsInner {
     sb.append("class WebhookPayloadPostPostPlatformsInner {\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    platformPostId: ").append(toIndentedString(platformPostId)).append("\n");
     sb.append("    publishedUrl: ").append(toIndentedString(publishedUrl)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
@@ -272,6 +303,11 @@ public class WebhookPayloadPostPostPlatformsInner {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `platformPostId` to the URL query string

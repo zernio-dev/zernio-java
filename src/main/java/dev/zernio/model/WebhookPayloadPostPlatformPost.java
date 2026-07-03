@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.WebhookPayloadPostPostPlatformsInner;
+import dev.zernio.model.WebhookPayloadPostPlatformPostPlatformsInner;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostPlatformPost.JSON_PROPERTY_PUBLISHED_AT,
   WebhookPayloadPostPlatformPost.JSON_PROPERTY_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:29:15.904733285Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:43:40.040866269Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPlatformPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -68,7 +68,7 @@ public class WebhookPayloadPostPlatformPost {
 
   public static final String JSON_PROPERTY_PLATFORMS = "platforms";
   @javax.annotation.Nonnull
-  private List<WebhookPayloadPostPostPlatformsInner> platforms = new ArrayList<>();
+  private List<WebhookPayloadPostPlatformPostPlatformsInner> platforms = new ArrayList<>();
 
   public WebhookPayloadPostPlatformPost() { 
   }
@@ -193,12 +193,12 @@ public class WebhookPayloadPostPlatformPost {
   }
 
 
-  public WebhookPayloadPostPlatformPost platforms(@javax.annotation.Nonnull List<WebhookPayloadPostPostPlatformsInner> platforms) {
+  public WebhookPayloadPostPlatformPost platforms(@javax.annotation.Nonnull List<WebhookPayloadPostPlatformPostPlatformsInner> platforms) {
     this.platforms = platforms;
     return this;
   }
 
-  public WebhookPayloadPostPlatformPost addPlatformsItem(WebhookPayloadPostPostPlatformsInner platformsItem) {
+  public WebhookPayloadPostPlatformPost addPlatformsItem(WebhookPayloadPostPlatformPostPlatformsInner platformsItem) {
     if (this.platforms == null) {
       this.platforms = new ArrayList<>();
     }
@@ -213,14 +213,14 @@ public class WebhookPayloadPostPlatformPost {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<WebhookPayloadPostPostPlatformsInner> getPlatforms() {
+  public List<WebhookPayloadPostPlatformPostPlatformsInner> getPlatforms() {
     return platforms;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PLATFORMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPlatforms(@javax.annotation.Nonnull List<WebhookPayloadPostPostPlatformsInner> platforms) {
+  public void setPlatforms(@javax.annotation.Nonnull List<WebhookPayloadPostPlatformPostPlatformsInner> platforms) {
     this.platforms = platforms;
   }
 
