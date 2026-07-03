@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateInviteTokenRequest.JSON_PROPERTY_ROLE,
   CreateInviteTokenRequest.JSON_PROPERTY_READ_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T08:41:29.499047542Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T08:58:04.415846943Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInviteTokenRequest {
   /**
    * &#39;all&#39; grants access to all profiles, &#39;profiles&#39; restricts to specific profiles
@@ -86,7 +86,7 @@ public class CreateInviteTokenRequest {
   private List<String> profileIds = new ArrayList<>();
 
   /**
-   * Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) but not billing, ownership transfer or account deletion. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
+   * Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) and billing, but not ownership transfer or account deletion. &#39;billing_admin&#39; (displayed as Billing Manager) manages billing only. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
    */
   public enum RoleEnum {
     ADMIN(String.valueOf("admin")),
@@ -197,7 +197,7 @@ public class CreateInviteTokenRequest {
   }
 
   /**
-   * Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) but not billing, ownership transfer or account deletion. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
+   * Org role granted to the invitee. Defaults to &#39;member&#39;. &#39;admin&#39; can manage the team (invite/remove members, change roles and access) and billing, but not ownership transfer or account deletion. &#39;billing_admin&#39; (displayed as Billing Manager) manages billing only. &#39;viewer&#39; creates a read-only member who can view everything in their profile scope but cannot perform any content mutation (publish, edit, delete, connect accounts).
    * @return role
    */
   @javax.annotation.Nullable
