@@ -42,9 +42,10 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_KIND,
   GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_DESCRIPTION,
   GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_EXAMPLE,
-  GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_LOCAL_TO
+  GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_LOCAL_TO,
+  GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T15:06:13.358021681Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:29:15.904733285Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nullable
@@ -107,6 +108,44 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
 
   public static final String JSON_PROPERTY_LOCAL_TO = "localTo";
   private JsonNullable<String> localTo = JsonNullable.<String>undefined();
+
+  /**
+   * When set, the requirement applies ONLY to this end-user type — provide it for that type and OMIT it for the other (e.g. Brazil: \&quot;Cartão CNPJ\&quot; is business-only, \&quot;CPF\&quot; and \&quot;ID/Passport Copy\&quot; are personal-only). Submitting both sets makes the regulator ask whether the number is for personal or business use and stalls the review. Pass &#x60;entityType&#x60; on POST so the server drops the inapplicable set.
+   */
+  public enum AudienceEnum {
+    BUSINESS(String.valueOf("business")),
+    
+    INDIVIDUAL(String.valueOf("individual"));
+
+    private String value;
+
+    AudienceEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AudienceEnum fromValue(String value) {
+      for (AudienceEnum b : AudienceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+  }
+
+  public static final String JSON_PROPERTY_AUDIENCE = "audience";
+  private JsonNullable<AudienceEnum> audience = JsonNullable.<AudienceEnum>undefined();
 
   public GetWhatsAppNumberKycForm200ResponseFieldsInner() { 
   }
@@ -279,6 +318,38 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
   }
 
 
+  public GetWhatsAppNumberKycForm200ResponseFieldsInner audience(@javax.annotation.Nullable AudienceEnum audience) {
+    this.audience = JsonNullable.<AudienceEnum>of(audience);
+    return this;
+  }
+
+  /**
+   * When set, the requirement applies ONLY to this end-user type — provide it for that type and OMIT it for the other (e.g. Brazil: \&quot;Cartão CNPJ\&quot; is business-only, \&quot;CPF\&quot; and \&quot;ID/Passport Copy\&quot; are personal-only). Submitting both sets makes the regulator ask whether the number is for personal or business use and stalls the review. Pass &#x60;entityType&#x60; on POST so the server drops the inapplicable set.
+   * @return audience
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public AudienceEnum getAudience() {
+        return audience.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_AUDIENCE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<AudienceEnum> getAudience_JsonNullable() {
+    return audience;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUDIENCE)
+  public void setAudience_JsonNullable(JsonNullable<AudienceEnum> audience) {
+    this.audience = audience;
+  }
+
+  public void setAudience(@javax.annotation.Nullable AudienceEnum audience) {
+    this.audience = JsonNullable.<AudienceEnum>of(audience);
+  }
+
+
   /**
    * Return true if this getWhatsAppNumberKycForm_200_response_fields_inner object is equal to o.
    */
@@ -296,7 +367,8 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
         Objects.equals(this.kind, getWhatsAppNumberKycForm200ResponseFieldsInner.kind) &&
         equalsNullable(this.description, getWhatsAppNumberKycForm200ResponseFieldsInner.description) &&
         equalsNullable(this.example, getWhatsAppNumberKycForm200ResponseFieldsInner.example) &&
-        equalsNullable(this.localTo, getWhatsAppNumberKycForm200ResponseFieldsInner.localTo);
+        equalsNullable(this.localTo, getWhatsAppNumberKycForm200ResponseFieldsInner.localTo) &&
+        equalsNullable(this.audience, getWhatsAppNumberKycForm200ResponseFieldsInner.audience);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -305,7 +377,7 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(requirementId, label, kind, hashCodeNullable(description), hashCodeNullable(example), hashCodeNullable(localTo));
+    return Objects.hash(requirementId, label, kind, hashCodeNullable(description), hashCodeNullable(example), hashCodeNullable(localTo), hashCodeNullable(audience));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -325,6 +397,7 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    example: ").append(toIndentedString(example)).append("\n");
     sb.append("    localTo: ").append(toIndentedString(localTo)).append("\n");
+    sb.append("    audience: ").append(toIndentedString(audience)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -400,6 +473,11 @@ public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
     // add `localTo` to the URL query string
     if (getLocalTo() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slocalTo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocalTo()))));
+    }
+
+    // add `audience` to the URL query string
+    if (getAudience() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saudience%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAudience()))));
     }
 
     return joiner.toString();

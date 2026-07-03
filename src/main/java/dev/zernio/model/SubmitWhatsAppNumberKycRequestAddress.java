@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SubmitWhatsAppNumberKycRequestAddress.JSON_PROPERTY_ADMINISTRATIVE_AREA,
   SubmitWhatsAppNumberKycRequestAddress.JSON_PROPERTY_POSTAL_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T15:06:13.358021681Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:29:15.904733285Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKycRequestAddress {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nullable

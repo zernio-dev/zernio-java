@@ -47111,6 +47111,7 @@ components:
           type: array
     getWhatsAppNumberKycForm_200_response_fields_inner:
       example:
+        audience: business
         kind: text
         description: description
         label: label
@@ -47142,6 +47143,19 @@ components:
           type: string
         localTo:
           description: ISO country the value must be local to
+          nullable: true
+          type: string
+        audience:
+          description: "When set, the requirement applies ONLY to this end-user type\
+            \ — provide it for that type and OMIT it for the other (e.g. Brazil: \"\
+            Cartão CNPJ\" is business-only, \"CPF\" and \"ID/Passport Copy\" are personal-only).\
+            \ Submitting both sets makes the regulator ask whether the number is for\
+            \ personal or business use and stalls the review. Pass `entityType` on\
+            \ POST so the server drops the inapplicable set."
+          enum:
+          - business
+          - individual
+          - null
           nullable: true
           type: string
     getWhatsAppNumberKycForm_200_response_reusable_details_inner:
@@ -47217,13 +47231,15 @@ components:
         country: country
         numberType: numberType
         fields:
-        - kind: text
+        - audience: business
+          kind: text
           description: description
           label: label
           requirementId: requirementId
           localTo: localTo
           example: example
-        - kind: text
+        - audience: business
+          kind: text
           description: description
           label: label
           requirementId: requirementId

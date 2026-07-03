@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UnpinDiscordMessage200Response.JSON_PROPERTY_CHANNEL_ID,
   UnpinDiscordMessage200Response.JSON_PROPERTY_MESSAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T15:06:13.358021681Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T18:29:15.904733285Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UnpinDiscordMessage200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
