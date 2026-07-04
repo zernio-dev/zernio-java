@@ -82,7 +82,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T22:41:22.130788373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-04T13:49:24.644347969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3345,6 +3345,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPost);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * TikTok post URL resolved event
+   * Fired when an already-published TikTok platform entry gets its public URL backfilled. TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available. At most once per platform target; never fires for drafts or private posts (no public URL exists). Payload shape is identical to &#x60;post.platform.published&#x60;. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostTikTokUrlResolved(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform) throws ApiException {
+    onPostTikTokUrlResolved(webhookPayloadPostPlatform, null);
+  }
+
+  /**
+   * TikTok post URL resolved event
+   * Fired when an already-published TikTok platform entry gets its public URL backfilled. TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available. At most once per platform target; never fires for drafts or private posts (no public URL exists). Payload shape is identical to &#x60;post.platform.published&#x60;. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onPostTikTokUrlResolved(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    onPostTikTokUrlResolvedWithHttpInfo(webhookPayloadPostPlatform, headers);
+  }
+
+  /**
+   * TikTok post URL resolved event
+   * Fired when an already-published TikTok platform entry gets its public URL backfilled. TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available. At most once per platform target; never fires for drafts or private posts (no public URL exists). Payload shape is identical to &#x60;post.platform.published&#x60;. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostTikTokUrlResolvedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform) throws ApiException {
+    return onPostTikTokUrlResolvedWithHttpInfo(webhookPayloadPostPlatform, null);
+  }
+
+  /**
+   * TikTok post URL resolved event
+   * Fired when an already-published TikTok platform entry gets its public URL backfilled. TikTok exposes the numeric video id asynchronously (often minutes after PUBLISH_COMPLETE), so the terminal events can carry an empty &#x60;publishedUrl&#x60; for TikTok. This event delivers &#x60;platform.publishedUrl&#x60; and the resolved &#x60;platform.platformPostId&#x60; once available. At most once per platform target; never fires for drafts or private posts (no public URL exists). Payload shape is identical to &#x60;post.platform.published&#x60;. 
+   * @param webhookPayloadPostPlatform  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onPostTikTokUrlResolvedWithHttpInfo(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onPostTikTokUrlResolvedRequestBuilder(webhookPayloadPostPlatform, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onPostTikTokUrlResolved", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onPostTikTokUrlResolvedRequestBuilder(@javax.annotation.Nonnull WebhookPayloadPostPlatform webhookPayloadPostPlatform, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'webhookPayloadPostPlatform' is set
+    if (webhookPayloadPostPlatform == null) {
+      throw new ApiException(400, "Missing the required parameter 'webhookPayloadPostPlatform' when calling onPostTikTokUrlResolved");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/post.tiktok.url_resolved";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadPostPlatform);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

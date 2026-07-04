@@ -13,7 +13,7 @@
 |**platforms** | [**List&lt;UpdatePostRequestPlatformsInner&gt;**](UpdatePostRequestPlatformsInner.md) | Target platforms and accounts for this post. Each item must include platform and accountId. |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
 |**publishNow** | **Boolean** |  |  [optional] |
-|**isDraft** | **Boolean** |  |  [optional] |
+|**isDraft** | **Boolean** | When omitted, the post keeps its current draft status. Send &#x60;false&#x60; to promote a draft to scheduled (combined with &#x60;scheduledFor&#x60;, &#x60;publishNow&#x60;, or a queue). |  [optional] |
 |**timezone** | **String** |  |  [optional] |
 |**visibility** | [**VisibilityEnum**](#VisibilityEnum) |  |  [optional] |
 |**tags** | **List&lt;String&gt;** |  |  [optional] |

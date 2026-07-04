@@ -67,7 +67,7 @@ import dev.zernio.ApiClient;
   UpdatePostRequest.JSON_PROPERTY_FACEBOOK_SETTINGS,
   UpdatePostRequest.JSON_PROPERTY_RECYCLING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T22:41:22.130788373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-04T13:49:24.644347969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -351,7 +351,7 @@ public class UpdatePostRequest {
   }
 
   /**
-   * Get isDraft
+   * When omitted, the post keeps its current draft status. Send &#x60;false&#x60; to promote a draft to scheduled (combined with &#x60;scheduledFor&#x60;, &#x60;publishNow&#x60;, or a queue).
    * @return isDraft
    */
   @javax.annotation.Nullable

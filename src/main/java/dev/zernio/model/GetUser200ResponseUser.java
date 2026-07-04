@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetUser200ResponseUser.JSON_PROPERTY_IS_ROOT,
   GetUser200ResponseUser.JSON_PROPERTY_PROFILE_ACCESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-03T22:41:22.130788373Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-04T13:49:24.644347969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetUser200ResponseUser {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

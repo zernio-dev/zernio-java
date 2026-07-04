@@ -32,6 +32,7 @@ Individual webhook configuration for receiving real-time notifications
 | POST_RECYCLED | &quot;post.recycled&quot; |
 | POST_PLATFORM_PUBLISHED | &quot;post.platform.published&quot; |
 | POST_PLATFORM_FAILED | &quot;post.platform.failed&quot; |
+| POST_TIKTOK_URL_RESOLVED | &quot;post.tiktok.url_resolved&quot; |
 | POST_EXTERNAL_CREATED | &quot;post.external.created&quot; |
 | POST_EXTERNAL_UPDATED | &quot;post.external.updated&quot; |
 | POST_EXTERNAL_DELETED | &quot;post.external.deleted&quot; |
