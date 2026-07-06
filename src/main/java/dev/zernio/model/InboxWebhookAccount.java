@@ -35,11 +35,12 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   InboxWebhookAccount.JSON_PROPERTY_ID,
   InboxWebhookAccount.JSON_PROPERTY_ACCOUNT_ID,
+  InboxWebhookAccount.JSON_PROPERTY_PROFILE_ID,
   InboxWebhookAccount.JSON_PROPERTY_PLATFORM,
   InboxWebhookAccount.JSON_PROPERTY_USERNAME,
   InboxWebhookAccount.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookAccount {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -48,6 +49,10 @@ public class InboxWebhookAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
   private String accountId;
+
+  public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
+  @javax.annotation.Nullable
+  private String profileId;
 
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull
@@ -109,6 +114,30 @@ public class InboxWebhookAccount {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccountId(@javax.annotation.Nullable String accountId) {
     this.accountId = accountId;
+  }
+
+
+  public InboxWebhookAccount profileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = profileId;
+    return this;
+  }
+
+  /**
+   * Zernio profile (workspace) ID this account belongs to. Use it to route or filter inbox webhooks by workspace. This is the profile ID only, not its name (resolve the name via the API with this ID). Optional; omitted on the shared WhatsApp sandbox account and when the account has no resolvable profile.
+   * @return profileId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getProfileId() {
+    return profileId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfileId(@javax.annotation.Nullable String profileId) {
+    this.profileId = profileId;
   }
 
 
@@ -198,6 +227,7 @@ public class InboxWebhookAccount {
     InboxWebhookAccount inboxWebhookAccount = (InboxWebhookAccount) o;
     return Objects.equals(this.id, inboxWebhookAccount.id) &&
         Objects.equals(this.accountId, inboxWebhookAccount.accountId) &&
+        Objects.equals(this.profileId, inboxWebhookAccount.profileId) &&
         Objects.equals(this.platform, inboxWebhookAccount.platform) &&
         Objects.equals(this.username, inboxWebhookAccount.username) &&
         Objects.equals(this.displayName, inboxWebhookAccount.displayName);
@@ -205,7 +235,7 @@ public class InboxWebhookAccount {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, platform, username, displayName);
+    return Objects.hash(id, accountId, profileId, platform, username, displayName);
   }
 
   @Override
@@ -214,6 +244,7 @@ public class InboxWebhookAccount {
     sb.append("class InboxWebhookAccount {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
+    sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
@@ -272,6 +303,11 @@ public class InboxWebhookAccount {
     // add `accountId` to the URL query string
     if (getAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
+    }
+
+    // add `profileId` to the URL query string
+    if (getProfileId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
     }
 
     // add `platform` to the URL query string

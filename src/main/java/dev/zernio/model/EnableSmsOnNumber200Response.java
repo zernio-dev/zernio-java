@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   EnableSmsOnNumber200Response.JSON_PROPERTY_REUSABLE,
   EnableSmsOnNumber200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnableSmsOnNumber200Response {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable

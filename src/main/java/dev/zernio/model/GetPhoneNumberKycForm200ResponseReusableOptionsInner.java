@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_FROM_PHONE_NUMBER,
   GetPhoneNumberKycForm200ResponseReusableOptionsInner.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberKycForm200ResponseReusableOptionsInner {
   public static final String JSON_PROPERTY_FROM_PHONE_NUMBER = "fromPhoneNumber";
   @javax.annotation.Nullable

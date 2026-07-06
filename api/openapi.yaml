@@ -28551,6 +28551,7 @@ components:
       description: The account context included in inbox webhook payloads.
       example:
         accountId: accountId
+        profileId: profileId
         displayName: displayName
         id: id
         platform: platform
@@ -28563,6 +28564,13 @@ components:
           description: Social account ID (same value as id). Canonical field so consumers
             can filter every webhook event on one field (e.g. route staging vs production
             by account). id is kept for backward compatibility.
+          type: string
+        profileId:
+          description: "Zernio profile (workspace) ID this account belongs to. Use\
+            \ it to route or filter inbox webhooks by workspace. This is the profile\
+            \ ID only, not its name (resolve the name via the API with this ID). Optional;\
+            \ omitted on the shared WhatsApp sandbox account and when the account\
+            \ has no resolvable profile."
           type: string
         platform:
           type: string
@@ -28603,6 +28611,7 @@ components:
           status: active
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -28716,6 +28725,7 @@ components:
           status: active
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -28786,6 +28796,7 @@ components:
           status: active
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -28888,6 +28899,7 @@ components:
           status: active
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -28989,6 +29001,7 @@ components:
           status: active
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -29083,6 +29096,7 @@ components:
           status: active
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -29142,6 +29156,7 @@ components:
           status: active
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -29398,6 +29413,7 @@ components:
         event: call.received
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -29453,6 +29469,7 @@ components:
         event: call.ended
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -29499,6 +29516,7 @@ components:
         event: call.failed
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
@@ -29540,6 +29558,7 @@ components:
         event: call.permission_request
         account:
           accountId: accountId
+          profileId: profileId
           displayName: displayName
           id: id
           platform: platform
