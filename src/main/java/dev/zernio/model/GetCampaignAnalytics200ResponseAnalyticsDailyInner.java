@@ -52,10 +52,19 @@ import dev.zernio.ApiClient;
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_ACTION_VALUES,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_PURCHASE_VALUE,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_ROAS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_PLAY_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO30_SEC_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_THRUPLAY_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_P25_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_P50_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_P75_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_P95_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_P100_WATCHED_ACTIONS,
+  GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_LAST_SYNCED_AT,
   GetCampaignAnalytics200ResponseAnalyticsDailyInner.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T12:00:55.321747420Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T16:56:39.474589962Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -112,6 +121,42 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_ROAS = "roas";
   @javax.annotation.Nullable
   private BigDecimal roas;
+
+  public static final String JSON_PROPERTY_VIDEO_PLAY_ACTIONS = "videoPlayActions";
+  @javax.annotation.Nullable
+  private Integer videoPlayActions;
+
+  public static final String JSON_PROPERTY_VIDEO30_SEC_WATCHED_ACTIONS = "video30SecWatchedActions";
+  @javax.annotation.Nullable
+  private Integer video30SecWatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO_THRUPLAY_WATCHED_ACTIONS = "videoThruplayWatchedActions";
+  @javax.annotation.Nullable
+  private Integer videoThruplayWatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO_P25_WATCHED_ACTIONS = "videoP25WatchedActions";
+  @javax.annotation.Nullable
+  private Integer videoP25WatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO_P50_WATCHED_ACTIONS = "videoP50WatchedActions";
+  @javax.annotation.Nullable
+  private Integer videoP50WatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO_P75_WATCHED_ACTIONS = "videoP75WatchedActions";
+  @javax.annotation.Nullable
+  private Integer videoP75WatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO_P95_WATCHED_ACTIONS = "videoP95WatchedActions";
+  @javax.annotation.Nullable
+  private Integer videoP95WatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO_P100_WATCHED_ACTIONS = "videoP100WatchedActions";
+  @javax.annotation.Nullable
+  private Integer videoP100WatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS = "videoAvgTimeWatchedActions";
+  @javax.annotation.Nullable
+  private BigDecimal videoAvgTimeWatchedActions;
 
   public static final String JSON_PROPERTY_LAST_SYNCED_AT = "lastSyncedAt";
   @javax.annotation.Nullable
@@ -476,6 +521,222 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
   }
 
 
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoPlayActions(@javax.annotation.Nullable Integer videoPlayActions) {
+    this.videoPlayActions = videoPlayActions;
+    return this;
+  }
+
+  /**
+   * Meta video ads only (0 for non-video ads and other platforms), like all video* fields below. Number of times the video started playing (Meta &#x60;video_play_actions&#x60;), summed over the date range and across children at ad-set/campaign level.
+   * @return videoPlayActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_PLAY_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoPlayActions() {
+    return videoPlayActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_PLAY_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoPlayActions(@javax.annotation.Nullable Integer videoPlayActions) {
+    this.videoPlayActions = videoPlayActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner video30SecWatchedActions(@javax.annotation.Nullable Integer video30SecWatchedActions) {
+    this.video30SecWatchedActions = video30SecWatchedActions;
+    return this;
+  }
+
+  /**
+   * Views of at least 30 seconds (or to the end, for shorter videos). Meta &#x60;video_30_sec_watched_actions&#x60;.
+   * @return video30SecWatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO30_SEC_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideo30SecWatchedActions() {
+    return video30SecWatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO30_SEC_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideo30SecWatchedActions(@javax.annotation.Nullable Integer video30SecWatchedActions) {
+    this.video30SecWatchedActions = video30SecWatchedActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoThruplayWatchedActions(@javax.annotation.Nullable Integer videoThruplayWatchedActions) {
+    this.videoThruplayWatchedActions = videoThruplayWatchedActions;
+    return this;
+  }
+
+  /**
+   * ThruPlays (watched to completion, or at least 15 seconds). Meta &#x60;video_thruplay_watched_actions&#x60;.
+   * @return videoThruplayWatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_THRUPLAY_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoThruplayWatchedActions() {
+    return videoThruplayWatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_THRUPLAY_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoThruplayWatchedActions(@javax.annotation.Nullable Integer videoThruplayWatchedActions) {
+    this.videoThruplayWatchedActions = videoThruplayWatchedActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoP25WatchedActions(@javax.annotation.Nullable Integer videoP25WatchedActions) {
+    this.videoP25WatchedActions = videoP25WatchedActions;
+    return this;
+  }
+
+  /**
+   * Views reaching 25% of the video&#39;s length. With the other percentile fields, powers hook/hold/drop-off analysis (e.g. hook rate &#x3D; videoP25WatchedActions / videoPlayActions). Meta &#x60;video_p25_watched_actions&#x60;.
+   * @return videoP25WatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P25_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoP25WatchedActions() {
+    return videoP25WatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P25_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoP25WatchedActions(@javax.annotation.Nullable Integer videoP25WatchedActions) {
+    this.videoP25WatchedActions = videoP25WatchedActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoP50WatchedActions(@javax.annotation.Nullable Integer videoP50WatchedActions) {
+    this.videoP50WatchedActions = videoP50WatchedActions;
+    return this;
+  }
+
+  /**
+   * Views reaching 50% of the video&#39;s length. Meta &#x60;video_p50_watched_actions&#x60;.
+   * @return videoP50WatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P50_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoP50WatchedActions() {
+    return videoP50WatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P50_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoP50WatchedActions(@javax.annotation.Nullable Integer videoP50WatchedActions) {
+    this.videoP50WatchedActions = videoP50WatchedActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoP75WatchedActions(@javax.annotation.Nullable Integer videoP75WatchedActions) {
+    this.videoP75WatchedActions = videoP75WatchedActions;
+    return this;
+  }
+
+  /**
+   * Views reaching 75% of the video&#39;s length. Meta &#x60;video_p75_watched_actions&#x60;.
+   * @return videoP75WatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P75_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoP75WatchedActions() {
+    return videoP75WatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P75_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoP75WatchedActions(@javax.annotation.Nullable Integer videoP75WatchedActions) {
+    this.videoP75WatchedActions = videoP75WatchedActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoP95WatchedActions(@javax.annotation.Nullable Integer videoP95WatchedActions) {
+    this.videoP95WatchedActions = videoP95WatchedActions;
+    return this;
+  }
+
+  /**
+   * Views reaching 95% of the video&#39;s length. Meta &#x60;video_p95_watched_actions&#x60;.
+   * @return videoP95WatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P95_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoP95WatchedActions() {
+    return videoP95WatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P95_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoP95WatchedActions(@javax.annotation.Nullable Integer videoP95WatchedActions) {
+    this.videoP95WatchedActions = videoP95WatchedActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoP100WatchedActions(@javax.annotation.Nullable Integer videoP100WatchedActions) {
+    this.videoP100WatchedActions = videoP100WatchedActions;
+    return this;
+  }
+
+  /**
+   * Views reaching 100% of the video&#39;s length. Meta &#x60;video_p100_watched_actions&#x60;.
+   * @return videoP100WatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P100_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoP100WatchedActions() {
+    return videoP100WatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_P100_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoP100WatchedActions(@javax.annotation.Nullable Integer videoP100WatchedActions) {
+    this.videoP100WatchedActions = videoP100WatchedActions;
+  }
+
+
+  public GetCampaignAnalytics200ResponseAnalyticsDailyInner videoAvgTimeWatchedActions(@javax.annotation.Nullable BigDecimal videoAvgTimeWatchedActions) {
+    this.videoAvgTimeWatchedActions = videoAvgTimeWatchedActions;
+    return this;
+  }
+
+  /**
+   * Average seconds watched per play (Meta &#x60;video_avg_time_watched_actions&#x60;). Aggregated over date ranges and across children as a play-weighted average (total watch time / total plays), never a plain average of averages.
+   * @return videoAvgTimeWatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getVideoAvgTimeWatchedActions() {
+    return videoAvgTimeWatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoAvgTimeWatchedActions(@javax.annotation.Nullable BigDecimal videoAvgTimeWatchedActions) {
+    this.videoAvgTimeWatchedActions = videoAvgTimeWatchedActions;
+  }
+
+
   public GetCampaignAnalytics200ResponseAnalyticsDailyInner lastSyncedAt(@javax.annotation.Nullable OffsetDateTime lastSyncedAt) {
     this.lastSyncedAt = lastSyncedAt;
     return this;
@@ -550,13 +811,22 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
         Objects.equals(this.actionValues, getCampaignAnalytics200ResponseAnalyticsDailyInner.actionValues) &&
         Objects.equals(this.purchaseValue, getCampaignAnalytics200ResponseAnalyticsDailyInner.purchaseValue) &&
         Objects.equals(this.roas, getCampaignAnalytics200ResponseAnalyticsDailyInner.roas) &&
+        Objects.equals(this.videoPlayActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoPlayActions) &&
+        Objects.equals(this.video30SecWatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.video30SecWatchedActions) &&
+        Objects.equals(this.videoThruplayWatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoThruplayWatchedActions) &&
+        Objects.equals(this.videoP25WatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoP25WatchedActions) &&
+        Objects.equals(this.videoP50WatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoP50WatchedActions) &&
+        Objects.equals(this.videoP75WatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoP75WatchedActions) &&
+        Objects.equals(this.videoP95WatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoP95WatchedActions) &&
+        Objects.equals(this.videoP100WatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoP100WatchedActions) &&
+        Objects.equals(this.videoAvgTimeWatchedActions, getCampaignAnalytics200ResponseAnalyticsDailyInner.videoAvgTimeWatchedActions) &&
         Objects.equals(this.lastSyncedAt, getCampaignAnalytics200ResponseAnalyticsDailyInner.lastSyncedAt) &&
         Objects.equals(this.date, getCampaignAnalytics200ResponseAnalyticsDailyInner.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, lastSyncedAt, date);
+    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, costPerConversion, actions, actionValues, purchaseValue, roas, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, lastSyncedAt, date);
   }
 
   @Override
@@ -577,6 +847,15 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
     sb.append("    actionValues: ").append(toIndentedString(actionValues)).append("\n");
     sb.append("    purchaseValue: ").append(toIndentedString(purchaseValue)).append("\n");
     sb.append("    roas: ").append(toIndentedString(roas)).append("\n");
+    sb.append("    videoPlayActions: ").append(toIndentedString(videoPlayActions)).append("\n");
+    sb.append("    video30SecWatchedActions: ").append(toIndentedString(video30SecWatchedActions)).append("\n");
+    sb.append("    videoThruplayWatchedActions: ").append(toIndentedString(videoThruplayWatchedActions)).append("\n");
+    sb.append("    videoP25WatchedActions: ").append(toIndentedString(videoP25WatchedActions)).append("\n");
+    sb.append("    videoP50WatchedActions: ").append(toIndentedString(videoP50WatchedActions)).append("\n");
+    sb.append("    videoP75WatchedActions: ").append(toIndentedString(videoP75WatchedActions)).append("\n");
+    sb.append("    videoP95WatchedActions: ").append(toIndentedString(videoP95WatchedActions)).append("\n");
+    sb.append("    videoP100WatchedActions: ").append(toIndentedString(videoP100WatchedActions)).append("\n");
+    sb.append("    videoAvgTimeWatchedActions: ").append(toIndentedString(videoAvgTimeWatchedActions)).append("\n");
     sb.append("    lastSyncedAt: ").append(toIndentedString(lastSyncedAt)).append("\n");
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("}");
@@ -702,6 +981,51 @@ public class GetCampaignAnalytics200ResponseAnalyticsDailyInner {
     // add `roas` to the URL query string
     if (getRoas() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroas%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoas()))));
+    }
+
+    // add `videoPlayActions` to the URL query string
+    if (getVideoPlayActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoPlayActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoPlayActions()))));
+    }
+
+    // add `video30SecWatchedActions` to the URL query string
+    if (getVideo30SecWatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideo30SecWatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideo30SecWatchedActions()))));
+    }
+
+    // add `videoThruplayWatchedActions` to the URL query string
+    if (getVideoThruplayWatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoThruplayWatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoThruplayWatchedActions()))));
+    }
+
+    // add `videoP25WatchedActions` to the URL query string
+    if (getVideoP25WatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoP25WatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoP25WatchedActions()))));
+    }
+
+    // add `videoP50WatchedActions` to the URL query string
+    if (getVideoP50WatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoP50WatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoP50WatchedActions()))));
+    }
+
+    // add `videoP75WatchedActions` to the URL query string
+    if (getVideoP75WatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoP75WatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoP75WatchedActions()))));
+    }
+
+    // add `videoP95WatchedActions` to the URL query string
+    if (getVideoP95WatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoP95WatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoP95WatchedActions()))));
+    }
+
+    // add `videoP100WatchedActions` to the URL query string
+    if (getVideoP100WatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoP100WatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoP100WatchedActions()))));
+    }
+
+    // add `videoAvgTimeWatchedActions` to the URL query string
+    if (getVideoAvgTimeWatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoAvgTimeWatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoAvgTimeWatchedActions()))));
     }
 
     // add `lastSyncedAt` to the URL query string

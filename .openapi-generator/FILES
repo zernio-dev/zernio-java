@@ -2727,10 +2727,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SearchInboxConversations200ResponseDataInnerConversationTest.java
-src/test/java/dev/zernio/model/SearchInboxConversations200ResponseDataInnerMatchesInnerTest.java
-src/test/java/dev/zernio/model/SearchInboxConversations200ResponseDataInnerTest.java
-src/test/java/dev/zernio/model/SearchInboxConversations200ResponseMetaAccountsSkippedInnerTest.java
-src/test/java/dev/zernio/model/SearchInboxConversations200ResponseMetaFailedAccountsInnerTest.java
-src/test/java/dev/zernio/model/SearchInboxConversations200ResponseMetaTest.java
-src/test/java/dev/zernio/model/SearchInboxConversations200ResponseTest.java

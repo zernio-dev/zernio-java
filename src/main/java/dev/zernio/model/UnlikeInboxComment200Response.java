@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UnlikeInboxComment200Response.JSON_PROPERTY_LIKED,
   UnlikeInboxComment200Response.JSON_PROPERTY_PLATFORM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T12:00:55.321747420Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T16:56:39.474589962Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UnlikeInboxComment200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

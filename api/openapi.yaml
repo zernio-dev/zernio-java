@@ -34216,15 +34216,24 @@ components:
         purchaseValue: 1.0246457001441578
         cpm: 2.027123023002322
         conversions: 7
+        videoAvgTimeWatchedActions: 8.762042012749001
         engagement: 4
         reach: 2
+        videoP75WatchedActions: 9
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+        videoP50WatchedActions: 5
+        videoP95WatchedActions: 9
         impressions: 5
+        videoP100WatchedActions: 6
         actionValues:
           offsite_conversion.fb_pixel_purchase: 2456.78
           offsite_conversion.fb_pixel_add_to_cart: 980.5
+        videoP25WatchedActions: 4
+        videoPlayActions: 6
         spend: 5.962133916683182
         cpc: 3.616076749251911
+        videoThruplayWatchedActions: 1
+        video30SecWatchedActions: 7
         clicks: 7
         roas: 1.4894159098541704
         costPerConversion: 1.2315135367772556
@@ -34299,6 +34308,42 @@ components:
             purchaseValue + spend (NOT averaged across children) so it's mathematically
             correct at every rollup level.
           type: number
+        videoPlayActions:
+          description: "Meta video ads only (0 for non-video ads and other platforms),\
+            \ like all video* fields below. Number of times the video started playing\
+            \ (Meta `video_play_actions`), summed over the date range and across children\
+            \ at ad-set/campaign level."
+          type: integer
+        video30SecWatchedActions:
+          description: "Views of at least 30 seconds (or to the end, for shorter videos).\
+            \ Meta `video_30_sec_watched_actions`."
+          type: integer
+        videoThruplayWatchedActions:
+          description: "ThruPlays (watched to completion, or at least 15 seconds).\
+            \ Meta `video_thruplay_watched_actions`."
+          type: integer
+        videoP25WatchedActions:
+          description: "Views reaching 25% of the video's length. With the other percentile\
+            \ fields, powers hook/hold/drop-off analysis (e.g. hook rate = videoP25WatchedActions\
+            \ / videoPlayActions). Meta `video_p25_watched_actions`."
+          type: integer
+        videoP50WatchedActions:
+          description: Views reaching 50% of the video's length. Meta `video_p50_watched_actions`.
+          type: integer
+        videoP75WatchedActions:
+          description: Views reaching 75% of the video's length. Meta `video_p75_watched_actions`.
+          type: integer
+        videoP95WatchedActions:
+          description: Views reaching 95% of the video's length. Meta `video_p95_watched_actions`.
+          type: integer
+        videoP100WatchedActions:
+          description: Views reaching 100% of the video's length. Meta `video_p100_watched_actions`.
+          type: integer
+        videoAvgTimeWatchedActions:
+          description: "Average seconds watched per play (Meta `video_avg_time_watched_actions`).\
+            \ Aggregated over date ranges and across children as a play-weighted average\
+            \ (total watch time / total plays), never a plain average of averages."
+          type: number
         lastSyncedAt:
           description: "Present on individual ads only, not on campaign aggregations"
           format: date-time
@@ -34315,25 +34360,37 @@ components:
         One day of metrics. Same fields as `AdMetrics` plus the `date` they
         apply to. Returned inside a node's `daily[]` when `GET /v1/ads/tree` is
         called with `timeIncrement=1`. Rate metrics (ctr/cpc/cpm/costPerConversion/
-        roas) are recomputed per day from that day's sums, so summing the additive
-        fields across a node's `daily[]` reproduces its aggregated `metrics` total.
+        roas/videoAvgTimeWatchedActions) are recomputed per day from that day's
+        sums, so summing the additive fields across a node's `daily[]` reproduces
+        its aggregated `metrics` total. Do NOT sum or plain-average
+        `videoAvgTimeWatchedActions` across days: the range value is the
+        play-weighted average of the daily values.
       example:
-        ctr: 6.84685269835264
-        purchaseValue: 9.369310271410669
         date: 2000-01-23
-        cpm: 1.1730742509559433
         conversions: 5
+        videoAvgTimeWatchedActions: 6.878052220127876
         engagement: 4
         reach: 1
+        videoP75WatchedActions: 1
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-        impressions: 1
         actionValues:
           offsite_conversion.fb_pixel_purchase: 2456.78
           offsite_conversion.fb_pixel_add_to_cart: 980.5
+        videoP25WatchedActions: 3
         spend: 7.386281948385884
         cpc: 7.457744773683766
-        clicks: 1
         roas: 6.683562403749608
+        ctr: 6.84685269835264
+        purchaseValue: 9.369310271410669
+        cpm: 1.1730742509559433
+        videoP50WatchedActions: 6
+        videoP95WatchedActions: 2
+        impressions: 1
+        videoP100WatchedActions: 6
+        videoPlayActions: 8
+        videoThruplayWatchedActions: 6
+        video30SecWatchedActions: 9
+        clicks: 1
         costPerConversion: 9.965781217890562
         actions:
           link_click: 160
@@ -34881,43 +34938,61 @@ components:
           amount: 3.616076749251911
           type: daily
         daily:
-        - ctr: 6.84685269835264
-          purchaseValue: 9.369310271410669
-          date: 2000-01-23
-          cpm: 1.1730742509559433
+        - date: 2000-01-23
           conversions: 5
+          videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
+          videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          impressions: 1
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 3
           spend: 7.386281948385884
           cpc: 7.457744773683766
-          clicks: 1
           roas: 6.683562403749608
+          ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          cpm: 1.1730742509559433
+          videoP50WatchedActions: 6
+          videoP95WatchedActions: 2
+          impressions: 1
+          videoP100WatchedActions: 6
+          videoPlayActions: 8
+          videoThruplayWatchedActions: 6
+          video30SecWatchedActions: 9
+          clicks: 1
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
-        - ctr: 6.84685269835264
-          purchaseValue: 9.369310271410669
-          date: 2000-01-23
-          cpm: 1.1730742509559433
+        - date: 2000-01-23
           conversions: 5
+          videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
+          videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          impressions: 1
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 3
           spend: 7.386281948385884
           cpc: 7.457744773683766
-          clicks: 1
           roas: 6.683562403749608
+          ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          cpm: 1.1730742509559433
+          videoP50WatchedActions: 6
+          videoP95WatchedActions: 2
+          impressions: 1
+          videoP100WatchedActions: 6
+          videoPlayActions: 8
+          videoThruplayWatchedActions: 6
+          video30SecWatchedActions: 9
+          clicks: 1
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
@@ -34929,15 +35004,24 @@ components:
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
+          videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
+          videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
           impressions: 5
+          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 4
+          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          videoThruplayWatchedActions: 1
+          video30SecWatchedActions: 7
           clicks: 7
           roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
@@ -35033,43 +35117,61 @@ components:
           type: daily
         profileId: profileId
         daily:
-        - ctr: 6.84685269835264
-          purchaseValue: 9.369310271410669
-          date: 2000-01-23
-          cpm: 1.1730742509559433
+        - date: 2000-01-23
           conversions: 5
+          videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
+          videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          impressions: 1
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 3
           spend: 7.386281948385884
           cpc: 7.457744773683766
-          clicks: 1
           roas: 6.683562403749608
+          ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          cpm: 1.1730742509559433
+          videoP50WatchedActions: 6
+          videoP95WatchedActions: 2
+          impressions: 1
+          videoP100WatchedActions: 6
+          videoPlayActions: 8
+          videoThruplayWatchedActions: 6
+          video30SecWatchedActions: 9
+          clicks: 1
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
-        - ctr: 6.84685269835264
-          purchaseValue: 9.369310271410669
-          date: 2000-01-23
-          cpm: 1.1730742509559433
+        - date: 2000-01-23
           conversions: 5
+          videoAvgTimeWatchedActions: 6.878052220127876
           engagement: 4
           reach: 1
+          videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          impressions: 1
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 3
           spend: 7.386281948385884
           cpc: 7.457744773683766
-          clicks: 1
           roas: 6.683562403749608
+          ctr: 6.84685269835264
+          purchaseValue: 9.369310271410669
+          cpm: 1.1730742509559433
+          videoP50WatchedActions: 6
+          videoP95WatchedActions: 2
+          impressions: 1
+          videoP100WatchedActions: 6
+          videoPlayActions: 8
+          videoThruplayWatchedActions: 6
+          video30SecWatchedActions: 9
+          clicks: 1
           costPerConversion: 9.965781217890562
           actions:
             link_click: 160
@@ -35209,43 +35311,61 @@ components:
             amount: 3.616076749251911
             type: daily
           daily:
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -35257,15 +35377,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -35408,43 +35537,61 @@ components:
             amount: 3.616076749251911
             type: daily
           daily:
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -35456,15 +35603,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -35481,15 +35637,24 @@ components:
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
+          videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
+          videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
           impressions: 5
+          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 4
+          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          videoThruplayWatchedActions: 1
+          video30SecWatchedActions: 7
           clicks: 7
           roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
@@ -35661,8 +35826,8 @@ components:
         platformAdAccountName: platformAdAccountName
         budgetLevel: campaign
         adCount: 0
-        bidAmount: 6.84685269835264
-        roasAverageFloor: 7.457744773683766
+        bidAmount: 9.018348186070783
+        roasAverageFloor: 6.438423552598547
         accountId: accountId
         campaignBudget:
           amount: 1.4658129805029452
@@ -35676,15 +35841,24 @@ components:
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
+          videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
+          videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
           impressions: 5
+          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 4
+          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          videoThruplayWatchedActions: 1
+          video30SecWatchedActions: 7
           clicks: 7
           roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
@@ -58035,8 +58209,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 6.84685269835264
-          roasAverageFloor: 7.457744773683766
+          bidAmount: 9.018348186070783
+          roasAverageFloor: 6.438423552598547
           accountId: accountId
           campaignBudget:
             amount: 1.4658129805029452
@@ -58050,15 +58224,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -58091,8 +58274,8 @@ components:
           platformAdAccountName: platformAdAccountName
           budgetLevel: campaign
           adCount: 0
-          bidAmount: 6.84685269835264
-          roasAverageFloor: 7.457744773683766
+          bidAmount: 9.018348186070783
+          roasAverageFloor: 6.438423552598547
           accountId: accountId
           campaignBudget:
             amount: 1.4658129805029452
@@ -58106,15 +58289,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -58539,43 +58731,61 @@ components:
             type: daily
           profileId: profileId
           daily:
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -58715,43 +58925,61 @@ components:
               amount: 3.616076749251911
               type: daily
             daily:
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -58763,15 +58991,24 @@ components:
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
+              videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
+              videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
               impressions: 5
+              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 4
+              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              videoThruplayWatchedActions: 1
+              video30SecWatchedActions: 7
               clicks: 7
               roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
@@ -58914,43 +59151,61 @@ components:
               amount: 3.616076749251911
               type: daily
             daily:
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -58962,15 +59217,24 @@ components:
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
+              videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
+              videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
               impressions: 5
+              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 4
+              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              videoThruplayWatchedActions: 1
+              video30SecWatchedActions: 7
               clicks: 7
               roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
@@ -58987,15 +59251,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -59036,43 +59309,61 @@ components:
             type: daily
           profileId: profileId
           daily:
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
-          - ctr: 6.84685269835264
-            purchaseValue: 9.369310271410669
-            date: 2000-01-23
-            cpm: 1.1730742509559433
+          - date: 2000-01-23
             conversions: 5
+            videoAvgTimeWatchedActions: 6.878052220127876
             engagement: 4
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 1
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 3
             spend: 7.386281948385884
             cpc: 7.457744773683766
-            clicks: 1
             roas: 6.683562403749608
+            ctr: 6.84685269835264
+            purchaseValue: 9.369310271410669
+            cpm: 1.1730742509559433
+            videoP50WatchedActions: 6
+            videoP95WatchedActions: 2
+            impressions: 1
+            videoP100WatchedActions: 6
+            videoPlayActions: 8
+            videoThruplayWatchedActions: 6
+            video30SecWatchedActions: 9
+            clicks: 1
             costPerConversion: 9.965781217890562
             actions:
               link_click: 160
@@ -59212,43 +59503,61 @@ components:
               amount: 3.616076749251911
               type: daily
             daily:
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -59260,15 +59569,24 @@ components:
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
+              videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
+              videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
               impressions: 5
+              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 4
+              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              videoThruplayWatchedActions: 1
+              video30SecWatchedActions: 7
               clicks: 7
               roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
@@ -59411,43 +59729,61 @@ components:
               amount: 3.616076749251911
               type: daily
             daily:
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
-            - ctr: 6.84685269835264
-              purchaseValue: 9.369310271410669
-              date: 2000-01-23
-              cpm: 1.1730742509559433
+            - date: 2000-01-23
               conversions: 5
+              videoAvgTimeWatchedActions: 6.878052220127876
               engagement: 4
               reach: 1
+              videoP75WatchedActions: 1
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-              impressions: 1
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 3
               spend: 7.386281948385884
               cpc: 7.457744773683766
-              clicks: 1
               roas: 6.683562403749608
+              ctr: 6.84685269835264
+              purchaseValue: 9.369310271410669
+              cpm: 1.1730742509559433
+              videoP50WatchedActions: 6
+              videoP95WatchedActions: 2
+              impressions: 1
+              videoP100WatchedActions: 6
+              videoPlayActions: 8
+              videoThruplayWatchedActions: 6
+              video30SecWatchedActions: 9
+              clicks: 1
               costPerConversion: 9.965781217890562
               actions:
                 link_click: 160
@@ -59459,15 +59795,24 @@ components:
               purchaseValue: 1.0246457001441578
               cpm: 2.027123023002322
               conversions: 7
+              videoAvgTimeWatchedActions: 8.762042012749001
               engagement: 4
               reach: 2
+              videoP75WatchedActions: 9
               lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+              videoP50WatchedActions: 5
+              videoP95WatchedActions: 9
               impressions: 5
+              videoP100WatchedActions: 6
               actionValues:
                 offsite_conversion.fb_pixel_purchase: 2456.78
                 offsite_conversion.fb_pixel_add_to_cart: 980.5
+              videoP25WatchedActions: 4
+              videoPlayActions: 6
               spend: 5.962133916683182
               cpc: 3.616076749251911
+              videoThruplayWatchedActions: 1
+              video30SecWatchedActions: 7
               clicks: 7
               roas: 1.4894159098541704
               costPerConversion: 1.2315135367772556
@@ -59484,15 +59829,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -59875,22 +60229,31 @@ components:
             format: date
             type: string
       example:
-        ctr: 5.637376656633329
-        purchaseValue: 4.145608029883936
         date: 2000-01-23
-        cpm: 7.061401241503109
         conversions: 3
+        videoAvgTimeWatchedActions: 9.965781217890562
         engagement: 9
         reach: 1
+        videoP75WatchedActions: 1
         lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-        impressions: 6
         actionValues:
           offsite_conversion.fb_pixel_purchase: 2456.78
           offsite_conversion.fb_pixel_add_to_cart: 980.5
+        videoP25WatchedActions: 6
         spend: 0.8008281904610115
         cpc: 2.3021358869347655
-        clicks: 5
         roas: 7.386281948385884
+        ctr: 5.637376656633329
+        purchaseValue: 4.145608029883936
+        cpm: 7.061401241503109
+        videoP50WatchedActions: 7
+        videoP95WatchedActions: 4
+        impressions: 6
+        videoP100WatchedActions: 5
+        videoPlayActions: 1
+        videoThruplayWatchedActions: 1
+        video30SecWatchedActions: 1
+        clicks: 5
         costPerConversion: 2.027123023002322
         actions:
           link_click: 160
@@ -59903,15 +60266,24 @@ components:
           purchaseValue: 1.0246457001441578
           cpm: 2.027123023002322
           conversions: 7
+          videoAvgTimeWatchedActions: 8.762042012749001
           engagement: 4
           reach: 2
+          videoP75WatchedActions: 9
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          videoP50WatchedActions: 5
+          videoP95WatchedActions: 9
           impressions: 5
+          videoP100WatchedActions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 4
+          videoPlayActions: 6
           spend: 5.962133916683182
           cpc: 3.616076749251911
+          videoThruplayWatchedActions: 1
+          video30SecWatchedActions: 7
           clicks: 7
           roas: 1.4894159098541704
           costPerConversion: 1.2315135367772556
@@ -59920,43 +60292,61 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
         daily:
-        - ctr: 5.637376656633329
-          purchaseValue: 4.145608029883936
-          date: 2000-01-23
-          cpm: 7.061401241503109
+        - date: 2000-01-23
           conversions: 3
+          videoAvgTimeWatchedActions: 9.965781217890562
           engagement: 9
           reach: 1
+          videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          impressions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 6
           spend: 0.8008281904610115
           cpc: 2.3021358869347655
-          clicks: 5
           roas: 7.386281948385884
+          ctr: 5.637376656633329
+          purchaseValue: 4.145608029883936
+          cpm: 7.061401241503109
+          videoP50WatchedActions: 7
+          videoP95WatchedActions: 4
+          impressions: 6
+          videoP100WatchedActions: 5
+          videoPlayActions: 1
+          videoThruplayWatchedActions: 1
+          video30SecWatchedActions: 1
+          clicks: 5
           costPerConversion: 2.027123023002322
           actions:
             link_click: 160
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
-        - ctr: 5.637376656633329
-          purchaseValue: 4.145608029883936
-          date: 2000-01-23
-          cpm: 7.061401241503109
+        - date: 2000-01-23
           conversions: 3
+          videoAvgTimeWatchedActions: 9.965781217890562
           engagement: 9
           reach: 1
+          videoP75WatchedActions: 1
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-          impressions: 6
           actionValues:
             offsite_conversion.fb_pixel_purchase: 2456.78
             offsite_conversion.fb_pixel_add_to_cart: 980.5
+          videoP25WatchedActions: 6
           spend: 0.8008281904610115
           cpc: 2.3021358869347655
-          clicks: 5
           roas: 7.386281948385884
+          ctr: 5.637376656633329
+          purchaseValue: 4.145608029883936
+          cpm: 7.061401241503109
+          videoP50WatchedActions: 7
+          videoP95WatchedActions: 4
+          impressions: 6
+          videoP100WatchedActions: 5
+          videoPlayActions: 1
+          videoThruplayWatchedActions: 1
+          video30SecWatchedActions: 1
+          clicks: 5
           costPerConversion: 2.027123023002322
           actions:
             link_click: 160
@@ -59985,15 +60375,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -60002,43 +60401,61 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           daily:
-          - ctr: 5.637376656633329
-            purchaseValue: 4.145608029883936
-            date: 2000-01-23
-            cpm: 7.061401241503109
+          - date: 2000-01-23
             conversions: 3
+            videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 6
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
-            clicks: 5
             roas: 7.386281948385884
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 4
+            impressions: 6
+            videoP100WatchedActions: 5
+            videoPlayActions: 1
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 1
+            clicks: 5
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
-          - ctr: 5.637376656633329
-            purchaseValue: 4.145608029883936
-            date: 2000-01-23
-            cpm: 7.061401241503109
+          - date: 2000-01-23
             conversions: 3
+            videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 6
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
-            clicks: 5
             roas: 7.386281948385884
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 4
+            impressions: 6
+            videoP100WatchedActions: 5
+            videoPlayActions: 1
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 1
+            clicks: 5
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
@@ -60095,15 +60512,24 @@ components:
             purchaseValue: 1.0246457001441578
             cpm: 2.027123023002322
             conversions: 7
+            videoAvgTimeWatchedActions: 8.762042012749001
             engagement: 4
             reach: 2
+            videoP75WatchedActions: 9
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            videoP50WatchedActions: 5
+            videoP95WatchedActions: 9
             impressions: 5
+            videoP100WatchedActions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 4
+            videoPlayActions: 6
             spend: 5.962133916683182
             cpc: 3.616076749251911
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 7
             clicks: 7
             roas: 1.4894159098541704
             costPerConversion: 1.2315135367772556
@@ -60112,43 +60538,61 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
           daily:
-          - ctr: 5.637376656633329
-            purchaseValue: 4.145608029883936
-            date: 2000-01-23
-            cpm: 7.061401241503109
+          - date: 2000-01-23
             conversions: 3
+            videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 6
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
-            clicks: 5
             roas: 7.386281948385884
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 4
+            impressions: 6
+            videoP100WatchedActions: 5
+            videoPlayActions: 1
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 1
+            clicks: 5
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
-          - ctr: 5.637376656633329
-            purchaseValue: 4.145608029883936
-            date: 2000-01-23
-            cpm: 7.061401241503109
+          - date: 2000-01-23
             conversions: 3
+            videoAvgTimeWatchedActions: 9.965781217890562
             engagement: 9
             reach: 1
+            videoP75WatchedActions: 1
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
-            impressions: 6
             actionValues:
               offsite_conversion.fb_pixel_purchase: 2456.78
               offsite_conversion.fb_pixel_add_to_cart: 980.5
+            videoP25WatchedActions: 6
             spend: 0.8008281904610115
             cpc: 2.3021358869347655
-            clicks: 5
             roas: 7.386281948385884
+            ctr: 5.637376656633329
+            purchaseValue: 4.145608029883936
+            cpm: 7.061401241503109
+            videoP50WatchedActions: 7
+            videoP95WatchedActions: 4
+            impressions: 6
+            videoP100WatchedActions: 5
+            videoPlayActions: 1
+            videoThruplayWatchedActions: 1
+            video30SecWatchedActions: 1
+            clicks: 5
             costPerConversion: 2.027123023002322
             actions:
               link_click: 160
