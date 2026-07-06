@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-06T11:47:51.819843006Z[Etc/UTC]
+- Build date: 2026-07-06T12:00:55.321747420Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -594,6 +594,8 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**markConversationReadWithHttpInfo**](docs/MessagesApi.md#markConversationReadWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
 *MessagesApi* | [**removeMessageReaction**](docs/MessagesApi.md#removeMessageReaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
 *MessagesApi* | [**removeMessageReactionWithHttpInfo**](docs/MessagesApi.md#removeMessageReactionWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
+*MessagesApi* | [**searchInboxConversations**](docs/MessagesApi.md#searchInboxConversations) | **GET** /v1/inbox/conversations/search | Search conversations
+*MessagesApi* | [**searchInboxConversationsWithHttpInfo**](docs/MessagesApi.md#searchInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations/search | Search conversations
 *MessagesApi* | [**sendInboxMessage**](docs/MessagesApi.md#sendInboxMessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
 *MessagesApi* | [**sendInboxMessageWithHttpInfo**](docs/MessagesApi.md#sendInboxMessageWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
 *MessagesApi* | [**sendTypingIndicator**](docs/MessagesApi.md#sendTypingIndicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
@@ -1904,6 +1906,13 @@ Class | Method | HTTP request | Description
  - [SearchAvailablePhoneNumbers200ResponseNumbersInner](docs/SearchAvailablePhoneNumbers200ResponseNumbersInner.md)
  - [SearchAvailableWhatsAppNumbers200Response](docs/SearchAvailableWhatsAppNumbers200Response.md)
  - [SearchAvailableWhatsAppNumbers200ResponseNumbersInner](docs/SearchAvailableWhatsAppNumbers200ResponseNumbersInner.md)
+ - [SearchInboxConversations200Response](docs/SearchInboxConversations200Response.md)
+ - [SearchInboxConversations200ResponseDataInner](docs/SearchInboxConversations200ResponseDataInner.md)
+ - [SearchInboxConversations200ResponseDataInnerConversation](docs/SearchInboxConversations200ResponseDataInnerConversation.md)
+ - [SearchInboxConversations200ResponseDataInnerMatchesInner](docs/SearchInboxConversations200ResponseDataInnerMatchesInner.md)
+ - [SearchInboxConversations200ResponseMeta](docs/SearchInboxConversations200ResponseMeta.md)
+ - [SearchInboxConversations200ResponseMetaAccountsSkippedInner](docs/SearchInboxConversations200ResponseMetaAccountsSkippedInner.md)
+ - [SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)

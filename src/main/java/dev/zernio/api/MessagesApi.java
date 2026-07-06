@@ -32,6 +32,7 @@ import dev.zernio.model.GetInboxConversationMessages200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListInboxConversations200Response;
 import dev.zernio.model.MarkConversationRead200Response;
+import dev.zernio.model.SearchInboxConversations200Response;
 import dev.zernio.model.SendInboxMessage200Response;
 import dev.zernio.model.SendInboxMessage400Response;
 import dev.zernio.model.SendInboxMessageRequest;
@@ -73,7 +74,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:47:51.819843006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T12:00:55.321747420Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1480,6 +1481,174 @@ public class MessagesApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Search conversations
+   * Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+   * @param query Text to search for in message content (required)
+   * @param direction Only match messages sent to you (incoming) or by you (outgoing) (optional)
+   * @param profileId Filter by profile ID (optional)
+   * @param platform Filter by platform (searchable platforms only) (optional)
+   * @param accountId Filter by specific social account ID (optional)
+   * @param limit Maximum number of conversations to return (optional, default to 20)
+   * @param cursor Pagination cursor for next page (optional)
+   * @return SearchInboxConversations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchInboxConversations200Response searchInboxConversations(@javax.annotation.Nonnull String query, @javax.annotation.Nullable String direction, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return searchInboxConversations(query, direction, profileId, platform, accountId, limit, cursor, null);
+  }
+
+  /**
+   * Search conversations
+   * Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+   * @param query Text to search for in message content (required)
+   * @param direction Only match messages sent to you (incoming) or by you (outgoing) (optional)
+   * @param profileId Filter by profile ID (optional)
+   * @param platform Filter by platform (searchable platforms only) (optional)
+   * @param accountId Filter by specific social account ID (optional)
+   * @param limit Maximum number of conversations to return (optional, default to 20)
+   * @param cursor Pagination cursor for next page (optional)
+   * @param headers Optional headers to include in the request
+   * @return SearchInboxConversations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchInboxConversations200Response searchInboxConversations(@javax.annotation.Nonnull String query, @javax.annotation.Nullable String direction, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchInboxConversations200Response> localVarResponse = searchInboxConversationsWithHttpInfo(query, direction, profileId, platform, accountId, limit, cursor, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Search conversations
+   * Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+   * @param query Text to search for in message content (required)
+   * @param direction Only match messages sent to you (incoming) or by you (outgoing) (optional)
+   * @param profileId Filter by profile ID (optional)
+   * @param platform Filter by platform (searchable platforms only) (optional)
+   * @param accountId Filter by specific social account ID (optional)
+   * @param limit Maximum number of conversations to return (optional, default to 20)
+   * @param cursor Pagination cursor for next page (optional)
+   * @return ApiResponse&lt;SearchInboxConversations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchInboxConversations200Response> searchInboxConversationsWithHttpInfo(@javax.annotation.Nonnull String query, @javax.annotation.Nullable String direction, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+    return searchInboxConversationsWithHttpInfo(query, direction, profileId, platform, accountId, limit, cursor, null);
+  }
+
+  /**
+   * Search conversations
+   * Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+   * @param query Text to search for in message content (required)
+   * @param direction Only match messages sent to you (incoming) or by you (outgoing) (optional)
+   * @param profileId Filter by profile ID (optional)
+   * @param platform Filter by platform (searchable platforms only) (optional)
+   * @param accountId Filter by specific social account ID (optional)
+   * @param limit Maximum number of conversations to return (optional, default to 20)
+   * @param cursor Pagination cursor for next page (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SearchInboxConversations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchInboxConversations200Response> searchInboxConversationsWithHttpInfo(@javax.annotation.Nonnull String query, @javax.annotation.Nullable String direction, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchInboxConversationsRequestBuilder(query, direction, profileId, platform, accountId, limit, cursor, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchInboxConversations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SearchInboxConversations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SearchInboxConversations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchInboxConversations200Response>() {});
+        
+
+        return new ApiResponse<SearchInboxConversations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchInboxConversationsRequestBuilder(@javax.annotation.Nonnull String query, @javax.annotation.Nullable String direction, @javax.annotation.Nullable String profileId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'query' is set
+    if (query == null) {
+      throw new ApiException(400, "Missing the required parameter 'query' when calling searchInboxConversations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/conversations/search";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "query";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("query", query));
+    localVarQueryParameterBaseName = "direction";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("direction", direction));
+    localVarQueryParameterBaseName = "profileId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("profileId", profileId));
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "cursor";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**markConversationReadWithHttpInfo**](MessagesApi.md#markConversationReadWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
 | [**removeMessageReaction**](MessagesApi.md#removeMessageReaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
 | [**removeMessageReactionWithHttpInfo**](MessagesApi.md#removeMessageReactionWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
+| [**searchInboxConversations**](MessagesApi.md#searchInboxConversations) | **GET** /v1/inbox/conversations/search | Search conversations |
+| [**searchInboxConversationsWithHttpInfo**](MessagesApi.md#searchInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations/search | Search conversations |
 | [**sendInboxMessage**](MessagesApi.md#sendInboxMessage) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
 | [**sendInboxMessageWithHttpInfo**](MessagesApi.md#sendInboxMessageWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
 | [**sendTypingIndicator**](MessagesApi.md#sendTypingIndicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator |
@@ -1469,6 +1471,180 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
+
+
+## searchInboxConversations
+
+> SearchInboxConversations200Response searchInboxConversations(query, direction, profileId, platform, accountId, limit, cursor)
+
+Search conversations
+
+Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String query = "query_example"; // String | Text to search for in message content
+        String direction = "incoming"; // String | Only match messages sent to you (incoming) or by you (outgoing)
+        String profileId = "profileId_example"; // String | Filter by profile ID
+        String platform = "facebook"; // String | Filter by platform (searchable platforms only)
+        String accountId = "accountId_example"; // String | Filter by specific social account ID
+        Integer limit = 20; // Integer | Maximum number of conversations to return
+        String cursor = "cursor_example"; // String | Pagination cursor for next page
+        try {
+            SearchInboxConversations200Response result = apiInstance.searchInboxConversations(query, direction, profileId, platform, accountId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#searchInboxConversations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **query** | **String**| Text to search for in message content | |
+| **direction** | **String**| Only match messages sent to you (incoming) or by you (outgoing) | [optional] [enum: incoming, outgoing] |
+| **profileId** | **String**| Filter by profile ID | [optional] |
+| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms] |
+| **accountId** | **String**| Filter by specific social account ID | [optional] |
+| **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
+| **cursor** | **String**| Pagination cursor for next page | [optional] |
+
+### Return type
+
+[**SearchInboxConversations200Response**](SearchInboxConversations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversations containing the query, most recent match first |  -  |
+| **400** | Invalid query or unsupported platform |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+
+## searchInboxConversationsWithHttpInfo
+
+> ApiResponse<SearchInboxConversations200Response> searchInboxConversations searchInboxConversationsWithHttpInfo(query, direction, profileId, platform, accountId, limit, cursor)
+
+Search conversations
+
+Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction&#x3D;outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.  Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.  Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String query = "query_example"; // String | Text to search for in message content
+        String direction = "incoming"; // String | Only match messages sent to you (incoming) or by you (outgoing)
+        String profileId = "profileId_example"; // String | Filter by profile ID
+        String platform = "facebook"; // String | Filter by platform (searchable platforms only)
+        String accountId = "accountId_example"; // String | Filter by specific social account ID
+        Integer limit = 20; // Integer | Maximum number of conversations to return
+        String cursor = "cursor_example"; // String | Pagination cursor for next page
+        try {
+            ApiResponse<SearchInboxConversations200Response> response = apiInstance.searchInboxConversationsWithHttpInfo(query, direction, profileId, platform, accountId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#searchInboxConversations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **query** | **String**| Text to search for in message content | |
+| **direction** | **String**| Only match messages sent to you (incoming) or by you (outgoing) | [optional] [enum: incoming, outgoing] |
+| **profileId** | **String**| Filter by profile ID | [optional] |
+| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms] |
+| **accountId** | **String**| Filter by specific social account ID | [optional] |
+| **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
+| **cursor** | **String**| Pagination cursor for next page | [optional] |
+
+### Return type
+
+ApiResponse<[**SearchInboxConversations200Response**](SearchInboxConversations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversations containing the query, most recent match first |  -  |
+| **400** | Invalid query or unsupported platform |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
 
 
 ## sendInboxMessage

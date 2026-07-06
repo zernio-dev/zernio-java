@@ -12754,6 +12754,106 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/inbox/conversations/search:
+    get:
+      description: |
+        Search message text across your conversations and get back the conversations that contain the query, each with up to 3 most-recent matching messages. Useful for finding threads about a topic, or (with direction=outgoing) collecting examples of how you write to customers, for example to teach an AI agent your tone of voice.
+
+        Only platforms whose messages are stored by Zernio are searchable: WhatsApp, SMS, Telegram, Facebook and Instagram. Twitter/X, Bluesky and Reddit conversations are fetched live from the platforms and cannot be searched; those accounts are listed in meta.accountsSkipped.
+
+        Matching is word-based: case-insensitive and accent-insensitive, exact tokens only (no substrings, no stemming). Quote a phrase to match it exactly.
+      operationId: searchInboxConversations
+      parameters:
+      - description: Text to search for in message content
+        explode: true
+        in: query
+        name: query
+        required: true
+        schema:
+          maxLength: 200
+          minLength: 2
+          type: string
+        style: form
+      - description: Only match messages sent to you (incoming) or by you (outgoing)
+        explode: true
+        in: query
+        name: direction
+        required: false
+        schema:
+          enum:
+          - incoming
+          - outgoing
+          type: string
+        style: form
+      - description: Filter by profile ID
+        explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter by platform (searchable platforms only)
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - facebook
+          - instagram
+          - telegram
+          - whatsapp
+          - sms
+          type: string
+        style: form
+      - description: Filter by specific social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Maximum number of conversations to return
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Pagination cursor for next page
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/searchInboxConversations_200_response"
+          description: "Conversations containing the query, most recent match first"
+        "400":
+          description: Invalid query or unsupported platform
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+      security:
+      - bearerAuth: []
+      summary: Search conversations
+      tags:
+      - Messages
+      x-accepts:
+      - application/json
   /v1/inbox/conversations/{conversationId}:
     get:
       description: Retrieve details and metadata for a specific conversation. Requires
@@ -45948,6 +46048,227 @@ components:
           enum:
           - DM_NOT_ALLOWED
           type: string
+    searchInboxConversations_200_response_data_inner_conversation:
+      example:
+        accountId: accountId
+        lastMessageAt: 2000-01-23T04:56:07.000+00:00
+        participantPicture: participantPicture
+        id: id
+        participantName: participantName
+        participantUsername: participantUsername
+        platform: platform
+        status: active
+      properties:
+        id:
+          description: "Conversation ID, usable with the conversation messages endpoints"
+          type: string
+        platform:
+          type: string
+        accountId:
+          type: string
+        participantName:
+          nullable: true
+          type: string
+        participantUsername:
+          nullable: true
+          type: string
+        participantPicture:
+          nullable: true
+          type: string
+        status:
+          enum:
+          - active
+          - archived
+          type: string
+        lastMessageAt:
+          format: date-time
+          nullable: true
+          type: string
+    searchInboxConversations_200_response_data_inner_matches_inner:
+      example:
+        id: id
+        text: text
+        direction: incoming
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        text:
+          nullable: true
+          type: string
+        direction:
+          enum:
+          - incoming
+          - outgoing
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+    searchInboxConversations_200_response_data_inner:
+      example:
+        matchCount: 0
+        matches:
+        - id: id
+          text: text
+          direction: incoming
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - id: id
+          text: text
+          direction: incoming
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        conversation:
+          accountId: accountId
+          lastMessageAt: 2000-01-23T04:56:07.000+00:00
+          participantPicture: participantPicture
+          id: id
+          participantName: participantName
+          participantUsername: participantUsername
+          platform: platform
+          status: active
+      properties:
+        conversation:
+          $ref: "#/components/schemas/searchInboxConversations_200_response_data_inner_conversation"
+        matchCount:
+          description: Total number of matching messages in this conversation
+          type: integer
+        matches:
+          description: Up to 3 most-recent matching messages
+          items:
+            $ref: "#/components/schemas/searchInboxConversations_200_response_data_inner_matches_inner"
+          type: array
+    searchInboxConversations_200_response_meta_failedAccounts_inner:
+      example:
+        accountId: accountId
+        accountUsername: accountUsername
+        error: error
+        platform: platform
+      properties:
+        accountId:
+          type: string
+        accountUsername:
+          nullable: true
+          type: string
+        platform:
+          type: string
+        error:
+          type: string
+    searchInboxConversations_200_response_meta_accountsSkipped_inner:
+      example:
+        accountId: accountId
+        platform: platform
+      properties:
+        accountId:
+          type: string
+        platform:
+          type: string
+    searchInboxConversations_200_response_meta:
+      example:
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        accountsFailed: 1
+        failedAccounts:
+        - accountId: accountId
+          accountUsername: accountUsername
+          error: error
+          platform: platform
+        - accountId: accountId
+          accountUsername: accountUsername
+          error: error
+          platform: platform
+        accountsSkipped:
+        - accountId: accountId
+          platform: platform
+        - accountId: accountId
+          platform: platform
+        accountsQueried: 6
+      properties:
+        accountsQueried:
+          type: integer
+        accountsFailed:
+          type: integer
+        failedAccounts:
+          items:
+            $ref: "#/components/schemas/searchInboxConversations_200_response_meta_failedAccounts_inner"
+          type: array
+        lastUpdated:
+          format: date-time
+          type: string
+        accountsSkipped:
+          description: Connected messaging accounts that cannot be searched (live-fetched
+            platforms)
+          items:
+            $ref: "#/components/schemas/searchInboxConversations_200_response_meta_accountsSkipped_inner"
+          type: array
+    searchInboxConversations_200_response:
+      example:
+        pagination:
+          nextCursor: nextCursor
+          hasMore: true
+        data:
+        - matchCount: 0
+          matches:
+          - id: id
+            text: text
+            direction: incoming
+            timestamp: 2000-01-23T04:56:07.000+00:00
+          - id: id
+            text: text
+            direction: incoming
+            timestamp: 2000-01-23T04:56:07.000+00:00
+          conversation:
+            accountId: accountId
+            lastMessageAt: 2000-01-23T04:56:07.000+00:00
+            participantPicture: participantPicture
+            id: id
+            participantName: participantName
+            participantUsername: participantUsername
+            platform: platform
+            status: active
+        - matchCount: 0
+          matches:
+          - id: id
+            text: text
+            direction: incoming
+            timestamp: 2000-01-23T04:56:07.000+00:00
+          - id: id
+            text: text
+            direction: incoming
+            timestamp: 2000-01-23T04:56:07.000+00:00
+          conversation:
+            accountId: accountId
+            lastMessageAt: 2000-01-23T04:56:07.000+00:00
+            participantPicture: participantPicture
+            id: id
+            participantName: participantName
+            participantUsername: participantUsername
+            platform: platform
+            status: active
+        meta:
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          accountsFailed: 1
+          failedAccounts:
+          - accountId: accountId
+            accountUsername: accountUsername
+            error: error
+            platform: platform
+          - accountId: accountId
+            accountUsername: accountUsername
+            error: error
+            platform: platform
+          accountsSkipped:
+          - accountId: accountId
+            platform: platform
+          - accountId: accountId
+            platform: platform
+          accountsQueried: 6
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/searchInboxConversations_200_response_data_inner"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listInboxConversations_200_response_pagination"
+        meta:
+          $ref: "#/components/schemas/searchInboxConversations_200_response_meta"
     getInboxConversation_200_response_data:
       example:
         updatedTime: 2000-01-23T04:56:07.000+00:00
