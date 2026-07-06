@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_NEEDS_RECONNECT,
   GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_ISSUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-04T13:49:24.644347969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAllAccountsHealth200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

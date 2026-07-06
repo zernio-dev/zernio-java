@@ -13,9 +13,9 @@ Photo carousels up to 35 images. Video titles up to 2200 chars, photo titles tru
 |**allowComment** | **Boolean** | Allow comments on the post |  [optional] |
 |**allowDuet** | **Boolean** | Allow duets (required for video posts) |  [optional] |
 |**allowStitch** | **Boolean** | Allow stitches (required for video posts) |  [optional] |
-|**commercialContentType** | [**CommercialContentTypeEnum**](#CommercialContentTypeEnum) | Type of commercial content disclosure |  [optional] |
-|**brandPartnerPromote** | **Boolean** | Whether the post promotes a brand partner |  [optional] |
-|**isBrandOrganicPost** | **Boolean** | Whether the post is a brand organic post |  [optional] |
+|**commercialContentType** | [**CommercialContentTypeEnum**](#CommercialContentTypeEnum) | Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY.  |  [optional] |
+|**brandPartnerPromote** | **Boolean** | Whether the post promotes a brand partner (branded content / paid partnership). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_organic\&quot;), or to override the value implied by commercialContentType.  |  [optional] |
+|**isBrandOrganicPost** | **Boolean** | Whether the post promotes the creator&#39;s own brand (brand organic). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_content\&quot;), or to override the value implied by commercialContentType.  |  [optional] |
 |**contentPreviewConfirmed** | **Boolean** | User has confirmed they previewed the content |  [optional] |
 |**expressConsentGiven** | **Boolean** | User has given express consent for posting |  [optional] |
 |**mediaType** | [**MediaTypeEnum**](#MediaTypeEnum) | Optional override. Defaults based on provided media items. |  [optional] |

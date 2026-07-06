@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   TikTokPlatformData.JSON_PROPERTY_VIDEO_MADE_WITH_AI,
   TikTokPlatformData.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-04T13:49:24.644347969Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -75,7 +75,7 @@ public class TikTokPlatformData {
   private Boolean allowStitch;
 
   /**
-   * Type of commercial content disclosure
+   * Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY. 
    */
   public enum CommercialContentTypeEnum {
     NONE(String.valueOf("none")),
@@ -323,7 +323,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Type of commercial content disclosure
+   * Type of commercial content disclosure. Sufficient on its own: \&quot;brand_organic\&quot; (\&quot;Your Brand\&quot;) implies isBrandOrganicPost and \&quot;brand_content\&quot; (\&quot;Branded Content\&quot;, paid partnership) implies brandPartnerPromote, so you don&#39;t need to send the boolean flags separately. Branded content cannot be posted with privacyLevel SELF_ONLY. 
    * @return commercialContentType
    */
   @javax.annotation.Nullable
@@ -347,7 +347,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Whether the post promotes a brand partner
+   * Whether the post promotes a brand partner (branded content / paid partnership). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_organic\&quot;), or to override the value implied by commercialContentType. 
    * @return brandPartnerPromote
    */
   @javax.annotation.Nullable
@@ -371,7 +371,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Whether the post is a brand organic post
+   * Whether the post promotes the creator&#39;s own brand (brand organic). Only needed to disclose BOTH types at once (set it alongside commercialContentType \&quot;brand_content\&quot;), or to override the value implied by commercialContentType. 
    * @return isBrandOrganicPost
    */
   @javax.annotation.Nullable
