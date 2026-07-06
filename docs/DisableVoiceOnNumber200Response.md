@@ -7,16 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**enabled** | [**EnabledEnum**](#EnabledEnum) |  |  [optional] |
+|**enabled** | **Boolean** | Always false after a successful disable. |  [optional] |
 |**phoneNumber** | **String** |  |  [optional] |
-
-
-
-## Enum: EnabledEnum
-
-| Name | Value |
-|---- | -----|
-| FALSE | &quot;false&quot; |
 
 
 

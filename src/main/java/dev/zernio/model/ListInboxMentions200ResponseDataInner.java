@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -45,7 +49,7 @@ import dev.zernio.ApiClient;
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_PUBLISHED_AT,
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:47:51.819843006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxMentions200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -101,12 +105,10 @@ public class ListInboxMentions200ResponseDataInner {
   private String content;
 
   public static final String JSON_PROPERTY_PERMALINK = "permalink";
-  @javax.annotation.Nullable
-  private String permalink;
+  private JsonNullable<String> permalink = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_AUTHOR_URN = "authorUrn";
-  @javax.annotation.Nullable
-  private String authorUrn;
+  private JsonNullable<String> authorUrn = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ORGANIZATIONAL_ENTITY = "organizationalEntity";
   @javax.annotation.Nullable
@@ -244,7 +246,7 @@ public class ListInboxMentions200ResponseDataInner {
 
 
   public ListInboxMentions200ResponseDataInner permalink(@javax.annotation.Nullable String permalink) {
-    this.permalink = permalink;
+    this.permalink = JsonNullable.<String>of(permalink);
     return this;
   }
 
@@ -253,22 +255,30 @@ public class ListInboxMentions200ResponseDataInner {
    * @return permalink
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getPermalink() {
-    return permalink;
+        return permalink.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PERMALINK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPermalink(@javax.annotation.Nullable String permalink) {
+
+  public JsonNullable<String> getPermalink_JsonNullable() {
+    return permalink;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PERMALINK)
+  public void setPermalink_JsonNullable(JsonNullable<String> permalink) {
     this.permalink = permalink;
+  }
+
+  public void setPermalink(@javax.annotation.Nullable String permalink) {
+    this.permalink = JsonNullable.<String>of(permalink);
   }
 
 
   public ListInboxMentions200ResponseDataInner authorUrn(@javax.annotation.Nullable String authorUrn) {
-    this.authorUrn = authorUrn;
+    this.authorUrn = JsonNullable.<String>of(authorUrn);
     return this;
   }
 
@@ -277,17 +287,25 @@ public class ListInboxMentions200ResponseDataInner {
    * @return authorUrn
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_AUTHOR_URN, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getAuthorUrn() {
-    return authorUrn;
+        return authorUrn.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_AUTHOR_URN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthorUrn(@javax.annotation.Nullable String authorUrn) {
+
+  public JsonNullable<String> getAuthorUrn_JsonNullable() {
+    return authorUrn;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTHOR_URN)
+  public void setAuthorUrn_JsonNullable(JsonNullable<String> authorUrn) {
     this.authorUrn = authorUrn;
+  }
+
+  public void setAuthorUrn(@javax.annotation.Nullable String authorUrn) {
+    this.authorUrn = JsonNullable.<String>of(authorUrn);
   }
 
 
@@ -380,16 +398,27 @@ public class ListInboxMentions200ResponseDataInner {
         Objects.equals(this.accountId, listInboxMentions200ResponseDataInner.accountId) &&
         Objects.equals(this.accountUsername, listInboxMentions200ResponseDataInner.accountUsername) &&
         Objects.equals(this.content, listInboxMentions200ResponseDataInner.content) &&
-        Objects.equals(this.permalink, listInboxMentions200ResponseDataInner.permalink) &&
-        Objects.equals(this.authorUrn, listInboxMentions200ResponseDataInner.authorUrn) &&
+        equalsNullable(this.permalink, listInboxMentions200ResponseDataInner.permalink) &&
+        equalsNullable(this.authorUrn, listInboxMentions200ResponseDataInner.authorUrn) &&
         Objects.equals(this.organizationalEntity, listInboxMentions200ResponseDataInner.organizationalEntity) &&
         Objects.equals(this.publishedAt, listInboxMentions200ResponseDataInner.publishedAt) &&
         Objects.equals(this.createdAt, listInboxMentions200ResponseDataInner.createdAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, content, permalink, authorUrn, organizationalEntity, publishedAt, createdAt);
+    return Objects.hash(id, platform, accountId, accountUsername, content, hashCodeNullable(permalink), hashCodeNullable(authorUrn), organizationalEntity, publishedAt, createdAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

@@ -14,7 +14,6 @@
 |**recordOverride** | **Boolean** | Per-call recording toggle; defaults to the number&#39;s setting. |  [optional] |
 |**transcribeOverride** | **Boolean** | Per-call transcription toggle; defaults to the number&#39;s setting. |  [optional] |
 |**transcriptionLanguage** | [**TranscriptionLanguageEnum**](#TranscriptionLanguageEnum) | &#39;auto&#39; derives from the callee&#39;s country; &#39;en&#39;/&#39;es&#39; force it. |  [optional] |
-|**idempotencyKey** | **String** | A retry with the same key returns the original call instead of dialing again. |  [optional] |
 |**amd** | **Boolean** | Answering-machine detection; defers the bridge until human vs machine is known. |  [optional] |
 |**voicemailDropMessage** | **String** | Spoken to a detected machine, then hang up (implies &#x60;amd&#x60;). For outbound voicemail drops. |  [optional] |
 

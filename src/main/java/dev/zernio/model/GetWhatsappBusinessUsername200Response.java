@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -37,15 +41,14 @@ import dev.zernio.ApiClient;
   GetWhatsappBusinessUsername200Response.JSON_PROPERTY_USERNAME,
   GetWhatsappBusinessUsername200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:47:51.819843006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsappBusinessUsername200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
   private Boolean success;
 
   public static final String JSON_PROPERTY_USERNAME = "username";
-  @javax.annotation.Nullable
-  private String username;
+  private JsonNullable<String> username = JsonNullable.<String>undefined();
 
   /**
    * Approval state of the username
@@ -116,7 +119,7 @@ public class GetWhatsappBusinessUsername200Response {
 
 
   public GetWhatsappBusinessUsername200Response username(@javax.annotation.Nullable String username) {
-    this.username = username;
+    this.username = JsonNullable.<String>of(username);
     return this;
   }
 
@@ -125,17 +128,25 @@ public class GetWhatsappBusinessUsername200Response {
    * @return username
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUsername() {
-    return username;
+        return username.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsername(@javax.annotation.Nullable String username) {
+
+  public JsonNullable<String> getUsername_JsonNullable() {
+    return username;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_USERNAME)
+  public void setUsername_JsonNullable(JsonNullable<String> username) {
     this.username = username;
+  }
+
+  public void setUsername(@javax.annotation.Nullable String username) {
+    this.username = JsonNullable.<String>of(username);
   }
 
 
@@ -176,13 +187,24 @@ public class GetWhatsappBusinessUsername200Response {
     }
     GetWhatsappBusinessUsername200Response getWhatsappBusinessUsername200Response = (GetWhatsappBusinessUsername200Response) o;
     return Objects.equals(this.success, getWhatsappBusinessUsername200Response.success) &&
-        Objects.equals(this.username, getWhatsappBusinessUsername200Response.username) &&
+        equalsNullable(this.username, getWhatsappBusinessUsername200Response.username) &&
         Objects.equals(this.status, getWhatsappBusinessUsername200Response.status);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, username, status);
+    return Objects.hash(success, hashCodeNullable(username), status);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

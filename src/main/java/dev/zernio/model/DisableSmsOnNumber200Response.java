@@ -37,44 +37,11 @@ import dev.zernio.ApiClient;
   DisableSmsOnNumber200Response.JSON_PROPERTY_PHONE_NUMBER,
   DisableSmsOnNumber200Response.JSON_PROPERTY_DISABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:47:51.819843006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DisableSmsOnNumber200Response {
-  /**
-   * Gets or Sets enabled
-   */
-  public enum EnabledEnum {
-    FALSE(Boolean.valueOf("false"));
-
-    private Boolean value;
-
-    EnabledEnum(Boolean value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public Boolean getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static EnabledEnum fromValue(Boolean value) {
-      for (EnabledEnum b : EnabledEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
-  private EnabledEnum enabled;
+  private Boolean enabled;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -87,26 +54,26 @@ public class DisableSmsOnNumber200Response {
   public DisableSmsOnNumber200Response() { 
   }
 
-  public DisableSmsOnNumber200Response enabled(@javax.annotation.Nullable EnabledEnum enabled) {
+  public DisableSmsOnNumber200Response enabled(@javax.annotation.Nullable Boolean enabled) {
     this.enabled = enabled;
     return this;
   }
 
   /**
-   * Get enabled
+   * Always false after a successful disable.
    * @return enabled
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public EnabledEnum getEnabled() {
+  public Boolean getEnabled() {
     return enabled;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnabled(@javax.annotation.Nullable EnabledEnum enabled) {
+  public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
     this.enabled = enabled;
   }
 

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ApiKeyProfileIdsInner.JSON_PROPERTY_NAME,
   ApiKeyProfileIdsInner.JSON_PROPERTY_COLOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:47:51.819843006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiKeyProfileIdsInner {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

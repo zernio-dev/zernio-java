@@ -747,7 +747,6 @@ docs/ListInboxConversations200ResponsePagination.md
 docs/ListInboxMentions200Response.md
 docs/ListInboxMentions200ResponseDataInner.md
 docs/ListInboxMentions200ResponseMeta.md
-docs/ListInboxMentions200ResponsePagination.md
 docs/ListInboxReviews200Response.md
 docs/ListInboxReviews200ResponseDataInner.md
 docs/ListInboxReviews200ResponseDataInnerReply.md
@@ -2139,7 +2138,6 @@ src/main/java/dev/zernio/model/ListInboxConversations200ResponsePagination.java
 src/main/java/dev/zernio/model/ListInboxMentions200Response.java
 src/main/java/dev/zernio/model/ListInboxMentions200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxMentions200ResponseMeta.java
-src/main/java/dev/zernio/model/ListInboxMentions200ResponsePagination.java
 src/main/java/dev/zernio/model/ListInboxReviews200Response.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInboxReviews200ResponseDataInnerReply.java

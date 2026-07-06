@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**data** | [**List&lt;ListInboxMentions200ResponseDataInner&gt;**](ListInboxMentions200ResponseDataInner.md) |  |  [optional] |
-|**pagination** | [**ListInboxMentions200ResponsePagination**](ListInboxMentions200ResponsePagination.md) |  |  [optional] |
+|**pagination** | [**GetInboxPostComments200ResponsePagination**](GetInboxPostComments200ResponsePagination.md) |  |  [optional] |
 |**meta** | [**ListInboxMentions200ResponseMeta**](ListInboxMentions200ResponseMeta.md) |  |  [optional] |
 
 

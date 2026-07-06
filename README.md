@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-06T11:06:46.294828294Z[Etc/UTC]
+- Build date: 2026-07-06T11:47:51.819843006Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1726,7 +1726,6 @@ Class | Method | HTTP request | Description
  - [ListInboxMentions200Response](docs/ListInboxMentions200Response.md)
  - [ListInboxMentions200ResponseDataInner](docs/ListInboxMentions200ResponseDataInner.md)
  - [ListInboxMentions200ResponseMeta](docs/ListInboxMentions200ResponseMeta.md)
- - [ListInboxMentions200ResponsePagination](docs/ListInboxMentions200ResponsePagination.md)
  - [ListInboxReviews200Response](docs/ListInboxReviews200Response.md)
  - [ListInboxReviews200ResponseDataInner](docs/ListInboxReviews200ResponseDataInner.md)
  - [ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)

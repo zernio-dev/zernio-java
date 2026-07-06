@@ -40,11 +40,10 @@ import dev.zernio.ApiClient;
   CreateVoiceCallRequest.JSON_PROPERTY_RECORD_OVERRIDE,
   CreateVoiceCallRequest.JSON_PROPERTY_TRANSCRIBE_OVERRIDE,
   CreateVoiceCallRequest.JSON_PROPERTY_TRANSCRIPTION_LANGUAGE,
-  CreateVoiceCallRequest.JSON_PROPERTY_IDEMPOTENCY_KEY,
   CreateVoiceCallRequest.JSON_PROPERTY_AMD,
   CreateVoiceCallRequest.JSON_PROPERTY_VOICEMAIL_DROP_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:06:46.294828294Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T11:47:51.819843006Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateVoiceCallRequest {
   public static final String JSON_PROPERTY_TO = "to";
   @javax.annotation.Nonnull
@@ -110,10 +109,6 @@ public class CreateVoiceCallRequest {
   public static final String JSON_PROPERTY_TRANSCRIPTION_LANGUAGE = "transcriptionLanguage";
   @javax.annotation.Nullable
   private TranscriptionLanguageEnum transcriptionLanguage;
-
-  public static final String JSON_PROPERTY_IDEMPOTENCY_KEY = "idempotencyKey";
-  @javax.annotation.Nullable
-  private String idempotencyKey;
 
   public static final String JSON_PROPERTY_AMD = "amd";
   @javax.annotation.Nullable
@@ -294,30 +289,6 @@ public class CreateVoiceCallRequest {
   }
 
 
-  public CreateVoiceCallRequest idempotencyKey(@javax.annotation.Nullable String idempotencyKey) {
-    this.idempotencyKey = idempotencyKey;
-    return this;
-  }
-
-  /**
-   * A retry with the same key returns the original call instead of dialing again.
-   * @return idempotencyKey
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_IDEMPOTENCY_KEY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIdempotencyKey() {
-    return idempotencyKey;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_IDEMPOTENCY_KEY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdempotencyKey(@javax.annotation.Nullable String idempotencyKey) {
-    this.idempotencyKey = idempotencyKey;
-  }
-
-
   public CreateVoiceCallRequest amd(@javax.annotation.Nullable Boolean amd) {
     this.amd = amd;
     return this;
@@ -385,14 +356,13 @@ public class CreateVoiceCallRequest {
         Objects.equals(this.recordOverride, createVoiceCallRequest.recordOverride) &&
         Objects.equals(this.transcribeOverride, createVoiceCallRequest.transcribeOverride) &&
         Objects.equals(this.transcriptionLanguage, createVoiceCallRequest.transcriptionLanguage) &&
-        Objects.equals(this.idempotencyKey, createVoiceCallRequest.idempotencyKey) &&
         Objects.equals(this.amd, createVoiceCallRequest.amd) &&
         Objects.equals(this.voicemailDropMessage, createVoiceCallRequest.voicemailDropMessage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(to, fromNumber, forwardTo, greeting, recordOverride, transcribeOverride, transcriptionLanguage, idempotencyKey, amd, voicemailDropMessage);
+    return Objects.hash(to, fromNumber, forwardTo, greeting, recordOverride, transcribeOverride, transcriptionLanguage, amd, voicemailDropMessage);
   }
 
   @Override
@@ -406,7 +376,6 @@ public class CreateVoiceCallRequest {
     sb.append("    recordOverride: ").append(toIndentedString(recordOverride)).append("\n");
     sb.append("    transcribeOverride: ").append(toIndentedString(transcribeOverride)).append("\n");
     sb.append("    transcriptionLanguage: ").append(toIndentedString(transcriptionLanguage)).append("\n");
-    sb.append("    idempotencyKey: ").append(toIndentedString(idempotencyKey)).append("\n");
     sb.append("    amd: ").append(toIndentedString(amd)).append("\n");
     sb.append("    voicemailDropMessage: ").append(toIndentedString(voicemailDropMessage)).append("\n");
     sb.append("}");
@@ -489,11 +458,6 @@ public class CreateVoiceCallRequest {
     // add `transcriptionLanguage` to the URL query string
     if (getTranscriptionLanguage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stranscriptionLanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTranscriptionLanguage()))));
-    }
-
-    // add `idempotencyKey` to the URL query string
-    if (getIdempotencyKey() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sidempotencyKey%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIdempotencyKey()))));
     }
 
     // add `amd` to the URL query string

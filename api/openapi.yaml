@@ -15761,8 +15761,7 @@ paths:
 
         **Idempotency:** send an `Idempotency-Key` header to make retries safe;
         same key + same body replays the original response instead of dialing
-        (and billing) a second call. The body `idempotencyKey` field predates
-        the header and keeps working; prefer the header.
+        (and billing) a second call.
       operationId: createVoiceCall
       parameters:
       - description: Optional client-generated unique key (e.g. a UUID) that makes
@@ -48252,12 +48251,12 @@ components:
           type: string
         permalink:
           description: URL to the source post on LinkedIn
-          type: string
           nullable: true
+          type: string
         authorUrn:
           description: LinkedIn URN of the person who mentioned you
-          type: string
           nullable: true
+          type: string
         organizationalEntity:
           description: URN of the organization that was mentioned
           type: string
@@ -48267,16 +48266,6 @@ components:
         createdAt:
           format: date-time
           type: string
-    listInboxMentions_200_response_pagination:
-      example:
-        cursor: cursor
-        hasMore: true
-      properties:
-        hasMore:
-          type: boolean
-        cursor:
-          type: string
-          nullable: true
     listInboxMentions_200_response_meta:
       example:
         total: 0
@@ -48324,7 +48313,7 @@ components:
             $ref: "#/components/schemas/listInboxMentions_200_response_data_inner"
           type: array
         pagination:
-          $ref: "#/components/schemas/listInboxMentions_200_response_pagination"
+          $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listInboxMentions_200_response_meta"
     listInboxReviews_200_response_data_inner_reviewer:
@@ -49572,12 +49561,6 @@ components:
           - en
           - es
           type: string
-        idempotencyKey:
-          description: A retry with the same key returns the original call instead
-            of dialing again.
-          maxLength: 255
-          minLength: 1
-          type: string
         amd:
           description: Answering-machine detection; defers the bridge until human
             vs machine is known.
@@ -50669,8 +50652,8 @@ components:
           type: boolean
         username:
           description: "The current username, or null if none is set"
-          type: string
           nullable: true
+          type: string
         status:
           description: Approval state of the username
           enum:
@@ -52910,8 +52893,7 @@ components:
         enabled: true
       properties:
         enabled:
-          enum:
-          - false
+          description: Always false after a successful disable.
           type: boolean
         phoneNumber:
           type: string
@@ -52995,8 +52977,7 @@ components:
         enabled: true
       properties:
         enabled:
-          enum:
-          - false
+          description: Always false after a successful disable.
           type: boolean
         phoneNumber:
           type: string
