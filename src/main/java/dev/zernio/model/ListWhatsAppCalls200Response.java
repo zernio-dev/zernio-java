@@ -25,9 +25,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.ListWhatsAppCalls200ResponseCallsInner;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,13 +41,17 @@ import dev.zernio.ApiClient;
  * ListWhatsAppCalls200Response
  */
 @JsonPropertyOrder({
-  ListWhatsAppCalls200Response.JSON_PROPERTY_CALLS
+  ListWhatsAppCalls200Response.JSON_PROPERTY_CALLS,
+  ListWhatsAppCalls200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppCalls200Response {
   public static final String JSON_PROPERTY_CALLS = "calls";
   @javax.annotation.Nullable
   private List<ListWhatsAppCalls200ResponseCallsInner> calls = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_NEXT_CURSOR = "nextCursor";
+  private JsonNullable<OffsetDateTime> nextCursor = JsonNullable.<OffsetDateTime>undefined();
 
   public ListWhatsAppCalls200Response() { 
   }
@@ -79,6 +88,38 @@ public class ListWhatsAppCalls200Response {
   }
 
 
+  public ListWhatsAppCalls200Response nextCursor(@javax.annotation.Nullable OffsetDateTime nextCursor) {
+    this.nextCursor = JsonNullable.<OffsetDateTime>of(nextCursor);
+    return this;
+  }
+
+  /**
+   * Pass as &#x60;before&#x60; for the next page; null on the last page.
+   * @return nextCursor
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getNextCursor() {
+        return nextCursor.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NEXT_CURSOR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getNextCursor_JsonNullable() {
+    return nextCursor;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEXT_CURSOR)
+  public void setNextCursor_JsonNullable(JsonNullable<OffsetDateTime> nextCursor) {
+    this.nextCursor = nextCursor;
+  }
+
+  public void setNextCursor(@javax.annotation.Nullable OffsetDateTime nextCursor) {
+    this.nextCursor = JsonNullable.<OffsetDateTime>of(nextCursor);
+  }
+
+
   /**
    * Return true if this listWhatsAppCalls_200_response object is equal to o.
    */
@@ -91,12 +132,24 @@ public class ListWhatsAppCalls200Response {
       return false;
     }
     ListWhatsAppCalls200Response listWhatsAppCalls200Response = (ListWhatsAppCalls200Response) o;
-    return Objects.equals(this.calls, listWhatsAppCalls200Response.calls);
+    return Objects.equals(this.calls, listWhatsAppCalls200Response.calls) &&
+        equalsNullable(this.nextCursor, listWhatsAppCalls200Response.nextCursor);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(calls);
+    return Objects.hash(calls, hashCodeNullable(nextCursor));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -104,6 +157,7 @@ public class ListWhatsAppCalls200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListWhatsAppCalls200Response {\n");
     sb.append("    calls: ").append(toIndentedString(calls)).append("\n");
+    sb.append("    nextCursor: ").append(toIndentedString(nextCursor)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -159,6 +213,11 @@ public class ListWhatsAppCalls200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `nextCursor` to the URL query string
+    if (getNextCursor() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snextCursor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNextCursor()))));
     }
 
     return joiner.toString();

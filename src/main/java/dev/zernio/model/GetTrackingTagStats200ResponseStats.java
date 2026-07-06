@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetTrackingTagStats200ResponseStats.JSON_PROPERTY_END_TIME,
   GetTrackingTagStats200ResponseStats.JSON_PROPERTY_ROWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTrackingTagStats200ResponseStats {
   public static final String JSON_PROPERTY_AGGREGATION = "aggregation";
   @javax.annotation.Nullable

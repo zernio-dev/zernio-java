@@ -34,22 +34,17 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.JSON_PROPERTY_REQUIREMENT_ID,
-  SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.JSON_PROPERTY_FILENAME,
-  SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.JSON_PROPERTY_BASE64
+  SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.JSON_PROPERTY_DOCUMENT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nonnull
   private String requirementId;
 
-  public static final String JSON_PROPERTY_FILENAME = "filename";
+  public static final String JSON_PROPERTY_DOCUMENT_ID = "documentId";
   @javax.annotation.Nonnull
-  private String filename;
-
-  public static final String JSON_PROPERTY_BASE64 = "base64";
-  @javax.annotation.Nonnull
-  private String base64;
+  private String documentId;
 
   public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf() { 
   }
@@ -78,51 +73,27 @@ public class SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf {
   }
 
 
-  public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf filename(@javax.annotation.Nonnull String filename) {
-    this.filename = filename;
+  public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf documentId(@javax.annotation.Nonnull String documentId) {
+    this.documentId = documentId;
     return this;
   }
 
   /**
-   * Get filename
-   * @return filename
+   * Id from POST /v1/whatsapp/phone-numbers/kyc/upload-document.
+   * @return documentId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_FILENAME, required = true)
+  @JsonProperty(value = JSON_PROPERTY_DOCUMENT_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getFilename() {
-    return filename;
+  public String getDocumentId() {
+    return documentId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_FILENAME, required = true)
+  @JsonProperty(value = JSON_PROPERTY_DOCUMENT_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setFilename(@javax.annotation.Nonnull String filename) {
-    this.filename = filename;
-  }
-
-
-  public SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf base64(@javax.annotation.Nonnull String base64) {
-    this.base64 = base64;
-    return this;
-  }
-
-  /**
-   * Get base64
-   * @return base64
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BASE64, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getBase64() {
-    return base64;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_BASE64, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBase64(@javax.annotation.Nonnull String base64) {
-    this.base64 = base64;
+  public void setDocumentId(@javax.annotation.Nonnull String documentId) {
+    this.documentId = documentId;
   }
 
 
@@ -139,13 +110,12 @@ public class SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf {
     }
     SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf submitWhatsAppNumberKycRequestDocumentsInnerOneOf = (SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf) o;
     return Objects.equals(this.requirementId, submitWhatsAppNumberKycRequestDocumentsInnerOneOf.requirementId) &&
-        Objects.equals(this.filename, submitWhatsAppNumberKycRequestDocumentsInnerOneOf.filename) &&
-        Objects.equals(this.base64, submitWhatsAppNumberKycRequestDocumentsInnerOneOf.base64);
+        Objects.equals(this.documentId, submitWhatsAppNumberKycRequestDocumentsInnerOneOf.documentId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requirementId, filename, base64);
+    return Objects.hash(requirementId, documentId);
   }
 
   @Override
@@ -153,8 +123,7 @@ public class SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf {\n");
     sb.append("    requirementId: ").append(toIndentedString(requirementId)).append("\n");
-    sb.append("    filename: ").append(toIndentedString(filename)).append("\n");
-    sb.append("    base64: ").append(toIndentedString(base64)).append("\n");
+    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,14 +176,9 @@ public class SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf {
       joiner.add(String.format(java.util.Locale.ROOT, "%srequirementId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRequirementId()))));
     }
 
-    // add `filename` to the URL query string
-    if (getFilename() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sfilename%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFilename()))));
-    }
-
-    // add `base64` to the URL query string
-    if (getBase64() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sbase64%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBase64()))));
+    // add `documentId` to the URL query string
+    if (getDocumentId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdocumentId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDocumentId()))));
     }
 
     return joiner.toString();

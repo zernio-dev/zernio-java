@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.RemediateWhatsAppNumber200ResponsePhoneNumber;
+import dev.zernio.model.RemediatePhoneNumber200ResponsePhoneNumber;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   PauseWorkflow200Response.JSON_PROPERTY_SUCCESS,
   PauseWorkflow200Response.JSON_PROPERTY_WORKFLOW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PauseWorkflow200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -45,7 +45,7 @@ public class PauseWorkflow200Response {
 
   public static final String JSON_PROPERTY_WORKFLOW = "workflow";
   @javax.annotation.Nullable
-  private RemediateWhatsAppNumber200ResponsePhoneNumber workflow;
+  private RemediatePhoneNumber200ResponsePhoneNumber workflow;
 
   public PauseWorkflow200Response() { 
   }
@@ -74,7 +74,7 @@ public class PauseWorkflow200Response {
   }
 
 
-  public PauseWorkflow200Response workflow(@javax.annotation.Nullable RemediateWhatsAppNumber200ResponsePhoneNumber workflow) {
+  public PauseWorkflow200Response workflow(@javax.annotation.Nullable RemediatePhoneNumber200ResponsePhoneNumber workflow) {
     this.workflow = workflow;
     return this;
   }
@@ -86,14 +86,14 @@ public class PauseWorkflow200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_WORKFLOW, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public RemediateWhatsAppNumber200ResponsePhoneNumber getWorkflow() {
+  public RemediatePhoneNumber200ResponsePhoneNumber getWorkflow() {
     return workflow;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_WORKFLOW, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkflow(@javax.annotation.Nullable RemediateWhatsAppNumber200ResponsePhoneNumber workflow) {
+  public void setWorkflow(@javax.annotation.Nullable RemediatePhoneNumber200ResponsePhoneNumber workflow) {
     this.workflow = workflow;
   }
 

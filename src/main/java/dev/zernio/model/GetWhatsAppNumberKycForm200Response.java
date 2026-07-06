@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetPhoneNumberKycForm200ResponseReusable;
 import dev.zernio.model.GetWhatsAppNumberKycForm200ResponseFieldsInner;
-import dev.zernio.model.GetWhatsAppNumberKycForm200ResponseReusable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_FIELDS,
   GetWhatsAppNumberKycForm200Response.JSON_PROPERTY_REUSABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
@@ -58,7 +58,7 @@ public class GetWhatsAppNumberKycForm200Response {
 
   public static final String JSON_PROPERTY_REUSABLE = "reusable";
   @javax.annotation.Nullable
-  private GetWhatsAppNumberKycForm200ResponseReusable reusable;
+  private GetPhoneNumberKycForm200ResponseReusable reusable;
 
   public GetWhatsAppNumberKycForm200Response() { 
   }
@@ -143,7 +143,7 @@ public class GetWhatsAppNumberKycForm200Response {
   }
 
 
-  public GetWhatsAppNumberKycForm200Response reusable(@javax.annotation.Nullable GetWhatsAppNumberKycForm200ResponseReusable reusable) {
+  public GetWhatsAppNumberKycForm200Response reusable(@javax.annotation.Nullable GetPhoneNumberKycForm200ResponseReusable reusable) {
     this.reusable = reusable;
     return this;
   }
@@ -155,14 +155,14 @@ public class GetWhatsAppNumberKycForm200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_REUSABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetWhatsAppNumberKycForm200ResponseReusable getReusable() {
+  public GetPhoneNumberKycForm200ResponseReusable getReusable() {
     return reusable;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_REUSABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReusable(@javax.annotation.Nullable GetWhatsAppNumberKycForm200ResponseReusable reusable) {
+  public void setReusable(@javax.annotation.Nullable GetPhoneNumberKycForm200ResponseReusable reusable) {
     this.reusable = reusable;
   }
 

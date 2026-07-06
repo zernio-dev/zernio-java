@@ -18,8 +18,24 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AppealSmsRegistration200Response;
+import dev.zernio.model.AppealSmsRegistrationRequest;
+import dev.zernio.model.DisableSmsOnNumber200Response;
+import dev.zernio.model.EnableSmsOnNumber200Response;
+import dev.zernio.model.GetSmsRegistration200Response;
+import dev.zernio.model.InlineObject;
+import dev.zernio.model.ListSmsOptOuts200Response;
+import dev.zernio.model.ListSmsRegistrations200Response;
+import dev.zernio.model.LookupSmsNumber200Response;
+import dev.zernio.model.ReuseSmsRegistrationForNumber200Response;
 import dev.zernio.model.SendSms200Response;
 import dev.zernio.model.SendSmsRequest;
+import dev.zernio.model.ShareSmsRegistration200Response;
+import dev.zernio.model.ShareSmsRegistrationRequest;
+import dev.zernio.model.StartSmsRegistration200Response;
+import dev.zernio.model.StartSmsRegistrationRequest;
+import dev.zernio.model.VerifySmsRegistrationOtp200Response;
+import dev.zernio.model.VerifySmsRegistrationOtpRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -52,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -170,50 +186,1033 @@ public class SmsApi {
   }
 
   /**
-   * Send an SMS or MMS
-   * Send a text (SMS) or media (MMS) message from one of your SMS-enabled numbers.  Provide &#x60;text&#x60;, &#x60;mediaUrls&#x60;, or both. Supply an &#x60;Idempotency-Key&#x60; header to make retries safe (a repeated key replays the original result instead of sending again). US numbers must have an approved carrier registration before they can deliver. 
-   * @param sendSmsRequest  (required)
-   * @return SendSms200Response
+   * Appeal a rejected campaign
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * @param id  (required)
+   * @param appealSmsRegistrationRequest  (required)
+   * @return AppealSmsRegistration200Response
    * @throws ApiException if fails to make API call
    */
-  public SendSms200Response sendSms(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest) throws ApiException {
-    return sendSms(sendSmsRequest, null);
+  public AppealSmsRegistration200Response appealSmsRegistration(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AppealSmsRegistrationRequest appealSmsRegistrationRequest) throws ApiException {
+    return appealSmsRegistration(id, appealSmsRegistrationRequest, null);
   }
 
   /**
-   * Send an SMS or MMS
-   * Send a text (SMS) or media (MMS) message from one of your SMS-enabled numbers.  Provide &#x60;text&#x60;, &#x60;mediaUrls&#x60;, or both. Supply an &#x60;Idempotency-Key&#x60; header to make retries safe (a repeated key replays the original result instead of sending again). US numbers must have an approved carrier registration before they can deliver. 
-   * @param sendSmsRequest  (required)
+   * Appeal a rejected campaign
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * @param id  (required)
+   * @param appealSmsRegistrationRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return SendSms200Response
+   * @return AppealSmsRegistration200Response
    * @throws ApiException if fails to make API call
    */
-  public SendSms200Response sendSms(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<SendSms200Response> localVarResponse = sendSmsWithHttpInfo(sendSmsRequest, headers);
+  public AppealSmsRegistration200Response appealSmsRegistration(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AppealSmsRegistrationRequest appealSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AppealSmsRegistration200Response> localVarResponse = appealSmsRegistrationWithHttpInfo(id, appealSmsRegistrationRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
-   * Send an SMS or MMS
-   * Send a text (SMS) or media (MMS) message from one of your SMS-enabled numbers.  Provide &#x60;text&#x60;, &#x60;mediaUrls&#x60;, or both. Supply an &#x60;Idempotency-Key&#x60; header to make retries safe (a repeated key replays the original result instead of sending again). US numbers must have an approved carrier registration before they can deliver. 
-   * @param sendSmsRequest  (required)
-   * @return ApiResponse&lt;SendSms200Response&gt;
+   * Appeal a rejected campaign
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * @param id  (required)
+   * @param appealSmsRegistrationRequest  (required)
+   * @return ApiResponse&lt;AppealSmsRegistration200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SendSms200Response> sendSmsWithHttpInfo(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest) throws ApiException {
-    return sendSmsWithHttpInfo(sendSmsRequest, null);
+  public ApiResponse<AppealSmsRegistration200Response> appealSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AppealSmsRegistrationRequest appealSmsRegistrationRequest) throws ApiException {
+    return appealSmsRegistrationWithHttpInfo(id, appealSmsRegistrationRequest, null);
   }
 
   /**
-   * Send an SMS or MMS
-   * Send a text (SMS) or media (MMS) message from one of your SMS-enabled numbers.  Provide &#x60;text&#x60;, &#x60;mediaUrls&#x60;, or both. Supply an &#x60;Idempotency-Key&#x60; header to make retries safe (a repeated key replays the original result instead of sending again). US numbers must have an approved carrier registration before they can deliver. 
+   * Appeal a rejected campaign
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * @param id  (required)
+   * @param appealSmsRegistrationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AppealSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AppealSmsRegistration200Response> appealSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AppealSmsRegistrationRequest appealSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = appealSmsRegistrationRequestBuilder(id, appealSmsRegistrationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("appealSmsRegistration", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AppealSmsRegistration200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AppealSmsRegistration200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AppealSmsRegistration200Response>() {});
+        
+
+        return new ApiResponse<AppealSmsRegistration200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder appealSmsRegistrationRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AppealSmsRegistrationRequest appealSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling appealSmsRegistration");
+    }
+    // verify the required parameter 'appealSmsRegistrationRequest' is set
+    if (appealSmsRegistrationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'appealSmsRegistrationRequest' when calling appealSmsRegistration");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/{id}/appeal"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(appealSmsRegistrationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Disable SMS on a number
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * @param id  (required)
+   * @return DisableSmsOnNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DisableSmsOnNumber200Response disableSmsOnNumber(@javax.annotation.Nonnull String id) throws ApiException {
+    return disableSmsOnNumber(id, null);
+  }
+
+  /**
+   * Disable SMS on a number
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return DisableSmsOnNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DisableSmsOnNumber200Response disableSmsOnNumber(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<DisableSmsOnNumber200Response> localVarResponse = disableSmsOnNumberWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Disable SMS on a number
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * @param id  (required)
+   * @return ApiResponse&lt;DisableSmsOnNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DisableSmsOnNumber200Response> disableSmsOnNumberWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return disableSmsOnNumberWithHttpInfo(id, null);
+  }
+
+  /**
+   * Disable SMS on a number
+   * Turns off SMS for the number (deactivates its SMS account). The carrier registration is untouched, so re-enabling later just reactivates it, with no re-registration. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DisableSmsOnNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DisableSmsOnNumber200Response> disableSmsOnNumberWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = disableSmsOnNumberRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("disableSmsOnNumber", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DisableSmsOnNumber200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DisableSmsOnNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DisableSmsOnNumber200Response>() {});
+        
+
+        return new ApiResponse<DisableSmsOnNumber200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder disableSmsOnNumberRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling disableSmsOnNumber");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/sms"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Enable SMS on a number
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @return EnableSmsOnNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EnableSmsOnNumber200Response enableSmsOnNumber(@javax.annotation.Nonnull String id) throws ApiException {
+    return enableSmsOnNumber(id, null);
+  }
+
+  /**
+   * Enable SMS on a number
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param headers Optional headers to include in the request
+   * @return EnableSmsOnNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EnableSmsOnNumber200Response enableSmsOnNumber(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<EnableSmsOnNumber200Response> localVarResponse = enableSmsOnNumberWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Enable SMS on a number
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @return ApiResponse&lt;EnableSmsOnNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EnableSmsOnNumber200Response> enableSmsOnNumberWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return enableSmsOnNumberWithHttpInfo(id, null);
+  }
+
+  /**
+   * Enable SMS on a number
+   * Turns on SMS for one of your numbers. The number&#39;s real carrier capability is checked first: some number types can&#39;t do SMS at all (&#x60;smsCapable: false&#x60;), and a number still provisioning at the carrier returns &#x60;notReady: true&#x60; (try again once provisioning finishes).  US numbers additionally need a carrier registration before messages deliver; the response tells you which path applies: - &#x60;alreadyRegistered: true&#x60;: a prior registration still covers this   number; SMS was simply reactivated. - &#x60;reusable&#x60; set: you have an approved registration this number can   join in one click via   &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60;   (no new brand/campaign, no extra carrier fee). - &#x60;needsRegistration: true&#x60; and no &#x60;reusable&#x60;: start one via   &#x60;POST /v1/sms/registrations&#x60;.  Idempotent: re-running re-attempts any carrier-side setup that failed. 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;EnableSmsOnNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EnableSmsOnNumber200Response> enableSmsOnNumberWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = enableSmsOnNumberRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("enableSmsOnNumber", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<EnableSmsOnNumber200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        EnableSmsOnNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<EnableSmsOnNumber200Response>() {});
+        
+
+        return new ApiResponse<EnableSmsOnNumber200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder enableSmsOnNumberRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling enableSmsOnNumber");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/sms"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get a carrier registration
+   * Poll this for approval progress after starting a registration.
+   * @param id  (required)
+   * @return GetSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSmsRegistration200Response getSmsRegistration(@javax.annotation.Nonnull String id) throws ApiException {
+    return getSmsRegistration(id, null);
+  }
+
+  /**
+   * Get a carrier registration
+   * Poll this for approval progress after starting a registration.
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSmsRegistration200Response getSmsRegistration(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetSmsRegistration200Response> localVarResponse = getSmsRegistrationWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a carrier registration
+   * Poll this for approval progress after starting a registration.
+   * @param id  (required)
+   * @return ApiResponse&lt;GetSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSmsRegistration200Response> getSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return getSmsRegistrationWithHttpInfo(id, null);
+  }
+
+  /**
+   * Get a carrier registration
+   * Poll this for approval progress after starting a registration.
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSmsRegistration200Response> getSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getSmsRegistrationRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getSmsRegistration", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetSmsRegistration200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetSmsRegistration200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetSmsRegistration200Response>() {});
+        
+
+        return new ApiResponse<GetSmsRegistration200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getSmsRegistrationRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getSmsRegistration");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/{id}"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List SMS opt-outs
+   * The recipients who opted out of SMS (replied STOP) across your numbers, most recent first. Compliance surface: you must be able to see and export your opt-out list. Read-only: a recipient is re-subscribed only by replying START. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
+   * @param format  (optional, default to json)
+   * @param limit  (optional, default to 500)
+   * @return ListSmsOptOuts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSmsOptOuts200Response listSmsOptOuts(@javax.annotation.Nullable String format, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listSmsOptOuts(format, limit, null);
+  }
+
+  /**
+   * List SMS opt-outs
+   * The recipients who opted out of SMS (replied STOP) across your numbers, most recent first. Compliance surface: you must be able to see and export your opt-out list. Read-only: a recipient is re-subscribed only by replying START. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
+   * @param format  (optional, default to json)
+   * @param limit  (optional, default to 500)
+   * @param headers Optional headers to include in the request
+   * @return ListSmsOptOuts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSmsOptOuts200Response listSmsOptOuts(@javax.annotation.Nullable String format, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListSmsOptOuts200Response> localVarResponse = listSmsOptOutsWithHttpInfo(format, limit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List SMS opt-outs
+   * The recipients who opted out of SMS (replied STOP) across your numbers, most recent first. Compliance surface: you must be able to see and export your opt-out list. Read-only: a recipient is re-subscribed only by replying START. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
+   * @param format  (optional, default to json)
+   * @param limit  (optional, default to 500)
+   * @return ApiResponse&lt;ListSmsOptOuts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSmsOptOuts200Response> listSmsOptOutsWithHttpInfo(@javax.annotation.Nullable String format, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listSmsOptOutsWithHttpInfo(format, limit, null);
+  }
+
+  /**
+   * List SMS opt-outs
+   * The recipients who opted out of SMS (replied STOP) across your numbers, most recent first. Compliance surface: you must be able to see and export your opt-out list. Read-only: a recipient is re-subscribed only by replying START. Pass &#x60;format&#x3D;csv&#x60; to download a CSV instead of JSON. 
+   * @param format  (optional, default to json)
+   * @param limit  (optional, default to 500)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListSmsOptOuts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSmsOptOuts200Response> listSmsOptOutsWithHttpInfo(@javax.annotation.Nullable String format, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listSmsOptOutsRequestBuilder(format, limit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listSmsOptOuts", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListSmsOptOuts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListSmsOptOuts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListSmsOptOuts200Response>() {});
+        
+
+        return new ApiResponse<ListSmsOptOuts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listSmsOptOutsRequestBuilder(@javax.annotation.Nullable String format, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/opt-outs";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "format";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("format", format));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json, text/csv");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List carrier registrations
+   * 
+   * @return ListSmsRegistrations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSmsRegistrations200Response listSmsRegistrations() throws ApiException {
+    return listSmsRegistrations(null);
+  }
+
+  /**
+   * List carrier registrations
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ListSmsRegistrations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListSmsRegistrations200Response listSmsRegistrations(Map<String, String> headers) throws ApiException {
+    ApiResponse<ListSmsRegistrations200Response> localVarResponse = listSmsRegistrationsWithHttpInfo(headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List carrier registrations
+   * 
+   * @return ApiResponse&lt;ListSmsRegistrations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSmsRegistrations200Response> listSmsRegistrationsWithHttpInfo() throws ApiException {
+    return listSmsRegistrationsWithHttpInfo(null);
+  }
+
+  /**
+   * List carrier registrations
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListSmsRegistrations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListSmsRegistrations200Response> listSmsRegistrationsWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listSmsRegistrationsRequestBuilder(headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listSmsRegistrations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListSmsRegistrations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListSmsRegistrations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListSmsRegistrations200Response>() {});
+        
+
+        return new ApiResponse<ListSmsRegistrations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listSmsRegistrationsRequestBuilder(Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Look up carrier + line type
+   * Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
+   * @param number Number to look up (E.164; formatting is normalized). (required)
+   * @return LookupSmsNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public LookupSmsNumber200Response lookupSmsNumber(@javax.annotation.Nonnull String number) throws ApiException {
+    return lookupSmsNumber(number, null);
+  }
+
+  /**
+   * Look up carrier + line type
+   * Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
+   * @param number Number to look up (E.164; formatting is normalized). (required)
+   * @param headers Optional headers to include in the request
+   * @return LookupSmsNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public LookupSmsNumber200Response lookupSmsNumber(@javax.annotation.Nonnull String number, Map<String, String> headers) throws ApiException {
+    ApiResponse<LookupSmsNumber200Response> localVarResponse = lookupSmsNumberWithHttpInfo(number, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Look up carrier + line type
+   * Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
+   * @param number Number to look up (E.164; formatting is normalized). (required)
+   * @return ApiResponse&lt;LookupSmsNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LookupSmsNumber200Response> lookupSmsNumberWithHttpInfo(@javax.annotation.Nonnull String number) throws ApiException {
+    return lookupSmsNumberWithHttpInfo(number, null);
+  }
+
+  /**
+   * Look up carrier + line type
+   * Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
+   * @param number Number to look up (E.164; formatting is normalized). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;LookupSmsNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<LookupSmsNumber200Response> lookupSmsNumberWithHttpInfo(@javax.annotation.Nonnull String number, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = lookupSmsNumberRequestBuilder(number, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("lookupSmsNumber", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<LookupSmsNumber200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        LookupSmsNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<LookupSmsNumber200Response>() {});
+        
+
+        return new ApiResponse<LookupSmsNumber200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder lookupSmsNumberRequestBuilder(@javax.annotation.Nonnull String number, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'number' is set
+    if (number == null) {
+      throw new ApiException(400, "Missing the required parameter 'number' when calling lookupSmsNumber");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/lookup";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "number";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("number", number));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Add a number to an existing registration
+   * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
+   * @param id  (required)
+   * @return ReuseSmsRegistrationForNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReuseSmsRegistrationForNumber200Response reuseSmsRegistrationForNumber(@javax.annotation.Nonnull String id) throws ApiException {
+    return reuseSmsRegistrationForNumber(id, null);
+  }
+
+  /**
+   * Add a number to an existing registration
+   * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReuseSmsRegistrationForNumber200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReuseSmsRegistrationForNumber200Response reuseSmsRegistrationForNumber(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReuseSmsRegistrationForNumber200Response> localVarResponse = reuseSmsRegistrationForNumberWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Add a number to an existing registration
+   * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
+   * @param id  (required)
+   * @return ApiResponse&lt;ReuseSmsRegistrationForNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReuseSmsRegistrationForNumber200Response> reuseSmsRegistrationForNumberWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return reuseSmsRegistrationForNumberWithHttpInfo(id, null);
+  }
+
+  /**
+   * Add a number to an existing registration
+   * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReuseSmsRegistrationForNumber200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReuseSmsRegistrationForNumber200Response> reuseSmsRegistrationForNumberWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = reuseSmsRegistrationForNumberRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("reuseSmsRegistrationForNumber", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReuseSmsRegistrationForNumber200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReuseSmsRegistrationForNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReuseSmsRegistrationForNumber200Response>() {});
+        
+
+        return new ApiResponse<ReuseSmsRegistrationForNumber200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder reuseSmsRegistrationForNumberRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling reuseSmsRegistrationForNumber");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/sms/reuse-registration"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Send an SMS/MMS
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
    * @param sendSmsRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @return SendSms200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SendSms200Response sendSms(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return sendSms(sendSmsRequest, idempotencyKey, null);
+  }
+
+  /**
+   * Send an SMS/MMS
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+   * @param sendSmsRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendSms200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SendSms200Response sendSms(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendSms200Response> localVarResponse = sendSmsWithHttpInfo(sendSmsRequest, idempotencyKey, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Send an SMS/MMS
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+   * @param sendSmsRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
+   * @return ApiResponse&lt;SendSms200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendSms200Response> sendSmsWithHttpInfo(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return sendSmsWithHttpInfo(sendSmsRequest, idempotencyKey, null);
+  }
+
+  /**
+   * Send an SMS/MMS
+   * Sends an SMS (or MMS when &#x60;mediaUrls&#x60; is set) from one of your SMS-enabled numbers. At least one of &#x60;text&#x60; / &#x60;mediaUrls&#x60; is required. Both numbers are normalized to E.164, so &#x60;from&#x60; matches regardless of formatting and replies thread into the same inbox conversation.  US numbers must have an approved carrier registration (&#x60;/v1/sms/registrations&#x60;) before messages deliver.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe: same key + same body replays the original response instead of sending a second message; same key + different body returns 422; a key still in flight returns 409. 
+   * @param sendSmsRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes send retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SendSms200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SendSms200Response> sendSmsWithHttpInfo(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = sendSmsRequestBuilder(sendSmsRequest, headers);
+  public ApiResponse<SendSms200Response> sendSmsWithHttpInfo(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = sendSmsRequestBuilder(sendSmsRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -260,7 +1259,7 @@ public class SmsApi {
     }
   }
 
-  private HttpRequest.Builder sendSmsRequestBuilder(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder sendSmsRequestBuilder(@javax.annotation.Nonnull SendSmsRequest sendSmsRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'sendSmsRequest' is set
     if (sendSmsRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'sendSmsRequest' when calling sendSms");
@@ -272,11 +1271,392 @@ public class SmsApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendSmsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a registration share link
+   * Creates a single-use, expiring link (valid 7 days) that lets someone else (whoever has the legal business details) fill in the carrier registration form for one of your numbers, without a Zernio login. The registration is created under your account once the form is submitted. 
+   * @param shareSmsRegistrationRequest  (required)
+   * @return ShareSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ShareSmsRegistration200Response shareSmsRegistration(@javax.annotation.Nonnull ShareSmsRegistrationRequest shareSmsRegistrationRequest) throws ApiException {
+    return shareSmsRegistration(shareSmsRegistrationRequest, null);
+  }
+
+  /**
+   * Create a registration share link
+   * Creates a single-use, expiring link (valid 7 days) that lets someone else (whoever has the legal business details) fill in the carrier registration form for one of your numbers, without a Zernio login. The registration is created under your account once the form is submitted. 
+   * @param shareSmsRegistrationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ShareSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ShareSmsRegistration200Response shareSmsRegistration(@javax.annotation.Nonnull ShareSmsRegistrationRequest shareSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ShareSmsRegistration200Response> localVarResponse = shareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a registration share link
+   * Creates a single-use, expiring link (valid 7 days) that lets someone else (whoever has the legal business details) fill in the carrier registration form for one of your numbers, without a Zernio login. The registration is created under your account once the form is submitted. 
+   * @param shareSmsRegistrationRequest  (required)
+   * @return ApiResponse&lt;ShareSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ShareSmsRegistration200Response> shareSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull ShareSmsRegistrationRequest shareSmsRegistrationRequest) throws ApiException {
+    return shareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest, null);
+  }
+
+  /**
+   * Create a registration share link
+   * Creates a single-use, expiring link (valid 7 days) that lets someone else (whoever has the legal business details) fill in the carrier registration form for one of your numbers, without a Zernio login. The registration is created under your account once the form is submitted. 
+   * @param shareSmsRegistrationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ShareSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ShareSmsRegistration200Response> shareSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull ShareSmsRegistrationRequest shareSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = shareSmsRegistrationRequestBuilder(shareSmsRegistrationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("shareSmsRegistration", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ShareSmsRegistration200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ShareSmsRegistration200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ShareSmsRegistration200Response>() {});
+        
+
+        return new ApiResponse<ShareSmsRegistration200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder shareSmsRegistrationRequestBuilder(@javax.annotation.Nonnull ShareSmsRegistrationRequest shareSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'shareSmsRegistrationRequest' is set
+    if (shareSmsRegistrationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'shareSmsRegistrationRequest' when calling shareSmsRegistration");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/share";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(shareSmsRegistrationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Start a carrier registration
+   * Starts the US carrier registration that a number needs before SMS delivers: 10DLC (standard company or sole-proprietor) or toll-free verification. 10DLC needs &#x60;brand&#x60; + &#x60;campaign&#x60;; toll-free needs &#x60;tollFree&#x60;. Approval is asynchronous; poll &#x60;GET /v1/sms/registrations/{id}&#x60; (sole-prop registrations first need the OTP step: a code is texted to the brand&#39;s mobile number, submit it via &#x60;/verify-otp&#x60;).  Already have an approved registration? Add another number to it with &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60; instead of registering (and paying the carrier brand fee) again.  Rather have your client fill in the legal business details? Create a share link with &#x60;POST /v1/sms/registrations/share&#x60;. 
+   * @param startSmsRegistrationRequest  (required)
+   * @return StartSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public StartSmsRegistration200Response startSmsRegistration(@javax.annotation.Nonnull StartSmsRegistrationRequest startSmsRegistrationRequest) throws ApiException {
+    return startSmsRegistration(startSmsRegistrationRequest, null);
+  }
+
+  /**
+   * Start a carrier registration
+   * Starts the US carrier registration that a number needs before SMS delivers: 10DLC (standard company or sole-proprietor) or toll-free verification. 10DLC needs &#x60;brand&#x60; + &#x60;campaign&#x60;; toll-free needs &#x60;tollFree&#x60;. Approval is asynchronous; poll &#x60;GET /v1/sms/registrations/{id}&#x60; (sole-prop registrations first need the OTP step: a code is texted to the brand&#39;s mobile number, submit it via &#x60;/verify-otp&#x60;).  Already have an approved registration? Add another number to it with &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60; instead of registering (and paying the carrier brand fee) again.  Rather have your client fill in the legal business details? Create a share link with &#x60;POST /v1/sms/registrations/share&#x60;. 
+   * @param startSmsRegistrationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return StartSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public StartSmsRegistration200Response startSmsRegistration(@javax.annotation.Nonnull StartSmsRegistrationRequest startSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<StartSmsRegistration200Response> localVarResponse = startSmsRegistrationWithHttpInfo(startSmsRegistrationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Start a carrier registration
+   * Starts the US carrier registration that a number needs before SMS delivers: 10DLC (standard company or sole-proprietor) or toll-free verification. 10DLC needs &#x60;brand&#x60; + &#x60;campaign&#x60;; toll-free needs &#x60;tollFree&#x60;. Approval is asynchronous; poll &#x60;GET /v1/sms/registrations/{id}&#x60; (sole-prop registrations first need the OTP step: a code is texted to the brand&#39;s mobile number, submit it via &#x60;/verify-otp&#x60;).  Already have an approved registration? Add another number to it with &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60; instead of registering (and paying the carrier brand fee) again.  Rather have your client fill in the legal business details? Create a share link with &#x60;POST /v1/sms/registrations/share&#x60;. 
+   * @param startSmsRegistrationRequest  (required)
+   * @return ApiResponse&lt;StartSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<StartSmsRegistration200Response> startSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull StartSmsRegistrationRequest startSmsRegistrationRequest) throws ApiException {
+    return startSmsRegistrationWithHttpInfo(startSmsRegistrationRequest, null);
+  }
+
+  /**
+   * Start a carrier registration
+   * Starts the US carrier registration that a number needs before SMS delivers: 10DLC (standard company or sole-proprietor) or toll-free verification. 10DLC needs &#x60;brand&#x60; + &#x60;campaign&#x60;; toll-free needs &#x60;tollFree&#x60;. Approval is asynchronous; poll &#x60;GET /v1/sms/registrations/{id}&#x60; (sole-prop registrations first need the OTP step: a code is texted to the brand&#39;s mobile number, submit it via &#x60;/verify-otp&#x60;).  Already have an approved registration? Add another number to it with &#x60;POST /v1/phone-numbers/{id}/sms/reuse-registration&#x60; instead of registering (and paying the carrier brand fee) again.  Rather have your client fill in the legal business details? Create a share link with &#x60;POST /v1/sms/registrations/share&#x60;. 
+   * @param startSmsRegistrationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;StartSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<StartSmsRegistration200Response> startSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull StartSmsRegistrationRequest startSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = startSmsRegistrationRequestBuilder(startSmsRegistrationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("startSmsRegistration", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<StartSmsRegistration200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        StartSmsRegistration200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<StartSmsRegistration200Response>() {});
+        
+
+        return new ApiResponse<StartSmsRegistration200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder startSmsRegistrationRequestBuilder(@javax.annotation.Nonnull StartSmsRegistrationRequest startSmsRegistrationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'startSmsRegistrationRequest' is set
+    if (startSmsRegistrationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'startSmsRegistrationRequest' when calling startSmsRegistration");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(startSmsRegistrationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Submit the sole-prop OTP
+   * Completes sole-proprietor 10DLC brand verification by submitting the one-time PIN texted to the brand&#39;s mobile number. On success the registration continues to campaign creation automatically. 
+   * @param id  (required)
+   * @param verifySmsRegistrationOtpRequest  (required)
+   * @return VerifySmsRegistrationOtp200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifySmsRegistrationOtp200Response verifySmsRegistrationOtp(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifySmsRegistrationOtpRequest verifySmsRegistrationOtpRequest) throws ApiException {
+    return verifySmsRegistrationOtp(id, verifySmsRegistrationOtpRequest, null);
+  }
+
+  /**
+   * Submit the sole-prop OTP
+   * Completes sole-proprietor 10DLC brand verification by submitting the one-time PIN texted to the brand&#39;s mobile number. On success the registration continues to campaign creation automatically. 
+   * @param id  (required)
+   * @param verifySmsRegistrationOtpRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return VerifySmsRegistrationOtp200Response
+   * @throws ApiException if fails to make API call
+   */
+  public VerifySmsRegistrationOtp200Response verifySmsRegistrationOtp(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifySmsRegistrationOtpRequest verifySmsRegistrationOtpRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<VerifySmsRegistrationOtp200Response> localVarResponse = verifySmsRegistrationOtpWithHttpInfo(id, verifySmsRegistrationOtpRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Submit the sole-prop OTP
+   * Completes sole-proprietor 10DLC brand verification by submitting the one-time PIN texted to the brand&#39;s mobile number. On success the registration continues to campaign creation automatically. 
+   * @param id  (required)
+   * @param verifySmsRegistrationOtpRequest  (required)
+   * @return ApiResponse&lt;VerifySmsRegistrationOtp200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifySmsRegistrationOtp200Response> verifySmsRegistrationOtpWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifySmsRegistrationOtpRequest verifySmsRegistrationOtpRequest) throws ApiException {
+    return verifySmsRegistrationOtpWithHttpInfo(id, verifySmsRegistrationOtpRequest, null);
+  }
+
+  /**
+   * Submit the sole-prop OTP
+   * Completes sole-proprietor 10DLC brand verification by submitting the one-time PIN texted to the brand&#39;s mobile number. On success the registration continues to campaign creation automatically. 
+   * @param id  (required)
+   * @param verifySmsRegistrationOtpRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;VerifySmsRegistrationOtp200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<VerifySmsRegistrationOtp200Response> verifySmsRegistrationOtpWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifySmsRegistrationOtpRequest verifySmsRegistrationOtpRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = verifySmsRegistrationOtpRequestBuilder(id, verifySmsRegistrationOtpRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("verifySmsRegistrationOtp", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<VerifySmsRegistrationOtp200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        VerifySmsRegistrationOtp200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<VerifySmsRegistrationOtp200Response>() {});
+        
+
+        return new ApiResponse<VerifySmsRegistrationOtp200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder verifySmsRegistrationOtpRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull VerifySmsRegistrationOtpRequest verifySmsRegistrationOtpRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling verifySmsRegistrationOtp");
+    }
+    // verify the required parameter 'verifySmsRegistrationOtpRequest' is set
+    if (verifySmsRegistrationOtpRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'verifySmsRegistrationOtpRequest' when calling verifySmsRegistrationOtp");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/{id}/verify-otp"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(verifySmsRegistrationOtpRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

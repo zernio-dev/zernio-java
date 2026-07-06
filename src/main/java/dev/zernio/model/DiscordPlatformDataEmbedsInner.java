@@ -27,7 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.DiscordPlatformDataEmbedsInnerAuthor;
 import dev.zernio.model.DiscordPlatformDataEmbedsInnerFieldsInner;
 import dev.zernio.model.DiscordPlatformDataEmbedsInnerFooter;
-import dev.zernio.model.DiscordPlatformDataEmbedsInnerImage;
+import dev.zernio.model.GetWhatsAppCallRecording200Response;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   DiscordPlatformDataEmbedsInner.JSON_PROPERTY_AUTHOR,
   DiscordPlatformDataEmbedsInner.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordPlatformDataEmbedsInner {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -69,11 +69,11 @@ public class DiscordPlatformDataEmbedsInner {
 
   public static final String JSON_PROPERTY_IMAGE = "image";
   @javax.annotation.Nullable
-  private DiscordPlatformDataEmbedsInnerImage image;
+  private GetWhatsAppCallRecording200Response image;
 
   public static final String JSON_PROPERTY_THUMBNAIL = "thumbnail";
   @javax.annotation.Nullable
-  private DiscordPlatformDataEmbedsInnerImage thumbnail;
+  private GetWhatsAppCallRecording200Response thumbnail;
 
   public static final String JSON_PROPERTY_FOOTER = "footer";
   @javax.annotation.Nullable
@@ -186,7 +186,7 @@ public class DiscordPlatformDataEmbedsInner {
   }
 
 
-  public DiscordPlatformDataEmbedsInner image(@javax.annotation.Nullable DiscordPlatformDataEmbedsInnerImage image) {
+  public DiscordPlatformDataEmbedsInner image(@javax.annotation.Nullable GetWhatsAppCallRecording200Response image) {
     this.image = image;
     return this;
   }
@@ -198,19 +198,19 @@ public class DiscordPlatformDataEmbedsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_IMAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public DiscordPlatformDataEmbedsInnerImage getImage() {
+  public GetWhatsAppCallRecording200Response getImage() {
     return image;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_IMAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImage(@javax.annotation.Nullable DiscordPlatformDataEmbedsInnerImage image) {
+  public void setImage(@javax.annotation.Nullable GetWhatsAppCallRecording200Response image) {
     this.image = image;
   }
 
 
-  public DiscordPlatformDataEmbedsInner thumbnail(@javax.annotation.Nullable DiscordPlatformDataEmbedsInnerImage thumbnail) {
+  public DiscordPlatformDataEmbedsInner thumbnail(@javax.annotation.Nullable GetWhatsAppCallRecording200Response thumbnail) {
     this.thumbnail = thumbnail;
     return this;
   }
@@ -222,14 +222,14 @@ public class DiscordPlatformDataEmbedsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_THUMBNAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public DiscordPlatformDataEmbedsInnerImage getThumbnail() {
+  public GetWhatsAppCallRecording200Response getThumbnail() {
     return thumbnail;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_THUMBNAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThumbnail(@javax.annotation.Nullable DiscordPlatformDataEmbedsInnerImage thumbnail) {
+  public void setThumbnail(@javax.annotation.Nullable GetWhatsAppCallRecording200Response thumbnail) {
     this.thumbnail = thumbnail;
   }
 

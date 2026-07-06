@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SendSmsRequest.JSON_PROPERTY_TEXT,
   SendSmsRequest.JSON_PROPERTY_MEDIA_URLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendSmsRequest {
   public static final String JSON_PROPERTY_FROM = "from";
   @javax.annotation.Nonnull
@@ -68,7 +68,7 @@ public class SendSmsRequest {
   }
 
   /**
-   * One of your SMS-enabled numbers (E.164).
+   * One of your SMS-enabled numbers (E.164; formatting is normalized).
    * @return from
    */
   @javax.annotation.Nonnull
@@ -116,7 +116,7 @@ public class SendSmsRequest {
   }
 
   /**
-   * Get text
+   * Message body. Required unless &#x60;mediaUrls&#x60; is set. Max 10 SMS segments (1530 GSM-7 or 670 unicode characters).
    * @return text
    */
   @javax.annotation.Nullable
@@ -148,7 +148,7 @@ public class SendSmsRequest {
   }
 
   /**
-   * Publicly reachable media URLs for MMS (max 10, total &lt; 1MB).
+   * Public media URLs to attach (sends as MMS). Max 10.
    * @return mediaUrls
    */
   @javax.annotation.Nullable

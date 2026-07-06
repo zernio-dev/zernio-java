@@ -18,8 +18,11 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.GetCallsUsage200Response;
+import dev.zernio.model.GetSmsUsage200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import java.time.OffsetDateTime;
 import dev.zernio.model.UsageStats;
 import dev.zernio.model.XApiPricing;
 
@@ -54,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -172,24 +175,454 @@ public class UsageApi {
   }
 
   /**
-   * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * Calling usage (volumes + billable cost)
+   * Aggregated calling usage across your numbers, both channels (WhatsApp Business Calling + regular phone/PSTN): call counts, answered counts, minutes, and cost. Use it for cost visibility or to rebill your own customers per number.  Costs come from each call&#39;s billing snapshot, so this endpoint always agrees with the invoice: &#x60;billableUSD&#x60; is what Zernio bills; &#x60;metaUSD&#x60; is the WhatsApp per-minute charge Meta bills directly to your WABA (display only, never billed by Zernio).  Optional &#x60;groupBy&#x60; returns a breakdown by UTC day, by your number, or by channel. Defaults to the last 30 days. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param channel  (optional)
+   * @param number Scope to calls involving this number (typically one of YOUR numbers). E.164, leading + optional. (optional)
+   * @param groupBy  (optional)
+   * @return GetCallsUsage200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCallsUsage200Response getCallsUsage(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String channel, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy) throws ApiException {
+    return getCallsUsage(since, until, channel, number, groupBy, null);
+  }
+
+  /**
+   * Calling usage (volumes + billable cost)
+   * Aggregated calling usage across your numbers, both channels (WhatsApp Business Calling + regular phone/PSTN): call counts, answered counts, minutes, and cost. Use it for cost visibility or to rebill your own customers per number.  Costs come from each call&#39;s billing snapshot, so this endpoint always agrees with the invoice: &#x60;billableUSD&#x60; is what Zernio bills; &#x60;metaUSD&#x60; is the WhatsApp per-minute charge Meta bills directly to your WABA (display only, never billed by Zernio).  Optional &#x60;groupBy&#x60; returns a breakdown by UTC day, by your number, or by channel. Defaults to the last 30 days. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param channel  (optional)
+   * @param number Scope to calls involving this number (typically one of YOUR numbers). E.164, leading + optional. (optional)
+   * @param groupBy  (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetCallsUsage200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCallsUsage200Response getCallsUsage(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String channel, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetCallsUsage200Response> localVarResponse = getCallsUsageWithHttpInfo(since, until, channel, number, groupBy, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Calling usage (volumes + billable cost)
+   * Aggregated calling usage across your numbers, both channels (WhatsApp Business Calling + regular phone/PSTN): call counts, answered counts, minutes, and cost. Use it for cost visibility or to rebill your own customers per number.  Costs come from each call&#39;s billing snapshot, so this endpoint always agrees with the invoice: &#x60;billableUSD&#x60; is what Zernio bills; &#x60;metaUSD&#x60; is the WhatsApp per-minute charge Meta bills directly to your WABA (display only, never billed by Zernio).  Optional &#x60;groupBy&#x60; returns a breakdown by UTC day, by your number, or by channel. Defaults to the last 30 days. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param channel  (optional)
+   * @param number Scope to calls involving this number (typically one of YOUR numbers). E.164, leading + optional. (optional)
+   * @param groupBy  (optional)
+   * @return ApiResponse&lt;GetCallsUsage200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCallsUsage200Response> getCallsUsageWithHttpInfo(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String channel, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy) throws ApiException {
+    return getCallsUsageWithHttpInfo(since, until, channel, number, groupBy, null);
+  }
+
+  /**
+   * Calling usage (volumes + billable cost)
+   * Aggregated calling usage across your numbers, both channels (WhatsApp Business Calling + regular phone/PSTN): call counts, answered counts, minutes, and cost. Use it for cost visibility or to rebill your own customers per number.  Costs come from each call&#39;s billing snapshot, so this endpoint always agrees with the invoice: &#x60;billableUSD&#x60; is what Zernio bills; &#x60;metaUSD&#x60; is the WhatsApp per-minute charge Meta bills directly to your WABA (display only, never billed by Zernio).  Optional &#x60;groupBy&#x60; returns a breakdown by UTC day, by your number, or by channel. Defaults to the last 30 days. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param channel  (optional)
+   * @param number Scope to calls involving this number (typically one of YOUR numbers). E.164, leading + optional. (optional)
+   * @param groupBy  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetCallsUsage200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCallsUsage200Response> getCallsUsageWithHttpInfo(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String channel, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCallsUsageRequestBuilder(since, until, channel, number, groupBy, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getCallsUsage", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetCallsUsage200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetCallsUsage200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetCallsUsage200Response>() {});
+        
+
+        return new ApiResponse<GetCallsUsage200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCallsUsageRequestBuilder(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String channel, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/usage/calls";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+    localVarQueryParameterBaseName = "channel";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("channel", channel));
+    localVarQueryParameterBaseName = "number";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("number", number));
+    localVarQueryParameterBaseName = "groupBy";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("groupBy", groupBy));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * SMS usage (volumes)
+   * Aggregated SMS/MMS volumes across your numbers: sent, received, and total message counts, with an optional breakdown by UTC day or by number. Defaults to the last 30 days.  Volumes only, deliberately: SMS cost is carrier-rated asynchronously and billed to your invoice, so per-message cost is not available here. Calling usage (GET /v1/usage/calls) does include billable cost. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param number Scope to one of YOUR SMS-enabled numbers (E.164, leading + optional). (optional)
+   * @param groupBy  (optional)
+   * @return GetSmsUsage200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSmsUsage200Response getSmsUsage(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy) throws ApiException {
+    return getSmsUsage(since, until, number, groupBy, null);
+  }
+
+  /**
+   * SMS usage (volumes)
+   * Aggregated SMS/MMS volumes across your numbers: sent, received, and total message counts, with an optional breakdown by UTC day or by number. Defaults to the last 30 days.  Volumes only, deliberately: SMS cost is carrier-rated asynchronously and billed to your invoice, so per-message cost is not available here. Calling usage (GET /v1/usage/calls) does include billable cost. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param number Scope to one of YOUR SMS-enabled numbers (E.164, leading + optional). (optional)
+   * @param groupBy  (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetSmsUsage200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSmsUsage200Response getSmsUsage(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetSmsUsage200Response> localVarResponse = getSmsUsageWithHttpInfo(since, until, number, groupBy, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * SMS usage (volumes)
+   * Aggregated SMS/MMS volumes across your numbers: sent, received, and total message counts, with an optional breakdown by UTC day or by number. Defaults to the last 30 days.  Volumes only, deliberately: SMS cost is carrier-rated asynchronously and billed to your invoice, so per-message cost is not available here. Calling usage (GET /v1/usage/calls) does include billable cost. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param number Scope to one of YOUR SMS-enabled numbers (E.164, leading + optional). (optional)
+   * @param groupBy  (optional)
+   * @return ApiResponse&lt;GetSmsUsage200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSmsUsage200Response> getSmsUsageWithHttpInfo(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy) throws ApiException {
+    return getSmsUsageWithHttpInfo(since, until, number, groupBy, null);
+  }
+
+  /**
+   * SMS usage (volumes)
+   * Aggregated SMS/MMS volumes across your numbers: sent, received, and total message counts, with an optional breakdown by UTC day or by number. Defaults to the last 30 days.  Volumes only, deliberately: SMS cost is carrier-rated asynchronously and billed to your invoice, so per-message cost is not available here. Calling usage (GET /v1/usage/calls) does include billable cost. 
+   * @param since Start of the window (inclusive). Default 30 days before &#x60;until&#x60;. (optional)
+   * @param until End of the window (exclusive). Default now. (optional)
+   * @param number Scope to one of YOUR SMS-enabled numbers (E.164, leading + optional). (optional)
+   * @param groupBy  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetSmsUsage200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSmsUsage200Response> getSmsUsageWithHttpInfo(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getSmsUsageRequestBuilder(since, until, number, groupBy, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getSmsUsage", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetSmsUsage200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetSmsUsage200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetSmsUsage200Response>() {});
+        
+
+        return new ApiResponse<GetSmsUsage200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getSmsUsageRequestBuilder(@javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable String number, @javax.annotation.Nullable String groupBy, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/usage/sms";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+    localVarQueryParameterBaseName = "number";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("number", number));
+    localVarQueryParameterBaseName = "groupBy";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("groupBy", groupBy));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get plan and usage snapshot
+   * The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @return UsageStats
    * @throws ApiException if fails to make API call
    */
+  public UsageStats getUsage(@javax.annotation.Nullable Boolean reconcile) throws ApiException {
+    return getUsage(reconcile, null);
+  }
+
+  /**
+   * Get plan and usage snapshot
+   * The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
+   * @param headers Optional headers to include in the request
+   * @return UsageStats
+   * @throws ApiException if fails to make API call
+   */
+  public UsageStats getUsage(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
+    ApiResponse<UsageStats> localVarResponse = getUsageWithHttpInfo(reconcile, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get plan and usage snapshot
+   * The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
+   * @return ApiResponse&lt;UsageStats&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UsageStats> getUsageWithHttpInfo(@javax.annotation.Nullable Boolean reconcile) throws ApiException {
+    return getUsageWithHttpInfo(reconcile, null);
+  }
+
+  /**
+   * Get plan and usage snapshot
+   * The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UsageStats&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UsageStats> getUsageWithHttpInfo(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUsageRequestBuilder(reconcile, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getUsage", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UsageStats>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UsageStats responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UsageStats>() {});
+        
+
+        return new ApiResponse<UsageStats>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getUsageRequestBuilder(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/usage";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "reconcile";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("reconcile", reconcile));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get plan and usage stats
+   * Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
+   * @return UsageStats
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
   public UsageStats getUsageStats(@javax.annotation.Nullable Boolean reconcile) throws ApiException {
     return getUsageStats(reconcile, null);
   }
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @param headers Optional headers to include in the request
    * @return UsageStats
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public UsageStats getUsageStats(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
     ApiResponse<UsageStats> localVarResponse = getUsageStatsWithHttpInfo(reconcile, headers);
     return localVarResponse.getData();
@@ -197,23 +630,27 @@ public class UsageApi {
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<UsageStats> getUsageStatsWithHttpInfo(@javax.annotation.Nullable Boolean reconcile) throws ApiException {
     return getUsageStatsWithHttpInfo(reconcile, null);
   }
 
   /**
    * Get plan and usage stats
-   * Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+   * Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
    * @param reconcile For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UsageStats&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<UsageStats> getUsageStatsWithHttpInfo(@javax.annotation.Nullable Boolean reconcile, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getUsageStatsRequestBuilder(reconcile, headers);
     try {

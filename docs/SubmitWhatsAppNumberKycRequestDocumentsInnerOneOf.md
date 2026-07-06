@@ -8,8 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**requirementId** | **String** |  |  |
-|**filename** | **String** |  |  |
-|**base64** | **String** |  |  |
+|**documentId** | **String** | Id from POST /v1/whatsapp/phone-numbers/kyc/upload-document. |  |
 
 
 

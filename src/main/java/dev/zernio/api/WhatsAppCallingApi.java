@@ -18,18 +18,20 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
-import dev.zernio.model.EnableWhatsAppCalling200Response;
-import dev.zernio.model.EnableWhatsAppCallingRequest;
+import dev.zernio.model.EnableWhatsAppCallingLegacy200Response;
+import dev.zernio.model.EnableWhatsAppCallingLegacyRequest;
 import dev.zernio.model.GetWhatsAppCall200Response;
 import dev.zernio.model.GetWhatsAppCallEstimate200Response;
 import dev.zernio.model.GetWhatsAppCallPermissions200Response;
+import dev.zernio.model.GetWhatsAppCallRecording200Response;
+import dev.zernio.model.GetWhatsAppCalling200Response;
 import dev.zernio.model.GetWhatsAppCallingConfig200Response;
 import dev.zernio.model.InitiateWhatsAppCall200Response;
 import dev.zernio.model.InitiateWhatsAppCallRequest;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListWhatsAppCalls200Response;
 import java.time.OffsetDateTime;
-import dev.zernio.model.UpdateWhatsAppCallingRequest;
+import dev.zernio.model.UpdateWhatsAppCallingLegacyRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -62,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCallingApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -272,6 +274,141 @@ public class WhatsAppCallingApi {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
+    String localVarPath = "/v1/phone-numbers/{id}/whatsapp/calling"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Disable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+   * @param id  (required)
+   * @param accountId  (required)
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public void disableWhatsAppCallingLegacy(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId) throws ApiException {
+    disableWhatsAppCallingLegacy(id, accountId, null);
+  }
+
+  /**
+   * Disable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+   * @param id  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public void disableWhatsAppCallingLegacy(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    disableWhatsAppCallingLegacyWithHttpInfo(id, accountId, headers);
+  }
+
+  /**
+   * Disable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+   * @param id  (required)
+   * @param accountId  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public ApiResponse<Void> disableWhatsAppCallingLegacyWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return disableWhatsAppCallingLegacyWithHttpInfo(id, accountId, null);
+  }
+
+  /**
+   * Disable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+   * @param id  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public ApiResponse<Void> disableWhatsAppCallingLegacyWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = disableWhatsAppCallingLegacyRequestBuilder(id, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("disableWhatsAppCallingLegacy", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder disableWhatsAppCallingLegacyRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling disableWhatsAppCallingLegacy");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling disableWhatsAppCallingLegacy");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
     String localVarPath = "/v1/whatsapp/phone-numbers/{id}/calling"
         .replace("{id}", ApiClient.urlEncode(id.toString()));
 
@@ -309,52 +446,52 @@ public class WhatsAppCallingApi {
   /**
    * Enable calling on a number
    * Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
-   * @param enableWhatsAppCallingRequest  (required)
-   * @return EnableWhatsAppCalling200Response
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
+   * @return EnableWhatsAppCallingLegacy200Response
    * @throws ApiException if fails to make API call
    */
-  public EnableWhatsAppCalling200Response enableWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingRequest enableWhatsAppCallingRequest) throws ApiException {
-    return enableWhatsAppCalling(id, enableWhatsAppCallingRequest, null);
+  public EnableWhatsAppCallingLegacy200Response enableWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest) throws ApiException {
+    return enableWhatsAppCalling(id, enableWhatsAppCallingLegacyRequest, null);
   }
 
   /**
    * Enable calling on a number
    * Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
-   * @param enableWhatsAppCallingRequest  (required)
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return EnableWhatsAppCalling200Response
+   * @return EnableWhatsAppCallingLegacy200Response
    * @throws ApiException if fails to make API call
    */
-  public EnableWhatsAppCalling200Response enableWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingRequest enableWhatsAppCallingRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<EnableWhatsAppCalling200Response> localVarResponse = enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingRequest, headers);
+  public EnableWhatsAppCallingLegacy200Response enableWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<EnableWhatsAppCallingLegacy200Response> localVarResponse = enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingLegacyRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Enable calling on a number
    * Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
-   * @param enableWhatsAppCallingRequest  (required)
-   * @return ApiResponse&lt;EnableWhatsAppCalling200Response&gt;
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
+   * @return ApiResponse&lt;EnableWhatsAppCallingLegacy200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<EnableWhatsAppCalling200Response> enableWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingRequest enableWhatsAppCallingRequest) throws ApiException {
-    return enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingRequest, null);
+  public ApiResponse<EnableWhatsAppCallingLegacy200Response> enableWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest) throws ApiException {
+    return enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingLegacyRequest, null);
   }
 
   /**
    * Enable calling on a number
    * Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
-   * @param enableWhatsAppCallingRequest  (required)
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;EnableWhatsAppCalling200Response&gt;
+   * @return ApiResponse&lt;EnableWhatsAppCallingLegacy200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<EnableWhatsAppCalling200Response> enableWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingRequest enableWhatsAppCallingRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = enableWhatsAppCallingRequestBuilder(id, enableWhatsAppCallingRequest, headers);
+  public ApiResponse<EnableWhatsAppCallingLegacy200Response> enableWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = enableWhatsAppCallingRequestBuilder(id, enableWhatsAppCallingLegacyRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -369,7 +506,7 @@ public class WhatsAppCallingApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<EnableWhatsAppCalling200Response>(
+          return new ApiResponse<EnableWhatsAppCallingLegacy200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -379,10 +516,10 @@ public class WhatsAppCallingApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        EnableWhatsAppCalling200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<EnableWhatsAppCalling200Response>() {});
+        EnableWhatsAppCallingLegacy200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<EnableWhatsAppCallingLegacy200Response>() {});
         
 
-        return new ApiResponse<EnableWhatsAppCalling200Response>(
+        return new ApiResponse<EnableWhatsAppCallingLegacy200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -401,14 +538,154 @@ public class WhatsAppCallingApi {
     }
   }
 
-  private HttpRequest.Builder enableWhatsAppCallingRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingRequest enableWhatsAppCallingRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder enableWhatsAppCallingRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling enableWhatsAppCalling");
     }
-    // verify the required parameter 'enableWhatsAppCallingRequest' is set
-    if (enableWhatsAppCallingRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'enableWhatsAppCallingRequest' when calling enableWhatsAppCalling");
+    // verify the required parameter 'enableWhatsAppCallingLegacyRequest' is set
+    if (enableWhatsAppCallingLegacyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'enableWhatsAppCallingLegacyRequest' when calling enableWhatsAppCalling");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/whatsapp/calling"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(enableWhatsAppCallingLegacyRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Enable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
+   * @return EnableWhatsAppCallingLegacy200Response
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public EnableWhatsAppCallingLegacy200Response enableWhatsAppCallingLegacy(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest) throws ApiException {
+    return enableWhatsAppCallingLegacy(id, enableWhatsAppCallingLegacyRequest, null);
+  }
+
+  /**
+   * Enable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return EnableWhatsAppCallingLegacy200Response
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public EnableWhatsAppCallingLegacy200Response enableWhatsAppCallingLegacy(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<EnableWhatsAppCallingLegacy200Response> localVarResponse = enableWhatsAppCallingLegacyWithHttpInfo(id, enableWhatsAppCallingLegacyRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Enable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
+   * @return ApiResponse&lt;EnableWhatsAppCallingLegacy200Response&gt;
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public ApiResponse<EnableWhatsAppCallingLegacy200Response> enableWhatsAppCallingLegacyWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest) throws ApiException {
+    return enableWhatsAppCallingLegacyWithHttpInfo(id, enableWhatsAppCallingLegacyRequest, null);
+  }
+
+  /**
+   * Enable calling on a number
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param enableWhatsAppCallingLegacyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;EnableWhatsAppCallingLegacy200Response&gt;
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public ApiResponse<EnableWhatsAppCallingLegacy200Response> enableWhatsAppCallingLegacyWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = enableWhatsAppCallingLegacyRequestBuilder(id, enableWhatsAppCallingLegacyRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("enableWhatsAppCallingLegacy", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<EnableWhatsAppCallingLegacy200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        EnableWhatsAppCallingLegacy200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<EnableWhatsAppCallingLegacy200Response>() {});
+        
+
+        return new ApiResponse<EnableWhatsAppCallingLegacy200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder enableWhatsAppCallingLegacyRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling enableWhatsAppCallingLegacy");
+    }
+    // verify the required parameter 'enableWhatsAppCallingLegacyRequest' is set
+    if (enableWhatsAppCallingLegacyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'enableWhatsAppCallingLegacyRequest' when calling enableWhatsAppCallingLegacy");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -422,7 +699,7 @@ public class WhatsAppCallingApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(enableWhatsAppCallingRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(enableWhatsAppCallingLegacyRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -876,8 +1153,273 @@ public class WhatsAppCallingApi {
   }
 
   /**
+   * Get a call recording
+   * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+   * @param callId  (required)
+   * @param accountId  (required)
+   * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
+   * @return GetWhatsAppCallRecording200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppCallRecording200Response getWhatsAppCallRecording(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as) throws ApiException {
+    return getWhatsAppCallRecording(callId, accountId, as, null);
+  }
+
+  /**
+   * Get a call recording
+   * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+   * @param callId  (required)
+   * @param accountId  (required)
+   * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppCallRecording200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppCallRecording200Response getWhatsAppCallRecording(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get a call recording
+   * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+   * @param callId  (required)
+   * @param accountId  (required)
+   * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
+   * @return ApiResponse&lt;GetWhatsAppCallRecording200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecordingWithHttpInfo(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as) throws ApiException {
+    return getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as, null);
+  }
+
+  /**
+   * Get a call recording
+   * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+   * @param callId  (required)
+   * @param accountId  (required)
+   * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppCallRecording200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecordingWithHttpInfo(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppCallRecordingRequestBuilder(callId, accountId, as, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppCallRecording", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppCallRecording200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppCallRecording200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppCallRecording200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppCallRecording200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppCallRecordingRequestBuilder(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'callId' is set
+    if (callId == null) {
+      throw new ApiException(400, "Missing the required parameter 'callId' when calling getWhatsAppCallRecording");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getWhatsAppCallRecording");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/whatsapp/calls/{callId}/recording"
+        .replace("{callId}", ApiClient.urlEncode(callId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "as";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("as", as));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get calling config for a number
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @return GetWhatsAppCalling200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppCalling200Response getWhatsAppCalling(@javax.annotation.Nonnull String id) throws ApiException {
+    return getWhatsAppCalling(id, null);
+  }
+
+  /**
+   * Get calling config for a number
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param headers Optional headers to include in the request
+   * @return GetWhatsAppCalling200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetWhatsAppCalling200Response getWhatsAppCalling(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppCalling200Response> localVarResponse = getWhatsAppCallingWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get calling config for a number
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @return ApiResponse&lt;GetWhatsAppCalling200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppCalling200Response> getWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return getWhatsAppCallingWithHttpInfo(id, null);
+  }
+
+  /**
+   * Get calling config for a number
+   * The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+   * @param id Phone number record ID (from GET /v1/phone-numbers). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetWhatsAppCalling200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetWhatsAppCalling200Response> getWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppCallingRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getWhatsAppCalling", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetWhatsAppCalling200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetWhatsAppCalling200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppCalling200Response>() {});
+        
+
+        return new ApiResponse<GetWhatsAppCalling200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getWhatsAppCallingRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getWhatsAppCalling");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/whatsapp/calling"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get calling config for an account
-   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
    * @param accountId WhatsApp social account ID (required)
    * @return GetWhatsAppCallingConfig200Response
    * @throws ApiException if fails to make API call
@@ -888,7 +1430,7 @@ public class WhatsAppCallingApi {
 
   /**
    * Get calling config for an account
-   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppCallingConfig200Response
@@ -901,7 +1443,7 @@ public class WhatsAppCallingApi {
 
   /**
    * Get calling config for an account
-   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
    * @param accountId WhatsApp social account ID (required)
    * @return ApiResponse&lt;GetWhatsAppCallingConfig200Response&gt;
    * @throws ApiException if fails to make API call
@@ -912,7 +1454,7 @@ public class WhatsAppCallingApi {
 
   /**
    * Get calling config for an account
-   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+   * Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
    * @param accountId WhatsApp social account ID (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppCallingConfig200Response&gt;
@@ -1009,49 +1551,53 @@ public class WhatsAppCallingApi {
 
   /**
    * Initiate outbound call
-   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
    * @param initiateWhatsAppCallRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return InitiateWhatsAppCall200Response
    * @throws ApiException if fails to make API call
    */
-  public InitiateWhatsAppCall200Response initiateWhatsAppCall(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest) throws ApiException {
-    return initiateWhatsAppCall(initiateWhatsAppCallRequest, null);
+  public InitiateWhatsAppCall200Response initiateWhatsAppCall(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return initiateWhatsAppCall(initiateWhatsAppCallRequest, idempotencyKey, null);
   }
 
   /**
    * Initiate outbound call
-   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
    * @param initiateWhatsAppCallRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return InitiateWhatsAppCall200Response
    * @throws ApiException if fails to make API call
    */
-  public InitiateWhatsAppCall200Response initiateWhatsAppCall(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<InitiateWhatsAppCall200Response> localVarResponse = initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, headers);
+  public InitiateWhatsAppCall200Response initiateWhatsAppCall(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    ApiResponse<InitiateWhatsAppCall200Response> localVarResponse = initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Initiate outbound call
-   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
    * @param initiateWhatsAppCallRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;InitiateWhatsAppCall200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<InitiateWhatsAppCall200Response> initiateWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest) throws ApiException {
-    return initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, null);
+  public ApiResponse<InitiateWhatsAppCall200Response> initiateWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, @javax.annotation.Nullable String idempotencyKey) throws ApiException {
+    return initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey, null);
   }
 
   /**
    * Initiate outbound call
-   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+   * Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
    * @param initiateWhatsAppCallRequest  (required)
+   * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;InitiateWhatsAppCall200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<InitiateWhatsAppCall200Response> initiateWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = initiateWhatsAppCallRequestBuilder(initiateWhatsAppCallRequest, headers);
+  public ApiResponse<InitiateWhatsAppCall200Response> initiateWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = initiateWhatsAppCallRequestBuilder(initiateWhatsAppCallRequest, idempotencyKey, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1098,7 +1644,7 @@ public class WhatsAppCallingApi {
     }
   }
 
-  private HttpRequest.Builder initiateWhatsAppCallRequestBuilder(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder initiateWhatsAppCallRequestBuilder(@javax.annotation.Nonnull InitiateWhatsAppCallRequest initiateWhatsAppCallRequest, @javax.annotation.Nullable String idempotencyKey, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'initiateWhatsAppCallRequest' is set
     if (initiateWhatsAppCallRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'initiateWhatsAppCallRequest' when calling initiateWhatsAppCall");
@@ -1110,6 +1656,9 @@ public class WhatsAppCallingApi {
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
+    if (idempotencyKey != null) {
+      localVarRequestBuilder.header("Idempotency-Key", idempotencyKey.toString());
+    }
     localVarRequestBuilder.header("Content-Type", "application/json");
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -1132,69 +1681,73 @@ public class WhatsAppCallingApi {
 
   /**
    * List call history for an account
-   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
    * @param accountId  (required)
    * @param status  (optional)
    * @param direction  (optional)
    * @param since  (optional)
    * @param until  (optional)
+   * @param before Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)
    * @param limit  (optional)
    * @return ListWhatsAppCalls200Response
    * @throws ApiException if fails to make API call
    */
-  public ListWhatsAppCalls200Response listWhatsAppCalls(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable Integer limit) throws ApiException {
-    return listWhatsAppCalls(accountId, status, direction, since, until, limit, null);
+  public ListWhatsAppCalls200Response listWhatsAppCalls(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppCalls(accountId, status, direction, since, until, before, limit, null);
   }
 
   /**
    * List call history for an account
-   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
    * @param accountId  (required)
    * @param status  (optional)
    * @param direction  (optional)
    * @param since  (optional)
    * @param until  (optional)
+   * @param before Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)
    * @param limit  (optional)
    * @param headers Optional headers to include in the request
    * @return ListWhatsAppCalls200Response
    * @throws ApiException if fails to make API call
    */
-  public ListWhatsAppCalls200Response listWhatsAppCalls(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
-    ApiResponse<ListWhatsAppCalls200Response> localVarResponse = listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, limit, headers);
+  public ListWhatsAppCalls200Response listWhatsAppCalls(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListWhatsAppCalls200Response> localVarResponse = listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, before, limit, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List call history for an account
-   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
    * @param accountId  (required)
    * @param status  (optional)
    * @param direction  (optional)
    * @param since  (optional)
    * @param until  (optional)
+   * @param before Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)
    * @param limit  (optional)
    * @return ApiResponse&lt;ListWhatsAppCalls200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListWhatsAppCalls200Response> listWhatsAppCallsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable Integer limit) throws ApiException {
-    return listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, limit, null);
+  public ApiResponse<ListWhatsAppCalls200Response> listWhatsAppCallsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, before, limit, null);
   }
 
   /**
    * List call history for an account
-   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+   * Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
    * @param accountId  (required)
    * @param status  (optional)
    * @param direction  (optional)
    * @param since  (optional)
    * @param until  (optional)
+   * @param before Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). (optional)
    * @param limit  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWhatsAppCalls200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListWhatsAppCalls200Response> listWhatsAppCallsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listWhatsAppCallsRequestBuilder(accountId, status, direction, since, until, limit, headers);
+  public ApiResponse<ListWhatsAppCalls200Response> listWhatsAppCallsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listWhatsAppCallsRequestBuilder(accountId, status, direction, since, until, before, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1241,7 +1794,7 @@ public class WhatsAppCallingApi {
     }
   }
 
-  private HttpRequest.Builder listWhatsAppCallsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listWhatsAppCallsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String status, @javax.annotation.Nullable String direction, @javax.annotation.Nullable OffsetDateTime since, @javax.annotation.Nullable OffsetDateTime until, @javax.annotation.Nullable OffsetDateTime before, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling listWhatsAppCalls");
@@ -1264,6 +1817,8 @@ public class WhatsAppCallingApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
     localVarQueryParameterBaseName = "until";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+    localVarQueryParameterBaseName = "before";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("before", before));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
 
@@ -1296,48 +1851,48 @@ public class WhatsAppCallingApi {
    * Update calling config
    * Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
    * @param id  (required)
-   * @param updateWhatsAppCallingRequest  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
    * @throws ApiException if fails to make API call
    */
-  public void updateWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest) throws ApiException {
-    updateWhatsAppCalling(id, updateWhatsAppCallingRequest, null);
+  public void updateWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest) throws ApiException {
+    updateWhatsAppCalling(id, updateWhatsAppCallingLegacyRequest, null);
   }
 
   /**
    * Update calling config
    * Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
    * @param id  (required)
-   * @param updateWhatsAppCallingRequest  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
    */
-  public void updateWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest, Map<String, String> headers) throws ApiException {
-    updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingRequest, headers);
+  public void updateWhatsAppCalling(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingLegacyRequest, headers);
   }
 
   /**
    * Update calling config
    * Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
    * @param id  (required)
-   * @param updateWhatsAppCallingRequest  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest) throws ApiException {
-    return updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingRequest, null);
+  public ApiResponse<Void> updateWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest) throws ApiException {
+    return updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingLegacyRequest, null);
   }
 
   /**
    * Update calling config
    * Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
    * @param id  (required)
-   * @param updateWhatsAppCallingRequest  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<Void> updateWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateWhatsAppCallingRequestBuilder(id, updateWhatsAppCallingRequest, headers);
+  public ApiResponse<Void> updateWhatsAppCallingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateWhatsAppCallingRequestBuilder(id, updateWhatsAppCallingLegacyRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1373,14 +1928,140 @@ public class WhatsAppCallingApi {
     }
   }
 
-  private HttpRequest.Builder updateWhatsAppCallingRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateWhatsAppCallingRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateWhatsAppCalling");
     }
-    // verify the required parameter 'updateWhatsAppCallingRequest' is set
-    if (updateWhatsAppCallingRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'updateWhatsAppCallingRequest' when calling updateWhatsAppCalling");
+    // verify the required parameter 'updateWhatsAppCallingLegacyRequest' is set
+    if (updateWhatsAppCallingLegacyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateWhatsAppCallingLegacyRequest' when calling updateWhatsAppCalling");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/{id}/whatsapp/calling"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWhatsAppCallingLegacyRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update calling config
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+   * @param id  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public void updateWhatsAppCallingLegacy(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest) throws ApiException {
+    updateWhatsAppCallingLegacy(id, updateWhatsAppCallingLegacyRequest, null);
+  }
+
+  /**
+   * Update calling config
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+   * @param id  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public void updateWhatsAppCallingLegacy(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    updateWhatsAppCallingLegacyWithHttpInfo(id, updateWhatsAppCallingLegacyRequest, headers);
+  }
+
+  /**
+   * Update calling config
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+   * @param id  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public ApiResponse<Void> updateWhatsAppCallingLegacyWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest) throws ApiException {
+    return updateWhatsAppCallingLegacyWithHttpInfo(id, updateWhatsAppCallingLegacyRequest, null);
+  }
+
+  /**
+   * Update calling config
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+   * @param id  (required)
+   * @param updateWhatsAppCallingLegacyRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public ApiResponse<Void> updateWhatsAppCallingLegacyWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateWhatsAppCallingLegacyRequestBuilder(id, updateWhatsAppCallingLegacyRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateWhatsAppCallingLegacy", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateWhatsAppCallingLegacyRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling updateWhatsAppCallingLegacy");
+    }
+    // verify the required parameter 'updateWhatsAppCallingLegacyRequest' is set
+    if (updateWhatsAppCallingLegacyRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateWhatsAppCallingLegacyRequest' when calling updateWhatsAppCallingLegacy");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -1394,7 +2075,7 @@ public class WhatsAppCallingApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWhatsAppCallingRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateWhatsAppCallingLegacyRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

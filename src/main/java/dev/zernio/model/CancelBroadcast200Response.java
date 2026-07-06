@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.RemediateWhatsAppNumber200ResponsePhoneNumber;
+import dev.zernio.model.RemediatePhoneNumber200ResponsePhoneNumber;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CancelBroadcast200Response.JSON_PROPERTY_SUCCESS,
   CancelBroadcast200Response.JSON_PROPERTY_BROADCAST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CancelBroadcast200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -45,7 +45,7 @@ public class CancelBroadcast200Response {
 
   public static final String JSON_PROPERTY_BROADCAST = "broadcast";
   @javax.annotation.Nullable
-  private RemediateWhatsAppNumber200ResponsePhoneNumber broadcast;
+  private RemediatePhoneNumber200ResponsePhoneNumber broadcast;
 
   public CancelBroadcast200Response() { 
   }
@@ -74,7 +74,7 @@ public class CancelBroadcast200Response {
   }
 
 
-  public CancelBroadcast200Response broadcast(@javax.annotation.Nullable RemediateWhatsAppNumber200ResponsePhoneNumber broadcast) {
+  public CancelBroadcast200Response broadcast(@javax.annotation.Nullable RemediatePhoneNumber200ResponsePhoneNumber broadcast) {
     this.broadcast = broadcast;
     return this;
   }
@@ -86,14 +86,14 @@ public class CancelBroadcast200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_BROADCAST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public RemediateWhatsAppNumber200ResponsePhoneNumber getBroadcast() {
+  public RemediatePhoneNumber200ResponsePhoneNumber getBroadcast() {
     return broadcast;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_BROADCAST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBroadcast(@javax.annotation.Nullable RemediateWhatsAppNumber200ResponsePhoneNumber broadcast) {
+  public void setBroadcast(@javax.annotation.Nullable RemediatePhoneNumber200ResponsePhoneNumber broadcast) {
     this.broadcast = broadcast;
   }
 

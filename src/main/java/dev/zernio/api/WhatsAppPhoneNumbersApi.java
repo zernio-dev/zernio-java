@@ -18,32 +18,32 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
-import dev.zernio.model.CheckWhatsAppNumberAvailability200Response;
-import dev.zernio.model.CreateWhatsAppNumberKycLink200Response;
-import dev.zernio.model.CreateWhatsAppNumberKycLinkRequest;
+import dev.zernio.model.CheckPhoneNumberAvailability200Response;
+import dev.zernio.model.CreatePhoneNumberKycLink200Response;
+import dev.zernio.model.CreatePhoneNumberKycLinkRequest;
 import java.io.File;
+import dev.zernio.model.GetPhoneNumber200Response;
 import dev.zernio.model.GetWhatsAppNumberInfo200Response;
 import dev.zernio.model.GetWhatsAppNumberKycForm200Response;
 import dev.zernio.model.GetWhatsAppNumberRemediation200Response;
-import dev.zernio.model.GetWhatsAppPhoneNumber200Response;
-import dev.zernio.model.GetWhatsAppPhoneNumbers200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
+import dev.zernio.model.ListPhoneNumbers200Response;
 import dev.zernio.model.ListWhatsAppNumberCountries200Response;
-import dev.zernio.model.PurchaseWhatsAppPhoneNumber200Response;
-import dev.zernio.model.PurchaseWhatsAppPhoneNumber202Response;
-import dev.zernio.model.PurchaseWhatsAppPhoneNumber409Response;
+import dev.zernio.model.PurchasePhoneNumber200Response;
+import dev.zernio.model.PurchasePhoneNumber202Response;
+import dev.zernio.model.PurchasePhoneNumber409Response;
 import dev.zernio.model.PurchaseWhatsAppPhoneNumberRequest;
-import dev.zernio.model.ReleaseWhatsAppPhoneNumber200Response;
-import dev.zernio.model.RemediateWhatsAppNumber200Response;
-import dev.zernio.model.RemediateWhatsAppNumberRequest;
+import dev.zernio.model.ReleasePhoneNumber200Response;
+import dev.zernio.model.RemediatePhoneNumber200Response;
+import dev.zernio.model.RemediatePhoneNumberRequest;
 import dev.zernio.model.SearchAvailableWhatsAppNumbers200Response;
-import dev.zernio.model.SubmitWhatsAppNumberKyc200Response;
+import dev.zernio.model.SubmitPhoneNumberKyc200Response;
 import dev.zernio.model.SubmitWhatsAppNumberKycRequest;
-import dev.zernio.model.UploadWhatsAppNumberKycDocument200Response;
-import dev.zernio.model.ValidateWhatsAppNumberKycAddress200Response;
-import dev.zernio.model.ValidateWhatsAppNumberKycAddress400Response;
-import dev.zernio.model.ValidateWhatsAppNumberKycAddressRequest;
+import dev.zernio.model.UploadPhoneNumberKycDocument200Response;
+import dev.zernio.model.ValidatePhoneNumberKycAddress200Response;
+import dev.zernio.model.ValidatePhoneNumberKycAddress400Response;
+import dev.zernio.model.ValidatePhoneNumberKycAddressRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -76,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -195,48 +195,56 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
-   * @return CheckWhatsAppNumberAvailability200Response
+   * @return CheckPhoneNumberAvailability200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public CheckWhatsAppNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country) throws ApiException {
+  @Deprecated
+  public CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country) throws ApiException {
     return checkWhatsAppNumberAvailability(country, null);
   }
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
    * @param headers Optional headers to include in the request
-   * @return CheckWhatsAppNumberAvailability200Response
+   * @return CheckPhoneNumberAvailability200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public CheckWhatsAppNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
-    ApiResponse<CheckWhatsAppNumberAvailability200Response> localVarResponse = checkWhatsAppNumberAvailabilityWithHttpInfo(country, headers);
+  @Deprecated
+  public CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
+    ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = checkWhatsAppNumberAvailabilityWithHttpInfo(country, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
-   * @return ApiResponse&lt;CheckWhatsAppNumberAvailability200Response&gt;
+   * @return ApiResponse&lt;CheckPhoneNumberAvailability200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<CheckWhatsAppNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country) throws ApiException {
+  @Deprecated
+  public ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country) throws ApiException {
     return checkWhatsAppNumberAvailabilityWithHttpInfo(country, null);
   }
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CheckWhatsAppNumberAvailability200Response&gt;
+   * @return ApiResponse&lt;CheckPhoneNumberAvailability200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<CheckWhatsAppNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = checkWhatsAppNumberAvailabilityRequestBuilder(country, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -252,7 +260,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<CheckWhatsAppNumberAvailability200Response>(
+          return new ApiResponse<CheckPhoneNumberAvailability200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -262,10 +270,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        CheckWhatsAppNumberAvailability200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CheckWhatsAppNumberAvailability200Response>() {});
+        CheckPhoneNumberAvailability200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CheckPhoneNumberAvailability200Response>() {});
         
 
-        return new ApiResponse<CheckWhatsAppNumberAvailability200Response>(
+        return new ApiResponse<CheckPhoneNumberAvailability200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -327,49 +335,57 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Create a hosted KYC link
-   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
-   * @param createWhatsAppNumberKycLinkRequest  (required)
-   * @return CreateWhatsAppNumberKycLink200Response
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createPhoneNumberKycLinkRequest  (required)
+   * @return CreatePhoneNumberKycLink200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public CreateWhatsAppNumberKycLink200Response createWhatsAppNumberKycLink(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest) throws ApiException {
-    return createWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest, null);
+  @Deprecated
+  public CreatePhoneNumberKycLink200Response createWhatsAppNumberKycLink(@javax.annotation.Nonnull CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest) throws ApiException {
+    return createWhatsAppNumberKycLink(createPhoneNumberKycLinkRequest, null);
   }
 
   /**
    * Create a hosted KYC link
-   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
-   * @param createWhatsAppNumberKycLinkRequest  (required)
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createPhoneNumberKycLinkRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return CreateWhatsAppNumberKycLink200Response
+   * @return CreatePhoneNumberKycLink200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public CreateWhatsAppNumberKycLink200Response createWhatsAppNumberKycLink(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateWhatsAppNumberKycLink200Response> localVarResponse = createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest, headers);
+  @Deprecated
+  public CreatePhoneNumberKycLink200Response createWhatsAppNumberKycLink(@javax.annotation.Nonnull CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePhoneNumberKycLink200Response> localVarResponse = createWhatsAppNumberKycLinkWithHttpInfo(createPhoneNumberKycLinkRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Create a hosted KYC link
-   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
-   * @param createWhatsAppNumberKycLinkRequest  (required)
-   * @return ApiResponse&lt;CreateWhatsAppNumberKycLink200Response&gt;
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createPhoneNumberKycLinkRequest  (required)
+   * @return ApiResponse&lt;CreatePhoneNumberKycLink200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<CreateWhatsAppNumberKycLink200Response> createWhatsAppNumberKycLinkWithHttpInfo(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest) throws ApiException {
-    return createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest, null);
+  @Deprecated
+  public ApiResponse<CreatePhoneNumberKycLink200Response> createWhatsAppNumberKycLinkWithHttpInfo(@javax.annotation.Nonnull CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest) throws ApiException {
+    return createWhatsAppNumberKycLinkWithHttpInfo(createPhoneNumberKycLinkRequest, null);
   }
 
   /**
    * Create a hosted KYC link
-   * Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
-   * @param createWhatsAppNumberKycLinkRequest  (required)
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login — useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended — see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+   * @param createPhoneNumberKycLinkRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;CreateWhatsAppNumberKycLink200Response&gt;
+   * @return ApiResponse&lt;CreatePhoneNumberKycLink200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<CreateWhatsAppNumberKycLink200Response> createWhatsAppNumberKycLinkWithHttpInfo(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createWhatsAppNumberKycLinkRequestBuilder(createWhatsAppNumberKycLinkRequest, headers);
+  @Deprecated
+  public ApiResponse<CreatePhoneNumberKycLink200Response> createWhatsAppNumberKycLinkWithHttpInfo(@javax.annotation.Nonnull CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createWhatsAppNumberKycLinkRequestBuilder(createPhoneNumberKycLinkRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -384,7 +400,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<CreateWhatsAppNumberKycLink200Response>(
+          return new ApiResponse<CreatePhoneNumberKycLink200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -394,10 +410,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        CreateWhatsAppNumberKycLink200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateWhatsAppNumberKycLink200Response>() {});
+        CreatePhoneNumberKycLink200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePhoneNumberKycLink200Response>() {});
         
 
-        return new ApiResponse<CreateWhatsAppNumberKycLink200Response>(
+        return new ApiResponse<CreatePhoneNumberKycLink200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -416,10 +432,10 @@ public class WhatsAppPhoneNumbersApi {
     }
   }
 
-  private HttpRequest.Builder createWhatsAppNumberKycLinkRequestBuilder(@javax.annotation.Nonnull CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'createWhatsAppNumberKycLinkRequest' is set
-    if (createWhatsAppNumberKycLinkRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createWhatsAppNumberKycLinkRequest' when calling createWhatsAppNumberKycLink");
+  private HttpRequest.Builder createWhatsAppNumberKycLinkRequestBuilder(@javax.annotation.Nonnull CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createPhoneNumberKycLinkRequest' is set
+    if (createPhoneNumberKycLinkRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPhoneNumberKycLinkRequest' when calling createWhatsAppNumberKycLink");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -432,7 +448,7 @@ public class WhatsAppPhoneNumbersApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createWhatsAppNumberKycLinkRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPhoneNumberKycLinkRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -582,25 +598,29 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get KYC form spec
-   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
    * @param country  (required)
    * @param profileId  (required)
    * @return GetWhatsAppNumberKycForm200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public GetWhatsAppNumberKycForm200Response getWhatsAppNumberKycForm(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId) throws ApiException {
     return getWhatsAppNumberKycForm(country, profileId, null);
   }
 
   /**
    * Get KYC form spec
-   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
    * @param country  (required)
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppNumberKycForm200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public GetWhatsAppNumberKycForm200Response getWhatsAppNumberKycForm(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
     ApiResponse<GetWhatsAppNumberKycForm200Response> localVarResponse = getWhatsAppNumberKycFormWithHttpInfo(country, profileId, headers);
     return localVarResponse.getData();
@@ -608,25 +628,29 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get KYC form spec
-   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
    * @param country  (required)
    * @param profileId  (required)
    * @return ApiResponse&lt;GetWhatsAppNumberKycForm200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<GetWhatsAppNumberKycForm200Response> getWhatsAppNumberKycFormWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId) throws ApiException {
     return getWhatsAppNumberKycFormWithHttpInfo(country, profileId, null);
   }
 
   /**
    * Get KYC form spec
-   * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
    * @param country  (required)
    * @param profileId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppNumberKycForm200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<GetWhatsAppNumberKycForm200Response> getWhatsAppNumberKycFormWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nonnull String profileId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getWhatsAppNumberKycFormRequestBuilder(country, profileId, headers);
     try {
@@ -724,23 +748,27 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get declined requirements
-   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
    * @param id WhatsAppPhoneNumber id. (required)
    * @return GetWhatsAppNumberRemediation200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public GetWhatsAppNumberRemediation200Response getWhatsAppNumberRemediation(@javax.annotation.Nonnull String id) throws ApiException {
     return getWhatsAppNumberRemediation(id, null);
   }
 
   /**
    * Get declined requirements
-   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
    * @param id WhatsAppPhoneNumber id. (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppNumberRemediation200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public GetWhatsAppNumberRemediation200Response getWhatsAppNumberRemediation(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     ApiResponse<GetWhatsAppNumberRemediation200Response> localVarResponse = getWhatsAppNumberRemediationWithHttpInfo(id, headers);
     return localVarResponse.getData();
@@ -748,23 +776,27 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get declined requirements
-   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
    * @param id WhatsAppPhoneNumber id. (required)
    * @return ApiResponse&lt;GetWhatsAppNumberRemediation200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<GetWhatsAppNumberRemediation200Response> getWhatsAppNumberRemediationWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
     return getWhatsAppNumberRemediationWithHttpInfo(id, null);
   }
 
   /**
    * Get declined requirements
-   * For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes just those — Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
    * @param id WhatsAppPhoneNumber id. (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppNumberRemediation200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<GetWhatsAppNumberRemediation200Response> getWhatsAppNumberRemediationWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getWhatsAppNumberRemediationRequestBuilder(id, headers);
     try {
@@ -842,48 +874,56 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
-   * @return GetWhatsAppPhoneNumber200Response
+   * @return GetPhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public GetWhatsAppPhoneNumber200Response getWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
+  @Deprecated
+  public GetPhoneNumber200Response getWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
     return getWhatsAppPhoneNumber(phoneNumberId, null);
   }
 
   /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
    * @param headers Optional headers to include in the request
-   * @return GetWhatsAppPhoneNumber200Response
+   * @return GetPhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public GetWhatsAppPhoneNumber200Response getWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetWhatsAppPhoneNumber200Response> localVarResponse = getWhatsAppPhoneNumberWithHttpInfo(phoneNumberId, headers);
+  @Deprecated
+  public GetPhoneNumber200Response getWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetPhoneNumber200Response> localVarResponse = getWhatsAppPhoneNumberWithHttpInfo(phoneNumberId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
-   * @return ApiResponse&lt;GetWhatsAppPhoneNumber200Response&gt;
+   * @return ApiResponse&lt;GetPhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<GetWhatsAppPhoneNumber200Response> getWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
+  @Deprecated
+  public ApiResponse<GetPhoneNumber200Response> getWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
     return getWhatsAppPhoneNumberWithHttpInfo(phoneNumberId, null);
   }
 
   /**
    * Get phone number
-   * Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed — forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
    * @param phoneNumberId Phone number record ID (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetWhatsAppPhoneNumber200Response&gt;
+   * @return ApiResponse&lt;GetPhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<GetWhatsAppPhoneNumber200Response> getWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<GetPhoneNumber200Response> getWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getWhatsAppPhoneNumberRequestBuilder(phoneNumberId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -899,7 +939,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetWhatsAppPhoneNumber200Response>(
+          return new ApiResponse<GetPhoneNumber200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -909,10 +949,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetWhatsAppPhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppPhoneNumber200Response>() {});
+        GetPhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetPhoneNumber200Response>() {});
         
 
-        return new ApiResponse<GetWhatsAppPhoneNumber200Response>(
+        return new ApiResponse<GetPhoneNumber200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -960,52 +1000,60 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
+   * Deprecated alias of &#x60;/v1/phone-numbers&#x60;; same contract. New integrations should use that path.  List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
-   * @return GetWhatsAppPhoneNumbers200Response
+   * @return ListPhoneNumbers200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public GetWhatsAppPhoneNumbers200Response getWhatsAppPhoneNumbers(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId) throws ApiException {
+  @Deprecated
+  public ListPhoneNumbers200Response getWhatsAppPhoneNumbers(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId) throws ApiException {
     return getWhatsAppPhoneNumbers(status, profileId, null);
   }
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
+   * Deprecated alias of &#x60;/v1/phone-numbers&#x60;; same contract. New integrations should use that path.  List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
    * @param headers Optional headers to include in the request
-   * @return GetWhatsAppPhoneNumbers200Response
+   * @return ListPhoneNumbers200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public GetWhatsAppPhoneNumbers200Response getWhatsAppPhoneNumbers(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetWhatsAppPhoneNumbers200Response> localVarResponse = getWhatsAppPhoneNumbersWithHttpInfo(status, profileId, headers);
+  @Deprecated
+  public ListPhoneNumbers200Response getWhatsAppPhoneNumbers(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListPhoneNumbers200Response> localVarResponse = getWhatsAppPhoneNumbersWithHttpInfo(status, profileId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
+   * Deprecated alias of &#x60;/v1/phone-numbers&#x60;; same contract. New integrations should use that path.  List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
-   * @return ApiResponse&lt;GetWhatsAppPhoneNumbers200Response&gt;
+   * @return ApiResponse&lt;ListPhoneNumbers200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<GetWhatsAppPhoneNumbers200Response> getWhatsAppPhoneNumbersWithHttpInfo(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId) throws ApiException {
+  @Deprecated
+  public ApiResponse<ListPhoneNumbers200Response> getWhatsAppPhoneNumbersWithHttpInfo(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId) throws ApiException {
     return getWhatsAppPhoneNumbersWithHttpInfo(status, profileId, null);
   }
 
   /**
    * List phone numbers
-   * List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
+   * Deprecated alias of &#x60;/v1/phone-numbers&#x60;; same contract. New integrations should use that path.  List all WhatsApp phone numbers purchased by the authenticated user. By default, released numbers are excluded. Connected (bring-your-own) numbers are returned in the separate &#x60;connected&#x60; array — they are not billed and have no provisioning lifecycle. 
    * @param status Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view — numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  (optional)
    * @param profileId Filter by profile (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;GetWhatsAppPhoneNumbers200Response&gt;
+   * @return ApiResponse&lt;ListPhoneNumbers200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<GetWhatsAppPhoneNumbers200Response> getWhatsAppPhoneNumbersWithHttpInfo(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<ListPhoneNumbers200Response> getWhatsAppPhoneNumbersWithHttpInfo(@javax.annotation.Nullable String status, @javax.annotation.Nullable String profileId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getWhatsAppPhoneNumbersRequestBuilder(status, profileId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1021,7 +1069,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<GetWhatsAppPhoneNumbers200Response>(
+          return new ApiResponse<ListPhoneNumbers200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1031,10 +1079,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        GetWhatsAppPhoneNumbers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetWhatsAppPhoneNumbers200Response>() {});
+        ListPhoneNumbers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListPhoneNumbers200Response>() {});
         
 
-        return new ApiResponse<GetWhatsAppPhoneNumbers200Response>(
+        return new ApiResponse<ListPhoneNumbers200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1094,21 +1142,25 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * List offerable number countries
-   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/countries&#x60;; same contract. New integrations should use that path.  The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
    * @return ListWhatsAppNumberCountries200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ListWhatsAppNumberCountries200Response listWhatsAppNumberCountries() throws ApiException {
     return listWhatsAppNumberCountries(null);
   }
 
   /**
    * List offerable number countries
-   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/countries&#x60;; same contract. New integrations should use that path.  The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
    * @param headers Optional headers to include in the request
    * @return ListWhatsAppNumberCountries200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ListWhatsAppNumberCountries200Response listWhatsAppNumberCountries(Map<String, String> headers) throws ApiException {
     ApiResponse<ListWhatsAppNumberCountries200Response> localVarResponse = listWhatsAppNumberCountriesWithHttpInfo(headers);
     return localVarResponse.getData();
@@ -1116,21 +1168,25 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * List offerable number countries
-   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/countries&#x60;; same contract. New integrations should use that path.  The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
    * @return ApiResponse&lt;ListWhatsAppNumberCountries200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<ListWhatsAppNumberCountries200Response> listWhatsAppNumberCountriesWithHttpInfo() throws ApiException {
     return listWhatsAppNumberCountriesWithHttpInfo(null);
   }
 
   /**
    * List offerable number countries
-   * The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/countries&#x60;; same contract. New integrations should use that path.  The WhatsApp number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and whether outbound calling is available (not BIC-blocked). Drives the country picker. Tier-4 countries appear only when enabled. 
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListWhatsAppNumberCountries200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<ListWhatsAppNumberCountries200Response> listWhatsAppNumberCountriesWithHttpInfo(Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = listWhatsAppNumberCountriesRequestBuilder(headers);
     try {
@@ -1203,48 +1259,56 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Purchase phone number
-   * Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
-   * @return PurchaseWhatsAppPhoneNumber200Response
+   * @return PurchasePhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public PurchaseWhatsAppPhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
+  @Deprecated
+  public PurchasePhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
     return purchaseWhatsAppPhoneNumber(purchaseWhatsAppPhoneNumberRequest, null);
   }
 
   /**
    * Purchase phone number
-   * Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return PurchaseWhatsAppPhoneNumber200Response
+   * @return PurchasePhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public PurchaseWhatsAppPhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<PurchaseWhatsAppPhoneNumber200Response> localVarResponse = purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest, headers);
+  @Deprecated
+  public PurchasePhoneNumber200Response purchaseWhatsAppPhoneNumber(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PurchasePhoneNumber200Response> localVarResponse = purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Purchase phone number
-   * Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
-   * @return ApiResponse&lt;PurchaseWhatsAppPhoneNumber200Response&gt;
+   * @return ApiResponse&lt;PurchasePhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<PurchaseWhatsAppPhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
+  @Deprecated
+  public ApiResponse<PurchasePhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest) throws ApiException {
     return purchaseWhatsAppPhoneNumberWithHttpInfo(purchaseWhatsAppPhoneNumberRequest, null);
   }
 
   /**
    * Purchase phone number
-   * Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick a specific number. The system either creates a Stripe Checkout Session (first number) or increments the existing subscription quantity and provisions inline (subsequent numbers).  Requires a paid plan. The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchaseWhatsAppPhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;PurchaseWhatsAppPhoneNumber200Response&gt;
+   * @return ApiResponse&lt;PurchasePhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<PurchaseWhatsAppPhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<PurchasePhoneNumber200Response> purchaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = purchaseWhatsAppPhoneNumberRequestBuilder(purchaseWhatsAppPhoneNumberRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1260,7 +1324,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<PurchaseWhatsAppPhoneNumber200Response>(
+          return new ApiResponse<PurchasePhoneNumber200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1270,10 +1334,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        PurchaseWhatsAppPhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PurchaseWhatsAppPhoneNumber200Response>() {});
+        PurchasePhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PurchasePhoneNumber200Response>() {});
         
 
-        return new ApiResponse<PurchaseWhatsAppPhoneNumber200Response>(
+        return new ApiResponse<PurchasePhoneNumber200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1326,48 +1390,56 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Release phone number
-   * Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
    * @param phoneNumberId Phone number record ID (required)
-   * @return ReleaseWhatsAppPhoneNumber200Response
+   * @return ReleasePhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ReleaseWhatsAppPhoneNumber200Response releaseWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
+  @Deprecated
+  public ReleasePhoneNumber200Response releaseWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
     return releaseWhatsAppPhoneNumber(phoneNumberId, null);
   }
 
   /**
    * Release phone number
-   * Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
    * @param phoneNumberId Phone number record ID (required)
    * @param headers Optional headers to include in the request
-   * @return ReleaseWhatsAppPhoneNumber200Response
+   * @return ReleasePhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ReleaseWhatsAppPhoneNumber200Response releaseWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
-    ApiResponse<ReleaseWhatsAppPhoneNumber200Response> localVarResponse = releaseWhatsAppPhoneNumberWithHttpInfo(phoneNumberId, headers);
+  @Deprecated
+  public ReleasePhoneNumber200Response releaseWhatsAppPhoneNumber(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReleasePhoneNumber200Response> localVarResponse = releaseWhatsAppPhoneNumberWithHttpInfo(phoneNumberId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Release phone number
-   * Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
    * @param phoneNumberId Phone number record ID (required)
-   * @return ApiResponse&lt;ReleaseWhatsAppPhoneNumber200Response&gt;
+   * @return ApiResponse&lt;ReleasePhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<ReleaseWhatsAppPhoneNumber200Response> releaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
+  @Deprecated
+  public ApiResponse<ReleasePhoneNumber200Response> releaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId) throws ApiException {
     return releaseWhatsAppPhoneNumberWithHttpInfo(phoneNumberId, null);
   }
 
   /**
    * Release phone number
-   * Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Release a purchased phone number. This will: 1. Disconnect any linked WhatsApp social account 2. Decrement the Stripe subscription quantity (or cancel if last number) 3. Release the number from Telnyx 4. Mark the number as released 
    * @param phoneNumberId Phone number record ID (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ReleaseWhatsAppPhoneNumber200Response&gt;
+   * @return ApiResponse&lt;ReleasePhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<ReleaseWhatsAppPhoneNumber200Response> releaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<ReleasePhoneNumber200Response> releaseWhatsAppPhoneNumberWithHttpInfo(@javax.annotation.Nonnull String phoneNumberId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = releaseWhatsAppPhoneNumberRequestBuilder(phoneNumberId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1383,7 +1455,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<ReleaseWhatsAppPhoneNumber200Response>(
+          return new ApiResponse<ReleasePhoneNumber200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1393,10 +1465,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        ReleaseWhatsAppPhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReleaseWhatsAppPhoneNumber200Response>() {});
+        ReleasePhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReleasePhoneNumber200Response>() {});
         
 
-        return new ApiResponse<ReleaseWhatsAppPhoneNumber200Response>(
+        return new ApiResponse<ReleasePhoneNumber200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1444,53 +1516,61 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Resubmit a declined number
-   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
    * @param id  (required)
-   * @param remediateWhatsAppNumberRequest  (required)
-   * @return RemediateWhatsAppNumber200Response
+   * @param remediatePhoneNumberRequest  (required)
+   * @return RemediatePhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public RemediateWhatsAppNumber200Response remediateWhatsAppNumber(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest) throws ApiException {
-    return remediateWhatsAppNumber(id, remediateWhatsAppNumberRequest, null);
+  @Deprecated
+  public RemediatePhoneNumber200Response remediateWhatsAppNumber(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediatePhoneNumberRequest remediatePhoneNumberRequest) throws ApiException {
+    return remediateWhatsAppNumber(id, remediatePhoneNumberRequest, null);
   }
 
   /**
    * Resubmit a declined number
-   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
    * @param id  (required)
-   * @param remediateWhatsAppNumberRequest  (required)
+   * @param remediatePhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return RemediateWhatsAppNumber200Response
+   * @return RemediatePhoneNumber200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public RemediateWhatsAppNumber200Response remediateWhatsAppNumber(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<RemediateWhatsAppNumber200Response> localVarResponse = remediateWhatsAppNumberWithHttpInfo(id, remediateWhatsAppNumberRequest, headers);
+  @Deprecated
+  public RemediatePhoneNumber200Response remediateWhatsAppNumber(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediatePhoneNumberRequest remediatePhoneNumberRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemediatePhoneNumber200Response> localVarResponse = remediateWhatsAppNumberWithHttpInfo(id, remediatePhoneNumberRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Resubmit a declined number
-   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
    * @param id  (required)
-   * @param remediateWhatsAppNumberRequest  (required)
-   * @return ApiResponse&lt;RemediateWhatsAppNumber200Response&gt;
+   * @param remediatePhoneNumberRequest  (required)
+   * @return ApiResponse&lt;RemediatePhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<RemediateWhatsAppNumber200Response> remediateWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest) throws ApiException {
-    return remediateWhatsAppNumberWithHttpInfo(id, remediateWhatsAppNumberRequest, null);
+  @Deprecated
+  public ApiResponse<RemediatePhoneNumber200Response> remediateWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediatePhoneNumberRequest remediatePhoneNumberRequest) throws ApiException {
+    return remediateWhatsAppNumberWithHttpInfo(id, remediatePhoneNumberRequest, null);
   }
 
   /**
    * Resubmit a declined number
-   * Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  Submit corrected values/documents for the declined requirement(s). We PATCH them onto the SAME requirement group and re-submit it for approval; the number goes &#x60;regulatory_declined&#x60; → &#x60;pending_regulatory&#x60;. No new number and no new billing. Body shape matches the KYC submit (values / documents / address) — send only the corrected fields. 
    * @param id  (required)
-   * @param remediateWhatsAppNumberRequest  (required)
+   * @param remediatePhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;RemediateWhatsAppNumber200Response&gt;
+   * @return ApiResponse&lt;RemediatePhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<RemediateWhatsAppNumber200Response> remediateWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = remediateWhatsAppNumberRequestBuilder(id, remediateWhatsAppNumberRequest, headers);
+  @Deprecated
+  public ApiResponse<RemediatePhoneNumber200Response> remediateWhatsAppNumberWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediatePhoneNumberRequest remediatePhoneNumberRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = remediateWhatsAppNumberRequestBuilder(id, remediatePhoneNumberRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1505,7 +1585,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<RemediateWhatsAppNumber200Response>(
+          return new ApiResponse<RemediatePhoneNumber200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1515,10 +1595,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        RemediateWhatsAppNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemediateWhatsAppNumber200Response>() {});
+        RemediatePhoneNumber200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemediatePhoneNumber200Response>() {});
         
 
-        return new ApiResponse<RemediateWhatsAppNumber200Response>(
+        return new ApiResponse<RemediatePhoneNumber200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1537,14 +1617,14 @@ public class WhatsAppPhoneNumbersApi {
     }
   }
 
-  private HttpRequest.Builder remediateWhatsAppNumberRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediateWhatsAppNumberRequest remediateWhatsAppNumberRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder remediateWhatsAppNumberRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RemediatePhoneNumberRequest remediatePhoneNumberRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling remediateWhatsAppNumber");
     }
-    // verify the required parameter 'remediateWhatsAppNumberRequest' is set
-    if (remediateWhatsAppNumberRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'remediateWhatsAppNumberRequest' when calling remediateWhatsAppNumber");
+    // verify the required parameter 'remediatePhoneNumberRequest' is set
+    if (remediatePhoneNumberRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'remediatePhoneNumberRequest' when calling remediateWhatsAppNumber");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -1558,7 +1638,7 @@ public class WhatsAppPhoneNumbersApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(remediateWhatsAppNumberRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(remediatePhoneNumberRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1576,7 +1656,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * Deprecated alias of &#x60;/v1/phone-numbers/available&#x60;; same contract. New integrations should use that path.  Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)
@@ -1585,14 +1665,16 @@ public class WhatsAppPhoneNumbersApi {
    * @param limit  (optional, default to 20)
    * @return SearchAvailableWhatsAppNumbers200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public SearchAvailableWhatsAppNumbers200Response searchAvailableWhatsAppNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit) throws ApiException {
     return searchAvailableWhatsAppNumbers(country, type, prefix, locality, contains, limit, null);
   }
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * Deprecated alias of &#x60;/v1/phone-numbers/available&#x60;; same contract. New integrations should use that path.  Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)
@@ -1602,7 +1684,9 @@ public class WhatsAppPhoneNumbersApi {
    * @param headers Optional headers to include in the request
    * @return SearchAvailableWhatsAppNumbers200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public SearchAvailableWhatsAppNumbers200Response searchAvailableWhatsAppNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
     ApiResponse<SearchAvailableWhatsAppNumbers200Response> localVarResponse = searchAvailableWhatsAppNumbersWithHttpInfo(country, type, prefix, locality, contains, limit, headers);
     return localVarResponse.getData();
@@ -1610,7 +1694,7 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * Deprecated alias of &#x60;/v1/phone-numbers/available&#x60;; same contract. New integrations should use that path.  Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)
@@ -1619,14 +1703,16 @@ public class WhatsAppPhoneNumbersApi {
    * @param limit  (optional, default to 20)
    * @return ApiResponse&lt;SearchAvailableWhatsAppNumbers200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<SearchAvailableWhatsAppNumbers200Response> searchAvailableWhatsAppNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit) throws ApiException {
     return searchAvailableWhatsAppNumbersWithHttpInfo(country, type, prefix, locality, contains, limit, null);
   }
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
+   * Deprecated alias of &#x60;/v1/phone-numbers/available&#x60;; same contract. New integrations should use that path.  Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/whatsapp/phone-numbers/countries). 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)
@@ -1636,7 +1722,9 @@ public class WhatsAppPhoneNumbersApi {
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SearchAvailableWhatsAppNumbers200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
+  @Deprecated
   public ApiResponse<SearchAvailableWhatsAppNumbers200Response> searchAvailableWhatsAppNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = searchAvailableWhatsAppNumbersRequestBuilder(country, type, prefix, locality, contains, limit, headers);
     try {
@@ -1734,48 +1822,56 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Submit KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
-   * @return SubmitWhatsAppNumberKyc200Response
+   * @return SubmitPhoneNumberKyc200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public SubmitWhatsAppNumberKyc200Response submitWhatsAppNumberKyc(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest) throws ApiException {
+  @Deprecated
+  public SubmitPhoneNumberKyc200Response submitWhatsAppNumberKyc(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest) throws ApiException {
     return submitWhatsAppNumberKyc(submitWhatsAppNumberKycRequest, null);
   }
 
   /**
    * Submit KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return SubmitWhatsAppNumberKyc200Response
+   * @return SubmitPhoneNumberKyc200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public SubmitWhatsAppNumberKyc200Response submitWhatsAppNumberKyc(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<SubmitWhatsAppNumberKyc200Response> localVarResponse = submitWhatsAppNumberKycWithHttpInfo(submitWhatsAppNumberKycRequest, headers);
+  @Deprecated
+  public SubmitPhoneNumberKyc200Response submitWhatsAppNumberKyc(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<SubmitPhoneNumberKyc200Response> localVarResponse = submitWhatsAppNumberKycWithHttpInfo(submitWhatsAppNumberKycRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Submit KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
-   * @return ApiResponse&lt;SubmitWhatsAppNumberKyc200Response&gt;
+   * @return ApiResponse&lt;SubmitPhoneNumberKyc200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<SubmitWhatsAppNumberKyc200Response> submitWhatsAppNumberKycWithHttpInfo(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest) throws ApiException {
+  @Deprecated
+  public ApiResponse<SubmitPhoneNumberKyc200Response> submitWhatsAppNumberKycWithHttpInfo(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest) throws ApiException {
     return submitWhatsAppNumberKycWithHttpInfo(submitWhatsAppNumberKycRequest, null);
   }
 
   /**
    * Submit KYC
-   * Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in — otherwise the submission can pass review yet never be assignable a number. 
    * @param submitWhatsAppNumberKycRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;SubmitWhatsAppNumberKyc200Response&gt;
+   * @return ApiResponse&lt;SubmitPhoneNumberKyc200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<SubmitWhatsAppNumberKyc200Response> submitWhatsAppNumberKycWithHttpInfo(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<SubmitPhoneNumberKyc200Response> submitWhatsAppNumberKycWithHttpInfo(@javax.annotation.Nonnull SubmitWhatsAppNumberKycRequest submitWhatsAppNumberKycRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = submitWhatsAppNumberKycRequestBuilder(submitWhatsAppNumberKycRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1791,7 +1887,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<SubmitWhatsAppNumberKyc200Response>(
+          return new ApiResponse<SubmitPhoneNumberKyc200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1801,10 +1897,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        SubmitWhatsAppNumberKyc200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SubmitWhatsAppNumberKyc200Response>() {});
+        SubmitPhoneNumberKyc200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SubmitPhoneNumberKyc200Response>() {});
         
 
-        return new ApiResponse<SubmitWhatsAppNumberKyc200Response>(
+        return new ApiResponse<SubmitPhoneNumberKyc200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1857,52 +1953,60 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Upload a KYC document
-   * Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
    * @param xFilename URL-encoded original filename. (required)
    * @param body  (required)
-   * @return UploadWhatsAppNumberKycDocument200Response
+   * @return UploadPhoneNumberKycDocument200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public UploadWhatsAppNumberKycDocument200Response uploadWhatsAppNumberKycDocument(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body) throws ApiException {
+  @Deprecated
+  public UploadPhoneNumberKycDocument200Response uploadWhatsAppNumberKycDocument(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body) throws ApiException {
     return uploadWhatsAppNumberKycDocument(xFilename, body, null);
   }
 
   /**
    * Upload a KYC document
-   * Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
    * @param xFilename URL-encoded original filename. (required)
    * @param body  (required)
    * @param headers Optional headers to include in the request
-   * @return UploadWhatsAppNumberKycDocument200Response
+   * @return UploadPhoneNumberKycDocument200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public UploadWhatsAppNumberKycDocument200Response uploadWhatsAppNumberKycDocument(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body, Map<String, String> headers) throws ApiException {
-    ApiResponse<UploadWhatsAppNumberKycDocument200Response> localVarResponse = uploadWhatsAppNumberKycDocumentWithHttpInfo(xFilename, body, headers);
+  @Deprecated
+  public UploadPhoneNumberKycDocument200Response uploadWhatsAppNumberKycDocument(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body, Map<String, String> headers) throws ApiException {
+    ApiResponse<UploadPhoneNumberKycDocument200Response> localVarResponse = uploadWhatsAppNumberKycDocumentWithHttpInfo(xFilename, body, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Upload a KYC document
-   * Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
    * @param xFilename URL-encoded original filename. (required)
    * @param body  (required)
-   * @return ApiResponse&lt;UploadWhatsAppNumberKycDocument200Response&gt;
+   * @return ApiResponse&lt;UploadPhoneNumberKycDocument200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<UploadWhatsAppNumberKycDocument200Response> uploadWhatsAppNumberKycDocumentWithHttpInfo(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body) throws ApiException {
+  @Deprecated
+  public ApiResponse<UploadPhoneNumberKycDocument200Response> uploadWhatsAppNumberKycDocumentWithHttpInfo(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body) throws ApiException {
     return uploadWhatsAppNumberKycDocumentWithHttpInfo(xFilename, body, null);
   }
 
   /**
    * Upload a KYC document
-   * Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
    * @param xFilename URL-encoded original filename. (required)
    * @param body  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UploadWhatsAppNumberKycDocument200Response&gt;
+   * @return ApiResponse&lt;UploadPhoneNumberKycDocument200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<UploadWhatsAppNumberKycDocument200Response> uploadWhatsAppNumberKycDocumentWithHttpInfo(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body, Map<String, String> headers) throws ApiException {
+  @Deprecated
+  public ApiResponse<UploadPhoneNumberKycDocument200Response> uploadWhatsAppNumberKycDocumentWithHttpInfo(@javax.annotation.Nonnull String xFilename, @javax.annotation.Nonnull File body, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = uploadWhatsAppNumberKycDocumentRequestBuilder(xFilename, body, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1918,7 +2022,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UploadWhatsAppNumberKycDocument200Response>(
+          return new ApiResponse<UploadPhoneNumberKycDocument200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1928,10 +2032,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UploadWhatsAppNumberKycDocument200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadWhatsAppNumberKycDocument200Response>() {});
+        UploadPhoneNumberKycDocument200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadPhoneNumberKycDocument200Response>() {});
         
 
-        return new ApiResponse<UploadWhatsAppNumberKycDocument200Response>(
+        return new ApiResponse<UploadPhoneNumberKycDocument200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1991,49 +2095,57 @@ public class WhatsAppPhoneNumbersApi {
 
   /**
    * Pre-validate KYC address
-   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
-   * @param validateWhatsAppNumberKycAddressRequest  (required)
-   * @return ValidateWhatsAppNumberKycAddress200Response
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validatePhoneNumberKycAddressRequest  (required)
+   * @return ValidatePhoneNumberKycAddress200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ValidateWhatsAppNumberKycAddress200Response validateWhatsAppNumberKycAddress(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest) throws ApiException {
-    return validateWhatsAppNumberKycAddress(validateWhatsAppNumberKycAddressRequest, null);
+  @Deprecated
+  public ValidatePhoneNumberKycAddress200Response validateWhatsAppNumberKycAddress(@javax.annotation.Nonnull ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest) throws ApiException {
+    return validateWhatsAppNumberKycAddress(validatePhoneNumberKycAddressRequest, null);
   }
 
   /**
    * Pre-validate KYC address
-   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
-   * @param validateWhatsAppNumberKycAddressRequest  (required)
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validatePhoneNumberKycAddressRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ValidateWhatsAppNumberKycAddress200Response
+   * @return ValidatePhoneNumberKycAddress200Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ValidateWhatsAppNumberKycAddress200Response validateWhatsAppNumberKycAddress(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ValidateWhatsAppNumberKycAddress200Response> localVarResponse = validateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest, headers);
+  @Deprecated
+  public ValidatePhoneNumberKycAddress200Response validateWhatsAppNumberKycAddress(@javax.annotation.Nonnull ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ValidatePhoneNumberKycAddress200Response> localVarResponse = validateWhatsAppNumberKycAddressWithHttpInfo(validatePhoneNumberKycAddressRequest, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Pre-validate KYC address
-   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
-   * @param validateWhatsAppNumberKycAddressRequest  (required)
-   * @return ApiResponse&lt;ValidateWhatsAppNumberKycAddress200Response&gt;
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validatePhoneNumberKycAddressRequest  (required)
+   * @return ApiResponse&lt;ValidatePhoneNumberKycAddress200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<ValidateWhatsAppNumberKycAddress200Response> validateWhatsAppNumberKycAddressWithHttpInfo(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest) throws ApiException {
-    return validateWhatsAppNumberKycAddressWithHttpInfo(validateWhatsAppNumberKycAddressRequest, null);
+  @Deprecated
+  public ApiResponse<ValidatePhoneNumberKycAddress200Response> validateWhatsAppNumberKycAddressWithHttpInfo(@javax.annotation.Nonnull ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest) throws ApiException {
+    return validateWhatsAppNumberKycAddressWithHttpInfo(validatePhoneNumberKycAddressRequest, null);
   }
 
   /**
    * Pre-validate KYC address
-   * Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
-   * @param validateWhatsAppNumberKycAddressRequest  (required)
+   * Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+   * @param validatePhoneNumberKycAddressRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ValidateWhatsAppNumberKycAddress200Response&gt;
+   * @return ApiResponse&lt;ValidatePhoneNumberKycAddress200Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<ValidateWhatsAppNumberKycAddress200Response> validateWhatsAppNumberKycAddressWithHttpInfo(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = validateWhatsAppNumberKycAddressRequestBuilder(validateWhatsAppNumberKycAddressRequest, headers);
+  @Deprecated
+  public ApiResponse<ValidatePhoneNumberKycAddress200Response> validateWhatsAppNumberKycAddressWithHttpInfo(@javax.annotation.Nonnull ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = validateWhatsAppNumberKycAddressRequestBuilder(validatePhoneNumberKycAddressRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2048,7 +2160,7 @@ public class WhatsAppPhoneNumbersApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<ValidateWhatsAppNumberKycAddress200Response>(
+          return new ApiResponse<ValidatePhoneNumberKycAddress200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -2058,10 +2170,10 @@ public class WhatsAppPhoneNumbersApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        ValidateWhatsAppNumberKycAddress200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ValidateWhatsAppNumberKycAddress200Response>() {});
+        ValidatePhoneNumberKycAddress200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ValidatePhoneNumberKycAddress200Response>() {});
         
 
-        return new ApiResponse<ValidateWhatsAppNumberKycAddress200Response>(
+        return new ApiResponse<ValidatePhoneNumberKycAddress200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -2080,10 +2192,10 @@ public class WhatsAppPhoneNumbersApi {
     }
   }
 
-  private HttpRequest.Builder validateWhatsAppNumberKycAddressRequestBuilder(@javax.annotation.Nonnull ValidateWhatsAppNumberKycAddressRequest validateWhatsAppNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'validateWhatsAppNumberKycAddressRequest' is set
-    if (validateWhatsAppNumberKycAddressRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'validateWhatsAppNumberKycAddressRequest' when calling validateWhatsAppNumberKycAddress");
+  private HttpRequest.Builder validateWhatsAppNumberKycAddressRequestBuilder(@javax.annotation.Nonnull ValidatePhoneNumberKycAddressRequest validatePhoneNumberKycAddressRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'validatePhoneNumberKycAddressRequest' is set
+    if (validatePhoneNumberKycAddressRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'validatePhoneNumberKycAddressRequest' when calling validateWhatsAppNumberKycAddress");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -2096,7 +2208,7 @@ public class WhatsAppPhoneNumbersApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(validateWhatsAppNumberKycAddressRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(validatePhoneNumberKycAddressRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

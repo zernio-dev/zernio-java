@@ -15,7 +15,7 @@
 |**from** | **String** |  |  [optional] |
 |**to** | **String** |  |  [optional] |
 |**failedAt** | **OffsetDateTime** |  |  [optional] |
-|**error** | [**WebhookPayloadCallFailedCallError**](WebhookPayloadCallFailedCallError.md) |  |  [optional] |
+|**error** | [**CallRecordCallErrorsInner**](CallRecordCallErrorsInner.md) |  |  [optional] |
 
 
 

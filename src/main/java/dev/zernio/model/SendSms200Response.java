@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendSms200Response.JSON_PROPERTY_CONVERSATION_ID,
   SendSms200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-06-22T15:43:09.116576752Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendSms200Response {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -47,9 +47,42 @@ public class SendSms200Response {
   @javax.annotation.Nullable
   private String conversationId;
 
+  /**
+   * Gets or Sets status
+   */
+  public enum StatusEnum {
+    SENT(String.valueOf("sent"));
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
-  private String status;
+  private StatusEnum status;
 
   public SendSms200Response() { 
   }
@@ -60,7 +93,7 @@ public class SendSms200Response {
   }
 
   /**
-   * Telnyx message id
+   * Message ID
    * @return id
    */
   @javax.annotation.Nullable
@@ -84,7 +117,7 @@ public class SendSms200Response {
   }
 
   /**
-   * Get conversationId
+   * Inbox conversation the message was threaded into.
    * @return conversationId
    */
   @javax.annotation.Nullable
@@ -102,7 +135,7 @@ public class SendSms200Response {
   }
 
 
-  public SendSms200Response status(@javax.annotation.Nullable String status) {
+  public SendSms200Response status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -114,14 +147,14 @@ public class SendSms200Response {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable String status) {
+  public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
   }
 

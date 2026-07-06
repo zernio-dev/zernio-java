@@ -4,24 +4,34 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**disableWhatsAppCalling**](WhatsAppCallingApi.md#disableWhatsAppCalling) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
-| [**disableWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#disableWhatsAppCallingWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
-| [**enableWhatsAppCalling**](WhatsAppCallingApi.md#enableWhatsAppCalling) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
-| [**enableWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#enableWhatsAppCallingWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
+| [**disableWhatsAppCalling**](WhatsAppCallingApi.md#disableWhatsAppCalling) | **DELETE** /v1/phone-numbers/{id}/whatsapp/calling | Disable calling on a number |
+| [**disableWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#disableWhatsAppCallingWithHttpInfo) | **DELETE** /v1/phone-numbers/{id}/whatsapp/calling | Disable calling on a number |
+| [**disableWhatsAppCallingLegacy**](WhatsAppCallingApi.md#disableWhatsAppCallingLegacy) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
+| [**disableWhatsAppCallingLegacyWithHttpInfo**](WhatsAppCallingApi.md#disableWhatsAppCallingLegacyWithHttpInfo) | **DELETE** /v1/whatsapp/phone-numbers/{id}/calling | Disable calling on a number |
+| [**enableWhatsAppCalling**](WhatsAppCallingApi.md#enableWhatsAppCalling) | **POST** /v1/phone-numbers/{id}/whatsapp/calling | Enable calling on a number |
+| [**enableWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#enableWhatsAppCallingWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/calling | Enable calling on a number |
+| [**enableWhatsAppCallingLegacy**](WhatsAppCallingApi.md#enableWhatsAppCallingLegacy) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
+| [**enableWhatsAppCallingLegacyWithHttpInfo**](WhatsAppCallingApi.md#enableWhatsAppCallingLegacyWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
 | [**getWhatsAppCall**](WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
 | [**getWhatsAppCallWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
 | [**getWhatsAppCallEstimate**](WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
 | [**getWhatsAppCallEstimateWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
 | [**getWhatsAppCallPermissions**](WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission |
 | [**getWhatsAppCallPermissionsWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission |
+| [**getWhatsAppCallRecording**](WhatsAppCallingApi.md#getWhatsAppCallRecording) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording |
+| [**getWhatsAppCallRecordingWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallRecordingWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording |
+| [**getWhatsAppCalling**](WhatsAppCallingApi.md#getWhatsAppCalling) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number |
+| [**getWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallingWithHttpInfo) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number |
 | [**getWhatsAppCallingConfig**](WhatsAppCallingApi.md#getWhatsAppCallingConfig) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**getWhatsAppCallingConfigWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallingConfigWithHttpInfo) | **GET** /v1/whatsapp/calling | Get calling config for an account |
 | [**initiateWhatsAppCall**](WhatsAppCallingApi.md#initiateWhatsAppCall) | **POST** /v1/whatsapp/calls | Initiate outbound call |
 | [**initiateWhatsAppCallWithHttpInfo**](WhatsAppCallingApi.md#initiateWhatsAppCallWithHttpInfo) | **POST** /v1/whatsapp/calls | Initiate outbound call |
 | [**listWhatsAppCalls**](WhatsAppCallingApi.md#listWhatsAppCalls) | **GET** /v1/whatsapp/calls | List call history for an account |
 | [**listWhatsAppCallsWithHttpInfo**](WhatsAppCallingApi.md#listWhatsAppCallsWithHttpInfo) | **GET** /v1/whatsapp/calls | List call history for an account |
-| [**updateWhatsAppCalling**](WhatsAppCallingApi.md#updateWhatsAppCalling) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
-| [**updateWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#updateWhatsAppCallingWithHttpInfo) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
+| [**updateWhatsAppCalling**](WhatsAppCallingApi.md#updateWhatsAppCalling) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config |
+| [**updateWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#updateWhatsAppCallingWithHttpInfo) | **PATCH** /v1/phone-numbers/{id}/whatsapp/calling | Update calling config |
+| [**updateWhatsAppCallingLegacy**](WhatsAppCallingApi.md#updateWhatsAppCallingLegacy) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
+| [**updateWhatsAppCallingLegacyWithHttpInfo**](WhatsAppCallingApi.md#updateWhatsAppCallingLegacyWithHttpInfo) | **PATCH** /v1/whatsapp/phone-numbers/{id}/calling | Update calling config |
 
 
 
@@ -96,7 +106,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Disabled |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | WhatsApp phone number not found |  -  |
+| **404** | Phone number not found |  -  |
 
 ## disableWhatsAppCallingWithHttpInfo
 
@@ -172,12 +182,162 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Disabled |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Phone number not found |  -  |
+
+
+## disableWhatsAppCallingLegacy
+
+> void disableWhatsAppCallingLegacy(id, accountId)
+
+Disable calling on a number
+
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            apiInstance.disableWhatsAppCallingLegacy(id, accountId);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#disableWhatsAppCallingLegacy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Disabled |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp phone number not found |  -  |
+
+## disableWhatsAppCallingLegacyWithHttpInfo
+
+> ApiResponse<Void> disableWhatsAppCallingLegacy disableWhatsAppCallingLegacyWithHttpInfo(id, accountId)
+
+Disable calling on a number
+
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Disable calling. Sends calling.status&#x3D;DISABLED to Meta (best-effort) and flips the local &#x60;callingEnabled&#x60; flag off. forwardTo and SIP creds are preserved so a re-enable does not lose the destination. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<Void> response = apiInstance.disableWhatsAppCallingLegacyWithHttpInfo(id, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#disableWhatsAppCallingLegacy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Disabled |  -  |
+| **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
 
 
 ## enableWhatsAppCalling
 
-> EnableWhatsAppCalling200Response enableWhatsAppCalling(id, enableWhatsAppCallingRequest)
+> EnableWhatsAppCallingLegacy200Response enableWhatsAppCalling(id, enableWhatsAppCallingLegacyRequest)
 
 Enable calling on a number
 
@@ -204,10 +364,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String id = "id_example"; // String | WhatsAppPhoneNumber Mongo ID
-        EnableWhatsAppCallingRequest enableWhatsAppCallingRequest = new EnableWhatsAppCallingRequest(); // EnableWhatsAppCallingRequest | 
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
         try {
-            EnableWhatsAppCalling200Response result = apiInstance.enableWhatsAppCalling(id, enableWhatsAppCallingRequest);
+            EnableWhatsAppCallingLegacy200Response result = apiInstance.enableWhatsAppCalling(id, enableWhatsAppCallingLegacyRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppCallingApi#enableWhatsAppCalling");
@@ -225,12 +385,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| WhatsAppPhoneNumber Mongo ID | |
-| **enableWhatsAppCallingRequest** | [**EnableWhatsAppCallingRequest**](EnableWhatsAppCallingRequest.md)|  | |
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md)|  | |
 
 ### Return type
 
-[**EnableWhatsAppCalling200Response**](EnableWhatsAppCalling200Response.md)
+[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLegacy200Response.md)
 
 
 ### Authorization
@@ -247,12 +407,12 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | WhatsApp phone number not found |  -  |
+| **404** | Phone number not found |  -  |
 | **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
 
 ## enableWhatsAppCallingWithHttpInfo
 
-> ApiResponse<EnableWhatsAppCalling200Response> enableWhatsAppCalling enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingRequest)
+> ApiResponse<EnableWhatsAppCallingLegacy200Response> enableWhatsAppCalling enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingLegacyRequest)
 
 Enable calling on a number
 
@@ -280,10 +440,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String id = "id_example"; // String | WhatsAppPhoneNumber Mongo ID
-        EnableWhatsAppCallingRequest enableWhatsAppCallingRequest = new EnableWhatsAppCallingRequest(); // EnableWhatsAppCallingRequest | 
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
         try {
-            ApiResponse<EnableWhatsAppCalling200Response> response = apiInstance.enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingRequest);
+            ApiResponse<EnableWhatsAppCallingLegacy200Response> response = apiInstance.enableWhatsAppCallingWithHttpInfo(id, enableWhatsAppCallingLegacyRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -303,12 +463,166 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| WhatsAppPhoneNumber Mongo ID | |
-| **enableWhatsAppCallingRequest** | [**EnableWhatsAppCallingRequest**](EnableWhatsAppCallingRequest.md)|  | |
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md)|  | |
 
 ### Return type
 
-ApiResponse<[**EnableWhatsAppCalling200Response**](EnableWhatsAppCalling200Response.md)>
+ApiResponse<[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLegacy200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Calling enabled |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Phone number not found |  -  |
+| **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
+
+
+## enableWhatsAppCallingLegacy
+
+> EnableWhatsAppCallingLegacy200Response enableWhatsAppCallingLegacy(id, enableWhatsAppCallingLegacyRequest)
+
+Enable calling on a number
+
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | WhatsAppPhoneNumber Mongo ID
+        EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
+        try {
+            EnableWhatsAppCallingLegacy200Response result = apiInstance.enableWhatsAppCallingLegacy(id, enableWhatsAppCallingLegacyRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#enableWhatsAppCallingLegacy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| WhatsAppPhoneNumber Mongo ID | |
+| **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md)|  | |
+
+### Return type
+
+[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLegacy200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Calling enabled |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp phone number not found |  -  |
+| **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
+
+## enableWhatsAppCallingLegacyWithHttpInfo
+
+> ApiResponse<EnableWhatsAppCallingLegacy200Response> enableWhatsAppCallingLegacy enableWhatsAppCallingLegacyWithHttpInfo(id, enableWhatsAppCallingLegacyRequest)
+
+Enable calling on a number
+
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | WhatsAppPhoneNumber Mongo ID
+        EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
+        try {
+            ApiResponse<EnableWhatsAppCallingLegacy200Response> response = apiInstance.enableWhatsAppCallingLegacyWithHttpInfo(id, enableWhatsAppCallingLegacyRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#enableWhatsAppCallingLegacy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| WhatsAppPhoneNumber Mongo ID | |
+| **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLegacy200Response.md)>
 
 
 ### Authorization
@@ -787,13 +1101,321 @@ ApiResponse<[**GetWhatsAppCallPermissions200Response**](GetWhatsAppCallPermissio
 | **404** | WhatsApp account not found |  -  |
 
 
+## getWhatsAppCallRecording
+
+> GetWhatsAppCallRecording200Response getWhatsAppCallRecording(callId, accountId, as)
+
+Get a call recording
+
+Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String callId = "callId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String as = "json"; // String | `json` returns `{ url }` instead of a 302 redirect.
+        try {
+            GetWhatsAppCallRecording200Response result = apiInstance.getWhatsAppCallRecording(callId, accountId, as);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#getWhatsAppCallRecording");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **callId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **as** | **String**| &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. | [optional] [enum: json] |
+
+### Return type
+
+[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Redirect to a freshly-signed recording URL. |  -  |
+| **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Call not found, or no recording is available for this call |  -  |
+| **502** | Recording provider lookup failed |  -  |
+
+## getWhatsAppCallRecordingWithHttpInfo
+
+> ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecording getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as)
+
+Get a call recording
+
+Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String callId = "callId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        String as = "json"; // String | `json` returns `{ url }` instead of a 302 redirect.
+        try {
+            ApiResponse<GetWhatsAppCallRecording200Response> response = apiInstance.getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#getWhatsAppCallRecording");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **callId** | **String**|  | |
+| **accountId** | **String**|  | |
+| **as** | **String**| &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. | [optional] [enum: json] |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **302** | Redirect to a freshly-signed recording URL. |  -  |
+| **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Call not found, or no recording is available for this call |  -  |
+| **502** | Recording provider lookup failed |  -  |
+
+
+## getWhatsAppCalling
+
+> GetWhatsAppCalling200Response getWhatsAppCalling(id)
+
+Get calling config for a number
+
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        try {
+            GetWhatsAppCalling200Response result = apiInstance.getWhatsAppCalling(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#getWhatsAppCalling");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+
+### Return type
+
+[**GetWhatsAppCalling200Response**](GetWhatsAppCalling200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Calling config |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+## getWhatsAppCallingWithHttpInfo
+
+> ApiResponse<GetWhatsAppCalling200Response> getWhatsAppCalling getWhatsAppCallingWithHttpInfo(id)
+
+Get calling config for a number
+
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the social account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        try {
+            ApiResponse<GetWhatsAppCalling200Response> response = apiInstance.getWhatsAppCallingWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#getWhatsAppCalling");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppCalling200Response**](GetWhatsAppCalling200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Calling config |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Number not found |  -  |
+
+
 ## getWhatsAppCallingConfig
 
 > GetWhatsAppCallingConfig200Response getWhatsAppCallingConfig(accountId)
 
 Get calling config for an account
 
-Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
 
 ### Example
 
@@ -865,7 +1487,7 @@ public class Example {
 
 Get calling config for an account
 
-Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the WhatsAppPhoneNumber doc id (use as &#x60;{id}&#x60; on the calling-config write endpoints) and whether SIP digest credentials are stored (the encrypted password itself is never returned). 
+Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
 
 ### Example
 
@@ -937,11 +1559,11 @@ ApiResponse<[**GetWhatsAppCallingConfig200Response**](GetWhatsAppCallingConfig20
 
 ## initiateWhatsAppCall
 
-> InitiateWhatsAppCall200Response initiateWhatsAppCall(initiateWhatsAppCallRequest)
+> InitiateWhatsAppCall200Response initiateWhatsAppCall(initiateWhatsAppCallRequest, idempotencyKey)
 
 Initiate outbound call
 
-Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
 
 ### Example
 
@@ -965,8 +1587,9 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            InitiateWhatsAppCall200Response result = apiInstance.initiateWhatsAppCall(initiateWhatsAppCallRequest);
+            InitiateWhatsAppCall200Response result = apiInstance.initiateWhatsAppCall(initiateWhatsAppCallRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppCallingApi#initiateWhatsAppCall");
@@ -985,6 +1608,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -1011,11 +1635,11 @@ public class Example {
 
 ## initiateWhatsAppCallWithHttpInfo
 
-> ApiResponse<InitiateWhatsAppCall200Response> initiateWhatsAppCall initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest)
+> ApiResponse<InitiateWhatsAppCall200Response> initiateWhatsAppCall initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey)
 
 Initiate outbound call
 
-Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window. 
+Initiates an outbound Business-Initiated Call. The Telnyx-side SIP leg is originated server-side (Option B: SIP-first). Telnyx INVITEs Meta directly over TLS:5061 with the SIP digest credentials we captured at calling-enablement time). No client-side SDP is required; pass only &#x60;accountId&#x60; and &#x60;to&#x60;.  To send the consumer the call-consent prompt instead of placing a call, pass &#x60;action: \&quot;send_call_permission_request\&quot;&#x60; (+ optional &#x60;bodyText&#x60;). The consumer must tap Allow in WhatsApp before &#x60;start_call&#x60; is permitted; Meta limits the prompt to 1 per consumer per 24h (2 per 7 days) and requires an open 24h service window.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
 
 ### Example
 
@@ -1040,8 +1664,9 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<InitiateWhatsAppCall200Response> response = apiInstance.initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest);
+            ApiResponse<InitiateWhatsAppCall200Response> response = apiInstance.initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1062,6 +1687,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes dial retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -1089,11 +1715,11 @@ ApiResponse<[**InitiateWhatsAppCall200Response**](InitiateWhatsAppCall200Respons
 
 ## listWhatsAppCalls
 
-> ListWhatsAppCalls200Response listWhatsAppCalls(accountId, status, direction, since, until, limit)
+> ListWhatsAppCalls200Response listWhatsAppCalls(accountId, status, direction, since, until, before, limit)
 
 List call history for an account
 
-Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
 
 ### Example
 
@@ -1121,9 +1747,10 @@ public class Example {
         String direction = "inbound"; // String | 
         OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime until = OffsetDateTime.now(); // OffsetDateTime | 
+        OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Return calls with startedAt strictly before this instant (use the previous page's nextCursor).
         Integer limit = 56; // Integer | 
         try {
-            ListWhatsAppCalls200Response result = apiInstance.listWhatsAppCalls(accountId, status, direction, since, until, limit);
+            ListWhatsAppCalls200Response result = apiInstance.listWhatsAppCalls(accountId, status, direction, since, until, before, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppCallingApi#listWhatsAppCalls");
@@ -1146,6 +1773,7 @@ public class Example {
 | **direction** | **String**|  | [optional] [enum: inbound, outbound] |
 | **since** | **OffsetDateTime**|  | [optional] |
 | **until** | **OffsetDateTime**|  | [optional] |
+| **before** | **OffsetDateTime**| Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). | [optional] |
 | **limit** | **Integer**|  | [optional] |
 
 ### Return type
@@ -1170,11 +1798,11 @@ public class Example {
 
 ## listWhatsAppCallsWithHttpInfo
 
-> ApiResponse<ListWhatsAppCalls200Response> listWhatsAppCalls listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, limit)
+> ApiResponse<ListWhatsAppCalls200Response> listWhatsAppCalls listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, before, limit)
 
 List call history for an account
 
-Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts. 
+Compact history listing for a single connected account. Results are scoped to the resolved SocialAccount; profile-scoped team members cannot read calls on sibling accounts.  Cursor pagination: pass the returned &#x60;nextCursor&#x60; as &#x60;before&#x60; to fetch the next page (same scheme as &#x60;GET /v1/calls&#x60;). &#x60;since&#x60;/&#x60;until&#x60; remain as absolute range filters and combine with the cursor. 
 
 ### Example
 
@@ -1203,9 +1831,10 @@ public class Example {
         String direction = "inbound"; // String | 
         OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | 
         OffsetDateTime until = OffsetDateTime.now(); // OffsetDateTime | 
+        OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Return calls with startedAt strictly before this instant (use the previous page's nextCursor).
         Integer limit = 56; // Integer | 
         try {
-            ApiResponse<ListWhatsAppCalls200Response> response = apiInstance.listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, limit);
+            ApiResponse<ListWhatsAppCalls200Response> response = apiInstance.listWhatsAppCallsWithHttpInfo(accountId, status, direction, since, until, before, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1230,6 +1859,7 @@ public class Example {
 | **direction** | **String**|  | [optional] [enum: inbound, outbound] |
 | **since** | **OffsetDateTime**|  | [optional] |
 | **until** | **OffsetDateTime**|  | [optional] |
+| **before** | **OffsetDateTime**| Return calls with startedAt strictly before this instant (use the previous page&#39;s nextCursor). | [optional] |
 | **limit** | **Integer**|  | [optional] |
 
 ### Return type
@@ -1255,7 +1885,7 @@ ApiResponse<[**ListWhatsAppCalls200Response**](ListWhatsAppCalls200Response.md)>
 
 ## updateWhatsAppCalling
 
-> void updateWhatsAppCalling(id, updateWhatsAppCallingRequest)
+> void updateWhatsAppCalling(id, updateWhatsAppCallingLegacyRequest)
 
 Update calling config
 
@@ -1283,9 +1913,9 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest = new UpdateWhatsAppCallingRequest(); // UpdateWhatsAppCallingRequest | 
+        UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest = new UpdateWhatsAppCallingLegacyRequest(); // UpdateWhatsAppCallingLegacyRequest | 
         try {
-            apiInstance.updateWhatsAppCalling(id, updateWhatsAppCallingRequest);
+            apiInstance.updateWhatsAppCalling(id, updateWhatsAppCallingLegacyRequest);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppCallingApi#updateWhatsAppCalling");
             System.err.println("Status code: " + e.getCode());
@@ -1303,7 +1933,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**|  | |
-| **updateWhatsAppCallingRequest** | [**UpdateWhatsAppCallingRequest**](UpdateWhatsAppCallingRequest.md)|  | |
+| **updateWhatsAppCallingLegacyRequest** | [**UpdateWhatsAppCallingLegacyRequest**](UpdateWhatsAppCallingLegacyRequest.md)|  | |
 
 ### Return type
 
@@ -1324,12 +1954,12 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | WhatsApp phone number not found |  -  |
+| **404** | Phone number not found |  -  |
 | **422** | Calling must be enabled before settings can be updated |  -  |
 
 ## updateWhatsAppCallingWithHttpInfo
 
-> ApiResponse<Void> updateWhatsAppCalling updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingRequest)
+> ApiResponse<Void> updateWhatsAppCalling updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingLegacyRequest)
 
 Update calling config
 
@@ -1358,9 +1988,9 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         String id = "id_example"; // String | 
-        UpdateWhatsAppCallingRequest updateWhatsAppCallingRequest = new UpdateWhatsAppCallingRequest(); // UpdateWhatsAppCallingRequest | 
+        UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest = new UpdateWhatsAppCallingLegacyRequest(); // UpdateWhatsAppCallingLegacyRequest | 
         try {
-            ApiResponse<Void> response = apiInstance.updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingRequest);
+            ApiResponse<Void> response = apiInstance.updateWhatsAppCallingWithHttpInfo(id, updateWhatsAppCallingLegacyRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
         } catch (ApiException e) {
@@ -1380,7 +2010,159 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **id** | **String**|  | |
-| **updateWhatsAppCallingRequest** | [**UpdateWhatsAppCallingRequest**](UpdateWhatsAppCallingRequest.md)|  | |
+| **updateWhatsAppCallingLegacyRequest** | [**UpdateWhatsAppCallingLegacyRequest**](UpdateWhatsAppCallingLegacyRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Phone number not found |  -  |
+| **422** | Calling must be enabled before settings can be updated |  -  |
+
+
+## updateWhatsAppCallingLegacy
+
+> void updateWhatsAppCallingLegacy(id, updateWhatsAppCallingLegacyRequest)
+
+Update calling config
+
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest = new UpdateWhatsAppCallingLegacyRequest(); // UpdateWhatsAppCallingLegacyRequest | 
+        try {
+            apiInstance.updateWhatsAppCallingLegacy(id, updateWhatsAppCallingLegacyRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#updateWhatsAppCallingLegacy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **updateWhatsAppCallingLegacyRequest** | [**UpdateWhatsAppCallingLegacyRequest**](UpdateWhatsAppCallingLegacyRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | WhatsApp phone number not found |  -  |
+| **422** | Calling must be enabled before settings can be updated |  -  |
+
+## updateWhatsAppCallingLegacyWithHttpInfo
+
+> ApiResponse<Void> updateWhatsAppCallingLegacy updateWhatsAppCallingLegacyWithHttpInfo(id, updateWhatsAppCallingLegacyRequest)
+
+Update calling config
+
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Update fields on an already-enabled number. Only fields present in the body are written; &#x60;undefined&#x60; leaves the stored value alone, explicit &#x60;null&#x60; clears a nullable field. No Meta side effect, this only changes local routing state consumed by the Telnyx webhook handler. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
+        String id = "id_example"; // String | 
+        UpdateWhatsAppCallingLegacyRequest updateWhatsAppCallingLegacyRequest = new UpdateWhatsAppCallingLegacyRequest(); // UpdateWhatsAppCallingLegacyRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.updateWhatsAppCallingLegacyWithHttpInfo(id, updateWhatsAppCallingLegacyRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppCallingApi#updateWhatsAppCallingLegacy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **updateWhatsAppCallingLegacyRequest** | [**UpdateWhatsAppCallingLegacyRequest**](UpdateWhatsAppCallingLegacyRequest.md)|  | |
 
 ### Return type
 

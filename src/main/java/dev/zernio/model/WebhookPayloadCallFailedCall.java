@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.WebhookPayloadCallFailedCallError;
+import dev.zernio.model.CallRecordCallErrorsInner;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallFailedCall.JSON_PROPERTY_FAILED_AT,
   WebhookPayloadCallFailedCall.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T08:27:19.824052717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T10:43:19.387074638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallFailedCall {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -119,7 +119,7 @@ public class WebhookPayloadCallFailedCall {
 
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
-  private WebhookPayloadCallFailedCallError error;
+  private CallRecordCallErrorsInner error;
 
   public WebhookPayloadCallFailedCall() { 
   }
@@ -324,7 +324,7 @@ public class WebhookPayloadCallFailedCall {
   }
 
 
-  public WebhookPayloadCallFailedCall error(@javax.annotation.Nullable WebhookPayloadCallFailedCallError error) {
+  public WebhookPayloadCallFailedCall error(@javax.annotation.Nullable CallRecordCallErrorsInner error) {
     this.error = error;
     return this;
   }
@@ -336,14 +336,14 @@ public class WebhookPayloadCallFailedCall {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public WebhookPayloadCallFailedCallError getError() {
+  public CallRecordCallErrorsInner getError() {
     return error;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setError(@javax.annotation.Nullable WebhookPayloadCallFailedCallError error) {
+  public void setError(@javax.annotation.Nullable CallRecordCallErrorsInner error) {
     this.error = error;
   }
 
