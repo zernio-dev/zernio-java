@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequest.JSON_PROPERTY_BID_AMOUNT,
   UpdateAdSetRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T14:09:01.063035328Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T14:37:36.145950148Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequest {
   /**
    * Gets or Sets platform

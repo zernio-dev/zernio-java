@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-07T14:09:01.063035328Z[Etc/UTC]
+- Build date: 2026-07-07T14:37:36.145950148Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1195,6 +1195,7 @@ Class | Method | HTTP request | Description
  - [CreatePhoneNumberPortIn201ResponseOrdersInner](docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md)
  - [CreatePhoneNumberPortInRequest](docs/CreatePhoneNumberPortInRequest.md)
  - [CreatePhoneNumberPortInRequestEndUser](docs/CreatePhoneNumberPortInRequestEndUser.md)
+ - [CreatePost403Response](docs/CreatePost403Response.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
  - [CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
  - [CreatePost429Response](docs/CreatePost429Response.md)

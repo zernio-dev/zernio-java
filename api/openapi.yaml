@@ -4669,8 +4669,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
-          description: Forbidden
+                $ref: "#/components/schemas/createPost_403_response"
+          description: |
+            Forbidden. Distinguish by the `code` field:
+            - `ACCOUNT_DISCONNECTED` — a target account exists but its platform connection is no longer active (token expired or revoked, or the account was disconnected). Reconnect the account, then refresh account IDs from `GET /v1/accounts` (accounts report their connection state via `isActive`). The disconnect itself is also emitted as the `account.disconnected` webhook event.
+            - `PROFILE_OVER_LIMIT` — a target account belongs to a profile beyond the plan's profile limit.
+            - No `code` — a target `accountId` does not belong to the authenticated user (or is outside the API key's profile scope).
         "409":
           content:
             application/json:
@@ -38427,6 +38431,26 @@ components:
             Specific queue ID to use when scheduling via queue.
             Only used when queuedFromProfile is also provided.
             If omitted, uses the profile's default queue.
+          type: string
+    createPost_403_response:
+      example:
+        code: ACCOUNT_DISCONNECTED
+        error: "Account 6a0f6d2e520992756d96bb6c (facebook \"My Page\") is disconnected\
+          \ and cannot be posted to. Facebook tokens expired. Please reconnect your\
+          \ Facebook account. After reconnecting, refresh your account IDs from GET\
+          \ /v1/accounts."
+      properties:
+        error:
+          example: "Account 6a0f6d2e520992756d96bb6c (facebook \"My Page\") is disconnected\
+            \ and cannot be posted to. Facebook tokens expired. Please reconnect your\
+            \ Facebook account. After reconnecting, refresh your account IDs from\
+            \ GET /v1/accounts."
+          type: string
+        code:
+          description: Stable machine-readable cause. Absent for ownership failures.
+          enum:
+          - ACCOUNT_DISCONNECTED
+          - PROFILE_OVER_LIMIT
           type: string
     createPost_409_response_details:
       example:
