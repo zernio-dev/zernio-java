@@ -48723,15 +48723,18 @@ components:
           type: string
     listInboxMentions_200_response_data_inner:
       example:
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        authorUsername: authorUsername
+        platform: linkedin
+        content: content
         accountId: accountId
         createdAt: 2000-01-23T04:56:07.000+00:00
         authorUrn: authorUrn
-        publishedAt: 2000-01-23T04:56:07.000+00:00
+        authorName: authorName
         accountUsername: accountUsername
         id: id
+        authorPicture: authorPicture
         permalink: permalink
-        platform: linkedin
-        content: content
         organizationalEntity: organizationalEntity
       properties:
         id:
@@ -48754,6 +48757,21 @@ components:
           type: string
         authorUrn:
           description: LinkedIn URN of the person who mentioned you
+          nullable: true
+          type: string
+        authorName:
+          description: "Display name of the author, resolved from authorUrn. Null\
+            \ when LinkedIn does not allow resolving the profile."
+          nullable: true
+          type: string
+        authorUsername:
+          description: LinkedIn vanity name of the author (the slug in their profile
+            URL)
+          nullable: true
+          type: string
+        authorPicture:
+          description: "Profile picture URL of the author. LinkedIn CDN URLs expire\
+            \ after some time, so fetch promptly rather than storing long-term."
           nullable: true
           type: string
         organizationalEntity:
@@ -48783,25 +48801,31 @@ components:
           cursor: cursor
           hasMore: true
         data:
-        - accountId: accountId
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          authorUrn: authorUrn
-          publishedAt: 2000-01-23T04:56:07.000+00:00
-          accountUsername: accountUsername
-          id: id
-          permalink: permalink
+        - publishedAt: 2000-01-23T04:56:07.000+00:00
+          authorUsername: authorUsername
           platform: linkedin
           content: content
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          authorUrn: authorUrn
+          authorName: authorName
+          accountUsername: accountUsername
+          id: id
+          authorPicture: authorPicture
+          permalink: permalink
           organizationalEntity: organizationalEntity
-        - accountId: accountId
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          authorUrn: authorUrn
-          publishedAt: 2000-01-23T04:56:07.000+00:00
-          accountUsername: accountUsername
-          id: id
-          permalink: permalink
+        - publishedAt: 2000-01-23T04:56:07.000+00:00
+          authorUsername: authorUsername
           platform: linkedin
           content: content
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          authorUrn: authorUrn
+          authorName: authorName
+          accountUsername: accountUsername
+          id: id
+          authorPicture: authorPicture
+          permalink: permalink
           organizationalEntity: organizationalEntity
         meta:
           total: 0

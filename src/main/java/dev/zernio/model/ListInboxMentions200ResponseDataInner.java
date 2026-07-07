@@ -45,11 +45,14 @@ import dev.zernio.ApiClient;
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_CONTENT,
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_PERMALINK,
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_AUTHOR_URN,
+  ListInboxMentions200ResponseDataInner.JSON_PROPERTY_AUTHOR_NAME,
+  ListInboxMentions200ResponseDataInner.JSON_PROPERTY_AUTHOR_USERNAME,
+  ListInboxMentions200ResponseDataInner.JSON_PROPERTY_AUTHOR_PICTURE,
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_ORGANIZATIONAL_ENTITY,
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_PUBLISHED_AT,
   ListInboxMentions200ResponseDataInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T09:40:14.585283717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:12:22.904423013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxMentions200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -109,6 +112,15 @@ public class ListInboxMentions200ResponseDataInner {
 
   public static final String JSON_PROPERTY_AUTHOR_URN = "authorUrn";
   private JsonNullable<String> authorUrn = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_AUTHOR_NAME = "authorName";
+  private JsonNullable<String> authorName = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_AUTHOR_USERNAME = "authorUsername";
+  private JsonNullable<String> authorUsername = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_AUTHOR_PICTURE = "authorPicture";
+  private JsonNullable<String> authorPicture = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_ORGANIZATIONAL_ENTITY = "organizationalEntity";
   @javax.annotation.Nullable
@@ -309,6 +321,102 @@ public class ListInboxMentions200ResponseDataInner {
   }
 
 
+  public ListInboxMentions200ResponseDataInner authorName(@javax.annotation.Nullable String authorName) {
+    this.authorName = JsonNullable.<String>of(authorName);
+    return this;
+  }
+
+  /**
+   * Display name of the author, resolved from authorUrn. Null when LinkedIn does not allow resolving the profile.
+   * @return authorName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getAuthorName() {
+        return authorName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_AUTHOR_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getAuthorName_JsonNullable() {
+    return authorName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTHOR_NAME)
+  public void setAuthorName_JsonNullable(JsonNullable<String> authorName) {
+    this.authorName = authorName;
+  }
+
+  public void setAuthorName(@javax.annotation.Nullable String authorName) {
+    this.authorName = JsonNullable.<String>of(authorName);
+  }
+
+
+  public ListInboxMentions200ResponseDataInner authorUsername(@javax.annotation.Nullable String authorUsername) {
+    this.authorUsername = JsonNullable.<String>of(authorUsername);
+    return this;
+  }
+
+  /**
+   * LinkedIn vanity name of the author (the slug in their profile URL)
+   * @return authorUsername
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getAuthorUsername() {
+        return authorUsername.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_AUTHOR_USERNAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getAuthorUsername_JsonNullable() {
+    return authorUsername;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTHOR_USERNAME)
+  public void setAuthorUsername_JsonNullable(JsonNullable<String> authorUsername) {
+    this.authorUsername = authorUsername;
+  }
+
+  public void setAuthorUsername(@javax.annotation.Nullable String authorUsername) {
+    this.authorUsername = JsonNullable.<String>of(authorUsername);
+  }
+
+
+  public ListInboxMentions200ResponseDataInner authorPicture(@javax.annotation.Nullable String authorPicture) {
+    this.authorPicture = JsonNullable.<String>of(authorPicture);
+    return this;
+  }
+
+  /**
+   * Profile picture URL of the author. LinkedIn CDN URLs expire after some time, so fetch promptly rather than storing long-term.
+   * @return authorPicture
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getAuthorPicture() {
+        return authorPicture.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_AUTHOR_PICTURE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getAuthorPicture_JsonNullable() {
+    return authorPicture;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AUTHOR_PICTURE)
+  public void setAuthorPicture_JsonNullable(JsonNullable<String> authorPicture) {
+    this.authorPicture = authorPicture;
+  }
+
+  public void setAuthorPicture(@javax.annotation.Nullable String authorPicture) {
+    this.authorPicture = JsonNullable.<String>of(authorPicture);
+  }
+
+
   public ListInboxMentions200ResponseDataInner organizationalEntity(@javax.annotation.Nullable String organizationalEntity) {
     this.organizationalEntity = organizationalEntity;
     return this;
@@ -400,6 +508,9 @@ public class ListInboxMentions200ResponseDataInner {
         Objects.equals(this.content, listInboxMentions200ResponseDataInner.content) &&
         equalsNullable(this.permalink, listInboxMentions200ResponseDataInner.permalink) &&
         equalsNullable(this.authorUrn, listInboxMentions200ResponseDataInner.authorUrn) &&
+        equalsNullable(this.authorName, listInboxMentions200ResponseDataInner.authorName) &&
+        equalsNullable(this.authorUsername, listInboxMentions200ResponseDataInner.authorUsername) &&
+        equalsNullable(this.authorPicture, listInboxMentions200ResponseDataInner.authorPicture) &&
         Objects.equals(this.organizationalEntity, listInboxMentions200ResponseDataInner.organizationalEntity) &&
         Objects.equals(this.publishedAt, listInboxMentions200ResponseDataInner.publishedAt) &&
         Objects.equals(this.createdAt, listInboxMentions200ResponseDataInner.createdAt);
@@ -411,7 +522,7 @@ public class ListInboxMentions200ResponseDataInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, content, hashCodeNullable(permalink), hashCodeNullable(authorUrn), organizationalEntity, publishedAt, createdAt);
+    return Objects.hash(id, platform, accountId, accountUsername, content, hashCodeNullable(permalink), hashCodeNullable(authorUrn), hashCodeNullable(authorName), hashCodeNullable(authorUsername), hashCodeNullable(authorPicture), organizationalEntity, publishedAt, createdAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -432,6 +543,9 @@ public class ListInboxMentions200ResponseDataInner {
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("    permalink: ").append(toIndentedString(permalink)).append("\n");
     sb.append("    authorUrn: ").append(toIndentedString(authorUrn)).append("\n");
+    sb.append("    authorName: ").append(toIndentedString(authorName)).append("\n");
+    sb.append("    authorUsername: ").append(toIndentedString(authorUsername)).append("\n");
+    sb.append("    authorPicture: ").append(toIndentedString(authorPicture)).append("\n");
     sb.append("    organizationalEntity: ").append(toIndentedString(organizationalEntity)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
@@ -515,6 +629,21 @@ public class ListInboxMentions200ResponseDataInner {
     // add `authorUrn` to the URL query string
     if (getAuthorUrn() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sauthorUrn%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthorUrn()))));
+    }
+
+    // add `authorName` to the URL query string
+    if (getAuthorName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sauthorName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthorName()))));
+    }
+
+    // add `authorUsername` to the URL query string
+    if (getAuthorUsername() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sauthorUsername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthorUsername()))));
+    }
+
+    // add `authorPicture` to the URL query string
+    if (getAuthorPicture() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sauthorPicture%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthorPicture()))));
     }
 
     // add `organizationalEntity` to the URL query string
