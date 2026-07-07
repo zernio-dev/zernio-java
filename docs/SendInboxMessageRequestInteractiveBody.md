@@ -2,6 +2,7 @@
 
 # SendInboxMessageRequestInteractiveBody
 
+Required for every type except `product`, where it is optional.
 
 ## Properties
 

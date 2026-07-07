@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Optional header shown above the body.
+ * Optional header shown above the body. Required with &#x60;type: \&quot;text\&quot;&#x60; for &#x60;product_list&#x60;; not allowed for &#x60;product&#x60; or &#x60;carousel&#x60;. 
  */
 @JsonPropertyOrder({
   SendInboxMessageRequestInteractiveHeader.JSON_PROPERTY_TYPE,
@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveHeader.JSON_PROPERTY_VIDEO,
   SendInboxMessageRequestInteractiveHeader.JSON_PROPERTY_DOCUMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:12:22.904423013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:39:33.978259756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveHeader {
   /**
    * Gets or Sets type

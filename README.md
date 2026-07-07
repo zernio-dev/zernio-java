@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-07T11:12:22.904423013Z[Etc/UTC]
+- Build date: 2026-07-07T11:39:33.978259756Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1964,6 +1964,14 @@ Class | Method | HTTP request | Description
  - [SendInboxMessageRequestInteractiveActionOneOf3Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf3Parameters.md)
  - [SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload](docs/SendInboxMessageRequestInteractiveActionOneOf3ParametersFlowActionPayload.md)
  - [SendInboxMessageRequestInteractiveActionOneOf4](docs/SendInboxMessageRequestInteractiveActionOneOf4.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf5](docs/SendInboxMessageRequestInteractiveActionOneOf5.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf6](docs/SendInboxMessageRequestInteractiveActionOneOf6.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf6SectionsInner](docs/SendInboxMessageRequestInteractiveActionOneOf6SectionsInner.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner](docs/SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInner.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf7](docs/SendInboxMessageRequestInteractiveActionOneOf7.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf7Parameters](docs/SendInboxMessageRequestInteractiveActionOneOf7Parameters.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf8](docs/SendInboxMessageRequestInteractiveActionOneOf8.md)
+ - [SendInboxMessageRequestInteractiveActionOneOf8CardsInner](docs/SendInboxMessageRequestInteractiveActionOneOf8CardsInner.md)
  - [SendInboxMessageRequestInteractiveActionOneOfSectionsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInner.md)
  - [SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner](docs/SendInboxMessageRequestInteractiveActionOneOfSectionsInnerRowsInner.md)
  - [SendInboxMessageRequestInteractiveBody](docs/SendInboxMessageRequestInteractiveBody.md)
@@ -2257,8 +2265,11 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageMessageSender](docs/WebhookPayloadMessageMessageSender.md)
  - [WebhookPayloadMessageMessageSenderInstagramProfile](docs/WebhookPayloadMessageMessageSenderInstagramProfile.md)
  - [WebhookPayloadMessageMetadata](docs/WebhookPayloadMessageMetadata.md)
+ - [WebhookPayloadMessageMetadataOrder](docs/WebhookPayloadMessageMetadataOrder.md)
+ - [WebhookPayloadMessageMetadataOrderProductItemsInner](docs/WebhookPayloadMessageMetadataOrderProductItemsInner.md)
  - [WebhookPayloadMessageMetadataReferral](docs/WebhookPayloadMessageMetadataReferral.md)
  - [WebhookPayloadMessageMetadataReferralAdsContextData](docs/WebhookPayloadMessageMetadataReferralAdsContextData.md)
+ - [WebhookPayloadMessageMetadataReferredProduct](docs/WebhookPayloadMessageMetadataReferredProduct.md)
  - [WebhookPayloadMessageMetadataStoryReply](docs/WebhookPayloadMessageMetadataStoryReply.md)
  - [WebhookPayloadMessageSent](docs/WebhookPayloadMessageSent.md)
  - [WebhookPayloadMessageSentMessage](docs/WebhookPayloadMessageSentMessage.md)

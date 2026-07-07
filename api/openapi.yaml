@@ -28745,11 +28745,14 @@ components:
       example:
         metadata:
           quickReplyPayload: quickReplyPayload
-          interactiveType: button_reply
           postbackTitle: postbackTitle
           storyReply:
             storyId: storyId
             storyUrl: storyUrl
+          flowResponseJson: flowResponseJson
+          postbackPayload: postbackPayload
+          interactiveId: interactiveId
+          interactiveType: button_reply
           referral:
             image_url: image_url
             source_type: source_type
@@ -28773,13 +28776,25 @@ components:
             ctwa_clid: ctwa_clid
             headline: headline
           isStoryMention: true
-          flowResponseJson: flowResponseJson
+          referredProduct:
+            catalog_id: catalog_id
+            product_retailer_id: product_retailer_id
           callbackData: callbackData
           flowResponseData:
             key: ""
-          postbackPayload: postbackPayload
-          interactiveId: interactiveId
           buttonPayload: buttonPayload
+          order:
+            catalog_id: catalog_id
+            product_items:
+            - quantity: 6
+              product_retailer_id: product_retailer_id
+              item_price: 1.4658129805029452
+              currency: currency
+            - quantity: 6
+              product_retailer_id: product_retailer_id
+              item_price: 1.4658129805029452
+              currency: currency
+            text: text
         id: id
         event: message.received
         message:
@@ -47155,7 +47170,10 @@ components:
         link:
           type: string
     sendInboxMessage_request_interactive_header:
-      description: Optional header shown above the body.
+      description: |
+        Optional header shown above the body. Required with
+        `type: "text"` for `product_list`; not allowed for `product`
+        or `carousel`.
       properties:
         type:
           enum:
@@ -47174,6 +47192,7 @@ components:
         document:
           $ref: "#/components/schemas/sendInboxMessage_request_interactive_header_image"
     sendInboxMessage_request_interactive_body:
+      description: "Required for every type except `product`, where it is optional."
       properties:
         text:
           description: Main body text.
@@ -47350,6 +47369,125 @@ components:
           type: string
       required:
       - name
+    sendInboxMessage_request_interactive_action_oneOf_5:
+      description: |
+        Single-product action. `type` on the parent must be
+        `product`. Requires a Meta catalog connected to the
+        WhatsApp Business Account in Commerce Manager.
+      properties:
+        catalog_id:
+          description: Meta catalog ID connected to the WhatsApp Business Account.
+          type: string
+        product_retailer_id:
+          description: Retailer ID (SKU) of the product inside the catalog.
+          type: string
+      required:
+      - catalog_id
+      - product_retailer_id
+    sendInboxMessage_request_interactive_action_oneOf_6_sections_inner_product_items_inner:
+      properties:
+        product_retailer_id:
+          description: Retailer ID (SKU) of the product inside the catalog.
+          type: string
+      required:
+      - product_retailer_id
+    sendInboxMessage_request_interactive_action_oneOf_6_sections_inner:
+      properties:
+        title:
+          description: Optional section header.
+          type: string
+        product_items:
+          items:
+            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_6_sections_inner_product_items_inner"
+          minItems: 1
+          type: array
+      required:
+      - product_items
+    sendInboxMessage_request_interactive_action_oneOf_6:
+      description: |
+        Multi-product action. `type` on the parent must be
+        `product_list`. Requires a Meta catalog connected to the
+        WhatsApp Business Account in Commerce Manager.
+      properties:
+        catalog_id:
+          description: Meta catalog ID connected to the WhatsApp Business Account.
+          type: string
+        sections:
+          description: 1-10 sections. Total products across all sections cannot exceed
+            30.
+          items:
+            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_6_sections_inner"
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - catalog_id
+      - sections
+    sendInboxMessage_request_interactive_action_oneOf_7_parameters:
+      properties:
+        thumbnail_product_retailer_id:
+          description: Optional product whose image is used as the message thumbnail.
+            Falls back to the first catalog item when omitted.
+          type: string
+    sendInboxMessage_request_interactive_action_oneOf_7:
+      description: |
+        Catalog-message action. `type` on the parent must be
+        `catalog_message`. May be omitted entirely; it is defaulted
+        to `{ "name": "catalog_message" }`. Requires a Meta catalog
+        connected to the WhatsApp Business Account in Commerce
+        Manager.
+      properties:
+        name:
+          enum:
+          - catalog_message
+          type: string
+        parameters:
+          $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_7_parameters"
+      required:
+      - name
+    sendInboxMessage_request_interactive_action_oneOf_8_cards_inner:
+      additionalProperties: {}
+      properties:
+        card_index:
+          description: Card position. Auto-filled sequentially when omitted.
+          maximum: 9
+          minimum: 0
+          type: integer
+        type:
+          description: '`product` for a product card; media cards use `cta_url` or
+            a quick-reply type.'
+          type: string
+        header:
+          description: Media cards only
+          type: object
+        body:
+          description: Optional card body text.
+          type: object
+        action:
+          description: "Product cards: `{ catalog_id, product_retailer_id }` (required).\
+            \ Media cards: the card's button action (e.g. `cta_url` with `parameters.display_text`\
+            \ and `parameters.url`)."
+          type: object
+    sendInboxMessage_request_interactive_action_oneOf_8:
+      description: |
+        Carousel action. `type` on the parent must be `carousel`.
+        Carries 2-10 cards, either all product cards
+        (`type: "product"`, all referencing the same `catalog_id`)
+        or media cards (any other `type`, e.g. `cta_url`, with a
+        required image/video `header` on each card). `card_index`
+        (0-9, non-repeating) is auto-filled sequentially when
+        omitted. Product carousels require a Meta catalog connected
+        to the WhatsApp Business Account in Commerce Manager; media
+        carousels do not.
+      properties:
+        cards:
+          items:
+            $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_8_cards_inner"
+          maxItems: 10
+          minItems: 2
+          type: array
+      required:
+      - cards
     sendInboxMessage_request_interactive_action:
       oneOf:
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf"
@@ -47357,19 +47495,39 @@ components:
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_2"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_3"
       - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_4"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_5"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_6"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_7"
+      - $ref: "#/components/schemas/sendInboxMessage_request_interactive_action_oneOf_8"
     sendInboxMessage_request_interactive:
       description: |
         WhatsApp-only. Rich interactive payload for list messages, CTA URL
-        buttons, Flow prompts, and location requests. When set, takes
-        priority over `buttons` and `quickReplies`. The shape mirrors
-        Meta's Cloud API `interactive` object verbatim, so any payload
-        that works against Meta directly will also work here.
+        buttons, Flow prompts, location requests, voice-call buttons, and
+        commerce messages (single product, product list, catalog, and
+        carousel). When set, takes priority over `buttons` and
+        `quickReplies`. The shape mirrors Meta's Cloud API `interactive`
+        object verbatim, so any payload that works against Meta directly
+        will also work here.
 
         Use `buttons` / `quickReplies` for simple button replies
-        (WhatsApp's `interactive.type: "button"`) — the abstraction caps at
+        (WhatsApp's `interactive.type: "button"`): the abstraction caps at
         3 buttons and handles the auto-conversion for you. Use this field
-        only for `list`, `cta_url`, `flow`, `location_request_message`, or
-        `voice_call` messages.
+        only for the types listed in the enum below.
+
+        All interactive messages are session messages: they can only be
+        sent inside the 24-hour customer service window opened by the
+        user's last inbound message.
+
+        Commerce types (`product`, `product_list`, `catalog_message`, and
+        product carousels) require a Meta catalog connected to the
+        WhatsApp Business Account in Commerce Manager. Media carousels
+        (image/video cards) do not need a catalog.
+
+        For `product`, `body` is optional (WhatsApp renders the product
+        card itself) and `header` is not allowed (the product image is
+        the header). For `product_list`, a `header` with `type: "text"`
+        is required. For `carousel`, top-level `header`/`footer` are not
+        supported; media goes on each card instead.
 
         For `voice_call`, the message renders WhatsApp's native call
         button; tapping it starts a voice call to your business number.
@@ -47382,8 +47540,13 @@ components:
         "Send location" button; the user's reply arrives as a regular
         location message in the conversation.
 
+        For `catalog_message`, `action` may also be omitted (we default it
+        to `{ "name": "catalog_message" }`).
+
         Tap events come back via the `message.received` webhook with
         `metadata.interactiveType` set to `list_reply` or `nfm_reply`.
+        Carts submitted from commerce messages arrive as `metadata.order`;
+        product inquiries arrive as `metadata.referredProduct`.
       properties:
         type:
           description: Which interactive layout to render.
@@ -47393,6 +47556,10 @@ components:
           - flow
           - location_request_message
           - voice_call
+          - product
+          - product_list
+          - catalog_message
+          - carousel
           type: string
         header:
           $ref: "#/components/schemas/sendInboxMessage_request_interactive_header"
@@ -47403,7 +47570,6 @@ components:
         action:
           $ref: "#/components/schemas/sendInboxMessage_request_interactive_action"
       required:
-      - body
       - type
     sendInboxMessage_request_replyMarkup_keyboard_inner_inner:
       properties:
@@ -65970,6 +66136,68 @@ components:
       - sender
       - sentAt
       - text
+    WebhookPayloadMessage_metadata_order_product_items_inner:
+      example:
+        quantity: 6
+        product_retailer_id: product_retailer_id
+        item_price: 1.4658129805029452
+        currency: currency
+      properties:
+        product_retailer_id:
+          description: Retailer ID (SKU) of the ordered product.
+          type: string
+        quantity:
+          description: Quantity ordered for this line item.
+          type: integer
+        item_price:
+          description: Unit price of the item.
+          type: number
+        currency:
+          description: ISO 4217 currency code (e.g. USD).
+          type: string
+    WebhookPayloadMessage_metadata_order:
+      description: |
+        WhatsApp only. Cart submitted by the user from a commerce message
+        (catalog, product, or product-list message). Meta's `order` object
+        forwarded verbatim.
+      example:
+        catalog_id: catalog_id
+        product_items:
+        - quantity: 6
+          product_retailer_id: product_retailer_id
+          item_price: 1.4658129805029452
+          currency: currency
+        - quantity: 6
+          product_retailer_id: product_retailer_id
+          item_price: 1.4658129805029452
+          currency: currency
+        text: text
+      properties:
+        catalog_id:
+          description: Meta catalog the ordered products belong to.
+          type: string
+        text:
+          description: Optional free-text note the user attached to the cart.
+          type: string
+        product_items:
+          items:
+            $ref: "#/components/schemas/WebhookPayloadMessage_metadata_order_product_items_inner"
+          type: array
+    WebhookPayloadMessage_metadata_referredProduct:
+      description: |
+        WhatsApp only. The product the user is asking about. Set when an
+        inbound text carries Meta's `context.referred_product` (the user
+        tapped "Message business" on a product). Forwarded verbatim.
+      example:
+        catalog_id: catalog_id
+        product_retailer_id: product_retailer_id
+      properties:
+        catalog_id:
+          description: Meta catalog the product belongs to.
+          type: string
+        product_retailer_id:
+          description: Retailer ID (SKU) of the product being asked about.
+          type: string
     WebhookPayloadMessage_metadata_storyReply:
       description: |
         Instagram only. Populated when an IG user replies to one of the
@@ -66098,11 +66326,14 @@ components:
         \ reply tap, postback button tap, or inline keyboard callback)"
       example:
         quickReplyPayload: quickReplyPayload
-        interactiveType: button_reply
         postbackTitle: postbackTitle
         storyReply:
           storyId: storyId
           storyUrl: storyUrl
+        flowResponseJson: flowResponseJson
+        postbackPayload: postbackPayload
+        interactiveId: interactiveId
+        interactiveType: button_reply
         referral:
           image_url: image_url
           source_type: source_type
@@ -66126,13 +66357,25 @@ components:
           ctwa_clid: ctwa_clid
           headline: headline
         isStoryMention: true
-        flowResponseJson: flowResponseJson
+        referredProduct:
+          catalog_id: catalog_id
+          product_retailer_id: product_retailer_id
         callbackData: callbackData
         flowResponseData:
           key: ""
-        postbackPayload: postbackPayload
-        interactiveId: interactiveId
         buttonPayload: buttonPayload
+        order:
+          catalog_id: catalog_id
+          product_items:
+          - quantity: 6
+            product_retailer_id: product_retailer_id
+            item_price: 1.4658129805029452
+            currency: currency
+          - quantity: 6
+            product_retailer_id: product_retailer_id
+            item_price: 1.4658129805029452
+            currency: currency
+          text: text
       properties:
         quickReplyPayload:
           description: Payload from a quick reply tap (Facebook/Instagram Messenger).
@@ -66180,6 +66423,10 @@ components:
             `flowResponseJson` is valid JSON; otherwise omitted. Keys and
             value types depend on the specific Flow that was submitted.
           type: object
+        order:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_order"
+        referredProduct:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referredProduct"
         storyReply:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_storyReply"
         isStoryMention:

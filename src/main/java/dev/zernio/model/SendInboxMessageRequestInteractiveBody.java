@@ -30,12 +30,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * SendInboxMessageRequestInteractiveBody
+ * Required for every type except &#x60;product&#x60;, where it is optional.
  */
 @JsonPropertyOrder({
   SendInboxMessageRequestInteractiveBody.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:12:22.904423013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:39:33.978259756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveBody {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull

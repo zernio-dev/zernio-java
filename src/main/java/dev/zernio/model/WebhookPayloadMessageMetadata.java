@@ -24,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.WebhookPayloadMessageMetadataOrder;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferral;
+import dev.zernio.model.WebhookPayloadMessageMetadataReferredProduct;
 import dev.zernio.model.WebhookPayloadMessageMetadataStoryReply;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -46,11 +48,13 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_BUTTON_PAYLOAD,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_FLOW_RESPONSE_JSON,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_FLOW_RESPONSE_DATA,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_ORDER,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRED_PRODUCT,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_STORY_REPLY,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_IS_STORY_MENTION,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:12:22.904423013Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:39:33.978259756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_QUICK_REPLY_PAYLOAD = "quickReplyPayload";
   @javax.annotation.Nullable
@@ -124,6 +128,14 @@ public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_FLOW_RESPONSE_DATA = "flowResponseData";
   @javax.annotation.Nullable
   private Map<String, Object> flowResponseData = new HashMap<>();
+
+  public static final String JSON_PROPERTY_ORDER = "order";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageMetadataOrder order;
+
+  public static final String JSON_PROPERTY_REFERRED_PRODUCT = "referredProduct";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageMetadataReferredProduct referredProduct;
 
   public static final String JSON_PROPERTY_STORY_REPLY = "storyReply";
   @javax.annotation.Nullable
@@ -364,6 +376,54 @@ public class WebhookPayloadMessageMetadata {
   }
 
 
+  public WebhookPayloadMessageMetadata order(@javax.annotation.Nullable WebhookPayloadMessageMetadataOrder order) {
+    this.order = order;
+    return this;
+  }
+
+  /**
+   * Get order
+   * @return order
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageMetadataOrder getOrder() {
+    return order;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOrder(@javax.annotation.Nullable WebhookPayloadMessageMetadataOrder order) {
+    this.order = order;
+  }
+
+
+  public WebhookPayloadMessageMetadata referredProduct(@javax.annotation.Nullable WebhookPayloadMessageMetadataReferredProduct referredProduct) {
+    this.referredProduct = referredProduct;
+    return this;
+  }
+
+  /**
+   * Get referredProduct
+   * @return referredProduct
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REFERRED_PRODUCT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageMetadataReferredProduct getReferredProduct() {
+    return referredProduct;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REFERRED_PRODUCT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReferredProduct(@javax.annotation.Nullable WebhookPayloadMessageMetadataReferredProduct referredProduct) {
+    this.referredProduct = referredProduct;
+  }
+
+
   public WebhookPayloadMessageMetadata storyReply(@javax.annotation.Nullable WebhookPayloadMessageMetadataStoryReply storyReply) {
     this.storyReply = storyReply;
     return this;
@@ -457,6 +517,8 @@ public class WebhookPayloadMessageMetadata {
         Objects.equals(this.buttonPayload, webhookPayloadMessageMetadata.buttonPayload) &&
         Objects.equals(this.flowResponseJson, webhookPayloadMessageMetadata.flowResponseJson) &&
         Objects.equals(this.flowResponseData, webhookPayloadMessageMetadata.flowResponseData) &&
+        Objects.equals(this.order, webhookPayloadMessageMetadata.order) &&
+        Objects.equals(this.referredProduct, webhookPayloadMessageMetadata.referredProduct) &&
         Objects.equals(this.storyReply, webhookPayloadMessageMetadata.storyReply) &&
         Objects.equals(this.isStoryMention, webhookPayloadMessageMetadata.isStoryMention) &&
         Objects.equals(this.referral, webhookPayloadMessageMetadata.referral);
@@ -464,7 +526,7 @@ public class WebhookPayloadMessageMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, storyReply, isStoryMention, referral);
+    return Objects.hash(quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, order, referredProduct, storyReply, isStoryMention, referral);
   }
 
   @Override
@@ -480,6 +542,8 @@ public class WebhookPayloadMessageMetadata {
     sb.append("    buttonPayload: ").append(toIndentedString(buttonPayload)).append("\n");
     sb.append("    flowResponseJson: ").append(toIndentedString(flowResponseJson)).append("\n");
     sb.append("    flowResponseData: ").append(toIndentedString(flowResponseData)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    referredProduct: ").append(toIndentedString(referredProduct)).append("\n");
     sb.append("    storyReply: ").append(toIndentedString(storyReply)).append("\n");
     sb.append("    isStoryMention: ").append(toIndentedString(isStoryMention)).append("\n");
     sb.append("    referral: ").append(toIndentedString(referral)).append("\n");
@@ -577,6 +641,16 @@ public class WebhookPayloadMessageMetadata {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getFlowResponseData().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getFlowResponseData().get(_key)))));
       }
+    }
+
+    // add `order` to the URL query string
+    if (getOrder() != null) {
+      joiner.add(getOrder().toUrlQueryString(prefix + "order" + suffix));
+    }
+
+    // add `referredProduct` to the URL query string
+    if (getReferredProduct() != null) {
+      joiner.add(getReferredProduct().toUrlQueryString(prefix + "referredProduct" + suffix));
     }
 
     // add `storyReply` to the URL query string
