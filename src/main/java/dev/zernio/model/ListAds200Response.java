@@ -38,13 +38,18 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ListAds200Response.JSON_PROPERTY_ADS,
+  ListAds200Response.JSON_PROPERTY_BACKFILL_PENDING,
   ListAds200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:39:33.978259756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T14:09:01.063035328Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAds200Response {
   public static final String JSON_PROPERTY_ADS = "ads";
   @javax.annotation.Nullable
   private List<Ad> ads = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BACKFILL_PENDING = "backfillPending";
+  @javax.annotation.Nullable
+  private Boolean backfillPending;
 
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
@@ -85,6 +90,30 @@ public class ListAds200Response {
   }
 
 
+  public ListAds200Response backfillPending(@javax.annotation.Nullable Boolean backfillPending) {
+    this.backfillPending = backfillPending;
+    return this;
+  }
+
+  /**
+   * Present and true only on &#x60;202&#x60; responses: part of the requested date range is still being backfilled from the platform in the background. Retry the same request shortly; it returns 200 once the range is fully ingested.
+   * @return backfillPending
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BACKFILL_PENDING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getBackfillPending() {
+    return backfillPending;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BACKFILL_PENDING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBackfillPending(@javax.annotation.Nullable Boolean backfillPending) {
+    this.backfillPending = backfillPending;
+  }
+
+
   public ListAds200Response pagination(@javax.annotation.Nullable Pagination pagination) {
     this.pagination = pagination;
     return this;
@@ -122,12 +151,13 @@ public class ListAds200Response {
     }
     ListAds200Response listAds200Response = (ListAds200Response) o;
     return Objects.equals(this.ads, listAds200Response.ads) &&
+        Objects.equals(this.backfillPending, listAds200Response.backfillPending) &&
         Objects.equals(this.pagination, listAds200Response.pagination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ads, pagination);
+    return Objects.hash(ads, backfillPending, pagination);
   }
 
   @Override
@@ -135,6 +165,7 @@ public class ListAds200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListAds200Response {\n");
     sb.append("    ads: ").append(toIndentedString(ads)).append("\n");
+    sb.append("    backfillPending: ").append(toIndentedString(backfillPending)).append("\n");
     sb.append("    pagination: ").append(toIndentedString(pagination)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -191,6 +222,11 @@ public class ListAds200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `backfillPending` to the URL query string
+    if (getBackfillPending() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackfillPending%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackfillPending()))));
     }
 
     // add `pagination` to the URL query string

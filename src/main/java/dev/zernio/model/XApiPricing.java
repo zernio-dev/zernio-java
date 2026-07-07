@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   XApiPricing.JSON_PROPERTY_TIERS,
   XApiPricing.JSON_PROPERTY_OPERATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T11:39:33.978259756Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T14:09:01.063035328Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiPricing {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable

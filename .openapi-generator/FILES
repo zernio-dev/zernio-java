@@ -2749,14 +2749,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf5Test.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerProductItemsInnerTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf6SectionsInnerTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf6Test.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf7ParametersTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf7Test.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf8CardsInnerTest.java
-src/test/java/dev/zernio/model/SendInboxMessageRequestInteractiveActionOneOf8Test.java
-src/test/java/dev/zernio/model/WebhookPayloadMessageMetadataOrderProductItemsInnerTest.java
-src/test/java/dev/zernio/model/WebhookPayloadMessageMetadataOrderTest.java
-src/test/java/dev/zernio/model/WebhookPayloadMessageMetadataReferredProductTest.java
