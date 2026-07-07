@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversation201ResponseData.JSON_PROPERTY_PARTICIPANT_NAME,
   CreateInboxConversation201ResponseData.JSON_PROPERTY_PARTICIPANT_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-06T16:56:39.474589962Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-07T09:40:14.585283717Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversation201ResponseData {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   @javax.annotation.Nullable
@@ -96,7 +96,7 @@ public class CreateInboxConversation201ResponseData {
   }
 
   /**
-   * Platform conversation ID (dm_conversation_id)
+   * Platform conversation ID (dm_conversation_id). For WhatsApp, this is Zernio&#39;s internal conversation id (24-character hex) which matches the id returned by the list-conversations endpoint and the conversationId in the message.received and conversation.started webhooks; use it to correlate the created thread with inbound events.
    * @return conversationId
    */
   @javax.annotation.Nullable
