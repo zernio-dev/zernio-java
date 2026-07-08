@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CreateCtwaAdRequestRegionsInner.JSON_PROPERTY_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T09:46:52.484173431Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:16:21.294959329Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequestRegionsInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull
