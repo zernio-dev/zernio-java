@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAccountAdsInitialSyncCompletedSync.JSON_PROPERTY_ERROR_SUBCODE,
   WebhookPayloadAccountAdsInitialSyncCompletedSync.JSON_PROPERTY_ERROR_CATEGORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:39:28.974600283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:01:03.919180342Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAccountAdsInitialSyncCompletedSync {
   /**
    * Overall outcome of the initial sync.

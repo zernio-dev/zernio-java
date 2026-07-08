@@ -43,12 +43,13 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_SAVES,
   PostAnalytics.JSON_PROPERTY_CLICKS,
   PostAnalytics.JSON_PROPERTY_VIEWS,
+  PostAnalytics.JSON_PROPERTY_FOLLOWS,
   PostAnalytics.JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME,
   PostAnalytics.JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME,
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:39:28.974600283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:01:03.919180342Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -81,6 +82,10 @@ public class PostAnalytics {
   public static final String JSON_PROPERTY_VIEWS = "views";
   @javax.annotation.Nullable
   private Integer views;
+
+  public static final String JSON_PROPERTY_FOLLOWS = "follows";
+  @javax.annotation.Nullable
+  private Integer follows;
 
   public static final String JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME = "igReelsAvgWatchTime";
   @javax.annotation.Nullable
@@ -293,6 +298,30 @@ public class PostAnalytics {
   }
 
 
+  public PostAnalytics follows(@javax.annotation.Nullable Integer follows) {
+    this.follows = follows;
+    return this;
+  }
+
+  /**
+   * Instagram feed posts and stories only: organic accounts that started following from this post. 0 for reels and other platforms.
+   * @return follows
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FOLLOWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getFollows() {
+    return follows;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FOLLOWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFollows(@javax.annotation.Nullable Integer follows) {
+    this.follows = follows;
+  }
+
+
   public PostAnalytics igReelsAvgWatchTime(@javax.annotation.Nullable Integer igReelsAvgWatchTime) {
     this.igReelsAvgWatchTime = igReelsAvgWatchTime;
     return this;
@@ -409,6 +438,7 @@ public class PostAnalytics {
         Objects.equals(this.saves, postAnalytics.saves) &&
         Objects.equals(this.clicks, postAnalytics.clicks) &&
         Objects.equals(this.views, postAnalytics.views) &&
+        Objects.equals(this.follows, postAnalytics.follows) &&
         Objects.equals(this.igReelsAvgWatchTime, postAnalytics.igReelsAvgWatchTime) &&
         Objects.equals(this.igReelsVideoViewTotalTime, postAnalytics.igReelsVideoViewTotalTime) &&
         Objects.equals(this.engagementRate, postAnalytics.engagementRate) &&
@@ -417,7 +447,7 @@ public class PostAnalytics {
 
   @Override
   public int hashCode() {
-    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, igReelsAvgWatchTime, igReelsVideoViewTotalTime, engagementRate, lastUpdated);
+    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, engagementRate, lastUpdated);
   }
 
   @Override
@@ -432,6 +462,7 @@ public class PostAnalytics {
     sb.append("    saves: ").append(toIndentedString(saves)).append("\n");
     sb.append("    clicks: ").append(toIndentedString(clicks)).append("\n");
     sb.append("    views: ").append(toIndentedString(views)).append("\n");
+    sb.append("    follows: ").append(toIndentedString(follows)).append("\n");
     sb.append("    igReelsAvgWatchTime: ").append(toIndentedString(igReelsAvgWatchTime)).append("\n");
     sb.append("    igReelsVideoViewTotalTime: ").append(toIndentedString(igReelsVideoViewTotalTime)).append("\n");
     sb.append("    engagementRate: ").append(toIndentedString(engagementRate)).append("\n");
@@ -521,6 +552,11 @@ public class PostAnalytics {
     // add `views` to the URL query string
     if (getViews() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sviews%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getViews()))));
+    }
+
+    // add `follows` to the URL query string
+    if (getFollows() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfollows%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFollows()))));
     }
 
     // add `igReelsAvgWatchTime` to the URL query string

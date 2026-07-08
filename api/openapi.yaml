@@ -542,6 +542,7 @@ paths:
           - saves
           - clicks
           - views
+          - follows
           type: string
         style: form
       - description: Sort order
@@ -31945,16 +31946,17 @@ components:
           type: array
     PostAnalytics:
       example:
+        comments: 0
+        reach: 0
+        igReelsVideoViewTotalTime: 0
+        follows: 0
+        impressions: 0
         shares: 0
         engagementRate: 0
         lastUpdated: 2000-01-23T04:56:07.000+00:00
-        comments: 0
         saves: 0
         igReelsAvgWatchTime: 0
-        reach: 0
-        igReelsVideoViewTotalTime: 0
         clicks: 0
-        impressions: 0
         views: 0
         likes: 0
       properties:
@@ -31981,6 +31983,11 @@ components:
           example: 0
           type: integer
         views:
+          example: 0
+          type: integer
+        follows:
+          description: "Instagram feed posts and stories only: organic accounts that\
+            \ started following from this post. 0 for reels and other platforms."
           example: 0
           type: integer
         igReelsAvgWatchTime:
@@ -32090,16 +32097,17 @@ components:
         content: content
         platform: platform
         analytics:
+          comments: 0
+          reach: 0
+          igReelsVideoViewTotalTime: 0
+          follows: 0
+          impressions: 0
           shares: 0
           engagementRate: 0
           lastUpdated: 2000-01-23T04:56:07.000+00:00
-          comments: 0
           saves: 0
           igReelsAvgWatchTime: 0
-          reach: 0
-          igReelsVideoViewTotalTime: 0
           clicks: 0
-          impressions: 0
           views: 0
           likes: 0
         mediaItems:

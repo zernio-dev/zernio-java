@@ -121,7 +121,7 @@ public class Example {
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
-| **sortBy** | **String**| Sort by date, engagement, or a specific metric | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views] |
+| **sortBy** | **String**| Sort by date, engagement, or a specific metric | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 
 ### Return type
@@ -221,7 +221,7 @@ public class Example {
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
-| **sortBy** | **String**| Sort by date, engagement, or a specific metric | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views] |
+| **sortBy** | **String**| Sort by date, engagement, or a specific metric | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 
 ### Return type

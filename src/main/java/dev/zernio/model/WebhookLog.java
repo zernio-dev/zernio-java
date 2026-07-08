@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   WebhookLog.JSON_PROPERTY_RESPONSE_TIME,
   WebhookLog.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:39:28.974600283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:01:03.919180342Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookLog {
   public static final String JSON_PROPERTY_USER_ID = "userId";
   @javax.annotation.Nullable

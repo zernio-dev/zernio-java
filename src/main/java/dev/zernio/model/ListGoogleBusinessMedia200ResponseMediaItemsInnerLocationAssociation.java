@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.JSON_PROPERTY_CATEGORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:39:28.974600283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:01:03.919180342Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   @javax.annotation.Nullable
