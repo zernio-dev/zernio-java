@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListAds200Response.JSON_PROPERTY_BACKFILL_PENDING,
   ListAds200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:34:42.749572450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:39:28.974600283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAds200Response {
   public static final String JSON_PROPERTY_ADS = "ads";
   @javax.annotation.Nullable

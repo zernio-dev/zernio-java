@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppBusinessProfile200Response.JSON_PROPERTY_SUCCESS,
   GetWhatsAppBusinessProfile200Response.JSON_PROPERTY_BUSINESS_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:34:42.749572450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:39:28.974600283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppBusinessProfile200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

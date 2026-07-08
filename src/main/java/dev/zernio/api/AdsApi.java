@@ -36,6 +36,7 @@ import dev.zernio.model.CreateStandaloneAdRequest;
 import dev.zernio.model.CreateTestLead200Response;
 import dev.zernio.model.CreateTestLeadRequest;
 import dev.zernio.model.DeleteAccountGroup200Response;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.EstimateAdReach200Response;
 import dev.zernio.model.EstimateAdReachRequest;
 import dev.zernio.model.GetAd200Response;
@@ -98,7 +99,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:34:42.749572450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T10:39:28.974600283Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1880,7 +1881,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. TikTok: gender, age, country_code, platform, ac, language. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @return GetAdAnalytics200Response
    * @throws ApiException if fails to make API call
    */
@@ -1894,7 +1895,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. TikTok: gender, age, country_code, platform, ac, language. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdAnalytics200Response
    * @throws ApiException if fails to make API call
@@ -1910,7 +1911,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. TikTok: gender, age, country_code, platform, ac, language. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1924,7 +1925,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. TikTok: gender, age, country_code, platform, ac, language. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2297,7 +2298,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @return GetCampaignAnalytics200Response
    * @throws ApiException if fails to make API call
    */
@@ -2312,7 +2313,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @param headers Optional headers to include in the request
    * @return GetCampaignAnalytics200Response
    * @throws ApiException if fails to make API call
@@ -2329,7 +2330,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2344,7 +2345,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. &#x60;placement&#x60; is accepted as an alias for &#x60;publisher_platform&#x60; (Facebook vs Instagram vs Audience Network). The singular &#x60;breakdown&#x60; is accepted too. Unknown values return 400 with the supported list rather than being ignored. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
