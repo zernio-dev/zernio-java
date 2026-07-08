@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdAudienceWithHttpInfo**](AdAudiencesApi.md#getAdAudienceWithHttpInfo) | **GET** /v1/ads/audiences/{audienceId} | Get audience details |
 | [**listAdAudiences**](AdAudiencesApi.md#listAdAudiences) | **GET** /v1/ads/audiences | List custom audiences |
 | [**listAdAudiencesWithHttpInfo**](AdAudiencesApi.md#listAdAudiencesWithHttpInfo) | **GET** /v1/ads/audiences | List custom audiences |
+| [**updateAdAudience**](AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience |
+| [**updateAdAudienceWithHttpInfo**](AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update saved targeting audience |
 
 
 
@@ -331,7 +333,7 @@ ApiResponse<[**CreateAdAudience201Response**](CreateAdAudience201Response.md)>
 
 Delete custom audience
 
-Deletes the audience from both Meta and the local database.
+Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
 
 ### Example
 
@@ -404,7 +406,7 @@ public class Example {
 
 Delete custom audience
 
-Deletes the audience from both Meta and the local database.
+Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
 
 ### Example
 
@@ -783,4 +785,162 @@ ApiResponse<[**ListAdAudiences200Response**](ListAdAudiences200Response.md)>
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## updateAdAudience
+
+> CreateAdAudience201Response updateAdAudience(audienceId, updateAdAudienceRequest)
+
+Update saved targeting audience
+
+Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAudiencesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
+        String audienceId = "audienceId_example"; // String | 
+        UpdateAdAudienceRequest updateAdAudienceRequest = new UpdateAdAudienceRequest(); // UpdateAdAudienceRequest | 
+        try {
+            CreateAdAudience201Response result = apiInstance.updateAdAudience(audienceId, updateAdAudienceRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAudiencesApi#updateAdAudience");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **audienceId** | **String**|  | |
+| **updateAdAudienceRequest** | [**UpdateAdAudienceRequest**](UpdateAdAudienceRequest.md)|  | |
+
+### Return type
+
+[**CreateAdAudience201Response**](CreateAdAudience201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Audience updated |  -  |
+| **400** | Invalid body (no fields provided or malformed spec) |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **422** | The audience is not saved_targeting (uploaded/derived audiences are managed on the platform) |  -  |
+
+## updateAdAudienceWithHttpInfo
+
+> ApiResponse<CreateAdAudience201Response> updateAdAudience updateAdAudienceWithHttpInfo(audienceId, updateAdAudienceRequest)
+
+Update saved targeting audience
+
+Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAudiencesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAudiencesApi apiInstance = new AdAudiencesApi(defaultClient);
+        String audienceId = "audienceId_example"; // String | 
+        UpdateAdAudienceRequest updateAdAudienceRequest = new UpdateAdAudienceRequest(); // UpdateAdAudienceRequest | 
+        try {
+            ApiResponse<CreateAdAudience201Response> response = apiInstance.updateAdAudienceWithHttpInfo(audienceId, updateAdAudienceRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAudiencesApi#updateAdAudience");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **audienceId** | **String**|  | |
+| **updateAdAudienceRequest** | [**UpdateAdAudienceRequest**](UpdateAdAudienceRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateAdAudience201Response**](CreateAdAudience201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Audience updated |  -  |
+| **400** | Invalid body (no fields provided or malformed spec) |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **422** | The audience is not saved_targeting (uploaded/derived audiences are managed on the platform) |  -  |
 

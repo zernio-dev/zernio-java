@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   FoodMenuItemAttributes.JSON_PROPERTY_PREPARATION_METHODS,
   FoodMenuItemAttributes.JSON_PROPERTY_MEDIA_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T07:15:44.655294751Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T09:46:52.484173431Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FoodMenuItemAttributes {
   public static final String JSON_PROPERTY_PRICE = "price";
   @javax.annotation.Nullable

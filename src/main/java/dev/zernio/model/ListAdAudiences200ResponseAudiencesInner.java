@@ -39,6 +39,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_ID,
+  ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_ACCOUNT_ID,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_PLATFORM_AUDIENCE_ID,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_NAME,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_DESCRIPTION,
@@ -48,10 +49,14 @@ import dev.zernio.ApiClient;
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_SIZE,
   ListAdAudiences200ResponseAudiencesInner.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T07:15:44.655294751Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T09:46:52.484173431Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAudiences200ResponseAudiencesInner {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
+  @javax.annotation.Nullable
+  private String accountId;
 
   public static final String JSON_PROPERTY_PLATFORM_AUDIENCE_ID = "platformAudienceId";
   @javax.annotation.Nullable
@@ -155,6 +160,30 @@ public class ListAdAudiences200ResponseAudiencesInner {
 
   public void setId(@javax.annotation.Nullable String id) {
     this.id = JsonNullable.<String>of(id);
+  }
+
+
+  public ListAdAudiences200ResponseAudiencesInner accountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
+    return this;
+  }
+
+  /**
+   * Social account the audience was created against. Returned for saved_targeting items.
+   * @return accountId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAccountId() {
+    return accountId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccountId(@javax.annotation.Nullable String accountId) {
+    this.accountId = accountId;
   }
 
 
@@ -371,6 +400,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
     }
     ListAdAudiences200ResponseAudiencesInner listAdAudiences200ResponseAudiencesInner = (ListAdAudiences200ResponseAudiencesInner) o;
     return equalsNullable(this.id, listAdAudiences200ResponseAudiencesInner.id) &&
+        Objects.equals(this.accountId, listAdAudiences200ResponseAudiencesInner.accountId) &&
         Objects.equals(this.platformAudienceId, listAdAudiences200ResponseAudiencesInner.platformAudienceId) &&
         Objects.equals(this.name, listAdAudiences200ResponseAudiencesInner.name) &&
         Objects.equals(this.description, listAdAudiences200ResponseAudiencesInner.description) &&
@@ -387,7 +417,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(id), platformAudienceId, name, description, type, hashCodeNullable(spec), platform, size, status);
+    return Objects.hash(hashCodeNullable(id), accountId, platformAudienceId, name, description, type, hashCodeNullable(spec), platform, size, status);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -402,6 +432,7 @@ public class ListAdAudiences200ResponseAudiencesInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListAdAudiences200ResponseAudiencesInner {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    platformAudienceId: ").append(toIndentedString(platformAudienceId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -460,6 +491,11 @@ public class ListAdAudiences200ResponseAudiencesInner {
     // add `id` to the URL query string
     if (getId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
+    // add `accountId` to the URL query string
+    if (getAccountId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     // add `platformAudienceId` to the URL query string

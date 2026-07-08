@@ -27,6 +27,7 @@ import dev.zernio.model.GetAdAudience200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAudiences200Response;
+import dev.zernio.model.UpdateAdAudienceRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -53,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T07:15:44.655294751Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T09:46:52.484173431Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAudiencesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -427,7 +428,7 @@ public class AdAudiencesApi {
 
   /**
    * Delete custom audience
-   * Deletes the audience from both Meta and the local database.
+   * Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
    * @param audienceId  (required)
    * @return DeleteAccountGroup200Response
    * @throws ApiException if fails to make API call
@@ -438,7 +439,7 @@ public class AdAudiencesApi {
 
   /**
    * Delete custom audience
-   * Deletes the audience from both Meta and the local database.
+   * Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
    * @param audienceId  (required)
    * @param headers Optional headers to include in the request
    * @return DeleteAccountGroup200Response
@@ -451,7 +452,7 @@ public class AdAudiencesApi {
 
   /**
    * Delete custom audience
-   * Deletes the audience from both Meta and the local database.
+   * Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
    * @param audienceId  (required)
    * @return ApiResponse&lt;DeleteAccountGroup200Response&gt;
    * @throws ApiException if fails to make API call
@@ -462,7 +463,7 @@ public class AdAudiencesApi {
 
   /**
    * Delete custom audience
-   * Deletes the audience from both Meta and the local database.
+   * Deletes the audience from both the platform and the local database. &#x60;saved_targeting&#x60; audiences exist only on Zernio, so only the local record is removed.
    * @param audienceId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DeleteAccountGroup200Response&gt;
@@ -804,6 +805,138 @@ public class AdAudiencesApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update saved targeting audience
+   * Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+   * @param audienceId  (required)
+   * @param updateAdAudienceRequest  (required)
+   * @return CreateAdAudience201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdAudience201Response updateAdAudience(@javax.annotation.Nonnull String audienceId, @javax.annotation.Nonnull UpdateAdAudienceRequest updateAdAudienceRequest) throws ApiException {
+    return updateAdAudience(audienceId, updateAdAudienceRequest, null);
+  }
+
+  /**
+   * Update saved targeting audience
+   * Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+   * @param audienceId  (required)
+   * @param updateAdAudienceRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAdAudience201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdAudience201Response updateAdAudience(@javax.annotation.Nonnull String audienceId, @javax.annotation.Nonnull UpdateAdAudienceRequest updateAdAudienceRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAdAudience201Response> localVarResponse = updateAdAudienceWithHttpInfo(audienceId, updateAdAudienceRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update saved targeting audience
+   * Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+   * @param audienceId  (required)
+   * @param updateAdAudienceRequest  (required)
+   * @return ApiResponse&lt;CreateAdAudience201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdAudience201Response> updateAdAudienceWithHttpInfo(@javax.annotation.Nonnull String audienceId, @javax.annotation.Nonnull UpdateAdAudienceRequest updateAdAudienceRequest) throws ApiException {
+    return updateAdAudienceWithHttpInfo(audienceId, updateAdAudienceRequest, null);
+  }
+
+  /**
+   * Update saved targeting audience
+   * Update a &#x60;saved_targeting&#x60; audience&#39;s name, description, or spec. Only &#x60;saved_targeting&#x60; audiences are updatable (they exist only on Zernio); uploaded/derived audiences return 422, delete and recreate those instead. &#x60;spec&#x60; replaces the stored spec wholesale (no merge). Ads already created from this audience are unaffected, they snapshot the targeting at creation. 
+   * @param audienceId  (required)
+   * @param updateAdAudienceRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAdAudience201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdAudience201Response> updateAdAudienceWithHttpInfo(@javax.annotation.Nonnull String audienceId, @javax.annotation.Nonnull UpdateAdAudienceRequest updateAdAudienceRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdAudienceRequestBuilder(audienceId, updateAdAudienceRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdAudience", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateAdAudience201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAdAudience201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdAudience201Response>() {});
+        
+
+        return new ApiResponse<CreateAdAudience201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdAudienceRequestBuilder(@javax.annotation.Nonnull String audienceId, @javax.annotation.Nonnull UpdateAdAudienceRequest updateAdAudienceRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'audienceId' is set
+    if (audienceId == null) {
+      throw new ApiException(400, "Missing the required parameter 'audienceId' when calling updateAdAudience");
+    }
+    // verify the required parameter 'updateAdAudienceRequest' is set
+    if (updateAdAudienceRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdAudienceRequest' when calling updateAdAudience");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/audiences/{audienceId}"
+        .replace("{audienceId}", ApiClient.urlEncode(audienceId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdAudienceRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
