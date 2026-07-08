@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   SocialAccount.JSON_PROPERTY_ENABLED,
   SocialAccount.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:01:03.919180342Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:49:55.414064404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SocialAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull

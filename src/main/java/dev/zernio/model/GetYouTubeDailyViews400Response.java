@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetYouTubeDailyViews400Response.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:01:03.919180342Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:49:55.414064404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYouTubeDailyViews400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable

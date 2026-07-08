@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendPrivateReplyToCommentRequestButtonsInnerOneOf1.JSON_PROPERTY_TITLE,
   SendPrivateReplyToCommentRequestButtonsInnerOneOf1.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:01:03.919180342Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:49:55.414064404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendPrivateReplyToCommentRequestButtonsInnerOneOf1 {
   /**
    * Gets or Sets type
