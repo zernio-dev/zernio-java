@@ -28896,6 +28896,8 @@ components:
       description: Webhook payload for post events
       example:
         post:
+          metadata:
+            key: ""
           publishedAt: 2000-01-23T04:56:07.000+00:00
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           id: id
@@ -28954,6 +28956,8 @@ components:
         the connected social account behind that platform-write.
       example:
         post:
+          metadata:
+            key: ""
           publishedAt: 2000-01-23T04:56:07.000+00:00
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           id: id
@@ -66579,6 +66583,8 @@ components:
       - status
     WebhookPayloadPost_post:
       example:
+        metadata:
+          key: ""
         publishedAt: 2000-01-23T04:56:07.000+00:00
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         id: id
@@ -66614,6 +66620,12 @@ components:
           items:
             $ref: "#/components/schemas/WebhookPayloadPost_post_platforms_inner"
           type: array
+        metadata:
+          additionalProperties: true
+          description: "The free-form `metadata` object supplied when the post was\
+            \ created, echoed back so you can map events onto your own records. Omitted\
+            \ when the post was created without it."
+          type: object
       required:
       - content
       - id
@@ -66648,6 +66660,8 @@ components:
       - status
     WebhookPayloadPostPlatform_post:
       example:
+        metadata:
+          key: ""
         publishedAt: 2000-01-23T04:56:07.000+00:00
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         id: id
@@ -66687,6 +66701,12 @@ components:
           items:
             $ref: "#/components/schemas/WebhookPayloadPostPlatform_post_platforms_inner"
           type: array
+        metadata:
+          additionalProperties: true
+          description: "The free-form `metadata` object supplied when the post was\
+            \ created, echoed back so you can map events onto your own records. Omitted\
+            \ when the post was created without it."
+          type: object
       required:
       - content
       - id

@@ -28,7 +28,9 @@ import dev.zernio.model.WebhookPayloadPostPlatformPostPlatformsInner;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,9 +44,10 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostPlatformPost.JSON_PROPERTY_STATUS,
   WebhookPayloadPostPlatformPost.JSON_PROPERTY_SCHEDULED_FOR,
   WebhookPayloadPostPlatformPost.JSON_PROPERTY_PUBLISHED_AT,
-  WebhookPayloadPostPlatformPost.JSON_PROPERTY_PLATFORMS
+  WebhookPayloadPostPlatformPost.JSON_PROPERTY_PLATFORMS,
+  WebhookPayloadPostPlatformPost.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T10:48:54.792340652Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T11:22:43.359725694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPlatformPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -69,6 +72,10 @@ public class WebhookPayloadPostPlatformPost {
   public static final String JSON_PROPERTY_PLATFORMS = "platforms";
   @javax.annotation.Nonnull
   private List<WebhookPayloadPostPlatformPostPlatformsInner> platforms = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_METADATA = "metadata";
+  @javax.annotation.Nullable
+  private Map<String, Object> metadata = new HashMap<>();
 
   public WebhookPayloadPostPlatformPost() { 
   }
@@ -225,6 +232,38 @@ public class WebhookPayloadPostPlatformPost {
   }
 
 
+  public WebhookPayloadPostPlatformPost metadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+    return this;
+  }
+
+  public WebhookPayloadPostPlatformPost putMetadataItem(String key, Object metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+  /**
+   * The free-form &#x60;metadata&#x60; object supplied when the post was created, echoed back so you can map events onto your own records. Omitted when the post was created without it.
+   * @return metadata
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getMetadata() {
+    return metadata;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METADATA, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetadata(@javax.annotation.Nullable Map<String, Object> metadata) {
+    this.metadata = metadata;
+  }
+
+
   /**
    * Return true if this WebhookPayloadPostPlatform_post object is equal to o.
    */
@@ -242,12 +281,13 @@ public class WebhookPayloadPostPlatformPost {
         Objects.equals(this.status, webhookPayloadPostPlatformPost.status) &&
         Objects.equals(this.scheduledFor, webhookPayloadPostPlatformPost.scheduledFor) &&
         Objects.equals(this.publishedAt, webhookPayloadPostPlatformPost.publishedAt) &&
-        Objects.equals(this.platforms, webhookPayloadPostPlatformPost.platforms);
+        Objects.equals(this.platforms, webhookPayloadPostPlatformPost.platforms) &&
+        Objects.equals(this.metadata, webhookPayloadPostPlatformPost.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, content, status, scheduledFor, publishedAt, platforms);
+    return Objects.hash(id, content, status, scheduledFor, publishedAt, platforms, metadata);
   }
 
   @Override
@@ -260,6 +300,7 @@ public class WebhookPayloadPostPlatformPost {
     sb.append("    scheduledFor: ").append(toIndentedString(scheduledFor)).append("\n");
     sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    platforms: ").append(toIndentedString(platforms)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -339,6 +380,15 @@ public class WebhookPayloadPostPlatformPost {
           joiner.add(getPlatforms().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%splatforms%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
+      }
+    }
+
+    // add `metadata` to the URL query string
+    if (getMetadata() != null) {
+      for (String _key : getMetadata().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%smetadata%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getMetadata().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getMetadata().get(_key)))));
       }
     }
 
