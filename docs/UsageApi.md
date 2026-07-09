@@ -4,17 +4,159 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getBilling**](UsageApi.md#getBilling) | **GET** /v1/billing | Account billing snapshot (plan, cycle, balance, caps, status) |
+| [**getBillingWithHttpInfo**](UsageApi.md#getBillingWithHttpInfo) | **GET** /v1/billing | Account billing snapshot (plan, cycle, balance, caps, status) |
 | [**getCallsUsage**](UsageApi.md#getCallsUsage) | **GET** /v1/usage/calls | Calling usage and cost |
 | [**getCallsUsageWithHttpInfo**](UsageApi.md#getCallsUsageWithHttpInfo) | **GET** /v1/usage/calls | Calling usage and cost |
 | [**getSmsUsage**](UsageApi.md#getSmsUsage) | **GET** /v1/usage/sms | SMS usage (volumes) |
 | [**getSmsUsageWithHttpInfo**](UsageApi.md#getSmsUsageWithHttpInfo) | **GET** /v1/usage/sms | SMS usage (volumes) |
-| [**getUsage**](UsageApi.md#getUsage) | **GET** /v1/usage | Get plan and usage snapshot |
-| [**getUsageWithHttpInfo**](UsageApi.md#getUsageWithHttpInfo) | **GET** /v1/usage | Get plan and usage snapshot |
-| [**getUsageStats**](UsageApi.md#getUsageStats) | **GET** /v1/usage-stats | Get plan and usage stats |
-| [**getUsageStatsWithHttpInfo**](UsageApi.md#getUsageStatsWithHttpInfo) | **GET** /v1/usage-stats | Get plan and usage stats |
+| [**getUsage**](UsageApi.md#getUsage) | **GET** /v1/usage | Usage snapshot (default) or billed-spend metering (with params) |
+| [**getUsageWithHttpInfo**](UsageApi.md#getUsageWithHttpInfo) | **GET** /v1/usage | Usage snapshot (default) or billed-spend metering (with params) |
+| [**getUsageStats**](UsageApi.md#getUsageStats) | **GET** /v1/usage-stats | Get plan and usage snapshot (plan, limits, payment status) |
+| [**getUsageStatsWithHttpInfo**](UsageApi.md#getUsageStatsWithHttpInfo) | **GET** /v1/usage-stats | Get plan and usage snapshot (plan, limits, payment status) |
 | [**getXApiPricing**](UsageApi.md#getXApiPricing) | **GET** /v1/billing/x-pricing | Get X/Twitter API pricing table |
 | [**getXApiPricingWithHttpInfo**](UsageApi.md#getXApiPricingWithHttpInfo) | **GET** /v1/billing/x-pricing | Get X/Twitter API pricing table |
 
+
+
+## getBilling
+
+> BillingSnapshot getBilling()
+
+Account billing snapshot (plan, cycle, balance, caps, status)
+
+The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.UsageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        UsageApi apiInstance = new UsageApi(defaultClient);
+        try {
+            BillingSnapshot result = apiInstance.getBilling();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UsageApi#getBilling");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BillingSnapshot**](BillingSnapshot.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Billing snapshot |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+## getBillingWithHttpInfo
+
+> ApiResponse<BillingSnapshot> getBilling getBillingWithHttpInfo()
+
+Account billing snapshot (plan, cycle, balance, caps, status)
+
+The billing \&quot;wallet/statement\&quot; view: current plan, billing cycle, accrued balance + remaining credits this period, spend caps, and payment / access status. This is the billing half of the legacy &#x60;/v1/usage-stats&#x60; snapshot — the per-product consumption half is metering and lives on &#x60;GET /v1/usage&#x60;.  Usage-based (Metronome) accounts get a populated &#x60;balance&#x60;; legacy Stripe accounts get &#x60;balance: null&#x60; plus a deprecated &#x60;legacy.limits&#x60; block and, when payment-blocked, &#x60;status.openInvoiceUrl&#x60; / &#x60;status.declineReason&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.UsageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        UsageApi apiInstance = new UsageApi(defaultClient);
+        try {
+            ApiResponse<BillingSnapshot> response = apiInstance.getBillingWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UsageApi#getBilling");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**BillingSnapshot**](BillingSnapshot.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Billing snapshot |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getCallsUsage
@@ -345,11 +487,11 @@ ApiResponse<[**GetSmsUsage200Response**](GetSmsUsage200Response.md)>
 
 ## getUsage
 
-> UsageStats getUsage(reconcile)
+> GetUsage200Response getUsage(reconcile, range, from, to, granularity)
 
-Get plan and usage snapshot
+Usage snapshot (default) or billed-spend metering (with params)
 
-The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
 
 ### Example
 
@@ -372,9 +514,13 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         UsageApi apiInstance = new UsageApi(defaultClient);
-        Boolean reconcile = true; // Boolean | For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass `false`, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected. 
+        Boolean reconcile = true; // Boolean | Snapshot mode only. For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. 
+        String range = "cycle"; // String | Window to report. `cycle` / `prev-cycle` resolve to the customer's real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); `7d`…`12mo` are trailing windows; `custom` uses `from` / `to`. 
+        LocalDate from = LocalDate.now(); // LocalDate | Inclusive start (UTC date). Required when `range=custom`.
+        LocalDate to = LocalDate.now(); // LocalDate | Inclusive end (UTC date). Required when `range=custom`. Max span 366 days.
+        String granularity = "day"; // String | Bucketing of the `days` series: `day` (one row per UTC day), `month` (one row per calendar month, dated to the 1st), or `total` (no series — read `totals`). Does not affect `totals`. 
         try {
-            UsageStats result = apiInstance.getUsage(reconcile);
+            GetUsage200Response result = apiInstance.getUsage(reconcile, range, from, to, granularity);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsageApi#getUsage");
@@ -392,11 +538,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **reconcile** | **Boolean**| For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  | [optional] |
+| **reconcile** | **Boolean**| Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  | [optional] |
+| **range** | **String**| Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  | [optional] [default to cycle] [enum: cycle, prev-cycle, 7d, 14d, 30d, 3mo, 12mo, custom] |
+| **from** | **LocalDate**| Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. | [optional] |
+| **to** | **LocalDate**| Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. | [optional] |
+| **granularity** | **String**| Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  | [optional] [default to day] [enum: day, month, total] |
 
 ### Return type
 
-[**UsageStats**](UsageStats.md)
+[**GetUsage200Response**](GetUsage200Response.md)
 
 
 ### Authorization
@@ -411,18 +561,18 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Usage snapshot |  -  |
+| **200** | Snapshot (no metering params) or billed spend by product over the window (with metering params).  |  -  |
 | **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
 ## getUsageWithHttpInfo
 
-> ApiResponse<UsageStats> getUsage getUsageWithHttpInfo(reconcile)
+> ApiResponse<GetUsage200Response> getUsage getUsageWithHttpInfo(reconcile, range, from, to, granularity)
 
-Get plan and usage snapshot
+Usage snapshot (default) or billed-spend metering (with params)
 
-The usage hub: current plan name, billing period, plan limits, and usage counts, in one snapshot. For metered consumption over an arbitrary window with breakdowns (by day, by number), use the domain spokes: &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+Dual-mode endpoint, selected by query params — fully backward compatible:  **Without metering params (the default):** the plan / quota / usage snapshot — plan name, billing period, limits, usage counts, access state. Identical to &#x60;GET /v1/usage-stats&#x60;. Existing integrations keep working unchanged.  **With &#x60;range&#x60;, &#x60;granularity&#x60;, &#x60;from&#x60;, or &#x60;to&#x60;:** usage METERING — billed spend (USD) by product family (&#x60;accounts&#x60;, &#x60;numbers&#x60;, &#x60;calls&#x60;, &#x60;sms&#x60;, &#x60;dlc&#x60;, &#x60;xApi&#x60;, &#x60;credits&#x60;, &#x60;other&#x60;) over the window, at &#x60;day&#x60; / &#x60;month&#x60; / &#x60;total&#x60; granularity, from Metronome&#39;s invoice breakdown (the CHARGE view — always reconciles with what gets billed). Also served at &#x60;GET /v1/usage/daily&#x60;. Usage-based accounts only — legacy Stripe accounts get &#x60;{ \&quot;supported\&quot;: false, \&quot;days\&quot;: [] }&#x60;.  For per-domain consumption *volumes* use &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60;. For the billing statement (balance, credits, caps, payment status) use &#x60;GET /v1/billing&#x60;. 
 
 ### Example
 
@@ -446,9 +596,13 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         UsageApi apiInstance = new UsageApi(defaultClient);
-        Boolean reconcile = true; // Boolean | For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass `false`, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected. 
+        Boolean reconcile = true; // Boolean | Snapshot mode only. For Stripe subscription users, `true` forces a subscription reconciliation pass even when cached plan data looks complete. 
+        String range = "cycle"; // String | Window to report. `cycle` / `prev-cycle` resolve to the customer's real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); `7d`…`12mo` are trailing windows; `custom` uses `from` / `to`. 
+        LocalDate from = LocalDate.now(); // LocalDate | Inclusive start (UTC date). Required when `range=custom`.
+        LocalDate to = LocalDate.now(); // LocalDate | Inclusive end (UTC date). Required when `range=custom`. Max span 366 days.
+        String granularity = "day"; // String | Bucketing of the `days` series: `day` (one row per UTC day), `month` (one row per calendar month, dated to the 1st), or `total` (no series — read `totals`). Does not affect `totals`. 
         try {
-            ApiResponse<UsageStats> response = apiInstance.getUsageWithHttpInfo(reconcile);
+            ApiResponse<GetUsage200Response> response = apiInstance.getUsageWithHttpInfo(reconcile, range, from, to, granularity);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -468,11 +622,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **reconcile** | **Boolean**| For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete. Omit the parameter, or pass &#x60;false&#x60;, to use the default first-time-only reconciliation behavior. Invalid boolean values are rejected.  | [optional] |
+| **reconcile** | **Boolean**| Snapshot mode only. For Stripe subscription users, &#x60;true&#x60; forces a subscription reconciliation pass even when cached plan data looks complete.  | [optional] |
+| **range** | **String**| Window to report. &#x60;cycle&#x60; / &#x60;prev-cycle&#x60; resolve to the customer&#39;s real billing-period bounds (falling back to a trailing 30 days when no invoice exists yet); &#x60;7d&#x60;…&#x60;12mo&#x60; are trailing windows; &#x60;custom&#x60; uses &#x60;from&#x60; / &#x60;to&#x60;.  | [optional] [default to cycle] [enum: cycle, prev-cycle, 7d, 14d, 30d, 3mo, 12mo, custom] |
+| **from** | **LocalDate**| Inclusive start (UTC date). Required when &#x60;range&#x3D;custom&#x60;. | [optional] |
+| **to** | **LocalDate**| Inclusive end (UTC date). Required when &#x60;range&#x3D;custom&#x60;. Max span 366 days. | [optional] |
+| **granularity** | **String**| Bucketing of the &#x60;days&#x60; series: &#x60;day&#x60; (one row per UTC day), &#x60;month&#x60; (one row per calendar month, dated to the 1st), or &#x60;total&#x60; (no series — read &#x60;totals&#x60;). Does not affect &#x60;totals&#x60;.  | [optional] [default to day] [enum: day, month, total] |
 
 ### Return type
 
-ApiResponse<[**UsageStats**](UsageStats.md)>
+ApiResponse<[**GetUsage200Response**](GetUsage200Response.md)>
 
 
 ### Authorization
@@ -487,7 +645,7 @@ ApiResponse<[**UsageStats**](UsageStats.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Usage snapshot |  -  |
+| **200** | Snapshot (no metering params) or billed spend by product over the window (with metering params).  |  -  |
 | **400** | Invalid query parameter |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
@@ -497,9 +655,9 @@ ApiResponse<[**UsageStats**](UsageStats.md)>
 
 > UsageStats getUsageStats(reconcile)
 
-Get plan and usage stats
+Get plan and usage snapshot (plan, limits, payment status)
 
-Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
 
 ### Example
 
@@ -570,9 +728,9 @@ public class Example {
 
 > ApiResponse<UsageStats> getUsageStats getUsageStatsWithHttpInfo(reconcile)
 
-Get plan and usage stats
+Get plan and usage snapshot (plan, limits, payment status)
 
-Deprecated alias of &#x60;GET /v1/usage&#x60;; same contract. New integrations should use that path (the usage hub), with &#x60;GET /v1/usage/calls&#x60; and &#x60;GET /v1/usage/sms&#x60; for metered breakdowns.  Returns the current plan name, billing period, plan limits, and usage counts.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
+The plan / quota / payment-status snapshot: current plan name, billing period, plan limits, usage counts, and access state. Identical to a bare &#x60;GET /v1/usage&#x60; call (this path is its deprecated alias). For billed spend by product, call &#x60;GET /v1/usage&#x60; with &#x60;range&#x60; / &#x60;granularity&#x60; params. The statement view (balance, credits, caps, payment status) lives at &#x60;GET /v1/billing&#x60;.  The response shape depends on the account&#39;s &#x60;billingSystem&#x60;:   * Stripe users: per-period &#x60;usage.uploads&#x60; / &#x60;usage.profiles&#x60; counters.   * Metronome (usage-based) users: &#x60;usage.connectedAccounts&#x60;,     &#x60;usage.xApiCallsByOperation&#x60; (per-operation X API call counts —     resolve keys via &#x60;GET /v1/billing/x-pricing&#x60;), plus a &#x60;spend&#x60;     block with &#x60;currentPeriodCents&#x60;, &#x60;xSpendCents&#x60;, and     &#x60;xSpendLimitCents&#x60;. The legacy &#x60;usage.xApiCalls&#x60; 3-tier     aggregate is still emitted for back-compat but excludes the     $0.200 URL tier and any future tiers — new clients should     consume &#x60;xApiCallsByOperation&#x60; only. 
 
 ### Example
 

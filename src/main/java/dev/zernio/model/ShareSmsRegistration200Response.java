@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ShareSmsRegistration200Response.JSON_PROPERTY_URL,
   ShareSmsRegistration200Response.JSON_PROPERTY_EXPIRES_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T12:59:15.453718820Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ShareSmsRegistration200Response {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nullable

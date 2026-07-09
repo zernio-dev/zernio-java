@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-09T12:59:15.453718820Z[Etc/UTC]
+- Build date: 2026-07-09T14:16:23.536711314Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -798,14 +798,16 @@ Class | Method | HTTP request | Description
 *TwitterEngagementApi* | [**undoRetweetWithHttpInfo**](docs/TwitterEngagementApi.md#undoRetweetWithHttpInfo) | **DELETE** /v1/twitter/retweet | Undo retweet
 *TwitterEngagementApi* | [**unfollowUser**](docs/TwitterEngagementApi.md#unfollowUser) | **DELETE** /v1/twitter/follow | Unfollow a user
 *TwitterEngagementApi* | [**unfollowUserWithHttpInfo**](docs/TwitterEngagementApi.md#unfollowUserWithHttpInfo) | **DELETE** /v1/twitter/follow | Unfollow a user
+*UsageApi* | [**getBilling**](docs/UsageApi.md#getBilling) | **GET** /v1/billing | Account billing snapshot (plan, cycle, balance, caps, status)
+*UsageApi* | [**getBillingWithHttpInfo**](docs/UsageApi.md#getBillingWithHttpInfo) | **GET** /v1/billing | Account billing snapshot (plan, cycle, balance, caps, status)
 *UsageApi* | [**getCallsUsage**](docs/UsageApi.md#getCallsUsage) | **GET** /v1/usage/calls | Calling usage and cost
 *UsageApi* | [**getCallsUsageWithHttpInfo**](docs/UsageApi.md#getCallsUsageWithHttpInfo) | **GET** /v1/usage/calls | Calling usage and cost
 *UsageApi* | [**getSmsUsage**](docs/UsageApi.md#getSmsUsage) | **GET** /v1/usage/sms | SMS usage (volumes)
 *UsageApi* | [**getSmsUsageWithHttpInfo**](docs/UsageApi.md#getSmsUsageWithHttpInfo) | **GET** /v1/usage/sms | SMS usage (volumes)
-*UsageApi* | [**getUsage**](docs/UsageApi.md#getUsage) | **GET** /v1/usage | Get plan and usage snapshot
-*UsageApi* | [**getUsageWithHttpInfo**](docs/UsageApi.md#getUsageWithHttpInfo) | **GET** /v1/usage | Get plan and usage snapshot
-*UsageApi* | [**getUsageStats**](docs/UsageApi.md#getUsageStats) | **GET** /v1/usage-stats | Get plan and usage stats
-*UsageApi* | [**getUsageStatsWithHttpInfo**](docs/UsageApi.md#getUsageStatsWithHttpInfo) | **GET** /v1/usage-stats | Get plan and usage stats
+*UsageApi* | [**getUsage**](docs/UsageApi.md#getUsage) | **GET** /v1/usage | Usage snapshot (default) or billed-spend metering (with params)
+*UsageApi* | [**getUsageWithHttpInfo**](docs/UsageApi.md#getUsageWithHttpInfo) | **GET** /v1/usage | Usage snapshot (default) or billed-spend metering (with params)
+*UsageApi* | [**getUsageStats**](docs/UsageApi.md#getUsageStats) | **GET** /v1/usage-stats | Get plan and usage snapshot (plan, limits, payment status)
+*UsageApi* | [**getUsageStatsWithHttpInfo**](docs/UsageApi.md#getUsageStatsWithHttpInfo) | **GET** /v1/usage-stats | Get plan and usage snapshot (plan, limits, payment status)
 *UsageApi* | [**getXApiPricing**](docs/UsageApi.md#getXApiPricing) | **GET** /v1/billing/x-pricing | Get X/Twitter API pricing table
 *UsageApi* | [**getXApiPricingWithHttpInfo**](docs/UsageApi.md#getXApiPricingWithHttpInfo) | **GET** /v1/billing/x-pricing | Get X/Twitter API pricing table
 *UsersApi* | [**getUser**](docs/UsersApi.md#getUser) | **GET** /v1/users/{userId} | Get user
@@ -1103,6 +1105,14 @@ Class | Method | HTTP request | Description
  - [BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
  - [BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
  - [BidStrategy](docs/BidStrategy.md)
+ - [BillingSnapshot](docs/BillingSnapshot.md)
+ - [BillingSnapshotBalance](docs/BillingSnapshotBalance.md)
+ - [BillingSnapshotCaps](docs/BillingSnapshotCaps.md)
+ - [BillingSnapshotLegacy](docs/BillingSnapshotLegacy.md)
+ - [BillingSnapshotLegacyLimits](docs/BillingSnapshotLegacyLimits.md)
+ - [BillingSnapshotPeriod](docs/BillingSnapshotPeriod.md)
+ - [BillingSnapshotPlan](docs/BillingSnapshotPlan.md)
+ - [BillingSnapshotStatus](docs/BillingSnapshotStatus.md)
  - [BlockWhatsAppUsers200Response](docs/BlockWhatsAppUsers200Response.md)
  - [BlockWhatsAppUsers200ResponseBlockedInner](docs/BlockWhatsAppUsers200ResponseBlockedInner.md)
  - [BlockWhatsAppUsers200ResponseFailedInner](docs/BlockWhatsAppUsers200ResponseFailedInner.md)
@@ -1599,6 +1609,7 @@ Class | Method | HTTP request | Description
  - [GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
+ - [GetUsage200Response](docs/GetUsage200Response.md)
  - [GetUser200Response](docs/GetUser200Response.md)
  - [GetUser200ResponseUser](docs/GetUser200ResponseUser.md)
  - [GetVoiceCall200Response](docs/GetVoiceCall200Response.md)
@@ -2239,6 +2250,14 @@ Class | Method | HTTP request | Description
  - [UploadWhatsAppProfilePhotoRequest1](docs/UploadWhatsAppProfilePhotoRequest1.md)
  - [UploadedFile](docs/UploadedFile.md)
  - [UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)
+ - [UsageMetering](docs/UsageMetering.md)
+ - [UsageMeteringCallUsage](docs/UsageMeteringCallUsage.md)
+ - [UsageMeteringCallUsageWhatsapp](docs/UsageMeteringCallUsageWhatsapp.md)
+ - [UsageMeteringDaysInner](docs/UsageMeteringDaysInner.md)
+ - [UsageMeteringLineItemsInner](docs/UsageMeteringLineItemsInner.md)
+ - [UsageMeteringPeaks](docs/UsageMeteringPeaks.md)
+ - [UsageMeteringPeriod](docs/UsageMeteringPeriod.md)
+ - [UsageMeteringTotals](docs/UsageMeteringTotals.md)
  - [UsageStats](docs/UsageStats.md)
  - [UsageStatsLimits](docs/UsageStatsLimits.md)
  - [UsageStatsSpend](docs/UsageStatsSpend.md)
