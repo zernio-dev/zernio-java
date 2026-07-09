@@ -4917,7 +4917,7 @@ ApiResponse<[**UpdateWhatsAppTemplate200Response**](UpdateWhatsAppTemplate200Res
 
 Upload profile picture
 
-Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
 
 ### Example
 
@@ -4975,16 +4975,17 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: multipart/form-data, application/json
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Profile picture updated successfully |  -  |
-| **400** | Invalid file type, file too large, or missing parameters |  -  |
+| **400** | Invalid file type/URL, file too large, or missing parameters |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+| **422** | Profile photo is locked for WhatsApp coexistence numbers (manage it in the WhatsApp Business app) |  -  |
 
 ## uploadWhatsAppProfilePhotoWithHttpInfo
 
@@ -4992,7 +4993,7 @@ public class Example {
 
 Upload profile picture
 
-Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
 
 ### Example
 
@@ -5053,14 +5054,15 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: multipart/form-data
+- **Content-Type**: multipart/form-data, application/json
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Profile picture updated successfully |  -  |
-| **400** | Invalid file type, file too large, or missing parameters |  -  |
+| **400** | Invalid file type/URL, file too large, or missing parameters |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+| **422** | Profile photo is locked for WhatsApp coexistence numbers (manage it in the WhatsApp Business app) |  -  |
 

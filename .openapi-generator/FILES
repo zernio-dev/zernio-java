@@ -1239,6 +1239,7 @@ docs/UploadWhatsAppFlowJson200ResponseValidationErrorsInner.md
 docs/UploadWhatsAppFlowJsonRequest.md
 docs/UploadWhatsAppFlowJsonRequestFlowJson.md
 docs/UploadWhatsAppProfilePhotoRequest.md
+docs/UploadWhatsAppProfilePhotoRequest1.md
 docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
 docs/UsageApi.md
@@ -2656,6 +2657,7 @@ src/main/java/dev/zernio/model/UploadWhatsAppFlowJson200ResponseValidationErrors
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJsonRequest.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJsonRequestFlowJson.java
 src/main/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest.java
+src/main/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest1.java
 src/main/java/dev/zernio/model/UploadedFile.java
 src/main/java/dev/zernio/model/UploadedOrDerivedAudience.java
 src/main/java/dev/zernio/model/UsageStats.java
@@ -2793,3 +2795,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest1Test.java

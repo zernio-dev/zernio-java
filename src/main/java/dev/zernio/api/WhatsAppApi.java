@@ -93,7 +93,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T12:49:34.330424369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T12:59:15.453718820Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4555,7 +4555,7 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
    * @param accountId WhatsApp social account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @return UnpublishPost200Response
@@ -4567,7 +4567,7 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
    * @param accountId WhatsApp social account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @param headers Optional headers to include in the request
@@ -4581,7 +4581,7 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
    * @param accountId WhatsApp social account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @return ApiResponse&lt;UnpublishPost200Response&gt;
@@ -4593,7 +4593,7 @@ public class WhatsAppApi {
 
   /**
    * Upload profile picture
-   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle. 
+   * Upload a new profile picture for the WhatsApp Business Profile. Uses Meta&#39;s resumable upload API under the hood: creates an upload session, uploads the image bytes, then updates the business profile with the resulting handle.  Provide the image either as a binary upload (&#x60;multipart/form-data&#x60; with &#x60;file&#x60;) or as a download URL (&#x60;application/json&#x60; with &#x60;url&#x60;) — with a URL we fetch the image server-side and upload the bytes for you. Meta&#39;s profile-photo API is bytes-only, so there is no direct URL passthrough. JPEG/PNG, max 5MB either way. 
    * @param accountId WhatsApp social account ID (required)
    * @param _file Image file (JPEG or PNG, max 5MB, recommended 640x640) (required)
    * @param headers Optional headers to include in the request
