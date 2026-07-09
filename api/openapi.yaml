@@ -52172,6 +52172,8 @@ components:
           description: Required for every entityType except SOLE_PROPRIETOR.
           type: string
         phone:
+          description: Business contact phone. Required for every entityType except
+            SOLE_PROPRIETOR.
           type: string
         mobilePhone:
           description: Required for SOLE_PROPRIETOR; the verification OTP is texted
@@ -52195,6 +52197,9 @@ components:
           format: email
           type: string
         website:
+          description: The brand's website (sole proprietors may use a social profile
+            such as LinkedIn or a business Facebook page). Carriers verify the brand
+            against it; a bare domain is normalized to https://.
           type: string
         vertical:
           enum:
@@ -52225,12 +52230,22 @@ components:
         stockSymbol:
           type: string
       required:
+      - city
       - country
       - displayName
       - entityType
+      - postalCode
+      - state
+      - street
       - vertical
+      - website
     startSmsRegistration_request_campaign:
-      description: Required for 10DLC. What you'll send and how recipients opt in/out.
+      description: |
+        Required for 10DLC. What you'll send and how recipients opt in/out.
+        Opt-in/opt-out/help auto-responses must name the registered brand and
+        carry the carrier-required disclosures; submissions that don't (or that
+        are blank) are automatically rewritten to a compliant, brand-named
+        template before the campaign is filed.
       properties:
         usecase:
           type: string
@@ -52248,6 +52263,8 @@ components:
           minLength: 20
           type: string
         sample2:
+          description: Second example message; carriers require two distinct samples
+          minLength: 20
           type: string
         helpMessage:
           maxLength: 320
@@ -52287,6 +52304,7 @@ components:
       - optoutKeywords
       - optoutMessage
       - sample1
+      - sample2
       - usecase
     startSmsRegistration_request_tollFree:
       description: Required for toll_free.

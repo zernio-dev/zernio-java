@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Required for 10DLC. What you&#39;ll send and how recipients opt in/out.
+ * Required for 10DLC. What you&#39;ll send and how recipients opt in/out. Opt-in/opt-out/help auto-responses must name the registered brand and carry the carrier-required disclosures; submissions that don&#39;t (or that are blank) are automatically rewritten to a compliant, brand-named template before the campaign is filed. 
  */
 @JsonPropertyOrder({
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_USECASE,
@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_AGE_GATED,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_DIRECT_LENDING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T11:22:43.359725694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T11:54:25.886711673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestCampaign {
   public static final String JSON_PROPERTY_USECASE = "usecase";
   @javax.annotation.Nonnull
@@ -69,7 +69,7 @@ public class StartSmsRegistrationRequestCampaign {
   private String sample1;
 
   public static final String JSON_PROPERTY_SAMPLE2 = "sample2";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String sample2;
 
   public static final String JSON_PROPERTY_HELP_MESSAGE = "helpMessage";
@@ -215,26 +215,26 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
 
-  public StartSmsRegistrationRequestCampaign sample2(@javax.annotation.Nullable String sample2) {
+  public StartSmsRegistrationRequestCampaign sample2(@javax.annotation.Nonnull String sample2) {
     this.sample2 = sample2;
     return this;
   }
 
   /**
-   * Get sample2
+   * Second example message; carriers require two distinct samples
    * @return sample2
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SAMPLE2, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_SAMPLE2, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSample2() {
     return sample2;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SAMPLE2, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSample2(@javax.annotation.Nullable String sample2) {
+  @JsonProperty(value = JSON_PROPERTY_SAMPLE2, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSample2(@javax.annotation.Nonnull String sample2) {
     this.sample2 = sample2;
   }
 

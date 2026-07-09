@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestBrand.JSON_PROPERTY_VERTICAL,
   StartSmsRegistrationRequestBrand.JSON_PROPERTY_STOCK_SYMBOL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T11:22:43.359725694Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T11:54:25.886711673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestBrand {
   /**
    * Gets or Sets entityType
@@ -117,19 +117,19 @@ public class StartSmsRegistrationRequestBrand {
   private String mobilePhone;
 
   public static final String JSON_PROPERTY_STREET = "street";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String street;
 
   public static final String JSON_PROPERTY_CITY = "city";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String city;
 
   public static final String JSON_PROPERTY_STATE = "state";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String state;
 
   public static final String JSON_PROPERTY_POSTAL_CODE = "postalCode";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String postalCode;
 
   /**
@@ -176,7 +176,7 @@ public class StartSmsRegistrationRequestBrand {
   private String email;
 
   public static final String JSON_PROPERTY_WEBSITE = "website";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String website;
 
   /**
@@ -369,7 +369,7 @@ public class StartSmsRegistrationRequestBrand {
   }
 
   /**
-   * Get phone
+   * Business contact phone. Required for every entityType except SOLE_PROPRIETOR.
    * @return phone
    */
   @javax.annotation.Nullable
@@ -411,7 +411,7 @@ public class StartSmsRegistrationRequestBrand {
   }
 
 
-  public StartSmsRegistrationRequestBrand street(@javax.annotation.Nullable String street) {
+  public StartSmsRegistrationRequestBrand street(@javax.annotation.Nonnull String street) {
     this.street = street;
     return this;
   }
@@ -420,22 +420,22 @@ public class StartSmsRegistrationRequestBrand {
    * Get street
    * @return street
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STREET, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STREET, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getStreet() {
     return street;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STREET, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStreet(@javax.annotation.Nullable String street) {
+  @JsonProperty(value = JSON_PROPERTY_STREET, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStreet(@javax.annotation.Nonnull String street) {
     this.street = street;
   }
 
 
-  public StartSmsRegistrationRequestBrand city(@javax.annotation.Nullable String city) {
+  public StartSmsRegistrationRequestBrand city(@javax.annotation.Nonnull String city) {
     this.city = city;
     return this;
   }
@@ -444,22 +444,22 @@ public class StartSmsRegistrationRequestBrand {
    * Get city
    * @return city
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CITY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CITY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getCity() {
     return city;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CITY, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(@javax.annotation.Nullable String city) {
+  @JsonProperty(value = JSON_PROPERTY_CITY, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCity(@javax.annotation.Nonnull String city) {
     this.city = city;
   }
 
 
-  public StartSmsRegistrationRequestBrand state(@javax.annotation.Nullable String state) {
+  public StartSmsRegistrationRequestBrand state(@javax.annotation.Nonnull String state) {
     this.state = state;
     return this;
   }
@@ -468,22 +468,22 @@ public class StartSmsRegistrationRequestBrand {
    * Get state
    * @return state
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_STATE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getState() {
     return state;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_STATE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setState(@javax.annotation.Nullable String state) {
+  @JsonProperty(value = JSON_PROPERTY_STATE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setState(@javax.annotation.Nonnull String state) {
     this.state = state;
   }
 
 
-  public StartSmsRegistrationRequestBrand postalCode(@javax.annotation.Nullable String postalCode) {
+  public StartSmsRegistrationRequestBrand postalCode(@javax.annotation.Nonnull String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
@@ -492,17 +492,17 @@ public class StartSmsRegistrationRequestBrand {
    * Get postalCode
    * @return postalCode
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_POSTAL_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_POSTAL_CODE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPostalCode() {
     return postalCode;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_POSTAL_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPostalCode(@javax.annotation.Nullable String postalCode) {
+  @JsonProperty(value = JSON_PROPERTY_POSTAL_CODE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPostalCode(@javax.annotation.Nonnull String postalCode) {
     this.postalCode = postalCode;
   }
 
@@ -555,26 +555,26 @@ public class StartSmsRegistrationRequestBrand {
   }
 
 
-  public StartSmsRegistrationRequestBrand website(@javax.annotation.Nullable String website) {
+  public StartSmsRegistrationRequestBrand website(@javax.annotation.Nonnull String website) {
     this.website = website;
     return this;
   }
 
   /**
-   * Get website
+   * The brand&#39;s website (sole proprietors may use a social profile such as LinkedIn or a business Facebook page). Carriers verify the brand against it; a bare domain is normalized to https://.
    * @return website
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_WEBSITE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_WEBSITE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getWebsite() {
     return website;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_WEBSITE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWebsite(@javax.annotation.Nullable String website) {
+  @JsonProperty(value = JSON_PROPERTY_WEBSITE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setWebsite(@javax.annotation.Nonnull String website) {
     this.website = website;
   }
 

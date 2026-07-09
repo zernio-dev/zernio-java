@@ -12,15 +12,15 @@ Required for 10DLC. The legal entity behind the traffic (TCR brand).
 |**displayName** | **String** |  |  |
 |**companyName** | **String** | Legal company name. Required for every entityType except SOLE_PROPRIETOR. |  [optional] |
 |**ein** | **String** | Required for every entityType except SOLE_PROPRIETOR. |  [optional] |
-|**phone** | **String** |  |  [optional] |
+|**phone** | **String** | Business contact phone. Required for every entityType except SOLE_PROPRIETOR. |  [optional] |
 |**mobilePhone** | **String** | Required for SOLE_PROPRIETOR; the verification OTP is texted there (US/CA mobile). |  [optional] |
-|**street** | **String** |  |  [optional] |
-|**city** | **String** |  |  [optional] |
-|**state** | **String** |  |  [optional] |
-|**postalCode** | **String** |  |  [optional] |
+|**street** | **String** |  |  |
+|**city** | **String** |  |  |
+|**state** | **String** |  |  |
+|**postalCode** | **String** |  |  |
 |**country** | [**CountryEnum**](#CountryEnum) |  |  |
 |**email** | **String** | Brand contact email; defaults to your account email when omitted. |  [optional] |
-|**website** | **String** |  |  [optional] |
+|**website** | **String** | The brand&#39;s website (sole proprietors may use a social profile such as LinkedIn or a business Facebook page). Carriers verify the brand against it; a bare domain is normalized to https://. |  |
 |**vertical** | [**VerticalEnum**](#VerticalEnum) |  |  |
 |**stockSymbol** | **String** |  |  [optional] |
 
