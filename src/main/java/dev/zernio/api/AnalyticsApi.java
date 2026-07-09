@@ -28,6 +28,7 @@ import dev.zernio.model.GetBestTimeToPost200Response;
 import dev.zernio.model.GetBestTimeToPost403Response;
 import dev.zernio.model.GetContentDecay200Response;
 import dev.zernio.model.GetDailyMetrics200Response;
+import dev.zernio.model.GetFacebookPostReactions200Response;
 import dev.zernio.model.GetFollowerStats403Response;
 import dev.zernio.model.GetGoogleBusinessPerformance200Response;
 import dev.zernio.model.GetGoogleBusinessPerformance400Response;
@@ -91,7 +92,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -982,6 +983,147 @@ public class AnalyticsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
     localVarQueryParameterBaseName = "metricType";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("metricType", metricType));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get Facebook post reactions
+   * Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+   * @param accountId The ID of the Facebook Page account (required)
+   * @param postId The Facebook post ID (required)
+   * @return GetFacebookPostReactions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetFacebookPostReactions200Response getFacebookPostReactions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId) throws ApiException {
+    return getFacebookPostReactions(accountId, postId, null);
+  }
+
+  /**
+   * Get Facebook post reactions
+   * Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+   * @param accountId The ID of the Facebook Page account (required)
+   * @param postId The Facebook post ID (required)
+   * @param headers Optional headers to include in the request
+   * @return GetFacebookPostReactions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetFacebookPostReactions200Response getFacebookPostReactions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetFacebookPostReactions200Response> localVarResponse = getFacebookPostReactionsWithHttpInfo(accountId, postId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Facebook post reactions
+   * Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+   * @param accountId The ID of the Facebook Page account (required)
+   * @param postId The Facebook post ID (required)
+   * @return ApiResponse&lt;GetFacebookPostReactions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetFacebookPostReactions200Response> getFacebookPostReactionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId) throws ApiException {
+    return getFacebookPostReactionsWithHttpInfo(accountId, postId, null);
+  }
+
+  /**
+   * Get Facebook post reactions
+   * Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+   * @param accountId The ID of the Facebook Page account (required)
+   * @param postId The Facebook post ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetFacebookPostReactions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetFacebookPostReactions200Response> getFacebookPostReactionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getFacebookPostReactionsRequestBuilder(accountId, postId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getFacebookPostReactions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetFacebookPostReactions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetFacebookPostReactions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetFacebookPostReactions200Response>() {});
+        
+
+        return new ApiResponse<GetFacebookPostReactions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getFacebookPostReactionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String postId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getFacebookPostReactions");
+    }
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling getFacebookPostReactions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/facebook-post-reactions"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "postId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("postId", postId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

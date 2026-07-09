@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_WEBSITE_URL,
   GetGmbLocations200ResponseLocationsInner.JSON_PROPERTY_STORE_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGmbLocations200ResponseLocationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

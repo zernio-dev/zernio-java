@@ -19,6 +19,8 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.DeleteInboxComment200Response;
+import dev.zernio.model.EditInboxComment200Response;
+import dev.zernio.model.EditInboxCommentRequest;
 import dev.zernio.model.GetInboxPostComments200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.HideInboxComment200Response;
@@ -33,7 +35,9 @@ import dev.zernio.model.ReplyToInboxPostRequest;
 import dev.zernio.model.SendInboxMessage400Response;
 import dev.zernio.model.SendPrivateReplyToComment200Response;
 import dev.zernio.model.SendPrivateReplyToCommentRequest;
+import dev.zernio.model.SetCommentModerationRequest;
 import dev.zernio.model.UnlikeInboxComment200Response;
+import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -317,6 +321,147 @@ public class CommentsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Edit comment
+   * Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param editInboxCommentRequest  (required)
+   * @return EditInboxComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EditInboxComment200Response editInboxComment(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull EditInboxCommentRequest editInboxCommentRequest) throws ApiException {
+    return editInboxComment(postId, commentId, editInboxCommentRequest, null);
+  }
+
+  /**
+   * Edit comment
+   * Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param editInboxCommentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return EditInboxComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public EditInboxComment200Response editInboxComment(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull EditInboxCommentRequest editInboxCommentRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<EditInboxComment200Response> localVarResponse = editInboxCommentWithHttpInfo(postId, commentId, editInboxCommentRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Edit comment
+   * Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param editInboxCommentRequest  (required)
+   * @return ApiResponse&lt;EditInboxComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EditInboxComment200Response> editInboxCommentWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull EditInboxCommentRequest editInboxCommentRequest) throws ApiException {
+    return editInboxCommentWithHttpInfo(postId, commentId, editInboxCommentRequest, null);
+  }
+
+  /**
+   * Edit comment
+   * Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param editInboxCommentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;EditInboxComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<EditInboxComment200Response> editInboxCommentWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull EditInboxCommentRequest editInboxCommentRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = editInboxCommentRequestBuilder(postId, commentId, editInboxCommentRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("editInboxComment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<EditInboxComment200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        EditInboxComment200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<EditInboxComment200Response>() {});
+        
+
+        return new ApiResponse<EditInboxComment200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder editInboxCommentRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull EditInboxCommentRequest editInboxCommentRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling editInboxComment");
+    }
+    // verify the required parameter 'commentId' is set
+    if (commentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'commentId' when calling editInboxComment");
+    }
+    // verify the required parameter 'editInboxCommentRequest' is set
+    if (editInboxCommentRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'editInboxCommentRequest' when calling editInboxComment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/comments/{postId}/{commentId}"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()))
+        .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(editInboxCommentRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -1209,6 +1354,147 @@ public class CommentsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(sendPrivateReplyToCommentRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Set comment moderation status
+   * Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param setCommentModerationRequest  (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response setCommentModeration(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull SetCommentModerationRequest setCommentModerationRequest) throws ApiException {
+    return setCommentModeration(postId, commentId, setCommentModerationRequest, null);
+  }
+
+  /**
+   * Set comment moderation status
+   * Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param setCommentModerationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response setCommentModeration(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull SetCommentModerationRequest setCommentModerationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = setCommentModerationWithHttpInfo(postId, commentId, setCommentModerationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Set comment moderation status
+   * Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param setCommentModerationRequest  (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setCommentModerationWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull SetCommentModerationRequest setCommentModerationRequest) throws ApiException {
+    return setCommentModerationWithHttpInfo(postId, commentId, setCommentModerationRequest, null);
+  }
+
+  /**
+   * Set comment moderation status
+   * Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param setCommentModerationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setCommentModerationWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull SetCommentModerationRequest setCommentModerationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = setCommentModerationRequestBuilder(postId, commentId, setCommentModerationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("setCommentModeration", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder setCommentModerationRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull SetCommentModerationRequest setCommentModerationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling setCommentModeration");
+    }
+    // verify the required parameter 'commentId' is set
+    if (commentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'commentId' when calling setCommentModeration");
+    }
+    // verify the required parameter 'setCommentModerationRequest' is set
+    if (setCommentModerationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'setCommentModerationRequest' when calling setCommentModeration");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/comments/{postId}/{commentId}/moderation"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()))
+        .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(setCommentModerationRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

@@ -32,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getRedditFlairsWithHttpInfo**](ConnectApi.md#getRedditFlairsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-flairs | List subreddit flairs |
 | [**getRedditSubreddits**](ConnectApi.md#getRedditSubreddits) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits |
 | [**getRedditSubredditsWithHttpInfo**](ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits |
+| [**getSubredditRules**](ConnectApi.md#getSubredditRules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules |
+| [**getSubredditRulesWithHttpInfo**](ConnectApi.md#getSubredditRulesWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules |
 | [**getTelegramConnectStatus**](ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code |
 | [**getTelegramConnectStatusWithHttpInfo**](ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code |
 | [**getYoutubePlaylists**](ConnectApi.md#getYoutubePlaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists |
@@ -62,6 +64,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**selectPinterestBoardWithHttpInfo**](ConnectApi.md#selectPinterestBoardWithHttpInfo) | **POST** /v1/connect/pinterest/select-board | Select Pinterest board |
 | [**selectSnapchatProfile**](ConnectApi.md#selectSnapchatProfile) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile |
 | [**selectSnapchatProfileWithHttpInfo**](ConnectApi.md#selectSnapchatProfileWithHttpInfo) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile |
+| [**setRedditPostFlair**](ConnectApi.md#setRedditPostFlair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set flair on a published Reddit post |
+| [**setRedditPostFlairWithHttpInfo**](ConnectApi.md#setRedditPostFlairWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set flair on a published Reddit post |
 | [**updateFacebookPage**](ConnectApi.md#updateFacebookPage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page |
 | [**updateFacebookPageWithHttpInfo**](ConnectApi.md#updateFacebookPageWithHttpInfo) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page |
 | [**updateGmbLocation**](ConnectApi.md#updateGmbLocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update GBP location |
@@ -74,6 +78,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateRedditSubredditsWithHttpInfo**](ConnectApi.md#updateRedditSubredditsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit |
 | [**updateYoutubeDefaultPlaylist**](ConnectApi.md#updateYoutubeDefaultPlaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
 | [**updateYoutubeDefaultPlaylistWithHttpInfo**](ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist |
+| [**voteRedditThing**](ConnectApi.md#voteRedditThing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
+| [**voteRedditThingWithHttpInfo**](ConnectApi.md#voteRedditThingWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment |
 
 
 
@@ -2235,6 +2241,162 @@ ApiResponse<[**GetRedditSubreddits200Response**](GetRedditSubreddits200Response.
 | **400** | Not a Reddit account |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+
+
+## getSubredditRules
+
+> GetSubredditRules200Response getSubredditRules(accountId, subreddit)
+
+Get subreddit rules
+
+Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Reddit account
+        String subreddit = "webdev"; // String | Subreddit name (without the \"r/\" prefix)
+        try {
+            GetSubredditRules200Response result = apiInstance.getSubredditRules(accountId, subreddit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getSubredditRules");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Reddit account | |
+| **subreddit** | **String**| Subreddit name (without the \&quot;r/\&quot; prefix) | |
+
+### Return type
+
+[**GetSubredditRules200Response**](GetSubredditRules200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Subreddit and site rules |  -  |
+| **400** | Not a Reddit account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account or subreddit not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
+
+## getSubredditRulesWithHttpInfo
+
+> ApiResponse<GetSubredditRules200Response> getSubredditRules getSubredditRulesWithHttpInfo(accountId, subreddit)
+
+Get subreddit rules
+
+Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Reddit account
+        String subreddit = "webdev"; // String | Subreddit name (without the \"r/\" prefix)
+        try {
+            ApiResponse<GetSubredditRules200Response> response = apiInstance.getSubredditRulesWithHttpInfo(accountId, subreddit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getSubredditRules");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Reddit account | |
+| **subreddit** | **String**| Subreddit name (without the \&quot;r/\&quot; prefix) | |
+
+### Return type
+
+ApiResponse<[**GetSubredditRules200Response**](GetSubredditRules200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Subreddit and site rules |  -  |
+| **400** | Not a Reddit account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account or subreddit not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
 
 
 ## getTelegramConnectStatus
@@ -4613,6 +4775,162 @@ ApiResponse<[**SelectSnapchatProfile200Response**](SelectSnapchatProfile200Respo
 | **500** | Failed to connect Snapchat account |  -  |
 
 
+## setRedditPostFlair
+
+> UpdateYoutubeDefaultPlaylist200Response setRedditPostFlair(accountId, setRedditPostFlairRequest)
+
+Set flair on a published Reddit post
+
+Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Reddit account that owns the post
+        SetRedditPostFlairRequest setRedditPostFlairRequest = new SetRedditPostFlairRequest(); // SetRedditPostFlairRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.setRedditPostFlair(accountId, setRedditPostFlairRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#setRedditPostFlair");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Reddit account that owns the post | |
+| **setRedditPostFlairRequest** | [**SetRedditPostFlairRequest**](SetRedditPostFlairRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Flair applied |  -  |
+| **400** | Not a Reddit account, or missing subreddit/postId/flairTemplateId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses (e.g. subreddit does not allow user flair selection) are forwarded as-is. |  -  |
+
+## setRedditPostFlairWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setRedditPostFlair setRedditPostFlairWithHttpInfo(accountId, setRedditPostFlairRequest)
+
+Set flair on a published Reddit post
+
+Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Reddit account that owns the post
+        SetRedditPostFlairRequest setRedditPostFlairRequest = new SetRedditPostFlairRequest(); // SetRedditPostFlairRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.setRedditPostFlairWithHttpInfo(accountId, setRedditPostFlairRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#setRedditPostFlair");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Reddit account that owns the post | |
+| **setRedditPostFlairRequest** | [**SetRedditPostFlairRequest**](SetRedditPostFlairRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Flair applied |  -  |
+| **400** | Not a Reddit account, or missing subreddit/postId/flairTemplateId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses (e.g. subreddit does not allow user flair selection) are forwarded as-is. |  -  |
+
+
 ## updateFacebookPage
 
 > UpdateFacebookPage200Response updateFacebookPage(accountId, updateFacebookPageRequest)
@@ -5535,4 +5853,160 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+
+
+## voteRedditThing
+
+> UpdateYoutubeDefaultPlaylist200Response voteRedditThing(accountId, voteRedditThingRequest)
+
+Vote on a Reddit post or comment
+
+Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Reddit account casting the vote
+        VoteRedditThingRequest voteRedditThingRequest = new VoteRedditThingRequest(); // VoteRedditThingRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.voteRedditThing(accountId, voteRedditThingRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#voteRedditThing");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Reddit account casting the vote | |
+| **voteRedditThingRequest** | [**VoteRedditThingRequest**](VoteRedditThingRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Vote registered |  -  |
+| **400** | Not a Reddit account, or invalid thingId/direction |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
+
+## voteRedditThingWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> voteRedditThing voteRedditThingWithHttpInfo(accountId, voteRedditThingRequest)
+
+Vote on a Reddit post or comment
+
+Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Reddit account casting the vote
+        VoteRedditThingRequest voteRedditThingRequest = new VoteRedditThingRequest(); // VoteRedditThingRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.voteRedditThingWithHttpInfo(accountId, voteRedditThingRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#voteRedditThing");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Reddit account casting the vote | |
+| **voteRedditThingRequest** | [**VoteRedditThingRequest**](VoteRedditThingRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Vote registered |  -  |
+| **400** | Not a Reddit account, or invalid thingId/direction |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
 

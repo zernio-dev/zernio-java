@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveActionOneOf8CardsInner.JSON_PROPERTY_BODY,
   SendInboxMessageRequestInteractiveActionOneOf8CardsInner.JSON_PROPERTY_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf8CardsInner {
   public static final String JSON_PROPERTY_CARD_INDEX = "card_index";
   @javax.annotation.Nullable
@@ -124,7 +124,7 @@ public class SendInboxMessageRequestInteractiveActionOneOf8CardsInner {
   }
 
   /**
-   * Media cards only
+   * Media cards only, required. Carries the card&#39;s image or video.
    * @return header
    */
   @javax.annotation.Nullable

@@ -5192,15 +5192,34 @@ paths:
   /v1/posts/{postId}/edit:
     post:
       description: |
-        Edit a published post on a social media platform. Currently only supported for X (Twitter).
+        Edit the text of an already-published post. Supported on X (Twitter), Discord,
+        Facebook, and Reddit. Each platform enforces its own rules:
 
-        Requirements:
+        **X (Twitter)**
         - Connected X account must have an active X Premium subscription
         - Must be within 1 hour of original publish time
         - Maximum 5 edits per tweet (enforced by X)
-        - Text-only edits (media changes are not supported)
+        - Threads cannot be edited, only single tweets
+        - X assigns a NEW post ID on edit, returned as `id`
 
-        The post record in Zernio is updated with the new content and edit history.
+        **Discord**
+        - No time limit and no premium requirement
+        - The message ID is unchanged after the edit
+
+        **Facebook**
+        - Graph only permits editing a post that the same app created, so this works on
+          posts published through Zernio and is rejected for posts created in Meta
+          Business Suite / Composer or by another tool
+        - Media cannot be swapped, only the message text
+        - Reactions, comments, and shares are preserved. The post ID is unchanged
+
+        **Reddit**
+        - Self-posts only. A link post has no editable body and is rejected before the write
+        - Body only. Reddit exposes no API to edit a post title, ever
+        - The post ID is unchanged
+
+        Media edits are not supported on any platform. The post record in Zernio is updated
+        with the new content and an edit-history entry.
       operationId: editPost
       parameters:
       - explode: false
@@ -5214,8 +5233,8 @@ paths:
         content:
           application/json:
             example:
-              platform: twitter
-              content: Updated tweet text with corrected information
+              platform: facebook
+              content: Updated post text with corrected information
             schema:
               $ref: "#/components/schemas/editPost_request"
         required: true
@@ -5227,13 +5246,13 @@ paths:
                 success: true
                 id: "1234567890123456790"
                 url: https://twitter.com/i/web/status/1234567890123456790
-                message: Tweet edited successfully
+                message: twitter post edited successfully
               schema:
                 $ref: "#/components/schemas/editPost_200_response"
           description: Post edited successfully
         "400":
-          description: "Invalid request: platform not supported, post not published,\
-            \ edit window expired, not Premium, or missing content."
+          description: |
+            Invalid request: platform not supported, post not published, edit window expired, not X Premium, or missing content. Also returned when the platform rejects the edit with a 4xx, which covers a Reddit link post (no editable body) and a Facebook post that was not created by this app.
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -5241,7 +5260,8 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "500":
-          description: Platform API edit failed
+          description: Platform API edit failed for a reason the platform did not
+            classify.
       summary: Edit published post
       tags:
       - Posts
@@ -10417,6 +10437,50 @@ paths:
       - Instagram
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/instagram/publishing-limit:
+    get:
+      description: |
+        Returns the account's remaining content-publishing quota for Instagram's rolling
+        24-hour window, so you can pace publishing and warn before the cap is reached.
+
+        `quotaUsage` counts containers published since the start of the window.
+        Always compare against the returned `quotaTotal` rather than hardcoding a number:
+        Meta's prose documentation and the live API disagree on the value, and the live
+        value is authoritative.
+      operationId: getInstagramPublishingLimit
+      parameters:
+      - description: The ID of the Instagram account
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                quotaUsage: 3
+                quotaTotal: 50
+                quotaDurationSeconds: 86400
+              schema:
+                $ref: "#/components/schemas/getInstagramPublishingLimit_200_response"
+          description: Remaining publishing quota for the rolling window
+        "400":
+          description: Not an Instagram account
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+        "502":
+          description: Instagram rejected the request
+      summary: Get Instagram publishing limit
+      tags:
+      - Instagram
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/instagram/stories/{storyId}/insights:
     get:
       description: |
@@ -10748,6 +10812,69 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/facebook-post-reactions:
+    get:
+      description: |
+        Returns the reaction breakdown for a Facebook Page post: a count per reaction type
+        plus the overall total.
+
+        The whole breakdown is fetched in a single Graph call. Note that the post analytics
+        endpoint reports only an aggregate reaction count (surfaced there as `likes`), so use
+        this endpoint when you need per-type counts.
+      operationId: getFacebookPostReactions
+      parameters:
+      - description: The ID of the Facebook Page account
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The Facebook post ID
+        example: 1234567890_9876543210
+        explode: true
+        in: query
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                accountId: 60f7a1b2c3d4e5f6a7b8c9d0
+                platform: facebook
+                username: My Page
+                postId: 1234567890_9876543210
+                total: 28
+                breakdown:
+                  like: 10
+                  love: 5
+                  haha: 4
+                  wow: 3
+                  sad: 2
+                  angry: 1
+                  care: 3
+                lastUpdated: 2026-07-09T09:43:50.000Z
+              schema:
+                $ref: "#/components/schemas/getFacebookPostReactions_200_response"
+          description: Reaction breakdown for the post
+        "400":
+          description: Not a Facebook account or missing postId parameter
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+        "502":
+          description: Facebook rejected the request
+      summary: Get Facebook post reactions
+      tags:
+      - Analytics
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/reddit-subreddits:
     get:
       description: Returns the subreddits the connected Reddit account can post to.
@@ -10833,6 +10960,119 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules:
+    get:
+      description: |
+        Returns a subreddit's posting rules plus Reddit's site-wide rules, so you can check
+        them before submitting and avoid a removal.
+
+        Use this alongside `POST /v1/tools/validate/subreddit`, which only confirms that a
+        subreddit exists and reports its basic posting settings.
+      operationId: getSubredditRules
+      parameters:
+      - description: The ID of the Reddit account
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Subreddit name (without the "r/" prefix)
+        example: webdev
+        explode: false
+        in: path
+        name: subreddit
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                rules:
+                - kind: link
+                  shortName: No self-promotion
+                  description: Posts that primarily promote your own product will
+                    be removed.
+                  violationReason: Self-promotion
+                  createdUtc: 1611234567
+                  priority: 0
+                siteRules:
+                - Spam
+                - Personal and confidential information
+              schema:
+                $ref: "#/components/schemas/getSubredditRules_200_response"
+          description: Subreddit and site rules
+        "400":
+          description: Not a Reddit account
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account or subreddit not found
+        "502":
+          description: Reddit was unreachable or returned an unclassified error. Reddit
+            4xx statuses are forwarded as-is.
+      summary: Get subreddit rules
+      tags:
+      - Connect
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/reddit-vote:
+    post:
+      description: |
+        Cast, change, or clear the connected account's vote on a Reddit post or comment.
+
+        **Reddit requires that votes be cast by humans.** Reddit's API terms permit a client
+        to proxy a human's action one-for-one, and prohibit a bot from deciding how to vote
+        or from amplifying a human's vote. Call this endpoint only in direct response to an
+        explicit action by the account owner. Automated or agent-decided voting is
+        vote manipulation and puts API access at risk.
+      operationId: voteRedditThing
+      parameters:
+      - description: The ID of the Reddit account casting the vote
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              thingId: t3_abc123
+              direction: 1
+            schema:
+              $ref: "#/components/schemas/voteRedditThing_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Vote registered
+        "400":
+          description: "Not a Reddit account, or invalid thingId/direction"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+        "502":
+          description: Reddit was unreachable or returned an unclassified error. Reddit
+            4xx statuses are forwarded as-is.
+      summary: Vote on a Reddit post or comment
+      tags:
+      - Connect
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/reddit-flairs:
     get:
       description: Returns available post flairs for a subreddit. Some subreddits
@@ -10880,6 +11120,61 @@ paths:
       summary: List subreddit flairs
       tags:
       - Connect
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Applies a flair to a post the connected account already published. Use the GET on this
+        path to list the available `flairTemplateId` values for the subreddit.
+
+        Flair can also be set at submit time by passing `flairId` in `platformSpecificData`
+        when creating the post. This endpoint is for changing it afterwards.
+
+        The subreddit must allow users to select their own post flair. Setting flair on
+        another user's post requires moderator permissions, which Zernio does not request.
+      operationId: setRedditPostFlair
+      parameters:
+      - description: The ID of the Reddit account that owns the post
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              subreddit: webdev
+              postId: t3_abc123
+              flairTemplateId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+            schema:
+              $ref: "#/components/schemas/setRedditPostFlair_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Flair applied
+        "400":
+          description: "Not a Reddit account, or missing subreddit/postId/flairTemplateId"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+        "502":
+          description: Reddit was unreachable or returned an unclassified error. Reddit
+            4xx statuses (e.g. subreddit does not allow user flair selection) are
+            forwarded as-is.
+      summary: Set flair on a published Reddit post
+      tags:
+      - Connect
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/discord-settings:
@@ -11077,10 +11372,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Discord account not found or not accessible to this user.
-        "502":
-          description: "Discord rejected the message (most commonly: bot doesn't share\
+        "403":
+          description: "Discord refused the message (most commonly: bot doesn't share\
             \ a guild with the recipient, OR the recipient has DMs disabled). Error\
             \ body contains Discord's response."
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
       summary: Send a Discord Direct Message
       tags:
       - Discord
@@ -11131,12 +11428,206 @@ paths:
         "404":
           description: "Discord account not found, not accessible, or not bound to\
             \ this guild."
-        "502":
-          description: Discord rejected the request (bot lacks View Channels permission
+        "403":
+          description: Discord refused the request (bot lacks View Channels permission
             in the guild).
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
       summary: List Discord guild roles
       tags:
       - Discord
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Creates a new role in the guild.
+
+        Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot
+        before role management shipped must re-invite it, because Discord applies the
+        permission set at invite time.
+
+        Discord's role hierarchy applies: the bot cannot create a role positioned at or above
+        its own highest role, and cannot grant permissions it does not itself hold. Either
+        attempt returns a 403 carrying Discord's own error.
+      operationId: createDiscordGuildRole
+      parameters:
+      - description: Discord guild snowflake ID
+        explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of the Discord account bound to this guild
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Moderators
+              color: 16711680
+              hoist: true
+              mentionable: false
+            schema:
+              $ref: "#/components/schemas/createDiscordGuildRole_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createDiscordGuildRole_201_response"
+          description: Role created.
+        "400":
+          description: "Invalid accountId, guildId, or role body."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Discord account not found, not accessible, or not bound to\
+            \ this guild."
+        "403":
+          description: "Discord refused the action (bot lacks Manage Roles, or the\
+            \ new role would sit at or above the bot's highest role)."
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
+      summary: Create a Discord guild role
+      tags:
+      - Discord
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/discord/guilds/{guildId}/roles/{roleId}:
+    delete:
+      description: |
+        Permanently deletes a role from the guild and removes it from every member.
+        This cannot be undone.
+
+        Requires the bot to hold Manage Roles, and the target role must sit below the bot's
+        highest role.
+      operationId: deleteDiscordGuildRole
+      parameters:
+      - description: Discord guild snowflake ID
+        explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Discord role snowflake ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of the Discord account bound to this guild
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Role deleted.
+        "400":
+          description: "Invalid accountId, guildId, or roleId format."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Discord account not found, not accessible, or not bound to\
+            \ this guild."
+        "403":
+          description: "Discord refused the action (bot lacks Manage Roles, or the\
+            \ target role sits at or above the bot's highest role)."
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
+      summary: Delete a Discord guild role
+      tags:
+      - Discord
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Updates a role's name, color, hoist, mentionable flag, or permission bitfield.
+        At least one field must be supplied. Omitted fields are left unchanged.
+
+        Requires the bot to hold Manage Roles, and the target role must sit below the bot's
+        highest role. See the create-role operation for the re-invite requirement.
+      operationId: editDiscordGuildRole
+      parameters:
+      - description: Discord guild snowflake ID
+        explode: false
+        in: path
+        name: guildId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Discord role snowflake ID
+        explode: false
+        in: path
+        name: roleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of the Discord account bound to this guild
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Senior Moderators
+              mentionable: true
+            schema:
+              $ref: "#/components/schemas/editDiscordGuildRole_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createDiscordGuildRole_201_response"
+          description: Role updated.
+        "400":
+          description: "Invalid ids, or no fields supplied to edit."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Discord account not found, not accessible, or not bound to\
+            \ this guild."
+        "403":
+          description: "Discord refused the action (bot lacks Manage Roles, or the\
+            \ target role sits at or above the bot's highest role)."
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
+      summary: Edit a Discord guild role
+      tags:
+      - Discord
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/discord/guilds/{guildId}/members:
@@ -11258,8 +11749,10 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Discord account not found or not in this guild.
+        "403":
+          description: Discord refused the request (permission or hierarchy issue).
         "502":
-          description: Discord rejected the request (permission or hierarchy issue).
+          description: Discord was unreachable or returned an unclassified error.
       summary: Remove a role from a guild member
       tags:
       - Discord
@@ -11321,12 +11814,200 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Discord account not found or not in this guild.
+        "403":
+          description: "Discord refused the request: bot lacks MANAGE_ROLES, or target\
+            \ role is at or above the bot's highest role."
         "502":
-          description: "Discord rejected the request: bot lacks MANAGE_ROLES, or target\
-            \ role is above the bot's highest role."
+          description: Discord was unreachable or returned an unclassified error.
       summary: Assign a role to a guild member
       tags:
       - Discord
+      x-accepts:
+      - application/json
+  /v1/discord/channels/{channelId}/messages/{messageId}:
+    delete:
+      description: |
+        Deletes a message from a channel, for moderation and cleanup. This cannot be undone.
+
+        Deleting a message the bot did not send requires the bot to hold the Manage Messages
+        permission, which the Zernio bot requests at install time. Deleting the bot's own
+        message needs no extra permission.
+
+        Ownership is verified by resolving the channel's guild and confirming the caller owns
+        a Discord account bound to it.
+      operationId: deleteDiscordMessage
+      parameters:
+      - description: Discord channel snowflake ID
+        explode: false
+        in: path
+        name: channelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Discord message snowflake ID
+        explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of the Discord account bound to this channel's
+          guild
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Message deleted.
+        "400":
+          description: "Invalid accountId, channelId, or messageId format."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Discord account not found, not accessible, or not bound to\
+            \ this channel's guild."
+        "403":
+          description: Discord refused the action (bot lacks Manage Messages).
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
+      summary: Delete a Discord channel message
+      tags:
+      - Discord
+      x-accepts:
+      - application/json
+  /v1/discord/channels/{channelId}/messages/{messageId}/crosspost:
+    post:
+      description: |
+        Publishes a message from an announcement channel so it propagates to every server
+        following that channel.
+
+        The source channel must be an announcement channel. Calling this on a regular text
+        channel returns a 400 before Discord is contacted, because Discord's own error for
+        this case is opaque.
+      operationId: crosspostDiscordMessage
+      parameters:
+      - description: Discord announcement channel snowflake ID
+        explode: false
+        in: path
+        name: channelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Discord message snowflake ID
+        explode: false
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of the Discord account bound to this channel's
+          guild
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/crosspostDiscordMessage_200_response"
+          description: Message crossposted.
+        "400":
+          description: "Invalid ids, or the channel is not an announcement channel."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Discord account not found, not accessible, or not bound to\
+            \ this channel's guild."
+        "403":
+          description: Discord refused the action (bot lacks the required permission).
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
+      summary: Crosspost a Discord announcement message
+      tags:
+      - Discord
+      x-accepts:
+      - application/json
+  /v1/discord/channels/{channelId}/threads:
+    post:
+      description: |
+        Creates a public thread in a channel. Pass `messageId` to start the thread from an
+        existing message, or omit it to create a standalone thread.
+
+        Threads created here are always public. Requires the bot to hold Create Public
+        Threads, which the Zernio bot requests at install time.
+      operationId: createDiscordThread
+      parameters:
+      - description: Discord channel snowflake ID
+        explode: false
+        in: path
+        name: channelId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: SocialAccount _id of the Discord account bound to this channel's
+          guild
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Release 2.4 discussion
+              autoArchiveDuration: 1440
+            schema:
+              $ref: "#/components/schemas/createDiscordThread_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                  id: "1180000000000000000"
+                  name: Release 2.4 discussion
+              schema:
+                $ref: "#/components/schemas/createDiscordThread_200_response"
+          description: Thread created.
+        "400":
+          description: "Invalid accountId, channelId, messageId, name, or autoArchiveDuration."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Discord account not found, not accessible, or not bound to\
+            \ this channel's guild."
+        "403":
+          description: Discord refused the action (bot lacks Create Public Threads).
+        "502":
+          description: Discord was unreachable or returned an unclassified error.
+      summary: Create a Discord public thread
+      tags:
+      - Discord
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/discord/channels/{channelId}/pins:
@@ -11728,15 +12409,16 @@ paths:
                 $ref: "#/components/schemas/createDiscordScheduledEvent_200_response"
           description: Event updated.
         "400":
-          description: "Validation error, OR no updatable fields beyond accountId\
-            \ provided."
+          description: "Validation error, no updatable fields beyond accountId provided,\
+            \ or Discord rejected the update (invalid status transition)."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Discord refused the update (bot permissions).
         "404":
           description: Event or Discord account not found.
         "502":
-          description: "Discord rejected the update (invalid status transition, bot\
-            \ permissions, etc.)."
+          description: Discord was unreachable or returned an unclassified error.
       summary: Update a Discord scheduled event
       tags:
       - Discord
@@ -14022,6 +14704,140 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/inbox/comments/{postId}/{commentId}:
+    patch:
+      description: |
+        Edit the body of a comment the connected account posted. Supported on Reddit only.
+
+        Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post
+        title, and a link post has no editable body. To edit a published post's body, use
+        `POST /v1/posts/{postId}/edit`.
+      operationId: editInboxComment
+      parameters:
+      - explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: commentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 60f7a1b2c3d4e5f6a7b8c9d0
+              platform: reddit
+              content: "Edited: corrected the version number."
+            schema:
+              $ref: "#/components/schemas/editInboxComment_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                status: success
+                commentId: t1_xyz789
+                platform: reddit
+              schema:
+                $ref: "#/components/schemas/editInboxComment_200_response"
+          description: Comment edited
+        "400":
+          description: "Platform does not support editing comments (code: platform_not_supported),\
+            \ or content missing."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account not found
+        "502":
+          description: Reddit was unreachable or returned an unclassified error. Reddit
+            4xx statuses are forwarded as-is.
+      security:
+      - bearerAuth: []
+      summary: Edit comment
+      tags:
+      - Comments
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/comments/{postId}/{commentId}/moderation:
+    post:
+      description: |
+        Set a comment's moderation status. Supported on YouTube only.
+
+        Use this to work a moderation queue: approve a held comment (`published`), reject it
+        (`rejected`), or send it back for review (`heldForReview`).
+
+        The request must be authorized by the owner of the channel or video the comment
+        belongs to. You cannot moderate comments on videos you do not own.
+
+        This is distinct from `POST /v1/inbox/comments/{postId}/{commentId}/hide`, which
+        covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube.
+      operationId: setCommentModeration
+      parameters:
+      - explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: commentId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 60f7a1b2c3d4e5f6a7b8c9d0
+              platform: youtube
+              moderationStatus: rejected
+              banAuthor: true
+            schema:
+              $ref: "#/components/schemas/setCommentModeration_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Moderation status applied
+        "400":
+          description: "Platform does not support comment moderation (code: platform_not_supported),\
+            \ or banAuthor was set without moderationStatus=rejected."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account not found
+        "502":
+          description: YouTube rejected the request (e.g. the account does not own
+            the video).
+      security:
+      - bearerAuth: []
+      summary: Set comment moderation status
+      tags:
+      - Comments
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/inbox/comments/{postId}/{commentId}/hide:
     delete:
       description: |
@@ -14624,6 +15440,66 @@ paths:
       summary: List mentions
       tags:
       - Mentions
+      x-accepts:
+      - application/json
+  /v1/inbox/mentions/reply:
+    post:
+      description: |
+        Reply to a mention of the connected account. Supported on Instagram only.
+
+        Two shapes, selected by whether `commentId` is present:
+
+        - **Comment mention** (someone @mentioned the account inside a comment): pass both
+          `mediaId` and `commentId`. Instagram posts a reply under that comment.
+        - **Caption mention** (someone @mentioned the account in their media caption, so no
+          comment exists): pass `mediaId` only. Instagram posts a comment on their media.
+
+        Story mentions are not supported by Instagram's API.
+
+        Note that `GET /v1/inbox/mentions` currently returns LinkedIn mentions only and does
+        not surface Instagram mentions. Source `mediaId` and `commentId` from Instagram's
+        `comments` webhook, which is where mention notifications are delivered for accounts
+        connected through Instagram Login.
+      operationId: replyToMention
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 60f7a1b2c3d4e5f6a7b8c9d0
+              mediaId: "17895695668004550"
+              commentId: "17870913561140000"
+              message: Thanks for the shout-out!
+            schema:
+              $ref: "#/components/schemas/replyToMention_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                id: "17912345678901234"
+              schema:
+                $ref: "#/components/schemas/replyToMention_200_response"
+          description: Reply posted
+        "400":
+          description: "Platform does not support replying to mentions (code: platform_not_supported),\
+            \ or missing mediaId/message."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account not found
+        "502":
+          description: Instagram was unreachable or returned an unclassified error.
+            Instagram 4xx statuses are forwarded as-is.
+      security:
+      - bearerAuth: []
+      summary: Reply to a mention
+      tags:
+      - Mentions
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/inbox/reviews:
@@ -29936,6 +30812,40 @@ components:
       - id
       - message
       - timestamp
+    DiscordRole:
+      description: "A Discord guild role, returned verbatim from Discord's API."
+      example:
+        color: 0
+        permissions: permissions
+        managed: true
+        name: name
+        mentionable: true
+        id: id
+        position: 6
+        hoist: true
+      properties:
+        id:
+          description: Role snowflake ID
+          type: string
+        name:
+          type: string
+        color:
+          description: Decimal color (0 = no color). Convert to hex via .toString(16).
+          type: integer
+        position:
+          description: Position in role hierarchy (higher = more authority)
+          type: integer
+        permissions:
+          description: Permissions bitfield as a stringified integer
+          type: string
+        managed:
+          description: True for integration-managed roles (bot roles)
+          type: boolean
+        mentionable:
+          type: boolean
+        hoist:
+          description: True if role is displayed separately in member list
+          type: boolean
     GeoRestriction:
       description: |
         Country-level geo-restriction (allowlist). When set, the post is only visible to users in the specified countries. Supported on Facebook (feed posts, videos, reels), X/Twitter (media-level restriction), and LinkedIn (organization pages only, min 300 targeted followers). Ignored on unsupported platforms. Stories (Facebook, Instagram) do not support geo-restriction.
@@ -38799,13 +39709,15 @@ components:
     editPost_request:
       properties:
         platform:
-          description: The platform to edit the post on. Currently only twitter is
-            supported.
+          description: The platform to edit the post on.
           enum:
           - twitter
+          - discord
+          - facebook
+          - reddit
           type: string
         content:
-          description: The new tweet text content
+          description: The new post text content
           type: string
       required:
       - content
@@ -38820,10 +39732,11 @@ components:
         success:
           type: boolean
         id:
-          description: New tweet ID assigned by X after edit
+          description: |
+            The platform post ID after the edit. X assigns a new ID; Discord, Facebook, and Reddit return the original ID unchanged.
           type: string
         url:
-          description: URL of the edited tweet
+          description: URL of the edited post
           format: uri
           type: string
         message:
@@ -44330,6 +45243,21 @@ components:
           type: array
       required:
       - data
+    getInstagramPublishingLimit_200_response:
+      example:
+        quotaUsage: 0
+        quotaTotal: 6
+        quotaDurationSeconds: 1
+      properties:
+        quotaUsage:
+          description: Containers published so far in the current window
+          type: integer
+        quotaTotal:
+          description: Maximum containers publishable per window
+          type: integer
+        quotaDurationSeconds:
+          description: Length of the rolling window in seconds
+          type: integer
     getInstagramStoryInsights_200_response_data_metrics:
       example:
         tapsBack: 7
@@ -44632,6 +45560,65 @@ components:
           type: string
         selectedLocation:
           $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+    getFacebookPostReactions_200_response_breakdown:
+      description: Count per reaction type. A type with no reactions returns 0.
+      example:
+        love: 1
+        haha: 5
+        like: 6
+        sad: 2
+        angry: 7
+        wow: 5
+        care: 9
+      properties:
+        like:
+          type: integer
+        love:
+          type: integer
+        haha:
+          type: integer
+        wow:
+          type: integer
+        sad:
+          type: integer
+        angry:
+          type: integer
+        care:
+          type: integer
+    getFacebookPostReactions_200_response:
+      example:
+        accountId: accountId
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        total: 0
+        breakdown:
+          love: 1
+          haha: 5
+          like: 6
+          sad: 2
+          angry: 7
+          wow: 5
+          care: 9
+        postId: postId
+        platform: facebook
+        username: username
+      properties:
+        accountId:
+          type: string
+        platform:
+          example: facebook
+          type: string
+        username:
+          type: string
+        postId:
+          type: string
+        total:
+          description: Total reactions across all types
+          type: integer
+        breakdown:
+          $ref: "#/components/schemas/getFacebookPostReactions_200_response_breakdown"
+        lastUpdated:
+          format: date-time
+          type: string
     getRedditSubreddits_200_response_subreddits_inner:
       example:
         over18: true
@@ -44683,6 +45670,78 @@ components:
           type: string
       required:
       - defaultSubreddit
+    getSubredditRules_200_response_rules_inner:
+      example:
+        kind: kind
+        description: description
+        shortName: shortName
+        priority: 6
+        violationReason: violationReason
+        createdUtc: 0.8008281904610115
+      properties:
+        kind:
+          description: "Scope of the rule: 'link', 'comment', or 'all'"
+          type: string
+        shortName:
+          description: Short rule title shown in the subreddit sidebar
+          type: string
+        description:
+          description: Full rule text
+          type: string
+        violationReason:
+          description: Reason shown to a user when the rule is enforced
+          type: string
+        createdUtc:
+          description: Unix timestamp when the rule was created
+          type: number
+        priority:
+          description: Display order of the rule
+          type: integer
+    getSubredditRules_200_response:
+      example:
+        rules:
+        - kind: kind
+          description: description
+          shortName: shortName
+          priority: 6
+          violationReason: violationReason
+          createdUtc: 0.8008281904610115
+        - kind: kind
+          description: description
+          shortName: shortName
+          priority: 6
+          violationReason: violationReason
+          createdUtc: 0.8008281904610115
+        siteRules:
+        - siteRules
+        - siteRules
+      properties:
+        rules:
+          items:
+            $ref: "#/components/schemas/getSubredditRules_200_response_rules_inner"
+          type: array
+        siteRules:
+          description: Reddit's site-wide content policy rules
+          items:
+            type: string
+          type: array
+    voteRedditThing_request:
+      properties:
+        thingId:
+          description: |
+            Reddit fullname of the target. Prefix "t3_" for a post and "t1_" for a comment. A bare id with no prefix is treated as a post ("t3_").
+          example: t3_abc123
+          type: string
+        direction:
+          description: "1 to upvote, -1 to downvote, 0 to clear an existing vote"
+          enum:
+          - 1
+          - 0
+          - -1
+          type: integer
+      required:
+      - direction
+      - thingId
     getRedditFlairs_200_response_flairs_inner:
       example:
         backgroundColor: backgroundColor
@@ -44718,6 +45777,24 @@ components:
           items:
             $ref: "#/components/schemas/getRedditFlairs_200_response_flairs_inner"
           type: array
+    setRedditPostFlair_request:
+      properties:
+        subreddit:
+          description: Subreddit name (without the "r/" prefix)
+          type: string
+        postId:
+          description: "Reddit post id, with or without the t3_ prefix"
+          type: string
+        flairTemplateId:
+          description: Flair template id from the GET on this path
+          type: string
+        text:
+          description: "Optional override text, only for editable flair templates"
+          type: string
+      required:
+      - flairTemplateId
+      - postId
+      - subreddit
     getDiscordSettings_200_response_account:
       example:
         profilePicture: profilePicture
@@ -45051,6 +46128,60 @@ components:
           items:
             $ref: "#/components/schemas/listDiscordGuildRoles_200_response_data_inner"
           type: array
+    createDiscordGuildRole_request:
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        color:
+          description: Decimal color (0 = no color). 0xFF0000 red is 16711680.
+          maximum: 16777215
+          minimum: 0
+          type: integer
+        hoist:
+          description: Display members with this role separately in the member list
+          type: boolean
+        mentionable:
+          description: Allow anyone to @mention this role
+          type: boolean
+        permissions:
+          description: Permissions bitfield as a stringified integer
+          type: string
+      required:
+      - name
+    createDiscordGuildRole_201_response:
+      example:
+        data:
+          color: 0
+          permissions: permissions
+          managed: true
+          name: name
+          mentionable: true
+          id: id
+          position: 6
+          hoist: true
+      properties:
+        data:
+          $ref: "#/components/schemas/DiscordRole"
+    editDiscordGuildRole_request:
+      minProperties: 1
+      properties:
+        name:
+          maxLength: 100
+          minLength: 1
+          type: string
+        color:
+          maximum: 16777215
+          minimum: 0
+          type: integer
+        hoist:
+          type: boolean
+        mentionable:
+          type: boolean
+        permissions:
+          description: Permissions bitfield as a stringified integer
+          type: string
     listDiscordGuildMembers_200_response_data_inner_user:
       example:
         global_name: global_name
@@ -45196,6 +46327,53 @@ components:
           type: string
         roleId:
           type: string
+    crosspostDiscordMessage_200_response:
+      example:
+        data: "{}"
+      properties:
+        data:
+          description: The crossposted Discord message object.
+          type: object
+    createDiscordThread_request:
+      properties:
+        name:
+          description: Thread name
+          maxLength: 100
+          minLength: 1
+          type: string
+        messageId:
+          description: Optional message snowflake to start the thread from. Omit for
+            a standalone thread.
+          type: string
+        autoArchiveDuration:
+          description: Minutes of inactivity before the thread auto-archives. Discord
+            accepts only these four values.
+          enum:
+          - 60
+          - 1440
+          - 4320
+          - 10080
+          type: integer
+      required:
+      - name
+    createDiscordThread_200_response_data:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Thread snowflake ID
+          type: string
+        name:
+          type: string
+    createDiscordThread_200_response:
+      example:
+        data:
+          name: name
+          id: id
+      properties:
+        data:
+          $ref: "#/components/schemas/createDiscordThread_200_response_data"
     listDiscordPinnedMessages_200_response_data_inner:
       description: Raw Discord Message object — see DiscordPlatformData for embed/attachment
         shapes.
@@ -47595,7 +48773,7 @@ components:
             a quick-reply type.'
           type: string
         header:
-          description: Media cards only
+          description: "Media cards only, required. Carries the card's image or video."
           type: object
         body:
           description: Optional card body text.
@@ -48686,6 +49864,62 @@ components:
           type: boolean
         data:
           $ref: "#/components/schemas/deleteAccountGroup_200_response"
+    editInboxComment_request:
+      properties:
+        accountId:
+          description: The social account ID
+          type: string
+        platform:
+          description: Only Reddit supports editing a comment
+          enum:
+          - reddit
+          type: string
+        content:
+          description: The new comment body
+          minLength: 1
+          type: string
+      required:
+      - accountId
+      - content
+      - platform
+    editInboxComment_200_response:
+      example:
+        commentId: commentId
+        platform: platform
+        status: status
+      properties:
+        status:
+          type: string
+        commentId:
+          type: string
+        platform:
+          type: string
+    setCommentModeration_request:
+      properties:
+        accountId:
+          description: The social account ID
+          type: string
+        platform:
+          description: Only YouTube supports comment moderation
+          enum:
+          - youtube
+          type: string
+        moderationStatus:
+          description: "published approves the comment, rejected removes it, heldForReview\
+            \ returns it to the queue."
+          enum:
+          - published
+          - rejected
+          - heldForReview
+          type: string
+        banAuthor:
+          description: |
+            Also ban the comment's author, auto-rejecting their future comments. Only valid when moderationStatus is "rejected"; any other pairing is a 400.
+          type: boolean
+      required:
+      - accountId
+      - moderationStatus
+      - platform
     hideInboxComment_request:
       properties:
         accountId:
@@ -49142,6 +50376,34 @@ components:
           $ref: "#/components/schemas/getInboxPostComments_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listInboxMentions_200_response_meta"
+    replyToMention_request:
+      properties:
+        accountId:
+          description: The Instagram social account ID
+          type: string
+        mediaId:
+          description: The ID of the media the account was mentioned in
+          type: string
+        commentId:
+          description: The mentioning comment's ID. Omit for a caption mention.
+          type: string
+        message:
+          description: The reply text
+          type: string
+      required:
+      - accountId
+      - mediaId
+      - message
+    replyToMention_200_response:
+      example:
+        success: true
+        id: id
+      properties:
+        success:
+          type: boolean
+        id:
+          description: ID of the created reply or comment
+          type: string
     listInboxReviews_200_response_data_inner_reviewer:
       example:
         name: name

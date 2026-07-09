@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.GetInstagramPublishingLimit200Response;
 import dev.zernio.model.GetInstagramStoryInsights200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListInstagramStories200Response;
@@ -47,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -162,6 +163,124 @@ public class InstagramApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Get Instagram publishing limit
+   * Returns the account&#39;s remaining content-publishing quota for Instagram&#39;s rolling 24-hour window, so you can pace publishing and warn before the cap is reached.  &#x60;quotaUsage&#x60; counts containers published since the start of the window. Always compare against the returned &#x60;quotaTotal&#x60; rather than hardcoding a number: Meta&#39;s prose documentation and the live API disagree on the value, and the live value is authoritative. 
+   * @param accountId The ID of the Instagram account (required)
+   * @return GetInstagramPublishingLimit200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetInstagramPublishingLimit200Response getInstagramPublishingLimit(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getInstagramPublishingLimit(accountId, null);
+  }
+
+  /**
+   * Get Instagram publishing limit
+   * Returns the account&#39;s remaining content-publishing quota for Instagram&#39;s rolling 24-hour window, so you can pace publishing and warn before the cap is reached.  &#x60;quotaUsage&#x60; counts containers published since the start of the window. Always compare against the returned &#x60;quotaTotal&#x60; rather than hardcoding a number: Meta&#39;s prose documentation and the live API disagree on the value, and the live value is authoritative. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param headers Optional headers to include in the request
+   * @return GetInstagramPublishingLimit200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetInstagramPublishingLimit200Response getInstagramPublishingLimit(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetInstagramPublishingLimit200Response> localVarResponse = getInstagramPublishingLimitWithHttpInfo(accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get Instagram publishing limit
+   * Returns the account&#39;s remaining content-publishing quota for Instagram&#39;s rolling 24-hour window, so you can pace publishing and warn before the cap is reached.  &#x60;quotaUsage&#x60; counts containers published since the start of the window. Always compare against the returned &#x60;quotaTotal&#x60; rather than hardcoding a number: Meta&#39;s prose documentation and the live API disagree on the value, and the live value is authoritative. 
+   * @param accountId The ID of the Instagram account (required)
+   * @return ApiResponse&lt;GetInstagramPublishingLimit200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetInstagramPublishingLimit200Response> getInstagramPublishingLimitWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return getInstagramPublishingLimitWithHttpInfo(accountId, null);
+  }
+
+  /**
+   * Get Instagram publishing limit
+   * Returns the account&#39;s remaining content-publishing quota for Instagram&#39;s rolling 24-hour window, so you can pace publishing and warn before the cap is reached.  &#x60;quotaUsage&#x60; counts containers published since the start of the window. Always compare against the returned &#x60;quotaTotal&#x60; rather than hardcoding a number: Meta&#39;s prose documentation and the live API disagree on the value, and the live value is authoritative. 
+   * @param accountId The ID of the Instagram account (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetInstagramPublishingLimit200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetInstagramPublishingLimit200Response> getInstagramPublishingLimitWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getInstagramPublishingLimitRequestBuilder(accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getInstagramPublishingLimit", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetInstagramPublishingLimit200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetInstagramPublishingLimit200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetInstagramPublishingLimit200Response>() {});
+        
+
+        return new ApiResponse<GetInstagramPublishingLimit200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getInstagramPublishingLimitRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getInstagramPublishingLimit");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/instagram/publishing-limit"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**

@@ -36,13 +36,19 @@ import dev.zernio.ApiClient;
   EditPostRequest.JSON_PROPERTY_PLATFORM,
   EditPostRequest.JSON_PROPERTY_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditPostRequest {
   /**
-   * The platform to edit the post on. Currently only twitter is supported.
+   * The platform to edit the post on.
    */
   public enum PlatformEnum {
-    TWITTER(String.valueOf("twitter"));
+    TWITTER(String.valueOf("twitter")),
+    
+    DISCORD(String.valueOf("discord")),
+    
+    FACEBOOK(String.valueOf("facebook")),
+    
+    REDDIT(String.valueOf("reddit"));
 
     private String value;
 
@@ -88,7 +94,7 @@ public class EditPostRequest {
   }
 
   /**
-   * The platform to edit the post on. Currently only twitter is supported.
+   * The platform to edit the post on.
    * @return platform
    */
   @javax.annotation.Nonnull
@@ -112,7 +118,7 @@ public class EditPostRequest {
   }
 
   /**
-   * The new tweet text content
+   * The new post text content
    * @return content
    */
   @javax.annotation.Nonnull

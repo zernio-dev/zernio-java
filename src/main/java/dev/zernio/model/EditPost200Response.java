@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   EditPost200Response.JSON_PROPERTY_URL,
   EditPost200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditPost200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -90,7 +90,7 @@ public class EditPost200Response {
   }
 
   /**
-   * New tweet ID assigned by X after edit
+   * The platform post ID after the edit. X assigns a new ID; Discord, Facebook, and Reddit return the original ID unchanged. 
    * @return id
    */
   @javax.annotation.Nullable
@@ -114,7 +114,7 @@ public class EditPost200Response {
   }
 
   /**
-   * URL of the edited tweet
+   * URL of the edited post
    * @return url
    */
   @javax.annotation.Nullable

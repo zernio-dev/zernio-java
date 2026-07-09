@@ -499,7 +499,7 @@ ApiResponse<[**PostDeleteResponse**](PostDeleteResponse.md)>
 
 Edit published post
 
-Edit a published post on a social media platform. Currently only supported for X (Twitter).  Requirements: - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+Edit the text of an already-published post. Supported on X (Twitter), Discord, Facebook, and Reddit. Each platform enforces its own rules:  **X (Twitter)** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Threads cannot be edited, only single tweets - X assigns a NEW post ID on edit, returned as &#x60;id&#x60;  **Discord** - No time limit and no premium requirement - The message ID is unchanged after the edit  **Facebook** - Graph only permits editing a post that the same app created, so this works on   posts published through Zernio and is rejected for posts created in Meta   Business Suite / Composer or by another tool - Media cannot be swapped, only the message text - Reactions, comments, and shares are preserved. The post ID is unchanged  **Reddit** - Self-posts only. A link post has no editable body and is rejected before the write - Body only. Reddit exposes no API to edit a post title, ever - The post ID is unchanged  Media edits are not supported on any platform. The post record in Zernio is updated with the new content and an edit-history entry. 
 
 ### Example
 
@@ -564,11 +564,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Post edited successfully |  -  |
-| **400** | Invalid request: platform not supported, post not published, edit window expired, not Premium, or missing content. |  -  |
+| **400** | Invalid request: platform not supported, post not published, edit window expired, not X Premium, or missing content. Also returned when the platform rejects the edit with a 4xx, which covers a Reddit link post (no editable body) and a Facebook post that was not created by this app.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
-| **500** | Platform API edit failed |  -  |
+| **500** | Platform API edit failed for a reason the platform did not classify. |  -  |
 
 ## editPostWithHttpInfo
 
@@ -576,7 +576,7 @@ public class Example {
 
 Edit published post
 
-Edit a published post on a social media platform. Currently only supported for X (Twitter).  Requirements: - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+Edit the text of an already-published post. Supported on X (Twitter), Discord, Facebook, and Reddit. Each platform enforces its own rules:  **X (Twitter)** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Threads cannot be edited, only single tweets - X assigns a NEW post ID on edit, returned as &#x60;id&#x60;  **Discord** - No time limit and no premium requirement - The message ID is unchanged after the edit  **Facebook** - Graph only permits editing a post that the same app created, so this works on   posts published through Zernio and is rejected for posts created in Meta   Business Suite / Composer or by another tool - Media cannot be swapped, only the message text - Reactions, comments, and shares are preserved. The post ID is unchanged  **Reddit** - Self-posts only. A link post has no editable body and is rejected before the write - Body only. Reddit exposes no API to edit a post title, ever - The post ID is unchanged  Media edits are not supported on any platform. The post record in Zernio is updated with the new content and an edit-history entry. 
 
 ### Example
 
@@ -644,11 +644,11 @@ ApiResponse<[**EditPost200Response**](EditPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Post edited successfully |  -  |
-| **400** | Invalid request: platform not supported, post not published, edit window expired, not Premium, or missing content. |  -  |
+| **400** | Invalid request: platform not supported, post not published, edit window expired, not X Premium, or missing content. Also returned when the platform rejects the edit with a 4xx, which covers a Reddit link post (no editable body) and a Facebook post that was not created by this app.  |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
-| **500** | Platform API edit failed |  -  |
+| **500** | Platform API edit failed for a reason the platform did not classify. |  -  |
 
 
 ## getPost

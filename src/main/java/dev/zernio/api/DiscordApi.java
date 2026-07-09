@@ -19,9 +19,15 @@ import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
 import dev.zernio.model.AddDiscordMemberRole200Response;
+import dev.zernio.model.CreateDiscordGuildRole201Response;
+import dev.zernio.model.CreateDiscordGuildRoleRequest;
 import dev.zernio.model.CreateDiscordScheduledEvent200Response;
 import dev.zernio.model.CreateDiscordScheduledEventRequest;
+import dev.zernio.model.CreateDiscordThread200Response;
+import dev.zernio.model.CreateDiscordThreadRequest;
+import dev.zernio.model.CrosspostDiscordMessage200Response;
 import dev.zernio.model.DeleteDiscordScheduledEvent200Response;
+import dev.zernio.model.EditDiscordGuildRoleRequest;
 import dev.zernio.model.GetDiscordChannels200Response;
 import dev.zernio.model.GetDiscordSettings200Response;
 import dev.zernio.model.InlineObject;
@@ -37,6 +43,7 @@ import dev.zernio.model.UnpinDiscordMessage200Response;
 import dev.zernio.model.UpdateDiscordScheduledEventRequest;
 import dev.zernio.model.UpdateDiscordSettings200Response;
 import dev.zernio.model.UpdateDiscordSettingsRequest;
+import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,7 +70,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -340,6 +347,161 @@ public class DiscordApi {
   }
 
   /**
+   * Create a Discord guild role
+   * Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param createDiscordGuildRoleRequest  (required)
+   * @return CreateDiscordGuildRole201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateDiscordGuildRole201Response createDiscordGuildRole(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest) throws ApiException {
+    return createDiscordGuildRole(guildId, accountId, createDiscordGuildRoleRequest, null);
+  }
+
+  /**
+   * Create a Discord guild role
+   * Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param createDiscordGuildRoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateDiscordGuildRole201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateDiscordGuildRole201Response createDiscordGuildRole(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateDiscordGuildRole201Response> localVarResponse = createDiscordGuildRoleWithHttpInfo(guildId, accountId, createDiscordGuildRoleRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a Discord guild role
+   * Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param createDiscordGuildRoleRequest  (required)
+   * @return ApiResponse&lt;CreateDiscordGuildRole201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateDiscordGuildRole201Response> createDiscordGuildRoleWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest) throws ApiException {
+    return createDiscordGuildRoleWithHttpInfo(guildId, accountId, createDiscordGuildRoleRequest, null);
+  }
+
+  /**
+   * Create a Discord guild role
+   * Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param createDiscordGuildRoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateDiscordGuildRole201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateDiscordGuildRole201Response> createDiscordGuildRoleWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createDiscordGuildRoleRequestBuilder(guildId, accountId, createDiscordGuildRoleRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createDiscordGuildRole", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateDiscordGuildRole201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateDiscordGuildRole201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateDiscordGuildRole201Response>() {});
+        
+
+        return new ApiResponse<CreateDiscordGuildRole201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createDiscordGuildRoleRequestBuilder(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'guildId' is set
+    if (guildId == null) {
+      throw new ApiException(400, "Missing the required parameter 'guildId' when calling createDiscordGuildRole");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling createDiscordGuildRole");
+    }
+    // verify the required parameter 'createDiscordGuildRoleRequest' is set
+    if (createDiscordGuildRoleRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createDiscordGuildRoleRequest' when calling createDiscordGuildRole");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/guilds/{guildId}/roles"
+        .replace("{guildId}", ApiClient.urlEncode(guildId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createDiscordGuildRoleRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Create a Discord scheduled event
    * Create a guild scheduled event. Three event types, selected via the discriminator on &#x60;entity.type&#x60;:    - &#x60;external&#x60; — off-platform (Zoom, in-person, livestream). Requires     both &#x60;location&#x60; and &#x60;endsAt&#x60;. Most common type for scheduler     integrations.   - &#x60;voice&#x60; — hosted in a Discord voice channel. Requires &#x60;channelId&#x60;.   - &#x60;stage&#x60; — hosted in a Discord stage channel. Requires &#x60;channelId&#x60;.  Bot needs MANAGE_EVENTS in the guild. Existing installs (pre-events PR) need a re-invite OR a server admin manually granting the permission — see route header for details. 
    * @param guildId  (required)
@@ -460,6 +622,611 @@ public class DiscordApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a Discord public thread
+   * Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param createDiscordThreadRequest  (required)
+   * @return CreateDiscordThread200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateDiscordThread200Response createDiscordThread(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordThreadRequest createDiscordThreadRequest) throws ApiException {
+    return createDiscordThread(channelId, accountId, createDiscordThreadRequest, null);
+  }
+
+  /**
+   * Create a Discord public thread
+   * Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param createDiscordThreadRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateDiscordThread200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateDiscordThread200Response createDiscordThread(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordThreadRequest createDiscordThreadRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateDiscordThread200Response> localVarResponse = createDiscordThreadWithHttpInfo(channelId, accountId, createDiscordThreadRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a Discord public thread
+   * Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param createDiscordThreadRequest  (required)
+   * @return ApiResponse&lt;CreateDiscordThread200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateDiscordThread200Response> createDiscordThreadWithHttpInfo(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordThreadRequest createDiscordThreadRequest) throws ApiException {
+    return createDiscordThreadWithHttpInfo(channelId, accountId, createDiscordThreadRequest, null);
+  }
+
+  /**
+   * Create a Discord public thread
+   * Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param createDiscordThreadRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateDiscordThread200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateDiscordThread200Response> createDiscordThreadWithHttpInfo(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordThreadRequest createDiscordThreadRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createDiscordThreadRequestBuilder(channelId, accountId, createDiscordThreadRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createDiscordThread", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateDiscordThread200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateDiscordThread200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateDiscordThread200Response>() {});
+        
+
+        return new ApiResponse<CreateDiscordThread200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createDiscordThreadRequestBuilder(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreateDiscordThreadRequest createDiscordThreadRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'channelId' is set
+    if (channelId == null) {
+      throw new ApiException(400, "Missing the required parameter 'channelId' when calling createDiscordThread");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling createDiscordThread");
+    }
+    // verify the required parameter 'createDiscordThreadRequest' is set
+    if (createDiscordThreadRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createDiscordThreadRequest' when calling createDiscordThread");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/channels/{channelId}/threads"
+        .replace("{channelId}", ApiClient.urlEncode(channelId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createDiscordThreadRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Crosspost a Discord announcement message
+   * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+   * @param channelId Discord announcement channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @return CrosspostDiscordMessage200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CrosspostDiscordMessage200Response crosspostDiscordMessage(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return crosspostDiscordMessage(channelId, messageId, accountId, null);
+  }
+
+  /**
+   * Crosspost a Discord announcement message
+   * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+   * @param channelId Discord announcement channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param headers Optional headers to include in the request
+   * @return CrosspostDiscordMessage200Response
+   * @throws ApiException if fails to make API call
+   */
+  public CrosspostDiscordMessage200Response crosspostDiscordMessage(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<CrosspostDiscordMessage200Response> localVarResponse = crosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Crosspost a Discord announcement message
+   * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+   * @param channelId Discord announcement channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @return ApiResponse&lt;CrosspostDiscordMessage200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CrosspostDiscordMessage200Response> crosspostDiscordMessageWithHttpInfo(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return crosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId, null);
+  }
+
+  /**
+   * Crosspost a Discord announcement message
+   * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+   * @param channelId Discord announcement channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CrosspostDiscordMessage200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CrosspostDiscordMessage200Response> crosspostDiscordMessageWithHttpInfo(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = crosspostDiscordMessageRequestBuilder(channelId, messageId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("crosspostDiscordMessage", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CrosspostDiscordMessage200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CrosspostDiscordMessage200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CrosspostDiscordMessage200Response>() {});
+        
+
+        return new ApiResponse<CrosspostDiscordMessage200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder crosspostDiscordMessageRequestBuilder(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'channelId' is set
+    if (channelId == null) {
+      throw new ApiException(400, "Missing the required parameter 'channelId' when calling crosspostDiscordMessage");
+    }
+    // verify the required parameter 'messageId' is set
+    if (messageId == null) {
+      throw new ApiException(400, "Missing the required parameter 'messageId' when calling crosspostDiscordMessage");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling crosspostDiscordMessage");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/channels/{channelId}/messages/{messageId}/crosspost"
+        .replace("{channelId}", ApiClient.urlEncode(channelId.toString()))
+        .replace("{messageId}", ApiClient.urlEncode(messageId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a Discord guild role
+   * Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response deleteDiscordGuildRole(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteDiscordGuildRole(guildId, roleId, accountId, null);
+  }
+
+  /**
+   * Delete a Discord guild role
+   * Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response deleteDiscordGuildRole(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deleteDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a Discord guild role
+   * Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteDiscordGuildRoleWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, null);
+  }
+
+  /**
+   * Delete a Discord guild role
+   * Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteDiscordGuildRoleWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteDiscordGuildRoleRequestBuilder(guildId, roleId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteDiscordGuildRole", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteDiscordGuildRoleRequestBuilder(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'guildId' is set
+    if (guildId == null) {
+      throw new ApiException(400, "Missing the required parameter 'guildId' when calling deleteDiscordGuildRole");
+    }
+    // verify the required parameter 'roleId' is set
+    if (roleId == null) {
+      throw new ApiException(400, "Missing the required parameter 'roleId' when calling deleteDiscordGuildRole");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteDiscordGuildRole");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/guilds/{guildId}/roles/{roleId}"
+        .replace("{guildId}", ApiClient.urlEncode(guildId.toString()))
+        .replace("{roleId}", ApiClient.urlEncode(roleId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a Discord channel message
+   * Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response deleteDiscordMessage(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteDiscordMessage(channelId, messageId, accountId, null);
+  }
+
+  /**
+   * Delete a Discord channel message
+   * Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response deleteDiscordMessage(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deleteDiscordMessageWithHttpInfo(channelId, messageId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a Discord channel message
+   * Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteDiscordMessageWithHttpInfo(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteDiscordMessageWithHttpInfo(channelId, messageId, accountId, null);
+  }
+
+  /**
+   * Delete a Discord channel message
+   * Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+   * @param channelId Discord channel snowflake ID (required)
+   * @param messageId Discord message snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this channel&#39;s guild (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteDiscordMessageWithHttpInfo(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteDiscordMessageRequestBuilder(channelId, messageId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteDiscordMessage", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteDiscordMessageRequestBuilder(@javax.annotation.Nonnull String channelId, @javax.annotation.Nonnull String messageId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'channelId' is set
+    if (channelId == null) {
+      throw new ApiException(400, "Missing the required parameter 'channelId' when calling deleteDiscordMessage");
+    }
+    // verify the required parameter 'messageId' is set
+    if (messageId == null) {
+      throw new ApiException(400, "Missing the required parameter 'messageId' when calling deleteDiscordMessage");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteDiscordMessage");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/channels/{channelId}/messages/{messageId}"
+        .replace("{channelId}", ApiClient.urlEncode(channelId.toString()))
+        .replace("{messageId}", ApiClient.urlEncode(messageId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -610,6 +1377,170 @@ public class DiscordApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Edit a Discord guild role
+   * Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param editDiscordGuildRoleRequest  (required)
+   * @return CreateDiscordGuildRole201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateDiscordGuildRole201Response editDiscordGuildRole(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull EditDiscordGuildRoleRequest editDiscordGuildRoleRequest) throws ApiException {
+    return editDiscordGuildRole(guildId, roleId, accountId, editDiscordGuildRoleRequest, null);
+  }
+
+  /**
+   * Edit a Discord guild role
+   * Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param editDiscordGuildRoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateDiscordGuildRole201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateDiscordGuildRole201Response editDiscordGuildRole(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull EditDiscordGuildRoleRequest editDiscordGuildRoleRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateDiscordGuildRole201Response> localVarResponse = editDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, editDiscordGuildRoleRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Edit a Discord guild role
+   * Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param editDiscordGuildRoleRequest  (required)
+   * @return ApiResponse&lt;CreateDiscordGuildRole201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateDiscordGuildRole201Response> editDiscordGuildRoleWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull EditDiscordGuildRoleRequest editDiscordGuildRoleRequest) throws ApiException {
+    return editDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, editDiscordGuildRoleRequest, null);
+  }
+
+  /**
+   * Edit a Discord guild role
+   * Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+   * @param guildId Discord guild snowflake ID (required)
+   * @param roleId Discord role snowflake ID (required)
+   * @param accountId SocialAccount _id of the Discord account bound to this guild (required)
+   * @param editDiscordGuildRoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateDiscordGuildRole201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateDiscordGuildRole201Response> editDiscordGuildRoleWithHttpInfo(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull EditDiscordGuildRoleRequest editDiscordGuildRoleRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = editDiscordGuildRoleRequestBuilder(guildId, roleId, accountId, editDiscordGuildRoleRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("editDiscordGuildRole", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateDiscordGuildRole201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateDiscordGuildRole201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateDiscordGuildRole201Response>() {});
+        
+
+        return new ApiResponse<CreateDiscordGuildRole201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder editDiscordGuildRoleRequestBuilder(@javax.annotation.Nonnull String guildId, @javax.annotation.Nonnull String roleId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull EditDiscordGuildRoleRequest editDiscordGuildRoleRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'guildId' is set
+    if (guildId == null) {
+      throw new ApiException(400, "Missing the required parameter 'guildId' when calling editDiscordGuildRole");
+    }
+    // verify the required parameter 'roleId' is set
+    if (roleId == null) {
+      throw new ApiException(400, "Missing the required parameter 'roleId' when calling editDiscordGuildRole");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling editDiscordGuildRole");
+    }
+    // verify the required parameter 'editDiscordGuildRoleRequest' is set
+    if (editDiscordGuildRoleRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'editDiscordGuildRoleRequest' when calling editDiscordGuildRole");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/discord/guilds/{guildId}/roles/{roleId}"
+        .replace("{guildId}", ApiClient.urlEncode(guildId.toString()))
+        .replace("{roleId}", ApiClient.urlEncode(roleId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(editDiscordGuildRoleRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**deleteInboxComment**](CommentsApi.md#deleteInboxComment) | **DELETE** /v1/inbox/comments/{postId} | Delete comment |
 | [**deleteInboxCommentWithHttpInfo**](CommentsApi.md#deleteInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId} | Delete comment |
+| [**editInboxComment**](CommentsApi.md#editInboxComment) | **PATCH** /v1/inbox/comments/{postId}/{commentId} | Edit comment |
+| [**editInboxCommentWithHttpInfo**](CommentsApi.md#editInboxCommentWithHttpInfo) | **PATCH** /v1/inbox/comments/{postId}/{commentId} | Edit comment |
 | [**getInboxPostComments**](CommentsApi.md#getInboxPostComments) | **GET** /v1/inbox/comments/{postId} | Get post comments |
 | [**getInboxPostCommentsWithHttpInfo**](CommentsApi.md#getInboxPostCommentsWithHttpInfo) | **GET** /v1/inbox/comments/{postId} | Get post comments |
 | [**hideInboxComment**](CommentsApi.md#hideInboxComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/hide | Hide comment |
@@ -18,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**replyToInboxPostWithHttpInfo**](CommentsApi.md#replyToInboxPostWithHttpInfo) | **POST** /v1/inbox/comments/{postId} | Reply to comment |
 | [**sendPrivateReplyToComment**](CommentsApi.md#sendPrivateReplyToComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/private-reply | Send private reply |
 | [**sendPrivateReplyToCommentWithHttpInfo**](CommentsApi.md#sendPrivateReplyToCommentWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/private-reply | Send private reply |
+| [**setCommentModeration**](CommentsApi.md#setCommentModeration) | **POST** /v1/inbox/comments/{postId}/{commentId}/moderation | Set comment moderation status |
+| [**setCommentModerationWithHttpInfo**](CommentsApi.md#setCommentModerationWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/moderation | Set comment moderation status |
 | [**unhideInboxComment**](CommentsApi.md#unhideInboxComment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment |
 | [**unhideInboxCommentWithHttpInfo**](CommentsApi.md#unhideInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment |
 | [**unlikeInboxComment**](CommentsApi.md#unlikeInboxComment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment |
@@ -181,6 +185,168 @@ ApiResponse<[**DeleteInboxComment200Response**](DeleteInboxComment200Response.md
 | **400** | Platform rejected the operation (e.g., comment already deleted, insufficient permissions on the video) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
+
+
+## editInboxComment
+
+> EditInboxComment200Response editInboxComment(postId, commentId, editInboxCommentRequest)
+
+Edit comment
+
+Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        EditInboxCommentRequest editInboxCommentRequest = new EditInboxCommentRequest(); // EditInboxCommentRequest | 
+        try {
+            EditInboxComment200Response result = apiInstance.editInboxComment(postId, commentId, editInboxCommentRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#editInboxComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **editInboxCommentRequest** | [**EditInboxCommentRequest**](EditInboxCommentRequest.md)|  | |
+
+### Return type
+
+[**EditInboxComment200Response**](EditInboxComment200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment edited |  -  |
+| **400** | Platform does not support editing comments (code: platform_not_supported), or content missing. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
+
+## editInboxCommentWithHttpInfo
+
+> ApiResponse<EditInboxComment200Response> editInboxComment editInboxCommentWithHttpInfo(postId, commentId, editInboxCommentRequest)
+
+Edit comment
+
+Edit the body of a comment the connected account posted. Supported on Reddit only.  Reddit keeps the same comment id after an edit. Reddit exposes no API to edit a post title, and a link post has no editable body. To edit a published post&#39;s body, use &#x60;POST /v1/posts/{postId}/edit&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        EditInboxCommentRequest editInboxCommentRequest = new EditInboxCommentRequest(); // EditInboxCommentRequest | 
+        try {
+            ApiResponse<EditInboxComment200Response> response = apiInstance.editInboxCommentWithHttpInfo(postId, commentId, editInboxCommentRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#editInboxComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **editInboxCommentRequest** | [**EditInboxCommentRequest**](EditInboxCommentRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**EditInboxComment200Response**](EditInboxComment200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment edited |  -  |
+| **400** | Platform does not support editing comments (code: platform_not_supported), or content missing. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account not found |  -  |
+| **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
 
 
 ## getInboxPostComments
@@ -1159,6 +1325,168 @@ ApiResponse<[**SendPrivateReplyToComment200Response**](SendPrivateReplyToComment
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
+
+
+## setCommentModeration
+
+> UpdateYoutubeDefaultPlaylist200Response setCommentModeration(postId, commentId, setCommentModerationRequest)
+
+Set comment moderation status
+
+Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        SetCommentModerationRequest setCommentModerationRequest = new SetCommentModerationRequest(); // SetCommentModerationRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.setCommentModeration(postId, commentId, setCommentModerationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#setCommentModeration");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **setCommentModerationRequest** | [**SetCommentModerationRequest**](SetCommentModerationRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Moderation status applied |  -  |
+| **400** | Platform does not support comment moderation (code: platform_not_supported), or banAuthor was set without moderationStatus&#x3D;rejected. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account not found |  -  |
+| **502** | YouTube rejected the request (e.g. the account does not own the video). |  -  |
+
+## setCommentModerationWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setCommentModeration setCommentModerationWithHttpInfo(postId, commentId, setCommentModerationRequest)
+
+Set comment moderation status
+
+Set a comment&#39;s moderation status. Supported on YouTube only.  Use this to work a moderation queue: approve a held comment (&#x60;published&#x60;), reject it (&#x60;rejected&#x60;), or send it back for review (&#x60;heldForReview&#x60;).  The request must be authorized by the owner of the channel or video the comment belongs to. You cannot moderate comments on videos you do not own.  This is distinct from &#x60;POST /v1/inbox/comments/{postId}/{commentId}/hide&#x60;, which covers Facebook, Instagram, Threads, and X/Twitter and does not apply to YouTube. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        SetCommentModerationRequest setCommentModerationRequest = new SetCommentModerationRequest(); // SetCommentModerationRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.setCommentModerationWithHttpInfo(postId, commentId, setCommentModerationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#setCommentModeration");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **setCommentModerationRequest** | [**SetCommentModerationRequest**](SetCommentModerationRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Moderation status applied |  -  |
+| **400** | Platform does not support comment moderation (code: platform_not_supported), or banAuthor was set without moderationStatus&#x3D;rejected. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account not found |  -  |
+| **502** | YouTube rejected the request (e.g. the account does not own the video). |  -  |
 
 
 ## unhideInboxComment

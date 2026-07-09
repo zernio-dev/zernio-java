@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumber200ResponseOneOf2.JSON_PROPERTY_NUMBER_ID,
   PurchasePhoneNumber200ResponseOneOf2.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumber200ResponseOneOf2 {
   /**
    * Gets or Sets status

@@ -37,6 +37,7 @@ import dev.zernio.model.GetPendingOAuthData200Response;
 import dev.zernio.model.GetPinterestBoards200Response;
 import dev.zernio.model.GetRedditFlairs200Response;
 import dev.zernio.model.GetRedditSubreddits200Response;
+import dev.zernio.model.GetSubredditRules200Response;
 import dev.zernio.model.GetTelegramConnectStatus200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.GetYoutubePlaylists200Response;
@@ -61,6 +62,7 @@ import dev.zernio.model.SelectPinterestBoard200Response;
 import dev.zernio.model.SelectPinterestBoardRequest;
 import dev.zernio.model.SelectSnapchatProfile200Response;
 import dev.zernio.model.SelectSnapchatProfileRequest;
+import dev.zernio.model.SetRedditPostFlairRequest;
 import java.net.URI;
 import dev.zernio.model.UpdateFacebookPage200Response;
 import dev.zernio.model.UpdateFacebookPageRequest;
@@ -71,6 +73,7 @@ import dev.zernio.model.UpdatePinterestBoardsRequest;
 import dev.zernio.model.UpdateRedditSubredditsRequest;
 import dev.zernio.model.UpdateYoutubeDefaultPlaylist200Response;
 import dev.zernio.model.UpdateYoutubeDefaultPlaylistRequest;
+import dev.zernio.model.VoteRedditThingRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -97,7 +100,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2059,6 +2062,133 @@ public class ConnectApi {
 
     String localVarPath = "/v1/accounts/{accountId}/reddit-subreddits"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get subreddit rules
+   * Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+   * @param accountId The ID of the Reddit account (required)
+   * @param subreddit Subreddit name (without the \&quot;r/\&quot; prefix) (required)
+   * @return GetSubredditRules200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSubredditRules200Response getSubredditRules(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String subreddit) throws ApiException {
+    return getSubredditRules(accountId, subreddit, null);
+  }
+
+  /**
+   * Get subreddit rules
+   * Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+   * @param accountId The ID of the Reddit account (required)
+   * @param subreddit Subreddit name (without the \&quot;r/\&quot; prefix) (required)
+   * @param headers Optional headers to include in the request
+   * @return GetSubredditRules200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetSubredditRules200Response getSubredditRules(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String subreddit, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetSubredditRules200Response> localVarResponse = getSubredditRulesWithHttpInfo(accountId, subreddit, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get subreddit rules
+   * Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+   * @param accountId The ID of the Reddit account (required)
+   * @param subreddit Subreddit name (without the \&quot;r/\&quot; prefix) (required)
+   * @return ApiResponse&lt;GetSubredditRules200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSubredditRules200Response> getSubredditRulesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String subreddit) throws ApiException {
+    return getSubredditRulesWithHttpInfo(accountId, subreddit, null);
+  }
+
+  /**
+   * Get subreddit rules
+   * Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+   * @param accountId The ID of the Reddit account (required)
+   * @param subreddit Subreddit name (without the \&quot;r/\&quot; prefix) (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetSubredditRules200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetSubredditRules200Response> getSubredditRulesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String subreddit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getSubredditRulesRequestBuilder(accountId, subreddit, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getSubredditRules", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetSubredditRules200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetSubredditRules200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetSubredditRules200Response>() {});
+        
+
+        return new ApiResponse<GetSubredditRules200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getSubredditRulesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String subreddit, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getSubredditRules");
+    }
+    // verify the required parameter 'subreddit' is set
+    if (subreddit == null) {
+      throw new ApiException(400, "Missing the required parameter 'subreddit' when calling getSubredditRules");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{subreddit}", ApiClient.urlEncode(subreddit.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -4081,6 +4211,138 @@ public class ConnectApi {
   }
 
   /**
+   * Set flair on a published Reddit post
+   * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+   * @param accountId The ID of the Reddit account that owns the post (required)
+   * @param setRedditPostFlairRequest  (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response setRedditPostFlair(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull SetRedditPostFlairRequest setRedditPostFlairRequest) throws ApiException {
+    return setRedditPostFlair(accountId, setRedditPostFlairRequest, null);
+  }
+
+  /**
+   * Set flair on a published Reddit post
+   * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+   * @param accountId The ID of the Reddit account that owns the post (required)
+   * @param setRedditPostFlairRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response setRedditPostFlair(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull SetRedditPostFlairRequest setRedditPostFlairRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = setRedditPostFlairWithHttpInfo(accountId, setRedditPostFlairRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Set flair on a published Reddit post
+   * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+   * @param accountId The ID of the Reddit account that owns the post (required)
+   * @param setRedditPostFlairRequest  (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setRedditPostFlairWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull SetRedditPostFlairRequest setRedditPostFlairRequest) throws ApiException {
+    return setRedditPostFlairWithHttpInfo(accountId, setRedditPostFlairRequest, null);
+  }
+
+  /**
+   * Set flair on a published Reddit post
+   * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+   * @param accountId The ID of the Reddit account that owns the post (required)
+   * @param setRedditPostFlairRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setRedditPostFlairWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull SetRedditPostFlairRequest setRedditPostFlairRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = setRedditPostFlairRequestBuilder(accountId, setRedditPostFlairRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("setRedditPostFlair", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder setRedditPostFlairRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull SetRedditPostFlairRequest setRedditPostFlairRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling setRedditPostFlair");
+    }
+    // verify the required parameter 'setRedditPostFlairRequest' is set
+    if (setRedditPostFlairRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'setRedditPostFlairRequest' when calling setRedditPostFlair");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/reddit-flairs"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(setRedditPostFlairRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Update Facebook page
    * Switch which Facebook Page is active for a connected account.
    * @param accountId  (required)
@@ -4858,6 +5120,138 @@ public class ConnectApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateYoutubeDefaultPlaylistRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Vote on a Reddit post or comment
+   * Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+   * @param accountId The ID of the Reddit account casting the vote (required)
+   * @param voteRedditThingRequest  (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response voteRedditThing(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VoteRedditThingRequest voteRedditThingRequest) throws ApiException {
+    return voteRedditThing(accountId, voteRedditThingRequest, null);
+  }
+
+  /**
+   * Vote on a Reddit post or comment
+   * Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+   * @param accountId The ID of the Reddit account casting the vote (required)
+   * @param voteRedditThingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response voteRedditThing(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VoteRedditThingRequest voteRedditThingRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = voteRedditThingWithHttpInfo(accountId, voteRedditThingRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Vote on a Reddit post or comment
+   * Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+   * @param accountId The ID of the Reddit account casting the vote (required)
+   * @param voteRedditThingRequest  (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> voteRedditThingWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VoteRedditThingRequest voteRedditThingRequest) throws ApiException {
+    return voteRedditThingWithHttpInfo(accountId, voteRedditThingRequest, null);
+  }
+
+  /**
+   * Vote on a Reddit post or comment
+   * Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+   * @param accountId The ID of the Reddit account casting the vote (required)
+   * @param voteRedditThingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> voteRedditThingWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VoteRedditThingRequest voteRedditThingRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = voteRedditThingRequestBuilder(accountId, voteRedditThingRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("voteRedditThing", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder voteRedditThingRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull VoteRedditThingRequest voteRedditThingRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling voteRedditThing");
+    }
+    // verify the required parameter 'voteRedditThingRequest' is set
+    if (voteRedditThingRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'voteRedditThingRequest' when calling voteRedditThing");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/reddit-vote"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(voteRedditThingRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

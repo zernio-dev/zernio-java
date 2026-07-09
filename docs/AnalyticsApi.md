@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getDailyMetricsWithHttpInfo**](AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics |
 | [**getFacebookPageInsights**](AnalyticsApi.md#getFacebookPageInsights) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights |
 | [**getFacebookPageInsightsWithHttpInfo**](AnalyticsApi.md#getFacebookPageInsightsWithHttpInfo) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights |
+| [**getFacebookPostReactions**](AnalyticsApi.md#getFacebookPostReactions) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions |
+| [**getFacebookPostReactionsWithHttpInfo**](AnalyticsApi.md#getFacebookPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions |
 | [**getFollowerStats**](AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getFollowerStatsWithHttpInfo**](AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats |
 | [**getGoogleBusinessPerformance**](AnalyticsApi.md#getGoogleBusinessPerformance) | **GET** /v1/analytics/googlebusiness/performance | Get GBP performance metrics |
@@ -909,6 +911,162 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
+
+
+## getFacebookPostReactions
+
+> GetFacebookPostReactions200Response getFacebookPostReactions(accountId, postId)
+
+Get Facebook post reactions
+
+Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Facebook Page account
+        String postId = "1234567890_9876543210"; // String | The Facebook post ID
+        try {
+            GetFacebookPostReactions200Response result = apiInstance.getFacebookPostReactions(accountId, postId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getFacebookPostReactions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Facebook Page account | |
+| **postId** | **String**| The Facebook post ID | |
+
+### Return type
+
+[**GetFacebookPostReactions200Response**](GetFacebookPostReactions200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reaction breakdown for the post |  -  |
+| **400** | Not a Facebook account or missing postId parameter |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Facebook rejected the request |  -  |
+
+## getFacebookPostReactionsWithHttpInfo
+
+> ApiResponse<GetFacebookPostReactions200Response> getFacebookPostReactions getFacebookPostReactionsWithHttpInfo(accountId, postId)
+
+Get Facebook post reactions
+
+Returns the reaction breakdown for a Facebook Page post: a count per reaction type plus the overall total.  The whole breakdown is fetched in a single Graph call. Note that the post analytics endpoint reports only an aggregate reaction count (surfaced there as &#x60;likes&#x60;), so use this endpoint when you need per-type counts. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Facebook Page account
+        String postId = "1234567890_9876543210"; // String | The Facebook post ID
+        try {
+            ApiResponse<GetFacebookPostReactions200Response> response = apiInstance.getFacebookPostReactionsWithHttpInfo(accountId, postId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getFacebookPostReactions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Facebook Page account | |
+| **postId** | **String**| The Facebook post ID | |
+
+### Return type
+
+ApiResponse<[**GetFacebookPostReactions200Response**](GetFacebookPostReactions200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reaction breakdown for the post |  -  |
+| **400** | Not a Facebook account or missing postId parameter |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Facebook rejected the request |  -  |
 
 
 ## getFollowerStats

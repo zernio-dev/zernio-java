@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestBrandIdentity.JSON_PROPERTY_DISPLAY_NAME,
   CreateStandaloneAdRequestBrandIdentity.JSON_PROPERTY_IMAGE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestBrandIdentity {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nonnull

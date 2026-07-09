@@ -20,6 +20,8 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListInboxMentions200Response;
+import dev.zernio.model.ReplyToMention200Response;
+import dev.zernio.model.ReplyToMentionRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MentionsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -304,6 +306,129 @@ public class MentionsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Reply to a mention
+   * Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  Note that &#x60;GET /v1/inbox/mentions&#x60; currently returns LinkedIn mentions only and does not surface Instagram mentions. Source &#x60;mediaId&#x60; and &#x60;commentId&#x60; from Instagram&#39;s &#x60;comments&#x60; webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
+   * @param replyToMentionRequest  (required)
+   * @return ReplyToMention200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToMention200Response replyToMention(@javax.annotation.Nonnull ReplyToMentionRequest replyToMentionRequest) throws ApiException {
+    return replyToMention(replyToMentionRequest, null);
+  }
+
+  /**
+   * Reply to a mention
+   * Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  Note that &#x60;GET /v1/inbox/mentions&#x60; currently returns LinkedIn mentions only and does not surface Instagram mentions. Source &#x60;mediaId&#x60; and &#x60;commentId&#x60; from Instagram&#39;s &#x60;comments&#x60; webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
+   * @param replyToMentionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReplyToMention200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ReplyToMention200Response replyToMention(@javax.annotation.Nonnull ReplyToMentionRequest replyToMentionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReplyToMention200Response> localVarResponse = replyToMentionWithHttpInfo(replyToMentionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Reply to a mention
+   * Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  Note that &#x60;GET /v1/inbox/mentions&#x60; currently returns LinkedIn mentions only and does not surface Instagram mentions. Source &#x60;mediaId&#x60; and &#x60;commentId&#x60; from Instagram&#39;s &#x60;comments&#x60; webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
+   * @param replyToMentionRequest  (required)
+   * @return ApiResponse&lt;ReplyToMention200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToMention200Response> replyToMentionWithHttpInfo(@javax.annotation.Nonnull ReplyToMentionRequest replyToMentionRequest) throws ApiException {
+    return replyToMentionWithHttpInfo(replyToMentionRequest, null);
+  }
+
+  /**
+   * Reply to a mention
+   * Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  Note that &#x60;GET /v1/inbox/mentions&#x60; currently returns LinkedIn mentions only and does not surface Instagram mentions. Source &#x60;mediaId&#x60; and &#x60;commentId&#x60; from Instagram&#39;s &#x60;comments&#x60; webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
+   * @param replyToMentionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReplyToMention200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReplyToMention200Response> replyToMentionWithHttpInfo(@javax.annotation.Nonnull ReplyToMentionRequest replyToMentionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = replyToMentionRequestBuilder(replyToMentionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("replyToMention", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ReplyToMention200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReplyToMention200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReplyToMention200Response>() {});
+        
+
+        return new ApiResponse<ReplyToMention200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder replyToMentionRequestBuilder(@javax.annotation.Nonnull ReplyToMentionRequest replyToMentionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'replyToMentionRequest' is set
+    if (replyToMentionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'replyToMentionRequest' when calling replyToMention");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/mentions/reply";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replyToMentionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

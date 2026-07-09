@@ -75,7 +75,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -608,7 +608,7 @@ public class PostsApi {
 
   /**
    * Edit published post
-   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  Requirements: - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * Edit the text of an already-published post. Supported on X (Twitter), Discord, Facebook, and Reddit. Each platform enforces its own rules:  **X (Twitter)** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Threads cannot be edited, only single tweets - X assigns a NEW post ID on edit, returned as &#x60;id&#x60;  **Discord** - No time limit and no premium requirement - The message ID is unchanged after the edit  **Facebook** - Graph only permits editing a post that the same app created, so this works on   posts published through Zernio and is rejected for posts created in Meta   Business Suite / Composer or by another tool - Media cannot be swapped, only the message text - Reactions, comments, and shares are preserved. The post ID is unchanged  **Reddit** - Self-posts only. A link post has no editable body and is rejected before the write - Body only. Reddit exposes no API to edit a post title, ever - The post ID is unchanged  Media edits are not supported on any platform. The post record in Zernio is updated with the new content and an edit-history entry. 
    * @param postId  (required)
    * @param editPostRequest  (required)
    * @return EditPost200Response
@@ -620,7 +620,7 @@ public class PostsApi {
 
   /**
    * Edit published post
-   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  Requirements: - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * Edit the text of an already-published post. Supported on X (Twitter), Discord, Facebook, and Reddit. Each platform enforces its own rules:  **X (Twitter)** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Threads cannot be edited, only single tweets - X assigns a NEW post ID on edit, returned as &#x60;id&#x60;  **Discord** - No time limit and no premium requirement - The message ID is unchanged after the edit  **Facebook** - Graph only permits editing a post that the same app created, so this works on   posts published through Zernio and is rejected for posts created in Meta   Business Suite / Composer or by another tool - Media cannot be swapped, only the message text - Reactions, comments, and shares are preserved. The post ID is unchanged  **Reddit** - Self-posts only. A link post has no editable body and is rejected before the write - Body only. Reddit exposes no API to edit a post title, ever - The post ID is unchanged  Media edits are not supported on any platform. The post record in Zernio is updated with the new content and an edit-history entry. 
    * @param postId  (required)
    * @param editPostRequest  (required)
    * @param headers Optional headers to include in the request
@@ -634,7 +634,7 @@ public class PostsApi {
 
   /**
    * Edit published post
-   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  Requirements: - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * Edit the text of an already-published post. Supported on X (Twitter), Discord, Facebook, and Reddit. Each platform enforces its own rules:  **X (Twitter)** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Threads cannot be edited, only single tweets - X assigns a NEW post ID on edit, returned as &#x60;id&#x60;  **Discord** - No time limit and no premium requirement - The message ID is unchanged after the edit  **Facebook** - Graph only permits editing a post that the same app created, so this works on   posts published through Zernio and is rejected for posts created in Meta   Business Suite / Composer or by another tool - Media cannot be swapped, only the message text - Reactions, comments, and shares are preserved. The post ID is unchanged  **Reddit** - Self-posts only. A link post has no editable body and is rejected before the write - Body only. Reddit exposes no API to edit a post title, ever - The post ID is unchanged  Media edits are not supported on any platform. The post record in Zernio is updated with the new content and an edit-history entry. 
    * @param postId  (required)
    * @param editPostRequest  (required)
    * @return ApiResponse&lt;EditPost200Response&gt;
@@ -646,7 +646,7 @@ public class PostsApi {
 
   /**
    * Edit published post
-   * Edit a published post on a social media platform. Currently only supported for X (Twitter).  Requirements: - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Text-only edits (media changes are not supported)  The post record in Zernio is updated with the new content and edit history. 
+   * Edit the text of an already-published post. Supported on X (Twitter), Discord, Facebook, and Reddit. Each platform enforces its own rules:  **X (Twitter)** - Connected X account must have an active X Premium subscription - Must be within 1 hour of original publish time - Maximum 5 edits per tweet (enforced by X) - Threads cannot be edited, only single tweets - X assigns a NEW post ID on edit, returned as &#x60;id&#x60;  **Discord** - No time limit and no premium requirement - The message ID is unchanged after the edit  **Facebook** - Graph only permits editing a post that the same app created, so this works on   posts published through Zernio and is rejected for posts created in Meta   Business Suite / Composer or by another tool - Media cannot be swapped, only the message text - Reactions, comments, and shares are preserved. The post ID is unchanged  **Reddit** - Self-posts only. A link post has no editable body and is rejected before the write - Body only. Reddit exposes no API to edit a post title, ever - The post ID is unchanged  Media edits are not supported on any platform. The post record in Zernio is updated with the new content and an edit-history entry. 
    * @param postId  (required)
    * @param editPostRequest  (required)
    * @param headers Optional headers to include in the request

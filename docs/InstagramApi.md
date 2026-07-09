@@ -4,11 +4,165 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getInstagramPublishingLimit**](InstagramApi.md#getInstagramPublishingLimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
+| [**getInstagramPublishingLimitWithHttpInfo**](InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**getInstagramStoryInsights**](InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
 | [**getInstagramStoryInsightsWithHttpInfo**](InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
 | [**listInstagramStories**](InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
 | [**listInstagramStoriesWithHttpInfo**](InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
 
+
+
+## getInstagramPublishingLimit
+
+> GetInstagramPublishingLimit200Response getInstagramPublishingLimit(accountId)
+
+Get Instagram publishing limit
+
+Returns the account&#39;s remaining content-publishing quota for Instagram&#39;s rolling 24-hour window, so you can pace publishing and warn before the cap is reached.  &#x60;quotaUsage&#x60; counts containers published since the start of the window. Always compare against the returned &#x60;quotaTotal&#x60; rather than hardcoding a number: Meta&#39;s prose documentation and the live API disagree on the value, and the live value is authoritative. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Instagram account
+        try {
+            GetInstagramPublishingLimit200Response result = apiInstance.getInstagramPublishingLimit(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramPublishingLimit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Instagram account | |
+
+### Return type
+
+[**GetInstagramPublishingLimit200Response**](GetInstagramPublishingLimit200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Remaining publishing quota for the rolling window |  -  |
+| **400** | Not an Instagram account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Instagram rejected the request |  -  |
+
+## getInstagramPublishingLimitWithHttpInfo
+
+> ApiResponse<GetInstagramPublishingLimit200Response> getInstagramPublishingLimit getInstagramPublishingLimitWithHttpInfo(accountId)
+
+Get Instagram publishing limit
+
+Returns the account&#39;s remaining content-publishing quota for Instagram&#39;s rolling 24-hour window, so you can pace publishing and warn before the cap is reached.  &#x60;quotaUsage&#x60; counts containers published since the start of the window. Always compare against the returned &#x60;quotaTotal&#x60; rather than hardcoding a number: Meta&#39;s prose documentation and the live API disagree on the value, and the live value is authoritative. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of the Instagram account
+        try {
+            ApiResponse<GetInstagramPublishingLimit200Response> response = apiInstance.getInstagramPublishingLimitWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramPublishingLimit");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of the Instagram account | |
+
+### Return type
+
+ApiResponse<[**GetInstagramPublishingLimit200Response**](GetInstagramPublishingLimit200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Remaining publishing quota for the rolling window |  -  |
+| **400** | Not an Instagram account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Instagram rejected the request |  -  |
 
 
 ## getInstagramStoryInsights

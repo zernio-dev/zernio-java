@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-09T07:50:24.459292525Z[Etc/UTC]
+- Build date: 2026-07-09T08:31:44.887565184Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -276,6 +276,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getDailyMetricsWithHttpInfo**](docs/AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics
 *AnalyticsApi* | [**getFacebookPageInsights**](docs/AnalyticsApi.md#getFacebookPageInsights) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights
 *AnalyticsApi* | [**getFacebookPageInsightsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookPageInsightsWithHttpInfo) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights
+*AnalyticsApi* | [**getFacebookPostReactions**](docs/AnalyticsApi.md#getFacebookPostReactions) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions
+*AnalyticsApi* | [**getFacebookPostReactionsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions
 *AnalyticsApi* | [**getFollowerStats**](docs/AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AnalyticsApi* | [**getFollowerStatsWithHttpInfo**](docs/AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AnalyticsApi* | [**getGoogleBusinessPerformance**](docs/AnalyticsApi.md#getGoogleBusinessPerformance) | **GET** /v1/analytics/googlebusiness/performance | Get GBP performance metrics
@@ -358,6 +360,8 @@ Class | Method | HTTP request | Description
 *CommentAutomationsApi* | [**updateCommentAutomationWithHttpInfo**](docs/CommentAutomationsApi.md#updateCommentAutomationWithHttpInfo) | **PATCH** /v1/comment-automations/{automationId} | Update automation settings
 *CommentsApi* | [**deleteInboxComment**](docs/CommentsApi.md#deleteInboxComment) | **DELETE** /v1/inbox/comments/{postId} | Delete comment
 *CommentsApi* | [**deleteInboxCommentWithHttpInfo**](docs/CommentsApi.md#deleteInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId} | Delete comment
+*CommentsApi* | [**editInboxComment**](docs/CommentsApi.md#editInboxComment) | **PATCH** /v1/inbox/comments/{postId}/{commentId} | Edit comment
+*CommentsApi* | [**editInboxCommentWithHttpInfo**](docs/CommentsApi.md#editInboxCommentWithHttpInfo) | **PATCH** /v1/inbox/comments/{postId}/{commentId} | Edit comment
 *CommentsApi* | [**getInboxPostComments**](docs/CommentsApi.md#getInboxPostComments) | **GET** /v1/inbox/comments/{postId} | Get post comments
 *CommentsApi* | [**getInboxPostCommentsWithHttpInfo**](docs/CommentsApi.md#getInboxPostCommentsWithHttpInfo) | **GET** /v1/inbox/comments/{postId} | Get post comments
 *CommentsApi* | [**hideInboxComment**](docs/CommentsApi.md#hideInboxComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/hide | Hide comment
@@ -370,6 +374,8 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**replyToInboxPostWithHttpInfo**](docs/CommentsApi.md#replyToInboxPostWithHttpInfo) | **POST** /v1/inbox/comments/{postId} | Reply to comment
 *CommentsApi* | [**sendPrivateReplyToComment**](docs/CommentsApi.md#sendPrivateReplyToComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/private-reply | Send private reply
 *CommentsApi* | [**sendPrivateReplyToCommentWithHttpInfo**](docs/CommentsApi.md#sendPrivateReplyToCommentWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/private-reply | Send private reply
+*CommentsApi* | [**setCommentModeration**](docs/CommentsApi.md#setCommentModeration) | **POST** /v1/inbox/comments/{postId}/{commentId}/moderation | Set comment moderation status
+*CommentsApi* | [**setCommentModerationWithHttpInfo**](docs/CommentsApi.md#setCommentModerationWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/moderation | Set comment moderation status
 *CommentsApi* | [**unhideInboxComment**](docs/CommentsApi.md#unhideInboxComment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**unhideInboxCommentWithHttpInfo**](docs/CommentsApi.md#unhideInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**unlikeInboxComment**](docs/CommentsApi.md#unlikeInboxComment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
@@ -402,6 +408,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getRedditFlairsWithHttpInfo**](docs/ConnectApi.md#getRedditFlairsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-flairs | List subreddit flairs
 *ConnectApi* | [**getRedditSubreddits**](docs/ConnectApi.md#getRedditSubreddits) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
 *ConnectApi* | [**getRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#getRedditSubredditsWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits | List Reddit subreddits
+*ConnectApi* | [**getSubredditRules**](docs/ConnectApi.md#getSubredditRules) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
+*ConnectApi* | [**getSubredditRulesWithHttpInfo**](docs/ConnectApi.md#getSubredditRulesWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**getTelegramConnectStatus**](docs/ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getTelegramConnectStatusWithHttpInfo**](docs/ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getYoutubePlaylists**](docs/ConnectApi.md#getYoutubePlaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
@@ -432,6 +440,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**selectPinterestBoardWithHttpInfo**](docs/ConnectApi.md#selectPinterestBoardWithHttpInfo) | **POST** /v1/connect/pinterest/select-board | Select Pinterest board
 *ConnectApi* | [**selectSnapchatProfile**](docs/ConnectApi.md#selectSnapchatProfile) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile
 *ConnectApi* | [**selectSnapchatProfileWithHttpInfo**](docs/ConnectApi.md#selectSnapchatProfileWithHttpInfo) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile
+*ConnectApi* | [**setRedditPostFlair**](docs/ConnectApi.md#setRedditPostFlair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set flair on a published Reddit post
+*ConnectApi* | [**setRedditPostFlairWithHttpInfo**](docs/ConnectApi.md#setRedditPostFlairWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set flair on a published Reddit post
 *ConnectApi* | [**updateFacebookPage**](docs/ConnectApi.md#updateFacebookPage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
 *ConnectApi* | [**updateFacebookPageWithHttpInfo**](docs/ConnectApi.md#updateFacebookPageWithHttpInfo) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
 *ConnectApi* | [**updateGmbLocation**](docs/ConnectApi.md#updateGmbLocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update GBP location
@@ -444,6 +454,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**updateRedditSubredditsWithHttpInfo**](docs/ConnectApi.md#updateRedditSubredditsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit
 *ConnectApi* | [**updateYoutubeDefaultPlaylist**](docs/ConnectApi.md#updateYoutubeDefaultPlaylist) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
 *ConnectApi* | [**updateYoutubeDefaultPlaylistWithHttpInfo**](docs/ConnectApi.md#updateYoutubeDefaultPlaylistWithHttpInfo) | **PUT** /v1/accounts/{accountId}/youtube-playlists | Set default YouTube playlist
+*ConnectApi* | [**voteRedditThing**](docs/ConnectApi.md#voteRedditThing) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment
+*ConnectApi* | [**voteRedditThingWithHttpInfo**](docs/ConnectApi.md#voteRedditThingWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-vote | Vote on a Reddit post or comment
 *ContactsApi* | [**bulkCreateContacts**](docs/ContactsApi.md#bulkCreateContacts) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**bulkCreateContactsWithHttpInfo**](docs/ContactsApi.md#bulkCreateContactsWithHttpInfo) | **POST** /v1/contacts/bulk | Bulk create contacts
 *ContactsApi* | [**createContact**](docs/ContactsApi.md#createContact) | **POST** /v1/contacts | Create contact
@@ -472,10 +484,22 @@ Class | Method | HTTP request | Description
 *CustomFieldsApi* | [**updateCustomFieldWithHttpInfo**](docs/CustomFieldsApi.md#updateCustomFieldWithHttpInfo) | **PATCH** /v1/custom-fields/{fieldId} | Update custom field
 *DiscordApi* | [**addDiscordMemberRole**](docs/DiscordApi.md#addDiscordMemberRole) | **PUT** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Assign a role to a guild member
 *DiscordApi* | [**addDiscordMemberRoleWithHttpInfo**](docs/DiscordApi.md#addDiscordMemberRoleWithHttpInfo) | **PUT** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Assign a role to a guild member
+*DiscordApi* | [**createDiscordGuildRole**](docs/DiscordApi.md#createDiscordGuildRole) | **POST** /v1/discord/guilds/{guildId}/roles | Create a Discord guild role
+*DiscordApi* | [**createDiscordGuildRoleWithHttpInfo**](docs/DiscordApi.md#createDiscordGuildRoleWithHttpInfo) | **POST** /v1/discord/guilds/{guildId}/roles | Create a Discord guild role
 *DiscordApi* | [**createDiscordScheduledEvent**](docs/DiscordApi.md#createDiscordScheduledEvent) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event
 *DiscordApi* | [**createDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#createDiscordScheduledEventWithHttpInfo) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event
+*DiscordApi* | [**createDiscordThread**](docs/DiscordApi.md#createDiscordThread) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread
+*DiscordApi* | [**createDiscordThreadWithHttpInfo**](docs/DiscordApi.md#createDiscordThreadWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread
+*DiscordApi* | [**crosspostDiscordMessage**](docs/DiscordApi.md#crosspostDiscordMessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message
+*DiscordApi* | [**crosspostDiscordMessageWithHttpInfo**](docs/DiscordApi.md#crosspostDiscordMessageWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message
+*DiscordApi* | [**deleteDiscordGuildRole**](docs/DiscordApi.md#deleteDiscordGuildRole) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role
+*DiscordApi* | [**deleteDiscordGuildRoleWithHttpInfo**](docs/DiscordApi.md#deleteDiscordGuildRoleWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role
+*DiscordApi* | [**deleteDiscordMessage**](docs/DiscordApi.md#deleteDiscordMessage) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message
+*DiscordApi* | [**deleteDiscordMessageWithHttpInfo**](docs/DiscordApi.md#deleteDiscordMessageWithHttpInfo) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message
 *DiscordApi* | [**deleteDiscordScheduledEvent**](docs/DiscordApi.md#deleteDiscordScheduledEvent) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event
 *DiscordApi* | [**deleteDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#deleteDiscordScheduledEventWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event
+*DiscordApi* | [**editDiscordGuildRole**](docs/DiscordApi.md#editDiscordGuildRole) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role
+*DiscordApi* | [**editDiscordGuildRoleWithHttpInfo**](docs/DiscordApi.md#editDiscordGuildRoleWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role
 *DiscordApi* | [**getDiscordChannels**](docs/DiscordApi.md#getDiscordChannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
 *DiscordApi* | [**getDiscordChannelsWithHttpInfo**](docs/DiscordApi.md#getDiscordChannelsWithHttpInfo) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels
 *DiscordApi* | [**getDiscordScheduledEvent**](docs/DiscordApi.md#getDiscordScheduledEvent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event
@@ -564,6 +588,8 @@ Class | Method | HTTP request | Description
 *InboxAnalyticsApi* | [**getInboxVolumeWithHttpInfo**](docs/InboxAnalyticsApi.md#getInboxVolumeWithHttpInfo) | **GET** /v1/analytics/inbox/volume | Get inbox messaging volume
 *InboxAnalyticsApi* | [**listInboxConversationAnalytics**](docs/InboxAnalyticsApi.md#listInboxConversationAnalytics) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
 *InboxAnalyticsApi* | [**listInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#listInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
+*InstagramApi* | [**getInstagramPublishingLimit**](docs/InstagramApi.md#getInstagramPublishingLimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
+*InstagramApi* | [**getInstagramPublishingLimitWithHttpInfo**](docs/InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**getInstagramStoryInsightsWithHttpInfo**](docs/InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**listInstagramStories**](docs/InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
@@ -578,6 +604,8 @@ Class | Method | HTTP request | Description
 *MediaApi* | [**getMediaPresignedUrlWithHttpInfo**](docs/MediaApi.md#getMediaPresignedUrlWithHttpInfo) | **POST** /v1/media/presign | Get upload URL
 *MentionsApi* | [**listInboxMentions**](docs/MentionsApi.md#listInboxMentions) | **GET** /v1/inbox/mentions | List mentions
 *MentionsApi* | [**listInboxMentionsWithHttpInfo**](docs/MentionsApi.md#listInboxMentionsWithHttpInfo) | **GET** /v1/inbox/mentions | List mentions
+*MentionsApi* | [**replyToMention**](docs/MentionsApi.md#replyToMention) | **POST** /v1/inbox/mentions/reply | Reply to a mention
+*MentionsApi* | [**replyToMentionWithHttpInfo**](docs/MentionsApi.md#replyToMentionWithHttpInfo) | **POST** /v1/inbox/mentions/reply | Reply to a mention
 *MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
@@ -1168,12 +1196,17 @@ Class | Method | HTTP request | Description
  - [CreateCtwaAdRequestZipsInner](docs/CreateCtwaAdRequestZipsInner.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
  - [CreateCustomFieldRequest](docs/CreateCustomFieldRequest.md)
+ - [CreateDiscordGuildRole201Response](docs/CreateDiscordGuildRole201Response.md)
+ - [CreateDiscordGuildRoleRequest](docs/CreateDiscordGuildRoleRequest.md)
  - [CreateDiscordScheduledEvent200Response](docs/CreateDiscordScheduledEvent200Response.md)
  - [CreateDiscordScheduledEventRequest](docs/CreateDiscordScheduledEventRequest.md)
  - [CreateDiscordScheduledEventRequestEntity](docs/CreateDiscordScheduledEventRequestEntity.md)
  - [CreateDiscordScheduledEventRequestEntityOneOf](docs/CreateDiscordScheduledEventRequestEntityOneOf.md)
  - [CreateDiscordScheduledEventRequestEntityOneOf1](docs/CreateDiscordScheduledEventRequestEntityOneOf1.md)
  - [CreateDiscordScheduledEventRequestEntityOneOf2](docs/CreateDiscordScheduledEventRequestEntityOneOf2.md)
+ - [CreateDiscordThread200Response](docs/CreateDiscordThread200Response.md)
+ - [CreateDiscordThread200ResponseData](docs/CreateDiscordThread200ResponseData.md)
+ - [CreateDiscordThreadRequest](docs/CreateDiscordThreadRequest.md)
  - [CreateGoogleBusinessMedia200Response](docs/CreateGoogleBusinessMedia200Response.md)
  - [CreateGoogleBusinessMediaRequest](docs/CreateGoogleBusinessMediaRequest.md)
  - [CreateGoogleBusinessPlaceAction200Response](docs/CreateGoogleBusinessPlaceAction200Response.md)
@@ -1263,6 +1296,7 @@ Class | Method | HTTP request | Description
  - [CreateWorkflow200Response](docs/CreateWorkflow200Response.md)
  - [CreateWorkflow200ResponseWorkflow](docs/CreateWorkflow200ResponseWorkflow.md)
  - [CreateWorkflowRequest](docs/CreateWorkflowRequest.md)
+ - [CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [CtwaMultiResponse](docs/CtwaMultiResponse.md)
  - [CtwaSingleResponse](docs/CtwaSingleResponse.md)
  - [DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
@@ -1290,6 +1324,7 @@ Class | Method | HTTP request | Description
  - [DiscordPlatformDataPollAnswersInnerPollMedia](docs/DiscordPlatformDataPollAnswersInnerPollMedia.md)
  - [DiscordPlatformDataPollQuestion](docs/DiscordPlatformDataPollQuestion.md)
  - [DiscordPlatformDataThreadFromMessage](docs/DiscordPlatformDataThreadFromMessage.md)
+ - [DiscordRole](docs/DiscordRole.md)
  - [DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
  - [DmButton](docs/DmButton.md)
@@ -1297,6 +1332,9 @@ Class | Method | HTTP request | Description
  - [DuplicateAdCampaignRequest](docs/DuplicateAdCampaignRequest.md)
  - [DuplicateWorkflow201Response](docs/DuplicateWorkflow201Response.md)
  - [DuplicateWorkflow201ResponseWorkflow](docs/DuplicateWorkflow201ResponseWorkflow.md)
+ - [EditDiscordGuildRoleRequest](docs/EditDiscordGuildRoleRequest.md)
+ - [EditInboxComment200Response](docs/EditInboxComment200Response.md)
+ - [EditInboxCommentRequest](docs/EditInboxCommentRequest.md)
  - [EditInboxMessage200Response](docs/EditInboxMessage200Response.md)
  - [EditInboxMessage200ResponseData](docs/EditInboxMessage200ResponseData.md)
  - [EditInboxMessageRequest](docs/EditInboxMessageRequest.md)
@@ -1406,6 +1444,8 @@ Class | Method | HTTP request | Description
  - [GetDiscordSettings200ResponseAccount](docs/GetDiscordSettings200ResponseAccount.md)
  - [GetFacebookPages200Response](docs/GetFacebookPages200Response.md)
  - [GetFacebookPages200ResponsePagesInner](docs/GetFacebookPages200ResponsePagesInner.md)
+ - [GetFacebookPostReactions200Response](docs/GetFacebookPostReactions200Response.md)
+ - [GetFacebookPostReactions200ResponseBreakdown](docs/GetFacebookPostReactions200ResponseBreakdown.md)
  - [GetFollowerStats403Response](docs/GetFollowerStats403Response.md)
  - [GetGmbAttributeMetadata200Response](docs/GetGmbAttributeMetadata200Response.md)
  - [GetGmbAttributeMetadata200ResponseAttributeMetadataInner](docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInner.md)
@@ -1492,6 +1532,7 @@ Class | Method | HTTP request | Description
  - [GetInboxVolume200ResponseTimeseriesInner](docs/GetInboxVolume200ResponseTimeseriesInner.md)
  - [GetInboxVolume400Response](docs/GetInboxVolume400Response.md)
  - [GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
+ - [GetInstagramPublishingLimit200Response](docs/GetInstagramPublishingLimit200Response.md)
  - [GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
  - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)
  - [GetInstagramStoryInsights200ResponseDataMetrics](docs/GetInstagramStoryInsights200ResponseDataMetrics.md)
@@ -1546,6 +1587,8 @@ Class | Method | HTTP request | Description
  - [GetSmsUsage200Response](docs/GetSmsUsage200Response.md)
  - [GetSmsUsage200ResponseGroupsInner](docs/GetSmsUsage200ResponseGroupsInner.md)
  - [GetSmsUsage200ResponseTotals](docs/GetSmsUsage200ResponseTotals.md)
+ - [GetSubredditRules200Response](docs/GetSubredditRules200Response.md)
+ - [GetSubredditRules200ResponseRulesInner](docs/GetSubredditRules200ResponseRulesInner.md)
  - [GetTelegramCommands200Response](docs/GetTelegramCommands200Response.md)
  - [GetTelegramCommands200ResponseDataInner](docs/GetTelegramCommands200ResponseDataInner.md)
  - [GetTelegramConnectStatus200Response](docs/GetTelegramConnectStatus200Response.md)
@@ -1886,6 +1929,8 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxPostRequest](docs/ReplyToInboxPostRequest.md)
  - [ReplyToInboxReview200Response](docs/ReplyToInboxReview200Response.md)
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
+ - [ReplyToMention200Response](docs/ReplyToMention200Response.md)
+ - [ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)
@@ -2004,10 +2049,12 @@ Class | Method | HTTP request | Description
  - [SendWhatsAppFlowMessageRequest](docs/SendWhatsAppFlowMessageRequest.md)
  - [SendWhatsAppFlowMessageRequestFlowActionPayload](docs/SendWhatsAppFlowMessageRequestFlowActionPayload.md)
  - [SendWhatsAppFlowMessageRequestHeader](docs/SendWhatsAppFlowMessageRequestHeader.md)
+ - [SetCommentModerationRequest](docs/SetCommentModerationRequest.md)
  - [SetContactFieldValueRequest](docs/SetContactFieldValueRequest.md)
  - [SetInstagramIceBreakersRequest](docs/SetInstagramIceBreakersRequest.md)
  - [SetInstagramIceBreakersRequestIceBreakersInner](docs/SetInstagramIceBreakersRequestIceBreakersInner.md)
  - [SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
+ - [SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
  - [SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)
@@ -2223,6 +2270,7 @@ Class | Method | HTTP request | Description
  - [ValidateSubreddit200ResponseOneOfSubreddit](docs/ValidateSubreddit200ResponseOneOfSubreddit.md)
  - [VerifySmsRegistrationOtp200Response](docs/VerifySmsRegistrationOtp200Response.md)
  - [VerifySmsRegistrationOtpRequest](docs/VerifySmsRegistrationOtpRequest.md)
+ - [VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
  - [Webhook](docs/Webhook.md)
  - [WebhookLog](docs/WebhookLog.md)
  - [WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)

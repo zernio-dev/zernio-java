@@ -6,10 +6,22 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**addDiscordMemberRole**](DiscordApi.md#addDiscordMemberRole) | **PUT** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Assign a role to a guild member |
 | [**addDiscordMemberRoleWithHttpInfo**](DiscordApi.md#addDiscordMemberRoleWithHttpInfo) | **PUT** /v1/discord/guilds/{guildId}/members/{userId}/roles/{roleId} | Assign a role to a guild member |
+| [**createDiscordGuildRole**](DiscordApi.md#createDiscordGuildRole) | **POST** /v1/discord/guilds/{guildId}/roles | Create a Discord guild role |
+| [**createDiscordGuildRoleWithHttpInfo**](DiscordApi.md#createDiscordGuildRoleWithHttpInfo) | **POST** /v1/discord/guilds/{guildId}/roles | Create a Discord guild role |
 | [**createDiscordScheduledEvent**](DiscordApi.md#createDiscordScheduledEvent) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event |
 | [**createDiscordScheduledEventWithHttpInfo**](DiscordApi.md#createDiscordScheduledEventWithHttpInfo) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event |
+| [**createDiscordThread**](DiscordApi.md#createDiscordThread) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread |
+| [**createDiscordThreadWithHttpInfo**](DiscordApi.md#createDiscordThreadWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread |
+| [**crosspostDiscordMessage**](DiscordApi.md#crosspostDiscordMessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message |
+| [**crosspostDiscordMessageWithHttpInfo**](DiscordApi.md#crosspostDiscordMessageWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message |
+| [**deleteDiscordGuildRole**](DiscordApi.md#deleteDiscordGuildRole) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role |
+| [**deleteDiscordGuildRoleWithHttpInfo**](DiscordApi.md#deleteDiscordGuildRoleWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role |
+| [**deleteDiscordMessage**](DiscordApi.md#deleteDiscordMessage) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message |
+| [**deleteDiscordMessageWithHttpInfo**](DiscordApi.md#deleteDiscordMessageWithHttpInfo) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message |
 | [**deleteDiscordScheduledEvent**](DiscordApi.md#deleteDiscordScheduledEvent) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event |
 | [**deleteDiscordScheduledEventWithHttpInfo**](DiscordApi.md#deleteDiscordScheduledEventWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/events/{eventId} | Delete a Discord scheduled event |
+| [**editDiscordGuildRole**](DiscordApi.md#editDiscordGuildRole) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role |
+| [**editDiscordGuildRoleWithHttpInfo**](DiscordApi.md#editDiscordGuildRoleWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/roles/{roleId} | Edit a Discord guild role |
 | [**getDiscordChannels**](DiscordApi.md#getDiscordChannels) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels |
 | [**getDiscordChannelsWithHttpInfo**](DiscordApi.md#getDiscordChannelsWithHttpInfo) | **GET** /v1/accounts/{accountId}/discord-channels | List Discord guild channels |
 | [**getDiscordScheduledEvent**](DiscordApi.md#getDiscordScheduledEvent) | **GET** /v1/discord/guilds/{guildId}/events/{eventId} | Get a Discord scheduled event |
@@ -117,7 +129,8 @@ public class Example {
 | **400** | Validation error (malformed snowflake) or @everyone manipulation attempt. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
-| **502** | Discord rejected the request: bot lacks MANAGE_ROLES, or target role is above the bot&#39;s highest role. |  -  |
+| **403** | Discord refused the request: bot lacks MANAGE_ROLES, or target role is at or above the bot&#39;s highest role. |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 ## addDiscordMemberRoleWithHttpInfo
 
@@ -200,7 +213,170 @@ ApiResponse<[**AddDiscordMemberRole200Response**](AddDiscordMemberRole200Respons
 | **400** | Validation error (malformed snowflake) or @everyone manipulation attempt. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
-| **502** | Discord rejected the request: bot lacks MANAGE_ROLES, or target role is above the bot&#39;s highest role. |  -  |
+| **403** | Discord refused the request: bot lacks MANAGE_ROLES, or target role is at or above the bot&#39;s highest role. |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+
+## createDiscordGuildRole
+
+> CreateDiscordGuildRole201Response createDiscordGuildRole(guildId, accountId, createDiscordGuildRoleRequest)
+
+Create a Discord guild role
+
+Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | Discord guild snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this guild
+        CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest = new CreateDiscordGuildRoleRequest(); // CreateDiscordGuildRoleRequest | 
+        try {
+            CreateDiscordGuildRole201Response result = apiInstance.createDiscordGuildRole(guildId, accountId, createDiscordGuildRoleRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#createDiscordGuildRole");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**| Discord guild snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this guild | |
+| **createDiscordGuildRoleRequest** | [**CreateDiscordGuildRoleRequest**](CreateDiscordGuildRoleRequest.md)|  | |
+
+### Return type
+
+[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Role created. |  -  |
+| **400** | Invalid accountId, guildId, or role body. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the new role would sit at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+## createDiscordGuildRoleWithHttpInfo
+
+> ApiResponse<CreateDiscordGuildRole201Response> createDiscordGuildRole createDiscordGuildRoleWithHttpInfo(guildId, accountId, createDiscordGuildRoleRequest)
+
+Create a Discord guild role
+
+Creates a new role in the guild.  Requires the bot to hold the Manage Roles permission. Guilds that added the Zernio bot before role management shipped must re-invite it, because Discord applies the permission set at invite time.  Discord&#39;s role hierarchy applies: the bot cannot create a role positioned at or above its own highest role, and cannot grant permissions it does not itself hold. Either attempt returns a 403 carrying Discord&#39;s own error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | Discord guild snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this guild
+        CreateDiscordGuildRoleRequest createDiscordGuildRoleRequest = new CreateDiscordGuildRoleRequest(); // CreateDiscordGuildRoleRequest | 
+        try {
+            ApiResponse<CreateDiscordGuildRole201Response> response = apiInstance.createDiscordGuildRoleWithHttpInfo(guildId, accountId, createDiscordGuildRoleRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#createDiscordGuildRole");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**| Discord guild snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this guild | |
+| **createDiscordGuildRoleRequest** | [**CreateDiscordGuildRoleRequest**](CreateDiscordGuildRoleRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Role created. |  -  |
+| **400** | Invalid accountId, guildId, or role body. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the new role would sit at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 
 ## createDiscordScheduledEvent
@@ -359,6 +535,654 @@ ApiResponse<[**CreateDiscordScheduledEvent200Response**](CreateDiscordScheduledE
 | **502** | Bot lacks MANAGE_EVENTS in the guild. |  -  |
 
 
+## createDiscordThread
+
+> CreateDiscordThread200Response createDiscordThread(channelId, accountId, createDiscordThreadRequest)
+
+Create a Discord public thread
+
+Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String channelId = "channelId_example"; // String | Discord channel snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this channel's guild
+        CreateDiscordThreadRequest createDiscordThreadRequest = new CreateDiscordThreadRequest(); // CreateDiscordThreadRequest | 
+        try {
+            CreateDiscordThread200Response result = apiInstance.createDiscordThread(channelId, accountId, createDiscordThreadRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#createDiscordThread");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **channelId** | **String**| Discord channel snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this channel&#39;s guild | |
+| **createDiscordThreadRequest** | [**CreateDiscordThreadRequest**](CreateDiscordThreadRequest.md)|  | |
+
+### Return type
+
+[**CreateDiscordThread200Response**](CreateDiscordThread200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Thread created. |  -  |
+| **400** | Invalid accountId, channelId, messageId, name, or autoArchiveDuration. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks Create Public Threads). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+## createDiscordThreadWithHttpInfo
+
+> ApiResponse<CreateDiscordThread200Response> createDiscordThread createDiscordThreadWithHttpInfo(channelId, accountId, createDiscordThreadRequest)
+
+Create a Discord public thread
+
+Creates a public thread in a channel. Pass &#x60;messageId&#x60; to start the thread from an existing message, or omit it to create a standalone thread.  Threads created here are always public. Requires the bot to hold Create Public Threads, which the Zernio bot requests at install time. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String channelId = "channelId_example"; // String | Discord channel snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this channel's guild
+        CreateDiscordThreadRequest createDiscordThreadRequest = new CreateDiscordThreadRequest(); // CreateDiscordThreadRequest | 
+        try {
+            ApiResponse<CreateDiscordThread200Response> response = apiInstance.createDiscordThreadWithHttpInfo(channelId, accountId, createDiscordThreadRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#createDiscordThread");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **channelId** | **String**| Discord channel snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this channel&#39;s guild | |
+| **createDiscordThreadRequest** | [**CreateDiscordThreadRequest**](CreateDiscordThreadRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateDiscordThread200Response**](CreateDiscordThread200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Thread created. |  -  |
+| **400** | Invalid accountId, channelId, messageId, name, or autoArchiveDuration. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks Create Public Threads). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+
+## crosspostDiscordMessage
+
+> CrosspostDiscordMessage200Response crosspostDiscordMessage(channelId, messageId, accountId)
+
+Crosspost a Discord announcement message
+
+Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String channelId = "channelId_example"; // String | Discord announcement channel snowflake ID
+        String messageId = "messageId_example"; // String | Discord message snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this channel's guild
+        try {
+            CrosspostDiscordMessage200Response result = apiInstance.crosspostDiscordMessage(channelId, messageId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#crosspostDiscordMessage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **channelId** | **String**| Discord announcement channel snowflake ID | |
+| **messageId** | **String**| Discord message snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this channel&#39;s guild | |
+
+### Return type
+
+[**CrosspostDiscordMessage200Response**](CrosspostDiscordMessage200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Message crossposted. |  -  |
+| **400** | Invalid ids, or the channel is not an announcement channel. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks the required permission). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+## crosspostDiscordMessageWithHttpInfo
+
+> ApiResponse<CrosspostDiscordMessage200Response> crosspostDiscordMessage crosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId)
+
+Crosspost a Discord announcement message
+
+Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String channelId = "channelId_example"; // String | Discord announcement channel snowflake ID
+        String messageId = "messageId_example"; // String | Discord message snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this channel's guild
+        try {
+            ApiResponse<CrosspostDiscordMessage200Response> response = apiInstance.crosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#crosspostDiscordMessage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **channelId** | **String**| Discord announcement channel snowflake ID | |
+| **messageId** | **String**| Discord message snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this channel&#39;s guild | |
+
+### Return type
+
+ApiResponse<[**CrosspostDiscordMessage200Response**](CrosspostDiscordMessage200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Message crossposted. |  -  |
+| **400** | Invalid ids, or the channel is not an announcement channel. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks the required permission). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+
+## deleteDiscordGuildRole
+
+> UpdateYoutubeDefaultPlaylist200Response deleteDiscordGuildRole(guildId, roleId, accountId)
+
+Delete a Discord guild role
+
+Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | Discord guild snowflake ID
+        String roleId = "roleId_example"; // String | Discord role snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this guild
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteDiscordGuildRole(guildId, roleId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#deleteDiscordGuildRole");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**| Discord guild snowflake ID | |
+| **roleId** | **String**| Discord role snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this guild | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Role deleted. |  -  |
+| **400** | Invalid accountId, guildId, or roleId format. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+## deleteDiscordGuildRoleWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteDiscordGuildRole deleteDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId)
+
+Delete a Discord guild role
+
+Permanently deletes a role from the guild and removes it from every member. This cannot be undone.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | Discord guild snowflake ID
+        String roleId = "roleId_example"; // String | Discord role snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this guild
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#deleteDiscordGuildRole");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**| Discord guild snowflake ID | |
+| **roleId** | **String**| Discord role snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this guild | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Role deleted. |  -  |
+| **400** | Invalid accountId, guildId, or roleId format. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+
+## deleteDiscordMessage
+
+> UpdateYoutubeDefaultPlaylist200Response deleteDiscordMessage(channelId, messageId, accountId)
+
+Delete a Discord channel message
+
+Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String channelId = "channelId_example"; // String | Discord channel snowflake ID
+        String messageId = "messageId_example"; // String | Discord message snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this channel's guild
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteDiscordMessage(channelId, messageId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#deleteDiscordMessage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **channelId** | **String**| Discord channel snowflake ID | |
+| **messageId** | **String**| Discord message snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this channel&#39;s guild | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Message deleted. |  -  |
+| **400** | Invalid accountId, channelId, or messageId format. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Messages). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+## deleteDiscordMessageWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteDiscordMessage deleteDiscordMessageWithHttpInfo(channelId, messageId, accountId)
+
+Delete a Discord channel message
+
+Deletes a message from a channel, for moderation and cleanup. This cannot be undone.  Deleting a message the bot did not send requires the bot to hold the Manage Messages permission, which the Zernio bot requests at install time. Deleting the bot&#39;s own message needs no extra permission.  Ownership is verified by resolving the channel&#39;s guild and confirming the caller owns a Discord account bound to it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String channelId = "channelId_example"; // String | Discord channel snowflake ID
+        String messageId = "messageId_example"; // String | Discord message snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this channel's guild
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteDiscordMessageWithHttpInfo(channelId, messageId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#deleteDiscordMessage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **channelId** | **String**| Discord channel snowflake ID | |
+| **messageId** | **String**| Discord message snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this channel&#39;s guild | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Message deleted. |  -  |
+| **400** | Invalid accountId, channelId, or messageId format. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Messages). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+
 ## deleteDiscordScheduledEvent
 
 > DeleteDiscordScheduledEvent200Response deleteDiscordScheduledEvent(guildId, eventId, accountId)
@@ -515,6 +1339,172 @@ ApiResponse<[**DeleteDiscordScheduledEvent200Response**](DeleteDiscordScheduledE
 | **401** | Unauthorized |  -  |
 | **404** | Event or Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_EVENTS in the guild. |  -  |
+
+
+## editDiscordGuildRole
+
+> CreateDiscordGuildRole201Response editDiscordGuildRole(guildId, roleId, accountId, editDiscordGuildRoleRequest)
+
+Edit a Discord guild role
+
+Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | Discord guild snowflake ID
+        String roleId = "roleId_example"; // String | Discord role snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this guild
+        EditDiscordGuildRoleRequest editDiscordGuildRoleRequest = new EditDiscordGuildRoleRequest(); // EditDiscordGuildRoleRequest | 
+        try {
+            CreateDiscordGuildRole201Response result = apiInstance.editDiscordGuildRole(guildId, roleId, accountId, editDiscordGuildRoleRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#editDiscordGuildRole");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**| Discord guild snowflake ID | |
+| **roleId** | **String**| Discord role snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this guild | |
+| **editDiscordGuildRoleRequest** | [**EditDiscordGuildRoleRequest**](EditDiscordGuildRoleRequest.md)|  | |
+
+### Return type
+
+[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Role updated. |  -  |
+| **400** | Invalid ids, or no fields supplied to edit. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
+
+## editDiscordGuildRoleWithHttpInfo
+
+> ApiResponse<CreateDiscordGuildRole201Response> editDiscordGuildRole editDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, editDiscordGuildRoleRequest)
+
+Edit a Discord guild role
+
+Updates a role&#39;s name, color, hoist, mentionable flag, or permission bitfield. At least one field must be supplied. Omitted fields are left unchanged.  Requires the bot to hold Manage Roles, and the target role must sit below the bot&#39;s highest role. See the create-role operation for the re-invite requirement. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.DiscordApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        DiscordApi apiInstance = new DiscordApi(defaultClient);
+        String guildId = "guildId_example"; // String | Discord guild snowflake ID
+        String roleId = "roleId_example"; // String | Discord role snowflake ID
+        String accountId = "accountId_example"; // String | SocialAccount _id of the Discord account bound to this guild
+        EditDiscordGuildRoleRequest editDiscordGuildRoleRequest = new EditDiscordGuildRoleRequest(); // EditDiscordGuildRoleRequest | 
+        try {
+            ApiResponse<CreateDiscordGuildRole201Response> response = apiInstance.editDiscordGuildRoleWithHttpInfo(guildId, roleId, accountId, editDiscordGuildRoleRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling DiscordApi#editDiscordGuildRole");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **guildId** | **String**| Discord guild snowflake ID | |
+| **roleId** | **String**| Discord role snowflake ID | |
+| **accountId** | **String**| SocialAccount _id of the Discord account bound to this guild | |
+| **editDiscordGuildRoleRequest** | [**EditDiscordGuildRoleRequest**](EditDiscordGuildRoleRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Role updated. |  -  |
+| **400** | Invalid ids, or no fields supplied to edit. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
+| **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 
 ## getDiscordChannels
@@ -1205,7 +2195,8 @@ public class Example {
 | **400** | Invalid accountId or guildId format. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
-| **502** | Discord rejected the request (bot lacks View Channels permission in the guild). |  -  |
+| **403** | Discord refused the request (bot lacks View Channels permission in the guild). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 ## listDiscordGuildRolesWithHttpInfo
 
@@ -1284,7 +2275,8 @@ ApiResponse<[**ListDiscordGuildRoles200Response**](ListDiscordGuildRoles200Respo
 | **400** | Invalid accountId or guildId format. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
-| **502** | Discord rejected the request (bot lacks View Channels permission in the guild). |  -  |
+| **403** | Discord refused the request (bot lacks View Channels permission in the guild). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 
 ## listDiscordPinnedMessages
@@ -1841,7 +2833,8 @@ public class Example {
 | **400** | Validation error. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
-| **502** | Discord rejected the request (permission or hierarchy issue). |  -  |
+| **403** | Discord refused the request (permission or hierarchy issue). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 ## removeDiscordMemberRoleWithHttpInfo
 
@@ -1924,7 +2917,8 @@ ApiResponse<[**RemoveDiscordMemberRole200Response**](RemoveDiscordMemberRole200R
 | **400** | Validation error. |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
-| **502** | Discord rejected the request (permission or hierarchy issue). |  -  |
+| **403** | Discord refused the request (permission or hierarchy issue). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 
 ## sendDiscordDirectMessage
@@ -1999,7 +2993,8 @@ public class Example {
 | **400** | Validation error (missing required fields, content &gt; 2000 chars, malformed snowflake, or all of content/embeds/attachments missing). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not accessible to this user. |  -  |
-| **502** | Discord rejected the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
+| **403** | Discord refused the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 ## sendDiscordDirectMessageWithHttpInfo
 
@@ -2076,7 +3071,8 @@ ApiResponse<[**SendDiscordDirectMessage200Response**](SendDiscordDirectMessage20
 | **400** | Validation error (missing required fields, content &gt; 2000 chars, malformed snowflake, or all of content/embeds/attachments missing). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Discord account not found or not accessible to this user. |  -  |
-| **502** | Discord rejected the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
+| **403** | Discord refused the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 
 ## unpinDiscordMessage
@@ -2312,10 +3308,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event updated. |  -  |
-| **400** | Validation error, OR no updatable fields beyond accountId provided. |  -  |
+| **400** | Validation error, no updatable fields beyond accountId provided, or Discord rejected the update (invalid status transition). |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Discord refused the update (bot permissions). |  -  |
 | **404** | Event or Discord account not found. |  -  |
-| **502** | Discord rejected the update (invalid status transition, bot permissions, etc.). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 ## updateDiscordScheduledEventWithHttpInfo
 
@@ -2393,10 +3390,11 @@ ApiResponse<[**CreateDiscordScheduledEvent200Response**](CreateDiscordScheduledE
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event updated. |  -  |
-| **400** | Validation error, OR no updatable fields beyond accountId provided. |  -  |
+| **400** | Validation error, no updatable fields beyond accountId provided, or Discord rejected the update (invalid status transition). |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Discord refused the update (bot permissions). |  -  |
 | **404** | Event or Discord account not found. |  -  |
-| **502** | Discord rejected the update (invalid status transition, bot permissions, etc.). |  -  |
+| **502** | Discord was unreachable or returned an unclassified error. |  -  |
 
 
 ## updateDiscordSettings
