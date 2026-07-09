@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:20:27.672499280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:31:44.485265636Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1047,7 +1047,7 @@ public class SmsApi {
   }
 
   /**
-   * Add a number to an existing registration
+   * Add number to SMS registration
    * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
    * @param id  (required)
    * @return ReuseSmsRegistrationForNumber200Response
@@ -1058,7 +1058,7 @@ public class SmsApi {
   }
 
   /**
-   * Add a number to an existing registration
+   * Add number to SMS registration
    * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
    * @param id  (required)
    * @param headers Optional headers to include in the request
@@ -1071,7 +1071,7 @@ public class SmsApi {
   }
 
   /**
-   * Add a number to an existing registration
+   * Add number to SMS registration
    * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
    * @param id  (required)
    * @return ApiResponse&lt;ReuseSmsRegistrationForNumber200Response&gt;
@@ -1082,7 +1082,7 @@ public class SmsApi {
   }
 
   /**
-   * Add a number to an existing registration
+   * Add number to SMS registration
    * Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
    * @param id  (required)
    * @param headers Optional headers to include in the request

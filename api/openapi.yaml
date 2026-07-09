@@ -4107,7 +4107,7 @@ paths:
           $ref: "#/components/responses/Unauthorized"
       security:
       - bearerAuth: []
-      summary: Calling usage (volumes + billable cost)
+      summary: Calling usage and cost
       tags:
       - Usage
       x-accepts:
@@ -16649,7 +16649,7 @@ paths:
           description: Recording provider lookup failed
       security:
       - bearerAuth: []
-      summary: Get a call recording (any channel)
+      summary: Get a call recording
       tags:
       - Calls
       x-accepts:
@@ -19750,7 +19750,7 @@ paths:
           description: No existing SMS registration to reuse for this number
       security:
       - bearerAuth: []
-      summary: Add a number to an existing registration
+      summary: Add number to SMS registration
       tags:
       - SMS
       x-accepts:

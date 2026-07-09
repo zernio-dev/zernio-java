@@ -18,8 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listSmsRegistrationsWithHttpInfo**](SmsApi.md#listSmsRegistrationsWithHttpInfo) | **GET** /v1/sms/registrations | List carrier registrations |
 | [**lookupSmsNumber**](SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
 | [**lookupSmsNumberWithHttpInfo**](SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type |
-| [**reuseSmsRegistrationForNumber**](SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add a number to an existing registration |
-| [**reuseSmsRegistrationForNumberWithHttpInfo**](SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add a number to an existing registration |
+| [**reuseSmsRegistrationForNumber**](SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
+| [**reuseSmsRegistrationForNumberWithHttpInfo**](SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**sendSms**](SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS/MMS |
 | [**sendSmsWithHttpInfo**](SmsApi.md#sendSmsWithHttpInfo) | **POST** /v1/sms/messages | Send an SMS/MMS |
 | [**shareSmsRegistration**](SmsApi.md#shareSmsRegistration) | **POST** /v1/sms/registrations/share | Create a registration share link |
@@ -1067,7 +1067,7 @@ ApiResponse<[**LookupSmsNumber200Response**](LookupSmsNumber200Response.md)>
 
 > ReuseSmsRegistrationForNumber200Response reuseSmsRegistrationForNumber(id)
 
-Add a number to an existing registration
+Add number to SMS registration
 
 Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
 
@@ -1140,7 +1140,7 @@ public class Example {
 
 > ApiResponse<ReuseSmsRegistrationForNumber200Response> reuseSmsRegistrationForNumber reuseSmsRegistrationForNumberWithHttpInfo(id)
 
-Add a number to an existing registration
+Add number to SMS registration
 
 Attaches this number to your existing approved 10DLC campaign instead of running a fresh registration: the number inherits the campaign&#39;s approval (no new brand or campaign, no extra carrier fee). Enable SMS on the number first (&#x60;POST /v1/phone-numbers/{id}/sms&#x60;; its response tells you whether a reusable registration exists). 
 

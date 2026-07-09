@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:20:27.672499280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:31:44.485265636Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CallsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -285,7 +285,7 @@ public class CallsApi {
   }
 
   /**
-   * Get a call recording (any channel)
+   * Get a call recording
    * Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
    * @param id  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
@@ -297,7 +297,7 @@ public class CallsApi {
   }
 
   /**
-   * Get a call recording (any channel)
+   * Get a call recording
    * Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
    * @param id  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
@@ -311,7 +311,7 @@ public class CallsApi {
   }
 
   /**
-   * Get a call recording (any channel)
+   * Get a call recording
    * Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
    * @param id  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
@@ -323,7 +323,7 @@ public class CallsApi {
   }
 
   /**
-   * Get a call recording (any channel)
+   * Get a call recording
    * Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
    * @param id  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)

@@ -4,8 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**getCallsUsage**](UsageApi.md#getCallsUsage) | **GET** /v1/usage/calls | Calling usage (volumes + billable cost) |
-| [**getCallsUsageWithHttpInfo**](UsageApi.md#getCallsUsageWithHttpInfo) | **GET** /v1/usage/calls | Calling usage (volumes + billable cost) |
+| [**getCallsUsage**](UsageApi.md#getCallsUsage) | **GET** /v1/usage/calls | Calling usage and cost |
+| [**getCallsUsageWithHttpInfo**](UsageApi.md#getCallsUsageWithHttpInfo) | **GET** /v1/usage/calls | Calling usage and cost |
 | [**getSmsUsage**](UsageApi.md#getSmsUsage) | **GET** /v1/usage/sms | SMS usage (volumes) |
 | [**getSmsUsageWithHttpInfo**](UsageApi.md#getSmsUsageWithHttpInfo) | **GET** /v1/usage/sms | SMS usage (volumes) |
 | [**getUsage**](UsageApi.md#getUsage) | **GET** /v1/usage | Get plan and usage snapshot |
@@ -21,7 +21,7 @@ All URIs are relative to *https://zernio.com/api*
 
 > GetCallsUsage200Response getCallsUsage(since, until, channel, number, groupBy)
 
-Calling usage (volumes + billable cost)
+Calling usage and cost
 
 Aggregated calling usage across your numbers, both channels (WhatsApp Business Calling + regular phone/PSTN): call counts, answered counts, minutes, and cost. Use it for cost visibility or to rebill your own customers per number.  Costs come from each call&#39;s billing snapshot, so this endpoint always agrees with the invoice: &#x60;billableUSD&#x60; is what Zernio bills; &#x60;metaUSD&#x60; is the WhatsApp per-minute charge Meta bills directly to your WABA (display only, never billed by Zernio).  Optional &#x60;groupBy&#x60; returns a breakdown by UTC day, by your number, or by channel. Defaults to the last 30 days. 
 
@@ -101,7 +101,7 @@ public class Example {
 
 > ApiResponse<GetCallsUsage200Response> getCallsUsage getCallsUsageWithHttpInfo(since, until, channel, number, groupBy)
 
-Calling usage (volumes + billable cost)
+Calling usage and cost
 
 Aggregated calling usage across your numbers, both channels (WhatsApp Business Calling + regular phone/PSTN): call counts, answered counts, minutes, and cost. Use it for cost visibility or to rebill your own customers per number.  Costs come from each call&#39;s billing snapshot, so this endpoint always agrees with the invoice: &#x60;billableUSD&#x60; is what Zernio bills; &#x60;metaUSD&#x60; is the WhatsApp per-minute charge Meta bills directly to your WABA (display only, never billed by Zernio).  Optional &#x60;groupBy&#x60; returns a breakdown by UTC day, by your number, or by channel. Defaults to the last 30 days. 
 

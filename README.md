@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-09T09:20:27.672499280Z[Etc/UTC]
+- Build date: 2026-07-09T09:31:44.485265636Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -342,8 +342,8 @@ Class | Method | HTTP request | Description
 *BroadcastsApi* | [**updateBroadcastWithHttpInfo**](docs/BroadcastsApi.md#updateBroadcastWithHttpInfo) | **PATCH** /v1/broadcasts/{broadcastId} | Update broadcast
 *CallsApi* | [**getCall**](docs/CallsApi.md#getCall) | **GET** /v1/calls/{id} | Get a call (any channel)
 *CallsApi* | [**getCallWithHttpInfo**](docs/CallsApi.md#getCallWithHttpInfo) | **GET** /v1/calls/{id} | Get a call (any channel)
-*CallsApi* | [**getCallRecording**](docs/CallsApi.md#getCallRecording) | **GET** /v1/calls/{id}/recording | Get a call recording (any channel)
-*CallsApi* | [**getCallRecordingWithHttpInfo**](docs/CallsApi.md#getCallRecordingWithHttpInfo) | **GET** /v1/calls/{id}/recording | Get a call recording (any channel)
+*CallsApi* | [**getCallRecording**](docs/CallsApi.md#getCallRecording) | **GET** /v1/calls/{id}/recording | Get a call recording
+*CallsApi* | [**getCallRecordingWithHttpInfo**](docs/CallsApi.md#getCallRecordingWithHttpInfo) | **GET** /v1/calls/{id}/recording | Get a call recording
 *CallsApi* | [**listCalls**](docs/CallsApi.md#listCalls) | **GET** /v1/calls | List all calls (unified history)
 *CallsApi* | [**listCallsWithHttpInfo**](docs/CallsApi.md#listCallsWithHttpInfo) | **GET** /v1/calls | List all calls (unified history)
 *CommentAutomationsApi* | [**createCommentAutomation**](docs/CommentAutomationsApi.md#createCommentAutomation) | **POST** /v1/comment-automations | Create comment-to-DM automation
@@ -760,8 +760,8 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**listSmsRegistrationsWithHttpInfo**](docs/SmsApi.md#listSmsRegistrationsWithHttpInfo) | **GET** /v1/sms/registrations | List carrier registrations
 *SmsApi* | [**lookupSmsNumber**](docs/SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type
 *SmsApi* | [**lookupSmsNumberWithHttpInfo**](docs/SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type
-*SmsApi* | [**reuseSmsRegistrationForNumber**](docs/SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add a number to an existing registration
-*SmsApi* | [**reuseSmsRegistrationForNumberWithHttpInfo**](docs/SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add a number to an existing registration
+*SmsApi* | [**reuseSmsRegistrationForNumber**](docs/SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
+*SmsApi* | [**reuseSmsRegistrationForNumberWithHttpInfo**](docs/SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
 *SmsApi* | [**sendSms**](docs/SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS/MMS
 *SmsApi* | [**sendSmsWithHttpInfo**](docs/SmsApi.md#sendSmsWithHttpInfo) | **POST** /v1/sms/messages | Send an SMS/MMS
 *SmsApi* | [**shareSmsRegistration**](docs/SmsApi.md#shareSmsRegistration) | **POST** /v1/sms/registrations/share | Create a registration share link
@@ -798,8 +798,8 @@ Class | Method | HTTP request | Description
 *TwitterEngagementApi* | [**undoRetweetWithHttpInfo**](docs/TwitterEngagementApi.md#undoRetweetWithHttpInfo) | **DELETE** /v1/twitter/retweet | Undo retweet
 *TwitterEngagementApi* | [**unfollowUser**](docs/TwitterEngagementApi.md#unfollowUser) | **DELETE** /v1/twitter/follow | Unfollow a user
 *TwitterEngagementApi* | [**unfollowUserWithHttpInfo**](docs/TwitterEngagementApi.md#unfollowUserWithHttpInfo) | **DELETE** /v1/twitter/follow | Unfollow a user
-*UsageApi* | [**getCallsUsage**](docs/UsageApi.md#getCallsUsage) | **GET** /v1/usage/calls | Calling usage (volumes + billable cost)
-*UsageApi* | [**getCallsUsageWithHttpInfo**](docs/UsageApi.md#getCallsUsageWithHttpInfo) | **GET** /v1/usage/calls | Calling usage (volumes + billable cost)
+*UsageApi* | [**getCallsUsage**](docs/UsageApi.md#getCallsUsage) | **GET** /v1/usage/calls | Calling usage and cost
+*UsageApi* | [**getCallsUsageWithHttpInfo**](docs/UsageApi.md#getCallsUsageWithHttpInfo) | **GET** /v1/usage/calls | Calling usage and cost
 *UsageApi* | [**getSmsUsage**](docs/UsageApi.md#getSmsUsage) | **GET** /v1/usage/sms | SMS usage (volumes)
 *UsageApi* | [**getSmsUsageWithHttpInfo**](docs/UsageApi.md#getSmsUsageWithHttpInfo) | **GET** /v1/usage/sms | SMS usage (volumes)
 *UsageApi* | [**getUsage**](docs/UsageApi.md#getUsage) | **GET** /v1/usage | Get plan and usage snapshot

@@ -6,8 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**getCall**](CallsApi.md#getCall) | **GET** /v1/calls/{id} | Get a call (any channel) |
 | [**getCallWithHttpInfo**](CallsApi.md#getCallWithHttpInfo) | **GET** /v1/calls/{id} | Get a call (any channel) |
-| [**getCallRecording**](CallsApi.md#getCallRecording) | **GET** /v1/calls/{id}/recording | Get a call recording (any channel) |
-| [**getCallRecordingWithHttpInfo**](CallsApi.md#getCallRecordingWithHttpInfo) | **GET** /v1/calls/{id}/recording | Get a call recording (any channel) |
+| [**getCallRecording**](CallsApi.md#getCallRecording) | **GET** /v1/calls/{id}/recording | Get a call recording |
+| [**getCallRecordingWithHttpInfo**](CallsApi.md#getCallRecordingWithHttpInfo) | **GET** /v1/calls/{id}/recording | Get a call recording |
 | [**listCalls**](CallsApi.md#listCalls) | **GET** /v1/calls | List all calls (unified history) |
 | [**listCallsWithHttpInfo**](CallsApi.md#listCallsWithHttpInfo) | **GET** /v1/calls | List all calls (unified history) |
 
@@ -167,7 +167,7 @@ ApiResponse<[**GetCall200Response**](GetCall200Response.md)>
 
 > GetWhatsAppCallRecording200Response getCallRecording(id, as)
 
-Get a call recording (any channel)
+Get a call recording
 
 Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
 
@@ -244,7 +244,7 @@ public class Example {
 
 > ApiResponse<GetWhatsAppCallRecording200Response> getCallRecording getCallRecordingWithHttpInfo(id, as)
 
-Get a call recording (any channel)
+Get a call recording
 
 Channel-agnostic recording fetch: resolves a fresh, playable MP3 URL for any call regardless of channel (provider-signed URLs expire ~10 minutes after signing, so this re-signs on demand). Default responds &#x60;302 Found&#x60; redirecting to the fresh URL; pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
 
