@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequestZipsInner.JSON_PROPERTY_KEY,
   CreateCtwaAdRequestZipsInner.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T11:54:25.886711673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T12:49:34.330424369Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequestZipsInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull
