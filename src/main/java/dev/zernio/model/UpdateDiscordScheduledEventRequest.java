@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UpdateDiscordScheduledEventRequest.JSON_PROPERTY_STATUS,
   UpdateDiscordScheduledEventRequest.JSON_PROPERTY_IMAGE_DATA_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:49:55.414064404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateDiscordScheduledEventRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

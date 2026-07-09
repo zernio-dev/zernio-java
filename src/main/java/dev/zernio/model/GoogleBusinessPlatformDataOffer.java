@@ -34,52 +34,12 @@ import dev.zernio.ApiClient;
  * Offer details. Required when topicType is OFFER. All fields are optional per Google&#39;s API, but at least one is recommended.
  */
 @JsonPropertyOrder({
-  GoogleBusinessPlatformDataOffer.JSON_PROPERTY_OFFER_TYPE,
   GoogleBusinessPlatformDataOffer.JSON_PROPERTY_REDEEM_ONLINE_URL,
   GoogleBusinessPlatformDataOffer.JSON_PROPERTY_TERMS_CONDITIONS,
   GoogleBusinessPlatformDataOffer.JSON_PROPERTY_COUPON_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:49:55.414064404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleBusinessPlatformDataOffer {
-  /**
-   * Type of offer
-   */
-  public enum OfferTypeEnum {
-    OFFER(String.valueOf("OFFER")),
-    
-    BUY_ONE_GET_ONE(String.valueOf("BUY_ONE_GET_ONE"));
-
-    private String value;
-
-    OfferTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OfferTypeEnum fromValue(String value) {
-      for (OfferTypeEnum b : OfferTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_OFFER_TYPE = "offerType";
-  @javax.annotation.Nullable
-  private OfferTypeEnum offerType;
-
   public static final String JSON_PROPERTY_REDEEM_ONLINE_URL = "redeemOnlineUrl";
   @javax.annotation.Nullable
   private URI redeemOnlineUrl;
@@ -94,30 +54,6 @@ public class GoogleBusinessPlatformDataOffer {
 
   public GoogleBusinessPlatformDataOffer() { 
   }
-
-  public GoogleBusinessPlatformDataOffer offerType(@javax.annotation.Nullable OfferTypeEnum offerType) {
-    this.offerType = offerType;
-    return this;
-  }
-
-  /**
-   * Type of offer
-   * @return offerType
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OFFER_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OfferTypeEnum getOfferType() {
-    return offerType;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_OFFER_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOfferType(@javax.annotation.Nullable OfferTypeEnum offerType) {
-    this.offerType = offerType;
-  }
-
 
   public GoogleBusinessPlatformDataOffer redeemOnlineUrl(@javax.annotation.Nullable URI redeemOnlineUrl) {
     this.redeemOnlineUrl = redeemOnlineUrl;
@@ -203,22 +139,20 @@ public class GoogleBusinessPlatformDataOffer {
       return false;
     }
     GoogleBusinessPlatformDataOffer googleBusinessPlatformDataOffer = (GoogleBusinessPlatformDataOffer) o;
-    return Objects.equals(this.offerType, googleBusinessPlatformDataOffer.offerType) &&
-        Objects.equals(this.redeemOnlineUrl, googleBusinessPlatformDataOffer.redeemOnlineUrl) &&
+    return Objects.equals(this.redeemOnlineUrl, googleBusinessPlatformDataOffer.redeemOnlineUrl) &&
         Objects.equals(this.termsConditions, googleBusinessPlatformDataOffer.termsConditions) &&
         Objects.equals(this.couponCode, googleBusinessPlatformDataOffer.couponCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offerType, redeemOnlineUrl, termsConditions, couponCode);
+    return Objects.hash(redeemOnlineUrl, termsConditions, couponCode);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GoogleBusinessPlatformDataOffer {\n");
-    sb.append("    offerType: ").append(toIndentedString(offerType)).append("\n");
     sb.append("    redeemOnlineUrl: ").append(toIndentedString(redeemOnlineUrl)).append("\n");
     sb.append("    termsConditions: ").append(toIndentedString(termsConditions)).append("\n");
     sb.append("    couponCode: ").append(toIndentedString(couponCode)).append("\n");
@@ -268,11 +202,6 @@ public class GoogleBusinessPlatformDataOffer {
     }
 
     StringJoiner joiner = new StringJoiner("&");
-
-    // add `offerType` to the URL query string
-    if (getOfferType() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sofferType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOfferType()))));
-    }
 
     // add `redeemOnlineUrl` to the URL query string
     if (getRedeemOnlineUrl() != null) {

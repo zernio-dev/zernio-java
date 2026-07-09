@@ -67543,12 +67543,6 @@ components:
       description: "Offer details. Required when topicType is OFFER. All fields are\
         \ optional per Google's API, but at least one is recommended."
       properties:
-        offerType:
-          description: Type of offer
-          enum:
-          - OFFER
-          - BUY_ONE_GET_ONE
-          type: string
         redeemOnlineUrl:
           description: URL where the offer can be redeemed online
           format: uri

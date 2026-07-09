@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateWhatsAppSandboxSession200Response.JSON_PROPERTY_SESSION,
   CreateWhatsAppSandboxSession200Response.JSON_PROPERTY_SANDBOX_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-08T11:49:55.414064404Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T07:50:24.459292525Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWhatsAppSandboxSession200Response {
   public static final String JSON_PROPERTY_SESSION = "session";
   @javax.annotation.Nullable
