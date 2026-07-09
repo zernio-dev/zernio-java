@@ -100,7 +100,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:20:27.672499280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4211,7 +4211,7 @@ public class ConnectApi {
   }
 
   /**
-   * Set flair on a published Reddit post
+   * Set Reddit post flair
    * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
    * @param accountId The ID of the Reddit account that owns the post (required)
    * @param setRedditPostFlairRequest  (required)
@@ -4223,7 +4223,7 @@ public class ConnectApi {
   }
 
   /**
-   * Set flair on a published Reddit post
+   * Set Reddit post flair
    * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
    * @param accountId The ID of the Reddit account that owns the post (required)
    * @param setRedditPostFlairRequest  (required)
@@ -4237,7 +4237,7 @@ public class ConnectApi {
   }
 
   /**
-   * Set flair on a published Reddit post
+   * Set Reddit post flair
    * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
    * @param accountId The ID of the Reddit account that owns the post (required)
    * @param setRedditPostFlairRequest  (required)
@@ -4249,7 +4249,7 @@ public class ConnectApi {
   }
 
   /**
-   * Set flair on a published Reddit post
+   * Set Reddit post flair
    * Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
    * @param accountId The ID of the Reddit account that owns the post (required)
    * @param setRedditPostFlairRequest  (required)

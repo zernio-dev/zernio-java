@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-09T08:31:44.887565184Z[Etc/UTC]
+- Build date: 2026-07-09T09:20:27.672499280Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -440,8 +440,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**selectPinterestBoardWithHttpInfo**](docs/ConnectApi.md#selectPinterestBoardWithHttpInfo) | **POST** /v1/connect/pinterest/select-board | Select Pinterest board
 *ConnectApi* | [**selectSnapchatProfile**](docs/ConnectApi.md#selectSnapchatProfile) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile
 *ConnectApi* | [**selectSnapchatProfileWithHttpInfo**](docs/ConnectApi.md#selectSnapchatProfileWithHttpInfo) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile
-*ConnectApi* | [**setRedditPostFlair**](docs/ConnectApi.md#setRedditPostFlair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set flair on a published Reddit post
-*ConnectApi* | [**setRedditPostFlairWithHttpInfo**](docs/ConnectApi.md#setRedditPostFlairWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set flair on a published Reddit post
+*ConnectApi* | [**setRedditPostFlair**](docs/ConnectApi.md#setRedditPostFlair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair
+*ConnectApi* | [**setRedditPostFlairWithHttpInfo**](docs/ConnectApi.md#setRedditPostFlairWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair
 *ConnectApi* | [**updateFacebookPage**](docs/ConnectApi.md#updateFacebookPage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
 *ConnectApi* | [**updateFacebookPageWithHttpInfo**](docs/ConnectApi.md#updateFacebookPageWithHttpInfo) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
 *ConnectApi* | [**updateGmbLocation**](docs/ConnectApi.md#updateGmbLocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update GBP location
@@ -490,8 +490,8 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**createDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#createDiscordScheduledEventWithHttpInfo) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event
 *DiscordApi* | [**createDiscordThread**](docs/DiscordApi.md#createDiscordThread) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread
 *DiscordApi* | [**createDiscordThreadWithHttpInfo**](docs/DiscordApi.md#createDiscordThreadWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread
-*DiscordApi* | [**crosspostDiscordMessage**](docs/DiscordApi.md#crosspostDiscordMessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message
-*DiscordApi* | [**crosspostDiscordMessageWithHttpInfo**](docs/DiscordApi.md#crosspostDiscordMessageWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message
+*DiscordApi* | [**crosspostDiscordMessage**](docs/DiscordApi.md#crosspostDiscordMessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost Discord message
+*DiscordApi* | [**crosspostDiscordMessageWithHttpInfo**](docs/DiscordApi.md#crosspostDiscordMessageWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost Discord message
 *DiscordApi* | [**deleteDiscordGuildRole**](docs/DiscordApi.md#deleteDiscordGuildRole) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role
 *DiscordApi* | [**deleteDiscordGuildRoleWithHttpInfo**](docs/DiscordApi.md#deleteDiscordGuildRoleWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role
 *DiscordApi* | [**deleteDiscordMessage**](docs/DiscordApi.md#deleteDiscordMessage) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message

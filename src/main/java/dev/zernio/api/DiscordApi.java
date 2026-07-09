@@ -70,7 +70,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:20:27.672499280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -789,7 +789,7 @@ public class DiscordApi {
   }
 
   /**
-   * Crosspost a Discord announcement message
+   * Crosspost Discord message
    * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
    * @param channelId Discord announcement channel snowflake ID (required)
    * @param messageId Discord message snowflake ID (required)
@@ -802,7 +802,7 @@ public class DiscordApi {
   }
 
   /**
-   * Crosspost a Discord announcement message
+   * Crosspost Discord message
    * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
    * @param channelId Discord announcement channel snowflake ID (required)
    * @param messageId Discord message snowflake ID (required)
@@ -817,7 +817,7 @@ public class DiscordApi {
   }
 
   /**
-   * Crosspost a Discord announcement message
+   * Crosspost Discord message
    * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
    * @param channelId Discord announcement channel snowflake ID (required)
    * @param messageId Discord message snowflake ID (required)
@@ -830,7 +830,7 @@ public class DiscordApi {
   }
 
   /**
-   * Crosspost a Discord announcement message
+   * Crosspost Discord message
    * Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
    * @param channelId Discord announcement channel snowflake ID (required)
    * @param messageId Discord message snowflake ID (required)

@@ -12,8 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createDiscordScheduledEventWithHttpInfo**](DiscordApi.md#createDiscordScheduledEventWithHttpInfo) | **POST** /v1/discord/guilds/{guildId}/events | Create a Discord scheduled event |
 | [**createDiscordThread**](DiscordApi.md#createDiscordThread) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread |
 | [**createDiscordThreadWithHttpInfo**](DiscordApi.md#createDiscordThreadWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/threads | Create a Discord public thread |
-| [**crosspostDiscordMessage**](DiscordApi.md#crosspostDiscordMessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message |
-| [**crosspostDiscordMessageWithHttpInfo**](DiscordApi.md#crosspostDiscordMessageWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost a Discord announcement message |
+| [**crosspostDiscordMessage**](DiscordApi.md#crosspostDiscordMessage) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost Discord message |
+| [**crosspostDiscordMessageWithHttpInfo**](DiscordApi.md#crosspostDiscordMessageWithHttpInfo) | **POST** /v1/discord/channels/{channelId}/messages/{messageId}/crosspost | Crosspost Discord message |
 | [**deleteDiscordGuildRole**](DiscordApi.md#deleteDiscordGuildRole) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role |
 | [**deleteDiscordGuildRoleWithHttpInfo**](DiscordApi.md#deleteDiscordGuildRoleWithHttpInfo) | **DELETE** /v1/discord/guilds/{guildId}/roles/{roleId} | Delete a Discord guild role |
 | [**deleteDiscordMessage**](DiscordApi.md#deleteDiscordMessage) | **DELETE** /v1/discord/channels/{channelId}/messages/{messageId} | Delete a Discord channel message |
@@ -701,7 +701,7 @@ ApiResponse<[**CreateDiscordThread200Response**](CreateDiscordThread200Response.
 
 > CrosspostDiscordMessage200Response crosspostDiscordMessage(channelId, messageId, accountId)
 
-Crosspost a Discord announcement message
+Crosspost Discord message
 
 Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
 
@@ -780,7 +780,7 @@ public class Example {
 
 > ApiResponse<CrosspostDiscordMessage200Response> crosspostDiscordMessage crosspostDiscordMessageWithHttpInfo(channelId, messageId, accountId)
 
-Crosspost a Discord announcement message
+Crosspost Discord message
 
 Publishes a message from an announcement channel so it propagates to every server following that channel.  The source channel must be an announcement channel. Calling this on a regular text channel returns a 400 before Discord is contacted, because Discord&#39;s own error for this case is opaque. 
 

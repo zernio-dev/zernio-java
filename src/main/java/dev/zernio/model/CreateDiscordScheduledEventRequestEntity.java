@@ -56,7 +56,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:20:27.672499280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CreateDiscordScheduledEventRequestEntity.CreateDiscordScheduledEventRequestEntityDeserializer.class)
 @JsonSerialize(using = CreateDiscordScheduledEventRequestEntity.CreateDiscordScheduledEventRequestEntitySerializer.class)
 public class CreateDiscordScheduledEventRequestEntity extends AbstractOpenApiSchema {

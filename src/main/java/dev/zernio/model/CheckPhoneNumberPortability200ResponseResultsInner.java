@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_FAST_PORTABLE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_NOT_PORTABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T08:31:44.887565184Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T09:20:27.672499280Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberPortability200ResponseResultsInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable

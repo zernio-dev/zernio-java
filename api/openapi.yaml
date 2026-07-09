@@ -11171,7 +11171,7 @@ paths:
           description: Reddit was unreachable or returned an unclassified error. Reddit
             4xx statuses (e.g. subreddit does not allow user flair selection) are
             forwarded as-is.
-      summary: Set flair on a published Reddit post
+      summary: Set Reddit post flair
       tags:
       - Connect
       x-content-type: application/json
@@ -11941,7 +11941,7 @@ paths:
           description: Discord refused the action (bot lacks the required permission).
         "502":
           description: Discord was unreachable or returned an unclassified error.
-      summary: Crosspost a Discord announcement message
+      summary: Crosspost Discord message
       tags:
       - Discord
       x-accepts:
