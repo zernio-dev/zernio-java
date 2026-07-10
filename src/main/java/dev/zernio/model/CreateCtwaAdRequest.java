@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateCtwaAdRequestCitiesInner;
 import dev.zernio.model.CreateCtwaAdRequestCreativesInner;
+import dev.zernio.model.CreateCtwaAdRequestPlacements;
 import dev.zernio.model.CreateCtwaAdRequestRegionsInner;
 import dev.zernio.model.CreateCtwaAdRequestVideo;
 import dev.zernio.model.CreateCtwaAdRequestZipsInner;
@@ -67,6 +68,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_AGE_MAX,
   CreateCtwaAdRequest.JSON_PROPERTY_INTERESTS,
   CreateCtwaAdRequest.JSON_PROPERTY_AUDIENCE_ID,
+  CreateCtwaAdRequest.JSON_PROPERTY_PLACEMENTS,
   CreateCtwaAdRequest.JSON_PROPERTY_ADVANTAGE_AUDIENCE,
   CreateCtwaAdRequest.JSON_PROPERTY_OBJECTIVE,
   CreateCtwaAdRequest.JSON_PROPERTY_BID_STRATEGY,
@@ -75,7 +77,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T11:11:57.095993604Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T11:31:05.111220825Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -199,6 +201,10 @@ public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_AUDIENCE_ID = "audienceId";
   @javax.annotation.Nullable
   private String audienceId;
+
+  public static final String JSON_PROPERTY_PLACEMENTS = "placements";
+  @javax.annotation.Nullable
+  private CreateCtwaAdRequestPlacements placements;
 
   /**
    * Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it). 
@@ -938,6 +944,30 @@ public class CreateCtwaAdRequest {
   }
 
 
+  public CreateCtwaAdRequest placements(@javax.annotation.Nullable CreateCtwaAdRequestPlacements placements) {
+    this.placements = placements;
+    return this;
+  }
+
+  /**
+   * Get placements
+   * @return placements
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateCtwaAdRequestPlacements getPlacements() {
+    return placements;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLACEMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlacements(@javax.annotation.Nullable CreateCtwaAdRequestPlacements placements) {
+    this.placements = placements;
+  }
+
+
   public CreateCtwaAdRequest advantageAudience(@javax.annotation.Nullable AdvantageAudienceEnum advantageAudience) {
     this.advantageAudience = advantageAudience;
     return this;
@@ -1140,6 +1170,7 @@ public class CreateCtwaAdRequest {
         Objects.equals(this.ageMax, createCtwaAdRequest.ageMax) &&
         Objects.equals(this.interests, createCtwaAdRequest.interests) &&
         Objects.equals(this.audienceId, createCtwaAdRequest.audienceId) &&
+        Objects.equals(this.placements, createCtwaAdRequest.placements) &&
         Objects.equals(this.advantageAudience, createCtwaAdRequest.advantageAudience) &&
         Objects.equals(this.objective, createCtwaAdRequest.objective) &&
         Objects.equals(this.bidStrategy, createCtwaAdRequest.bidStrategy) &&
@@ -1151,7 +1182,7 @@ public class CreateCtwaAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor);
+    return Objects.hash(accountId, adAccountId, name, headline, body, imageUrl, video, creatives, budgetAmount, budgetType, currency, endDate, countries, cities, regions, zips, metros, customLocations, ageMin, ageMax, interests, audienceId, placements, advantageAudience, objective, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -1180,6 +1211,7 @@ public class CreateCtwaAdRequest {
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
+    sb.append("    placements: ").append(toIndentedString(placements)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("    objective: ").append(toIndentedString(objective)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
@@ -1381,6 +1413,11 @@ public class CreateCtwaAdRequest {
     // add `audienceId` to the URL query string
     if (getAudienceId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saudienceId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAudienceId()))));
+    }
+
+    // add `placements` to the URL query string
+    if (getPlacements() != null) {
+      joiner.add(getPlacements().toUrlQueryString(prefix + "placements" + suffix));
     }
 
     // add `advantageAudience` to the URL query string

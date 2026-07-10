@@ -174,6 +174,7 @@ docs/CreateCtwaAdRequest.md
 docs/CreateCtwaAdRequestCitiesInner.md
 docs/CreateCtwaAdRequestCreativesInner.md
 docs/CreateCtwaAdRequestCreativesInnerVideo.md
+docs/CreateCtwaAdRequestPlacements.md
 docs/CreateCtwaAdRequestRegionsInner.md
 docs/CreateCtwaAdRequestVideo.md
 docs/CreateCtwaAdRequestZipsInner.md
@@ -1641,6 +1642,7 @@ src/main/java/dev/zernio/model/CreateCtwaAdRequest.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCitiesInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCreativesInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestCreativesInnerVideo.java
+src/main/java/dev/zernio/model/CreateCtwaAdRequestPlacements.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestVideo.java
 src/main/java/dev/zernio/model/CreateCtwaAdRequestZipsInner.java
@@ -2837,4 +2839,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/UsageMeteringTaxTest.java
+src/test/java/dev/zernio/model/CreateCtwaAdRequestPlacementsTest.java

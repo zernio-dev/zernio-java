@@ -65986,6 +65986,93 @@ components:
           type: string
       required:
       - key
+    createCtwaAd_request_placements:
+      description: |
+        Manual ad placements on the shared ad set. Omit
+        for automatic placements. When set, restricts delivery to the chosen surfaces,
+        mapped onto the ad set's `targeting.{publisher_platforms, facebook_positions, instagram_positions,
+        messenger_positions, audience_network_positions, threads_positions,
+        whatsapp_positions, device_platforms}`. Enum membership is validated here; Meta
+        additionally enforces co-selection rules and restricts which
+        placements are eligible for click-to-WhatsApp ads, returning an actionable
+        error which we surface.
+      properties:
+        publisherPlatforms:
+          description: Top-level platforms to deliver on. A position field below is
+            only honoured when its parent platform is included here.
+          items:
+            enum:
+            - facebook
+            - instagram
+            - threads
+            - messenger
+            - audience_network
+            type: string
+          type: array
+        facebookPositions:
+          items:
+            enum:
+            - feed
+            - right_hand_column
+            - marketplace
+            - video_feeds
+            - story
+            - search
+            - instream_video
+            - facebook_reels
+            - facebook_reels_overlay
+            - profile_feed
+            - notification
+            type: string
+          type: array
+        instagramPositions:
+          items:
+            enum:
+            - stream
+            - story
+            - explore
+            - explore_home
+            - reels
+            - profile_feed
+            - ig_search
+            - profile_reels
+            type: string
+          type: array
+        messengerPositions:
+          items:
+            enum:
+            - messenger_home
+            - sponsored_messages
+            - story
+            type: string
+          type: array
+        audienceNetworkPositions:
+          items:
+            enum:
+            - classic
+            - rewarded_video
+            type: string
+          type: array
+        threadsPositions:
+          items:
+            enum:
+            - threads_stream
+            type: string
+          type: array
+        whatsappPositions:
+          items:
+            enum:
+            - status
+            type: string
+          type: array
+        devicePlatforms:
+          description: Restrict by device. Omit to deliver on both mobile and desktop.
+          items:
+            enum:
+            - mobile
+            - desktop
+            type: string
+          type: array
     createCtwaAd_request:
       description: |
         In addition to the `required` list, the request must use
@@ -66137,6 +66224,8 @@ components:
         audienceId:
           description: Custom audience ID to target.
           type: string
+        placements:
+          $ref: "#/components/schemas/createCtwaAd_request_placements"
         advantageAudience:
           description: |
             Meta's Advantage+ audience expansion. `0` (default) keeps

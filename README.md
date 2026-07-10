@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-10T11:11:57.095993604Z[Etc/UTC]
+- Build date: 2026-07-10T11:31:05.111220825Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1201,6 +1201,7 @@ Class | Method | HTTP request | Description
  - [CreateCtwaAdRequestCitiesInner](docs/CreateCtwaAdRequestCitiesInner.md)
  - [CreateCtwaAdRequestCreativesInner](docs/CreateCtwaAdRequestCreativesInner.md)
  - [CreateCtwaAdRequestCreativesInnerVideo](docs/CreateCtwaAdRequestCreativesInnerVideo.md)
+ - [CreateCtwaAdRequestPlacements](docs/CreateCtwaAdRequestPlacements.md)
  - [CreateCtwaAdRequestRegionsInner](docs/CreateCtwaAdRequestRegionsInner.md)
  - [CreateCtwaAdRequestVideo](docs/CreateCtwaAdRequestVideo.md)
  - [CreateCtwaAdRequestZipsInner](docs/CreateCtwaAdRequestZipsInner.md)
