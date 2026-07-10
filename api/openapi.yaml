@@ -16411,13 +16411,13 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
-  /v1/whatsapp/calls/{callId}:
+  /v1/whatsapp/calls/{id}:
     get:
       operationId: getWhatsAppCall
       parameters:
       - explode: false
         in: path
-        name: callId
+        name: id
         required: true
         schema:
           type: string
@@ -16447,7 +16447,7 @@ paths:
       - WhatsApp Calling
       x-accepts:
       - application/json
-  /v1/whatsapp/calls/{callId}/recording:
+  /v1/whatsapp/calls/{id}/recording:
     get:
       description: |
         Resolves a fresh, playable MP3 URL for the call's recording.
@@ -16460,7 +16460,7 @@ paths:
       parameters:
       - explode: false
         in: path
-        name: callId
+        name: id
         required: true
         schema:
           type: string
@@ -18350,11 +18350,14 @@ paths:
   /v1/phone-numbers/purchase:
     post:
       description: |
-        Initiate purchasing a phone number. Payment-first flow: the user does not pick
-        a specific number. The system either creates a Stripe Checkout Session (first number)
-        or increments the existing subscription quantity and provisions inline (subsequent numbers).
+        Payment-first: you do not pick a specific number, the system provisions one and
+        auto-assigns it. With usage-based billing active and a payment method on file, the
+        number provisions inline and bills per month on your usage-based invoice (there is
+        no checkout redirect). No payment method on file returns `402 PAYMENT_REQUIRED`;
+        a regulated country returns `202` with `status: "kyc_required"` and a `kycUrl`.
 
-        Requires a paid plan. The maximum number of phone numbers is determined by the user's plan.
+        Requires usage-based billing (the Usage plan). The maximum number of phone numbers
+        is determined by the user's plan.
       operationId: purchasePhoneNumber
       requestBody:
         content:
@@ -18628,11 +18631,14 @@ paths:
         Deprecated alias of `/v1/phone-numbers/purchase`; same contract. New
         integrations should use that path.
 
-        Initiate purchasing a WhatsApp phone number. Payment-first flow: the user does not pick
-        a specific number. The system either creates a Stripe Checkout Session (first number)
-        or increments the existing subscription quantity and provisions inline (subsequent numbers).
+        Payment-first: you do not pick a specific number, the system provisions one and
+        auto-assigns it. With usage-based billing active and a payment method on file, the
+        number provisions inline and bills per month on your usage-based invoice (there is
+        no checkout redirect). No payment method on file returns `402 PAYMENT_REQUIRED`;
+        a regulated country returns `202` with `status: "kyc_required"` and a `kycUrl`.
 
-        Requires a paid plan. The maximum number of phone numbers is determined by the user's plan.
+        Requires usage-based billing (the Usage plan). The maximum number of phone numbers
+        is determined by the user's plan.
       operationId: purchaseWhatsAppPhoneNumber
       requestBody:
         content:

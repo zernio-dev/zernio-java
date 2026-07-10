@@ -64,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T10:37:51.391381083Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCallingApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -718,52 +718,52 @@ public class WhatsAppCallingApi {
   /**
    * Get a single call
    * 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @return GetWhatsAppCall200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppCall200Response getWhatsAppCall(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return getWhatsAppCall(callId, accountId, null);
+  public GetWhatsAppCall200Response getWhatsAppCall(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppCall(id, accountId, null);
   }
 
   /**
    * Get a single call
    * 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppCall200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppCall200Response getWhatsAppCall(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetWhatsAppCall200Response> localVarResponse = getWhatsAppCallWithHttpInfo(callId, accountId, headers);
+  public GetWhatsAppCall200Response getWhatsAppCall(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppCall200Response> localVarResponse = getWhatsAppCallWithHttpInfo(id, accountId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get a single call
    * 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @return ApiResponse&lt;GetWhatsAppCall200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppCall200Response> getWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId) throws ApiException {
-    return getWhatsAppCallWithHttpInfo(callId, accountId, null);
+  public ApiResponse<GetWhatsAppCall200Response> getWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return getWhatsAppCallWithHttpInfo(id, accountId, null);
   }
 
   /**
    * Get a single call
    * 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppCall200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppCall200Response> getWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getWhatsAppCallRequestBuilder(callId, accountId, headers);
+  public ApiResponse<GetWhatsAppCall200Response> getWhatsAppCallWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppCallRequestBuilder(id, accountId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -810,10 +810,10 @@ public class WhatsAppCallingApi {
     }
   }
 
-  private HttpRequest.Builder getWhatsAppCallRequestBuilder(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'callId' is set
-    if (callId == null) {
-      throw new ApiException(400, "Missing the required parameter 'callId' when calling getWhatsAppCall");
+  private HttpRequest.Builder getWhatsAppCallRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getWhatsAppCall");
     }
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -822,8 +822,8 @@ public class WhatsAppCallingApi {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/v1/whatsapp/calls/{callId}"
-        .replace("{callId}", ApiClient.urlEncode(callId.toString()));
+    String localVarPath = "/v1/whatsapp/calls/{id}"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
@@ -1155,56 +1155,56 @@ public class WhatsAppCallingApi {
   /**
    * Get a call recording
    * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
    * @return GetWhatsAppCallRecording200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppCallRecording200Response getWhatsAppCallRecording(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as) throws ApiException {
-    return getWhatsAppCallRecording(callId, accountId, as, null);
+  public GetWhatsAppCallRecording200Response getWhatsAppCallRecording(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as) throws ApiException {
+    return getWhatsAppCallRecording(id, accountId, as, null);
   }
 
   /**
    * Get a call recording
    * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
    * @param headers Optional headers to include in the request
    * @return GetWhatsAppCallRecording200Response
    * @throws ApiException if fails to make API call
    */
-  public GetWhatsAppCallRecording200Response getWhatsAppCallRecording(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as, headers);
+  public GetWhatsAppCallRecording200Response getWhatsAppCallRecording(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetWhatsAppCallRecording200Response> localVarResponse = getWhatsAppCallRecordingWithHttpInfo(id, accountId, as, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get a call recording
    * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
    * @return ApiResponse&lt;GetWhatsAppCallRecording200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecordingWithHttpInfo(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as) throws ApiException {
-    return getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as, null);
+  public ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecordingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as) throws ApiException {
+    return getWhatsAppCallRecordingWithHttpInfo(id, accountId, as, null);
   }
 
   /**
    * Get a call recording
    * Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
-   * @param callId  (required)
+   * @param id  (required)
    * @param accountId  (required)
    * @param as &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetWhatsAppCallRecording200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecordingWithHttpInfo(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getWhatsAppCallRecordingRequestBuilder(callId, accountId, as, headers);
+  public ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecordingWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getWhatsAppCallRecordingRequestBuilder(id, accountId, as, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1251,10 +1251,10 @@ public class WhatsAppCallingApi {
     }
   }
 
-  private HttpRequest.Builder getWhatsAppCallRecordingRequestBuilder(@javax.annotation.Nonnull String callId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'callId' is set
-    if (callId == null) {
-      throw new ApiException(400, "Missing the required parameter 'callId' when calling getWhatsAppCallRecording");
+  private HttpRequest.Builder getWhatsAppCallRecordingRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String as, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling getWhatsAppCallRecording");
     }
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
@@ -1263,8 +1263,8 @@ public class WhatsAppCallingApi {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
-    String localVarPath = "/v1/whatsapp/calls/{callId}/recording"
-        .replace("{callId}", ApiClient.urlEncode(callId.toString()));
+    String localVarPath = "/v1/whatsapp/calls/{id}/recording"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");

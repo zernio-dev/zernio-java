@@ -12,14 +12,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**enableWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#enableWhatsAppCallingWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/calling | Enable calling on a number |
 | [**enableWhatsAppCallingLegacy**](WhatsAppCallingApi.md#enableWhatsAppCallingLegacy) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
 | [**enableWhatsAppCallingLegacyWithHttpInfo**](WhatsAppCallingApi.md#enableWhatsAppCallingLegacyWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number |
-| [**getWhatsAppCall**](WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
-| [**getWhatsAppCallWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId} | Get a single call |
+| [**getWhatsAppCall**](WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{id} | Get a single call |
+| [**getWhatsAppCallWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{id} | Get a single call |
 | [**getWhatsAppCallEstimate**](WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
 | [**getWhatsAppCallEstimateWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost |
 | [**getWhatsAppCallPermissions**](WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission |
 | [**getWhatsAppCallPermissionsWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission |
-| [**getWhatsAppCallRecording**](WhatsAppCallingApi.md#getWhatsAppCallRecording) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording |
-| [**getWhatsAppCallRecordingWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallRecordingWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording |
+| [**getWhatsAppCallRecording**](WhatsAppCallingApi.md#getWhatsAppCallRecording) | **GET** /v1/whatsapp/calls/{id}/recording | Get a call recording |
+| [**getWhatsAppCallRecordingWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallRecordingWithHttpInfo) | **GET** /v1/whatsapp/calls/{id}/recording | Get a call recording |
 | [**getWhatsAppCalling**](WhatsAppCallingApi.md#getWhatsAppCalling) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number |
 | [**getWhatsAppCallingWithHttpInfo**](WhatsAppCallingApi.md#getWhatsAppCallingWithHttpInfo) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number |
 | [**getWhatsAppCallingConfig**](WhatsAppCallingApi.md#getWhatsAppCallingConfig) | **GET** /v1/whatsapp/calling | Get calling config for an account |
@@ -645,7 +645,7 @@ ApiResponse<[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLe
 
 ## getWhatsAppCall
 
-> GetWhatsAppCall200Response getWhatsAppCall(callId, accountId)
+> GetWhatsAppCall200Response getWhatsAppCall(id, accountId)
 
 Get a single call
 
@@ -670,10 +670,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String callId = "callId_example"; // String | 
+        String id = "id_example"; // String | 
         String accountId = "accountId_example"; // String | 
         try {
-            GetWhatsAppCall200Response result = apiInstance.getWhatsAppCall(callId, accountId);
+            GetWhatsAppCall200Response result = apiInstance.getWhatsAppCall(id, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppCallingApi#getWhatsAppCall");
@@ -691,7 +691,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **callId** | **String**|  | |
+| **id** | **String**|  | |
 | **accountId** | **String**|  | |
 
 ### Return type
@@ -717,7 +717,7 @@ public class Example {
 
 ## getWhatsAppCallWithHttpInfo
 
-> ApiResponse<GetWhatsAppCall200Response> getWhatsAppCall getWhatsAppCallWithHttpInfo(callId, accountId)
+> ApiResponse<GetWhatsAppCall200Response> getWhatsAppCall getWhatsAppCallWithHttpInfo(id, accountId)
 
 Get a single call
 
@@ -743,10 +743,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String callId = "callId_example"; // String | 
+        String id = "id_example"; // String | 
         String accountId = "accountId_example"; // String | 
         try {
-            ApiResponse<GetWhatsAppCall200Response> response = apiInstance.getWhatsAppCallWithHttpInfo(callId, accountId);
+            ApiResponse<GetWhatsAppCall200Response> response = apiInstance.getWhatsAppCallWithHttpInfo(id, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -766,7 +766,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **callId** | **String**|  | |
+| **id** | **String**|  | |
 | **accountId** | **String**|  | |
 
 ### Return type
@@ -1103,7 +1103,7 @@ ApiResponse<[**GetWhatsAppCallPermissions200Response**](GetWhatsAppCallPermissio
 
 ## getWhatsAppCallRecording
 
-> GetWhatsAppCallRecording200Response getWhatsAppCallRecording(callId, accountId, as)
+> GetWhatsAppCallRecording200Response getWhatsAppCallRecording(id, accountId, as)
 
 Get a call recording
 
@@ -1130,11 +1130,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String callId = "callId_example"; // String | 
+        String id = "id_example"; // String | 
         String accountId = "accountId_example"; // String | 
         String as = "json"; // String | `json` returns `{ url }` instead of a 302 redirect.
         try {
-            GetWhatsAppCallRecording200Response result = apiInstance.getWhatsAppCallRecording(callId, accountId, as);
+            GetWhatsAppCallRecording200Response result = apiInstance.getWhatsAppCallRecording(id, accountId, as);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppCallingApi#getWhatsAppCallRecording");
@@ -1152,7 +1152,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **callId** | **String**|  | |
+| **id** | **String**|  | |
 | **accountId** | **String**|  | |
 | **as** | **String**| &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. | [optional] [enum: json] |
 
@@ -1181,7 +1181,7 @@ public class Example {
 
 ## getWhatsAppCallRecordingWithHttpInfo
 
-> ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecording getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as)
+> ApiResponse<GetWhatsAppCallRecording200Response> getWhatsAppCallRecording getWhatsAppCallRecordingWithHttpInfo(id, accountId, as)
 
 Get a call recording
 
@@ -1209,11 +1209,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String callId = "callId_example"; // String | 
+        String id = "id_example"; // String | 
         String accountId = "accountId_example"; // String | 
         String as = "json"; // String | `json` returns `{ url }` instead of a 302 redirect.
         try {
-            ApiResponse<GetWhatsAppCallRecording200Response> response = apiInstance.getWhatsAppCallRecordingWithHttpInfo(callId, accountId, as);
+            ApiResponse<GetWhatsAppCallRecording200Response> response = apiInstance.getWhatsAppCallRecordingWithHttpInfo(id, accountId, as);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1233,7 +1233,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **callId** | **String**|  | |
+| **id** | **String**|  | |
 | **accountId** | **String**|  | |
 | **as** | **String**| &#x60;json&#x60; returns &#x60;{ url }&#x60; instead of a 302 redirect. | [optional] [enum: json] |
 

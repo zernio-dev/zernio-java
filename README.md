@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-10T09:19:47.565439721Z[Etc/UTC]
+- Build date: 2026-07-10T10:37:51.391381083Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -930,14 +930,14 @@ Class | Method | HTTP request | Description
 *WhatsAppCallingApi* | [**enableWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#enableWhatsAppCallingWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/calling | Enable calling on a number
 *WhatsAppCallingApi* | [**enableWhatsAppCallingLegacy**](docs/WhatsAppCallingApi.md#enableWhatsAppCallingLegacy) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number
 *WhatsAppCallingApi* | [**enableWhatsAppCallingLegacyWithHttpInfo**](docs/WhatsAppCallingApi.md#enableWhatsAppCallingLegacyWithHttpInfo) | **POST** /v1/whatsapp/phone-numbers/{id}/calling | Enable calling on a number
-*WhatsAppCallingApi* | [**getWhatsAppCall**](docs/WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{callId} | Get a single call
-*WhatsAppCallingApi* | [**getWhatsAppCallWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId} | Get a single call
+*WhatsAppCallingApi* | [**getWhatsAppCall**](docs/WhatsAppCallingApi.md#getWhatsAppCall) | **GET** /v1/whatsapp/calls/{id} | Get a single call
+*WhatsAppCallingApi* | [**getWhatsAppCallWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallWithHttpInfo) | **GET** /v1/whatsapp/calls/{id} | Get a single call
 *WhatsAppCallingApi* | [**getWhatsAppCallEstimate**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimate) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost
 *WhatsAppCallingApi* | [**getWhatsAppCallEstimateWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallEstimateWithHttpInfo) | **GET** /v1/whatsapp/calls/estimate | Estimate per-minute cost
 *WhatsAppCallingApi* | [**getWhatsAppCallPermissions**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissions) | **GET** /v1/whatsapp/call-permissions | Check call permission
 *WhatsAppCallingApi* | [**getWhatsAppCallPermissionsWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallPermissionsWithHttpInfo) | **GET** /v1/whatsapp/call-permissions | Check call permission
-*WhatsAppCallingApi* | [**getWhatsAppCallRecording**](docs/WhatsAppCallingApi.md#getWhatsAppCallRecording) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording
-*WhatsAppCallingApi* | [**getWhatsAppCallRecordingWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallRecordingWithHttpInfo) | **GET** /v1/whatsapp/calls/{callId}/recording | Get a call recording
+*WhatsAppCallingApi* | [**getWhatsAppCallRecording**](docs/WhatsAppCallingApi.md#getWhatsAppCallRecording) | **GET** /v1/whatsapp/calls/{id}/recording | Get a call recording
+*WhatsAppCallingApi* | [**getWhatsAppCallRecordingWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallRecordingWithHttpInfo) | **GET** /v1/whatsapp/calls/{id}/recording | Get a call recording
 *WhatsAppCallingApi* | [**getWhatsAppCalling**](docs/WhatsAppCallingApi.md#getWhatsAppCalling) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number
 *WhatsAppCallingApi* | [**getWhatsAppCallingWithHttpInfo**](docs/WhatsAppCallingApi.md#getWhatsAppCallingWithHttpInfo) | **GET** /v1/phone-numbers/{id}/whatsapp/calling | Get calling config for a number
 *WhatsAppCallingApi* | [**getWhatsAppCallingConfig**](docs/WhatsAppCallingApi.md#getWhatsAppCallingConfig) | **GET** /v1/whatsapp/calling | Get calling config for an account
