@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SearchInboxConversations200ResponseDataInner.JSON_PROPERTY_MATCH_COUNT,
   SearchInboxConversations200ResponseDataInner.JSON_PROPERTY_MATCHES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T13:38:11.727705636Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:04:17.834359229Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchInboxConversations200ResponseDataInner {
   public static final String JSON_PROPERTY_CONVERSATION = "conversation";
   @javax.annotation.Nullable
@@ -88,7 +88,7 @@ public class SearchInboxConversations200ResponseDataInner {
   }
 
   /**
-   * Total number of matching messages in this conversation
+   * Number of matching messages in this conversation. 0 when the conversation matched only on contact identity (name, username, or phone number), not on message text.
    * @return matchCount
    */
   @javax.annotation.Nullable
@@ -120,7 +120,7 @@ public class SearchInboxConversations200ResponseDataInner {
   }
 
   /**
-   * Up to 3 most-recent matching messages
+   * Up to 3 most-recent matching messages (empty for an identity-only match)
    * @return matches
    */
   @javax.annotation.Nullable

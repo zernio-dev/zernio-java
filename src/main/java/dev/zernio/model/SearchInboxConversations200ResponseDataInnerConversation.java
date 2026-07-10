@@ -45,9 +45,10 @@ import dev.zernio.ApiClient;
   SearchInboxConversations200ResponseDataInnerConversation.JSON_PROPERTY_PARTICIPANT_USERNAME,
   SearchInboxConversations200ResponseDataInnerConversation.JSON_PROPERTY_PARTICIPANT_PICTURE,
   SearchInboxConversations200ResponseDataInnerConversation.JSON_PROPERTY_STATUS,
+  SearchInboxConversations200ResponseDataInnerConversation.JSON_PROPERTY_LAST_MESSAGE,
   SearchInboxConversations200ResponseDataInnerConversation.JSON_PROPERTY_LAST_MESSAGE_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T13:38:11.727705636Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:04:17.834359229Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchInboxConversations200ResponseDataInnerConversation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -108,6 +109,9 @@ public class SearchInboxConversations200ResponseDataInnerConversation {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status;
+
+  public static final String JSON_PROPERTY_LAST_MESSAGE = "lastMessage";
+  private JsonNullable<String> lastMessage = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_LAST_MESSAGE_AT = "lastMessageAt";
   private JsonNullable<OffsetDateTime> lastMessageAt = JsonNullable.<OffsetDateTime>undefined();
@@ -307,6 +311,38 @@ public class SearchInboxConversations200ResponseDataInnerConversation {
   }
 
 
+  public SearchInboxConversations200ResponseDataInnerConversation lastMessage(@javax.annotation.Nullable String lastMessage) {
+    this.lastMessage = JsonNullable.<String>of(lastMessage);
+    return this;
+  }
+
+  /**
+   * The conversation&#39;s most recent message preview
+   * @return lastMessage
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getLastMessage() {
+        return lastMessage.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LAST_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLastMessage_JsonNullable() {
+    return lastMessage;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LAST_MESSAGE)
+  public void setLastMessage_JsonNullable(JsonNullable<String> lastMessage) {
+    this.lastMessage = lastMessage;
+  }
+
+  public void setLastMessage(@javax.annotation.Nullable String lastMessage) {
+    this.lastMessage = JsonNullable.<String>of(lastMessage);
+  }
+
+
   public SearchInboxConversations200ResponseDataInnerConversation lastMessageAt(@javax.annotation.Nullable OffsetDateTime lastMessageAt) {
     this.lastMessageAt = JsonNullable.<OffsetDateTime>of(lastMessageAt);
     return this;
@@ -358,6 +394,7 @@ public class SearchInboxConversations200ResponseDataInnerConversation {
         equalsNullable(this.participantUsername, searchInboxConversations200ResponseDataInnerConversation.participantUsername) &&
         equalsNullable(this.participantPicture, searchInboxConversations200ResponseDataInnerConversation.participantPicture) &&
         Objects.equals(this.status, searchInboxConversations200ResponseDataInnerConversation.status) &&
+        equalsNullable(this.lastMessage, searchInboxConversations200ResponseDataInnerConversation.lastMessage) &&
         equalsNullable(this.lastMessageAt, searchInboxConversations200ResponseDataInnerConversation.lastMessageAt);
   }
 
@@ -367,7 +404,7 @@ public class SearchInboxConversations200ResponseDataInnerConversation {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, hashCodeNullable(participantName), hashCodeNullable(participantUsername), hashCodeNullable(participantPicture), status, hashCodeNullable(lastMessageAt));
+    return Objects.hash(id, platform, accountId, hashCodeNullable(participantName), hashCodeNullable(participantUsername), hashCodeNullable(participantPicture), status, hashCodeNullable(lastMessage), hashCodeNullable(lastMessageAt));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -388,6 +425,7 @@ public class SearchInboxConversations200ResponseDataInnerConversation {
     sb.append("    participantUsername: ").append(toIndentedString(participantUsername)).append("\n");
     sb.append("    participantPicture: ").append(toIndentedString(participantPicture)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    lastMessage: ").append(toIndentedString(lastMessage)).append("\n");
     sb.append("    lastMessageAt: ").append(toIndentedString(lastMessageAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -469,6 +507,11 @@ public class SearchInboxConversations200ResponseDataInnerConversation {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `lastMessage` to the URL query string
+    if (getLastMessage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slastMessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastMessage()))));
     }
 
     // add `lastMessageAt` to the URL query string

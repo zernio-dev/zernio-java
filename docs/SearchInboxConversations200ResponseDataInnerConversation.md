@@ -14,6 +14,7 @@
 |**participantUsername** | **String** |  |  [optional] |
 |**participantPicture** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**lastMessage** | **String** | The conversation&#39;s most recent message preview |  [optional] |
 |**lastMessageAt** | **OffsetDateTime** |  |  [optional] |
 
 
