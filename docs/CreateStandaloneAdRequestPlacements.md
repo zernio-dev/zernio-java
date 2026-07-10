@@ -28,6 +28,7 @@ Meta only. Manual ad placements. Omit for automatic placements (Meta's default, 
 | THREADS | &quot;threads&quot; |
 | MESSENGER | &quot;messenger&quot; |
 | AUDIENCE_NETWORK | &quot;audience_network&quot; |
+| WHATSAPP | &quot;whatsapp&quot; |
 
 
 

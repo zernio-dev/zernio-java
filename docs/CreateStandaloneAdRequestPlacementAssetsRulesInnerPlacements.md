@@ -28,6 +28,7 @@ Placements this asset is pinned to. At least one field must be set (an empty rul
 | THREADS | &quot;threads&quot; |
 | MESSENGER | &quot;messenger&quot; |
 | AUDIENCE_NETWORK | &quot;audience_network&quot; |
+| WHATSAPP | &quot;whatsapp&quot; |
 
 
 

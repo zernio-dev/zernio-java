@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.JSON_PROPERTY_WHATSAPP_POSITIONS,
   CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.JSON_PROPERTY_DEVICE_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T11:31:05.111220825Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T13:38:11.727705636Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements {
   /**
    * Gets or Sets publisherPlatforms
@@ -58,7 +58,9 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements {
     
     MESSENGER(String.valueOf("messenger")),
     
-    AUDIENCE_NETWORK(String.valueOf("audience_network"));
+    AUDIENCE_NETWORK(String.valueOf("audience_network")),
+    
+    WHATSAPP(String.valueOf("whatsapp"));
 
     private String value;
 

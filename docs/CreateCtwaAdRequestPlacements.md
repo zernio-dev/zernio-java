@@ -28,6 +28,7 @@ Manual ad placements on the shared ad set. Omit for automatic placements. When s
 | THREADS | &quot;threads&quot; |
 | MESSENGER | &quot;messenger&quot; |
 | AUDIENCE_NETWORK | &quot;audience_network&quot; |
+| WHATSAPP | &quot;whatsapp&quot; |
 
 
 
