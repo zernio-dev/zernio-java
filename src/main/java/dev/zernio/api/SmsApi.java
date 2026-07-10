@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -187,7 +187,7 @@ public class SmsApi {
 
   /**
    * Appeal a rejected campaign
-   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
    * @param id  (required)
    * @param appealSmsRegistrationRequest  (required)
    * @return AppealSmsRegistration200Response
@@ -199,7 +199,7 @@ public class SmsApi {
 
   /**
    * Appeal a rejected campaign
-   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
    * @param id  (required)
    * @param appealSmsRegistrationRequest  (required)
    * @param headers Optional headers to include in the request
@@ -213,7 +213,7 @@ public class SmsApi {
 
   /**
    * Appeal a rejected campaign
-   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
    * @param id  (required)
    * @param appealSmsRegistrationRequest  (required)
    * @return ApiResponse&lt;AppealSmsRegistration200Response&gt;
@@ -225,7 +225,7 @@ public class SmsApi {
 
   /**
    * Appeal a rejected campaign
-   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;. 
+   * Appeals a rejected 10DLC campaign with the carrier registry. Only a registration that reached campaign creation can be appealed; a brand-level rejection should be fixed and re-verified instead. On success the registration returns to &#x60;pending&#x60;.  Content rejections (e.g. an opt-in flow without a verifiable form link, or unrealistic samples) should be FIXED in the same call: pass the corrected &#x60;messageFlow&#x60; / &#x60;sample1&#x60; / &#x60;sample2&#x60; and the campaign is updated before the appeal is filed, so the reviewer sees the new content. The current content is on &#x60;GET /v1/sms/registrations/{id}&#x60; (&#x60;campaignContent&#x60;). 
    * @param id  (required)
    * @param appealSmsRegistrationRequest  (required)
    * @param headers Optional headers to include in the request

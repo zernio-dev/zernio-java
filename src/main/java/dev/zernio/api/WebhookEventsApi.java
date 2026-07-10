@@ -18,6 +18,7 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.OnWhatsAppAutomaticEventRequest;
 import dev.zernio.model.OnWhatsAppNumberActionRequiredRequest;
 import dev.zernio.model.OnWhatsAppNumberActivatedRequest;
 import dev.zernio.model.OnWhatsAppNumberDeclinedRequest;
@@ -82,7 +83,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3890,6 +3891,115 @@ public class WebhookEventsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(webhookPayloadTest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * WhatsApp automatic event detected
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * @param onWhatsAppAutomaticEventRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppAutomaticEvent(@javax.annotation.Nonnull OnWhatsAppAutomaticEventRequest onWhatsAppAutomaticEventRequest) throws ApiException {
+    onWhatsAppAutomaticEvent(onWhatsAppAutomaticEventRequest, null);
+  }
+
+  /**
+   * WhatsApp automatic event detected
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * @param onWhatsAppAutomaticEventRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void onWhatsAppAutomaticEvent(@javax.annotation.Nonnull OnWhatsAppAutomaticEventRequest onWhatsAppAutomaticEventRequest, Map<String, String> headers) throws ApiException {
+    onWhatsAppAutomaticEventWithHttpInfo(onWhatsAppAutomaticEventRequest, headers);
+  }
+
+  /**
+   * WhatsApp automatic event detected
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * @param onWhatsAppAutomaticEventRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppAutomaticEventWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppAutomaticEventRequest onWhatsAppAutomaticEventRequest) throws ApiException {
+    return onWhatsAppAutomaticEventWithHttpInfo(onWhatsAppAutomaticEventRequest, null);
+  }
+
+  /**
+   * WhatsApp automatic event detected
+   * Fired when Meta&#39;s automatic event identification (opt-in during Embedded Signup; not available for EU/UK/JP businesses) detects a lead or purchase in a Click-to-WhatsApp conversation. Branch on &#x60;eventName&#x60; (&#x60;LeadSubmitted&#x60; | &#x60;Purchase&#x60;). Carries the &#x60;ctwa_clid&#x60; even on coexistence numbers where the inbound referral omits it (this webhook is the only surface that delivers it there); the clid is also written back onto the conversation, so POST /v1/whatsapp/conversions becomes usable for the thread. 
+   * @param onWhatsAppAutomaticEventRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> onWhatsAppAutomaticEventWithHttpInfo(@javax.annotation.Nonnull OnWhatsAppAutomaticEventRequest onWhatsAppAutomaticEventRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = onWhatsAppAutomaticEventRequestBuilder(onWhatsAppAutomaticEventRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("onWhatsAppAutomaticEvent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder onWhatsAppAutomaticEventRequestBuilder(@javax.annotation.Nonnull OnWhatsAppAutomaticEventRequest onWhatsAppAutomaticEventRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'onWhatsAppAutomaticEventRequest' is set
+    if (onWhatsAppAutomaticEventRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'onWhatsAppAutomaticEventRequest' when calling onWhatsAppAutomaticEvent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/whatsapp.automatic_event";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(onWhatsAppAutomaticEventRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

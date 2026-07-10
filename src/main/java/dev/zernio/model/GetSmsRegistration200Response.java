@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetSmsRegistration200ResponseCampaignContent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,9 +47,10 @@ import dev.zernio.ApiClient;
   GetSmsRegistration200Response.JSON_PROPERTY_CAMPAIGN_STATUS,
   GetSmsRegistration200Response.JSON_PROPERTY_DECLINE_REASON,
   GetSmsRegistration200Response.JSON_PROPERTY_PHONE_NUMBERS,
-  GetSmsRegistration200Response.JSON_PROPERTY_AWAITING_OTP
+  GetSmsRegistration200Response.JSON_PROPERTY_AWAITING_OTP,
+  GetSmsRegistration200Response.JSON_PROPERTY_CAMPAIGN_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSmsRegistration200Response {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -154,6 +156,10 @@ public class GetSmsRegistration200Response {
   public static final String JSON_PROPERTY_AWAITING_OTP = "awaitingOtp";
   @javax.annotation.Nullable
   private Boolean awaitingOtp;
+
+  public static final String JSON_PROPERTY_CAMPAIGN_CONTENT = "campaignContent";
+  @javax.annotation.Nullable
+  private GetSmsRegistration200ResponseCampaignContent campaignContent;
 
   public GetSmsRegistration200Response() { 
   }
@@ -366,6 +372,30 @@ public class GetSmsRegistration200Response {
   }
 
 
+  public GetSmsRegistration200Response campaignContent(@javax.annotation.Nullable GetSmsRegistration200ResponseCampaignContent campaignContent) {
+    this.campaignContent = campaignContent;
+    return this;
+  }
+
+  /**
+   * Get campaignContent
+   * @return campaignContent
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_CONTENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetSmsRegistration200ResponseCampaignContent getCampaignContent() {
+    return campaignContent;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_CONTENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignContent(@javax.annotation.Nullable GetSmsRegistration200ResponseCampaignContent campaignContent) {
+    this.campaignContent = campaignContent;
+  }
+
+
   /**
    * Return true if this getSmsRegistration_200_response object is equal to o.
    */
@@ -385,7 +415,8 @@ public class GetSmsRegistration200Response {
         Objects.equals(this.campaignStatus, getSmsRegistration200Response.campaignStatus) &&
         equalsNullable(this.declineReason, getSmsRegistration200Response.declineReason) &&
         Objects.equals(this.phoneNumbers, getSmsRegistration200Response.phoneNumbers) &&
-        Objects.equals(this.awaitingOtp, getSmsRegistration200Response.awaitingOtp);
+        Objects.equals(this.awaitingOtp, getSmsRegistration200Response.awaitingOtp) &&
+        Objects.equals(this.campaignContent, getSmsRegistration200Response.campaignContent);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -394,7 +425,7 @@ public class GetSmsRegistration200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, registrationType, status, brandStatus, campaignStatus, hashCodeNullable(declineReason), phoneNumbers, awaitingOtp);
+    return Objects.hash(id, registrationType, status, brandStatus, campaignStatus, hashCodeNullable(declineReason), phoneNumbers, awaitingOtp, campaignContent);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -416,6 +447,7 @@ public class GetSmsRegistration200Response {
     sb.append("    declineReason: ").append(toIndentedString(declineReason)).append("\n");
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
     sb.append("    awaitingOtp: ").append(toIndentedString(awaitingOtp)).append("\n");
+    sb.append("    campaignContent: ").append(toIndentedString(campaignContent)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -505,6 +537,11 @@ public class GetSmsRegistration200Response {
     // add `awaitingOtp` to the URL query string
     if (getAwaitingOtp() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sawaitingOtp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAwaitingOtp()))));
+    }
+
+    // add `campaignContent` to the URL query string
+    if (getCampaignContent() != null) {
+      joiner.add(getCampaignContent().toUrlQueryString(prefix + "campaignContent" + suffix));
     }
 
     return joiner.toString();

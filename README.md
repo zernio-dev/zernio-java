@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-09T14:16:23.536711314Z[Etc/UTC]
+- Build date: 2026-07-10T09:19:47.565439721Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1594,6 +1594,7 @@ Class | Method | HTTP request | Description
  - [GetSequence200ResponseSequenceStepsInner](docs/GetSequence200ResponseSequenceStepsInner.md)
  - [GetSequence200ResponseSequenceStepsInnerTemplate](docs/GetSequence200ResponseSequenceStepsInnerTemplate.md)
  - [GetSmsRegistration200Response](docs/GetSmsRegistration200Response.md)
+ - [GetSmsRegistration200ResponseCampaignContent](docs/GetSmsRegistration200ResponseCampaignContent.md)
  - [GetSmsUsage200Response](docs/GetSmsUsage200Response.md)
  - [GetSmsUsage200ResponseGroupsInner](docs/GetSmsUsage200ResponseGroupsInner.md)
  - [GetSmsUsage200ResponseTotals](docs/GetSmsUsage200ResponseTotals.md)
@@ -1867,6 +1868,8 @@ Class | Method | HTTP request | Description
  - [Money](docs/Money.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [OnWhatsAppAutomaticEventRequest](docs/OnWhatsAppAutomaticEventRequest.md)
+ - [OnWhatsAppAutomaticEventRequestCustomData](docs/OnWhatsAppAutomaticEventRequestCustomData.md)
  - [OnWhatsAppNumberActionRequiredRequest](docs/OnWhatsAppNumberActionRequiredRequest.md)
  - [OnWhatsAppNumberActivatedRequest](docs/OnWhatsAppNumberActivatedRequest.md)
  - [OnWhatsAppNumberActivatedRequestNumber](docs/OnWhatsAppNumberActivatedRequestNumber.md)

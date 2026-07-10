@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AdjustConversionsRequestAdjustmentsInner.JSON_PROPERTY_USER,
   AdjustConversionsRequestAdjustmentsInner.JSON_PROPERTY_USER_AGENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdjustConversionsRequestAdjustmentsInner {
   /**
    * Gets or Sets adjustmentType

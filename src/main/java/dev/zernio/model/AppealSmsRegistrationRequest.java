@@ -33,13 +33,28 @@ import dev.zernio.ApiClient;
  * AppealSmsRegistrationRequest
  */
 @JsonPropertyOrder({
-  AppealSmsRegistrationRequest.JSON_PROPERTY_APPEAL_REASON
+  AppealSmsRegistrationRequest.JSON_PROPERTY_APPEAL_REASON,
+  AppealSmsRegistrationRequest.JSON_PROPERTY_MESSAGE_FLOW,
+  AppealSmsRegistrationRequest.JSON_PROPERTY_SAMPLE1,
+  AppealSmsRegistrationRequest.JSON_PROPERTY_SAMPLE2
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AppealSmsRegistrationRequest {
   public static final String JSON_PROPERTY_APPEAL_REASON = "appealReason";
   @javax.annotation.Nonnull
   private String appealReason;
+
+  public static final String JSON_PROPERTY_MESSAGE_FLOW = "messageFlow";
+  @javax.annotation.Nullable
+  private String messageFlow;
+
+  public static final String JSON_PROPERTY_SAMPLE1 = "sample1";
+  @javax.annotation.Nullable
+  private String sample1;
+
+  public static final String JSON_PROPERTY_SAMPLE2 = "sample2";
+  @javax.annotation.Nullable
+  private String sample2;
 
   public AppealSmsRegistrationRequest() { 
   }
@@ -50,7 +65,7 @@ public class AppealSmsRegistrationRequest {
   }
 
   /**
-   * Get appealReason
+   * Goes verbatim to the carrier reviewer — address the decline reason directly.
    * @return appealReason
    */
   @javax.annotation.Nonnull
@@ -68,6 +83,78 @@ public class AppealSmsRegistrationRequest {
   }
 
 
+  public AppealSmsRegistrationRequest messageFlow(@javax.annotation.Nullable String messageFlow) {
+    this.messageFlow = messageFlow;
+    return this;
+  }
+
+  /**
+   * Corrected opt-in flow; include a link to the opt-in page/form.
+   * @return messageFlow
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_FLOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMessageFlow() {
+    return messageFlow;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE_FLOW, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMessageFlow(@javax.annotation.Nullable String messageFlow) {
+    this.messageFlow = messageFlow;
+  }
+
+
+  public AppealSmsRegistrationRequest sample1(@javax.annotation.Nullable String sample1) {
+    this.sample1 = sample1;
+    return this;
+  }
+
+  /**
+   * Get sample1
+   * @return sample1
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SAMPLE1, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSample1() {
+    return sample1;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SAMPLE1, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSample1(@javax.annotation.Nullable String sample1) {
+    this.sample1 = sample1;
+  }
+
+
+  public AppealSmsRegistrationRequest sample2(@javax.annotation.Nullable String sample2) {
+    this.sample2 = sample2;
+    return this;
+  }
+
+  /**
+   * Get sample2
+   * @return sample2
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SAMPLE2, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getSample2() {
+    return sample2;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SAMPLE2, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSample2(@javax.annotation.Nullable String sample2) {
+    this.sample2 = sample2;
+  }
+
+
   /**
    * Return true if this appealSmsRegistration_request object is equal to o.
    */
@@ -80,12 +167,15 @@ public class AppealSmsRegistrationRequest {
       return false;
     }
     AppealSmsRegistrationRequest appealSmsRegistrationRequest = (AppealSmsRegistrationRequest) o;
-    return Objects.equals(this.appealReason, appealSmsRegistrationRequest.appealReason);
+    return Objects.equals(this.appealReason, appealSmsRegistrationRequest.appealReason) &&
+        Objects.equals(this.messageFlow, appealSmsRegistrationRequest.messageFlow) &&
+        Objects.equals(this.sample1, appealSmsRegistrationRequest.sample1) &&
+        Objects.equals(this.sample2, appealSmsRegistrationRequest.sample2);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(appealReason);
+    return Objects.hash(appealReason, messageFlow, sample1, sample2);
   }
 
   @Override
@@ -93,6 +183,9 @@ public class AppealSmsRegistrationRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class AppealSmsRegistrationRequest {\n");
     sb.append("    appealReason: ").append(toIndentedString(appealReason)).append("\n");
+    sb.append("    messageFlow: ").append(toIndentedString(messageFlow)).append("\n");
+    sb.append("    sample1: ").append(toIndentedString(sample1)).append("\n");
+    sb.append("    sample2: ").append(toIndentedString(sample2)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -143,6 +236,21 @@ public class AppealSmsRegistrationRequest {
     // add `appealReason` to the URL query string
     if (getAppealReason() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sappealReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAppealReason()))));
+    }
+
+    // add `messageFlow` to the URL query string
+    if (getMessageFlow() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessageFlow%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessageFlow()))));
+    }
+
+    // add `sample1` to the URL query string
+    if (getSample1() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssample1%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSample1()))));
+    }
+
+    // add `sample2` to the URL query string
+    if (getSample2() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssample2%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSample2()))));
     }
 
     return joiner.toString();

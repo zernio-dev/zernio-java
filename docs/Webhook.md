@@ -40,6 +40,11 @@ Individual webhook configuration for receiving real-time notifications
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
+| CONVERSATION_STARTED | &quot;conversation.started&quot; |
+| CALL_RECEIVED | &quot;call.received&quot; |
+| CALL_ENDED | &quot;call.ended&quot; |
+| CALL_FAILED | &quot;call.failed&quot; |
+| CALL_PERMISSION_REQUEST | &quot;call.permission_request&quot; |
 | MESSAGE_SENT | &quot;message.sent&quot; |
 | MESSAGE_EDITED | &quot;message.edited&quot; |
 | MESSAGE_DELETED | &quot;message.deleted&quot; |
@@ -50,8 +55,10 @@ Individual webhook configuration for receiving real-time notifications
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
+| LEAD_RECEIVED | &quot;lead.received&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
+| WHATSAPP_AUTOMATIC_EVENT | &quot;whatsapp.automatic_event&quot; |
 | WHATSAPP_NUMBER_ACTIVATED | &quot;whatsapp.number.activated&quot; |
 | WHATSAPP_NUMBER_DECLINED | &quot;whatsapp.number.declined&quot; |
 | WHATSAPP_NUMBER_ACTION_REQUIRED | &quot;whatsapp.number.action_required&quot; |

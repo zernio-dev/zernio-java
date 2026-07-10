@@ -15,6 +15,7 @@
 |**declineReason** | **String** |  |  [optional] |
 |**phoneNumbers** | **List&lt;String&gt;** |  |  [optional] |
 |**awaitingOtp** | **Boolean** |  |  [optional] |
+|**campaignContent** | [**GetSmsRegistration200ResponseCampaignContent**](GetSmsRegistration200ResponseCampaignContent.md) |  |  [optional] |
 
 
 

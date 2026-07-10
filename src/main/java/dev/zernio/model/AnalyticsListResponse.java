@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   AnalyticsListResponse.JSON_PROPERTY_ACCOUNTS,
   AnalyticsListResponse.JSON_PROPERTY_HAS_ANALYTICS_ACCESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsListResponse {
   public static final String JSON_PROPERTY_OVERVIEW = "overview";
   @javax.annotation.Nullable

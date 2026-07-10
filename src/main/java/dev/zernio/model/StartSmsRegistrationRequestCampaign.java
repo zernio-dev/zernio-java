@@ -24,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -34,6 +36,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_USECASE,
+  StartSmsRegistrationRequestCampaign.JSON_PROPERTY_SUB_USECASES,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_DESCRIPTION,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_MESSAGE_FLOW,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_SAMPLE1,
@@ -50,11 +53,66 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_AGE_GATED,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_DIRECT_LENDING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-09T14:16:23.536711314Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T09:19:47.565439721Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestCampaign {
   public static final String JSON_PROPERTY_USECASE = "usecase";
   @javax.annotation.Nonnull
   private String usecase;
+
+  /**
+   * Gets or Sets subUsecases
+   */
+  public enum SubUsecasesEnum {
+    _2_FA(String.valueOf("2FA")),
+    
+    ACCOUNT_NOTIFICATION(String.valueOf("ACCOUNT_NOTIFICATION")),
+    
+    CUSTOMER_CARE(String.valueOf("CUSTOMER_CARE")),
+    
+    DELIVERY_NOTIFICATION(String.valueOf("DELIVERY_NOTIFICATION")),
+    
+    FRAUD_ALERT(String.valueOf("FRAUD_ALERT")),
+    
+    HIGHER_EDUCATION(String.valueOf("HIGHER_EDUCATION")),
+    
+    MARKETING(String.valueOf("MARKETING")),
+    
+    POLLING_VOTING(String.valueOf("POLLING_VOTING")),
+    
+    PUBLIC_SERVICE_ANNOUNCEMENT(String.valueOf("PUBLIC_SERVICE_ANNOUNCEMENT")),
+    
+    SECURITY_ALERT(String.valueOf("SECURITY_ALERT"));
+
+    private String value;
+
+    SubUsecasesEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SubUsecasesEnum fromValue(String value) {
+      for (SubUsecasesEnum b : SubUsecasesEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SUB_USECASES = "subUsecases";
+  @javax.annotation.Nullable
+  private List<SubUsecasesEnum> subUsecases = new ArrayList<>();
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nonnull
@@ -143,6 +201,38 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
 
+  public StartSmsRegistrationRequestCampaign subUsecases(@javax.annotation.Nullable List<SubUsecasesEnum> subUsecases) {
+    this.subUsecases = subUsecases;
+    return this;
+  }
+
+  public StartSmsRegistrationRequestCampaign addSubUsecasesItem(SubUsecasesEnum subUsecasesItem) {
+    if (this.subUsecases == null) {
+      this.subUsecases = new ArrayList<>();
+    }
+    this.subUsecases.add(subUsecasesItem);
+    return this;
+  }
+
+  /**
+   * The concrete kinds of messages a MIXED campaign sends (the carrier registry requires 2-5, and reviewers match them against the sample messages). Omitted: a default pair is applied for MIXED. 
+   * @return subUsecases
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SUB_USECASES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<SubUsecasesEnum> getSubUsecases() {
+    return subUsecases;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SUB_USECASES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubUsecases(@javax.annotation.Nullable List<SubUsecasesEnum> subUsecases) {
+    this.subUsecases = subUsecases;
+  }
+
+
   public StartSmsRegistrationRequestCampaign description(@javax.annotation.Nonnull String description) {
     this.description = description;
     return this;
@@ -173,7 +263,7 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
   /**
-   * How a recipient ends up receiving your messages (the opt-in flow).
+   * How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify.
    * @return messageFlow
    */
   @javax.annotation.Nonnull
@@ -516,6 +606,7 @@ public class StartSmsRegistrationRequestCampaign {
     }
     StartSmsRegistrationRequestCampaign startSmsRegistrationRequestCampaign = (StartSmsRegistrationRequestCampaign) o;
     return Objects.equals(this.usecase, startSmsRegistrationRequestCampaign.usecase) &&
+        Objects.equals(this.subUsecases, startSmsRegistrationRequestCampaign.subUsecases) &&
         Objects.equals(this.description, startSmsRegistrationRequestCampaign.description) &&
         Objects.equals(this.messageFlow, startSmsRegistrationRequestCampaign.messageFlow) &&
         Objects.equals(this.sample1, startSmsRegistrationRequestCampaign.sample1) &&
@@ -535,7 +626,7 @@ public class StartSmsRegistrationRequestCampaign {
 
   @Override
   public int hashCode() {
-    return Objects.hash(usecase, description, messageFlow, sample1, sample2, helpMessage, optinKeywords, optinMessage, optoutKeywords, optoutMessage, helpKeywords, embeddedLink, embeddedPhone, numberPool, ageGated, directLending);
+    return Objects.hash(usecase, subUsecases, description, messageFlow, sample1, sample2, helpMessage, optinKeywords, optinMessage, optoutKeywords, optoutMessage, helpKeywords, embeddedLink, embeddedPhone, numberPool, ageGated, directLending);
   }
 
   @Override
@@ -543,6 +634,7 @@ public class StartSmsRegistrationRequestCampaign {
     StringBuilder sb = new StringBuilder();
     sb.append("class StartSmsRegistrationRequestCampaign {\n");
     sb.append("    usecase: ").append(toIndentedString(usecase)).append("\n");
+    sb.append("    subUsecases: ").append(toIndentedString(subUsecases)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    messageFlow: ").append(toIndentedString(messageFlow)).append("\n");
     sb.append("    sample1: ").append(toIndentedString(sample1)).append("\n");
@@ -608,6 +700,15 @@ public class StartSmsRegistrationRequestCampaign {
     // add `usecase` to the URL query string
     if (getUsecase() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%susecase%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsecase()))));
+    }
+
+    // add `subUsecases` to the URL query string
+    if (getSubUsecases() != null) {
+      for (int i = 0; i < getSubUsecases().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%ssubUsecases%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getSubUsecases().get(i)))));
+      }
     }
 
     // add `description` to the URL query string

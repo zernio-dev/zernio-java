@@ -222,7 +222,7 @@ tags:
   name: Tracking Tags
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, message.received, conversation.started, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, webhook.test.
     Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported.
   name: Webhooks
 - description: |
@@ -17460,6 +17460,13 @@ paths:
         registration that reached campaign creation can be appealed; a
         brand-level rejection should be fixed and re-verified instead. On
         success the registration returns to `pending`.
+
+        Content rejections (e.g. an opt-in flow without a verifiable form link,
+        or unrealistic samples) should be FIXED in the same call: pass the
+        corrected `messageFlow` / `sample1` / `sample2` and the campaign is
+        updated before the appeal is filed, so the reviewer sees the new
+        content. The current content is on `GET /v1/sms/registrations/{id}`
+        (`campaignContent`).
       operationId: appealSmsRegistration
       parameters:
       - explode: false
@@ -28894,6 +28901,11 @@ components:
             - account.disconnected
             - account.ads.initial_sync_completed
             - message.received
+            - conversation.started
+            - call.received
+            - call.ended
+            - call.failed
+            - call.permission_request
             - message.sent
             - message.edited
             - message.deleted
@@ -28904,8 +28916,10 @@ components:
             - comment.received
             - review.new
             - review.updated
+            - lead.received
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.automatic_event
             - whatsapp.number.activated
             - whatsapp.number.declined
             - whatsapp.number.action_required
@@ -47028,6 +47042,11 @@ components:
             - account.disconnected
             - account.ads.initial_sync_completed
             - message.received
+            - conversation.started
+            - call.received
+            - call.ended
+            - call.failed
+            - call.permission_request
             - message.sent
             - message.edited
             - message.deleted
@@ -47038,8 +47057,10 @@ components:
             - comment.received
             - review.new
             - review.updated
+            - lead.received
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.automatic_event
             - whatsapp.number.activated
             - whatsapp.number.declined
             - whatsapp.number.action_required
@@ -47115,6 +47136,11 @@ components:
             - account.disconnected
             - account.ads.initial_sync_completed
             - message.received
+            - conversation.started
+            - call.received
+            - call.ended
+            - call.failed
+            - call.permission_request
             - message.sent
             - message.edited
             - message.deleted
@@ -47125,8 +47151,10 @@ components:
             - comment.received
             - review.new
             - review.updated
+            - lead.received
             - ad.status_changed
             - whatsapp.template.status_updated
+            - whatsapp.automatic_event
             - whatsapp.number.activated
             - whatsapp.number.declined
             - whatsapp.number.action_required
@@ -52449,13 +52477,35 @@ components:
       properties:
         usecase:
           type: string
+        subUsecases:
+          description: |
+            The concrete kinds of messages a MIXED campaign sends (the carrier
+            registry requires 2-5, and reviewers match them against the sample
+            messages). Omitted: a default pair is applied for MIXED.
+          items:
+            enum:
+            - 2FA
+            - ACCOUNT_NOTIFICATION
+            - CUSTOMER_CARE
+            - DELIVERY_NOTIFICATION
+            - FRAUD_ALERT
+            - HIGHER_EDUCATION
+            - MARKETING
+            - POLLING_VOTING
+            - PUBLIC_SERVICE_ANNOUNCEMENT
+            - SECURITY_ALERT
+            type: string
+          maxItems: 5
+          minItems: 2
+          type: array
         description:
           maxLength: 4096
           minLength: 40
           type: string
         messageFlow:
           description: How a recipient ends up receiving your messages (the opt-in
-            flow).
+            flow). Include a link to the page or form where they opt in — carrier
+            reviewers reject campaigns whose consent they can't verify.
           maxLength: 2048
           minLength: 40
           type: string
@@ -52641,6 +52691,22 @@ components:
           description: "True for sole-prop 10DLC: an OTP was texted to the brand's\
             \ mobile; submit it via /verify-otp."
           type: boolean
+    getSmsRegistration_200_response_campaignContent:
+      description: |
+        The submitted campaign content, present only for rejected
+        registrations with a campaign. Edit and resubmit it via the
+        appeal endpoint's optional content fields.
+      example:
+        sample1: sample1
+        messageFlow: messageFlow
+        sample2: sample2
+      properties:
+        messageFlow:
+          type: string
+        sample1:
+          type: string
+        sample2:
+          type: string
     getSmsRegistration_200_response:
       example:
         registrationType: standard_10dlc
@@ -52653,6 +52719,10 @@ components:
         - phoneNumbers
         - phoneNumbers
         status: pending
+        campaignContent:
+          sample1: sample1
+          messageFlow: messageFlow
+          sample2: sample2
       properties:
         id:
           type: string
@@ -52681,6 +52751,8 @@ components:
           type: array
         awaitingOtp:
           type: boolean
+        campaignContent:
+          $ref: "#/components/schemas/getSmsRegistration_200_response_campaignContent"
     verifySmsRegistrationOtp_request:
       properties:
         otpPin:
@@ -52698,8 +52770,21 @@ components:
     appealSmsRegistration_request:
       properties:
         appealReason:
+          description: Goes verbatim to the carrier reviewer — address the decline
+            reason directly.
           maxLength: 2000
           minLength: 10
+          type: string
+        messageFlow:
+          description: Corrected opt-in flow; include a link to the opt-in page/form.
+          maxLength: 2048
+          minLength: 40
+          type: string
+        sample1:
+          minLength: 20
+          type: string
+        sample2:
+          minLength: 20
           type: string
       required:
       - appealReason
@@ -66311,6 +66396,39 @@ components:
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"
+    onWhatsAppAutomaticEvent_request_customData:
+      description: Purchase events may carry the detected amount.
+      properties:
+        currency:
+          type: string
+        value:
+          type: number
+    onWhatsAppAutomaticEvent_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - whatsapp.automatic_event
+        timestamp:
+          format: date-time
+          type: string
+        accountId:
+          description: SocialAccount id of the WhatsApp number whose conversation
+            was flagged.
+        conversationId:
+          description: "Zernio conversation id, when the thread could be resolved."
+        platformMessageId:
+          description: The wamid of the message Meta's analysis flagged.
+        eventName:
+          description: "Meta-detected event: `LeadSubmitted` | `Purchase`."
+        ctwaClid:
+          description: "Meta's CTWA click id, the Conversions API match key."
+        customData:
+          $ref: "#/components/schemas/onWhatsAppAutomaticEvent_request_customData"
+        detectedAt:
+          format: date-time
+          type: string
     onWhatsAppNumberActivated_request_number:
       properties:
         id:
@@ -70465,6 +70583,7 @@ x-documentation:
     - `account.disconnected` - Social account disconnected (token expired)
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
     - `message.received` - New DM received
+    - `conversation.started` - A new conversation opened between one of your accounts and a contact, in either direction (any DM platform); fires only the first time the thread appears
     - `message.sent` - DM sent via the API
     - `message.edited` - A sender edited a message (Instagram, Messenger, Telegram)
     - `message.deleted` - A sender deleted ("unsent") a message (Instagram; WhatsApp when the business deletes a sent message)
@@ -70478,6 +70597,19 @@ x-documentation:
     - `lead.received` - New lead submitted against a Meta Lead Gen (Instant) Form. `lead.fields` is the question-key → answer map; `lead.formId`/`lead.adId` give provenance.
     - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
+    - `call.received` - An inbound call (phone/PSTN or WhatsApp) reached one of your numbers and was routed to its destination
+    - `call.ended` - A call ended; carries duration, end reason, cost breakdown, and the recording when enabled
+    - `call.failed` - A call failed with a hard error before or during bridging
+    - `call.permission_request` - A WhatsApp user accepted or rejected your call-permission request
+    - `whatsapp.automatic_event` - Meta's automatic event identification detected a lead or purchase in a Click-to-WhatsApp conversation. Branch on `eventName` (`LeadSubmitted` | `Purchase`); carries the `ctwa_clid` Conversions API match key
+    - `whatsapp.number.kyc_submitted` - An end customer completed a hosted KYC share link; the number entered regulatory review under your account
+    - `whatsapp.number.activated` - A provisioned WhatsApp number finished setup and is ready to connect
+    - `whatsapp.number.declined` - A regulated number order was declined in review; nothing activates and nothing is billed
+    - `whatsapp.number.action_required` - The regulator asked for more information on a placed number order; the order stays pending until provided
+    - `whatsapp.number.verification_required` - A regulated number needs end-user ID verification; carries the link to forward
+    - `whatsapp.number.suspended` - An active number was suspended (e.g. failed payment); carries a `reason`
+    - `whatsapp.number.reactivated` - A suspended number is usable again
+    - `whatsapp.number.released` - A number was released and is no longer usable (terminal); carries a `reason`
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Webhook payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header.
