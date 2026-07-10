@@ -30,6 +30,7 @@ import dev.zernio.model.UsageMeteringDaysInner;
 import dev.zernio.model.UsageMeteringLineItemsInner;
 import dev.zernio.model.UsageMeteringPeaks;
 import dev.zernio.model.UsageMeteringPeriod;
+import dev.zernio.model.UsageMeteringTax;
 import dev.zernio.model.UsageMeteringTotals;
 import dev.zernio.model.UsageStats;
 import dev.zernio.model.UsageStatsLimits;
@@ -66,7 +67,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T10:43:06.361368846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T11:11:57.095993604Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = GetUsage200Response.GetUsage200ResponseDeserializer.class)
 @JsonSerialize(using = GetUsage200Response.GetUsage200ResponseSerializer.class)
 public class GetUsage200Response extends AbstractOpenApiSchema {

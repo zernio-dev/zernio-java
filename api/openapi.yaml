@@ -32864,6 +32864,8 @@ components:
           $ref: "#/components/schemas/UsageMetering_callUsage"
         period:
           $ref: "#/components/schemas/UsageMetering_period"
+        tax:
+          $ref: "#/components/schemas/UsageMetering_tax"
     UsageStats:
       description: |
         Plan and usage stats. The response shape depends on `billingSystem`:
@@ -69582,6 +69584,28 @@ components:
           - cycle
           - window
           type: string
+    UsageMetering_tax:
+      description: |
+        Estimated tax on the window's net `totals.total`, computed with
+        Stripe Tax against the billing address (the same engine the real
+        invoice uses; invoices apply exclusive tax, so the card is charged
+        total + tax). Null when the account has no billing address on
+        file, the total is zero or negative, or the estimate failed.
+      properties:
+        taxUsd:
+          description: Estimated tax in USD
+          type: number
+        ratePercent:
+          description: Combined rate percentage
+          nullable: true
+          type: number
+        jurisdictionLabel:
+          description: Human jurisdiction label
+          nullable: true
+          type: string
+        reverseCharge:
+          description: True for EU/UK B2B reverse charge (0 tax added by design).
+          type: boolean
     UsageStats_limits:
       description: Plan limits. For Metronome users both fields are `-1` (unlimited).
       example:

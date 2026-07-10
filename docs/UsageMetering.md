@@ -16,6 +16,7 @@ Billed spend by product family over a window, from Metronome's invoice breakdown
 |**peaks** | [**UsageMeteringPeaks**](UsageMeteringPeaks.md) |  |  [optional] |
 |**callUsage** | [**UsageMeteringCallUsage**](UsageMeteringCallUsage.md) |  |  [optional] |
 |**period** | [**UsageMeteringPeriod**](UsageMeteringPeriod.md) |  |  [optional] |
+|**tax** | [**UsageMeteringTax**](UsageMeteringTax.md) |  |  [optional] |
 
 
 

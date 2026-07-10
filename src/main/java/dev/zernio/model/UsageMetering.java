@@ -29,6 +29,7 @@ import dev.zernio.model.UsageMeteringDaysInner;
 import dev.zernio.model.UsageMeteringLineItemsInner;
 import dev.zernio.model.UsageMeteringPeaks;
 import dev.zernio.model.UsageMeteringPeriod;
+import dev.zernio.model.UsageMeteringTax;
 import dev.zernio.model.UsageMeteringTotals;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,9 +49,10 @@ import dev.zernio.ApiClient;
   UsageMetering.JSON_PROPERTY_LINE_ITEMS,
   UsageMetering.JSON_PROPERTY_PEAKS,
   UsageMetering.JSON_PROPERTY_CALL_USAGE,
-  UsageMetering.JSON_PROPERTY_PERIOD
+  UsageMetering.JSON_PROPERTY_PERIOD,
+  UsageMetering.JSON_PROPERTY_TAX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T10:43:06.361368846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T11:11:57.095993604Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMetering {
   public static final String JSON_PROPERTY_SUPPORTED = "supported";
   @javax.annotation.Nullable
@@ -120,6 +122,10 @@ public class UsageMetering {
   public static final String JSON_PROPERTY_PERIOD = "period";
   @javax.annotation.Nullable
   private UsageMeteringPeriod period;
+
+  public static final String JSON_PROPERTY_TAX = "tax";
+  @javax.annotation.Nullable
+  private UsageMeteringTax tax;
 
   public UsageMetering() { 
   }
@@ -332,6 +338,30 @@ public class UsageMetering {
   }
 
 
+  public UsageMetering tax(@javax.annotation.Nullable UsageMeteringTax tax) {
+    this.tax = tax;
+    return this;
+  }
+
+  /**
+   * Get tax
+   * @return tax
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TAX, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UsageMeteringTax getTax() {
+    return tax;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TAX, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTax(@javax.annotation.Nullable UsageMeteringTax tax) {
+    this.tax = tax;
+  }
+
+
   /**
    * Return true if this UsageMetering object is equal to o.
    */
@@ -351,12 +381,13 @@ public class UsageMetering {
         Objects.equals(this.lineItems, usageMetering.lineItems) &&
         Objects.equals(this.peaks, usageMetering.peaks) &&
         Objects.equals(this.callUsage, usageMetering.callUsage) &&
-        Objects.equals(this.period, usageMetering.period);
+        Objects.equals(this.period, usageMetering.period) &&
+        Objects.equals(this.tax, usageMetering.tax);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(supported, granularity, days, totals, lineItems, peaks, callUsage, period);
+    return Objects.hash(supported, granularity, days, totals, lineItems, peaks, callUsage, period, tax);
   }
 
   @Override
@@ -371,6 +402,7 @@ public class UsageMetering {
     sb.append("    peaks: ").append(toIndentedString(peaks)).append("\n");
     sb.append("    callUsage: ").append(toIndentedString(callUsage)).append("\n");
     sb.append("    period: ").append(toIndentedString(period)).append("\n");
+    sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -466,6 +498,11 @@ public class UsageMetering {
     // add `period` to the URL query string
     if (getPeriod() != null) {
       joiner.add(getPeriod().toUrlQueryString(prefix + "period" + suffix));
+    }
+
+    // add `tax` to the URL query string
+    if (getTax() != null) {
+      joiner.add(getTax().toUrlQueryString(prefix + "tax" + suffix));
     }
 
     return joiner.toString();

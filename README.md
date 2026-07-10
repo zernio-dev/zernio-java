@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-10T10:43:06.361368846Z[Etc/UTC]
+- Build date: 2026-07-10T11:11:57.095993604Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2260,6 +2260,7 @@ Class | Method | HTTP request | Description
  - [UsageMeteringLineItemsInner](docs/UsageMeteringLineItemsInner.md)
  - [UsageMeteringPeaks](docs/UsageMeteringPeaks.md)
  - [UsageMeteringPeriod](docs/UsageMeteringPeriod.md)
+ - [UsageMeteringTax](docs/UsageMeteringTax.md)
  - [UsageMeteringTotals](docs/UsageMeteringTotals.md)
  - [UsageStats](docs/UsageStats.md)
  - [UsageStatsLimits](docs/UsageStatsLimits.md)

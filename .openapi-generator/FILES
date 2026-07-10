@@ -1262,6 +1262,7 @@ docs/UsageMeteringDaysInner.md
 docs/UsageMeteringLineItemsInner.md
 docs/UsageMeteringPeaks.md
 docs/UsageMeteringPeriod.md
+docs/UsageMeteringTax.md
 docs/UsageMeteringTotals.md
 docs/UsageStats.md
 docs/UsageStatsLimits.md
@@ -2699,6 +2700,7 @@ src/main/java/dev/zernio/model/UsageMeteringDaysInner.java
 src/main/java/dev/zernio/model/UsageMeteringLineItemsInner.java
 src/main/java/dev/zernio/model/UsageMeteringPeaks.java
 src/main/java/dev/zernio/model/UsageMeteringPeriod.java
+src/main/java/dev/zernio/model/UsageMeteringTax.java
 src/main/java/dev/zernio/model/UsageMeteringTotals.java
 src/main/java/dev/zernio/model/UsageStats.java
 src/main/java/dev/zernio/model/UsageStatsLimits.java
@@ -2835,3 +2837,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UsageMeteringTaxTest.java

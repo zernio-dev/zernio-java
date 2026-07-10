@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateGoogleBusinessMediaRequest.JSON_PROPERTY_DESCRIPTION,
   CreateGoogleBusinessMediaRequest.JSON_PROPERTY_CATEGORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T10:43:06.361368846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T11:11:57.095993604Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateGoogleBusinessMediaRequest {
   public static final String JSON_PROPERTY_SOURCE_URL = "sourceUrl";
   @javax.annotation.Nonnull
