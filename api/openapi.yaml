@@ -62829,10 +62829,12 @@ components:
     listAdAccounts_200_response_accounts_inner:
       example:
         timezoneOffsetHoursUtc: 0.8008281904610115
+        selectable: true
         name: name
         timezoneName: timezoneName
         currency: currency
         id: id
+        unusableReason: unusableReason
         status: status
       properties:
         id:
@@ -62851,20 +62853,33 @@ components:
         timezoneOffsetHoursUtc:
           description: "Signed UTC offset in hours, reflecting current DST (Meta only)."
           type: number
+        selectable:
+          description: Meta only. Whether the account can create/run ads now. Absent
+            (treat as true) on non-Meta platforms.
+          type: boolean
+        unusableReason:
+          description: Meta only. Human-readable reason when selectable is false;
+            null when selectable.
+          type: string
+          nullable: true
     listAdAccounts_200_response:
       example:
         accounts:
         - timezoneOffsetHoursUtc: 0.8008281904610115
+          selectable: true
           name: name
           timezoneName: timezoneName
           currency: currency
           id: id
+          unusableReason: unusableReason
           status: status
         - timezoneOffsetHoursUtc: 0.8008281904610115
+          selectable: true
           name: name
           timezoneName: timezoneName
           currency: currency
           id: id
+          unusableReason: unusableReason
           status: status
       properties:
         accounts:

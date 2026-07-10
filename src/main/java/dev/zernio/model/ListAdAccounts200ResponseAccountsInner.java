@@ -39,9 +39,11 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_CURRENCY,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_STATUS,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_TIMEZONE_NAME,
-  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_TIMEZONE_OFFSET_HOURS_UTC
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_TIMEZONE_OFFSET_HOURS_UTC,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_SELECTABLE,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_UNUSABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:04:17.834359229Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:34:56.130847050Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -66,6 +68,14 @@ public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_TIMEZONE_OFFSET_HOURS_UTC = "timezoneOffsetHoursUtc";
   @javax.annotation.Nullable
   private BigDecimal timezoneOffsetHoursUtc;
+
+  public static final String JSON_PROPERTY_SELECTABLE = "selectable";
+  @javax.annotation.Nullable
+  private Boolean selectable;
+
+  public static final String JSON_PROPERTY_UNUSABLE_REASON = "unusableReason";
+  @javax.annotation.Nullable
+  private String unusableReason;
 
   public ListAdAccounts200ResponseAccountsInner() { 
   }
@@ -214,6 +224,54 @@ public class ListAdAccounts200ResponseAccountsInner {
   }
 
 
+  public ListAdAccounts200ResponseAccountsInner selectable(@javax.annotation.Nullable Boolean selectable) {
+    this.selectable = selectable;
+    return this;
+  }
+
+  /**
+   * Meta only. Whether the account can create/run ads now. Absent (treat as true) on non-Meta platforms.
+   * @return selectable
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SELECTABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getSelectable() {
+    return selectable;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SELECTABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSelectable(@javax.annotation.Nullable Boolean selectable) {
+    this.selectable = selectable;
+  }
+
+
+  public ListAdAccounts200ResponseAccountsInner unusableReason(@javax.annotation.Nullable String unusableReason) {
+    this.unusableReason = unusableReason;
+    return this;
+  }
+
+  /**
+   * Meta only. Human-readable reason when selectable is false; null when selectable.
+   * @return unusableReason
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNUSABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getUnusableReason() {
+    return unusableReason;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNUSABLE_REASON, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnusableReason(@javax.annotation.Nullable String unusableReason) {
+    this.unusableReason = unusableReason;
+  }
+
+
   /**
    * Return true if this listAdAccounts_200_response_accounts_inner object is equal to o.
    */
@@ -231,12 +289,14 @@ public class ListAdAccounts200ResponseAccountsInner {
         Objects.equals(this.currency, listAdAccounts200ResponseAccountsInner.currency) &&
         Objects.equals(this.status, listAdAccounts200ResponseAccountsInner.status) &&
         Objects.equals(this.timezoneName, listAdAccounts200ResponseAccountsInner.timezoneName) &&
-        Objects.equals(this.timezoneOffsetHoursUtc, listAdAccounts200ResponseAccountsInner.timezoneOffsetHoursUtc);
+        Objects.equals(this.timezoneOffsetHoursUtc, listAdAccounts200ResponseAccountsInner.timezoneOffsetHoursUtc) &&
+        Objects.equals(this.selectable, listAdAccounts200ResponseAccountsInner.selectable) &&
+        Objects.equals(this.unusableReason, listAdAccounts200ResponseAccountsInner.unusableReason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, currency, status, timezoneName, timezoneOffsetHoursUtc);
+    return Objects.hash(id, name, currency, status, timezoneName, timezoneOffsetHoursUtc, selectable, unusableReason);
   }
 
   @Override
@@ -249,6 +309,8 @@ public class ListAdAccounts200ResponseAccountsInner {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    timezoneName: ").append(toIndentedString(timezoneName)).append("\n");
     sb.append("    timezoneOffsetHoursUtc: ").append(toIndentedString(timezoneOffsetHoursUtc)).append("\n");
+    sb.append("    selectable: ").append(toIndentedString(selectable)).append("\n");
+    sb.append("    unusableReason: ").append(toIndentedString(unusableReason)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -324,6 +386,16 @@ public class ListAdAccounts200ResponseAccountsInner {
     // add `timezoneOffsetHoursUtc` to the URL query string
     if (getTimezoneOffsetHoursUtc() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stimezoneOffsetHoursUtc%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimezoneOffsetHoursUtc()))));
+    }
+
+    // add `selectable` to the URL query string
+    if (getSelectable() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sselectable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSelectable()))));
+    }
+
+    // add `unusableReason` to the URL query string
+    if (getUnusableReason() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunusableReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnusableReason()))));
     }
 
     return joiner.toString();

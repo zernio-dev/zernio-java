@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   Expired.JSON_PROPERTY_STATUS,
   Expired.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:04:17.834359229Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:34:56.130847050Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Expired {
   /**
    * Gets or Sets status

@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateAdTrackingTagsRequestCreative.JSON_PROPERTY_IMAGE_URL,
   UpdateAdTrackingTagsRequestCreative.JSON_PROPERTY_VIDEO_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:04:17.834359229Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:34:56.130847050Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdTrackingTagsRequestCreative {
   public static final String JSON_PROPERTY_HEADLINE = "headline";
   @javax.annotation.Nonnull
