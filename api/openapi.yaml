@@ -24236,6 +24236,57 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/{adId}/status:
+    put:
+      description: |
+        Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or
+        campaign (so sibling ads keep running). Thin wrapper over the `status`
+        field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to
+        /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.
+
+        `{adId}` accepts the same identifier dialects as GET/PUT /v1/ads/{adId}
+        (Zernio hex `_id`, Meta numeric `platformAdId`, or the creative's
+        effective story/media IDs). `platform` is inferred from the ad, so it's
+        not required in the body. Ads in terminal statuses (rejected, completed,
+        cancelled) and no-op flips (already in the target state) are skipped.
+      operationId: updateAdStatus
+      parameters:
+      - description: "Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of\
+          \ the creative's effective story/media IDs."
+        explode: false
+        in: path
+        name: adId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdStatus_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdStatus_200_response"
+          description: Ad status updated (or skipped when no change was needed)
+        "400":
+          description: Invalid input
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Ad not found
+      security:
+      - bearerAuth: []
+      summary: Pause or resume a single ad
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/campaigns/{campaignId}/analytics:
     get:
       description: |
@@ -62189,6 +62240,31 @@ components:
         ad:
           $ref: "#/components/schemas/Ad"
         message:
+          type: string
+    updateAdStatus_request:
+      properties:
+        status:
+          enum:
+          - active
+          - paused
+          type: string
+      required:
+      - status
+    updateAdStatus_200_response:
+      example:
+        message: message
+        updated: 0
+        skipped: 6
+      properties:
+        updated:
+          description: "1 when the status changed, 0 when skipped"
+          type: integer
+        skipped:
+          description: "1 when skipped (terminal status or already in target state),\
+            \ else 0"
+          type: integer
+        message:
+          description: Human-readable summary (present only when skipped)
           type: string
     getCampaignAnalytics_200_response_campaign:
       example:

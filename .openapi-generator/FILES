@@ -1154,6 +1154,8 @@ docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
 docs/UpdateAdSetStatus200Response.md
+docs/UpdateAdStatus200Response.md
+docs/UpdateAdStatusRequest.md
 docs/UpdateAdTrackingTagsRequest.md
 docs/UpdateAdTrackingTagsRequestCreative.md
 docs/UpdateAdTrackingTagsRequestUrlTagsInner.md
@@ -2595,6 +2597,8 @@ src/main/java/dev/zernio/model/UpdateAdSet200Response.java
 src/main/java/dev/zernio/model/UpdateAdSetRequest.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestBudget.java
 src/main/java/dev/zernio/model/UpdateAdSetStatus200Response.java
+src/main/java/dev/zernio/model/UpdateAdStatus200Response.java
+src/main/java/dev/zernio/model/UpdateAdStatusRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequest.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestCreative.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTagsRequestUrlTagsInner.java
@@ -2841,3 +2845,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UpdateAdStatus200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateAdStatusRequestTest.java

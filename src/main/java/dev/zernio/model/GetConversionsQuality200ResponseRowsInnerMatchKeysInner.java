@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetConversionsQuality200ResponseRowsInnerMatchKeysInner.JSON_PROPERTY_IDENTIFIER,
   GetConversionsQuality200ResponseRowsInnerMatchKeysInner.JSON_PROPERTY_COVERAGE_PERCENTAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T10:59:41.050910603Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T11:59:40.936895368Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetConversionsQuality200ResponseRowsInnerMatchKeysInner {
   public static final String JSON_PROPERTY_IDENTIFIER = "identifier";
   @javax.annotation.Nullable

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-11T10:59:41.050910603Z[Etc/UTC]
+- Build date: 2026-07-11T11:59:40.936895368Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -262,6 +262,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *AdsApi* | [**updateAd**](docs/AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
 *AdsApi* | [**updateAdWithHttpInfo**](docs/AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
+*AdsApi* | [**updateAdStatus**](docs/AdsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
+*AdsApi* | [**updateAdStatusWithHttpInfo**](docs/AdsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdsApi* | [**updateAdTrackingTags**](docs/AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *AdsApi* | [**updateAdTrackingTagsWithHttpInfo**](docs/AdsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *AdsApi* | [**updateConversionDestination**](docs/AdsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
@@ -2153,6 +2155,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdSetRequest](docs/UpdateAdSetRequest.md)
  - [UpdateAdSetRequestBudget](docs/UpdateAdSetRequestBudget.md)
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
+ - [UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
+ - [UpdateAdStatusRequest](docs/UpdateAdStatusRequest.md)
  - [UpdateAdTrackingTagsRequest](docs/UpdateAdTrackingTagsRequest.md)
  - [UpdateAdTrackingTagsRequestCreative](docs/UpdateAdTrackingTagsRequestCreative.md)
  - [UpdateAdTrackingTagsRequestUrlTagsInner](docs/UpdateAdTrackingTagsRequestUrlTagsInner.md)

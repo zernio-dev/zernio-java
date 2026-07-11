@@ -80,6 +80,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**sendWhatsAppConversionWithHttpInfo**](AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**updateAd**](AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad |
 | [**updateAdWithHttpInfo**](AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad |
+| [**updateAdStatus**](AdsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
+| [**updateAdStatusWithHttpInfo**](AdsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**updateAdTrackingTags**](AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**updateAdTrackingTagsWithHttpInfo**](AdsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**updateConversionDestination**](AdsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
@@ -6095,6 +6097,160 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+
+
+## updateAdStatus
+
+> UpdateAdStatus200Response updateAdStatus(adId, updateAdStatusRequest)
+
+Pause or resume a single ad
+
+Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
+        UpdateAdStatusRequest updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
+        try {
+            UpdateAdStatus200Response result = apiInstance.updateAdStatus(adId, updateAdStatusRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#updateAdStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. | |
+| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md)|  | |
+
+### Return type
+
+[**UpdateAdStatus200Response**](UpdateAdStatus200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad status updated (or skipped when no change was needed) |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+
+## updateAdStatusWithHttpInfo
+
+> ApiResponse<UpdateAdStatus200Response> updateAdStatus updateAdStatusWithHttpInfo(adId, updateAdStatusRequest)
+
+Pause or resume a single ad
+
+Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs.
+        UpdateAdStatusRequest updateAdStatusRequest = new UpdateAdStatusRequest(); // UpdateAdStatusRequest | 
+        try {
+            ApiResponse<UpdateAdStatus200Response> response = apiInstance.updateAdStatusWithHttpInfo(adId, updateAdStatusRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#updateAdStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. | |
+| **updateAdStatusRequest** | [**UpdateAdStatusRequest**](UpdateAdStatusRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAdStatus200Response**](UpdateAdStatus200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad status updated (or skipped when no change was needed) |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
 
 
 ## updateAdTrackingTags

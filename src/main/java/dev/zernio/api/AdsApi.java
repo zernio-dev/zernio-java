@@ -71,6 +71,8 @@ import dev.zernio.model.SendWhatsAppConversion200Response;
 import dev.zernio.model.SendWhatsAppConversionRequest;
 import dev.zernio.model.UpdateAd200Response;
 import dev.zernio.model.UpdateAdRequest;
+import dev.zernio.model.UpdateAdStatus200Response;
+import dev.zernio.model.UpdateAdStatusRequest;
 import dev.zernio.model.UpdateAdTrackingTagsRequest;
 import dev.zernio.model.UpdateConversionDestinationRequest;
 
@@ -99,7 +101,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T10:59:41.050910603Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T11:59:40.936895368Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -5516,6 +5518,138 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Pause or resume a single ad
+   * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+   * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
+   * @param updateAdStatusRequest  (required)
+   * @return UpdateAdStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest) throws ApiException {
+    return updateAdStatus(adId, updateAdStatusRequest, null);
+  }
+
+  /**
+   * Pause or resume a single ad
+   * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+   * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
+   * @param updateAdStatusRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdStatus200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdStatus200Response updateAdStatus(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdStatus200Response> localVarResponse = updateAdStatusWithHttpInfo(adId, updateAdStatusRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pause or resume a single ad
+   * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+   * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
+   * @param updateAdStatusRequest  (required)
+   * @return ApiResponse&lt;UpdateAdStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest) throws ApiException {
+    return updateAdStatusWithHttpInfo(adId, updateAdStatusRequest, null);
+  }
+
+  /**
+   * Pause or resume a single ad
+   * Ad-scoped pause/resume — touches ONLY this ad, never its parent ad set or campaign (so sibling ads keep running). Thin wrapper over the &#x60;status&#x60; field of PUT /v1/ads/{adId}, for callers that want a URL symmetric to /v1/ads/campaigns/{campaignId}/status and /v1/ads/ad-sets/{adSetId}/status.  &#x60;{adId}&#x60; accepts the same identifier dialects as GET/PUT /v1/ads/{adId} (Zernio hex &#x60;_id&#x60;, Meta numeric &#x60;platformAdId&#x60;, or the creative&#39;s effective story/media IDs). &#x60;platform&#x60; is inferred from the ad, so it&#39;s not required in the body. Ads in terminal statuses (rejected, completed, cancelled) and no-op flips (already in the target state) are skipped. 
+   * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. (required)
+   * @param updateAdStatusRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdStatus200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdStatus200Response> updateAdStatusWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdStatusRequestBuilder(adId, updateAdStatusRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdStatus", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdStatus200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdStatus200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdStatus200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdStatus200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdStatusRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nonnull UpdateAdStatusRequest updateAdStatusRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling updateAdStatus");
+    }
+    // verify the required parameter 'updateAdStatusRequest' is set
+    if (updateAdStatusRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdStatusRequest' when calling updateAdStatus");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/status"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdStatusRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

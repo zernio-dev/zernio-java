@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetInboxVolume200ResponseByPlatformInner.JSON_PROPERTY_READ,
   GetInboxVolume200ResponseByPlatformInner.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T10:59:41.050910603Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T11:59:40.936895368Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxVolume200ResponseByPlatformInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
