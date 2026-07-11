@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ConnectAds200ResponseOneOf.JSON_PROPERTY_DISPLAY_NAME,
   ConnectAds200ResponseOneOf.JSON_PROPERTY_SCOPED_AD_ACCOUNT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T10:35:33.391742195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T10:59:41.050910603Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectAds200ResponseOneOf {
   public static final String JSON_PROPERTY_ALREADY_CONNECTED = "alreadyConnected";
   @javax.annotation.Nullable

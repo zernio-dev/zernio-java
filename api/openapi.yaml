@@ -30377,7 +30377,7 @@ components:
         Fired once when a new conversation begins, in either direction. A conversation
         starts the first time an account and a contact exchange a message on any DM
         platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, Twitter, Reddit,
-        Bluesky). Platform-agnostic — one subscription covers every DM platform.
+        Bluesky, SMS). Platform-agnostic — one subscription covers every DM platform.
       example:
         startedAt: 2000-01-23T04:56:07.000+00:00
         id: id
@@ -68591,6 +68591,7 @@ components:
           - twitter
           - reddit
           - bluesky
+          - sms
           type: string
         platformConversationId:
           type: string

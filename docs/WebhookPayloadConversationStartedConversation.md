@@ -30,6 +30,7 @@
 | TWITTER | &quot;twitter&quot; |
 | REDDIT | &quot;reddit&quot; |
 | BLUESKY | &quot;bluesky&quot; |
+| SMS | &quot;sms&quot; |
 
 
 
