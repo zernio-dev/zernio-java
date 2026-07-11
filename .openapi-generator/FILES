@@ -201,6 +201,7 @@ docs/CreateInboxConversation400Response.md
 docs/CreateInboxConversation422Response.md
 docs/CreateInboxConversationRequest.md
 docs/CreateInboxConversationRequest1.md
+docs/CreateInboxConversationRequestHeaderMedia.md
 docs/CreateInviteToken201Response.md
 docs/CreateInviteTokenRequest.md
 docs/CreateLeadForm200Response.md
@@ -1669,6 +1670,7 @@ src/main/java/dev/zernio/model/CreateInboxConversation400Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation422Response.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequest.java
 src/main/java/dev/zernio/model/CreateInboxConversationRequest1.java
+src/main/java/dev/zernio/model/CreateInboxConversationRequestHeaderMedia.java
 src/main/java/dev/zernio/model/CreateInviteToken201Response.java
 src/main/java/dev/zernio/model/CreateInviteTokenRequest.java
 src/main/java/dev/zernio/model/CreateLeadForm200Response.java
@@ -2839,3 +2841,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateInboxConversationRequestHeaderMediaTest.java

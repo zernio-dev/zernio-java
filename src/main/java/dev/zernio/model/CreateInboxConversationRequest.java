@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateInboxConversationRequestHeaderMedia;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,9 +43,10 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_SKIP_DM_CHECK,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_NAME,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
-  CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS
+  CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS,
+  CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-10T17:34:56.130847050Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T10:35:33.391742195Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -77,6 +79,10 @@ public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_TEMPLATE_PARAMS = "templateParams";
   @javax.annotation.Nullable
   private List<String> templateParams = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_HEADER_MEDIA = "headerMedia";
+  @javax.annotation.Nullable
+  private CreateInboxConversationRequestHeaderMedia headerMedia;
 
   public CreateInboxConversationRequest() { 
   }
@@ -263,7 +269,7 @@ public class CreateInboxConversationRequest {
   }
 
   /**
-   * WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here.
+   * WhatsApp only. Template variable values as one flat array, in the order the variables appear across the whole template: text-header variables first, then body variables, then one value per dynamic URL button (in button order). Works with positional placeholders ({{1}}, {{2}}, ...) and with named placeholders ({{name}}, {{company}} - how Meta Business Manager creates templates), where values fill the named slots in order of appearance. Example - a body with {{1}}, {{2}} plus a URL button https://example.com/{{1}} takes three values: [body1, body2, buttonSuffix]. Media headers (image, video, document) are filled automatically from the approved template and take no value here (use headerMedia to override the header asset per send).
    * @return templateParams
    */
   @javax.annotation.Nullable
@@ -278,6 +284,30 @@ public class CreateInboxConversationRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTemplateParams(@javax.annotation.Nullable List<String> templateParams) {
     this.templateParams = templateParams;
+  }
+
+
+  public CreateInboxConversationRequest headerMedia(@javax.annotation.Nullable CreateInboxConversationRequestHeaderMedia headerMedia) {
+    this.headerMedia = headerMedia;
+    return this;
+  }
+
+  /**
+   * Get headerMedia
+   * @return headerMedia
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADER_MEDIA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CreateInboxConversationRequestHeaderMedia getHeaderMedia() {
+    return headerMedia;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEADER_MEDIA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeaderMedia(@javax.annotation.Nullable CreateInboxConversationRequestHeaderMedia headerMedia) {
+    this.headerMedia = headerMedia;
   }
 
 
@@ -300,12 +330,13 @@ public class CreateInboxConversationRequest {
         Objects.equals(this.skipDmCheck, createInboxConversationRequest.skipDmCheck) &&
         Objects.equals(this.templateName, createInboxConversationRequest.templateName) &&
         Objects.equals(this.templateLanguage, createInboxConversationRequest.templateLanguage) &&
-        Objects.equals(this.templateParams, createInboxConversationRequest.templateParams);
+        Objects.equals(this.templateParams, createInboxConversationRequest.templateParams) &&
+        Objects.equals(this.headerMedia, createInboxConversationRequest.headerMedia);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, templateLanguage, templateParams);
+    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, templateLanguage, templateParams, headerMedia);
   }
 
   @Override
@@ -320,6 +351,7 @@ public class CreateInboxConversationRequest {
     sb.append("    templateName: ").append(toIndentedString(templateName)).append("\n");
     sb.append("    templateLanguage: ").append(toIndentedString(templateLanguage)).append("\n");
     sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
+    sb.append("    headerMedia: ").append(toIndentedString(headerMedia)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -409,6 +441,11 @@ public class CreateInboxConversationRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getTemplateParams().get(i)))));
       }
+    }
+
+    // add `headerMedia` to the URL query string
+    if (getHeaderMedia() != null) {
+      joiner.add(getHeaderMedia().toUrlQueryString(prefix + "headerMedia" + suffix));
     }
 
     return joiner.toString();

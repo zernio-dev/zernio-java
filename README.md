@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-10T17:34:56.130847050Z[Etc/UTC]
+- Build date: 2026-07-11T10:35:33.391742195Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1228,6 +1228,7 @@ Class | Method | HTTP request | Description
  - [CreateInboxConversation422Response](docs/CreateInboxConversation422Response.md)
  - [CreateInboxConversationRequest](docs/CreateInboxConversationRequest.md)
  - [CreateInboxConversationRequest1](docs/CreateInboxConversationRequest1.md)
+ - [CreateInboxConversationRequestHeaderMedia](docs/CreateInboxConversationRequestHeaderMedia.md)
  - [CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
