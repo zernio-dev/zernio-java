@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-13T12:58:57.041812021Z[Etc/UTC]
+- Build date: 2026-07-13T13:43:58.372868772Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -226,6 +226,10 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**getConversionMetricsWithHttpInfo**](docs/AdsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
 *AdsApi* | [**getConversionsQuality**](docs/AdsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
 *AdsApi* | [**getConversionsQualityWithHttpInfo**](docs/AdsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality
+*AdsApi* | [**getDsaDefaults**](docs/AdsApi.md#getDsaDefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
+*AdsApi* | [**getDsaDefaultsWithHttpInfo**](docs/AdsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults
+*AdsApi* | [**getDsaRecommendations**](docs/AdsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
+*AdsApi* | [**getDsaRecommendationsWithHttpInfo**](docs/AdsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
 *AdsApi* | [**getLeadForm**](docs/AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
 *AdsApi* | [**getLeadFormWithHttpInfo**](docs/AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
 *AdsApi* | [**listAdAccounts**](docs/AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
@@ -262,6 +266,8 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *AdsApi* | [**updateAd**](docs/AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
 *AdsApi* | [**updateAdWithHttpInfo**](docs/AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
+*AdsApi* | [**updateAdAccount**](docs/AdsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
+*AdsApi* | [**updateAdAccountWithHttpInfo**](docs/AdsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdsApi* | [**updateAdStatus**](docs/AdsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdsApi* | [**updateAdStatusWithHttpInfo**](docs/AdsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdsApi* | [**updateAdTrackingTags**](docs/AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
@@ -1456,6 +1462,7 @@ Class | Method | HTTP request | Description
  - [GetDiscordChannels200ResponseChannelsInner](docs/GetDiscordChannels200ResponseChannelsInner.md)
  - [GetDiscordSettings200Response](docs/GetDiscordSettings200Response.md)
  - [GetDiscordSettings200ResponseAccount](docs/GetDiscordSettings200ResponseAccount.md)
+ - [GetDsaRecommendations200Response](docs/GetDsaRecommendations200Response.md)
  - [GetFacebookPages200Response](docs/GetFacebookPages200Response.md)
  - [GetFacebookPages200ResponsePagesInner](docs/GetFacebookPages200ResponsePagesInner.md)
  - [GetFacebookPostReactions200Response](docs/GetFacebookPostReactions200Response.md)
@@ -2140,6 +2147,9 @@ Class | Method | HTTP request | Description
  - [UpdateAccountRequest](docs/UpdateAccountRequest.md)
  - [UpdateAccountRequestXCapabilities](docs/UpdateAccountRequestXCapabilities.md)
  - [UpdateAd200Response](docs/UpdateAd200Response.md)
+ - [UpdateAdAccount200Response](docs/UpdateAdAccount200Response.md)
+ - [UpdateAdAccount200ResponseDsaDefaults](docs/UpdateAdAccount200ResponseDsaDefaults.md)
+ - [UpdateAdAccountRequest](docs/UpdateAdAccountRequest.md)
  - [UpdateAdAudienceRequest](docs/UpdateAdAudienceRequest.md)
  - [UpdateAdCampaign200Response](docs/UpdateAdCampaign200Response.md)
  - [UpdateAdCampaignRequest](docs/UpdateAdCampaignRequest.md)

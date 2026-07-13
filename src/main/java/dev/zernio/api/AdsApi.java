@@ -47,6 +47,7 @@ import dev.zernio.model.GetCampaignAnalytics200Response;
 import dev.zernio.model.GetConversionDestination200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
 import dev.zernio.model.GetConversionsQuality200Response;
+import dev.zernio.model.GetDsaRecommendations200Response;
 import dev.zernio.model.GetLeadForm200Response;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
@@ -70,6 +71,8 @@ import dev.zernio.model.SendConversionsRequest;
 import dev.zernio.model.SendWhatsAppConversion200Response;
 import dev.zernio.model.SendWhatsAppConversionRequest;
 import dev.zernio.model.UpdateAd200Response;
+import dev.zernio.model.UpdateAdAccount200Response;
+import dev.zernio.model.UpdateAdAccountRequest;
 import dev.zernio.model.UpdateAdRequest;
 import dev.zernio.model.UpdateAdStatus200Response;
 import dev.zernio.model.UpdateAdStatusRequest;
@@ -101,7 +104,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T12:58:57.041812021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T13:43:58.372868772Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2913,6 +2916,290 @@ public class AdsApi {
   }
 
   /**
+   * Get ad account DSA defaults
+   * Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @return UpdateAdAccount200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdAccount200Response getDsaDefaults(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getDsaDefaults(accountId, adAccountId, null);
+  }
+
+  /**
+   * Get ad account DSA defaults
+   * Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdAccount200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdAccount200Response getDsaDefaults(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdAccount200Response> localVarResponse = getDsaDefaultsWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get ad account DSA defaults
+   * Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @return ApiResponse&lt;UpdateAdAccount200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdAccount200Response> getDsaDefaultsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getDsaDefaultsWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * Get ad account DSA defaults
+   * Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdAccount200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdAccount200Response> getDsaDefaultsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getDsaDefaultsRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getDsaDefaults", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdAccount200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdAccount200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdAccount200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdAccount200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getDsaDefaultsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getDsaDefaults");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getDsaDefaults");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/dsa-defaults";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List DSA beneficiary/payor suggestions
+   * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @return GetDsaRecommendations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetDsaRecommendations200Response getDsaRecommendations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getDsaRecommendations(accountId, adAccountId, null);
+  }
+
+  /**
+   * List DSA beneficiary/payor suggestions
+   * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @param headers Optional headers to include in the request
+   * @return GetDsaRecommendations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetDsaRecommendations200Response getDsaRecommendations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetDsaRecommendations200Response> localVarResponse = getDsaRecommendationsWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List DSA beneficiary/payor suggestions
+   * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @return ApiResponse&lt;GetDsaRecommendations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetDsaRecommendations200Response> getDsaRecommendationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getDsaRecommendationsWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * List DSA beneficiary/payor suggestions
+   * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+   * @param accountId Social account ID (metaads, or a facebook/instagram posting account) (required)
+   * @param adAccountId Meta ad account ID (act_...) (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetDsaRecommendations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetDsaRecommendations200Response> getDsaRecommendationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getDsaRecommendationsRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getDsaRecommendations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetDsaRecommendations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetDsaRecommendations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetDsaRecommendations200Response>() {});
+        
+
+        return new ApiResponse<GetDsaRecommendations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getDsaRecommendationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getDsaRecommendations");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getDsaRecommendations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/dsa-recommendations";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get a lead form
    * 
    * @param formId  (required)
@@ -5519,6 +5806,129 @@ public class AdsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update ad account settings
+   * Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+   * @param updateAdAccountRequest  (required)
+   * @return UpdateAdAccount200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdAccount200Response updateAdAccount(@javax.annotation.Nonnull UpdateAdAccountRequest updateAdAccountRequest) throws ApiException {
+    return updateAdAccount(updateAdAccountRequest, null);
+  }
+
+  /**
+   * Update ad account settings
+   * Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+   * @param updateAdAccountRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAdAccount200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAdAccount200Response updateAdAccount(@javax.annotation.Nonnull UpdateAdAccountRequest updateAdAccountRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAdAccount200Response> localVarResponse = updateAdAccountWithHttpInfo(updateAdAccountRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update ad account settings
+   * Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+   * @param updateAdAccountRequest  (required)
+   * @return ApiResponse&lt;UpdateAdAccount200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdAccount200Response> updateAdAccountWithHttpInfo(@javax.annotation.Nonnull UpdateAdAccountRequest updateAdAccountRequest) throws ApiException {
+    return updateAdAccountWithHttpInfo(updateAdAccountRequest, null);
+  }
+
+  /**
+   * Update ad account settings
+   * Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+   * @param updateAdAccountRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAdAccount200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAdAccount200Response> updateAdAccountWithHttpInfo(@javax.annotation.Nonnull UpdateAdAccountRequest updateAdAccountRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdAccountRequestBuilder(updateAdAccountRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdAccount", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAdAccount200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAdAccount200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAdAccount200Response>() {});
+        
+
+        return new ApiResponse<UpdateAdAccount200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdAccountRequestBuilder(@javax.annotation.Nonnull UpdateAdAccountRequest updateAdAccountRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'updateAdAccountRequest' is set
+    if (updateAdAccountRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAdAccountRequest' when calling updateAdAccount");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdAccountRequest);
+      localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

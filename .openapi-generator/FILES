@@ -429,6 +429,7 @@ docs/GetDiscordChannels200Response.md
 docs/GetDiscordChannels200ResponseChannelsInner.md
 docs/GetDiscordSettings200Response.md
 docs/GetDiscordSettings200ResponseAccount.md
+docs/GetDsaRecommendations200Response.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
 docs/GetFacebookPostReactions200Response.md
@@ -1139,6 +1140,9 @@ docs/UpdateAccountGroupRequest.md
 docs/UpdateAccountRequest.md
 docs/UpdateAccountRequestXCapabilities.md
 docs/UpdateAd200Response.md
+docs/UpdateAdAccount200Response.md
+docs/UpdateAdAccount200ResponseDsaDefaults.md
+docs/UpdateAdAccountRequest.md
 docs/UpdateAdAudienceRequest.md
 docs/UpdateAdCampaign200Response.md
 docs/UpdateAdCampaignRequest.md
@@ -1898,6 +1902,7 @@ src/main/java/dev/zernio/model/GetDiscordChannels200Response.java
 src/main/java/dev/zernio/model/GetDiscordChannels200ResponseChannelsInner.java
 src/main/java/dev/zernio/model/GetDiscordSettings200Response.java
 src/main/java/dev/zernio/model/GetDiscordSettings200ResponseAccount.java
+src/main/java/dev/zernio/model/GetDsaRecommendations200Response.java
 src/main/java/dev/zernio/model/GetFacebookPages200Response.java
 src/main/java/dev/zernio/model/GetFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/GetFacebookPostReactions200Response.java
@@ -2582,6 +2587,9 @@ src/main/java/dev/zernio/model/UpdateAccountGroupRequest.java
 src/main/java/dev/zernio/model/UpdateAccountRequest.java
 src/main/java/dev/zernio/model/UpdateAccountRequestXCapabilities.java
 src/main/java/dev/zernio/model/UpdateAd200Response.java
+src/main/java/dev/zernio/model/UpdateAdAccount200Response.java
+src/main/java/dev/zernio/model/UpdateAdAccount200ResponseDsaDefaults.java
+src/main/java/dev/zernio/model/UpdateAdAccountRequest.java
 src/main/java/dev/zernio/model/UpdateAdAudienceRequest.java
 src/main/java/dev/zernio/model/UpdateAdCampaign200Response.java
 src/main/java/dev/zernio/model/UpdateAdCampaignRequest.java
@@ -2845,3 +2853,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetDsaRecommendations200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateAdAccount200ResponseDsaDefaultsTest.java
+src/test/java/dev/zernio/model/UpdateAdAccount200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateAdAccountRequestTest.java

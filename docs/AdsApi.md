@@ -44,6 +44,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionMetricsWithHttpInfo**](AdsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**getConversionsQuality**](AdsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getConversionsQualityWithHttpInfo**](AdsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
+| [**getDsaDefaults**](AdsApi.md#getDsaDefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
+| [**getDsaDefaultsWithHttpInfo**](AdsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
+| [**getDsaRecommendations**](AdsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
+| [**getDsaRecommendationsWithHttpInfo**](AdsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
 | [**getLeadForm**](AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
 | [**getLeadFormWithHttpInfo**](AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
 | [**listAdAccounts**](AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
@@ -80,6 +84,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**sendWhatsAppConversionWithHttpInfo**](AdsApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**updateAd**](AdsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad |
 | [**updateAdWithHttpInfo**](AdsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad |
+| [**updateAdAccount**](AdsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**updateAdAccountWithHttpInfo**](AdsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdStatus**](AdsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**updateAdStatusWithHttpInfo**](AdsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**updateAdTrackingTags**](AdsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
@@ -3235,6 +3241,314 @@ ApiResponse<[**GetConversionsQuality200Response**](GetConversionsQuality200Respo
 | **405** | Platform does not expose Event Match Quality (non-Meta). |  -  |
 
 
+## getDsaDefaults
+
+> UpdateAdAccount200Response getDsaDefaults(accountId, adAccountId)
+
+Get ad account DSA defaults
+
+Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
+        try {
+            UpdateAdAccount200Response result = apiInstance.getDsaDefaults(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getDsaDefaults");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **adAccountId** | **String**| Meta ad account ID (act_...) | |
+
+### Return type
+
+[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current DSA defaults (empty object when none are set) |  -  |
+| **400** | Non-Meta adAccountId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Social account not found |  -  |
+
+## getDsaDefaultsWithHttpInfo
+
+> ApiResponse<UpdateAdAccount200Response> getDsaDefaults getDsaDefaultsWithHttpInfo(accountId, adAccountId)
+
+Get ad account DSA defaults
+
+Returns the default DSA beneficiary and payor currently set on a Meta ad account, whether they were set via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager. Fields are omitted when no default is configured. Meta accounts only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
+        try {
+            ApiResponse<UpdateAdAccount200Response> response = apiInstance.getDsaDefaultsWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getDsaDefaults");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **adAccountId** | **String**| Meta ad account ID (act_...) | |
+
+### Return type
+
+ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current DSA defaults (empty object when none are set) |  -  |
+| **400** | Non-Meta adAccountId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Social account not found |  -  |
+
+
+## getDsaRecommendations
+
+> GetDsaRecommendations200Response getDsaRecommendations(accountId, adAccountId)
+
+List DSA beneficiary/payor suggestions
+
+Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
+        try {
+            GetDsaRecommendations200Response result = apiInstance.getDsaRecommendations(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getDsaRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **adAccountId** | **String**| Meta ad account ID (act_...) | |
+
+### Return type
+
+[**GetDsaRecommendations200Response**](GetDsaRecommendations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Suggested DSA strings (may be empty when Meta has no recommendations) |  -  |
+| **400** | Non-Meta adAccountId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Social account not found |  -  |
+
+## getDsaRecommendationsWithHttpInfo
+
+> ApiResponse<GetDsaRecommendations200Response> getDsaRecommendations getDsaRecommendationsWithHttpInfo(accountId, adAccountId)
+
+List DSA beneficiary/payor suggestions
+
+Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Social account ID (metaads, or a facebook/instagram posting account)
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
+        try {
+            ApiResponse<GetDsaRecommendations200Response> response = apiInstance.getDsaRecommendationsWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getDsaRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Social account ID (metaads, or a facebook/instagram posting account) | |
+| **adAccountId** | **String**| Meta ad account ID (act_...) | |
+
+### Return type
+
+ApiResponse<[**GetDsaRecommendations200Response**](GetDsaRecommendations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Suggested DSA strings (may be empty when Meta has no recommendations) |  -  |
+| **400** | Non-Meta adAccountId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Social account not found |  -  |
+
+
 ## getLeadForm
 
 > GetLeadForm200Response getLeadForm(formId, accountId)
@@ -6097,6 +6411,156 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **501** | targeting or creative not supported on the platform (Meta + TikTok only) |  -  |
+
+
+## updateAdAccount
+
+> UpdateAdAccount200Response updateAdAccount(updateAdAccountRequest)
+
+Update ad account settings
+
+Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        UpdateAdAccountRequest updateAdAccountRequest = new UpdateAdAccountRequest(); // UpdateAdAccountRequest | 
+        try {
+            UpdateAdAccount200Response result = apiInstance.updateAdAccount(updateAdAccountRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#updateAdAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAdAccountRequest** | [**UpdateAdAccountRequest**](UpdateAdAccountRequest.md)|  | |
+
+### Return type
+
+[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
+| **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Social account not found |  -  |
+
+## updateAdAccountWithHttpInfo
+
+> ApiResponse<UpdateAdAccount200Response> updateAdAccount updateAdAccountWithHttpInfo(updateAdAccountRequest)
+
+Update ad account settings
+
+Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        UpdateAdAccountRequest updateAdAccountRequest = new UpdateAdAccountRequest(); // UpdateAdAccountRequest | 
+        try {
+            ApiResponse<UpdateAdAccount200Response> response = apiInstance.updateAdAccountWithHttpInfo(updateAdAccountRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#updateAdAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAdAccountRequest** | [**UpdateAdAccountRequest**](UpdateAdAccountRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
+| **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Social account not found |  -  |
 
 
 ## updateAdStatus

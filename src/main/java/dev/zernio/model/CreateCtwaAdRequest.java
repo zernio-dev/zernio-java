@@ -77,7 +77,7 @@ import dev.zernio.ApiClient;
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateCtwaAdRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T12:58:57.041812021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T13:43:58.372868772Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCtwaAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1094,7 +1094,7 @@ public class CreateCtwaAdRequest {
   }
 
   /**
-   * Name of the legal entity benefiting from the ad. Required by Meta when targeting EU users (DSA Article 26). Not enforced at schema level; enforced server-side when targeting intersects EU member states. 
+   * Legal entity that benefits from the ad. Required when targeting EU users (EU DSA, Article 26). Optional if the ad account has a default beneficiary: set it once via &#x60;PATCH /v1/ads/accounts&#x60; or in Meta Ads Manager, and Meta fills it in whenever the field is omitted. 
    * @return dsaBeneficiary
    */
   @javax.annotation.Nullable
@@ -1118,7 +1118,7 @@ public class CreateCtwaAdRequest {
   }
 
   /**
-   * Name of the legal entity paying for the ad. Required by Meta when targeting EU users (DSA Article 26). Note Meta API spelling: dsa_payor (not dsa_payer). 
+   * Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor. 
    * @return dsaPayor
    */
   @javax.annotation.Nullable
