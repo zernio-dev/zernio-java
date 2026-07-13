@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   BillingSnapshotStatus.JSON_PROPERTY_DECLINE_REASON,
   BillingSnapshotStatus.JSON_PROPERTY_AUTO_UPGRADE_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T16:17:42.288067724Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T18:36:28.222498879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotStatus {
   public static final String JSON_PROPERTY_HAS_ACCESS = "hasAccess";
   @javax.annotation.Nullable

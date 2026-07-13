@@ -33431,9 +33431,11 @@ components:
           likes: 0
         mediaItems:
         - thumbnail: https://openapi-generator.tech
+          altText: altText
           type: image
           url: https://openapi-generator.tech
         - thumbnail: https://openapi-generator.tech
+          altText: altText
           type: image
           url: https://openapi-generator.tech
         scheduledFor: 2000-01-23T04:56:07.000+00:00
@@ -70245,6 +70247,7 @@ components:
     AnalyticsSinglePostResponse_mediaItems_inner:
       example:
         thumbnail: https://openapi-generator.tech
+        altText: altText
         type: image
         url: https://openapi-generator.tech
       properties:
@@ -70260,6 +70263,9 @@ components:
         thumbnail:
           description: Thumbnail URL (same as url for images)
           format: uri
+          type: string
+        altText:
+          description: "Accessibility alt text set on the media, when present."
           type: string
     AnalyticsListResponse_posts_inner:
       properties:

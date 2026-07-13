@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_TYPE,
   AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_URL,
-  AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_THUMBNAIL
+  AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_THUMBNAIL,
+  AnalyticsSinglePostResponseMediaItemsInner.JSON_PROPERTY_ALT_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T16:17:42.288067724Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T18:36:28.222498879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsSinglePostResponseMediaItemsInner {
   /**
    * Gets or Sets type
@@ -86,6 +87,10 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
   public static final String JSON_PROPERTY_THUMBNAIL = "thumbnail";
   @javax.annotation.Nullable
   private URI thumbnail;
+
+  public static final String JSON_PROPERTY_ALT_TEXT = "altText";
+  @javax.annotation.Nullable
+  private String altText;
 
   public AnalyticsSinglePostResponseMediaItemsInner() { 
   }
@@ -162,6 +167,30 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
   }
 
 
+  public AnalyticsSinglePostResponseMediaItemsInner altText(@javax.annotation.Nullable String altText) {
+    this.altText = altText;
+    return this;
+  }
+
+  /**
+   * Accessibility alt text set on the media, when present.
+   * @return altText
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALT_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAltText() {
+    return altText;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALT_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAltText(@javax.annotation.Nullable String altText) {
+    this.altText = altText;
+  }
+
+
   /**
    * Return true if this AnalyticsSinglePostResponse_mediaItems_inner object is equal to o.
    */
@@ -176,12 +205,13 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
     AnalyticsSinglePostResponseMediaItemsInner analyticsSinglePostResponseMediaItemsInner = (AnalyticsSinglePostResponseMediaItemsInner) o;
     return Objects.equals(this.type, analyticsSinglePostResponseMediaItemsInner.type) &&
         Objects.equals(this.url, analyticsSinglePostResponseMediaItemsInner.url) &&
-        Objects.equals(this.thumbnail, analyticsSinglePostResponseMediaItemsInner.thumbnail);
+        Objects.equals(this.thumbnail, analyticsSinglePostResponseMediaItemsInner.thumbnail) &&
+        Objects.equals(this.altText, analyticsSinglePostResponseMediaItemsInner.altText);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, url, thumbnail);
+    return Objects.hash(type, url, thumbnail, altText);
   }
 
   @Override
@@ -191,6 +221,7 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    thumbnail: ").append(toIndentedString(thumbnail)).append("\n");
+    sb.append("    altText: ").append(toIndentedString(altText)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -251,6 +282,11 @@ public class AnalyticsSinglePostResponseMediaItemsInner {
     // add `thumbnail` to the URL query string
     if (getThumbnail() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sthumbnail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThumbnail()))));
+    }
+
+    // add `altText` to the URL query string
+    if (getAltText() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%saltText%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAltText()))));
     }
 
     return joiner.toString();
