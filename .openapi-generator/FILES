@@ -2853,7 +2853,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetDsaRecommendations200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateAdAccount200ResponseDsaDefaultsTest.java
-src/test/java/dev/zernio/model/UpdateAdAccount200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateAdAccountRequestTest.java
