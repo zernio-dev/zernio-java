@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetAccountHealth200ResponsePermissions.JSON_PROPERTY_CAN_FETCH_ANALYTICS,
   GetAccountHealth200ResponsePermissions.JSON_PROPERTY_MISSING_REQUIRED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:29:47.353590602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T16:17:42.288067724Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountHealth200ResponsePermissions {
   public static final String JSON_PROPERTY_POSTING = "posting";
   @javax.annotation.Nullable

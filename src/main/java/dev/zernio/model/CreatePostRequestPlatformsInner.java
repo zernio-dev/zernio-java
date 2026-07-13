@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreatePostRequestPlatformsInner.JSON_PROPERTY_SCHEDULED_FOR,
   CreatePostRequestPlatformsInner.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:29:47.353590602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T16:17:42.288067724Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePostRequestPlatformsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nonnull

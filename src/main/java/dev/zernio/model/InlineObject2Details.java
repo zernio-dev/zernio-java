@@ -36,10 +36,9 @@ import dev.zernio.ApiClient;
   InlineObject2Details.JSON_PROPERTY_FREE_TIER_ACCOUNT_LIMIT,
   InlineObject2Details.JSON_PROPERTY_CURRENT_ACCOUNT_COUNT,
   InlineObject2Details.JSON_PROPERTY_HAS_PAYMENT_METHOD,
-  InlineObject2Details.JSON_PROPERTY_PUBLIC_ACCOUNT_LIMIT,
   InlineObject2Details.JSON_PROPERTY_EFFECTIVE_ACCOUNT_LIMIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:29:47.353590602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T16:17:42.288067724Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject2Details {
   public static final String JSON_PROPERTY_FREE_TIER_ACCOUNT_LIMIT = "free_tier_account_limit";
   @javax.annotation.Nullable
@@ -52,10 +51,6 @@ public class InlineObject2Details {
   public static final String JSON_PROPERTY_HAS_PAYMENT_METHOD = "has_payment_method";
   @javax.annotation.Nullable
   private Boolean hasPaymentMethod;
-
-  public static final String JSON_PROPERTY_PUBLIC_ACCOUNT_LIMIT = "public_account_limit";
-  @javax.annotation.Nullable
-  private Integer publicAccountLimit;
 
   public static final String JSON_PROPERTY_EFFECTIVE_ACCOUNT_LIMIT = "effective_account_limit";
   @javax.annotation.Nullable
@@ -136,37 +131,13 @@ public class InlineObject2Details {
   }
 
 
-  public InlineObject2Details publicAccountLimit(@javax.annotation.Nullable Integer publicAccountLimit) {
-    this.publicAccountLimit = publicAccountLimit;
-    return this;
-  }
-
-  /**
-   * Public pricing ceiling (the published cap beyond which an enterprise contract is required). Only set when reason&#x3D;enterprise_required.
-   * @return publicAccountLimit
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PUBLIC_ACCOUNT_LIMIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getPublicAccountLimit() {
-    return publicAccountLimit;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PUBLIC_ACCOUNT_LIMIT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublicAccountLimit(@javax.annotation.Nullable Integer publicAccountLimit) {
-    this.publicAccountLimit = publicAccountLimit;
-  }
-
-
   public InlineObject2Details effectiveAccountLimit(@javax.annotation.Nullable Integer effectiveAccountLimit) {
     this.effectiveAccountLimit = effectiveAccountLimit;
     return this;
   }
 
   /**
-   * The cap actually applied to this team. Equals &#x60;public_account_limit&#x60; for organic teams; for teams with a per-customer override (grandfathered legacy customers, signed enterprise contracts) this can be higher. Only set when reason&#x3D;enterprise_required. 
+   * The negotiated connected-account cap from the team&#39;s enterprise contract. Self-service teams have no cap and never receive this reason. Only set when reason&#x3D;enterprise_required. 
    * @return effectiveAccountLimit
    */
   @javax.annotation.Nullable
@@ -199,13 +170,12 @@ public class InlineObject2Details {
     return Objects.equals(this.freeTierAccountLimit, inlineObject2Details.freeTierAccountLimit) &&
         Objects.equals(this.currentAccountCount, inlineObject2Details.currentAccountCount) &&
         Objects.equals(this.hasPaymentMethod, inlineObject2Details.hasPaymentMethod) &&
-        Objects.equals(this.publicAccountLimit, inlineObject2Details.publicAccountLimit) &&
         Objects.equals(this.effectiveAccountLimit, inlineObject2Details.effectiveAccountLimit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(freeTierAccountLimit, currentAccountCount, hasPaymentMethod, publicAccountLimit, effectiveAccountLimit);
+    return Objects.hash(freeTierAccountLimit, currentAccountCount, hasPaymentMethod, effectiveAccountLimit);
   }
 
   @Override
@@ -215,7 +185,6 @@ public class InlineObject2Details {
     sb.append("    freeTierAccountLimit: ").append(toIndentedString(freeTierAccountLimit)).append("\n");
     sb.append("    currentAccountCount: ").append(toIndentedString(currentAccountCount)).append("\n");
     sb.append("    hasPaymentMethod: ").append(toIndentedString(hasPaymentMethod)).append("\n");
-    sb.append("    publicAccountLimit: ").append(toIndentedString(publicAccountLimit)).append("\n");
     sb.append("    effectiveAccountLimit: ").append(toIndentedString(effectiveAccountLimit)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -277,11 +246,6 @@ public class InlineObject2Details {
     // add `has_payment_method` to the URL query string
     if (getHasPaymentMethod() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shas_payment_method%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPaymentMethod()))));
-    }
-
-    // add `public_account_limit` to the URL query string
-    if (getPublicAccountLimit() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%spublic_account_limit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublicAccountLimit()))));
     }
 
     // add `effective_account_limit` to the URL query string

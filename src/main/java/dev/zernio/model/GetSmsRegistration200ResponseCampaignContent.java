@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetSmsRegistration200ResponseCampaignContent.JSON_PROPERTY_SAMPLE1,
   GetSmsRegistration200ResponseCampaignContent.JSON_PROPERTY_SAMPLE2
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:29:47.353590602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T16:17:42.288067724Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSmsRegistration200ResponseCampaignContent {
   public static final String JSON_PROPERTY_MESSAGE_FLOW = "messageFlow";
   @javax.annotation.Nullable
