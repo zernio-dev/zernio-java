@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   RecyclingConfig.JSON_PROPERTY_EXPIRE_DATE,
   RecyclingConfig.JSON_PROPERTY_CONTENT_VARIATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T11:59:40.936895368Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T09:51:46.106777652Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RecyclingConfig {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable

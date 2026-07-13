@@ -10,7 +10,7 @@ End-user / current-carrier account info that authorizes the port.
 |------------ | ------------- | ------------- | -------------|
 |**entityName** | **String** |  |  |
 |**authPersonName** | **String** |  |  |
-|**billingPhoneNumber** | **String** |  |  [optional] |
+|**billingPhoneNumber** | **String** | Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. |  [optional] |
 |**accountNumber** | **String** |  |  [optional] |
 |**pinPasscode** | **String** | Transfer PIN. Forwarded to the carrier, never stored. |  [optional] |
 |**streetAddress** | **String** |  |  |

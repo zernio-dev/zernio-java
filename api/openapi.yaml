@@ -54694,6 +54694,8 @@ components:
         authPersonName:
           type: string
         billingPhoneNumber:
+          description: Phone number on the losing carrier's bill. Defaults to the
+            ported number itself on single-number orders.
           type: string
         accountNumber:
           type: string
@@ -54741,10 +54743,19 @@ components:
           type: string
         focDatetimeRequested:
           description: Requested port date; the carrier confirms the actual FOC later.
+            Defaults to one week out (shifted off weekends) when omitted.
           format: date-time
           type: string
         customerReference:
           maxLength: 100
+          type: string
+        portType:
+          default: full
+          description: Whether the losing account ports all its numbers (full) or
+            keeps some (partial).
+          enum:
+          - full
+          - partial
           type: string
       required:
       - endUser

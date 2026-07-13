@@ -42,9 +42,10 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequest.JSON_PROPERTY_LOA_DOCUMENT_ID,
   CreatePhoneNumberPortInRequest.JSON_PROPERTY_INVOICE_DOCUMENT_ID,
   CreatePhoneNumberPortInRequest.JSON_PROPERTY_FOC_DATETIME_REQUESTED,
-  CreatePhoneNumberPortInRequest.JSON_PROPERTY_CUSTOMER_REFERENCE
+  CreatePhoneNumberPortInRequest.JSON_PROPERTY_CUSTOMER_REFERENCE,
+  CreatePhoneNumberPortInRequest.JSON_PROPERTY_PORT_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T11:59:40.936895368Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T09:51:46.106777652Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortInRequest {
   public static final String JSON_PROPERTY_PHONE_NUMBERS = "phoneNumbers";
   @javax.annotation.Nonnull
@@ -69,6 +70,45 @@ public class CreatePhoneNumberPortInRequest {
   public static final String JSON_PROPERTY_CUSTOMER_REFERENCE = "customerReference";
   @javax.annotation.Nullable
   private String customerReference;
+
+  /**
+   * Whether the losing account ports all its numbers (full) or keeps some (partial).
+   */
+  public enum PortTypeEnum {
+    FULL(String.valueOf("full")),
+    
+    PARTIAL(String.valueOf("partial"));
+
+    private String value;
+
+    PortTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PortTypeEnum fromValue(String value) {
+      for (PortTypeEnum b : PortTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PORT_TYPE = "portType";
+  @javax.annotation.Nullable
+  private PortTypeEnum portType = PortTypeEnum.FULL;
 
   public CreatePhoneNumberPortInRequest() { 
   }
@@ -183,7 +223,7 @@ public class CreatePhoneNumberPortInRequest {
   }
 
   /**
-   * Requested port date; the carrier confirms the actual FOC later.
+   * Requested port date; the carrier confirms the actual FOC later. Defaults to one week out (shifted off weekends) when omitted.
    * @return focDatetimeRequested
    */
   @javax.annotation.Nullable
@@ -225,6 +265,30 @@ public class CreatePhoneNumberPortInRequest {
   }
 
 
+  public CreatePhoneNumberPortInRequest portType(@javax.annotation.Nullable PortTypeEnum portType) {
+    this.portType = portType;
+    return this;
+  }
+
+  /**
+   * Whether the losing account ports all its numbers (full) or keeps some (partial).
+   * @return portType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PORT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public PortTypeEnum getPortType() {
+    return portType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PORT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPortType(@javax.annotation.Nullable PortTypeEnum portType) {
+    this.portType = portType;
+  }
+
+
   /**
    * Return true if this createPhoneNumberPortIn_request object is equal to o.
    */
@@ -242,12 +306,13 @@ public class CreatePhoneNumberPortInRequest {
         Objects.equals(this.loaDocumentId, createPhoneNumberPortInRequest.loaDocumentId) &&
         Objects.equals(this.invoiceDocumentId, createPhoneNumberPortInRequest.invoiceDocumentId) &&
         Objects.equals(this.focDatetimeRequested, createPhoneNumberPortInRequest.focDatetimeRequested) &&
-        Objects.equals(this.customerReference, createPhoneNumberPortInRequest.customerReference);
+        Objects.equals(this.customerReference, createPhoneNumberPortInRequest.customerReference) &&
+        Objects.equals(this.portType, createPhoneNumberPortInRequest.portType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumbers, endUser, loaDocumentId, invoiceDocumentId, focDatetimeRequested, customerReference);
+    return Objects.hash(phoneNumbers, endUser, loaDocumentId, invoiceDocumentId, focDatetimeRequested, customerReference, portType);
   }
 
   @Override
@@ -260,6 +325,7 @@ public class CreatePhoneNumberPortInRequest {
     sb.append("    invoiceDocumentId: ").append(toIndentedString(invoiceDocumentId)).append("\n");
     sb.append("    focDatetimeRequested: ").append(toIndentedString(focDatetimeRequested)).append("\n");
     sb.append("    customerReference: ").append(toIndentedString(customerReference)).append("\n");
+    sb.append("    portType: ").append(toIndentedString(portType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -339,6 +405,11 @@ public class CreatePhoneNumberPortInRequest {
     // add `customerReference` to the URL query string
     if (getCustomerReference() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scustomerReference%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCustomerReference()))));
+    }
+
+    // add `portType` to the URL query string
+    if (getPortType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sportType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPortType()))));
     }
 
     return joiner.toString();

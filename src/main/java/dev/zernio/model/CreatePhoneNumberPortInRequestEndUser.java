@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_POSTAL_CODE,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-11T11:59:40.936895368Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T09:51:46.106777652Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortInRequestEndUser {
   public static final String JSON_PROPERTY_ENTITY_NAME = "entityName";
   @javax.annotation.Nonnull
@@ -148,7 +148,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Get billingPhoneNumber
+   * Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders.
    * @return billingPhoneNumber
    */
   @javax.annotation.Nullable
