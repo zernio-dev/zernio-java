@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCallPermissionRequestPermission.JSON_PROPERTY_EXPIRATION_TIMESTAMP,
   WebhookPayloadCallPermissionRequestPermission.JSON_PROPERTY_RESPONSE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T09:51:46.106777652Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T12:58:57.041812021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCallPermissionRequestPermission {
   public static final String JSON_PROPERTY_FROM = "from";
   @javax.annotation.Nullable

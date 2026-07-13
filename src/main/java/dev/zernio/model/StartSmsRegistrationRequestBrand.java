@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestBrand.JSON_PROPERTY_VERTICAL,
   StartSmsRegistrationRequestBrand.JSON_PROPERTY_STOCK_SYMBOL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T09:51:46.106777652Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T12:58:57.041812021Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestBrand {
   /**
    * Gets or Sets entityType
@@ -132,44 +132,9 @@ public class StartSmsRegistrationRequestBrand {
   @javax.annotation.Nonnull
   private String postalCode;
 
-  /**
-   * Gets or Sets country
-   */
-  public enum CountryEnum {
-    US(String.valueOf("US")),
-    
-    CA(String.valueOf("CA"));
-
-    private String value;
-
-    CountryEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CountryEnum fromValue(String value) {
-      for (CountryEnum b : CountryEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
-  private CountryEnum country;
+  private String country;
 
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable
@@ -507,26 +472,26 @@ public class StartSmsRegistrationRequestBrand {
   }
 
 
-  public StartSmsRegistrationRequestBrand country(@javax.annotation.Nonnull CountryEnum country) {
+  public StartSmsRegistrationRequestBrand country(@javax.annotation.Nonnull String country) {
     this.country = country;
     return this;
   }
 
   /**
-   * Get country
+   * ISO 3166-1 alpha-2 country where the company is registered. Companies worldwide can register standard 10DLC (non-US companies use their local tax ID in &#x60;ein&#x60;; carrier vetting may take longer). SOLE_PROPRIETOR is US/CA only.
    * @return country
    */
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public CountryEnum getCountry() {
+  public String getCountry() {
     return country;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_COUNTRY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCountry(@javax.annotation.Nonnull CountryEnum country) {
+  public void setCountry(@javax.annotation.Nonnull String country) {
     this.country = country;
   }
 
