@@ -40,10 +40,11 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_STATUS,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_TIMEZONE_NAME,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_TIMEZONE_OFFSET_HOURS_UTC,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_MINIMUM_DAILY_BUDGET,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_SELECTABLE,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_UNUSABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:27:24.232298425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:29:47.353590602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -68,6 +69,10 @@ public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_TIMEZONE_OFFSET_HOURS_UTC = "timezoneOffsetHoursUtc";
   @javax.annotation.Nullable
   private BigDecimal timezoneOffsetHoursUtc;
+
+  public static final String JSON_PROPERTY_MINIMUM_DAILY_BUDGET = "minimumDailyBudget";
+  @javax.annotation.Nullable
+  private BigDecimal minimumDailyBudget;
 
   public static final String JSON_PROPERTY_SELECTABLE = "selectable";
   @javax.annotation.Nullable
@@ -224,6 +229,30 @@ public class ListAdAccounts200ResponseAccountsInner {
   }
 
 
+  public ListAdAccounts200ResponseAccountsInner minimumDailyBudget(@javax.annotation.Nullable BigDecimal minimumDailyBudget) {
+    this.minimumDailyBudget = minimumDailyBudget;
+    return this;
+  }
+
+  /**
+   * Meta only. Minimum daily budget for the account, in the account currency&#39;s major units. This is the impressions-billed minimum; other billing events have higher minimums. Absent when the connected token cannot read it.
+   * @return minimumDailyBudget
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MINIMUM_DAILY_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getMinimumDailyBudget() {
+    return minimumDailyBudget;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MINIMUM_DAILY_BUDGET, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMinimumDailyBudget(@javax.annotation.Nullable BigDecimal minimumDailyBudget) {
+    this.minimumDailyBudget = minimumDailyBudget;
+  }
+
+
   public ListAdAccounts200ResponseAccountsInner selectable(@javax.annotation.Nullable Boolean selectable) {
     this.selectable = selectable;
     return this;
@@ -290,13 +319,14 @@ public class ListAdAccounts200ResponseAccountsInner {
         Objects.equals(this.status, listAdAccounts200ResponseAccountsInner.status) &&
         Objects.equals(this.timezoneName, listAdAccounts200ResponseAccountsInner.timezoneName) &&
         Objects.equals(this.timezoneOffsetHoursUtc, listAdAccounts200ResponseAccountsInner.timezoneOffsetHoursUtc) &&
+        Objects.equals(this.minimumDailyBudget, listAdAccounts200ResponseAccountsInner.minimumDailyBudget) &&
         Objects.equals(this.selectable, listAdAccounts200ResponseAccountsInner.selectable) &&
         Objects.equals(this.unusableReason, listAdAccounts200ResponseAccountsInner.unusableReason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, currency, status, timezoneName, timezoneOffsetHoursUtc, selectable, unusableReason);
+    return Objects.hash(id, name, currency, status, timezoneName, timezoneOffsetHoursUtc, minimumDailyBudget, selectable, unusableReason);
   }
 
   @Override
@@ -309,6 +339,7 @@ public class ListAdAccounts200ResponseAccountsInner {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    timezoneName: ").append(toIndentedString(timezoneName)).append("\n");
     sb.append("    timezoneOffsetHoursUtc: ").append(toIndentedString(timezoneOffsetHoursUtc)).append("\n");
+    sb.append("    minimumDailyBudget: ").append(toIndentedString(minimumDailyBudget)).append("\n");
     sb.append("    selectable: ").append(toIndentedString(selectable)).append("\n");
     sb.append("    unusableReason: ").append(toIndentedString(unusableReason)).append("\n");
     sb.append("}");
@@ -386,6 +417,11 @@ public class ListAdAccounts200ResponseAccountsInner {
     // add `timezoneOffsetHoursUtc` to the URL query string
     if (getTimezoneOffsetHoursUtc() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stimezoneOffsetHoursUtc%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimezoneOffsetHoursUtc()))));
+    }
+
+    // add `minimumDailyBudget` to the URL query string
+    if (getMinimumDailyBudget() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sminimumDailyBudget%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMinimumDailyBudget()))));
     }
 
     // add `selectable` to the URL query string

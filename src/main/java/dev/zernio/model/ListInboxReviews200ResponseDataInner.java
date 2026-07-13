@@ -49,10 +49,12 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_TEXT,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_CREATED,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_HAS_REPLY,
+  ListInboxReviews200ResponseDataInner.JSON_PROPERTY_HAS_PHOTOS,
+  ListInboxReviews200ResponseDataInner.JSON_PROPERTY_PHOTO_COUNT,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REPLY,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:27:24.232298425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:29:47.353590602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -89,6 +91,14 @@ public class ListInboxReviews200ResponseDataInner {
   public static final String JSON_PROPERTY_HAS_REPLY = "hasReply";
   @javax.annotation.Nullable
   private Boolean hasReply;
+
+  public static final String JSON_PROPERTY_HAS_PHOTOS = "hasPhotos";
+  @javax.annotation.Nullable
+  private Boolean hasPhotos;
+
+  public static final String JSON_PROPERTY_PHOTO_COUNT = "photoCount";
+  @javax.annotation.Nullable
+  private Integer photoCount;
 
   public static final String JSON_PROPERTY_REPLY = "reply";
   @javax.annotation.Nullable
@@ -316,6 +326,54 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
 
+  public ListInboxReviews200ResponseDataInner hasPhotos(@javax.annotation.Nullable Boolean hasPhotos) {
+    this.hasPhotos = hasPhotos;
+    return this;
+  }
+
+  /**
+   * Whether the review has at least one photo. Google Business only; always false for other platforms.
+   * @return hasPhotos
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HAS_PHOTOS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getHasPhotos() {
+    return hasPhotos;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HAS_PHOTOS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHasPhotos(@javax.annotation.Nullable Boolean hasPhotos) {
+    this.hasPhotos = hasPhotos;
+  }
+
+
+  public ListInboxReviews200ResponseDataInner photoCount(@javax.annotation.Nullable Integer photoCount) {
+    this.photoCount = photoCount;
+    return this;
+  }
+
+  /**
+   * Number of photos attached to the review (photos only; videos are not counted). Google Business only; 0 for other platforms.
+   * @return photoCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHOTO_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getPhotoCount() {
+    return photoCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHOTO_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhotoCount(@javax.annotation.Nullable Integer photoCount) {
+    this.photoCount = photoCount;
+  }
+
+
   public ListInboxReviews200ResponseDataInner reply(@javax.annotation.Nullable ListInboxReviews200ResponseDataInnerReply reply) {
     this.reply = reply;
     return this;
@@ -393,6 +451,8 @@ public class ListInboxReviews200ResponseDataInner {
         Objects.equals(this.text, listInboxReviews200ResponseDataInner.text) &&
         Objects.equals(this.created, listInboxReviews200ResponseDataInner.created) &&
         Objects.equals(this.hasReply, listInboxReviews200ResponseDataInner.hasReply) &&
+        Objects.equals(this.hasPhotos, listInboxReviews200ResponseDataInner.hasPhotos) &&
+        Objects.equals(this.photoCount, listInboxReviews200ResponseDataInner.photoCount) &&
         Objects.equals(this.reply, listInboxReviews200ResponseDataInner.reply) &&
         equalsNullable(this.reviewUrl, listInboxReviews200ResponseDataInner.reviewUrl);
   }
@@ -403,7 +463,7 @@ public class ListInboxReviews200ResponseDataInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, reviewer, rating, text, created, hasReply, reply, hashCodeNullable(reviewUrl));
+    return Objects.hash(id, platform, accountId, accountUsername, reviewer, rating, text, created, hasReply, hasPhotos, photoCount, reply, hashCodeNullable(reviewUrl));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -426,6 +486,8 @@ public class ListInboxReviews200ResponseDataInner {
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    hasReply: ").append(toIndentedString(hasReply)).append("\n");
+    sb.append("    hasPhotos: ").append(toIndentedString(hasPhotos)).append("\n");
+    sb.append("    photoCount: ").append(toIndentedString(photoCount)).append("\n");
     sb.append("    reply: ").append(toIndentedString(reply)).append("\n");
     sb.append("    reviewUrl: ").append(toIndentedString(reviewUrl)).append("\n");
     sb.append("}");
@@ -518,6 +580,16 @@ public class ListInboxReviews200ResponseDataInner {
     // add `hasReply` to the URL query string
     if (getHasReply() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shasReply%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasReply()))));
+    }
+
+    // add `hasPhotos` to the URL query string
+    if (getHasPhotos() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasPhotos%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPhotos()))));
+    }
+
+    // add `photoCount` to the URL query string
+    if (getPhotoCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphotoCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhotoCount()))));
     }
 
     // add `reply` to the URL query string

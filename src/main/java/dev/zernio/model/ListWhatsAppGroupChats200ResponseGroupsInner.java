@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppGroupChats200ResponseGroupsInner.JSON_PROPERTY_SUBJECT,
   ListWhatsAppGroupChats200ResponseGroupsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:27:24.232298425Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T14:29:47.353590602Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppGroupChats200ResponseGroupsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

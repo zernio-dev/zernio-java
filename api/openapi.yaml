@@ -50915,23 +50915,25 @@ components:
           type: string
     listInboxReviews_200_response_data_inner:
       example:
-        accountId: accountId
-        reviewUrl: reviewUrl
         created: 2000-01-23T04:56:07.000+00:00
-        accountUsername: accountUsername
-        hasReply: true
+        hasPhotos: true
         rating: 0
-        id: id
         reviewer:
           name: name
           id: id
           profileImage: profileImage
+        platform: platform
+        photoCount: 6
+        accountId: accountId
+        reviewUrl: reviewUrl
+        accountUsername: accountUsername
+        hasReply: true
+        id: id
         text: text
         reply:
           created: 2000-01-23T04:56:07.000+00:00
           id: id
           text: text
-        platform: platform
       properties:
         id:
           type: string
@@ -50952,6 +50954,14 @@ components:
           type: string
         hasReply:
           type: boolean
+        hasPhotos:
+          description: Whether the review has at least one photo. Google Business
+            only; always false for other platforms.
+          type: boolean
+        photoCount:
+          description: Number of photos attached to the review (photos only; videos
+            are not counted). Google Business only; 0 for other platforms.
+          type: integer
         reply:
           $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reply"
         reviewUrl:
@@ -50959,8 +50969,8 @@ components:
           type: string
     listInboxReviews_200_response_summary:
       example:
-        totalReviews: 6
-        averageRating: 1.4658129805029452
+        totalReviews: 1
+        averageRating: 5.962133916683182
       properties:
         totalReviews:
           type: integer
@@ -50970,46 +50980,50 @@ components:
     listInboxReviews_200_response:
       example:
         summary:
-          totalReviews: 6
-          averageRating: 1.4658129805029452
+          totalReviews: 1
+          averageRating: 5.962133916683182
         pagination:
           nextCursor: nextCursor
           hasMore: true
         data:
-        - accountId: accountId
-          reviewUrl: reviewUrl
-          created: 2000-01-23T04:56:07.000+00:00
-          accountUsername: accountUsername
-          hasReply: true
+        - created: 2000-01-23T04:56:07.000+00:00
+          hasPhotos: true
           rating: 0
-          id: id
           reviewer:
             name: name
             id: id
             profileImage: profileImage
+          platform: platform
+          photoCount: 6
+          accountId: accountId
+          reviewUrl: reviewUrl
+          accountUsername: accountUsername
+          hasReply: true
+          id: id
           text: text
           reply:
             created: 2000-01-23T04:56:07.000+00:00
             id: id
             text: text
-          platform: platform
-        - accountId: accountId
-          reviewUrl: reviewUrl
-          created: 2000-01-23T04:56:07.000+00:00
-          accountUsername: accountUsername
-          hasReply: true
+        - created: 2000-01-23T04:56:07.000+00:00
+          hasPhotos: true
           rating: 0
-          id: id
           reviewer:
             name: name
             id: id
             profileImage: profileImage
+          platform: platform
+          photoCount: 6
+          accountId: accountId
+          reviewUrl: reviewUrl
+          accountUsername: accountUsername
+          hasReply: true
+          id: id
           text: text
           reply:
             created: 2000-01-23T04:56:07.000+00:00
             id: id
             text: text
-          platform: platform
         meta:
           lastUpdated: 2000-01-23T04:56:07.000+00:00
           accountsFailed: 5
@@ -63096,6 +63110,7 @@ components:
         timezoneName: timezoneName
         currency: currency
         id: id
+        minimumDailyBudget: 6.027456183070403
         unusableReason: unusableReason
         status: status
       properties:
@@ -63115,6 +63130,12 @@ components:
         timezoneOffsetHoursUtc:
           description: "Signed UTC offset in hours, reflecting current DST (Meta only)."
           type: number
+        minimumDailyBudget:
+          description: "Meta only. Minimum daily budget for the account, in the account\
+            \ currency's major units. This is the impressions-billed minimum; other\
+            \ billing events have higher minimums. Absent when the connected token\
+            \ cannot read it."
+          type: number
         selectable:
           description: Meta only. Whether the account can create/run ads now. Absent
             (treat as true) on non-Meta platforms.
@@ -63133,6 +63154,7 @@ components:
           timezoneName: timezoneName
           currency: currency
           id: id
+          minimumDailyBudget: 6.027456183070403
           unusableReason: unusableReason
           status: status
         - timezoneOffsetHoursUtc: 0.8008281904610115
@@ -63141,6 +63163,7 @@ components:
           timezoneName: timezoneName
           currency: currency
           id: id
+          minimumDailyBudget: 6.027456183070403
           unusableReason: unusableReason
           status: status
       properties:
