@@ -29,6 +29,7 @@ import dev.zernio.model.BoostPostRequestBudget;
 import dev.zernio.model.BoostPostRequestSchedule;
 import dev.zernio.model.BoostPostRequestTargeting;
 import dev.zernio.model.BoostPostRequestTracking;
+import dev.zernio.model.LinkedInAdsPlatformData;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.util.ArrayList;
@@ -55,6 +56,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_BID_STRATEGY,
   BoostPostRequest.JSON_PROPERTY_BID_AMOUNT,
   BoostPostRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  BoostPostRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   BoostPostRequest.JSON_PROPERTY_TRACKING,
   BoostPostRequest.JSON_PROPERTY_SPECIAL_AD_CATEGORIES,
   BoostPostRequest.JSON_PROPERTY_LINK_URL,
@@ -63,7 +65,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T09:11:15.313223047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T09:40:40.268056292Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -161,6 +163,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformData platformSpecificData;
 
   public static final String JSON_PROPERTY_TRACKING = "tracking";
   @javax.annotation.Nullable
@@ -544,6 +550,30 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest platformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+    return this;
+  }
+
+  /**
+   * Get platformSpecificData
+   * @return platformSpecificData
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformData getPlatformSpecificData() {
+    return platformSpecificData;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+  }
+
+
   public BoostPostRequest tracking(@javax.annotation.Nullable BoostPostRequestTracking tracking) {
     this.tracking = tracking;
     return this;
@@ -745,6 +775,7 @@ public class BoostPostRequest {
         Objects.equals(this.bidStrategy, boostPostRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, boostPostRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, boostPostRequest.roasAverageFloor) &&
+        Objects.equals(this.platformSpecificData, boostPostRequest.platformSpecificData) &&
         Objects.equals(this.tracking, boostPostRequest.tracking) &&
         Objects.equals(this.specialAdCategories, boostPostRequest.specialAdCategories) &&
         Objects.equals(this.linkUrl, boostPostRequest.linkUrl) &&
@@ -756,7 +787,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, bidStrategy, bidAmount, roasAverageFloor, tracking, specialAdCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -776,6 +807,7 @@ public class BoostPostRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    specialAdCategories: ").append(toIndentedString(specialAdCategories)).append("\n");
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
@@ -893,6 +925,11 @@ public class BoostPostRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `platformSpecificData` to the URL query string
+    if (getPlatformSpecificData() != null) {
+      joiner.add(getPlatformSpecificData().toUrlQueryString(prefix + "platformSpecificData" + suffix));
     }
 
     // add `tracking` to the URL query string

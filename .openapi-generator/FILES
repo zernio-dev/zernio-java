@@ -701,6 +701,7 @@ docs/InstagramPlatformDataUserTagsInner.md
 docs/InvitesApi.md
 docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
+docs/LinkedInAdsPlatformData.md
 docs/LinkedInAggregateAnalyticsDailyResponse.md
 docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md
 docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md
@@ -2163,6 +2164,7 @@ src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
 src/main/java/dev/zernio/model/InstagramPlatformDataUserTagsInner.java
 src/main/java/dev/zernio/model/LikeInboxComment200Response.java
 src/main/java/dev/zernio/model/LikeInboxCommentRequest.java
+src/main/java/dev/zernio/model/LinkedInAdsPlatformData.java
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsDailyResponse.java
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsDailyResponseAnalytics.java
 src/main/java/dev/zernio/model/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.java
@@ -2853,3 +2855,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/LinkedInAdsPlatformDataTest.java

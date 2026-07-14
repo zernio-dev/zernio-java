@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-14T09:11:15.313223047Z[Etc/UTC]
+- Build date: 2026-07-14T09:40:40.268056292Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1723,6 +1723,7 @@ Class | Method | HTTP request | Description
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
+ - [LinkedInAdsPlatformData](docs/LinkedInAdsPlatformData.md)
  - [LinkedInAggregateAnalyticsDailyResponse](docs/LinkedInAggregateAnalyticsDailyResponse.md)
  - [LinkedInAggregateAnalyticsDailyResponseAnalytics](docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md)
  - [LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner](docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md)

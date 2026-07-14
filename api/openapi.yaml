@@ -32228,6 +32228,48 @@ components:
           type: string
         geoRestriction:
           $ref: "#/components/schemas/GeoRestriction"
+    LinkedInAdsPlatformData:
+      additionalProperties: false
+      description: |
+        LinkedIn campaign bidding and delivery controls for POST /v1/ads/boost and POST /v1/ads/create. Unknown keys are rejected.
+      properties:
+        costType:
+          description: |
+            Campaign cost model (billing event). Defaults to `CPM`. Required when
+            `unitCost` is set so the manual bid applies to an explicit cost model.
+          enum:
+          - CPM
+          - CPC
+          - CPV
+          type: string
+        unitCost:
+          description: |
+            Manual bid in WHOLE account-currency units (e.g. 2.5 = $2.50). Requires
+            `costType`. Omit for LinkedIn's automated (max delivery) bidding.
+            LinkedIn enforces its own per-audience min/max bid bounds.
+          type: number
+        optimizationTargetType:
+          description: |
+            Campaign `optimizationTargetType` (e.g. `MAX_CLICK`, `TARGET_COST_PER_CLICK`,
+            `MAX_IMPRESSION`). Forwarded verbatim — LinkedIn validates compatibility with
+            the objective and `costType`. Omit for the objective-derived default.
+          type: string
+        creativeSelection:
+          description: How LinkedIn rotates creatives within the campaign. Defaults
+            to `OPTIMIZED`.
+          enum:
+          - OPTIMIZED
+          - ROUND_ROBIN
+          type: string
+        audienceExpansionEnabled:
+          description: Enable LinkedIn audience expansion. Defaults to false.
+          type: boolean
+        offsiteDeliveryEnabled:
+          description: Deliver on the LinkedIn Audience Network. Defaults to false.
+          type: boolean
+        connectedTelevisionOnly:
+          description: Restrict delivery to Connected TV inventory.
+          type: boolean
     PinterestPlatformData:
       properties:
         title:
@@ -63477,6 +63519,8 @@ components:
             `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`. Sent to Meta as
             `bid_constraints.roas_average_floor` × 10000 (Meta uses fixed-point integers).
           type: number
+        platformSpecificData:
+          $ref: "#/components/schemas/LinkedInAdsPlatformData"
         tracking:
           $ref: "#/components/schemas/boostPost_request_tracking"
         specialAdCategories:
@@ -64637,6 +64681,8 @@ components:
             `bidStrategy` is `LOWEST_COST_WITH_MIN_ROAS`. Sent to Meta as
             `bid_constraints.roas_average_floor` × 10000.
           type: number
+        platformSpecificData:
+          $ref: "#/components/schemas/LinkedInAdsPlatformData"
         dsaBeneficiary:
           description: |
             Legal entity that benefits from the ad. Required when targeting EU users

@@ -40,6 +40,7 @@ import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.CreateStandaloneAdRequestZipsInner;
+import dev.zernio.model.LinkedInAdsPlatformData;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
 import java.net.URI;
@@ -120,13 +121,14 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_STRATEGY,
   CreateStandaloneAdRequest.JSON_PROPERTY_BID_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  CreateStandaloneAdRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA,
   CreateStandaloneAdRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   CreateStandaloneAdRequest.JSON_PROPERTY_DSA_PAYOR,
   CreateStandaloneAdRequest.JSON_PROPERTY_BRAND_IDENTITY,
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T09:11:15.313223047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T09:40:40.268056292Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -785,6 +787,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformData platformSpecificData;
 
   public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
   @javax.annotation.Nullable
@@ -2488,6 +2494,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest platformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+    return this;
+  }
+
+  /**
+   * Get platformSpecificData
+   * @return platformSpecificData
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformData getPlatformSpecificData() {
+    return platformSpecificData;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformSpecificData(@javax.annotation.Nullable LinkedInAdsPlatformData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+  }
+
+
   public CreateStandaloneAdRequest dsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
     this.dsaBeneficiary = dsaBeneficiary;
     return this;
@@ -2683,6 +2713,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.bidStrategy, createStandaloneAdRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, createStandaloneAdRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, createStandaloneAdRequest.roasAverageFloor) &&
+        Objects.equals(this.platformSpecificData, createStandaloneAdRequest.platformSpecificData) &&
         Objects.equals(this.dsaBeneficiary, createStandaloneAdRequest.dsaBeneficiary) &&
         Objects.equals(this.dsaPayor, createStandaloneAdRequest.dsaPayor) &&
         Objects.equals(this.brandIdentity, createStandaloneAdRequest.brandIdentity) &&
@@ -2692,7 +2723,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2762,6 +2793,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("    brandIdentity: ").append(toIndentedString(brandIdentity)).append("\n");
@@ -3200,6 +3232,11 @@ public class CreateStandaloneAdRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `platformSpecificData` to the URL query string
+    if (getPlatformSpecificData() != null) {
+      joiner.add(getPlatformSpecificData().toUrlQueryString(prefix + "platformSpecificData" + suffix));
     }
 
     // add `dsaBeneficiary` to the URL query string
