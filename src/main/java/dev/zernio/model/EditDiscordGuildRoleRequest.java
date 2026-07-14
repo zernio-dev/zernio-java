@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   EditDiscordGuildRoleRequest.JSON_PROPERTY_MENTIONABLE,
   EditDiscordGuildRoleRequest.JSON_PROPERTY_PERMISSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T07:28:34.838751207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T09:11:15.313223047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditDiscordGuildRoleRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

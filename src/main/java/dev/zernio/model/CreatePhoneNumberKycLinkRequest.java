@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_BRANDING,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T07:28:34.838751207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T09:11:15.313223047Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberKycLinkRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
