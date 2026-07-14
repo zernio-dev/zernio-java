@@ -50,13 +50,15 @@ import dev.zernio.ApiClient;
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_DM_MESSAGE,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_BUTTONS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_COMMENT_REPLY,
+  ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_DM_MESSAGE_VARIATIONS,
+  ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_COMMENT_REPLY_VARIATIONS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_LINK_TRACKING,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_CLICK_TAG,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_IS_ACTIVE,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_STATS,
   ListCommentAutomations200ResponseAutomationsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-13T18:36:28.222498879Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T07:28:34.838751207Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -210,6 +212,14 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   public static final String JSON_PROPERTY_COMMENT_REPLY = "commentReply";
   @javax.annotation.Nullable
   private String commentReply;
+
+  public static final String JSON_PROPERTY_DM_MESSAGE_VARIATIONS = "dmMessageVariations";
+  @javax.annotation.Nullable
+  private List<String> dmMessageVariations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_COMMENT_REPLY_VARIATIONS = "commentReplyVariations";
+  @javax.annotation.Nullable
+  private List<String> commentReplyVariations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_LINK_TRACKING = "linkTracking";
   @javax.annotation.Nullable
@@ -538,6 +548,70 @@ public class ListCommentAutomations200ResponseAutomationsInner {
   }
 
 
+  public ListCommentAutomations200ResponseAutomationsInner dmMessageVariations(@javax.annotation.Nullable List<String> dmMessageVariations) {
+    this.dmMessageVariations = dmMessageVariations;
+    return this;
+  }
+
+  public ListCommentAutomations200ResponseAutomationsInner addDmMessageVariationsItem(String dmMessageVariationsItem) {
+    if (this.dmMessageVariations == null) {
+      this.dmMessageVariations = new ArrayList<>();
+    }
+    this.dmMessageVariations.add(dmMessageVariationsItem);
+    return this;
+  }
+
+  /**
+   * Alternate DM texts rotated at random with dmMessage. Omitted when none.
+   * @return dmMessageVariations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DM_MESSAGE_VARIATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getDmMessageVariations() {
+    return dmMessageVariations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DM_MESSAGE_VARIATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDmMessageVariations(@javax.annotation.Nullable List<String> dmMessageVariations) {
+    this.dmMessageVariations = dmMessageVariations;
+  }
+
+
+  public ListCommentAutomations200ResponseAutomationsInner commentReplyVariations(@javax.annotation.Nullable List<String> commentReplyVariations) {
+    this.commentReplyVariations = commentReplyVariations;
+    return this;
+  }
+
+  public ListCommentAutomations200ResponseAutomationsInner addCommentReplyVariationsItem(String commentReplyVariationsItem) {
+    if (this.commentReplyVariations == null) {
+      this.commentReplyVariations = new ArrayList<>();
+    }
+    this.commentReplyVariations.add(commentReplyVariationsItem);
+    return this;
+  }
+
+  /**
+   * Alternate public replies rotated at random with commentReply. Omitted when none.
+   * @return commentReplyVariations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_VARIATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getCommentReplyVariations() {
+    return commentReplyVariations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMENT_REPLY_VARIATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommentReplyVariations(@javax.annotation.Nullable List<String> commentReplyVariations) {
+    this.commentReplyVariations = commentReplyVariations;
+  }
+
+
   public ListCommentAutomations200ResponseAutomationsInner linkTracking(@javax.annotation.Nullable Boolean linkTracking) {
     this.linkTracking = linkTracking;
     return this;
@@ -682,6 +756,8 @@ public class ListCommentAutomations200ResponseAutomationsInner {
         Objects.equals(this.dmMessage, listCommentAutomations200ResponseAutomationsInner.dmMessage) &&
         Objects.equals(this.buttons, listCommentAutomations200ResponseAutomationsInner.buttons) &&
         Objects.equals(this.commentReply, listCommentAutomations200ResponseAutomationsInner.commentReply) &&
+        Objects.equals(this.dmMessageVariations, listCommentAutomations200ResponseAutomationsInner.dmMessageVariations) &&
+        Objects.equals(this.commentReplyVariations, listCommentAutomations200ResponseAutomationsInner.commentReplyVariations) &&
         Objects.equals(this.linkTracking, listCommentAutomations200ResponseAutomationsInner.linkTracking) &&
         Objects.equals(this.clickTag, listCommentAutomations200ResponseAutomationsInner.clickTag) &&
         Objects.equals(this.isActive, listCommentAutomations200ResponseAutomationsInner.isActive) &&
@@ -691,7 +767,7 @@ public class ListCommentAutomations200ResponseAutomationsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, platform, trigger, accountId, platformPostId, postTitle, keywords, matchMode, dmMessage, buttons, commentReply, linkTracking, clickTag, isActive, stats, createdAt);
+    return Objects.hash(id, name, platform, trigger, accountId, platformPostId, postTitle, keywords, matchMode, dmMessage, buttons, commentReply, dmMessageVariations, commentReplyVariations, linkTracking, clickTag, isActive, stats, createdAt);
   }
 
   @Override
@@ -710,6 +786,8 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     sb.append("    dmMessage: ").append(toIndentedString(dmMessage)).append("\n");
     sb.append("    buttons: ").append(toIndentedString(buttons)).append("\n");
     sb.append("    commentReply: ").append(toIndentedString(commentReply)).append("\n");
+    sb.append("    dmMessageVariations: ").append(toIndentedString(dmMessageVariations)).append("\n");
+    sb.append("    commentReplyVariations: ").append(toIndentedString(commentReplyVariations)).append("\n");
     sb.append("    linkTracking: ").append(toIndentedString(linkTracking)).append("\n");
     sb.append("    clickTag: ").append(toIndentedString(clickTag)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
@@ -829,6 +907,24 @@ public class ListCommentAutomations200ResponseAutomationsInner {
     // add `commentReply` to the URL query string
     if (getCommentReply() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scommentReply%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommentReply()))));
+    }
+
+    // add `dmMessageVariations` to the URL query string
+    if (getDmMessageVariations() != null) {
+      for (int i = 0; i < getDmMessageVariations().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sdmMessageVariations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getDmMessageVariations().get(i)))));
+      }
+    }
+
+    // add `commentReplyVariations` to the URL query string
+    if (getCommentReplyVariations() != null) {
+      for (int i = 0; i < getCommentReplyVariations().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scommentReplyVariations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getCommentReplyVariations().get(i)))));
+      }
     }
 
     // add `linkTracking` to the URL query string

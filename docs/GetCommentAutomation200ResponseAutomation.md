@@ -20,6 +20,8 @@
 |**dmMessage** | **String** |  |  [optional] |
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (up to 3). Omitted when none are set. |  [optional] |
 |**commentReply** | **String** |  |  [optional] |
+|**dmMessageVariations** | **List&lt;String&gt;** | Alternate DM texts rotated at random with dmMessage. Omitted when none. |  [optional] |
+|**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies rotated at random with commentReply. Omitted when none. |  [optional] |
 |**linkTracking** | **Boolean** |  |  [optional] |
 |**clickTag** | **String** |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |

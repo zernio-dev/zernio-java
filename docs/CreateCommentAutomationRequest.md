@@ -19,6 +19,8 @@
 |**dmMessage** | **String** | DM text to send to commenter. Max 640 chars when buttons are set, otherwise ~1000. |  |
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Optional inline DM buttons (1-3). Phone buttons are Facebook-only. Omit or pass [] for a plain-text DM. |  [optional] |
 |**commentReply** | **String** | Optional public reply to the comment |  [optional] |
+|**dmMessageVariations** | **List&lt;String&gt;** | Optional alternate DM texts for random rotation. When set, each triggered comment sends one picked at random from [dmMessage, ...dmMessageVariations], so repeat commenters get slightly different DMs (helps avoid identical-message patterns). Up to 5. Buttons are attached to whichever text is picked, not varied. |  [optional] |
+|**commentReplyVariations** | **List&lt;String&gt;** | Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5. |  [optional] |
 |**linkTracking** | **Boolean** | Wrap link buttons in the DM in a tracked redirect so clicks are counted (Link Clicks / CTR). Pass false to send links exactly as written. Defaults to on. |  [optional] |
 |**clickTag** | **String** | Optional tag applied to a contact when they click a tracked link (requires linkTracking). Lets you segment clickers for broadcasts/sequences. |  [optional] |
 
