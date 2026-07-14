@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   BulkUploadResult.JSON_PROPERTY_WARNINGS,
   BulkUploadResult.JSON_PROPERTY_RATE_LIMITED_ACCOUNTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:33:36.114657570Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:56:36.489267452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BulkUploadResult {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable

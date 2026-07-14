@@ -2887,9 +2887,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/LinkedInAdsPlatformDataConversationMessagesInnerButtonsInnerTest.java
-src/test/java/dev/zernio/model/LinkedInAdsPlatformDataConversationMessagesInnerTest.java
-src/test/java/dev/zernio/model/LinkedInAdsPlatformDataConversationTest.java
-src/test/java/dev/zernio/model/LinkedInAdsPlatformDataJobsButtonLabelTest.java
-src/test/java/dev/zernio/model/LinkedInAdsPlatformDataJobsHeadlineTest.java
-src/test/java/dev/zernio/model/LinkedInAdsPlatformDataJobsTest.java

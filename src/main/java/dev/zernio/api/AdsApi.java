@@ -104,7 +104,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:33:36.114657570Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:56:36.489267452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1886,7 +1886,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @return GetAdAnalytics200Response
    * @throws ApiException if fails to make API call
    */
@@ -1900,7 +1900,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdAnalytics200Response
    * @throws ApiException if fails to make API call
@@ -1916,7 +1916,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1930,7 +1930,7 @@ public class AdsApi {
    * @param adId  (required)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions. Meta: age, gender, country, publisher_platform, device_platform, region. TikTok: gender, age, country_code, platform, ac, language. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region.  **TikTok**: gender, age, country_code, platform, ac, language.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2303,7 +2303,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @return GetCampaignAnalytics200Response
    * @throws ApiException if fails to make API call
    */
@@ -2318,7 +2318,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
    * @return GetCampaignAnalytics200Response
    * @throws ApiException if fails to make API call
@@ -2335,7 +2335,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2350,7 +2350,7 @@ public class AdsApi {
    * @param platform Disambiguate when the campaign id exists across platforms (e.g. facebook, instagram). (optional)
    * @param fromDate Start of date range (YYYY-MM-DD). Defaults to 90 days ago. (optional)
    * @param toDate End of date range (YYYY-MM-DD). Defaults to today. Max 730-day range. (optional)
-   * @param breakdowns Comma-separated breakdown dimensions (Meta only): age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset. (optional)
+   * @param breakdowns Comma-separated breakdown dimensions.  **Meta**: age, gender, country, publisher_platform, device_platform, region, platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.  **LinkedIn** (firmographics): job_title, job_function, seniority, industry, company, company_size, country, region. Rows carry the raw pivot &#x60;value&#x60; plus a resolved &#x60;name&#x60;. LinkedIn serves these aggregated over the whole range, delays the data 12-24h, and omits segments with fewer than 3 events.  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetCampaignAnalytics200Response&gt;
    * @throws ApiException if fails to make API call
