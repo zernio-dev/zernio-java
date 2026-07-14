@@ -25654,8 +25654,7 @@ paths:
           type: string
         style: form
       - description: Filter to one audience type. `saved_targeting` returns stored
-          TargetingSpec audiences (each item carries a `spec`); the other types return
-          uploaded/derived audiences.
+          TargetingSpec audiences; the other types return uploaded/derived audiences.
         explode: true
         in: query
         name: type
@@ -25663,6 +25662,8 @@ paths:
         schema:
           enum:
           - customer_list
+          - company_list
+          - engagement
           - website
           - lookalike
           - saved_targeting
@@ -65472,6 +65473,8 @@ components:
         type:
           enum:
           - customer_list
+          - company_list
+          - engagement
           - website
           - lookalike
           - saved_targeting
@@ -65514,6 +65517,20 @@ components:
           items:
             $ref: "#/components/schemas/listAdAudiences_200_response_audiences_inner"
           type: array
+    UploadedOrDerivedAudience_companies_inner:
+      additionalProperties: {}
+      properties:
+        name:
+          maxLength: 255
+          type: string
+        domain:
+          maxLength: 100
+          type: string
+        website:
+          maxLength: 100
+          type: string
+        linkedinPageUrl:
+          type: string
     UploadedOrDerivedAudience:
       description: "customer_list, website, or lookalike audience (uploaded or derived\
         \ from a source)."
@@ -65533,9 +65550,63 @@ components:
         type:
           enum:
           - customer_list
+          - company_list
+          - engagement
           - website
           - lookalike
           type: string
+        sourceType:
+          description: |
+            Required for engagement audiences (LinkedIn only): what
+            members engaged with — a video/leadgen/single-image ad
+            campaign, a Company Page or an Event page.
+          enum:
+          - VIDEO_ADS
+          - LEAD_GEN_FORMS
+          - ORGANIZATION_PAGES
+          - EVENT_PAGES
+          - SINGLE_IMAGE_ADS
+          type: string
+        trigger:
+          description: |
+            Required for engagement audiences. The action, validated
+            by LinkedIn against `sourceType`. Common values:
+            VIDEO_ADS FIRST_QUARTILE / MIDPOINT / THIRD_QUARTILE /
+            FULL_COMPLETE; LEAD_GEN_FORMS VIEW_FORM /
+            LEAD_FORM_SUBMIT; ORGANIZATION_PAGES VIEW / CTA_CLICK;
+            EVENT_PAGES RSVPED / VIDEO_VIEWED / ENGAGEMENT / CLICK.
+          type: string
+        lookbackDays:
+          description: Required for engagement audiences. Rolling window.
+          enum:
+          - 30
+          - 60
+          - 90
+          - 180
+          - 365
+          type: integer
+        engagementSources:
+          description: |
+            Required for engagement audiences. Campaign URNs for the
+            ad source types, organization URNs for pages and events.
+            LinkedIn creates one rule per source, all sharing the
+            same trigger and lookbackDays.
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        companies:
+          description: |
+            Required for company_list audiences (LinkedIn only): plain-text
+            company rows for account targeting. Each row needs at least one
+            identifier. LinkedIn recommends 1,000+ companies for a usable
+            match rate and takes up to 48h to process the list.
+          items:
+            $ref: "#/components/schemas/UploadedOrDerivedAudience_companies_inner"
+          maxItems: 300000
+          minItems: 1
+          type: array
         pixelId:
           description: Required for website audiences
           type: string

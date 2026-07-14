@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-14T14:56:36.489267452Z[Etc/UTC]
+- Build date: 2026-07-14T16:37:24.250241358Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2288,6 +2288,7 @@ Class | Method | HTTP request | Description
  - [UploadWhatsAppProfilePhotoRequest1](docs/UploadWhatsAppProfilePhotoRequest1.md)
  - [UploadedFile](docs/UploadedFile.md)
  - [UploadedOrDerivedAudience](docs/UploadedOrDerivedAudience.md)
+ - [UploadedOrDerivedAudienceCompaniesInner](docs/UploadedOrDerivedAudienceCompaniesInner.md)
  - [UsageMetering](docs/UsageMetering.md)
  - [UsageMeteringCallUsage](docs/UsageMeteringCallUsage.md)
  - [UsageMeteringCallUsageWhatsapp](docs/UsageMeteringCallUsageWhatsapp.md)

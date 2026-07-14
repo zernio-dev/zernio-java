@@ -659,7 +659,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Social account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
-        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences (each item carries a `spec`); the other types return uploaded/derived audiences.
+        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences.
         try {
             ListAdAudiences200Response result = apiInstance.listAdAudiences(accountId, adAccountId, platform, type);
             System.out.println(result);
@@ -682,7 +682,7 @@ public class Example {
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
-| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. | [optional] [enum: customer_list, website, lookalike, saved_targeting] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, website, lookalike, saved_targeting] |
 
 ### Return type
 
@@ -738,7 +738,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Social account ID
         String adAccountId = "adAccountId_example"; // String | Platform ad account ID
         String platform = "facebook"; // String | 
-        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences (each item carries a `spec`); the other types return uploaded/derived audiences.
+        String type = "customer_list"; // String | Filter to one audience type. `saved_targeting` returns stored TargetingSpec audiences; the other types return uploaded/derived audiences.
         try {
             ApiResponse<ListAdAudiences200Response> response = apiInstance.listAdAudiencesWithHttpInfo(accountId, adAccountId, platform, type);
             System.out.println("Status code: " + response.getStatusCode());
@@ -763,7 +763,7 @@ public class Example {
 | **accountId** | **String**| Social account ID | |
 | **adAccountId** | **String**| Platform ad account ID | |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, googleads, tiktok, tiktokads, pinterest, linkedin, linkedinads, twitter, xads] |
-| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. | [optional] [enum: customer_list, website, lookalike, saved_targeting] |
+| **type** | **String**| Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. | [optional] [enum: customer_list, company_list, engagement, website, lookalike, saved_targeting] |
 
 ### Return type
 

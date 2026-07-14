@@ -25,6 +25,8 @@
 | Name | Value |
 |---- | -----|
 | CUSTOMER_LIST | &quot;customer_list&quot; |
+| COMPANY_LIST | &quot;company_list&quot; |
+| ENGAGEMENT | &quot;engagement&quot; |
 | WEBSITE | &quot;website&quot; |
 | LOOKALIKE | &quot;lookalike&quot; |
 | SAVED_TARGETING | &quot;saved_targeting&quot; |

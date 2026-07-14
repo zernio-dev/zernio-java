@@ -54,7 +54,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:56:36.489267452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T16:37:24.250241358Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAudiencesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -668,7 +668,7 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
-   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)
    * @return ListAdAudiences200Response
    * @throws ApiException if fails to make API call
    */
@@ -682,7 +682,7 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
-   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)
    * @param headers Optional headers to include in the request
    * @return ListAdAudiences200Response
    * @throws ApiException if fails to make API call
@@ -698,7 +698,7 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
-   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)
    * @return ApiResponse&lt;ListAdAudiences200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -712,7 +712,7 @@ public class AdAudiencesApi {
    * @param accountId Social account ID (required)
    * @param adAccountId Platform ad account ID (required)
    * @param platform  (optional)
-   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences (each item carries a &#x60;spec&#x60;); the other types return uploaded/derived audiences. (optional)
+   * @param type Filter to one audience type. &#x60;saved_targeting&#x60; returns stored TargetingSpec audiences; the other types return uploaded/derived audiences. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAdAudiences200Response&gt;
    * @throws ApiException if fails to make API call

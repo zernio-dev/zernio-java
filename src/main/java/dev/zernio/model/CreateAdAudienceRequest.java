@@ -27,8 +27,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.SavedTargetingAudience;
 import dev.zernio.model.TargetingSpec;
 import dev.zernio.model.UploadedOrDerivedAudience;
+import dev.zernio.model.UploadedOrDerivedAudienceCompaniesInner;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -56,7 +59,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:56:36.489267452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T16:37:24.250241358Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = CreateAdAudienceRequest.CreateAdAudienceRequestDeserializer.class)
 @JsonSerialize(using = CreateAdAudienceRequest.CreateAdAudienceRequestSerializer.class)
 public class CreateAdAudienceRequest extends AbstractOpenApiSchema {

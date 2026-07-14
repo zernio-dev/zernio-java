@@ -1279,6 +1279,7 @@ docs/UploadWhatsAppProfilePhotoRequest.md
 docs/UploadWhatsAppProfilePhotoRequest1.md
 docs/UploadedFile.md
 docs/UploadedOrDerivedAudience.md
+docs/UploadedOrDerivedAudienceCompaniesInner.md
 docs/UsageApi.md
 docs/UsageMetering.md
 docs/UsageMeteringCallUsage.md
@@ -2743,6 +2744,7 @@ src/main/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest.java
 src/main/java/dev/zernio/model/UploadWhatsAppProfilePhotoRequest1.java
 src/main/java/dev/zernio/model/UploadedFile.java
 src/main/java/dev/zernio/model/UploadedOrDerivedAudience.java
+src/main/java/dev/zernio/model/UploadedOrDerivedAudienceCompaniesInner.java
 src/main/java/dev/zernio/model/UsageMetering.java
 src/main/java/dev/zernio/model/UsageMeteringCallUsage.java
 src/main/java/dev/zernio/model/UsageMeteringCallUsageWhatsapp.java
@@ -2887,3 +2889,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UploadedOrDerivedAudienceCompaniesInnerTest.java

@@ -24,8 +24,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.UploadedOrDerivedAudienceCompaniesInner;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,6 +42,11 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_NAME,
   UploadedOrDerivedAudience.JSON_PROPERTY_DESCRIPTION,
   UploadedOrDerivedAudience.JSON_PROPERTY_TYPE,
+  UploadedOrDerivedAudience.JSON_PROPERTY_SOURCE_TYPE,
+  UploadedOrDerivedAudience.JSON_PROPERTY_TRIGGER,
+  UploadedOrDerivedAudience.JSON_PROPERTY_LOOKBACK_DAYS,
+  UploadedOrDerivedAudience.JSON_PROPERTY_ENGAGEMENT_SOURCES,
+  UploadedOrDerivedAudience.JSON_PROPERTY_COMPANIES,
   UploadedOrDerivedAudience.JSON_PROPERTY_PIXEL_ID,
   UploadedOrDerivedAudience.JSON_PROPERTY_RETENTION_DAYS,
   UploadedOrDerivedAudience.JSON_PROPERTY_SOURCE_AUDIENCE_ID,
@@ -47,7 +55,7 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_RULE,
   UploadedOrDerivedAudience.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:56:36.489267452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T16:37:24.250241358Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -70,6 +78,10 @@ public class UploadedOrDerivedAudience {
    */
   public enum TypeEnum {
     CUSTOMER_LIST(String.valueOf("customer_list")),
+    
+    COMPANY_LIST(String.valueOf("company_list")),
+    
+    ENGAGEMENT(String.valueOf("engagement")),
     
     WEBSITE(String.valueOf("website")),
     
@@ -105,6 +117,108 @@ public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
   private TypeEnum type;
+
+  /**
+   * Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. 
+   */
+  public enum SourceTypeEnum {
+    VIDEO_ADS(String.valueOf("VIDEO_ADS")),
+    
+    LEAD_GEN_FORMS(String.valueOf("LEAD_GEN_FORMS")),
+    
+    ORGANIZATION_PAGES(String.valueOf("ORGANIZATION_PAGES")),
+    
+    EVENT_PAGES(String.valueOf("EVENT_PAGES")),
+    
+    SINGLE_IMAGE_ADS(String.valueOf("SINGLE_IMAGE_ADS"));
+
+    private String value;
+
+    SourceTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceTypeEnum fromValue(String value) {
+      for (SourceTypeEnum b : SourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE_TYPE = "sourceType";
+  @javax.annotation.Nullable
+  private SourceTypeEnum sourceType;
+
+  public static final String JSON_PROPERTY_TRIGGER = "trigger";
+  @javax.annotation.Nullable
+  private String trigger;
+
+  /**
+   * Required for engagement audiences. Rolling window.
+   */
+  public enum LookbackDaysEnum {
+    NUMBER_30(Integer.valueOf(30)),
+    
+    NUMBER_60(Integer.valueOf(60)),
+    
+    NUMBER_90(Integer.valueOf(90)),
+    
+    NUMBER_180(Integer.valueOf(180)),
+    
+    NUMBER_365(Integer.valueOf(365));
+
+    private Integer value;
+
+    LookbackDaysEnum(Integer value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public Integer getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static LookbackDaysEnum fromValue(Integer value) {
+      for (LookbackDaysEnum b : LookbackDaysEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_LOOKBACK_DAYS = "lookbackDays";
+  @javax.annotation.Nullable
+  private LookbackDaysEnum lookbackDays;
+
+  public static final String JSON_PROPERTY_ENGAGEMENT_SOURCES = "engagementSources";
+  @javax.annotation.Nullable
+  private List<String> engagementSources = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_COMPANIES = "companies";
+  @javax.annotation.Nullable
+  private List<UploadedOrDerivedAudienceCompaniesInner> companies = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -254,6 +368,142 @@ public class UploadedOrDerivedAudience {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
+  }
+
+
+  public UploadedOrDerivedAudience sourceType(@javax.annotation.Nullable SourceTypeEnum sourceType) {
+    this.sourceType = sourceType;
+    return this;
+  }
+
+  /**
+   * Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. 
+   * @return sourceType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public SourceTypeEnum getSourceType() {
+    return sourceType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSourceType(@javax.annotation.Nullable SourceTypeEnum sourceType) {
+    this.sourceType = sourceType;
+  }
+
+
+  public UploadedOrDerivedAudience trigger(@javax.annotation.Nullable String trigger) {
+    this.trigger = trigger;
+    return this;
+  }
+
+  /**
+   * Required for engagement audiences. The action, validated by LinkedIn against &#x60;sourceType&#x60;. Common values: VIDEO_ADS FIRST_QUARTILE / MIDPOINT / THIRD_QUARTILE / FULL_COMPLETE; LEAD_GEN_FORMS VIEW_FORM / LEAD_FORM_SUBMIT; ORGANIZATION_PAGES VIEW / CTA_CLICK; EVENT_PAGES RSVPED / VIDEO_VIEWED / ENGAGEMENT / CLICK. 
+   * @return trigger
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTrigger() {
+    return trigger;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TRIGGER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTrigger(@javax.annotation.Nullable String trigger) {
+    this.trigger = trigger;
+  }
+
+
+  public UploadedOrDerivedAudience lookbackDays(@javax.annotation.Nullable LookbackDaysEnum lookbackDays) {
+    this.lookbackDays = lookbackDays;
+    return this;
+  }
+
+  /**
+   * Required for engagement audiences. Rolling window.
+   * @return lookbackDays
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOOKBACK_DAYS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LookbackDaysEnum getLookbackDays() {
+    return lookbackDays;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOOKBACK_DAYS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLookbackDays(@javax.annotation.Nullable LookbackDaysEnum lookbackDays) {
+    this.lookbackDays = lookbackDays;
+  }
+
+
+  public UploadedOrDerivedAudience engagementSources(@javax.annotation.Nullable List<String> engagementSources) {
+    this.engagementSources = engagementSources;
+    return this;
+  }
+
+  public UploadedOrDerivedAudience addEngagementSourcesItem(String engagementSourcesItem) {
+    if (this.engagementSources == null) {
+      this.engagementSources = new ArrayList<>();
+    }
+    this.engagementSources.add(engagementSourcesItem);
+    return this;
+  }
+
+  /**
+   * Required for engagement audiences. Campaign URNs for the ad source types, organization URNs for pages and events. LinkedIn creates one rule per source, all sharing the same trigger and lookbackDays. 
+   * @return engagementSources
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ENGAGEMENT_SOURCES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getEngagementSources() {
+    return engagementSources;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ENGAGEMENT_SOURCES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEngagementSources(@javax.annotation.Nullable List<String> engagementSources) {
+    this.engagementSources = engagementSources;
+  }
+
+
+  public UploadedOrDerivedAudience companies(@javax.annotation.Nullable List<UploadedOrDerivedAudienceCompaniesInner> companies) {
+    this.companies = companies;
+    return this;
+  }
+
+  public UploadedOrDerivedAudience addCompaniesItem(UploadedOrDerivedAudienceCompaniesInner companiesItem) {
+    if (this.companies == null) {
+      this.companies = new ArrayList<>();
+    }
+    this.companies.add(companiesItem);
+    return this;
+  }
+
+  /**
+   * Required for company_list audiences (LinkedIn only): plain-text company rows for account targeting. Each row needs at least one identifier. LinkedIn recommends 1,000+ companies for a usable match rate and takes up to 48h to process the list. 
+   * @return companies
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMPANIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UploadedOrDerivedAudienceCompaniesInner> getCompanies() {
+    return companies;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMPANIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCompanies(@javax.annotation.Nullable List<UploadedOrDerivedAudienceCompaniesInner> companies) {
+    this.companies = companies;
   }
 
 
@@ -446,6 +696,11 @@ public class UploadedOrDerivedAudience {
         Objects.equals(this.name, uploadedOrDerivedAudience.name) &&
         Objects.equals(this.description, uploadedOrDerivedAudience.description) &&
         Objects.equals(this.type, uploadedOrDerivedAudience.type) &&
+        Objects.equals(this.sourceType, uploadedOrDerivedAudience.sourceType) &&
+        Objects.equals(this.trigger, uploadedOrDerivedAudience.trigger) &&
+        Objects.equals(this.lookbackDays, uploadedOrDerivedAudience.lookbackDays) &&
+        Objects.equals(this.engagementSources, uploadedOrDerivedAudience.engagementSources) &&
+        Objects.equals(this.companies, uploadedOrDerivedAudience.companies) &&
         Objects.equals(this.pixelId, uploadedOrDerivedAudience.pixelId) &&
         Objects.equals(this.retentionDays, uploadedOrDerivedAudience.retentionDays) &&
         Objects.equals(this.sourceAudienceId, uploadedOrDerivedAudience.sourceAudienceId) &&
@@ -457,7 +712,7 @@ public class UploadedOrDerivedAudience {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, description, type, pixelId, retentionDays, sourceAudienceId, country, ratio, rule, customerFileSource);
+    return Objects.hash(accountId, adAccountId, name, description, type, sourceType, trigger, lookbackDays, engagementSources, companies, pixelId, retentionDays, sourceAudienceId, country, ratio, rule, customerFileSource);
   }
 
   @Override
@@ -469,6 +724,11 @@ public class UploadedOrDerivedAudience {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
+    sb.append("    trigger: ").append(toIndentedString(trigger)).append("\n");
+    sb.append("    lookbackDays: ").append(toIndentedString(lookbackDays)).append("\n");
+    sb.append("    engagementSources: ").append(toIndentedString(engagementSources)).append("\n");
+    sb.append("    companies: ").append(toIndentedString(companies)).append("\n");
     sb.append("    pixelId: ").append(toIndentedString(pixelId)).append("\n");
     sb.append("    retentionDays: ").append(toIndentedString(retentionDays)).append("\n");
     sb.append("    sourceAudienceId: ").append(toIndentedString(sourceAudienceId)).append("\n");
@@ -546,6 +806,40 @@ public class UploadedOrDerivedAudience {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `sourceType` to the URL query string
+    if (getSourceType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssourceType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSourceType()))));
+    }
+
+    // add `trigger` to the URL query string
+    if (getTrigger() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%strigger%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTrigger()))));
+    }
+
+    // add `lookbackDays` to the URL query string
+    if (getLookbackDays() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slookbackDays%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLookbackDays()))));
+    }
+
+    // add `engagementSources` to the URL query string
+    if (getEngagementSources() != null) {
+      for (int i = 0; i < getEngagementSources().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sengagementSources%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getEngagementSources().get(i)))));
+      }
+    }
+
+    // add `companies` to the URL query string
+    if (getCompanies() != null) {
+      for (int i = 0; i < getCompanies().size(); i++) {
+        if (getCompanies().get(i) != null) {
+          joiner.add(getCompanies().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scompanies%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `pixelId` to the URL query string
