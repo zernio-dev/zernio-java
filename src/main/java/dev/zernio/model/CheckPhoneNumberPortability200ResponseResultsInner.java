@@ -40,9 +40,10 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PHONE_NUMBER,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PORTABLE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_FAST_PORTABLE,
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_LINE_TYPE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_NOT_PORTABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T11:08:35.808182418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:50:24.779106149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberPortability200ResponseResultsInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -55,6 +56,9 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   public static final String JSON_PROPERTY_FAST_PORTABLE = "fastPortable";
   @javax.annotation.Nullable
   private Boolean fastPortable;
+
+  public static final String JSON_PROPERTY_LINE_TYPE = "lineType";
+  private JsonNullable<String> lineType = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_NOT_PORTABLE_REASON = "notPortableReason";
   private JsonNullable<String> notPortableReason = JsonNullable.<String>undefined();
@@ -134,6 +138,38 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   }
 
 
+  public CheckPhoneNumberPortability200ResponseResultsInner lineType(@javax.annotation.Nullable String lineType) {
+    this.lineType = JsonNullable.<String>of(lineType);
+    return this;
+  }
+
+  /**
+   * Line type when known (mobile, landline, voip…). A mobile number requires the transfer PIN at submit.
+   * @return lineType
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getLineType() {
+        return lineType.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LINE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLineType_JsonNullable() {
+    return lineType;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LINE_TYPE)
+  public void setLineType_JsonNullable(JsonNullable<String> lineType) {
+    this.lineType = lineType;
+  }
+
+  public void setLineType(@javax.annotation.Nullable String lineType) {
+    this.lineType = JsonNullable.<String>of(lineType);
+  }
+
+
   public CheckPhoneNumberPortability200ResponseResultsInner notPortableReason(@javax.annotation.Nullable String notPortableReason) {
     this.notPortableReason = JsonNullable.<String>of(notPortableReason);
     return this;
@@ -181,6 +217,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     return Objects.equals(this.phoneNumber, checkPhoneNumberPortability200ResponseResultsInner.phoneNumber) &&
         Objects.equals(this.portable, checkPhoneNumberPortability200ResponseResultsInner.portable) &&
         Objects.equals(this.fastPortable, checkPhoneNumberPortability200ResponseResultsInner.fastPortable) &&
+        equalsNullable(this.lineType, checkPhoneNumberPortability200ResponseResultsInner.lineType) &&
         equalsNullable(this.notPortableReason, checkPhoneNumberPortability200ResponseResultsInner.notPortableReason);
   }
 
@@ -190,7 +227,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, portable, fastPortable, hashCodeNullable(notPortableReason));
+    return Objects.hash(phoneNumber, portable, fastPortable, hashCodeNullable(lineType), hashCodeNullable(notPortableReason));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -207,6 +244,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    portable: ").append(toIndentedString(portable)).append("\n");
     sb.append("    fastPortable: ").append(toIndentedString(fastPortable)).append("\n");
+    sb.append("    lineType: ").append(toIndentedString(lineType)).append("\n");
     sb.append("    notPortableReason: ").append(toIndentedString(notPortableReason)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -268,6 +306,11 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     // add `fastPortable` to the URL query string
     if (getFastPortable() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfastPortable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFastPortable()))));
+    }
+
+    // add `lineType` to the URL query string
+    if (getLineType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slineType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineType()))));
     }
 
     // add `notPortableReason` to the URL query string

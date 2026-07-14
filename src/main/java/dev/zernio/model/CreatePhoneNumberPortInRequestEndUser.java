@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * End-user / current-carrier account info that authorizes the port.
+ * End-user / current-carrier account info that authorizes the port. The losing carrier matches every field against its records and rejects the whole port on a mismatch — enter values exactly as they appear on the carrier bill. 
  */
 @JsonPropertyOrder({
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_ENTITY_NAME,
@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_POSTAL_CODE,
   CreatePhoneNumberPortInRequestEndUser.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T11:08:35.808182418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:50:24.779106149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberPortInRequestEndUser {
   public static final String JSON_PROPERTY_ENTITY_NAME = "entityName";
   @javax.annotation.Nonnull
@@ -60,7 +60,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   private String billingPhoneNumber;
 
   public static final String JSON_PROPERTY_ACCOUNT_NUMBER = "accountNumber";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String accountNumber;
 
   public static final String JSON_PROPERTY_PIN_PASSCODE = "pinPasscode";
@@ -87,9 +87,44 @@ public class CreatePhoneNumberPortInRequestEndUser {
   @javax.annotation.Nonnull
   private String postalCode;
 
+  /**
+   * Gets or Sets countryCode
+   */
+  public enum CountryCodeEnum {
+    US(String.valueOf("US")),
+    
+    CA(String.valueOf("CA"));
+
+    private String value;
+
+    CountryCodeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CountryCodeEnum fromValue(String value) {
+      for (CountryCodeEnum b : CountryCodeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_COUNTRY_CODE = "countryCode";
   @javax.annotation.Nonnull
-  private String countryCode;
+  private CountryCodeEnum countryCode;
 
   public CreatePhoneNumberPortInRequestEndUser() { 
   }
@@ -100,7 +135,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Get entityName
+   * Account holder / business name, as on the carrier account.
    * @return entityName
    */
   @javax.annotation.Nonnull
@@ -124,7 +159,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Get authPersonName
+   * Full name (first + last) of the person authorizing the port — must match the LOA signature.
    * @return authPersonName
    */
   @javax.annotation.Nonnull
@@ -148,7 +183,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders.
+   * Phone number on the losing carrier&#39;s bill. Defaults to the ported number itself on single-number orders. Validated as a real phone number when present.
    * @return billingPhoneNumber
    */
   @javax.annotation.Nullable
@@ -166,26 +201,26 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
 
-  public CreatePhoneNumberPortInRequestEndUser accountNumber(@javax.annotation.Nullable String accountNumber) {
+  public CreatePhoneNumberPortInRequestEndUser accountNumber(@javax.annotation.Nonnull String accountNumber) {
     this.accountNumber = accountNumber;
     return this;
   }
 
   /**
-   * Get accountNumber
+   * Account number with the losing carrier — required (carriers reject ports without it; on prepaid mobile plans it is often the phone number itself).
    * @return accountNumber
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_NUMBER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getAccountNumber() {
     return accountNumber;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_NUMBER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountNumber(@javax.annotation.Nullable String accountNumber) {
+  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_NUMBER, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAccountNumber(@javax.annotation.Nonnull String accountNumber) {
     this.accountNumber = accountNumber;
   }
 
@@ -196,7 +231,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Transfer PIN. Forwarded to the carrier, never stored.
+   * Transfer PIN. Required for mobile numbers (wireless carriers reject PIN-less ports). Forwarded to the carrier, never stored.
    * @return pinPasscode
    */
   @javax.annotation.Nullable
@@ -292,7 +327,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Get administrativeArea
+   * 2-letter US state / CA province code (full names are accepted and normalized).
    * @return administrativeArea
    */
   @javax.annotation.Nonnull
@@ -316,7 +351,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
   /**
-   * Get postalCode
+   * US ZIP (5 digits) or Canadian postal code, matching countryCode.
    * @return postalCode
    */
   @javax.annotation.Nonnull
@@ -334,7 +369,7 @@ public class CreatePhoneNumberPortInRequestEndUser {
   }
 
 
-  public CreatePhoneNumberPortInRequestEndUser countryCode(@javax.annotation.Nonnull String countryCode) {
+  public CreatePhoneNumberPortInRequestEndUser countryCode(@javax.annotation.Nonnull CountryCodeEnum countryCode) {
     this.countryCode = countryCode;
     return this;
   }
@@ -346,14 +381,14 @@ public class CreatePhoneNumberPortInRequestEndUser {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_COUNTRY_CODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getCountryCode() {
+  public CountryCodeEnum getCountryCode() {
     return countryCode;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_COUNTRY_CODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCountryCode(@javax.annotation.Nonnull String countryCode) {
+  public void setCountryCode(@javax.annotation.Nonnull CountryCodeEnum countryCode) {
     this.countryCode = countryCode;
   }
 

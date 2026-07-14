@@ -27,6 +27,7 @@ import dev.zernio.model.InlineObject;
 import dev.zernio.model.ListSmsOptOuts200Response;
 import dev.zernio.model.ListSmsRegistrations200Response;
 import dev.zernio.model.LookupSmsNumber200Response;
+import dev.zernio.model.ResendSmsRegistrationOtp200Response;
 import dev.zernio.model.ReuseSmsRegistrationForNumber200Response;
 import dev.zernio.model.SendSms200Response;
 import dev.zernio.model.SendSmsRequest;
@@ -68,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T11:08:35.808182418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:50:24.779106149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1035,6 +1036,124 @@ public class SmsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Re-send the sole-prop OTP
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * @param id  (required)
+   * @return ResendSmsRegistrationOtp200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ResendSmsRegistrationOtp200Response resendSmsRegistrationOtp(@javax.annotation.Nonnull String id) throws ApiException {
+    return resendSmsRegistrationOtp(id, null);
+  }
+
+  /**
+   * Re-send the sole-prop OTP
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ResendSmsRegistrationOtp200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ResendSmsRegistrationOtp200Response resendSmsRegistrationOtp(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<ResendSmsRegistrationOtp200Response> localVarResponse = resendSmsRegistrationOtpWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Re-send the sole-prop OTP
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * @param id  (required)
+   * @return ApiResponse&lt;ResendSmsRegistrationOtp200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ResendSmsRegistrationOtp200Response> resendSmsRegistrationOtpWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return resendSmsRegistrationOtpWithHttpInfo(id, null);
+  }
+
+  /**
+   * Re-send the sole-prop OTP
+   * Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ResendSmsRegistrationOtp200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ResendSmsRegistrationOtp200Response> resendSmsRegistrationOtpWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = resendSmsRegistrationOtpRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("resendSmsRegistrationOtp", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ResendSmsRegistrationOtp200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ResendSmsRegistrationOtp200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ResendSmsRegistrationOtp200Response>() {});
+        
+
+        return new ApiResponse<ResendSmsRegistrationOtp200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder resendSmsRegistrationOtpRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling resendSmsRegistrationOtp");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/{id}/resend-otp"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

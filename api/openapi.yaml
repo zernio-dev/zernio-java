@@ -17458,6 +17458,44 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/sms/registrations/{id}/resend-otp:
+    post:
+      description: |
+        Re-sends the sole-proprietor verification PIN to the brand's mobile
+        number — use it when the original code expired or never arrived. Only
+        valid while the registration is pending and awaiting its OTP; rate
+        limited to one send per minute.
+      operationId: resendSmsRegistrationOtp
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/resendSmsRegistrationOtp_200_response"
+          description: A new code was sent
+        "400":
+          description: The registration is not awaiting a verification code
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Registration not found
+        "429":
+          description: A code was just sent — wait a minute before requesting another
+      security:
+      - bearerAuth: []
+      summary: Re-send the sole-prop OTP
+      tags:
+      - SMS
+      x-accepts:
+      - application/json
   /v1/sms/registrations/{id}/appeal:
     post:
       description: |
@@ -52779,10 +52817,13 @@ components:
     startSmsRegistration_request_campaign:
       description: |
         Required for 10DLC. What you'll send and how recipients opt in/out.
-        Opt-in/opt-out/help auto-responses must name the registered brand and
-        carry the carrier-required disclosures; submissions that don't (or that
-        are blank) are automatically rewritten to a compliant, brand-named
-        template before the campaign is filed.
+        The opt-in/opt-out/help auto-responses (`optinMessage`,
+        `optoutMessage`, `helpMessage`) are optional: when omitted, a
+        compliant, brand-named template with the carrier-required
+        disclosures is generated for you. If you do send them, they must
+        name the registered brand and carry the disclosures — submissions
+        that don't are rewritten to the compliant template before the
+        campaign is filed.
       properties:
         usecase:
           type: string
@@ -52856,12 +52897,9 @@ components:
       required:
       - description
       - helpKeywords
-      - helpMessage
       - messageFlow
       - optinKeywords
-      - optinMessage
       - optoutKeywords
-      - optoutMessage
       - sample1
       - sample2
       - usecase
@@ -53075,6 +53113,12 @@ components:
         verified: true
       properties:
         verified:
+          type: boolean
+    resendSmsRegistrationOtp_200_response:
+      example:
+        sent: true
+      properties:
+        sent:
           type: boolean
     appealSmsRegistration_request:
       properties:
@@ -54890,20 +54934,32 @@ components:
             $ref: "#/components/schemas/listPhoneNumberPortIns_200_response_orders_inner"
           type: array
     createPhoneNumberPortIn_request_endUser:
-      description: End-user / current-carrier account info that authorizes the port.
+      description: |
+        End-user / current-carrier account info that authorizes the port. The
+        losing carrier matches every field against its records and rejects the
+        whole port on a mismatch — enter values exactly as they appear on the
+        carrier bill.
       properties:
         entityName:
+          description: "Account holder / business name, as on the carrier account."
           type: string
         authPersonName:
+          description: Full name (first + last) of the person authorizing the port
+            — must match the LOA signature.
           type: string
         billingPhoneNumber:
           description: Phone number on the losing carrier's bill. Defaults to the
-            ported number itself on single-number orders.
+            ported number itself on single-number orders. Validated as a real phone
+            number when present.
           type: string
         accountNumber:
+          description: Account number with the losing carrier — required (carriers
+            reject ports without it; on prepaid mobile plans it is often the phone
+            number itself).
           type: string
         pinPasscode:
-          description: "Transfer PIN. Forwarded to the carrier, never stored."
+          description: "Transfer PIN. Required for mobile numbers (wireless carriers\
+            \ reject PIN-less ports). Forwarded to the carrier, never stored."
           type: string
         streetAddress:
           type: string
@@ -54912,14 +54968,21 @@ components:
         locality:
           type: string
         administrativeArea:
+          description: 2-letter US state / CA province code (full names are accepted
+            and normalized).
           type: string
         postalCode:
+          description: "US ZIP (5 digits) or Canadian postal code, matching countryCode."
           type: string
         countryCode:
+          enum:
+          - US
+          - CA
           maxLength: 2
           minLength: 2
           type: string
       required:
+      - accountNumber
       - administrativeArea
       - authPersonName
       - countryCode
@@ -55049,6 +55112,7 @@ components:
     checkPhoneNumberPortability_200_response_results_inner:
       example:
         phoneNumber: phoneNumber
+        lineType: lineType
         portable: true
         notPortableReason: notPortableReason
         fastPortable: true
@@ -55060,6 +55124,11 @@ components:
         fastPortable:
           description: Qualifies for the carrier's accelerated FastPort lane.
           type: boolean
+        lineType:
+          description: "Line type when known (mobile, landline, voip…). A mobile number\
+            \ requires the transfer PIN at submit."
+          nullable: true
+          type: string
         notPortableReason:
           description: Carrier reason when not portable; null when portable.
           nullable: true
@@ -55068,10 +55137,12 @@ components:
       example:
         results:
         - phoneNumber: phoneNumber
+          lineType: lineType
           portable: true
           notPortableReason: notPortableReason
           fastPortable: true
         - phoneNumber: phoneNumber
+          lineType: lineType
           portable: true
           notPortableReason: notPortableReason
           fastPortable: true

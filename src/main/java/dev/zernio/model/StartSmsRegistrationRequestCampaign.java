@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Required for 10DLC. What you&#39;ll send and how recipients opt in/out. Opt-in/opt-out/help auto-responses must name the registered brand and carry the carrier-required disclosures; submissions that don&#39;t (or that are blank) are automatically rewritten to a compliant, brand-named template before the campaign is filed. 
+ * Required for 10DLC. What you&#39;ll send and how recipients opt in/out. The opt-in/opt-out/help auto-responses (&#x60;optinMessage&#x60;, &#x60;optoutMessage&#x60;, &#x60;helpMessage&#x60;) are optional: when omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you. If you do send them, they must name the registered brand and carry the disclosures — submissions that don&#39;t are rewritten to the compliant template before the campaign is filed. 
  */
 @JsonPropertyOrder({
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_USECASE,
@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_AGE_GATED,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_DIRECT_LENDING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T11:08:35.808182418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:50:24.779106149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestCampaign {
   public static final String JSON_PROPERTY_USECASE = "usecase";
   @javax.annotation.Nonnull
@@ -131,7 +131,7 @@ public class StartSmsRegistrationRequestCampaign {
   private String sample2;
 
   public static final String JSON_PROPERTY_HELP_MESSAGE = "helpMessage";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String helpMessage;
 
   public static final String JSON_PROPERTY_OPTIN_KEYWORDS = "optinKeywords";
@@ -139,7 +139,7 @@ public class StartSmsRegistrationRequestCampaign {
   private String optinKeywords;
 
   public static final String JSON_PROPERTY_OPTIN_MESSAGE = "optinMessage";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String optinMessage;
 
   public static final String JSON_PROPERTY_OPTOUT_KEYWORDS = "optoutKeywords";
@@ -147,7 +147,7 @@ public class StartSmsRegistrationRequestCampaign {
   private String optoutKeywords;
 
   public static final String JSON_PROPERTY_OPTOUT_MESSAGE = "optoutMessage";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String optoutMessage;
 
   public static final String JSON_PROPERTY_HELP_KEYWORDS = "helpKeywords";
@@ -329,7 +329,7 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
 
-  public StartSmsRegistrationRequestCampaign helpMessage(@javax.annotation.Nonnull String helpMessage) {
+  public StartSmsRegistrationRequestCampaign helpMessage(@javax.annotation.Nullable String helpMessage) {
     this.helpMessage = helpMessage;
     return this;
   }
@@ -338,17 +338,17 @@ public class StartSmsRegistrationRequestCampaign {
    * Get helpMessage
    * @return helpMessage
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_HELP_MESSAGE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HELP_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHelpMessage() {
     return helpMessage;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_HELP_MESSAGE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setHelpMessage(@javax.annotation.Nonnull String helpMessage) {
+  @JsonProperty(value = JSON_PROPERTY_HELP_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHelpMessage(@javax.annotation.Nullable String helpMessage) {
     this.helpMessage = helpMessage;
   }
 
@@ -377,7 +377,7 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
 
-  public StartSmsRegistrationRequestCampaign optinMessage(@javax.annotation.Nonnull String optinMessage) {
+  public StartSmsRegistrationRequestCampaign optinMessage(@javax.annotation.Nullable String optinMessage) {
     this.optinMessage = optinMessage;
     return this;
   }
@@ -386,17 +386,17 @@ public class StartSmsRegistrationRequestCampaign {
    * Get optinMessage
    * @return optinMessage
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_OPTIN_MESSAGE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OPTIN_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOptinMessage() {
     return optinMessage;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_OPTIN_MESSAGE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOptinMessage(@javax.annotation.Nonnull String optinMessage) {
+  @JsonProperty(value = JSON_PROPERTY_OPTIN_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOptinMessage(@javax.annotation.Nullable String optinMessage) {
     this.optinMessage = optinMessage;
   }
 
@@ -425,7 +425,7 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
 
-  public StartSmsRegistrationRequestCampaign optoutMessage(@javax.annotation.Nonnull String optoutMessage) {
+  public StartSmsRegistrationRequestCampaign optoutMessage(@javax.annotation.Nullable String optoutMessage) {
     this.optoutMessage = optoutMessage;
     return this;
   }
@@ -434,17 +434,17 @@ public class StartSmsRegistrationRequestCampaign {
    * Get optoutMessage
    * @return optoutMessage
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_OPTOUT_MESSAGE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_OPTOUT_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOptoutMessage() {
     return optoutMessage;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_OPTOUT_MESSAGE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOptoutMessage(@javax.annotation.Nonnull String optoutMessage) {
+  @JsonProperty(value = JSON_PROPERTY_OPTOUT_MESSAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOptoutMessage(@javax.annotation.Nullable String optoutMessage) {
     this.optoutMessage = optoutMessage;
   }
 

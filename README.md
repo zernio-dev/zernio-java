@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-14T11:08:35.808182418Z[Etc/UTC]
+- Build date: 2026-07-14T12:50:24.779106149Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -768,6 +768,8 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**listSmsRegistrationsWithHttpInfo**](docs/SmsApi.md#listSmsRegistrationsWithHttpInfo) | **GET** /v1/sms/registrations | List carrier registrations
 *SmsApi* | [**lookupSmsNumber**](docs/SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type
 *SmsApi* | [**lookupSmsNumberWithHttpInfo**](docs/SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type
+*SmsApi* | [**resendSmsRegistrationOtp**](docs/SmsApi.md#resendSmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP
+*SmsApi* | [**resendSmsRegistrationOtpWithHttpInfo**](docs/SmsApi.md#resendSmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP
 *SmsApi* | [**reuseSmsRegistrationForNumber**](docs/SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
 *SmsApi* | [**reuseSmsRegistrationForNumberWithHttpInfo**](docs/SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration
 *SmsApi* | [**sendSms**](docs/SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS/MMS
@@ -1957,6 +1959,7 @@ Class | Method | HTTP request | Description
  - [ReplyToInboxReviewRequest](docs/ReplyToInboxReviewRequest.md)
  - [ReplyToMention200Response](docs/ReplyToMention200Response.md)
  - [ReplyToMentionRequest](docs/ReplyToMentionRequest.md)
+ - [ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [RetweetPost200Response](docs/RetweetPost200Response.md)

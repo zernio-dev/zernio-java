@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listSmsRegistrationsWithHttpInfo**](SmsApi.md#listSmsRegistrationsWithHttpInfo) | **GET** /v1/sms/registrations | List carrier registrations |
 | [**lookupSmsNumber**](SmsApi.md#lookupSmsNumber) | **GET** /v1/sms/lookup | Look up carrier + line type |
 | [**lookupSmsNumberWithHttpInfo**](SmsApi.md#lookupSmsNumberWithHttpInfo) | **GET** /v1/sms/lookup | Look up carrier + line type |
+| [**resendSmsRegistrationOtp**](SmsApi.md#resendSmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
+| [**resendSmsRegistrationOtpWithHttpInfo**](SmsApi.md#resendSmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/resend-otp | Re-send the sole-prop OTP |
 | [**reuseSmsRegistrationForNumber**](SmsApi.md#reuseSmsRegistrationForNumber) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**reuseSmsRegistrationForNumberWithHttpInfo**](SmsApi.md#reuseSmsRegistrationForNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/sms/reuse-registration | Add number to SMS registration |
 | [**sendSms**](SmsApi.md#sendSms) | **POST** /v1/sms/messages | Send an SMS/MMS |
@@ -1061,6 +1063,158 @@ ApiResponse<[**LookupSmsNumber200Response**](LookupSmsNumber200Response.md)>
 | **200** | Lookup result. An unknown/invalid number returns lineType &#x60;unknown&#x60; with &#x60;smsReachable&#x60; false rather than an error. |  -  |
 | **401** | Unauthorized |  -  |
 | **502** | Lookup provider failed |  -  |
+
+
+## resendSmsRegistrationOtp
+
+> ResendSmsRegistrationOtp200Response resendSmsRegistrationOtp(id)
+
+Re-send the sole-prop OTP
+
+Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ResendSmsRegistrationOtp200Response result = apiInstance.resendSmsRegistrationOtp(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#resendSmsRegistrationOtp");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A new code was sent |  -  |
+| **400** | The registration is not awaiting a verification code |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **429** | A code was just sent — wait a minute before requesting another |  -  |
+
+## resendSmsRegistrationOtpWithHttpInfo
+
+> ApiResponse<ResendSmsRegistrationOtp200Response> resendSmsRegistrationOtp resendSmsRegistrationOtpWithHttpInfo(id)
+
+Re-send the sole-prop OTP
+
+Re-sends the sole-proprietor verification PIN to the brand&#39;s mobile number — use it when the original code expired or never arrived. Only valid while the registration is pending and awaiting its OTP; rate limited to one send per minute. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | 
+        try {
+            ApiResponse<ResendSmsRegistrationOtp200Response> response = apiInstance.resendSmsRegistrationOtpWithHttpInfo(id);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#resendSmsRegistrationOtp");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A new code was sent |  -  |
+| **400** | The registration is not awaiting a verification code |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **429** | A code was just sent — wait a minute before requesting another |  -  |
 
 
 ## reuseSmsRegistrationForNumber
