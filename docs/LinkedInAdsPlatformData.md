@@ -2,7 +2,7 @@
 
 # LinkedInAdsPlatformData
 
-LinkedIn campaign bidding and delivery controls for POST /v1/ads/boost and POST /v1/ads/create. Unknown keys are rejected. 
+LinkedIn-specific options for POST /v1/ads/boost and POST /v1/ads/create: campaign bidding and delivery controls, plus the LinkedIn-only creative formats on /v1/ads/create. Unknown keys are rejected. 
 
 ## Properties
 
@@ -15,6 +15,12 @@ LinkedIn campaign bidding and delivery controls for POST /v1/ads/boost and POST 
 |**audienceExpansionEnabled** | **Boolean** | Enable LinkedIn audience expansion. Defaults to false. |  [optional] |
 |**offsiteDeliveryEnabled** | **Boolean** | Deliver on the LinkedIn Audience Network. Defaults to false. |  [optional] |
 |**connectedTelevisionOnly** | **Boolean** | Restrict delivery to Connected TV inventory. |  [optional] |
+|**carousel** | [**LinkedInAdsPlatformDataCarousel**](LinkedInAdsPlatformDataCarousel.md) |  |  [optional] |
+|**document** | [**LinkedInAdsPlatformDataDocument**](LinkedInAdsPlatformDataDocument.md) |  |  [optional] |
+|**spotlight** | [**LinkedInAdsPlatformDataSpotlight**](LinkedInAdsPlatformDataSpotlight.md) |  |  [optional] |
+|**follower** | [**LinkedInAdsPlatformDataFollower**](LinkedInAdsPlatformDataFollower.md) |  |  [optional] |
+|**textAd** | [**LinkedInAdsPlatformDataTextAd**](LinkedInAdsPlatformDataTextAd.md) |  |  [optional] |
+|**event** | [**LinkedInAdsPlatformDataEvent**](LinkedInAdsPlatformDataEvent.md) |  |  [optional] |
 
 
 

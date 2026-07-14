@@ -128,7 +128,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:50:24.779106149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:59:10.963600286Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1312,7 +1312,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;. NOT required when &#x60;goal&#x60; is &#x60;lead_generation&#x60; (the ad opens a Lead Gen form instead of a destination).
+   * Required on legacy + attach shapes (skip for multi-creative). On LinkedIn it&#39;s the ad&#39;s destination URL; required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;. NOT required when &#x60;goal&#x60; is &#x60;lead_generation&#x60; (the ad opens a Lead Gen form instead of a destination). On LinkedIn, &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; publishes an ARTICLE-content creative; this is LinkedIn&#39;s article ad format, with the image as thumbnail and &#x60;longHeadline&#x60; as description.
    * @return linkUrl
    */
   @javax.annotation.Nullable

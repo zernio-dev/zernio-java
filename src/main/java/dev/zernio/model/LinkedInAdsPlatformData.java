@@ -24,6 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.LinkedInAdsPlatformDataCarousel;
+import dev.zernio.model.LinkedInAdsPlatformDataDocument;
+import dev.zernio.model.LinkedInAdsPlatformDataEvent;
+import dev.zernio.model.LinkedInAdsPlatformDataFollower;
+import dev.zernio.model.LinkedInAdsPlatformDataSpotlight;
+import dev.zernio.model.LinkedInAdsPlatformDataTextAd;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -31,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * LinkedIn campaign bidding and delivery controls for POST /v1/ads/boost and POST /v1/ads/create. Unknown keys are rejected. 
+ * LinkedIn-specific options for POST /v1/ads/boost and POST /v1/ads/create: campaign bidding and delivery controls, plus the LinkedIn-only creative formats on /v1/ads/create. Unknown keys are rejected. 
  */
 @JsonPropertyOrder({
   LinkedInAdsPlatformData.JSON_PROPERTY_COST_TYPE,
@@ -40,9 +46,15 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformData.JSON_PROPERTY_CREATIVE_SELECTION,
   LinkedInAdsPlatformData.JSON_PROPERTY_AUDIENCE_EXPANSION_ENABLED,
   LinkedInAdsPlatformData.JSON_PROPERTY_OFFSITE_DELIVERY_ENABLED,
-  LinkedInAdsPlatformData.JSON_PROPERTY_CONNECTED_TELEVISION_ONLY
+  LinkedInAdsPlatformData.JSON_PROPERTY_CONNECTED_TELEVISION_ONLY,
+  LinkedInAdsPlatformData.JSON_PROPERTY_CAROUSEL,
+  LinkedInAdsPlatformData.JSON_PROPERTY_DOCUMENT,
+  LinkedInAdsPlatformData.JSON_PROPERTY_SPOTLIGHT,
+  LinkedInAdsPlatformData.JSON_PROPERTY_FOLLOWER,
+  LinkedInAdsPlatformData.JSON_PROPERTY_TEXT_AD,
+  LinkedInAdsPlatformData.JSON_PROPERTY_EVENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:50:24.779106149Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:59:10.963600286Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformData {
   /**
    * Campaign cost model (billing event). Defaults to &#x60;CPM&#x60;. Required when &#x60;unitCost&#x60; is set so the manual bid applies to an explicit cost model. 
@@ -143,6 +155,30 @@ public class LinkedInAdsPlatformData {
   public static final String JSON_PROPERTY_CONNECTED_TELEVISION_ONLY = "connectedTelevisionOnly";
   @javax.annotation.Nullable
   private Boolean connectedTelevisionOnly;
+
+  public static final String JSON_PROPERTY_CAROUSEL = "carousel";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataCarousel carousel;
+
+  public static final String JSON_PROPERTY_DOCUMENT = "document";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataDocument document;
+
+  public static final String JSON_PROPERTY_SPOTLIGHT = "spotlight";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataSpotlight spotlight;
+
+  public static final String JSON_PROPERTY_FOLLOWER = "follower";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataFollower follower;
+
+  public static final String JSON_PROPERTY_TEXT_AD = "textAd";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataTextAd textAd;
+
+  public static final String JSON_PROPERTY_EVENT = "event";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataEvent event;
 
   public LinkedInAdsPlatformData() { 
   }
@@ -315,6 +351,150 @@ public class LinkedInAdsPlatformData {
   }
 
 
+  public LinkedInAdsPlatformData carousel(@javax.annotation.Nullable LinkedInAdsPlatformDataCarousel carousel) {
+    this.carousel = carousel;
+    return this;
+  }
+
+  /**
+   * Get carousel
+   * @return carousel
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataCarousel getCarousel() {
+    return carousel;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCarousel(@javax.annotation.Nullable LinkedInAdsPlatformDataCarousel carousel) {
+    this.carousel = carousel;
+  }
+
+
+  public LinkedInAdsPlatformData document(@javax.annotation.Nullable LinkedInAdsPlatformDataDocument document) {
+    this.document = document;
+    return this;
+  }
+
+  /**
+   * Get document
+   * @return document
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DOCUMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataDocument getDocument() {
+    return document;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DOCUMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDocument(@javax.annotation.Nullable LinkedInAdsPlatformDataDocument document) {
+    this.document = document;
+  }
+
+
+  public LinkedInAdsPlatformData spotlight(@javax.annotation.Nullable LinkedInAdsPlatformDataSpotlight spotlight) {
+    this.spotlight = spotlight;
+    return this;
+  }
+
+  /**
+   * Get spotlight
+   * @return spotlight
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPOTLIGHT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataSpotlight getSpotlight() {
+    return spotlight;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SPOTLIGHT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpotlight(@javax.annotation.Nullable LinkedInAdsPlatformDataSpotlight spotlight) {
+    this.spotlight = spotlight;
+  }
+
+
+  public LinkedInAdsPlatformData follower(@javax.annotation.Nullable LinkedInAdsPlatformDataFollower follower) {
+    this.follower = follower;
+    return this;
+  }
+
+  /**
+   * Get follower
+   * @return follower
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FOLLOWER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataFollower getFollower() {
+    return follower;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FOLLOWER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFollower(@javax.annotation.Nullable LinkedInAdsPlatformDataFollower follower) {
+    this.follower = follower;
+  }
+
+
+  public LinkedInAdsPlatformData textAd(@javax.annotation.Nullable LinkedInAdsPlatformDataTextAd textAd) {
+    this.textAd = textAd;
+    return this;
+  }
+
+  /**
+   * Get textAd
+   * @return textAd
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEXT_AD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataTextAd getTextAd() {
+    return textAd;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TEXT_AD, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTextAd(@javax.annotation.Nullable LinkedInAdsPlatformDataTextAd textAd) {
+    this.textAd = textAd;
+  }
+
+
+  public LinkedInAdsPlatformData event(@javax.annotation.Nullable LinkedInAdsPlatformDataEvent event) {
+    this.event = event;
+    return this;
+  }
+
+  /**
+   * Get event
+   * @return event
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataEvent getEvent() {
+    return event;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EVENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEvent(@javax.annotation.Nullable LinkedInAdsPlatformDataEvent event) {
+    this.event = event;
+  }
+
+
   /**
    * Return true if this LinkedInAdsPlatformData object is equal to o.
    */
@@ -333,12 +513,18 @@ public class LinkedInAdsPlatformData {
         Objects.equals(this.creativeSelection, linkedInAdsPlatformData.creativeSelection) &&
         Objects.equals(this.audienceExpansionEnabled, linkedInAdsPlatformData.audienceExpansionEnabled) &&
         Objects.equals(this.offsiteDeliveryEnabled, linkedInAdsPlatformData.offsiteDeliveryEnabled) &&
-        Objects.equals(this.connectedTelevisionOnly, linkedInAdsPlatformData.connectedTelevisionOnly);
+        Objects.equals(this.connectedTelevisionOnly, linkedInAdsPlatformData.connectedTelevisionOnly) &&
+        Objects.equals(this.carousel, linkedInAdsPlatformData.carousel) &&
+        Objects.equals(this.document, linkedInAdsPlatformData.document) &&
+        Objects.equals(this.spotlight, linkedInAdsPlatformData.spotlight) &&
+        Objects.equals(this.follower, linkedInAdsPlatformData.follower) &&
+        Objects.equals(this.textAd, linkedInAdsPlatformData.textAd) &&
+        Objects.equals(this.event, linkedInAdsPlatformData.event);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(costType, unitCost, optimizationTargetType, creativeSelection, audienceExpansionEnabled, offsiteDeliveryEnabled, connectedTelevisionOnly);
+    return Objects.hash(costType, unitCost, optimizationTargetType, creativeSelection, audienceExpansionEnabled, offsiteDeliveryEnabled, connectedTelevisionOnly, carousel, document, spotlight, follower, textAd, event);
   }
 
   @Override
@@ -352,6 +538,12 @@ public class LinkedInAdsPlatformData {
     sb.append("    audienceExpansionEnabled: ").append(toIndentedString(audienceExpansionEnabled)).append("\n");
     sb.append("    offsiteDeliveryEnabled: ").append(toIndentedString(offsiteDeliveryEnabled)).append("\n");
     sb.append("    connectedTelevisionOnly: ").append(toIndentedString(connectedTelevisionOnly)).append("\n");
+    sb.append("    carousel: ").append(toIndentedString(carousel)).append("\n");
+    sb.append("    document: ").append(toIndentedString(document)).append("\n");
+    sb.append("    spotlight: ").append(toIndentedString(spotlight)).append("\n");
+    sb.append("    follower: ").append(toIndentedString(follower)).append("\n");
+    sb.append("    textAd: ").append(toIndentedString(textAd)).append("\n");
+    sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -432,6 +624,36 @@ public class LinkedInAdsPlatformData {
     // add `connectedTelevisionOnly` to the URL query string
     if (getConnectedTelevisionOnly() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sconnectedTelevisionOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectedTelevisionOnly()))));
+    }
+
+    // add `carousel` to the URL query string
+    if (getCarousel() != null) {
+      joiner.add(getCarousel().toUrlQueryString(prefix + "carousel" + suffix));
+    }
+
+    // add `document` to the URL query string
+    if (getDocument() != null) {
+      joiner.add(getDocument().toUrlQueryString(prefix + "document" + suffix));
+    }
+
+    // add `spotlight` to the URL query string
+    if (getSpotlight() != null) {
+      joiner.add(getSpotlight().toUrlQueryString(prefix + "spotlight" + suffix));
+    }
+
+    // add `follower` to the URL query string
+    if (getFollower() != null) {
+      joiner.add(getFollower().toUrlQueryString(prefix + "follower" + suffix));
+    }
+
+    // add `textAd` to the URL query string
+    if (getTextAd() != null) {
+      joiner.add(getTextAd().toUrlQueryString(prefix + "textAd" + suffix));
+    }
+
+    // add `event` to the URL query string
+    if (getEvent() != null) {
+      joiner.add(getEvent().toUrlQueryString(prefix + "event" + suffix));
     }
 
     return joiner.toString();

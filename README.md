@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-14T12:50:24.779106149Z[Etc/UTC]
+- Build date: 2026-07-14T12:59:10.963600286Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1726,6 +1726,15 @@ Class | Method | HTTP request | Description
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
  - [LinkedInAdsPlatformData](docs/LinkedInAdsPlatformData.md)
+ - [LinkedInAdsPlatformDataCarousel](docs/LinkedInAdsPlatformDataCarousel.md)
+ - [LinkedInAdsPlatformDataCarouselCardsInner](docs/LinkedInAdsPlatformDataCarouselCardsInner.md)
+ - [LinkedInAdsPlatformDataDocument](docs/LinkedInAdsPlatformDataDocument.md)
+ - [LinkedInAdsPlatformDataEvent](docs/LinkedInAdsPlatformDataEvent.md)
+ - [LinkedInAdsPlatformDataFollower](docs/LinkedInAdsPlatformDataFollower.md)
+ - [LinkedInAdsPlatformDataFollowerDescription](docs/LinkedInAdsPlatformDataFollowerDescription.md)
+ - [LinkedInAdsPlatformDataFollowerHeadline](docs/LinkedInAdsPlatformDataFollowerHeadline.md)
+ - [LinkedInAdsPlatformDataSpotlight](docs/LinkedInAdsPlatformDataSpotlight.md)
+ - [LinkedInAdsPlatformDataTextAd](docs/LinkedInAdsPlatformDataTextAd.md)
  - [LinkedInAggregateAnalyticsDailyResponse](docs/LinkedInAggregateAnalyticsDailyResponse.md)
  - [LinkedInAggregateAnalyticsDailyResponseAnalytics](docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md)
  - [LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner](docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md)
