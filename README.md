@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-14T12:59:10.963600286Z[Etc/UTC]
+- Build date: 2026-07-14T14:33:36.114657570Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1728,11 +1728,17 @@ Class | Method | HTTP request | Description
  - [LinkedInAdsPlatformData](docs/LinkedInAdsPlatformData.md)
  - [LinkedInAdsPlatformDataCarousel](docs/LinkedInAdsPlatformDataCarousel.md)
  - [LinkedInAdsPlatformDataCarouselCardsInner](docs/LinkedInAdsPlatformDataCarouselCardsInner.md)
+ - [LinkedInAdsPlatformDataConversation](docs/LinkedInAdsPlatformDataConversation.md)
+ - [LinkedInAdsPlatformDataConversationMessagesInner](docs/LinkedInAdsPlatformDataConversationMessagesInner.md)
+ - [LinkedInAdsPlatformDataConversationMessagesInnerButtonsInner](docs/LinkedInAdsPlatformDataConversationMessagesInnerButtonsInner.md)
  - [LinkedInAdsPlatformDataDocument](docs/LinkedInAdsPlatformDataDocument.md)
  - [LinkedInAdsPlatformDataEvent](docs/LinkedInAdsPlatformDataEvent.md)
  - [LinkedInAdsPlatformDataFollower](docs/LinkedInAdsPlatformDataFollower.md)
  - [LinkedInAdsPlatformDataFollowerDescription](docs/LinkedInAdsPlatformDataFollowerDescription.md)
  - [LinkedInAdsPlatformDataFollowerHeadline](docs/LinkedInAdsPlatformDataFollowerHeadline.md)
+ - [LinkedInAdsPlatformDataJobs](docs/LinkedInAdsPlatformDataJobs.md)
+ - [LinkedInAdsPlatformDataJobsButtonLabel](docs/LinkedInAdsPlatformDataJobsButtonLabel.md)
+ - [LinkedInAdsPlatformDataJobsHeadline](docs/LinkedInAdsPlatformDataJobsHeadline.md)
  - [LinkedInAdsPlatformDataSpotlight](docs/LinkedInAdsPlatformDataSpotlight.md)
  - [LinkedInAdsPlatformDataTextAd](docs/LinkedInAdsPlatformDataTextAd.md)
  - [LinkedInAggregateAnalyticsDailyResponse](docs/LinkedInAggregateAnalyticsDailyResponse.md)

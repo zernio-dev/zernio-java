@@ -75,6 +75,7 @@
 | CONVERSIONS | &quot;conversions&quot; |
 | APP_PROMOTION | &quot;app_promotion&quot; |
 | CATALOG_SALES | &quot;catalog_sales&quot; |
+| JOB_APPLICANTS | &quot;job_applicants&quot; |
 
 
 

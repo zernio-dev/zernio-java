@@ -25,9 +25,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.LinkedInAdsPlatformDataCarousel;
+import dev.zernio.model.LinkedInAdsPlatformDataConversation;
 import dev.zernio.model.LinkedInAdsPlatformDataDocument;
 import dev.zernio.model.LinkedInAdsPlatformDataEvent;
 import dev.zernio.model.LinkedInAdsPlatformDataFollower;
+import dev.zernio.model.LinkedInAdsPlatformDataJobs;
 import dev.zernio.model.LinkedInAdsPlatformDataSpotlight;
 import dev.zernio.model.LinkedInAdsPlatformDataTextAd;
 import java.math.BigDecimal;
@@ -51,10 +53,12 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformData.JSON_PROPERTY_DOCUMENT,
   LinkedInAdsPlatformData.JSON_PROPERTY_SPOTLIGHT,
   LinkedInAdsPlatformData.JSON_PROPERTY_FOLLOWER,
+  LinkedInAdsPlatformData.JSON_PROPERTY_JOBS,
   LinkedInAdsPlatformData.JSON_PROPERTY_TEXT_AD,
+  LinkedInAdsPlatformData.JSON_PROPERTY_CONVERSATION,
   LinkedInAdsPlatformData.JSON_PROPERTY_EVENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T12:59:10.963600286Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T14:33:36.114657570Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformData {
   /**
    * Campaign cost model (billing event). Defaults to &#x60;CPM&#x60;. Required when &#x60;unitCost&#x60; is set so the manual bid applies to an explicit cost model. 
@@ -172,9 +176,17 @@ public class LinkedInAdsPlatformData {
   @javax.annotation.Nullable
   private LinkedInAdsPlatformDataFollower follower;
 
+  public static final String JSON_PROPERTY_JOBS = "jobs";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataJobs jobs;
+
   public static final String JSON_PROPERTY_TEXT_AD = "textAd";
   @javax.annotation.Nullable
   private LinkedInAdsPlatformDataTextAd textAd;
+
+  public static final String JSON_PROPERTY_CONVERSATION = "conversation";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataConversation conversation;
 
   public static final String JSON_PROPERTY_EVENT = "event";
   @javax.annotation.Nullable
@@ -447,6 +459,30 @@ public class LinkedInAdsPlatformData {
   }
 
 
+  public LinkedInAdsPlatformData jobs(@javax.annotation.Nullable LinkedInAdsPlatformDataJobs jobs) {
+    this.jobs = jobs;
+    return this;
+  }
+
+  /**
+   * Get jobs
+   * @return jobs
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_JOBS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataJobs getJobs() {
+    return jobs;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_JOBS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setJobs(@javax.annotation.Nullable LinkedInAdsPlatformDataJobs jobs) {
+    this.jobs = jobs;
+  }
+
+
   public LinkedInAdsPlatformData textAd(@javax.annotation.Nullable LinkedInAdsPlatformDataTextAd textAd) {
     this.textAd = textAd;
     return this;
@@ -468,6 +504,30 @@ public class LinkedInAdsPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTextAd(@javax.annotation.Nullable LinkedInAdsPlatformDataTextAd textAd) {
     this.textAd = textAd;
+  }
+
+
+  public LinkedInAdsPlatformData conversation(@javax.annotation.Nullable LinkedInAdsPlatformDataConversation conversation) {
+    this.conversation = conversation;
+    return this;
+  }
+
+  /**
+   * Get conversation
+   * @return conversation
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataConversation getConversation() {
+    return conversation;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONVERSATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConversation(@javax.annotation.Nullable LinkedInAdsPlatformDataConversation conversation) {
+    this.conversation = conversation;
   }
 
 
@@ -518,13 +578,15 @@ public class LinkedInAdsPlatformData {
         Objects.equals(this.document, linkedInAdsPlatformData.document) &&
         Objects.equals(this.spotlight, linkedInAdsPlatformData.spotlight) &&
         Objects.equals(this.follower, linkedInAdsPlatformData.follower) &&
+        Objects.equals(this.jobs, linkedInAdsPlatformData.jobs) &&
         Objects.equals(this.textAd, linkedInAdsPlatformData.textAd) &&
+        Objects.equals(this.conversation, linkedInAdsPlatformData.conversation) &&
         Objects.equals(this.event, linkedInAdsPlatformData.event);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(costType, unitCost, optimizationTargetType, creativeSelection, audienceExpansionEnabled, offsiteDeliveryEnabled, connectedTelevisionOnly, carousel, document, spotlight, follower, textAd, event);
+    return Objects.hash(costType, unitCost, optimizationTargetType, creativeSelection, audienceExpansionEnabled, offsiteDeliveryEnabled, connectedTelevisionOnly, carousel, document, spotlight, follower, jobs, textAd, conversation, event);
   }
 
   @Override
@@ -542,7 +604,9 @@ public class LinkedInAdsPlatformData {
     sb.append("    document: ").append(toIndentedString(document)).append("\n");
     sb.append("    spotlight: ").append(toIndentedString(spotlight)).append("\n");
     sb.append("    follower: ").append(toIndentedString(follower)).append("\n");
+    sb.append("    jobs: ").append(toIndentedString(jobs)).append("\n");
     sb.append("    textAd: ").append(toIndentedString(textAd)).append("\n");
+    sb.append("    conversation: ").append(toIndentedString(conversation)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -646,9 +710,19 @@ public class LinkedInAdsPlatformData {
       joiner.add(getFollower().toUrlQueryString(prefix + "follower" + suffix));
     }
 
+    // add `jobs` to the URL query string
+    if (getJobs() != null) {
+      joiner.add(getJobs().toUrlQueryString(prefix + "jobs" + suffix));
+    }
+
     // add `textAd` to the URL query string
     if (getTextAd() != null) {
       joiner.add(getTextAd().toUrlQueryString(prefix + "textAd" + suffix));
+    }
+
+    // add `conversation` to the URL query string
+    if (getConversation() != null) {
+      joiner.add(getConversation().toUrlQueryString(prefix + "conversation" + suffix));
     }
 
     // add `event` to the URL query string
