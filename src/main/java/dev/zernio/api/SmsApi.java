@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AppealSmsRegistration200Response;
 import dev.zernio.model.AppealSmsRegistrationRequest;
+import dev.zernio.model.DeactivateSmsRegistration200Response;
 import dev.zernio.model.DisableSmsOnNumber200Response;
 import dev.zernio.model.EnableSmsOnNumber200Response;
 import java.io.File;
@@ -71,7 +72,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:35:22.818318786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T11:08:03.646219263Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -309,6 +310,124 @@ public class SmsApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Deactivate a brand/campaign registration
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * @param id  (required)
+   * @return DeactivateSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeactivateSmsRegistration200Response deactivateSmsRegistration(@javax.annotation.Nonnull String id) throws ApiException {
+    return deactivateSmsRegistration(id, null);
+  }
+
+  /**
+   * Deactivate a brand/campaign registration
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return DeactivateSmsRegistration200Response
+   * @throws ApiException if fails to make API call
+   */
+  public DeactivateSmsRegistration200Response deactivateSmsRegistration(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<DeactivateSmsRegistration200Response> localVarResponse = deactivateSmsRegistrationWithHttpInfo(id, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Deactivate a brand/campaign registration
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * @param id  (required)
+   * @return ApiResponse&lt;DeactivateSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeactivateSmsRegistration200Response> deactivateSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
+    return deactivateSmsRegistrationWithHttpInfo(id, null);
+  }
+
+  /**
+   * Deactivate a brand/campaign registration
+   * Terminates the campaign with the carrier registry so the recurring monthly campaign fee stops (carriers bill the first 3 months of a campaign regardless). Numbers covered by it can no longer SEND texts — receiving is unaffected — until they&#39;re registered under a new brand. Irreversible: a deactivated campaign cannot be restored; texting again later requires a new registration (new one-time and review fees). Idempotent. 
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;DeactivateSmsRegistration200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<DeactivateSmsRegistration200Response> deactivateSmsRegistrationWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deactivateSmsRegistrationRequestBuilder(id, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deactivateSmsRegistration", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<DeactivateSmsRegistration200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        DeactivateSmsRegistration200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<DeactivateSmsRegistration200Response>() {});
+        
+
+        return new ApiResponse<DeactivateSmsRegistration200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deactivateSmsRegistrationRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'id' is set
+    if (id == null) {
+      throw new ApiException(400, "Missing the required parameter 'id' when calling deactivateSmsRegistration");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/registrations/{id}"
+        .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

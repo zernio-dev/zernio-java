@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-15T10:35:22.818318786Z[Etc/UTC]
+- Build date: 2026-07-15T11:08:03.646219263Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -762,6 +762,8 @@ Class | Method | HTTP request | Description
 *SequencesApi* | [**updateSequenceWithHttpInfo**](docs/SequencesApi.md#updateSequenceWithHttpInfo) | **PATCH** /v1/sequences/{sequenceId} | Update sequence
 *SmsApi* | [**appealSmsRegistration**](docs/SmsApi.md#appealSmsRegistration) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
 *SmsApi* | [**appealSmsRegistrationWithHttpInfo**](docs/SmsApi.md#appealSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/{id}/appeal | Appeal a rejected campaign
+*SmsApi* | [**deactivateSmsRegistration**](docs/SmsApi.md#deactivateSmsRegistration) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration
+*SmsApi* | [**deactivateSmsRegistrationWithHttpInfo**](docs/SmsApi.md#deactivateSmsRegistrationWithHttpInfo) | **DELETE** /v1/sms/registrations/{id} | Deactivate a brand/campaign registration
 *SmsApi* | [**disableSmsOnNumber**](docs/SmsApi.md#disableSmsOnNumber) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number
 *SmsApi* | [**disableSmsOnNumberWithHttpInfo**](docs/SmsApi.md#disableSmsOnNumberWithHttpInfo) | **DELETE** /v1/phone-numbers/{id}/sms | Disable SMS on a number
 *SmsApi* | [**enableSmsOnNumber**](docs/SmsApi.md#enableSmsOnNumber) | **POST** /v1/phone-numbers/{id}/sms | Enable SMS on a number
@@ -1334,6 +1336,7 @@ Class | Method | HTTP request | Description
  - [CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [CtwaMultiResponse](docs/CtwaMultiResponse.md)
  - [CtwaSingleResponse](docs/CtwaSingleResponse.md)
+ - [DeactivateSmsRegistration200Response](docs/DeactivateSmsRegistration200Response.md)
  - [DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)

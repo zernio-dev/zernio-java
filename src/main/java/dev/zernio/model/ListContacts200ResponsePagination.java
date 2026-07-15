@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ListContacts200ResponsePagination.JSON_PROPERTY_SKIP,
   ListContacts200ResponsePagination.JSON_PROPERTY_HAS_MORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:35:22.818318786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T11:08:03.646219263Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListContacts200ResponsePagination {
   public static final String JSON_PROPERTY_TOTAL = "total";
   @javax.annotation.Nullable

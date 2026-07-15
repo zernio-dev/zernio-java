@@ -17439,6 +17439,42 @@ paths:
       x-accepts:
       - application/json
   /v1/sms/registrations/{id}:
+    delete:
+      description: |
+        Terminates the campaign with the carrier registry so the recurring
+        monthly campaign fee stops (carriers bill the first 3 months of a
+        campaign regardless). Numbers covered by it can no longer SEND texts —
+        receiving is unaffected — until they're registered under a new brand.
+        Irreversible: a deactivated campaign cannot be restored; texting again
+        later requires a new registration (new one-time and review fees).
+        Idempotent.
+      operationId: deactivateSmsRegistration
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deactivateSmsRegistration_200_response"
+          description: Registration deactivated.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Registration not found
+      security:
+      - bearerAuth: []
+      summary: Deactivate a brand/campaign registration
+      tags:
+      - SMS
+      x-accepts:
+      - application/json
     get:
       description: Poll this for approval progress after starting a registration.
       operationId: getSmsRegistration
@@ -53434,6 +53470,14 @@ components:
           type: boolean
         campaignContent:
           $ref: "#/components/schemas/getSmsRegistration_200_response_campaignContent"
+    deactivateSmsRegistration_200_response:
+      example:
+        status: deactivated
+      properties:
+        status:
+          enum:
+          - deactivated
+          type: string
     verifySmsRegistrationOtp_request:
       properties:
         otpPin:
