@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SavedTargetingAudience.JSON_PROPERTY_DESCRIPTION,
   SavedTargetingAudience.JSON_PROPERTY_SPEC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:11:30.943667536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:32:38.108014460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SavedTargetingAudience {
   /**
    * Gets or Sets type

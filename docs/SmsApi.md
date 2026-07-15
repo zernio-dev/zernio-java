@@ -28,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**shareSmsRegistrationWithHttpInfo**](SmsApi.md#shareSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/share | Create a registration share link |
 | [**startSmsRegistration**](SmsApi.md#startSmsRegistration) | **POST** /v1/sms/registrations | Start a carrier registration |
 | [**startSmsRegistrationWithHttpInfo**](SmsApi.md#startSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations | Start a carrier registration |
+| [**uploadSmsOptInProof**](SmsApi.md#uploadSmsOptInProof) | **POST** /v1/sms/registrations/{id}/opt-in-proof | Upload opt-in form proof for an appeal |
+| [**uploadSmsOptInProofWithHttpInfo**](SmsApi.md#uploadSmsOptInProofWithHttpInfo) | **POST** /v1/sms/registrations/{id}/opt-in-proof | Upload opt-in form proof for an appeal |
 | [**verifySmsRegistrationOtp**](SmsApi.md#verifySmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP |
 | [**verifySmsRegistrationOtpWithHttpInfo**](SmsApi.md#verifySmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP |
 
@@ -1819,6 +1821,160 @@ ApiResponse<[**StartSmsRegistration200Response**](StartSmsRegistration200Respons
 | **200** | Registration submitted. |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
+
+
+## uploadSmsOptInProof
+
+> UploadSmsOptInProof200Response uploadSmsOptInProof(id, _file)
+
+Upload opt-in form proof for an appeal
+
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | 
+        File _file = new File("/path/to/file"); // File | PNG, JPG, WebP, GIF or PDF, max 4MB.
+        try {
+            UploadSmsOptInProof200Response result = apiInstance.uploadSmsOptInProof(id, _file);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#uploadSmsOptInProof");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **_file** | **File**| PNG, JPG, WebP, GIF or PDF, max 4MB. | |
+
+### Return type
+
+[**UploadSmsOptInProof200Response**](UploadSmsOptInProof200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | File hosted. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **422** | Unsupported file type or file too large |  -  |
+
+## uploadSmsOptInProofWithHttpInfo
+
+> ApiResponse<UploadSmsOptInProof200Response> uploadSmsOptInProof uploadSmsOptInProofWithHttpInfo(id, _file)
+
+Upload opt-in form proof for an appeal
+
+Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SmsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SmsApi apiInstance = new SmsApi(defaultClient);
+        String id = "id_example"; // String | 
+        File _file = new File("/path/to/file"); // File | PNG, JPG, WebP, GIF or PDF, max 4MB.
+        try {
+            ApiResponse<UploadSmsOptInProof200Response> response = apiInstance.uploadSmsOptInProofWithHttpInfo(id, _file);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SmsApi#uploadSmsOptInProof");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**|  | |
+| **_file** | **File**| PNG, JPG, WebP, GIF or PDF, max 4MB. | |
+
+### Return type
+
+ApiResponse<[**UploadSmsOptInProof200Response**](UploadSmsOptInProof200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | File hosted. |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Registration not found |  -  |
+| **422** | Unsupported file type or file too large |  -  |
 
 
 ## verifySmsRegistrationOtp

@@ -17597,6 +17597,51 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/sms/registrations/{id}/opt-in-proof:
+    post:
+      description: |
+        Hosts a screenshot (or PDF) of your SMS opt-in form and returns its
+        public URL. Carrier reviewers reject campaigns whose consent can't be
+        verified and ask for a "link/screenshot of the opt-in form" — the
+        registry has no attachment field, so include the returned URL inside
+        the `messageFlow` you submit with the appeal
+        (`POST /v1/sms/registrations/{id}/appeal`).
+      operationId: uploadSmsOptInProof
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/uploadSmsOptInProof_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/uploadSmsOptInProof_200_response"
+          description: File hosted.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Registration not found
+        "422":
+          description: Unsupported file type or file too large
+      security:
+      - bearerAuth: []
+      summary: Upload opt-in form proof for an appeal
+      tags:
+      - SMS
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
   /v1/sms/registrations/share:
     post:
       description: |
@@ -53279,6 +53324,21 @@ components:
         status:
           enum:
           - pending
+          type: string
+    uploadSmsOptInProof_request:
+      properties:
+        file:
+          description: "PNG, JPG, WebP, GIF or PDF, max 4MB."
+          format: binary
+          type: string
+      required:
+      - file
+    uploadSmsOptInProof_200_response:
+      example:
+        url: url
+      properties:
+        url:
+          description: Public URL to reference in the opt-in flow text.
           type: string
     shareSmsRegistration_request:
       properties:

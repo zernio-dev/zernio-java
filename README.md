@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-15T08:11:30.943667536Z[Etc/UTC]
+- Build date: 2026-07-15T08:32:38.108014460Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -780,6 +780,8 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**shareSmsRegistrationWithHttpInfo**](docs/SmsApi.md#shareSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations/share | Create a registration share link
 *SmsApi* | [**startSmsRegistration**](docs/SmsApi.md#startSmsRegistration) | **POST** /v1/sms/registrations | Start a carrier registration
 *SmsApi* | [**startSmsRegistrationWithHttpInfo**](docs/SmsApi.md#startSmsRegistrationWithHttpInfo) | **POST** /v1/sms/registrations | Start a carrier registration
+*SmsApi* | [**uploadSmsOptInProof**](docs/SmsApi.md#uploadSmsOptInProof) | **POST** /v1/sms/registrations/{id}/opt-in-proof | Upload opt-in form proof for an appeal
+*SmsApi* | [**uploadSmsOptInProofWithHttpInfo**](docs/SmsApi.md#uploadSmsOptInProofWithHttpInfo) | **POST** /v1/sms/registrations/{id}/opt-in-proof | Upload opt-in form proof for an appeal
 *SmsApi* | [**verifySmsRegistrationOtp**](docs/SmsApi.md#verifySmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP
 *SmsApi* | [**verifySmsRegistrationOtpWithHttpInfo**](docs/SmsApi.md#verifySmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
@@ -2283,6 +2285,8 @@ Class | Method | HTTP request | Description
  - [UploadPhoneNumberKycDocument200Response](docs/UploadPhoneNumberKycDocument200Response.md)
  - [UploadPhoneNumberPortInDocument200Response](docs/UploadPhoneNumberPortInDocument200Response.md)
  - [UploadPhoneNumberPortInDocumentRequest](docs/UploadPhoneNumberPortInDocumentRequest.md)
+ - [UploadSmsOptInProof200Response](docs/UploadSmsOptInProof200Response.md)
+ - [UploadSmsOptInProofRequest](docs/UploadSmsOptInProofRequest.md)
  - [UploadTokenResponse](docs/UploadTokenResponse.md)
  - [UploadTokenStatusResponse](docs/UploadTokenStatusResponse.md)
  - [UploadWhatsAppFlowJson200Response](docs/UploadWhatsAppFlowJson200Response.md)
