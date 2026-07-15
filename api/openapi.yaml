@@ -52692,6 +52692,13 @@ components:
             type: string
           maxItems: 10
           type: array
+        sendAt:
+          description: "Optional. Schedule the send for a future time (ISO 8601 with\
+            \ offset, e.g. `2026-08-01T12:00:00Z`). Must be in the future. The message\
+            \ is queued and the `message.delivered` webhook fires when it actually\
+            \ sends."
+          format: date-time
+          type: string
       required:
       - from
       - to

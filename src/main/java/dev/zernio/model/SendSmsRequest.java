@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.net.URI;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,9 +40,10 @@ import dev.zernio.ApiClient;
   SendSmsRequest.JSON_PROPERTY_FROM,
   SendSmsRequest.JSON_PROPERTY_TO,
   SendSmsRequest.JSON_PROPERTY_TEXT,
-  SendSmsRequest.JSON_PROPERTY_MEDIA_URLS
+  SendSmsRequest.JSON_PROPERTY_MEDIA_URLS,
+  SendSmsRequest.JSON_PROPERTY_SEND_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:59:43.555637275Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:14:00.981409708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendSmsRequest {
   public static final String JSON_PROPERTY_FROM = "from";
   @javax.annotation.Nonnull
@@ -58,6 +60,10 @@ public class SendSmsRequest {
   public static final String JSON_PROPERTY_MEDIA_URLS = "mediaUrls";
   @javax.annotation.Nullable
   private List<URI> mediaUrls = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SEND_AT = "sendAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime sendAt;
 
   public SendSmsRequest() { 
   }
@@ -166,6 +172,30 @@ public class SendSmsRequest {
   }
 
 
+  public SendSmsRequest sendAt(@javax.annotation.Nullable OffsetDateTime sendAt) {
+    this.sendAt = sendAt;
+    return this;
+  }
+
+  /**
+   * Optional. Schedule the send for a future time (ISO 8601 with offset, e.g. &#x60;2026-08-01T12:00:00Z&#x60;). Must be in the future. The message is queued and the &#x60;message.delivered&#x60; webhook fires when it actually sends.
+   * @return sendAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SEND_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getSendAt() {
+    return sendAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SEND_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSendAt(@javax.annotation.Nullable OffsetDateTime sendAt) {
+    this.sendAt = sendAt;
+  }
+
+
   /**
    * Return true if this sendSms_request object is equal to o.
    */
@@ -181,12 +211,13 @@ public class SendSmsRequest {
     return Objects.equals(this.from, sendSmsRequest.from) &&
         Objects.equals(this.to, sendSmsRequest.to) &&
         Objects.equals(this.text, sendSmsRequest.text) &&
-        Objects.equals(this.mediaUrls, sendSmsRequest.mediaUrls);
+        Objects.equals(this.mediaUrls, sendSmsRequest.mediaUrls) &&
+        Objects.equals(this.sendAt, sendSmsRequest.sendAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(from, to, text, mediaUrls);
+    return Objects.hash(from, to, text, mediaUrls, sendAt);
   }
 
   @Override
@@ -197,6 +228,7 @@ public class SendSmsRequest {
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    mediaUrls: ").append(toIndentedString(mediaUrls)).append("\n");
+    sb.append("    sendAt: ").append(toIndentedString(sendAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -268,6 +300,11 @@ public class SendSmsRequest {
               ApiClient.urlEncode(ApiClient.valueToString(getMediaUrls().get(i)))));
         }
       }
+    }
+
+    // add `sendAt` to the URL query string
+    if (getSendAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssendAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSendAt()))));
     }
 
     return joiner.toString();
