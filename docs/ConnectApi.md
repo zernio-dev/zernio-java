@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectBlueskyCredentialsWithHttpInfo**](ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account |
 | [**connectWhatsAppCredentials**](ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
 | [**connectWhatsAppCredentialsWithHttpInfo**](ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
+| [**createPinterestBoard**](ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
+| [**createPinterestBoardWithHttpInfo**](ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**getConnectUrl**](ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**getConnectUrlWithHttpInfo**](ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**getFacebookPages**](ConnectApi.md#getFacebookPages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
@@ -1017,6 +1019,162 @@ ApiResponse<[**ConnectWhatsAppCredentials200Response**](ConnectWhatsAppCredentia
 | **400** | Invalid request. Either missing fields or the phoneNumberId was not found in the specified WABA. If the phone was not found, the response includes availablePhoneNumbers to help identify the correct ID.  |  -  |
 | **401** | Invalid or expired access token |  -  |
 | **403** | Profile limit exceeded for this plan |  -  |
+
+
+## createPinterestBoard
+
+> CreatePinterestBoard201Response createPinterestBoard(accountId, createPinterestBoardRequest)
+
+Create Pinterest board
+
+Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        CreatePinterestBoardRequest createPinterestBoardRequest = new CreatePinterestBoardRequest(); // CreatePinterestBoardRequest | 
+        try {
+            CreatePinterestBoard201Response result = apiInstance.createPinterestBoard(accountId, createPinterestBoardRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createPinterestBoard");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **createPinterestBoardRequest** | [**CreatePinterestBoardRequest**](CreatePinterestBoardRequest.md)|  | |
+
+### Return type
+
+[**CreatePinterestBoard201Response**](CreatePinterestBoard201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Board created |  -  |
+| **400** | Invalid request or not a Pinterest account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Pinterest rejected the request (e.g. duplicate board name) |  -  |
+
+## createPinterestBoardWithHttpInfo
+
+> ApiResponse<CreatePinterestBoard201Response> createPinterestBoard createPinterestBoardWithHttpInfo(accountId, createPinterestBoardRequest)
+
+Create Pinterest board
+
+Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        CreatePinterestBoardRequest createPinterestBoardRequest = new CreatePinterestBoardRequest(); // CreatePinterestBoardRequest | 
+        try {
+            ApiResponse<CreatePinterestBoard201Response> response = apiInstance.createPinterestBoardWithHttpInfo(accountId, createPinterestBoardRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createPinterestBoard");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **createPinterestBoardRequest** | [**CreatePinterestBoardRequest**](CreatePinterestBoardRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreatePinterestBoard201Response**](CreatePinterestBoard201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Board created |  -  |
+| **400** | Invalid request or not a Pinterest account |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **502** | Pinterest rejected the request (e.g. duplicate board name) |  -  |
 
 
 ## getConnectUrl

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-15T06:23:53.677173698Z[Etc/UTC]
+- Build date: 2026-07-15T08:11:30.943667536Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -400,6 +400,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectBlueskyCredentialsWithHttpInfo**](docs/ConnectApi.md#connectBlueskyCredentialsWithHttpInfo) | **POST** /v1/connect/bluesky/credentials | Connect Bluesky account
 *ConnectApi* | [**connectWhatsAppCredentials**](docs/ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
+*ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
+*ConnectApi* | [**createPinterestBoardWithHttpInfo**](docs/ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getConnectUrlWithHttpInfo**](docs/ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getFacebookPages**](docs/ConnectApi.md#getFacebookPages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
@@ -1252,6 +1254,9 @@ Class | Method | HTTP request | Description
  - [CreatePhoneNumberPortIn201ResponseOrdersInner](docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md)
  - [CreatePhoneNumberPortInRequest](docs/CreatePhoneNumberPortInRequest.md)
  - [CreatePhoneNumberPortInRequestEndUser](docs/CreatePhoneNumberPortInRequestEndUser.md)
+ - [CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
+ - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
+ - [CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
  - [CreatePost403Response](docs/CreatePost403Response.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
  - [CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)

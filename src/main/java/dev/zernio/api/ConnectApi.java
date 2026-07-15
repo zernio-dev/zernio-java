@@ -28,6 +28,8 @@ import dev.zernio.model.ConnectBlueskyCredentials200Response;
 import dev.zernio.model.ConnectBlueskyCredentialsRequest;
 import dev.zernio.model.ConnectWhatsAppCredentials200Response;
 import dev.zernio.model.ConnectWhatsAppCredentialsRequest;
+import dev.zernio.model.CreatePinterestBoard201Response;
+import dev.zernio.model.CreatePinterestBoardRequest;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetConnectUrl200Response;
 import dev.zernio.model.GetFacebookPages200Response;
@@ -100,7 +102,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T06:23:53.677173698Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:11:30.943667536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1004,6 +1006,138 @@ public class ConnectApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(connectWhatsAppCredentialsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create Pinterest board
+   * Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+   * @param accountId  (required)
+   * @param createPinterestBoardRequest  (required)
+   * @return CreatePinterestBoard201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePinterestBoard201Response createPinterestBoard(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreatePinterestBoardRequest createPinterestBoardRequest) throws ApiException {
+    return createPinterestBoard(accountId, createPinterestBoardRequest, null);
+  }
+
+  /**
+   * Create Pinterest board
+   * Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+   * @param accountId  (required)
+   * @param createPinterestBoardRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreatePinterestBoard201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreatePinterestBoard201Response createPinterestBoard(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreatePinterestBoardRequest createPinterestBoardRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreatePinterestBoard201Response> localVarResponse = createPinterestBoardWithHttpInfo(accountId, createPinterestBoardRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create Pinterest board
+   * Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+   * @param accountId  (required)
+   * @param createPinterestBoardRequest  (required)
+   * @return ApiResponse&lt;CreatePinterestBoard201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePinterestBoard201Response> createPinterestBoardWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreatePinterestBoardRequest createPinterestBoardRequest) throws ApiException {
+    return createPinterestBoardWithHttpInfo(accountId, createPinterestBoardRequest, null);
+  }
+
+  /**
+   * Create Pinterest board
+   * Creates a new board on the connected Pinterest account. The returned board ID can be used immediately as &#x60;platformSpecificData.boardId&#x60; when creating a Pinterest post.
+   * @param accountId  (required)
+   * @param createPinterestBoardRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreatePinterestBoard201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreatePinterestBoard201Response> createPinterestBoardWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreatePinterestBoardRequest createPinterestBoardRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createPinterestBoardRequestBuilder(accountId, createPinterestBoardRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createPinterestBoard", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreatePinterestBoard201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreatePinterestBoard201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreatePinterestBoard201Response>() {});
+        
+
+        return new ApiResponse<CreatePinterestBoard201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createPinterestBoardRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull CreatePinterestBoardRequest createPinterestBoardRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling createPinterestBoard");
+    }
+    // verify the required parameter 'createPinterestBoardRequest' is set
+    if (createPinterestBoardRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createPinterestBoardRequest' when calling createPinterestBoard");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/pinterest-boards"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createPinterestBoardRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);

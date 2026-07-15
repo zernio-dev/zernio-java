@@ -10671,6 +10671,56 @@ paths:
       - Connect
       x-accepts:
       - application/json
+    post:
+      description: Creates a new board on the connected Pinterest account. The returned
+        board ID can be used immediately as `platformSpecificData.boardId` when creating
+        a Pinterest post.
+      operationId: createPinterestBoard
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Summer Recipes
+              description: My favorite summer recipes
+              privacy: PUBLIC
+            schema:
+              $ref: "#/components/schemas/createPinterestBoard_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                board:
+                  id: "345678901234567890"
+                  name: Summer Recipes
+                  description: My favorite summer recipes
+                  privacy: PUBLIC
+              schema:
+                $ref: "#/components/schemas/createPinterestBoard_201_response"
+          description: Board created
+        "400":
+          description: Invalid request or not a Pinterest account
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+        "502":
+          description: Pinterest rejected the request (e.g. duplicate board name)
+      summary: Create Pinterest board
+      tags:
+      - Connect
+      x-content-type: application/json
+      x-accepts:
+      - application/json
     put:
       description: Sets the default board used when publishing pins for this account.
       operationId: updatePinterestBoards
@@ -45951,6 +46001,53 @@ components:
           type: string
       required:
       - defaultBoardId
+    createPinterestBoard_request:
+      properties:
+        name:
+          description: Name of the board
+          type: string
+        description:
+          description: Board description
+          type: string
+        privacy:
+          default: PUBLIC
+          description: Board privacy setting
+          enum:
+          - PUBLIC
+          - PROTECTED
+          - SECRET
+          type: string
+      required:
+      - name
+    createPinterestBoard_201_response_board:
+      example:
+        name: name
+        description: description
+        privacy: privacy
+        id: id
+        url: url
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        privacy:
+          type: string
+        url:
+          type: string
+    createPinterestBoard_201_response:
+      example:
+        board:
+          name: name
+          description: description
+          privacy: privacy
+          id: id
+          url: url
+      properties:
+        board:
+          $ref: "#/components/schemas/createPinterestBoard_201_response_board"
     getYoutubePlaylists_200_response_playlists_inner:
       example:
         description: description

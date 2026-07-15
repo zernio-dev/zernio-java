@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UsageMeteringCallUsage.JSON_PROPERTY_WHATSAPP,
   UsageMeteringCallUsage.JSON_PROPERTY_PSTN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T06:23:53.677173698Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:11:30.943667536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UsageMeteringCallUsage {
   public static final String JSON_PROPERTY_WHATSAPP = "whatsapp";
   @javax.annotation.Nullable
