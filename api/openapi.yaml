@@ -17597,6 +17597,41 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/sms/opt-in-proof:
+    post:
+      description: |
+        Hosts a screenshot (or PDF) of your SMS opt-in form and returns its
+        public URL. Include that URL in the campaign's `messageFlow` (the
+        opt-in workflow text) — the carrier registry has no attachment field,
+        so reviewers verify consent by opening links in that answer. Works
+        before a registration exists (use it when registering) and for
+        appeals. `/v1/sms/registrations/{id}/opt-in-proof` is an alias.
+      operationId: uploadSmsOptInProofFile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/uploadSmsOptInProofFile_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/uploadSmsOptInProofFile_200_response"
+          description: File hosted.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "422":
+          description: Unsupported file type or file too large
+      security:
+      - bearerAuth: []
+      summary: Upload opt-in form proof
+      tags:
+      - SMS
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
   /v1/sms/registrations/{id}/opt-in-proof:
     post:
       description: |
@@ -17619,14 +17654,14 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/uploadSmsOptInProof_request"
+              $ref: "#/components/schemas/uploadSmsOptInProofFile_request"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/uploadSmsOptInProof_200_response"
+                $ref: "#/components/schemas/uploadSmsOptInProofFile_200_response"
           description: File hosted.
         "401":
           $ref: "#/components/responses/Unauthorized"
@@ -53345,7 +53380,7 @@ components:
           enum:
           - pending
           type: string
-    uploadSmsOptInProof_request:
+    uploadSmsOptInProofFile_request:
       properties:
         file:
           description: "PNG, JPG, WebP, GIF or PDF, max 4MB."
@@ -53353,7 +53388,7 @@ components:
           type: string
       required:
       - file
-    uploadSmsOptInProof_200_response:
+    uploadSmsOptInProofFile_200_response:
       example:
         url: url
       properties:

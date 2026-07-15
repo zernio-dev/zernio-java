@@ -36,7 +36,7 @@ import dev.zernio.model.ShareSmsRegistration200Response;
 import dev.zernio.model.ShareSmsRegistrationRequest;
 import dev.zernio.model.StartSmsRegistration200Response;
 import dev.zernio.model.StartSmsRegistrationRequest;
-import dev.zernio.model.UploadSmsOptInProof200Response;
+import dev.zernio.model.UploadSmsOptInProofFile200Response;
 import dev.zernio.model.VerifySmsRegistrationOtp200Response;
 import dev.zernio.model.VerifySmsRegistrationOtpRequest;
 
@@ -71,7 +71,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:14:00.981409708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:21:19.777291130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1666,10 +1666,10 @@ public class SmsApi {
    * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
-   * @return UploadSmsOptInProof200Response
+   * @return UploadSmsOptInProofFile200Response
    * @throws ApiException if fails to make API call
    */
-  public UploadSmsOptInProof200Response uploadSmsOptInProof(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file) throws ApiException {
+  public UploadSmsOptInProofFile200Response uploadSmsOptInProof(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file) throws ApiException {
     return uploadSmsOptInProof(id, _file, null);
   }
 
@@ -1679,11 +1679,11 @@ public class SmsApi {
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @param headers Optional headers to include in the request
-   * @return UploadSmsOptInProof200Response
+   * @return UploadSmsOptInProofFile200Response
    * @throws ApiException if fails to make API call
    */
-  public UploadSmsOptInProof200Response uploadSmsOptInProof(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file, Map<String, String> headers) throws ApiException {
-    ApiResponse<UploadSmsOptInProof200Response> localVarResponse = uploadSmsOptInProofWithHttpInfo(id, _file, headers);
+  public UploadSmsOptInProofFile200Response uploadSmsOptInProof(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file, Map<String, String> headers) throws ApiException {
+    ApiResponse<UploadSmsOptInProofFile200Response> localVarResponse = uploadSmsOptInProofWithHttpInfo(id, _file, headers);
     return localVarResponse.getData();
   }
 
@@ -1692,10 +1692,10 @@ public class SmsApi {
    * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Carrier reviewers reject campaigns whose consent can&#39;t be verified and ask for a \&quot;link/screenshot of the opt-in form\&quot; — the registry has no attachment field, so include the returned URL inside the &#x60;messageFlow&#x60; you submit with the appeal (&#x60;POST /v1/sms/registrations/{id}/appeal&#x60;). 
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
-   * @return ApiResponse&lt;UploadSmsOptInProof200Response&gt;
+   * @return ApiResponse&lt;UploadSmsOptInProofFile200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UploadSmsOptInProof200Response> uploadSmsOptInProofWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file) throws ApiException {
+  public ApiResponse<UploadSmsOptInProofFile200Response> uploadSmsOptInProofWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file) throws ApiException {
     return uploadSmsOptInProofWithHttpInfo(id, _file, null);
   }
 
@@ -1705,10 +1705,10 @@ public class SmsApi {
    * @param id  (required)
    * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;UploadSmsOptInProof200Response&gt;
+   * @return ApiResponse&lt;UploadSmsOptInProofFile200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UploadSmsOptInProof200Response> uploadSmsOptInProofWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UploadSmsOptInProofFile200Response> uploadSmsOptInProofWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File _file, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = uploadSmsOptInProofRequestBuilder(id, _file, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -1724,7 +1724,7 @@ public class SmsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<UploadSmsOptInProof200Response>(
+          return new ApiResponse<UploadSmsOptInProofFile200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -1734,10 +1734,10 @@ public class SmsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        UploadSmsOptInProof200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadSmsOptInProof200Response>() {});
+        UploadSmsOptInProofFile200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadSmsOptInProofFile200Response>() {});
         
 
-        return new ApiResponse<UploadSmsOptInProof200Response>(
+        return new ApiResponse<UploadSmsOptInProofFile200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue
@@ -1770,6 +1770,157 @@ public class SmsApi {
 
     String localVarPath = "/v1/sms/registrations/{id}/opt-in-proof"
         .replace("{id}", ApiClient.urlEncode(id.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    MultipartEntityBuilder multiPartBuilder = MultipartEntityBuilder.create();
+    boolean hasFiles = false;
+    multiPartBuilder.addBinaryBody("file", _file);
+    hasFiles = true;
+    HttpEntity entity = multiPartBuilder.build();
+    HttpRequest.BodyPublisher formDataPublisher;
+    if (hasFiles) {
+        Pipe pipe;
+        try {
+            pipe = Pipe.open();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        new Thread(() -> {
+            try (OutputStream outputStream = Channels.newOutputStream(pipe.sink())) {
+                entity.writeTo(outputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
+        formDataPublisher = HttpRequest.BodyPublishers.ofInputStream(() -> Channels.newInputStream(pipe.source()));
+    } else {
+        ByteArrayOutputStream formOutputStream = new ByteArrayOutputStream();
+        try {
+            entity.writeTo(formOutputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        byte[] formBytes = formOutputStream.toByteArray();
+        formDataPublisher = HttpRequest.BodyPublishers
+            .ofInputStream(() -> new ByteArrayInputStream(formBytes));
+    }
+    localVarRequestBuilder
+        .header("Content-Type", entity.getContentType().getValue())
+        .method("POST", formDataPublisher);
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Upload opt-in form proof
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
+   * @return UploadSmsOptInProofFile200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadSmsOptInProofFile200Response uploadSmsOptInProofFile(@javax.annotation.Nonnull File _file) throws ApiException {
+    return uploadSmsOptInProofFile(_file, null);
+  }
+
+  /**
+   * Upload opt-in form proof
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
+   * @param headers Optional headers to include in the request
+   * @return UploadSmsOptInProofFile200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadSmsOptInProofFile200Response uploadSmsOptInProofFile(@javax.annotation.Nonnull File _file, Map<String, String> headers) throws ApiException {
+    ApiResponse<UploadSmsOptInProofFile200Response> localVarResponse = uploadSmsOptInProofFileWithHttpInfo(_file, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Upload opt-in form proof
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
+   * @return ApiResponse&lt;UploadSmsOptInProofFile200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadSmsOptInProofFile200Response> uploadSmsOptInProofFileWithHttpInfo(@javax.annotation.Nonnull File _file) throws ApiException {
+    return uploadSmsOptInProofFileWithHttpInfo(_file, null);
+  }
+
+  /**
+   * Upload opt-in form proof
+   * Hosts a screenshot (or PDF) of your SMS opt-in form and returns its public URL. Include that URL in the campaign&#39;s &#x60;messageFlow&#x60; (the opt-in workflow text) — the carrier registry has no attachment field, so reviewers verify consent by opening links in that answer. Works before a registration exists (use it when registering) and for appeals. &#x60;/v1/sms/registrations/{id}/opt-in-proof&#x60; is an alias. 
+   * @param _file PNG, JPG, WebP, GIF or PDF, max 4MB. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UploadSmsOptInProofFile200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadSmsOptInProofFile200Response> uploadSmsOptInProofFileWithHttpInfo(@javax.annotation.Nonnull File _file, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = uploadSmsOptInProofFileRequestBuilder(_file, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("uploadSmsOptInProofFile", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UploadSmsOptInProofFile200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UploadSmsOptInProofFile200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadSmsOptInProofFile200Response>() {});
+        
+
+        return new ApiResponse<UploadSmsOptInProofFile200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder uploadSmsOptInProofFileRequestBuilder(@javax.annotation.Nonnull File _file, Map<String, String> headers) throws ApiException {
+    // verify the required parameter '_file' is set
+    if (_file == null) {
+      throw new ApiException(400, "Missing the required parameter '_file' when calling uploadSmsOptInProofFile");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/sms/opt-in-proof";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 

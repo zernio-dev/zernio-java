@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   WhatsAppTemplateButton.JSON_PROPERTY_FLOW_ACTION,
   WhatsAppTemplateButton.JSON_PROPERTY_NAVIGATE_SCREEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:14:00.981409708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:21:19.777291130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplateButton {
   /**
    * Gets or Sets type

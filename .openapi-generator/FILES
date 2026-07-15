@@ -1272,8 +1272,8 @@ docs/UploadMediaDirectRequest.md
 docs/UploadPhoneNumberKycDocument200Response.md
 docs/UploadPhoneNumberPortInDocument200Response.md
 docs/UploadPhoneNumberPortInDocumentRequest.md
-docs/UploadSmsOptInProof200Response.md
-docs/UploadSmsOptInProofRequest.md
+docs/UploadSmsOptInProofFile200Response.md
+docs/UploadSmsOptInProofFileRequest.md
 docs/UploadTokenResponse.md
 docs/UploadTokenStatusResponse.md
 docs/UploadWhatsAppFlowJson200Response.md
@@ -2743,8 +2743,8 @@ src/main/java/dev/zernio/model/UploadMediaDirectRequest.java
 src/main/java/dev/zernio/model/UploadPhoneNumberKycDocument200Response.java
 src/main/java/dev/zernio/model/UploadPhoneNumberPortInDocument200Response.java
 src/main/java/dev/zernio/model/UploadPhoneNumberPortInDocumentRequest.java
-src/main/java/dev/zernio/model/UploadSmsOptInProof200Response.java
-src/main/java/dev/zernio/model/UploadSmsOptInProofRequest.java
+src/main/java/dev/zernio/model/UploadSmsOptInProofFile200Response.java
+src/main/java/dev/zernio/model/UploadSmsOptInProofFileRequest.java
 src/main/java/dev/zernio/model/UploadTokenResponse.java
 src/main/java/dev/zernio/model/UploadTokenStatusResponse.java
 src/main/java/dev/zernio/model/UploadWhatsAppFlowJson200Response.java
@@ -2901,3 +2901,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UploadSmsOptInProofFile200ResponseTest.java
+src/test/java/dev/zernio/model/UploadSmsOptInProofFileRequestTest.java
