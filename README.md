@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-15T09:21:19.777291130Z[Etc/UTC]
+- Build date: 2026-07-15T09:26:59.986858445Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -232,6 +232,10 @@ Class | Method | HTTP request | Description
 *AdsApi* | [**getDsaRecommendationsWithHttpInfo**](docs/AdsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions
 *AdsApi* | [**getLeadForm**](docs/AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
 *AdsApi* | [**getLeadFormWithHttpInfo**](docs/AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
+*AdsApi* | [**getLinkedInBidPricing**](docs/AdsApi.md#getLinkedInBidPricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn)
+*AdsApi* | [**getLinkedInBidPricingWithHttpInfo**](docs/AdsApi.md#getLinkedInBidPricingWithHttpInfo) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn)
+*AdsApi* | [**getLinkedInSupplyForecast**](docs/AdsApi.md#getLinkedInSupplyForecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
+*AdsApi* | [**getLinkedInSupplyForecastWithHttpInfo**](docs/AdsApi.md#getLinkedInSupplyForecastWithHttpInfo) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn)
 *AdsApi* | [**listAdAccounts**](docs/AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**listAdAccountsWithHttpInfo**](docs/AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
 *AdsApi* | [**listAdCatalogProductSets**](docs/AdsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
@@ -1573,6 +1577,11 @@ Class | Method | HTTP request | Description
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
  - [GetLinkedInAggregateAnalytics403Response](docs/GetLinkedInAggregateAnalytics403Response.md)
+ - [GetLinkedInBidPricing200Response](docs/GetLinkedInBidPricing200Response.md)
+ - [GetLinkedInBidPricing200ResponsePricing](docs/GetLinkedInBidPricing200ResponsePricing.md)
+ - [GetLinkedInBidPricing200ResponsePricingBidLimits](docs/GetLinkedInBidPricing200ResponsePricingBidLimits.md)
+ - [GetLinkedInBidPricing200ResponsePricingSuggestedBid](docs/GetLinkedInBidPricing200ResponsePricingSuggestedBid.md)
+ - [GetLinkedInBidPricingRequest](docs/GetLinkedInBidPricingRequest.md)
  - [GetLinkedInMentions200Response](docs/GetLinkedInMentions200Response.md)
  - [GetLinkedInOrganizations200Response](docs/GetLinkedInOrganizations200Response.md)
  - [GetLinkedInOrganizations200ResponseOrganizationsInner](docs/GetLinkedInOrganizations200ResponseOrganizationsInner.md)
@@ -1585,6 +1594,12 @@ Class | Method | HTTP request | Description
  - [GetLinkedInPostReactions200ResponseReactionsInner](docs/GetLinkedInPostReactions200ResponseReactionsInner.md)
  - [GetLinkedInPostReactions200ResponseReactionsInnerFrom](docs/GetLinkedInPostReactions200ResponseReactionsInnerFrom.md)
  - [GetLinkedInPostReactions400Response](docs/GetLinkedInPostReactions400Response.md)
+ - [GetLinkedInSupplyForecast200Response](docs/GetLinkedInSupplyForecast200Response.md)
+ - [GetLinkedInSupplyForecast200ResponseForecastInner](docs/GetLinkedInSupplyForecast200ResponseForecastInner.md)
+ - [GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner](docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.md)
+ - [GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange](docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRange.md)
+ - [GetLinkedInSupplyForecastRequest](docs/GetLinkedInSupplyForecastRequest.md)
+ - [GetLinkedInSupplyForecastRequestCompetingBid](docs/GetLinkedInSupplyForecastRequestCompetingBid.md)
  - [GetMediaPresignedUrl200Response](docs/GetMediaPresignedUrl200Response.md)
  - [GetMediaPresignedUrlRequest](docs/GetMediaPresignedUrlRequest.md)
  - [GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
@@ -1904,6 +1919,7 @@ Class | Method | HTTP request | Description
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [Money](docs/Money.md)
+ - [MoneyAmount](docs/MoneyAmount.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
  - [OnWhatsAppAutomaticEventRequest](docs/OnWhatsAppAutomaticEventRequest.md)

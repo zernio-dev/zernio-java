@@ -25656,6 +25656,93 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/targeting/bid-pricing:
+    post:
+      description: |
+        LinkedIn-only. Returns the suggested bid and bid limits for a targeting
+        spec, plus the daily-budget bounds LinkedIn will accept. Use it before
+        creating a campaign to pick a bid inside the allowed range and warn the
+        user if their daily budget is below the minimum. Wraps LinkedIn's
+        `adBudgetPricing` finder.
+
+        Non-LinkedIn accounts return `available: false` so clients can hide the
+        pricing UI without treating it as a failure.
+      operationId: getLinkedInBidPricing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getLinkedInBidPricing_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getLinkedInBidPricing_200_response"
+          description: Pricing insights
+        "400":
+          description: Invalid targeting or unsupported objective/optimization/bid
+            combination.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Suggested bid and budget bounds (LinkedIn)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/targeting/supply-forecast:
+    post:
+      description: |
+        LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other
+        metrics for a targeting spec over a time range. Wraps LinkedIn's
+        `adSupplyForecasts` finder.
+
+        Each returned series carries a `metricType` (IMPRESSION, CLICK, SPENDING,
+        MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a
+        `granularity` (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the
+        daily spending forecast at 1.2x the daily budget and returns 0 once the
+        total budget is exhausted.
+
+        Non-LinkedIn accounts return `available: false`.
+      operationId: getLinkedInSupplyForecast
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/getLinkedInSupplyForecast_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getLinkedInSupplyForecast_200_response"
+          description: Forecast series
+        "400":
+          description: "Invalid targeting, missing budget, or LinkedIn forecast validation\
+            \ error (e.g. END_DATE_MAX_HORIZON_FOR_FORECAST)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: "Impressions, clicks and spend forecast (LinkedIn)"
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/catalogs:
     get:
       description: "Lists the Meta product catalogs reachable from an ad account (owned\
@@ -32413,6 +32500,20 @@ components:
           type: string
         geoRestriction:
           $ref: "#/components/schemas/GeoRestriction"
+    MoneyAmount:
+      example:
+        amount: amount
+        currencyCode: currencyCode
+      properties:
+        amount:
+          description: "Amount as a decimal string, e.g. \"88.59\"."
+          type: string
+        currencyCode:
+          description: "ISO 4217 currency code, e.g. \"USD\"."
+          type: string
+      required:
+      - amount
+      - currencyCode
     LinkedInAdsPlatformData:
       additionalProperties: {}
       description: |
@@ -65598,6 +65699,330 @@ components:
           type: boolean
       required:
       - available
+    getLinkedInBidPricing_request:
+      properties:
+        accountId:
+          description: Zernio social account ID (LinkedIn).
+          type: string
+        adAccountId:
+          description: LinkedIn ad account ID (numeric).
+          type: string
+        spec:
+          allOf:
+          - allOf:
+            - $ref: "#/components/schemas/TargetingSpec"
+            nullable: true
+          description: Same targeting spec used by POST /v1/ads/create.
+        campaignType:
+          description: Defaults to SPONSORED_UPDATES.
+          enum:
+          - TEXT_AD
+          - SPONSORED_UPDATES
+          - SPONSORED_INMAILS
+          type: string
+        bidType:
+          description: Defaults to CPM.
+          enum:
+          - CPM
+          - CPC
+          - CPV
+          type: string
+        matchType:
+          description: Defaults to EXACT.
+          enum:
+          - EXACT
+          - AUDIENCE_EXPANDED
+          type: string
+        currency:
+          description: "ISO 4217, defaults to USD."
+          maxLength: 3
+          minLength: 3
+          type: string
+        objectiveType:
+          description: "LinkedIn objectiveType, e.g. WEBSITE_VISIT, LEAD_GENERATION,\
+            \ VIDEO_VIEW."
+          type: string
+        optimizationTargetType:
+          description: "LinkedIn optimizationTargetType, e.g. MAX_CLICK, MAX_IMPRESSION."
+          type: string
+        dailyBudget:
+          description: Optional daily budget in whole account-currency units. LinkedIn
+            refines the suggested bid to this budget.
+          type: number
+      required:
+      - accountId
+      - adAccountId
+      - spec
+    getLinkedInBidPricing_200_response_pricing_bidLimits:
+      example:
+        min:
+          amount: amount
+          currencyCode: currencyCode
+        max:
+          amount: amount
+          currencyCode: currencyCode
+      properties:
+        min:
+          $ref: "#/components/schemas/MoneyAmount"
+        max:
+          $ref: "#/components/schemas/MoneyAmount"
+    getLinkedInBidPricing_200_response_pricing_suggestedBid:
+      example:
+        default:
+          amount: amount
+          currencyCode: currencyCode
+        min:
+          amount: amount
+          currencyCode: currencyCode
+        max:
+          amount: amount
+          currencyCode: currencyCode
+      properties:
+        min:
+          $ref: "#/components/schemas/MoneyAmount"
+        default:
+          $ref: "#/components/schemas/MoneyAmount"
+        max:
+          $ref: "#/components/schemas/MoneyAmount"
+    getLinkedInBidPricing_200_response_pricing:
+      description: LinkedIn's adBudgetPricing element. Null when LinkedIn has no data
+        for the combination.
+      example:
+        suggestedBid:
+          default:
+            amount: amount
+            currencyCode: currencyCode
+          min:
+            amount: amount
+            currencyCode: currencyCode
+          max:
+            amount: amount
+            currencyCode: currencyCode
+        dailyBudgetLimits:
+          default:
+            amount: amount
+            currencyCode: currencyCode
+          min:
+            amount: amount
+            currencyCode: currencyCode
+          max:
+            amount: amount
+            currencyCode: currencyCode
+        bidLimits:
+          min:
+            amount: amount
+            currencyCode: currencyCode
+          max:
+            amount: amount
+            currencyCode: currencyCode
+      properties:
+        bidLimits:
+          $ref: "#/components/schemas/getLinkedInBidPricing_200_response_pricing_bidLimits"
+        suggestedBid:
+          $ref: "#/components/schemas/getLinkedInBidPricing_200_response_pricing_suggestedBid"
+        dailyBudgetLimits:
+          $ref: "#/components/schemas/getLinkedInBidPricing_200_response_pricing_suggestedBid"
+    getLinkedInBidPricing_200_response:
+      example:
+        available: true
+        pricing:
+          suggestedBid:
+            default:
+              amount: amount
+              currencyCode: currencyCode
+            min:
+              amount: amount
+              currencyCode: currencyCode
+            max:
+              amount: amount
+              currencyCode: currencyCode
+          dailyBudgetLimits:
+            default:
+              amount: amount
+              currencyCode: currencyCode
+            min:
+              amount: amount
+              currencyCode: currencyCode
+            max:
+              amount: amount
+              currencyCode: currencyCode
+          bidLimits:
+            min:
+              amount: amount
+              currencyCode: currencyCode
+            max:
+              amount: amount
+              currencyCode: currencyCode
+      properties:
+        available:
+          type: boolean
+        pricing:
+          $ref: "#/components/schemas/getLinkedInBidPricing_200_response_pricing"
+      required:
+      - available
+    getLinkedInSupplyForecast_request_competingBid:
+      description: Required for manual-bid forecasts (when optimizationTarget is not
+        set).
+      properties:
+        bidType:
+          enum:
+          - CPM
+          - CPC
+          - CPV
+          type: string
+        amount:
+          type: number
+      required:
+      - amount
+      - bidType
+    getLinkedInSupplyForecast_request:
+      properties:
+        accountId:
+          type: string
+        adAccountId:
+          type: string
+        spec:
+          allOf:
+          - allOf:
+            - $ref: "#/components/schemas/TargetingSpec"
+            nullable: true
+        campaignType:
+          description: Defaults to SPONSORED_UPDATES.
+          enum:
+          - SPONSORED_UPDATES
+          - SPONSORED_INMAILS
+          - DYNAMIC
+          type: string
+        timeRangeStart:
+          description: Unix ms. Must be in the future.
+          type: integer
+        timeRangeEnd:
+          description: Unix ms. Must be after start and within LinkedIn's max horizon.
+          type: integer
+        objectiveType:
+          type: string
+        optimizationTarget:
+          description: "When set, the forecast assumes auto-bidding. When unset, competingBid\
+            \ is required."
+          type: string
+        dailyBudget:
+          description: Either dailyBudget or totalBudget is required.
+          type: number
+        totalBudget:
+          type: number
+        currency:
+          description: "ISO 4217, defaults to USD."
+          maxLength: 3
+          minLength: 3
+          type: string
+        competingBid:
+          $ref: "#/components/schemas/getLinkedInSupplyForecast_request_competingBid"
+        enableAudienceNetwork:
+          description: Defaults to false. Required true for connectedTelevisionOnly.
+          type: boolean
+        enableAudienceExpansion:
+          description: Defaults to false.
+          type: boolean
+        connectedTelevisionOnly:
+          description: Defaults to false.
+          type: boolean
+      required:
+      - accountId
+      - adAccountId
+      - spec
+      - timeRangeEnd
+      - timeRangeStart
+    getLinkedInSupplyForecast_200_response_forecast_inner_timeSeries_inner_adForecastRange:
+      example:
+        lowEnd: 1.4658129805029452
+        highEnd: 5.962133916683182
+      properties:
+        lowEnd:
+          type: number
+        highEnd:
+          type: number
+    getLinkedInSupplyForecast_200_response_forecast_inner_timeSeries_inner:
+      example:
+        adForecastRange:
+          lowEnd: 1.4658129805029452
+          highEnd: 5.962133916683182
+        value: 6.027456183070403
+        timestamp: 0
+      properties:
+        timestamp:
+          type: integer
+        value:
+          type: number
+        adForecastRange:
+          $ref: "#/components/schemas/getLinkedInSupplyForecast_200_response_forecast_inner_timeSeries_inner_adForecastRange"
+    getLinkedInSupplyForecast_200_response_forecast_inner:
+      example:
+        metricType: metricType
+        timeSeries:
+        - adForecastRange:
+            lowEnd: 1.4658129805029452
+            highEnd: 5.962133916683182
+          value: 6.027456183070403
+          timestamp: 0
+        - adForecastRange:
+            lowEnd: 1.4658129805029452
+            highEnd: 5.962133916683182
+          value: 6.027456183070403
+          timestamp: 0
+        granularity: DAILY
+      properties:
+        metricType:
+          type: string
+        granularity:
+          enum:
+          - DAILY
+          - SEVEN_DAY
+          - THIRTY_DAY
+          - CUSTOM
+          type: string
+        timeSeries:
+          items:
+            $ref: "#/components/schemas/getLinkedInSupplyForecast_200_response_forecast_inner_timeSeries_inner"
+          type: array
+    getLinkedInSupplyForecast_200_response:
+      example:
+        available: true
+        forecast:
+        - metricType: metricType
+          timeSeries:
+          - adForecastRange:
+              lowEnd: 1.4658129805029452
+              highEnd: 5.962133916683182
+            value: 6.027456183070403
+            timestamp: 0
+          - adForecastRange:
+              lowEnd: 1.4658129805029452
+              highEnd: 5.962133916683182
+            value: 6.027456183070403
+            timestamp: 0
+          granularity: DAILY
+        - metricType: metricType
+          timeSeries:
+          - adForecastRange:
+              lowEnd: 1.4658129805029452
+              highEnd: 5.962133916683182
+            value: 6.027456183070403
+            timestamp: 0
+          - adForecastRange:
+              lowEnd: 1.4658129805029452
+              highEnd: 5.962133916683182
+            value: 6.027456183070403
+            timestamp: 0
+          granularity: DAILY
+      properties:
+        available:
+          type: boolean
+        forecast:
+          items:
+            $ref: "#/components/schemas/getLinkedInSupplyForecast_200_response_forecast_inner"
+          type: array
+      required:
+      - available
     listAdCatalogs_200_response_catalogs_inner:
       example:
         name: name
@@ -65786,12 +66211,14 @@ components:
           - lookalike
           type: string
         matchRules:
-          description: |
-            Required for website_retargeting audiences (LinkedIn only).
-            Each rule is a URL pattern; a member who visits any
-            matching page enters the segment. Needs the LinkedIn
-            Insight Tag installed on the customer's site — the
-            segment only starts filling once the tag reports visits.
+          description: "Required for website_retargeting audiences (LinkedIn only).\n\
+            Each rule is a URL pattern; a member who visits any\nmatching page enters\
+            \ the segment. Needs the LinkedIn\nInsight Tag installed on the customer's\
+            \ site — the\nsegment only starts filling once the tag reports visits.\n\
+            \nThe response's `platformAudienceId` is the LinkedIn\nadSegment id, valid\
+            \ for downstream use.\nThese segments appear in GET /v1/ads/audiences\
+            \ with \n`type: website_retargeting` once LinkedIn has finished building\
+            \ them.\n"
           items:
             $ref: "#/components/schemas/UploadedOrDerivedAudience_matchRules_inner"
           maxItems: 50

@@ -49,6 +49,10 @@ import dev.zernio.model.GetConversionMetrics200Response;
 import dev.zernio.model.GetConversionsQuality200Response;
 import dev.zernio.model.GetDsaRecommendations200Response;
 import dev.zernio.model.GetLeadForm200Response;
+import dev.zernio.model.GetLinkedInBidPricing200Response;
+import dev.zernio.model.GetLinkedInBidPricingRequest;
+import dev.zernio.model.GetLinkedInSupplyForecast200Response;
+import dev.zernio.model.GetLinkedInSupplyForecastRequest;
 import dev.zernio.model.InlineObject;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
@@ -104,7 +108,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:21:19.777291130Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:26:59.986858445Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -3329,6 +3333,252 @@ public class AdsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Suggested bid and budget bounds (LinkedIn)
+   * LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+   * @param getLinkedInBidPricingRequest  (required)
+   * @return GetLinkedInBidPricing200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetLinkedInBidPricing200Response getLinkedInBidPricing(@javax.annotation.Nonnull GetLinkedInBidPricingRequest getLinkedInBidPricingRequest) throws ApiException {
+    return getLinkedInBidPricing(getLinkedInBidPricingRequest, null);
+  }
+
+  /**
+   * Suggested bid and budget bounds (LinkedIn)
+   * LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+   * @param getLinkedInBidPricingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetLinkedInBidPricing200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetLinkedInBidPricing200Response getLinkedInBidPricing(@javax.annotation.Nonnull GetLinkedInBidPricingRequest getLinkedInBidPricingRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetLinkedInBidPricing200Response> localVarResponse = getLinkedInBidPricingWithHttpInfo(getLinkedInBidPricingRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Suggested bid and budget bounds (LinkedIn)
+   * LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+   * @param getLinkedInBidPricingRequest  (required)
+   * @return ApiResponse&lt;GetLinkedInBidPricing200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetLinkedInBidPricing200Response> getLinkedInBidPricingWithHttpInfo(@javax.annotation.Nonnull GetLinkedInBidPricingRequest getLinkedInBidPricingRequest) throws ApiException {
+    return getLinkedInBidPricingWithHttpInfo(getLinkedInBidPricingRequest, null);
+  }
+
+  /**
+   * Suggested bid and budget bounds (LinkedIn)
+   * LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+   * @param getLinkedInBidPricingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetLinkedInBidPricing200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetLinkedInBidPricing200Response> getLinkedInBidPricingWithHttpInfo(@javax.annotation.Nonnull GetLinkedInBidPricingRequest getLinkedInBidPricingRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getLinkedInBidPricingRequestBuilder(getLinkedInBidPricingRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getLinkedInBidPricing", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetLinkedInBidPricing200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetLinkedInBidPricing200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetLinkedInBidPricing200Response>() {});
+        
+
+        return new ApiResponse<GetLinkedInBidPricing200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getLinkedInBidPricingRequestBuilder(@javax.annotation.Nonnull GetLinkedInBidPricingRequest getLinkedInBidPricingRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'getLinkedInBidPricingRequest' is set
+    if (getLinkedInBidPricingRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'getLinkedInBidPricingRequest' when calling getLinkedInBidPricing");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/targeting/bid-pricing";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(getLinkedInBidPricingRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Impressions, clicks and spend forecast (LinkedIn)
+   * LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+   * @param getLinkedInSupplyForecastRequest  (required)
+   * @return GetLinkedInSupplyForecast200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetLinkedInSupplyForecast200Response getLinkedInSupplyForecast(@javax.annotation.Nonnull GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest) throws ApiException {
+    return getLinkedInSupplyForecast(getLinkedInSupplyForecastRequest, null);
+  }
+
+  /**
+   * Impressions, clicks and spend forecast (LinkedIn)
+   * LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+   * @param getLinkedInSupplyForecastRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetLinkedInSupplyForecast200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetLinkedInSupplyForecast200Response getLinkedInSupplyForecast(@javax.annotation.Nonnull GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetLinkedInSupplyForecast200Response> localVarResponse = getLinkedInSupplyForecastWithHttpInfo(getLinkedInSupplyForecastRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Impressions, clicks and spend forecast (LinkedIn)
+   * LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+   * @param getLinkedInSupplyForecastRequest  (required)
+   * @return ApiResponse&lt;GetLinkedInSupplyForecast200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetLinkedInSupplyForecast200Response> getLinkedInSupplyForecastWithHttpInfo(@javax.annotation.Nonnull GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest) throws ApiException {
+    return getLinkedInSupplyForecastWithHttpInfo(getLinkedInSupplyForecastRequest, null);
+  }
+
+  /**
+   * Impressions, clicks and spend forecast (LinkedIn)
+   * LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+   * @param getLinkedInSupplyForecastRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetLinkedInSupplyForecast200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetLinkedInSupplyForecast200Response> getLinkedInSupplyForecastWithHttpInfo(@javax.annotation.Nonnull GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getLinkedInSupplyForecastRequestBuilder(getLinkedInSupplyForecastRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getLinkedInSupplyForecast", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetLinkedInSupplyForecast200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetLinkedInSupplyForecast200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetLinkedInSupplyForecast200Response>() {});
+        
+
+        return new ApiResponse<GetLinkedInSupplyForecast200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getLinkedInSupplyForecastRequestBuilder(@javax.annotation.Nonnull GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'getLinkedInSupplyForecastRequest' is set
+    if (getLinkedInSupplyForecastRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'getLinkedInSupplyForecastRequest' when calling getLinkedInSupplyForecast");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/targeting/supply-forecast";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(getLinkedInSupplyForecastRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

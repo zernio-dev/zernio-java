@@ -50,6 +50,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getDsaRecommendationsWithHttpInfo**](AdsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
 | [**getLeadForm**](AdsApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
 | [**getLeadFormWithHttpInfo**](AdsApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
+| [**getLinkedInBidPricing**](AdsApi.md#getLinkedInBidPricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn) |
+| [**getLinkedInBidPricingWithHttpInfo**](AdsApi.md#getLinkedInBidPricingWithHttpInfo) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds (LinkedIn) |
+| [**getLinkedInSupplyForecast**](AdsApi.md#getLinkedInSupplyForecast) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn) |
+| [**getLinkedInSupplyForecastWithHttpInfo**](AdsApi.md#getLinkedInSupplyForecastWithHttpInfo) | **POST** /v1/ads/targeting/supply-forecast | Impressions, clicks and spend forecast (LinkedIn) |
 | [**listAdAccounts**](AdsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdCatalogProductSets**](AdsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets |
@@ -3693,6 +3697,310 @@ ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Form metadata. |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## getLinkedInBidPricing
+
+> GetLinkedInBidPricing200Response getLinkedInBidPricing(getLinkedInBidPricingRequest)
+
+Suggested bid and budget bounds (LinkedIn)
+
+LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        GetLinkedInBidPricingRequest getLinkedInBidPricingRequest = new GetLinkedInBidPricingRequest(); // GetLinkedInBidPricingRequest | 
+        try {
+            GetLinkedInBidPricing200Response result = apiInstance.getLinkedInBidPricing(getLinkedInBidPricingRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getLinkedInBidPricing");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **getLinkedInBidPricingRequest** | [**GetLinkedInBidPricingRequest**](GetLinkedInBidPricingRequest.md)|  | |
+
+### Return type
+
+[**GetLinkedInBidPricing200Response**](GetLinkedInBidPricing200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pricing insights |  -  |
+| **400** | Invalid targeting or unsupported objective/optimization/bid combination. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | Resource not found |  -  |
+
+## getLinkedInBidPricingWithHttpInfo
+
+> ApiResponse<GetLinkedInBidPricing200Response> getLinkedInBidPricing getLinkedInBidPricingWithHttpInfo(getLinkedInBidPricingRequest)
+
+Suggested bid and budget bounds (LinkedIn)
+
+LinkedIn-only. Returns the suggested bid and bid limits for a targeting spec, plus the daily-budget bounds LinkedIn will accept. Use it before creating a campaign to pick a bid inside the allowed range and warn the user if their daily budget is below the minimum. Wraps LinkedIn&#39;s &#x60;adBudgetPricing&#x60; finder.  Non-LinkedIn accounts return &#x60;available: false&#x60; so clients can hide the pricing UI without treating it as a failure. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        GetLinkedInBidPricingRequest getLinkedInBidPricingRequest = new GetLinkedInBidPricingRequest(); // GetLinkedInBidPricingRequest | 
+        try {
+            ApiResponse<GetLinkedInBidPricing200Response> response = apiInstance.getLinkedInBidPricingWithHttpInfo(getLinkedInBidPricingRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getLinkedInBidPricing");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **getLinkedInBidPricingRequest** | [**GetLinkedInBidPricingRequest**](GetLinkedInBidPricingRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GetLinkedInBidPricing200Response**](GetLinkedInBidPricing200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pricing insights |  -  |
+| **400** | Invalid targeting or unsupported objective/optimization/bid combination. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## getLinkedInSupplyForecast
+
+> GetLinkedInSupplyForecast200Response getLinkedInSupplyForecast(getLinkedInSupplyForecastRequest)
+
+Impressions, clicks and spend forecast (LinkedIn)
+
+LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest = new GetLinkedInSupplyForecastRequest(); // GetLinkedInSupplyForecastRequest | 
+        try {
+            GetLinkedInSupplyForecast200Response result = apiInstance.getLinkedInSupplyForecast(getLinkedInSupplyForecastRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getLinkedInSupplyForecast");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **getLinkedInSupplyForecastRequest** | [**GetLinkedInSupplyForecastRequest**](GetLinkedInSupplyForecastRequest.md)|  | |
+
+### Return type
+
+[**GetLinkedInSupplyForecast200Response**](GetLinkedInSupplyForecast200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Forecast series |  -  |
+| **400** | Invalid targeting, missing budget, or LinkedIn forecast validation error (e.g. END_DATE_MAX_HORIZON_FOR_FORECAST). |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | Resource not found |  -  |
+
+## getLinkedInSupplyForecastWithHttpInfo
+
+> ApiResponse<GetLinkedInSupplyForecast200Response> getLinkedInSupplyForecast getLinkedInSupplyForecastWithHttpInfo(getLinkedInSupplyForecastRequest)
+
+Impressions, clicks and spend forecast (LinkedIn)
+
+LinkedIn-only. Forecasted impressions, clicks, spend and ~20 other metrics for a targeting spec over a time range. Wraps LinkedIn&#39;s &#x60;adSupplyForecasts&#x60; finder.  Each returned series carries a &#x60;metricType&#x60; (IMPRESSION, CLICK, SPENDING, MAX_POTENTIAL_BUDGET, COST_PER_MILLION_IMPRESSIONS, ...) and a &#x60;granularity&#x60; (DAILY, SEVEN_DAY, THIRTY_DAY, CUSTOM). LinkedIn caps the daily spending forecast at 1.2x the daily budget and returns 0 once the total budget is exhausted.  Non-LinkedIn accounts return &#x60;available: false&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        GetLinkedInSupplyForecastRequest getLinkedInSupplyForecastRequest = new GetLinkedInSupplyForecastRequest(); // GetLinkedInSupplyForecastRequest | 
+        try {
+            ApiResponse<GetLinkedInSupplyForecast200Response> response = apiInstance.getLinkedInSupplyForecastWithHttpInfo(getLinkedInSupplyForecastRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getLinkedInSupplyForecast");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **getLinkedInSupplyForecastRequest** | [**GetLinkedInSupplyForecastRequest**](GetLinkedInSupplyForecastRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GetLinkedInSupplyForecast200Response**](GetLinkedInSupplyForecast200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Forecast series |  -  |
+| **400** | Invalid targeting, missing budget, or LinkedIn forecast validation error (e.g. END_DATE_MAX_HORIZON_FOR_FORECAST). |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## listAdAccounts
