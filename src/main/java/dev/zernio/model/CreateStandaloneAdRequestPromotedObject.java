@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_PRODUCT_CATALOG_ID,
   CreateStandaloneAdRequestPromotedObject.JSON_PROPERTY_PRODUCT_SET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:06:20.739426620Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:35:22.818318786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
   @javax.annotation.Nullable
@@ -110,7 +110,7 @@ public class CreateStandaloneAdRequestPromotedObject {
   }
 
   /**
-   * The event the campaign/ad group optimises against.  **Meta:** standard event like &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;.  **TikTok:** an &#x60;optimization_event&#x60; code (UPPER_SNAKE, not Meta&#39;s vocabulary and not PascalCase), e.g. &#x60;ON_WEB_ORDER&#x60; (Complete Payment), &#x60;INITIATE_ORDER&#x60; (Place an Order), &#x60;ON_WEB_CART&#x60; (Add to Cart), &#x60;ON_WEB_REGISTER&#x60; (Complete Registration), &#x60;FORM&#x60; (Submit Form), &#x60;ON_WEB_DETAIL&#x60; (View Content). Must be one of the events your TikTok Pixel is configured to track; passed through verbatim and validated by TikTok. Optional for &#x60;goal: conversions&#x60;. 
+   * The event the campaign/ad group optimises against.  **Meta:** standard event like &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;ADD_TO_CART&#x60;. Uppercased internally so callers can pass any case. Required for &#x60;goal: conversions&#x60;.  **TikTok:** an &#x60;optimization_event&#x60; code (UPPER_SNAKE, not Meta&#39;s vocabulary and not PascalCase). Must be one of the event types your TikTok Pixel is configured to track; passed through verbatim and validated by TikTok. Newer pixels (Events API / funnel-template setups) use TikTok&#39;s updated taxonomy, e.g. &#x60;SHOPPING&#x60; for purchase/payment events; legacy pixels use codes like &#x60;ON_WEB_ORDER&#x60; (Complete Payment), &#x60;INITIATE_ORDER&#x60; (Place an Order), &#x60;ON_WEB_CART&#x60; (Add to Cart), &#x60;ON_WEB_REGISTER&#x60; (Complete Registration), &#x60;FORM&#x60; (Submit Form), &#x60;ON_WEB_DETAIL&#x60; (View Content). On rejection the error lists the event types your pixel actually tracks. Optional for &#x60;goal: conversions&#x60;. 
    * @return customEventType
    */
   @javax.annotation.Nullable

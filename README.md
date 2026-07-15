@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-15T10:06:20.739426620Z[Etc/UTC]
+- Build date: 2026-07-15T10:35:22.818318786Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1765,6 +1765,7 @@ Class | Method | HTTP request | Description
  - [LinkedInAdsPlatformDataJobsHeadline](docs/LinkedInAdsPlatformDataJobsHeadline.md)
  - [LinkedInAdsPlatformDataSpotlight](docs/LinkedInAdsPlatformDataSpotlight.md)
  - [LinkedInAdsPlatformDataTextAd](docs/LinkedInAdsPlatformDataTextAd.md)
+ - [LinkedInAdsPlatformDataThoughtLeader](docs/LinkedInAdsPlatformDataThoughtLeader.md)
  - [LinkedInAggregateAnalyticsDailyResponse](docs/LinkedInAggregateAnalyticsDailyResponse.md)
  - [LinkedInAggregateAnalyticsDailyResponseAnalytics](docs/LinkedInAggregateAnalyticsDailyResponseAnalytics.md)
  - [LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner](docs/LinkedInAggregateAnalyticsDailyResponseAnalyticsImpressionsInner.md)

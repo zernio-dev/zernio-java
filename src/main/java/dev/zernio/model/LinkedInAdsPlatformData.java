@@ -32,6 +32,7 @@ import dev.zernio.model.LinkedInAdsPlatformDataFollower;
 import dev.zernio.model.LinkedInAdsPlatformDataJobs;
 import dev.zernio.model.LinkedInAdsPlatformDataSpotlight;
 import dev.zernio.model.LinkedInAdsPlatformDataTextAd;
+import dev.zernio.model.LinkedInAdsPlatformDataThoughtLeader;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -56,9 +57,10 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformData.JSON_PROPERTY_JOBS,
   LinkedInAdsPlatformData.JSON_PROPERTY_TEXT_AD,
   LinkedInAdsPlatformData.JSON_PROPERTY_CONVERSATION,
-  LinkedInAdsPlatformData.JSON_PROPERTY_EVENT
+  LinkedInAdsPlatformData.JSON_PROPERTY_EVENT,
+  LinkedInAdsPlatformData.JSON_PROPERTY_THOUGHT_LEADER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:06:20.739426620Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:35:22.818318786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformData {
   /**
    * Campaign cost model (billing event). Defaults to &#x60;CPM&#x60;. Required when &#x60;unitCost&#x60; is set so the manual bid applies to an explicit cost model. 
@@ -191,6 +193,10 @@ public class LinkedInAdsPlatformData {
   public static final String JSON_PROPERTY_EVENT = "event";
   @javax.annotation.Nullable
   private LinkedInAdsPlatformDataEvent event;
+
+  public static final String JSON_PROPERTY_THOUGHT_LEADER = "thoughtLeader";
+  @javax.annotation.Nullable
+  private LinkedInAdsPlatformDataThoughtLeader thoughtLeader;
 
   public LinkedInAdsPlatformData() { 
   }
@@ -555,6 +561,30 @@ public class LinkedInAdsPlatformData {
   }
 
 
+  public LinkedInAdsPlatformData thoughtLeader(@javax.annotation.Nullable LinkedInAdsPlatformDataThoughtLeader thoughtLeader) {
+    this.thoughtLeader = thoughtLeader;
+    return this;
+  }
+
+  /**
+   * Get thoughtLeader
+   * @return thoughtLeader
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_THOUGHT_LEADER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LinkedInAdsPlatformDataThoughtLeader getThoughtLeader() {
+    return thoughtLeader;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_THOUGHT_LEADER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setThoughtLeader(@javax.annotation.Nullable LinkedInAdsPlatformDataThoughtLeader thoughtLeader) {
+    this.thoughtLeader = thoughtLeader;
+  }
+
+
   /**
    * Return true if this LinkedInAdsPlatformData object is equal to o.
    */
@@ -581,12 +611,13 @@ public class LinkedInAdsPlatformData {
         Objects.equals(this.jobs, linkedInAdsPlatformData.jobs) &&
         Objects.equals(this.textAd, linkedInAdsPlatformData.textAd) &&
         Objects.equals(this.conversation, linkedInAdsPlatformData.conversation) &&
-        Objects.equals(this.event, linkedInAdsPlatformData.event);
+        Objects.equals(this.event, linkedInAdsPlatformData.event) &&
+        Objects.equals(this.thoughtLeader, linkedInAdsPlatformData.thoughtLeader);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(costType, unitCost, optimizationTargetType, creativeSelection, audienceExpansionEnabled, offsiteDeliveryEnabled, connectedTelevisionOnly, carousel, document, spotlight, follower, jobs, textAd, conversation, event);
+    return Objects.hash(costType, unitCost, optimizationTargetType, creativeSelection, audienceExpansionEnabled, offsiteDeliveryEnabled, connectedTelevisionOnly, carousel, document, spotlight, follower, jobs, textAd, conversation, event, thoughtLeader);
   }
 
   @Override
@@ -608,6 +639,7 @@ public class LinkedInAdsPlatformData {
     sb.append("    textAd: ").append(toIndentedString(textAd)).append("\n");
     sb.append("    conversation: ").append(toIndentedString(conversation)).append("\n");
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
+    sb.append("    thoughtLeader: ").append(toIndentedString(thoughtLeader)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -728,6 +760,11 @@ public class LinkedInAdsPlatformData {
     // add `event` to the URL query string
     if (getEvent() != null) {
       joiner.add(getEvent().toUrlQueryString(prefix + "event" + suffix));
+    }
+
+    // add `thoughtLeader` to the URL query string
+    if (getThoughtLeader() != null) {
+      joiner.add(getThoughtLeader().toUrlQueryString(prefix + "thoughtLeader" + suffix));
     }
 
     return joiner.toString();

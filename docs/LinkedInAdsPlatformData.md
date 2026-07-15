@@ -23,6 +23,7 @@ LinkedIn-specific options for POST /v1/ads/boost and POST /v1/ads/create: campai
 |**textAd** | [**LinkedInAdsPlatformDataTextAd**](LinkedInAdsPlatformDataTextAd.md) |  |  [optional] |
 |**conversation** | [**LinkedInAdsPlatformDataConversation**](LinkedInAdsPlatformDataConversation.md) |  |  [optional] |
 |**event** | [**LinkedInAdsPlatformDataEvent**](LinkedInAdsPlatformDataEvent.md) |  |  [optional] |
+|**thoughtLeader** | [**LinkedInAdsPlatformDataThoughtLeader**](LinkedInAdsPlatformDataThoughtLeader.md) |  |  [optional] |
 
 
 
