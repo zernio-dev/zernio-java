@@ -25665,6 +25665,7 @@ paths:
           - company_list
           - engagement
           - website
+          - website_retargeting
           - lookalike
           - saved_targeting
           type: string
@@ -65476,6 +65477,7 @@ components:
           - company_list
           - engagement
           - website
+          - website_retargeting
           - lookalike
           - saved_targeting
           type: string
@@ -65517,6 +65519,21 @@ components:
           items:
             $ref: "#/components/schemas/listAdAudiences_200_response_audiences_inner"
           type: array
+    UploadedOrDerivedAudience_matchRules_inner:
+      additionalProperties: {}
+      properties:
+        matchType:
+          enum:
+          - EXACT
+          - STARTS_WITH
+          - CONTAINS
+          - ENDS_WITH
+          type: string
+        matchValue:
+          type: string
+      required:
+      - matchType
+      - matchValue
     UploadedOrDerivedAudience_companies_inner:
       additionalProperties: {}
       properties:
@@ -65553,8 +65570,21 @@ components:
           - company_list
           - engagement
           - website
+          - website_retargeting
           - lookalike
           type: string
+        matchRules:
+          description: |
+            Required for website_retargeting audiences (LinkedIn only).
+            Each rule is a URL pattern; a member who visits any
+            matching page enters the segment. Needs the LinkedIn
+            Insight Tag installed on the customer's site — the
+            segment only starts filling once the tag reports visits.
+          items:
+            $ref: "#/components/schemas/UploadedOrDerivedAudience_matchRules_inner"
+          maxItems: 50
+          minItems: 1
+          type: array
         sourceType:
           description: |
             Required for engagement audiences (LinkedIn only): what

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.UploadedOrDerivedAudienceCompaniesInner;
+import dev.zernio.model.UploadedOrDerivedAudienceMatchRulesInner;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +43,7 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_NAME,
   UploadedOrDerivedAudience.JSON_PROPERTY_DESCRIPTION,
   UploadedOrDerivedAudience.JSON_PROPERTY_TYPE,
+  UploadedOrDerivedAudience.JSON_PROPERTY_MATCH_RULES,
   UploadedOrDerivedAudience.JSON_PROPERTY_SOURCE_TYPE,
   UploadedOrDerivedAudience.JSON_PROPERTY_TRIGGER,
   UploadedOrDerivedAudience.JSON_PROPERTY_LOOKBACK_DAYS,
@@ -55,7 +57,7 @@ import dev.zernio.ApiClient;
   UploadedOrDerivedAudience.JSON_PROPERTY_RULE,
   UploadedOrDerivedAudience.JSON_PROPERTY_CUSTOMER_FILE_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-14T16:37:24.250241358Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T06:23:53.677173698Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -84,6 +86,8 @@ public class UploadedOrDerivedAudience {
     ENGAGEMENT(String.valueOf("engagement")),
     
     WEBSITE(String.valueOf("website")),
+    
+    WEBSITE_RETARGETING(String.valueOf("website_retargeting")),
     
     LOOKALIKE(String.valueOf("lookalike"));
 
@@ -117,6 +121,10 @@ public class UploadedOrDerivedAudience {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
   private TypeEnum type;
+
+  public static final String JSON_PROPERTY_MATCH_RULES = "matchRules";
+  @javax.annotation.Nullable
+  private List<UploadedOrDerivedAudienceMatchRulesInner> matchRules = new ArrayList<>();
 
   /**
    * Required for engagement audiences (LinkedIn only): what members engaged with — a video/leadgen/single-image ad campaign, a Company Page or an Event page. 
@@ -368,6 +376,38 @@ public class UploadedOrDerivedAudience {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
+  }
+
+
+  public UploadedOrDerivedAudience matchRules(@javax.annotation.Nullable List<UploadedOrDerivedAudienceMatchRulesInner> matchRules) {
+    this.matchRules = matchRules;
+    return this;
+  }
+
+  public UploadedOrDerivedAudience addMatchRulesItem(UploadedOrDerivedAudienceMatchRulesInner matchRulesItem) {
+    if (this.matchRules == null) {
+      this.matchRules = new ArrayList<>();
+    }
+    this.matchRules.add(matchRulesItem);
+    return this;
+  }
+
+  /**
+   * Required for website_retargeting audiences (LinkedIn only). Each rule is a URL pattern; a member who visits any matching page enters the segment. Needs the LinkedIn Insight Tag installed on the customer&#39;s site — the segment only starts filling once the tag reports visits. 
+   * @return matchRules
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MATCH_RULES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UploadedOrDerivedAudienceMatchRulesInner> getMatchRules() {
+    return matchRules;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MATCH_RULES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMatchRules(@javax.annotation.Nullable List<UploadedOrDerivedAudienceMatchRulesInner> matchRules) {
+    this.matchRules = matchRules;
   }
 
 
@@ -696,6 +736,7 @@ public class UploadedOrDerivedAudience {
         Objects.equals(this.name, uploadedOrDerivedAudience.name) &&
         Objects.equals(this.description, uploadedOrDerivedAudience.description) &&
         Objects.equals(this.type, uploadedOrDerivedAudience.type) &&
+        Objects.equals(this.matchRules, uploadedOrDerivedAudience.matchRules) &&
         Objects.equals(this.sourceType, uploadedOrDerivedAudience.sourceType) &&
         Objects.equals(this.trigger, uploadedOrDerivedAudience.trigger) &&
         Objects.equals(this.lookbackDays, uploadedOrDerivedAudience.lookbackDays) &&
@@ -712,7 +753,7 @@ public class UploadedOrDerivedAudience {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, description, type, sourceType, trigger, lookbackDays, engagementSources, companies, pixelId, retentionDays, sourceAudienceId, country, ratio, rule, customerFileSource);
+    return Objects.hash(accountId, adAccountId, name, description, type, matchRules, sourceType, trigger, lookbackDays, engagementSources, companies, pixelId, retentionDays, sourceAudienceId, country, ratio, rule, customerFileSource);
   }
 
   @Override
@@ -724,6 +765,7 @@ public class UploadedOrDerivedAudience {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    matchRules: ").append(toIndentedString(matchRules)).append("\n");
     sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
     sb.append("    trigger: ").append(toIndentedString(trigger)).append("\n");
     sb.append("    lookbackDays: ").append(toIndentedString(lookbackDays)).append("\n");
@@ -806,6 +848,16 @@ public class UploadedOrDerivedAudience {
     // add `type` to the URL query string
     if (getType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+    }
+
+    // add `matchRules` to the URL query string
+    if (getMatchRules() != null) {
+      for (int i = 0; i < getMatchRules().size(); i++) {
+        if (getMatchRules().get(i) != null) {
+          joiner.add(getMatchRules().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smatchRules%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `sourceType` to the URL query string

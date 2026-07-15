@@ -28,6 +28,7 @@
 | COMPANY_LIST | &quot;company_list&quot; |
 | ENGAGEMENT | &quot;engagement&quot; |
 | WEBSITE | &quot;website&quot; |
+| WEBSITE_RETARGETING | &quot;website_retargeting&quot; |
 | LOOKALIKE | &quot;lookalike&quot; |
 | SAVED_TARGETING | &quot;saved_targeting&quot; |
 
