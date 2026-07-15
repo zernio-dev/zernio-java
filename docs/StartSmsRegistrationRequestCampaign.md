@@ -20,11 +20,13 @@ Required for 10DLC. What you'll send and how recipients opt in/out. The opt-in/o
 |**optoutKeywords** | **String** |  |  |
 |**optoutMessage** | **String** |  |  [optional] |
 |**helpKeywords** | **String** |  |  |
-|**embeddedLink** | **Boolean** |  |  [optional] |
-|**embeddedPhone** | **Boolean** |  |  [optional] |
+|**embeddedLink** | **Boolean** | Whether messages carry links. Auto-derived from the samples when omitted, so the declaration matches what the reviewer reads. |  [optional] |
+|**embeddedPhone** | **Boolean** | Whether messages carry phone numbers. Auto-derived from the samples when omitted. |  [optional] |
 |**numberPool** | **Boolean** |  |  [optional] |
 |**ageGated** | **Boolean** |  |  [optional] |
 |**directLending** | **Boolean** |  |  [optional] |
+|**privacyPolicyLink** | **String** | Link to your privacy policy. Recommended: reviewers check that it says mobile information is not sold or shared with third parties for promotional purposes. A bare domain is normalized to https://. |  [optional] |
+|**termsAndConditionsLink** | **String** | Link to your terms &amp; conditions. A bare domain is normalized to https://. |  [optional] |
 
 
 

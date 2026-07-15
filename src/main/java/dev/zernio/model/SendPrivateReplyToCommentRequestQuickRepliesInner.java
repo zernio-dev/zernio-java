@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SendPrivateReplyToCommentRequestQuickRepliesInner.JSON_PROPERTY_PAYLOAD,
   SendPrivateReplyToCommentRequestQuickRepliesInner.JSON_PROPERTY_IMAGE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:32:38.108014460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:59:43.555637275Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendPrivateReplyToCommentRequestQuickRepliesInner {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nonnull

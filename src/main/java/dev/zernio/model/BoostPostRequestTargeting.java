@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestTargeting.JSON_PROPERTY_INTERESTS,
   BoostPostRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:32:38.108014460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:59:43.555637275Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestTargeting {
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable

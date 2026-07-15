@@ -51,9 +51,11 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_EMBEDDED_PHONE,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_NUMBER_POOL,
   StartSmsRegistrationRequestCampaign.JSON_PROPERTY_AGE_GATED,
-  StartSmsRegistrationRequestCampaign.JSON_PROPERTY_DIRECT_LENDING
+  StartSmsRegistrationRequestCampaign.JSON_PROPERTY_DIRECT_LENDING,
+  StartSmsRegistrationRequestCampaign.JSON_PROPERTY_PRIVACY_POLICY_LINK,
+  StartSmsRegistrationRequestCampaign.JSON_PROPERTY_TERMS_AND_CONDITIONS_LINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:32:38.108014460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:59:43.555637275Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequestCampaign {
   public static final String JSON_PROPERTY_USECASE = "usecase";
   @javax.annotation.Nonnull
@@ -173,6 +175,14 @@ public class StartSmsRegistrationRequestCampaign {
   public static final String JSON_PROPERTY_DIRECT_LENDING = "directLending";
   @javax.annotation.Nullable
   private Boolean directLending;
+
+  public static final String JSON_PROPERTY_PRIVACY_POLICY_LINK = "privacyPolicyLink";
+  @javax.annotation.Nullable
+  private String privacyPolicyLink;
+
+  public static final String JSON_PROPERTY_TERMS_AND_CONDITIONS_LINK = "termsAndConditionsLink";
+  @javax.annotation.Nullable
+  private String termsAndConditionsLink;
 
   public StartSmsRegistrationRequestCampaign() { 
   }
@@ -479,7 +489,7 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
   /**
-   * Get embeddedLink
+   * Whether messages carry links. Auto-derived from the samples when omitted, so the declaration matches what the reviewer reads.
    * @return embeddedLink
    */
   @javax.annotation.Nullable
@@ -503,7 +513,7 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
   /**
-   * Get embeddedPhone
+   * Whether messages carry phone numbers. Auto-derived from the samples when omitted.
    * @return embeddedPhone
    */
   @javax.annotation.Nullable
@@ -593,6 +603,54 @@ public class StartSmsRegistrationRequestCampaign {
   }
 
 
+  public StartSmsRegistrationRequestCampaign privacyPolicyLink(@javax.annotation.Nullable String privacyPolicyLink) {
+    this.privacyPolicyLink = privacyPolicyLink;
+    return this;
+  }
+
+  /**
+   * Link to your privacy policy. Recommended: reviewers check that it says mobile information is not sold or shared with third parties for promotional purposes. A bare domain is normalized to https://.
+   * @return privacyPolicyLink
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRIVACY_POLICY_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPrivacyPolicyLink() {
+    return privacyPolicyLink;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRIVACY_POLICY_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPrivacyPolicyLink(@javax.annotation.Nullable String privacyPolicyLink) {
+    this.privacyPolicyLink = privacyPolicyLink;
+  }
+
+
+  public StartSmsRegistrationRequestCampaign termsAndConditionsLink(@javax.annotation.Nullable String termsAndConditionsLink) {
+    this.termsAndConditionsLink = termsAndConditionsLink;
+    return this;
+  }
+
+  /**
+   * Link to your terms &amp; conditions. A bare domain is normalized to https://.
+   * @return termsAndConditionsLink
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TERMS_AND_CONDITIONS_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getTermsAndConditionsLink() {
+    return termsAndConditionsLink;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TERMS_AND_CONDITIONS_LINK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTermsAndConditionsLink(@javax.annotation.Nullable String termsAndConditionsLink) {
+    this.termsAndConditionsLink = termsAndConditionsLink;
+  }
+
+
   /**
    * Return true if this startSmsRegistration_request_campaign object is equal to o.
    */
@@ -621,12 +679,14 @@ public class StartSmsRegistrationRequestCampaign {
         Objects.equals(this.embeddedPhone, startSmsRegistrationRequestCampaign.embeddedPhone) &&
         Objects.equals(this.numberPool, startSmsRegistrationRequestCampaign.numberPool) &&
         Objects.equals(this.ageGated, startSmsRegistrationRequestCampaign.ageGated) &&
-        Objects.equals(this.directLending, startSmsRegistrationRequestCampaign.directLending);
+        Objects.equals(this.directLending, startSmsRegistrationRequestCampaign.directLending) &&
+        Objects.equals(this.privacyPolicyLink, startSmsRegistrationRequestCampaign.privacyPolicyLink) &&
+        Objects.equals(this.termsAndConditionsLink, startSmsRegistrationRequestCampaign.termsAndConditionsLink);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(usecase, subUsecases, description, messageFlow, sample1, sample2, helpMessage, optinKeywords, optinMessage, optoutKeywords, optoutMessage, helpKeywords, embeddedLink, embeddedPhone, numberPool, ageGated, directLending);
+    return Objects.hash(usecase, subUsecases, description, messageFlow, sample1, sample2, helpMessage, optinKeywords, optinMessage, optoutKeywords, optoutMessage, helpKeywords, embeddedLink, embeddedPhone, numberPool, ageGated, directLending, privacyPolicyLink, termsAndConditionsLink);
   }
 
   @Override
@@ -650,6 +710,8 @@ public class StartSmsRegistrationRequestCampaign {
     sb.append("    numberPool: ").append(toIndentedString(numberPool)).append("\n");
     sb.append("    ageGated: ").append(toIndentedString(ageGated)).append("\n");
     sb.append("    directLending: ").append(toIndentedString(directLending)).append("\n");
+    sb.append("    privacyPolicyLink: ").append(toIndentedString(privacyPolicyLink)).append("\n");
+    sb.append("    termsAndConditionsLink: ").append(toIndentedString(termsAndConditionsLink)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -784,6 +846,16 @@ public class StartSmsRegistrationRequestCampaign {
     // add `directLending` to the URL query string
     if (getDirectLending() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdirectLending%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDirectLending()))));
+    }
+
+    // add `privacyPolicyLink` to the URL query string
+    if (getPrivacyPolicyLink() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprivacyPolicyLink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPrivacyPolicyLink()))));
+    }
+
+    // add `termsAndConditionsLink` to the URL query string
+    if (getTermsAndConditionsLink() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stermsAndConditionsLink%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTermsAndConditionsLink()))));
     }
 
     return joiner.toString();

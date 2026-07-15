@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ActivateWorkflow200ResponseWorkflow.JSON_PROPERTY_STATUS,
   ActivateWorkflow200ResponseWorkflow.JSON_PROPERTY_ENTRY_NODE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:32:38.108014460Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T08:59:43.555637275Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ActivateWorkflow200ResponseWorkflow {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
