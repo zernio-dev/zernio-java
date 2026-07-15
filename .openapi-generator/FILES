@@ -2925,15 +2925,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetLinkedInBidPricing200ResponsePricingBidLimitsTest.java
-src/test/java/dev/zernio/model/GetLinkedInBidPricing200ResponsePricingSuggestedBidTest.java
-src/test/java/dev/zernio/model/GetLinkedInBidPricing200ResponsePricingTest.java
-src/test/java/dev/zernio/model/GetLinkedInBidPricing200ResponseTest.java
-src/test/java/dev/zernio/model/GetLinkedInBidPricingRequestTest.java
-src/test/java/dev/zernio/model/GetLinkedInSupplyForecast200ResponseForecastInnerTest.java
-src/test/java/dev/zernio/model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerAdForecastRangeTest.java
-src/test/java/dev/zernio/model/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInnerTest.java
-src/test/java/dev/zernio/model/GetLinkedInSupplyForecast200ResponseTest.java
-src/test/java/dev/zernio/model/GetLinkedInSupplyForecastRequestCompetingBidTest.java
-src/test/java/dev/zernio/model/GetLinkedInSupplyForecastRequestTest.java
-src/test/java/dev/zernio/model/MoneyAmountTest.java

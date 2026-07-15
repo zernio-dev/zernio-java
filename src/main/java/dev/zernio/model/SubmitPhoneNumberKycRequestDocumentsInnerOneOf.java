@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SubmitPhoneNumberKycRequestDocumentsInnerOneOf.JSON_PROPERTY_FILENAME,
   SubmitPhoneNumberKycRequestDocumentsInnerOneOf.JSON_PROPERTY_BASE64
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:26:59.986858445Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:06:20.739426620Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitPhoneNumberKycRequestDocumentsInnerOneOf {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nonnull

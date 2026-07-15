@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateSequenceRequestStepsInnerTemplate.JSON_PROPERTY_LANGUAGE,
   UpdateSequenceRequestStepsInnerTemplate.JSON_PROPERTY_VARIABLE_MAPPING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T09:26:59.986858445Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T10:06:20.739426620Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateSequenceRequestStepsInnerTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
