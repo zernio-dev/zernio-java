@@ -36,21 +36,27 @@ import dev.zernio.ApiClient;
   ReuseSmsRegistrationForNumber200Response.JSON_PROPERTY_REGISTRATION_ID,
   ReuseSmsRegistrationForNumber200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:33:56.117555179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReuseSmsRegistrationForNumber200Response {
   public static final String JSON_PROPERTY_REGISTRATION_ID = "registrationId";
   @javax.annotation.Nullable
   private String registrationId;
 
   /**
-   * Gets or Sets status
+   * requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
    */
   public enum StatusEnum {
     PENDING(String.valueOf("pending")),
     
     APPROVED(String.valueOf("approved")),
     
-    REJECTED(String.valueOf("rejected"));
+    REJECTED(String.valueOf("rejected")),
+    
+    REQUESTED(String.valueOf("requested")),
+    
+    CHANGES_REQUESTED(String.valueOf("changes_requested")),
+    
+    DEACTIVATED(String.valueOf("deactivated"));
 
     private String value;
 
@@ -116,7 +122,7 @@ public class ReuseSmsRegistrationForNumber200Response {
   }
 
   /**
-   * Get status
+   * requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
    * @return status
    */
   @javax.annotation.Nullable

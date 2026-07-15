@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**registrationType** | [**RegistrationTypeEnum**](#RegistrationTypeEnum) |  |  [optional] |
-|**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes. |  [optional] |
 |**brandStatus** | **String** |  |  [optional] |
 |**campaignStatus** | **String** |  |  [optional] |
 |**declineReason** | **String** |  |  [optional] |
@@ -36,6 +36,9 @@
 | PENDING | &quot;pending&quot; |
 | APPROVED | &quot;approved&quot; |
 | REJECTED | &quot;rejected&quot; |
+| REQUESTED | &quot;requested&quot; |
+| CHANGES_REQUESTED | &quot;changes_requested&quot; |
+| DEACTIVATED | &quot;deactivated&quot; |
 
 
 

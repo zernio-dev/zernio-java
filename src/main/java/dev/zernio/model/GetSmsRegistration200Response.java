@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   GetSmsRegistration200Response.JSON_PROPERTY_AWAITING_OTP,
   GetSmsRegistration200Response.JSON_PROPERTY_CAMPAIGN_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:33:56.117555179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSmsRegistration200Response {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -98,14 +98,20 @@ public class GetSmsRegistration200Response {
   private RegistrationTypeEnum registrationType;
 
   /**
-   * Gets or Sets status
+   * requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
    */
   public enum StatusEnum {
     PENDING(String.valueOf("pending")),
     
     APPROVED(String.valueOf("approved")),
     
-    REJECTED(String.valueOf("rejected"));
+    REJECTED(String.valueOf("rejected")),
+    
+    REQUESTED(String.valueOf("requested")),
+    
+    CHANGES_REQUESTED(String.valueOf("changes_requested")),
+    
+    DEACTIVATED(String.valueOf("deactivated"));
 
     private String value;
 
@@ -218,7 +224,7 @@ public class GetSmsRegistration200Response {
   }
 
   /**
-   * Get status
+   * requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
    * @return status
    */
   @javax.annotation.Nullable

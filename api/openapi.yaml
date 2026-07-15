@@ -53016,10 +53016,15 @@ components:
           nullable: true
           type: string
         status:
+          description: requested/changes_requested = pre-submission review states;
+            customers see them as pending / needs changes.
           enum:
           - pending
           - approved
           - rejected
+          - requested
+          - changes_requested
+          - deactivated
           type: string
         brandStatus:
           description: Carrier-registry brand status (e.g. VERIFIED).
@@ -53401,6 +53406,15 @@ components:
           $ref: "#/components/schemas/startSmsRegistration_request_brand"
         campaign:
           $ref: "#/components/schemas/startSmsRegistration_request_campaign"
+        wizardValues:
+          additionalProperties:
+            type: string
+          description: "Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit.\
+            \ API integrators can omit."
+        resubmitRequestId:
+          description: Resubmit a registration that was returned for changes — updates
+            it in place instead of creating a new one.
+          type: string
         tollFree:
           $ref: "#/components/schemas/startSmsRegistration_request_tollFree"
       required:
@@ -53464,10 +53478,15 @@ components:
           - toll_free
           type: string
         status:
+          description: requested/changes_requested = pre-submission review states;
+            customers see them as pending / needs changes.
           enum:
           - pending
           - approved
           - rejected
+          - requested
+          - changes_requested
+          - deactivated
           type: string
         brandStatus:
           type: string
@@ -56202,10 +56221,15 @@ components:
         registrationId:
           type: string
         status:
+          description: requested/changes_requested = pre-submission review states;
+            customers see them as pending / needs changes.
           enum:
           - pending
           - approved
           - rejected
+          - requested
+          - changes_requested
+          - deactivated
           type: string
     getWhatsAppCalling_200_response:
       example:

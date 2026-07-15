@@ -29,7 +29,9 @@ import dev.zernio.model.StartSmsRegistrationRequestCampaign;
 import dev.zernio.model.StartSmsRegistrationRequestTollFree;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,9 +44,11 @@ import dev.zernio.ApiClient;
   StartSmsRegistrationRequest.JSON_PROPERTY_PHONE_NUMBERS,
   StartSmsRegistrationRequest.JSON_PROPERTY_BRAND,
   StartSmsRegistrationRequest.JSON_PROPERTY_CAMPAIGN,
+  StartSmsRegistrationRequest.JSON_PROPERTY_WIZARD_VALUES,
+  StartSmsRegistrationRequest.JSON_PROPERTY_RESUBMIT_REQUEST_ID,
   StartSmsRegistrationRequest.JSON_PROPERTY_TOLL_FREE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:33:56.117555179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartSmsRegistrationRequest {
   /**
    * Gets or Sets registrationType
@@ -98,6 +102,14 @@ public class StartSmsRegistrationRequest {
   public static final String JSON_PROPERTY_CAMPAIGN = "campaign";
   @javax.annotation.Nullable
   private StartSmsRegistrationRequestCampaign campaign;
+
+  public static final String JSON_PROPERTY_WIZARD_VALUES = "wizardValues";
+  @javax.annotation.Nullable
+  private Map<String, String> wizardValues = new HashMap<>();
+
+  public static final String JSON_PROPERTY_RESUBMIT_REQUEST_ID = "resubmitRequestId";
+  @javax.annotation.Nullable
+  private String resubmitRequestId;
 
   public static final String JSON_PROPERTY_TOLL_FREE = "tollFree";
   @javax.annotation.Nullable
@@ -210,6 +222,62 @@ public class StartSmsRegistrationRequest {
   }
 
 
+  public StartSmsRegistrationRequest wizardValues(@javax.annotation.Nullable Map<String, String> wizardValues) {
+    this.wizardValues = wizardValues;
+    return this;
+  }
+
+  public StartSmsRegistrationRequest putWizardValuesItem(String key, String wizardValuesItem) {
+    if (this.wizardValues == null) {
+      this.wizardValues = new HashMap<>();
+    }
+    this.wizardValues.put(key, wizardValuesItem);
+    return this;
+  }
+
+  /**
+   * Raw dashboard-wizard answers, stored only to prefill edit-and-resubmit. API integrators can omit.
+   * @return wizardValues
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_WIZARD_VALUES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, String> getWizardValues() {
+    return wizardValues;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_WIZARD_VALUES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setWizardValues(@javax.annotation.Nullable Map<String, String> wizardValues) {
+    this.wizardValues = wizardValues;
+  }
+
+
+  public StartSmsRegistrationRequest resubmitRequestId(@javax.annotation.Nullable String resubmitRequestId) {
+    this.resubmitRequestId = resubmitRequestId;
+    return this;
+  }
+
+  /**
+   * Resubmit a registration that was returned for changes — updates it in place instead of creating a new one.
+   * @return resubmitRequestId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RESUBMIT_REQUEST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getResubmitRequestId() {
+    return resubmitRequestId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RESUBMIT_REQUEST_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setResubmitRequestId(@javax.annotation.Nullable String resubmitRequestId) {
+    this.resubmitRequestId = resubmitRequestId;
+  }
+
+
   public StartSmsRegistrationRequest tollFree(@javax.annotation.Nullable StartSmsRegistrationRequestTollFree tollFree) {
     this.tollFree = tollFree;
     return this;
@@ -250,12 +318,14 @@ public class StartSmsRegistrationRequest {
         Objects.equals(this.phoneNumbers, startSmsRegistrationRequest.phoneNumbers) &&
         Objects.equals(this.brand, startSmsRegistrationRequest.brand) &&
         Objects.equals(this.campaign, startSmsRegistrationRequest.campaign) &&
+        Objects.equals(this.wizardValues, startSmsRegistrationRequest.wizardValues) &&
+        Objects.equals(this.resubmitRequestId, startSmsRegistrationRequest.resubmitRequestId) &&
         Objects.equals(this.tollFree, startSmsRegistrationRequest.tollFree);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(registrationType, phoneNumbers, brand, campaign, tollFree);
+    return Objects.hash(registrationType, phoneNumbers, brand, campaign, wizardValues, resubmitRequestId, tollFree);
   }
 
   @Override
@@ -266,6 +336,8 @@ public class StartSmsRegistrationRequest {
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
     sb.append("    brand: ").append(toIndentedString(brand)).append("\n");
     sb.append("    campaign: ").append(toIndentedString(campaign)).append("\n");
+    sb.append("    wizardValues: ").append(toIndentedString(wizardValues)).append("\n");
+    sb.append("    resubmitRequestId: ").append(toIndentedString(resubmitRequestId)).append("\n");
     sb.append("    tollFree: ").append(toIndentedString(tollFree)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -336,6 +408,20 @@ public class StartSmsRegistrationRequest {
     // add `campaign` to the URL query string
     if (getCampaign() != null) {
       joiner.add(getCampaign().toUrlQueryString(prefix + "campaign" + suffix));
+    }
+
+    // add `wizardValues` to the URL query string
+    if (getWizardValues() != null) {
+      for (String _key : getWizardValues().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%swizardValues%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getWizardValues().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getWizardValues().get(_key)))));
+      }
+    }
+
+    // add `resubmitRequestId` to the URL query string
+    if (getResubmitRequestId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sresubmitRequestId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResubmitRequestId()))));
     }
 
     // add `tollFree` to the URL query string

@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_TRUST_SCORE,
   ListSmsRegistrations200ResponseRegistrationsInner.JSON_PROPERTY_THROUGHPUT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:33:56.117555179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSmsRegistrations200ResponseRegistrationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -106,14 +106,20 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
   private JsonNullable<String> displayName = JsonNullable.<String>undefined();
 
   /**
-   * Gets or Sets status
+   * requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
    */
   public enum StatusEnum {
     PENDING(String.valueOf("pending")),
     
     APPROVED(String.valueOf("approved")),
     
-    REJECTED(String.valueOf("rejected"));
+    REJECTED(String.valueOf("rejected")),
+    
+    REQUESTED(String.valueOf("requested")),
+    
+    CHANGES_REQUESTED(String.valueOf("changes_requested")),
+    
+    DEACTIVATED(String.valueOf("deactivated"));
 
     private String value;
 
@@ -267,7 +273,7 @@ public class ListSmsRegistrations200ResponseRegistrationsInner {
   }
 
   /**
-   * Get status
+   * requested/changes_requested &#x3D; pre-submission review states; customers see them as pending / needs changes.
    * @return status
    */
   @javax.annotation.Nullable

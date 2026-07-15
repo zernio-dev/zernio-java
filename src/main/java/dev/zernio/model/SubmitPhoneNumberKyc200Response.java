@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SubmitPhoneNumberKyc200Response.JSON_PROPERTY_PHONE_NUMBER,
   SubmitPhoneNumberKyc200Response.JSON_PROPERTY_NUMBERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:33:56.117555179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitPhoneNumberKyc200Response {
   /**
    * Gets or Sets status

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UploadPhoneNumberPortInDocumentRequest.JSON_PROPERTY_FILE,
   UploadPhoneNumberPortInDocumentRequest.JSON_PROPERTY_KIND
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:33:56.117555179Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadPhoneNumberPortInDocumentRequest {
   public static final String JSON_PROPERTY_FILE = "file";
   @javax.annotation.Nonnull
