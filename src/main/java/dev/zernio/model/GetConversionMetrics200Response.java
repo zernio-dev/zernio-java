@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetConversionMetrics200Response.JSON_PROPERTY_GRANULARITY,
   GetConversionMetrics200Response.JSON_PROPERTY_ROWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T11:12:37.115903367Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetConversionMetrics200Response {
   /**
    * Gets or Sets platform

@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GetAdsTimeline200ResponseRowsInner.JSON_PROPERTY_PURCHASE_VALUE,
   GetAdsTimeline200ResponseRowsInner.JSON_PROPERTY_ROAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T11:12:37.115903367Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T15:22:06.881649137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdsTimeline200ResponseRowsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
@@ -340,7 +340,7 @@ public class GetAdsTimeline200ResponseRowsInner {
   }
 
   /**
-   * Sum of conversion events matching the campaign optimization goal. Meta-only at time of writing.
+   * Sum of conversion events over the range. Meta: events matching the campaign optimization goal. Google: tracked conversions. X / LinkedIn: reported website/lead conversions (added 2026-07).
    * @return conversions
    */
   @javax.annotation.Nullable
