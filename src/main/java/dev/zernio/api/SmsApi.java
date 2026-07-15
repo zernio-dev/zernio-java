@@ -72,7 +72,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T11:08:03.646219263Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-15T11:12:37.115903367Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SmsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -930,44 +930,48 @@ public class SmsApi {
   /**
    * List carrier registrations
    * 
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
    * @return ListSmsRegistrations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListSmsRegistrations200Response listSmsRegistrations() throws ApiException {
-    return listSmsRegistrations(null);
+  public ListSmsRegistrations200Response listSmsRegistrations(@javax.annotation.Nullable Boolean includeDeactivated) throws ApiException {
+    return listSmsRegistrations(includeDeactivated, null);
   }
 
   /**
    * List carrier registrations
    * 
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
    * @param headers Optional headers to include in the request
    * @return ListSmsRegistrations200Response
    * @throws ApiException if fails to make API call
    */
-  public ListSmsRegistrations200Response listSmsRegistrations(Map<String, String> headers) throws ApiException {
-    ApiResponse<ListSmsRegistrations200Response> localVarResponse = listSmsRegistrationsWithHttpInfo(headers);
+  public ListSmsRegistrations200Response listSmsRegistrations(@javax.annotation.Nullable Boolean includeDeactivated, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListSmsRegistrations200Response> localVarResponse = listSmsRegistrationsWithHttpInfo(includeDeactivated, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List carrier registrations
    * 
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
    * @return ApiResponse&lt;ListSmsRegistrations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListSmsRegistrations200Response> listSmsRegistrationsWithHttpInfo() throws ApiException {
-    return listSmsRegistrationsWithHttpInfo(null);
+  public ApiResponse<ListSmsRegistrations200Response> listSmsRegistrationsWithHttpInfo(@javax.annotation.Nullable Boolean includeDeactivated) throws ApiException {
+    return listSmsRegistrationsWithHttpInfo(includeDeactivated, null);
   }
 
   /**
    * List carrier registrations
    * 
+   * @param includeDeactivated Deactivated (terminated) registrations are hidden by default — pass true to include them. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListSmsRegistrations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ListSmsRegistrations200Response> listSmsRegistrationsWithHttpInfo(Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = listSmsRegistrationsRequestBuilder(headers);
+  public ApiResponse<ListSmsRegistrations200Response> listSmsRegistrationsWithHttpInfo(@javax.annotation.Nullable Boolean includeDeactivated, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listSmsRegistrationsRequestBuilder(includeDeactivated, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1014,13 +1018,28 @@ public class SmsApi {
     }
   }
 
-  private HttpRequest.Builder listSmsRegistrationsRequestBuilder(Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder listSmsRegistrationsRequestBuilder(@javax.annotation.Nullable Boolean includeDeactivated, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/sms/registrations";
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "includeDeactivated";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("includeDeactivated", includeDeactivated));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

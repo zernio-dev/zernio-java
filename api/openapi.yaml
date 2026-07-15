@@ -17380,6 +17380,16 @@ paths:
   /v1/sms/registrations:
     get:
       operationId: listSmsRegistrations
+      parameters:
+      - description: Deactivated (terminated) registrations are hidden by default
+          — pass true to include them.
+        explode: true
+        in: query
+        name: includeDeactivated
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:

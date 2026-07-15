@@ -939,7 +939,7 @@ ApiResponse<[**ListSmsOptOuts200Response**](ListSmsOptOuts200Response.md)>
 
 ## listSmsRegistrations
 
-> ListSmsRegistrations200Response listSmsRegistrations()
+> ListSmsRegistrations200Response listSmsRegistrations(includeDeactivated)
 
 List carrier registrations
 
@@ -964,8 +964,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         SmsApi apiInstance = new SmsApi(defaultClient);
+        Boolean includeDeactivated = true; // Boolean | Deactivated (terminated) registrations are hidden by default — pass true to include them.
         try {
-            ListSmsRegistrations200Response result = apiInstance.listSmsRegistrations();
+            ListSmsRegistrations200Response result = apiInstance.listSmsRegistrations(includeDeactivated);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SmsApi#listSmsRegistrations");
@@ -980,7 +981,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **includeDeactivated** | **Boolean**| Deactivated (terminated) registrations are hidden by default — pass true to include them. | [optional] |
 
 ### Return type
 
@@ -1004,7 +1008,7 @@ This endpoint does not need any parameter.
 
 ## listSmsRegistrationsWithHttpInfo
 
-> ApiResponse<ListSmsRegistrations200Response> listSmsRegistrations listSmsRegistrationsWithHttpInfo()
+> ApiResponse<ListSmsRegistrations200Response> listSmsRegistrations listSmsRegistrationsWithHttpInfo(includeDeactivated)
 
 List carrier registrations
 
@@ -1030,8 +1034,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         SmsApi apiInstance = new SmsApi(defaultClient);
+        Boolean includeDeactivated = true; // Boolean | Deactivated (terminated) registrations are hidden by default — pass true to include them.
         try {
-            ApiResponse<ListSmsRegistrations200Response> response = apiInstance.listSmsRegistrationsWithHttpInfo();
+            ApiResponse<ListSmsRegistrations200Response> response = apiInstance.listSmsRegistrationsWithHttpInfo(includeDeactivated);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1048,7 +1053,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **includeDeactivated** | **Boolean**| Deactivated (terminated) registrations are hidden by default — pass true to include them. | [optional] |
 
 ### Return type
 
