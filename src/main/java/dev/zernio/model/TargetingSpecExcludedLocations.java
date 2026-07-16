@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.CreateStandaloneAdRequestZipsInner;
+import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.TargetingSpecCustomLocationsInner;
 import dev.zernio.model.TargetingSpecExcludedLocationsCitiesInner;
 import dev.zernio.model.TargetingSpecExcludedLocationsPlacesInner;
@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   TargetingSpecExcludedLocations.JSON_PROPERTY_NEIGHBORHOODS,
   TargetingSpecExcludedLocations.JSON_PROPERTY_CUSTOM_LOCATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T07:50:00.813699174Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecExcludedLocations {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -55,7 +55,7 @@ public class TargetingSpecExcludedLocations {
 
   public static final String JSON_PROPERTY_REGIONS = "regions";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> regions = new ArrayList<>();
+  private List<BoostPostRequestTargetingRegionsInner> regions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CITIES = "cities";
   @javax.annotation.Nullable
@@ -63,7 +63,7 @@ public class TargetingSpecExcludedLocations {
 
   public static final String JSON_PROPERTY_ZIPS = "zips";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> zips = new ArrayList<>();
+  private List<BoostPostRequestTargetingRegionsInner> zips = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PLACES = "places";
   @javax.annotation.Nullable
@@ -112,12 +112,12 @@ public class TargetingSpecExcludedLocations {
   }
 
 
-  public TargetingSpecExcludedLocations regions(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> regions) {
+  public TargetingSpecExcludedLocations regions(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> regions) {
     this.regions = regions;
     return this;
   }
 
-  public TargetingSpecExcludedLocations addRegionsItem(CreateStandaloneAdRequestZipsInner regionsItem) {
+  public TargetingSpecExcludedLocations addRegionsItem(BoostPostRequestTargetingRegionsInner regionsItem) {
     if (this.regions == null) {
       this.regions = new ArrayList<>();
     }
@@ -132,14 +132,14 @@ public class TargetingSpecExcludedLocations {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getRegions() {
+  public List<BoostPostRequestTargetingRegionsInner> getRegions() {
     return regions;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegions(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> regions) {
+  public void setRegions(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> regions) {
     this.regions = regions;
   }
 
@@ -176,12 +176,12 @@ public class TargetingSpecExcludedLocations {
   }
 
 
-  public TargetingSpecExcludedLocations zips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+  public TargetingSpecExcludedLocations zips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
     this.zips = zips;
     return this;
   }
 
-  public TargetingSpecExcludedLocations addZipsItem(CreateStandaloneAdRequestZipsInner zipsItem) {
+  public TargetingSpecExcludedLocations addZipsItem(BoostPostRequestTargetingRegionsInner zipsItem) {
     if (this.zips == null) {
       this.zips = new ArrayList<>();
     }
@@ -196,14 +196,14 @@ public class TargetingSpecExcludedLocations {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getZips() {
+  public List<BoostPostRequestTargetingRegionsInner> getZips() {
     return zips;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setZips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+  public void setZips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
     this.zips = zips;
   }
 

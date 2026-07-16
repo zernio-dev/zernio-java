@@ -34,7 +34,9 @@ import java.math.BigDecimal;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -53,6 +55,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_CURRENCY,
   BoostPostRequest.JSON_PROPERTY_SCHEDULE,
   BoostPostRequest.JSON_PROPERTY_TARGETING,
+  BoostPostRequest.JSON_PROPERTY_RAW_TARGETING,
   BoostPostRequest.JSON_PROPERTY_BID_STRATEGY,
   BoostPostRequest.JSON_PROPERTY_BID_AMOUNT,
   BoostPostRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
@@ -65,7 +68,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T07:50:00.813699174Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -151,6 +154,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_TARGETING = "targeting";
   @javax.annotation.Nullable
   private BoostPostRequestTargeting targeting;
+
+  public static final String JSON_PROPERTY_RAW_TARGETING = "rawTargeting";
+  @javax.annotation.Nullable
+  private Map<String, Object> rawTargeting = new HashMap<>();
 
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
@@ -478,6 +485,38 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest rawTargeting(@javax.annotation.Nullable Map<String, Object> rawTargeting) {
+    this.rawTargeting = rawTargeting;
+    return this;
+  }
+
+  public BoostPostRequest putRawTargetingItem(String key, Object rawTargetingItem) {
+    if (this.rawTargeting == null) {
+      this.rawTargeting = new HashMap<>();
+    }
+    this.rawTargeting.put(key, rawTargetingItem);
+    return this;
+  }
+
+  /**
+   * Meta only. A verbatim Meta-native targeting spec (e.g. &#x60;{ \&quot;geo_locations\&quot;: { \&quot;cities\&quot;: [{ \&quot;key\&quot;: \&quot;...\&quot;, \&quot;radius\&quot;: 15, \&quot;distance_unit\&quot;: \&quot;kilometer\&quot; }] } }&#x60;), forwarded unchanged. Mutually exclusive with &#x60;targeting&#x60; (sending both is a 400). Use for advanced fields the structured object does not expose (flexible_spec, excluded audiences, business places). 
+   * @return rawTargeting
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RAW_TARGETING, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, Object> getRawTargeting() {
+    return rawTargeting;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RAW_TARGETING, required = false)
+  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRawTargeting(@javax.annotation.Nullable Map<String, Object> rawTargeting) {
+    this.rawTargeting = rawTargeting;
+  }
+
+
   public BoostPostRequest bidStrategy(@javax.annotation.Nullable BidStrategy bidStrategy) {
     this.bidStrategy = bidStrategy;
     return this;
@@ -772,6 +811,7 @@ public class BoostPostRequest {
         Objects.equals(this.currency, boostPostRequest.currency) &&
         Objects.equals(this.schedule, boostPostRequest.schedule) &&
         Objects.equals(this.targeting, boostPostRequest.targeting) &&
+        Objects.equals(this.rawTargeting, boostPostRequest.rawTargeting) &&
         Objects.equals(this.bidStrategy, boostPostRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, boostPostRequest.bidAmount) &&
         Objects.equals(this.roasAverageFloor, boostPostRequest.roasAverageFloor) &&
@@ -787,7 +827,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
+    return Objects.hash(postId, platformPostId, accountId, adAccountId, name, goal, budget, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor);
   }
 
   @Override
@@ -804,6 +844,7 @@ public class BoostPostRequest {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    schedule: ").append(toIndentedString(schedule)).append("\n");
     sb.append("    targeting: ").append(toIndentedString(targeting)).append("\n");
+    sb.append("    rawTargeting: ").append(toIndentedString(rawTargeting)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
@@ -910,6 +951,15 @@ public class BoostPostRequest {
     // add `targeting` to the URL query string
     if (getTargeting() != null) {
       joiner.add(getTargeting().toUrlQueryString(prefix + "targeting" + suffix));
+    }
+
+    // add `rawTargeting` to the URL query string
+    if (getRawTargeting() != null) {
+      for (String _key : getRawTargeting().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%srawTargeting%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getRawTargeting().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getRawTargeting().get(_key)))));
+      }
     }
 
     // add `bidStrategy` to the URL query string

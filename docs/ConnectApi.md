@@ -547,7 +547,7 @@ ApiResponse<[**ConfigureTikTokAdsBrandIdentity200Response**](ConfigureTikTokAdsB
 
 ## connectAds
 
-> ConnectAds200Response connectAds(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds)
+> ConnectAds200Response connectAds(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds)
 
 Connect ads for a platform
 
@@ -579,10 +579,11 @@ public class Example {
         String accountId = "accountId_example"; // String | Existing SocialAccount ID. Required for `twitter` (X Ads). Optional for `tiktok` — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (`facebook`, `instagram`, `linkedin`, `pinterest`) and standalone (`googleads`) platforms. 
         URI redirectUrl = new URI(); // URI | Custom redirect URL after OAuth completes (same-token platforms only). Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path.
         Boolean headless = false; // Boolean | Enable headless mode (same-token platforms only)
+        Boolean force = false; // Boolean | Force a fresh OAuth even when an account already exists. Normally the endpoint returns `alreadyConnected: true` whenever a connected account is found, keying off its active state rather than token liveness. Set `force=true` to bypass that and always receivean `authUrl`. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place. 
         String adAccountId = "act_1330190928038136"; // String | Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on `facebook`/`instagram` (Meta, `act_<digits>`), `linkedin` (bare numeric sponsored-account id), `googleads` (bare customer id digits) and `twitter` (X Ads, base36 account id). `tiktok` scopes advertisers at OAuth and `pinterest` has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use `adAccountIds` instead. 
         List<String> adAccountIds = Arrays.asList(); // List<String> | Scope ad sync to multiple platform ad accounts (same platform support and id shapes as `adAccountId`). Repeat the param (`?adAccountIds=act_1&adAccountIds=act_2`) or comma-separate (`?adAccountIds=act_1,act_2`). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both `adAccountId` and `adAccountIds` keeps any previously persisted scope unchanged. 
         try {
-            ConnectAds200Response result = apiInstance.connectAds(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds);
+            ConnectAds200Response result = apiInstance.connectAds(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#connectAds");
@@ -605,6 +606,7 @@ public class Example {
 | **accountId** | **String**| Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  | [optional] |
 | **redirectUrl** | **URI**| Custom redirect URL after OAuth completes (same-token platforms only). Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. | [optional] |
 | **headless** | **Boolean**| Enable headless mode (same-token platforms only) | [optional] [default to false] |
+| **force** | **Boolean**| Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  | [optional] [default to false] |
 | **adAccountId** | **String**| Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  | [optional] |
 | **adAccountIds** | [**List&lt;String&gt;**](String.md)| Scope ad sync to multiple platform ad accounts (same platform support and id shapes as &#x60;adAccountId&#x60;). Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  | [optional] |
 
@@ -633,7 +635,7 @@ public class Example {
 
 ## connectAdsWithHttpInfo
 
-> ApiResponse<ConnectAds200Response> connectAds connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds)
+> ApiResponse<ConnectAds200Response> connectAds connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds)
 
 Connect ads for a platform
 
@@ -666,10 +668,11 @@ public class Example {
         String accountId = "accountId_example"; // String | Existing SocialAccount ID. Required for `twitter` (X Ads). Optional for `tiktok` — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (`facebook`, `instagram`, `linkedin`, `pinterest`) and standalone (`googleads`) platforms. 
         URI redirectUrl = new URI(); // URI | Custom redirect URL after OAuth completes (same-token platforms only). Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path.
         Boolean headless = false; // Boolean | Enable headless mode (same-token platforms only)
+        Boolean force = false; // Boolean | Force a fresh OAuth even when an account already exists. Normally the endpoint returns `alreadyConnected: true` whenever a connected account is found, keying off its active state rather than token liveness. Set `force=true` to bypass that and always receivean `authUrl`. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place. 
         String adAccountId = "act_1330190928038136"; // String | Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on `facebook`/`instagram` (Meta, `act_<digits>`), `linkedin` (bare numeric sponsored-account id), `googleads` (bare customer id digits) and `twitter` (X Ads, base36 account id). `tiktok` scopes advertisers at OAuth and `pinterest` has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use `adAccountIds` instead. 
         List<String> adAccountIds = Arrays.asList(); // List<String> | Scope ad sync to multiple platform ad accounts (same platform support and id shapes as `adAccountId`). Repeat the param (`?adAccountIds=act_1&adAccountIds=act_2`) or comma-separate (`?adAccountIds=act_1,act_2`). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both `adAccountId` and `adAccountIds` keeps any previously persisted scope unchanged. 
         try {
-            ApiResponse<ConnectAds200Response> response = apiInstance.connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, adAccountId, adAccountIds);
+            ApiResponse<ConnectAds200Response> response = apiInstance.connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -694,6 +697,7 @@ public class Example {
 | **accountId** | **String**| Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60; — omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  | [optional] |
 | **redirectUrl** | **URI**| Custom redirect URL after OAuth completes (same-token platforms only). Accepts an http(s) URL, a custom app scheme for mobile deeplinks (e.g. myapp://callback), or a relative path. | [optional] |
 | **headless** | **Boolean**| Enable headless mode (same-token platforms only) | [optional] [default to false] |
+| **force** | **Boolean**| Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  | [optional] [default to false] |
 | **adAccountId** | **String**| Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  | [optional] |
 | **adAccountIds** | [**List&lt;String&gt;**](String.md)| Scope ad sync to multiple platform ad accounts (same platform support and id shapes as &#x60;adAccountId&#x60;). Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  | [optional] |
 

@@ -24,6 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.BoostPostRequestTargetingCitiesInner;
+import dev.zernio.model.BoostPostRequestTargetingCustomLocationsInner;
+import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,16 +36,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * BoostPostRequestTargeting
+ * Same geo/demographic fields as the &#x60;TargetingSpec&#x60; used by /v1/ads/create. Geo keys (&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60;) resolve via GET /v1/ads/targeting/search?dimension&#x3D;geo. City radius and lat/lng &#x60;customLocations&#x60; are Meta-only and preserve the boosted post&#39;s social proof (the ad references the existing post). 
  */
 @JsonPropertyOrder({
   BoostPostRequestTargeting.JSON_PROPERTY_AGE_MIN,
   BoostPostRequestTargeting.JSON_PROPERTY_AGE_MAX,
+  BoostPostRequestTargeting.JSON_PROPERTY_GENDER,
+  BoostPostRequestTargeting.JSON_PROPERTY_LANGUAGES,
   BoostPostRequestTargeting.JSON_PROPERTY_COUNTRIES,
+  BoostPostRequestTargeting.JSON_PROPERTY_REGIONS,
+  BoostPostRequestTargeting.JSON_PROPERTY_CITIES,
+  BoostPostRequestTargeting.JSON_PROPERTY_ZIPS,
+  BoostPostRequestTargeting.JSON_PROPERTY_METROS,
+  BoostPostRequestTargeting.JSON_PROPERTY_CUSTOM_LOCATIONS,
   BoostPostRequestTargeting.JSON_PROPERTY_INTERESTS,
   BoostPostRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T07:50:00.813699174Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestTargeting {
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -52,9 +62,74 @@ public class BoostPostRequestTargeting {
   @javax.annotation.Nullable
   private Integer ageMax;
 
+  /**
+   * Meta only.
+   */
+  public enum GenderEnum {
+    ALL(String.valueOf("all")),
+    
+    MALE(String.valueOf("male")),
+    
+    FEMALE(String.valueOf("female"));
+
+    private String value;
+
+    GenderEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static GenderEnum fromValue(String value) {
+      for (GenderEnum b : GenderEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_GENDER = "gender";
+  @javax.annotation.Nullable
+  private GenderEnum gender;
+
+  public static final String JSON_PROPERTY_LANGUAGES = "languages";
+  @javax.annotation.Nullable
+  private List<String> languages = new ArrayList<>();
+
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
   private List<String> countries = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REGIONS = "regions";
+  @javax.annotation.Nullable
+  private List<BoostPostRequestTargetingRegionsInner> regions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CITIES = "cities";
+  @javax.annotation.Nullable
+  private List<BoostPostRequestTargetingCitiesInner> cities = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ZIPS = "zips";
+  @javax.annotation.Nullable
+  private List<BoostPostRequestTargetingRegionsInner> zips = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_METROS = "metros";
+  @javax.annotation.Nullable
+  private List<BoostPostRequestTargetingRegionsInner> metros = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
+  @javax.annotation.Nullable
+  private List<BoostPostRequestTargetingCustomLocationsInner> customLocations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_INTERESTS = "interests";
   @javax.annotation.Nullable
@@ -154,6 +229,62 @@ public class BoostPostRequestTargeting {
   }
 
 
+  public BoostPostRequestTargeting gender(@javax.annotation.Nullable GenderEnum gender) {
+    this.gender = gender;
+    return this;
+  }
+
+  /**
+   * Meta only.
+   * @return gender
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_GENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GenderEnum getGender() {
+    return gender;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_GENDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGender(@javax.annotation.Nullable GenderEnum gender) {
+    this.gender = gender;
+  }
+
+
+  public BoostPostRequestTargeting languages(@javax.annotation.Nullable List<String> languages) {
+    this.languages = languages;
+    return this;
+  }
+
+  public BoostPostRequestTargeting addLanguagesItem(String languagesItem) {
+    if (this.languages == null) {
+      this.languages = new ArrayList<>();
+    }
+    this.languages.add(languagesItem);
+    return this;
+  }
+
+  /**
+   * Meta locale ids (numeric), passed through as given.
+   * @return languages
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getLanguages() {
+    return languages;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguages(@javax.annotation.Nullable List<String> languages) {
+    this.languages = languages;
+  }
+
+
   public BoostPostRequestTargeting countries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
     return this;
@@ -183,6 +314,166 @@ public class BoostPostRequestTargeting {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
+  }
+
+
+  public BoostPostRequestTargeting regions(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> regions) {
+    this.regions = regions;
+    return this;
+  }
+
+  public BoostPostRequestTargeting addRegionsItem(BoostPostRequestTargetingRegionsInner regionsItem) {
+    if (this.regions == null) {
+      this.regions = new ArrayList<>();
+    }
+    this.regions.add(regionsItem);
+    return this;
+  }
+
+  /**
+   * Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region.
+   * @return regions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<BoostPostRequestTargetingRegionsInner> getRegions() {
+    return regions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRegions(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> regions) {
+    this.regions = regions;
+  }
+
+
+  public BoostPostRequestTargeting cities(@javax.annotation.Nullable List<BoostPostRequestTargetingCitiesInner> cities) {
+    this.cities = cities;
+    return this;
+  }
+
+  public BoostPostRequestTargeting addCitiesItem(BoostPostRequestTargetingCitiesInner citiesItem) {
+    if (this.cities == null) {
+      this.cities = new ArrayList<>();
+    }
+    this.cities.add(citiesItem);
+    return this;
+  }
+
+  /**
+   * City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only).
+   * @return cities
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<BoostPostRequestTargetingCitiesInner> getCities() {
+    return cities;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CITIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCities(@javax.annotation.Nullable List<BoostPostRequestTargetingCitiesInner> cities) {
+    this.cities = cities;
+  }
+
+
+  public BoostPostRequestTargeting zips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
+    this.zips = zips;
+    return this;
+  }
+
+  public BoostPostRequestTargeting addZipsItem(BoostPostRequestTargetingRegionsInner zipsItem) {
+    if (this.zips == null) {
+      this.zips = new ArrayList<>();
+    }
+    this.zips.add(zipsItem);
+    return this;
+  }
+
+  /**
+   * Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;).
+   * @return zips
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<BoostPostRequestTargetingRegionsInner> getZips() {
+    return zips;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setZips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
+    this.zips = zips;
+  }
+
+
+  public BoostPostRequestTargeting metros(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> metros) {
+    this.metros = metros;
+    return this;
+  }
+
+  public BoostPostRequestTargeting addMetrosItem(BoostPostRequestTargetingRegionsInner metrosItem) {
+    if (this.metros == null) {
+      this.metros = new ArrayList<>();
+    }
+    this.metros.add(metrosItem);
+    return this;
+  }
+
+  /**
+   * DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;).
+   * @return metros
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<BoostPostRequestTargetingRegionsInner> getMetros() {
+    return metros;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMetros(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> metros) {
+    this.metros = metros;
+  }
+
+
+  public BoostPostRequestTargeting customLocations(@javax.annotation.Nullable List<BoostPostRequestTargetingCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
+    return this;
+  }
+
+  public BoostPostRequestTargeting addCustomLocationsItem(BoostPostRequestTargetingCustomLocationsInner customLocationsItem) {
+    if (this.customLocations == null) {
+      this.customLocations = new ArrayList<>();
+    }
+    this.customLocations.add(customLocationsItem);
+    return this;
+  }
+
+  /**
+   * Point-radius (lat/lng) targeting (Meta custom_locations). No geo &#x60;key&#x60; lookup needed.
+   * @return customLocations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<BoostPostRequestTargetingCustomLocationsInner> getCustomLocations() {
+    return customLocations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCustomLocations(@javax.annotation.Nullable List<BoostPostRequestTargetingCustomLocationsInner> customLocations) {
+    this.customLocations = customLocations;
   }
 
 
@@ -256,14 +547,21 @@ public class BoostPostRequestTargeting {
     BoostPostRequestTargeting boostPostRequestTargeting = (BoostPostRequestTargeting) o;
     return Objects.equals(this.ageMin, boostPostRequestTargeting.ageMin) &&
         Objects.equals(this.ageMax, boostPostRequestTargeting.ageMax) &&
+        Objects.equals(this.gender, boostPostRequestTargeting.gender) &&
+        Objects.equals(this.languages, boostPostRequestTargeting.languages) &&
         Objects.equals(this.countries, boostPostRequestTargeting.countries) &&
+        Objects.equals(this.regions, boostPostRequestTargeting.regions) &&
+        Objects.equals(this.cities, boostPostRequestTargeting.cities) &&
+        Objects.equals(this.zips, boostPostRequestTargeting.zips) &&
+        Objects.equals(this.metros, boostPostRequestTargeting.metros) &&
+        Objects.equals(this.customLocations, boostPostRequestTargeting.customLocations) &&
         Objects.equals(this.interests, boostPostRequestTargeting.interests) &&
         Objects.equals(this.advantageAudience, boostPostRequestTargeting.advantageAudience);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ageMin, ageMax, countries, interests, advantageAudience);
+    return Objects.hash(ageMin, ageMax, gender, languages, countries, regions, cities, zips, metros, customLocations, interests, advantageAudience);
   }
 
   @Override
@@ -272,7 +570,14 @@ public class BoostPostRequestTargeting {
     sb.append("class BoostPostRequestTargeting {\n");
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
+    sb.append("    gender: ").append(toIndentedString(gender)).append("\n");
+    sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
+    sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
+    sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
+    sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
+    sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
+    sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("}");
@@ -332,12 +637,76 @@ public class BoostPostRequestTargeting {
       joiner.add(String.format(java.util.Locale.ROOT, "%sageMax%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAgeMax()))));
     }
 
+    // add `gender` to the URL query string
+    if (getGender() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgender%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGender()))));
+    }
+
+    // add `languages` to the URL query string
+    if (getLanguages() != null) {
+      for (int i = 0; i < getLanguages().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%slanguages%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getLanguages().get(i)))));
+      }
+    }
+
     // add `countries` to the URL query string
     if (getCountries() != null) {
       for (int i = 0; i < getCountries().size(); i++) {
         joiner.add(String.format(java.util.Locale.ROOT, "%scountries%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCountries().get(i)))));
+      }
+    }
+
+    // add `regions` to the URL query string
+    if (getRegions() != null) {
+      for (int i = 0; i < getRegions().size(); i++) {
+        if (getRegions().get(i) != null) {
+          joiner.add(getRegions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sregions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `cities` to the URL query string
+    if (getCities() != null) {
+      for (int i = 0; i < getCities().size(); i++) {
+        if (getCities().get(i) != null) {
+          joiner.add(getCities().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scities%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `zips` to the URL query string
+    if (getZips() != null) {
+      for (int i = 0; i < getZips().size(); i++) {
+        if (getZips().get(i) != null) {
+          joiner.add(getZips().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%szips%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `metros` to the URL query string
+    if (getMetros() != null) {
+      for (int i = 0; i < getMetros().size(); i++) {
+        if (getMetros().get(i) != null) {
+          joiner.add(getMetros().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smetros%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `customLocations` to the URL query string
+    if (getCustomLocations() != null) {
+      for (int i = 0; i < getCustomLocations().size(); i++) {
+        if (getCustomLocations().get(i) != null) {
+          joiner.add(getCustomLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scustomLocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-16T07:50:00.813699174Z[Etc/UTC]
+- Build date: 2026-07-16T09:33:12.660071005Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1146,6 +1146,9 @@ Class | Method | HTTP request | Description
  - [BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
  - [BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
  - [BoostPostRequestTargeting](docs/BoostPostRequestTargeting.md)
+ - [BoostPostRequestTargetingCitiesInner](docs/BoostPostRequestTargetingCitiesInner.md)
+ - [BoostPostRequestTargetingCustomLocationsInner](docs/BoostPostRequestTargetingCustomLocationsInner.md)
+ - [BoostPostRequestTargetingRegionsInner](docs/BoostPostRequestTargetingRegionsInner.md)
  - [BoostPostRequestTracking](docs/BoostPostRequestTracking.md)
  - [BulkCreateContacts200Response](docs/BulkCreateContacts200Response.md)
  - [BulkCreateContactsRequest](docs/BulkCreateContactsRequest.md)
@@ -1304,7 +1307,6 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestTracking](docs/CreateStandaloneAdRequestTracking.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
- - [CreateStandaloneAdRequestZipsInner](docs/CreateStandaloneAdRequestZipsInner.md)
  - [CreateTestLead200Response](docs/CreateTestLead200Response.md)
  - [CreateTestLead200ResponseTestLead](docs/CreateTestLead200ResponseTestLead.md)
  - [CreateTestLeadRequest](docs/CreateTestLeadRequest.md)

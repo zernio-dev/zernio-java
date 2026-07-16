@@ -6665,6 +6665,21 @@ paths:
           type: boolean
         style: form
       - description: |
+          Force a fresh OAuth even when an account already exists. Normally the
+          endpoint returns `alreadyConnected: true` whenever a connected account
+          is found, keying off its active state rather than token liveness.
+          Set `force=true` to bypass that and always receivean `authUrl`.
+          Completing the returned OAuth refreshes the stored token
+          on the existing posting and ads accounts in place.
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: |
           Scope ad sync to a single platform ad account. Without this param,
           sync covers every ad account the connected token can see. Supported
           on `facebook`/`instagram` (Meta, `act_<digits>`), `linkedin` (bare
@@ -36347,7 +36362,7 @@ components:
           description: Region/state targeting. `key` is the platform location ID from
             /v1/ads/targeting/search?dimension=geo&geoType=region.
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
           type: array
         cities:
           description: City targeting. Optional `radius` + `distance_unit` extend
@@ -36362,13 +36377,13 @@ components:
             \ ID (e.g. Meta `US:94304`). Supported on Meta, Google, TikTok, Pinterest,\
             \ X."
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
           type: array
         metros:
           description: DMA / metro-area targeting. `key` is the platform's metro ID
             (e.g. Meta `DMA:807`).
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
           type: array
         customLocations:
           description: Point-radius (lat/lng) targeting (Meta custom_locations / Google
@@ -63928,7 +63943,64 @@ components:
           description: Required for lifetime budgets
           format: date-time
           type: string
+    boostPost_request_targeting_regions_inner:
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+      required:
+      - key
+    boostPost_request_targeting_cities_inner:
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        radius:
+          description: Requires distance_unit.
+          type: number
+        distance_unit:
+          enum:
+          - mile
+          - kilometer
+          type: string
+      required:
+      - key
+    boostPost_request_targeting_customLocations_inner:
+      properties:
+        latitude:
+          maximum: 90
+          minimum: -90
+          type: number
+        longitude:
+          maximum: 180
+          minimum: -180
+          type: number
+        radius:
+          type: number
+        distanceUnit:
+          enum:
+          - mile
+          - kilometer
+          type: string
+        name:
+          type: string
+        address:
+          description: "Optional label, sent to Meta as `address_string`."
+          type: string
+      required:
+      - distanceUnit
+      - latitude
+      - longitude
+      - radius
     boostPost_request_targeting:
+      description: |
+        Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create.
+        Geo keys (`regions`/`cities`/`zips`/`metros`) resolve via
+        GET /v1/ads/targeting/search?dimension=geo. City radius and lat/lng
+        `customLocations` are Meta-only and preserve the boosted post's
+        social proof (the ad references the existing post).
       properties:
         ageMin:
           maximum: 65
@@ -63938,11 +64010,52 @@ components:
           maximum: 65
           minimum: 13
           type: integer
+        gender:
+          description: Meta only.
+          enum:
+          - all
+          - male
+          - female
+          type: string
+        languages:
+          description: "Meta locale ids (numeric), passed through as given."
+          items:
+            type: string
+          type: array
         countries:
           description: ISO country codes. Required for TikTok boosts (TikTok's ad
             group requires location_ids); optional on other platforms.
           items:
             type: string
+          type: array
+        regions:
+          description: Region/state targeting. `key` from /v1/ads/targeting/search?dimension=geo&geoType=region.
+          items:
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
+          type: array
+        cities:
+          description: "City targeting. Optional `radius` + `distance_unit` extend\
+            \ beyond the city limits (both set together, Meta only)."
+          items:
+            $ref: "#/components/schemas/boostPost_request_targeting_cities_inner"
+          type: array
+        zips:
+          description: Postal/ZIP targeting. `key` is the platform's postal location
+            ID (e.g. Meta `US:94304`).
+          items:
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
+          type: array
+        metros:
+          description: DMA / metro-area targeting. `key` is the platform's metro ID
+            (e.g. Meta `DMA:807`).
+          items:
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
+          type: array
+        customLocations:
+          description: Point-radius (lat/lng) targeting (Meta custom_locations). No
+            geo `key` lookup needed.
+          items:
+            $ref: "#/components/schemas/boostPost_request_targeting_customLocations_inner"
           type: array
         interests:
           description: Interest objects from /v1/ads/interests. Each must include
@@ -64004,6 +64117,14 @@ components:
           $ref: "#/components/schemas/boostPost_request_schedule"
         targeting:
           $ref: "#/components/schemas/boostPost_request_targeting"
+        rawTargeting:
+          additionalProperties: {}
+          description: |
+            Meta only. A verbatim Meta-native targeting spec (e.g.
+            `{ "geo_locations": { "cities": [{ "key": "...", "radius": 15, "distance_unit": "kilometer" }] } }`),
+            forwarded unchanged. Mutually exclusive with `targeting` (sending both is a 400).
+            Use for advanced fields the structured object does not expose (flexible_spec,
+            excluded audiences, business places).
         bidStrategy:
           allOf:
           - $ref: "#/components/schemas/BidStrategy"
@@ -64231,14 +64352,6 @@ components:
       properties:
         key:
           description: "Meta region ID, from /v1/ads/targeting/search results."
-          type: string
-      required:
-      - key
-    createStandaloneAd_request_zips_inner:
-      properties:
-        key:
-          type: string
-        name:
           type: string
       required:
       - key
@@ -65014,13 +65127,13 @@ components:
             \ ID from /v1/ads/targeting/search?dimension=geo&geoType=zip. Supported\
             \ on Meta, Google, TikTok, Pinterest, X."
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
           type: array
         metros:
           description: DMA / metro-area geo targeting. `key` is the platform's metro
             ID from /v1/ads/targeting/search?dimension=geo&geoType=metro.
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
           type: array
         customLocations:
           description: Point-radius (lat/lng) geo targeting. Meta only (custom_locations).
@@ -71900,7 +72013,7 @@ components:
           type: array
         regions:
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
           type: array
         cities:
           description: Cities to exclude. Optional `radius` + `distance_unit` exclude
@@ -71911,7 +72024,7 @@ components:
           type: array
         zips:
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_zips_inner"
+            $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
           type: array
         places:
           description: Named points of interest to exclude. `key` from /v1/ads/targeting/search.

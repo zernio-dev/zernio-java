@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
-import dev.zernio.model.CreateStandaloneAdRequestZipsInner;
 import dev.zernio.model.TargetingSpecCitiesInner;
 import dev.zernio.model.TargetingSpecCustomLocationsInner;
 import dev.zernio.model.TargetingSpecExcludedLocations;
@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T07:50:00.813699174Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -69,7 +69,7 @@ public class TargetingSpec {
 
   public static final String JSON_PROPERTY_REGIONS = "regions";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> regions = new ArrayList<>();
+  private List<BoostPostRequestTargetingRegionsInner> regions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CITIES = "cities";
   @javax.annotation.Nullable
@@ -77,11 +77,11 @@ public class TargetingSpec {
 
   public static final String JSON_PROPERTY_ZIPS = "zips";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> zips = new ArrayList<>();
+  private List<BoostPostRequestTargetingRegionsInner> zips = new ArrayList<>();
 
   public static final String JSON_PROPERTY_METROS = "metros";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> metros = new ArrayList<>();
+  private List<BoostPostRequestTargetingRegionsInner> metros = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
   @javax.annotation.Nullable
@@ -254,12 +254,12 @@ public class TargetingSpec {
   }
 
 
-  public TargetingSpec regions(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> regions) {
+  public TargetingSpec regions(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> regions) {
     this.regions = regions;
     return this;
   }
 
-  public TargetingSpec addRegionsItem(CreateStandaloneAdRequestZipsInner regionsItem) {
+  public TargetingSpec addRegionsItem(BoostPostRequestTargetingRegionsInner regionsItem) {
     if (this.regions == null) {
       this.regions = new ArrayList<>();
     }
@@ -274,14 +274,14 @@ public class TargetingSpec {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getRegions() {
+  public List<BoostPostRequestTargetingRegionsInner> getRegions() {
     return regions;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_REGIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegions(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> regions) {
+  public void setRegions(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> regions) {
     this.regions = regions;
   }
 
@@ -318,12 +318,12 @@ public class TargetingSpec {
   }
 
 
-  public TargetingSpec zips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+  public TargetingSpec zips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
     this.zips = zips;
     return this;
   }
 
-  public TargetingSpec addZipsItem(CreateStandaloneAdRequestZipsInner zipsItem) {
+  public TargetingSpec addZipsItem(BoostPostRequestTargetingRegionsInner zipsItem) {
     if (this.zips == null) {
       this.zips = new ArrayList<>();
     }
@@ -338,24 +338,24 @@ public class TargetingSpec {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getZips() {
+  public List<BoostPostRequestTargetingRegionsInner> getZips() {
     return zips;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setZips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+  public void setZips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
     this.zips = zips;
   }
 
 
-  public TargetingSpec metros(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> metros) {
+  public TargetingSpec metros(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> metros) {
     this.metros = metros;
     return this;
   }
 
-  public TargetingSpec addMetrosItem(CreateStandaloneAdRequestZipsInner metrosItem) {
+  public TargetingSpec addMetrosItem(BoostPostRequestTargetingRegionsInner metrosItem) {
     if (this.metros == null) {
       this.metros = new ArrayList<>();
     }
@@ -370,14 +370,14 @@ public class TargetingSpec {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getMetros() {
+  public List<BoostPostRequestTargetingRegionsInner> getMetros() {
     return metros;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetros(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> metros) {
+  public void setMetros(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> metros) {
     this.metros = metros;
   }
 

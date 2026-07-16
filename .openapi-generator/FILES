@@ -91,6 +91,9 @@ docs/BoostPostRequest.md
 docs/BoostPostRequestBudget.md
 docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestTargeting.md
+docs/BoostPostRequestTargetingCitiesInner.md
+docs/BoostPostRequestTargetingCustomLocationsInner.md
+docs/BoostPostRequestTargetingRegionsInner.md
 docs/BoostPostRequestTracking.md
 docs/BroadcastsApi.md
 docs/BulkCreateContacts200Response.md
@@ -255,7 +258,6 @@ docs/CreateStandaloneAdRequestPromotedObject.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestTracking.md
 docs/CreateStandaloneAdRequestVideo.md
-docs/CreateStandaloneAdRequestZipsInner.md
 docs/CreateTestLead200Response.md
 docs/CreateTestLead200ResponseTestLead.md
 docs/CreateTestLeadRequest.md
@@ -1610,6 +1612,9 @@ src/main/java/dev/zernio/model/BoostPostRequest.java
 src/main/java/dev/zernio/model/BoostPostRequestBudget.java
 src/main/java/dev/zernio/model/BoostPostRequestSchedule.java
 src/main/java/dev/zernio/model/BoostPostRequestTargeting.java
+src/main/java/dev/zernio/model/BoostPostRequestTargetingCitiesInner.java
+src/main/java/dev/zernio/model/BoostPostRequestTargetingCustomLocationsInner.java
+src/main/java/dev/zernio/model/BoostPostRequestTargetingRegionsInner.java
 src/main/java/dev/zernio/model/BoostPostRequestTracking.java
 src/main/java/dev/zernio/model/BulkCreateContacts200Response.java
 src/main/java/dev/zernio/model/BulkCreateContactsRequest.java
@@ -1768,7 +1773,6 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTracking.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestVideo.java
-src/main/java/dev/zernio/model/CreateStandaloneAdRequestZipsInner.java
 src/main/java/dev/zernio/model/CreateTestLead200Response.java
 src/main/java/dev/zernio/model/CreateTestLead200ResponseTestLead.java
 src/main/java/dev/zernio/model/CreateTestLeadRequest.java
@@ -2929,3 +2933,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BoostPostRequestTargetingCitiesInnerTest.java
+src/test/java/dev/zernio/model/BoostPostRequestTargetingCustomLocationsInnerTest.java
+src/test/java/dev/zernio/model/BoostPostRequestTargetingRegionsInnerTest.java

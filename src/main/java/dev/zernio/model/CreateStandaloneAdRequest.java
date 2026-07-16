@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
+import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBrandIdentity;
@@ -39,7 +40,6 @@ import dev.zernio.model.CreateStandaloneAdRequestPromotedObject;
 import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
-import dev.zernio.model.CreateStandaloneAdRequestZipsInner;
 import dev.zernio.model.LinkedInAdsPlatformData;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
@@ -128,7 +128,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T07:50:00.813699174Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -503,11 +503,11 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_ZIPS = "zips";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> zips = new ArrayList<>();
+  private List<BoostPostRequestTargetingRegionsInner> zips = new ArrayList<>();
 
   public static final String JSON_PROPERTY_METROS = "metros";
   @javax.annotation.Nullable
-  private List<CreateStandaloneAdRequestZipsInner> metros = new ArrayList<>();
+  private List<BoostPostRequestTargetingRegionsInner> metros = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
   @javax.annotation.Nullable
@@ -1784,12 +1784,12 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest zips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+  public CreateStandaloneAdRequest zips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
     this.zips = zips;
     return this;
   }
 
-  public CreateStandaloneAdRequest addZipsItem(CreateStandaloneAdRequestZipsInner zipsItem) {
+  public CreateStandaloneAdRequest addZipsItem(BoostPostRequestTargetingRegionsInner zipsItem) {
     if (this.zips == null) {
       this.zips = new ArrayList<>();
     }
@@ -1804,24 +1804,24 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getZips() {
+  public List<BoostPostRequestTargetingRegionsInner> getZips() {
     return zips;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ZIPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setZips(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> zips) {
+  public void setZips(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> zips) {
     this.zips = zips;
   }
 
 
-  public CreateStandaloneAdRequest metros(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> metros) {
+  public CreateStandaloneAdRequest metros(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> metros) {
     this.metros = metros;
     return this;
   }
 
-  public CreateStandaloneAdRequest addMetrosItem(CreateStandaloneAdRequestZipsInner metrosItem) {
+  public CreateStandaloneAdRequest addMetrosItem(BoostPostRequestTargetingRegionsInner metrosItem) {
     if (this.metros == null) {
       this.metros = new ArrayList<>();
     }
@@ -1836,14 +1836,14 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<CreateStandaloneAdRequestZipsInner> getMetros() {
+  public List<BoostPostRequestTargetingRegionsInner> getMetros() {
     return metros;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_METROS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetros(@javax.annotation.Nullable List<CreateStandaloneAdRequestZipsInner> metros) {
+  public void setMetros(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> metros) {
     this.metros = metros;
   }
 
