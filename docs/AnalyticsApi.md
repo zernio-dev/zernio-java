@@ -3563,11 +3563,11 @@ ApiResponse<[**YouTubeDailyViewsResponse**](YouTubeDailyViewsResponse.md)>
 
 ## getYouTubeDemographics
 
-> YouTubeDemographicsResponse getYouTubeDemographics(accountId, breakdown, startDate, endDate)
+> YouTubeDemographicsResponse getYouTubeDemographics(accountId, videoId, breakdown, startDate, endDate)
 
 Get YouTube demographics
 
-Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
 
 ### Example
 
@@ -3591,11 +3591,12 @@ public class Example {
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the YouTube account
+        String videoId = "videoId_example"; // String | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found). 
         String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted. 
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago. 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided. 
         LocalDate endDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency). 
         try {
-            YouTubeDemographicsResponse result = apiInstance.getYouTubeDemographics(accountId, breakdown, startDate, endDate);
+            YouTubeDemographicsResponse result = apiInstance.getYouTubeDemographics(accountId, videoId, breakdown, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getYouTubeDemographics");
@@ -3614,8 +3615,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the YouTube account | |
+| **videoId** | **String**| YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  | [optional] |
 | **breakdown** | **String**| Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional] |
-| **startDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago.  | [optional] |
+| **startDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional] |
 | **endDate** | **LocalDate**| End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  | [optional] |
 
 ### Return type
@@ -3640,16 +3642,16 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
-| **404** | Account not found |  -  |
+| **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
 
 ## getYouTubeDemographicsWithHttpInfo
 
-> ApiResponse<YouTubeDemographicsResponse> getYouTubeDemographics getYouTubeDemographicsWithHttpInfo(accountId, breakdown, startDate, endDate)
+> ApiResponse<YouTubeDemographicsResponse> getYouTubeDemographics getYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, startDate, endDate)
 
 Get YouTube demographics
 
-Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. Requires the Analytics add-on. 
+Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
 
 ### Example
 
@@ -3674,11 +3676,12 @@ public class Example {
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the YouTube account
+        String videoId = "videoId_example"; // String | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found). 
         String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted. 
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago. 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided. 
         LocalDate endDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency). 
         try {
-            ApiResponse<YouTubeDemographicsResponse> response = apiInstance.getYouTubeDemographicsWithHttpInfo(accountId, breakdown, startDate, endDate);
+            ApiResponse<YouTubeDemographicsResponse> response = apiInstance.getYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, startDate, endDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3699,8 +3702,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the YouTube account | |
+| **videoId** | **String**| YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  | [optional] |
 | **breakdown** | **String**| Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional] |
-| **startDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago.  | [optional] |
+| **startDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional] |
 | **endDate** | **LocalDate**| End date in YYYY-MM-DD format. Defaults to 3 days ago (YouTube data latency).  | [optional] |
 
 ### Return type
@@ -3725,7 +3729,7 @@ ApiResponse<[**YouTubeDemographicsResponse**](YouTubeDemographicsResponse.md)>
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
-| **404** | Account not found |  -  |
+| **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
 
 

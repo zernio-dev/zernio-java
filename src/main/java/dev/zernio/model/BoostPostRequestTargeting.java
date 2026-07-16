@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestTargeting.JSON_PROPERTY_INTERESTS,
   BoostPostRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:36:07.204862112Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T11:44:57.492127360Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestTargeting {
   public static final String JSON_PROPERTY_AGE_MIN = "ageMin";
   @javax.annotation.Nullable
@@ -363,7 +363,7 @@ public class BoostPostRequestTargeting {
   }
 
   /**
-   * City targeting. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend beyond the city limits (both set together, Meta only).
+   * City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits (both set together, Meta only).
    * @return cities
    */
   @javax.annotation.Nullable

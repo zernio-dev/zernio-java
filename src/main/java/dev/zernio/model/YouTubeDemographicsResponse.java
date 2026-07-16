@@ -26,10 +26,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.YouTubeDemographicsResponseDateRange;
 import dev.zernio.model.YouTubeDemographicsResponseDemographicsValueInner;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -41,11 +46,14 @@ import dev.zernio.ApiClient;
   YouTubeDemographicsResponse.JSON_PROPERTY_SUCCESS,
   YouTubeDemographicsResponse.JSON_PROPERTY_ACCOUNT_ID,
   YouTubeDemographicsResponse.JSON_PROPERTY_PLATFORM,
+  YouTubeDemographicsResponse.JSON_PROPERTY_VIDEO_ID,
+  YouTubeDemographicsResponse.JSON_PROPERTY_TITLE,
+  YouTubeDemographicsResponse.JSON_PROPERTY_PUBLISHED_AT,
   YouTubeDemographicsResponse.JSON_PROPERTY_DEMOGRAPHICS,
   YouTubeDemographicsResponse.JSON_PROPERTY_DATE_RANGE,
   YouTubeDemographicsResponse.JSON_PROPERTY_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:36:07.204862112Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T11:44:57.492127360Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDemographicsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -58,6 +66,16 @@ public class YouTubeDemographicsResponse {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
   private String platform;
+
+  public static final String JSON_PROPERTY_VIDEO_ID = "videoId";
+  @javax.annotation.Nullable
+  private String videoId;
+
+  public static final String JSON_PROPERTY_TITLE = "title";
+  private JsonNullable<String> title = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_PUBLISHED_AT = "publishedAt";
+  private JsonNullable<OffsetDateTime> publishedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_DEMOGRAPHICS = "demographics";
   @javax.annotation.Nullable
@@ -143,6 +161,94 @@ public class YouTubeDemographicsResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlatform(@javax.annotation.Nullable String platform) {
     this.platform = platform;
+  }
+
+
+  public YouTubeDemographicsResponse videoId(@javax.annotation.Nullable String videoId) {
+    this.videoId = videoId;
+    return this;
+  }
+
+  /**
+   * Present only when demographics are scoped to a single video
+   * @return videoId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getVideoId() {
+    return videoId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoId(@javax.annotation.Nullable String videoId) {
+    this.videoId = videoId;
+  }
+
+
+  public YouTubeDemographicsResponse title(@javax.annotation.Nullable String title) {
+    this.title = JsonNullable.<String>of(title);
+    return this;
+  }
+
+  /**
+   * Video title (video mode only)
+   * @return title
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getTitle() {
+        return title.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_TITLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getTitle_JsonNullable() {
+    return title;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TITLE)
+  public void setTitle_JsonNullable(JsonNullable<String> title) {
+    this.title = title;
+  }
+
+  public void setTitle(@javax.annotation.Nullable String title) {
+    this.title = JsonNullable.<String>of(title);
+  }
+
+
+  public YouTubeDemographicsResponse publishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
+    this.publishedAt = JsonNullable.<OffsetDateTime>of(publishedAt);
+    return this;
+  }
+
+  /**
+   * Video publish date (video mode only)
+   * @return publishedAt
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public OffsetDateTime getPublishedAt() {
+        return publishedAt.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_PUBLISHED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<OffsetDateTime> getPublishedAt_JsonNullable() {
+    return publishedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PUBLISHED_AT)
+  public void setPublishedAt_JsonNullable(JsonNullable<OffsetDateTime> publishedAt) {
+    this.publishedAt = publishedAt;
+  }
+
+  public void setPublishedAt(@javax.annotation.Nullable OffsetDateTime publishedAt) {
+    this.publishedAt = JsonNullable.<OffsetDateTime>of(publishedAt);
   }
 
 
@@ -241,14 +347,28 @@ public class YouTubeDemographicsResponse {
     return Objects.equals(this.success, youTubeDemographicsResponse.success) &&
         Objects.equals(this.accountId, youTubeDemographicsResponse.accountId) &&
         Objects.equals(this.platform, youTubeDemographicsResponse.platform) &&
+        Objects.equals(this.videoId, youTubeDemographicsResponse.videoId) &&
+        equalsNullable(this.title, youTubeDemographicsResponse.title) &&
+        equalsNullable(this.publishedAt, youTubeDemographicsResponse.publishedAt) &&
         Objects.equals(this.demographics, youTubeDemographicsResponse.demographics) &&
         Objects.equals(this.dateRange, youTubeDemographicsResponse.dateRange) &&
         Objects.equals(this.note, youTubeDemographicsResponse.note);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(success, accountId, platform, demographics, dateRange, note);
+    return Objects.hash(success, accountId, platform, videoId, hashCodeNullable(title), hashCodeNullable(publishedAt), demographics, dateRange, note);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -258,6 +378,9 @@ public class YouTubeDemographicsResponse {
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    videoId: ").append(toIndentedString(videoId)).append("\n");
+    sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    publishedAt: ").append(toIndentedString(publishedAt)).append("\n");
     sb.append("    demographics: ").append(toIndentedString(demographics)).append("\n");
     sb.append("    dateRange: ").append(toIndentedString(dateRange)).append("\n");
     sb.append("    note: ").append(toIndentedString(note)).append("\n");
@@ -321,6 +444,21 @@ public class YouTubeDemographicsResponse {
     // add `platform` to the URL query string
     if (getPlatform() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%splatform%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatform()))));
+    }
+
+    // add `videoId` to the URL query string
+    if (getVideoId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoId()))));
+    }
+
+    // add `title` to the URL query string
+    if (getTitle() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stitle%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTitle()))));
+    }
+
+    // add `publishedAt` to the URL query string
+    if (getPublishedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spublishedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPublishedAt()))));
     }
 
     // add `demographics` to the URL query string

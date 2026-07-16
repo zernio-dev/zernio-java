@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   BoostPostRequestTargetingCitiesInner.JSON_PROPERTY_RADIUS,
   BoostPostRequestTargetingCitiesInner.JSON_PROPERTY_DISTANCE_UNIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:36:07.204862112Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T11:44:57.492127360Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestTargetingCitiesInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull
@@ -88,7 +88,7 @@ public class BoostPostRequestTargetingCitiesInner {
     }
   }
 
-  public static final String JSON_PROPERTY_DISTANCE_UNIT = "distance_unit";
+  public static final String JSON_PROPERTY_DISTANCE_UNIT = "distanceUnit";
   @javax.annotation.Nullable
   private DistanceUnitEnum distanceUnit;
 
@@ -149,7 +149,7 @@ public class BoostPostRequestTargetingCitiesInner {
   }
 
   /**
-   * Requires distance_unit.
+   * Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng).
    * @return radius
    */
   @javax.annotation.Nullable
@@ -284,9 +284,9 @@ public class BoostPostRequestTargetingCitiesInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sradius%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRadius()))));
     }
 
-    // add `distance_unit` to the URL query string
+    // add `distanceUnit` to the URL query string
     if (getDistanceUnit() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdistance_unit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDistanceUnit()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdistanceUnit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDistanceUnit()))));
     }
 
     return joiner.toString();

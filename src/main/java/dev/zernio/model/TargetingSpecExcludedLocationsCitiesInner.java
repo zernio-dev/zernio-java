@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   TargetingSpecExcludedLocationsCitiesInner.JSON_PROPERTY_RADIUS,
   TargetingSpecExcludedLocationsCitiesInner.JSON_PROPERTY_DISTANCE_UNIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:36:07.204862112Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T11:44:57.492127360Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecExcludedLocationsCitiesInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull
@@ -83,7 +83,7 @@ public class TargetingSpecExcludedLocationsCitiesInner {
     }
   }
 
-  public static final String JSON_PROPERTY_DISTANCE_UNIT = "distance_unit";
+  public static final String JSON_PROPERTY_DISTANCE_UNIT = "distanceUnit";
   @javax.annotation.Nullable
   private DistanceUnitEnum distanceUnit;
 
@@ -120,7 +120,7 @@ public class TargetingSpecExcludedLocationsCitiesInner {
   }
 
   /**
-   * Radius around the excluded city. Requires distance_unit.
+   * Radius around the excluded city. Requires distanceUnit.
    * @return radius
    */
   @javax.annotation.Nullable
@@ -248,9 +248,9 @@ public class TargetingSpecExcludedLocationsCitiesInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sradius%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRadius()))));
     }
 
-    // add `distance_unit` to the URL query string
+    // add `distanceUnit` to the URL query string
     if (getDistanceUnit() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sdistance_unit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDistanceUnit()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdistanceUnit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDistanceUnit()))));
     }
 
     return joiner.toString();

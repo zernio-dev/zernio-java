@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**key** | **String** |  |  |
-|**radius** | **BigDecimal** | Radius around the excluded city. Requires distance_unit. |  [optional] |
+|**radius** | **BigDecimal** | Radius around the excluded city. Requires distanceUnit. |  [optional] |
 |**distanceUnit** | [**DistanceUnitEnum**](#DistanceUnitEnum) | Required if radius is set. |  [optional] |
 
 
