@@ -11,6 +11,7 @@
 |**budget** | [**AdBudget**](AdBudget.md) |  |  [optional] |
 |**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) |  |  [optional] |
 |**bidStrategy** | **BidStrategy** |  |  [optional] |
+|**platformSpecificData** | **Object** |  |  [optional] |
 
 
 

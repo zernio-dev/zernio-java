@@ -67,6 +67,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_TRACKING,
   CreateStandaloneAdRequest.JSON_PROPERTY_GOAL,
   CreateStandaloneAdRequest.JSON_PROPERTY_OPTIMIZATION_GOAL,
+  CreateStandaloneAdRequest.JSON_PROPERTY_BILLING_EVENT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_AMOUNT,
   CreateStandaloneAdRequest.JSON_PROPERTY_BUDGET_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_STATUS,
@@ -128,7 +129,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:39:08.320823215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -216,6 +217,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
   @javax.annotation.Nullable
   private String optimizationGoal;
+
+  public static final String JSON_PROPERTY_BILLING_EVENT = "billingEvent";
+  @javax.annotation.Nullable
+  private String billingEvent;
 
   public static final String JSON_PROPERTY_BUDGET_AMOUNT = "budgetAmount";
   @javax.annotation.Nullable
@@ -1065,6 +1070,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptimizationGoal(@javax.annotation.Nullable String optimizationGoal) {
     this.optimizationGoal = optimizationGoal;
+  }
+
+
+  public CreateStandaloneAdRequest billingEvent(@javax.annotation.Nullable String billingEvent) {
+    this.billingEvent = billingEvent;
+    return this;
+  }
+
+  /**
+   * Meta only. Explicit ad-set &#x60;billing_event&#x60;. Defaults to &#x60;IMPRESSIONS&#x60;. Forwarded verbatim to Meta, which validates compatibility with the optimization goal.
+   * @return billingEvent
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BILLING_EVENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBillingEvent() {
+    return billingEvent;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BILLING_EVENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBillingEvent(@javax.annotation.Nullable String billingEvent) {
+    this.billingEvent = billingEvent;
   }
 
 
@@ -2661,6 +2690,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.tracking, createStandaloneAdRequest.tracking) &&
         Objects.equals(this.goal, createStandaloneAdRequest.goal) &&
         Objects.equals(this.optimizationGoal, createStandaloneAdRequest.optimizationGoal) &&
+        Objects.equals(this.billingEvent, createStandaloneAdRequest.billingEvent) &&
         Objects.equals(this.budgetAmount, createStandaloneAdRequest.budgetAmount) &&
         Objects.equals(this.budgetType, createStandaloneAdRequest.budgetType) &&
         Objects.equals(this.status, createStandaloneAdRequest.status) &&
@@ -2725,7 +2755,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2741,6 +2771,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    tracking: ").append(toIndentedString(tracking)).append("\n");
     sb.append("    goal: ").append(toIndentedString(goal)).append("\n");
     sb.append("    optimizationGoal: ").append(toIndentedString(optimizationGoal)).append("\n");
+    sb.append("    billingEvent: ").append(toIndentedString(billingEvent)).append("\n");
     sb.append("    budgetAmount: ").append(toIndentedString(budgetAmount)).append("\n");
     sb.append("    budgetType: ").append(toIndentedString(budgetType)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
@@ -2891,6 +2922,11 @@ public class CreateStandaloneAdRequest {
     // add `optimizationGoal` to the URL query string
     if (getOptimizationGoal() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%soptimizationGoal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptimizationGoal()))));
+    }
+
+    // add `billingEvent` to the URL query string
+    if (getBillingEvent() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbillingEvent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBillingEvent()))));
     }
 
     // add `budgetAmount` to the URL query string

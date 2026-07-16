@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.UpdateAdCampaignRequestBudget;
+import dev.zernio.model.UpdateAdCampaignRequestPlatformSpecificData;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -38,9 +39,10 @@ import dev.zernio.ApiClient;
   UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM,
   UpdateAdCampaignRequest.JSON_PROPERTY_BUDGET,
   UpdateAdCampaignRequest.JSON_PROPERTY_BID_STRATEGY,
-  UpdateAdCampaignRequest.JSON_PROPERTY_NAME
+  UpdateAdCampaignRequest.JSON_PROPERTY_NAME,
+  UpdateAdCampaignRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:39:08.320823215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaignRequest {
   /**
    * Gets or Sets platform
@@ -92,6 +94,10 @@ public class UpdateAdCampaignRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
   private String name;
+
+  public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
+  @javax.annotation.Nullable
+  private UpdateAdCampaignRequestPlatformSpecificData platformSpecificData;
 
   public UpdateAdCampaignRequest() { 
   }
@@ -174,7 +180,7 @@ public class UpdateAdCampaignRequest {
   }
 
   /**
-   * Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name is required.
+   * Rename the campaign (Meta only; other platforms return 501). At least one of budget/bidStrategy/name/platformSpecificData is required.
    * @return name
    */
   @javax.annotation.Nullable
@@ -189,6 +195,30 @@ public class UpdateAdCampaignRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
+  }
+
+
+  public UpdateAdCampaignRequest platformSpecificData(@javax.annotation.Nullable UpdateAdCampaignRequestPlatformSpecificData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+    return this;
+  }
+
+  /**
+   * Get platformSpecificData
+   * @return platformSpecificData
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateAdCampaignRequestPlatformSpecificData getPlatformSpecificData() {
+    return platformSpecificData;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformSpecificData(@javax.annotation.Nullable UpdateAdCampaignRequestPlatformSpecificData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
   }
 
 
@@ -207,12 +237,13 @@ public class UpdateAdCampaignRequest {
     return Objects.equals(this.platform, updateAdCampaignRequest.platform) &&
         Objects.equals(this.budget, updateAdCampaignRequest.budget) &&
         Objects.equals(this.bidStrategy, updateAdCampaignRequest.bidStrategy) &&
-        Objects.equals(this.name, updateAdCampaignRequest.name);
+        Objects.equals(this.name, updateAdCampaignRequest.name) &&
+        Objects.equals(this.platformSpecificData, updateAdCampaignRequest.platformSpecificData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, budget, bidStrategy, name);
+    return Objects.hash(platform, budget, bidStrategy, name, platformSpecificData);
   }
 
   @Override
@@ -223,6 +254,7 @@ public class UpdateAdCampaignRequest {
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -288,6 +320,11 @@ public class UpdateAdCampaignRequest {
     // add `name` to the URL query string
     if (getName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `platformSpecificData` to the URL query string
+    if (getPlatformSpecificData() != null) {
+      joiner.add(getPlatformSpecificData().toUrlQueryString(prefix + "platformSpecificData" + suffix));
     }
 
     return joiner.toString();

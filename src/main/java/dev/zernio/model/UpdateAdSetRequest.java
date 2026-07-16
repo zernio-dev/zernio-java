@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.UpdateAdSetRequestBudget;
+import dev.zernio.model.UpdateAdSetRequestPlatformSpecificData;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -42,9 +43,10 @@ import dev.zernio.ApiClient;
   UpdateAdSetRequest.JSON_PROPERTY_NAME,
   UpdateAdSetRequest.JSON_PROPERTY_BID_STRATEGY,
   UpdateAdSetRequest.JSON_PROPERTY_BID_AMOUNT,
-  UpdateAdSetRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR
+  UpdateAdSetRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
+  UpdateAdSetRequest.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:39:08.320823215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetRequest {
   /**
    * Gets or Sets platform
@@ -153,6 +155,10 @@ public class UpdateAdSetRequest {
   public static final String JSON_PROPERTY_ROAS_AVERAGE_FLOOR = "roasAverageFloor";
   @javax.annotation.Nullable
   private BigDecimal roasAverageFloor;
+
+  public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
+  @javax.annotation.Nullable
+  private UpdateAdSetRequestPlatformSpecificData platformSpecificData;
 
   public UpdateAdSetRequest() { 
   }
@@ -325,6 +331,30 @@ public class UpdateAdSetRequest {
   }
 
 
+  public UpdateAdSetRequest platformSpecificData(@javax.annotation.Nullable UpdateAdSetRequestPlatformSpecificData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+    return this;
+  }
+
+  /**
+   * Get platformSpecificData
+   * @return platformSpecificData
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public UpdateAdSetRequestPlatformSpecificData getPlatformSpecificData() {
+    return platformSpecificData;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformSpecificData(@javax.annotation.Nullable UpdateAdSetRequestPlatformSpecificData platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+  }
+
+
   /**
    * Return true if this updateAdSet_request object is equal to o.
    */
@@ -343,12 +373,13 @@ public class UpdateAdSetRequest {
         Objects.equals(this.name, updateAdSetRequest.name) &&
         Objects.equals(this.bidStrategy, updateAdSetRequest.bidStrategy) &&
         Objects.equals(this.bidAmount, updateAdSetRequest.bidAmount) &&
-        Objects.equals(this.roasAverageFloor, updateAdSetRequest.roasAverageFloor);
+        Objects.equals(this.roasAverageFloor, updateAdSetRequest.roasAverageFloor) &&
+        Objects.equals(this.platformSpecificData, updateAdSetRequest.platformSpecificData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platform, budget, status, name, bidStrategy, bidAmount, roasAverageFloor);
+    return Objects.hash(platform, budget, status, name, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData);
   }
 
   @Override
@@ -362,6 +393,7 @@ public class UpdateAdSetRequest {
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
     sb.append("    bidAmount: ").append(toIndentedString(bidAmount)).append("\n");
     sb.append("    roasAverageFloor: ").append(toIndentedString(roasAverageFloor)).append("\n");
+    sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -442,6 +474,11 @@ public class UpdateAdSetRequest {
     // add `roasAverageFloor` to the URL query string
     if (getRoasAverageFloor() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sroasAverageFloor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoasAverageFloor()))));
+    }
+
+    // add `platformSpecificData` to the URL query string
+    if (getPlatformSpecificData() != null) {
+      joiner.add(getPlatformSpecificData().toUrlQueryString(prefix + "platformSpecificData" + suffix));
     }
 
     return joiner.toString();

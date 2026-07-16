@@ -15,6 +15,7 @@
 |**bidStrategy** | **BidStrategy** |  |  [optional] |
 |**bidAmount** | **BigDecimal** |  |  [optional] |
 |**roasAverageFloor** | **BigDecimal** |  |  [optional] |
+|**platformSpecificData** | **Object** |  |  [optional] |
 
 
 

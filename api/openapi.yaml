@@ -23906,13 +23906,15 @@ paths:
       - application/json
     put:
       description: |
-        Campaign-level edits. At least one of `budget` or `bidStrategy` is required.
+        Campaign-level edits. At least one of `budget`, `bidStrategy`, `name` or `platformSpecificData` is required.
 
         - `budget` updates the CBO (Campaign Budget Optimization) budget. For ABO campaigns
           (where the budget lives on the ad set), use PUT /v1/ads/ad-sets/{adSetId} instead — this endpoint
           will return 409 with code BUDGET_LEVEL_MISMATCH.
         - `bidStrategy` sets the campaign-level default bid strategy. Per Meta's spec, `bid_amount` and
           `bid_constraints` do NOT exist at the campaign level — pass them via PUT /v1/ads/ad-sets/{adSetId}.
+        - `platformSpecificData.spendCap` (Meta only) sets the campaign's lifetime spend cap, in the ad
+          account's currency.
 
         Meta-only for now. Other platforms return 501 Not Implemented.
       operationId: updateAdCampaign
@@ -24063,13 +24065,18 @@ paths:
     put:
       description: |
         Ad-set-level writes. Use this for ABO budget updates, ad-set-scoped
-        pause/resume, and bid-strategy edits. At least one of `budget`,
-        `status`, or `bidStrategy` is required.
+        pause/resume, bid-strategy edits, and Meta-only post-launch delivery
+        settings via `platformSpecificData`. At least one updatable field
+        is required.
 
         Bid strategy compatibility (per Meta's spec):
         - `LOWEST_COST_WITHOUT_CAP`: no `bidAmount`, no `roasAverageFloor`.
         - `LOWEST_COST_WITH_BID_CAP` / `COST_CAP`: `bidAmount` REQUIRED (whole currency units).
         - `LOWEST_COST_WITH_MIN_ROAS`: `roasAverageFloor` REQUIRED (decimal multiplier, e.g. 2.0 = 2.0x ROAS).
+
+        Delivery settings are validated by Meta against the campaign objective;
+        incompatible combinations (e.g. a billingEvent the optimization goal
+        doesn't allow) surface as 400s from Meta.
 
         When updating `budget` on an ABO campaign: if the parent campaign is
         CBO, the response is 409 with code BUDGET_LEVEL_MISMATCH — route to
@@ -61453,6 +61460,17 @@ components:
       required:
       - amount
       - type
+    updateAdCampaign_request_platformSpecificData:
+      description: |
+        Platform-specific campaign settings. The platform is implied by the `platform`
+        body param (same convention as platformSpecificData on POST /v1/ads/create).
+        Meta (facebook/instagram) only; other platforms return 400.
+      properties:
+        spendCap:
+          description: "Campaign lifetime spend cap, in the ad account's currency\
+            \ (Meta `spend_cap`). Pass null to remove the cap (0 is rejected by Meta)."
+          nullable: true
+          type: number
     updateAdCampaign_request:
       properties:
         platform:
@@ -61468,14 +61486,17 @@ components:
           description: Campaign-level default. Ad sets inherit this unless they override.
         name:
           description: Rename the campaign (Meta only; other platforms return 501).
-            At least one of budget/bidStrategy/name is required.
+            At least one of budget/bidStrategy/name/platformSpecificData is required.
           maxLength: 255
           type: string
+        platformSpecificData:
+          $ref: "#/components/schemas/updateAdCampaign_request_platformSpecificData"
       required:
       - platform
     updateAdCampaign_200_response:
       example:
         bidStrategy: LOWEST_COST_WITHOUT_CAP
+        platformSpecificData: "{}"
         budgetLevel: campaign
         updated: 0
         budget:
@@ -61492,6 +61513,8 @@ components:
           type: string
         bidStrategy:
           $ref: "#/components/schemas/BidStrategy"
+        platformSpecificData:
+          type: object
     deleteAdCampaign_request:
       properties:
         platform:
@@ -61678,6 +61701,46 @@ components:
           - daily
           - lifetime
           type: string
+    updateAdSet_request_platformSpecificData_promotedObject:
+      description: "Meta ad-set promoted_object, forwarded verbatim (same shape as\
+        \ /v1/ads/create)."
+      properties:
+        pixelId:
+          type: string
+        customEventType:
+          type: string
+        pageId:
+          type: string
+        applicationId:
+          type: string
+        objectStoreUrl:
+          type: string
+        customConversionId:
+          type: string
+        productCatalogId:
+          type: string
+        productSetId:
+          type: string
+    updateAdSet_request_platformSpecificData:
+      description: |
+        Platform-specific post-launch delivery settings. The platform is implied by the
+        `platform` body param. Meta only; other platforms return 400. Unknown keys are rejected.
+      properties:
+        optimizationGoal:
+          description: "Meta ad-set optimization_goal (e.g. OFFSITE_CONVERSIONS, LANDING_PAGE_VIEWS)."
+          type: string
+        billingEvent:
+          description: "Meta ad-set billing_event (e.g. IMPRESSIONS, LINK_CLICKS,\
+            \ THRUPLAY)."
+          type: string
+        startDate:
+          description: Ad set start_time (ISO 8601).
+          type: string
+        endDate:
+          description: Ad set end_time (ISO 8601).
+          type: string
+        promotedObject:
+          $ref: "#/components/schemas/updateAdSet_request_platformSpecificData_promotedObject"
     updateAdSet_request:
       properties:
         platform:
@@ -61723,12 +61786,15 @@ components:
             Minimum ROAS as a decimal multiplier (2.0 = 2.0x). Required when bidStrategy is
             LOWEST_COST_WITH_MIN_ROAS. Sent to Meta as `bid_constraints.roas_average_floor` × 10000.
           type: number
+        platformSpecificData:
+          $ref: "#/components/schemas/updateAdSet_request_platformSpecificData"
       required:
       - platform
     updateAdSet_200_response:
       example:
         statusSkipped: 6
         bidStrategy: LOWEST_COST_WITHOUT_CAP
+        platformSpecificData: "{}"
         budgetLevel: adset
         bidAmount: 1.4658129805029452
         statusUpdated: 0
@@ -61761,6 +61827,8 @@ components:
         roasAverageFloor:
           nullable: true
           type: number
+        platformSpecificData:
+          type: object
     updateAdSetStatus_200_response:
       example:
         updated: 0
@@ -65064,6 +65132,11 @@ components:
             \ `traffic` defaults to `LINK_CLICKS`). Forwarded verbatim to Meta, which\
             \ validates compatibility with the campaign objective and rejects incompatible\
             \ combinations."
+          type: string
+        billingEvent:
+          description: "Meta only. Explicit ad-set `billing_event`. Defaults to `IMPRESSIONS`.\
+            \ Forwarded verbatim to Meta, which validates compatibility with the optimization\
+            \ goal."
           type: string
         budgetAmount:
           description: Required on legacy + multi-creative shapes. Inherited on attach.

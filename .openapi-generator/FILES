@@ -1184,6 +1184,7 @@ docs/UpdateAdAudienceRequest.md
 docs/UpdateAdCampaign200Response.md
 docs/UpdateAdCampaignRequest.md
 docs/UpdateAdCampaignRequestBudget.md
+docs/UpdateAdCampaignRequestPlatformSpecificData.md
 docs/UpdateAdCampaignStatus200Response.md
 docs/UpdateAdCampaignStatusRequest.md
 docs/UpdateAdRequest.md
@@ -1194,6 +1195,8 @@ docs/UpdateAdRequestTargetingInterestsInner.md
 docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
+docs/UpdateAdSetRequestPlatformSpecificData.md
+docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateAdStatus200Response.md
 docs/UpdateAdStatusRequest.md
@@ -2672,6 +2675,7 @@ src/main/java/dev/zernio/model/UpdateAdAudienceRequest.java
 src/main/java/dev/zernio/model/UpdateAdCampaign200Response.java
 src/main/java/dev/zernio/model/UpdateAdCampaignRequest.java
 src/main/java/dev/zernio/model/UpdateAdCampaignRequestBudget.java
+src/main/java/dev/zernio/model/UpdateAdCampaignRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/UpdateAdCampaignStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdCampaignStatusRequest.java
 src/main/java/dev/zernio/model/UpdateAdRequest.java
@@ -2682,6 +2686,8 @@ src/main/java/dev/zernio/model/UpdateAdRequestTargetingInterestsInner.java
 src/main/java/dev/zernio/model/UpdateAdSet200Response.java
 src/main/java/dev/zernio/model/UpdateAdSetRequest.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestBudget.java
+src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificData.java
+src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.java
 src/main/java/dev/zernio/model/UpdateAdSetStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdStatusRequest.java
@@ -2935,4 +2941,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/EnrollContacts200ResponseResultsInnerTest.java
+src/test/java/dev/zernio/model/UpdateAdCampaignRequestPlatformSpecificDataTest.java
+src/test/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificDataPromotedObjectTest.java
+src/test/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificDataTest.java

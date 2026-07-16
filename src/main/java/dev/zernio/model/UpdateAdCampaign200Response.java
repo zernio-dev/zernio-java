@@ -38,9 +38,10 @@ import dev.zernio.ApiClient;
   UpdateAdCampaign200Response.JSON_PROPERTY_UPDATED,
   UpdateAdCampaign200Response.JSON_PROPERTY_BUDGET,
   UpdateAdCampaign200Response.JSON_PROPERTY_BUDGET_LEVEL,
-  UpdateAdCampaign200Response.JSON_PROPERTY_BID_STRATEGY
+  UpdateAdCampaign200Response.JSON_PROPERTY_BID_STRATEGY,
+  UpdateAdCampaign200Response.JSON_PROPERTY_PLATFORM_SPECIFIC_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:39:08.320823215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdCampaign200Response {
   public static final String JSON_PROPERTY_UPDATED = "updated";
   @javax.annotation.Nullable
@@ -90,6 +91,10 @@ public class UpdateAdCampaign200Response {
   public static final String JSON_PROPERTY_BID_STRATEGY = "bidStrategy";
   @javax.annotation.Nullable
   private BidStrategy bidStrategy;
+
+  public static final String JSON_PROPERTY_PLATFORM_SPECIFIC_DATA = "platformSpecificData";
+  @javax.annotation.Nullable
+  private Object platformSpecificData;
 
   public UpdateAdCampaign200Response() { 
   }
@@ -190,6 +195,30 @@ public class UpdateAdCampaign200Response {
   }
 
 
+  public UpdateAdCampaign200Response platformSpecificData(@javax.annotation.Nullable Object platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+    return this;
+  }
+
+  /**
+   * Get platformSpecificData
+   * @return platformSpecificData
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Object getPlatformSpecificData() {
+    return platformSpecificData;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_SPECIFIC_DATA, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformSpecificData(@javax.annotation.Nullable Object platformSpecificData) {
+    this.platformSpecificData = platformSpecificData;
+  }
+
+
   /**
    * Return true if this updateAdCampaign_200_response object is equal to o.
    */
@@ -205,12 +234,13 @@ public class UpdateAdCampaign200Response {
     return Objects.equals(this.updated, updateAdCampaign200Response.updated) &&
         Objects.equals(this.budget, updateAdCampaign200Response.budget) &&
         Objects.equals(this.budgetLevel, updateAdCampaign200Response.budgetLevel) &&
-        Objects.equals(this.bidStrategy, updateAdCampaign200Response.bidStrategy);
+        Objects.equals(this.bidStrategy, updateAdCampaign200Response.bidStrategy) &&
+        Objects.equals(this.platformSpecificData, updateAdCampaign200Response.platformSpecificData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(updated, budget, budgetLevel, bidStrategy);
+    return Objects.hash(updated, budget, budgetLevel, bidStrategy, platformSpecificData);
   }
 
   @Override
@@ -221,6 +251,7 @@ public class UpdateAdCampaign200Response {
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    budgetLevel: ").append(toIndentedString(budgetLevel)).append("\n");
     sb.append("    bidStrategy: ").append(toIndentedString(bidStrategy)).append("\n");
+    sb.append("    platformSpecificData: ").append(toIndentedString(platformSpecificData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -286,6 +317,11 @@ public class UpdateAdCampaign200Response {
     // add `bidStrategy` to the URL query string
     if (getBidStrategy() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbidStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBidStrategy()))));
+    }
+
+    // add `platformSpecificData` to the URL query string
+    if (getPlatformSpecificData() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatformSpecificData%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatformSpecificData()))));
     }
 
     return joiner.toString();

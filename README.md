@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-16T15:39:08.320823215Z[Etc/UTC]
+- Build date: 2026-07-16T17:30:00.684303989Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2205,6 +2205,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdCampaign200Response](docs/UpdateAdCampaign200Response.md)
  - [UpdateAdCampaignRequest](docs/UpdateAdCampaignRequest.md)
  - [UpdateAdCampaignRequestBudget](docs/UpdateAdCampaignRequestBudget.md)
+ - [UpdateAdCampaignRequestPlatformSpecificData](docs/UpdateAdCampaignRequestPlatformSpecificData.md)
  - [UpdateAdCampaignStatus200Response](docs/UpdateAdCampaignStatus200Response.md)
  - [UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
  - [UpdateAdRequest](docs/UpdateAdRequest.md)
@@ -2215,6 +2216,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdSet200Response](docs/UpdateAdSet200Response.md)
  - [UpdateAdSetRequest](docs/UpdateAdSetRequest.md)
  - [UpdateAdSetRequestBudget](docs/UpdateAdSetRequestBudget.md)
+ - [UpdateAdSetRequestPlatformSpecificData](docs/UpdateAdSetRequestPlatformSpecificData.md)
+ - [UpdateAdSetRequestPlatformSpecificDataPromotedObject](docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md)
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
  - [UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
  - [UpdateAdStatusRequest](docs/UpdateAdStatusRequest.md)
