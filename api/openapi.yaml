@@ -3473,6 +3473,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/deleteAccountGroup_200_response"
           description: Deleted
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -3522,6 +3524,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateAccountGroup_200_response"
           description: Updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21616,6 +21620,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listContacts_200_response"
           description: Contacts list with pagination and filter metadata
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List contacts
@@ -21640,6 +21646,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createContact_200_response"
           description: Contact created
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "409":
@@ -21665,6 +21673,8 @@ paths:
       responses:
         "200":
           description: Contact deleted
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21692,6 +21702,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getContact_200_response"
           description: Contact with channels
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21725,6 +21737,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateContact_200_response"
           description: Contact updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21755,6 +21769,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getContactChannels_200_response"
           description: List of contact channels
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21781,6 +21797,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/bulkCreateContacts_200_response"
           description: Bulk import results
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Bulk create contacts
@@ -22030,6 +22048,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listBroadcasts_200_response"
           description: Broadcasts list
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List broadcasts
@@ -22054,6 +22074,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createBroadcast_200_response"
           description: Broadcast created
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Create broadcast draft
@@ -22294,6 +22316,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listBroadcastRecipients_200_response"
           description: Recipients list with delivery status
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -22328,6 +22352,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/addBroadcastRecipients_200_response"
           description: Recipients added
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23206,6 +23232,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listCommentAutomations_200_response"
           description: Automations list
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -23894,6 +23922,17 @@ paths:
           carrying over budget / targeting / bid_type / bid_price /
           deep_bid_type / creative fields. Spark Ad linkage (`tiktok_item_id`)
           is preserved.
+        - **LinkedIn** has no native copy primitive; Zernio walks the source
+          CampaignGroup → Campaigns → Creatives and recreates each entity,
+          carrying over `type` / `costType` / `unitCost` /
+          `optimizationTargetType` / `creativeSelection` / `objectiveType` /
+          `format` / `dailyBudget` / `totalBudget` / `targetingCriteria` /
+          `runSchedule` and every Creative's `content` object verbatim.
+          `statusOption: INHERITED_FROM_SOURCE` is evaluated **per entity**:
+          any Group / Campaign / Creative whose source is `ACTIVE` gets its
+          clone activated too. Duplicating an ACTIVE campaign with
+          `INHERITED_FROM_SOURCE` starts a second front of spend the moment
+          the clone activates — the safe default is `PAUSED`.
 
         The new hierarchy is asynchronous to materialize in our DB — we
         trigger sync discovery automatically. Set `syncAfter: false` to
@@ -26149,7 +26188,8 @@ paths:
                 $ref: "#/components/schemas/addUsersToAdAudience_200_response"
           description: Users added
         "400":
-          description: "Invalid input (empty users array, missing email/phone)"
+          description: "Invalid input (malformed audienceId, empty users array, missing\
+            \ email/phone)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -53254,7 +53294,8 @@ components:
           minLength: 20
           type: string
         sample2:
-          description: Second example message; carriers require two distinct samples
+          description: "Second example message; carriers require two distinct samples,\
+            \ so it must differ from sample1."
           minLength: 20
           type: string
         helpMessage:
@@ -61432,6 +61473,7 @@ components:
           - facebook
           - instagram
           - tiktok
+          - linkedin
           type: string
         deepCopy:
           default: true
@@ -61439,6 +61481,8 @@ components:
           type: boolean
         statusOption:
           default: PAUSED
+          description: |
+            ACTIVE = launch the clone immediately (spends the moment LinkedIn approves it). PAUSED = clone stays DRAFT, safe default. INHERITED_FROM_SOURCE = mirror each entity's source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend.
           enum:
           - ACTIVE
           - PAUSED
@@ -63838,8 +63882,8 @@ components:
         unusableReason:
           description: Meta only. Human-readable reason when selectable is false;
             null when selectable.
-          type: string
           nullable: true
+          type: string
     listAdAccounts_200_response:
       example:
         accounts:
@@ -65043,21 +65087,30 @@ components:
             to build N full ads sharing one ad set: create the first ad
             via the normal shape, then attach the rest one call each.
 
-            Supported on Meta (facebook, instagram) and TikTok. On TikTok
-            the `adSetId` is the ad group ID; the new ad inherits the
-            ad group's bid + budget + targeting.
+            Supported on Meta (facebook, instagram), TikTok, and
+            LinkedIn. On TikTok the `adSetId` is the ad group ID; the
+            new ad inherits the ad group's bid + budget + targeting.
+            On LinkedIn the `adSetId` is the LinkedIn Campaign ID
+            (numeric); we attach a new Creative to that Campaign, so
+            the Campaign's `platformSpecificData` bidding, targeting,
+            budget and schedule are inherited (passing those fields
+            returns 400).
           type: string
         existingCampaignId:
           description: |
-            Meta only. Add the new ad set under this EXISTING campaign
-            instead of creating a new one (multi-ad-set audience testing).
-            The new ad set's budget is matched to the campaign's mode
-            automatically: for a CBO campaign (campaign-level budget) omit
-            `budgetAmount`/`budgetType` — the campaign owns the budget; for
-            an ABO campaign pass them (they go on the new ad set). On
-            failure only the new ad set is cleaned up; the existing campaign
-            is left untouched and is never (re)activated. Mutually exclusive
-            with `adSetId` and `creatives[]`.
+            Meta + LinkedIn. On Meta: add the new ad set under this
+            EXISTING campaign instead of creating a new one
+            (multi-ad-set audience testing). The new ad set's budget
+            is matched to the campaign's mode automatically: for a
+            CBO campaign (campaign-level budget) omit
+            `budgetAmount`/`budgetType` — the campaign owns the
+            budget; for an ABO campaign pass them (they go on the new
+            ad set). On LinkedIn: create a new Campaign (and its
+            Creative) under this EXISTING CampaignGroup. On failure
+            only the entities we authored are cleaned up; the
+            pre-existing parent is left untouched and is never
+            (re)activated. Mutually exclusive with `adSetId` and
+            `creatives[]`.
           type: string
         existingCreativeId:
           description: |
@@ -71398,12 +71451,12 @@ components:
       properties:
         start:
           format: date-time
-          type: string
           nullable: true
+          type: string
         end:
           format: date-time
-          type: string
           nullable: true
+          type: string
         anchorDay:
           description: Day-of-month the cycle resets.
           type: integer
@@ -71418,7 +71471,6 @@ components:
           type: integer
         creditsRemainingCents:
           type: integer
-      nullable: true
     BillingSnapshot_caps:
       example:
         xSpendLimitCents: 5
@@ -71428,8 +71480,8 @@ components:
           type: integer
         xSpendLimitCents:
           description: Monthly X-API spend cap; null = unlimited.
-          type: integer
           nullable: true
+          type: integer
     BillingSnapshot_status:
       example:
         openInvoiceUrl: openInvoiceUrl
@@ -71446,18 +71498,18 @@ components:
           type: boolean
         suspendedAt:
           format: date-time
-          type: string
           nullable: true
+          type: string
         suspensionReason:
-          type: string
           nullable: true
+          type: string
         openInvoiceUrl:
           description: Hosted invoice URL for dunning (Stripe).
-          type: string
           nullable: true
+          type: string
         declineReason:
-          type: string
           nullable: true
+          type: string
         autoUpgradeEnabled:
           type: boolean
     BillingSnapshot_legacy_limits:
@@ -71588,14 +71640,15 @@ components:
         file, the total is zero or negative, or the estimate failed.
       properties:
         taxUsd:
-          description: Estimated tax in USD
+          description: "Estimated tax in USD, added on top of `totals.total`."
           type: number
         ratePercent:
-          description: Combined rate percentage
+          description: "Combined rate percentage, e.g. 21."
           nullable: true
           type: number
         jurisdictionLabel:
-          description: Human jurisdiction label
+          description: "Human jurisdiction label, e.g. \"ES VAT\" or \"WA sales tax\"\
+            ."
           nullable: true
           type: string
         reverseCharge:

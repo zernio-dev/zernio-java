@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,15 +40,14 @@ import dev.zernio.ApiClient;
   BillingSnapshotCaps.JSON_PROPERTY_X_SPEND_USED_CENTS,
   BillingSnapshotCaps.JSON_PROPERTY_X_SPEND_LIMIT_CENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotCaps {
   public static final String JSON_PROPERTY_X_SPEND_USED_CENTS = "xSpendUsedCents";
   @javax.annotation.Nullable
   private Integer xSpendUsedCents;
 
   public static final String JSON_PROPERTY_X_SPEND_LIMIT_CENTS = "xSpendLimitCents";
-  @javax.annotation.Nullable
-  private Integer xSpendLimitCents;
+  private JsonNullable<Integer> xSpendLimitCents = JsonNullable.<Integer>undefined();
 
   public BillingSnapshotCaps() { 
   }
@@ -74,7 +77,7 @@ public class BillingSnapshotCaps {
 
 
   public BillingSnapshotCaps xSpendLimitCents(@javax.annotation.Nullable Integer xSpendLimitCents) {
-    this.xSpendLimitCents = xSpendLimitCents;
+    this.xSpendLimitCents = JsonNullable.<Integer>of(xSpendLimitCents);
     return this;
   }
 
@@ -83,17 +86,25 @@ public class BillingSnapshotCaps {
    * @return xSpendLimitCents
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_X_SPEND_LIMIT_CENTS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getxSpendLimitCents() {
-    return xSpendLimitCents;
+        return xSpendLimitCents.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_X_SPEND_LIMIT_CENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setxSpendLimitCents(@javax.annotation.Nullable Integer xSpendLimitCents) {
+
+  public JsonNullable<Integer> getxSpendLimitCents_JsonNullable() {
+    return xSpendLimitCents;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_X_SPEND_LIMIT_CENTS)
+  public void setxSpendLimitCents_JsonNullable(JsonNullable<Integer> xSpendLimitCents) {
     this.xSpendLimitCents = xSpendLimitCents;
+  }
+
+  public void setxSpendLimitCents(@javax.annotation.Nullable Integer xSpendLimitCents) {
+    this.xSpendLimitCents = JsonNullable.<Integer>of(xSpendLimitCents);
   }
 
 
@@ -110,12 +121,23 @@ public class BillingSnapshotCaps {
     }
     BillingSnapshotCaps billingSnapshotCaps = (BillingSnapshotCaps) o;
     return Objects.equals(this.xSpendUsedCents, billingSnapshotCaps.xSpendUsedCents) &&
-        Objects.equals(this.xSpendLimitCents, billingSnapshotCaps.xSpendLimitCents);
+        equalsNullable(this.xSpendLimitCents, billingSnapshotCaps.xSpendLimitCents);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(xSpendUsedCents, xSpendLimitCents);
+    return Objects.hash(xSpendUsedCents, hashCodeNullable(xSpendLimitCents));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

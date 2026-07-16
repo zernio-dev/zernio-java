@@ -90,7 +90,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Users added |  -  |
-| **400** | Invalid input (empty users array, missing email/phone) |  -  |
+| **400** | Invalid input (malformed audienceId, empty users array, missing email/phone) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
@@ -170,7 +170,7 @@ ApiResponse<[**AddUsersToAdAudience200Response**](AddUsersToAdAudience200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Users added |  -  |
-| **400** | Invalid input (empty users array, missing email/phone) |  -  |
+| **400** | Invalid input (malformed audienceId, empty users array, missing email/phone) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |

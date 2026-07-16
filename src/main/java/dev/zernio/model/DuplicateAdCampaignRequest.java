@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   DuplicateAdCampaignRequest.JSON_PROPERTY_RENAME_SUFFIX,
   DuplicateAdCampaignRequest.JSON_PROPERTY_SYNC_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DuplicateAdCampaignRequest {
   /**
    * Gets or Sets platform
@@ -54,7 +54,9 @@ public class DuplicateAdCampaignRequest {
     
     INSTAGRAM(String.valueOf("instagram")),
     
-    TIKTOK(String.valueOf("tiktok"));
+    TIKTOK(String.valueOf("tiktok")),
+    
+    LINKEDIN(String.valueOf("linkedin"));
 
     private String value;
 
@@ -92,7 +94,7 @@ public class DuplicateAdCampaignRequest {
   private Boolean deepCopy = true;
 
   /**
-   * Gets or Sets statusOption
+   * ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend. 
    */
   public enum StatusOptionEnum {
     ACTIVE(String.valueOf("ACTIVE")),
@@ -250,7 +252,7 @@ public class DuplicateAdCampaignRequest {
   }
 
   /**
-   * Get statusOption
+   * ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend. 
    * @return statusOption
    */
   @javax.annotation.Nullable

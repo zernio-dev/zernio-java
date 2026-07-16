@@ -692,6 +692,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Automations list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listCommentAutomationsWithHttpInfo
@@ -766,6 +767,7 @@ ApiResponse<[**ListCommentAutomations200Response**](ListCommentAutomations200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Automations list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 

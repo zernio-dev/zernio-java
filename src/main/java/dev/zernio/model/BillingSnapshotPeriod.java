@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,15 +42,13 @@ import dev.zernio.ApiClient;
   BillingSnapshotPeriod.JSON_PROPERTY_END,
   BillingSnapshotPeriod.JSON_PROPERTY_ANCHOR_DAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotPeriod {
   public static final String JSON_PROPERTY_START = "start";
-  @javax.annotation.Nullable
-  private OffsetDateTime start;
+  private JsonNullable<OffsetDateTime> start = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_END = "end";
-  @javax.annotation.Nullable
-  private OffsetDateTime end;
+  private JsonNullable<OffsetDateTime> end = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_ANCHOR_DAY = "anchorDay";
   @javax.annotation.Nullable
@@ -56,7 +58,7 @@ public class BillingSnapshotPeriod {
   }
 
   public BillingSnapshotPeriod start(@javax.annotation.Nullable OffsetDateTime start) {
-    this.start = start;
+    this.start = JsonNullable.<OffsetDateTime>of(start);
     return this;
   }
 
@@ -65,22 +67,30 @@ public class BillingSnapshotPeriod {
    * @return start
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_START, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getStart() {
-    return start;
+        return start.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStart(@javax.annotation.Nullable OffsetDateTime start) {
+
+  public JsonNullable<OffsetDateTime> getStart_JsonNullable() {
+    return start;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_START)
+  public void setStart_JsonNullable(JsonNullable<OffsetDateTime> start) {
     this.start = start;
+  }
+
+  public void setStart(@javax.annotation.Nullable OffsetDateTime start) {
+    this.start = JsonNullable.<OffsetDateTime>of(start);
   }
 
 
   public BillingSnapshotPeriod end(@javax.annotation.Nullable OffsetDateTime end) {
-    this.end = end;
+    this.end = JsonNullable.<OffsetDateTime>of(end);
     return this;
   }
 
@@ -89,17 +99,25 @@ public class BillingSnapshotPeriod {
    * @return end
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_END, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getEnd() {
-    return end;
+        return end.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnd(@javax.annotation.Nullable OffsetDateTime end) {
+
+  public JsonNullable<OffsetDateTime> getEnd_JsonNullable() {
+    return end;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_END)
+  public void setEnd_JsonNullable(JsonNullable<OffsetDateTime> end) {
     this.end = end;
+  }
+
+  public void setEnd(@javax.annotation.Nullable OffsetDateTime end) {
+    this.end = JsonNullable.<OffsetDateTime>of(end);
   }
 
 
@@ -139,14 +157,25 @@ public class BillingSnapshotPeriod {
       return false;
     }
     BillingSnapshotPeriod billingSnapshotPeriod = (BillingSnapshotPeriod) o;
-    return Objects.equals(this.start, billingSnapshotPeriod.start) &&
-        Objects.equals(this.end, billingSnapshotPeriod.end) &&
+    return equalsNullable(this.start, billingSnapshotPeriod.start) &&
+        equalsNullable(this.end, billingSnapshotPeriod.end) &&
         Objects.equals(this.anchorDay, billingSnapshotPeriod.anchorDay);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(start, end, anchorDay);
+    return Objects.hash(hashCodeNullable(start), hashCodeNullable(end), anchorDay);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

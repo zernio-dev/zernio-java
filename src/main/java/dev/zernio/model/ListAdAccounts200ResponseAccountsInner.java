@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,7 +48,7 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_SELECTABLE,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_UNUSABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -79,8 +83,7 @@ public class ListAdAccounts200ResponseAccountsInner {
   private Boolean selectable;
 
   public static final String JSON_PROPERTY_UNUSABLE_REASON = "unusableReason";
-  @javax.annotation.Nullable
-  private String unusableReason;
+  private JsonNullable<String> unusableReason = JsonNullable.<String>undefined();
 
   public ListAdAccounts200ResponseAccountsInner() { 
   }
@@ -278,7 +281,7 @@ public class ListAdAccounts200ResponseAccountsInner {
 
 
   public ListAdAccounts200ResponseAccountsInner unusableReason(@javax.annotation.Nullable String unusableReason) {
-    this.unusableReason = unusableReason;
+    this.unusableReason = JsonNullable.<String>of(unusableReason);
     return this;
   }
 
@@ -287,17 +290,25 @@ public class ListAdAccounts200ResponseAccountsInner {
    * @return unusableReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_UNUSABLE_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getUnusableReason() {
-    return unusableReason;
+        return unusableReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_UNUSABLE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnusableReason(@javax.annotation.Nullable String unusableReason) {
+
+  public JsonNullable<String> getUnusableReason_JsonNullable() {
+    return unusableReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_UNUSABLE_REASON)
+  public void setUnusableReason_JsonNullable(JsonNullable<String> unusableReason) {
     this.unusableReason = unusableReason;
+  }
+
+  public void setUnusableReason(@javax.annotation.Nullable String unusableReason) {
+    this.unusableReason = JsonNullable.<String>of(unusableReason);
   }
 
 
@@ -321,12 +332,23 @@ public class ListAdAccounts200ResponseAccountsInner {
         Objects.equals(this.timezoneOffsetHoursUtc, listAdAccounts200ResponseAccountsInner.timezoneOffsetHoursUtc) &&
         Objects.equals(this.minimumDailyBudget, listAdAccounts200ResponseAccountsInner.minimumDailyBudget) &&
         Objects.equals(this.selectable, listAdAccounts200ResponseAccountsInner.selectable) &&
-        Objects.equals(this.unusableReason, listAdAccounts200ResponseAccountsInner.unusableReason);
+        equalsNullable(this.unusableReason, listAdAccounts200ResponseAccountsInner.unusableReason);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, currency, status, timezoneName, timezoneOffsetHoursUtc, minimumDailyBudget, selectable, unusableReason);
+    return Objects.hash(id, name, currency, status, timezoneName, timezoneOffsetHoursUtc, minimumDailyBudget, selectable, hashCodeNullable(unusableReason));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

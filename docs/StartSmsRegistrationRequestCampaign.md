@@ -13,7 +13,7 @@ Required for 10DLC. What you'll send and how recipients opt in/out. The opt-in/o
 |**description** | **String** |  |  |
 |**messageFlow** | **String** | How a recipient ends up receiving your messages (the opt-in flow). Include a link to the page or form where they opt in — carrier reviewers reject campaigns whose consent they can&#39;t verify. |  |
 |**sample1** | **String** |  |  |
-|**sample2** | **String** | Second example message; carriers require two distinct samples |  |
+|**sample2** | **String** | Second example message; carriers require two distinct samples, so it must differ from sample1. |  |
 |**helpMessage** | **String** |  |  [optional] |
 |**optinKeywords** | **String** |  |  |
 |**optinMessage** | **String** |  |  [optional] |

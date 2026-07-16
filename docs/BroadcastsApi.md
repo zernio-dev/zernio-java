@@ -98,6 +98,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Recipients added |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -175,6 +176,7 @@ ApiResponse<[**AddBroadcastRecipients200Response**](AddBroadcastRecipients200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Recipients added |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -398,6 +400,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast created |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## createBroadcastWithHttpInfo
@@ -472,6 +475,7 @@ ApiResponse<[**CreateBroadcast200Response**](CreateBroadcast200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast created |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -844,6 +848,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Recipients list with delivery status |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -925,6 +930,7 @@ ApiResponse<[**ListBroadcastRecipients200Response**](ListBroadcastRecipients200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Recipients list with delivery status |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1006,6 +1012,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcasts list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listBroadcastsWithHttpInfo
@@ -1088,6 +1095,7 @@ ApiResponse<[**ListBroadcasts200Response**](ListBroadcasts200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcasts list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 

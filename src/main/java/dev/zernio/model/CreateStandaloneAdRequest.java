@@ -128,7 +128,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1466,7 +1466,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta — passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD — true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram) and TikTok. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. 
+   * Meta-only. When present, switches to the attach shape: adds one new ad to this existing ad set without creating a new campaign. Budget, targeting, goal, schedule, AND bid strategy are inherited from the ad set on Meta — passing &#x60;bidStrategy&#x60; in attach mode returns 400. To change an existing ad set&#39;s bid, use &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Mutually exclusive with &#x60;creatives[]&#x60;.  The attached ad takes the full single-creative surface: &#x60;headline&#x60;/&#x60;body&#x60;/&#x60;description&#x60;/&#x60;callToAction&#x60; plus either &#x60;imageUrl&#x60;/&#x60;video&#x60; OR &#x60;placementAssets&#x60; (its own per-placement Feed/Story assets), and &#x60;leadGenFormId&#x60; when the target is a lead ad set (the parent must be ON_AD — true for ad sets created via goal &#x60;lead_generation&#x60;; Meta rejects a formless ad there, so pass the form on EVERY attached ad). This is the way to build N full ads sharing one ad set: create the first ad via the normal shape, then attach the rest one call each.  Supported on Meta (facebook, instagram), TikTok, and LinkedIn. On TikTok the &#x60;adSetId&#x60; is the ad group ID; the new ad inherits the ad group&#39;s bid + budget + targeting. On LinkedIn the &#x60;adSetId&#x60; is the LinkedIn Campaign ID (numeric); we attach a new Creative to that Campaign, so the Campaign&#39;s &#x60;platformSpecificData&#x60; bidding, targeting, budget and schedule are inherited (passing those fields returns 400). 
    * @return adSetId
    */
   @javax.annotation.Nullable
@@ -1490,7 +1490,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Add the new ad set under this EXISTING campaign instead of creating a new one (multi-ad-set audience testing). The new ad set&#39;s budget is matched to the campaign&#39;s mode automatically: for a CBO campaign (campaign-level budget) omit &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60; — the campaign owns the budget; for an ABO campaign pass them (they go on the new ad set). On failure only the new ad set is cleaned up; the existing campaign is left untouched and is never (re)activated. Mutually exclusive with &#x60;adSetId&#x60; and &#x60;creatives[]&#x60;. 
+   * Meta + LinkedIn. On Meta: add the new ad set under this EXISTING campaign instead of creating a new one (multi-ad-set audience testing). The new ad set&#39;s budget is matched to the campaign&#39;s mode automatically: for a CBO campaign (campaign-level budget) omit &#x60;budgetAmount&#x60;/&#x60;budgetType&#x60; — the campaign owns the budget; for an ABO campaign pass them (they go on the new ad set). On LinkedIn: create a new Campaign (and its Creative) under this EXISTING CampaignGroup. On failure only the entities we authored are cleaned up; the pre-existing parent is left untouched and is never (re)activated. Mutually exclusive with &#x60;adSetId&#x60; and &#x60;creatives[]&#x60;. 
    * @return existingCampaignId
    */
   @javax.annotation.Nullable

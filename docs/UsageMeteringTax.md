@@ -8,9 +8,9 @@ Estimated tax on the window's net `totals.total`, computed with Stripe Tax again
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**taxUsd** | **BigDecimal** | Estimated tax in USD |  [optional] |
-|**ratePercent** | **BigDecimal** | Combined rate percentage |  [optional] |
-|**jurisdictionLabel** | **String** | Human jurisdiction label |  [optional] |
+|**taxUsd** | **BigDecimal** | Estimated tax in USD, added on top of &#x60;totals.total&#x60;. |  [optional] |
+|**ratePercent** | **BigDecimal** | Combined rate percentage, e.g. 21. |  [optional] |
+|**jurisdictionLabel** | **String** | Human jurisdiction label, e.g. \&quot;ES VAT\&quot; or \&quot;WA sales tax\&quot;. |  [optional] |
 |**reverseCharge** | **Boolean** | True for EU/UK B2B reverse charge (0 tax added by design). |  [optional] |
 
 

@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +46,7 @@ import dev.zernio.ApiClient;
   BillingSnapshotStatus.JSON_PROPERTY_DECLINE_REASON,
   BillingSnapshotStatus.JSON_PROPERTY_AUTO_UPGRADE_ENABLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T09:33:12.660071005Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BillingSnapshotStatus {
   public static final String JSON_PROPERTY_HAS_ACCESS = "hasAccess";
   @javax.annotation.Nullable
@@ -53,20 +57,16 @@ public class BillingSnapshotStatus {
   private Boolean suspended;
 
   public static final String JSON_PROPERTY_SUSPENDED_AT = "suspendedAt";
-  @javax.annotation.Nullable
-  private OffsetDateTime suspendedAt;
+  private JsonNullable<OffsetDateTime> suspendedAt = JsonNullable.<OffsetDateTime>undefined();
 
   public static final String JSON_PROPERTY_SUSPENSION_REASON = "suspensionReason";
-  @javax.annotation.Nullable
-  private String suspensionReason;
+  private JsonNullable<String> suspensionReason = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_OPEN_INVOICE_URL = "openInvoiceUrl";
-  @javax.annotation.Nullable
-  private String openInvoiceUrl;
+  private JsonNullable<String> openInvoiceUrl = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_DECLINE_REASON = "declineReason";
-  @javax.annotation.Nullable
-  private String declineReason;
+  private JsonNullable<String> declineReason = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_AUTO_UPGRADE_ENABLED = "autoUpgradeEnabled";
   @javax.annotation.Nullable
@@ -124,7 +124,7 @@ public class BillingSnapshotStatus {
 
 
   public BillingSnapshotStatus suspendedAt(@javax.annotation.Nullable OffsetDateTime suspendedAt) {
-    this.suspendedAt = suspendedAt;
+    this.suspendedAt = JsonNullable.<OffsetDateTime>of(suspendedAt);
     return this;
   }
 
@@ -133,22 +133,30 @@ public class BillingSnapshotStatus {
    * @return suspendedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUSPENDED_AT, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public OffsetDateTime getSuspendedAt() {
-    return suspendedAt;
+        return suspendedAt.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUSPENDED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSuspendedAt(@javax.annotation.Nullable OffsetDateTime suspendedAt) {
+
+  public JsonNullable<OffsetDateTime> getSuspendedAt_JsonNullable() {
+    return suspendedAt;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUSPENDED_AT)
+  public void setSuspendedAt_JsonNullable(JsonNullable<OffsetDateTime> suspendedAt) {
     this.suspendedAt = suspendedAt;
+  }
+
+  public void setSuspendedAt(@javax.annotation.Nullable OffsetDateTime suspendedAt) {
+    this.suspendedAt = JsonNullable.<OffsetDateTime>of(suspendedAt);
   }
 
 
   public BillingSnapshotStatus suspensionReason(@javax.annotation.Nullable String suspensionReason) {
-    this.suspensionReason = suspensionReason;
+    this.suspensionReason = JsonNullable.<String>of(suspensionReason);
     return this;
   }
 
@@ -157,22 +165,30 @@ public class BillingSnapshotStatus {
    * @return suspensionReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SUSPENSION_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getSuspensionReason() {
-    return suspensionReason;
+        return suspensionReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_SUSPENSION_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSuspensionReason(@javax.annotation.Nullable String suspensionReason) {
+
+  public JsonNullable<String> getSuspensionReason_JsonNullable() {
+    return suspensionReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_SUSPENSION_REASON)
+  public void setSuspensionReason_JsonNullable(JsonNullable<String> suspensionReason) {
     this.suspensionReason = suspensionReason;
+  }
+
+  public void setSuspensionReason(@javax.annotation.Nullable String suspensionReason) {
+    this.suspensionReason = JsonNullable.<String>of(suspensionReason);
   }
 
 
   public BillingSnapshotStatus openInvoiceUrl(@javax.annotation.Nullable String openInvoiceUrl) {
-    this.openInvoiceUrl = openInvoiceUrl;
+    this.openInvoiceUrl = JsonNullable.<String>of(openInvoiceUrl);
     return this;
   }
 
@@ -181,22 +197,30 @@ public class BillingSnapshotStatus {
    * @return openInvoiceUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_OPEN_INVOICE_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getOpenInvoiceUrl() {
-    return openInvoiceUrl;
+        return openInvoiceUrl.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_OPEN_INVOICE_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpenInvoiceUrl(@javax.annotation.Nullable String openInvoiceUrl) {
+
+  public JsonNullable<String> getOpenInvoiceUrl_JsonNullable() {
+    return openInvoiceUrl;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_OPEN_INVOICE_URL)
+  public void setOpenInvoiceUrl_JsonNullable(JsonNullable<String> openInvoiceUrl) {
     this.openInvoiceUrl = openInvoiceUrl;
+  }
+
+  public void setOpenInvoiceUrl(@javax.annotation.Nullable String openInvoiceUrl) {
+    this.openInvoiceUrl = JsonNullable.<String>of(openInvoiceUrl);
   }
 
 
   public BillingSnapshotStatus declineReason(@javax.annotation.Nullable String declineReason) {
-    this.declineReason = declineReason;
+    this.declineReason = JsonNullable.<String>of(declineReason);
     return this;
   }
 
@@ -205,17 +229,25 @@ public class BillingSnapshotStatus {
    * @return declineReason
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_DECLINE_REASON, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public String getDeclineReason() {
-    return declineReason;
+        return declineReason.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_DECLINE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeclineReason(@javax.annotation.Nullable String declineReason) {
+
+  public JsonNullable<String> getDeclineReason_JsonNullable() {
+    return declineReason;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_DECLINE_REASON)
+  public void setDeclineReason_JsonNullable(JsonNullable<String> declineReason) {
     this.declineReason = declineReason;
+  }
+
+  public void setDeclineReason(@javax.annotation.Nullable String declineReason) {
+    this.declineReason = JsonNullable.<String>of(declineReason);
   }
 
 
@@ -257,16 +289,27 @@ public class BillingSnapshotStatus {
     BillingSnapshotStatus billingSnapshotStatus = (BillingSnapshotStatus) o;
     return Objects.equals(this.hasAccess, billingSnapshotStatus.hasAccess) &&
         Objects.equals(this.suspended, billingSnapshotStatus.suspended) &&
-        Objects.equals(this.suspendedAt, billingSnapshotStatus.suspendedAt) &&
-        Objects.equals(this.suspensionReason, billingSnapshotStatus.suspensionReason) &&
-        Objects.equals(this.openInvoiceUrl, billingSnapshotStatus.openInvoiceUrl) &&
-        Objects.equals(this.declineReason, billingSnapshotStatus.declineReason) &&
+        equalsNullable(this.suspendedAt, billingSnapshotStatus.suspendedAt) &&
+        equalsNullable(this.suspensionReason, billingSnapshotStatus.suspensionReason) &&
+        equalsNullable(this.openInvoiceUrl, billingSnapshotStatus.openInvoiceUrl) &&
+        equalsNullable(this.declineReason, billingSnapshotStatus.declineReason) &&
         Objects.equals(this.autoUpgradeEnabled, billingSnapshotStatus.autoUpgradeEnabled);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hasAccess, suspended, suspendedAt, suspensionReason, openInvoiceUrl, declineReason, autoUpgradeEnabled);
+    return Objects.hash(hasAccess, suspended, hashCodeNullable(suspendedAt), hashCodeNullable(suspensionReason), hashCodeNullable(openInvoiceUrl), hashCodeNullable(declineReason), autoUpgradeEnabled);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

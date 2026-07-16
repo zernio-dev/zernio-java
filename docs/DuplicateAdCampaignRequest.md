@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
 |**deepCopy** | **Boolean** | Copy child ad sets + ads + creatives + targeting |  [optional] |
-|**statusOption** | [**StatusOptionEnum**](#StatusOptionEnum) |  |  [optional] |
+|**statusOption** | [**StatusOptionEnum**](#StatusOptionEnum) | ACTIVE &#x3D; launch the clone immediately (spends the moment LinkedIn approves it). PAUSED &#x3D; clone stays DRAFT, safe default. INHERITED_FROM_SOURCE &#x3D; mirror each entity&#39;s source status per-entity. Duplicating an ACTIVE campaign this way starts a second front of spend.  |  [optional] |
 |**startTime** | **OffsetDateTime** | Reschedule the copied hierarchy&#39;s start time |  [optional] |
 |**endTime** | **OffsetDateTime** |  |  [optional] |
 |**renameStrategy** | [**RenameStrategyEnum**](#RenameStrategyEnum) |  |  [optional] |
@@ -26,6 +26,7 @@
 | FACEBOOK | &quot;facebook&quot; |
 | INSTAGRAM | &quot;instagram&quot; |
 | TIKTOK | &quot;tiktok&quot; |
+| LINKEDIN | &quot;linkedin&quot; |
 
 
 
