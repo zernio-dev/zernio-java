@@ -59,7 +59,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_LOCATION,
   SendInboxMessageRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:33:08.153207824Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -433,7 +433,7 @@ public class SendInboxMessageRequest {
   }
 
   /**
-   * Action buttons. Mutually exclusive with quickReplies. Max 3 items.
+   * Action buttons. Mutually exclusive with quickReplies. Max 3 items.  WhatsApp: buttons always render as interactive reply buttons. Only &#x60;title&#x60; and &#x60;payload&#x60; are used — &#x60;type&#x60;, &#x60;url&#x60;, and &#x60;phone&#x60; are ignored (WhatsApp has no URL/phone button in this field; use the &#x60;interactive&#x60; field with &#x60;type: cta_url&#x60; for a link button). &#x60;payload&#x60; becomes the button reply ID delivered on the &#x60;message.received&#x60; webhook when the user taps. To send a simple reply-button message, provide &#x60;title&#x60; + &#x60;payload&#x60; and set &#x60;type: postback&#x60;, e.g. &#x60;{ \&quot;type\&quot;: \&quot;postback\&quot;, \&quot;title\&quot;: \&quot;Yes\&quot;, \&quot;payload\&quot;: \&quot;yes\&quot; }&#x60;. 
    * @return buttons
    */
   @javax.annotation.Nullable

@@ -39,10 +39,10 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestButtonsInner.JSON_PROPERTY_PAYLOAD,
   SendInboxMessageRequestButtonsInner.JSON_PROPERTY_PHONE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:03:28.348897110Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T10:33:08.153207824Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestButtonsInner {
   /**
-   * Button type. phone is Facebook only.
+   * Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons).
    */
   public enum TypeEnum {
     URL(String.valueOf("url")),
@@ -107,7 +107,7 @@ public class SendInboxMessageRequestButtonsInner {
   }
 
   /**
-   * Button type. phone is Facebook only.
+   * Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons).
    * @return type
    */
   @javax.annotation.Nonnull
@@ -155,7 +155,7 @@ public class SendInboxMessageRequestButtonsInner {
   }
 
   /**
-   * URL for url-type buttons
+   * URL for url-type buttons (Facebook/Instagram only)
    * @return url
    */
   @javax.annotation.Nullable
@@ -179,7 +179,7 @@ public class SendInboxMessageRequestButtonsInner {
   }
 
   /**
-   * Payload for postback-type buttons
+   * Payload for postback-type buttons. On WhatsApp, this is the reply ID returned on the message.received webhook when the button is tapped.
    * @return payload
    */
   @javax.annotation.Nullable
