@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.EnrollContacts200ResponseResultsInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -35,9 +38,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   EnrollContacts200Response.JSON_PROPERTY_SUCCESS,
   EnrollContacts200Response.JSON_PROPERTY_ENROLLED,
-  EnrollContacts200Response.JSON_PROPERTY_SKIPPED
+  EnrollContacts200Response.JSON_PROPERTY_FAILED,
+  EnrollContacts200Response.JSON_PROPERTY_RESULTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:29:31.300217113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:39:08.320823215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnrollContacts200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
@@ -47,9 +51,13 @@ public class EnrollContacts200Response {
   @javax.annotation.Nullable
   private Integer enrolled;
 
-  public static final String JSON_PROPERTY_SKIPPED = "skipped";
+  public static final String JSON_PROPERTY_FAILED = "failed";
   @javax.annotation.Nullable
-  private Integer skipped;
+  private Integer failed;
+
+  public static final String JSON_PROPERTY_RESULTS = "results";
+  @javax.annotation.Nullable
+  private List<EnrollContacts200ResponseResultsInner> results = new ArrayList<>();
 
   public EnrollContacts200Response() { 
   }
@@ -102,27 +110,59 @@ public class EnrollContacts200Response {
   }
 
 
-  public EnrollContacts200Response skipped(@javax.annotation.Nullable Integer skipped) {
-    this.skipped = skipped;
+  public EnrollContacts200Response failed(@javax.annotation.Nullable Integer failed) {
+    this.failed = failed;
     return this;
   }
 
   /**
-   * Number skipped (already enrolled or missing channel)
-   * @return skipped
+   * Number that failed (already enrolled, or no subscribed channel on the sequence platform)
+   * @return failed
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_SKIPPED, required = false)
+  @JsonProperty(value = JSON_PROPERTY_FAILED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getSkipped() {
-    return skipped;
+  public Integer getFailed() {
+    return failed;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SKIPPED, required = false)
+  @JsonProperty(value = JSON_PROPERTY_FAILED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSkipped(@javax.annotation.Nullable Integer skipped) {
-    this.skipped = skipped;
+  public void setFailed(@javax.annotation.Nullable Integer failed) {
+    this.failed = failed;
+  }
+
+
+  public EnrollContacts200Response results(@javax.annotation.Nullable List<EnrollContacts200ResponseResultsInner> results) {
+    this.results = results;
+    return this;
+  }
+
+  public EnrollContacts200Response addResultsItem(EnrollContacts200ResponseResultsInner resultsItem) {
+    if (this.results == null) {
+      this.results = new ArrayList<>();
+    }
+    this.results.add(resultsItem);
+    return this;
+  }
+
+  /**
+   * Per-contact outcome
+   * @return results
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RESULTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<EnrollContacts200ResponseResultsInner> getResults() {
+    return results;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_RESULTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setResults(@javax.annotation.Nullable List<EnrollContacts200ResponseResultsInner> results) {
+    this.results = results;
   }
 
 
@@ -140,12 +180,13 @@ public class EnrollContacts200Response {
     EnrollContacts200Response enrollContacts200Response = (EnrollContacts200Response) o;
     return Objects.equals(this.success, enrollContacts200Response.success) &&
         Objects.equals(this.enrolled, enrollContacts200Response.enrolled) &&
-        Objects.equals(this.skipped, enrollContacts200Response.skipped);
+        Objects.equals(this.failed, enrollContacts200Response.failed) &&
+        Objects.equals(this.results, enrollContacts200Response.results);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(success, enrolled, skipped);
+    return Objects.hash(success, enrolled, failed, results);
   }
 
   @Override
@@ -154,7 +195,8 @@ public class EnrollContacts200Response {
     sb.append("class EnrollContacts200Response {\n");
     sb.append("    success: ").append(toIndentedString(success)).append("\n");
     sb.append("    enrolled: ").append(toIndentedString(enrolled)).append("\n");
-    sb.append("    skipped: ").append(toIndentedString(skipped)).append("\n");
+    sb.append("    failed: ").append(toIndentedString(failed)).append("\n");
+    sb.append("    results: ").append(toIndentedString(results)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,9 +254,19 @@ public class EnrollContacts200Response {
       joiner.add(String.format(java.util.Locale.ROOT, "%senrolled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnrolled()))));
     }
 
-    // add `skipped` to the URL query string
-    if (getSkipped() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sskipped%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSkipped()))));
+    // add `failed` to the URL query string
+    if (getFailed() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfailed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFailed()))));
+    }
+
+    // add `results` to the URL query string
+    if (getResults() != null) {
+      for (int i = 0; i < getResults().size(); i++) {
+        if (getResults().get(i) != null) {
+          joiner.add(getResults().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sresults%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

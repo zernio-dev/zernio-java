@@ -9,7 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**success** | **Boolean** |  |  [optional] |
 |**enrolled** | **Integer** | Number of contacts successfully enrolled |  [optional] |
-|**skipped** | **Integer** | Number skipped (already enrolled or missing channel) |  [optional] |
+|**failed** | **Integer** | Number that failed (already enrolled, or no subscribed channel on the sequence platform) |  [optional] |
+|**results** | [**List&lt;EnrollContacts200ResponseResultsInner&gt;**](EnrollContacts200ResponseResultsInner.md) | Per-contact outcome |  [optional] |
 
 
 

@@ -175,7 +175,7 @@ ApiResponse<[**CreateQueueSlot201Response**](CreateQueueSlot201Response.md)>
 
 Delete schedule
 
-Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
 
 ### Example
 
@@ -199,7 +199,7 @@ public class Example {
 
         QueueApi apiInstance = new QueueApi(defaultClient);
         String profileId = "profileId_example"; // String | 
-        String queueId = "queueId_example"; // String | Queue ID to delete
+        String queueId = "queueId_example"; // String | Queue ID to delete. Omit to delete all queues for the profile
         try {
             QueueDeleteResponse result = apiInstance.deleteQueueSlot(profileId, queueId);
             System.out.println(result);
@@ -220,7 +220,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**|  | |
-| **queueId** | **String**| Queue ID to delete | |
+| **queueId** | **String**| Queue ID to delete. Omit to delete all queues for the profile | [optional] |
 
 ### Return type
 
@@ -240,8 +240,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Queue schedule deleted |  -  |
-| **400** | Missing profileId or queueId |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Profile or queue not found |  -  |
 
 ## deleteQueueSlotWithHttpInfo
 
@@ -249,7 +250,7 @@ public class Example {
 
 Delete schedule
 
-Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
 
 ### Example
 
@@ -274,7 +275,7 @@ public class Example {
 
         QueueApi apiInstance = new QueueApi(defaultClient);
         String profileId = "profileId_example"; // String | 
-        String queueId = "queueId_example"; // String | Queue ID to delete
+        String queueId = "queueId_example"; // String | Queue ID to delete. Omit to delete all queues for the profile
         try {
             ApiResponse<QueueDeleteResponse> response = apiInstance.deleteQueueSlotWithHttpInfo(profileId, queueId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -297,7 +298,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**|  | |
-| **queueId** | **String**| Queue ID to delete | |
+| **queueId** | **String**| Queue ID to delete. Omit to delete all queues for the profile | [optional] |
 
 ### Return type
 
@@ -317,8 +318,9 @@ ApiResponse<[**QueueDeleteResponse**](QueueDeleteResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Queue schedule deleted |  -  |
-| **400** | Missing profileId or queueId |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **404** | Profile or queue not found |  -  |
 
 
 ## getNextQueueSlot
@@ -528,7 +530,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Profile ID to get queues for | |
 | **queueId** | **String**| Specific queue ID to retrieve (optional) | [optional] |
-| **all** | **String**| Set to &#39;true&#39; to list all queues for the profile | [optional] [enum: true] |
+| **all** | **String**| Set to &#39;true&#39; to list all queues for the profile | [optional] [enum: true, false] |
 
 ### Return type
 
@@ -548,7 +550,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Queue schedule(s) retrieved |  -  |
-| **400** | Missing profileId |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Profile not found |  -  |
 
@@ -608,7 +610,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Profile ID to get queues for | |
 | **queueId** | **String**| Specific queue ID to retrieve (optional) | [optional] |
-| **all** | **String**| Set to &#39;true&#39; to list all queues for the profile | [optional] [enum: true] |
+| **all** | **String**| Set to &#39;true&#39; to list all queues for the profile | [optional] [enum: true, false] |
 
 ### Return type
 
@@ -628,7 +630,7 @@ ApiResponse<[**ListQueueSlots200Response**](ListQueueSlots200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Queue schedule(s) retrieved |  -  |
-| **400** | Missing profileId |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Profile not found |  -  |
 

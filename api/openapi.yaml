@@ -5772,6 +5772,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ProfileUpdateResponse"
           description: Updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -12654,7 +12656,8 @@ paths:
   /v1/queue/slots:
     delete:
       description: |
-        Delete a queue from a profile. Requires queueId to specify which queue to delete.
+        Delete a queue from a profile. Pass queueId to delete a specific queue;
+        omit it to delete all queues for the profile.
         If deleting the default queue, another queue will be promoted to default.
       operationId: deleteQueueSlot
       parameters:
@@ -12665,11 +12668,11 @@ paths:
         schema:
           type: string
         style: form
-      - description: Queue ID to delete
+      - description: Queue ID to delete. Omit to delete all queues for the profile
         explode: true
         in: query
         name: queueId
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -12684,9 +12687,11 @@ paths:
                 $ref: "#/components/schemas/QueueDeleteResponse"
           description: Queue schedule deleted
         "400":
-          description: Missing profileId or queueId
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Profile or queue not found
       summary: Delete schedule
       tags:
       - Queue
@@ -12721,6 +12726,7 @@ paths:
         schema:
           enum:
           - "true"
+          - "false"
           type: string
         style: form
       responses:
@@ -12774,7 +12780,7 @@ paths:
                 $ref: "#/components/schemas/listQueueSlots_200_response"
           description: Queue schedule(s) retrieved
         "400":
-          description: Missing profileId
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -22966,6 +22972,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listSequences_200_response"
           description: Sequences list
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List sequences
@@ -22990,6 +22998,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createSequence_200_response"
           description: Sequence created
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Create sequence
@@ -23013,6 +23023,8 @@ paths:
       responses:
         "200":
           description: Sequence deleted
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23040,6 +23052,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getSequence_200_response"
           description: Sequence details with steps
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23073,6 +23087,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateSequence_200_response"
           description: Sequence updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23104,7 +23120,7 @@ paths:
                 $ref: "#/components/schemas/activateSequence_200_response"
           description: Sequence activated
         "400":
-          description: Invalid status or no steps
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23135,7 +23151,7 @@ paths:
                 $ref: "#/components/schemas/activateSequence_200_response"
           description: Sequence paused
         "400":
-          description: Sequence is not active
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23171,6 +23187,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/enrollContacts_200_response"
           description: Enrollment results
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23204,6 +23222,8 @@ paths:
       responses:
         "200":
           description: Contact unenrolled
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -23261,6 +23281,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listSequenceEnrollments_200_response"
           description: Enrollments list with progress
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -60063,20 +60085,46 @@ components:
           type: array
       required:
       - contactIds
+    enrollContacts_200_response_results_inner:
+      example:
+        contactId: contactId
+        success: true
+        error: error
+      properties:
+        contactId:
+          type: string
+        success:
+          type: boolean
+        error:
+          description: Present when success is false
+          type: string
     enrollContacts_200_response:
       example:
         success: true
+        failed: 6
+        results:
+        - contactId: contactId
+          success: true
+          error: error
+        - contactId: contactId
+          success: true
+          error: error
         enrolled: 0
-        skipped: 6
       properties:
         success:
           type: boolean
         enrolled:
           description: Number of contacts successfully enrolled
           type: integer
-        skipped:
-          description: Number skipped (already enrolled or missing channel)
+        failed:
+          description: "Number that failed (already enrolled, or no subscribed channel\
+            \ on the sequence platform)"
           type: integer
+        results:
+          description: Per-contact outcome
+          items:
+            $ref: "#/components/schemas/enrollContacts_200_response_results_inner"
+          type: array
     listSequenceEnrollments_200_response_enrollments_inner:
       example:
         nextStepAt: 2000-01-23T04:56:07.000+00:00

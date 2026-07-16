@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-16T15:29:31.300217113Z[Etc/UTC]
+- Build date: 2026-07-16T15:39:08.320823215Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1394,6 +1394,7 @@ Class | Method | HTTP request | Description
  - [EnableWhatsAppCallingLegacyRequest](docs/EnableWhatsAppCallingLegacyRequest.md)
  - [EndVoiceCall200Response](docs/EndVoiceCall200Response.md)
  - [EnrollContacts200Response](docs/EnrollContacts200Response.md)
+ - [EnrollContacts200ResponseResultsInner](docs/EnrollContacts200ResponseResultsInner.md)
  - [EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [ErrorResponse](docs/ErrorResponse.md)
  - [EstimateAdReach200Response](docs/EstimateAdReach200Response.md)

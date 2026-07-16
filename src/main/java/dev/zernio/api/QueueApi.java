@@ -59,7 +59,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:29:31.300217113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:39:08.320823215Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueueApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -301,52 +301,52 @@ public class QueueApi {
 
   /**
    * Delete schedule
-   * Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+   * Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
    * @param profileId  (required)
-   * @param queueId Queue ID to delete (required)
+   * @param queueId Queue ID to delete. Omit to delete all queues for the profile (optional)
    * @return QueueDeleteResponse
    * @throws ApiException if fails to make API call
    */
-  public QueueDeleteResponse deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId) throws ApiException {
+  public QueueDeleteResponse deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId) throws ApiException {
     return deleteQueueSlot(profileId, queueId, null);
   }
 
   /**
    * Delete schedule
-   * Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+   * Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
    * @param profileId  (required)
-   * @param queueId Queue ID to delete (required)
+   * @param queueId Queue ID to delete. Omit to delete all queues for the profile (optional)
    * @param headers Optional headers to include in the request
    * @return QueueDeleteResponse
    * @throws ApiException if fails to make API call
    */
-  public QueueDeleteResponse deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId, Map<String, String> headers) throws ApiException {
+  public QueueDeleteResponse deleteQueueSlot(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, Map<String, String> headers) throws ApiException {
     ApiResponse<QueueDeleteResponse> localVarResponse = deleteQueueSlotWithHttpInfo(profileId, queueId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Delete schedule
-   * Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+   * Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
    * @param profileId  (required)
-   * @param queueId Queue ID to delete (required)
+   * @param queueId Queue ID to delete. Omit to delete all queues for the profile (optional)
    * @return ApiResponse&lt;QueueDeleteResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<QueueDeleteResponse> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId) throws ApiException {
+  public ApiResponse<QueueDeleteResponse> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId) throws ApiException {
     return deleteQueueSlotWithHttpInfo(profileId, queueId, null);
   }
 
   /**
    * Delete schedule
-   * Delete a queue from a profile. Requires queueId to specify which queue to delete. If deleting the default queue, another queue will be promoted to default. 
+   * Delete a queue from a profile. Pass queueId to delete a specific queue; omit it to delete all queues for the profile. If deleting the default queue, another queue will be promoted to default. 
    * @param profileId  (required)
-   * @param queueId Queue ID to delete (required)
+   * @param queueId Queue ID to delete. Omit to delete all queues for the profile (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;QueueDeleteResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<QueueDeleteResponse> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<QueueDeleteResponse> deleteQueueSlotWithHttpInfo(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = deleteQueueSlotRequestBuilder(profileId, queueId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -394,14 +394,10 @@ public class QueueApi {
     }
   }
 
-  private HttpRequest.Builder deleteQueueSlotRequestBuilder(@javax.annotation.Nonnull String profileId, @javax.annotation.Nonnull String queueId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder deleteQueueSlotRequestBuilder(@javax.annotation.Nonnull String profileId, @javax.annotation.Nullable String queueId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'profileId' is set
     if (profileId == null) {
       throw new ApiException(400, "Missing the required parameter 'profileId' when calling deleteQueueSlot");
-    }
-    // verify the required parameter 'queueId' is set
-    if (queueId == null) {
-      throw new ApiException(400, "Missing the required parameter 'queueId' when calling deleteQueueSlot");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
