@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   CrosspostDiscordMessage200Response.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:19:58.854977705Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:29:31.300217113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CrosspostDiscordMessage200Response {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable

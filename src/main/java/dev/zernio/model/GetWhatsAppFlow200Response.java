@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppFlow200Response.JSON_PROPERTY_SUCCESS,
   GetWhatsAppFlow200Response.JSON_PROPERTY_FLOW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:19:58.854977705Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:29:31.300217113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppFlow200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
