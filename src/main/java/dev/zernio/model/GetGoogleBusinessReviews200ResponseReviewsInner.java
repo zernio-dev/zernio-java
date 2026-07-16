@@ -24,10 +24,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner;
 import dev.zernio.model.GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply;
 import dev.zernio.model.GetGoogleBusinessReviews200ResponseReviewsInnerReviewer;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,9 +47,11 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_COMMENT,
   GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_CREATE_TIME,
   GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_UPDATE_TIME,
-  GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_REVIEW_REPLY
+  GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_REVIEW_REPLY,
+  GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_PHOTO_COUNT,
+  GetGoogleBusinessReviews200ResponseReviewsInner.JSON_PROPERTY_PHOTOS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T19:31:45.344754809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessReviews200ResponseReviewsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -124,6 +129,14 @@ public class GetGoogleBusinessReviews200ResponseReviewsInner {
   public static final String JSON_PROPERTY_REVIEW_REPLY = "reviewReply";
   @javax.annotation.Nullable
   private GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply reviewReply;
+
+  public static final String JSON_PROPERTY_PHOTO_COUNT = "photoCount";
+  @javax.annotation.Nullable
+  private Integer photoCount;
+
+  public static final String JSON_PROPERTY_PHOTOS = "photos";
+  @javax.annotation.Nullable
+  private List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos = new ArrayList<>();
 
   public GetGoogleBusinessReviews200ResponseReviewsInner() { 
   }
@@ -346,6 +359,62 @@ public class GetGoogleBusinessReviews200ResponseReviewsInner {
   }
 
 
+  public GetGoogleBusinessReviews200ResponseReviewsInner photoCount(@javax.annotation.Nullable Integer photoCount) {
+    this.photoCount = photoCount;
+    return this;
+  }
+
+  /**
+   * Number of photos attached to the review (photos only, videos are not counted)
+   * @return photoCount
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHOTO_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getPhotoCount() {
+    return photoCount;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHOTO_COUNT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhotoCount(@javax.annotation.Nullable Integer photoCount) {
+    this.photoCount = photoCount;
+  }
+
+
+  public GetGoogleBusinessReviews200ResponseReviewsInner photos(@javax.annotation.Nullable List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos) {
+    this.photos = photos;
+    return this;
+  }
+
+  public GetGoogleBusinessReviews200ResponseReviewsInner addPhotosItem(GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner photosItem) {
+    if (this.photos == null) {
+      this.photos = new ArrayList<>();
+    }
+    this.photos.add(photosItem);
+    return this;
+  }
+
+  /**
+   * Photos attached to the review by the reviewer
+   * @return photos
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHOTOS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> getPhotos() {
+    return photos;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHOTOS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhotos(@javax.annotation.Nullable List<GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner> photos) {
+    this.photos = photos;
+  }
+
+
   /**
    * Return true if this getGoogleBusinessReviews_200_response_reviews_inner object is equal to o.
    */
@@ -366,12 +435,14 @@ public class GetGoogleBusinessReviews200ResponseReviewsInner {
         Objects.equals(this.comment, getGoogleBusinessReviews200ResponseReviewsInner.comment) &&
         Objects.equals(this.createTime, getGoogleBusinessReviews200ResponseReviewsInner.createTime) &&
         Objects.equals(this.updateTime, getGoogleBusinessReviews200ResponseReviewsInner.updateTime) &&
-        Objects.equals(this.reviewReply, getGoogleBusinessReviews200ResponseReviewsInner.reviewReply);
+        Objects.equals(this.reviewReply, getGoogleBusinessReviews200ResponseReviewsInner.reviewReply) &&
+        Objects.equals(this.photoCount, getGoogleBusinessReviews200ResponseReviewsInner.photoCount) &&
+        Objects.equals(this.photos, getGoogleBusinessReviews200ResponseReviewsInner.photos);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, reviewer, rating, starRating, comment, createTime, updateTime, reviewReply);
+    return Objects.hash(id, name, reviewer, rating, starRating, comment, createTime, updateTime, reviewReply, photoCount, photos);
   }
 
   @Override
@@ -387,6 +458,8 @@ public class GetGoogleBusinessReviews200ResponseReviewsInner {
     sb.append("    createTime: ").append(toIndentedString(createTime)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    reviewReply: ").append(toIndentedString(reviewReply)).append("\n");
+    sb.append("    photoCount: ").append(toIndentedString(photoCount)).append("\n");
+    sb.append("    photos: ").append(toIndentedString(photos)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -477,6 +550,21 @@ public class GetGoogleBusinessReviews200ResponseReviewsInner {
     // add `reviewReply` to the URL query string
     if (getReviewReply() != null) {
       joiner.add(getReviewReply().toUrlQueryString(prefix + "reviewReply" + suffix));
+    }
+
+    // add `photoCount` to the URL query string
+    if (getPhotoCount() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphotoCount%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhotoCount()))));
+    }
+
+    // add `photos` to the URL query string
+    if (getPhotos() != null) {
+      for (int i = 0; i < getPhotos().size(); i++) {
+        if (getPhotos().get(i) != null) {
+          joiner.add(getPhotos().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sphotos%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

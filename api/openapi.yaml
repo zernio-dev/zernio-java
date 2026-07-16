@@ -7181,6 +7181,8 @@ paths:
                   reviewReply:
                     comment: Thank you for your kind words! We appreciate your support.
                     updateTime: 2024-01-16T08:00:00Z
+                  photoCount: 0
+                  photos: []
                 - id: AIe9_BGx0987654321
                   name: accounts/123456789/locations/9281089117903930794/reviews/AIe9_BGx0987654321
                   reviewer:
@@ -7193,6 +7195,8 @@ paths:
                   createTime: 2024-01-10T14:20:00Z
                   updateTime: 2024-01-10T14:20:00Z
                   reviewReply: null
+                  photoCount: 0
+                  photos: []
                 averageRating: 4.5
                 totalReviewCount: 125
                 nextPageToken: CiAKHAoUMTIzNDU2Nzg5
@@ -41923,6 +41927,13 @@ components:
         updateTime:
           format: date-time
           type: string
+    getGoogleBusinessReviews_200_response_reviews_inner_photos_inner:
+      example:
+        url: https://openapi-generator.tech
+      properties:
+        url:
+          format: uri
+          type: string
     getGoogleBusinessReviews_200_response_reviews_inner:
       example:
         reviewReply:
@@ -41939,6 +41950,10 @@ components:
           displayName: displayName
           profilePhotoUrl: profilePhotoUrl
         starRating: ONE
+        photos:
+        - url: https://openapi-generator.tech
+        - url: https://openapi-generator.tech
+        photoCount: 6
       properties:
         id:
           description: Review ID
@@ -41973,6 +41988,15 @@ components:
           type: string
         reviewReply:
           $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner_reviewReply"
+        photoCount:
+          description: "Number of photos attached to the review (photos only, videos\
+            \ are not counted)"
+          type: integer
+        photos:
+          description: Photos attached to the review by the reviewer
+          items:
+            $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner_photos_inner"
+          type: array
     getGoogleBusinessReviews_200_response:
       example:
         accountId: accountId
@@ -41991,6 +42015,10 @@ components:
             displayName: displayName
             profilePhotoUrl: profilePhotoUrl
           starRating: ONE
+          photos:
+          - url: https://openapi-generator.tech
+          - url: https://openapi-generator.tech
+          photoCount: 6
         - reviewReply:
             comment: comment
             updateTime: 2000-01-23T04:56:07.000+00:00
@@ -42005,11 +42033,15 @@ components:
             displayName: displayName
             profilePhotoUrl: profilePhotoUrl
           starRating: ONE
+          photos:
+          - url: https://openapi-generator.tech
+          - url: https://openapi-generator.tech
+          photoCount: 6
         success: true
         locationId: locationId
         nextPageToken: nextPageToken
-        averageRating: 6.027456183070403
-        totalReviewCount: 1
+        averageRating: 1.4658129805029452
+        totalReviewCount: 5
       properties:
         success:
           type: boolean
@@ -51542,6 +51574,9 @@ components:
           name: name
           id: id
           profileImage: profileImage
+        photos:
+        - url: https://openapi-generator.tech
+        - url: https://openapi-generator.tech
         platform: platform
         photoCount: 6
         accountId: accountId
@@ -51582,6 +51617,12 @@ components:
           description: Number of photos attached to the review (photos only; videos
             are not counted). Google Business only; 0 for other platforms.
           type: integer
+        photos:
+          description: Photos attached to the review. Google Business only; always
+            an empty array for other platforms.
+          items:
+            $ref: "#/components/schemas/getGoogleBusinessReviews_200_response_reviews_inner_photos_inner"
+          type: array
         reply:
           $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reply"
         reviewUrl:
@@ -51613,6 +51654,9 @@ components:
             name: name
             id: id
             profileImage: profileImage
+          photos:
+          - url: https://openapi-generator.tech
+          - url: https://openapi-generator.tech
           platform: platform
           photoCount: 6
           accountId: accountId
@@ -51632,6 +51676,9 @@ components:
             name: name
             id: id
             profileImage: profileImage
+          photos:
+          - url: https://openapi-generator.tech
+          - url: https://openapi-generator.tech
           platform: platform
           photoCount: 6
           accountId: accountId
@@ -65354,10 +65401,19 @@ components:
             \ page must be associated with the ad account), or LinkedIn returns 403.\
             \ Ignored by every other platform."
           type: string
+        targeting:
+          allOf:
+          - $ref: "#/components/schemas/TargetingSpec"
+          description: |
+            Nested targeting object — the same TargetingSpec shape as `POST /v1/ads/boost`,
+            `POST /v1/ads/targeting/reach-estimate`, and `saved_targeting` audiences. Merged
+            UNDER the flat inline targeting fields below: `savedTargetingId` < `targeting` <
+            flat fields (a flat field present on the body replaces the nested value entirely).
+            Both forms are equivalent; use whichever your integration already builds.
         countries:
           description: "ISO 3166-1 alpha-2 country codes (e.g. ['NL']). Defaults to\
-            \ ['US'] when no `cities` or `regions` are provided. (LinkedIn currently\
-            \ honours country-level targeting only.)"
+            \ ['US'] when no other geo targeting (flat or nested `targeting`) is provided.\
+            \ (LinkedIn currently honours country-level targeting only.)"
           items:
             type: string
           type: array
@@ -66121,7 +66177,9 @@ components:
           type: string
         spec:
           allOf:
-          - $ref: "#/components/schemas/TargetingSpec"
+          - allOf:
+            - $ref: "#/components/schemas/TargetingSpec"
+            nullable: true
           description: The targeting spec to estimate. Same shape used by POST /v1/ads/create.
         optimizationGoal:
           description: |

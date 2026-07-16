@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   EstimateAdReachRequest.JSON_PROPERTY_SPEC,
   EstimateAdReachRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T19:31:45.344754809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EstimateAdReachRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -50,7 +50,7 @@ public class EstimateAdReachRequest {
   private String adAccountId;
 
   public static final String JSON_PROPERTY_SPEC = "spec";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private TargetingSpec spec;
 
   public static final String JSON_PROPERTY_OPTIMIZATION_GOAL = "optimizationGoal";
@@ -108,7 +108,7 @@ public class EstimateAdReachRequest {
   }
 
 
-  public EstimateAdReachRequest spec(@javax.annotation.Nonnull TargetingSpec spec) {
+  public EstimateAdReachRequest spec(@javax.annotation.Nullable TargetingSpec spec) {
     this.spec = spec;
     return this;
   }
@@ -117,17 +117,17 @@ public class EstimateAdReachRequest {
    * The targeting spec to estimate. Same shape used by POST /v1/ads/create.
    * @return spec
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_SPEC, required = true)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TargetingSpec getSpec() {
     return spec;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_SPEC, required = true)
+  @JsonProperty(value = JSON_PROPERTY_SPEC, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSpec(@javax.annotation.Nonnull TargetingSpec spec) {
+  public void setSpec(@javax.annotation.Nullable TargetingSpec spec) {
     this.spec = spec;
   }
 

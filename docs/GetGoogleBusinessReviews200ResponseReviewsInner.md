@@ -16,6 +16,8 @@
 |**createTime** | **OffsetDateTime** |  |  [optional] |
 |**updateTime** | **OffsetDateTime** |  |  [optional] |
 |**reviewReply** | [**GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply**](GetGoogleBusinessReviews200ResponseReviewsInnerReviewReply.md) |  |  [optional] |
+|**photoCount** | **Integer** | Number of photos attached to the review (photos only, videos are not counted) |  [optional] |
+|**photos** | [**List&lt;GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner&gt;**](GetGoogleBusinessReviews200ResponseReviewsInnerPhotosInner.md) | Photos attached to the review by the reviewer |  [optional] |
 
 
 

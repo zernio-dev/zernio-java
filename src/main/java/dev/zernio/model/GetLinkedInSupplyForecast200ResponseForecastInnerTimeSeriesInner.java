@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.JSON_PROPERTY_VALUE,
   GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.JSON_PROPERTY_AD_FORECAST_RANGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T19:31:45.344754809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner {
   public static final String JSON_PROPERTY_TIMESTAMP = "timestamp";
   @javax.annotation.Nullable

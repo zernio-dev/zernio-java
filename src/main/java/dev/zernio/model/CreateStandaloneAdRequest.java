@@ -41,6 +41,7 @@ import dev.zernio.model.CreateStandaloneAdRequestRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTracking;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
 import dev.zernio.model.LinkedInAdsPlatformData;
+import dev.zernio.model.TargetingSpec;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
 import java.net.URI;
@@ -90,6 +91,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_BUSINESS_NAME,
   CreateStandaloneAdRequest.JSON_PROPERTY_BOARD_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_ORGANIZATION_ID,
+  CreateStandaloneAdRequest.JSON_PROPERTY_TARGETING,
   CreateStandaloneAdRequest.JSON_PROPERTY_COUNTRIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_CITIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_REGIONS,
@@ -129,7 +131,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T19:31:45.344754809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -481,6 +483,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ORGANIZATION_ID = "organizationId";
   @javax.annotation.Nullable
   private String organizationId;
+
+  public static final String JSON_PROPERTY_TARGETING = "targeting";
+  @javax.annotation.Nullable
+  private TargetingSpec targeting;
 
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
@@ -1633,6 +1639,30 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest targeting(@javax.annotation.Nullable TargetingSpec targeting) {
+    this.targeting = targeting;
+    return this;
+  }
+
+  /**
+   * Nested targeting object — the same TargetingSpec shape as &#x60;POST /v1/ads/boost&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences. Merged UNDER the flat inline targeting fields below: &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields (a flat field present on the body replaces the nested value entirely). Both forms are equivalent; use whichever your integration already builds. 
+   * @return targeting
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TARGETING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TargetingSpec getTargeting() {
+    return targeting;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TARGETING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTargeting(@javax.annotation.Nullable TargetingSpec targeting) {
+    this.targeting = targeting;
+  }
+
+
   public CreateStandaloneAdRequest countries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
     return this;
@@ -1647,7 +1677,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no &#x60;cities&#x60; or &#x60;regions&#x60; are provided. (LinkedIn currently honours country-level targeting only.)
+   * ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no other geo targeting (flat or nested &#x60;targeting&#x60;) is provided. (LinkedIn currently honours country-level targeting only.)
    * @return countries
    */
   @javax.annotation.Nullable
@@ -2713,6 +2743,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.businessName, createStandaloneAdRequest.businessName) &&
         Objects.equals(this.boardId, createStandaloneAdRequest.boardId) &&
         Objects.equals(this.organizationId, createStandaloneAdRequest.organizationId) &&
+        Objects.equals(this.targeting, createStandaloneAdRequest.targeting) &&
         Objects.equals(this.countries, createStandaloneAdRequest.countries) &&
         Objects.equals(this.cities, createStandaloneAdRequest.cities) &&
         Objects.equals(this.regions, createStandaloneAdRequest.regions) &&
@@ -2755,7 +2786,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2794,6 +2825,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
     sb.append("    boardId: ").append(toIndentedString(boardId)).append("\n");
     sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
+    sb.append("    targeting: ").append(toIndentedString(targeting)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
     sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
     sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
@@ -3042,6 +3074,11 @@ public class CreateStandaloneAdRequest {
     // add `organizationId` to the URL query string
     if (getOrganizationId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sorganizationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOrganizationId()))));
+    }
+
+    // add `targeting` to the URL query string
+    if (getTargeting() != null) {
+      joiner.add(getTargeting().toUrlQueryString(prefix + "targeting" + suffix));
     }
 
     // add `countries` to the URL query string

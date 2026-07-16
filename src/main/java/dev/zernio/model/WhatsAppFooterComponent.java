@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WhatsAppFooterComponent.JSON_PROPERTY_TEXT,
   WhatsAppFooterComponent.JSON_PROPERTY_CODE_EXPIRATION_MINUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T17:30:00.684303989Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T19:31:45.344754809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppFooterComponent {
   /**
    * Gets or Sets type
