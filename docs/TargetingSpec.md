@@ -19,7 +19,7 @@ Normalized, platform-agnostic ad-targeting spec. Every field is optional, an emp
 |**ageMax** | **Integer** |  |  [optional] |
 |**gender** | [**GenderEnum**](#GenderEnum) | Restrict by gender. &#39;all&#39; (default) targets everyone. |  [optional] |
 |**incomeTier** | [**IncomeTierEnum**](#IncomeTierEnum) | Normalized household-income tier (ZIP/percentile based). Meta and TikTok express all four. Google maps only &#x60;top_10&#x60; (its INCOME_RANGE_90_UP); other tiers on Google, and any income tier on LinkedIn / X / Pinterest, are rejected. On Meta, income/zip targeting requires the relevant &#x60;specialAdCategories&#x60; to be unset (housing/employment/credit ads cannot use it).  |  [optional] |
-|**languages** | **List&lt;String&gt;** | Language codes (e.g. [&#39;en&#39;]). |  [optional] |
+|**languages** | **List&lt;String&gt;** | Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;) for a specific one. Unknown codes are rejected. |  [optional] |
 |**interests** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Interest entities from /v1/ads/targeting/search?dimension&#x3D;interest. Each carries the platform&#39;s opaque id. |  [optional] |
 |**behaviors** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. |  [optional] |
 |**industries** | **List&lt;String&gt;** | LinkedIn B2B only. Industry URN id fragments. |  [optional] |

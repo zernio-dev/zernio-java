@@ -128,7 +128,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T12:16:16.958240845Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:19:58.854977705Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -1950,7 +1950,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Language codes (e.g. [&#39;en&#39;]). Restricts the audience by language.
+   * Language codes restricting the audience by language. On Meta, ISO 639-1 codes (e.g. [&#39;en&#39;], [&#39;de&#39;]); a bare code targets all regional variants (\&quot;en\&quot; &#x3D; all English), or use a region-qualified code for a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;, \&quot;zh_TW\&quot;). Unknown codes are rejected. Other ad platforms use their own language-code systems.
    * @return languages
    */
   @javax.annotation.Nullable

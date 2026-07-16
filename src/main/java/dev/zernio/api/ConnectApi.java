@@ -102,7 +102,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T12:16:16.958240845Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T15:19:58.854977705Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1451,57 +1451,61 @@ public class ConnectApi {
 
   /**
    * List GBP locations
-   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
    * @param accountId  (required)
    * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
    * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
+   * @param limit Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)
    * @return GetGmbLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter) throws ApiException {
-    return getGmbLocations(accountId, search, filter, null);
+  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return getGmbLocations(accountId, search, filter, limit, null);
   }
 
   /**
    * List GBP locations
-   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
    * @param accountId  (required)
    * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
    * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
+   * @param limit Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)
    * @param headers Optional headers to include in the request
    * @return GetGmbLocations200Response
    * @throws ApiException if fails to make API call
    */
-  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetGmbLocations200Response> localVarResponse = getGmbLocationsWithHttpInfo(accountId, search, filter, headers);
+  public GetGmbLocations200Response getGmbLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetGmbLocations200Response> localVarResponse = getGmbLocationsWithHttpInfo(accountId, search, filter, limit, headers);
     return localVarResponse.getData();
   }
 
   /**
    * List GBP locations
-   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
    * @param accountId  (required)
    * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
    * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
+   * @param limit Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)
    * @return ApiResponse&lt;GetGmbLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter) throws ApiException {
-    return getGmbLocationsWithHttpInfo(accountId, search, filter, null);
+  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Integer limit) throws ApiException {
+    return getGmbLocationsWithHttpInfo(accountId, search, filter, limit, null);
   }
 
   /**
    * List GBP locations
-   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all. 
+   * Returns Google Business Profile locations the connected account can access, plus the currently selected location. The list is bounded (see hasMore); for accounts that own many locations, use the search or filter query params to find a specific one instead of loading them all, or raise limit to enumerate an account with more than 100 locations. 
    * @param accountId  (required)
    * @param search Free-text search on the business name, applied server-side by Google. Use for accounts with many locations. (optional)
    * @param filter Raw Google Business Information API filter expression (advanced; takes precedence over search), e.g. storeCode&#x3D;\&quot;LH279411\&quot;. (optional)
+   * @param limit Max locations to return (default 100, max 500). Raise it to enumerate an account with more than 100 locations; for accounts with thousands, use search/filter instead. (optional, default to 100)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetGmbLocations200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGmbLocationsRequestBuilder(accountId, search, filter, headers);
+  public ApiResponse<GetGmbLocations200Response> getGmbLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGmbLocationsRequestBuilder(accountId, search, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1548,7 +1552,7 @@ public class ConnectApi {
     }
   }
 
-  private HttpRequest.Builder getGmbLocationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getGmbLocationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String search, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getGmbLocations");
@@ -1566,6 +1570,8 @@ public class ConnectApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("search", search));
     localVarQueryParameterBaseName = "filter";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("filter", filter));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
