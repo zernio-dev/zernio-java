@@ -11099,11 +11099,12 @@ paths:
                 $ref: "#/components/schemas/assignGoogleBusinessLocation_200_response"
           description: Location assigned to the target profile
         "400":
-          description: Invalid body
+          description: "Invalid body, or selected location not found under the Google\
+            \ account"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Payment required
+          description: "Payment required, or target profile exceeds plan limit"
         "404":
           description: Source Google Business account not found
         "409":
@@ -64464,11 +64465,11 @@ components:
             \ cannot read it."
           type: number
         selectable:
-          description: Meta only. Whether the account can create/run ads now. Absent
-            (treat as true) on non-Meta platforms.
+          description: Meta and X only. Whether the account can create/run ads now.
+            Absent (treat as true) on other platforms.
           type: boolean
         unusableReason:
-          description: Meta only. Human-readable reason when selectable is false;
+          description: Meta and X only. Human-readable reason when selectable is false;
             null when selectable.
           nullable: true
           type: string

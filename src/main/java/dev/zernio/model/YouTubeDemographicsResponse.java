@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   YouTubeDemographicsResponse.JSON_PROPERTY_DATE_RANGE,
   YouTubeDemographicsResponse.JSON_PROPERTY_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T13:20:54.908615927Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:20:06.885165439Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDemographicsResponse {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

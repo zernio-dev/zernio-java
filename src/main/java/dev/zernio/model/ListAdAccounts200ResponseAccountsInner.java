@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_SELECTABLE,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_UNUSABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T13:20:54.908615927Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:20:06.885165439Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -262,7 +262,7 @@ public class ListAdAccounts200ResponseAccountsInner {
   }
 
   /**
-   * Meta only. Whether the account can create/run ads now. Absent (treat as true) on non-Meta platforms.
+   * Meta and X only. Whether the account can create/run ads now. Absent (treat as true) on other platforms.
    * @return selectable
    */
   @javax.annotation.Nullable
@@ -286,7 +286,7 @@ public class ListAdAccounts200ResponseAccountsInner {
   }
 
   /**
-   * Meta only. Human-readable reason when selectable is false; null when selectable.
+   * Meta and X only. Human-readable reason when selectable is false; null when selectable.
    * @return unusableReason
    */
   @javax.annotation.Nullable
