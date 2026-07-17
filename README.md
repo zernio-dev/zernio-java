@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-17T14:35:26.374359559Z[Etc/UTC]
+- Build date: 2026-07-17T16:24:36.953997782Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1565,8 +1565,6 @@ Class | Method | HTTP request | Description
  - [GetInboxConversationMessages200ResponseMessagesInner](docs/GetInboxConversationMessages200ResponseMessagesInner.md)
  - [GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner](docs/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.md)
  - [GetInboxConversationMessages200ResponseMessagesInnerDeliveryError](docs/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.md)
- - [GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner](docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.md)
- - [GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner](docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner.md)
  - [GetInboxConversationMessages200ResponseMessagesInnerReactionsInner](docs/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.md)
  - [GetInboxConversationMessages200ResponsePagination](docs/GetInboxConversationMessages200ResponsePagination.md)
  - [GetInboxHeatmap200Response](docs/GetInboxHeatmap200Response.md)
@@ -1746,6 +1744,8 @@ Class | Method | HTTP request | Description
  - [HandleOAuthCallbackRequest](docs/HandleOAuthCallbackRequest.md)
  - [HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
+ - [InboxMessageEditAttachment](docs/InboxMessageEditAttachment.md)
+ - [InboxMessageEditHistoryEntry](docs/InboxMessageEditHistoryEntry.md)
  - [InboxWebhookAccount](docs/InboxWebhookAccount.md)
  - [InboxWebhookConversation](docs/InboxWebhookConversation.md)
  - [InboxWebhookMessage](docs/InboxWebhookMessage.md)
@@ -2432,7 +2432,6 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageDeliveryStatus](docs/WebhookPayloadMessageDeliveryStatus.md)
  - [WebhookPayloadMessageDeliveryStatusError](docs/WebhookPayloadMessageDeliveryStatusError.md)
  - [WebhookPayloadMessageEdited](docs/WebhookPayloadMessageEdited.md)
- - [WebhookPayloadMessageEditedEditHistoryInner](docs/WebhookPayloadMessageEditedEditHistoryInner.md)
  - [WebhookPayloadMessageMessage](docs/WebhookPayloadMessageMessage.md)
  - [WebhookPayloadMessageMessageSender](docs/WebhookPayloadMessageMessageSender.md)
  - [WebhookPayloadMessageMessageSenderInstagramProfile](docs/WebhookPayloadMessageMessageSenderInstagramProfile.md)

@@ -31125,6 +31125,46 @@ components:
       - id
       - message
       - timestamp
+    InboxMessageEditAttachment:
+      description: Attachment snapshot inside an edit-history entry.
+      example:
+        payload: "{}"
+        type: type
+        url: url
+      properties:
+        type:
+          type: string
+        url:
+          type: string
+        payload:
+          type: object
+    InboxMessageEditHistoryEntry:
+      description: One prior version of an edited message.
+      example:
+        attachments:
+        - payload: "{}"
+          type: type
+          url: url
+        - payload: "{}"
+          type: type
+          url: url
+        editedAt: 2000-01-23T04:56:07.000+00:00
+        text: text
+      properties:
+        text:
+          nullable: true
+          type: string
+        attachments:
+          items:
+            $ref: "#/components/schemas/InboxMessageEditAttachment"
+          type: array
+        editedAt:
+          format: date-time
+          type: string
+      required:
+      - attachments
+      - editedAt
+      - text
     WebhookPayloadMessageEdited:
       description: |
         Webhook payload for message.edited events. Fires when the sender
@@ -31217,7 +31257,7 @@ components:
         editHistory:
           description: "Prior versions of the message, oldest first."
           items:
-            $ref: "#/components/schemas/WebhookPayloadMessageEdited_editHistory_inner"
+            $ref: "#/components/schemas/InboxMessageEditHistoryEntry"
           type: array
         editCount:
           description: Total number of edits applied to this message.
@@ -49548,40 +49588,6 @@ components:
         previewUrl:
           nullable: true
           type: string
-    getInboxConversationMessages_200_response_messages_inner_editHistory_inner_attachments_inner:
-      example:
-        payload: "{}"
-        type: type
-        url: url
-      properties:
-        type:
-          type: string
-        url:
-          type: string
-        payload:
-          type: object
-    getInboxConversationMessages_200_response_messages_inner_editHistory_inner:
-      example:
-        attachments:
-        - payload: "{}"
-          type: type
-          url: url
-        - payload: "{}"
-          type: type
-          url: url
-        editedAt: 2000-01-23T04:56:07.000+00:00
-        text: text
-      properties:
-        text:
-          nullable: true
-          type: string
-        attachments:
-          items:
-            $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_editHistory_inner_attachments_inner"
-          type: array
-        editedAt:
-          format: date-time
-          type: string
     getInboxConversationMessages_200_response_messages_inner_deliveryError:
       description: Populated when deliveryStatus === "failed".
       example:
@@ -49740,7 +49746,7 @@ components:
         editHistory:
           description: "Every prior version of the message, oldest first."
           items:
-            $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_editHistory_inner"
+            $ref: "#/components/schemas/InboxMessageEditHistoryEntry"
           type: array
         isDeleted:
           description: True if the sender has deleted (unsent) this message. The original
@@ -71105,32 +71111,6 @@ components:
       - platformMessageId
       - sender
       - sentAt
-      - text
-    WebhookPayloadMessageEdited_editHistory_inner:
-      example:
-        attachments:
-        - payload: "{}"
-          type: type
-          url: url
-        - payload: "{}"
-          type: type
-          url: url
-        editedAt: 2000-01-23T04:56:07.000+00:00
-        text: text
-      properties:
-        text:
-          nullable: true
-          type: string
-        attachments:
-          items:
-            $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_editHistory_inner_attachments_inner"
-          type: array
-        editedAt:
-          format: date-time
-          type: string
-      required:
-      - attachments
-      - editedAt
       - text
     WebhookPayloadMessageDeliveryStatus_error:
       description: Populated only on message.failed.

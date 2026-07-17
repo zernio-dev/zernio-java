@@ -510,8 +510,6 @@ docs/GetInboxConversationMessages200Response.md
 docs/GetInboxConversationMessages200ResponseMessagesInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.md
-docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.md
-docs/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.md
 docs/GetInboxConversationMessages200ResponsePagination.md
 docs/GetInboxHeatmap200Response.md
@@ -700,6 +698,8 @@ docs/HandleOAuthCallbackRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
 docs/InboxAnalyticsApi.md
+docs/InboxMessageEditAttachment.md
+docs/InboxMessageEditHistoryEntry.md
 docs/InboxWebhookAccount.md
 docs/InboxWebhookConversation.md
 docs/InboxWebhookMessage.md
@@ -1408,7 +1408,6 @@ docs/WebhookPayloadMessageDeleted.md
 docs/WebhookPayloadMessageDeliveryStatus.md
 docs/WebhookPayloadMessageDeliveryStatusError.md
 docs/WebhookPayloadMessageEdited.md
-docs/WebhookPayloadMessageEditedEditHistoryInner.md
 docs/WebhookPayloadMessageMessage.md
 docs/WebhookPayloadMessageMessageSender.md
 docs/WebhookPayloadMessageMessageSenderInstagramProfile.md
@@ -2041,8 +2040,6 @@ src/main/java/dev/zernio/model/GetInboxConversationMessages200Response.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInner.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.java
-src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner.java
-src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInnerAttachmentsInner.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponsePagination.java
 src/main/java/dev/zernio/model/GetInboxHeatmap200Response.java
@@ -2222,6 +2219,8 @@ src/main/java/dev/zernio/model/GoogleBusinessPlatformDataOffer.java
 src/main/java/dev/zernio/model/HandleOAuthCallbackRequest.java
 src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
+src/main/java/dev/zernio/model/InboxMessageEditAttachment.java
+src/main/java/dev/zernio/model/InboxMessageEditHistoryEntry.java
 src/main/java/dev/zernio/model/InboxWebhookAccount.java
 src/main/java/dev/zernio/model/InboxWebhookConversation.java
 src/main/java/dev/zernio/model/InboxWebhookMessage.java
@@ -2908,7 +2907,6 @@ src/main/java/dev/zernio/model/WebhookPayloadMessageDeleted.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageDeliveryStatus.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageDeliveryStatusError.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageEdited.java
-src/main/java/dev/zernio/model/WebhookPayloadMessageEditedEditHistoryInner.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMessage.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMessageSender.java
 src/main/java/dev/zernio/model/WebhookPayloadMessageMessageSenderInstagramProfile.java
@@ -2969,11 +2967,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateAdInsightsReport202ResponseTest.java
-src/test/java/dev/zernio/model/CreateAdInsightsReportRequestFilteringInnerTest.java
-src/test/java/dev/zernio/model/CreateAdInsightsReportRequestTest.java
-src/test/java/dev/zernio/model/CreateAdInsightsReportRequestTimeIncrementTest.java
-src/test/java/dev/zernio/model/GetAdInsightsReport200ResponsePagingTest.java
-src/test/java/dev/zernio/model/GetAdInsightsReport200ResponseTest.java
-src/test/java/dev/zernio/model/QueryAdInsights200ResponsePagingTest.java
-src/test/java/dev/zernio/model/QueryAdInsights200ResponseTest.java
+src/test/java/dev/zernio/model/InboxMessageEditAttachmentTest.java
+src/test/java/dev/zernio/model/InboxMessageEditHistoryEntryTest.java

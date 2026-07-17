@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetPendingOAuthData200ResponseOrganizationsInner.JSON_PROPERTY_NAME,
   GetPendingOAuthData200ResponseOrganizationsInner.JSON_PROPERTY_VANITY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:35:26.374359559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T16:24:36.953997782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPendingOAuthData200ResponseOrganizationsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

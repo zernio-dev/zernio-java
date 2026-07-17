@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessSearchKeywords200ResponseMonthRange.JSON_PROPERTY_START_MONTH,
   GetGoogleBusinessSearchKeywords200ResponseMonthRange.JSON_PROPERTY_END_MONTH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:35:26.374359559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T16:24:36.953997782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessSearchKeywords200ResponseMonthRange {
   public static final String JSON_PROPERTY_START_MONTH = "startMonth";
   @javax.annotation.Nullable

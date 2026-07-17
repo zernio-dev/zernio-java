@@ -24,10 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.InboxMessageEditHistoryEntry;
 import dev.zernio.model.InboxWebhookAccount;
 import dev.zernio.model.InboxWebhookConversation;
 import dev.zernio.model.InboxWebhookMessage;
-import dev.zernio.model.WebhookPayloadMessageEditedEditHistoryInner;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageEdited.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadMessageEdited.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:35:26.374359559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T16:24:36.953997782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageEdited {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -99,7 +99,7 @@ public class WebhookPayloadMessageEdited {
 
   public static final String JSON_PROPERTY_EDIT_HISTORY = "editHistory";
   @javax.annotation.Nonnull
-  private List<WebhookPayloadMessageEditedEditHistoryInner> editHistory = new ArrayList<>();
+  private List<InboxMessageEditHistoryEntry> editHistory = new ArrayList<>();
 
   public static final String JSON_PROPERTY_EDIT_COUNT = "editCount";
   @javax.annotation.Nonnull
@@ -196,12 +196,12 @@ public class WebhookPayloadMessageEdited {
   }
 
 
-  public WebhookPayloadMessageEdited editHistory(@javax.annotation.Nonnull List<WebhookPayloadMessageEditedEditHistoryInner> editHistory) {
+  public WebhookPayloadMessageEdited editHistory(@javax.annotation.Nonnull List<InboxMessageEditHistoryEntry> editHistory) {
     this.editHistory = editHistory;
     return this;
   }
 
-  public WebhookPayloadMessageEdited addEditHistoryItem(WebhookPayloadMessageEditedEditHistoryInner editHistoryItem) {
+  public WebhookPayloadMessageEdited addEditHistoryItem(InboxMessageEditHistoryEntry editHistoryItem) {
     if (this.editHistory == null) {
       this.editHistory = new ArrayList<>();
     }
@@ -216,14 +216,14 @@ public class WebhookPayloadMessageEdited {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_EDIT_HISTORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<WebhookPayloadMessageEditedEditHistoryInner> getEditHistory() {
+  public List<InboxMessageEditHistoryEntry> getEditHistory() {
     return editHistory;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_EDIT_HISTORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEditHistory(@javax.annotation.Nonnull List<WebhookPayloadMessageEditedEditHistoryInner> editHistory) {
+  public void setEditHistory(@javax.annotation.Nonnull List<InboxMessageEditHistoryEntry> editHistory) {
     this.editHistory = editHistory;
   }
 

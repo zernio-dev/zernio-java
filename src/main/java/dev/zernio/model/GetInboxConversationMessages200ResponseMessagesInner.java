@@ -26,8 +26,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner;
 import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerDeliveryError;
-import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner;
 import dev.zernio.model.GetInboxConversationMessages200ResponseMessagesInnerReactionsInner;
+import dev.zernio.model.InboxMessageEditHistoryEntry;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -74,7 +74,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_REACTIONS,
   GetInboxConversationMessages200ResponseMessagesInner.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:35:26.374359559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T16:24:36.953997782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -214,7 +214,7 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
 
   public static final String JSON_PROPERTY_EDIT_HISTORY = "editHistory";
   @javax.annotation.Nullable
-  private List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory = new ArrayList<>();
+  private List<InboxMessageEditHistoryEntry> editHistory = new ArrayList<>();
 
   public static final String JSON_PROPERTY_IS_DELETED = "isDeleted";
   @javax.annotation.Nullable
@@ -755,12 +755,12 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   }
 
 
-  public GetInboxConversationMessages200ResponseMessagesInner editHistory(@javax.annotation.Nullable List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory) {
+  public GetInboxConversationMessages200ResponseMessagesInner editHistory(@javax.annotation.Nullable List<InboxMessageEditHistoryEntry> editHistory) {
     this.editHistory = editHistory;
     return this;
   }
 
-  public GetInboxConversationMessages200ResponseMessagesInner addEditHistoryItem(GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner editHistoryItem) {
+  public GetInboxConversationMessages200ResponseMessagesInner addEditHistoryItem(InboxMessageEditHistoryEntry editHistoryItem) {
     if (this.editHistory == null) {
       this.editHistory = new ArrayList<>();
     }
@@ -775,14 +775,14 @@ public class GetInboxConversationMessages200ResponseMessagesInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_EDIT_HISTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> getEditHistory() {
+  public List<InboxMessageEditHistoryEntry> getEditHistory() {
     return editHistory;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_EDIT_HISTORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEditHistory(@javax.annotation.Nullable List<GetInboxConversationMessages200ResponseMessagesInnerEditHistoryInner> editHistory) {
+  public void setEditHistory(@javax.annotation.Nullable List<InboxMessageEditHistoryEntry> editHistory) {
     this.editHistory = editHistory;
   }
 
