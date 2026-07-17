@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CreateConversionDestinationRequest.JSON_PROPERTY_COUNTING_TYPE,
   CreateConversionDestinationRequest.JSON_PROPERTY_PRIMARY_FOR_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T07:30:45.549690388Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateConversionDestinationRequest {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull
