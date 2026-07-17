@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: write
 
     steps:
       - name: Checkout repository
@@ -135,3 +136,13 @@ jobs:
             ```
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trigger Maven Central publish
+        # Releases created with GITHUB_TOKEN do not fire `release: published`
+        # workflows (GitHub anti-recursion rule), so publish.yml never ran on
+        # auto-releases and Maven Central sat at 0.0.307 (2026-06-01) while
+        # GitHub releases advanced. workflow_dispatch is exempt from that rule.
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run publish.yml --ref main
