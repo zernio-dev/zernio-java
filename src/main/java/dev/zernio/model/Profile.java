@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   Profile.JSON_PROPERTY_IS_OVER_LIMIT,
   Profile.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T01:15:20.366665354Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T07:30:45.549690388Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Profile {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable

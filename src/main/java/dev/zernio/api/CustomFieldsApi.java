@@ -52,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T01:15:20.366665354Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T07:30:45.549690388Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CustomFieldsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -768,11 +768,11 @@ public class CustomFieldsApi {
    * Update custom field
    * Update a custom field definition. The field type cannot be changed after creation.
    * @param fieldId  (required)
-   * @param updateCustomFieldRequest  (optional)
+   * @param updateCustomFieldRequest  (required)
    * @return UpdateCustomField200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateCustomField200Response updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
+  public UpdateCustomField200Response updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nonnull UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
     return updateCustomField(fieldId, updateCustomFieldRequest, null);
   }
 
@@ -780,12 +780,12 @@ public class CustomFieldsApi {
    * Update custom field
    * Update a custom field definition. The field type cannot be changed after creation.
    * @param fieldId  (required)
-   * @param updateCustomFieldRequest  (optional)
+   * @param updateCustomFieldRequest  (required)
    * @param headers Optional headers to include in the request
    * @return UpdateCustomField200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateCustomField200Response updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
+  public UpdateCustomField200Response updateCustomField(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nonnull UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
     ApiResponse<UpdateCustomField200Response> localVarResponse = updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest, headers);
     return localVarResponse.getData();
   }
@@ -794,11 +794,11 @@ public class CustomFieldsApi {
    * Update custom field
    * Update a custom field definition. The field type cannot be changed after creation.
    * @param fieldId  (required)
-   * @param updateCustomFieldRequest  (optional)
+   * @param updateCustomFieldRequest  (required)
    * @return ApiResponse&lt;UpdateCustomField200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateCustomField200Response> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
+  public ApiResponse<UpdateCustomField200Response> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nonnull UpdateCustomFieldRequest updateCustomFieldRequest) throws ApiException {
     return updateCustomFieldWithHttpInfo(fieldId, updateCustomFieldRequest, null);
   }
 
@@ -806,12 +806,12 @@ public class CustomFieldsApi {
    * Update custom field
    * Update a custom field definition. The field type cannot be changed after creation.
    * @param fieldId  (required)
-   * @param updateCustomFieldRequest  (optional)
+   * @param updateCustomFieldRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;UpdateCustomField200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateCustomField200Response> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateCustomField200Response> updateCustomFieldWithHttpInfo(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nonnull UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateCustomFieldRequestBuilder(fieldId, updateCustomFieldRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -859,10 +859,14 @@ public class CustomFieldsApi {
     }
   }
 
-  private HttpRequest.Builder updateCustomFieldRequestBuilder(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nullable UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateCustomFieldRequestBuilder(@javax.annotation.Nonnull String fieldId, @javax.annotation.Nonnull UpdateCustomFieldRequest updateCustomFieldRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'fieldId' is set
     if (fieldId == null) {
       throw new ApiException(400, "Missing the required parameter 'fieldId' when calling updateCustomField");
+    }
+    // verify the required parameter 'updateCustomFieldRequest' is set
+    if (updateCustomFieldRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateCustomFieldRequest' when calling updateCustomField");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();

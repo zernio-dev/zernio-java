@@ -488,6 +488,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Content decay buckets |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
@@ -569,6 +570,7 @@ ApiResponse<[**GetContentDecay200Response**](GetContentDecay200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Content decay buckets |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 

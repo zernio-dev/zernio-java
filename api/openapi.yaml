@@ -2383,6 +2383,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getContentDecay_200_response"
           description: Content decay buckets
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -16256,6 +16258,8 @@ paths:
       responses:
         "200":
           description: Disabled
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -16296,6 +16300,8 @@ paths:
       responses:
         "200":
           description: Updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -16343,6 +16349,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/enableWhatsAppCallingLegacy_200_response"
           description: Calling enabled
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20209,6 +20217,8 @@ paths:
       responses:
         "200":
           description: Disabled
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20246,6 +20256,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getWhatsAppCalling_200_response"
           description: Calling config
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20282,6 +20294,8 @@ paths:
       responses:
         "200":
           description: Updated
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -20325,6 +20339,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/enableWhatsAppCallingLegacy_200_response"
           description: Calling enabled
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -21966,6 +21982,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listCustomFields_200_response"
           description: List of custom field definitions
+        "400":
+          description: Invalid profileId format
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: List custom field definitions
@@ -21990,6 +22008,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/createCustomField_200_response"
           description: Custom field created
+        "400":
+          description: Invalid request body
         "401":
           $ref: "#/components/responses/Unauthorized"
         "409":
@@ -22016,6 +22036,8 @@ paths:
       responses:
         "200":
           description: Custom field deleted
+        "400":
+          description: Invalid fieldId format
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -22042,6 +22064,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/updateCustomField_request"
+        required: true
       responses:
         "200":
           content:
@@ -22049,6 +22072,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/updateCustomField_200_response"
           description: Custom field updated
+        "400":
+          description: Invalid fieldId or request body
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -22712,6 +22737,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listWorkflowExecutions_200_response"
           description: Executions list
+        "400":
+          description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":

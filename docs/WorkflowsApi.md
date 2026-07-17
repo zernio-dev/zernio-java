@@ -1154,6 +1154,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Executions list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1235,6 +1236,7 @@ ApiResponse<[**ListWorkflowExecutions200Response**](ListWorkflowExecutions200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Executions list |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 

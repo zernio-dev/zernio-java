@@ -238,6 +238,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field created |  -  |
+| **400** | Invalid request body |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Duplicate slug |  -  |
 
@@ -313,6 +314,7 @@ ApiResponse<[**CreateCustomField200Response**](CreateCustomField200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field created |  -  |
+| **400** | Invalid request body |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Duplicate slug |  -  |
 
@@ -385,6 +387,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field deleted |  -  |
+| **400** | Invalid fieldId format |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -459,6 +462,7 @@ ApiResponse<Void>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field deleted |  -  |
+| **400** | Invalid fieldId format |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -532,6 +536,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of custom field definitions |  -  |
+| **400** | Invalid profileId format |  -  |
 | **401** | Unauthorized |  -  |
 
 ## listCustomFieldsWithHttpInfo
@@ -606,6 +611,7 @@ ApiResponse<[**ListCustomFields200Response**](ListCustomFields200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of custom field definitions |  -  |
+| **400** | Invalid profileId format |  -  |
 | **401** | Unauthorized |  -  |
 
 
@@ -814,7 +820,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fieldId** | **String**|  | |
-| **updateCustomFieldRequest** | [**UpdateCustomFieldRequest**](UpdateCustomFieldRequest.md)|  | [optional] |
+| **updateCustomFieldRequest** | [**UpdateCustomFieldRequest**](UpdateCustomFieldRequest.md)|  | |
 
 ### Return type
 
@@ -834,6 +840,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field updated |  -  |
+| **400** | Invalid fieldId or request body |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
@@ -891,7 +898,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **fieldId** | **String**|  | |
-| **updateCustomFieldRequest** | [**UpdateCustomFieldRequest**](UpdateCustomFieldRequest.md)|  | [optional] |
+| **updateCustomFieldRequest** | [**UpdateCustomFieldRequest**](UpdateCustomFieldRequest.md)|  | |
 
 ### Return type
 
@@ -911,6 +918,7 @@ ApiResponse<[**UpdateCustomField200Response**](UpdateCustomField200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Custom field updated |  -  |
+| **400** | Invalid fieldId or request body |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 
