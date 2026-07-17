@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   TargetingSpecCitiesInner.JSON_PROPERTY_RADIUS,
   TargetingSpecCitiesInner.JSON_PROPERTY_DISTANCE_UNIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-16T19:31:45.344754809Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T01:15:20.366665354Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecCitiesInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nonnull
