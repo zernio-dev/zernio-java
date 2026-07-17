@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   SearchInboxConversations200ResponseDataInnerConversation.JSON_PROPERTY_LAST_MESSAGE,
   SearchInboxConversations200ResponseDataInnerConversation.JSON_PROPERTY_LAST_MESSAGE_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T13:20:54.908615927Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchInboxConversations200ResponseDataInnerConversation {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

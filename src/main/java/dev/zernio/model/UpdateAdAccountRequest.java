@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateAdAccountRequest.JSON_PROPERTY_DEFAULT_DSA_BENEFICIARY,
   UpdateAdAccountRequest.JSON_PROPERTY_DEFAULT_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T13:20:54.908615927Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdAccountRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
