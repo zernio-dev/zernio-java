@@ -24887,6 +24887,255 @@ paths:
       - Ads
       x-accepts:
       - application/json
+  /v1/ads/insights:
+    get:
+      description: |
+        Live, flexible insights query against Meta's Graph API. Unlike GET /v1/ads/{adId}/analytics
+        (fixed metric set, cached), this forwards caller-chosen `fields`, `breakdowns` and `filtering`
+        to any Meta insights node and returns Meta's rows verbatim.
+
+        `objectId` selects the node: an ad account, campaign, ad set or ad platform id.
+        `level` sets row granularity independently of the node.
+
+        Semantic validation is Meta's: an unknown field or invalid breakdown combination returns a 400
+        carrying Meta's message. For long ranges or agency-scale accounts prefer the async variant
+        (POST /v1/ads/insights/reports). Meta only.
+      operationId: queryAdInsights
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Meta insights node: act_<n>, campaign id, ad set id or ad id."
+        explode: true
+        in: query
+        name: objectId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Row granularity
+        explode: true
+        in: query
+        name: level
+        required: false
+        schema:
+          enum:
+          - ad
+          - adset
+          - campaign
+          - account
+          type: string
+        style: form
+      - description: "Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas).\
+          \ Omitted = Meta's default set."
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform)."
+        explode: true
+        in: query
+        name: breakdowns
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "JSON array of Meta filter objects: [{\"field\", \"operator\"\
+          , \"value\"}]. Applied server-side by Meta."
+        explode: true
+        in: query
+        name: filtering
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually\
+          \ exclusive with fromDate/toDate."
+        explode: true
+        in: query
+        name: datePreset
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Start of range (YYYY-MM-DD); requires toDate.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End of range (YYYY-MM-DD); requires fromDate.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "Days per row (1-90), monthly, or all_days."
+        explode: true
+        in: query
+        name: timeIncrement
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Rows per page
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from paging.after of the previous page.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/queryAdInsights_200_response"
+          description: Insight rows (raw Meta shape)
+        "400":
+          description: "Invalid input, or Meta rejected the query (unknown field,\
+            \ invalid breakdown combo) — message carries Meta's error"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "429":
+          description: Meta rate limit reached
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Flexible live insights query (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
+  /v1/ads/insights/reports:
+    post:
+      description: |
+        Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but
+        in the JSON body; Meta processes the report server-side, which is the right choice for long
+        ranges or large accounts where the sync query is slow or rate-limited. Returns a `reportRunId`
+        to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only.
+      operationId: createAdInsightsReport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdInsightsReport_request"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdInsightsReport_202_response"
+          description: Report run submitted
+        "400":
+          description: "Invalid input, or Meta rejected the report parameters"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "429":
+          description: Meta rate limit reached
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Submit an async insights report run (Meta)
+      tags:
+      - Ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/insights/reports/{reportRunId}:
+    get:
+      description: |
+        Status and results for a report run created via POST /v1/ads/insights/reports. While the job
+        runs, returns `status` and `percentCompletion`. Once `status` is "Job Completed" the response
+        also carries a `data` page, cursor-paginated via `limit` / `after`.
+      operationId: getAdInsightsReport
+      parameters:
+      - explode: false
+        in: path
+        name: reportRunId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id used to resolve the Meta token (must
+          be the same connection that created the run).
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdInsightsReport_200_response"
+          description: Report run status (plus results when completed)
+        "400":
+          description: "Invalid input, or the report run is not readable with this\
+            \ account's token"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "429":
+          description: Meta rate limit reached
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Poll an async insights report run (Meta)
+      tags:
+      - Ads
+      x-accepts:
+      - application/json
   /v1/ads/{adId}/analytics:
     get:
       description: |
@@ -64049,6 +64298,142 @@ components:
           type: boolean
         analytics:
           $ref: "#/components/schemas/getCampaignAnalytics_200_response_analytics"
+    queryAdInsights_200_response_paging:
+      example:
+        after: after
+      properties:
+        after:
+          description: Cursor for the next page; null when exhausted.
+          nullable: true
+          type: string
+    queryAdInsights_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        paging:
+          after: after
+        objectId: objectId
+      properties:
+        objectId:
+          type: string
+        data:
+          items:
+            description: Raw Meta insights row; keys are the requested Graph fields
+              plus date_start/date_stop.
+            type: object
+          type: array
+        paging:
+          $ref: "#/components/schemas/queryAdInsights_200_response_paging"
+    createAdInsightsReport_request_filtering_inner:
+      properties:
+        field:
+          type: string
+        operator:
+          type: string
+        value: {}
+      required:
+      - field
+      - operator
+    createAdInsightsReport_request_timeIncrement:
+      oneOf:
+      - maximum: 90
+        minimum: 1
+        type: integer
+      - enum:
+        - monthly
+        - all_days
+        type: string
+    createAdInsightsReport_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (posting or ads variant).
+          type: string
+        objectId:
+          description: "Meta insights node: act_<n>, campaign id, ad set id or ad\
+            \ id."
+          type: string
+        level:
+          enum:
+          - ad
+          - adset
+          - campaign
+          - account
+          type: string
+        fields:
+          description: Comma-separated Graph insights fields.
+          type: string
+        breakdowns:
+          description: Comma-separated Graph breakdowns.
+          type: string
+        filtering:
+          description: "Meta filter objects, applied server-side."
+          items:
+            $ref: "#/components/schemas/createAdInsightsReport_request_filtering_inner"
+          type: array
+        datePreset:
+          description: Mutually exclusive with fromDate/toDate.
+          type: string
+        fromDate:
+          format: date
+          type: string
+        toDate:
+          format: date
+          type: string
+        timeIncrement:
+          $ref: "#/components/schemas/createAdInsightsReport_request_timeIncrement"
+      required:
+      - accountId
+      - objectId
+    createAdInsightsReport_202_response:
+      example:
+        reportRunId: reportRunId
+        status: Job Started
+      properties:
+        reportRunId:
+          type: string
+        status:
+          example: Job Started
+          type: string
+    getAdInsightsReport_200_response_paging:
+      example:
+        after: after
+      properties:
+        after:
+          nullable: true
+          type: string
+    getAdInsightsReport_200_response:
+      example:
+        data:
+        - "{}"
+        - "{}"
+        reportRunId: reportRunId
+        dateStart: dateStart
+        dateStop: dateStop
+        paging:
+          after: after
+        percentCompletion: 0
+        status: status
+      properties:
+        reportRunId:
+          type: string
+        status:
+          description: "Meta async_status: Job Not Started, Job Started, Job Running,\
+            \ Job Completed, Job Failed, Job Skipped."
+          type: string
+        percentCompletion:
+          type: integer
+        dateStart:
+          type: string
+        dateStop:
+          type: string
+        data:
+          description: Present only when status is Job Completed.
+          items:
+            type: object
+          type: array
+        paging:
+          $ref: "#/components/schemas/getAdInsightsReport_200_response_paging"
     getAdAnalytics_200_response_ad:
       example:
         name: name

@@ -25,6 +25,8 @@ import dev.zernio.model.AdjustConversions200Response;
 import dev.zernio.model.AdjustConversionsRequest;
 import dev.zernio.model.ArchiveLeadForm200Response;
 import dev.zernio.model.BoostPostRequest;
+import dev.zernio.model.CreateAdInsightsReport202Response;
+import dev.zernio.model.CreateAdInsightsReportRequest;
 import dev.zernio.model.CreateConversionDestination201Response;
 import dev.zernio.model.CreateConversionDestinationRequest;
 import dev.zernio.model.CreateCtwaAd201Response;
@@ -42,6 +44,7 @@ import dev.zernio.model.EstimateAdReachRequest;
 import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
+import dev.zernio.model.GetAdInsightsReport200Response;
 import dev.zernio.model.GetAdTrackingTags200Response;
 import dev.zernio.model.GetCampaignAnalytics200Response;
 import dev.zernio.model.GetConversionDestination200Response;
@@ -67,6 +70,7 @@ import dev.zernio.model.ListLeadForms200Response;
 import dev.zernio.model.ListLeads200Response;
 import dev.zernio.model.ListWhatsAppConversions200Response;
 import java.time.LocalDate;
+import dev.zernio.model.QueryAdInsights200Response;
 import dev.zernio.model.RemoveConversionAssociations200Response;
 import dev.zernio.model.SearchAdInterests200Response;
 import dev.zernio.model.SearchAdTargeting200Response;
@@ -108,7 +112,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:20:06.885165439Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:35:26.374359559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -738,6 +742,129 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(boostPostRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Submit an async insights report run (Meta)
+   * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+   * @param createAdInsightsReportRequest  (required)
+   * @return CreateAdInsightsReport202Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdInsightsReport202Response createAdInsightsReport(@javax.annotation.Nonnull CreateAdInsightsReportRequest createAdInsightsReportRequest) throws ApiException {
+    return createAdInsightsReport(createAdInsightsReportRequest, null);
+  }
+
+  /**
+   * Submit an async insights report run (Meta)
+   * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+   * @param createAdInsightsReportRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAdInsightsReport202Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdInsightsReport202Response createAdInsightsReport(@javax.annotation.Nonnull CreateAdInsightsReportRequest createAdInsightsReportRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAdInsightsReport202Response> localVarResponse = createAdInsightsReportWithHttpInfo(createAdInsightsReportRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Submit an async insights report run (Meta)
+   * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+   * @param createAdInsightsReportRequest  (required)
+   * @return ApiResponse&lt;CreateAdInsightsReport202Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdInsightsReport202Response> createAdInsightsReportWithHttpInfo(@javax.annotation.Nonnull CreateAdInsightsReportRequest createAdInsightsReportRequest) throws ApiException {
+    return createAdInsightsReportWithHttpInfo(createAdInsightsReportRequest, null);
+  }
+
+  /**
+   * Submit an async insights report run (Meta)
+   * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. Meta only. 
+   * @param createAdInsightsReportRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAdInsightsReport202Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdInsightsReport202Response> createAdInsightsReportWithHttpInfo(@javax.annotation.Nonnull CreateAdInsightsReportRequest createAdInsightsReportRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createAdInsightsReportRequestBuilder(createAdInsightsReportRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createAdInsightsReport", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateAdInsightsReport202Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAdInsightsReport202Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdInsightsReport202Response>() {});
+        
+
+        return new ApiResponse<CreateAdInsightsReport202Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createAdInsightsReportRequestBuilder(@javax.annotation.Nonnull CreateAdInsightsReportRequest createAdInsightsReportRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createAdInsightsReportRequest' is set
+    if (createAdInsightsReportRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createAdInsightsReportRequest' when calling createAdInsightsReport");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/insights/reports";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdInsightsReportRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2156,6 +2283,159 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "cursor";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Poll an async insights report run (Meta)
+   * Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+   * @param reportRunId  (required)
+   * @param accountId Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run). (required)
+   * @param limit  (optional, default to 25)
+   * @param after  (optional)
+   * @return GetAdInsightsReport200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdInsightsReport200Response getAdInsightsReport(@javax.annotation.Nonnull String reportRunId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return getAdInsightsReport(reportRunId, accountId, limit, after, null);
+  }
+
+  /**
+   * Poll an async insights report run (Meta)
+   * Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+   * @param reportRunId  (required)
+   * @param accountId Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run). (required)
+   * @param limit  (optional, default to 25)
+   * @param after  (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdInsightsReport200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdInsightsReport200Response getAdInsightsReport(@javax.annotation.Nonnull String reportRunId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdInsightsReport200Response> localVarResponse = getAdInsightsReportWithHttpInfo(reportRunId, accountId, limit, after, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Poll an async insights report run (Meta)
+   * Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+   * @param reportRunId  (required)
+   * @param accountId Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run). (required)
+   * @param limit  (optional, default to 25)
+   * @param after  (optional)
+   * @return ApiResponse&lt;GetAdInsightsReport200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdInsightsReport200Response> getAdInsightsReportWithHttpInfo(@javax.annotation.Nonnull String reportRunId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return getAdInsightsReportWithHttpInfo(reportRunId, accountId, limit, after, null);
+  }
+
+  /**
+   * Poll an async insights report run (Meta)
+   * Status and results for a report run created via POST /v1/ads/insights/reports. While the job runs, returns &#x60;status&#x60; and &#x60;percentCompletion&#x60;. Once &#x60;status&#x60; is \&quot;Job Completed\&quot; the response also carries a &#x60;data&#x60; page, cursor-paginated via &#x60;limit&#x60; / &#x60;after&#x60;. 
+   * @param reportRunId  (required)
+   * @param accountId Zernio SocialAccount id used to resolve the Meta token (must be the same connection that created the run). (required)
+   * @param limit  (optional, default to 25)
+   * @param after  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdInsightsReport200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdInsightsReport200Response> getAdInsightsReportWithHttpInfo(@javax.annotation.Nonnull String reportRunId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdInsightsReportRequestBuilder(reportRunId, accountId, limit, after, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdInsightsReport", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdInsightsReport200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdInsightsReport200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdInsightsReport200Response>() {});
+        
+
+        return new ApiResponse<GetAdInsightsReport200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdInsightsReportRequestBuilder(@javax.annotation.Nonnull String reportRunId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'reportRunId' is set
+    if (reportRunId == null) {
+      throw new ApiException(400, "Missing the required parameter 'reportRunId' when calling getAdInsightsReport");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdInsightsReport");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/insights/reports/{reportRunId}"
+        .replace("{reportRunId}", ApiClient.urlEncode(reportRunId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "after";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -5190,6 +5470,208 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Flexible live insights query (Meta)
+   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * @param level Row granularity (optional)
+   * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
+   * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
+   * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
+   * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
+   * @param toDate End of range (YYYY-MM-DD); requires fromDate. (optional)
+   * @param timeIncrement Days per row (1-90), monthly, or all_days. (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @return QueryAdInsights200Response
+   * @throws ApiException if fails to make API call
+   */
+  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return queryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
+  }
+
+  /**
+   * Flexible live insights query (Meta)
+   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * @param level Row granularity (optional)
+   * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
+   * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
+   * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
+   * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
+   * @param toDate End of range (YYYY-MM-DD); requires fromDate. (optional)
+   * @param timeIncrement Days per row (1-90), monthly, or all_days. (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return QueryAdInsights200Response
+   * @throws ApiException if fails to make API call
+   */
+  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<QueryAdInsights200Response> localVarResponse = queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Flexible live insights query (Meta)
+   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * @param level Row granularity (optional)
+   * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
+   * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
+   * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
+   * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
+   * @param toDate End of range (YYYY-MM-DD); requires fromDate. (optional)
+   * @param timeIncrement Days per row (1-90), monthly, or all_days. (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @return ApiResponse&lt;QueryAdInsights200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
+  }
+
+  /**
+   * Flexible live insights query (Meta)
+   * Live, flexible insights query against Meta&#39;s Graph API. Unlike GET /v1/ads/{adId}/analytics (fixed metric set, cached), this forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim.  &#x60;objectId&#x60; selects the node: an ad account, campaign, ad set or ad platform id. &#x60;level&#x60; sets row granularity independently of the node.  Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports). Meta only. 
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param objectId Meta insights node: act_&lt;n&gt;, campaign id, ad set id or ad id. (required)
+   * @param level Row granularity (optional)
+   * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
+   * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
+   * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
+   * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
+   * @param toDate End of range (YYYY-MM-DD); requires fromDate. (optional)
+   * @param timeIncrement Days per row (1-90), monthly, or all_days. (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;QueryAdInsights200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = queryAdInsightsRequestBuilder(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("queryAdInsights", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<QueryAdInsights200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        QueryAdInsights200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<QueryAdInsights200Response>() {});
+        
+
+        return new ApiResponse<QueryAdInsights200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder queryAdInsightsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling queryAdInsights");
+    }
+    // verify the required parameter 'objectId' is set
+    if (objectId == null) {
+      throw new ApiException(400, "Missing the required parameter 'objectId' when calling queryAdInsights");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/insights";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "objectId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("objectId", objectId));
+    localVarQueryParameterBaseName = "level";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("level", level));
+    localVarQueryParameterBaseName = "fields";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fields", fields));
+    localVarQueryParameterBaseName = "breakdowns";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdowns", breakdowns));
+    localVarQueryParameterBaseName = "filtering";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("filtering", filtering));
+    localVarQueryParameterBaseName = "datePreset";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("datePreset", datePreset));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+    localVarQueryParameterBaseName = "timeIncrement";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("timeIncrement", timeIncrement));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "after";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

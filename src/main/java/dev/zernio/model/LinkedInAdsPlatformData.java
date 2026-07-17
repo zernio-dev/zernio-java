@@ -60,7 +60,7 @@ import dev.zernio.ApiClient;
   LinkedInAdsPlatformData.JSON_PROPERTY_EVENT,
   LinkedInAdsPlatformData.JSON_PROPERTY_THOUGHT_LEADER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:20:06.885165439Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T14:35:26.374359559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInAdsPlatformData {
   /**
    * Campaign cost model (billing event). Defaults to &#x60;CPM&#x60;. Required when &#x60;unitCost&#x60; is set so the manual bid applies to an explicit cost model. 
