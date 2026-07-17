@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-17T09:41:02.867324708Z[Etc/UTC]
+- Build date: 2026-07-17T11:59:47.871765030Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -392,6 +392,8 @@ Class | Method | HTTP request | Description
 *CommentsApi* | [**unhideInboxCommentWithHttpInfo**](docs/CommentsApi.md#unhideInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/hide | Unhide comment
 *CommentsApi* | [**unlikeInboxComment**](docs/CommentsApi.md#unlikeInboxComment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
 *CommentsApi* | [**unlikeInboxCommentWithHttpInfo**](docs/CommentsApi.md#unlikeInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment
+*ConnectApi* | [**assignGoogleBusinessLocation**](docs/ConnectApi.md#assignGoogleBusinessLocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign GBP location to another profile
+*ConnectApi* | [**assignGoogleBusinessLocationWithHttpInfo**](docs/ConnectApi.md#assignGoogleBusinessLocationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign GBP location to another profile
 *ConnectApi* | [**completeTelegramConnect**](docs/ConnectApi.md#completeTelegramConnect) | **PATCH** /v1/connect/telegram | Check Telegram status
 *ConnectApi* | [**completeTelegramConnectWithHttpInfo**](docs/ConnectApi.md#completeTelegramConnectWithHttpInfo) | **PATCH** /v1/connect/telegram | Check Telegram status
 *ConnectApi* | [**completeWhatsAppPhoneSelection**](docs/ConnectApi.md#completeWhatsAppPhoneSelection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection
@@ -1123,6 +1125,9 @@ Class | Method | HTTP request | Description
  - [AppealSmsRegistrationRequest](docs/AppealSmsRegistrationRequest.md)
  - [ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
  - [ArchiveLeadForm200Response](docs/ArchiveLeadForm200Response.md)
+ - [AssignGoogleBusinessLocation200Response](docs/AssignGoogleBusinessLocation200Response.md)
+ - [AssignGoogleBusinessLocation200ResponseAccount](docs/AssignGoogleBusinessLocation200ResponseAccount.md)
+ - [AssignGoogleBusinessLocationRequest](docs/AssignGoogleBusinessLocationRequest.md)
  - [BatchGetGoogleBusinessReviews200Response](docs/BatchGetGoogleBusinessReviews200Response.md)
  - [BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
  - [BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
@@ -1864,6 +1869,7 @@ Class | Method | HTTP request | Description
  - [ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
  - [ListPhoneNumberCountries200Response](docs/ListPhoneNumberCountries200Response.md)
  - [ListPhoneNumberCountries200ResponseCountriesInner](docs/ListPhoneNumberCountries200ResponseCountriesInner.md)
+ - [ListPhoneNumberCountries200ResponseCountriesInnerTypesInner](docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md)
  - [ListPhoneNumberPortIns200Response](docs/ListPhoneNumberPortIns200Response.md)
  - [ListPhoneNumberPortIns200ResponseOrdersInner](docs/ListPhoneNumberPortIns200ResponseOrdersInner.md)
  - [ListPhoneNumbers200Response](docs/ListPhoneNumbers200Response.md)
@@ -2041,6 +2047,7 @@ Class | Method | HTTP request | Description
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
+ - [SelectFacebookPage409Response](docs/SelectFacebookPage409Response.md)
  - [SelectFacebookPageRequest](docs/SelectFacebookPageRequest.md)
  - [SelectFacebookPageRequestUserProfile](docs/SelectFacebookPageRequestUserProfile.md)
  - [SelectGoogleBusinessLocation200Response](docs/SelectGoogleBusinessLocation200Response.md)

@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**country** | **String** |  |  [optional] |
+|**numberType** | **String** | The type that will be ordered after KYC approval. |  [optional] |
 |**kycUrl** | **String** |  |  [optional] |
 
 

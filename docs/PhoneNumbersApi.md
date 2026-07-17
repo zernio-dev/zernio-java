@@ -199,7 +199,7 @@ ApiResponse<[**CancelPhoneNumberPortIn200Response**](CancelPhoneNumberPortIn200R
 
 ## checkPhoneNumberAvailability
 
-> CheckPhoneNumberAvailability200Response checkPhoneNumberAvailability(country)
+> CheckPhoneNumberAvailability200Response checkPhoneNumberAvailability(country, numberType)
 
 Check country availability
 
@@ -227,8 +227,9 @@ public class Example {
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | ISO-2 country code.
+        String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
         try {
-            CheckPhoneNumberAvailability200Response result = apiInstance.checkPhoneNumberAvailability(country);
+            CheckPhoneNumberAvailability200Response result = apiInstance.checkPhoneNumberAvailability(country, numberType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PhoneNumbersApi#checkPhoneNumberAvailability");
@@ -247,6 +248,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**| ISO-2 country code. | |
+| **numberType** | **String**| Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional] [enum: local, mobile, national, toll_free] |
 
 ### Return type
 
@@ -271,7 +273,7 @@ public class Example {
 
 ## checkPhoneNumberAvailabilityWithHttpInfo
 
-> ApiResponse<CheckPhoneNumberAvailability200Response> checkPhoneNumberAvailability checkPhoneNumberAvailabilityWithHttpInfo(country)
+> ApiResponse<CheckPhoneNumberAvailability200Response> checkPhoneNumberAvailability checkPhoneNumberAvailabilityWithHttpInfo(country, numberType)
 
 Check country availability
 
@@ -300,8 +302,9 @@ public class Example {
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | ISO-2 country code.
+        String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
         try {
-            ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.checkPhoneNumberAvailabilityWithHttpInfo(country);
+            ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.checkPhoneNumberAvailabilityWithHttpInfo(country, numberType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -322,6 +325,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**| ISO-2 country code. | |
+| **numberType** | **String**| Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional] [enum: local, mobile, national, toll_free] |
 
 ### Return type
 
@@ -939,7 +943,7 @@ ApiResponse<[**GetPhoneNumber200Response**](GetPhoneNumber200Response.md)>
 
 ## getPhoneNumberKycForm
 
-> GetPhoneNumberKycForm200Response getPhoneNumberKycForm(country)
+> GetPhoneNumberKycForm200Response getPhoneNumberKycForm(country, numberType)
 
 Get KYC form spec
 
@@ -967,8 +971,9 @@ public class Example {
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | 
+        String numberType = "local"; // String | Requirements and reuse eligibility are per (country, type). Omitted = the country's default type. Pass the same value on the POST.
         try {
-            GetPhoneNumberKycForm200Response result = apiInstance.getPhoneNumberKycForm(country);
+            GetPhoneNumberKycForm200Response result = apiInstance.getPhoneNumberKycForm(country, numberType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberKycForm");
@@ -987,6 +992,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | |
+| **numberType** | **String**| Requirements and reuse eligibility are per (country, type). Omitted &#x3D; the country&#39;s default type. Pass the same value on the POST. | [optional] [enum: local, mobile, national, toll_free] |
 
 ### Return type
 
@@ -1011,7 +1017,7 @@ public class Example {
 
 ## getPhoneNumberKycFormWithHttpInfo
 
-> ApiResponse<GetPhoneNumberKycForm200Response> getPhoneNumberKycForm getPhoneNumberKycFormWithHttpInfo(country)
+> ApiResponse<GetPhoneNumberKycForm200Response> getPhoneNumberKycForm getPhoneNumberKycFormWithHttpInfo(country, numberType)
 
 Get KYC form spec
 
@@ -1040,8 +1046,9 @@ public class Example {
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | 
+        String numberType = "local"; // String | Requirements and reuse eligibility are per (country, type). Omitted = the country's default type. Pass the same value on the POST.
         try {
-            ApiResponse<GetPhoneNumberKycForm200Response> response = apiInstance.getPhoneNumberKycFormWithHttpInfo(country);
+            ApiResponse<GetPhoneNumberKycForm200Response> response = apiInstance.getPhoneNumberKycFormWithHttpInfo(country, numberType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1062,6 +1069,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | |
+| **numberType** | **String**| Requirements and reuse eligibility are per (country, type). Omitted &#x3D; the country&#39;s default type. Pass the same value on the POST. | [optional] [enum: local, mobile, national, toll_free] |
 
 ### Return type
 

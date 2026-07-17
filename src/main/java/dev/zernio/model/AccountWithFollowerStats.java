@@ -45,6 +45,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_PROFILE_PICTURE,
   AccountWithFollowerStats.JSON_PROPERTY_PROFILE_URL,
   AccountWithFollowerStats.JSON_PROPERTY_IS_ACTIVE,
+  AccountWithFollowerStats.JSON_PROPERTY_NEEDS_RECONNECTION,
   AccountWithFollowerStats.JSON_PROPERTY_FOLLOWERS_COUNT,
   AccountWithFollowerStats.JSON_PROPERTY_FOLLOWERS_LAST_UPDATED,
   AccountWithFollowerStats.JSON_PROPERTY_PARENT_ACCOUNT_ID,
@@ -57,7 +58,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_DATA_POINTS,
   AccountWithFollowerStats.JSON_PROPERTY_ACCOUNT_STATS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -163,6 +164,10 @@ public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_IS_ACTIVE = "isActive";
   @javax.annotation.Nonnull
   private Boolean isActive;
+
+  public static final String JSON_PROPERTY_NEEDS_RECONNECTION = "needsReconnection";
+  @javax.annotation.Nullable
+  private Boolean needsReconnection;
 
   public static final String JSON_PROPERTY_FOLLOWERS_COUNT = "followersCount";
   @javax.annotation.Nullable
@@ -400,6 +405,30 @@ public class AccountWithFollowerStats {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsActive(@javax.annotation.Nonnull Boolean isActive) {
     this.isActive = isActive;
+  }
+
+
+  public AccountWithFollowerStats needsReconnection(@javax.annotation.Nullable Boolean needsReconnection) {
+    this.needsReconnection = needsReconnection;
+    return this;
+  }
+
+  /**
+   * The platform definitively reported the stored OAuth token as dead. While true, GET /v1/connect/{platform}/ads returns a fresh authUrl (implicit force&#x3D;true) instead of alreadyConnected, so re-running the connect flow recovers the account. Cleared automatically when the account is re-authorized. 
+   * @return needsReconnection
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NEEDS_RECONNECTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getNeedsReconnection() {
+    return needsReconnection;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NEEDS_RECONNECTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNeedsReconnection(@javax.annotation.Nullable Boolean needsReconnection) {
+    this.needsReconnection = needsReconnection;
   }
 
 
@@ -687,6 +716,7 @@ public class AccountWithFollowerStats {
         Objects.equals(this.profilePicture, accountWithFollowerStats.profilePicture) &&
         Objects.equals(this.profileUrl, accountWithFollowerStats.profileUrl) &&
         Objects.equals(this.isActive, accountWithFollowerStats.isActive) &&
+        Objects.equals(this.needsReconnection, accountWithFollowerStats.needsReconnection) &&
         Objects.equals(this.followersCount, accountWithFollowerStats.followersCount) &&
         Objects.equals(this.followersLastUpdated, accountWithFollowerStats.followersLastUpdated) &&
         Objects.equals(this.parentAccountId, accountWithFollowerStats.parentAccountId) &&
@@ -702,7 +732,7 @@ public class AccountWithFollowerStats {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, profileId, username, displayName, profilePicture, profileUrl, isActive, followersCount, followersLastUpdated, parentAccountId, enabled, metadata, currentFollowers, lastUpdated, growth, growthPercentage, dataPoints, accountStats);
+    return Objects.hash(id, platform, profileId, username, displayName, profilePicture, profileUrl, isActive, needsReconnection, followersCount, followersLastUpdated, parentAccountId, enabled, metadata, currentFollowers, lastUpdated, growth, growthPercentage, dataPoints, accountStats);
   }
 
   @Override
@@ -717,6 +747,7 @@ public class AccountWithFollowerStats {
     sb.append("    profilePicture: ").append(toIndentedString(profilePicture)).append("\n");
     sb.append("    profileUrl: ").append(toIndentedString(profileUrl)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
+    sb.append("    needsReconnection: ").append(toIndentedString(needsReconnection)).append("\n");
     sb.append("    followersCount: ").append(toIndentedString(followersCount)).append("\n");
     sb.append("    followersLastUpdated: ").append(toIndentedString(followersLastUpdated)).append("\n");
     sb.append("    parentAccountId: ").append(toIndentedString(parentAccountId)).append("\n");
@@ -813,6 +844,11 @@ public class AccountWithFollowerStats {
     // add `isActive` to the URL query string
     if (getIsActive() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sisActive%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsActive()))));
+    }
+
+    // add `needsReconnection` to the URL query string
+    if (getNeedsReconnection() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sneedsReconnection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNeedsReconnection()))));
     }
 
     // add `followersCount` to the URL query string

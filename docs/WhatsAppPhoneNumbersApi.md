@@ -39,7 +39,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## checkWhatsAppNumberAvailability
 
-> CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(country)
+> CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(country, numberType)
 
 Check country availability
 
@@ -67,8 +67,9 @@ public class Example {
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | ISO-2 country code.
+        String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
         try {
-            CheckPhoneNumberAvailability200Response result = apiInstance.checkWhatsAppNumberAvailability(country);
+            CheckPhoneNumberAvailability200Response result = apiInstance.checkWhatsAppNumberAvailability(country, numberType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppPhoneNumbersApi#checkWhatsAppNumberAvailability");
@@ -87,6 +88,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**| ISO-2 country code. | |
+| **numberType** | **String**| Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional] [enum: local, mobile, national, toll_free] |
 
 ### Return type
 
@@ -111,7 +113,7 @@ public class Example {
 
 ## checkWhatsAppNumberAvailabilityWithHttpInfo
 
-> ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailability checkWhatsAppNumberAvailabilityWithHttpInfo(country)
+> ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailability checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType)
 
 Check country availability
 
@@ -140,8 +142,9 @@ public class Example {
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         String country = "country_example"; // String | ISO-2 country code.
+        String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
         try {
-            ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.checkWhatsAppNumberAvailabilityWithHttpInfo(country);
+            ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -162,6 +165,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**| ISO-2 country code. | |
+| **numberType** | **String**| Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. | [optional] [enum: local, mobile, national, toll_free] |
 
 ### Return type
 

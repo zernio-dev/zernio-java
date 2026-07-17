@@ -76,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppPhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -197,27 +197,29 @@ public class WhatsAppPhoneNumbersApi {
    * Check country availability
    * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
+   * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @return CheckPhoneNumberAvailability200Response
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country) throws ApiException {
-    return checkWhatsAppNumberAvailability(country, null);
+  public CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType) throws ApiException {
+    return checkWhatsAppNumberAvailability(country, numberType, null);
   }
 
   /**
    * Check country availability
    * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
+   * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @param headers Optional headers to include in the request
    * @return CheckPhoneNumberAvailability200Response
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
-    ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = checkWhatsAppNumberAvailabilityWithHttpInfo(country, headers);
+  public CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType, Map<String, String> headers) throws ApiException {
+    ApiResponse<CheckPhoneNumberAvailability200Response> localVarResponse = checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType, headers);
     return localVarResponse.getData();
   }
 
@@ -225,27 +227,29 @@ public class WhatsAppPhoneNumbersApi {
    * Check country availability
    * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
+   * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @return ApiResponse&lt;CheckPhoneNumberAvailability200Response&gt;
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country) throws ApiException {
-    return checkWhatsAppNumberAvailabilityWithHttpInfo(country, null);
+  public ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType) throws ApiException {
+    return checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType, null);
   }
 
   /**
    * Check country availability
    * Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
    * @param country ISO-2 country code. (required)
+   * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CheckPhoneNumberAvailability200Response&gt;
    * @throws ApiException if fails to make API call
    * @deprecated
    */
   @Deprecated
-  public ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = checkWhatsAppNumberAvailabilityRequestBuilder(country, headers);
+  public ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailabilityWithHttpInfo(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = checkWhatsAppNumberAvailabilityRequestBuilder(country, numberType, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -292,7 +296,7 @@ public class WhatsAppPhoneNumbersApi {
     }
   }
 
-  private HttpRequest.Builder checkWhatsAppNumberAvailabilityRequestBuilder(@javax.annotation.Nonnull String country, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder checkWhatsAppNumberAvailabilityRequestBuilder(@javax.annotation.Nonnull String country, @javax.annotation.Nullable String numberType, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'country' is set
     if (country == null) {
       throw new ApiException(400, "Missing the required parameter 'country' when calling checkWhatsAppNumberAvailability");
@@ -307,6 +311,8 @@ public class WhatsAppPhoneNumbersApi {
     String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "country";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("country", country));
+    localVarQueryParameterBaseName = "numberType";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("numberType", numberType));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

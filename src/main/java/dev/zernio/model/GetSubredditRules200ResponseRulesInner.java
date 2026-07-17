@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetSubredditRules200ResponseRulesInner.JSON_PROPERTY_CREATED_UTC,
   GetSubredditRules200ResponseRulesInner.JSON_PROPERTY_PRIORITY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetSubredditRules200ResponseRulesInner {
   public static final String JSON_PROPERTY_KIND = "kind";
   @javax.annotation.Nullable

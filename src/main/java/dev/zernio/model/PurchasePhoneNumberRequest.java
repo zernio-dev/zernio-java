@@ -35,12 +35,13 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   PurchasePhoneNumberRequest.JSON_PROPERTY_PROFILE_ID,
   PurchasePhoneNumberRequest.JSON_PROPERTY_COUNTRY,
+  PurchasePhoneNumberRequest.JSON_PROPERTY_NUMBER_TYPE,
   PurchasePhoneNumberRequest.JSON_PROPERTY_CONNECT_WHATSAPP,
   PurchasePhoneNumberRequest.JSON_PROPERTY_WANTS_SMS,
   PurchasePhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
   PurchasePhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -49,6 +50,49 @@ public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
   private String country = "US";
+
+  /**
+   * Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. 
+   */
+  public enum NumberTypeEnum {
+    LOCAL(String.valueOf("local")),
+    
+    MOBILE(String.valueOf("mobile")),
+    
+    NATIONAL(String.valueOf("national")),
+    
+    TOLL_FREE(String.valueOf("toll_free"));
+
+    private String value;
+
+    NumberTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NumberTypeEnum fromValue(String value) {
+      for (NumberTypeEnum b : NumberTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_NUMBER_TYPE = "numberType";
+  @javax.annotation.Nullable
+  private NumberTypeEnum numberType;
 
   public static final String JSON_PROPERTY_CONNECT_WHATSAPP = "connectWhatsapp";
   @javax.annotation.Nullable
@@ -114,6 +158,30 @@ public class PurchasePhoneNumberRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountry(@javax.annotation.Nullable String country) {
     this.country = country;
+  }
+
+
+  public PurchasePhoneNumberRequest numberType(@javax.annotation.Nullable NumberTypeEnum numberType) {
+    this.numberType = numberType;
+    return this;
+  }
+
+  /**
+   * Which of the country&#39;s offered number types to order (see &#x60;types[]&#x60; on GET /v1/phone-numbers/countries). Omitted &#x3D; the country&#39;s default type, which is always the WhatsApp-safe choice. Capabilities, price, and KYC requirements are per (country, type): toll_free can never connect WhatsApp (400 when combined with connectWhatsapp:true), and wantsSms:true requires an SMS-capable type. 
+   * @return numberType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public NumberTypeEnum getNumberType() {
+    return numberType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNumberType(@javax.annotation.Nullable NumberTypeEnum numberType) {
+    this.numberType = numberType;
   }
 
 
@@ -227,6 +295,7 @@ public class PurchasePhoneNumberRequest {
     PurchasePhoneNumberRequest purchasePhoneNumberRequest = (PurchasePhoneNumberRequest) o;
     return Objects.equals(this.profileId, purchasePhoneNumberRequest.profileId) &&
         Objects.equals(this.country, purchasePhoneNumberRequest.country) &&
+        Objects.equals(this.numberType, purchasePhoneNumberRequest.numberType) &&
         Objects.equals(this.connectWhatsapp, purchasePhoneNumberRequest.connectWhatsapp) &&
         Objects.equals(this.wantsSms, purchasePhoneNumberRequest.wantsSms) &&
         Objects.equals(this.purchaseIntentId, purchasePhoneNumberRequest.purchaseIntentId) &&
@@ -235,7 +304,7 @@ public class PurchasePhoneNumberRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, connectWhatsapp, wantsSms, purchaseIntentId, allowMultiple);
+    return Objects.hash(profileId, country, numberType, connectWhatsapp, wantsSms, purchaseIntentId, allowMultiple);
   }
 
   @Override
@@ -244,6 +313,7 @@ public class PurchasePhoneNumberRequest {
     sb.append("class PurchasePhoneNumberRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    connectWhatsapp: ").append(toIndentedString(connectWhatsapp)).append("\n");
     sb.append("    wantsSms: ").append(toIndentedString(wantsSms)).append("\n");
     sb.append("    purchaseIntentId: ").append(toIndentedString(purchaseIntentId)).append("\n");
@@ -303,6 +373,11 @@ public class PurchasePhoneNumberRequest {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `numberType` to the URL query string
+    if (getNumberType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberType()))));
     }
 
     // add `connectWhatsapp` to the URL query string

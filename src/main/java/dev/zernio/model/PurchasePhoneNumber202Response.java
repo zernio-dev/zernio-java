@@ -35,9 +35,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   PurchasePhoneNumber202Response.JSON_PROPERTY_STATUS,
   PurchasePhoneNumber202Response.JSON_PROPERTY_COUNTRY,
+  PurchasePhoneNumber202Response.JSON_PROPERTY_NUMBER_TYPE,
   PurchasePhoneNumber202Response.JSON_PROPERTY_KYC_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumber202Response {
   /**
    * Gets or Sets status
@@ -79,6 +80,10 @@ public class PurchasePhoneNumber202Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
   private String country;
+
+  public static final String JSON_PROPERTY_NUMBER_TYPE = "numberType";
+  @javax.annotation.Nullable
+  private String numberType;
 
   public static final String JSON_PROPERTY_KYC_URL = "kycUrl";
   @javax.annotation.Nullable
@@ -135,6 +140,30 @@ public class PurchasePhoneNumber202Response {
   }
 
 
+  public PurchasePhoneNumber202Response numberType(@javax.annotation.Nullable String numberType) {
+    this.numberType = numberType;
+    return this;
+  }
+
+  /**
+   * The type that will be ordered after KYC approval.
+   * @return numberType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getNumberType() {
+    return numberType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNumberType(@javax.annotation.Nullable String numberType) {
+    this.numberType = numberType;
+  }
+
+
   public PurchasePhoneNumber202Response kycUrl(@javax.annotation.Nullable String kycUrl) {
     this.kycUrl = kycUrl;
     return this;
@@ -173,12 +202,13 @@ public class PurchasePhoneNumber202Response {
     PurchasePhoneNumber202Response purchasePhoneNumber202Response = (PurchasePhoneNumber202Response) o;
     return Objects.equals(this.status, purchasePhoneNumber202Response.status) &&
         Objects.equals(this.country, purchasePhoneNumber202Response.country) &&
+        Objects.equals(this.numberType, purchasePhoneNumber202Response.numberType) &&
         Objects.equals(this.kycUrl, purchasePhoneNumber202Response.kycUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, country, kycUrl);
+    return Objects.hash(status, country, numberType, kycUrl);
   }
 
   @Override
@@ -187,6 +217,7 @@ public class PurchasePhoneNumber202Response {
     sb.append("class PurchasePhoneNumber202Response {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    kycUrl: ").append(toIndentedString(kycUrl)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -243,6 +274,11 @@ public class PurchasePhoneNumber202Response {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `numberType` to the URL query string
+    if (getNumberType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberType()))));
     }
 
     // add `kycUrl` to the URL query string

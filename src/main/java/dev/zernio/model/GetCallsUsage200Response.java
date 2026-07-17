@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   GetCallsUsage200Response.JSON_PROPERTY_TOTALS,
   GetCallsUsage200Response.JSON_PROPERTY_GROUPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCallsUsage200Response {
   public static final String JSON_PROPERTY_SINCE = "since";
   @javax.annotation.Nullable

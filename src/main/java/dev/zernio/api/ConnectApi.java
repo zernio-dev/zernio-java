@@ -18,6 +18,8 @@ import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
 import dev.zernio.Pair;
 
+import dev.zernio.model.AssignGoogleBusinessLocation200Response;
+import dev.zernio.model.AssignGoogleBusinessLocationRequest;
 import dev.zernio.model.CompleteTelegramConnect200Response;
 import dev.zernio.model.CompleteWhatsAppPhoneSelection200Response;
 import dev.zernio.model.CompleteWhatsAppPhoneSelectionRequest;
@@ -55,6 +57,7 @@ import dev.zernio.model.ListPinterestBoardsForSelection200Response;
 import dev.zernio.model.ListSnapchatProfiles200Response;
 import dev.zernio.model.ListWhatsAppPhoneNumbers200Response;
 import dev.zernio.model.SelectFacebookPage200Response;
+import dev.zernio.model.SelectFacebookPage409Response;
 import dev.zernio.model.SelectFacebookPageRequest;
 import dev.zernio.model.SelectGoogleBusinessLocation200Response;
 import dev.zernio.model.SelectGoogleBusinessLocationRequest;
@@ -102,7 +105,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -217,6 +220,138 @@ public class ConnectApi {
       file.deleteOnExit(); // best effort cleanup
     }
     return file;
+  }
+
+  /**
+   * Assign GBP location to another profile
+   * Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+   * @param accountId A source connected GBP account whose OAuth grant is reused. (required)
+   * @param assignGoogleBusinessLocationRequest  (required)
+   * @return AssignGoogleBusinessLocation200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AssignGoogleBusinessLocation200Response assignGoogleBusinessLocation(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest) throws ApiException {
+    return assignGoogleBusinessLocation(accountId, assignGoogleBusinessLocationRequest, null);
+  }
+
+  /**
+   * Assign GBP location to another profile
+   * Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+   * @param accountId A source connected GBP account whose OAuth grant is reused. (required)
+   * @param assignGoogleBusinessLocationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AssignGoogleBusinessLocation200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AssignGoogleBusinessLocation200Response assignGoogleBusinessLocation(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AssignGoogleBusinessLocation200Response> localVarResponse = assignGoogleBusinessLocationWithHttpInfo(accountId, assignGoogleBusinessLocationRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Assign GBP location to another profile
+   * Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+   * @param accountId A source connected GBP account whose OAuth grant is reused. (required)
+   * @param assignGoogleBusinessLocationRequest  (required)
+   * @return ApiResponse&lt;AssignGoogleBusinessLocation200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AssignGoogleBusinessLocation200Response> assignGoogleBusinessLocationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest) throws ApiException {
+    return assignGoogleBusinessLocationWithHttpInfo(accountId, assignGoogleBusinessLocationRequest, null);
+  }
+
+  /**
+   * Assign GBP location to another profile
+   * Connect a Google Business location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected GBP account — no browser, no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client&#39;s profile via this endpoint. The path &#x60;accountId&#x60; is a SOURCE connected GBP account (the token holder); the body &#x60;profileId&#x60; is the TARGET profile. Returns 409 if the target profile already has a Google Business connection (switch its location with PUT gmb-locations instead). 
+   * @param accountId A source connected GBP account whose OAuth grant is reused. (required)
+   * @param assignGoogleBusinessLocationRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AssignGoogleBusinessLocation200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AssignGoogleBusinessLocation200Response> assignGoogleBusinessLocationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = assignGoogleBusinessLocationRequestBuilder(accountId, assignGoogleBusinessLocationRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("assignGoogleBusinessLocation", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AssignGoogleBusinessLocation200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AssignGoogleBusinessLocation200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AssignGoogleBusinessLocation200Response>() {});
+        
+
+        return new ApiResponse<AssignGoogleBusinessLocation200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder assignGoogleBusinessLocationRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull AssignGoogleBusinessLocationRequest assignGoogleBusinessLocationRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling assignGoogleBusinessLocation");
+    }
+    // verify the required parameter 'assignGoogleBusinessLocationRequest' is set
+    if (assignGoogleBusinessLocationRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'assignGoogleBusinessLocationRequest' when calling assignGoogleBusinessLocation");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/gmb-locations/assign"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(assignGoogleBusinessLocationRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
   }
 
   /**

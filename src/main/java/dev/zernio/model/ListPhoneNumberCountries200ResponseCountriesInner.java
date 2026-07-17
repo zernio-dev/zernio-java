@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.ListPhoneNumberCountries200ResponseCountriesInnerTypesInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,9 +43,11 @@ import dev.zernio.ApiClient;
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_CALLS_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_WHATSAPP_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_SMS_AVAILABLE,
-  ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_OUTBOUND_CALLING_AVAILABLE
+  ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_OUTBOUND_CALLING_AVAILABLE,
+  ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_IN_STOCK,
+  ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_TYPES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T09:41:02.867324708Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T11:59:47.871765030Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumberCountries200ResponseCountriesInner {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
@@ -114,6 +119,14 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
   public static final String JSON_PROPERTY_OUTBOUND_CALLING_AVAILABLE = "outboundCallingAvailable";
   @javax.annotation.Nullable
   private Boolean outboundCallingAvailable;
+
+  public static final String JSON_PROPERTY_IN_STOCK = "inStock";
+  @javax.annotation.Nullable
+  private Boolean inStock;
+
+  public static final String JSON_PROPERTY_TYPES = "types";
+  @javax.annotation.Nullable
+  private List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> types = new ArrayList<>();
 
   public ListPhoneNumberCountries200ResponseCountriesInner() { 
   }
@@ -310,6 +323,62 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
   }
 
 
+  public ListPhoneNumberCountries200ResponseCountriesInner inStock(@javax.annotation.Nullable Boolean inStock) {
+    this.inStock = inStock;
+    return this;
+  }
+
+  /**
+   * Live carrier-stock snapshot (refreshed every 6h + on availability checks): false when NO offered type currently has deliverable inventory, so a purchase would fail. Treat as advisory; the purchase itself re-checks.
+   * @return inStock
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IN_STOCK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getInStock() {
+    return inStock;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IN_STOCK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInStock(@javax.annotation.Nullable Boolean inStock) {
+    this.inStock = inStock;
+  }
+
+
+  public ListPhoneNumberCountries200ResponseCountriesInner types(@javax.annotation.Nullable List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> types) {
+    this.types = types;
+    return this;
+  }
+
+  public ListPhoneNumberCountries200ResponseCountriesInner addTypesItem(ListPhoneNumberCountries200ResponseCountriesInnerTypesInner typesItem) {
+    if (this.types == null) {
+      this.types = new ArrayList<>();
+    }
+    this.types.add(typesItem);
+    return this;
+  }
+
+  /**
+   * Every number type offered in this country (default first). Capabilities, KYC tier, monthly price, and stock are per type. The country-level fields above mirror the first (default) entry. Pass the chosen &#x60;numberType&#x60; to POST /v1/phone-numbers/purchase. 
+   * @return types
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TYPES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> getTypes() {
+    return types;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TYPES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTypes(@javax.annotation.Nullable List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> types) {
+    this.types = types;
+  }
+
+
   /**
    * Return true if this listPhoneNumberCountries_200_response_countries_inner object is equal to o.
    */
@@ -329,12 +398,14 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
         Objects.equals(this.callsAvailable, listPhoneNumberCountries200ResponseCountriesInner.callsAvailable) &&
         Objects.equals(this.whatsappAvailable, listPhoneNumberCountries200ResponseCountriesInner.whatsappAvailable) &&
         Objects.equals(this.smsAvailable, listPhoneNumberCountries200ResponseCountriesInner.smsAvailable) &&
-        Objects.equals(this.outboundCallingAvailable, listPhoneNumberCountries200ResponseCountriesInner.outboundCallingAvailable);
+        Objects.equals(this.outboundCallingAvailable, listPhoneNumberCountries200ResponseCountriesInner.outboundCallingAvailable) &&
+        Objects.equals(this.inStock, listPhoneNumberCountries200ResponseCountriesInner.inStock) &&
+        Objects.equals(this.types, listPhoneNumberCountries200ResponseCountriesInner.types);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, tier, monthlyCents, needsKyc, callsAvailable, whatsappAvailable, smsAvailable, outboundCallingAvailable);
+    return Objects.hash(code, tier, monthlyCents, needsKyc, callsAvailable, whatsappAvailable, smsAvailable, outboundCallingAvailable, inStock, types);
   }
 
   @Override
@@ -349,6 +420,8 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
     sb.append("    whatsappAvailable: ").append(toIndentedString(whatsappAvailable)).append("\n");
     sb.append("    smsAvailable: ").append(toIndentedString(smsAvailable)).append("\n");
     sb.append("    outboundCallingAvailable: ").append(toIndentedString(outboundCallingAvailable)).append("\n");
+    sb.append("    inStock: ").append(toIndentedString(inStock)).append("\n");
+    sb.append("    types: ").append(toIndentedString(types)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -434,6 +507,21 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
     // add `outboundCallingAvailable` to the URL query string
     if (getOutboundCallingAvailable() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%soutboundCallingAvailable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOutboundCallingAvailable()))));
+    }
+
+    // add `inStock` to the URL query string
+    if (getInStock() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinStock%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInStock()))));
+    }
+
+    // add `types` to the URL query string
+    if (getTypes() != null) {
+      for (int i = 0; i < getTypes().size(); i++) {
+        if (getTypes().get(i) != null) {
+          joiner.add(getTypes().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stypes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();
