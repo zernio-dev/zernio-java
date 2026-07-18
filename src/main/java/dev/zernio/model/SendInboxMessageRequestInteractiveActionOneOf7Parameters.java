@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   SendInboxMessageRequestInteractiveActionOneOf7Parameters.JSON_PROPERTY_THUMBNAIL_PRODUCT_RETAILER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T17:20:57.917516032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf7Parameters {
   public static final String JSON_PROPERTY_THUMBNAIL_PRODUCT_RETAILER_ID = "thumbnail_product_retailer_id";
   @javax.annotation.Nullable

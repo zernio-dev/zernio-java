@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   GetInstagramStoryInsights200ResponseDataMetrics.JSON_PROPERTY_REPOSTS,
   GetInstagramStoryInsights200ResponseDataMetrics.JSON_PROPERTY_TOTAL_INTERACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T17:20:57.917516032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInstagramStoryInsights200ResponseDataMetrics {
   public static final String JSON_PROPERTY_VIEWS = "views";
   @javax.annotation.Nonnull

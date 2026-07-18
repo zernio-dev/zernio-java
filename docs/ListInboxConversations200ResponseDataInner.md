@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
+|**id** | **String** | Opaque conversation identifier. Pass it back verbatim to any /v1/inbox/conversations/{conversationId} route; do not assume a fixed format. |  [optional] |
 |**platform** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**accountUsername** | **String** |  |  [optional] |

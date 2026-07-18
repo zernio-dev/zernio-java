@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AdTreeCampaignPromotedObject.JSON_PROPERTY_PIXEL_ID,
   AdTreeCampaignPromotedObject.JSON_PROPERTY_PAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T17:20:57.917516032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdTreeCampaignPromotedObject {
   public static final String JSON_PROPERTY_CUSTOM_EVENT_TYPE = "custom_event_type";
   @javax.annotation.Nullable

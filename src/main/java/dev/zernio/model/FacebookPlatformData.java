@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   FacebookPlatformData.JSON_PROPERTY_CAROUSEL_CARDS,
   FacebookPlatformData.JSON_PROPERTY_CAROUSEL_LINK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T17:20:57.917516032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable

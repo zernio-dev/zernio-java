@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_REPEATED_ENUM_VALUE,
   UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_URI_VALUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T17:20:57.917516032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessAttributesRequestAttributesInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
