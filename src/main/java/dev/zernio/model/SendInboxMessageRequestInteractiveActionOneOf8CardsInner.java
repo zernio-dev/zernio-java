@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestInteractiveActionOneOf8CardsInner.JSON_PROPERTY_BODY,
   SendInboxMessageRequestInteractiveActionOneOf8CardsInner.JSON_PROPERTY_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-17T16:24:36.953997782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestInteractiveActionOneOf8CardsInner {
   public static final String JSON_PROPERTY_CARD_INDEX = "card_index";
   @javax.annotation.Nullable
