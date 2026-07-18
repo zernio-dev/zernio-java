@@ -43,7 +43,6 @@ import dev.zernio.model.GetLinkedInPostAnalytics200Response;
 import dev.zernio.model.GetLinkedInPostAnalytics400Response;
 import dev.zernio.model.GetLinkedInPostAnalytics403Response;
 import dev.zernio.model.GetLinkedInPostReactions200Response;
-import dev.zernio.model.GetLinkedInPostReactions400Response;
 import dev.zernio.model.GetPostTimeline200Response;
 import dev.zernio.model.GetPostTimeline400Response;
 import dev.zernio.model.GetPostTimeline403Response;
@@ -92,7 +91,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2522,11 +2521,11 @@ public class AnalyticsApi {
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
    * @param limit Maximum number of reactions to return per page (optional, default to 25)
-   * @param cursor Offset-based pagination start index (optional)
+   * @param cursor Offset-based pagination start index (optional, default to 0)
    * @return GetLinkedInPostReactions200Response
    * @throws ApiException if fails to make API call
    */
-  public GetLinkedInPostReactions200Response getLinkedInPostReactions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+  public GetLinkedInPostReactions200Response getLinkedInPostReactions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer cursor) throws ApiException {
     return getLinkedInPostReactions(accountId, urn, limit, cursor, null);
   }
 
@@ -2536,12 +2535,12 @@ public class AnalyticsApi {
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
    * @param limit Maximum number of reactions to return per page (optional, default to 25)
-   * @param cursor Offset-based pagination start index (optional)
+   * @param cursor Offset-based pagination start index (optional, default to 0)
    * @param headers Optional headers to include in the request
    * @return GetLinkedInPostReactions200Response
    * @throws ApiException if fails to make API call
    */
-  public GetLinkedInPostReactions200Response getLinkedInPostReactions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+  public GetLinkedInPostReactions200Response getLinkedInPostReactions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer cursor, Map<String, String> headers) throws ApiException {
     ApiResponse<GetLinkedInPostReactions200Response> localVarResponse = getLinkedInPostReactionsWithHttpInfo(accountId, urn, limit, cursor, headers);
     return localVarResponse.getData();
   }
@@ -2552,11 +2551,11 @@ public class AnalyticsApi {
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
    * @param limit Maximum number of reactions to return per page (optional, default to 25)
-   * @param cursor Offset-based pagination start index (optional)
+   * @param cursor Offset-based pagination start index (optional, default to 0)
    * @return ApiResponse&lt;GetLinkedInPostReactions200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetLinkedInPostReactions200Response> getLinkedInPostReactionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor) throws ApiException {
+  public ApiResponse<GetLinkedInPostReactions200Response> getLinkedInPostReactionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer cursor) throws ApiException {
     return getLinkedInPostReactionsWithHttpInfo(accountId, urn, limit, cursor, null);
   }
 
@@ -2566,12 +2565,12 @@ public class AnalyticsApi {
    * @param accountId The ID of the LinkedIn organization account (required)
    * @param urn The LinkedIn post URN (required)
    * @param limit Maximum number of reactions to return per page (optional, default to 25)
-   * @param cursor Offset-based pagination start index (optional)
+   * @param cursor Offset-based pagination start index (optional, default to 0)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetLinkedInPostReactions200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetLinkedInPostReactions200Response> getLinkedInPostReactionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+  public ApiResponse<GetLinkedInPostReactions200Response> getLinkedInPostReactionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer cursor, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getLinkedInPostReactionsRequestBuilder(accountId, urn, limit, cursor, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -2619,7 +2618,7 @@ public class AnalyticsApi {
     }
   }
 
-  private HttpRequest.Builder getLinkedInPostReactionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String cursor, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getLinkedInPostReactionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String urn, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Integer cursor, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling getLinkedInPostReactions");

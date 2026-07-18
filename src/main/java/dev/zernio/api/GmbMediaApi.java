@@ -49,7 +49,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbMediaApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -168,7 +168,7 @@ public class GmbMediaApi {
 
   /**
    * Upload photo
-   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
+   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: CATEGORY_UNSPECIFIED, COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, PRODUCT, FOOD_AND_DRINK, MENU, COMMON_AREA, ROOMS, TEAMS, AT_WORK, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -181,7 +181,7 @@ public class GmbMediaApi {
 
   /**
    * Upload photo
-   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
+   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: CATEGORY_UNSPECIFIED, COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, PRODUCT, FOOD_AND_DRINK, MENU, COMMON_AREA, ROOMS, TEAMS, AT_WORK, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -196,7 +196,7 @@ public class GmbMediaApi {
 
   /**
    * Upload photo
-   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
+   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: CATEGORY_UNSPECIFIED, COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, PRODUCT, FOOD_AND_DRINK, MENU, COMMON_AREA, ROOMS, TEAMS, AT_WORK, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)
@@ -209,7 +209,7 @@ public class GmbMediaApi {
 
   /**
    * Upload photo
-   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL. 
+   * Creates a media item (photo) for a location from a publicly accessible URL.  Categories determine where the photo appears: CATEGORY_UNSPECIFIED, COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, PRODUCT, FOOD_AND_DRINK, MENU, COMMON_AREA, ROOMS, TEAMS, AT_WORK, ADDITIONAL. 
    * @param accountId  (required)
    * @param createGoogleBusinessMediaRequest  (required)
    * @param locationId Override which location to target. If omitted, uses the account&#39;s selected location. Use GET /gmb-locations to list valid IDs. (optional)

@@ -82,6 +82,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Services fetched successfully |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## getGoogleBusinessServicesWithHttpInfo
@@ -158,6 +159,7 @@ ApiResponse<[**GetGoogleBusinessServices200Response**](GetGoogleBusinessServices
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Services fetched successfully |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 

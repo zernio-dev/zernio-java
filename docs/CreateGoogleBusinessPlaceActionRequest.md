@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**uri** | **String** | The action URL |  |
+|**uri** | **URI** | The action URL |  |
 |**placeActionType** | [**PlaceActionTypeEnum**](#PlaceActionTypeEnum) | Type of action |  |
 
 

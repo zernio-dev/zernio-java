@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValue;
+import dev.zernio.model.UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -37,14 +38,61 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_NAME,
+  UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_VALUE_TYPE,
   UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_VALUES,
-  UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_REPEATED_ENUM_VALUE
+  UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_REPEATED_ENUM_VALUE,
+  UpdateGoogleBusinessAttributesRequestAttributesInner.JSON_PROPERTY_URI_VALUES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessAttributesRequestAttributesInner {
   public static final String JSON_PROPERTY_NAME = "name";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String name;
+
+  /**
+   * Gets or Sets valueType
+   */
+  public enum ValueTypeEnum {
+    ATTRIBUTE_VALUE_TYPE_UNSPECIFIED(String.valueOf("ATTRIBUTE_VALUE_TYPE_UNSPECIFIED")),
+    
+    BOOL(String.valueOf("BOOL")),
+    
+    ENUM(String.valueOf("ENUM")),
+    
+    URL(String.valueOf("URL")),
+    
+    REPEATED_ENUM(String.valueOf("REPEATED_ENUM"));
+
+    private String value;
+
+    ValueTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ValueTypeEnum fromValue(String value) {
+      for (ValueTypeEnum b : ValueTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_VALUE_TYPE = "valueType";
+  @javax.annotation.Nullable
+  private ValueTypeEnum valueType;
 
   public static final String JSON_PROPERTY_VALUES = "values";
   @javax.annotation.Nullable
@@ -54,10 +102,14 @@ public class UpdateGoogleBusinessAttributesRequestAttributesInner {
   @javax.annotation.Nullable
   private GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValue repeatedEnumValue;
 
+  public static final String JSON_PROPERTY_URI_VALUES = "uriValues";
+  @javax.annotation.Nullable
+  private List<UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner> uriValues = new ArrayList<>();
+
   public UpdateGoogleBusinessAttributesRequestAttributesInner() { 
   }
 
-  public UpdateGoogleBusinessAttributesRequestAttributesInner name(@javax.annotation.Nullable String name) {
+  public UpdateGoogleBusinessAttributesRequestAttributesInner name(@javax.annotation.Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -66,18 +118,42 @@ public class UpdateGoogleBusinessAttributesRequestAttributesInner {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(@javax.annotation.Nullable String name) {
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
+  }
+
+
+  public UpdateGoogleBusinessAttributesRequestAttributesInner valueType(@javax.annotation.Nullable ValueTypeEnum valueType) {
+    this.valueType = valueType;
+    return this;
+  }
+
+  /**
+   * Get valueType
+   * @return valueType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VALUE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ValueTypeEnum getValueType() {
+    return valueType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VALUE_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setValueType(@javax.annotation.Nullable ValueTypeEnum valueType) {
+    this.valueType = valueType;
   }
 
 
@@ -137,6 +213,38 @@ public class UpdateGoogleBusinessAttributesRequestAttributesInner {
   }
 
 
+  public UpdateGoogleBusinessAttributesRequestAttributesInner uriValues(@javax.annotation.Nullable List<UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner> uriValues) {
+    this.uriValues = uriValues;
+    return this;
+  }
+
+  public UpdateGoogleBusinessAttributesRequestAttributesInner addUriValuesItem(UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner uriValuesItem) {
+    if (this.uriValues == null) {
+      this.uriValues = new ArrayList<>();
+    }
+    this.uriValues.add(uriValuesItem);
+    return this;
+  }
+
+  /**
+   * Get uriValues
+   * @return uriValues
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_URI_VALUES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner> getUriValues() {
+    return uriValues;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_URI_VALUES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUriValues(@javax.annotation.Nullable List<UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner> uriValues) {
+    this.uriValues = uriValues;
+  }
+
+
   /**
    * Return true if this updateGoogleBusinessAttributes_request_attributes_inner object is equal to o.
    */
@@ -150,13 +258,15 @@ public class UpdateGoogleBusinessAttributesRequestAttributesInner {
     }
     UpdateGoogleBusinessAttributesRequestAttributesInner updateGoogleBusinessAttributesRequestAttributesInner = (UpdateGoogleBusinessAttributesRequestAttributesInner) o;
     return Objects.equals(this.name, updateGoogleBusinessAttributesRequestAttributesInner.name) &&
+        Objects.equals(this.valueType, updateGoogleBusinessAttributesRequestAttributesInner.valueType) &&
         Objects.equals(this.values, updateGoogleBusinessAttributesRequestAttributesInner.values) &&
-        Objects.equals(this.repeatedEnumValue, updateGoogleBusinessAttributesRequestAttributesInner.repeatedEnumValue);
+        Objects.equals(this.repeatedEnumValue, updateGoogleBusinessAttributesRequestAttributesInner.repeatedEnumValue) &&
+        Objects.equals(this.uriValues, updateGoogleBusinessAttributesRequestAttributesInner.uriValues);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, values, repeatedEnumValue);
+    return Objects.hash(name, valueType, values, repeatedEnumValue, uriValues);
   }
 
   @Override
@@ -164,8 +274,10 @@ public class UpdateGoogleBusinessAttributesRequestAttributesInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateGoogleBusinessAttributesRequestAttributesInner {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    valueType: ").append(toIndentedString(valueType)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
     sb.append("    repeatedEnumValue: ").append(toIndentedString(repeatedEnumValue)).append("\n");
+    sb.append("    uriValues: ").append(toIndentedString(uriValues)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -218,6 +330,11 @@ public class UpdateGoogleBusinessAttributesRequestAttributesInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
+    // add `valueType` to the URL query string
+    if (getValueType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svalueType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getValueType()))));
+    }
+
     // add `values` to the URL query string
     if (getValues() != null) {
       for (int i = 0; i < getValues().size(); i++) {
@@ -230,6 +347,16 @@ public class UpdateGoogleBusinessAttributesRequestAttributesInner {
     // add `repeatedEnumValue` to the URL query string
     if (getRepeatedEnumValue() != null) {
       joiner.add(getRepeatedEnumValue().toUrlQueryString(prefix + "repeatedEnumValue" + suffix));
+    }
+
+    // add `uriValues` to the URL query string
+    if (getUriValues() != null) {
+      for (int i = 0; i < getUriValues().size(); i++) {
+        if (getUriValues().get(i) != null) {
+          joiner.add(getUriValues().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%suriValues%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

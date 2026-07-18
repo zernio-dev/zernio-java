@@ -6199,6 +6199,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/getAllAccountsHealth_200_response"
           description: Account health summary
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       summary: Check accounts health
@@ -7415,6 +7417,7 @@ paths:
         name: locationId
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       requestBody:
@@ -7485,6 +7488,7 @@ paths:
         name: locationId
         required: false
         schema:
+          minLength: 1
           type: string
         style: form
       requestBody:
@@ -8014,6 +8018,7 @@ paths:
         schema:
           default: 100
           maximum: 100
+          minimum: 1
           type: integer
         style: form
       - description: Pagination token from previous response
@@ -8054,7 +8059,7 @@ paths:
       description: |
         Creates a media item (photo) for a location from a publicly accessible URL.
 
-        Categories determine where the photo appears: COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, FOOD_AND_DRINK, MENU, PRODUCT, TEAMS, ADDITIONAL.
+        Categories determine where the photo appears: CATEGORY_UNSPECIFIED, COVER, PROFILE, LOGO, EXTERIOR, INTERIOR, PRODUCT, FOOD_AND_DRINK, MENU, COMMON_AREA, ROOMS, TEAMS, AT_WORK, ADDITIONAL.
       operationId: createGoogleBusinessMedia
       parameters:
       - explode: false
@@ -8466,6 +8471,7 @@ paths:
         schema:
           default: 100
           maximum: 100
+          minimum: 1
           type: integer
         style: form
       - explode: true
@@ -8657,6 +8663,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/getGoogleBusinessServices_200_response"
           description: Services fetched successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Invalid request
         "401":
           content:
             application/json:
@@ -10318,6 +10330,7 @@ paths:
         name: urn
         required: true
         schema:
+          pattern: "^urn:li:(share|ugcPost|activity):[0-9]+$"
           type: string
         style: form
       - description: Maximum number of reactions to return per page
@@ -10337,7 +10350,9 @@ paths:
         name: cursor
         required: false
         schema:
-          type: string
+          default: 0
+          minimum: 0
+          type: integer
         style: form
       responses:
         "200":
@@ -10369,11 +10384,7 @@ paths:
                 $ref: "#/components/schemas/getLinkedInPostReactions_200_response"
           description: Reactions with reactor profiles
         "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/getLinkedInPostReactions_400_response"
-          description: Invalid request or platform limitation
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
@@ -10408,6 +10419,7 @@ paths:
               accountType: organization
               selectedOrganization:
                 id: "12345678"
+                urn: urn:li:organization:12345678
                 name: Acme Corporation
                 vanityName: acme-corp
             schema:
@@ -10418,15 +10430,11 @@ paths:
           content:
             application/json:
               example:
-                message: LinkedIn account type updated successfully
-                account:
-                  _id: 64e1f0a9e2b5af0012ab34cd
-                  platform: linkedin
-                  username: acme-corp
-                  displayName: Acme Corporation
-                  isActive: true
+                message: LinkedIn account updated successfully
+                accountType: organization
+                accountName: Acme Corporation
               schema:
-                $ref: "#/components/schemas/connectBlueskyCredentials_200_response"
+                $ref: "#/components/schemas/updateLinkedInOrganization_200_response"
           description: Account updated
         "400":
           description: Invalid request
@@ -11396,6 +11404,7 @@ paths:
         name: subreddit
         required: true
         schema:
+          minLength: 1
           type: string
         style: form
       responses:
@@ -14472,6 +14481,8 @@ paths:
       responses:
         "200":
           description: Menu deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -14560,6 +14571,8 @@ paths:
       responses:
         "200":
           description: Ice breakers deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -14646,6 +14659,8 @@ paths:
       responses:
         "200":
           description: Commands deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -28154,6 +28169,12 @@ components:
         type: integer
       style: form
   responses:
+    BadRequest:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: Invalid request
     Unauthorized:
       content:
         application/json:
@@ -28936,7 +28957,7 @@ components:
         allergen:
         - allergen
         - allergen
-        spiciness: spiciness
+        spiciness: SPICINESS_UNSPECIFIED
         preparationMethods:
         - preparationMethods
         - preparationMethods
@@ -28944,7 +28965,7 @@ components:
           nanos: 0
           units: units
           currencyCode: currencyCode
-        servesNumPeople: 6
+        servesNumPeople: 1
         mediaKeys:
         - mediaKeys
         - mediaKeys
@@ -28953,6 +28974,11 @@ components:
           $ref: "#/components/schemas/Money"
         spiciness:
           description: "Spiciness level (e.g. MILD, MEDIUM, HOT)"
+          enum:
+          - SPICINESS_UNSPECIFIED
+          - MILD
+          - MEDIUM
+          - HOT
           type: string
         allergen:
           description: "Allergens (e.g. DAIRY, GLUTEN, SHELLFISH)"
@@ -28966,6 +28992,7 @@ components:
           type: array
         servesNumPeople:
           description: Number of people the item serves
+          minimum: 1
           type: integer
         preparationMethods:
           description: "Preparation methods (e.g. GRILLED, FRIED)"
@@ -28987,7 +29014,7 @@ components:
             allergen:
             - allergen
             - allergen
-            spiciness: spiciness
+            spiciness: SPICINESS_UNSPECIFIED
             preparationMethods:
             - preparationMethods
             - preparationMethods
@@ -28995,7 +29022,7 @@ components:
               nanos: 0
               units: units
               currencyCode: currencyCode
-            servesNumPeople: 6
+            servesNumPeople: 1
             mediaKeys:
             - mediaKeys
             - mediaKeys
@@ -29013,7 +29040,7 @@ components:
             allergen:
             - allergen
             - allergen
-            spiciness: spiciness
+            spiciness: SPICINESS_UNSPECIFIED
             preparationMethods:
             - preparationMethods
             - preparationMethods
@@ -29021,7 +29048,7 @@ components:
               nanos: 0
               units: units
               currencyCode: currencyCode
-            servesNumPeople: 6
+            servesNumPeople: 1
             mediaKeys:
             - mediaKeys
             - mediaKeys
@@ -29039,7 +29066,7 @@ components:
           allergen:
           - allergen
           - allergen
-          spiciness: spiciness
+          spiciness: SPICINESS_UNSPECIFIED
           preparationMethods:
           - preparationMethods
           - preparationMethods
@@ -29047,7 +29074,7 @@ components:
             nanos: 0
             units: units
             currencyCode: currencyCode
-          servesNumPeople: 6
+          servesNumPeople: 1
           mediaKeys:
           - mediaKeys
           - mediaKeys
@@ -29062,6 +29089,7 @@ components:
         labels:
           items:
             $ref: "#/components/schemas/FoodMenuLabel"
+          minItems: 1
           type: array
         attributes:
           $ref: "#/components/schemas/FoodMenuItemAttributes"
@@ -29083,7 +29111,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29091,7 +29119,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29109,7 +29137,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29117,7 +29145,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29135,7 +29163,7 @@ components:
             allergen:
             - allergen
             - allergen
-            spiciness: spiciness
+            spiciness: SPICINESS_UNSPECIFIED
             preparationMethods:
             - preparationMethods
             - preparationMethods
@@ -29143,7 +29171,7 @@ components:
               nanos: 0
               units: units
               currencyCode: currencyCode
-            servesNumPeople: 6
+            servesNumPeople: 1
             mediaKeys:
             - mediaKeys
             - mediaKeys
@@ -29162,7 +29190,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29170,7 +29198,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29188,7 +29216,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29196,7 +29224,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29214,7 +29242,7 @@ components:
             allergen:
             - allergen
             - allergen
-            spiciness: spiciness
+            spiciness: SPICINESS_UNSPECIFIED
             preparationMethods:
             - preparationMethods
             - preparationMethods
@@ -29222,7 +29250,7 @@ components:
               nanos: 0
               units: units
               currencyCode: currencyCode
-            servesNumPeople: 6
+            servesNumPeople: 1
             mediaKeys:
             - mediaKeys
             - mediaKeys
@@ -29244,6 +29272,7 @@ components:
         labels:
           items:
             $ref: "#/components/schemas/FoodMenuLabel"
+          minItems: 1
           type: array
         items:
           items:
@@ -29253,7 +29282,7 @@ components:
       - labels
     FoodMenu:
       example:
-        sourceUrl: sourceUrl
+        sourceUrl: https://openapi-generator.tech
         sections:
         - items:
           - options:
@@ -29264,7 +29293,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29272,7 +29301,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29290,7 +29319,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29298,7 +29327,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29316,7 +29345,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29324,7 +29353,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29343,7 +29372,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29351,7 +29380,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29369,7 +29398,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29377,7 +29406,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29395,7 +29424,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29403,7 +29432,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29430,7 +29459,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29438,7 +29467,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29456,7 +29485,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29464,7 +29493,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29482,7 +29511,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29490,7 +29519,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29509,7 +29538,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29517,7 +29546,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29535,7 +29564,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -29543,7 +29572,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -29561,7 +29590,7 @@ components:
               allergen:
               - allergen
               - allergen
-              spiciness: spiciness
+              spiciness: SPICINESS_UNSPECIFIED
               preparationMethods:
               - preparationMethods
               - preparationMethods
@@ -29569,7 +29598,7 @@ components:
                 nanos: 0
                 units: units
                 currencyCode: currencyCode
-              servesNumPeople: 6
+              servesNumPeople: 1
               mediaKeys:
               - mediaKeys
               - mediaKeys
@@ -29601,6 +29630,7 @@ components:
         labels:
           items:
             $ref: "#/components/schemas/FoodMenuLabel"
+          minItems: 1
           type: array
         sections:
           items:
@@ -29613,6 +29643,7 @@ components:
           type: array
         sourceUrl:
           description: URL of the original menu source
+          format: uri
           type: string
       required:
       - labels
@@ -42745,7 +42776,7 @@ components:
         locationId: locationId
         name: name
         menus:
-        - sourceUrl: sourceUrl
+        - sourceUrl: https://openapi-generator.tech
           sections:
           - items:
             - options:
@@ -42756,7 +42787,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -42764,7 +42795,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -42782,7 +42813,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -42790,7 +42821,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -42808,7 +42839,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -42816,7 +42847,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -42835,7 +42866,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -42843,7 +42874,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -42861,7 +42892,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -42869,7 +42900,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -42887,7 +42918,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -42895,7 +42926,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -42922,7 +42953,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -42930,7 +42961,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -42948,7 +42979,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -42956,7 +42987,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -42974,7 +43005,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -42982,7 +43013,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43001,7 +43032,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43009,7 +43040,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43027,7 +43058,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43035,7 +43066,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43053,7 +43084,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43061,7 +43092,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43089,7 +43120,7 @@ components:
           cuisines:
           - cuisines
           - cuisines
-        - sourceUrl: sourceUrl
+        - sourceUrl: https://openapi-generator.tech
           sections:
           - items:
             - options:
@@ -43100,7 +43131,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43108,7 +43139,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43126,7 +43157,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43134,7 +43165,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43152,7 +43183,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43160,7 +43191,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43179,7 +43210,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43187,7 +43218,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43205,7 +43236,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43213,7 +43244,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43231,7 +43262,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43239,7 +43270,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43266,7 +43297,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43274,7 +43305,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43292,7 +43323,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43300,7 +43331,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43318,7 +43349,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43326,7 +43357,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43345,7 +43376,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43353,7 +43384,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43371,7 +43402,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43379,7 +43410,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43397,7 +43428,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43405,7 +43436,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43466,7 +43497,7 @@ components:
         locationId: locationId
         name: name
         menus:
-        - sourceUrl: sourceUrl
+        - sourceUrl: https://openapi-generator.tech
           sections:
           - items:
             - options:
@@ -43477,7 +43508,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43485,7 +43516,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43503,7 +43534,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43511,7 +43542,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43529,7 +43560,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43537,7 +43568,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43556,7 +43587,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43564,7 +43595,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43582,7 +43613,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43590,7 +43621,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43608,7 +43639,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43616,7 +43647,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43643,7 +43674,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43651,7 +43682,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43669,7 +43700,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43677,7 +43708,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43695,7 +43726,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43703,7 +43734,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43722,7 +43753,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43730,7 +43761,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43748,7 +43779,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43756,7 +43787,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43774,7 +43805,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43782,7 +43813,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43810,7 +43841,7 @@ components:
           cuisines:
           - cuisines
           - cuisines
-        - sourceUrl: sourceUrl
+        - sourceUrl: https://openapi-generator.tech
           sections:
           - items:
             - options:
@@ -43821,7 +43852,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43829,7 +43860,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43847,7 +43878,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43855,7 +43886,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43873,7 +43904,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43881,7 +43912,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43900,7 +43931,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43908,7 +43939,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43926,7 +43957,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43934,7 +43965,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -43952,7 +43983,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -43960,7 +43991,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -43987,7 +44018,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -43995,7 +44026,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -44013,7 +44044,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -44021,7 +44052,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -44039,7 +44070,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -44047,7 +44078,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -44066,7 +44097,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -44074,7 +44105,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -44092,7 +44123,7 @@ components:
                   allergen:
                   - allergen
                   - allergen
-                  spiciness: spiciness
+                  spiciness: SPICINESS_UNSPECIFIED
                   preparationMethods:
                   - preparationMethods
                   - preparationMethods
@@ -44100,7 +44131,7 @@ components:
                     nanos: 0
                     units: units
                     currencyCode: currencyCode
-                  servesNumPeople: 6
+                  servesNumPeople: 1
                   mediaKeys:
                   - mediaKeys
                   - mediaKeys
@@ -44118,7 +44149,7 @@ components:
                 allergen:
                 - allergen
                 - allergen
-                spiciness: spiciness
+                spiciness: SPICINESS_UNSPECIFIED
                 preparationMethods:
                 - preparationMethods
                 - preparationMethods
@@ -44126,7 +44157,7 @@ components:
                   nanos: 0
                   units: units
                   currencyCode: currencyCode
-                servesNumPeople: 6
+                servesNumPeople: 1
                 mediaKeys:
                 - mediaKeys
                 - mediaKeys
@@ -44754,6 +44785,7 @@ components:
       properties:
         sourceUrl:
           description: Publicly accessible image URL
+          format: uri
           type: string
         mediaFormat:
           default: PHOTO
@@ -44763,19 +44795,24 @@ components:
           type: string
         description:
           description: Photo description
+          minLength: 1
           type: string
         category:
           description: Where the photo appears on the listing
           enum:
+          - CATEGORY_UNSPECIFIED
           - COVER
           - PROFILE
           - LOGO
           - EXTERIOR
           - INTERIOR
+          - PRODUCT
           - FOOD_AND_DRINK
           - MENU
-          - PRODUCT
+          - COMMON_AREA
+          - ROOMS
           - TEAMS
+          - AT_WORK
           - ADDITIONAL
           type: string
       required:
@@ -44981,15 +45018,37 @@ components:
           items:
             $ref: "#/components/schemas/getGoogleBusinessAttributes_200_response_attributes_inner"
           type: array
+    updateGoogleBusinessAttributes_request_attributes_inner_uriValues_inner:
+      properties:
+        uri:
+          format: uri
+          type: string
+      required:
+      - uri
     updateGoogleBusinessAttributes_request_attributes_inner:
       properties:
         name:
+          minLength: 1
+          type: string
+        valueType:
+          enum:
+          - ATTRIBUTE_VALUE_TYPE_UNSPECIFIED
+          - BOOL
+          - ENUM
+          - URL
+          - REPEATED_ENUM
           type: string
         values:
           items: {}
           type: array
         repeatedEnumValue:
           $ref: "#/components/schemas/getGoogleBusinessAttributes_200_response_attributes_inner_repeatedEnumValue"
+        uriValues:
+          items:
+            $ref: "#/components/schemas/updateGoogleBusinessAttributes_request_attributes_inner_uriValues_inner"
+          type: array
+      required:
+      - name
     updateGoogleBusinessAttributes_request:
       properties:
         attributes:
@@ -44998,6 +45057,7 @@ components:
           type: array
         attributeMask:
           description: "Comma-separated attribute names to update (e.g. 'has_delivery,has_takeout')"
+          minLength: 1
           type: string
       required:
       - attributeMask
@@ -45077,6 +45137,7 @@ components:
       properties:
         uri:
           description: The action URL
+          format: uri
           type: string
         placeActionType:
           description: Type of action
@@ -45121,12 +45182,15 @@ components:
         name:
           type: string
     updateGoogleBusinessPlaceAction_request:
+      anyOf: []
+      nullable: true
       properties:
         name:
           description: Resource name of the place action link (e.g. locations/123/placeActionLinks/456)
           type: string
         uri:
           description: New action URL
+          format: uri
           type: string
         placeActionType:
           description: New action type
@@ -45252,14 +45316,56 @@ components:
           items:
             $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner"
           type: array
+    updateGoogleBusinessServices_request_serviceItems_inner_structuredServiceItem:
+      properties:
+        serviceTypeId:
+          minLength: 1
+          type: string
+        description:
+          type: string
+      required:
+      - serviceTypeId
+    updateGoogleBusinessServices_request_serviceItems_inner_freeFormServiceItem_label:
+      properties:
+        displayName:
+          minLength: 1
+          type: string
+        description:
+          type: string
+        languageCode:
+          type: string
+      required:
+      - displayName
+    updateGoogleBusinessServices_request_serviceItems_inner_freeFormServiceItem:
+      properties:
+        category:
+          minLength: 1
+          type: string
+        label:
+          $ref: "#/components/schemas/updateGoogleBusinessServices_request_serviceItems_inner_freeFormServiceItem_label"
+      required:
+      - category
+      - label
+    updateGoogleBusinessServices_request_serviceItems_inner_price:
+      properties:
+        currencyCode:
+          minLength: 1
+          type: string
+        units:
+          minLength: 1
+          type: string
+        nanos:
+          type: integer
     updateGoogleBusinessServices_request_serviceItems_inner:
+      nullable: true
+      oneOf: []
       properties:
         structuredServiceItem:
-          $ref: "#/components/schemas/getGoogleBusinessLocationDetails_200_response_serviceItems_inner_structuredServiceItem"
+          $ref: "#/components/schemas/updateGoogleBusinessServices_request_serviceItems_inner_structuredServiceItem"
         freeFormServiceItem:
-          $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner_freeFormServiceItem"
+          $ref: "#/components/schemas/updateGoogleBusinessServices_request_serviceItems_inner_freeFormServiceItem"
         price:
-          $ref: "#/components/schemas/getGoogleBusinessLocationDetails_200_response_serviceItems_inner_price"
+          $ref: "#/components/schemas/updateGoogleBusinessServices_request_serviceItems_inner_price"
     updateGoogleBusinessServices_request:
       properties:
         serviceItems:
@@ -45286,15 +45392,19 @@ components:
         locationNames:
           description: "Array of full location resource names (e.g. ['accounts/123/locations/456'])"
           items:
+            pattern: "^accounts/[^/]+/locations/[^/]+$"
             type: string
+          minItems: 1
           type: array
         pageSize:
           default: 50
           description: Number of reviews per page (max 50)
           maximum: 50
+          minimum: 1
           type: integer
         pageToken:
           description: Pagination token from previous response
+          minLength: 1
           type: string
       required:
       - locationNames
@@ -45335,6 +45445,7 @@ components:
       properties:
         comment:
           description: The reply text to post on the review. Must be non-empty.
+          minLength: 1
           type: string
       required:
       - comment
@@ -45479,6 +45590,26 @@ components:
           items:
             $ref: "#/components/schemas/listLinkedInOrganizations_200_response_organizations_inner"
           type: array
+    selectLinkedInOrganization_request_selectedOrganization:
+      properties:
+        id:
+          minLength: 1
+          type: string
+        urn:
+          pattern: "^urn:li:organization:"
+          type: string
+        name:
+          minLength: 1
+          type: string
+        logoUrl:
+          format: uri
+          type: string
+        vanityName:
+          type: string
+      required:
+      - id
+      - name
+      - urn
     selectLinkedInOrganization_request:
       properties:
         profileId:
@@ -45493,7 +45624,7 @@ components:
           - organization
           type: string
         selectedOrganization:
-          type: object
+          $ref: "#/components/schemas/selectLinkedInOrganization_request_selectedOrganization"
         redirect_url:
           format: uri
           type: string
@@ -46579,20 +46710,6 @@ components:
         lastUpdated:
           format: date-time
           type: string
-    getLinkedInPostReactions_400_response:
-      example:
-        code: missing_urn
-        error: error
-      properties:
-        error:
-          type: string
-        code:
-          enum:
-          - missing_urn
-          - invalid_urn
-          - invalid_platform
-          - PLATFORM_LIMITATION
-          type: string
     updateLinkedInOrganization_request:
       properties:
         accountType:
@@ -46604,6 +46721,21 @@ components:
           type: object
       required:
       - accountType
+    updateLinkedInOrganization_200_response:
+      example:
+        accountName: accountName
+        accountType: personal
+        message: message
+      properties:
+        message:
+          type: string
+        accountType:
+          enum:
+          - personal
+          - organization
+          type: string
+        accountName:
+          type: string
     getLinkedInMentions_200_response:
       example:
         urn: urn:li:person:4qj5ox-agD
@@ -46979,6 +47111,7 @@ components:
     updateYoutubeDefaultPlaylist_request:
       properties:
         defaultPlaylistId:
+          minLength: 1
           type: string
         defaultPlaylistName:
           type: string
@@ -47055,10 +47188,18 @@ components:
     updateGmbLocation_request:
       properties:
         selectedLocationId:
+          minLength: 1
           type: string
         googleAccountId:
           description: |
             Optional but recommended. The Google Business Account resource name ("accounts/123") that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named `googleAccountId` to disambiguate from the path `accountId` (the Zernio account). The legacy field name `accountId` is still accepted for backwards compatibility.
+          minLength: 1
+          type: string
+        accountId:
+          deprecated: true
+          description: Legacy alias for googleAccountId. Use googleAccountId for new
+            integrations.
+          minLength: 1
           type: string
       required:
       - selectedLocationId
@@ -47235,6 +47376,7 @@ components:
     updateRedditSubreddits_request:
       properties:
         defaultSubreddit:
+          minLength: 1
           type: string
       required:
       - defaultSubreddit
@@ -47349,12 +47491,15 @@ components:
       properties:
         subreddit:
           description: Subreddit name (without the "r/" prefix)
+          minLength: 1
           type: string
         postId:
           description: "Reddit post id, with or without the t3_ prefix"
+          minLength: 1
           type: string
         flairTemplateId:
           description: Flair template id from the GET on this path
+          minLength: 1
           type: string
         text:
           description: "Optional override text, only for editable flair templates"
@@ -50897,8 +51042,10 @@ components:
       properties:
         question:
           maxLength: 80
+          minLength: 1
           type: string
         payload:
+          minLength: 1
           type: string
       required:
       - payload
@@ -50909,6 +51056,7 @@ components:
           items:
             $ref: "#/components/schemas/setInstagramIceBreakers_request_ice_breakers_inner"
           maxItems: 4
+          minItems: 1
           type: array
       required:
       - ice_breakers
@@ -50918,8 +51066,13 @@ components:
         command: command
       properties:
         command:
+          maxLength: 32
+          minLength: 1
+          pattern: "^[a-z0-9_]+$"
           type: string
         description:
+          maxLength: 256
+          minLength: 1
           type: string
     getTelegramCommands_200_response:
       example:
@@ -50937,9 +51090,14 @@ components:
       properties:
         command:
           description: Bot command without leading slash
+          maxLength: 32
+          minLength: 1
+          pattern: "^[a-z0-9_]+$"
           type: string
         description:
           description: Command description
+          maxLength: 256
+          minLength: 1
           type: string
       required:
       - command
@@ -50949,6 +51107,7 @@ components:
         commands:
           items:
             $ref: "#/components/schemas/setTelegramCommands_request_commands_inner"
+          maxItems: 100
           type: array
       required:
       - commands
@@ -69442,7 +69601,7 @@ components:
           allergen:
           - allergen
           - allergen
-          spiciness: spiciness
+          spiciness: SPICINESS_UNSPECIFIED
           preparationMethods:
           - preparationMethods
           - preparationMethods
@@ -69450,7 +69609,7 @@ components:
             nanos: 0
             units: units
             currencyCode: currencyCode
-          servesNumPeople: 6
+          servesNumPeople: 1
           mediaKeys:
           - mediaKeys
           - mediaKeys
@@ -69465,9 +69624,13 @@ components:
         labels:
           items:
             $ref: "#/components/schemas/FoodMenuLabel"
+          minItems: 1
           type: array
         attributes:
           $ref: "#/components/schemas/FoodMenuItemAttributes"
+      required:
+      - attributes
+      - labels
     YouTubeDailyViewsResponse_dateRange:
       example:
         endDate: 2000-01-23

@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.FoodMenuLabel;
 import dev.zernio.model.FoodMenuSection;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +43,7 @@ import dev.zernio.ApiClient;
   FoodMenu.JSON_PROPERTY_CUISINES,
   FoodMenu.JSON_PROPERTY_SOURCE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FoodMenu {
   public static final String JSON_PROPERTY_LABELS = "labels";
   @javax.annotation.Nonnull
@@ -58,7 +59,7 @@ public class FoodMenu {
 
   public static final String JSON_PROPERTY_SOURCE_URL = "sourceUrl";
   @javax.annotation.Nullable
-  private String sourceUrl;
+  private URI sourceUrl;
 
   public FoodMenu() { 
   }
@@ -159,7 +160,7 @@ public class FoodMenu {
   }
 
 
-  public FoodMenu sourceUrl(@javax.annotation.Nullable String sourceUrl) {
+  public FoodMenu sourceUrl(@javax.annotation.Nullable URI sourceUrl) {
     this.sourceUrl = sourceUrl;
     return this;
   }
@@ -171,14 +172,14 @@ public class FoodMenu {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_SOURCE_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSourceUrl() {
+  public URI getSourceUrl() {
     return sourceUrl;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_SOURCE_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSourceUrl(@javax.annotation.Nullable String sourceUrl) {
+  public void setSourceUrl(@javax.annotation.Nullable URI sourceUrl) {
     this.sourceUrl = sourceUrl;
   }
 

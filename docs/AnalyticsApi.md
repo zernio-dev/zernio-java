@@ -2599,7 +2599,7 @@ public class Example {
         String accountId = "accountId_example"; // String | The ID of the LinkedIn organization account
         String urn = "urn:li:share:7123456789012345678"; // String | The LinkedIn post URN
         Integer limit = 25; // Integer | Maximum number of reactions to return per page
-        String cursor = "cursor_example"; // String | Offset-based pagination start index
+        Integer cursor = 0; // Integer | Offset-based pagination start index
         try {
             GetLinkedInPostReactions200Response result = apiInstance.getLinkedInPostReactions(accountId, urn, limit, cursor);
             System.out.println(result);
@@ -2622,7 +2622,7 @@ public class Example {
 | **accountId** | **String**| The ID of the LinkedIn organization account | |
 | **urn** | **String**| The LinkedIn post URN | |
 | **limit** | **Integer**| Maximum number of reactions to return per page | [optional] [default to 25] |
-| **cursor** | **String**| Offset-based pagination start index | [optional] |
+| **cursor** | **Integer**| Offset-based pagination start index | [optional] [default to 0] |
 
 ### Return type
 
@@ -2642,7 +2642,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reactions with reactor profiles |  -  |
-| **400** | Invalid request or platform limitation |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
@@ -2681,7 +2681,7 @@ public class Example {
         String accountId = "accountId_example"; // String | The ID of the LinkedIn organization account
         String urn = "urn:li:share:7123456789012345678"; // String | The LinkedIn post URN
         Integer limit = 25; // Integer | Maximum number of reactions to return per page
-        String cursor = "cursor_example"; // String | Offset-based pagination start index
+        Integer cursor = 0; // Integer | Offset-based pagination start index
         try {
             ApiResponse<GetLinkedInPostReactions200Response> response = apiInstance.getLinkedInPostReactionsWithHttpInfo(accountId, urn, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2706,7 +2706,7 @@ public class Example {
 | **accountId** | **String**| The ID of the LinkedIn organization account | |
 | **urn** | **String**| The LinkedIn post URN | |
 | **limit** | **Integer**| Maximum number of reactions to return per page | [optional] [default to 25] |
-| **cursor** | **String**| Offset-based pagination start index | [optional] |
+| **cursor** | **Integer**| Offset-based pagination start index | [optional] [default to 0] |
 
 ### Return type
 
@@ -2726,7 +2726,7 @@ ApiResponse<[**GetLinkedInPostReactions200Response**](GetLinkedInPostReactions20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reactions with reactor profiles |  -  |
-| **400** | Invalid request or platform limitation |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |

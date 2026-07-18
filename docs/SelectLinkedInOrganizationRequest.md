@@ -11,7 +11,7 @@
 |**tempToken** | **String** |  |  |
 |**userProfile** | **Object** |  |  |
 |**accountType** | [**AccountTypeEnum**](#AccountTypeEnum) |  |  |
-|**selectedOrganization** | **Object** |  |  [optional] |
+|**selectedOrganization** | [**SelectLinkedInOrganizationRequestSelectedOrganization**](SelectLinkedInOrganizationRequestSelectedOrganization.md) |  |  [optional] |
 |**redirectUrl** | **URI** |  |  [optional] |
 
 

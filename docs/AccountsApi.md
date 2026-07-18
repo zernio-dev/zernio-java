@@ -392,6 +392,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Account health summary |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 ## getAllAccountsHealthWithHttpInfo
@@ -470,6 +471,7 @@ ApiResponse<[**GetAllAccountsHealth200Response**](GetAllAccountsHealth200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Account health summary |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 
 

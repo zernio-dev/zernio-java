@@ -7,9 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**structuredServiceItem** | [**GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItem**](GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItem.md) |  |  [optional] |
-|**freeFormServiceItem** | [**GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem**](GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem.md) |  |  [optional] |
-|**price** | [**GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPrice**](GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPrice.md) |  |  [optional] |
+|**structuredServiceItem** | [**UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem**](UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md) |  |  [optional] |
+|**freeFormServiceItem** | [**UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem**](UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.md) |  |  [optional] |
+|**price** | [**UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice**](UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md) |  |  [optional] |
 
 
 

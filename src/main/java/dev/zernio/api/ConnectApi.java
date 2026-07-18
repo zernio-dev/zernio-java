@@ -73,6 +73,7 @@ import dev.zernio.model.UpdateFacebookPage200Response;
 import dev.zernio.model.UpdateFacebookPageRequest;
 import dev.zernio.model.UpdateGmbLocation200Response;
 import dev.zernio.model.UpdateGmbLocationRequest;
+import dev.zernio.model.UpdateLinkedInOrganization200Response;
 import dev.zernio.model.UpdateLinkedInOrganizationRequest;
 import dev.zernio.model.UpdatePinterestBoardsRequest;
 import dev.zernio.model.UpdateRedditSubredditsRequest;
@@ -105,7 +106,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -4892,10 +4893,10 @@ public class ConnectApi {
    * Switch a LinkedIn account between personal profile and organization (company page) posting.
    * @param accountId  (required)
    * @param updateLinkedInOrganizationRequest  (required)
-   * @return ConnectBlueskyCredentials200Response
+   * @return UpdateLinkedInOrganization200Response
    * @throws ApiException if fails to make API call
    */
-  public ConnectBlueskyCredentials200Response updateLinkedInOrganization(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest) throws ApiException {
+  public UpdateLinkedInOrganization200Response updateLinkedInOrganization(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest) throws ApiException {
     return updateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest, null);
   }
 
@@ -4905,11 +4906,11 @@ public class ConnectApi {
    * @param accountId  (required)
    * @param updateLinkedInOrganizationRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ConnectBlueskyCredentials200Response
+   * @return UpdateLinkedInOrganization200Response
    * @throws ApiException if fails to make API call
    */
-  public ConnectBlueskyCredentials200Response updateLinkedInOrganization(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<ConnectBlueskyCredentials200Response> localVarResponse = updateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest, headers);
+  public UpdateLinkedInOrganization200Response updateLinkedInOrganization(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateLinkedInOrganization200Response> localVarResponse = updateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -4918,10 +4919,10 @@ public class ConnectApi {
    * Switch a LinkedIn account between personal profile and organization (company page) posting.
    * @param accountId  (required)
    * @param updateLinkedInOrganizationRequest  (required)
-   * @return ApiResponse&lt;ConnectBlueskyCredentials200Response&gt;
+   * @return ApiResponse&lt;UpdateLinkedInOrganization200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectBlueskyCredentials200Response> updateLinkedInOrganizationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest) throws ApiException {
+  public ApiResponse<UpdateLinkedInOrganization200Response> updateLinkedInOrganizationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest) throws ApiException {
     return updateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest, null);
   }
 
@@ -4931,10 +4932,10 @@ public class ConnectApi {
    * @param accountId  (required)
    * @param updateLinkedInOrganizationRequest  (required)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;ConnectBlueskyCredentials200Response&gt;
+   * @return ApiResponse&lt;UpdateLinkedInOrganization200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<ConnectBlueskyCredentials200Response> updateLinkedInOrganizationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateLinkedInOrganization200Response> updateLinkedInOrganizationWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateLinkedInOrganizationRequestBuilder(accountId, updateLinkedInOrganizationRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -4950,7 +4951,7 @@ public class ConnectApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<ConnectBlueskyCredentials200Response>(
+          return new ApiResponse<UpdateLinkedInOrganization200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -4960,10 +4961,10 @@ public class ConnectApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        ConnectBlueskyCredentials200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ConnectBlueskyCredentials200Response>() {});
+        UpdateLinkedInOrganization200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateLinkedInOrganization200Response>() {});
         
 
-        return new ApiResponse<ConnectBlueskyCredentials200Response>(
+        return new ApiResponse<UpdateLinkedInOrganization200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

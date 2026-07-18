@@ -40,20 +40,20 @@ import dev.zernio.ApiClient;
   FoodMenuItemOptionsInner.JSON_PROPERTY_LABELS,
   FoodMenuItemOptionsInner.JSON_PROPERTY_ATTRIBUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FoodMenuItemOptionsInner {
   public static final String JSON_PROPERTY_LABELS = "labels";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private List<FoodMenuLabel> labels = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ATTRIBUTES = "attributes";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private FoodMenuItemAttributes attributes;
 
   public FoodMenuItemOptionsInner() { 
   }
 
-  public FoodMenuItemOptionsInner labels(@javax.annotation.Nullable List<FoodMenuLabel> labels) {
+  public FoodMenuItemOptionsInner labels(@javax.annotation.Nonnull List<FoodMenuLabel> labels) {
     this.labels = labels;
     return this;
   }
@@ -70,22 +70,22 @@ public class FoodMenuItemOptionsInner {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_LABELS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_LABELS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<FoodMenuLabel> getLabels() {
     return labels;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_LABELS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(@javax.annotation.Nullable List<FoodMenuLabel> labels) {
+  @JsonProperty(value = JSON_PROPERTY_LABELS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLabels(@javax.annotation.Nonnull List<FoodMenuLabel> labels) {
     this.labels = labels;
   }
 
 
-  public FoodMenuItemOptionsInner attributes(@javax.annotation.Nullable FoodMenuItemAttributes attributes) {
+  public FoodMenuItemOptionsInner attributes(@javax.annotation.Nonnull FoodMenuItemAttributes attributes) {
     this.attributes = attributes;
     return this;
   }
@@ -94,17 +94,17 @@ public class FoodMenuItemOptionsInner {
    * Get attributes
    * @return attributes
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public FoodMenuItemAttributes getAttributes() {
     return attributes;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTES, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttributes(@javax.annotation.Nullable FoodMenuItemAttributes attributes) {
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTES, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAttributes(@javax.annotation.Nonnull FoodMenuItemAttributes attributes) {
     this.attributes = attributes;
   }
 

@@ -24,9 +24,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPrice;
-import dev.zernio.model.GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItem;
-import dev.zernio.model.GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem;
+import dev.zernio.model.UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem;
+import dev.zernio.model.UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice;
+import dev.zernio.model.UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -40,24 +40,24 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessServicesRequestServiceItemsInner.JSON_PROPERTY_FREE_FORM_SERVICE_ITEM,
   UpdateGoogleBusinessServicesRequestServiceItemsInner.JSON_PROPERTY_PRICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessServicesRequestServiceItemsInner {
   public static final String JSON_PROPERTY_STRUCTURED_SERVICE_ITEM = "structuredServiceItem";
   @javax.annotation.Nullable
-  private GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItem structuredServiceItem;
+  private UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem structuredServiceItem;
 
   public static final String JSON_PROPERTY_FREE_FORM_SERVICE_ITEM = "freeFormServiceItem";
   @javax.annotation.Nullable
-  private GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem freeFormServiceItem;
+  private UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem freeFormServiceItem;
 
   public static final String JSON_PROPERTY_PRICE = "price";
   @javax.annotation.Nullable
-  private GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPrice price;
+  private UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice price;
 
   public UpdateGoogleBusinessServicesRequestServiceItemsInner() { 
   }
 
-  public UpdateGoogleBusinessServicesRequestServiceItemsInner structuredServiceItem(@javax.annotation.Nullable GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItem structuredServiceItem) {
+  public UpdateGoogleBusinessServicesRequestServiceItemsInner structuredServiceItem(@javax.annotation.Nullable UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem structuredServiceItem) {
     this.structuredServiceItem = structuredServiceItem;
     return this;
   }
@@ -69,19 +69,19 @@ public class UpdateGoogleBusinessServicesRequestServiceItemsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_STRUCTURED_SERVICE_ITEM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItem getStructuredServiceItem() {
+  public UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem getStructuredServiceItem() {
     return structuredServiceItem;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_STRUCTURED_SERVICE_ITEM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStructuredServiceItem(@javax.annotation.Nullable GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerStructuredServiceItem structuredServiceItem) {
+  public void setStructuredServiceItem(@javax.annotation.Nullable UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem structuredServiceItem) {
     this.structuredServiceItem = structuredServiceItem;
   }
 
 
-  public UpdateGoogleBusinessServicesRequestServiceItemsInner freeFormServiceItem(@javax.annotation.Nullable GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem freeFormServiceItem) {
+  public UpdateGoogleBusinessServicesRequestServiceItemsInner freeFormServiceItem(@javax.annotation.Nullable UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem freeFormServiceItem) {
     this.freeFormServiceItem = freeFormServiceItem;
     return this;
   }
@@ -93,19 +93,19 @@ public class UpdateGoogleBusinessServicesRequestServiceItemsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_FREE_FORM_SERVICE_ITEM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem getFreeFormServiceItem() {
+  public UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem getFreeFormServiceItem() {
     return freeFormServiceItem;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_FREE_FORM_SERVICE_ITEM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreeFormServiceItem(@javax.annotation.Nullable GetGoogleBusinessServices200ResponseServicesInnerFreeFormServiceItem freeFormServiceItem) {
+  public void setFreeFormServiceItem(@javax.annotation.Nullable UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem freeFormServiceItem) {
     this.freeFormServiceItem = freeFormServiceItem;
   }
 
 
-  public UpdateGoogleBusinessServicesRequestServiceItemsInner price(@javax.annotation.Nullable GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPrice price) {
+  public UpdateGoogleBusinessServicesRequestServiceItemsInner price(@javax.annotation.Nullable UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice price) {
     this.price = price;
     return this;
   }
@@ -117,14 +117,14 @@ public class UpdateGoogleBusinessServicesRequestServiceItemsInner {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PRICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPrice getPrice() {
+  public UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice getPrice() {
     return price;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PRICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrice(@javax.annotation.Nullable GetGoogleBusinessLocationDetails200ResponseServiceItemsInnerPrice price) {
+  public void setPrice(@javax.annotation.Nullable UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice price) {
     this.price = price;
   }
 
@@ -204,21 +204,6 @@ public class UpdateGoogleBusinessServicesRequestServiceItemsInner {
     }
 
     StringJoiner joiner = new StringJoiner("&");
-
-    // add `structuredServiceItem` to the URL query string
-    if (getStructuredServiceItem() != null) {
-      joiner.add(getStructuredServiceItem().toUrlQueryString(prefix + "structuredServiceItem" + suffix));
-    }
-
-    // add `freeFormServiceItem` to the URL query string
-    if (getFreeFormServiceItem() != null) {
-      joiner.add(getFreeFormServiceItem().toUrlQueryString(prefix + "freeFormServiceItem" + suffix));
-    }
-
-    // add `price` to the URL query string
-    if (getPrice() != null) {
-      joiner.add(getPrice().toUrlQueryString(prefix + "price" + suffix));
-    }
 
     return joiner.toString();
   }

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -37,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessPlaceActionRequest.JSON_PROPERTY_URI,
   UpdateGoogleBusinessPlaceActionRequest.JSON_PROPERTY_PLACE_ACTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessPlaceActionRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -45,7 +46,7 @@ public class UpdateGoogleBusinessPlaceActionRequest {
 
   public static final String JSON_PROPERTY_URI = "uri";
   @javax.annotation.Nullable
-  private String uri;
+  private URI uri;
 
   /**
    * New action type
@@ -123,7 +124,7 @@ public class UpdateGoogleBusinessPlaceActionRequest {
   }
 
 
-  public UpdateGoogleBusinessPlaceActionRequest uri(@javax.annotation.Nullable String uri) {
+  public UpdateGoogleBusinessPlaceActionRequest uri(@javax.annotation.Nullable URI uri) {
     this.uri = uri;
     return this;
   }
@@ -135,14 +136,14 @@ public class UpdateGoogleBusinessPlaceActionRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUri() {
+  public URI getUri() {
     return uri;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_URI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUri(@javax.annotation.Nullable String uri) {
+  public void setUri(@javax.annotation.Nullable URI uri) {
     this.uri = uri;
   }
 
@@ -246,21 +247,6 @@ public class UpdateGoogleBusinessPlaceActionRequest {
     }
 
     StringJoiner joiner = new StringJoiner("&");
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
-    }
-
-    // add `uri` to the URL query string
-    if (getUri() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%suri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUri()))));
-    }
-
-    // add `placeActionType` to the URL query string
-    if (getPlaceActionType() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%splaceActionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlaceActionType()))));
-    }
 
     return joiner.toString();
   }

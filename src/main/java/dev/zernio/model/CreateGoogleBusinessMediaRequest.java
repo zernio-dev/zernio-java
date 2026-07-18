@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -38,11 +39,11 @@ import dev.zernio.ApiClient;
   CreateGoogleBusinessMediaRequest.JSON_PROPERTY_DESCRIPTION,
   CreateGoogleBusinessMediaRequest.JSON_PROPERTY_CATEGORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateGoogleBusinessMediaRequest {
   public static final String JSON_PROPERTY_SOURCE_URL = "sourceUrl";
   @javax.annotation.Nonnull
-  private String sourceUrl;
+  private URI sourceUrl;
 
   /**
    * Gets or Sets mediaFormat
@@ -91,6 +92,8 @@ public class CreateGoogleBusinessMediaRequest {
    * Where the photo appears on the listing
    */
   public enum CategoryEnum {
+    CATEGORY_UNSPECIFIED(String.valueOf("CATEGORY_UNSPECIFIED")),
+    
     COVER(String.valueOf("COVER")),
     
     PROFILE(String.valueOf("PROFILE")),
@@ -101,13 +104,19 @@ public class CreateGoogleBusinessMediaRequest {
     
     INTERIOR(String.valueOf("INTERIOR")),
     
+    PRODUCT(String.valueOf("PRODUCT")),
+    
     FOOD_AND_DRINK(String.valueOf("FOOD_AND_DRINK")),
     
     MENU(String.valueOf("MENU")),
     
-    PRODUCT(String.valueOf("PRODUCT")),
+    COMMON_AREA(String.valueOf("COMMON_AREA")),
+    
+    ROOMS(String.valueOf("ROOMS")),
     
     TEAMS(String.valueOf("TEAMS")),
+    
+    AT_WORK(String.valueOf("AT_WORK")),
     
     ADDITIONAL(String.valueOf("ADDITIONAL"));
 
@@ -145,7 +154,7 @@ public class CreateGoogleBusinessMediaRequest {
   public CreateGoogleBusinessMediaRequest() { 
   }
 
-  public CreateGoogleBusinessMediaRequest sourceUrl(@javax.annotation.Nonnull String sourceUrl) {
+  public CreateGoogleBusinessMediaRequest sourceUrl(@javax.annotation.Nonnull URI sourceUrl) {
     this.sourceUrl = sourceUrl;
     return this;
   }
@@ -157,14 +166,14 @@ public class CreateGoogleBusinessMediaRequest {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_SOURCE_URL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getSourceUrl() {
+  public URI getSourceUrl() {
     return sourceUrl;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_SOURCE_URL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSourceUrl(@javax.annotation.Nonnull String sourceUrl) {
+  public void setSourceUrl(@javax.annotation.Nonnull URI sourceUrl) {
     this.sourceUrl = sourceUrl;
   }
 

@@ -44,15 +44,54 @@ import dev.zernio.ApiClient;
   FoodMenuItemAttributes.JSON_PROPERTY_PREPARATION_METHODS,
   FoodMenuItemAttributes.JSON_PROPERTY_MEDIA_KEYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FoodMenuItemAttributes {
   public static final String JSON_PROPERTY_PRICE = "price";
   @javax.annotation.Nullable
   private Money price;
 
+  /**
+   * Spiciness level (e.g. MILD, MEDIUM, HOT)
+   */
+  public enum SpicinessEnum {
+    SPICINESS_UNSPECIFIED(String.valueOf("SPICINESS_UNSPECIFIED")),
+    
+    MILD(String.valueOf("MILD")),
+    
+    MEDIUM(String.valueOf("MEDIUM")),
+    
+    HOT(String.valueOf("HOT"));
+
+    private String value;
+
+    SpicinessEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SpicinessEnum fromValue(String value) {
+      for (SpicinessEnum b : SpicinessEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_SPICINESS = "spiciness";
   @javax.annotation.Nullable
-  private String spiciness;
+  private SpicinessEnum spiciness;
 
   public static final String JSON_PROPERTY_ALLERGEN = "allergen";
   @javax.annotation.Nullable
@@ -101,7 +140,7 @@ public class FoodMenuItemAttributes {
   }
 
 
-  public FoodMenuItemAttributes spiciness(@javax.annotation.Nullable String spiciness) {
+  public FoodMenuItemAttributes spiciness(@javax.annotation.Nullable SpicinessEnum spiciness) {
     this.spiciness = spiciness;
     return this;
   }
@@ -113,14 +152,14 @@ public class FoodMenuItemAttributes {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_SPICINESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSpiciness() {
+  public SpicinessEnum getSpiciness() {
     return spiciness;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_SPICINESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSpiciness(@javax.annotation.Nullable String spiciness) {
+  public void setSpiciness(@javax.annotation.Nullable SpicinessEnum spiciness) {
     this.spiciness = spiciness;
   }
 
@@ -196,6 +235,7 @@ public class FoodMenuItemAttributes {
 
   /**
    * Number of people the item serves
+   * minimum: 1
    * @return servesNumPeople
    */
   @javax.annotation.Nullable

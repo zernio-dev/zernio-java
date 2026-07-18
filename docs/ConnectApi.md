@@ -5571,7 +5571,7 @@ ApiResponse<[**UpdateGmbLocation200Response**](UpdateGmbLocation200Response.md)>
 
 ## updateLinkedInOrganization
 
-> ConnectBlueskyCredentials200Response updateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest)
+> UpdateLinkedInOrganization200Response updateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest)
 
 Switch LinkedIn account type
 
@@ -5601,7 +5601,7 @@ public class Example {
         String accountId = "accountId_example"; // String | 
         UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest = new UpdateLinkedInOrganizationRequest(); // UpdateLinkedInOrganizationRequest | 
         try {
-            ConnectBlueskyCredentials200Response result = apiInstance.updateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest);
+            UpdateLinkedInOrganization200Response result = apiInstance.updateLinkedInOrganization(accountId, updateLinkedInOrganizationRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#updateLinkedInOrganization");
@@ -5624,7 +5624,7 @@ public class Example {
 
 ### Return type
 
-[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials200Response.md)
+[**UpdateLinkedInOrganization200Response**](UpdateLinkedInOrganization200Response.md)
 
 
 ### Authorization
@@ -5646,7 +5646,7 @@ public class Example {
 
 ## updateLinkedInOrganizationWithHttpInfo
 
-> ApiResponse<ConnectBlueskyCredentials200Response> updateLinkedInOrganization updateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest)
+> ApiResponse<UpdateLinkedInOrganization200Response> updateLinkedInOrganization updateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest)
 
 Switch LinkedIn account type
 
@@ -5677,7 +5677,7 @@ public class Example {
         String accountId = "accountId_example"; // String | 
         UpdateLinkedInOrganizationRequest updateLinkedInOrganizationRequest = new UpdateLinkedInOrganizationRequest(); // UpdateLinkedInOrganizationRequest | 
         try {
-            ApiResponse<ConnectBlueskyCredentials200Response> response = apiInstance.updateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest);
+            ApiResponse<UpdateLinkedInOrganization200Response> response = apiInstance.updateLinkedInOrganizationWithHttpInfo(accountId, updateLinkedInOrganizationRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -5702,7 +5702,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials200Response.md)>
+ApiResponse<[**UpdateLinkedInOrganization200Response**](UpdateLinkedInOrganization200Response.md)>
 
 
 ### Authorization

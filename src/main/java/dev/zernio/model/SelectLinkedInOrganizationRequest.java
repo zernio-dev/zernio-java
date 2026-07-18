@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SelectLinkedInOrganizationRequestSelectedOrganization;
 import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -41,7 +42,7 @@ import dev.zernio.ApiClient;
   SelectLinkedInOrganizationRequest.JSON_PROPERTY_SELECTED_ORGANIZATION,
   SelectLinkedInOrganizationRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectLinkedInOrganizationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -96,7 +97,7 @@ public class SelectLinkedInOrganizationRequest {
 
   public static final String JSON_PROPERTY_SELECTED_ORGANIZATION = "selectedOrganization";
   @javax.annotation.Nullable
-  private Object selectedOrganization;
+  private SelectLinkedInOrganizationRequestSelectedOrganization selectedOrganization;
 
   public static final String JSON_PROPERTY_REDIRECT_URL = "redirect_url";
   @javax.annotation.Nullable
@@ -201,7 +202,7 @@ public class SelectLinkedInOrganizationRequest {
   }
 
 
-  public SelectLinkedInOrganizationRequest selectedOrganization(@javax.annotation.Nullable Object selectedOrganization) {
+  public SelectLinkedInOrganizationRequest selectedOrganization(@javax.annotation.Nullable SelectLinkedInOrganizationRequestSelectedOrganization selectedOrganization) {
     this.selectedOrganization = selectedOrganization;
     return this;
   }
@@ -213,14 +214,14 @@ public class SelectLinkedInOrganizationRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_SELECTED_ORGANIZATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getSelectedOrganization() {
+  public SelectLinkedInOrganizationRequestSelectedOrganization getSelectedOrganization() {
     return selectedOrganization;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_SELECTED_ORGANIZATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSelectedOrganization(@javax.annotation.Nullable Object selectedOrganization) {
+  public void setSelectedOrganization(@javax.annotation.Nullable SelectLinkedInOrganizationRequestSelectedOrganization selectedOrganization) {
     this.selectedOrganization = selectedOrganization;
   }
 
@@ -353,7 +354,7 @@ public class SelectLinkedInOrganizationRequest {
 
     // add `selectedOrganization` to the URL query string
     if (getSelectedOrganization() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sselectedOrganization%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSelectedOrganization()))));
+      joiner.add(getSelectedOrganization().toUrlQueryString(prefix + "selectedOrganization" + suffix));
     }
 
     // add `redirect_url` to the URL query string

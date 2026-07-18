@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** | Resource name of the place action link (e.g. locations/123/placeActionLinks/456) |  |
-|**uri** | **String** | New action URL |  [optional] |
+|**uri** | **URI** | New action URL |  [optional] |
 |**placeActionType** | [**PlaceActionTypeEnum**](#PlaceActionTypeEnum) | New action type |  [optional] |
 
 

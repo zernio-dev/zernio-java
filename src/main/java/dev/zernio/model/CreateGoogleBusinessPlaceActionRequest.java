@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -36,11 +37,11 @@ import dev.zernio.ApiClient;
   CreateGoogleBusinessPlaceActionRequest.JSON_PROPERTY_URI,
   CreateGoogleBusinessPlaceActionRequest.JSON_PROPERTY_PLACE_ACTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T13:18:57.146111638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T14:29:03.874972163Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateGoogleBusinessPlaceActionRequest {
   public static final String JSON_PROPERTY_URI = "uri";
   @javax.annotation.Nonnull
-  private String uri;
+  private URI uri;
 
   /**
    * Type of action
@@ -94,7 +95,7 @@ public class CreateGoogleBusinessPlaceActionRequest {
   public CreateGoogleBusinessPlaceActionRequest() { 
   }
 
-  public CreateGoogleBusinessPlaceActionRequest uri(@javax.annotation.Nonnull String uri) {
+  public CreateGoogleBusinessPlaceActionRequest uri(@javax.annotation.Nonnull URI uri) {
     this.uri = uri;
     return this;
   }
@@ -106,14 +107,14 @@ public class CreateGoogleBusinessPlaceActionRequest {
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_URI, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getUri() {
+  public URI getUri() {
     return uri;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_URI, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUri(@javax.annotation.Nonnull String uri) {
+  public void setUri(@javax.annotation.Nonnull URI uri) {
     this.uri = uri;
   }
 

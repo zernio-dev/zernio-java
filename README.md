@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-07-18T13:18:57.146111638Z[Etc/UTC]
+- Build date: 2026-07-18T14:29:03.874972163Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1615,7 +1615,6 @@ Class | Method | HTTP request | Description
  - [GetLinkedInPostReactions200ResponsePagination](docs/GetLinkedInPostReactions200ResponsePagination.md)
  - [GetLinkedInPostReactions200ResponseReactionsInner](docs/GetLinkedInPostReactions200ResponseReactionsInner.md)
  - [GetLinkedInPostReactions200ResponseReactionsInnerFrom](docs/GetLinkedInPostReactions200ResponseReactionsInnerFrom.md)
- - [GetLinkedInPostReactions400Response](docs/GetLinkedInPostReactions400Response.md)
  - [GetLinkedInSupplyForecast200Response](docs/GetLinkedInSupplyForecast200Response.md)
  - [GetLinkedInSupplyForecast200ResponseForecastInner](docs/GetLinkedInSupplyForecast200ResponseForecastInner.md)
  - [GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner](docs/GetLinkedInSupplyForecast200ResponseForecastInnerTimeSeriesInner.md)
@@ -2071,6 +2070,7 @@ Class | Method | HTTP request | Description
  - [SelectLinkedInOrganization200ResponseAccount](docs/SelectLinkedInOrganization200ResponseAccount.md)
  - [SelectLinkedInOrganization200ResponseBulkRefresh](docs/SelectLinkedInOrganization200ResponseBulkRefresh.md)
  - [SelectLinkedInOrganizationRequest](docs/SelectLinkedInOrganizationRequest.md)
+ - [SelectLinkedInOrganizationRequestSelectedOrganization](docs/SelectLinkedInOrganizationRequestSelectedOrganization.md)
  - [SelectPinterestBoard200Response](docs/SelectPinterestBoard200Response.md)
  - [SelectPinterestBoard200ResponseAccount](docs/SelectPinterestBoard200ResponseAccount.md)
  - [SelectPinterestBoardRequest](docs/SelectPinterestBoardRequest.md)
@@ -2275,6 +2275,7 @@ Class | Method | HTTP request | Description
  - [UpdateGoogleBusinessAttributes200Response](docs/UpdateGoogleBusinessAttributes200Response.md)
  - [UpdateGoogleBusinessAttributesRequest](docs/UpdateGoogleBusinessAttributesRequest.md)
  - [UpdateGoogleBusinessAttributesRequestAttributesInner](docs/UpdateGoogleBusinessAttributesRequestAttributesInner.md)
+ - [UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner](docs/UpdateGoogleBusinessAttributesRequestAttributesInnerUriValuesInner.md)
  - [UpdateGoogleBusinessFoodMenus200Response](docs/UpdateGoogleBusinessFoodMenus200Response.md)
  - [UpdateGoogleBusinessFoodMenusRequest](docs/UpdateGoogleBusinessFoodMenusRequest.md)
  - [UpdateGoogleBusinessLocationDetails200Response](docs/UpdateGoogleBusinessLocationDetails200Response.md)
@@ -2295,9 +2296,14 @@ Class | Method | HTTP request | Description
  - [UpdateGoogleBusinessServices200Response](docs/UpdateGoogleBusinessServices200Response.md)
  - [UpdateGoogleBusinessServicesRequest](docs/UpdateGoogleBusinessServicesRequest.md)
  - [UpdateGoogleBusinessServicesRequestServiceItemsInner](docs/UpdateGoogleBusinessServicesRequestServiceItemsInner.md)
+ - [UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.md)
+ - [UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.md)
+ - [UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md)
+ - [UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md)
  - [UpdateInboxConversation200Response](docs/UpdateInboxConversation200Response.md)
  - [UpdateInboxConversation200ResponseData](docs/UpdateInboxConversation200ResponseData.md)
  - [UpdateInboxConversationRequest](docs/UpdateInboxConversationRequest.md)
+ - [UpdateLinkedInOrganization200Response](docs/UpdateLinkedInOrganization200Response.md)
  - [UpdateLinkedInOrganizationRequest](docs/UpdateLinkedInOrganizationRequest.md)
  - [UpdatePinterestBoardsRequest](docs/UpdatePinterestBoardsRequest.md)
  - [UpdatePostMetadata200Response](docs/UpdatePostMetadata200Response.md)
