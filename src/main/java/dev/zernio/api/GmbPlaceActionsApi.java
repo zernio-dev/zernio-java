@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:14:30.679385375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:42:41.495858490Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbPlaceActionsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -624,7 +624,7 @@ public class GmbPlaceActionsApi {
    * @return UpdateGoogleBusinessPlaceAction200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessPlaceAction200Response updateGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+  public UpdateGoogleBusinessPlaceAction200Response updateGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
     return updateGoogleBusinessPlaceAction(accountId, updateGoogleBusinessPlaceActionRequest, locationId, null);
   }
 
@@ -638,7 +638,7 @@ public class GmbPlaceActionsApi {
    * @return UpdateGoogleBusinessPlaceAction200Response
    * @throws ApiException if fails to make API call
    */
-  public UpdateGoogleBusinessPlaceAction200Response updateGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+  public UpdateGoogleBusinessPlaceAction200Response updateGoogleBusinessPlaceAction(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     ApiResponse<UpdateGoogleBusinessPlaceAction200Response> localVarResponse = updateGoogleBusinessPlaceActionWithHttpInfo(accountId, updateGoogleBusinessPlaceActionRequest, locationId, headers);
     return localVarResponse.getData();
   }
@@ -652,7 +652,7 @@ public class GmbPlaceActionsApi {
    * @return ApiResponse&lt;UpdateGoogleBusinessPlaceAction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessPlaceAction200Response> updateGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
+  public ApiResponse<UpdateGoogleBusinessPlaceAction200Response> updateGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId) throws ApiException {
     return updateGoogleBusinessPlaceActionWithHttpInfo(accountId, updateGoogleBusinessPlaceActionRequest, locationId, null);
   }
 
@@ -666,7 +666,7 @@ public class GmbPlaceActionsApi {
    * @return ApiResponse&lt;UpdateGoogleBusinessPlaceAction200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<UpdateGoogleBusinessPlaceAction200Response> updateGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+  public ApiResponse<UpdateGoogleBusinessPlaceAction200Response> updateGoogleBusinessPlaceActionWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = updateGoogleBusinessPlaceActionRequestBuilder(accountId, updateGoogleBusinessPlaceActionRequest, locationId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -714,7 +714,7 @@ public class GmbPlaceActionsApi {
     }
   }
 
-  private HttpRequest.Builder updateGoogleBusinessPlaceActionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder updateGoogleBusinessPlaceActionRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull UpdateGoogleBusinessPlaceActionRequest updateGoogleBusinessPlaceActionRequest, @javax.annotation.Nullable String locationId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling updateGoogleBusinessPlaceAction");

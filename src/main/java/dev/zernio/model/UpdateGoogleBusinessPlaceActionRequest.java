@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessPlaceActionRequest.JSON_PROPERTY_URI,
   UpdateGoogleBusinessPlaceActionRequest.JSON_PROPERTY_PLACE_ACTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:14:30.679385375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:42:41.495858490Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessPlaceActionRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -130,7 +130,7 @@ public class UpdateGoogleBusinessPlaceActionRequest {
   }
 
   /**
-   * New action URL
+   * New action URL. At least one of uri or placeActionType is required (enforced server-side; not modeled as anyOf because required-only anyOf branches break SDK generators).
    * @return uri
    */
   @javax.annotation.Nullable
@@ -247,6 +247,21 @@ public class UpdateGoogleBusinessPlaceActionRequest {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+    }
+
+    // add `uri` to the URL query string
+    if (getUri() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUri()))));
+    }
+
+    // add `placeActionType` to the URL query string
+    if (getPlaceActionType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splaceActionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlaceActionType()))));
+    }
 
     return joiner.toString();
   }

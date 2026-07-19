@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_IS_OWNER,
   GetInboxPostComments200ResponseCommentsInnerFrom.JSON_PROPERTY_VERIFIED_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:14:30.679385375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:42:41.495858490Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseCommentsInnerFrom {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

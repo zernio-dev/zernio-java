@@ -45188,14 +45188,14 @@ components:
         name:
           type: string
     updateGoogleBusinessPlaceAction_request:
-      anyOf: []
-      nullable: true
       properties:
         name:
           description: Resource name of the place action link (e.g. locations/123/placeActionLinks/456)
           type: string
         uri:
-          description: New action URL
+          description: New action URL. At least one of uri or placeActionType is required
+            (enforced server-side; not modeled as anyOf because required-only anyOf
+            branches break SDK generators).
           format: uri
           type: string
         placeActionType:
@@ -45323,6 +45323,9 @@ components:
             $ref: "#/components/schemas/getGoogleBusinessServices_200_response_services_inner"
           type: array
     updateGoogleBusinessServices_request_serviceItems_inner_structuredServiceItem:
+      description: Exactly one of structuredServiceItem or freeFormServiceItem is
+        required per item (enforced server-side; not modeled as oneOf because required-only
+        oneOf branches break SDK generators).
       properties:
         serviceTypeId:
           minLength: 1
@@ -45363,8 +45366,6 @@ components:
         nanos:
           type: integer
     updateGoogleBusinessServices_request_serviceItems_inner:
-      nullable: true
-      oneOf: []
       properties:
         structuredServiceItem:
           $ref: "#/components/schemas/updateGoogleBusinessServices_request_serviceItems_inner_structuredServiceItem"
@@ -47199,12 +47200,6 @@ components:
         googleAccountId:
           description: |
             Optional but recommended. The Google Business Account resource name ("accounts/123") that owns the new location (from GET gmb-locations). When provided, the location is resolved directly instead of by enumerating the account, which is required for accounts with many locations. Named `googleAccountId` to disambiguate from the path `accountId` (the Zernio account). The legacy field name `accountId` is still accepted for backwards compatibility.
-          minLength: 1
-          type: string
-        accountId:
-          deprecated: true
-          description: Legacy alias for googleAccountId. Use googleAccountId for new
-            integrations.
           minLength: 1
           type: string
       required:

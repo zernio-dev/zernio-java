@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessServicesRequestServiceItemsInner.JSON_PROPERTY_FREE_FORM_SERVICE_ITEM,
   UpdateGoogleBusinessServicesRequestServiceItemsInner.JSON_PROPERTY_PRICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:14:30.679385375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:42:41.495858490Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessServicesRequestServiceItemsInner {
   public static final String JSON_PROPERTY_STRUCTURED_SERVICE_ITEM = "structuredServiceItem";
   @javax.annotation.Nullable
@@ -204,6 +204,21 @@ public class UpdateGoogleBusinessServicesRequestServiceItemsInner {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `structuredServiceItem` to the URL query string
+    if (getStructuredServiceItem() != null) {
+      joiner.add(getStructuredServiceItem().toUrlQueryString(prefix + "structuredServiceItem" + suffix));
+    }
+
+    // add `freeFormServiceItem` to the URL query string
+    if (getFreeFormServiceItem() != null) {
+      joiner.add(getFreeFormServiceItem().toUrlQueryString(prefix + "freeFormServiceItem" + suffix));
+    }
+
+    // add `price` to the URL query string
+    if (getPrice() != null) {
+      joiner.add(getPrice().toUrlQueryString(prefix + "price" + suffix));
+    }
 
     return joiner.toString();
   }

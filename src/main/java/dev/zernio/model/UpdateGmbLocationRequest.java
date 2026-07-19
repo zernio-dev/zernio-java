@@ -34,10 +34,9 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   UpdateGmbLocationRequest.JSON_PROPERTY_SELECTED_LOCATION_ID,
-  UpdateGmbLocationRequest.JSON_PROPERTY_GOOGLE_ACCOUNT_ID,
-  UpdateGmbLocationRequest.JSON_PROPERTY_ACCOUNT_ID
+  UpdateGmbLocationRequest.JSON_PROPERTY_GOOGLE_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:14:30.679385375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:42:41.495858490Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGmbLocationRequest {
   public static final String JSON_PROPERTY_SELECTED_LOCATION_ID = "selectedLocationId";
   @javax.annotation.Nonnull
@@ -46,10 +45,6 @@ public class UpdateGmbLocationRequest {
   public static final String JSON_PROPERTY_GOOGLE_ACCOUNT_ID = "googleAccountId";
   @javax.annotation.Nullable
   private String googleAccountId;
-
-  public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
-  @javax.annotation.Nullable
-  private String accountId;
 
   public UpdateGmbLocationRequest() { 
   }
@@ -102,32 +97,6 @@ public class UpdateGmbLocationRequest {
   }
 
 
-  public UpdateGmbLocationRequest accountId(@javax.annotation.Nullable String accountId) {
-    this.accountId = accountId;
-    return this;
-  }
-
-  /**
-   * Legacy alias for googleAccountId. Use googleAccountId for new integrations.
-   * @return accountId
-   * @deprecated
-   */
-  @Deprecated
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAccountId() {
-    return accountId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_ACCOUNT_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccountId(@javax.annotation.Nullable String accountId) {
-    this.accountId = accountId;
-  }
-
-
   /**
    * Return true if this updateGmbLocation_request object is equal to o.
    */
@@ -141,13 +110,12 @@ public class UpdateGmbLocationRequest {
     }
     UpdateGmbLocationRequest updateGmbLocationRequest = (UpdateGmbLocationRequest) o;
     return Objects.equals(this.selectedLocationId, updateGmbLocationRequest.selectedLocationId) &&
-        Objects.equals(this.googleAccountId, updateGmbLocationRequest.googleAccountId) &&
-        Objects.equals(this.accountId, updateGmbLocationRequest.accountId);
+        Objects.equals(this.googleAccountId, updateGmbLocationRequest.googleAccountId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(selectedLocationId, googleAccountId, accountId);
+    return Objects.hash(selectedLocationId, googleAccountId);
   }
 
   @Override
@@ -156,7 +124,6 @@ public class UpdateGmbLocationRequest {
     sb.append("class UpdateGmbLocationRequest {\n");
     sb.append("    selectedLocationId: ").append(toIndentedString(selectedLocationId)).append("\n");
     sb.append("    googleAccountId: ").append(toIndentedString(googleAccountId)).append("\n");
-    sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -212,11 +179,6 @@ public class UpdateGmbLocationRequest {
     // add `googleAccountId` to the URL query string
     if (getGoogleAccountId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sgoogleAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGoogleAccountId()))));
-    }
-
-    // add `accountId` to the URL query string
-    if (getAccountId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%saccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountId()))));
     }
 
     return joiner.toString();
