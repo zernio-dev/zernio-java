@@ -131,7 +131,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T17:20:57.917516032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:14:30.679385375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -268,7 +268,7 @@ public class CreateStandaloneAdRequest {
   private BudgetTypeEnum budgetType;
 
   /**
-   * Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
+   * Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
    */
   public enum StatusEnum {
     ACTIVE(String.valueOf("ACTIVE")),
@@ -1157,7 +1157,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Publish state of the created ad set + ad. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend.
+   * Meta and TikTok. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused and skips activation, so you can review before they spend. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused.
    * @return status
    */
   @javax.annotation.Nullable
@@ -1709,7 +1709,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta-only. City-level geo targeting. Each city is targeted by Meta&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;city&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  Cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. 
+   * City-level geo targeting (Meta and TikTok). Each city is targeted by the platform&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; (Meta only) extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  On Meta, cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. On TikTok, keys are numeric location ids and can be sent without &#x60;countries&#x60;. 
    * @return cities
    */
   @javax.annotation.Nullable
@@ -1741,7 +1741,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta-only. Region-level (state/province) geo targeting. Each region is targeted by Meta&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?type&#x3D;region&amp;q&#x3D;&lt;name&gt;&amp;country_code&#x3D;&lt;ISO&gt;&#x60;. 
+   * Region-level (state/province) geo targeting (Meta and TikTok). Each region is targeted by the platform&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. 
    * @return regions
    */
   @javax.annotation.Nullable
@@ -1889,7 +1889,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * DMA / metro-area geo targeting. &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro.
+   * DMA / metro-area geo targeting (Meta and TikTok). &#x60;key&#x60; is the platform&#39;s metro ID from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;metro (TikTok metros appear as type &#x60;metro&#x60;, e.g. the New York DMA).
    * @return metros
    */
   @javax.annotation.Nullable

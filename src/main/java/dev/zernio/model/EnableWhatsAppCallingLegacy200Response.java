@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_SIP_HOSTNAME,
   EnableWhatsAppCallingLegacy200Response.JSON_PROPERTY_FORWARD_TO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-18T17:20:57.917516032Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:14:30.679385375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnableWhatsAppCallingLegacy200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable
