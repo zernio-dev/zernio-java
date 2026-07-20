@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -35,12 +36,13 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ReplyToInboxPostRequest.JSON_PROPERTY_ACCOUNT_ID,
   ReplyToInboxPostRequest.JSON_PROPERTY_MESSAGE,
+  ReplyToInboxPostRequest.JSON_PROPERTY_ATTACHMENT_URL,
   ReplyToInboxPostRequest.JSON_PROPERTY_COMMENT_ID,
   ReplyToInboxPostRequest.JSON_PROPERTY_PARENT_CID,
   ReplyToInboxPostRequest.JSON_PROPERTY_ROOT_URI,
   ReplyToInboxPostRequest.JSON_PROPERTY_ROOT_CID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-19T17:42:41.495858490Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReplyToInboxPostRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -49,6 +51,10 @@ public class ReplyToInboxPostRequest {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nonnull
   private String message;
+
+  public static final String JSON_PROPERTY_ATTACHMENT_URL = "attachmentUrl";
+  @javax.annotation.Nullable
+  private URI attachmentUrl;
 
   public static final String JSON_PROPERTY_COMMENT_ID = "commentId";
   @javax.annotation.Nullable
@@ -114,6 +120,30 @@ public class ReplyToInboxPostRequest {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMessage(@javax.annotation.Nonnull String message) {
     this.message = message;
+  }
+
+
+  public ReplyToInboxPostRequest attachmentUrl(@javax.annotation.Nullable URI attachmentUrl) {
+    this.attachmentUrl = attachmentUrl;
+    return this;
+  }
+
+  /**
+   * (Facebook only) URL of an image to attach, publishing a photo comment alongside the text. The URL must be publicly accessible so Meta can fetch it. Returns 400 for other platforms.
+   * @return attachmentUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENT_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getAttachmentUrl() {
+    return attachmentUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ATTACHMENT_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAttachmentUrl(@javax.annotation.Nullable URI attachmentUrl) {
+    this.attachmentUrl = attachmentUrl;
   }
 
 
@@ -227,6 +257,7 @@ public class ReplyToInboxPostRequest {
     ReplyToInboxPostRequest replyToInboxPostRequest = (ReplyToInboxPostRequest) o;
     return Objects.equals(this.accountId, replyToInboxPostRequest.accountId) &&
         Objects.equals(this.message, replyToInboxPostRequest.message) &&
+        Objects.equals(this.attachmentUrl, replyToInboxPostRequest.attachmentUrl) &&
         Objects.equals(this.commentId, replyToInboxPostRequest.commentId) &&
         Objects.equals(this.parentCid, replyToInboxPostRequest.parentCid) &&
         Objects.equals(this.rootUri, replyToInboxPostRequest.rootUri) &&
@@ -235,7 +266,7 @@ public class ReplyToInboxPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, message, commentId, parentCid, rootUri, rootCid);
+    return Objects.hash(accountId, message, attachmentUrl, commentId, parentCid, rootUri, rootCid);
   }
 
   @Override
@@ -244,6 +275,7 @@ public class ReplyToInboxPostRequest {
     sb.append("class ReplyToInboxPostRequest {\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    attachmentUrl: ").append(toIndentedString(attachmentUrl)).append("\n");
     sb.append("    commentId: ").append(toIndentedString(commentId)).append("\n");
     sb.append("    parentCid: ").append(toIndentedString(parentCid)).append("\n");
     sb.append("    rootUri: ").append(toIndentedString(rootUri)).append("\n");
@@ -303,6 +335,11 @@ public class ReplyToInboxPostRequest {
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    }
+
+    // add `attachmentUrl` to the URL query string
+    if (getAttachmentUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sattachmentUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttachmentUrl()))));
     }
 
     // add `commentId` to the URL query string
