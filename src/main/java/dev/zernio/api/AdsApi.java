@@ -27,24 +27,29 @@ import dev.zernio.model.ArchiveLeadForm200Response;
 import dev.zernio.model.BoostPostRequest;
 import dev.zernio.model.CreateAdInsightsReport202Response;
 import dev.zernio.model.CreateAdInsightsReportRequest;
+import dev.zernio.model.CreateCallAdRequest;
 import dev.zernio.model.CreateConversionDestination201Response;
 import dev.zernio.model.CreateConversionDestinationRequest;
 import dev.zernio.model.CreateCtwaAd201Response;
-import dev.zernio.model.CreateCtwaAdRequest;
 import dev.zernio.model.CreateLeadForm200Response;
 import dev.zernio.model.CreateLeadFormRequest;
+import dev.zernio.model.CreateMessagingAdRequest;
 import dev.zernio.model.CreateStandaloneAd201Response;
 import dev.zernio.model.CreateStandaloneAdRequest;
 import dev.zernio.model.CreateTestLead200Response;
 import dev.zernio.model.CreateTestLeadRequest;
+import dev.zernio.model.CtwaAdRequestBody;
 import dev.zernio.model.DeleteAccountGroup200Response;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.EstimateAdReach200Response;
 import dev.zernio.model.EstimateAdReachRequest;
+import dev.zernio.model.GenerateAdPreviews200Response;
+import dev.zernio.model.GenerateAdPreviewsRequest;
 import dev.zernio.model.GetAd200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.GetAdInsightsReport200Response;
+import dev.zernio.model.GetAdPreviews200Response;
 import dev.zernio.model.GetAdTrackingTags200Response;
 import dev.zernio.model.GetCampaignAnalytics200Response;
 import dev.zernio.model.GetConversionDestination200Response;
@@ -112,7 +117,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T10:08:11.068866202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T14:18:25.464819250Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -881,6 +886,115 @@ public class AdsApi {
   }
 
   /**
+   * Create Click-to-Call ad
+   * Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+   * @param createCallAdRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void createCallAd(@javax.annotation.Nonnull CreateCallAdRequest createCallAdRequest) throws ApiException {
+    createCallAd(createCallAdRequest, null);
+  }
+
+  /**
+   * Create Click-to-Call ad
+   * Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+   * @param createCallAdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void createCallAd(@javax.annotation.Nonnull CreateCallAdRequest createCallAdRequest, Map<String, String> headers) throws ApiException {
+    createCallAdWithHttpInfo(createCallAdRequest, headers);
+  }
+
+  /**
+   * Create Click-to-Call ad
+   * Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+   * @param createCallAdRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> createCallAdWithHttpInfo(@javax.annotation.Nonnull CreateCallAdRequest createCallAdRequest) throws ApiException {
+    return createCallAdWithHttpInfo(createCallAdRequest, null);
+  }
+
+  /**
+   * Create Click-to-Call ad
+   * Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+   * @param createCallAdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> createCallAdWithHttpInfo(@javax.annotation.Nonnull CreateCallAdRequest createCallAdRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createCallAdRequestBuilder(createCallAdRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createCallAd", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createCallAdRequestBuilder(@javax.annotation.Nonnull CreateCallAdRequest createCallAdRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createCallAdRequest' is set
+    if (createCallAdRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createCallAdRequest' when calling createCallAd");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/call";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCallAdRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Create a conversion destination
    * Create a new conversion destination on the platform. Supported for LinkedIn (conversion rule) and Google Ads (conversion action). Meta manages destinations in its own UI and returns 405.  **LinkedIn:** creation is NOT idempotent. A retry creates a second destination. Deduplicate before retrying.  **Google Ads:** calling with a name that already exists reuses the existing conversion action transparently (the response is identical to a fresh create). Calling with the same name but a different category returns a typed &#x60;IDEMPOTENCY_CONFLICT&#x60; (409) rather than silently returning the mismatched action.  **LinkedIn:** the rule is created with &#x60;conversionMethod&#x3D;CONVERSIONS_API&#x60; and (by default) auto-associated with all of the ad account&#39;s campaigns via &#x60;autoAssociationType&#x3D;ALL_CAMPAIGNS&#x60;. Pass &#x60;autoAssociationType: NONE&#x60; to opt out and manage associations explicitly via the associations endpoints below.  365-day attribution windows are only valid for &#x60;SUBMIT_APPLICATION&#x60;, &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;QUALIFIED_LEAD&#x60;, and &#x60;LEAD&#x60; rule types; the API rejects other combinations locally.  **Google Ads:** the conversion action is created with &#x60;type&#x3D;UPLOAD_CLICKS&#x60; (required for API-uploaded offline conversions, immutable after creation). The &#x60;type&#x60; field carries the Google &#x60;ConversionActionCategory&#x60; enum value, e.g. &#x60;PURCHASE&#x60;, &#x60;SUBSCRIBE_PAID&#x60;, &#x60;SIGNUP&#x60;, &#x60;IMPORTED_LEAD&#x60;, &#x60;BOOK_APPOINTMENT&#x60;. Unified standard event names (e.g. &#x60;Purchase&#x60;, &#x60;Subscribe&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Lead&#x60;, &#x60;Schedule&#x60;) are resolved to their Google category equivalents automatically. The action defaults to secondary (non-primary) to avoid immediately steering Smart Bidding; pass &#x60;primaryForGoal: true&#x60; to opt in. 
    * @param accountId SocialAccount ID (linkedinads or googleads). (required)
@@ -1013,50 +1127,58 @@ public class AdsApi {
   }
 
   /**
-   * Create Click-to-WhatsApp ad
-   * Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
-   * @param createCtwaAdRequest  (required)
+   * Create Click-to-WhatsApp ad (deprecated)
+   * Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+   * @param ctwaAdRequestBody  (required)
    * @return CreateCtwaAd201Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public CreateCtwaAd201Response createCtwaAd(@javax.annotation.Nonnull CreateCtwaAdRequest createCtwaAdRequest) throws ApiException {
-    return createCtwaAd(createCtwaAdRequest, null);
+  @Deprecated
+  public CreateCtwaAd201Response createCtwaAd(@javax.annotation.Nonnull CtwaAdRequestBody ctwaAdRequestBody) throws ApiException {
+    return createCtwaAd(ctwaAdRequestBody, null);
   }
 
   /**
-   * Create Click-to-WhatsApp ad
-   * Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
-   * @param createCtwaAdRequest  (required)
+   * Create Click-to-WhatsApp ad (deprecated)
+   * Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+   * @param ctwaAdRequestBody  (required)
    * @param headers Optional headers to include in the request
    * @return CreateCtwaAd201Response
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public CreateCtwaAd201Response createCtwaAd(@javax.annotation.Nonnull CreateCtwaAdRequest createCtwaAdRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<CreateCtwaAd201Response> localVarResponse = createCtwaAdWithHttpInfo(createCtwaAdRequest, headers);
+  @Deprecated
+  public CreateCtwaAd201Response createCtwaAd(@javax.annotation.Nonnull CtwaAdRequestBody ctwaAdRequestBody, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateCtwaAd201Response> localVarResponse = createCtwaAdWithHttpInfo(ctwaAdRequestBody, headers);
     return localVarResponse.getData();
   }
 
   /**
-   * Create Click-to-WhatsApp ad
-   * Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
-   * @param createCtwaAdRequest  (required)
+   * Create Click-to-WhatsApp ad (deprecated)
+   * Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+   * @param ctwaAdRequestBody  (required)
    * @return ApiResponse&lt;CreateCtwaAd201Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<CreateCtwaAd201Response> createCtwaAdWithHttpInfo(@javax.annotation.Nonnull CreateCtwaAdRequest createCtwaAdRequest) throws ApiException {
-    return createCtwaAdWithHttpInfo(createCtwaAdRequest, null);
+  @Deprecated
+  public ApiResponse<CreateCtwaAd201Response> createCtwaAdWithHttpInfo(@javax.annotation.Nonnull CtwaAdRequestBody ctwaAdRequestBody) throws ApiException {
+    return createCtwaAdWithHttpInfo(ctwaAdRequestBody, null);
   }
 
   /**
-   * Create Click-to-WhatsApp ad
-   * Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
-   * @param createCtwaAdRequest  (required)
+   * Create Click-to-WhatsApp ad (deprecated)
+   * Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+   * @param ctwaAdRequestBody  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateCtwaAd201Response&gt;
    * @throws ApiException if fails to make API call
+   * @deprecated
    */
-  public ApiResponse<CreateCtwaAd201Response> createCtwaAdWithHttpInfo(@javax.annotation.Nonnull CreateCtwaAdRequest createCtwaAdRequest, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createCtwaAdRequestBuilder(createCtwaAdRequest, headers);
+  @Deprecated
+  public ApiResponse<CreateCtwaAd201Response> createCtwaAdWithHttpInfo(@javax.annotation.Nonnull CtwaAdRequestBody ctwaAdRequestBody, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createCtwaAdRequestBuilder(ctwaAdRequestBody, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1103,10 +1225,10 @@ public class AdsApi {
     }
   }
 
-  private HttpRequest.Builder createCtwaAdRequestBuilder(@javax.annotation.Nonnull CreateCtwaAdRequest createCtwaAdRequest, Map<String, String> headers) throws ApiException {
-    // verify the required parameter 'createCtwaAdRequest' is set
-    if (createCtwaAdRequest == null) {
-      throw new ApiException(400, "Missing the required parameter 'createCtwaAdRequest' when calling createCtwaAd");
+  private HttpRequest.Builder createCtwaAdRequestBuilder(@javax.annotation.Nonnull CtwaAdRequestBody ctwaAdRequestBody, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'ctwaAdRequestBody' is set
+    if (ctwaAdRequestBody == null) {
+      throw new ApiException(400, "Missing the required parameter 'ctwaAdRequestBody' when calling createCtwaAd");
     }
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
@@ -1119,7 +1241,7 @@ public class AdsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createCtwaAdRequest);
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(ctwaAdRequestBody);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1243,6 +1365,115 @@ public class AdsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createLeadFormRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+   * Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+   * @param createMessagingAdRequest  (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void createMessagingAd(@javax.annotation.Nonnull CreateMessagingAdRequest createMessagingAdRequest) throws ApiException {
+    createMessagingAd(createMessagingAdRequest, null);
+  }
+
+  /**
+   * Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+   * Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+   * @param createMessagingAdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void createMessagingAd(@javax.annotation.Nonnull CreateMessagingAdRequest createMessagingAdRequest, Map<String, String> headers) throws ApiException {
+    createMessagingAdWithHttpInfo(createMessagingAdRequest, headers);
+  }
+
+  /**
+   * Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+   * Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+   * @param createMessagingAdRequest  (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> createMessagingAdWithHttpInfo(@javax.annotation.Nonnull CreateMessagingAdRequest createMessagingAdRequest) throws ApiException {
+    return createMessagingAdWithHttpInfo(createMessagingAdRequest, null);
+  }
+
+  /**
+   * Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+   * Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+   * @param createMessagingAdRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> createMessagingAdWithHttpInfo(@javax.annotation.Nonnull CreateMessagingAdRequest createMessagingAdRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createMessagingAdRequestBuilder(createMessagingAdRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createMessagingAd", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
+        }
+        return new ApiResponse<>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            null
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createMessagingAdRequestBuilder(@javax.annotation.Nonnull CreateMessagingAdRequest createMessagingAdRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createMessagingAdRequest' is set
+    if (createMessagingAdRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createMessagingAdRequest' when calling createMessagingAd");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/messaging";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createMessagingAdRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1894,6 +2125,129 @@ public class AdsApi {
   }
 
   /**
+   * Render pre-create ad previews (Meta)
+   * Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param generateAdPreviewsRequest  (required)
+   * @return GenerateAdPreviews200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GenerateAdPreviews200Response generateAdPreviews(@javax.annotation.Nonnull GenerateAdPreviewsRequest generateAdPreviewsRequest) throws ApiException {
+    return generateAdPreviews(generateAdPreviewsRequest, null);
+  }
+
+  /**
+   * Render pre-create ad previews (Meta)
+   * Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param generateAdPreviewsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return GenerateAdPreviews200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GenerateAdPreviews200Response generateAdPreviews(@javax.annotation.Nonnull GenerateAdPreviewsRequest generateAdPreviewsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<GenerateAdPreviews200Response> localVarResponse = generateAdPreviewsWithHttpInfo(generateAdPreviewsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Render pre-create ad previews (Meta)
+   * Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param generateAdPreviewsRequest  (required)
+   * @return ApiResponse&lt;GenerateAdPreviews200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GenerateAdPreviews200Response> generateAdPreviewsWithHttpInfo(@javax.annotation.Nonnull GenerateAdPreviewsRequest generateAdPreviewsRequest) throws ApiException {
+    return generateAdPreviewsWithHttpInfo(generateAdPreviewsRequest, null);
+  }
+
+  /**
+   * Render pre-create ad previews (Meta)
+   * Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param generateAdPreviewsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GenerateAdPreviews200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GenerateAdPreviews200Response> generateAdPreviewsWithHttpInfo(@javax.annotation.Nonnull GenerateAdPreviewsRequest generateAdPreviewsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = generateAdPreviewsRequestBuilder(generateAdPreviewsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("generateAdPreviews", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GenerateAdPreviews200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GenerateAdPreviews200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GenerateAdPreviews200Response>() {});
+        
+
+        return new ApiResponse<GenerateAdPreviews200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder generateAdPreviewsRequestBuilder(@javax.annotation.Nonnull GenerateAdPreviewsRequest generateAdPreviewsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'generateAdPreviewsRequest' is set
+    if (generateAdPreviewsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'generateAdPreviewsRequest' when calling generateAdPreviews");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/preview";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(generateAdPreviewsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get ad details
    * Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. See description for details.  (required)
@@ -2436,6 +2790,143 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "after";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Render previews of an existing ad (Meta)
+   * Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param adId Zernio ad id (24-char hex). (required)
+   * @param formats Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)
+   * @return GetAdPreviews200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdPreviews200Response getAdPreviews(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String formats) throws ApiException {
+    return getAdPreviews(adId, formats, null);
+  }
+
+  /**
+   * Render previews of an existing ad (Meta)
+   * Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param adId Zernio ad id (24-char hex). (required)
+   * @param formats Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdPreviews200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdPreviews200Response getAdPreviews(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String formats, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdPreviews200Response> localVarResponse = getAdPreviewsWithHttpInfo(adId, formats, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Render previews of an existing ad (Meta)
+   * Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param adId Zernio ad id (24-char hex). (required)
+   * @param formats Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)
+   * @return ApiResponse&lt;GetAdPreviews200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdPreviews200Response> getAdPreviewsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String formats) throws ApiException {
+    return getAdPreviewsWithHttpInfo(adId, formats, null);
+  }
+
+  /**
+   * Render previews of an existing ad (Meta)
+   * Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+   * @param adId Zernio ad id (24-char hex). (required)
+   * @param formats Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdPreviews200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdPreviews200Response> getAdPreviewsWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String formats, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdPreviewsRequestBuilder(adId, formats, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdPreviews", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdPreviews200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdPreviews200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdPreviews200Response>() {});
+        
+
+        return new ApiResponse<GetAdPreviews200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdPreviewsRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable String formats, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adId' is set
+    if (adId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adId' when calling getAdPreviews");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/{adId}/preview"
+        .replace("{adId}", ApiClient.urlEncode(adId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "formats";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("formats", formats));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

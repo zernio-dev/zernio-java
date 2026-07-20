@@ -14,12 +14,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**boostPostWithHttpInfo**](AdsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad |
 | [**createAdInsightsReport**](AdsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
 | [**createAdInsightsReportWithHttpInfo**](AdsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run (Meta) |
+| [**createCallAd**](AdsApi.md#createCallAd) | **POST** /v1/ads/call | Create Click-to-Call ad |
+| [**createCallAdWithHttpInfo**](AdsApi.md#createCallAdWithHttpInfo) | **POST** /v1/ads/call | Create Click-to-Call ad |
 | [**createConversionDestination**](AdsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**createConversionDestinationWithHttpInfo**](AdsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
-| [**createCtwaAd**](AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad |
-| [**createCtwaAdWithHttpInfo**](AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad |
+| [**createCtwaAd**](AdsApi.md#createCtwaAd) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated) |
+| [**createCtwaAdWithHttpInfo**](AdsApi.md#createCtwaAdWithHttpInfo) | **POST** /v1/ads/ctwa | Create Click-to-WhatsApp ad (deprecated) |
 | [**createLeadForm**](AdsApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**createLeadFormWithHttpInfo**](AdsApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form |
+| [**createMessagingAd**](AdsApi.md#createMessagingAd) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) |
+| [**createMessagingAdWithHttpInfo**](AdsApi.md#createMessagingAdWithHttpInfo) | **POST** /v1/ads/messaging | Create click-to-message ad (WhatsApp / Messenger / Instagram Direct) |
 | [**createStandaloneAd**](AdsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad |
 | [**createStandaloneAdWithHttpInfo**](AdsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad |
 | [**createTestLead**](AdsApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
@@ -30,6 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteConversionDestinationWithHttpInfo**](AdsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**estimateAdReach**](AdsApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
 | [**estimateAdReachWithHttpInfo**](AdsApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
+| [**generateAdPreviews**](AdsApi.md#generateAdPreviews) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta) |
+| [**generateAdPreviewsWithHttpInfo**](AdsApi.md#generateAdPreviewsWithHttpInfo) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta) |
 | [**getAd**](AdsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdWithHttpInfo**](AdsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdAnalytics**](AdsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
@@ -38,6 +44,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdCommentsWithHttpInfo**](AdsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**getAdInsightsReport**](AdsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta) |
 | [**getAdInsightsReportWithHttpInfo**](AdsApi.md#getAdInsightsReportWithHttpInfo) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run (Meta) |
+| [**getAdPreviews**](AdsApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta) |
+| [**getAdPreviewsWithHttpInfo**](AdsApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta) |
 | [**getAdTrackingTags**](AdsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**getAdTrackingTagsWithHttpInfo**](AdsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**getCampaignAnalytics**](AdsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
@@ -877,6 +885,156 @@ ApiResponse<[**CreateAdInsightsReport202Response**](CreateAdInsightsReport202Res
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
+## createCallAd
+
+> void createCallAd(createCallAdRequest)
+
+Create Click-to-Call ad
+
+Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateCallAdRequest createCallAdRequest = new CreateCallAdRequest(); // CreateCallAdRequest | 
+        try {
+            apiInstance.createCallAd(createCallAdRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createCallAd");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createCallAdRequest** | [**CreateCallAdRequest**](CreateCallAdRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Ad(s) created and submitted for review |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
+
+## createCallAdWithHttpInfo
+
+> ApiResponse<Void> createCallAd createCallAdWithHttpInfo(createCallAdRequest)
+
+Create Click-to-Call ad
+
+Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateCallAdRequest createCallAdRequest = new CreateCallAdRequest(); // CreateCallAdRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.createCallAdWithHttpInfo(createCallAdRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createCallAd");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createCallAdRequest** | [**CreateCallAdRequest**](CreateCallAdRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Ad(s) created and submitted for review |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
+
+
 ## createConversionDestination
 
 > CreateConversionDestination201Response createConversionDestination(accountId, createConversionDestinationRequest)
@@ -1041,11 +1199,11 @@ ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestina
 
 ## createCtwaAd
 
-> CreateCtwaAd201Response createCtwaAd(createCtwaAdRequest)
+> CreateCtwaAd201Response createCtwaAd(ctwaAdRequestBody)
 
-Create Click-to-WhatsApp ad
+Create Click-to-WhatsApp ad (deprecated)
 
-Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
 
 ### Example
 
@@ -1068,9 +1226,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        CreateCtwaAdRequest createCtwaAdRequest = new CreateCtwaAdRequest(); // CreateCtwaAdRequest | 
+        CtwaAdRequestBody ctwaAdRequestBody = new CtwaAdRequestBody(); // CtwaAdRequestBody | 
         try {
-            CreateCtwaAd201Response result = apiInstance.createCtwaAd(createCtwaAdRequest);
+            CreateCtwaAd201Response result = apiInstance.createCtwaAd(ctwaAdRequestBody);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#createCtwaAd");
@@ -1088,7 +1246,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createCtwaAdRequest** | [**CreateCtwaAdRequest**](CreateCtwaAdRequest.md)|  | |
+| **ctwaAdRequestBody** | [**CtwaAdRequestBody**](CtwaAdRequestBody.md)|  | |
 
 ### Return type
 
@@ -1117,11 +1275,11 @@ public class Example {
 
 ## createCtwaAdWithHttpInfo
 
-> ApiResponse<CreateCtwaAd201Response> createCtwaAd createCtwaAdWithHttpInfo(createCtwaAdRequest)
+> ApiResponse<CreateCtwaAd201Response> createCtwaAd createCtwaAdWithHttpInfo(ctwaAdRequestBody)
 
-Create Click-to-WhatsApp ad
+Create Click-to-WhatsApp ad (deprecated)
 
-Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
+Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying its own headline, body, and image/video). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management.
 
 ### Example
 
@@ -1145,9 +1303,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdsApi apiInstance = new AdsApi(defaultClient);
-        CreateCtwaAdRequest createCtwaAdRequest = new CreateCtwaAdRequest(); // CreateCtwaAdRequest | 
+        CtwaAdRequestBody ctwaAdRequestBody = new CtwaAdRequestBody(); // CtwaAdRequestBody | 
         try {
-            ApiResponse<CreateCtwaAd201Response> response = apiInstance.createCtwaAdWithHttpInfo(createCtwaAdRequest);
+            ApiResponse<CreateCtwaAd201Response> response = apiInstance.createCtwaAdWithHttpInfo(ctwaAdRequestBody);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1167,7 +1325,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createCtwaAdRequest** | [**CreateCtwaAdRequest**](CreateCtwaAdRequest.md)|  | |
+| **ctwaAdRequestBody** | [**CtwaAdRequestBody**](CtwaAdRequestBody.md)|  | |
 
 ### Return type
 
@@ -1341,6 +1499,156 @@ ApiResponse<[**CreateLeadForm200Response**](CreateLeadForm200Response.md)>
 | **200** | Created form. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
+
+
+## createMessagingAd
+
+> void createMessagingAd(createMessagingAdRequest)
+
+Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+
+Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
+        try {
+            apiInstance.createMessagingAd(createMessagingAdRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createMessagingAd");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createMessagingAdRequest** | [**CreateMessagingAdRequest**](CreateMessagingAdRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Ad(s) created and submitted for review |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
+
+## createMessagingAdWithHttpInfo
+
+> ApiResponse<Void> createMessagingAd createMessagingAdWithHttpInfo(createMessagingAdRequest)
+
+Create click-to-message ad (WhatsApp / Messenger / Instagram Direct)
+
+Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.createMessagingAdWithHttpInfo(createMessagingAdRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#createMessagingAd");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createMessagingAdRequest** | [**CreateMessagingAdRequest**](CreateMessagingAdRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Ad(s) created and submitted for review |  -  |
+| **400** | Invalid input |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Account not found |  -  |
+| **422** | No Facebook Page resolved for the account |  -  |
 
 
 ## createStandaloneAd
@@ -2111,6 +2419,158 @@ ApiResponse<[**EstimateAdReach200Response**](EstimateAdReach200Response.md)>
 | **404** | Resource not found |  -  |
 
 
+## generateAdPreviews
+
+> GenerateAdPreviews200Response generateAdPreviews(generateAdPreviewsRequest)
+
+Render pre-create ad previews (Meta)
+
+Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        GenerateAdPreviewsRequest generateAdPreviewsRequest = new GenerateAdPreviewsRequest(); // GenerateAdPreviewsRequest | 
+        try {
+            GenerateAdPreviews200Response result = apiInstance.generateAdPreviews(generateAdPreviewsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#generateAdPreviews");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **generateAdPreviewsRequest** | [**GenerateAdPreviewsRequest**](GenerateAdPreviewsRequest.md)|  | |
+
+### Return type
+
+[**GenerateAdPreviews200Response**](GenerateAdPreviews200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rendered previews |  -  |
+| **400** | Invalid input, or Meta rejected the creative spec / ad_format — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## generateAdPreviewsWithHttpInfo
+
+> ApiResponse<GenerateAdPreviews200Response> generateAdPreviews generateAdPreviewsWithHttpInfo(generateAdPreviewsRequest)
+
+Render pre-create ad previews (Meta)
+
+Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        GenerateAdPreviewsRequest generateAdPreviewsRequest = new GenerateAdPreviewsRequest(); // GenerateAdPreviewsRequest | 
+        try {
+            ApiResponse<GenerateAdPreviews200Response> response = apiInstance.generateAdPreviewsWithHttpInfo(generateAdPreviewsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#generateAdPreviews");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **generateAdPreviewsRequest** | [**GenerateAdPreviewsRequest**](GenerateAdPreviewsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GenerateAdPreviews200Response**](GenerateAdPreviews200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rendered previews |  -  |
+| **400** | Invalid input, or Meta rejected the creative spec / ad_format — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
 ## getAd
 
 > GetAd200Response getAd(adId)
@@ -2751,6 +3211,164 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
 | **401** | Unauthorized |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## getAdPreviews
+
+> GetAdPreviews200Response getAdPreviews(adId, formats)
+
+Render previews of an existing ad (Meta)
+
+Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio ad id (24-char hex).
+        String formats = "formats_example"; // String | Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD.
+        try {
+            GetAdPreviews200Response result = apiInstance.getAdPreviews(adId, formats);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdPreviews");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio ad id (24-char hex). | |
+| **formats** | **String**| Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. | [optional] |
+
+### Return type
+
+[**GetAdPreviews200Response**](GetAdPreviews200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rendered previews |  -  |
+| **400** | Invalid input, or Meta rejected the ad_format — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
+| **429** | Meta rate limit reached |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getAdPreviewsWithHttpInfo
+
+> ApiResponse<GetAdPreviews200Response> getAdPreviews getAdPreviewsWithHttpInfo(adId, formats)
+
+Render previews of an existing ad (Meta)
+
+Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. Meta only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio ad id (24-char hex).
+        String formats = "formats_example"; // String | Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD.
+        try {
+            ApiResponse<GetAdPreviews200Response> response = apiInstance.getAdPreviewsWithHttpInfo(adId, formats);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdPreviews");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio ad id (24-char hex). | |
+| **formats** | **String**| Comma-separated Meta ad_format values (max 10), one preview per format. Defaults to DESKTOP_FEED_STANDARD. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdPreviews200Response**](GetAdPreviews200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rendered previews |  -  |
+| **400** | Invalid input, or Meta rejected the ad_format — message carries Meta&#39;s error |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Ad not found |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
