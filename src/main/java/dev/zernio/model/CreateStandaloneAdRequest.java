@@ -29,6 +29,7 @@ import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
 import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBrandIdentity;
+import dev.zernio.model.CreateStandaloneAdRequestCarouselCardsInner;
 import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInner;
 import dev.zernio.model.CreateStandaloneAdRequestCustomLocationsInner;
@@ -112,6 +113,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_START_DATE,
   CreateStandaloneAdRequest.JSON_PROPERTY_INSTAGRAM_ACCOUNT_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_DYNAMIC_CREATIVE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_CAROUSEL_CARDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_PLACEMENT_ASSETS,
   CreateStandaloneAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
@@ -131,7 +133,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T10:08:11.068866202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -645,6 +647,10 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_DYNAMIC_CREATIVE = "dynamicCreative";
   @javax.annotation.Nullable
   private CreateStandaloneAdRequestDynamicCreative dynamicCreative;
+
+  public static final String JSON_PROPERTY_CAROUSEL_CARDS = "carouselCards";
+  @javax.annotation.Nullable
+  private List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards = new ArrayList<>();
 
   public static final String JSON_PROPERTY_PLACEMENT_ASSETS = "placementAssets";
   @javax.annotation.Nullable
@@ -2235,6 +2241,38 @@ public class CreateStandaloneAdRequest {
   }
 
 
+  public CreateStandaloneAdRequest carouselCards(@javax.annotation.Nullable List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards) {
+    this.carouselCards = carouselCards;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addCarouselCardsItem(CreateStandaloneAdRequestCarouselCardsInner carouselCardsItem) {
+    if (this.carouselCards == null) {
+      this.carouselCards = new ArrayList<>();
+    }
+    this.carouselCards.add(carouselCardsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Hand-built carousel: 2-10 authored cards in DETERMINISTIC order, mapped to the creative&#39;s &#x60;link_data.child_attachments&#x60;. Unlike &#x60;dynamicCreative&#x60;, you control the card order and per-card copy/link. Requires top-level &#x60;body&#x60;, &#x60;linkUrl&#x60; and &#x60;callToAction&#x60;. Mutually exclusive with &#x60;imageUrl&#x60;/&#x60;video&#x60;, &#x60;creatives[]&#x60;, &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;existingCreativeId&#x60;, &#x60;adSetId&#x60;, &#x60;leadGenFormId&#x60; and goal &#x60;catalog_sales&#x60;. 
+   * @return carouselCards
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_CARDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateStandaloneAdRequestCarouselCardsInner> getCarouselCards() {
+    return carouselCards;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAROUSEL_CARDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCarouselCards(@javax.annotation.Nullable List<CreateStandaloneAdRequestCarouselCardsInner> carouselCards) {
+    this.carouselCards = carouselCards;
+  }
+
+
   public CreateStandaloneAdRequest placementAssets(@javax.annotation.Nullable CreateStandaloneAdRequestPlacementAssets placementAssets) {
     this.placementAssets = placementAssets;
     return this;
@@ -2764,6 +2802,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.startDate, createStandaloneAdRequest.startDate) &&
         Objects.equals(this.instagramAccountId, createStandaloneAdRequest.instagramAccountId) &&
         Objects.equals(this.dynamicCreative, createStandaloneAdRequest.dynamicCreative) &&
+        Objects.equals(this.carouselCards, createStandaloneAdRequest.carouselCards) &&
         Objects.equals(this.placementAssets, createStandaloneAdRequest.placementAssets) &&
         Objects.equals(this.audienceId, createStandaloneAdRequest.audienceId) &&
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
@@ -2786,7 +2825,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, budgetAmount, budgetType, status, budgetLevel, currency, headline, longHeadline, body, description, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, placementAssets, audienceId, campaignType, keywords, additionalHeadlines, additionalDescriptions, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, promotedObject);
   }
 
   @Override
@@ -2846,6 +2885,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    instagramAccountId: ").append(toIndentedString(instagramAccountId)).append("\n");
     sb.append("    dynamicCreative: ").append(toIndentedString(dynamicCreative)).append("\n");
+    sb.append("    carouselCards: ").append(toIndentedString(carouselCards)).append("\n");
     sb.append("    placementAssets: ").append(toIndentedString(placementAssets)).append("\n");
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    campaignType: ").append(toIndentedString(campaignType)).append("\n");
@@ -3230,6 +3270,16 @@ public class CreateStandaloneAdRequest {
     // add `dynamicCreative` to the URL query string
     if (getDynamicCreative() != null) {
       joiner.add(getDynamicCreative().toUrlQueryString(prefix + "dynamicCreative" + suffix));
+    }
+
+    // add `carouselCards` to the URL query string
+    if (getCarouselCards() != null) {
+      for (int i = 0; i < getCarouselCards().size(); i++) {
+        if (getCarouselCards().get(i) != null) {
+          joiner.add(getCarouselCards().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scarouselCards%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     // add `placementAssets` to the URL query string

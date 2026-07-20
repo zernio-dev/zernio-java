@@ -6091,7 +6091,7 @@ ApiResponse<[**ListWhatsAppConversions200Response**](ListWhatsAppConversions200R
 
 ## queryAdInsights
 
-> QueryAdInsights200Response queryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
+> QueryAdInsights200Response queryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
 
 Flexible live insights query (Meta)
 
@@ -6123,6 +6123,10 @@ public class Example {
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
         String breakdowns = "breakdowns_example"; // String | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform).
+        String actionBreakdowns = "actionBreakdowns_example"; // String | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row.
+        String actionAttributionWindows = "actionAttributionWindows_example"; // String | Comma-separated Meta attribution windows. Action values are returned keyed per window.
+        String actionReportTime = "actionReportTime_example"; // String | When actions are counted: impression, conversion or mixed.
+        Boolean useUnifiedAttributionSetting = true; // Boolean | Use the ad sets' own attribution settings for action counting.
         String filtering = "filtering_example"; // String | JSON array of Meta filter objects: [{\"field\", \"operator\", \"value\"}]. Applied server-side by Meta.
         String datePreset = "datePreset_example"; // String | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate.
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD); requires toDate.
@@ -6131,7 +6135,7 @@ public class Example {
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
-            QueryAdInsights200Response result = apiInstance.queryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            QueryAdInsights200Response result = apiInstance.queryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdsApi#queryAdInsights");
@@ -6154,6 +6158,10 @@ public class Example {
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |
 | **breakdowns** | **String**| Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional] |
+| **actionBreakdowns** | **String**| Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. | [optional] |
+| **actionAttributionWindows** | **String**| Comma-separated Meta attribution windows. Action values are returned keyed per window. | [optional] |
+| **actionReportTime** | **String**| When actions are counted: impression, conversion or mixed. | [optional] |
+| **useUnifiedAttributionSetting** | **Boolean**| Use the ad sets&#39; own attribution settings for action counting. | [optional] |
 | **filtering** | **String**| JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. | [optional] |
 | **datePreset** | **String**| Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. | [optional] |
 | **fromDate** | **LocalDate**| Start of range (YYYY-MM-DD); requires toDate. | [optional] |
@@ -6187,7 +6195,7 @@ public class Example {
 
 ## queryAdInsightsWithHttpInfo
 
-> ApiResponse<QueryAdInsights200Response> queryAdInsights queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
+> ApiResponse<QueryAdInsights200Response> queryAdInsights queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
 
 Flexible live insights query (Meta)
 
@@ -6220,6 +6228,10 @@ public class Example {
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
         String breakdowns = "breakdowns_example"; // String | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform).
+        String actionBreakdowns = "actionBreakdowns_example"; // String | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row.
+        String actionAttributionWindows = "actionAttributionWindows_example"; // String | Comma-separated Meta attribution windows. Action values are returned keyed per window.
+        String actionReportTime = "actionReportTime_example"; // String | When actions are counted: impression, conversion or mixed.
+        Boolean useUnifiedAttributionSetting = true; // Boolean | Use the ad sets' own attribution settings for action counting.
         String filtering = "filtering_example"; // String | JSON array of Meta filter objects: [{\"field\", \"operator\", \"value\"}]. Applied server-side by Meta.
         String datePreset = "datePreset_example"; // String | Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate.
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD); requires toDate.
@@ -6228,7 +6240,7 @@ public class Example {
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
-            ApiResponse<QueryAdInsights200Response> response = apiInstance.queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            ApiResponse<QueryAdInsights200Response> response = apiInstance.queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6253,6 +6265,10 @@ public class Example {
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |
 | **breakdowns** | **String**| Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional] |
+| **actionBreakdowns** | **String**| Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. | [optional] |
+| **actionAttributionWindows** | **String**| Comma-separated Meta attribution windows. Action values are returned keyed per window. | [optional] |
+| **actionReportTime** | **String**| When actions are counted: impression, conversion or mixed. | [optional] |
+| **useUnifiedAttributionSetting** | **Boolean**| Use the ad sets&#39; own attribution settings for action counting. | [optional] |
 | **filtering** | **String**| JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. | [optional] |
 | **datePreset** | **String**| Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. | [optional] |
 | **fromDate** | **LocalDate**| Start of range (YYYY-MM-DD); requires toDate. | [optional] |

@@ -43,13 +43,17 @@ import dev.zernio.ApiClient;
   CreateAdInsightsReportRequest.JSON_PROPERTY_LEVEL,
   CreateAdInsightsReportRequest.JSON_PROPERTY_FIELDS,
   CreateAdInsightsReportRequest.JSON_PROPERTY_BREAKDOWNS,
+  CreateAdInsightsReportRequest.JSON_PROPERTY_ACTION_BREAKDOWNS,
+  CreateAdInsightsReportRequest.JSON_PROPERTY_ACTION_ATTRIBUTION_WINDOWS,
+  CreateAdInsightsReportRequest.JSON_PROPERTY_ACTION_REPORT_TIME,
+  CreateAdInsightsReportRequest.JSON_PROPERTY_USE_UNIFIED_ATTRIBUTION_SETTING,
   CreateAdInsightsReportRequest.JSON_PROPERTY_FILTERING,
   CreateAdInsightsReportRequest.JSON_PROPERTY_DATE_PRESET,
   CreateAdInsightsReportRequest.JSON_PROPERTY_FROM_DATE,
   CreateAdInsightsReportRequest.JSON_PROPERTY_TO_DATE,
   CreateAdInsightsReportRequest.JSON_PROPERTY_TIME_INCREMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T10:08:11.068866202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdInsightsReportRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -109,6 +113,22 @@ public class CreateAdInsightsReportRequest {
   public static final String JSON_PROPERTY_BREAKDOWNS = "breakdowns";
   @javax.annotation.Nullable
   private String breakdowns;
+
+  public static final String JSON_PROPERTY_ACTION_BREAKDOWNS = "actionBreakdowns";
+  @javax.annotation.Nullable
+  private String actionBreakdowns;
+
+  public static final String JSON_PROPERTY_ACTION_ATTRIBUTION_WINDOWS = "actionAttributionWindows";
+  @javax.annotation.Nullable
+  private List<String> actionAttributionWindows = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ACTION_REPORT_TIME = "actionReportTime";
+  @javax.annotation.Nullable
+  private String actionReportTime;
+
+  public static final String JSON_PROPERTY_USE_UNIFIED_ATTRIBUTION_SETTING = "useUnifiedAttributionSetting";
+  @javax.annotation.Nullable
+  private Boolean useUnifiedAttributionSetting;
 
   public static final String JSON_PROPERTY_FILTERING = "filtering";
   @javax.annotation.Nullable
@@ -250,6 +270,110 @@ public class CreateAdInsightsReportRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBreakdowns(@javax.annotation.Nullable String breakdowns) {
     this.breakdowns = breakdowns;
+  }
+
+
+  public CreateAdInsightsReportRequest actionBreakdowns(@javax.annotation.Nullable String actionBreakdowns) {
+    this.actionBreakdowns = actionBreakdowns;
+    return this;
+  }
+
+  /**
+   * Comma-separated Graph action breakdowns (e.g. action_type,action_destination).
+   * @return actionBreakdowns
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACTION_BREAKDOWNS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getActionBreakdowns() {
+    return actionBreakdowns;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACTION_BREAKDOWNS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setActionBreakdowns(@javax.annotation.Nullable String actionBreakdowns) {
+    this.actionBreakdowns = actionBreakdowns;
+  }
+
+
+  public CreateAdInsightsReportRequest actionAttributionWindows(@javax.annotation.Nullable List<String> actionAttributionWindows) {
+    this.actionAttributionWindows = actionAttributionWindows;
+    return this;
+  }
+
+  public CreateAdInsightsReportRequest addActionAttributionWindowsItem(String actionAttributionWindowsItem) {
+    if (this.actionAttributionWindows == null) {
+      this.actionAttributionWindows = new ArrayList<>();
+    }
+    this.actionAttributionWindows.add(actionAttributionWindowsItem);
+    return this;
+  }
+
+  /**
+   * Meta attribution windows (e.g. [\&quot;7d_click\&quot;, \&quot;1d_view\&quot;]). Action values are returned keyed per window.
+   * @return actionAttributionWindows
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACTION_ATTRIBUTION_WINDOWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getActionAttributionWindows() {
+    return actionAttributionWindows;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACTION_ATTRIBUTION_WINDOWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setActionAttributionWindows(@javax.annotation.Nullable List<String> actionAttributionWindows) {
+    this.actionAttributionWindows = actionAttributionWindows;
+  }
+
+
+  public CreateAdInsightsReportRequest actionReportTime(@javax.annotation.Nullable String actionReportTime) {
+    this.actionReportTime = actionReportTime;
+    return this;
+  }
+
+  /**
+   * When actions are counted: impression, conversion or mixed.
+   * @return actionReportTime
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ACTION_REPORT_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getActionReportTime() {
+    return actionReportTime;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ACTION_REPORT_TIME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setActionReportTime(@javax.annotation.Nullable String actionReportTime) {
+    this.actionReportTime = actionReportTime;
+  }
+
+
+  public CreateAdInsightsReportRequest useUnifiedAttributionSetting(@javax.annotation.Nullable Boolean useUnifiedAttributionSetting) {
+    this.useUnifiedAttributionSetting = useUnifiedAttributionSetting;
+    return this;
+  }
+
+  /**
+   * Use the ad sets&#39; own attribution settings for action counting.
+   * @return useUnifiedAttributionSetting
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_USE_UNIFIED_ATTRIBUTION_SETTING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getUseUnifiedAttributionSetting() {
+    return useUnifiedAttributionSetting;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_USE_UNIFIED_ATTRIBUTION_SETTING, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUseUnifiedAttributionSetting(@javax.annotation.Nullable Boolean useUnifiedAttributionSetting) {
+    this.useUnifiedAttributionSetting = useUnifiedAttributionSetting;
   }
 
 
@@ -398,6 +522,10 @@ public class CreateAdInsightsReportRequest {
         Objects.equals(this.level, createAdInsightsReportRequest.level) &&
         Objects.equals(this.fields, createAdInsightsReportRequest.fields) &&
         Objects.equals(this.breakdowns, createAdInsightsReportRequest.breakdowns) &&
+        Objects.equals(this.actionBreakdowns, createAdInsightsReportRequest.actionBreakdowns) &&
+        Objects.equals(this.actionAttributionWindows, createAdInsightsReportRequest.actionAttributionWindows) &&
+        Objects.equals(this.actionReportTime, createAdInsightsReportRequest.actionReportTime) &&
+        Objects.equals(this.useUnifiedAttributionSetting, createAdInsightsReportRequest.useUnifiedAttributionSetting) &&
         Objects.equals(this.filtering, createAdInsightsReportRequest.filtering) &&
         Objects.equals(this.datePreset, createAdInsightsReportRequest.datePreset) &&
         Objects.equals(this.fromDate, createAdInsightsReportRequest.fromDate) &&
@@ -407,7 +535,7 @@ public class CreateAdInsightsReportRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement);
+    return Objects.hash(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement);
   }
 
   @Override
@@ -419,6 +547,10 @@ public class CreateAdInsightsReportRequest {
     sb.append("    level: ").append(toIndentedString(level)).append("\n");
     sb.append("    fields: ").append(toIndentedString(fields)).append("\n");
     sb.append("    breakdowns: ").append(toIndentedString(breakdowns)).append("\n");
+    sb.append("    actionBreakdowns: ").append(toIndentedString(actionBreakdowns)).append("\n");
+    sb.append("    actionAttributionWindows: ").append(toIndentedString(actionAttributionWindows)).append("\n");
+    sb.append("    actionReportTime: ").append(toIndentedString(actionReportTime)).append("\n");
+    sb.append("    useUnifiedAttributionSetting: ").append(toIndentedString(useUnifiedAttributionSetting)).append("\n");
     sb.append("    filtering: ").append(toIndentedString(filtering)).append("\n");
     sb.append("    datePreset: ").append(toIndentedString(datePreset)).append("\n");
     sb.append("    fromDate: ").append(toIndentedString(fromDate)).append("\n");
@@ -494,6 +626,30 @@ public class CreateAdInsightsReportRequest {
     // add `breakdowns` to the URL query string
     if (getBreakdowns() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbreakdowns%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBreakdowns()))));
+    }
+
+    // add `actionBreakdowns` to the URL query string
+    if (getActionBreakdowns() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sactionBreakdowns%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getActionBreakdowns()))));
+    }
+
+    // add `actionAttributionWindows` to the URL query string
+    if (getActionAttributionWindows() != null) {
+      for (int i = 0; i < getActionAttributionWindows().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sactionAttributionWindows%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getActionAttributionWindows().get(i)))));
+      }
+    }
+
+    // add `actionReportTime` to the URL query string
+    if (getActionReportTime() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sactionReportTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getActionReportTime()))));
+    }
+
+    // add `useUnifiedAttributionSetting` to the URL query string
+    if (getUseUnifiedAttributionSetting() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%suseUnifiedAttributionSetting%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUseUnifiedAttributionSetting()))));
     }
 
     // add `filtering` to the URL query string

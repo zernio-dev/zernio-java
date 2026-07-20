@@ -24972,6 +24972,40 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Comma-separated Graph action breakdowns. Segments the actions[]\
+          \ arrays in each row."
+        explode: true
+        in: query
+        name: actionBreakdowns
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Comma-separated Meta attribution windows. Action values are returned
+          keyed per window.
+        explode: true
+        in: query
+        name: actionAttributionWindows
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "When actions are counted: impression, conversion or mixed."
+        explode: true
+        in: query
+        name: actionReportTime
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Use the ad sets' own attribution settings for action counting.
+        explode: true
+        in: query
+        name: useUnifiedAttributionSetting
+        required: false
+        schema:
+          type: boolean
+        style: form
       - description: "JSON array of Meta filter objects: [{\"field\", \"operator\"\
           , \"value\"}]. Applied server-side by Meta."
         explode: true
@@ -64604,6 +64638,21 @@ components:
         breakdowns:
           description: Comma-separated Graph breakdowns.
           type: string
+        actionBreakdowns:
+          description: "Comma-separated Graph action breakdowns (e.g. action_type,action_destination)."
+          type: string
+        actionAttributionWindows:
+          description: "Meta attribution windows (e.g. [\"7d_click\", \"1d_view\"\
+            ]). Action values are returned keyed per window."
+          items:
+            type: string
+          type: array
+        actionReportTime:
+          description: "When actions are counted: impression, conversion or mixed."
+          type: string
+        useUnifiedAttributionSetting:
+          description: Use the ad sets' own attribution settings for action counting.
+          type: boolean
         filtering:
           description: "Meta filter objects, applied server-side."
           items:
@@ -65814,6 +65863,30 @@ components:
           type: string
       required:
       - imageUrls
+    createStandaloneAd_request_carouselCards_inner:
+      properties:
+        imageUrl:
+          description: Card image; uploaded to the ad account and referenced by hash.
+          format: uri
+          type: string
+        linkUrl:
+          description: Card destination URL. Defaults to the top-level linkUrl.
+          format: uri
+          type: string
+        headline:
+          description: "Card headline, shown below the card image."
+          maxLength: 255
+          type: string
+        description:
+          description: "Card description, shown under the headline."
+          maxLength: 255
+          type: string
+        callToAction:
+          description: Card CTA override. Defaults to the top-level callToAction;
+            same enum.
+          type: string
+      required:
+      - imageUrl
     createStandaloneAd_request_placementAssets_rules_inner_placements:
       description: Placements this asset is pinned to. At least one field must be
         set (an empty rule is invalid — that role is served by the default asset).
@@ -66504,6 +66577,20 @@ components:
           type: string
         dynamicCreative:
           $ref: "#/components/schemas/createStandaloneAd_request_dynamicCreative"
+        carouselCards:
+          description: |
+            Meta only. Hand-built carousel: 2-10 authored cards in DETERMINISTIC order, mapped to
+            the creative's `link_data.child_attachments`. Unlike `dynamicCreative`,
+            you control the card order and per-card copy/link. Requires top-level `body`,
+            `linkUrl` and `callToAction`.
+            Mutually exclusive with `imageUrl`/`video`, `creatives[]`, `dynamicCreative`,
+            `placementAssets`, `existingCreativeId`, `adSetId`, `leadGenFormId` and goal
+            `catalog_sales`.
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_carouselCards_inner"
+          maxItems: 10
+          minItems: 2
+          type: array
         placementAssets:
           $ref: "#/components/schemas/createStandaloneAd_request_placementAssets"
         audienceId:

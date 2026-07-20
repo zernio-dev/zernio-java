@@ -112,7 +112,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T10:08:11.068866202Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -5504,6 +5504,10 @@ public class AdsApi {
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param actionBreakdowns Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)
+   * @param actionAttributionWindows Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)
+   * @param actionReportTime When actions are counted: impression, conversion or mixed. (optional)
+   * @param useUnifiedAttributionSetting Use the ad sets&#39; own attribution settings for action counting. (optional)
    * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
    * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
    * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
@@ -5514,8 +5518,8 @@ public class AdsApi {
    * @return QueryAdInsights200Response
    * @throws ApiException if fails to make API call
    */
-  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
-    return queryAdInsights(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
+  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return queryAdInsights(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
   }
 
   /**
@@ -5526,6 +5530,10 @@ public class AdsApi {
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param actionBreakdowns Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)
+   * @param actionAttributionWindows Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)
+   * @param actionReportTime When actions are counted: impression, conversion or mixed. (optional)
+   * @param useUnifiedAttributionSetting Use the ad sets&#39; own attribution settings for action counting. (optional)
    * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
    * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
    * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
@@ -5537,8 +5545,8 @@ public class AdsApi {
    * @return QueryAdInsights200Response
    * @throws ApiException if fails to make API call
    */
-  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
-    ApiResponse<QueryAdInsights200Response> localVarResponse = queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
+  public QueryAdInsights200Response queryAdInsights(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<QueryAdInsights200Response> localVarResponse = queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
     return localVarResponse.getData();
   }
 
@@ -5550,6 +5558,10 @@ public class AdsApi {
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param actionBreakdowns Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)
+   * @param actionAttributionWindows Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)
+   * @param actionReportTime When actions are counted: impression, conversion or mixed. (optional)
+   * @param useUnifiedAttributionSetting Use the ad sets&#39; own attribution settings for action counting. (optional)
    * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
    * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
    * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
@@ -5560,8 +5572,8 @@ public class AdsApi {
    * @return ApiResponse&lt;QueryAdInsights200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
-    return queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
+  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return queryAdInsightsWithHttpInfo(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, null);
   }
 
   /**
@@ -5572,6 +5584,10 @@ public class AdsApi {
    * @param level Row granularity (optional)
    * @param fields Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. (optional)
    * @param breakdowns Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). (optional)
+   * @param actionBreakdowns Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. (optional)
+   * @param actionAttributionWindows Comma-separated Meta attribution windows. Action values are returned keyed per window. (optional)
+   * @param actionReportTime When actions are counted: impression, conversion or mixed. (optional)
+   * @param useUnifiedAttributionSetting Use the ad sets&#39; own attribution settings for action counting. (optional)
    * @param filtering JSON array of Meta filter objects: [{\&quot;field\&quot;, \&quot;operator\&quot;, \&quot;value\&quot;}]. Applied server-side by Meta. (optional)
    * @param datePreset Meta date_preset (e.g. last_7d, last_30d, this_month). Mutually exclusive with fromDate/toDate. (optional)
    * @param fromDate Start of range (YYYY-MM-DD); requires toDate. (optional)
@@ -5583,8 +5599,8 @@ public class AdsApi {
    * @return ApiResponse&lt;QueryAdInsights200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = queryAdInsightsRequestBuilder(accountId, objectId, level, fields, breakdowns, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
+  public ApiResponse<QueryAdInsights200Response> queryAdInsightsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = queryAdInsightsRequestBuilder(accountId, objectId, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5631,7 +5647,7 @@ public class AdsApi {
     }
   }
 
-  private HttpRequest.Builder queryAdInsightsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder queryAdInsightsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String objectId, @javax.annotation.Nullable String level, @javax.annotation.Nullable String fields, @javax.annotation.Nullable String breakdowns, @javax.annotation.Nullable String actionBreakdowns, @javax.annotation.Nullable String actionAttributionWindows, @javax.annotation.Nullable String actionReportTime, @javax.annotation.Nullable Boolean useUnifiedAttributionSetting, @javax.annotation.Nullable String filtering, @javax.annotation.Nullable String datePreset, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, @javax.annotation.Nullable String timeIncrement, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'accountId' is set
     if (accountId == null) {
       throw new ApiException(400, "Missing the required parameter 'accountId' when calling queryAdInsights");
@@ -5658,6 +5674,14 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fields", fields));
     localVarQueryParameterBaseName = "breakdowns";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("breakdowns", breakdowns));
+    localVarQueryParameterBaseName = "actionBreakdowns";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("actionBreakdowns", actionBreakdowns));
+    localVarQueryParameterBaseName = "actionAttributionWindows";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("actionAttributionWindows", actionAttributionWindows));
+    localVarQueryParameterBaseName = "actionReportTime";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("actionReportTime", actionReportTime));
+    localVarQueryParameterBaseName = "useUnifiedAttributionSetting";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("useUnifiedAttributionSetting", useUnifiedAttributionSetting));
     localVarQueryParameterBaseName = "filtering";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("filtering", filtering));
     localVarQueryParameterBaseName = "datePreset";
