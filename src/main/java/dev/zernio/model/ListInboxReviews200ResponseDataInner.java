@@ -47,6 +47,8 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_PLATFORM,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_ACCOUNT_ID,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_ACCOUNT_USERNAME,
+  ListInboxReviews200ResponseDataInner.JSON_PROPERTY_LOCATION_ID,
+  ListInboxReviews200ResponseDataInner.JSON_PROPERTY_LOCATION_NAME,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REVIEWER,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_RATING,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_TEXT,
@@ -58,7 +60,7 @@ import dev.zernio.ApiClient;
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REPLY,
   ListInboxReviews200ResponseDataInner.JSON_PROPERTY_REVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxReviews200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -75,6 +77,13 @@ public class ListInboxReviews200ResponseDataInner {
   public static final String JSON_PROPERTY_ACCOUNT_USERNAME = "accountUsername";
   @javax.annotation.Nullable
   private String accountUsername;
+
+  public static final String JSON_PROPERTY_LOCATION_ID = "locationId";
+  @javax.annotation.Nullable
+  private String locationId;
+
+  public static final String JSON_PROPERTY_LOCATION_NAME = "locationName";
+  private JsonNullable<String> locationName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_REVIEWER = "reviewer";
   @javax.annotation.Nullable
@@ -124,7 +133,7 @@ public class ListInboxReviews200ResponseDataInner {
   }
 
   /**
-   * Get id
+   * Review identifier. For Google Business this is the full review resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}), so it also encodes the location.
    * @return id
    */
   @javax.annotation.Nullable
@@ -211,6 +220,62 @@ public class ListInboxReviews200ResponseDataInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccountUsername(@javax.annotation.Nullable String accountUsername) {
     this.accountUsername = accountUsername;
+  }
+
+
+  public ListInboxReviews200ResponseDataInner locationId(@javax.annotation.Nullable String locationId) {
+    this.locationId = locationId;
+    return this;
+  }
+
+  /**
+   * Bare GBP location id the review belongs to. Google Business only; absent for other platforms.
+   * @return locationId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLocationId() {
+    return locationId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocationId(@javax.annotation.Nullable String locationId) {
+    this.locationId = locationId;
+  }
+
+
+  public ListInboxReviews200ResponseDataInner locationName(@javax.annotation.Nullable String locationName) {
+    this.locationName = JsonNullable.<String>of(locationName);
+    return this;
+  }
+
+  /**
+   * Human-readable GBP location display name. Google Business only; absent for other platforms.
+   * @return locationName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getLocationName() {
+        return locationName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getLocationName_JsonNullable() {
+    return locationName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOCATION_NAME)
+  public void setLocationName_JsonNullable(JsonNullable<String> locationName) {
+    this.locationName = locationName;
+  }
+
+  public void setLocationName(@javax.annotation.Nullable String locationName) {
+    this.locationName = JsonNullable.<String>of(locationName);
   }
 
 
@@ -486,6 +551,8 @@ public class ListInboxReviews200ResponseDataInner {
         Objects.equals(this.platform, listInboxReviews200ResponseDataInner.platform) &&
         Objects.equals(this.accountId, listInboxReviews200ResponseDataInner.accountId) &&
         Objects.equals(this.accountUsername, listInboxReviews200ResponseDataInner.accountUsername) &&
+        Objects.equals(this.locationId, listInboxReviews200ResponseDataInner.locationId) &&
+        equalsNullable(this.locationName, listInboxReviews200ResponseDataInner.locationName) &&
         Objects.equals(this.reviewer, listInboxReviews200ResponseDataInner.reviewer) &&
         Objects.equals(this.rating, listInboxReviews200ResponseDataInner.rating) &&
         Objects.equals(this.text, listInboxReviews200ResponseDataInner.text) &&
@@ -504,7 +571,7 @@ public class ListInboxReviews200ResponseDataInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, accountId, accountUsername, reviewer, rating, text, created, hasReply, hasPhotos, photoCount, photos, reply, hashCodeNullable(reviewUrl));
+    return Objects.hash(id, platform, accountId, accountUsername, locationId, hashCodeNullable(locationName), reviewer, rating, text, created, hasReply, hasPhotos, photoCount, photos, reply, hashCodeNullable(reviewUrl));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -522,6 +589,8 @@ public class ListInboxReviews200ResponseDataInner {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    accountId: ").append(toIndentedString(accountId)).append("\n");
     sb.append("    accountUsername: ").append(toIndentedString(accountUsername)).append("\n");
+    sb.append("    locationId: ").append(toIndentedString(locationId)).append("\n");
+    sb.append("    locationName: ").append(toIndentedString(locationName)).append("\n");
     sb.append("    reviewer: ").append(toIndentedString(reviewer)).append("\n");
     sb.append("    rating: ").append(toIndentedString(rating)).append("\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
@@ -597,6 +666,16 @@ public class ListInboxReviews200ResponseDataInner {
     // add `accountUsername` to the URL query string
     if (getAccountUsername() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%saccountUsername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAccountUsername()))));
+    }
+
+    // add `locationId` to the URL query string
+    if (getLocationId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationId()))));
+    }
+
+    // add `locationName` to the URL query string
+    if (getLocationName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocationName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationName()))));
     }
 
     // add `reviewer` to the URL query string

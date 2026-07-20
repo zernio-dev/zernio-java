@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_NAME,
   BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.JSON_PROPERTY_REVIEW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -55,7 +55,7 @@ public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
   }
 
   /**
-   * Full review resource name (accounts/_*_/locations/_*_/reviews/_*)
+   * LOCATION resource name the review belongs to (accounts/{accountId}/locations/{locationId}) - NOT the review resource name. Use it to attribute the review to a location; the review identity is review.reviewId (full review resource name at review.name).
    * @return name
    */
   @javax.annotation.Nullable
@@ -79,7 +79,7 @@ public class BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner {
   }
 
   /**
-   * The review object (reviewId, starRating, comment, reviewer, createTime, updateTime, reviewReply)
+   * The review object: reviewId (the review&#39;s identity), name (full review resource name, accounts/_*_/locations/_*_/reviews/_*), starRating, comment, reviewer, createTime, updateTime, reviewReply, and reviewMediaItems (review photos/videos; photo items carry thumbnailUrl, video items carry videoUrl)
    * @return review
    */
   @javax.annotation.Nullable

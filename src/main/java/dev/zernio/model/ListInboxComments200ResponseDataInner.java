@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_AD_ID,
   ListInboxComments200ResponseDataInner.JSON_PROPERTY_PLACEMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxComments200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -252,7 +252,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * Get content
+   * The post text/caption. On ad rows (isAd: true) this is the AD NAME, not the underlying post&#39;s caption — the creative text isn&#39;t exposed here.
    * @return content
    */
   @javax.annotation.Nullable
@@ -276,7 +276,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * Get picture
+   * Post media thumbnail. On ad rows this is the ad creative thumbnail.
    * @return picture
    */
   @javax.annotation.Nullable
@@ -308,7 +308,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * Get permalink
+   * Public URL of the post. On ad rows: the Facebook dark-post URL (facebook placement) or the IG media permalink (instagram placement); may be null when unknown.
    * @return permalink
    */
   @javax.annotation.Nullable
@@ -388,7 +388,7 @@ public class ListInboxComments200ResponseDataInner {
   }
 
   /**
-   * Get likeCount
+   * Not fetched for ad rows (always 0 there).
    * @return likeCount
    */
   @javax.annotation.Nullable

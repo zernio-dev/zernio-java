@@ -37,9 +37,10 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   BatchGetGoogleBusinessReviewsRequest.JSON_PROPERTY_LOCATION_NAMES,
   BatchGetGoogleBusinessReviewsRequest.JSON_PROPERTY_PAGE_SIZE,
-  BatchGetGoogleBusinessReviewsRequest.JSON_PROPERTY_PAGE_TOKEN
+  BatchGetGoogleBusinessReviewsRequest.JSON_PROPERTY_PAGE_TOKEN,
+  BatchGetGoogleBusinessReviewsRequest.JSON_PROPERTY_ORDER_BY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BatchGetGoogleBusinessReviewsRequest {
   public static final String JSON_PROPERTY_LOCATION_NAMES = "locationNames";
   @javax.annotation.Nonnull
@@ -52,6 +53,47 @@ public class BatchGetGoogleBusinessReviewsRequest {
   public static final String JSON_PROPERTY_PAGE_TOKEN = "pageToken";
   @javax.annotation.Nullable
   private String pageToken;
+
+  /**
+   * Sort order requested from Google. Defaults to &#39;updateTime desc&#39; (newest first), which allows early-stopping pagination once results cross your date window.
+   */
+  public enum OrderByEnum {
+    UPDATE_TIME_DESC(String.valueOf("updateTime desc")),
+    
+    RATING(String.valueOf("rating")),
+    
+    RATING_DESC(String.valueOf("rating desc"));
+
+    private String value;
+
+    OrderByEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OrderByEnum fromValue(String value) {
+      for (OrderByEnum b : OrderByEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ORDER_BY = "orderBy";
+  @javax.annotation.Nullable
+  private OrderByEnum orderBy = OrderByEnum.UPDATE_TIME_DESC;
 
   public BatchGetGoogleBusinessReviewsRequest() { 
   }
@@ -70,7 +112,7 @@ public class BatchGetGoogleBusinessReviewsRequest {
   }
 
   /**
-   * Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;])
+   * Array of full location resource names (e.g. [&#39;accounts/123/locations/456&#39;]). Max 50 per request (Google&#39;s batchGetReviews cap); chunk larger sets into multiple requests.
    * @return locationNames
    */
   @javax.annotation.Nonnull
@@ -138,6 +180,30 @@ public class BatchGetGoogleBusinessReviewsRequest {
   }
 
 
+  public BatchGetGoogleBusinessReviewsRequest orderBy(@javax.annotation.Nullable OrderByEnum orderBy) {
+    this.orderBy = orderBy;
+    return this;
+  }
+
+  /**
+   * Sort order requested from Google. Defaults to &#39;updateTime desc&#39; (newest first), which allows early-stopping pagination once results cross your date window.
+   * @return orderBy
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORDER_BY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OrderByEnum getOrderBy() {
+    return orderBy;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORDER_BY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOrderBy(@javax.annotation.Nullable OrderByEnum orderBy) {
+    this.orderBy = orderBy;
+  }
+
+
   /**
    * Return true if this batchGetGoogleBusinessReviews_request object is equal to o.
    */
@@ -152,12 +218,13 @@ public class BatchGetGoogleBusinessReviewsRequest {
     BatchGetGoogleBusinessReviewsRequest batchGetGoogleBusinessReviewsRequest = (BatchGetGoogleBusinessReviewsRequest) o;
     return Objects.equals(this.locationNames, batchGetGoogleBusinessReviewsRequest.locationNames) &&
         Objects.equals(this.pageSize, batchGetGoogleBusinessReviewsRequest.pageSize) &&
-        Objects.equals(this.pageToken, batchGetGoogleBusinessReviewsRequest.pageToken);
+        Objects.equals(this.pageToken, batchGetGoogleBusinessReviewsRequest.pageToken) &&
+        Objects.equals(this.orderBy, batchGetGoogleBusinessReviewsRequest.orderBy);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locationNames, pageSize, pageToken);
+    return Objects.hash(locationNames, pageSize, pageToken, orderBy);
   }
 
   @Override
@@ -167,6 +234,7 @@ public class BatchGetGoogleBusinessReviewsRequest {
     sb.append("    locationNames: ").append(toIndentedString(locationNames)).append("\n");
     sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
     sb.append("    pageToken: ").append(toIndentedString(pageToken)).append("\n");
+    sb.append("    orderBy: ").append(toIndentedString(orderBy)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -231,6 +299,11 @@ public class BatchGetGoogleBusinessReviewsRequest {
     // add `pageToken` to the URL query string
     if (getPageToken() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%spageToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPageToken()))));
+    }
+
+    // add `orderBy` to the URL query string
+    if (getOrderBy() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sorderBy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOrderBy()))));
     }
 
     return joiner.toString();

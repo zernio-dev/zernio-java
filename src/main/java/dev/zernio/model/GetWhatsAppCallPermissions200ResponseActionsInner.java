@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppCallPermissions200ResponseActionsInner.JSON_PROPERTY_ACTION_NAME,
   GetWhatsAppCallPermissions200ResponseActionsInner.JSON_PROPERTY_CAN_PERFORM_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppCallPermissions200ResponseActionsInner {
   /**
    * Gets or Sets actionName

@@ -8753,7 +8753,12 @@ paths:
       description: |
         Fetches reviews across multiple locations in a single request.
         More efficient than calling GET /gmb-reviews per location for multi-location businesses.
-        Returns a flat list of individual reviews, each tagged with its review resource name.
+        Returns a flat locationReviews array (not grouped by location): each item carries
+        the location resource name it belongs to (`name`) plus the review object (`review`),
+        whose identity is `review.reviewId`.
+        Reviews are requested from Google ordered by `orderBy` (default `updateTime desc`,
+        newest first), so callers polling for recent reviews can stop paginating once they
+        cross their date window.
         Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount).
         For those, use the single-location GET /gmb-reviews endpoint.
       operationId: batchGetGoogleBusinessReviews
@@ -11102,7 +11107,7 @@ paths:
                   displayName: Snap Fitness Dianella
                   isActive: true
                   selectedLocationName: Snap Fitness Dianella
-                  selectedLocationId: locations/12345678901234567890
+                  selectedLocationId: "12345678901234567890"
               schema:
                 $ref: "#/components/schemas/assignGoogleBusinessLocation_200_response"
           description: Location assigned to the target profile
@@ -42373,8 +42378,13 @@ components:
         isActive:
           type: boolean
         selectedLocationName:
+          description: "Human-readable location display name, NOT a resource name.\
+            \ Do not use it to build API paths."
           type: string
         selectedLocationId:
+          description: "Bare GBP location id. Combine with the GBP account id as accounts/{gbpAccountId}/locations/{selectedLocationId}\
+            \ to form the location resource names that gmb-reviews/batch expects in\
+            \ locationNames."
           type: string
     selectGoogleBusinessLocation_200_response:
       example:
@@ -45400,10 +45410,13 @@ components:
     batchGetGoogleBusinessReviews_request:
       properties:
         locationNames:
-          description: "Array of full location resource names (e.g. ['accounts/123/locations/456'])"
+          description: "Array of full location resource names (e.g. ['accounts/123/locations/456']).\
+            \ Max 50 per request (Google's batchGetReviews cap); chunk larger sets\
+            \ into multiple requests."
           items:
             pattern: "^accounts/[^/]+/locations/[^/]+$"
             type: string
+          maxItems: 50
           minItems: 1
           type: array
         pageSize:
@@ -45416,6 +45429,16 @@ components:
           description: Pagination token from previous response
           minLength: 1
           type: string
+        orderBy:
+          default: updateTime desc
+          description: "Sort order requested from Google. Defaults to 'updateTime\
+            \ desc' (newest first), which allows early-stopping pagination once results\
+            \ cross your date window."
+          enum:
+          - updateTime desc
+          - rating
+          - rating desc
+          type: string
       required:
       - locationNames
     batchGetGoogleBusinessReviews_200_response_locationReviews_inner:
@@ -45424,11 +45447,17 @@ components:
         name: name
       properties:
         name:
-          description: Full review resource name (accounts/*/locations/*/reviews/*)
+          description: "LOCATION resource name the review belongs to (accounts/{accountId}/locations/{locationId})\
+            \ - NOT the review resource name. Use it to attribute the review to a\
+            \ location; the review identity is review.reviewId (full review resource\
+            \ name at review.name)."
           type: string
         review:
-          description: "The review object (reviewId, starRating, comment, reviewer,\
-            \ createTime, updateTime, reviewReply)"
+          description: "The review object: reviewId (the review's identity), name\
+            \ (full review resource name, accounts/*/locations/*/reviews/*), starRating,\
+            \ comment, reviewer, createTime, updateTime, reviewReply, and reviewMediaItems\
+            \ (review photos/videos; photo items carry thumbnailUrl, video items carry\
+            \ videoUrl)"
           type: object
     batchGetGoogleBusinessReviews_200_response:
       example:
@@ -47254,8 +47283,13 @@ components:
         isActive:
           type: boolean
         selectedLocationName:
+          description: "Human-readable location display name (e.g. \"Snap Fitness\
+            \ Dianella\"), NOT a resource name. Do not use it to build API paths."
           type: string
         selectedLocationId:
+          description: "Bare GBP location id (digits only). Combine with the GBP account\
+            \ id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form\
+            \ the location resource names that gmb-reviews/batch expects in locationNames."
           type: string
     assignGoogleBusinessLocation_200_response:
       example:
@@ -51145,11 +51179,18 @@ components:
         accountUsername:
           type: string
         content:
+          description: "The post text/caption. On ad rows (isAd: true) this is the\
+            \ AD NAME, not the underlying post's caption — the creative text isn't\
+            \ exposed here."
           type: string
         picture:
+          description: Post media thumbnail. On ad rows this is the ad creative thumbnail.
           nullable: true
           type: string
         permalink:
+          description: "Public URL of the post. On ad rows: the Facebook dark-post\
+            \ URL (facebook placement) or the IG media permalink (instagram placement);\
+            \ may be null when unknown."
           nullable: true
           type: string
         createdTime:
@@ -51158,6 +51199,7 @@ components:
         commentCount:
           type: integer
         likeCount:
+          description: Not fetched for ad rows (always 0 there).
           type: integer
         cid:
           description: Bluesky content identifier
@@ -52214,6 +52256,7 @@ components:
           type: string
     listInboxReviews_200_response_data_inner:
       example:
+        locationName: locationName
         created: 2000-01-23T04:56:07.000+00:00
         hasPhotos: true
         rating: 0
@@ -52228,6 +52271,7 @@ components:
         photoCount: 6
         accountId: accountId
         reviewUrl: reviewUrl
+        locationId: locationId
         accountUsername: accountUsername
         hasReply: true
         id: id
@@ -52238,12 +52282,24 @@ components:
           text: text
       properties:
         id:
+          description: "Review identifier. For Google Business this is the full review\
+            \ resource name (accounts/{accountId}/locations/{locationId}/reviews/{reviewId}),\
+            \ so it also encodes the location."
           type: string
         platform:
           type: string
         accountId:
           type: string
         accountUsername:
+          type: string
+        locationId:
+          description: Bare GBP location id the review belongs to. Google Business
+            only; absent for other platforms.
+          type: string
+        locationName:
+          description: Human-readable GBP location display name. Google Business only;
+            absent for other platforms.
+          nullable: true
           type: string
         reviewer:
           $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reviewer"
@@ -52294,7 +52350,8 @@ components:
           nextCursor: nextCursor
           hasMore: true
         data:
-        - created: 2000-01-23T04:56:07.000+00:00
+        - locationName: locationName
+          created: 2000-01-23T04:56:07.000+00:00
           hasPhotos: true
           rating: 0
           reviewer:
@@ -52308,6 +52365,7 @@ components:
           photoCount: 6
           accountId: accountId
           reviewUrl: reviewUrl
+          locationId: locationId
           accountUsername: accountUsername
           hasReply: true
           id: id
@@ -52316,7 +52374,8 @@ components:
             created: 2000-01-23T04:56:07.000+00:00
             id: id
             text: text
-        - created: 2000-01-23T04:56:07.000+00:00
+        - locationName: locationName
+          created: 2000-01-23T04:56:07.000+00:00
           hasPhotos: true
           rating: 0
           reviewer:
@@ -52330,6 +52389,7 @@ components:
           photoCount: 6
           accountId: accountId
           reviewUrl: reviewUrl
+          locationId: locationId
           accountUsername: accountUsername
           hasReply: true
           id: id

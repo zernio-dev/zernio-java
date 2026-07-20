@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SelectGoogleBusinessLocation200ResponseAccount.JSON_PROPERTY_SELECTED_LOCATION_NAME,
   SelectGoogleBusinessLocation200ResponseAccount.JSON_PROPERTY_SELECTED_LOCATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectGoogleBusinessLocation200ResponseAccount {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
@@ -233,7 +233,7 @@ public class SelectGoogleBusinessLocation200ResponseAccount {
   }
 
   /**
-   * Get selectedLocationName
+   * Human-readable location display name, NOT a resource name. Do not use it to build API paths.
    * @return selectedLocationName
    */
   @javax.annotation.Nullable
@@ -257,7 +257,7 @@ public class SelectGoogleBusinessLocation200ResponseAccount {
   }
 
   /**
-   * Get selectedLocationId
+   * Bare GBP location id. Combine with the GBP account id as accounts/{gbpAccountId}/locations/{selectedLocationId} to form the location resource names that gmb-reviews/batch expects in locationNames.
    * @return selectedLocationId
    */
   @javax.annotation.Nullable

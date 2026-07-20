@@ -52,7 +52,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:19:55.551166418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T08:38:37.685460846Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GmbReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -171,7 +171,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @return BatchGetGoogleBusinessReviews200Response
@@ -183,7 +183,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @param headers Optional headers to include in the request
@@ -197,7 +197,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @return ApiResponse&lt;BatchGetGoogleBusinessReviews200Response&gt;
@@ -209,7 +209,7 @@ public class GmbReviewsApi {
 
   /**
    * Batch get reviews
-   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat list of individual reviews, each tagged with its review resource name. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
+   * Fetches reviews across multiple locations in a single request. More efficient than calling GET /gmb-reviews per location for multi-location businesses. Returns a flat locationReviews array (not grouped by location): each item carries the location resource name it belongs to (&#x60;name&#x60;) plus the review object (&#x60;review&#x60;), whose identity is &#x60;review.reviewId&#x60;. Reviews are requested from Google ordered by &#x60;orderBy&#x60; (default &#x60;updateTime desc&#x60;, newest first), so callers polling for recent reviews can stop paginating once they cross their date window. Note: this endpoint does not return aggregate metrics (averageRating / totalReviewCount). For those, use the single-location GET /gmb-reviews endpoint. 
    * @param accountId  (required)
    * @param batchGetGoogleBusinessReviewsRequest  (required)
    * @param headers Optional headers to include in the request
