@@ -140,6 +140,22 @@
 | GET_QUOTE | &quot;GET_QUOTE&quot; |
 | SUBSCRIBE | &quot;SUBSCRIBE&quot; |
 | WATCH_MORE | &quot;WATCH_MORE&quot; |
+| ADD_TO_CART | &quot;ADD_TO_CART&quot; |
+| APPLY_NOW | &quot;APPLY_NOW&quot; |
+| BOOK_NOW | &quot;BOOK_NOW&quot; |
+| BUY_TICKETS | &quot;BUY_TICKETS&quot; |
+| DONATE | &quot;DONATE&quot; |
+| DONATE_NOW | &quot;DONATE_NOW&quot; |
+| GET_DIRECTIONS | &quot;GET_DIRECTIONS&quot; |
+| GET_SHOWTIMES | &quot;GET_SHOWTIMES&quot; |
+| LISTEN_NOW | &quot;LISTEN_NOW&quot; |
+| ORDER_NOW | &quot;ORDER_NOW&quot; |
+| PLAY_GAME | &quot;PLAY_GAME&quot; |
+| REQUEST_TIME | &quot;REQUEST_TIME&quot; |
+| SEE_MENU | &quot;SEE_MENU&quot; |
+| START_ORDER | &quot;START_ORDER&quot; |
+| INSTALL_MOBILE_APP | &quot;INSTALL_MOBILE_APP&quot; |
+| USE_APP | &quot;USE_APP&quot; |
 | REGISTER | &quot;REGISTER&quot; |
 | JOIN | &quot;JOIN&quot; |
 | ATTEND | &quot;ATTEND&quot; |
@@ -169,7 +185,9 @@
 | HOUSING | &quot;HOUSING&quot; |
 | EMPLOYMENT | &quot;EMPLOYMENT&quot; |
 | CREDIT | &quot;CREDIT&quot; |
+| FINANCIAL_PRODUCTS_SERVICES | &quot;FINANCIAL_PRODUCTS_SERVICES&quot; |
 | ISSUES_ELECTIONS_POLITICS | &quot;ISSUES_ELECTIONS_POLITICS&quot; |
+| ONLINE_GAMBLING_AND_GAMING | &quot;ONLINE_GAMBLING_AND_GAMING&quot; |
 
 
 

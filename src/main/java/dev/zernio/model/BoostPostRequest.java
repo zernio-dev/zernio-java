@@ -68,7 +68,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T14:18:25.464819250Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
@@ -189,7 +189,11 @@ public class BoostPostRequest {
     
     CREDIT(String.valueOf("CREDIT")),
     
-    ISSUES_ELECTIONS_POLITICS(String.valueOf("ISSUES_ELECTIONS_POLITICS"));
+    FINANCIAL_PRODUCTS_SERVICES(String.valueOf("FINANCIAL_PRODUCTS_SERVICES")),
+    
+    ISSUES_ELECTIONS_POLITICS(String.valueOf("ISSUES_ELECTIONS_POLITICS")),
+    
+    ONLINE_GAMBLING_AND_GAMING(String.valueOf("ONLINE_GAMBLING_AND_GAMING"));
 
     private String value;
 

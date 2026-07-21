@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListAdCampaigns200Response.JSON_PROPERTY_CAMPAIGNS,
   ListAdCampaigns200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T14:18:25.464819250Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdCampaigns200Response {
   public static final String JSON_PROPERTY_CAMPAIGNS = "campaigns";
   @javax.annotation.Nullable

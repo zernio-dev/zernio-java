@@ -133,7 +133,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_IDENTITY_TYPE,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T14:18:25.464819250Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -391,6 +391,38 @@ public class CreateStandaloneAdRequest {
     
     WATCH_MORE(String.valueOf("WATCH_MORE")),
     
+    ADD_TO_CART(String.valueOf("ADD_TO_CART")),
+    
+    APPLY_NOW(String.valueOf("APPLY_NOW")),
+    
+    BOOK_NOW(String.valueOf("BOOK_NOW")),
+    
+    BUY_TICKETS(String.valueOf("BUY_TICKETS")),
+    
+    DONATE(String.valueOf("DONATE")),
+    
+    DONATE_NOW(String.valueOf("DONATE_NOW")),
+    
+    GET_DIRECTIONS(String.valueOf("GET_DIRECTIONS")),
+    
+    GET_SHOWTIMES(String.valueOf("GET_SHOWTIMES")),
+    
+    LISTEN_NOW(String.valueOf("LISTEN_NOW")),
+    
+    ORDER_NOW(String.valueOf("ORDER_NOW")),
+    
+    PLAY_GAME(String.valueOf("PLAY_GAME")),
+    
+    REQUEST_TIME(String.valueOf("REQUEST_TIME")),
+    
+    SEE_MENU(String.valueOf("SEE_MENU")),
+    
+    START_ORDER(String.valueOf("START_ORDER")),
+    
+    INSTALL_MOBILE_APP(String.valueOf("INSTALL_MOBILE_APP")),
+    
+    USE_APP(String.valueOf("USE_APP")),
+    
     REGISTER(String.valueOf("REGISTER")),
     
     JOIN(String.valueOf("JOIN")),
@@ -599,7 +631,11 @@ public class CreateStandaloneAdRequest {
     
     CREDIT(String.valueOf("CREDIT")),
     
-    ISSUES_ELECTIONS_POLITICS(String.valueOf("ISSUES_ELECTIONS_POLITICS"));
+    FINANCIAL_PRODUCTS_SERVICES(String.valueOf("FINANCIAL_PRODUCTS_SERVICES")),
+    
+    ISSUES_ELECTIONS_POLITICS(String.valueOf("ISSUES_ELECTIONS_POLITICS")),
+    
+    ONLINE_GAMBLING_AND_GAMING(String.valueOf("ONLINE_GAMBLING_AND_GAMING"));
 
     private String value;
 

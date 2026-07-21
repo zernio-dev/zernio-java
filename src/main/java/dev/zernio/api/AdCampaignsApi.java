@@ -25,6 +25,7 @@ import dev.zernio.model.DeleteAdCampaign200Response;
 import dev.zernio.model.DeleteAdCampaignRequest;
 import dev.zernio.model.DuplicateAdCampaign200Response;
 import dev.zernio.model.DuplicateAdCampaignRequest;
+import dev.zernio.model.GetAdSetDetails200Response;
 import dev.zernio.model.GetAdTree200Response;
 import dev.zernio.model.GetAdsTimeline200Response;
 import dev.zernio.model.InlineObject;
@@ -63,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T14:18:25.464819250Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -556,6 +557,153 @@ public class AdCampaignsApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Live ad-set details incl. learning phase (Meta)
+   * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+   * @param adSetId Meta ad set id (platformAdSetId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @return GetAdSetDetails200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdSetDetails200Response getAdSetDetails(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields) throws ApiException {
+    return getAdSetDetails(adSetId, accountId, fields, null);
+  }
+
+  /**
+   * Live ad-set details incl. learning phase (Meta)
+   * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+   * @param adSetId Meta ad set id (platformAdSetId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdSetDetails200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdSetDetails200Response getAdSetDetails(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdSetDetails200Response> localVarResponse = getAdSetDetailsWithHttpInfo(adSetId, accountId, fields, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Live ad-set details incl. learning phase (Meta)
+   * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+   * @param adSetId Meta ad set id (platformAdSetId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @return ApiResponse&lt;GetAdSetDetails200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdSetDetails200Response> getAdSetDetailsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields) throws ApiException {
+    return getAdSetDetailsWithHttpInfo(adSetId, accountId, fields, null);
+  }
+
+  /**
+   * Live ad-set details incl. learning phase (Meta)
+   * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING — Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. Meta only.
+   * @param adSetId Meta ad set id (platformAdSetId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdSetDetails200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdSetDetails200Response> getAdSetDetailsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdSetDetailsRequestBuilder(adSetId, accountId, fields, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdSetDetails", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdSetDetails200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdSetDetails200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdSetDetails200Response>() {});
+        
+
+        return new ApiResponse<GetAdSetDetails200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdSetDetailsRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling getAdSetDetails");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdSetDetails");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "fields";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fields", fields));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

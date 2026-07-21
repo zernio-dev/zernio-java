@@ -46,11 +46,13 @@ import dev.zernio.model.EstimateAdReachRequest;
 import dev.zernio.model.GenerateAdPreviews200Response;
 import dev.zernio.model.GenerateAdPreviewsRequest;
 import dev.zernio.model.GetAd200Response;
+import dev.zernio.model.GetAdAccountFinance200Response;
 import dev.zernio.model.GetAdAnalytics200Response;
 import dev.zernio.model.GetAdComments200Response;
 import dev.zernio.model.GetAdInsightsReport200Response;
 import dev.zernio.model.GetAdPreviews200Response;
 import dev.zernio.model.GetAdTrackingTags200Response;
+import dev.zernio.model.GetAdsActivityLog200Response;
 import dev.zernio.model.GetCampaignAnalytics200Response;
 import dev.zernio.model.GetConversionDestination200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
@@ -66,6 +68,7 @@ import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListAdAccounts200Response;
 import dev.zernio.model.ListAdCatalogProductSets200Response;
 import dev.zernio.model.ListAdCatalogs200Response;
+import dev.zernio.model.ListAdStudies200Response;
 import dev.zernio.model.ListAds200Response;
 import dev.zernio.model.ListAdsBusinessCenters200Response;
 import dev.zernio.model.ListConversionAssociations200Response;
@@ -91,6 +94,8 @@ import dev.zernio.model.UpdateAdStatus200Response;
 import dev.zernio.model.UpdateAdStatusRequest;
 import dev.zernio.model.UpdateAdTrackingTagsRequest;
 import dev.zernio.model.UpdateConversionDestinationRequest;
+import dev.zernio.model.UploadAdImage201Response;
+import dev.zernio.model.UploadAdImageRequest;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -117,7 +122,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-20T14:18:25.464819250Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-07-21T07:17:45.446511555Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2366,6 +2371,148 @@ public class AdsApi {
   }
 
   /**
+   * Ad account finances (Meta)
+   * Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @return GetAdAccountFinance200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdAccountFinance200Response getAdAccountFinance(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getAdAccountFinance(accountId, adAccountId, null);
+  }
+
+  /**
+   * Ad account finances (Meta)
+   * Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param headers Optional headers to include in the request
+   * @return GetAdAccountFinance200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdAccountFinance200Response getAdAccountFinance(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdAccountFinance200Response> localVarResponse = getAdAccountFinanceWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Ad account finances (Meta)
+   * Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @return ApiResponse&lt;GetAdAccountFinance200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdAccountFinance200Response> getAdAccountFinanceWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId) throws ApiException {
+    return getAdAccountFinanceWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * Ad account finances (Meta)
+   * Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdAccountFinance200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdAccountFinance200Response> getAdAccountFinanceWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdAccountFinanceRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdAccountFinance", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdAccountFinance200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdAccountFinance200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdAccountFinance200Response>() {});
+        
+
+        return new ApiResponse<GetAdAccountFinance200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdAccountFinanceRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdAccountFinance");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getAdAccountFinance");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/finance";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get ad analytics
    * Returns detailed performance analytics for an ad. Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta and TikTok only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
    * @param adId  (required)
@@ -3056,6 +3203,178 @@ public class AdsApi {
         .replace("{adId}", ApiClient.urlEncode(adId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Ad account change / audit log (Meta)
+   * Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param since Start of range (YYYY-MM-DD). (optional)
+   * @param until End of range (YYYY-MM-DD). (optional)
+   * @param objectId Client-side filter to one Meta object id (campaign, ad set or ad). (optional)
+   * @param limit Rows per page (optional, default to 50)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @return GetAdsActivityLog200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdsActivityLog200Response getAdsActivityLog(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return getAdsActivityLog(accountId, adAccountId, since, until, objectId, limit, after, null);
+  }
+
+  /**
+   * Ad account change / audit log (Meta)
+   * Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param since Start of range (YYYY-MM-DD). (optional)
+   * @param until End of range (YYYY-MM-DD). (optional)
+   * @param objectId Client-side filter to one Meta object id (campaign, ad set or ad). (optional)
+   * @param limit Rows per page (optional, default to 50)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdsActivityLog200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdsActivityLog200Response getAdsActivityLog(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdsActivityLog200Response> localVarResponse = getAdsActivityLogWithHttpInfo(accountId, adAccountId, since, until, objectId, limit, after, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Ad account change / audit log (Meta)
+   * Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param since Start of range (YYYY-MM-DD). (optional)
+   * @param until End of range (YYYY-MM-DD). (optional)
+   * @param objectId Client-side filter to one Meta object id (campaign, ad set or ad). (optional)
+   * @param limit Rows per page (optional, default to 50)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @return ApiResponse&lt;GetAdsActivityLog200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdsActivityLog200Response> getAdsActivityLogWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return getAdsActivityLogWithHttpInfo(accountId, adAccountId, since, until, objectId, limit, after, null);
+  }
+
+  /**
+   * Ad account change / audit log (Meta)
+   * Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param since Start of range (YYYY-MM-DD). (optional)
+   * @param until End of range (YYYY-MM-DD). (optional)
+   * @param objectId Client-side filter to one Meta object id (campaign, ad set or ad). (optional)
+   * @param limit Rows per page (optional, default to 50)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdsActivityLog200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdsActivityLog200Response> getAdsActivityLogWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdsActivityLogRequestBuilder(accountId, adAccountId, since, until, objectId, limit, after, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdsActivityLog", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdsActivityLog200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdsActivityLog200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdsActivityLog200Response>() {});
+        
+
+        return new ApiResponse<GetAdsActivityLog200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdsActivityLogRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable LocalDate since, @javax.annotation.Nullable LocalDate until, @javax.annotation.Nullable String objectId, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdsActivityLog");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling getAdsActivityLog");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/activity";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "since";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
+    localVarQueryParameterBaseName = "until";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
+    localVarQueryParameterBaseName = "objectId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("objectId", objectId));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "after";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -4762,6 +5081,166 @@ public class AdsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "adAccountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * A/B tests and lift studies (Meta)
+   * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @return ListAdStudies200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdStudies200Response listAdStudies(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return listAdStudies(accountId, adAccountId, fields, limit, after, null);
+  }
+
+  /**
+   * A/B tests and lift studies (Meta)
+   * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAdStudies200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdStudies200Response listAdStudies(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdStudies200Response> localVarResponse = listAdStudiesWithHttpInfo(accountId, adAccountId, fields, limit, after, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * A/B tests and lift studies (Meta)
+   * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @return ApiResponse&lt;ListAdStudies200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdStudies200Response> listAdStudiesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after) throws ApiException {
+    return listAdStudiesWithHttpInfo(accountId, adAccountId, fields, limit, after, null);
+  }
+
+  /**
+   * A/B tests and lift studies (Meta)
+   * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
+   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param limit Rows per page (optional, default to 25)
+   * @param after Cursor from paging.after of the previous page. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdStudies200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdStudies200Response> listAdStudiesWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdStudiesRequestBuilder(accountId, adAccountId, fields, limit, after, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdStudies", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdStudies200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdStudies200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdStudies200Response>() {});
+        
+
+        return new ApiResponse<ListAdStudies200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdStudiesRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String adAccountId, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable String after, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdStudies");
+    }
+    // verify the required parameter 'adAccountId' is set
+    if (adAccountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adAccountId' when calling listAdStudies");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/studies";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+    localVarQueryParameterBaseName = "fields";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fields", fields));
+    localVarQueryParameterBaseName = "limit";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "after";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("after", after));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -7567,6 +8046,129 @@ public class AdsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateConversionDestinationRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Upload an ad image from base64 (Meta)
+   * Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+   * @param uploadAdImageRequest  (required)
+   * @return UploadAdImage201Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadAdImage201Response uploadAdImage(@javax.annotation.Nonnull UploadAdImageRequest uploadAdImageRequest) throws ApiException {
+    return uploadAdImage(uploadAdImageRequest, null);
+  }
+
+  /**
+   * Upload an ad image from base64 (Meta)
+   * Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+   * @param uploadAdImageRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UploadAdImage201Response
+   * @throws ApiException if fails to make API call
+   */
+  public UploadAdImage201Response uploadAdImage(@javax.annotation.Nonnull UploadAdImageRequest uploadAdImageRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UploadAdImage201Response> localVarResponse = uploadAdImageWithHttpInfo(uploadAdImageRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Upload an ad image from base64 (Meta)
+   * Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+   * @param uploadAdImageRequest  (required)
+   * @return ApiResponse&lt;UploadAdImage201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadAdImage201Response> uploadAdImageWithHttpInfo(@javax.annotation.Nonnull UploadAdImageRequest uploadAdImageRequest) throws ApiException {
+    return uploadAdImageWithHttpInfo(uploadAdImageRequest, null);
+  }
+
+  /**
+   * Upload an ad image from base64 (Meta)
+   * Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+   * @param uploadAdImageRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UploadAdImage201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UploadAdImage201Response> uploadAdImageWithHttpInfo(@javax.annotation.Nonnull UploadAdImageRequest uploadAdImageRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = uploadAdImageRequestBuilder(uploadAdImageRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("uploadAdImage", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UploadAdImage201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UploadAdImage201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UploadAdImage201Response>() {});
+        
+
+        return new ApiResponse<UploadAdImage201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder uploadAdImageRequestBuilder(@javax.annotation.Nonnull UploadAdImageRequest uploadAdImageRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'uploadAdImageRequest' is set
+    if (uploadAdImageRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'uploadAdImageRequest' when calling uploadAdImage");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/images";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(uploadAdImageRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

@@ -38,6 +38,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**generateAdPreviewsWithHttpInfo**](AdsApi.md#generateAdPreviewsWithHttpInfo) | **POST** /v1/ads/preview | Render pre-create ad previews (Meta) |
 | [**getAd**](AdsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdWithHttpInfo**](AdsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
+| [**getAdAccountFinance**](AdsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta) |
+| [**getAdAccountFinanceWithHttpInfo**](AdsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances (Meta) |
 | [**getAdAnalytics**](AdsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdAnalyticsWithHttpInfo**](AdsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdComments**](AdsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
@@ -48,6 +50,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdPreviewsWithHttpInfo**](AdsApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad (Meta) |
 | [**getAdTrackingTags**](AdsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**getAdTrackingTagsWithHttpInfo**](AdsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
+| [**getAdsActivityLog**](AdsApi.md#getAdsActivityLog) | **GET** /v1/ads/activity | Ad account change / audit log (Meta) |
+| [**getAdsActivityLogWithHttpInfo**](AdsApi.md#getAdsActivityLogWithHttpInfo) | **GET** /v1/ads/activity | Ad account change / audit log (Meta) |
 | [**getCampaignAnalytics**](AdsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**getCampaignAnalyticsWithHttpInfo**](AdsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**getConversionDestination**](AdsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
@@ -72,6 +76,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdCatalogProductSetsWithHttpInfo**](AdsApi.md#listAdCatalogProductSetsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets |
 | [**listAdCatalogs**](AdsApi.md#listAdCatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs |
 | [**listAdCatalogsWithHttpInfo**](AdsApi.md#listAdCatalogsWithHttpInfo) | **GET** /v1/ads/catalogs | List Meta product catalogs |
+| [**listAdStudies**](AdsApi.md#listAdStudies) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta) |
+| [**listAdStudiesWithHttpInfo**](AdsApi.md#listAdStudiesWithHttpInfo) | **GET** /v1/ads/studies | A/B tests and lift studies (Meta) |
 | [**listAds**](AdsApi.md#listAds) | **GET** /v1/ads | List ads |
 | [**listAdsWithHttpInfo**](AdsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
 | [**listAdsBusinessCenters**](AdsApi.md#listAdsBusinessCenters) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
@@ -110,6 +116,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdTrackingTagsWithHttpInfo**](AdsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**updateConversionDestination**](AdsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**updateConversionDestinationWithHttpInfo**](AdsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
+| [**uploadAdImage**](AdsApi.md#uploadAdImage) | **POST** /v1/ads/images | Upload an ad image from base64 (Meta) |
+| [**uploadAdImageWithHttpInfo**](AdsApi.md#uploadAdImageWithHttpInfo) | **POST** /v1/ads/images | Upload an ad image from base64 (Meta) |
 
 
 
@@ -2719,6 +2727,160 @@ ApiResponse<[**GetAd200Response**](GetAd200Response.md)>
 | **404** | Resource not found |  -  |
 
 
+## getAdAccountFinance
+
+> GetAdAccountFinance200Response getAdAccountFinance(accountId, adAccountId)
+
+Ad account finances (Meta)
+
+Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        try {
+            GetAdAccountFinance200Response result = apiInstance.getAdAccountFinance(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdAccountFinance");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+
+### Return type
+
+[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account finances |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getAdAccountFinanceWithHttpInfo
+
+> ApiResponse<GetAdAccountFinance200Response> getAdAccountFinance getAdAccountFinanceWithHttpInfo(accountId, adAccountId)
+
+Ad account finances (Meta)
+
+Finances of one Meta ad account: prepaid &#x60;balance&#x60;, lifetime &#x60;amountSpent&#x60;, account &#x60;spendCap&#x60; (null &#x3D; no cap) and the &#x60;fundingSource&#x60;. Money values are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        try {
+            ApiResponse<GetAdAccountFinance200Response> response = apiInstance.getAdAccountFinanceWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdAccountFinance");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+
+### Return type
+
+ApiResponse<[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account finances |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
 ## getAdAnalytics
 
 > GetAdAnalytics200Response getAdAnalytics(adId, fromDate, toDate, breakdowns)
@@ -3521,6 +3683,180 @@ ApiResponse<[**GetAdTrackingTags200Response**](GetAdTrackingTags200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Ad not found |  -  |
 | **405** | Platform has no click-URL tracking surface |  -  |
+
+
+## getAdsActivityLog
+
+> GetAdsActivityLog200Response getAdsActivityLog(accountId, adAccountId, since, until, objectId, limit, after)
+
+Ad account change / audit log (Meta)
+
+Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        LocalDate since = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD).
+        LocalDate until = LocalDate.now(); // LocalDate | End of range (YYYY-MM-DD).
+        String objectId = "objectId_example"; // String | Client-side filter to one Meta object id (campaign, ad set or ad).
+        Integer limit = 50; // Integer | Rows per page
+        String after = "after_example"; // String | Cursor from paging.after of the previous page.
+        try {
+            GetAdsActivityLog200Response result = apiInstance.getAdsActivityLog(accountId, adAccountId, since, until, objectId, limit, after);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdsActivityLog");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **since** | **LocalDate**| Start of range (YYYY-MM-DD). | [optional] |
+| **until** | **LocalDate**| End of range (YYYY-MM-DD). | [optional] |
+| **objectId** | **String**| Client-side filter to one Meta object id (campaign, ad set or ad). | [optional] |
+| **limit** | **Integer**| Rows per page | [optional] [default to 50] |
+| **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
+
+### Return type
+
+[**GetAdsActivityLog200Response**](GetAdsActivityLog200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Activity rows (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getAdsActivityLogWithHttpInfo
+
+> ApiResponse<GetAdsActivityLog200Response> getAdsActivityLog getAdsActivityLogWithHttpInfo(accountId, adAccountId, since, until, objectId, limit, after)
+
+Ad account change / audit log (Meta)
+
+Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad). Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        LocalDate since = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD).
+        LocalDate until = LocalDate.now(); // LocalDate | End of range (YYYY-MM-DD).
+        String objectId = "objectId_example"; // String | Client-side filter to one Meta object id (campaign, ad set or ad).
+        Integer limit = 50; // Integer | Rows per page
+        String after = "after_example"; // String | Cursor from paging.after of the previous page.
+        try {
+            ApiResponse<GetAdsActivityLog200Response> response = apiInstance.getAdsActivityLogWithHttpInfo(accountId, adAccountId, since, until, objectId, limit, after);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#getAdsActivityLog");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **since** | **LocalDate**| Start of range (YYYY-MM-DD). | [optional] |
+| **until** | **LocalDate**| End of range (YYYY-MM-DD). | [optional] |
+| **objectId** | **String**| Client-side filter to one Meta object id (campaign, ad set or ad). | [optional] |
+| **limit** | **Integer**| Rows per page | [optional] [default to 50] |
+| **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdsActivityLog200Response**](GetAdsActivityLog200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Activity rows (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## getCampaignAnalytics
@@ -5401,6 +5737,172 @@ ApiResponse<[**ListAdCatalogs200Response**](ListAdCatalogs200Response.md)>
 | **200** | Catalogs |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## listAdStudies
+
+> ListAdStudies200Response listAdStudies(accountId, adAccountId, fields, limit, after)
+
+A/B tests and lift studies (Meta)
+
+Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        Integer limit = 25; // Integer | Rows per page
+        String after = "after_example"; // String | Cursor from paging.after of the previous page.
+        try {
+            ListAdStudies200Response result = apiInstance.listAdStudies(accountId, adAccountId, fields, limit, after);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listAdStudies");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **limit** | **Integer**| Rows per page | [optional] [default to 25] |
+| **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
+
+### Return type
+
+[**ListAdStudies200Response**](ListAdStudies200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad studies (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## listAdStudiesWithHttpInfo
+
+> ApiResponse<ListAdStudies200Response> listAdStudies listAdStudiesWithHttpInfo(accountId, adAccountId, fields, limit, after)
+
+A/B tests and lift studies (Meta)
+
+Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        Integer limit = 25; // Integer | Rows per page
+        String after = "after_example"; // String | Cursor from paging.after of the previous page.
+        try {
+            ApiResponse<ListAdStudies200Response> response = apiInstance.listAdStudiesWithHttpInfo(accountId, adAccountId, fields, limit, after);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#listAdStudies");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **limit** | **Integer**| Rows per page | [optional] [default to 25] |
+| **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdStudies200Response**](ListAdStudies200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Ad studies (raw Meta shape) |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## listAds
@@ -8493,4 +8995,154 @@ ApiResponse<[**GetConversionDestination200Response**](GetConversionDestination20
 | **404** | Account or destination not found. |  -  |
 | **405** | Platform does not support updating destinations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## uploadAdImage
+
+> UploadAdImage201Response uploadAdImage(uploadAdImageRequest)
+
+Upload an ad image from base64 (Meta)
+
+Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        UploadAdImageRequest uploadAdImageRequest = new UploadAdImageRequest(); // UploadAdImageRequest | 
+        try {
+            UploadAdImage201Response result = apiInstance.uploadAdImage(uploadAdImageRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#uploadAdImage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uploadAdImageRequest** | [**UploadAdImageRequest**](UploadAdImageRequest.md)|  | |
+
+### Return type
+
+[**UploadAdImage201Response**](UploadAdImage201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Image uploaded |  -  |
+| **400** | Invalid input, or Meta rejected the image |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## uploadAdImageWithHttpInfo
+
+> ApiResponse<UploadAdImage201Response> uploadAdImage uploadAdImageWithHttpInfo(uploadAdImageRequest)
+
+Upload an ad image from base64 (Meta)
+
+Uploads raw image bytes to the Meta ad account&#39;s image library — for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. Meta only.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdsApi apiInstance = new AdsApi(defaultClient);
+        UploadAdImageRequest uploadAdImageRequest = new UploadAdImageRequest(); // UploadAdImageRequest | 
+        try {
+            ApiResponse<UploadAdImage201Response> response = apiInstance.uploadAdImageWithHttpInfo(uploadAdImageRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdsApi#uploadAdImage");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **uploadAdImageRequest** | [**UploadAdImageRequest**](UploadAdImageRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UploadAdImage201Response**](UploadAdImage201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Image uploaded |  -  |
+| **400** | Invalid input, or Meta rejected the image |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
